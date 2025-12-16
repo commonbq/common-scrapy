@@ -1,0 +1,33 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments & dependencies
+.venv/
+venv/
+env/
+ENV/
+.pipenv/
+.venv.bak/
+
+# Local configuration
+.env
+.env.*
+*.local
+
+# Tooling / reports
+.pytest_cache/
+.coverage
+coverage/
+htmlcov/
+
+# Scrapy output
+.scrapy/
+
+# Editors & OS files
+.vscode/
+.idea/
+.DS_Store
+
+*.har
