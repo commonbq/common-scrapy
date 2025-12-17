@@ -1,7 +1,4 @@
-import os
-from pathlib import Path
-
-from dotenv import load_dotenv
+from dotenv import dotenv_values
 
 
 # Scrapy settings for common project
@@ -92,8 +89,6 @@ DOWNLOAD_DELAY = 1
 # Set settings whose default value is deprecated to a future-proof value
 FEED_EXPORT_ENCODING = "utf-8"
 
-_ENV_PATH = Path(__file__).resolve().parents[2] / ".env"
-if _ENV_PATH.exists():
-    load_dotenv(_ENV_PATH)
+COMMON_ENV = dotenv_values()
 
-PROXY = os.getenv("COMMON_SCRAPY_PROXY", "")
+PROXY = COMMON_ENV.get("COMMON_SCRAPY_PROXY", None)

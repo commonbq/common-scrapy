@@ -8,6 +8,7 @@ from urllib.parse import urlencode, urlparse, urlunparse
 import scrapy
 
 from common.utils import dict_get
+from common.settings import PROXY
 
 
 def _field_name(path: str) -> str:
@@ -24,9 +25,7 @@ class CommonSpider(scrapy.Spider):
 
     def start_requests(self):
         template_path = (
-            Path(__file__).resolve().parent.parent
-            / "templates"
-            / f"{self.name}.json"
+            Path(__file__).resolve().parent.parent / "templates" / f"{self.name}.json"
         )
 
         with template_path.open("r", encoding="utf-8") as fp:
@@ -66,7 +65,7 @@ class CommonSpider(scrapy.Spider):
             body=body,
             callback=self.parse_response,
             headers=request_template.get("headersDict"),
-            meta={"proxy": self.proxy, "template": template},
+            meta={"proxy": PROXY, "template": template},
         )
 
     def parse_response(self, response: scrapy.http.Response):
