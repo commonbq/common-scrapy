@@ -20,3 +20,8 @@ def dict_get(data: dict, path: str) -> Any:
         if current is None:
             return None
     return current
+
+
+def field_name(path: str) -> str:
+    parts = [segment for segment in path.split(".") if segment]
+    return parts[-1] if parts else path

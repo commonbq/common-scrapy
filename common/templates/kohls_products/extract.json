@@ -1,0 +1,13 @@
+{
+  "$list": "payload.products",
+  "$include": {
+    "metaInfo": "payload.metaInfo",
+    "pageURL": "payload.pageURL",
+    "pageCategories": "payload.pageCategories",
+    "h1tag": "payload.h1tag"
+  },
+  "$item": {
+    "regularPrice": "prices.0.regularPrice.minPrice",
+    "salePrice": "prices.0.salePrice.minPrice"
+  }
+}

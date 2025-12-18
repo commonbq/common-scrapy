@@ -1,0 +1,294 @@
+{
+  "status": 200,
+  "headers": [
+    {
+      "name": "x-origin-ttl",
+      "value": "Tue, 09 Dec 2025 08:21:31 GMT, Tue, 09 Dec 2025 08:21:31 GMT"
+    },
+    {
+      "name": "content-encoding",
+      "value": "gzip"
+    },
+    {
+      "name": "x-origin-cc",
+      "value": "private, private"
+    },
+    {
+      "name": "skipcache",
+      "value": "false"
+    },
+    {
+      "name": "traceresponse",
+      "value": "00-c6f838c030827634e0e15306d11c0a16-9230b2e35c6a7bbb-01"
+    },
+    {
+      "name": "correlation-id",
+      "value": ":web::WEB::SHOP-NEXT-36f013f7-a1d1-46b2-89a9-c338433c90bd::acc-session-36819844-bb43-41a8-8658-eb277fd35f02::1765267590686::us-central1-c::production-8-0-11-775975cf98-w4lqp::null::SnB::catalog::1.0.0-SNAPSHOT::null::ANONYMOUS::null::null::null::null"
+    },
+    {
+      "name": "x-oneagent-js-injection",
+      "value": "true"
+    },
+    {
+      "name": "expires",
+      "value": "Tue, 09 Dec 2025 08:06:31 GMT"
+    },
+    {
+      "name": "server-timing",
+      "value": "cdn-cache; desc=MISS, edge; dur=56, origin; dur=626, dtRpid;desc=\"1864680750\", dtSInfo;desc=\"0\", ak_p; desc=\"1765267590609_390287343_184392001_68548_41092_1_0_219\";dur=1"
+    },
+    {
+      "name": "date",
+      "value": "Tue, 09 Dec 2025 08:06:31 GMT"
+    },
+    {
+      "name": "content-type",
+      "value": "application/json"
+    },
+    {
+      "name": "vary",
+      "value": "Accept-Encoding"
+    },
+    {
+      "name": "strict-transport-security",
+      "value": "max-age=15768000 ; preload"
+    },
+    {
+      "name": "x-dt-tracestate",
+      "value": "2dcea3bc-365dc7b4@dt"
+    },
+    {
+      "name": "cache-control",
+      "value": "max-age=0, no-cache, no-store, private"
+    },
+    {
+      "name": "pragma",
+      "value": "no-cache"
+    }
+  ],
+  "content": {
+    "payload": {
+      "searchTerm": null,
+      "autoCorrectedTerm": null,
+      "legalDisclaimer": null,
+      "links": null,
+      "relatedSearchTerms": [],
+      "linkCartridge": {
+        "linkGroup": []
+      },
+      "metaInfo": {
+        "metaTitle": "Sale | Kohl's",
+        "metaDescription": "Enjoy free shipping and easy returns every day at ",
+        "metaKeywords": null,
+        "seoNoIndex": "true",
+        "copyBlock": null,
+        "seoLinks": null
+      },
+      "omnitureInfo": null,
+      "availableTerms": [],
+      "activeDimensions": [
+        {
+          "name": "Promotions",
+          "label": "Promotions",
+          "index": 1,
+          "activeDimensionValues": [
+            {
+              "name": "Clearance",
+              "index": 1,
+              "productCount": 0,
+              "seoURL": "/catalog/sale.jsp?CN=Promotions:Sale",
+              "currentDimensionId": "Promotions:Clearance",
+              "currentAttributeId": null,
+              "ID": "Promotions:Sale",
+              "breadcrumbType": null
+            }
+          ]
+        }
+      ],
+      "sorts": [
+        {
+          "name": "Featured",
+          "active": true,
+          "ID": "1"
+        }
+      ],
+      "dimensions": [
+        {
+          "name": "InStoreOnline",
+          "label": "InStoreOnline",
+          "index": 1,
+          "dimensionValues": [
+            {
+              "name": "Store Pickup Today",
+              "productCount": 8145,
+              "index": 1,
+              "active": false,
+              "noFollow": true,
+              "seoURL": "/catalog/sale.jsp?CN=Promotions:Clearance+Promotio",
+              "currentDimensionId": "InStoreOnline:Pick%20Up%20in%20Store",
+              "currentAttributeId": null,
+              "ID": "Promotions:Clearance+Promotions:Sale+InStoreOnline"
+            }
+          ],
+          "clearSEOURL": null
+        }
+      ],
+      "tiles": null,
+      "products": [
+        {
+          "webID": "4440347",
+          "productTitle": "Protocol Voice Changer 10-Voice Megaphone",
+          "image": {
+            "url": "https://media.kohlsimg.com/is/image/kohls/4440347?",
+            "height": "180",
+            "width": "180"
+          },
+          "prices": [
+            {
+              "regularPrice": {
+                "minPrice": 20,
+                "maxPrice": null
+              },
+              "salePrice": {
+                "minPrice": 15,
+                "maxPrice": null
+              },
+              "displayBegDateTime": "2025/12/09 00:06:31 -0800",
+              "displayEndDateTime": "2025/12/09 21:06:15 -0800",
+              "purchaseBegDateTime": "2025/12/09 00:06:31 -0800",
+              "purchaseEndDateTime": "2025/12/09 21:06:15 -0800",
+              "isCurrentPrice": true,
+              "regularPriceType": "Original",
+              "promotion": null,
+              "statusCode": "20",
+              "priceCode": "Normal",
+              "salePriceStatus": "sale",
+              "isSuppressed": false,
+              "salePriceType": null,
+              "isPriceInstore": false,
+              "suppressedPricingText": null,
+              "promotions": {
+                "tieredPrice": [],
+                "group": [],
+                "bogo": []
+              },
+              "priceLabel": "sale"
+            }
+          ],
+          "rating": {
+            "avgRating": 2.2,
+            "count": 86
+          },
+          "swatchImages": [],
+          "storeNumbers": [
+            {
+              "value": "977"
+            }
+          ],
+          "valueAddedIcons": [],
+          "valueAddedBadges": {
+            "realTime": [],
+            "pricing": [],
+            "other": [
+              "bopus"
+            ]
+          },
+          "seoURL": "/product/prd-4440347/protocol-voice-changer-10-voi",
+          "variations": "None",
+          "altImageUrl": "https://media.kohlsimg.com/is/image/kohls/4440347_",
+          "prodType": "product",
+          "displayColor": [
+            "No Color"
+          ],
+          "availableColr": [
+            "No Color"
+          ],
+          "isAvailableforShip": true,
+          "isAvailableforPickUp": true,
+          "boosted": false,
+          "ypEligible": true,
+          "sponsoredData": null,
+          "sephoraProduct": false,
+          "yourPriceInfo": null,
+          "skuIds": [
+            "50861389"
+          ],
+          "partnership": null,
+          "couponEligible": false,
+          "isBossAvailable": false,
+          "isVGC": false,
+          "ypEligibilityVal": "Eligible for Your Price"
+        }
+      ],
+      "monetization": {
+        "brand": null,
+        "ageAppropriate": null,
+        "occasion": null,
+        "gender": null,
+        "sportsLeague": null,
+        "sportsTeam": null,
+        "ageAppropriateRange": null,
+        "childAgeRange": null,
+        "sizeRange": null,
+        "fit": null,
+        "legOpening": null,
+        "trend": null,
+        "feature": null,
+        "activity": null,
+        "bodyType": null,
+        "roastsFlavors": null,
+        "personaCategory": null,
+        "personaTheme": null,
+        "personaSubject": null,
+        "personaGroupCode": null,
+        "adUnit": {
+          "value": "/ROS"
+        },
+        "silhouette": null
+      },
+      "monetizationRequest": null,
+      "h1tag": "Sale",
+      "visualNavTiles": {
+        "visualNavTitle": "",
+        "visualNavTile": [
+          {
+            "navLink": "/catalog/clearance.jsp?CN=Promotions:Clearance&ici",
+            "navLabel": "Clearance",
+            "imageUrl": "https://media.kohlsimg.com/is/image/kohls/20250421",
+            "id": "Promotions:Clearance"
+          }
+        ]
+      },
+      "searchResultMessage": null,
+      "stores": null,
+      "storeBreadcrumbURL": null,
+      "spotLights": {
+        "bannerContents": []
+      },
+      "tabInfo": {
+        "allProducts": [
+          {
+            "count": 168940,
+            "isSelected": true,
+            "tabName": "All Products",
+            "url": ""
+          }
+        ]
+      },
+      "pageSeoURL": "/catalog/sale.jsp?CN=Promotions:Clearance+Promotio",
+      "pageURL": "/catalog/sale.jsp?CN=Promotions:Clearance+Promotio",
+      "resultsPersonalized": false,
+      "propensityAvailable": null,
+      "relevancyAlgorithm": "browse||hQHwhAoMCIax38kGENGNm9MCEAEaJDY5NDFmMDdlLT",
+      "encoded": false,
+      "selectedDimensions": [],
+      "disclaimerType": null,
+      "sephoraProducts": false,
+      "suppressAds": false,
+      "pageCategories": "root > Promotions"
+    },
+    "count": 168940,
+    "limit": 120,
+    "offset": 121
+  }
+}

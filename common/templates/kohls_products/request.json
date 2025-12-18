@@ -5,7 +5,7 @@
   "category": "Sale & Clearance",
   "request": {
     "method": "GET",
-    "url": "https://www.kohls.com/web/catalog/Promotions%3AClearance%2BPromotions%3ASale?limit=120&offset=121&storeNum=977&isDefaultStore=true&includeStoreOnlyProducts=true&isLTL=true&channel=web",
+    "url": "https://www.kohls.com/web/catalog/Promotions%3AClearance%2BPromotions%3ASale?limit=120&storeNum=977&isDefaultStore=true&includeStoreOnlyProducts=true&isLTL=true&channel=web",
     "httpVersion": "HTTP/1.1",
     "headers": [
       {
@@ -115,12 +115,6 @@
       "offset": "offset",
       "limit": "limit",
       "justification": "The presence of an 'offset' parameter indicates pagination is controlled by an offset, while 'limit' specifies the number of items per page."
-    }
-  },
-  "response": {
-    "$extract": {
-      "$list": "payload.products",
-      "$include": []
     }
   }
 }
