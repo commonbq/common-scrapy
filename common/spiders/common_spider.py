@@ -33,19 +33,25 @@ class CommonSpider(scrapy.Spider):
                 )
 
     def start_requests(self):
-        request_template = self.request_template["request"]
-        pagination = request_template.get("pagination")
-        payload = request_template.get("payload", {}).copy()
+        send_template = self.request_template["request"]
+        pagination = send_template.get("pagination")
+        payload = send_template.get("payload", {}).copy()
 
         if pagination["mode"] == "offset":
             payload.pop(pagination["offset"], None)
         elif pagination["mode"] == "page":
             payload[pagination["page"]] = 1
 
-        yield self._build_request(payload)
+        for category in self.request_template["categories"]:
+            template = {
+                **send_template,
+                **category,
+            }
+            yield self._build_request(template, payload)
 
-    def _build_request(self, payload: Mapping[str, Any]) -> scrapy.Request:
-        request_template = self.request_template["request"]
+    def _build_request(
+        self, request_template: Mapping[str, Any], payload: Mapping[str, Any]
+    ) -> scrapy.Request:
         method = (request_template.get("method") or "GET").upper()
         url = request_template.get("url")
         if not isinstance(url, str) or not url:
@@ -65,7 +71,7 @@ class CommonSpider(scrapy.Spider):
             method=method,
             body=body,
             callback=self.parse_response,
-            headers=request_template.get("headersDict"),
+            headers=request_template.get("headers"),
             meta={"proxy": PROXY, "payload": payload},
         )
 

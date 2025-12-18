@@ -1,87 +1,18 @@
 {
   "domain": "https://kohls.com",
-  "category_url": "https://kohls.com/catalog/sale.jsp?CN=Promotions:Clearance+Promotions:Sale&BL=y&cc=sale-HZ1-saleclearance",
   "name": "kohls_products",
-  "category": "Sale & Clearance",
+  "categories": [
+    {
+      "name": "Sale & Clearance",
+      "category_url": "https://kohls.com/catalog/sale.jsp?CN=Promotions:Clearance+Promotions:Sale&BL=y&cc=sale-HZ1-saleclearance",
+      "url": "https://www.kohls.com/web/catalog/Promotions%3AClearance%2BPromotions%3ASale"
+    }
+  ],
   "request": {
     "method": "GET",
-    "url": "https://www.kohls.com/web/catalog/Promotions%3AClearance%2BPromotions%3ASale?limit=120&storeNum=977&isDefaultStore=true&includeStoreOnlyProducts=true&isLTL=true&channel=web",
+    "url": "<categories:url>",
     "httpVersion": "HTTP/1.1",
-    "headers": [
-      {
-        "name": "sec-ch-ua-platform",
-        "value": "\"macOS\""
-      },
-      {
-        "name": "userfilters",
-        "value": ""
-      },
-      {
-        "name": "x-dtpc",
-        "value": "2$67540185_325h56vCRFFICKIWHOAAGEMNPGBNDPKJHBEHPIV-0e0"
-      },
-      {
-        "name": "sec-ch-ua",
-        "value": "\"Google Chrome\";v=\"143\", \"Chromium\";v=\"143\", \"Not A(Brand\";v=\"24\""
-      },
-      {
-        "name": "profileid",
-        "value": ""
-      },
-      {
-        "name": "sec-ch-ua-mobile",
-        "value": "?0"
-      },
-      {
-        "name": "correlation-id",
-        "value": "WEB::SHOP-NEXT-36f013f7-a1d1-46b2-89a9-c338433c90bd::acc-session-36819844-bb43-41a8-8658-eb277fd35f02"
-      },
-      {
-        "name": "traceparent",
-        "value": "00-C6F838C030827634E0E15306D11C0A16-C72C2DF588583CB8-01"
-      },
-      {
-        "name": "x-sessionid",
-        "value": ""
-      },
-      {
-        "name": "accept",
-        "value": "application/json"
-      },
-      {
-        "name": "channel",
-        "value": "web"
-      },
-      {
-        "name": "content-type",
-        "value": "application/json"
-      },
-      {
-        "name": "x-dtreferer",
-        "value": "https://www.kohls.com/catalog/sale.jsp?CN=Promotions:Clearance+Promotions:Sale&BL=y&cc=sale-HZ1-saleclearance."
-      },
-      {
-        "name": "referer",
-        "value": "https://www.kohls.com/catalog/sale.jsp?CN=Promotions:Clearance+Promotions:Sale&BL=y&cc=sale-HZ1-saleclearance.&WS=120&PPP=120"
-      },
-      {
-        "name": "sessionstatus",
-        "value": "ANONYMOUS"
-      },
-      {
-        "name": "user-agent",
-        "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
-      },
-      {
-        "name": "usertiles",
-        "value": ""
-      }
-    ],
-    "queryString": [],
     "cookies": [],
-    "headersSize": 1128,
-    "bodySize": 0,
-    "postData": null,
     "payload": {
       "limit": "120",
       "storeNum": "977",
@@ -90,7 +21,7 @@
       "isLTL": "true",
       "channel": "web"
     },
-    "headersDict": {
+    "headers": {
       "sec-ch-ua-platform": "\"macOS\"",
       "userfilters": "",
       "x-dtpc": "2$67540185_325h56vCRFFICKIWHOAAGEMNPGBNDPKJHBEHPIV-0e0",
@@ -113,8 +44,7 @@
       "mode": "offset",
       "page": null,
       "offset": "offset",
-      "limit": "limit",
-      "justification": "The presence of an 'offset' parameter indicates pagination is controlled by an offset, while 'limit' specifies the number of items per page."
+      "limit": "limit"
     }
   }
 }
