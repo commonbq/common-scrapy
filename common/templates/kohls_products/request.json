@@ -82,7 +82,7 @@
     "headersSize": 1128,
     "bodySize": 0,
     "postData": null,
-    "queryDict": {
+    "payload": {
       "limit": "120",
       "storeNum": "977",
       "isDefaultStore": "true",

@@ -35,7 +35,7 @@ class CommonSpider(scrapy.Spider):
     def start_requests(self):
         request_template = self.request_template["request"]
         pagination = request_template.get("pagination")
-        payload = request_template.get("queryDict", {}).copy()
+        payload = request_template.get("payload", {}).copy()
 
         if pagination["mode"] == "offset":
             payload.pop(pagination["offset"], None)
