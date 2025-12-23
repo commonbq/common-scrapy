@@ -1,50 +1,231 @@
 {
-  "domain": "https://kohls.com",
   "name": "kohls_products",
-  "categories": [
-    {
-      "name": "Sale & Clearance",
-      "category_url": "https://kohls.com/catalog/sale.jsp?CN=Promotions:Clearance+Promotions:Sale&BL=y&cc=sale-HZ1-saleclearance",
-      "url": "https://www.kohls.com/web/catalog/Promotions%3AClearance%2BPromotions%3ASale"
-    }
-  ],
   "request": {
     "method": "GET",
-    "url": "<categories:url>",
-    "httpVersion": "HTTP/1.1",
-    "cookies": [],
+    "url": "https://www.kohls.com/web/catalog/Occasion%3AChristmas?limit=120&offset=121&storeNum=977&isDefaultStore=true&includeStoreOnlyProducts=true&isLTL=true&channel=web",
     "payload": {
       "limit": "120",
+      "offset": "121",
       "storeNum": "977",
       "isDefaultStore": "true",
       "includeStoreOnlyProducts": "true",
       "isLTL": "true",
       "channel": "web"
     },
-    "headers": {
-      "sec-ch-ua-platform": "\"macOS\"",
-      "userfilters": "",
-      "x-dtpc": "2$67540185_325h56vCRFFICKIWHOAAGEMNPGBNDPKJHBEHPIV-0e0",
-      "sec-ch-ua": "\"Google Chrome\";v=\"143\", \"Chromium\";v=\"143\", \"Not A(Brand\";v=\"24\"",
-      "profileid": "",
-      "sec-ch-ua-mobile": "?0",
-      "correlation-id": "WEB::SHOP-NEXT-36f013f7-a1d1-46b2-89a9-c338433c90bd::acc-session-36819844-bb43-41a8-8658-eb277fd35f02",
-      "traceparent": "00-C6F838C030827634E0E15306D11C0A16-C72C2DF588583CB8-01",
-      "x-sessionid": "",
-      "accept": "application/json",
-      "channel": "web",
-      "content-type": "application/json",
-      "x-dtreferer": "https://www.kohls.com/catalog/sale.jsp?CN=Promotions:Clearance+Promotions:Sale&BL=y&cc=sale-HZ1-saleclearance.",
-      "referer": "https://www.kohls.com/catalog/sale.jsp?CN=Promotions:Clearance+Promotions:Sale&BL=y&cc=sale-HZ1-saleclearance.&WS=120&PPP=120",
-      "sessionstatus": "ANONYMOUS",
-      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
-      "usertiles": ""
-    },
     "pagination": {
       "mode": "offset",
       "page": null,
       "offset": "offset",
-      "limit": "limit"
+      "limit": "limit",
+      "justification": "The presence of an 'offset' parameter indicates pagination is controlled by an offset, while 'limit' specifies the number of items per page."
+    },
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "userfilters": "",
+      "x-dtpc": "5$54892623_667h55vBRCPLKCBSJUORVGUCBEKPBRTCRJDVUAO-0e0",
+      "sec-ch-ua": "\"Google Chrome\";v=\"143\", \"Chromium\";v=\"143\", \"Not A(Brand\";v=\"24\"",
+      "profileid": "",
+      "sec-ch-ua-mobile": "?0",
+      "correlation-id": "WEB::SHOP-NEXT-147c8c1e-1936-4515-a60b-5d1fcf74dc38::acc-session-c0ffb3bd-5acd-4800-8a2f-b9b7b8ff5826",
+      "traceparent": "00-6A19B5014E17DFD21EAAAE0F333016ED-9CD00F2364DFED74-01",
+      "x-sessionid": "",
+      "accept": "application/json",
+      "channel": "web",
+      "content-type": "application/json",
+      "x-dtreferer": "https://www.kohls.com/catalog/christmas.jsp?CN=Occasion:Christmas&cc=christmas-HZ1-christmas.",
+      "referer": "https://www.kohls.com/catalog/christmas.jsp?CN=Occasion:Christmas&cc=christmas-HZ1-christmas.&WS=120&PPP=120",
+      "sessionstatus": "ANONYMOUS",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
+      "usertiles": ""
     }
-  }
+  },
+  "categories": [
+    {
+      "category": "Sale & Clearance",
+      "category_url": "https://kohls.com/catalog/sale.jsp?CN=Promotions:Clearance+Promotions:Sale&BL=y&cc=sale-HZ1-saleclearance",
+      "har_url": null,
+      "url": "https://www.kohls.com/web/catalog/Promotions%3AClearance%2BPromotions%3ASale%2BSize%3A2?limit=120&storeNum=977&isDefaultStore=true&includeStoreOnlyProducts=true&isLTL=true&channel=web",
+      "headers": {
+        "x-dtpc": "1$2594521_680h54vVBGWWPEKUFIMUPBIHKRBSWEBWKNMRUWP-0e0",
+        "correlation-id": "WEB::SHOP-NEXT-0245157c-035f-4c89-b779-bb60ced9c8e7::acc-session-e2f2daa8-c3c2-44db-b3a9-e0e551adab88",
+        "traceparent": "00-197D05922A3528EFAF442D6AF98273FD-667ED7A61CE99DE9-01",
+        "x-dtreferer": "https://www.kohls.com/catalog/sale.jsp?CN=Promotions:Clearance+Promotions:Sale&BL=y&cc=sale-HZ1-saleclearance.",
+        "referer": "https://www.kohls.com/catalog/sale.jsp?CN=Promotions:Clearance+Promotions:Sale+Size:2&BL=y"
+      }
+    },
+    {
+      "category": "Christmas Decor & More",
+      "category_url": "https://kohls.com/catalog/christmas.jsp?CN=Occasion:Christmas&cc=christmas-HZ1-christmas",
+      "har_url": null
+    },
+    {
+      "category": "Winter Essentials",
+      "category_url": "https://kohls.com/catalog/outerwear-clothing.jsp?CN=Category:Outerwear+Department:Clothing&cc=coldweather-HZ1-coldweather",
+      "har_url": "https://www.kohls.com/catalog/womens-outerwear-clothing.jsp?CN=Gender:Womens+Category:Outerwear+Department:Clothing+Size:2XL&BL=y",
+      "url": "https://www.kohls.com/web/catalog/Category%3AOuterwear%2BDepartment%3AClothing%2BSize%3A2XL?limit=120&storeNum=977&isDefaultStore=true&includeStoreOnlyProducts=true&isLTL=true&channel=web",
+      "headers": {
+        "x-dtpc": "1$56190463_365h53vCCNHWOTBFOOBAMBQKHHUOLOMPRCLVPSN-0e0",
+        "correlation-id": "WEB::SHOP-NEXT-fa969075-dfb3-40fe-9b18-5f999adb6cd2::acc-session-69971f16-778f-4126-9510-5cecc8a8ecb2",
+        "traceparent": "00-4CC2EF3095AA19EB03DC07D8A0730E02-85365FE2E6C9D41A-01",
+        "x-dtreferer": "https://www.kohls.com/catalog/outerwear-clothing.jsp?CN=Category:Outerwear+Department:Clothing&cc=coldweather-HZ1-coldweather.",
+        "referer": "https://www.kohls.com/catalog/outerwear-clothing.jsp?CN=Category:Outerwear+Department:Clothing+Size:2XL&BL=y"
+      }
+    },
+    {
+      "category": "Home & Pet",
+      "category_url": "https://kohls.com/catalog/for-the-home.jsp?CN=Activity:For%20the%20Home&cc=home-HZ1-home",
+      "har_url": "https://www.kohls.com/catalog/for-the-home.jsp?CN=Activity:For%20the%20Home&cc=home-HZ1-home.&WS=120&PPP=120",
+      "url": "https://www.kohls.com/web/catalog/Activity%3AFor%20the%20Home?limit=120&offset=121&storeNum=977&isDefaultStore=true&includeStoreOnlyProducts=true&isLTL=true&channel=web",
+      "headers": {
+        "x-dtpc": "4$56291033_136h48vKSWAPFWPKFQUKDKPCNMCVFWPFMJFWHKB-0e0",
+        "correlation-id": "WEB::SHOP-NEXT-181ffb47-7cea-43e6-94e8-c8d2d3f1f2d2::acc-session-1fe90765-9f6c-4ad2-9860-3871dd5a2a39",
+        "traceparent": "00-046D0543295B5D24B115B4C3F89EEAB3-73EC1526752BBBFC-01",
+        "x-dtreferer": "https://www.kohls.com/catalog/for-the-home.jsp?CN=Activity:For%20the%20Home&cc=home-HZ1-home.",
+        "referer": "https://www.kohls.com/catalog/for-the-home.jsp?CN=Activity:For%20the%20Home&cc=home-HZ1-home.&WS=120&PPP=120"
+      }
+    },
+    {
+      "category": "Women",
+      "category_url": "https://kohls.com/catalog/womens-clothing.jsp?CN=Gender:Womens+Department:Clothing&cc=wmns-HZ1-women",
+      "har_url": "https://www.kohls.com/catalog/womens-clothing.jsp?CN=Gender:Womens+Department:Clothing&cc=wmns-HZ1-women.&WS=120&PPP=120",
+      "url": "https://www.kohls.com/web/catalog/Gender%3AWomens%2BDepartment%3AClothing?limit=120&offset=121&storeNum=977&isDefaultStore=true&includeStoreOnlyProducts=true&isLTL=true&channel=web",
+      "headers": {
+        "x-dtpc": "2$56386748_31h58vPFHIQGKAFWLKTARQPAWNVLBRRSMRMLRW-0e0",
+        "correlation-id": "WEB::SHOP-NEXT-1134143d-aedd-4175-97d0-55ed0870b202::acc-session-f2f52698-315c-40df-96eb-7d4a2f22964d",
+        "traceparent": "00-47116A1B2A24439AAFC79B3BFB0B940C-50F26091B8912C40-01",
+        "x-dtreferer": "https://www.kohls.com/catalog/womens-clothing.jsp?CN=Gender:Womens+Department:Clothing&cc=wmns-HZ1-women.",
+        "referer": "https://www.kohls.com/catalog/womens-clothing.jsp?CN=Gender:Womens+Department:Clothing&cc=wmns-HZ1-women.&WS=120&PPP=120"
+      }
+    },
+    {
+      "category": "Men",
+      "category_url": "https://kohls.com/catalog/mens-clothing.jsp?CN=Gender:Mens+Department:Clothing+CouponEligible:Eligible&BL=y&icid=hpmf-hero-z1-ff-catlink-men",
+      "har_url": "https://www.kohls.com/catalog/mens-clothing.jsp?CN=Gender:Mens+Department:Clothing+CouponEligible:Eligible&BL=y&icid=hpmf-hero-z1-ff-catlink-men.&WS=120&PPP=120",
+      "url": "https://www.kohls.com/web/catalog/Gender%3AMens%2BDepartment%3AClothing%2BCouponEligible%3AEligible?limit=120&offset=121&storeNum=977&isDefaultStore=true&includeStoreOnlyProducts=true&isLTL=true&channel=web",
+      "headers": {
+        "x-dtpc": "7$56500393_75h56vIHLHPRDJMKMPCIORCKABMQJFUMDKJRQR-0e0",
+        "correlation-id": "WEB::SHOP-NEXT-6483a512-7265-4d17-98f0-93cc45a0aabb::acc-session-f3f2a790-f8ac-40e0-8c50-cc742e92f2ec",
+        "traceparent": "00-2A51568DA0227CF4CE6E5A62F48D1A0C-00259B364AF185FE-01",
+        "x-dtreferer": "https://www.kohls.com/catalog/mens-clothing.jsp?CN=Gender:Mens+Department:Clothing+CouponEligible:Eligible&BL=y&icid=hpmf-hero-z1-ff-catlink-men.",
+        "referer": "https://www.kohls.com/catalog/mens-clothing.jsp?CN=Gender:Mens+Department:Clothing+CouponEligible:Eligible&BL=y&icid=hpmf-hero-z1-ff-catlink-men.&WS=120&PPP=120"
+      }
+    },
+    {
+      "category": "Baby",
+      "category_url": "https://kohls.com/catalog/baby.jsp?CN=Department:Baby&cc=baby-HZ1-baby",
+      "har_url": "https://www.kohls.com/catalog/baby.jsp?CN=Department:Baby&cc=baby-HZ1-baby.&WS=120&PPP=120",
+      "url": "https://www.kohls.com/web/catalog/Department%3ABaby?limit=120&offset=121&storeNum=977&isDefaultStore=true&includeStoreOnlyProducts=true&isLTL=true&channel=web",
+      "headers": {
+        "x-dtpc": "21$56599615_146h54vOCHMTLCLVRUGBVNNRPHKLAKIAQALBQKU-0e0",
+        "correlation-id": "WEB::SHOP-NEXT-0e9322bb-6b77-4d15-8bc1-61d2b81d71d5::acc-session-bbd6a593-ae58-4909-8d9f-625253972157",
+        "traceparent": "00-9A61E9383C93B6F9A1D1DA9DC740BA80-C7B4F73FB42841E9-01",
+        "x-dtreferer": "https://www.kohls.com/catalog/baby.jsp?CN=Department:Baby&cc=baby-HZ1-baby.",
+        "referer": "https://www.kohls.com/catalog/baby.jsp?CN=Department:Baby&cc=baby-HZ1-baby.&WS=120&PPP=120"
+      }
+    },
+    {
+      "category": "Kids",
+      "category_url": "https://kohls.com/catalog/kids-clothing.jsp?CN=AgeAppropriate:Kids+Department:Clothing+CouponEligible:Eligible&BL=y&icid=hpmf-hero-z1-ff-catlink-kids",
+      "har_url": "https://www.kohls.com/catalog/kids-clothing.jsp?CN=AgeAppropriate:Kids+Department:Clothing+CouponEligible:Eligible&BL=y&icid=hpmf-hero-z1-ff-catlink-kids.&WS=120&PPP=120",
+      "url": "https://www.kohls.com/web/catalog/AgeAppropriate%3AKids%2BDepartment%3AClothing%2BCouponEligible%3AEligible?limit=120&offset=121&storeNum=977&isDefaultStore=true&includeStoreOnlyProducts=true&isLTL=true&channel=web",
+      "headers": {
+        "x-dtpc": "6$56691759_508h49vCSHCFURHDCUEPALUKMNJDKOFFNRPOEAQ-0e0",
+        "correlation-id": "WEB::SHOP-NEXT-1ea9cbfe-95aa-4e24-aa29-536c4309a032::acc-session-165c04d8-fa67-4d67-835f-acd4e4cf0787",
+        "traceparent": "00-FF3CD227CB80AD22CDB07185152FC61E-E6336E90A5F55036-01",
+        "x-dtreferer": "https://www.kohls.com/catalog/kids-clothing.jsp?CN=AgeAppropriate:Kids+Department:Clothing+CouponEligible:Eligible&BL=y&icid=hpmf-hero-z1-ff-catlink-kids.",
+        "referer": "https://www.kohls.com/catalog/kids-clothing.jsp?CN=AgeAppropriate:Kids+Department:Clothing+CouponEligible:Eligible&BL=y&icid=hpmf-hero-z1-ff-catlink-kids.&WS=120&PPP=120"
+      }
+    },
+    {
+      "category": "Toys",
+      "category_url": "https://kohls.com/catalog/toys.jsp?CN=Department:Toys&cc=toys-HZ1-toys",
+      "har_url": "https://www.kohls.com/catalog/toys.jsp?CN=Department:Toys&cc=toys-HZ1-toys.&WS=120&PPP=120",
+      "url": "https://www.kohls.com/web/catalog/Department%3AToys?limit=120&offset=121&storeNum=977&isDefaultStore=true&includeStoreOnlyProducts=true&isLTL=true&channel=web",
+      "headers": {
+        "x-dtpc": "22$56772205_116h37vKMPKRPTKHFSPPTLEWAPFIFHJCNIURUHR-0e0",
+        "correlation-id": "WEB::SHOP-NEXT-7ac8c1ef-e7c3-4add-af2f-6cfc45c054f2::acc-session-d25d1fb3-ee1b-427e-b0d2-b586be049e5f",
+        "traceparent": "00-6D2FCE5A959E0091BD18156925DC03E2-29BB47F276F23358-01",
+        "x-dtreferer": "https://www.kohls.com/catalog/toys.jsp?CN=Department:Toys&cc=toys-HZ1-toys.",
+        "referer": "https://www.kohls.com/catalog/toys.jsp?CN=Department:Toys&cc=toys-HZ1-toys.&WS=120&PPP=120"
+      }
+    },
+    {
+      "category": "Shoes",
+      "category_url": "https://kohls.com/catalog/shoes.jsp?CN=Department:Shoes+CouponEligible:Eligible&BL=y&icid=hpmf-hero-z1-ff-catlink-shoes",
+      "har_url": "https://www.kohls.com/catalog/shoes.jsp?CN=Department:Shoes+CouponEligible:Eligible&BL=y&icid=hpmf-hero-z1-ff-catlink-shoes.&WS=120&PPP=120",
+      "url": "https://www.kohls.com/web/catalog/Department%3AShoes%2BCouponEligible%3AEligible?limit=120&offset=121&storeNum=977&isDefaultStore=true&includeStoreOnlyProducts=true&isLTL=true&channel=web",
+      "headers": {
+        "x-dtpc": "4$56859037_466h47vHMTBJQRFKPVJKRVNNTMEARTMCRPPURWM-0e0",
+        "correlation-id": "WEB::SHOP-NEXT-95789242-a76a-4d47-b4da-f44f43f10de9::acc-session-b68f28a4-b56a-4905-9066-bb611b334983",
+        "traceparent": "00-28F4227DD58057A91EAA713575900672-BD6B01F5FD1D770A-01",
+        "x-dtreferer": "https://www.kohls.com/catalog/shoes.jsp?CN=Department:Shoes+CouponEligible:Eligible&BL=y&icid=hpmf-hero-z1-ff-catlink-shoes.",
+        "referer": "https://www.kohls.com/catalog/shoes.jsp?CN=Department:Shoes+CouponEligible:Eligible&BL=y&icid=hpmf-hero-z1-ff-catlink-shoes.&WS=120&PPP=120"
+      }
+    },
+    {
+      "category": "Jewelry",
+      "category_url": "https://kohls.com/catalog/jewelry.jsp?CN=Department:Jewelry&cc=jewelry-HZ1-Jewelry",
+      "har_url": "https://www.kohls.com/catalog/jewelry.jsp?CN=Department:Jewelry&cc=jewelry-HZ1-Jewelry.&WS=120&PPP=120",
+      "url": "https://www.kohls.com/web/catalog/Department%3AJewelry?limit=120&offset=121&storeNum=977&isDefaultStore=true&includeStoreOnlyProducts=true&isLTL=true&channel=web",
+      "headers": {
+        "x-dtpc": "1$57027537_759h59vPHPVANCFCIJAHHKPVMCJVEFDVMMMJCCP-0e0",
+        "correlation-id": "WEB::SHOP-NEXT-14d5ecac-732d-41fd-9428-37cd3a2e69dc::acc-session-998159ab-fbed-44dc-86ad-27cbd3e65391",
+        "traceparent": "00-B1A7A3D092EDD10234DCFD4E970F97C0-2A03FD6782A46BD0-01",
+        "x-dtreferer": "https://www.kohls.com/catalog/jewelry.jsp?CN=Department:Jewelry&cc=jewelry-HZ1-Jewelry.",
+        "referer": "https://www.kohls.com/catalog/jewelry.jsp?CN=Department:Jewelry&cc=jewelry-HZ1-Jewelry.&WS=120&PPP=120"
+      }
+    },
+    {
+      "category": "Handbags & Accessories",
+      "category_url": "https://kohls.com/catalog/womens-accessories.jsp?CN=Gender:Womens+Department:Accessories&cc=accessories-HZ1-handbagsaccessories",
+      "har_url": "https://www.kohls.com/catalog/womens-accessories.jsp?CN=Gender:Womens+Department:Accessories&cc=accessories-HZ1-handbagsaccessories.&WS=120&PPP=120",
+      "url": "https://www.kohls.com/web/catalog/Gender%3AWomens%2BDepartment%3AAccessories?limit=120&offset=121&storeNum=977&isDefaultStore=true&includeStoreOnlyProducts=true&isLTL=true&channel=web",
+      "headers": {
+        "x-dtpc": "22$57216186_171h25vTKARCCDUBVCJROINFDVCDHNHRIFVMEMT-0e0",
+        "correlation-id": "WEB::SHOP-NEXT-39cf4ff5-a15f-4a9a-b462-a888f47609fb::acc-session-77b1997b-84cf-43e8-a6b2-8c73c05cb1b6",
+        "traceparent": "00-FC64E6F41AA580B3E33C8F3056CDB506-53A889364664C932-01",
+        "x-dtreferer": "https://www.kohls.com/catalog/womens-accessories.jsp?CN=Gender:Womens+Department:Accessories&cc=accessories-HZ1-handbagsaccessories.",
+        "referer": "https://www.kohls.com/catalog/womens-accessories.jsp?CN=Gender:Womens+Department:Accessories&cc=accessories-HZ1-handbagsaccessories.&WS=120&PPP=120"
+      }
+    },
+    {
+      "category": "$10 & Under",
+      "category_url": "https://kohls.com/catalog.jsp?CN=CouponEligible:Eligible+MerchPricing:Under%20%2410+MerchPricing:%2410.00&BL=y&icid=hpmf-hero-z1-ff-catlink-under10",
+      "har_url": "https://www.kohls.com/catalog.jsp?CN=CouponEligible:Eligible+MerchPricing:Under%20%2410+MerchPricing:%2410.00&BL=y&icid=hpmf-hero-z1-ff-catlink-under10.&WS=120&PPP=120",
+      "url": "https://www.kohls.com/web/catalog/CouponEligible%3AEligible%2BMerchPricing%3AUnder%20%2410%2BMerchPricing%3A%2410.00?limit=120&offset=121&storeNum=977&isDefaultStore=true&includeStoreOnlyProducts=true&isLTL=true&channel=web",
+      "headers": {
+        "x-dtpc": "4$57300703_685h52vOKDPSHNHCFJPKKPHACNHSMWKHDKENOIO-0e0",
+        "correlation-id": "WEB::SHOP-NEXT-da4464bc-e935-4ce6-b5ac-d22be4083d5c::acc-session-f0ff83fe-5bec-4a6d-a08b-ae6994ada460",
+        "traceparent": "00-6C357D94CBEA37A80D3E9E8990DE5690-163DB006B4D5E884-01",
+        "x-dtreferer": "https://www.kohls.com/catalog.jsp?CN=CouponEligible:Eligible+MerchPricing:Under%20%2410+MerchPricing:%2410.00&BL=y&icid=hpmf-hero-z1-ff-catlink-under10.",
+        "referer": "https://www.kohls.com/catalog.jsp?CN=CouponEligible:Eligible+MerchPricing:Under%20%2410+MerchPricing:%2410.00&BL=y&icid=hpmf-hero-z1-ff-catlink-under10.&WS=120&PPP=120"
+      }
+    },
+    {
+      "category": "Home",
+      "category_url": "https://kohls.com/catalog/for-the-home.jsp?CN=Activity:For%20the%20Home+CouponEligible:Eligible&BL=y&icid=hpmf-hero-z1-ff-catlink-home",
+      "har_url": "https://www.kohls.com/catalog/for-the-home.jsp?CN=Activity:For%20the%20Home+CouponEligible:Eligible&BL=y&icid=hpmf-hero-z1-ff-catlink-home.&WS=120&PPP=120",
+      "url": "https://www.kohls.com/web/catalog/Activity%3AFor%20the%20Home%2BCouponEligible%3AEligible?limit=120&offset=121&storeNum=977&isDefaultStore=true&includeStoreOnlyProducts=true&isLTL=true&channel=web",
+      "headers": {
+        "x-dtpc": "5$57394211_231h47vMULKCHKFNSPKCLHISCQAEAFAKOJLMSPJ-0e0",
+        "correlation-id": "WEB::SHOP-NEXT-bed7cdeb-1121-4d8a-a557-770a14568dc9::acc-session-d15447d3-439d-4945-9632-cdd5130287bf",
+        "traceparent": "00-AAAE68735A4D7F186EF37408C585A390-6EC598A021A89B8C-01",
+        "x-dtreferer": "https://www.kohls.com/catalog/for-the-home.jsp?CN=Activity:For%20the%20Home+CouponEligible:Eligible&BL=y&icid=hpmf-hero-z1-ff-catlink-home.",
+        "referer": "https://www.kohls.com/catalog/for-the-home.jsp?CN=Activity:For%20the%20Home+CouponEligible:Eligible&BL=y&icid=hpmf-hero-z1-ff-catlink-home.&WS=120&PPP=120"
+      }
+    },
+    {
+      "category": "Store Pickup",
+      "category_url": "https://kohls.com/catalog.jsp?CN=InStoreOnline:Pick%20Up%20in%20Store&icid=hpmf-hero-z1-ff-catlink-storepickup",
+      "har_url": "https://www.kohls.com/catalog/accessories.jsp?CN=Department:Accessories+InStoreOnline:Pick%20Up%20in%20Store&BL=y&WS=120&PPP=120",
+      "url": "https://www.kohls.com/web/catalog/Department%3AAccessories%2BInStoreOnline%3APick%20Up%20in%20Store?limit=120&storeNum=977&isDefaultStore=true&includeStoreOnlyProducts=true&isLTL=true&channel=web",
+      "headers": {
+        "x-dtpc": "6$57468643_924h53vFFVIGOLPBDFGNJQGKABHJEQHPCBSGIWM-0e0",
+        "correlation-id": "WEB::SHOP-NEXT-c2e29961-3e01-4801-b402-3bcffcbed02c::acc-session-6fecd735-bd09-4816-ae5a-21a7107c4a8a",
+        "traceparent": "00-CCFA4A07F7EFE95168A40DCE9401F8FE-43E46E06CD2DD62C-01",
+        "x-dtreferer": "https://www.kohls.com/catalog.jsp?CN=InStoreOnline:Pick%20Up%20in%20Store&icid=hpmf-hero-z1-ff-catlink-storepickup.",
+        "referer": "https://www.kohls.com/catalog/accessories.jsp?CN=Department:Accessories+InStoreOnline:Pick%20Up%20in%20Store&BL=y"
+      }
+    }
+  ]
 }

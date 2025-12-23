@@ -1,0 +1,99 @@
+{
+  "name": "sephora_products",
+  "request": {
+    "method": "GET",
+    "url": "https://www.sephora.com/api/v2/catalog/categories/makeup-cosmetics/seo?targetSearchEngine=NLP&currentPage=2&pageSize=60&content=true&includeRegionsMap=true&pickupRampup=true&pickupStoreId=0018&sddRampup=true&sddZipcode=95050-6730&includeEDD=true&loc=en-US&ch=rwd",
+    "payload": {
+      "targetSearchEngine": "NLP",
+      "currentPage": "2",
+      "pageSize": "60",
+      "content": "true",
+      "includeRegionsMap": "true",
+      "pickupRampup": "true",
+      "pickupStoreId": "0018",
+      "sddRampup": "true",
+      "sddZipcode": "95050-6730",
+      "includeEDD": "true",
+      "loc": "en-US",
+      "ch": "rwd"
+    },
+    "pagination": {
+      "mode": "page",
+      "page": "currentPage",
+      "offset": null,
+      "limit": "pageSize",
+      "justification": "The presence of 'currentPage' indicates pagination by page number, while 'pageSize' controls the number of items per page."
+    },
+    "headers": {
+      "x-dtreferer": "https://www.sephora.com/shop/makeup-cosmetics",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://www.sephora.com/shop/makeup-cosmetics?currentPage=2",
+      "seph-access-token": "eyJhbGciOiJSUzI1NiJ9.eyJBdXRoRGF0YSI6eyJkZXZpY2VJZCI6IjI5MWJmZDU3ZGY0MTQ2Mzk4MmZiYmZhZTM3MWFiY2MwNzZlZjBkZmRiOGQ1N2NhODhmZWEyMzhkMGJlZGEzYzMiLCJ1dWlkIjoiY2E5MTQ2MDUtZDVmOC00YzQ0LWFjNWYtN2NkYTJjNWY0OTM4IiwicHJvZmlsZVNlY3VyaXR5U3RhdHVzIjowLCJyb2xlIjoiY2xpZW50In0sImlzcyI6IkF1dGhTZXJ2aWNlIiwiZXhwIjoxNzY2NDYxMzQ0LCJpYXQiOjE3NjY0NjA0NDR9.T4qMVHClihIPDb3NO2ckcXju1eFMf65_RSOScnDhWBg7qQkZmUnD4jwpaenu_mrZTtgMbbzARQ9-q2pvL7FKaSp0RK9KzY8VXIrIh91R_nOw94fzgkOCpohvDKxIQJ4s214PZXQJv3UeNxvaU_RDigwrkWlZ7AtHvfs1oCLjidtAOgQxphiJJ9ALaYPNO2zxRc8o9ETod6TwJWxE4ZDZIDCXiYZT6kMn_LP8fGqSmJkNaU2Vx4JgIPE0Ev5HMFjSPO-gwI4DAYQku9Y0E8G4hR3YmLDtypPu3b8kKFP-1gEAQImfZkYGxGBRJ77mMYKFT1qUNoDwi1Rh7yo1d8m5VbP55hlT2Ssg_GjJ2938_BT35gP3vLy7bsXJMAUWbopCjVOCSWrhoNm2ls2HZTIC-V7-_JsfOuSFPZwEW1Lp7mjpYUjPmDS6jBkz6Jan2HE3d0NREZlno5lLPQd3liRtzYle0eBi8AF5gXMDHtw6tV7gXDu3haUT1oDM1sh_zUfWzc22j6zCvZ_b2FaubaSZI01qwXMW0BG34Yfouzb7WYGPAeiStX1O_Ujivm6p4XBWfJLCRskD8SaWoCuQkxOEPSEj12tMhVDRZnaOnAEyMqLG9QivKKbXYSNqR5S3uMeN7BIRJjvuNuHybNi3K3SWqehHqVX_KC979cm0qIqojkg",
+      "x-dtpc": "3$60442308_286h26vMVMKRFLKIDUMHKROFDTPKRMEAPKVLPUU-0e0",
+      "sec-ch-ua": "\"Google Chrome\";v=\"143\", \"Chromium\";v=\"143\", \"Not A(Brand\";v=\"24\"",
+      "x-api-key": "nQc7BFt78yJBvfYDKtle9APd5RrX984i",
+      "x-timestamp": "1766460470393",
+      "sec-ch-ua-mobile": "?0",
+      "x-requested-source": "rwd",
+      "exclude_personalized_content": "true",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+    }
+  },
+  "categories": [
+    {
+      "category": "Makeup",
+      "category_url": "https://sephora.com/shop/makeup-cosmetics",
+      "har_url": "https://www.sephora.com/shop/makeup-cosmetics?currentPage=2"
+    },
+    {
+      "category": "Gifts & Value Sets",
+      "category_url": "https://sephora.com/shop/gifts",
+      "har_url": "https://www.sephora.com/shop/gifts?currentPage=2",
+      "url": "https://www.sephora.com/api/v2/catalog/categories/gifts/seo?targetSearchEngine=NLP&currentPage=2&pageSize=60&content=true&includeRegionsMap=true&pickupRampup=true&pickupStoreId=0018&sddRampup=true&sddZipcode=95050-6730&includeEDD=true&loc=en-US&ch=rwd",
+      "headers": {
+        "x-dtreferer": "https://www.sephora.com/shop/gifts",
+        "referer": "https://www.sephora.com/shop/gifts?currentPage=2",
+        "seph-access-token": "eyJhbGciOiJSUzI1NiJ9.eyJBdXRoRGF0YSI6eyJkZXZpY2VJZCI6Ijc1OGMwNmExNWQ3MGM2NmI0ZWJiYzljMjBiZjM1ZjkyNDY1YTgxNjc5NDJjYjdmODE2OTU4MzQ5Y2JlOGU0N2QiLCJ1dWlkIjoiZjM3Y2YxMmEtNTg0MC00ZDgzLWIzYTQtZTc0MTg5NzZkZDI1IiwicHJvZmlsZVNlY3VyaXR5U3RhdHVzIjowLCJyb2xlIjoiY2xpZW50In0sImlzcyI6IkF1dGhTZXJ2aWNlIiwiZXhwIjoxNzY2NDYxMTIwLCJpYXQiOjE3NjY0NjAyMjB9.OayXTpnjIAwZVzVLnaQQ1g8DxV18Q5eK3CrepvBQmadEBvtPDMoRzGEK-l5W9mmrwmHS0DNECxHXGXxCRXSJGWNR9DYmixMLtumOmuQu3ucxsxL9RXNF3lGT52cKBSDby7gk4Ux1gHAg03gmevvI_BV4vfemzQXcNZ59scerIXkdHp3FPY4lFjz8neGdlPCZFSVFjpK_fyjBwr11JnleczbfxXjGbbHIFHdT2U3dfeuryaxFytgBPKCr4EPk6PszSCGolqnlucl8o1_uVznvveqtBd1Uqy3AKmpdYwltzI1FCITz3fPIbhRPMCaCJzC4_bKiqDOAgc0l02TCR8m08bN-x1yxqwKWLBzGec8fFC1gojKozW8Y77dbxQHQykSGSCDobYwwI9SFKVeEr6o2zy1dTf3HFKxtLOXTQcvFAoPQcAqhKVsbkQyF1FbWMxw_PWG3P0ETykyY3R5F2WoBZp6qyw6ii9ks7swF6Cx_2R0Pukko7tqaLRTKVAd9vw-LKJ73cjXI-jO8sdxc1-NDoiAcAZ78r79yQKo0CgtT_7au3sztEdNZMDMxIXyQnrAMZbCaK38_h16nfiq2NQOi7L29M7jSyi7Zhh1Flu-GszLCMLiAYaKMZAP5d8tBNWfCRycmYLLmWWTsGHBbZpYMs1UnllJvUFWbOGz1n3r4DdQ",
+        "x-dtpc": "4$60217127_524h25vQURTHCRTFHBKUMAKOKSVUHUOODITWRFR-0e0",
+        "x-timestamp": "1766460256023"
+      }
+    },
+    {
+      "category": "New",
+      "category_url": "https://sephora.com/beauty/new-beauty-products",
+      "har_url": "https://www.sephora.com/beauty/new-beauty-products",
+      "url": "https://api-developer.sephora.com/v1/sot/trackingId?apikey=nQc7BFt78yJBvfYDKtle9APd5RrX984i",
+      "headers": {
+        "referer": "https://www.sephora.com/"
+      },
+      "payload": {
+        "apikey": "nQc7BFt78yJBvfYDKtle9APd5RrX984i"
+      }
+    },
+    {
+      "category": "Skincare",
+      "category_url": "https://sephora.com/shop/skincare",
+      "har_url": "https://www.sephora.com/shop/skincare?currentPage=2",
+      "url": "https://www.sephora.com/api/v2/catalog/categories/skincare/seo?targetSearchEngine=NLP&currentPage=2&pageSize=60&content=true&includeRegionsMap=true&pickupRampup=true&pickupStoreId=0018&sddRampup=true&sddZipcode=95050-6730&includeEDD=true&loc=en-US&ch=rwd",
+      "headers": {
+        "x-dtreferer": "https://www.sephora.com/shop/skincare",
+        "referer": "https://www.sephora.com/shop/skincare?currentPage=2",
+        "seph-access-token": "eyJhbGciOiJSUzI1NiJ9.eyJBdXRoRGF0YSI6eyJkZXZpY2VJZCI6ImQyMDNkNmNlNDFiYjE5ZmViMzQwYzI3YmYyMjU0NDI4YzYxMzA4MDQ1ZmJiMTQ1YzI5OWMzYmIxOTBmZGE3ODQiLCJ1dWlkIjoiZDMyZmM1MGQtNjQxMy00N2M0LWJkOTItZDk0OGJjODFjOGY3IiwicHJvZmlsZVNlY3VyaXR5U3RhdHVzIjowLCJyb2xlIjoiY2xpZW50In0sImlzcyI6IkF1dGhTZXJ2aWNlIiwiZXhwIjoxNzY2NDYxNDQ3LCJpYXQiOjE3NjY0NjA1NDd9.WOpzm18i8ZRLjImMHHR3JyDGZSAjIO1uJEoDMIUMFxwjJccuW2H3RZ-OveV-Xn3bX2K4Au_7WZkn1-dr6BJ1o81vKRdVzy3nd-880HFe2yxMm_0QDDMg6Qc0sdRA-bdAq9LSPTUQAnEhlb34xr5RR7YeUEPmRatrpu1EL7a1vtp0PGt4EsEyVGngXuXEeA9t_Isl-KkXbXJtAallriHo3mC9J3SWy2J6omEx57Xujn4RT6cmPP-6Ht7gno09IIa7vT9N16rxcSgGR0sbtuAl0PoHjKCt1oljyZK-Z7nNeRQkTFxWYZRUCfSAlca_OQKI-RkGIzfI5ZXl1gKZ7kApo19q_gnOdMWIUwENOdXccygIOS6j-hq91RLu7GhAhnnpFMo5TDMwJ_aCLud6piH4EZLo3Np2wsZG4x_VsuyDnvoRDHO3VyYFf-ae6y0j2ZHPJqVuXm2x0dpxA9l40H4IdHFwjkXtpU-2TcK5i-_aiKzZmkctH3Zm54XGLsUy3jne5FlhPGOGJhVZ0uh_xOM_SEf5H1tPFzOUg4pMXhLr3OsTzE3-x8ahf_CvqREOyLHLOaCVMonRu92VYZiTszdlqU7szlMdEp3CqVfSC3q87FU9cFYbBv7lmNI_qDQCcsiSmMDJZLvfoyCZH900QCzATVgHBo4fKBOn-M47QRhDEqo",
+        "x-dtpc": "2$60544820_282h27vTBFUWOLUWMAHGAWTHRPOWBORUHDBKUMS-0e0",
+        "x-timestamp": "1766460596350"
+      }
+    },
+    {
+      "category": "Fragrance",
+      "category_url": "https://sephora.com/shop/fragrance",
+      "har_url": "https://www.sephora.com/shop/fragrance",
+      "url": "https://api-developer.sephora.com/v1/sot/trackingId?apikey=nQc7BFt78yJBvfYDKtle9APd5RrX984i",
+      "headers": {
+        "referer": "https://www.sephora.com/"
+      },
+      "payload": {
+        "apikey": "nQc7BFt78yJBvfYDKtle9APd5RrX984i"
+      }
+    }
+  ]
+}
