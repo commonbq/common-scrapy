@@ -4,3 +4,46 @@ requires = [
     "wheel",
 ]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "common-scrapy"
+version = "0.1.0"
+description = "Reusable Scrapy spider templates plus a CLI runner."
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "commonbq"},
+]
+dependencies = [
+    "click>=8.3,<9",
+    "scrapy>=2.13,<3",
+    "python-dotenv>=1.0,<2",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Framework :: Scrapy",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/commonbq/common-scrapy"
+
+[project.scripts]
+common-scrapy = "common_scrapy.cli:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = [
+    "common",
+    "common.*",
+    "common_scrapy",
+]
+
+[tool.setuptools.package-data]
+common = ["templates/**/*.json"]
