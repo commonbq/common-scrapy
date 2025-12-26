@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+from pathlib import Path
 
 import click
 from scrapy.crawler import CrawlerProcess
@@ -29,6 +30,25 @@ def crawl(retailer_products: str) -> None:
     process.start()
 
 
+@cli.command(name="list")
+def list_templates() -> None:
+    """List available templates under ``common/templates``."""
+    templates_dir = Path(__file__).resolve().parent.parent / "common" / "templates"
+    if not templates_dir.is_dir():
+        raise click.ClickException("Templates directory not found.")
+
+    templates = sorted(entry.name for entry in templates_dir.iterdir() if entry.is_dir())
+    if not templates:
+        click.echo("No templates found.")
+        return
+
+    for template in templates:
+        click.echo(template)
+
 def main() -> None:
     """CLI entry point used by ``python -m`` and console scripts."""
     cli(prog_name="common-scrapy")
+
+
+if __name__ == "__main__":
+    main()
