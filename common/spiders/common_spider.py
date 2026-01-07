@@ -7,7 +7,7 @@ from urllib.parse import urlencode, urlparse, urlunparse
 
 import scrapy
 
-from common.utils import dict_get
+from common.utils import dict_get, dict_merge
 from common.settings import PROXY
 
 
@@ -18,7 +18,7 @@ class CommonSpider(scrapy.Spider):
         super().__init__(**kwargs)
         self.name = name.strip()
         self.template_folder = (
-            Path(__file__).resolve().parent.parent / "templates" / self.name
+            Path(__file__).resolve().parent.parent.parent / "templates" / self.name
         )
         request_template_path = self.template_folder / "request.json"
         with request_template_path.open("r", encoding="utf-8") as fp:
@@ -43,11 +43,8 @@ class CommonSpider(scrapy.Spider):
             payload[pagination["page"]] = 1
 
         for category in self.request_template["categories"]:
-            template = {
-                **send_template,
-                **category,
-            }
-            yield self._build_request(template, payload)
+            request_template = dict_merge(send_template, category)
+            yield self._build_request(request_template, payload)
 
     def _build_request(
         self, request_template: Mapping[str, Any], payload: Mapping[str, Any]
@@ -72,7 +69,11 @@ class CommonSpider(scrapy.Spider):
             body=body,
             callback=self.parse_response,
             headers=request_template.get("headers"),
-            meta={"proxy": PROXY, "payload": payload},
+            meta={
+                "proxy": PROXY,
+                "payload": payload,
+                "request_template": request_template,
+            },
         )
 
     def parse_response(self, response: scrapy.http.Response):
@@ -87,12 +88,15 @@ class CommonSpider(scrapy.Spider):
             yield item
 
         # Paginate to next page.
-        yield self._get_next_page(response.meta["payload"], last_page_size=len(result))
+        yield self._get_next_page(
+            response.meta["request_template"],
+            response.meta["payload"],
+            last_page_size=len(result),
+        )
 
     def _get_next_page(
-        self, payload, last_page_size: int | None = None
+        self, request_template, payload, last_page_size: int | None = None
     ) -> scrapy.Request:
-        request_template = self.request_template.get("request")
         pagination = request_template.get("pagination")
 
         if pagination["mode"] == "page":
@@ -122,7 +126,7 @@ class CommonSpider(scrapy.Spider):
         else:
             raise Exception(f"Unknown pagination mode: {pagination['mode']}")
 
-        return self._build_request(payload)
+        return self._build_request(request_template, payload)
 
     def _extract_result(self, payload: Any) -> Any:
         list_path = self.extract_template.get("$list")
@@ -151,7 +155,7 @@ class CommonSpider(scrapy.Spider):
 
     def _extract_base_values(self, payload, includes: dict[str, str]) -> dict[str, Any]:
         base_values: dict[str, Any] = {}
-        for name, path in includes.items():
+        for name, path in (includes or {}).items():
             base_values[name] = dict_get(payload, path)
 
         return base_values

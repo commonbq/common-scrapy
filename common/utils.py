@@ -22,6 +22,18 @@ def dict_get(data: dict, path: str) -> Any:
     return current
 
 
+def dict_merge(base: Mapping[str, Any], override: Mapping[str, Any]) -> dict[str, Any]:
+    merged = dict(base)
+    for key, value in override.items():
+        base_value = merged.get(key)
+        if isinstance(base_value, Mapping) and isinstance(value, Mapping):
+            merged[key] = dict_merge(base_value, value)
+        else:
+            merged[key] = value
+
+    return merged
+
+
 def field_name(path: str) -> str:
     parts = [segment for segment in path.split(".") if segment]
     return parts[-1] if parts else path
