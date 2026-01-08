@@ -6,8 +6,7 @@ import os
 from pathlib import Path
 
 import click
-from scrapy.crawler import CrawlerProcess
-from scrapy.utils.project import get_project_settings
+from scrapy.cmdline import execute
 
 from common.spiders.common_spider import CommonSpider
 
@@ -20,14 +19,20 @@ def cli() -> None:
     """Entrypoint for the common scrapy utilities."""
 
 
-@cli.command()
-@click.argument("retailer_products")
-def crawl(retailer_products: str) -> None:
-    """Run the "common" spider for the given retailer products identifier."""
-    settings = get_project_settings()
-    process = CrawlerProcess(settings)
-    process.crawl(CommonSpider, name=retailer_products)
-    process.start()
+@cli.command(context_settings={"ignore_unknown_options": True})
+@click.argument("template")
+@click.argument("scrapy_args", nargs=-1, type=click.UNPROCESSED)
+def crawl(template: str, scrapy_args: tuple[str, ...]) -> None:
+    """Run the "common" spider for the given template identifier."""
+    argv = [
+        "scrapy",
+        "crawl",
+        CommonSpider.name,
+        "-a",
+        f"name={template}",
+        *scrapy_args,
+    ]
+    execute(argv)
 
 
 @cli.command(name="list")
