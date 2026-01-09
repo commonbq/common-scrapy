@@ -28,6 +28,8 @@ htmlcov/
 # Editors & OS files
 .vscode/
 .idea/
+dist/
+common_scrapy.egg-info/
 .DS_Store
 
 *.har

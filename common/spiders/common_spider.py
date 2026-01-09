@@ -18,7 +18,7 @@ class CommonSpider(scrapy.Spider):
         super().__init__(**kwargs)
         self.name = name.strip()
         self.template_folder = (
-            Path(__file__).resolve().parent.parent.parent / "templates" / self.name
+            Path(__file__).resolve().parent.parent / "templates" / self.name
         )
         request_template_path = self.template_folder / "request.json"
         with request_template_path.open("r", encoding="utf-8") as fp:
