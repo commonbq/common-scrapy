@@ -91,4 +91,4 @@ FEED_EXPORT_ENCODING = "utf-8"
 
 COMMON_ENV = dotenv_values()
 
-PROXY = COMMON_ENV.get("COMMON_SCRAPY_PROXY", None)
+PROXY = COMMON_ENV.get("PROXY", None)
