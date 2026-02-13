@@ -17,10 +17,42 @@ class WalmartListingSpider(scrapy.Spider):
         "DOWNLOAD_DELAY": 0,
     }
 
+    categories = [
+        {
+            "category": "electronics",
+            "url": "https://www.walmart.com/cp/electronics/3944",
+        },
+        {
+            "category": "home",
+            "url": "https://www.walmart.com/cp/home/4044",
+        },
+        {
+            "category": "clothing",
+            "url": "https://www.walmart.com/cp/clothing/5438",
+        },
+        {
+            "category": "beauty",
+            "url": "https://www.walmart.com/cp/beauty/1085666",
+        },
+        {
+            "category": "toys",
+            "url": "https://www.walmart.com/cp/toys/4171",
+        },
+        {
+            "category": "sports-and-outdoors",
+            "url": "https://www.walmart.com/cp/sports-outdoors/4125",
+        },
+        {
+            "category": "grocery",
+            "url": "https://www.walmart.com/cp/food/976759",
+        },
+    ]
+
     def __init__(
         self,
         q: str | None = None,
         url: str | None = None,
+        category: str | None = None,
         max_pages: int = 1,
         *args,
         **kwargs,
@@ -28,18 +60,36 @@ class WalmartListingSpider(scrapy.Spider):
         super().__init__(*args, **kwargs)
         self.q = (q or "").strip()
         self.url = (url or "").strip()
+        self.category = (category or "").strip().lower()
         self.max_pages = int(max_pages)
 
     def start_requests(self):
-        target_url = self.url
-        if not target_url:
-            target_url = f"https://www.walmart.com/search?{urlencode({'q': self.q or 'laptop'})}"
+        if self.url:
+            target_urls = [{"category": "custom_url", "url": self.url}]
+        elif self.q:
+            target_urls = [
+                {
+                    "category": f"search:{self.q}",
+                    "url": f"https://www.walmart.com/search?{urlencode({'q': self.q})}",
+                }
+            ]
+        elif self.category:
+            target_urls = [entry for entry in self.categories if entry.get("category") == self.category][:1]
+        else:
+            target_urls = self.categories
 
-        meta = {"page": 1, "original_url": target_url}
-        if PROXY:
-            meta["proxy"] = PROXY
-
-        yield scrapy.Request(target_url, callback=self.parse, meta=meta)
+        for entry in target_urls:
+            target_url = (entry.get("url") or "").strip()
+            if not target_url:
+                continue
+            meta = {
+                "page": 1,
+                "original_url": target_url,
+                "category": (entry.get("category") or "").strip(),
+            }
+            if PROXY:
+                meta["proxy"] = PROXY
+            yield scrapy.Request(target_url, callback=self.parse, meta=meta)
 
     def parse(self, response: scrapy.http.Response):
         if self._is_blocked(response):
