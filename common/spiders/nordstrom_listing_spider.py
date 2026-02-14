@@ -24,6 +24,9 @@ class NordstromListingSpider(scrapy.Spider):
     name = "nordstrom_listing"
     allowed_domains = ["nordstrom.com", "www.nordstrom.com"]
 
+    # We want to see proxy failures (ScraperAPI often returns 4xx/5xx).
+    handle_httpstatus_all = True
+
     custom_settings = {
         # Keep it polite; Nordstrom is sensitive.
         "CONCURRENT_REQUESTS_PER_DOMAIN": 1,
@@ -57,6 +60,15 @@ class NordstromListingSpider(scrapy.Spider):
 
     def parse(self, response: scrapy.http.Response):
         text = response.text or ""
+
+        if response.status != 200:
+            self.logger.warning(
+                "Non-200 response. status=%s proxy=%s url=%s body_head=%r",
+                response.status,
+                bool(response.meta.get("proxy")),
+                response.url,
+                (text[:200] if text else ""),
+            )
 
         # Detect common anti-bot wrapper content.
         if "istlWasHere" in text or "We've noticed some unusual activity" in text:
