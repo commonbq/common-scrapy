@@ -47,6 +47,7 @@ class EbaySearchSpider(BaseSearchSpider):
             yield scrapy.Request(
                 jina_url,
                 callback=self.parse_jina,
+                headers=self._jina_headers(),
                 meta={"page": page, "original_url": original_url},
             )
             return
@@ -59,6 +60,7 @@ class EbaySearchSpider(BaseSearchSpider):
             yield scrapy.Request(
                 jina_url,
                 callback=self.parse_jina,
+                headers=self._jina_headers(),
                 meta={"page": page, "original_url": original_url},
             )
             return
@@ -79,7 +81,15 @@ class EbaySearchSpider(BaseSearchSpider):
         page = int(response.meta.get("page", 1))
         text = response.text or ""
 
-        # r.jina.ai returns markdown-ish text; parse links.
+        # In JSON mode, Jina returns: {code,status,data:{content:<markdown>...}}
+        if (response.headers.get("Content-Type", b"") or b"").decode("utf-8", "ignore").startswith("application/json"):
+            try:
+                payload = response.json()  # Scrapy>=2.2
+                text = (payload.get("data") or {}).get("content") or ""
+            except Exception:
+                pass
+
+        # Parse markdown content for item links.
         yield from self._parse_ebay_markdown(text, mode="keyword", query=self.args.q, page=page)
 
         if page < self.args.max_pages:
@@ -87,6 +97,7 @@ class EbaySearchSpider(BaseSearchSpider):
             yield scrapy.Request(
                 self._to_jina_url(next_url),
                 callback=self.parse_jina,
+                headers=self._jina_headers(),
                 meta={"page": page + 1, "original_url": next_url},
             )
 
@@ -105,6 +116,11 @@ class EbaySearchSpider(BaseSearchSpider):
     def _to_jina_url(url: str) -> str:
         # Use http:// prefix as required by r.jina.ai for remote fetch
         return f"https://r.jina.ai/http://{url}"
+
+    @staticmethod
+    def _jina_headers() -> dict:
+        # Request Jina "JSON mode" (still returns markdown under data.content).
+        return {"accept": "application/json"}
 
     @staticmethod
     def _looks_like_challenge(response: scrapy.http.Response) -> bool:
