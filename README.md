@@ -64,6 +64,73 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 - `target_listing` – Target RedSky (plp_search_v2) listing API.
 - `nordstrom_listing` – currently experimental (HTML script-tag extraction; often blocked).
 
+#### Sample output
+
+Below are trimmed examples from recent local test runs (JSONL output, 1 item shown).
+
+**amazon_listing**
+```json
+{
+  "asin": "B08NF2W2V2",
+  "title": "INZCOU",
+  "price": 36.98,
+  "url": "https://www.amazon.com/s?k=sneakers",
+  "image_url": "https://m.media-amazon.com/images/I/71Akg8OEbXL._AC_UL320_.jpg"
+}
+```
+
+**walmart_listing**
+```json
+{
+  "item_id": null,
+  "title": "Restored Dell Latitude 3190 | 11.6\" Touchscreen Laptop PC | Intel Core Pentium Silver N5030 (1.1 GHz) | 8GB RAM | 128GB SSD | Windows 11 Pro $178.00",
+  "price": 178.0,
+  "url": "https://www.walmart.com/sp/track?...",
+  "image_url": "https://i5.walmartimages.com/seo/...jpeg?odnHeight=576&odnWidth=576&odnBg=FFFFFF"
+}
+```
+
+**macys_listing**
+```json
+{
+  "item_id": "25092672",
+  "title": "Floral Stickers Laptop, 74 Pcs, Stickers for Water Bottles,",
+  "brand": "Mr. Pen",
+  "price": 6.99,
+  "url": "https://www.macys.com/shop/product/floral-stickers-laptop-74-pcs-stickers-for-water-bottles?ID=25092672",
+  "image_url": "7/optimized/34925717_fpx.tif"
+}
+```
+
+**ulta_listing**
+```json
+{
+  "item_id": "xlsImpprod15511061",
+  "sku_id": "2580410",
+  "brand": "Redken",
+  "title": "All Soft Shampoo",
+  "list_price": "$11.00 - $56.00",
+  "sale_price": null,
+  "url": "https://www.ulta.com/p/all-soft-shampoo-xlsImpprod15511061?sku=2580410",
+  "image_url": "https://media.ulta.com/i/ulta/2580410"
+}
+```
+
+**target_listing**
+```json
+{
+  "product_id": "94568023",
+  "name": "Women&#8217;s Skyler Sneakers with Memory Foam Insole &#8211; Universal Thread&#8482; Dark Brown 8",
+  "price": "$27.00",
+  "url": "https://www.target.com/p/women-8217-s-skyler-sneakers-with-memory-foam-insole-8211-universal-thread-8482-dark-brown-8/-/A-94568023",
+  "image": "https://target.scene7.com/is/image/Target/GUEST_462ecc94-caac-418f-9d72-920828dacadb"
+}
+```
+
+**nordstrom_listing**
+
+Currently blocked in this environment (often returns anti-bot interstitial / wrapper HTML), so sample output may be empty.
+
 ## Contributing
 
 Issues and pull requests that add or improve retailer templates, pagination logic, or extraction helpers are welcome. Please keep templates well-commented, anonymize sensitive identifiers, and include notes on any authentication or proxy requirements to keep the collection healthy for the community.
