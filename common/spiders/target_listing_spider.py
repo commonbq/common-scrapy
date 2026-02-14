@@ -233,8 +233,17 @@ class TargetListingSpider(scrapy.Spider):
         images = p.get("images") or p.get("image") or {}
         if isinstance(images, dict):
             image = images.get("primary_uri") or images.get("base_url")
-        if not image and isinstance(p.get("item"), dict):
-            image = (((p["item"].get("enrichment") or {}).get("images") or [{}])[0] or {}).get("base_url")
+
+        if not image and isinstance(item, dict):
+            enrichment = item.get("enrichment") or {}
+            imgs = enrichment.get("images")
+            if isinstance(imgs, dict):
+                image = imgs.get("primary_image_url") or (imgs.get("alternate_image_urls") or [None])[0]
+            elif isinstance(imgs, list) and imgs:
+                # Some variants use list-of-dicts.
+                first = imgs[0]
+                if isinstance(first, dict):
+                    image = first.get("url") or first.get("base_url")
 
         return {
             "product_id": tcin,
