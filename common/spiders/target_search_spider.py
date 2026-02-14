@@ -16,9 +16,10 @@ from urllib.parse import quote
 import scrapy
 
 from common.settings import PROXY
+from common.spiders.base_listing_spider import BaseListingSpider
 
 
-class TargetSearchSpider(scrapy.Spider):
+class TargetSearchSpider(BaseListingSpider):
     """Target category/search spider using Target's internal (RedSky) API.
 
     Required:
@@ -49,6 +50,13 @@ class TargetSearchSpider(scrapy.Spider):
         **kwargs,
     ):
         super().__init__(*args, **kwargs)
+        self.init_listing_args(
+            max_pages=max_pages,
+            use_proxy=use_proxy,
+            category=category,
+            category_url=category_url,
+            q=keyword,
+        )
 
         self.category_url = (category_url or "").strip() or None
         self.category = (category or "").strip() or None

@@ -5,8 +5,10 @@ from urllib.parse import urlencode
 
 import scrapy
 
+from common.spiders.base_listing_spider import BaseListingSpider
 
-class UltaListingSpider(scrapy.Spider):
+
+class UltaListingSpider(BaseListingSpider):
     """Ulta category listing spider using Ulta's GraphQL APIs (/dxl/graphql).
 
     Required:
@@ -25,8 +27,17 @@ class UltaListingSpider(scrapy.Spider):
         "HTTPERROR_ALLOW_ALL": True,
     }
 
-    def __init__(self, category_url: str | None = None, max_pages: int = 1, *args, **kwargs):
+    def __init__(
+        self,
+        category_url: str | None = None,
+        max_pages: int = 1,
+        use_proxy: int | str | None = 0,
+        *args,
+        **kwargs,
+    ):
         super().__init__(*args, **kwargs)
+        self.init_listing_args(max_pages=max_pages, use_proxy=use_proxy, category_url=category_url)
+
         self.category_url = (category_url or "").strip()
         if not self.category_url:
             raise ValueError("Provide -a category_url=<ulta category url>. For keyword searches use ulta_search")

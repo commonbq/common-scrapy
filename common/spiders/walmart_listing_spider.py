@@ -6,9 +6,10 @@ from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 import scrapy
 
 from common.settings import PROXY
+from common.spiders.base_listing_spider import BaseListingSpider
 
 
-class WalmartListingSpider(scrapy.Spider):
+class WalmartListingSpider(BaseListingSpider):
     name = "walmart_listing"
     allowed_domains = ["walmart.com", "www.walmart.com", "r.jina.ai"]
 
@@ -54,14 +55,23 @@ class WalmartListingSpider(scrapy.Spider):
         category_url: str | None = None,
         url: str | None = None,
         max_pages: int = 1,
+        use_proxy: int | str | None = 0,
         *args,
         **kwargs,
     ) -> None:
         super().__init__(*args, **kwargs)
+        self.init_listing_args(
+            max_pages=max_pages,
+            use_proxy=use_proxy,
+            url=url,
+            category=category,
+            category_url=category_url,
+        )
+
         self.category = (category or "").strip().lower()
         self.category_url = (category_url or "").strip()
         self.url = (url or "").strip()
-        self.max_pages = int(max_pages)
+        self.max_pages = self.args.max_pages
 
         # If none provided, subclasses may handle (e.g. walmart_search).
     def start_requests(self):

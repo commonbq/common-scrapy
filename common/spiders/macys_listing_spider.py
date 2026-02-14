@@ -6,8 +6,10 @@ from urllib.parse import urlencode
 
 import scrapy
 
+from common.spiders.base_listing_spider import BaseListingSpider
 
-class MacysListingSpider(scrapy.Spider):
+
+class MacysListingSpider(BaseListingSpider):
     """
     Macy's listing spider using Macy's own listing API endpoint:
       /xapi/discover/v1/page
@@ -19,11 +21,21 @@ class MacysListingSpider(scrapy.Spider):
     name = "macys_listing"
     allowed_domains = ["r.jina.ai", "macys.com", "www.macys.com"]
 
-    def __init__(self, q: str | None = None, sort: str | None = None, max_pages: int = 1, *args, **kwargs):
+    def __init__(
+        self,
+        q: str | None = None,
+        sort: str | None = None,
+        max_pages: int = 1,
+        use_proxy: int | str | None = 0,
+        *args,
+        **kwargs,
+    ):
         super().__init__(*args, **kwargs)
+        self.init_listing_args(max_pages=max_pages, use_proxy=use_proxy, q=q)
+
         self.q = (q or "laptop").strip()
         self.sort = (sort or "PRICE_LOW_TO_HIGH").strip()
-        self.max_pages = int(max_pages)
+        self.max_pages = self.args.max_pages
 
     def start_requests(self):
         page_index = 1

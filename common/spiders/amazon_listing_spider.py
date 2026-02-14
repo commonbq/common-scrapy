@@ -6,9 +6,10 @@ from urllib.parse import urlencode
 import scrapy
 
 from common.settings import PROXY
+from common.spiders.base_listing_spider import BaseListingSpider
 
 
-class AmazonListingSpider(scrapy.Spider):
+class AmazonListingSpider(BaseListingSpider):
     name = "amazon_listing"
     allowed_domains = ["amazon.com", "www.amazon.com"]
 
@@ -42,12 +43,20 @@ class AmazonListingSpider(scrapy.Spider):
     ) -> None:
         super().__init__(*args, **kwargs)
 
+        self.init_listing_args(
+            max_pages=max_pages,
+            use_proxy=kwargs.pop("use_proxy", 0),
+            url=url,
+            category=category,
+            category_url=category_url,
+        )
+
         self.category = (category or "").strip().lower()
         self.category_node = (category_node or "").strip()
         self.category_url = (category_url or "").strip()
         self.url = (url or "").strip()
-        self.max_pages = int(max_pages)
-        self.use_proxy = bool(int(kwargs.pop("use_proxy", 0) or 0))
+        self.max_pages = self.args.max_pages
+        self.use_proxy = self.args.use_proxy
 
         if not (self.category_url or self.category_node or self.category or self.url):
             raise ValueError(
