@@ -61,6 +61,26 @@ All extra args are forwarded to `scrapy crawl` unchanged (feeds, settings overri
 - `kohls_products` – product listing crawl for Kohl's seasonal catalog endpoints.
 - `sephora_products` – product listing crawl for Sephora category APIs.
 
+#### Sample output
+
+**sephora_products** (1 item, trimmed)
+```json
+{
+  "brandName": "rhode",
+  "displayName": "Pocket Blush Buildable Hydrating Cream Blush",
+  "productId": "P517483",
+  "targetUrl": "/product/pocket-blush-P517483?skuId=2895845",
+  "heroImage": "https://www.sephora.com/productimages/sku/s2895845-main-zoom.jpg?imwidth=270&pb=clean-at-sephora",
+  "rating": "4.0598",
+  "reviews": "1153"
+}
+```
+
+**kohls_products**
+
+Kohl’s `/web/catalog/...` endpoint is currently **blocked from this environment** (returns Access Denied / non-JSON), so we can’t produce a live crawl sample right now. The repository includes a captured sample payload at:
+`common/templates/kohls_products/sample_response.json`
+
 ### Standalone spiders (via `scrapy crawl <spider>`)
 
 These live under `common/spiders/*_listing_spider.py` and are purpose-built per retailer.
