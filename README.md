@@ -46,7 +46,7 @@ common-scrapy crawl <identifier> [additional Scrapy args]
 
 Examples:
 
-- Purpose-built: `common-scrapy crawl target_listing -a keyword=sneakers -a max_pages=2 -O target.jsonl`
+- Purpose-built: `common-scrapy crawl target_search -a category=5xtc0 -a max_pages=2 -O target.jsonl`
 - Template: `common-scrapy crawl kohls_products -s LOG_LEVEL=INFO`
 - Template: `common-scrapy crawl sephora_products -o sephora.csv`
 
@@ -148,13 +148,16 @@ Below are trimmed examples from recent local test runs (JSONL output, 1 item sho
 **target_search**
 ```json
 {
-  "product_id": "94568023",
-  "name": "Women&#8217;s Skyler Sneakers with Memory Foam Insole &#8211; Universal Thread&#8482; Dark Brown 8",
-  "price": "$27.00",
-  "url": "https://www.target.com/p/women-8217-s-skyler-sneakers-with-memory-foam-insole-8211-universal-thread-8482-dark-brown-8/-/A-94568023",
-  "image": "https://target.scene7.com/is/image/Target/GUEST_462ecc94-caac-418f-9d72-920828dacadb"
+  "product_id": "xxxxx",
+  "name": "…",
+  "price": "$…",
+  "url": "https://www.target.com/p/...",
+  "image": "https://target.scene7.com/is/image/Target/..."
 }
 ```
+
+Run example:
+`common-scrapy crawl target_search -a category=5xtc0 -a max_pages=1 -O target.jsonl`
 
 **nordstrom_listing**
 

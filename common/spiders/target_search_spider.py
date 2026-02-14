@@ -19,7 +19,15 @@ from common.settings import PROXY
 
 
 class TargetSearchSpider(scrapy.Spider):
-    """Target product search spider using Target's internal (RedSky) API."""
+    """Target category/search spider using Target's internal (RedSky) API.
+
+    Required:
+    - Provide a category, either as `-a category=5xtc0` (Target category id),
+      or `-a category_url='https://www.target.com/c/women-s-shoes/-/N-5xtc0'`.
+
+    Optional:
+    - `-a keyword=<term>` to combine keyword search within a category.
+    """
 
     name = "target_search"
     allowed_domains = ["target.com", "www.target.com", "redsky.target.com"]
@@ -31,6 +39,8 @@ class TargetSearchSpider(scrapy.Spider):
 
     def __init__(
         self,
+        category: str | None = None,
+        category_url: str | None = None,
         keyword: str | None = None,
         max_pages: str | int | None = 1,
         page_size: str | int | None = 24,
@@ -39,9 +49,22 @@ class TargetSearchSpider(scrapy.Spider):
         **kwargs,
     ):
         super().__init__(*args, **kwargs)
-        if not keyword:
-            raise ValueError("Provide -a keyword=<term>")
-        self.keyword = keyword
+
+        self.category_url = (category_url or "").strip() or None
+        self.category = (category or "").strip() or None
+        self.keyword = (keyword or "").strip() or None
+
+        if not (self.category or self.category_url):
+            raise ValueError("Provide -a category=<id> or -a category_url=<target category url>")
+
+        if not self.category and self.category_url:
+            # Extract Target category id from URLs like: /c/.../-/N-5xtc0
+            m = re.search(r"/N-([a-z0-9]+)", self.category_url, flags=re.I)
+            if m:
+                self.category = m.group(1)
+
+        if not self.category:
+            raise ValueError("Could not derive category id. Provide -a category=<id> (e.g. 5xtc0)")
         self.max_pages = int(max_pages or 1)
         self.page_size = int(page_size or 24)
         self.use_proxy = bool(int(use_proxy or 0))
@@ -49,7 +72,13 @@ class TargetSearchSpider(scrapy.Spider):
         self._visitor_id: Optional[str] = None
 
     def start_requests(self) -> Iterable[scrapy.Request]:
-        url = f"https://www.target.com/s?searchTerm={quote(self.keyword)}"
+        # Use a category page as referer/seed. If the user didn't provide a URL,
+        # we build a minimal one.
+        if self.category_url:
+            url = self.category_url
+        else:
+            url = f"https://www.target.com/c/-/N-{quote(self.category)}"
+
         yield self._make_request(url, cb="parse_search_html", dont_filter=True)
 
     def _make_request(self, url: str, *, cb: str, dont_filter: bool = False) -> scrapy.Request:
@@ -76,23 +105,31 @@ class TargetSearchSpider(scrapy.Spider):
         assert self._redsky_key
         base = "https://redsky.target.com/redsky_aggregations/v1/web/plp_search_v2"
 
+        page_path = None
+        if self.category_url:
+            page_path = re.sub(r"^https?://www\.target\.com", "", self.category_url)
+        if not page_path:
+            page_path = f"/c/-/N-{self.category}"
+
         params = {
             "key": self._redsky_key,
-            "keyword": self.keyword,
             "channel": "WEB",
             "count": str(self.page_size),
             "offset": str(offset),
-            "page": f"/s?searchTerm={self.keyword}",
+            "page": page_path,
             "pricing_store_id": "3991",
             "visitor_id": self._ensure_visitor_id(),
+            "category": self.category,
         }
+        if self.keyword:
+            params["keyword"] = self.keyword
         qs = "&".join(f"{k}={quote(str(v))}" for k, v in params.items())
         url = f"{base}?{qs}"
 
         headers = {
             "accept": "application/json",
             "accept-language": "en-US,en;q=0.9",
-            "referer": f"https://www.target.com/s?searchTerm={quote(self.keyword)}",
+            "referer": (self.category_url or f"https://www.target.com/c/-/N-{quote(self.category)}"),
             "user-agent": (
                 "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
                 "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
