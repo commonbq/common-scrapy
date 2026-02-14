@@ -36,19 +36,27 @@ common-scrapy list
 ### Run a crawl
 
 ```bash
-common-scrapy crawl <template> [additional Scrapy args]
+common-scrapy crawl <identifier> [additional Scrapy args]
 ```
+
+`<identifier>` resolution:
+
+- If `<identifier>` matches a purpose-built spider name (e.g. `target_listing`), it runs that spider.
+- Otherwise, it treats `<identifier>` as a template name and runs the parameterized `common` spider with `-a name=<identifier>`.
 
 Examples:
 
-- `common-scrapy crawl kohls_products -s LOG_LEVEL=INFO`
-- `common-scrapy crawl sephora_products -o sephora.csv`
+- Purpose-built: `common-scrapy crawl target_listing -a keyword=sneakers -a max_pages=2 -O target.jsonl`
+- Template: `common-scrapy crawl kohls_products -s LOG_LEVEL=INFO`
+- Template: `common-scrapy crawl sephora_products -o sephora.csv`
 
-The command wires Scrapy's `common` spider to the template you choose, so any flags you normally pass to `scrapy crawl` still work (for example, output feeds, settings overrides, or depth limits).
+All extra args are forwarded to `scrapy crawl` unchanged (feeds, settings overrides, etc.).
 
 ## Available spiders / templates
 
 ### Template-driven (via `common-scrapy crawl <template>`)
+
+(Templates are only used when there is no purpose-built spider with the same name.)
 
 - `kohls_products` – product listing crawl for Kohl's seasonal catalog endpoints.
 - `sephora_products` – product listing crawl for Sephora category APIs.
