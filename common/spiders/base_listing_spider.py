@@ -1,0 +1,65 @@
+from __future__ import annotations
+
+"""Base spider helpers for listing/search spiders.
+
+Goal: standardize common arguments and behaviors across purpose-built spiders.
+
+Common args (convention):
+- max_pages: int (default 1)
+- use_proxy: 0/1 (default 0)
+- url: optional override (full URL)
+- category: optional category id/name
+- category_url: optional category URL
+- q: optional keyword query (for *search* spiders)
+
+This base class does NOT implement crawling logic; spiders still implement
+start_requests/parse.
+"""
+
+from dataclasses import dataclass
+
+import scrapy
+
+from common.settings import PROXY
+
+
+@dataclass
+class ListingArgs:
+    max_pages: int = 1
+    use_proxy: bool = False
+    url: str | None = None
+    category: str | None = None
+    category_url: str | None = None
+    q: str | None = None
+
+
+class BaseListingSpider(scrapy.Spider):
+    """Base class to normalize common args and proxy handling."""
+
+    args: ListingArgs
+
+    def init_listing_args(
+        self,
+        *,
+        max_pages: int | str | None = 1,
+        use_proxy: int | str | None = 0,
+        url: str | None = None,
+        category: str | None = None,
+        category_url: str | None = None,
+        q: str | None = None,
+    ) -> ListingArgs:
+        self.args = ListingArgs(
+            max_pages=int(max_pages or 1),
+            use_proxy=bool(int(use_proxy or 0)),
+            url=(url or "").strip() or None,
+            category=(category or "").strip() or None,
+            category_url=(category_url or "").strip() or None,
+            q=(q or "").strip() or None,
+        )
+        return self.args
+
+    def maybe_proxy_meta(self, meta: dict | None = None) -> dict:
+        meta = dict(meta or {})
+        if getattr(self, "args", None) and self.args.use_proxy and PROXY:
+            meta["proxy"] = PROXY
+        return meta
