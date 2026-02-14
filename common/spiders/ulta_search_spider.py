@@ -1,38 +1,34 @@
 from __future__ import annotations
 
+"""Ulta keyword search spider.
+
+This is extracted from the previous `ulta_listing` spider behavior.
+
+Usage:
+  scrapy crawl ulta_search -a q=shampoo -a max_pages=2
+"""
+
 import json
 from urllib.parse import urlencode
 
 import scrapy
 
 
-class UltaListingSpider(scrapy.Spider):
-    """Ulta category listing spider using Ulta's GraphQL APIs (/dxl/graphql).
+class UltaSearchSpider(scrapy.Spider):
+    """Ulta search spider using Ulta's GraphQL APIs (/dxl/graphql)."""
 
-    Required:
-    - Provide `-a category_url='https://www.ulta.com/shop/hair/shampoo-conditioner/shampoo'`
-
-    Optional:
-    - `-a max_pages=...`
-
-    For keyword searches use `ulta_search`.
-    """
-
-    name = "ulta_listing"
+    name = "ulta_search"
     allowed_domains = ["ulta.com", "www.ulta.com"]
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
     }
 
-    def __init__(self, category_url: str | None = None, max_pages: int = 1, *args, **kwargs):
+    def __init__(self, q: str | None = None, max_pages: int = 1, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.category_url = (category_url or "").strip()
-        if not self.category_url:
-            raise ValueError("Provide -a category_url=<ulta category url>. For keyword searches use ulta_search")
-
+        self.q = (q or "shampoo").strip()
         self.max_pages = int(max_pages)
-        self.base_path = self.category_url
+        self.base_path = f"https://www.ulta.com/search?search={self.q.replace(' ', '+')}"
 
         # Discovered from the site runtime behavior.
         self.module_params = {
@@ -59,12 +55,7 @@ class UltaListingSpider(scrapy.Spider):
             self.logger.warning("Ulta Page query failed")
             return
 
-        modules = (
-            payload.get("data", {})
-            .get("Page", {})
-            .get("content", {})
-            .get("modules", [])
-        )
+        modules = payload.get("data", {}).get("Page", {}).get("content", {}).get("modules", [])
 
         content_id = None
         for m in modules:
@@ -87,7 +78,9 @@ class UltaListingSpider(scrapy.Spider):
     def parse_listing(self, response: scrapy.http.Response):
         payload = self._to_json(response)
         if not payload:
-            self.logger.warning("Ulta NonCachedPage query failed for page=%s", response.meta.get("page"))
+            self.logger.warning(
+                "Ulta NonCachedPage query failed for page=%s", response.meta.get("page")
+            )
             return
 
         content = payload.get("data", {}).get("Page", {}).get("content", {})
@@ -111,8 +104,8 @@ class UltaListingSpider(scrapy.Spider):
                 "reviews_count": self._to_int(review_raw),
                 "is_sponsored": bool(item.get("sponsored")),
                 "source": "ulta_dxl_graphql",
-                "mode": "category",
-                "category_url": self.category_url,
+                "mode": "keyword",
+                "query": self.q,
             }
 
         current_page = int(response.meta.get("page", 1))

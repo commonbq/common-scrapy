@@ -50,33 +50,32 @@ class WalmartListingSpider(scrapy.Spider):
 
     def __init__(
         self,
-        q: str | None = None,
-        url: str | None = None,
         category: str | None = None,
+        category_url: str | None = None,
+        url: str | None = None,
         max_pages: int = 1,
         *args,
         **kwargs,
     ) -> None:
         super().__init__(*args, **kwargs)
-        self.q = (q or "").strip()
-        self.url = (url or "").strip()
         self.category = (category or "").strip().lower()
+        self.category_url = (category_url or "").strip()
+        self.url = (url or "").strip()
         self.max_pages = int(max_pages)
 
+        # If none provided, subclasses may handle (e.g. walmart_search).
     def start_requests(self):
         if self.url:
             target_urls = [{"category": "custom_url", "url": self.url}]
-        elif self.q:
-            target_urls = [
-                {
-                    "category": f"search:{self.q}",
-                    "url": f"https://www.walmart.com/search?{urlencode({'q': self.q})}",
-                }
-            ]
+        elif self.category_url:
+            target_urls = [{"category": "category_url", "url": self.category_url}]
         elif self.category:
             target_urls = [entry for entry in self.categories if entry.get("category") == self.category][:1]
         else:
-            target_urls = self.categories
+            raise ValueError(
+                "Provide -a category=<name> or -a category_url=<url> (or -a url=<custom url>). "
+                "For keyword search use walmart_search"
+            )
 
         for entry in target_urls:
             target_url = (entry.get("url") or "").strip()

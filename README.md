@@ -86,9 +86,11 @@ Kohl’s `/web/catalog/...` endpoint is currently **blocked from this environmen
 These live under `common/spiders/*_listing_spider.py` and are purpose-built per retailer.
 
 - `amazon_listing` – keyword listing spider.
-- `walmart_listing` – listing spider with anti-bot fallback.
+- `walmart_listing` – category listing spider with anti-bot fallback.
+- `walmart_search` – keyword search spider.
 - `macys_listing` – Macy’s xapi listing (may route via fallback when blocked).
-- `ulta_listing` – Ulta GraphQL listing API.
+- `ulta_listing` – Ulta category listing (GraphQL).
+- `ulta_search` – Ulta keyword search (GraphQL).
 - `target_search` – Target RedSky (plp_search_v2) search API.
 - `target_listing` – deprecated alias for `target_search`.
 - `nordstrom_listing` – currently experimental (HTML script-tag extraction; often blocked).
@@ -108,7 +110,7 @@ Below are trimmed examples from recent local test runs (JSONL output, 1 item sho
 }
 ```
 
-**walmart_listing**
+**walmart_listing** (category)
 ```json
 {
   "item_id": null,
@@ -118,6 +120,14 @@ Below are trimmed examples from recent local test runs (JSONL output, 1 item sho
   "image_url": "https://i5.walmartimages.com/seo/...jpeg?odnHeight=576&odnWidth=576&odnBg=FFFFFF"
 }
 ```
+
+Run example:
+`common-scrapy crawl walmart_listing -a category=electronics -a max_pages=1 -O walmart.jsonl`
+
+**walmart_search** (keyword)
+
+Run example:
+`common-scrapy crawl walmart_search -a q=laptop -a max_pages=1 -O walmart_search.jsonl`
 
 **macys_listing**
 ```json
@@ -131,7 +141,7 @@ Below are trimmed examples from recent local test runs (JSONL output, 1 item sho
 }
 ```
 
-**ulta_listing**
+**ulta_listing** (category)
 ```json
 {
   "item_id": "xlsImpprod15511061",
@@ -144,6 +154,14 @@ Below are trimmed examples from recent local test runs (JSONL output, 1 item sho
   "image_url": "https://media.ulta.com/i/ulta/2580410"
 }
 ```
+
+Run example:
+`common-scrapy crawl ulta_listing -a category_url='https://www.ulta.com/shop/hair/shampoo-conditioner/shampoo' -a max_pages=1 -O ulta.jsonl`
+
+**ulta_search** (keyword)
+
+Run example:
+`common-scrapy crawl ulta_search -a q=shampoo -a max_pages=1 -O ulta_search.jsonl`
 
 **target_search**
 ```json
