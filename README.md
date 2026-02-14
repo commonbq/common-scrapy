@@ -89,7 +89,8 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 - `walmart_listing` – listing spider with anti-bot fallback.
 - `macys_listing` – Macy’s xapi listing (may route via fallback when blocked).
 - `ulta_listing` – Ulta GraphQL listing API.
-- `target_listing` – Target RedSky (plp_search_v2) listing API.
+- `target_search` – Target RedSky (plp_search_v2) search API.
+- `target_listing` – deprecated alias for `target_search`.
 - `nordstrom_listing` – currently experimental (HTML script-tag extraction; often blocked).
 
 #### Sample output
@@ -144,7 +145,7 @@ Below are trimmed examples from recent local test runs (JSONL output, 1 item sho
 }
 ```
 
-**target_listing**
+**target_search**
 ```json
 {
   "product_id": "94568023",
