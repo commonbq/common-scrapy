@@ -51,7 +51,7 @@ class NordstromListingSpider(scrapy.Spider):
                 "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
             ),
         }
-        meta = {}
+        meta = {"handle_httpstatus_all": True}
         # Only use proxy when explicitly forced, to avoid unnecessary proxy usage.
         if force_proxy and PROXY:
             meta["proxy"] = PROXY
