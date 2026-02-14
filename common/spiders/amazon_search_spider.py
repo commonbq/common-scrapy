@@ -12,25 +12,21 @@ import scrapy
 
 from common.settings import PROXY
 from common.spiders.amazon_listing_spider import AmazonListingSpider
+from common.spiders.base_search_spider import BaseSearchSpider
 
 
-class AmazonSearchSpider(AmazonListingSpider):
+class AmazonSearchSpider(BaseSearchSpider, AmazonListingSpider):
     name = "amazon_search"
 
-    def __init__(self, q: str | None = None, max_pages: int = 1, *args, **kwargs):
-        if not q:
-            raise ValueError("Provide -a q=<term>")
-        # Bypass AmazonListingSpider.__init__ requirements; we only need keyword flow.
+    def __init__(self, q: str | None = None, max_pages: int = 1, use_proxy: int | str | None = 0, *args, **kwargs):
         scrapy.Spider.__init__(self, *args, **kwargs)
-        self.q = (q or "").strip()
-        self.max_pages = int(max_pages)
+        self.init_search_args(q=q, max_pages=max_pages, use_proxy=use_proxy)
+        self.q = self.args.q or ""
+        self.max_pages = self.args.max_pages
 
     def start_requests(self):
         query = urlencode({"k": self.q})
         target_url = f"https://www.amazon.com/s?{query}"
 
-        meta = {"page": 1}
-        if PROXY:
-            meta["proxy"] = PROXY
-
+        meta = self.maybe_proxy_meta({"page": 1})
         yield scrapy.Request(target_url, callback=self.parse, meta=meta)

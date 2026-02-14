@@ -10,21 +10,29 @@ from urllib.parse import urlencode
 
 import scrapy
 
-from common.settings import PROXY
+from common.spiders.base_search_spider import BaseSearchSpider
 from common.spiders.walmart_listing_spider import WalmartListingSpider
 
 
-class WalmartSearchSpider(WalmartListingSpider):
+class WalmartSearchSpider(BaseSearchSpider, WalmartListingSpider):
     name = "walmart_search"
 
-    def __init__(self, q: str | None = None, max_pages: int = 1, *args, **kwargs):
-        if not q:
-            raise ValueError("Provide -a q=<term>")
-        super().__init__(q=q, max_pages=max_pages, *args, **kwargs)
+    def __init__(self, q: str | None = None, max_pages: int = 1, use_proxy: int | str | None = 0, *args, **kwargs):
+        # init BaseSearchSpider args
+        scrapy.Spider.__init__(self, *args, **kwargs)
+        self.init_search_args(q=q, max_pages=max_pages, use_proxy=use_proxy)
+        # init WalmartListingSpider fields (it calls BaseListingSpider init helpers)
+        WalmartListingSpider.__init__(
+            self,
+            category=None,
+            category_url=None,
+            url=None,
+            max_pages=self.args.max_pages,
+            use_proxy=use_proxy,
+        )
 
     def start_requests(self):
-        target_url = f"https://www.walmart.com/search?{urlencode({'q': self.q})}"
-        meta = {"page": 1, "original_url": target_url, "category": f"search:{self.q}"}
-        if PROXY:
-            meta["proxy"] = PROXY
+        q = self.args.q or ""
+        target_url = f"https://www.walmart.com/search?{urlencode({'q': q})}"
+        meta = self.maybe_proxy_meta({"page": 1, "original_url": target_url, "category": f"search:{q}"})
         yield scrapy.Request(target_url, callback=self.parse, meta=meta)

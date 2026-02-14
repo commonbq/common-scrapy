@@ -13,8 +13,10 @@ from urllib.parse import urlencode
 
 import scrapy
 
+from common.spiders.base_search_spider import BaseSearchSpider
 
-class UltaSearchSpider(scrapy.Spider):
+
+class UltaSearchSpider(BaseSearchSpider):
     """Ulta search spider using Ulta's GraphQL APIs (/dxl/graphql)."""
 
     name = "ulta_search"
@@ -24,10 +26,11 @@ class UltaSearchSpider(scrapy.Spider):
         "HTTPERROR_ALLOW_ALL": True,
     }
 
-    def __init__(self, q: str | None = None, max_pages: int = 1, *args, **kwargs):
+    def __init__(self, q: str | None = None, max_pages: int = 1, use_proxy: int | str | None = 0, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.q = (q or "shampoo").strip()
-        self.max_pages = int(max_pages)
+        self.init_search_args(q=q, max_pages=max_pages, use_proxy=use_proxy)
+        self.q = self.args.q or "shampoo"
+        self.max_pages = self.args.max_pages
         self.base_path = f"https://www.ulta.com/search?search={self.q.replace(' ', '+')}"
 
         # Discovered from the site runtime behavior.
