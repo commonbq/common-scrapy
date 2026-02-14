@@ -102,8 +102,11 @@ class CommonSpider(scrapy.Spider):
         if pagination["mode"] == "page":
             page_key = pagination["page"]
             current_page_raw = payload.get(page_key) or 1
+            # Some payloads may store currentPage as a 1-tuple due to previous bug.
+            if isinstance(current_page_raw, (list, tuple)) and current_page_raw:
+                current_page_raw = current_page_raw[0]
             current_page = int(current_page_raw)
-            payload[page_key] = (current_page + 1,)
+            payload[page_key] = current_page + 1
 
         elif pagination["mode"] == "offset":
             offset_key = pagination["offset"]
