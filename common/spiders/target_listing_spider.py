@@ -55,6 +55,7 @@ class TargetListingSpider(scrapy.Spider):
         self.page_size = int(page_size or 24)
         self.use_proxy = bool(int(use_proxy or 0))
         self._redsky_key: Optional[str] = None
+        self._visitor_id: Optional[str] = None
 
     def start_requests(self) -> Iterable[scrapy.Request]:
         url = f"https://www.target.com/s?searchTerm={quote(self.keyword)}"
@@ -82,12 +83,14 @@ class TargetListingSpider(scrapy.Spider):
         params = {
             "key": self._redsky_key,
             "keyword": self.keyword,
-            "channel": "web",
+            # Must be an enum value; lowercase `web` triggers a 400.
+            "channel": "WEB",
             "count": str(self.page_size),
             "offset": str(offset),
-            # These often appear in real calls; harmless if ignored.
+            # Required by the API.
+            "page": f"/s?searchTerm={self.keyword}",
             "pricing_store_id": "3991",
-            "platform": "desktop",
+            "visitor_id": self._ensure_visitor_id(),
         }
         qs = "&".join(f"{k}={quote(str(v))}" for k, v in params.items())
         url = f"{base}?{qs}"
@@ -107,6 +110,14 @@ class TargetListingSpider(scrapy.Spider):
             meta["proxy"] = PROXY
 
         return scrapy.Request(url, headers=headers, meta=meta, callback=self.parse_redsky, dont_filter=True)
+
+    def _ensure_visitor_id(self) -> str:
+        if not self._visitor_id:
+            # Target appears to accept UUID v4 as visitor_id.
+            import uuid
+
+            self._visitor_id = str(uuid.uuid4())
+        return self._visitor_id
 
     def parse_search_html(self, response: scrapy.http.Response):
         if response.status != 200:
@@ -193,7 +204,15 @@ class TargetListingSpider(scrapy.Spider):
 
     def _normalize_product(self, p: dict) -> dict:
         # These field names vary a bit by response shape.
-        title = p.get("title") or p.get("product_title") or p.get("name")
+        item = p.get("item") or {}
+        pd = item.get("product_description") or {}
+
+        title = (
+            p.get("title")
+            or p.get("product_title")
+            or p.get("name")
+            or pd.get("title")
+        )
         tcin = p.get("tcin") or p.get("id")
 
         price = None
@@ -206,7 +225,7 @@ class TargetListingSpider(scrapy.Spider):
                 or price_block.get("value")
             )
 
-        url = p.get("url") or p.get("item", {}).get("enrichment", {}).get("buy_url")
+        url = p.get("url") or (item.get("enrichment") or {}).get("buy_url")
         if url and url.startswith("/"):
             url = "https://www.target.com" + url
 
