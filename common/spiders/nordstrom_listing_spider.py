@@ -49,9 +49,8 @@ class NordstromListingSpider(scrapy.Spider):
             ),
         }
         meta = {}
-        if (force_proxy or False) and PROXY:
-            meta["proxy"] = PROXY
-        elif PROXY:
+        # Only use proxy when explicitly forced, to avoid unnecessary proxy usage.
+        if force_proxy and PROXY:
             meta["proxy"] = PROXY
 
         return scrapy.Request(url, headers=headers, meta=meta, dont_filter=dont_filter)
