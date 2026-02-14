@@ -12,15 +12,20 @@ pip install common-scrapy
 
 `pip install common-scrapy` adds a `common-scrapy` console script so you can work with the packaged spider without cloning the repo.
 
-### Use your own proxy
+### Proxy configuration
 
-Set the `PROXY` environment variable inline with the command to force all HTTP requests through your proxy of choice. Any syntax Scrapy supports will work, for example:
+This project reads `PROXY` from a local `.env` file (recommended) via `python-dotenv`.
 
-```bash
-PROXY=http://user:pass@host:1234 common-scrapy crawl kohls_products
-```
+- Create `./.env` (it’s gitignored) with:
+  ```
+  PROXY=http://user:pass@host:1234
+  ```
+- Or you can still pass it inline for one-off runs:
+  ```bash
+  PROXY=http://user:pass@host:1234 common-scrapy crawl kohls_products
+  ```
 
-If you need to switch proxies between runs, just update the `PROXY=` prefix before invoking `common-scrapy` again.
+Standalone spiders also honor `PROXY` (some require `-a use_proxy=1` depending on spider).
 
 ### List available templates
 
@@ -41,10 +46,23 @@ Examples:
 
 The command wires Scrapy's `common` spider to the template you choose, so any flags you normally pass to `scrapy crawl` still work (for example, output feeds, settings overrides, or depth limits).
 
-## Available templates
+## Available spiders / templates
+
+### Template-driven (via `common-scrapy crawl <template>`)
 
 - `kohls_products` – product listing crawl for Kohl's seasonal catalog endpoints.
 - `sephora_products` – product listing crawl for Sephora category APIs.
+
+### Standalone spiders (via `scrapy crawl <spider>`)
+
+These live under `common/spiders/*_listing_spider.py` and are purpose-built per retailer.
+
+- `amazon_listing` – keyword listing spider.
+- `walmart_listing` – listing spider with anti-bot fallback.
+- `macys_listing` – Macy’s xapi listing (may route via fallback when blocked).
+- `ulta_listing` – Ulta GraphQL listing API.
+- `target_listing` – Target RedSky (plp_search_v2) listing API.
+- `nordstrom_listing` – currently experimental (HTML script-tag extraction; often blocked).
 
 ## Contributing
 
