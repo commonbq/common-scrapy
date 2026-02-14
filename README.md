@@ -85,7 +85,8 @@ Kohl’s `/web/catalog/...` endpoint is currently **blocked from this environmen
 
 These live under `common/spiders/*_listing_spider.py` and are purpose-built per retailer.
 
-- `amazon_listing` – keyword listing spider.
+- `amazon_listing` – category listing spider (requires category).
+- `amazon_search` – keyword search spider.
 - `walmart_listing` – category listing spider with anti-bot fallback.
 - `walmart_search` – keyword search spider.
 - `macys_listing` – Macy’s xapi listing (may route via fallback when blocked).
@@ -99,7 +100,7 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 
 Below are trimmed examples from recent local test runs (JSONL output, 1 item shown).
 
-**amazon_listing**
+**amazon_search**
 ```json
 {
   "asin": "B08NF2W2V2",
@@ -109,6 +110,14 @@ Below are trimmed examples from recent local test runs (JSONL output, 1 item sho
   "image_url": "https://m.media-amazon.com/images/I/71Akg8OEbXL._AC_UL320_.jpg"
 }
 ```
+
+Run example:
+`common-scrapy crawl amazon_search -a q=sneakers -a max_pages=1 -O amazon_search.jsonl`
+
+**amazon_listing** (category)
+
+Run example:
+`common-scrapy crawl amazon_listing -a category=electronics -a max_pages=1 -O amazon_cat.jsonl`
 
 **walmart_listing** (category)
 ```json

@@ -17,27 +17,60 @@ class AmazonListingSpider(scrapy.Spider):
         "DOWNLOAD_DELAY": 0,
     }
 
+    # A small allowlist of common Amazon category nodes (browse node ids).
+    # Users can also provide a full category_url.
+    categories = {
+        "electronics": "172282",
+        "fashion": "7141123011",
+        "beauty": "3760911",
+        "home-kitchen": "1055398",
+        "toys-games": "165793011",
+        "sports-outdoors": "3375251",
+        "grocery": "16310101",
+        "books": "283155",
+    }
+
     def __init__(
         self,
-        q: str | None = None,
+        category: str | None = None,
+        category_node: str | None = None,
+        category_url: str | None = None,
         url: str | None = None,
         max_pages: int = 1,
         *args,
         **kwargs,
     ) -> None:
         super().__init__(*args, **kwargs)
-        self.q = (q or "").strip()
+
+        self.category = (category or "").strip().lower()
+        self.category_node = (category_node or "").strip()
+        self.category_url = (category_url or "").strip()
         self.url = (url or "").strip()
         self.max_pages = int(max_pages)
+        self.use_proxy = bool(int(kwargs.pop("use_proxy", 0) or 0))
+
+        if not (self.category_url or self.category_node or self.category or self.url):
+            raise ValueError(
+                "Provide -a category=<name> or -a category_node=<id> or -a category_url=<url> (or -a url=<custom url>). "
+                "For keyword search use amazon_search"
+            )
+
+        if not self.category_node and self.category:
+            self.category_node = self.categories.get(self.category, "")
 
     def start_requests(self):
-        target_url = self.url
+        target_url = self.url or self.category_url
         if not target_url:
-            query = urlencode({"k": self.q or "laptop"})
+            node = self.category_node
+            if not node:
+                raise ValueError("Unknown category. Use one of: %s" % ", ".join(sorted(self.categories.keys())))
+            query = urlencode({"i": "aps", "bbn": node, "rh": f"n:{node}"})
             target_url = f"https://www.amazon.com/s?{query}"
 
         meta = {"page": 1}
-        if PROXY:
+        # Do not force global PROXY for Amazon by default.
+        # Amazon is sensitive and proxies can be unreliable; enable explicitly via -a use_proxy=1.
+        if getattr(self, "use_proxy", False) and PROXY:
             meta["proxy"] = PROXY
 
         yield scrapy.Request(target_url, callback=self.parse, meta=meta)
@@ -99,7 +132,7 @@ class AmazonListingSpider(scrapy.Spider):
             return
 
         meta = {"page": current_page + 1}
-        if PROXY:
+        if self.use_proxy and PROXY:
             meta["proxy"] = PROXY
 
         yield response.follow(next_href, callback=self.parse, meta=meta)
