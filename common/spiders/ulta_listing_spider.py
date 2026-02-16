@@ -42,7 +42,12 @@ class UltaListingSpider(BaseListingSpider):
         )
         variables = {"moduleParams": {}, "url": {"path": self.resolve_target_url()}}
         url = self._build_graphql_get_url(page_query, "Page", variables)
-        yield scrapy.Request(url, callback=self.parse_page_definition, headers=self._headers())
+        yield scrapy.Request(
+            url,
+            callback=self.parse_page_definition,
+            headers=self._headers(),
+            meta=self.proxy_meta({"page": 1}),
+        )
 
     def parse_page_definition(self, response: scrapy.http.Response):
         payload = self._to_json(response)
@@ -67,7 +72,7 @@ class UltaListingSpider(BaseListingSpider):
             first_url,
             callback=self.parse_listing,
             headers=self._headers(),
-            meta={"content_id": content_id, "page": 1},
+            meta=self.proxy_meta({"content_id": content_id, "page": 1}),
         )
 
     def parse_listing(self, response: scrapy.http.Response):
@@ -112,7 +117,7 @@ class UltaListingSpider(BaseListingSpider):
             next_url,
             callback=self.parse_listing,
             headers=self._headers(),
-            meta={"content_id": content_id, "page": next_page},
+            meta=self.proxy_meta({"content_id": content_id, "page": next_page}),
         )
 
     def _build_noncached_url(self, content_id: str, page: int) -> str:

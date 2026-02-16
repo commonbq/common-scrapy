@@ -20,6 +20,12 @@ class UltaSearchSpider(BaseSearchSpider):
     """Ulta search spider using Ulta's GraphQL APIs (/dxl/graphql)."""
 
     name = "ulta_search"
+    module_params = {
+        "gti": "4c5ae407-6d39-4bc2-8b88-c3c73b90c19c",
+        "loginStatus": "anonymous",
+        "retailerVisitorId": "bff8c299-5cd1-4012-ae07-2c4ce39c6e45",
+        "breakpoint": "LG",
+    }
     allowed_domains = ["ulta.com", "www.ulta.com"]
 
     custom_settings = {
@@ -33,9 +39,15 @@ class UltaSearchSpider(BaseSearchSpider):
             'moduleParams: $moduleParams, url: $url, deliveryKey: "SDK") '
             '{ content customResponseAttributes meta __typename } }'
         )
-        variables = {"moduleParams": {}, "url": {"path": self.base_path}}
+        base_path = f"https://www.ulta.com/search?search={(self.q or '').replace(' ', '+')}"
+        variables = {"moduleParams": {}, "url": {"path": base_path}}
         url = self._build_graphql_get_url(page_query, "Page", variables)
-        yield scrapy.Request(url, callback=self.parse_page_definition, headers=self._headers())
+        yield scrapy.Request(
+            url,
+            callback=self.parse_page_definition,
+            headers=self._headers(),
+            meta=self.proxy_meta({"page": 1, "base_path": base_path}),
+        )
 
     def parse_page_definition(self, response: scrapy.http.Response):
         payload = self._to_json(response)
@@ -55,12 +67,16 @@ class UltaSearchSpider(BaseSearchSpider):
             self.logger.warning("Could not locate ProductListingResults contentId")
             return
 
-        first_url = self._build_noncached_url(content_id=content_id, page=1)
+        first_url = self._build_noncached_url(
+            content_id=content_id,
+            page=1,
+            base_path=response.meta.get("base_path") or f"https://www.ulta.com/search?search={(self.q or '').replace(' ', '+')}",
+        )
         yield scrapy.Request(
             first_url,
             callback=self.parse_listing,
             headers=self._headers(),
-            meta={"content_id": content_id, "page": 1},
+            meta=self.proxy_meta({"content_id": content_id, "page": 1, "base_path": response.meta.get("base_path")}),
         )
 
     def parse_listing(self, response: scrapy.http.Response):
@@ -105,16 +121,17 @@ class UltaSearchSpider(BaseSearchSpider):
 
         next_page = current_page + 1
         content_id = response.meta.get("content_id")
-        next_url = self._build_noncached_url(content_id=content_id, page=next_page)
+        base_path = response.meta.get("base_path") or f"https://www.ulta.com/search?search={(self.q or '').replace(' ', '+')}"
+        next_url = self._build_noncached_url(content_id=content_id, page=next_page, base_path=base_path)
         yield scrapy.Request(
             next_url,
             callback=self.parse_listing,
             headers=self._headers(),
-            meta={"content_id": content_id, "page": next_page},
+            meta=self.proxy_meta({"content_id": content_id, "page": next_page, "base_path": base_path}),
         )
 
-    def _build_noncached_url(self, content_id: str, page: int) -> str:
-        path = self.base_path if page == 1 else f"{self.base_path}&page={page}"
+    def _build_noncached_url(self, content_id: str, page: int, base_path: str) -> str:
+        path = base_path if page == 1 else f"{base_path}&page={page}"
 
         query = (
             'query NonCachedPage($stagingHost: String, $previewOptions: JSON, $moduleParams: JSON) '
