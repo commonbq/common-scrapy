@@ -95,8 +95,8 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 - `target_search` – Target RedSky (plp_search_v2) search API.
 - `target_listing` – deprecated alias for `target_search`.
 - `nordstrom_listing` – currently experimental (HTML script-tag extraction; often blocked).
-- `bestbuy_search` – Best Buy keyword search via discovered GraphQL persisted queries.
-- `bestbuy_listing` – Best Buy category/listing crawl via discovered GraphQL persisted queries.
+- `bestbuy_search` – Best Buy keyword search using Apollo bootstrap state (`ApolloSSRDataTransport`) extraction.
+- `bestbuy_listing` – Best Buy category/listing crawl using Apollo bootstrap state (`ApolloSSRDataTransport`) extraction.
 
 #### Sample output
 
@@ -191,6 +191,12 @@ Run example:
 **nordstrom_listing**
 
 Currently blocked in this environment (often returns anti-bot interstitial / wrapper HTML), so sample output may be empty.
+
+**bestbuy_search / bestbuy_listing**
+
+Best Buy pages currently use Apollo bootstrap state hydration (not `__NEXT_DATA__` on PLP/search). These spiders parse `ApolloSSRDataTransport` payloads from inline scripts and normalize product records.
+
+In environments where the initial Best Buy request returns HTTP 400 (or bot/challenge responses), output may be empty because bootstrap payload is unavailable to parse.
 
 ## Contributing
 
