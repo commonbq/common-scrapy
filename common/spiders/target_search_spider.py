@@ -19,6 +19,7 @@ from common.spiders.base_listing_spider import BaseListingSpider
 
 
 class TargetSearchSpider(BaseListingSpider):
+    require_category_arg = False
     """Target category/search spider using Target's internal (RedSky) API.
 
     Required:

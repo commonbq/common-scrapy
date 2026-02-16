@@ -9,6 +9,7 @@ from common.spiders.base_listing_spider import BaseListingSpider
 
 
 class UltaListingSpider(BaseListingSpider):
+    require_category_arg = False
     """Ulta category listing spider using Ulta's GraphQL APIs (/dxl/graphql).
 
     Required:

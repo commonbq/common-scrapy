@@ -10,6 +10,7 @@ from common.spiders.base_listing_spider import BaseListingSpider
 
 
 class MacysListingSpider(BaseListingSpider):
+    require_category_arg = False
     """
     Macy's listing spider using Macy's own listing API endpoint:
       /xapi/discover/v1/page

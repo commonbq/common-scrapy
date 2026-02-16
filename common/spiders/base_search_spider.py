@@ -2,20 +2,26 @@ from __future__ import annotations
 
 """Base spider helpers for keyword-search spiders.
 
-Standard args (convention):
+Standard args:
 - q: keyword query (required)
 - max_pages: int (default 1)
-
-This base class does NOT implement crawling logic.
 """
-
-import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider, ListingArgs
 
 
 class BaseSearchSpider(BaseListingSpider):
     """Base class for keyword-search spiders."""
+
+    # Search spiders do not require listing category maps.
+    require_category_arg: bool = False
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.init_search_args(
+            q=kwargs.get("q"),
+            max_pages=kwargs.get("max_pages", 1),
+        )
 
     def init_search_args(
         self,
