@@ -95,6 +95,8 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 - `target_search` – Target RedSky (plp_search_v2) search API.
 - `target_listing` – deprecated alias for `target_search`.
 - `nordstrom_listing` – currently experimental (HTML script-tag extraction; often blocked).
+- `bestbuy_search` – Best Buy keyword search via discovered GraphQL persisted queries.
+- `bestbuy_listing` – Best Buy category/listing crawl via discovered GraphQL persisted queries.
 
 #### Sample output
 
