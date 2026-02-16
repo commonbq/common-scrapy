@@ -5,7 +5,6 @@ from urllib.parse import urlencode
 
 import scrapy
 
-from common.settings import PROXY
 from common.spiders.base_listing_spider import BaseListingSpider
 
 
@@ -45,7 +44,6 @@ class AmazonListingSpider(BaseListingSpider):
 
         self.init_listing_args(
             max_pages=max_pages,
-            use_proxy=kwargs.pop("use_proxy", 0),
             url=url,
             category=category,
             category_url=category_url,
@@ -56,7 +54,6 @@ class AmazonListingSpider(BaseListingSpider):
         self.category_url = (category_url or "").strip()
         self.url = (url or "").strip()
         self.max_pages = self.args.max_pages
-        self.use_proxy = self.args.use_proxy
 
         if not (self.category_url or self.category_node or self.category or self.url):
             raise ValueError(
@@ -76,13 +73,7 @@ class AmazonListingSpider(BaseListingSpider):
             query = urlencode({"i": "aps", "bbn": node, "rh": f"n:{node}"})
             target_url = f"https://www.amazon.com/s?{query}"
 
-        meta = {"page": 1}
-        # Do not force global PROXY for Amazon by default.
-        # Amazon is sensitive and proxies can be unreliable; enable explicitly via -a use_proxy=1.
-        if getattr(self, "use_proxy", False) and PROXY:
-            meta["proxy"] = PROXY
-
-        yield scrapy.Request(target_url, callback=self.parse, meta=meta)
+        yield scrapy.Request(target_url, callback=self.parse, meta={"page": 1})
 
     def parse(self, response: scrapy.http.Response):
         cards = response.css(
@@ -140,11 +131,11 @@ class AmazonListingSpider(BaseListingSpider):
         if not next_href:
             return
 
-        meta = {"page": current_page + 1}
-        if self.use_proxy and PROXY:
-            meta["proxy"] = PROXY
-
-        yield response.follow(next_href, callback=self.parse, meta=meta)
+        yield response.follow(
+            next_href,
+            callback=self.parse,
+            meta={"page": current_page + 1},
+        )
 
     def _extract_float(self, text: str) -> float | None:
         match = re.search(r"(\d+(?:\.\d+)?)", text)

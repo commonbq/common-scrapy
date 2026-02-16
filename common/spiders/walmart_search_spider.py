@@ -17,10 +17,10 @@ from common.spiders.walmart_listing_spider import WalmartListingSpider
 class WalmartSearchSpider(BaseSearchSpider, WalmartListingSpider):
     name = "walmart_search"
 
-    def __init__(self, q: str | None = None, max_pages: int = 1, use_proxy: int | str | None = 0, *args, **kwargs):
+    def __init__(self, q: str | None = None, max_pages: int = 1, *args, **kwargs):
         # init BaseSearchSpider args
         scrapy.Spider.__init__(self, *args, **kwargs)
-        self.init_search_args(q=q, max_pages=max_pages, use_proxy=use_proxy)
+        self.init_search_args(q=q, max_pages=max_pages)
         # init WalmartListingSpider fields (it calls BaseListingSpider init helpers)
         WalmartListingSpider.__init__(
             self,
@@ -28,7 +28,6 @@ class WalmartSearchSpider(BaseSearchSpider, WalmartListingSpider):
             category_url=None,
             url=None,
             max_pages=self.args.max_pages,
-            use_proxy=use_proxy,
         )
 
     def start_requests(self):

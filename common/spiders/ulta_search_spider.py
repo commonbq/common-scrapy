@@ -26,9 +26,9 @@ class UltaSearchSpider(BaseSearchSpider):
         "HTTPERROR_ALLOW_ALL": True,
     }
 
-    def __init__(self, q: str | None = None, max_pages: int = 1, use_proxy: int | str | None = 0, *args, **kwargs):
+    def __init__(self, q: str | None = None, max_pages: int = 1, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.init_search_args(q=q, max_pages=max_pages, use_proxy=use_proxy)
+        self.init_search_args(q=q, max_pages=max_pages)
         self.q = self.args.q or "shampoo"
         self.max_pages = self.args.max_pages
         self.base_path = f"https://www.ulta.com/search?search={self.q.replace(' ', '+')}"

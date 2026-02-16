@@ -55,14 +55,12 @@ class WalmartListingSpider(BaseListingSpider):
         category_url: str | None = None,
         url: str | None = None,
         max_pages: int = 1,
-        use_proxy: int | str | None = 0,
         *args,
         **kwargs,
     ) -> None:
         super().__init__(*args, **kwargs)
         self.init_listing_args(
             max_pages=max_pages,
-            use_proxy=use_proxy,
             url=url,
             category=category,
             category_url=category_url,

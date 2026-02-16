@@ -29,12 +29,11 @@ class EbayListingSpider(BaseListingSpider):
         category_url: str | None = None,
         url: str | None = None,
         max_pages: int = 1,
-        use_proxy: int | str | None = 0,
         *args,
         **kwargs,
     ):
         super().__init__(*args, **kwargs)
-        self.init_listing_args(max_pages=max_pages, use_proxy=use_proxy, url=url, category_url=category_url)
+        self.init_listing_args(max_pages=max_pages, url=url, category_url=category_url)
 
         self.category_url = self.args.category_url
         self.url = self.args.url

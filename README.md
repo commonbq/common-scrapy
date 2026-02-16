@@ -25,7 +25,7 @@ This project reads `PROXY` from a local `.env` file (recommended) via `python-do
   PROXY=http://user:pass@host:1234 common-scrapy crawl kohls_products
   ```
 
-Standalone spiders also honor `PROXY` (some require `-a use_proxy=1` depending on spider).
+Standalone spiders also honor `PROXY`.
 
 ### List available templates
 

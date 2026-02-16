@@ -15,7 +15,6 @@ from urllib.parse import quote
 
 import scrapy
 
-from common.settings import PROXY
 from common.spiders.base_listing_spider import BaseListingSpider
 
 
@@ -45,14 +44,12 @@ class TargetSearchSpider(BaseListingSpider):
         keyword: str | None = None,
         max_pages: str | int | None = 1,
         page_size: str | int | None = 24,
-        use_proxy: str | int | None = 0,
         *args,
         **kwargs,
     ):
         super().__init__(*args, **kwargs)
         self.init_listing_args(
             max_pages=max_pages,
-            use_proxy=use_proxy,
             category=category,
             category_url=category_url,
             q=keyword,
@@ -75,7 +72,6 @@ class TargetSearchSpider(BaseListingSpider):
             raise ValueError("Could not derive category id. Provide -a category=<id> (e.g. 5xtc0)")
         self.max_pages = int(max_pages or 1)
         self.page_size = int(page_size or 24)
-        self.use_proxy = bool(int(use_proxy or 0))
         self._redsky_key: Optional[str] = None
         self._visitor_id: Optional[str] = None
 
@@ -98,13 +94,10 @@ class TargetSearchSpider(BaseListingSpider):
                 "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
             ),
         }
-        meta = {"handle_httpstatus_all": True}
-        if self.use_proxy and PROXY:
-            meta["proxy"] = PROXY
         return scrapy.Request(
             url,
             headers=headers,
-            meta=meta,
+            meta={"handle_httpstatus_all": True},
             callback=getattr(self, cb),
             dont_filter=dont_filter,
         )
@@ -144,14 +137,10 @@ class TargetSearchSpider(BaseListingSpider):
             ),
         }
 
-        meta = {"handle_httpstatus_all": True}
-        if self.use_proxy and PROXY:
-            meta["proxy"] = PROXY
-
         return scrapy.Request(
             url,
             headers=headers,
-            meta=meta,
+            meta={"handle_httpstatus_all": True},
             callback=self.parse_redsky,
             dont_filter=True,
         )
@@ -166,9 +155,8 @@ class TargetSearchSpider(BaseListingSpider):
     def parse_search_html(self, response: scrapy.http.Response):
         if response.status != 200:
             self.logger.warning(
-                "Target search HTML non-200. status=%s proxy=%s url=%s head=%r",
+                "Target search HTML non-200. status=%s url=%s head=%r",
                 response.status,
-                bool(response.meta.get("proxy")),
                 response.url,
                 (response.text or "")[:200],
             )
@@ -193,9 +181,8 @@ class TargetSearchSpider(BaseListingSpider):
     def parse_redsky(self, response: scrapy.http.Response):
         if response.status != 200:
             self.logger.warning(
-                "RedSky non-200. status=%s proxy=%s url=%s head=%r",
+                "RedSky non-200. status=%s url=%s head=%r",
                 response.status,
-                bool(response.meta.get("proxy")),
                 response.url,
                 (response.text or "")[:250],
             )

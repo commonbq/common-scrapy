@@ -38,9 +38,9 @@ class HomeDepotSearchSpider(BaseSearchSpider):
         "DOWNLOAD_DELAY": 1,
     }
 
-    def __init__(self, q: str | None = None, max_pages: int = 1, use_proxy: int | str | None = 0, *args, **kwargs):
+    def __init__(self, q: str | None = None, max_pages: int = 1, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.init_search_args(q=q, max_pages=max_pages, use_proxy=use_proxy)
+        self.init_search_args(q=q, max_pages=max_pages)
 
     def start_requests(self):
         url = self._build_search_url(self.args.q or "")

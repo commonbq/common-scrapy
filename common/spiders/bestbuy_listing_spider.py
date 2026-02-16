@@ -3,7 +3,7 @@ from __future__ import annotations
 """Best Buy category/listing spider using discovered GraphQL persisted queries.
 
 Usage:
-  scrapy crawl bestbuy_listing -a category_url='https://www.bestbuy.com/site/all-laptops/laptops/abcat0502000.c?id=abcat0502000' -a max_pages=1 -a use_proxy=1
+  scrapy crawl bestbuy_listing -a category_url='https://www.bestbuy.com/site/all-laptops/laptops/abcat0502000.c?id=abcat0502000' -a max_pages=1
 """
 
 from urllib.parse import urlparse, parse_qs, urlencode, urlunparse
@@ -28,12 +28,11 @@ class BestbuyListingSpider(BaseListingSpider):
         category_url: str | None = None,
         url: str | None = None,
         max_pages: int = 1,
-        use_proxy: int | str | None = 0,
         *args,
         **kwargs,
     ):
         super().__init__(*args, **kwargs)
-        self.init_listing_args(max_pages=max_pages, use_proxy=use_proxy, url=url, category_url=category_url)
+        self.init_listing_args(max_pages=max_pages, url=url, category_url=category_url)
 
         self.category_url = self.args.category_url
         self.url = self.args.url

@@ -26,12 +26,11 @@ class MacysListingSpider(BaseListingSpider):
         q: str | None = None,
         sort: str | None = None,
         max_pages: int = 1,
-        use_proxy: int | str | None = 0,
         *args,
         **kwargs,
     ):
         super().__init__(*args, **kwargs)
-        self.init_listing_args(max_pages=max_pages, use_proxy=use_proxy, q=q)
+        self.init_listing_args(max_pages=max_pages, q=q)
 
         self.q = (q or "laptop").strip()
         self.sort = (sort or "PRICE_LOW_TO_HIGH").strip()

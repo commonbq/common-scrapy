@@ -10,7 +10,6 @@ from urllib.parse import urlencode
 
 import scrapy
 
-from common.settings import PROXY
 from common.spiders.amazon_listing_spider import AmazonListingSpider
 from common.spiders.base_search_spider import BaseSearchSpider
 
@@ -18,9 +17,9 @@ from common.spiders.base_search_spider import BaseSearchSpider
 class AmazonSearchSpider(BaseSearchSpider, AmazonListingSpider):
     name = "amazon_search"
 
-    def __init__(self, q: str | None = None, max_pages: int = 1, use_proxy: int | str | None = 0, *args, **kwargs):
+    def __init__(self, q: str | None = None, max_pages: int = 1, *args, **kwargs):
         scrapy.Spider.__init__(self, *args, **kwargs)
-        self.init_search_args(q=q, max_pages=max_pages, use_proxy=use_proxy)
+        self.init_search_args(q=q, max_pages=max_pages)
         self.q = self.args.q or ""
         self.max_pages = self.args.max_pages
 

@@ -31,12 +31,11 @@ class UltaListingSpider(BaseListingSpider):
         self,
         category_url: str | None = None,
         max_pages: int = 1,
-        use_proxy: int | str | None = 0,
         *args,
         **kwargs,
     ):
         super().__init__(*args, **kwargs)
-        self.init_listing_args(max_pages=max_pages, use_proxy=use_proxy, category_url=category_url)
+        self.init_listing_args(max_pages=max_pages, category_url=category_url)
 
         self.category_url = (category_url or "").strip()
         if not self.category_url:

@@ -6,7 +6,6 @@ Goal: standardize common arguments and behaviors across purpose-built spiders.
 
 Common args (convention):
 - max_pages: int (default 1)
-- use_proxy: 0/1 (default 0)
 - url: optional override (full URL)
 - category: optional category id/name
 - category_url: optional category URL
@@ -26,7 +25,6 @@ from common.settings import PROXY
 @dataclass
 class ListingArgs:
     max_pages: int = 1
-    use_proxy: bool = False
     url: str | None = None
     category: str | None = None
     category_url: str | None = None
@@ -34,7 +32,7 @@ class ListingArgs:
 
 
 class BaseListingSpider(scrapy.Spider):
-    """Base class to normalize common args and proxy handling."""
+    """Base class to normalize common spider args."""
 
     args: ListingArgs
 
@@ -42,7 +40,6 @@ class BaseListingSpider(scrapy.Spider):
         self,
         *,
         max_pages: int | str | None = 1,
-        use_proxy: int | str | None = 0,
         url: str | None = None,
         category: str | None = None,
         category_url: str | None = None,
@@ -50,7 +47,6 @@ class BaseListingSpider(scrapy.Spider):
     ) -> ListingArgs:
         self.args = ListingArgs(
             max_pages=int(max_pages or 1),
-            use_proxy=bool(int(use_proxy or 0)),
             url=(url or "").strip() or None,
             category=(category or "").strip() or None,
             category_url=(category_url or "").strip() or None,
@@ -59,7 +55,5 @@ class BaseListingSpider(scrapy.Spider):
         return self.args
 
     def maybe_proxy_meta(self, meta: dict | None = None) -> dict:
-        meta = dict(meta or {})
-        if getattr(self, "args", None) and self.args.use_proxy and PROXY:
-            meta["proxy"] = PROXY
+        meta["proxy"] = PROXY
         return meta

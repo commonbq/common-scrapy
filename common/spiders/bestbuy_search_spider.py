@@ -9,10 +9,9 @@ Flow:
 4) Normalize listing-like product records
 
 Usage:
-  scrapy crawl bestbuy_search -a q=laptop -a max_pages=1 -a use_proxy=1
+  scrapy crawl bestbuy_search -a q=laptop -a max_pages=1
 
 Notes:
-- `use_proxy=1` uses PROXY from `.env` (ScraperAPI proxy in this project).
 - Best Buy runtime changes often; this spider is defensive and generic.
 """
 
@@ -35,9 +34,9 @@ class BestbuySearchSpider(BaseSearchSpider):
         "DOWNLOAD_DELAY": 0.5,
     }
 
-    def __init__(self, q: str | None = None, max_pages: int = 1, use_proxy: int | str | None = 0, *args, **kwargs):
+    def __init__(self, q: str | None = None, max_pages: int = 1, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.init_search_args(q=q, max_pages=max_pages, use_proxy=use_proxy)
+        self.init_search_args(q=q, max_pages=max_pages)
 
     def start_requests(self):
         first = self._build_search_url(self.args.q or "")
