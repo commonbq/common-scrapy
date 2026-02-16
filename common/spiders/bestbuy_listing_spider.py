@@ -1,17 +1,17 @@
 from __future__ import annotations
 
-"""Best Buy category/listing spider using discovered GraphQL persisted queries.
+"""Best Buy category/listing spider (bootstrap-first).
 
 Usage:
   scrapy crawl bestbuy_listing -a category_url='https://www.bestbuy.com/site/all-laptops/laptops/abcat0502000.c?id=abcat0502000' -a max_pages=1
 """
 
-from urllib.parse import urlparse, parse_qs, urlencode, urlunparse
+from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
-from common.spiders.bestbuy_search_spider import BestbuySearchSpider
+from common.spiders.bestbuy_bootstrap_utils import extract_bestbuy_items_from_bootstrap
 
 
 class BestbuyListingSpider(BaseListingSpider):
@@ -42,112 +42,36 @@ class BestbuyListingSpider(BaseListingSpider):
     def start_requests(self):
         target = self.url or self.category_url or ""
         target = self._with_page(target, 1)
+        target = self._ensure_nosplash(target)
         yield scrapy.Request(target, callback=self.parse_listing_page, meta=self.maybe_proxy_meta({"page": 1, "original_url": target}))
 
     def parse_listing_page(self, response: scrapy.http.Response):
         page = int(response.meta.get("page", 1))
         html = response.text or ""
 
-        endpoint = BestbuySearchSpider._extract_graphql_endpoint(html) or "https://www.bestbuy.com/gateway/graphql"
-        candidates = BestbuySearchSpider._extract_persisted_queries(html)
-        if not candidates:
-            self.logger.warning("No GraphQL persisted-query candidates found for listing page=%s", page)
-            return
-
-        ranked = sorted(
-            candidates,
-            key=lambda c: (
-                0 if any(x in (c.get("operation_name") or "").lower() for x in ["product", "list", "plp", "browse", "search"]) else 1,
-                0 if c.get("variables") else 1,
-            ),
-        )
-        chosen = ranked[0]
-
-        vars_obj = BestbuySearchSpider._patch_variables(chosen.get("variables") or {}, query=None, page=page)
-
-        body = {
-            "operationName": chosen.get("operation_name"),
-            "variables": vars_obj,
-            "extensions": {
-                "persistedQuery": {
-                    "version": 1,
-                    "sha256Hash": chosen.get("sha256_hash"),
-                }
-            },
-        }
-
-        headers = {
-            "accept": "application/json",
-            "content-type": "application/json",
-            "origin": "https://www.bestbuy.com",
-            "referer": response.url,
-            "user-agent": "Mozilla/5.0",
-        }
-
-        yield scrapy.Request(
-            endpoint,
-            method="POST",
-            body=__import__("json").dumps(body, separators=(",", ":")),
-            headers=headers,
-            callback=self.parse_graphql,
-            meta=self.maybe_proxy_meta(
-                {
-                    "page": page,
-                    "graphql_endpoint": endpoint,
-                    "operation_name": chosen.get("operation_name"),
-                    "category_url": self.category_url or self.url,
-                    "original_url": response.meta.get("original_url") or response.url,
-                }
-            ),
-            dont_filter=True,
-        )
-
-    def parse_graphql(self, response: scrapy.http.Response):
-        page = int(response.meta.get("page", 1))
-        category_url = response.meta.get("category_url")
-
-        if response.status != 200:
-            self.logger.warning("BestBuy listing GraphQL non-200 status=%s body=%r", response.status, (response.text or "")[:260])
-            return
-
-        try:
-            payload = response.json()
-        except Exception:
-            self.logger.warning("BestBuy listing GraphQL invalid JSON body=%r", (response.text or "")[:260])
-            return
-
-        if isinstance(payload, list):
-            payload = payload[0] if payload else {}
-
-        data = payload.get("data") if isinstance(payload, dict) else None
-        if not isinstance(data, dict):
-            self.logger.warning("BestBuy listing GraphQL missing data keys=%s", list(payload.keys()) if isinstance(payload, dict) else type(payload))
-            return
-
         emitted = 0
-        for rec in BestbuySearchSpider._walk_listing_like(self, data):
+        for item in extract_bestbuy_items_from_bootstrap(html):
             emitted += 1
-            rec.update(
+            item.update(
                 {
-                    "source": "bestbuy_graphql",
                     "mode": "category",
-                    "category_url": category_url,
+                    "category_url": self.category_url or self.url,
                     "page": page,
-                    "graphql_operation": response.meta.get("operation_name"),
-                    "graphql_endpoint": response.meta.get("graphql_endpoint"),
+                    "source_url": response.url,
                 }
             )
-            yield rec
+            yield item
 
         if emitted == 0:
-            self.logger.warning("BestBuy listing GraphQL returned 0 listing-like records")
+            self.logger.warning("No BestBuy bootstrap items found for listing page=%s status=%s", page, response.status)
+            return
 
         if page >= self.args.max_pages:
             return
 
         next_page = page + 1
         original = response.meta.get("original_url") or (self.url or self.category_url or "")
-        next_url = self._with_page(original, next_page)
+        next_url = self._ensure_nosplash(self._with_page(original, next_page))
         yield scrapy.Request(
             next_url,
             callback=self.parse_listing_page,
@@ -160,4 +84,11 @@ class BestbuyListingSpider(BaseListingSpider):
         parts = urlparse(url)
         qs = parse_qs(parts.query)
         qs["cp"] = [str(page)]
+        return urlunparse(parts._replace(query=urlencode(qs, doseq=True)))
+
+    @staticmethod
+    def _ensure_nosplash(url: str) -> str:
+        parts = urlparse(url)
+        qs = parse_qs(parts.query)
+        qs["intl"] = ["nosplash"]
         return urlunparse(parts._replace(query=urlencode(qs, doseq=True)))
