@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 scrapy = "*"
 python-dotenv = "*"
+playwright = "*"
 
 [dev-packages]
 

@@ -24,6 +24,65 @@ def extract_bestbuy_items_from_bootstrap(html: str) -> list[dict[str, Any]]:
     return out
 
 
+def extract_bestbuy_items_from_apollo_cache(cache: dict[str, Any]) -> list[dict[str, Any]]:
+    """Extract product records from Apollo normalized cache (`cache.extract()`)."""
+    if not isinstance(cache, dict):
+        return []
+
+    root = cache.get("ROOT_QUERY") if isinstance(cache.get("ROOT_QUERY"), dict) else {}
+    out: list[dict[str, Any]] = []
+    seen: set[str] = set()
+
+    search_keys = [k for k in root.keys() if isinstance(k, str) and k.startswith("search(")]
+    for sk in search_keys:
+        ref = (root.get(sk) or {}).get("__ref") if isinstance(root.get(sk), dict) else None
+        if not ref:
+            continue
+        search_obj = cache.get(ref) if isinstance(cache.get(ref), dict) else {}
+        docs = search_obj.get("documents") if isinstance(search_obj, dict) else None
+        if not isinstance(docs, list):
+            continue
+
+        for doc in docs:
+            product_ref = None
+            if isinstance(doc, dict):
+                prod = doc.get("product")
+                if isinstance(prod, dict):
+                    product_ref = prod.get("__ref")
+
+            if not product_ref:
+                continue
+
+            product = cache.get(product_ref)
+            if not isinstance(product, dict):
+                continue
+
+            item = _normalize_product(product)
+            sku = item.get("item_id")
+            if not sku or sku in seen:
+                continue
+            seen.add(sku)
+            out.append(item)
+
+    # Fallback for listing pages where SearchConnection.documents is absent:
+    # scan normalized cache entries directly.
+    if not out:
+        for key, val in cache.items():
+            if not isinstance(key, str) or not key.startswith("Product:"):
+                continue
+            if not isinstance(val, dict) or not _looks_like_product(val):
+                continue
+
+            item = _normalize_product(val)
+            sku = item.get("item_id")
+            if not sku or sku in seen:
+                continue
+            seen.add(sku)
+            out.append(item)
+
+    return out
+
+
 def _extract_apollo_transport_payloads(html: str) -> list[dict[str, Any]]:
     payloads: list[dict[str, Any]] = []
     script_blocks = re.findall(r"<script[^>]*>(.*?)</script>", html, flags=re.S | re.I)

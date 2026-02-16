@@ -1,25 +1,23 @@
 from __future__ import annotations
 
-"""Best Buy keyword search spider (bootstrap-first).
+"""Best Buy keyword search spider (Playwright-assisted Apollo extraction).
 
 Usage:
   scrapy crawl bestbuy_search -a q=laptop -a max_pages=2
 """
 
-import json
-import re
-from typing import Any
 from urllib.parse import urlencode
 
 import scrapy
+from playwright.async_api import async_playwright
 
 from common.spiders.base_search_spider import BaseSearchSpider
-from common.spiders.bestbuy_bootstrap_utils import extract_bestbuy_items_from_bootstrap
+from common.spiders.bestbuy_bootstrap_utils import extract_bestbuy_items_from_apollo_cache, extract_bestbuy_items_from_bootstrap
 
 
 class BestbuySearchSpider(BaseSearchSpider):
     name = "bestbuy_search"
-    allowed_domains = ["bestbuy.com", "www.bestbuy.com", "bifrostgw.us.bestbuy.com"]
+    allowed_domains = ["bestbuy.com", "www.bestbuy.com"]
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
@@ -32,118 +30,65 @@ class BestbuySearchSpider(BaseSearchSpider):
 
     def start_requests(self):
         first = self._build_search_url(self.args.q or "")
-        yield scrapy.Request(first, callback=self.parse_search_page, meta=self.proxy_meta({"page": 1, "original_url": first}))
+        yield scrapy.Request(first, callback=self.parse_search_page, meta=self.maybe_proxy_meta({"page": 1}))
 
-    def parse_search_page(self, response: scrapy.http.Response):
+    async def parse_search_page(self, response: scrapy.http.Response):
+        page_num = int(response.meta.get("page", 1))
         html = response.text or ""
-        page = int(response.meta.get("page", 1))
 
         emitted = 0
+
+        # Fast path: inline bootstrap parsing from fetched HTML.
         for item in extract_bestbuy_items_from_bootstrap(html):
             emitted += 1
-            item.update({"mode": "keyword", "query": self.args.q, "page": page, "source_url": response.url})
+            item.update({"mode": "keyword", "query": self.args.q, "page": page_num, "source_url": response.url})
             yield item
 
-        # Fallback to persisted-query replay if bootstrap extraction returns nothing.
+        # Fallback: render with Playwright and pull Apollo cache.
         if emitted == 0:
-            endpoint = self._extract_graphql_endpoint(html) or "https://www.bestbuy.com/gateway/graphql"
-            candidates = self._extract_persisted_queries(html)
+            cache_obj, rendered_html = await self._fetch_playwright_state(response.url)
+            for item in extract_bestbuy_items_from_apollo_cache(cache_obj):
+                emitted += 1
+                item.update({"mode": "keyword", "query": self.args.q, "page": page_num, "source_url": response.url})
+                yield item
 
-            if not candidates:
-                self.logger.warning("No bootstrap items and no persisted-query candidates on page=%s status=%s", page, response.status)
-                return
+            if emitted == 0 and rendered_html:
+                for item in extract_bestbuy_items_from_bootstrap(rendered_html):
+                    emitted += 1
+                    item.update({"mode": "keyword", "query": self.args.q, "page": page_num, "source_url": response.url})
+                    yield item
 
-            ranked = sorted(
-                candidates,
-                key=lambda c: (
-                    0 if any(x in (c.get("operation_name") or "").lower() for x in ["search", "product", "list", "plp"]) else 1,
-                    0 if c.get("variables") else 1,
-                ),
-            )
-            chosen = ranked[0]
-            variables = self._patch_variables(chosen.get("variables") or {}, query=self.args.q, page=page)
+        if emitted == 0:
+            self.logger.warning("BestBuy search produced 0 items page=%s status=%s", page_num, response.status)
 
-            body = {
-                "operationName": chosen.get("operation_name"),
-                "variables": variables,
-                "extensions": {"persistedQuery": {"version": 1, "sha256Hash": chosen.get("sha256_hash")}},
-            }
-
-            headers = {
-                "accept": "application/json",
-                "content-type": "application/json",
-                "origin": "https://www.bestbuy.com",
-                "referer": response.url,
-                "user-agent": "Mozilla/5.0",
-            }
-
-            yield scrapy.Request(
-                endpoint,
-                method="POST",
-                body=json.dumps(body, separators=(",", ":")),
-                headers=headers,
-                callback=self.parse_graphql,
-                meta=self.proxy_meta(
-                    {
-                        "query": self.args.q,
-                        "page": page,
-                        "graphql_endpoint": endpoint,
-                        "operation_name": chosen.get("operation_name"),
-                    }
-                ),
-                dont_filter=True,
-            )
-            return
-
-        if page < self.args.max_pages:
-            next_page = page + 1
+        if page_num < self.args.max_pages:
+            next_page = page_num + 1
             next_url = self._build_search_url(self.args.q or "", page=next_page)
-            yield scrapy.Request(
-                next_url,
-                callback=self.parse_search_page,
-                meta=self.proxy_meta({"page": next_page, "original_url": next_url}),
-                dont_filter=True,
-            )
+            yield scrapy.Request(next_url, callback=self.parse_search_page, meta=self.maybe_proxy_meta({"page": next_page}))
 
-    def parse_graphql(self, response: scrapy.http.Response):
-        page = int(response.meta.get("page", 1))
-        query = response.meta.get("query")
-
-        if response.status != 200:
-            self.logger.warning("BestBuy GraphQL non-200 status=%s body=%r", response.status, (response.text or "")[:260])
-            return
-
+    async def _fetch_playwright_state(self, url: str) -> tuple[dict, str]:
+        cache_obj: dict = {}
+        html = ""
         try:
-            payload = json.loads(response.text)
-        except Exception:
-            self.logger.warning("BestBuy GraphQL invalid JSON body=%r", (response.text or "")[:260])
-            return
-
-        if isinstance(payload, list):
-            payload = payload[0] if payload else {}
-
-        data = payload.get("data") if isinstance(payload, dict) else None
-        if not isinstance(data, dict):
-            self.logger.warning("BestBuy GraphQL missing data keys=%s", list(payload.keys()) if isinstance(payload, dict) else type(payload))
-            return
-
-        emitted = 0
-        for rec in self._walk_listing_like(data):
-            emitted += 1
-            rec.update(
-                {
-                    "source": "bestbuy_graphql",
-                    "mode": "keyword",
-                    "query": query,
-                    "page": page,
-                    "graphql_operation": response.meta.get("operation_name"),
-                    "graphql_endpoint": response.meta.get("graphql_endpoint"),
-                }
-            )
-            yield rec
-
-        if emitted == 0:
-            self.logger.warning("BestBuy GraphQL returned 0 listing-like records for operation=%s", response.meta.get("operation_name"))
+            async with async_playwright() as p:
+                browser = await p.chromium.launch(headless=True)
+                context = await browser.new_context(locale="en-US", user_agent="Mozilla/5.0")
+                page = await context.new_page()
+                await page.goto(url, wait_until="domcontentloaded", timeout=90000)
+                await page.wait_for_timeout(3000)
+                cache_obj = await page.evaluate(
+                    """() => {
+                      const s = Object.getOwnPropertySymbols(window).find(x => String(x).includes('ApolloClientSingleton'));
+                      if (!s || !window[s] || !window[s].cache || !window[s].cache.extract) return {};
+                      try { return window[s].cache.extract() || {}; } catch (e) { return {}; }
+                    }"""
+                )
+                html = await page.content()
+                await context.close()
+                await browser.close()
+        except Exception as exc:
+            self.logger.warning("Playwright fallback failed: %s", exc)
+        return cache_obj if isinstance(cache_obj, dict) else {}, html
 
     @staticmethod
     def _build_search_url(q: str, page: int = 1) -> str:
@@ -151,140 +96,3 @@ class BestbuySearchSpider(BaseSearchSpider):
         if page > 1:
             params["cp"] = str(page)
         return f"https://www.bestbuy.com/site/searchpage.jsp?{urlencode(params)}"
-
-    @staticmethod
-    def _extract_graphql_endpoint(html: str) -> str | None:
-        h = html or ""
-        patterns = [
-            r'"clientUrl"\s*:\s*"(?P<u>/gateway/graphql[^\"]*)"',
-            r'"egpUrl"\s*:\s*"(?P<u>https://www\.bestbuy\.com/gateway/graphql[^\"]*)"',
-            r'"endpoint"\s*:\s*"(?P<u>https://[^\"]+/gateway/graphql[^\"]*)"',
-        ]
-        for p in patterns:
-            m = re.search(p, h, flags=re.I)
-            if m:
-                u = (m.group("u") or "").replace("\\/", "/")
-                if u.startswith("/"):
-                    return f"https://www.bestbuy.com{u}"
-                return u
-        return None
-
-    @staticmethod
-    def _extract_persisted_queries(html: str) -> list[dict[str, Any]]:
-        h = (html or "").replace("\\/", "/")
-        out: list[dict[str, Any]] = []
-        p = re.compile(
-            r'operationName"\s*:\s*"(?P<op>[A-Za-z0-9_\-]+)".{0,1200}?sha256Hash"\s*:\s*"(?P<hash>[a-f0-9]{64})".{0,2000}?(?:variables"\s*:\s*(?P<vars>\{.*?\}))?',
-            flags=re.I | re.S,
-        )
-        for m in p.finditer(h):
-            op = m.group("op")
-            sh = m.group("hash")
-            vars_obj = BestbuySearchSpider._safe_json_obj(m.group("vars")) if m.group("vars") else {}
-            out.append({"operation_name": op, "sha256_hash": sh, "variables": vars_obj})
-
-        dedup: dict[tuple[str, str], dict[str, Any]] = {}
-        for c in out:
-            key = (c.get("operation_name") or "", c.get("sha256_hash") or "")
-            if key not in dedup:
-                dedup[key] = c
-        return list(dedup.values())
-
-    @staticmethod
-    def _safe_json_obj(s: str | None) -> dict[str, Any]:
-        if not s:
-            return {}
-        try:
-            obj = json.loads(s)
-            return obj if isinstance(obj, dict) else {}
-        except Exception:
-            return {}
-
-    @staticmethod
-    def _patch_variables(variables: dict[str, Any], *, query: str | None, page: int) -> dict[str, Any]:
-        v = json.loads(json.dumps(variables or {}))
-        q = query or ""
-        for key in ["query", "searchTerm", "search", "keyword", "term", "q", "queryText"]:
-            if key in v and isinstance(v.get(key), str):
-                v[key] = q
-        for parent in ["input", "request", "params", "searchInput"]:
-            node = v.get(parent)
-            if isinstance(node, dict):
-                for key in ["query", "search", "searchTerm", "keyword", "term", "q"]:
-                    if key in node and isinstance(node.get(key), str):
-                        node[key] = q
-                if "page" in node and isinstance(node.get("page"), (int, float, str)):
-                    node["page"] = page
-                if "currentPage" in node and isinstance(node.get("currentPage"), (int, float, str)):
-                    node["currentPage"] = page
-                if "offset" in node and isinstance(node.get("offset"), (int, float, str)):
-                    try:
-                        per_page = int(node.get("limit") or node.get("pageSize") or 24)
-                    except Exception:
-                        per_page = 24
-                    node["offset"] = max(0, (page - 1) * per_page)
-        if "page" in v and isinstance(v.get("page"), (int, float, str)):
-            v["page"] = page
-        if "currentPage" in v and isinstance(v.get("currentPage"), (int, float, str)):
-            v["currentPage"] = page
-        return v
-
-    def _walk_listing_like(self, node: Any):
-        if isinstance(node, dict):
-            if self._looks_like_listing(node):
-                item = self._normalize_listing(node)
-                if item.get("title") and (item.get("item_id") or item.get("url")):
-                    yield item
-            for val in node.values():
-                yield from self._walk_listing_like(val)
-        elif isinstance(node, list):
-            for val in node:
-                yield from self._walk_listing_like(val)
-
-    @staticmethod
-    def _looks_like_listing(d: dict[str, Any]) -> bool:
-        keys = {k.lower() for k in d.keys()}
-        has_title = any(k in keys for k in ["name", "title", "shortname", "displayname"])
-        has_id = any(k in keys for k in ["sku", "skuid", "id", "productid", "itemid"])
-        has_url = any(k in keys for k in ["url", "canonicalurl", "path"])
-        has_price = any(k in keys for k in ["price", "currentprice", "saleprice", "regularprice"])
-        return has_title and (has_id or has_url) and has_price
-
-    @staticmethod
-    def _normalize_listing(d: dict[str, Any]) -> dict[str, Any]:
-        title = d.get("name") or d.get("title") or d.get("shortName") or d.get("displayName")
-        item_id = d.get("sku") or d.get("skuId") or d.get("id") or d.get("productId") or d.get("itemId")
-        url = d.get("url") or d.get("canonicalUrl") or d.get("path")
-        if isinstance(url, str) and url.startswith("/"):
-            url = f"https://www.bestbuy.com{url}"
-
-        price = None
-        currency = None
-        for key in ["currentPrice", "salePrice", "price", "regularPrice"]:
-            if key not in d:
-                continue
-            raw = d.get(key)
-            if isinstance(raw, dict):
-                price = raw.get("value") or raw.get("amount") or raw.get("price")
-                currency = raw.get("currency") or raw.get("currencyCode")
-            else:
-                price = raw
-            if price is not None:
-                break
-
-        image_url = d.get("image") or d.get("imageUrl") or d.get("thumbnail")
-        if isinstance(image_url, dict):
-            image_url = image_url.get("url")
-
-        return {
-            "item_id": str(item_id) if item_id is not None else None,
-            "title": title,
-            "url": url,
-            "brand": d.get("brand") or d.get("manufacturer"),
-            "price": price,
-            "currency": currency,
-            "rating": d.get("rating") or d.get("averageRating"),
-            "reviews_count": d.get("reviewCount") or d.get("numberOfReviews"),
-            "image_url": image_url,
-            "raw": d,
-        }

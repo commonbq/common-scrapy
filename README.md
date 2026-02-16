@@ -99,8 +99,8 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 - `target_search` – Target RedSky (plp_search_v2) search API.
 - `target_listing` – deprecated alias for `target_search`.
 - `nordstrom_listing` – currently experimental (HTML script-tag extraction; often blocked).
-- `bestbuy_search` – Best Buy keyword search using Apollo bootstrap state (`ApolloSSRDataTransport`) extraction.
-- `bestbuy_listing` – Best Buy category/listing crawl using Apollo bootstrap state (`ApolloSSRDataTransport`) extraction.
+- `bestbuy_search` – Best Buy keyword search using Playwright + Apollo state extraction (`ApolloClientSingleton.cache.extract()`).
+- `bestbuy_listing` – Best Buy category/listing crawl using Playwright + Apollo state extraction (`ApolloClientSingleton.cache.extract()`).
 
 #### Sample output
 
@@ -229,9 +229,9 @@ Currently blocked in this environment (often returns anti-bot interstitial / wra
 
 **bestbuy_search / bestbuy_listing**
 
-Best Buy pages currently use Apollo bootstrap state hydration (not `__NEXT_DATA__` on PLP/search). These spiders parse `ApolloSSRDataTransport` payloads from inline scripts and normalize product records.
+Best Buy pages currently use Apollo hydration (not `__NEXT_DATA__` on PLP/search). These spiders use Playwright to render the page, then extract normalized data from `ApolloClientSingleton.cache.extract()` (with inline bootstrap parsing fallback).
 
-In environments where the initial Best Buy request returns HTTP 400 (or bot/challenge responses), output may be empty because bootstrap payload is unavailable to parse.
+If Best Buy serves a challenge/error variant, output may still be empty; Playwright materially improves reliability versus plain HTTP fetch.
 
 ## Contributing
 
