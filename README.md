@@ -89,6 +89,10 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 - `amazon_search` – keyword search spider.
 - `walmart_listing` – category listing spider with anti-bot fallback.
 - `walmart_search` – keyword search spider.
+- `ebay_listing` – eBay category listing spider using bootstrap/model-state (`__NEXT_DATA__`) extraction with JSON-LD fallback.
+- `ebay_search` – eBay keyword search spider using bootstrap/model-state (`__NEXT_DATA__`) extraction with JSON-LD fallback.
+- `homedepot_listing` – Home Depot category listing spider using Apollo bootstrap state (`__APOLLO_STATE__`).
+- `homedepot_search` – Home Depot keyword search spider using Apollo bootstrap state (`__APOLLO_STATE__`).
 - `macys_listing` – Macy’s xapi listing (may route via fallback when blocked).
 - `ulta_listing` – Ulta category listing (GraphQL).
 - `ulta_search` – Ulta keyword search (GraphQL).
@@ -139,6 +143,37 @@ Run example:
 
 Run example:
 `common-scrapy crawl walmart_search -a q=laptop -a max_pages=1 -O walmart_search.jsonl`
+
+**ebay_search** (keyword; bootstrap/model-state)
+```json
+{
+  "item_id": "166543210987",
+  "title": "Apple iPhone 14 Pro Max 256GB - Space Black (Unlocked)",
+  "url": "https://www.ebay.com/itm/166543210987",
+  "price": 899.99,
+  "currency": "USD",
+  "seller": "top_seller_store",
+  "condition": "Used"
+}
+```
+
+Run example:
+`common-scrapy crawl ebay_search -a q='iphone 14 pro' -a max_pages=1 -O ebay_search.jsonl`
+
+**ebay_listing** (category; bootstrap/model-state)
+
+Run example:
+`common-scrapy crawl ebay_listing -a category_url='https://www.ebay.com/b/Laptops-Netbooks/175672/bn_1648276' -a max_pages=1 -O ebay_listing.jsonl`
+
+**homedepot_search** (keyword; Apollo bootstrap)
+
+Run example:
+`common-scrapy crawl homedepot_search -a q='screwdriver' -a max_pages=1 -O homedepot_search.jsonl`
+
+**homedepot_listing** (category; Apollo bootstrap)
+
+Run example:
+`common-scrapy crawl homedepot_listing -a category_url='https://www.homedepot.com/b/Tools-Hand-Tools/Screwdrivers-Nut-Drivers/Screwdrivers/N-5yc1vZc25y' -a max_pages=1 -O homedepot_listing.jsonl`
 
 **macys_listing**
 ```json
