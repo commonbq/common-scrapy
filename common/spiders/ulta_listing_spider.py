@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 import json
-from urllib.parse import urlencode
+import re
+from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 
 import scrapy
 
@@ -9,7 +10,16 @@ from common.spiders.base_listing_spider import BaseListingSpider
 
 
 class UltaListingSpider(BaseListingSpider):
-    """Ulta category listing spider using Ulta's GraphQL APIs (/dxl/graphql)."""
+    """Ulta category listing spider.
+
+    Modes:
+    - default/graphql: Ulta GraphQL APIs (/dxl/graphql)
+    - html: direct HTML card parsing
+
+    Examples:
+    - scrapy crawl ulta_listing -a category='shampoo' -a max_pages=1
+    - scrapy crawl ulta_listing -a category='shampoo' -a mode=html -a max_pages=1
+    """
 
     name = "ulta_listing"
     allowed_domains = ["ulta.com", "www.ulta.com"]
@@ -34,19 +44,27 @@ class UltaListingSpider(BaseListingSpider):
     }
 
     def start_requests(self):
+        mode = (getattr(self, "mode", None) or "graphql").strip().lower()
+        target = self.resolve_target_url()
+
+        if mode == "html":
+            first = self._with_page(target, 1)
+            yield scrapy.Request(first, callback=self.parse_html_listing, meta=self.proxy_meta({"page": 1, "mode": "html", "origin": target}))
+            return
+
         page_query = (
             'query Page($stagingHost: String, $previewOptions: JSON, $moduleParams: JSON, $url: JSON) '
             '{ Page: Page(stagingHost: $stagingHost, previewOptions: $previewOptions, '
             'moduleParams: $moduleParams, url: $url, deliveryKey: "SDK") '
             '{ content customResponseAttributes meta __typename } }'
         )
-        variables = {"moduleParams": {}, "url": {"path": self.resolve_target_url()}}
+        variables = {"moduleParams": {}, "url": {"path": target}}
         url = self._build_graphql_get_url(page_query, "Page", variables)
         yield scrapy.Request(
             url,
             callback=self.parse_page_definition,
             headers=self._headers(),
-            meta=self.proxy_meta({"page": 1}),
+            meta=self.proxy_meta({"page": 1, "mode": "graphql"}),
         )
 
     def parse_page_definition(self, response: scrapy.http.Response):
@@ -120,6 +138,65 @@ class UltaListingSpider(BaseListingSpider):
             meta=self.proxy_meta({"content_id": content_id, "page": next_page}),
         )
 
+    def parse_html_listing(self, response: scrapy.http.Response):
+        page = int(response.meta.get("page", 1))
+        seen: set[str] = set()
+        yielded = 0
+
+        anchors = response.xpath('//a[contains(@href,"/p/")]')
+        for a in anchors:
+            href = (a.attrib.get("href") or "").strip()
+            if "/p/" not in href:
+                continue
+            url = response.urljoin(href)
+            if url in seen:
+                continue
+            seen.add(url)
+
+            card = a.xpath('ancestor::*[self::article or self::li or self::div][1]')
+            title = " ".join(card.xpath('.//text()').getall()).strip() if card else ""
+            title = re.sub(r"\s+", " ", title)
+            img = (card.xpath('.//img/@src').get() if card else None) or (card.xpath('.//img/@data-src').get() if card else None)
+
+            prices = re.findall(r"\$\d+(?:\.\d{2})?(?:\s*-\s*\$\d+(?:\.\d{2})?)?", title)
+            list_price = prices[0] if prices else None
+            sale_price = None
+            if len(prices) > 1:
+                sale_price = prices[0]
+                list_price = prices[1]
+
+            sku_match = re.search(r"[?&]sku=(\d+)", url)
+            item_id = sku_match.group(1) if sku_match else None
+
+            yield {
+                "item_id": item_id,
+                "sku_id": item_id,
+                "brand": None,
+                "title": title or None,
+                "url": url,
+                "image_url": img,
+                "list_price": list_price,
+                "sale_price": sale_price,
+                "rating": None,
+                "reviews_count": None,
+                "is_sponsored": False,
+                "source": "ulta_direct_html",
+                "mode": "category_html",
+                "category_url": response.meta.get("origin") or self.resolve_target_url(),
+                "page": page,
+            }
+            yielded += 1
+
+        if yielded == 0:
+            self.logger.warning("Ulta HTML mode yielded 0 items (status=%s)", response.status)
+
+        if page >= self.max_pages:
+            return
+        next_page = page + 1
+        origin = response.meta.get("origin") or self.resolve_target_url()
+        next_url = self._with_page(origin, next_page)
+        yield scrapy.Request(next_url, callback=self.parse_html_listing, meta=self.proxy_meta({"page": next_page, "mode": "html", "origin": origin}))
+
     def _build_noncached_url(self, content_id: str, page: int) -> str:
         base_path = self.resolve_target_url()
         path = base_path if page == 1 else f"{base_path}&page={page}"
@@ -169,6 +246,14 @@ class UltaListingSpider(BaseListingSpider):
             elif isinstance(img, str):
                 return img
         return None
+
+    @staticmethod
+    def _with_page(url: str, page: int) -> str:
+        parts = urlparse(url)
+        qs = parse_qs(parts.query)
+        if page > 1:
+            qs["page"] = [str(page)]
+        return urlunparse(parts._replace(query=urlencode(qs, doseq=True)))
 
     def _to_float(self, value):
         try:
