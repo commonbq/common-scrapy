@@ -9,17 +9,7 @@ from common.spiders.base_listing_spider import BaseListingSpider
 
 
 class UltaListingSpider(BaseListingSpider):
-    require_category_arg = False
-    """Ulta category listing spider using Ulta's GraphQL APIs (/dxl/graphql).
-
-    Required:
-    - Provide `-a category_url='https://www.ulta.com/shop/hair/shampoo-conditioner/shampoo'`
-
-    Optional:
-    - `-a max_pages=...`
-
-    For keyword searches use `ulta_search`.
-    """
+    """Ulta category listing spider using Ulta's GraphQL APIs (/dxl/graphql)."""
 
     name = "ulta_listing"
     allowed_domains = ["ulta.com", "www.ulta.com"]
@@ -28,30 +18,20 @@ class UltaListingSpider(BaseListingSpider):
         "HTTPERROR_ALLOW_ALL": True,
     }
 
-    def __init__(
-        self,
-        category_url: str | None = None,
-        max_pages: int = 1,
-        *args,
-        **kwargs,
-    ):
-        super().__init__(*args, **kwargs)
-        self.init_listing_args(max_pages=max_pages, category_url=category_url)
+    categories = [
+        {"category": "shampoo", "url": "https://www.ulta.com/shop/hair/shampoo-conditioner/shampoo"},
+        {"category": "conditioner", "url": "https://www.ulta.com/shop/hair/shampoo-conditioner/conditioner"},
+        {"category": "cleanser", "url": "https://www.ulta.com/shop/makeup/face/foundation/face-primer"},
+        {"category": "mascara", "url": "https://www.ulta.com/shop/makeup/eyes/mascara"},
+        {"category": "moisturizer", "url": "https://www.ulta.com/shop/skin-care/moisturizers"},
+    ]
 
-        self.category_url = (category_url or "").strip()
-        if not self.category_url:
-            raise ValueError("Provide -a category_url=<ulta category url>. For keyword searches use ulta_search")
-
-        self.max_pages = int(max_pages)
-        self.base_path = self.category_url
-
-        # Discovered from the site runtime behavior.
-        self.module_params = {
-            "gti": "4c5ae407-6d39-4bc2-8b88-c3c73b90c19c",
-            "loginStatus": "anonymous",
-            "retailerVisitorId": "bff8c299-5cd1-4012-ae07-2c4ce39c6e45",
-            "breakpoint": "LG",
-        }
+    module_params = {
+        "gti": "4c5ae407-6d39-4bc2-8b88-c3c73b90c19c",
+        "loginStatus": "anonymous",
+        "retailerVisitorId": "bff8c299-5cd1-4012-ae07-2c4ce39c6e45",
+        "breakpoint": "LG",
+    }
 
     def start_requests(self):
         page_query = (
@@ -60,7 +40,7 @@ class UltaListingSpider(BaseListingSpider):
             'moduleParams: $moduleParams, url: $url, deliveryKey: "SDK") '
             '{ content customResponseAttributes meta __typename } }'
         )
-        variables = {"moduleParams": {}, "url": {"path": self.base_path}}
+        variables = {"moduleParams": {}, "url": {"path": self.resolve_target_url()}}
         url = self._build_graphql_get_url(page_query, "Page", variables)
         yield scrapy.Request(url, callback=self.parse_page_definition, headers=self._headers())
 
@@ -70,12 +50,7 @@ class UltaListingSpider(BaseListingSpider):
             self.logger.warning("Ulta Page query failed")
             return
 
-        modules = (
-            payload.get("data", {})
-            .get("Page", {})
-            .get("content", {})
-            .get("modules", [])
-        )
+        modules = payload.get("data", {}).get("Page", {}).get("content", {}).get("modules", [])
 
         content_id = None
         for m in modules:
@@ -123,14 +98,11 @@ class UltaListingSpider(BaseListingSpider):
                 "is_sponsored": bool(item.get("sponsored")),
                 "source": "ulta_dxl_graphql",
                 "mode": "category",
-                "category_url": self.category_url,
+                "category_url": self.resolve_target_url(),
             }
 
         current_page = int(response.meta.get("page", 1))
-        if current_page >= self.max_pages:
-            return
-
-        if not items:
+        if current_page >= self.max_pages or not items:
             return
 
         next_page = current_page + 1
@@ -144,7 +116,8 @@ class UltaListingSpider(BaseListingSpider):
         )
 
     def _build_noncached_url(self, content_id: str, page: int) -> str:
-        path = self.base_path if page == 1 else f"{self.base_path}&page={page}"
+        base_path = self.resolve_target_url()
+        path = base_path if page == 1 else f"{base_path}&page={page}"
 
         query = (
             'query NonCachedPage($stagingHost: String, $previewOptions: JSON, $moduleParams: JSON) '

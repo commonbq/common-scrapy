@@ -33,14 +33,14 @@ class NordstromListingSpider(scrapy.Spider):
         "DOWNLOAD_DELAY": 1,
     }
 
-    def __init__(self, url: str | None = None, keyword: str | None = None, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.start_url = url or (f"https://www.nordstrom.com/sr?keyword={keyword}" if keyword else None)
-        if not self.start_url:
-            raise ValueError("Provide -a url=<category/search url> or -a keyword=<term>")
-
     def start_requests(self) -> Iterable[scrapy.Request]:
-        yield self._make_request(self.start_url, dont_filter=True)
+        start_url = getattr(self, "url", None)
+        keyword = getattr(self, "keyword", None)
+        if not start_url and keyword:
+            start_url = f"https://www.nordstrom.com/sr?keyword={keyword}"
+        if not start_url:
+            raise ValueError("Provide -a url=<category/search url> or -a keyword=<term>")
+        yield self._make_request(start_url, dont_filter=True)
 
     def _make_request(self, url: str, *, dont_filter: bool = False, force_proxy: bool = False) -> scrapy.Request:
         headers = {

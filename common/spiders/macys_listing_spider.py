@@ -10,32 +10,18 @@ from common.spiders.base_listing_spider import BaseListingSpider
 
 
 class MacysListingSpider(BaseListingSpider):
-    require_category_arg = False
-    """
-    Macy's listing spider using Macy's own listing API endpoint:
-      /xapi/discover/v1/page
-
-    Direct calls from this host are blocked by Akamai, so this spider routes the
-    exact Macy's API URL through r.jina.ai for retrieval, then parses the JSON.
-    """
+    """Macy's listing spider via /xapi/discover/v1/page (through r.jina.ai)."""
 
     name = "macys_listing"
     allowed_domains = ["r.jina.ai", "macys.com", "www.macys.com"]
 
-    def __init__(
-        self,
-        q: str | None = None,
-        sort: str | None = None,
-        max_pages: int = 1,
-        *args,
-        **kwargs,
-    ):
-        super().__init__(*args, **kwargs)
-        self.init_listing_args(max_pages=max_pages, q=q)
-
-        self.q = (q or "laptop").strip()
-        self.sort = (sort or "PRICE_LOW_TO_HIGH").strip()
-        self.max_pages = self.args.max_pages
+    categories = [
+        {"category": "laptops", "url": "https://www.macys.com/shop/featured/laptop"},
+        {"category": "shoes", "url": "https://www.macys.com/shop/featured/shoes"},
+        {"category": "dresses", "url": "https://www.macys.com/shop/featured/dresses"},
+        {"category": "fragrance", "url": "https://www.macys.com/shop/featured/fragrance"},
+        {"category": "bedding", "url": "https://www.macys.com/shop/featured/bedding"},
+    ]
 
     def start_requests(self):
         page_index = 1
@@ -57,10 +43,7 @@ class MacysListingSpider(BaseListingSpider):
             yield item
 
         current_page = int(response.meta.get("page_index", 1))
-        if current_page >= self.max_pages:
-            return
-
-        if not items:
+        if current_page >= self.max_pages or not items:
             return
 
         next_page = current_page + 1
@@ -72,12 +55,16 @@ class MacysListingSpider(BaseListingSpider):
         )
 
     def _build_macys_api_url(self, page_index: int) -> str:
-        pathname = f"/shop/featured/{self.q.replace(' ', '%20')}"
+        target_url = self.resolve_target_url()
+        keyword = target_url.rstrip("/").split("/")[-1]
+        pathname = f"/shop/featured/{keyword}"
+        sort = (getattr(self, "sort", None) or "PRICE_LOW_TO_HIGH").strip()
+
         params = {
             "pathname": pathname,
             "_navigationType": "SEARCH",
             "_shoppingMode": "SITE",
-            "sortBy": self.sort,
+            "sortBy": sort,
             "productsPerPage": 60,
             "pageIndex": page_index,
             "_application": "SITE",

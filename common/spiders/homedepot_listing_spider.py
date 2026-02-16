@@ -42,26 +42,6 @@ class HomeDepotListingSpider(BaseListingSpider):
         {"category": "lumber", "url": "https://www.homedepot.com/b/Lumber-Composites-Dimensional-Lumber/N-5yc1vZc3tc"},
     ]
 
-    def __init__(
-        self,
-        category: str | None = None,
-        category_url: str | None = None,
-        url: str | None = None,
-        max_pages: int = 1,
-        *args,
-        **kwargs,
-    ):
-        super().__init__(*args, **kwargs)
-        self.init_listing_args(max_pages=max_pages, url=url, category=category, category_url=category_url)
-
-        self.category = (category or "").strip().lower()
-        self.category_url = self.args.category_url
-        self.url = self.args.url
-
-        if not (self.category or self.category_url or self.url):
-            names = ", ".join(sorted([c["category"] for c in self.categories]))
-            raise ValueError(f"Provide -a category=<name> or -a category_url=<url> (or -a url=<url>). Categories: {names}")
-
     def start_requests(self):
         target = self._resolve_target_url()
         yield scrapy.Request(target, callback=self.parse, meta=self.proxy_meta({"original_url": target}))

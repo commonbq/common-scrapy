@@ -25,7 +25,6 @@ class ListingArgs:
     url: str | None = None
     category: str | None = None
     category_url: str | None = None
-    q: str | None = None
 
 
 class BaseListingSpider(scrapy.Spider):
@@ -44,9 +43,10 @@ class BaseListingSpider(scrapy.Spider):
             url=kwargs.get("url"),
             category=kwargs.get("category"),
             category_url=kwargs.get("category_url"),
-            q=kwargs.get("q"),
         )
         self._validate_categories_schema_if_needed()
+        if self.require_category_arg:
+            self._require_category_arg()
 
     def init_listing_args(
         self,
@@ -55,16 +55,46 @@ class BaseListingSpider(scrapy.Spider):
         url: str | None = None,
         category: str | None = None,
         category_url: str | None = None,
-        q: str | None = None,
     ) -> ListingArgs:
         self.args = ListingArgs(
             max_pages=int(max_pages or 1),
             url=(url or "").strip() or None,
             category=(category or "").strip().lower() or None,
             category_url=(category_url or "").strip() or None,
-            q=(q or "").strip() or None,
         )
         return self.args
+
+    @property
+    def max_pages(self) -> int:
+        return self.args.max_pages
+
+    @max_pages.setter
+    def max_pages(self, value: int | str):
+        self.args.max_pages = int(value)
+
+    @property
+    def url(self) -> str | None:
+        return self.args.url
+
+    @url.setter
+    def url(self, value: str | None):
+        self.args.url = (value or "").strip() or None
+
+    @property
+    def category(self) -> str | None:
+        return self.args.category
+
+    @category.setter
+    def category(self, value: str | None):
+        self.args.category = (value or "").strip().lower() or None
+
+    @property
+    def category_url(self) -> str | None:
+        return self.args.category_url
+
+    @category_url.setter
+    def category_url(self, value: str | None):
+        self.args.category_url = (value or "").strip() or None
 
     def proxy_meta(self, meta: dict | None = None) -> dict:
         meta = dict(meta or {})

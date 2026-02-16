@@ -34,12 +34,8 @@ class CostcoSearchSpider(BaseSearchSpider):
         "DOWNLOAD_DELAY": 1,
     }
 
-    def __init__(self, q: str | None = None, max_pages: int = 1, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.init_search_args(q=q, max_pages=max_pages)
-
     def start_requests(self):
-        yield scrapy.Request(self._build_url(self.args.q or "", 1), callback=self.parse, meta=self.proxy_meta({"page": 1}))
+        yield scrapy.Request(self._build_url(self.q or "", 1), callback=self.parse, meta=self.proxy_meta({"page": 1}))
 
     def parse(self, response: scrapy.http.Response):
         page = int(response.meta.get("page", 1))
@@ -51,26 +47,26 @@ class CostcoSearchSpider(BaseSearchSpider):
         if nd:
             for item in extract_items_from_unknown_state(nd, source="costco_next_data"):
                 yielded += 1
-                item.update({"mode": "keyword", "query": self.args.q, "page": page, "source_url": response.url})
+                item.update({"mode": "keyword", "query": self.q, "page": page, "source_url": response.url})
                 yield item
 
         ap = extract_apollo_state(html)
         if ap:
             for item in extract_items_from_unknown_state(ap, source="costco_apollo_state"):
                 yielded += 1
-                item.update({"mode": "keyword", "query": self.args.q, "page": page, "source_url": response.url})
+                item.update({"mode": "keyword", "query": self.q, "page": page, "source_url": response.url})
                 yield item
 
         if yielded == 0:
             for item in extract_json_ld_products(html):
                 yielded += 1
-                item.update({"mode": "keyword", "query": self.args.q, "page": page, "source_url": response.url})
+                item.update({"mode": "keyword", "query": self.q, "page": page, "source_url": response.url})
                 yield item
 
         if yielded == 0:
             for item in self._extract_product_links(html):
                 yielded += 1
-                item.update({"mode": "keyword", "query": self.args.q, "page": page, "source_url": response.url})
+                item.update({"mode": "keyword", "query": self.q, "page": page, "source_url": response.url})
                 yield item
 
         if yielded == 0:
@@ -78,7 +74,7 @@ class CostcoSearchSpider(BaseSearchSpider):
 
         if page < self.args.max_pages:
             next_page = page + 1
-            yield scrapy.Request(self._build_url(self.args.q or "", next_page), callback=self.parse, meta=self.proxy_meta({"page": next_page}))
+            yield scrapy.Request(self._build_url(self.q or "", next_page), callback=self.parse, meta=self.proxy_meta({"page": next_page}))
 
     @staticmethod
     def _build_url(q: str, page: int = 1) -> str:

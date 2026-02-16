@@ -49,29 +49,6 @@ class WalmartListingSpider(BaseListingSpider):
         },
     ]
 
-    def __init__(
-        self,
-        category: str | None = None,
-        category_url: str | None = None,
-        url: str | None = None,
-        max_pages: int = 1,
-        *args,
-        **kwargs,
-    ) -> None:
-        super().__init__(*args, **kwargs)
-        self.init_listing_args(
-            max_pages=max_pages,
-            url=url,
-            category=category,
-            category_url=category_url,
-        )
-
-        self.category = (category or "").strip().lower()
-        self.category_url = (category_url or "").strip()
-        self.url = (url or "").strip()
-        self.max_pages = self.args.max_pages
-
-        # If none provided, subclasses may handle (e.g. walmart_search).
     def start_requests(self):
         if self.url:
             target_urls = [{"category": "custom_url", "url": self.url}]

@@ -24,12 +24,8 @@ class BestbuySearchSpider(BaseSearchSpider):
         "DOWNLOAD_DELAY": 0.5,
     }
 
-    def __init__(self, q: str | None = None, max_pages: int = 1, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.init_search_args(q=q, max_pages=max_pages)
-
     def start_requests(self):
-        first = self._build_search_url(self.args.q or "")
+        first = self._build_search_url(self.q or "")
         yield scrapy.Request(first, callback=self.parse_search_page, meta=self.maybe_proxy_meta({"page": 1}))
 
     async def parse_search_page(self, response: scrapy.http.Response):
@@ -41,7 +37,7 @@ class BestbuySearchSpider(BaseSearchSpider):
         # Fast path: inline bootstrap parsing from fetched HTML.
         for item in extract_bestbuy_items_from_bootstrap(html):
             emitted += 1
-            item.update({"mode": "keyword", "query": self.args.q, "page": page_num, "source_url": response.url})
+            item.update({"mode": "keyword", "query": self.q, "page": page_num, "source_url": response.url})
             yield item
 
         # Fallback: render with Playwright and pull Apollo cache.
@@ -49,13 +45,13 @@ class BestbuySearchSpider(BaseSearchSpider):
             cache_obj, rendered_html = await self._fetch_playwright_state(response.url)
             for item in extract_bestbuy_items_from_apollo_cache(cache_obj):
                 emitted += 1
-                item.update({"mode": "keyword", "query": self.args.q, "page": page_num, "source_url": response.url})
+                item.update({"mode": "keyword", "query": self.q, "page": page_num, "source_url": response.url})
                 yield item
 
             if emitted == 0 and rendered_html:
                 for item in extract_bestbuy_items_from_bootstrap(rendered_html):
                     emitted += 1
-                    item.update({"mode": "keyword", "query": self.args.q, "page": page_num, "source_url": response.url})
+                    item.update({"mode": "keyword", "query": self.q, "page": page_num, "source_url": response.url})
                     yield item
 
         if emitted == 0:
@@ -63,7 +59,7 @@ class BestbuySearchSpider(BaseSearchSpider):
 
         if page_num < self.args.max_pages:
             next_page = page_num + 1
-            next_url = self._build_search_url(self.args.q or "", page=next_page)
+            next_url = self._build_search_url(self.q or "", page=next_page)
             yield scrapy.Request(next_url, callback=self.parse_search_page, meta=self.maybe_proxy_meta({"page": next_page}))
 
     async def _fetch_playwright_state(self, url: str) -> tuple[dict, str]:

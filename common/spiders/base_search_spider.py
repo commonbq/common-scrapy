@@ -7,7 +7,15 @@ Standard args:
 - max_pages: int (default 1)
 """
 
-from common.spiders.base_listing_spider import BaseListingSpider, ListingArgs
+from dataclasses import dataclass
+
+from common.spiders.base_listing_spider import BaseListingSpider
+
+
+@dataclass
+class SearchArgs:
+    q: str | None = None
+    max_pages: int = 1
 
 
 class BaseSearchSpider(BaseListingSpider):
@@ -28,8 +36,20 @@ class BaseSearchSpider(BaseListingSpider):
         *,
         q: str | None = None,
         max_pages: int | str | None = 1,
-    ) -> ListingArgs:
-        args = self.init_listing_args(max_pages=max_pages, q=q)
-        if not args.q:
+    ) -> SearchArgs:
+        self.search_args = SearchArgs(
+            q=(q or "").strip() or None,
+            max_pages=int(max_pages or 1),
+        )
+        self.max_pages = self.search_args.max_pages
+        if not self.search_args.q:
             raise ValueError("Provide -a q=<term>")
-        return args
+        return self.search_args
+
+    @property
+    def q(self) -> str | None:
+        return getattr(self, "search_args", SearchArgs()).q
+
+    @property
+    def search_max_pages(self) -> int:
+        return getattr(self, "search_args", SearchArgs(max_pages=1)).max_pages

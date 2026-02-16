@@ -28,19 +28,6 @@ class AmazonListingSpider(BaseListingSpider):
         {"category": "books", "url": "https://www.amazon.com/s?i=stripbooks"},
     ]
 
-    def __init__(
-        self,
-        category: str | None = None,
-        category_url: str | None = None,
-        url: str | None = None,
-        max_pages: int = 1,
-        *args,
-        **kwargs,
-    ) -> None:
-        super().__init__(*args, **kwargs)
-        self.init_listing_args(max_pages=max_pages, url=url, category=category, category_url=category_url)
-        self.max_pages = self.args.max_pages
-
     def start_requests(self):
         target_url = self.resolve_target_url()
         target_url = self._with_page(target_url, 1)

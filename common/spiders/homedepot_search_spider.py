@@ -38,12 +38,8 @@ class HomeDepotSearchSpider(BaseSearchSpider):
         "DOWNLOAD_DELAY": 1,
     }
 
-    def __init__(self, q: str | None = None, max_pages: int = 1, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.init_search_args(q=q, max_pages=max_pages)
-
     def start_requests(self):
-        url = self._build_search_url(self.args.q or "")
+        url = self._build_search_url(self.q or "")
         yield scrapy.Request(url, callback=self.parse, meta=self.proxy_meta({"page": 1, "original_url": url}))
 
     def parse(self, response: scrapy.http.Response):
@@ -61,7 +57,7 @@ class HomeDepotSearchSpider(BaseSearchSpider):
         yield from self._yield_products_from_apollo(
             apollo.state,
             mode="keyword",
-            query=self.args.q,
+            query=self.q,
             category_url=None,
             page=1,
         )

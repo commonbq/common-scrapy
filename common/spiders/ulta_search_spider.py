@@ -26,21 +26,6 @@ class UltaSearchSpider(BaseSearchSpider):
         "HTTPERROR_ALLOW_ALL": True,
     }
 
-    def __init__(self, q: str | None = None, max_pages: int = 1, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.init_search_args(q=q, max_pages=max_pages)
-        self.q = self.args.q or "shampoo"
-        self.max_pages = self.args.max_pages
-        self.base_path = f"https://www.ulta.com/search?search={self.q.replace(' ', '+')}"
-
-        # Discovered from the site runtime behavior.
-        self.module_params = {
-            "gti": "4c5ae407-6d39-4bc2-8b88-c3c73b90c19c",
-            "loginStatus": "anonymous",
-            "retailerVisitorId": "bff8c299-5cd1-4012-ae07-2c4ce39c6e45",
-            "breakpoint": "LG",
-        }
-
     def start_requests(self):
         page_query = (
             'query Page($stagingHost: String, $previewOptions: JSON, $moduleParams: JSON, $url: JSON) '

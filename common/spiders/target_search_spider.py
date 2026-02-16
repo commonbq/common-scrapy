@@ -20,6 +20,9 @@ from common.spiders.base_listing_spider import BaseListingSpider
 
 class TargetSearchSpider(BaseListingSpider):
     require_category_arg = False
+    page_size = 24
+    _redsky_key: Optional[str] = None
+    _visitor_id: Optional[str] = None
     """Target category/search spider using Target's internal (RedSky) API.
 
     Required:
@@ -38,47 +41,17 @@ class TargetSearchSpider(BaseListingSpider):
         "DOWNLOAD_DELAY": 0.5,
     }
 
-    def __init__(
-        self,
-        category: str | None = None,
-        category_url: str | None = None,
-        keyword: str | None = None,
-        max_pages: str | int | None = 1,
-        page_size: str | int | None = 24,
-        *args,
-        **kwargs,
-    ):
-        super().__init__(*args, **kwargs)
-        self.init_listing_args(
-            max_pages=max_pages,
-            category=category,
-            category_url=category_url,
-            q=keyword,
-        )
-
-        self.category_url = (category_url or "").strip() or None
-        self.category = (category or "").strip() or None
-        self.keyword = (keyword or "").strip() or None
-
-        if not (self.category or self.category_url):
-            raise ValueError("Provide -a category=<id> or -a category_url=<target category url>")
-
+    def start_requests(self) -> Iterable[scrapy.Request]:
+        # Use a category page as referer/seed. If the user didn't provide a URL,
+        # we build a minimal one.
         if not self.category and self.category_url:
-            # Extract Target category id from URLs like: /c/.../-/N-5xtc0
             m = re.search(r"/N-([a-z0-9]+)", self.category_url, flags=re.I)
             if m:
                 self.category = m.group(1)
 
-        if not self.category:
-            raise ValueError("Could not derive category id. Provide -a category=<id> (e.g. 5xtc0)")
-        self.max_pages = int(max_pages or 1)
-        self.page_size = int(page_size or 24)
-        self._redsky_key: Optional[str] = None
-        self._visitor_id: Optional[str] = None
+        if not (self.category or self.category_url):
+            raise ValueError("Provide -a category=<id> or -a category_url=<target category url>")
 
-    def start_requests(self) -> Iterable[scrapy.Request]:
-        # Use a category page as referer/seed. If the user didn't provide a URL,
-        # we build a minimal one.
         if self.category_url:
             url = self.category_url
         else:
@@ -123,8 +96,9 @@ class TargetSearchSpider(BaseListingSpider):
             "visitor_id": self._ensure_visitor_id(),
             "category": self.category,
         }
-        if self.keyword:
-            params["keyword"] = self.keyword
+        keyword = getattr(self, "keyword", None)
+        if keyword:
+            params["keyword"] = keyword
         qs = "&".join(f"{k}={quote(str(v))}" for k, v in params.items())
         url = f"{base}?{qs}"
 
