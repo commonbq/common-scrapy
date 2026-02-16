@@ -101,6 +101,10 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 - `nordstrom_listing` – currently experimental (HTML script-tag extraction; often blocked).
 - `bestbuy_search` – Best Buy keyword search using Playwright + Apollo state extraction (`ApolloClientSingleton.cache.extract()`).
 - `bestbuy_listing` – Best Buy category/listing crawl using Playwright + Apollo state extraction (`ApolloClientSingleton.cache.extract()`).
+- `costco_search` – Costco keyword search spider with bootstrap (`__NEXT_DATA__`/`__APOLLO_STATE__`) + HTML fallback extraction.
+- `costco_listing` – Costco category listing spider with bootstrap (`__NEXT_DATA__`/`__APOLLO_STATE__`) + HTML fallback extraction.
+- `kroger_search` – Kroger keyword search spider with bootstrap (`__NEXT_DATA__`/`__APOLLO_STATE__`) + HTML fallback extraction.
+- `kroger_listing` – Kroger category listing spider with bootstrap (`__NEXT_DATA__`/`__APOLLO_STATE__`) + HTML fallback extraction.
 
 #### Sample output
 
@@ -232,6 +236,22 @@ Currently blocked in this environment (often returns anti-bot interstitial / wra
 Best Buy pages currently use Apollo hydration (not `__NEXT_DATA__` on PLP/search). These spiders use Playwright to render the page, then extract normalized data from `ApolloClientSingleton.cache.extract()` (with inline bootstrap parsing fallback).
 
 If Best Buy serves a challenge/error variant, output may still be empty; Playwright materially improves reliability versus plain HTTP fetch.
+
+**costco_search / costco_listing**
+
+These spiders try bootstrap state extraction first (`__NEXT_DATA__` / `__APOLLO_STATE__`), then fallback to JSON-LD and direct product-link HTML parsing.
+
+Run examples:
+- `common-scrapy crawl costco_search -a q='coffee' -a max_pages=1 -O costco_search.jsonl`
+- `common-scrapy crawl costco_listing -a category_url='https://www.costco.com/coffee.html' -a max_pages=1 -O costco_listing.jsonl`
+
+**kroger_search / kroger_listing**
+
+These spiders try bootstrap state extraction first (`__NEXT_DATA__` / `__APOLLO_STATE__`), then fallback to JSON-LD and direct product-link HTML parsing.
+
+Run examples:
+- `common-scrapy crawl kroger_search -a q='milk' -a max_pages=1 -O kroger_search.jsonl`
+- `common-scrapy crawl kroger_listing -a category_url='https://www.kroger.com/pl/cereal/09002' -a max_pages=1 -O kroger_listing.jsonl`
 
 ## Contributing
 
