@@ -94,7 +94,7 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 - `homedepot_listing` – Home Depot category listing spider using Apollo bootstrap state (`__APOLLO_STATE__`).
 - `homedepot_search` – Home Depot keyword search spider using Apollo bootstrap state (`__APOLLO_STATE__`).
 - `macys_listing` – Macy’s xapi listing (may route via fallback when blocked).
-- `ulta_listing` – Ulta category listing (GraphQL).
+- `ulta_listing` – Ulta category listing with two modes: GraphQL (`/dxl/graphql`, default) and direct HTML card parsing (`-a mode=html`).
 - `ulta_search` – Ulta keyword search (GraphQL).
 - `target_search` – Target RedSky (plp_search_v2) search API.
 - `target_listing` – deprecated alias for `target_search`.
@@ -207,8 +207,15 @@ Run example:
 }
 ```
 
-Run example:
-`common-scrapy crawl ulta_listing -a category_url='https://www.ulta.com/shop/hair/shampoo-conditioner/shampoo' -a max_pages=1 -O ulta.jsonl`
+Run examples:
+- GraphQL mode (default):
+  `common-scrapy crawl ulta_listing -a category='shampoo' -a max_pages=1 -O ulta.jsonl`
+- HTML mode:
+  `common-scrapy crawl ulta_listing -a category='shampoo' -a mode=html -a max_pages=1 -O ulta_html.jsonl`
+
+Notes:
+- `mode=html` is a fallback parser from rendered product cards and is useful when GraphQL responses are unstable.
+- HTML mode typically returns URL/title/image/price text first; GraphQL mode gives richer normalized fields (brand/rating/reviews/sponsored).
 
 **ulta_search** (keyword)
 
