@@ -2,7 +2,8 @@ from __future__ import annotations
 
 """Kroger category/listing spider.
 
-Usage:
+Usage examples:
+  scrapy crawl kroger_listing -a category='cereal' -a max_pages=1
   scrapy crawl kroger_listing -a category_url='https://www.kroger.com/pl/cereal/09002' -a max_pages=1
 """
 
@@ -26,16 +27,38 @@ class KrogerListingSpider(BaseListingSpider):
 
     custom_settings = {"HTTPERROR_ALLOW_ALL": True, "DOWNLOAD_DELAY": 1}
 
-    def __init__(self, category_url: str | None = None, url: str | None = None, max_pages: int = 1, *args, **kwargs):
+    categories = [
+        {"category": "cereal", "url": "https://www.kroger.com/pl/cereal/09002"},
+        {"category": "milk", "url": "https://www.kroger.com/pl/milk/02001"},
+        {"category": "eggs", "url": "https://www.kroger.com/pl/eggs/02008"},
+        {"category": "bread", "url": "https://www.kroger.com/pl/bread/03001"},
+        {"category": "coffee", "url": "https://www.kroger.com/pl/coffee/11005"},
+        {"category": "snacks", "url": "https://www.kroger.com/pl/snacks/12009"},
+    ]
+
+    def __init__(
+        self,
+        category: str | None = None,
+        category_url: str | None = None,
+        url: str | None = None,
+        max_pages: int = 1,
+        *args,
+        **kwargs,
+    ):
         super().__init__(*args, **kwargs)
-        self.init_listing_args(max_pages=max_pages, url=url, category_url=category_url)
+        self.init_listing_args(max_pages=max_pages, url=url, category=category, category_url=category_url)
+
+        self.category = (category or "").strip().lower()
         self.category_url = self.args.category_url
         self.url = self.args.url
-        if not (self.category_url or self.url):
-            raise ValueError("Provide -a category_url=<url> (or -a url=<url>)")
+
+        if not (self.category or self.category_url or self.url):
+            names = ", ".join(sorted([c["category"] for c in self.categories]))
+            raise ValueError(f"Provide -a category=<name> or -a category_url=<url> (or -a url=<url>). Categories: {names}")
 
     def start_requests(self):
-        target = self._with_page(self.url or self.category_url or "", 1)
+        target = self._resolve_target_url()
+        target = self._with_page(target, 1)
         yield scrapy.Request(target, callback=self.parse, meta=self.proxy_meta({"page": 1}))
 
     def parse(self, response: scrapy.http.Response):
@@ -69,8 +92,6 @@ class KrogerListingSpider(BaseListingSpider):
                 item.update({"mode": "category", "category_url": self.category_url or self.url, "page": page, "source_url": response.url})
                 yield item
 
-        # Final fallback: when /pl/<slug>/<id> listing path is blocked/empty,
-        # request equivalent search endpoint using inferred query from slug.
         if yielded == 0 and not response.meta.get("listing_fallback_attempted"):
             inferred_q = self._infer_query_from_url(self.category_url or self.url or response.url)
             if inferred_q:
@@ -89,8 +110,20 @@ class KrogerListingSpider(BaseListingSpider):
 
         if page < self.args.max_pages:
             next_page = page + 1
-            next_url = self._with_page(self.url or self.category_url or "", next_page)
+            next_url = self._with_page(self._resolve_target_url(), next_page)
             yield scrapy.Request(next_url, callback=self.parse, meta=self.proxy_meta({"page": next_page}))
+
+    def _resolve_target_url(self) -> str:
+        if self.url:
+            return self.url
+        if self.category_url:
+            return self.category_url
+        for entry in self.categories:
+            if entry.get("category") == self.category:
+                self.category_url = entry.get("url")
+                return self.category_url
+        names = ", ".join(sorted([c["category"] for c in self.categories]))
+        raise ValueError(f"Unknown category '{self.category}'. Use one of: {names}")
 
     @staticmethod
     def _with_page(url: str, page: int) -> str:
@@ -102,7 +135,6 @@ class KrogerListingSpider(BaseListingSpider):
 
     def _infer_query_from_url(self, url: str) -> str | None:
         p = urlparse(url)
-        # Expected listing path format: /pl/<slug>/<id>
         m = re.search(r"/pl/([^/]+)/", p.path or "")
         if not m:
             return None

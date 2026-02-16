@@ -106,6 +106,8 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 - `kroger_search` – Kroger keyword search spider with bootstrap (`__NEXT_DATA__`/`__APOLLO_STATE__`) + HTML fallback extraction.
 - `kroger_listing` – Kroger category listing spider with bootstrap (`__NEXT_DATA__`/`__APOLLO_STATE__`) + HTML fallback extraction.
 
+Many listing spiders accept `-a category=<name>` shortcuts (in addition to `-a category_url=<url>`), including Walmart, eBay, Home Depot, Best Buy, Costco, and Kroger.
+
 #### Sample output
 
 Below are trimmed examples from recent local test runs (JSONL output, 1 item shown).
@@ -167,7 +169,7 @@ Run example:
 **ebay_listing** (category; bootstrap/model-state)
 
 Run example:
-`common-scrapy crawl ebay_listing -a category_url='https://www.ebay.com/b/Laptops-Netbooks/175672/bn_1648276' -a max_pages=1 -O ebay_listing.jsonl`
+`common-scrapy crawl ebay_listing -a category='laptops' -a max_pages=1 -O ebay_listing.jsonl`
 
 **homedepot_search** (keyword; Apollo bootstrap)
 
@@ -177,7 +179,7 @@ Run example:
 **homedepot_listing** (category; Apollo bootstrap)
 
 Run example:
-`common-scrapy crawl homedepot_listing -a category_url='https://www.homedepot.com/b/Tools-Hand-Tools/Screwdrivers-Nut-Drivers/Screwdrivers/N-5yc1vZc25y' -a max_pages=1 -O homedepot_listing.jsonl`
+`common-scrapy crawl homedepot_listing -a category='screwdrivers' -a max_pages=1 -O homedepot_listing.jsonl`
 
 **macys_listing**
 ```json
@@ -243,7 +245,7 @@ These spiders try bootstrap state extraction first (`__NEXT_DATA__` / `__APOLLO_
 
 Run examples:
 - `common-scrapy crawl costco_search -a q='coffee' -a max_pages=1 -O costco_search.jsonl`
-- `common-scrapy crawl costco_listing -a category_url='https://www.costco.com/coffee.html' -a max_pages=1 -O costco_listing.jsonl`
+- `common-scrapy crawl costco_listing -a category='coffee' -a max_pages=1 -O costco_listing.jsonl`
 
 **kroger_search / kroger_listing**
 
@@ -251,7 +253,7 @@ These spiders try bootstrap state extraction first (`__NEXT_DATA__` / `__APOLLO_
 
 Run examples:
 - `common-scrapy crawl kroger_search -a q='milk' -a max_pages=1 -O kroger_search.jsonl`
-- `common-scrapy crawl kroger_listing -a category_url='https://www.kroger.com/pl/cereal/09002' -a max_pages=1 -O kroger_listing.jsonl`
+- `common-scrapy crawl kroger_listing -a category='cereal' -a max_pages=1 -O kroger_listing.jsonl`
 
 ## Contributing
 

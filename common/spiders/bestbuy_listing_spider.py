@@ -2,7 +2,8 @@ from __future__ import annotations
 
 """Best Buy category/listing spider (Playwright-assisted Apollo extraction).
 
-Usage:
+Usage examples:
+  scrapy crawl bestbuy_listing -a category='laptops' -a max_pages=1
   scrapy crawl bestbuy_listing -a category_url='https://www.bestbuy.com/site/all-laptops/laptops/abcat0502000.c?id=abcat0502000' -a max_pages=1
 """
 
@@ -24,8 +25,17 @@ class BestbuyListingSpider(BaseListingSpider):
         "DOWNLOAD_DELAY": 0.5,
     }
 
+    categories = [
+        {"category": "laptops", "url": "https://www.bestbuy.com/site/all-laptops/laptops/abcat0502000.c?id=abcat0502000"},
+        {"category": "tvs", "url": "https://www.bestbuy.com/site/tv-home-theater/televisions/abcat0101001.c?id=abcat0101001"},
+        {"category": "headphones", "url": "https://www.bestbuy.com/site/headphones/all-headphones/abcat0204000.c?id=abcat0204000"},
+        {"category": "monitors", "url": "https://www.bestbuy.com/site/computer-cards-components/monitors/abcat0509000.c?id=abcat0509000"},
+        {"category": "cell-phones", "url": "https://www.bestbuy.com/site/cell-phones/all-cell-phones/pcmcat311200050005.c?id=pcmcat311200050005"},
+    ]
+
     def __init__(
         self,
+        category: str | None = None,
         category_url: str | None = None,
         url: str | None = None,
         max_pages: int = 1,
@@ -33,15 +43,18 @@ class BestbuyListingSpider(BaseListingSpider):
         **kwargs,
     ):
         super().__init__(*args, **kwargs)
-        self.init_listing_args(max_pages=max_pages, url=url, category_url=category_url)
+        self.init_listing_args(max_pages=max_pages, url=url, category=category, category_url=category_url)
 
+        self.category = (category or "").strip().lower()
         self.category_url = self.args.category_url
         self.url = self.args.url
-        if not (self.category_url or self.url):
-            raise ValueError("Provide -a category_url=<url> (or -a url=<url>)")
+
+        if not (self.category or self.category_url or self.url):
+            names = ", ".join(sorted([c["category"] for c in self.categories]))
+            raise ValueError(f"Provide -a category=<name> or -a category_url=<url> (or -a url=<url>). Categories: {names}")
 
     def start_requests(self):
-        target = self.url or self.category_url or ""
+        target = self._resolve_target_url()
         target = self._ensure_nosplash(self._with_page(target, 1))
         yield scrapy.Request(target, callback=self.parse_listing_page, meta=self.maybe_proxy_meta({"page": 1}))
 
@@ -95,8 +108,7 @@ class BestbuyListingSpider(BaseListingSpider):
 
         if page_num < self.args.max_pages:
             next_page = page_num + 1
-            target = self.url or self.category_url or ""
-            next_url = self._ensure_nosplash(self._with_page(target, next_page))
+            next_url = self._ensure_nosplash(self._with_page(self._resolve_target_url(), next_page))
             yield scrapy.Request(next_url, callback=self.parse_listing_page, meta=self.maybe_proxy_meta({"page": next_page}))
 
     async def _fetch_playwright_state(self, url: str) -> tuple[dict, str]:
@@ -122,6 +134,18 @@ class BestbuyListingSpider(BaseListingSpider):
         except Exception as exc:
             self.logger.warning("Playwright fallback failed: %s", exc)
         return cache_obj if isinstance(cache_obj, dict) else {}, html
+
+    def _resolve_target_url(self) -> str:
+        if self.url:
+            return self.url
+        if self.category_url:
+            return self.category_url
+        for entry in self.categories:
+            if entry.get("category") == self.category:
+                self.category_url = entry.get("url")
+                return self.category_url
+        names = ", ".join(sorted([c["category"] for c in self.categories]))
+        raise ValueError(f"Unknown category '{self.category}'. Use one of: {names}")
 
     @staticmethod
     def _with_page(url: str, page: int) -> str:

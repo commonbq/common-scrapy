@@ -10,14 +10,14 @@ Fallback strategy:
 - Direct HTML extraction (JSON-LD + product links) when Apollo bootstrap is
   unavailable or blocked.
 
-Usage:
+Usage examples:
+  scrapy crawl homedepot_listing -a category='screwdrivers' -a max_pages=1
   scrapy crawl homedepot_listing -a category_url='https://www.homedepot.com/b/Tools-Hand-Tools/Screwdrivers-Nut-Drivers/Screwdrivers/N-5yc1vZc25y' -a max_pages=1
 """
 
 import json
 import re
 from html import unescape
-from typing import Any
 
 import scrapy
 
@@ -34,8 +34,17 @@ class HomeDepotListingSpider(BaseListingSpider):
         "DOWNLOAD_DELAY": 1,
     }
 
+    categories = [
+        {"category": "screwdrivers", "url": "https://www.homedepot.com/b/Tools-Hand-Tools/Screwdrivers-Nut-Drivers/Screwdrivers/N-5yc1vZc25y"},
+        {"category": "drills", "url": "https://www.homedepot.com/b/Tools-Power-Tools-Drills/N-5yc1vZc27r"},
+        {"category": "paint", "url": "https://www.homedepot.com/b/Paint/N-5yc1vZar2d"},
+        {"category": "light-bulbs", "url": "https://www.homedepot.com/b/Lighting-Light-Bulbs/N-5yc1vZbmwz"},
+        {"category": "lumber", "url": "https://www.homedepot.com/b/Lumber-Composites-Dimensional-Lumber/N-5yc1vZc3tc"},
+    ]
+
     def __init__(
         self,
+        category: str | None = None,
         category_url: str | None = None,
         url: str | None = None,
         max_pages: int = 1,
@@ -43,26 +52,27 @@ class HomeDepotListingSpider(BaseListingSpider):
         **kwargs,
     ):
         super().__init__(*args, **kwargs)
-        self.init_listing_args(max_pages=max_pages, url=url, category_url=category_url)
+        self.init_listing_args(max_pages=max_pages, url=url, category=category, category_url=category_url)
 
+        self.category = (category or "").strip().lower()
         self.category_url = self.args.category_url
         self.url = self.args.url
 
-        if not (self.category_url or self.url):
-            raise ValueError("Provide -a category_url=<url> (or -a url=<url>)")
+        if not (self.category or self.category_url or self.url):
+            names = ", ".join(sorted([c["category"] for c in self.categories]))
+            raise ValueError(f"Provide -a category=<name> or -a category_url=<url> (or -a url=<url>). Categories: {names}")
 
     def start_requests(self):
-        target = self.url or self.category_url or ""
+        target = self._resolve_target_url()
         yield scrapy.Request(target, callback=self.parse, meta=self.proxy_meta({"original_url": target}))
 
     def parse(self, response: scrapy.http.Response):
         html = response.text or ""
 
-        # 1) Preferred path: Apollo bootstrap
         if not HomeDepotSearchSpider._is_error_page(html):
             state = HomeDepotSearchSpider._extract_js_object(html, "__APOLLO_STATE__")
             if state:
-                tmp = HomeDepotSearchSpider(q="x")  # dummy instance for method binding
+                tmp = HomeDepotSearchSpider(q="x")
                 yielded = 0
                 for item in tmp._yield_products_from_apollo(
                     state,
@@ -77,7 +87,6 @@ class HomeDepotListingSpider(BaseListingSpider):
                 if yielded > 0:
                     return
 
-        # 2) Fallback path: direct HTML extraction
         fallback_items = list(self._extract_from_json_ld(html))
         if not fallback_items:
             fallback_items = list(self._extract_from_product_links(html))
@@ -97,6 +106,18 @@ class HomeDepotListingSpider(BaseListingSpider):
                 }
             )
             yield item
+
+    def _resolve_target_url(self) -> str:
+        if self.url:
+            return self.url
+        if self.category_url:
+            return self.category_url
+        for entry in self.categories:
+            if entry.get("category") == self.category:
+                self.category_url = entry.get("url")
+                return self.category_url
+        names = ", ".join(sorted([c["category"] for c in self.categories]))
+        raise ValueError(f"Unknown category '{self.category}'. Use one of: {names}")
 
     def _extract_from_json_ld(self, html: str):
         scripts = re.findall(
@@ -157,7 +178,6 @@ class HomeDepotListingSpider(BaseListingSpider):
                 }
 
     def _extract_from_product_links(self, html: str):
-        # Direct anchor fallback: parse product URLs from the listing HTML.
         pat = re.compile(
             r'<a[^>]+href=["\'](?P<href>(?:https://www\.homedepot\.com)?/p/[^"\']+)["\'][^>]*>(?P<title>.*?)</a>',
             flags=re.I | re.S,

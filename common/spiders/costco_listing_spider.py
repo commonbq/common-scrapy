@@ -2,7 +2,8 @@ from __future__ import annotations
 
 """Costco category/listing spider.
 
-Usage:
+Usage examples:
+  scrapy crawl costco_listing -a category='coffee' -a max_pages=1
   scrapy crawl costco_listing -a category_url='https://www.costco.com/coffee.html' -a max_pages=1
 """
 
@@ -26,16 +27,37 @@ class CostcoListingSpider(BaseListingSpider):
 
     custom_settings = {"HTTPERROR_ALLOW_ALL": True, "DOWNLOAD_DELAY": 1}
 
-    def __init__(self, category_url: str | None = None, url: str | None = None, max_pages: int = 1, *args, **kwargs):
+    categories = [
+        {"category": "coffee", "url": "https://www.costco.com/coffee.html"},
+        {"category": "water", "url": "https://www.costco.com/water.html"},
+        {"category": "snacks", "url": "https://www.costco.com/snacks.html"},
+        {"category": "vitamins", "url": "https://www.costco.com/vitamins.html"},
+        {"category": "laundry", "url": "https://www.costco.com/laundry-detergent.html"},
+        {"category": "paper-products", "url": "https://www.costco.com/paper-products.html"},
+    ]
+
+    def __init__(
+        self,
+        category: str | None = None,
+        category_url: str | None = None,
+        url: str | None = None,
+        max_pages: int = 1,
+        *args,
+        **kwargs,
+    ):
         super().__init__(*args, **kwargs)
-        self.init_listing_args(max_pages=max_pages, url=url, category_url=category_url)
+        self.init_listing_args(max_pages=max_pages, url=url, category=category, category_url=category_url)
+
+        self.category = (category or "").strip().lower()
         self.category_url = self.args.category_url
         self.url = self.args.url
-        if not (self.category_url or self.url):
-            raise ValueError("Provide -a category_url=<url> (or -a url=<url>)")
+
+        if not (self.category or self.category_url or self.url):
+            names = ", ".join(sorted([c["category"] for c in self.categories]))
+            raise ValueError(f"Provide -a category=<name> or -a category_url=<url> (or -a url=<url>). Categories: {names}")
 
     def start_requests(self):
-        target = self._with_page(self.url or self.category_url or "", 1)
+        target = self._with_page(self._resolve_target_url(), 1)
         yield scrapy.Request(target, callback=self.parse, meta=self.proxy_meta({"page": 1}))
 
     def parse(self, response: scrapy.http.Response):
@@ -74,8 +96,20 @@ class CostcoListingSpider(BaseListingSpider):
 
         if page < self.args.max_pages:
             next_page = page + 1
-            next_url = self._with_page(self.url or self.category_url or "", next_page)
+            next_url = self._with_page(self._resolve_target_url(), next_page)
             yield scrapy.Request(next_url, callback=self.parse, meta=self.proxy_meta({"page": next_page}))
+
+    def _resolve_target_url(self) -> str:
+        if self.url:
+            return self.url
+        if self.category_url:
+            return self.category_url
+        for entry in self.categories:
+            if entry.get("category") == self.category:
+                self.category_url = entry.get("url")
+                return self.category_url
+        names = ", ".join(sorted([c["category"] for c in self.categories]))
+        raise ValueError(f"Unknown category '{self.category}'. Use one of: {names}")
 
     @staticmethod
     def _with_page(url: str, page: int) -> str:
