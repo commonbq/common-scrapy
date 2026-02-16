@@ -44,7 +44,7 @@ class EbayListingSpider(BaseListingSpider):
     def start_requests(self):
         target_url = self.url or self.category_url or ""
         target_url = self._with_page(target_url, 1)
-        yield scrapy.Request(target_url, callback=self.parse, meta=self.maybe_proxy_meta({"page": 1, "original_url": target_url}))
+        yield scrapy.Request(target_url, callback=self.parse, meta=self.proxy_meta({"page": 1, "original_url": target_url}))
 
     def parse(self, response: scrapy.http.Response):
         original_url = response.meta.get("original_url") or response.url
@@ -83,7 +83,7 @@ class EbayListingSpider(BaseListingSpider):
             yield scrapy.Request(
                 next_url,
                 callback=self.parse,
-                meta=self.maybe_proxy_meta({"page": page + 1, "original_url": next_url}),
+                meta=self.proxy_meta({"page": page + 1, "original_url": next_url}),
             )
 
     @staticmethod

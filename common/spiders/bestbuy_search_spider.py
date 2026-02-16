@@ -32,7 +32,7 @@ class BestbuySearchSpider(BaseSearchSpider):
 
     def start_requests(self):
         first = self._build_search_url(self.args.q or "")
-        yield scrapy.Request(first, callback=self.parse_search_page, meta=self.maybe_proxy_meta({"page": 1, "original_url": first}))
+        yield scrapy.Request(first, callback=self.parse_search_page, meta=self.proxy_meta({"page": 1, "original_url": first}))
 
     def parse_search_page(self, response: scrapy.http.Response):
         html = response.text or ""
@@ -83,7 +83,7 @@ class BestbuySearchSpider(BaseSearchSpider):
                 body=json.dumps(body, separators=(",", ":")),
                 headers=headers,
                 callback=self.parse_graphql,
-                meta=self.maybe_proxy_meta(
+                meta=self.proxy_meta(
                     {
                         "query": self.args.q,
                         "page": page,
@@ -101,7 +101,7 @@ class BestbuySearchSpider(BaseSearchSpider):
             yield scrapy.Request(
                 next_url,
                 callback=self.parse_search_page,
-                meta=self.maybe_proxy_meta({"page": next_page, "original_url": next_url}),
+                meta=self.proxy_meta({"page": next_page, "original_url": next_url}),
                 dont_filter=True,
             )
 

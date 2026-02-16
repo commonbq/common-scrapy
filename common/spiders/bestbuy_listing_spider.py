@@ -43,7 +43,7 @@ class BestbuyListingSpider(BaseListingSpider):
         target = self.url or self.category_url or ""
         target = self._with_page(target, 1)
         target = self._ensure_nosplash(target)
-        yield scrapy.Request(target, callback=self.parse_listing_page, meta=self.maybe_proxy_meta({"page": 1, "original_url": target}))
+        yield scrapy.Request(target, callback=self.parse_listing_page, meta=self.proxy_meta({"page": 1, "original_url": target}))
 
     def parse_listing_page(self, response: scrapy.http.Response):
         page = int(response.meta.get("page", 1))
@@ -75,7 +75,7 @@ class BestbuyListingSpider(BaseListingSpider):
         yield scrapy.Request(
             next_url,
             callback=self.parse_listing_page,
-            meta=self.maybe_proxy_meta({"page": next_page, "original_url": next_url}),
+            meta=self.proxy_meta({"page": next_page, "original_url": next_url}),
             dont_filter=True,
         )
 

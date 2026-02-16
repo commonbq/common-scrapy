@@ -49,7 +49,7 @@ class HomeDepotListingSpider(BaseListingSpider):
 
     def start_requests(self):
         target = self.url or self.category_url or ""
-        yield scrapy.Request(target, callback=self.parse, meta=self.maybe_proxy_meta({"original_url": target}))
+        yield scrapy.Request(target, callback=self.parse, meta=self.proxy_meta({"original_url": target}))
 
     def parse(self, response: scrapy.http.Response):
         html = response.text or ""

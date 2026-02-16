@@ -54,6 +54,6 @@ class BaseListingSpider(scrapy.Spider):
         )
         return self.args
 
-    def maybe_proxy_meta(self, meta: dict | None = None) -> dict:
+    def proxy_meta(self, meta: dict | None = None) -> dict:
         meta["proxy"] = PROXY
         return meta
