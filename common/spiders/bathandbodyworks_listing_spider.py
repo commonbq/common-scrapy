@@ -69,9 +69,22 @@ class BathandbodyworksListingSpider(BaseListingSpider):
                 cgid = parts[-1]
         if not cgid:
             return None
+
+        # Browser-observed SFCC/Mobify stack (preferred internal API path)
         start = max(page - 1, 0) * 48
-        params = {"cgid": cgid, "start": start, "sz": 48, "format": "ajax"}
-        return f"https://www.bathandbodyworks.com/on/demandware.store/Sites-BathAndBodyWorks-Site/default/Search-UpdateGrid?{urlencode(params)}"
+        return (
+            "https://www.bathandbodyworks.com/mobify/proxy/api/search/shopper-search/v1/"
+            "organizations/f_ecom_bbdl_prd/product-search?"
+            + urlencode(
+                {
+                    "siteId": "BathAndBodyWorks",
+                    "q": "*",
+                    "refine": f"cgid={cgid}",
+                    "start": start,
+                    "count": 48,
+                }
+            )
+        )
 
     def parse_api(self, response: scrapy.http.Response):
         page = int(response.meta.get("page", 1))
@@ -149,6 +162,27 @@ class BathandbodyworksListingSpider(BaseListingSpider):
 
     def _extract_html_cards(self, response: scrapy.http.Response):
         seen: set[str] = set()
+        ctype = (response.headers.get(b"content-type") or b"").decode("utf-8", errors="ignore").lower()
+        if "json" in ctype and "html" not in ctype:
+            for m in re.finditer(r'"(?:url|link)"\s*:\s*"(?P<u>https?://www\\.bathandbodyworks\\.com[^"]+)"', response.text or ""):
+                url = m.group("u")
+                if url in seen:
+                    continue
+                seen.add(url)
+                yield {
+                    "item_id": self._extract_id(url),
+                    "title": None,
+                    "url": url,
+                    "price": None,
+                    "currency": None,
+                    "brand": "Bath & Body Works",
+                    "rating": None,
+                    "reviews_count": None,
+                    "image_url": None,
+                    "raw": None,
+                }
+            return
+
         for a in response.xpath('//a[contains(@href,"/p/") or contains(@href,"/product") or contains(@href,"/pd/")]'):
             href = (a.attrib.get("href") or "").strip()
             if not href:

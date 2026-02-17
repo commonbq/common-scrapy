@@ -47,9 +47,22 @@ class ElfcosmeticsListingSpider(BaseListingSpider):
             yield scrapy.Request(first, callback=self.parse_bootstrap, meta=self.proxy_meta({"page": 1, "origin": target}))
 
     def _build_api_url(self, page: int) -> str | None:
-        # exploratory endpoint used by Shopify-backed storefront search providers
-        target = self.resolve_target_url()
-        return f"https://www.elfcosmetics.com/search/suggest.json?{urlencode({'q': target, 'resources[type]': 'product', 'page': page})}"
+        # Browser-observed SFCC/Mobify internal API shape
+        cgid = self.category or urlparse(self.resolve_target_url()).path.strip("/").split("/")[0]
+        start = max(page - 1, 0) * 48
+        return (
+            "https://www.elfcosmetics.com/mobify/proxy/api/search/shopper-search/v1/"
+            "organizations/f_ecom_bbxc_prd/product-search?"
+            + urlencode(
+                {
+                    "siteId": "elf-us",
+                    "q": "*",
+                    "refine": f"cgid={cgid}",
+                    "start": start,
+                    "count": 48,
+                }
+            )
+        )
 
     def parse_api(self, response: scrapy.http.Response):
         page = int(response.meta.get("page", 1))

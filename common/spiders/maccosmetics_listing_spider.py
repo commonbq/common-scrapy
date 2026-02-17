@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 import re
-from urllib.parse import urlencode
+from urllib.parse import urlparse
 
 import scrapy
 
@@ -17,7 +17,7 @@ from common.spiders.retail_bootstrap_utils import (
 
 class MaccosmeticsListingSpider(BaseListingSpider):
     name = "maccosmetics_listing"
-    allowed_domains = ["maccosmetics.com", "www.maccosmetics.com"]
+    allowed_domains = ["maccosmetics.com", "www.maccosmetics.com", "ncsa.sdapi.io"]
 
     custom_settings = {"HTTPERROR_ALLOW_ALL": True, "DOWNLOAD_DELAY": 1}
 
@@ -37,17 +37,51 @@ class MaccosmeticsListingSpider(BaseListingSpider):
             yield scrapy.Request(target, callback=self.parse_bootstrap, meta=self.proxy_meta({"page": 1, "origin": target}))
             return
 
-        # Internal API attempt often used by EsteeLauder sites
         api_url = self._build_api_url(page=1)
         if api_url:
-            yield scrapy.Request(api_url, callback=self.parse_api, meta=self.proxy_meta({"page": 1, "origin": target}), headers={"accept": "application/json,text/plain,*/*"})
+            payload = self._build_graphql_payload(page=1)
+            yield scrapy.Request(
+                api_url,
+                method="POST",
+                body=json.dumps(payload),
+                callback=self.parse_api,
+                meta=self.proxy_meta({"page": 1, "origin": target}),
+                headers={"accept": "application/json,text/plain,*/*", "content-type": "application/json"},
+            )
         else:
             yield scrapy.Request(target, callback=self.parse_bootstrap, meta=self.proxy_meta({"page": 1, "origin": target}))
 
     def _build_api_url(self, page: int) -> str | None:
-        # exploratory endpoint shape; falls back if unavailable
-        target = self.resolve_target_url()
-        return f"https://www.maccosmetics.com/rest/ofs/products?{urlencode({'url': target, 'page': page})}"
+        # Browser-observed internal endpoint
+        return "https://ncsa.sdapi.io/stardust-prodcat-product-v3/graphql/core/v1/extension/v1"
+
+    def _build_graphql_payload(self, page: int) -> dict:
+        category_path = urlparse(self.resolve_target_url()).path
+        query = """
+        query ProductCategory($path: String!, $offset: Int!, $limit: Int!) {
+          category(path: $path) {
+            products(offset: $offset, limit: $limit) {
+              id
+              name
+              url
+              price {
+                sale
+                list
+                currency
+              }
+              image {
+                url
+              }
+              rating
+              reviewCount
+            }
+          }
+        }
+        """
+        return {
+            "query": query,
+            "variables": {"path": category_path, "offset": max(page - 1, 0) * 48, "limit": 48},
+        }
 
     def parse_api(self, response: scrapy.http.Response):
         page = int(response.meta.get("page", 1))
@@ -58,10 +92,38 @@ class MaccosmeticsListingSpider(BaseListingSpider):
             payload = None
 
         if isinstance(payload, dict):
-            for item in extract_items_from_unknown_state(payload, source="maccosmetics_internal_api"):
-                yielded += 1
-                item.update({"mode": "category", "category_url": response.meta.get("origin"), "page": page})
-                yield item
+            products = (
+                (((payload.get("data") or {}).get("category") or {}).get("products"))
+                if isinstance(payload.get("data"), dict)
+                else None
+            )
+            if isinstance(products, list):
+                for p in products:
+                    yielded += 1
+                    price_obj = p.get("price") or {}
+                    image = p.get("image") or {}
+                    yield {
+                        "item_id": p.get("id"),
+                        "title": p.get("name"),
+                        "url": p.get("url"),
+                        "price": price_obj.get("sale") or price_obj.get("list"),
+                        "currency": price_obj.get("currency"),
+                        "brand": "MAC Cosmetics",
+                        "rating": p.get("rating"),
+                        "reviews_count": p.get("reviewCount"),
+                        "image_url": image.get("url") if isinstance(image, dict) else None,
+                        "source": "maccosmetics_internal_api_graphql",
+                        "raw": p,
+                        "mode": "category",
+                        "category_url": response.meta.get("origin"),
+                        "page": page,
+                    }
+
+            if yielded == 0:
+                for item in extract_items_from_unknown_state(payload, source="maccosmetics_internal_api"):
+                    yielded += 1
+                    item.update({"mode": "category", "category_url": response.meta.get("origin"), "page": page})
+                    yield item
 
         if yielded == 0:
             origin = response.meta.get("origin") or self.resolve_target_url()
