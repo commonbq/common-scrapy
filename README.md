@@ -105,6 +105,10 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 - `costco_listing` – Costco category listing spider with bootstrap (`__NEXT_DATA__`/`__APOLLO_STATE__`) + HTML fallback extraction.
 - `kroger_search` – Kroger keyword search spider with bootstrap (`__NEXT_DATA__`/`__APOLLO_STATE__`) + HTML fallback extraction.
 - `kroger_listing` – Kroger category listing spider with bootstrap (`__NEXT_DATA__`/`__APOLLO_STATE__`) + HTML fallback extraction.
+- `bathandbodyworks_listing` – Bath & Body Works listing spider with mode priority: internal API (`mode=api`), bootstrap (`mode=bootstrap`), HTML (`mode=html`).
+- `sallybeauty_listing` – Sally Beauty listing spider with mode priority: internal API (`mode=api`), bootstrap (`mode=bootstrap`), HTML (`mode=html`).
+- `maccosmetics_listing` – MAC Cosmetics listing spider with mode priority: internal API (`mode=api`, GraphQL endpoint), bootstrap (`mode=bootstrap`), HTML (`mode=html`).
+- `elfcosmetics_listing` – e.l.f. Cosmetics listing spider with mode priority: internal API (`mode=api`), bootstrap (`mode=bootstrap`), HTML (`mode=html`).
 
 Many listing spiders accept `-a category=<name>` shortcuts (in addition to `-a category_url=<url>`), including Walmart, eBay, Home Depot, Best Buy, Costco, and Kroger.
 
@@ -261,6 +265,74 @@ These spiders try bootstrap state extraction first (`__NEXT_DATA__` / `__APOLLO_
 Run examples:
 - `common-scrapy crawl kroger_search -a q='milk' -a max_pages=1 -O kroger_search.jsonl`
 - `common-scrapy crawl kroger_listing -a category='cereal' -a max_pages=1 -O kroger_listing.jsonl`
+
+**bathandbodyworks_listing**
+```json
+{
+  "item_id": "12345678",
+  "title": "Body Lotion ...",
+  "url": "https://www.bathandbodyworks.com/p/...",
+  "price": 16.95,
+  "currency": "USD",
+  "brand": "Bath & Body Works",
+  "source": "bathandbodyworks_internal_api|bathandbodyworks_html"
+}
+```
+Run examples:
+- `common-scrapy crawl bathandbodyworks_listing -a category='body-care' -a mode=api -a max_pages=1 -O bbw_api.jsonl`
+- `common-scrapy crawl bathandbodyworks_listing -a category='body-care' -a mode=bootstrap -a max_pages=1 -O bbw_bootstrap.jsonl`
+- `common-scrapy crawl bathandbodyworks_listing -a category='body-care' -a mode=html -a max_pages=1 -O bbw_html.jsonl`
+
+**sallybeauty_listing**
+```json
+{
+  "item_id": "SBS-12345",
+  "title": "Shampoo ...",
+  "url": "https://www.sallybeauty.com/...",
+  "price": 12.99,
+  "currency": "USD",
+  "brand": "Sally Beauty",
+  "source": "sallybeauty_internal_api|sallybeauty_html"
+}
+```
+Run examples:
+- `common-scrapy crawl sallybeauty_listing -a category='hair-care' -a mode=api -a max_pages=1 -O sally_api.jsonl`
+- `common-scrapy crawl sallybeauty_listing -a category='hair-care' -a mode=bootstrap -a max_pages=1 -O sally_bootstrap.jsonl`
+- `common-scrapy crawl sallybeauty_listing -a category='hair-care' -a mode=html -a max_pages=1 -O sally_html.jsonl`
+
+**maccosmetics_listing**
+```json
+{
+  "item_id": "MAC-12345",
+  "title": "Foundation ...",
+  "url": "https://www.maccosmetics.com/...",
+  "price": 42.0,
+  "currency": "USD",
+  "brand": "MAC Cosmetics",
+  "source": "maccosmetics_internal_api_graphql|maccosmetics_html"
+}
+```
+Run examples:
+- `common-scrapy crawl maccosmetics_listing -a category='face' -a mode=api -a max_pages=1 -O mac_api.jsonl`
+- `common-scrapy crawl maccosmetics_listing -a category='face' -a mode=bootstrap -a max_pages=1 -O mac_bootstrap.jsonl`
+- `common-scrapy crawl maccosmetics_listing -a category='face' -a mode=html -a max_pages=1 -O mac_html.jsonl`
+
+**elfcosmetics_listing**
+```json
+{
+  "item_id": "ELF-12345",
+  "title": "Primer ...",
+  "url": "https://www.elfcosmetics.com/products/...",
+  "price": 10.0,
+  "currency": "USD",
+  "brand": "e.l.f. Cosmetics",
+  "source": "elfcosmetics_internal_api|elfcosmetics_html"
+}
+```
+Run examples:
+- `common-scrapy crawl elfcosmetics_listing -a category='face' -a mode=api -a max_pages=1 -O elf_api.jsonl`
+- `common-scrapy crawl elfcosmetics_listing -a category='face' -a mode=bootstrap -a max_pages=1 -O elf_bootstrap.jsonl`
+- `common-scrapy crawl elfcosmetics_listing -a category='face' -a mode=html -a max_pages=1 -O elf_html.jsonl`
 
 ## Contributing
 
