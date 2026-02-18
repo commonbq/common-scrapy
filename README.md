@@ -286,13 +286,15 @@ Run examples:
 **sallybeauty_listing**
 ```json
 {
-  "item_id": "SBS-12345",
-  "title": "Shampoo ...",
-  "url": "https://www.sallybeauty.com/...",
-  "price": 12.99,
-  "currency": "USD",
+  "item_id": null,
+  "title": "Gift Cards",
+  "url": "https://www.sallybeauty.com/giftCards.html",
+  "price": null,
+  "currency": null,
   "brand": "Sally Beauty",
-  "source": "sallybeauty_internal_api|sallybeauty_html"
+  "source": "sallybeauty_html",
+  "mode": "category_html",
+  "category_url": "https://www.sallybeauty.com/hair-care/"
 }
 ```
 Run examples:
