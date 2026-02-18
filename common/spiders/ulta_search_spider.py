@@ -46,7 +46,7 @@ class UltaSearchSpider(BaseSearchSpider):
             url,
             callback=self.parse_page_definition,
             headers=self._headers(),
-            meta=self.proxy_meta({"page": 1, "base_path": base_path}),
+            meta=({"page": 1, "base_path": base_path}),
         )
 
     def parse_page_definition(self, response: scrapy.http.Response):
@@ -76,7 +76,7 @@ class UltaSearchSpider(BaseSearchSpider):
             first_url,
             callback=self.parse_listing,
             headers=self._headers(),
-            meta=self.proxy_meta({"content_id": content_id, "page": 1, "base_path": response.meta.get("base_path")}),
+            meta=({"content_id": content_id, "page": 1, "base_path": response.meta.get("base_path")}),
         )
 
     def parse_listing(self, response: scrapy.http.Response):
@@ -127,7 +127,7 @@ class UltaSearchSpider(BaseSearchSpider):
             next_url,
             callback=self.parse_listing,
             headers=self._headers(),
-            meta=self.proxy_meta({"content_id": content_id, "page": next_page, "base_path": base_path}),
+            meta=({"content_id": content_id, "page": next_page, "base_path": base_path}),
         )
 
     def _build_noncached_url(self, content_id: str, page: int, base_path: str) -> str:

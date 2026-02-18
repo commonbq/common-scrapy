@@ -26,7 +26,7 @@ class BestbuySearchSpider(BaseSearchSpider):
 
     def start_requests(self):
         first = self._build_search_url(self.q or "")
-        yield scrapy.Request(first, callback=self.parse_search_page, meta=self.maybe_proxy_meta({"page": 1}))
+        yield scrapy.Request(first, callback=self.parse_search_page, meta=({"page": 1}))
 
     async def parse_search_page(self, response: scrapy.http.Response):
         page_num = int(response.meta.get("page", 1))
@@ -60,7 +60,7 @@ class BestbuySearchSpider(BaseSearchSpider):
         if page_num < self.args.max_pages:
             next_page = page_num + 1
             next_url = self._build_search_url(self.q or "", page=next_page)
-            yield scrapy.Request(next_url, callback=self.parse_search_page, meta=self.maybe_proxy_meta({"page": next_page}))
+            yield scrapy.Request(next_url, callback=self.parse_search_page, meta=({"page": next_page}))
 
     async def _fetch_playwright_state(self, url: str) -> tuple[dict, str]:
         cache_obj: dict = {}

@@ -24,7 +24,7 @@ class EbaySearchSpider(BaseSearchSpider):
 
     def start_requests(self):
         url = self._build_search_url(self.q or "")
-        yield scrapy.Request(url, callback=self.parse, meta=self.proxy_meta({"page": 1, "original_url": url}))
+        yield scrapy.Request(url, callback=self.parse, meta=({"page": 1, "original_url": url}))
 
     def parse(self, response: scrapy.http.Response):
         original_url = response.meta.get("original_url") or response.url
@@ -63,7 +63,7 @@ class EbaySearchSpider(BaseSearchSpider):
             yield scrapy.Request(
                 next_url,
                 callback=self.parse,
-                meta=self.proxy_meta({"page": page + 1, "original_url": next_url}),
+                meta=({"page": page + 1, "original_url": next_url}),
             )
 
     @staticmethod

@@ -102,9 +102,9 @@ class BaseListingSpider(scrapy.Spider):
             meta["proxy"] = PROXY
         return meta
 
-    # Backwards-compatible alias used by several spiders.
+    # Backwards-compatible alias retained for compatibility.
     def maybe_proxy_meta(self, meta: dict | None = None) -> dict:
-        return self.proxy_meta(meta)
+        return dict(meta or {})
 
     def available_categories(self) -> list[str]:
         names: list[str] = []

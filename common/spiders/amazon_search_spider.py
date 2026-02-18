@@ -21,5 +21,5 @@ class AmazonSearchSpider(BaseSearchSpider, AmazonListingSpider):
         query = urlencode({"k": self.q})
         target_url = f"https://www.amazon.com/s?{query}"
 
-        meta = self.proxy_meta({"page": 1})
+        meta = ({"page": 1})
         yield scrapy.Request(target_url, callback=self.parse, meta=meta)

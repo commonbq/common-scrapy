@@ -49,7 +49,7 @@ class UltaListingSpider(BaseListingSpider):
 
         if mode == "html":
             first = self._with_page(target, 1)
-            yield scrapy.Request(first, callback=self.parse_html_listing, meta=self.proxy_meta({"page": 1, "mode": "html", "origin": target}))
+            yield scrapy.Request(first, callback=self.parse_html_listing, meta=({"page": 1, "mode": "html", "origin": target}))
             return
 
         page_query = (
@@ -64,7 +64,7 @@ class UltaListingSpider(BaseListingSpider):
             url,
             callback=self.parse_page_definition,
             headers=self._headers(),
-            meta=self.proxy_meta({"page": 1, "mode": "graphql"}),
+            meta=({"page": 1, "mode": "graphql"}),
         )
 
     def parse_page_definition(self, response: scrapy.http.Response):
@@ -90,7 +90,7 @@ class UltaListingSpider(BaseListingSpider):
             first_url,
             callback=self.parse_listing,
             headers=self._headers(),
-            meta=self.proxy_meta({"content_id": content_id, "page": 1}),
+            meta=({"content_id": content_id, "page": 1}),
         )
 
     def parse_listing(self, response: scrapy.http.Response):
@@ -135,7 +135,7 @@ class UltaListingSpider(BaseListingSpider):
             next_url,
             callback=self.parse_listing,
             headers=self._headers(),
-            meta=self.proxy_meta({"content_id": content_id, "page": next_page}),
+            meta=({"content_id": content_id, "page": next_page}),
         )
 
     def parse_html_listing(self, response: scrapy.http.Response):
@@ -195,7 +195,7 @@ class UltaListingSpider(BaseListingSpider):
         next_page = page + 1
         origin = response.meta.get("origin") or self.resolve_target_url()
         next_url = self._with_page(origin, next_page)
-        yield scrapy.Request(next_url, callback=self.parse_html_listing, meta=self.proxy_meta({"page": next_page, "mode": "html", "origin": origin}))
+        yield scrapy.Request(next_url, callback=self.parse_html_listing, meta=({"page": next_page, "mode": "html", "origin": origin}))
 
     def _build_noncached_url(self, content_id: str, page: int) -> str:
         base_path = self.resolve_target_url()

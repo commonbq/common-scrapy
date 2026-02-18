@@ -36,7 +36,7 @@ class BestbuyListingSpider(BaseListingSpider):
     def start_requests(self):
         target = self._resolve_target_url()
         target = self._ensure_nosplash(self._with_page(target, 1))
-        yield scrapy.Request(target, callback=self.parse_listing_page, meta=self.maybe_proxy_meta({"page": 1}))
+        yield scrapy.Request(target, callback=self.parse_listing_page, meta=({"page": 1}))
 
     async def parse_listing_page(self, response: scrapy.http.Response):
         page_num = int(response.meta.get("page", 1))
@@ -89,7 +89,7 @@ class BestbuyListingSpider(BaseListingSpider):
         if page_num < self.args.max_pages:
             next_page = page_num + 1
             next_url = self._ensure_nosplash(self._with_page(self._resolve_target_url(), next_page))
-            yield scrapy.Request(next_url, callback=self.parse_listing_page, meta=self.maybe_proxy_meta({"page": next_page}))
+            yield scrapy.Request(next_url, callback=self.parse_listing_page, meta=({"page": next_page}))
 
     async def _fetch_playwright_state(self, url: str) -> tuple[dict, str]:
         cache_obj: dict = {}

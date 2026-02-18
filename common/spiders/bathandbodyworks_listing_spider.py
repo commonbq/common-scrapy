@@ -43,17 +43,17 @@ class BathandbodyworksListingSpider(BaseListingSpider):
         mode = (getattr(self, "mode", None) or "api").strip().lower()
         target = self.resolve_target_url()
         if mode == "html":
-            yield scrapy.Request(target, callback=self.parse_html, meta=self.proxy_meta({"page": 1, "origin": target}))
+            yield scrapy.Request(target, callback=self.parse_html, meta=({"page": 1, "origin": target}))
             return
         if mode == "bootstrap":
-            yield scrapy.Request(target, callback=self.parse_bootstrap, meta=self.proxy_meta({"page": 1, "origin": target}))
+            yield scrapy.Request(target, callback=self.parse_bootstrap, meta=({"page": 1, "origin": target}))
             return
 
         api_url = self._build_api_url(page=1)
         if api_url:
-            yield scrapy.Request(api_url, callback=self.parse_api, meta=self.proxy_meta({"page": 1, "origin": target}), headers={"x-requested-with": "XMLHttpRequest"})
+            yield scrapy.Request(api_url, callback=self.parse_api, meta=({"page": 1, "origin": target}), headers={"x-requested-with": "XMLHttpRequest"})
         else:
-            yield scrapy.Request(target, callback=self.parse_bootstrap, meta=self.proxy_meta({"page": 1, "origin": target}))
+            yield scrapy.Request(target, callback=self.parse_bootstrap, meta=({"page": 1, "origin": target}))
 
     def _build_api_url(self, page: int) -> str | None:
         cgid = None
@@ -110,14 +110,14 @@ class BathandbodyworksListingSpider(BaseListingSpider):
 
         if yielded == 0:
             origin = response.meta.get("origin") or self.resolve_target_url()
-            yield scrapy.Request(origin, callback=self.parse_bootstrap, meta=self.proxy_meta({"page": page, "origin": origin}), dont_filter=True)
+            yield scrapy.Request(origin, callback=self.parse_bootstrap, meta=({"page": page, "origin": origin}), dont_filter=True)
             return
 
         if page < self.max_pages:
             next_page = page + 1
             api_url = self._build_api_url(next_page)
             if api_url:
-                yield scrapy.Request(api_url, callback=self.parse_api, meta=self.proxy_meta({"page": next_page, "origin": response.meta.get("origin")}), headers={"x-requested-with": "XMLHttpRequest"})
+                yield scrapy.Request(api_url, callback=self.parse_api, meta=({"page": next_page, "origin": response.meta.get("origin")}), headers={"x-requested-with": "XMLHttpRequest"})
 
     def parse_bootstrap(self, response: scrapy.http.Response):
         page = int(response.meta.get("page", 1))

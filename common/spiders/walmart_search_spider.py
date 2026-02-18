@@ -20,5 +20,5 @@ class WalmartSearchSpider(BaseSearchSpider, WalmartListingSpider):
     def start_requests(self):
         q = self.q or ""
         target_url = f"https://www.walmart.com/search?{urlencode({'q': q})}"
-        meta = self.proxy_meta({"page": 1, "original_url": target_url, "category": f"search:{q}"})
+        meta = ({"page": 1, "original_url": target_url, "category": f"search:{q}"})
         yield scrapy.Request(target_url, callback=self.parse, meta=meta)

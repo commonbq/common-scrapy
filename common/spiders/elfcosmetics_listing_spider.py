@@ -32,19 +32,19 @@ class ElfcosmeticsListingSpider(BaseListingSpider):
         target = self.resolve_target_url()
         if mode == "html":
             first = self._with_page(target, 1)
-            yield scrapy.Request(first, callback=self.parse_html, meta=self.proxy_meta({"page": 1, "origin": target}))
+            yield scrapy.Request(first, callback=self.parse_html, meta=({"page": 1, "origin": target}))
             return
         if mode == "bootstrap":
             first = self._with_page(target, 1)
-            yield scrapy.Request(first, callback=self.parse_bootstrap, meta=self.proxy_meta({"page": 1, "origin": target}))
+            yield scrapy.Request(first, callback=self.parse_bootstrap, meta=({"page": 1, "origin": target}))
             return
 
         api_url = self._build_api_url(page=1)
         if api_url:
-            yield scrapy.Request(api_url, callback=self.parse_api, meta=self.proxy_meta({"page": 1, "origin": target}), headers={"accept": "application/json,text/plain,*/*"})
+            yield scrapy.Request(api_url, callback=self.parse_api, meta=({"page": 1, "origin": target}), headers={"accept": "application/json,text/plain,*/*"})
         else:
             first = self._with_page(target, 1)
-            yield scrapy.Request(first, callback=self.parse_bootstrap, meta=self.proxy_meta({"page": 1, "origin": target}))
+            yield scrapy.Request(first, callback=self.parse_bootstrap, meta=({"page": 1, "origin": target}))
 
     def _build_api_url(self, page: int) -> str | None:
         # Browser-observed SFCC/Mobify internal API shape
@@ -82,7 +82,7 @@ class ElfcosmeticsListingSpider(BaseListingSpider):
         if yielded == 0:
             origin = response.meta.get("origin") or self.resolve_target_url()
             first = self._with_page(origin, page)
-            yield scrapy.Request(first, callback=self.parse_bootstrap, meta=self.proxy_meta({"page": page, "origin": origin}), dont_filter=True)
+            yield scrapy.Request(first, callback=self.parse_bootstrap, meta=({"page": page, "origin": origin}), dont_filter=True)
             return
 
     def parse_bootstrap(self, response: scrapy.http.Response):

@@ -35,7 +35,7 @@ class CostcoSearchSpider(BaseSearchSpider):
     }
 
     def start_requests(self):
-        yield scrapy.Request(self._build_url(self.q or "", 1), callback=self.parse, meta=self.proxy_meta({"page": 1}))
+        yield scrapy.Request(self._build_url(self.q or "", 1), callback=self.parse, meta=({"page": 1}))
 
     def parse(self, response: scrapy.http.Response):
         page = int(response.meta.get("page", 1))
@@ -74,7 +74,7 @@ class CostcoSearchSpider(BaseSearchSpider):
 
         if page < self.args.max_pages:
             next_page = page + 1
-            yield scrapy.Request(self._build_url(self.q or "", next_page), callback=self.parse, meta=self.proxy_meta({"page": next_page}))
+            yield scrapy.Request(self._build_url(self.q or "", next_page), callback=self.parse, meta=({"page": next_page}))
 
     @staticmethod
     def _build_url(q: str, page: int = 1) -> str:
