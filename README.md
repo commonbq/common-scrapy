@@ -110,7 +110,7 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 - `maccosmetics_listing` – MAC Cosmetics listing spider with mode priority: internal API (`mode=api`, GraphQL endpoint), bootstrap (`mode=bootstrap`), HTML (`mode=html`).
 - `elfcosmetics_listing` – e.l.f. Cosmetics listing spider with mode priority: internal API (`mode=api`), bootstrap (`mode=bootstrap`), HTML (`mode=html`).
 
-Many listing spiders accept `-a category=<name>` shortcuts (in addition to `-a category_url=<url>`), including Walmart, eBay, Home Depot, Best Buy, Costco, and Kroger.
+Many listing spiders accept `-a category=<name>` shortcuts (in addition to `-a category_url=<url>`), including Amazon, Walmart, eBay, Home Depot, Best Buy, Costco, and Kroger.
 
 #### Sample output
 
@@ -131,6 +131,13 @@ Run example:
 `common-scrapy crawl amazon_search -a q=sneakers -a max_pages=1 -O amazon_search.jsonl`
 
 **amazon_listing** (category)
+
+Supported built-in categories:
+`electronics`, `fashion`, `beauty`, `home-kitchen`, `toys-games`, `sports-outdoors`, `grocery`, `books`.
+
+Notes:
+- Uses Amazon search query URLs (`/s?k=...`) for category shortcuts.
+- If a page returns no cards, spider logs a warning with URL/title to help diagnose layout/response changes.
 
 Run example:
 `common-scrapy crawl amazon_listing -a category=electronics -a max_pages=1 -O amazon_cat.jsonl`
