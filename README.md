@@ -192,22 +192,26 @@ Run example:
   "title": "Floral Stickers Laptop, 74 Pcs, Stickers for Water Bottles,",
   "brand": "Mr. Pen",
   "price": 6.99,
+  "price_text": "$6.99",
   "url": "https://www.macys.com/shop/product/floral-stickers-laptop-74-pcs-stickers-for-water-bottles?ID=25092672",
-  "image_url": "7/optimized/34925717_fpx.tif"
+  "image_url": "7/optimized/34925717_fpx.tif",
+  "source": "macys_xapi_discover_v1_page_via_r.jina.ai"
 }
 ```
 
 **ulta_listing** (category)
 ```json
 {
-  "item_id": "xlsImpprod15511061",
-  "sku_id": "2580410",
-  "brand": "Redken",
-  "title": "All Soft Shampoo",
-  "list_price": "$11.00 - $56.00",
+  "item_id": "2565096",
+  "sku_id": "2565096",
+  "brand": null,
+  "title": "3 sizes Hydrate Shampoo for Dry Hair $12.00 - $90.00 Add to bag",
+  "list_price": "$12.00 - $90.00",
   "sale_price": null,
-  "url": "https://www.ulta.com/p/all-soft-shampoo-xlsImpprod15511061?sku=2580410",
-  "image_url": "https://media.ulta.com/i/ulta/2580410"
+  "url": "https://www.ulta.com/p/hydrate-shampoo-dry-hair-pimprod2017791?sku=2565096",
+  "image_url": "https://media.ultainc.com/i/ulta/2565096?w=200&$ProductCardNeutralBGLight$&h=200&fmt=auto",
+  "source": "ulta_direct_html",
+  "mode": "category_html"
 }
 ```
 
