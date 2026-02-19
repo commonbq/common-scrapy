@@ -18,14 +18,14 @@ class AmazonListingSpider(BaseListingSpider):
     }
 
     categories = [
-        {"category": "electronics", "url": "https://www.amazon.com/s?i=electronics"},
-        {"category": "fashion", "url": "https://www.amazon.com/s?i=fashion"},
-        {"category": "beauty", "url": "https://www.amazon.com/s?i=beauty"},
-        {"category": "home-kitchen", "url": "https://www.amazon.com/s?i=garden"},
-        {"category": "toys-games", "url": "https://www.amazon.com/s?i=toys-and-games"},
-        {"category": "sports-outdoors", "url": "https://www.amazon.com/s?i=sporting"},
-        {"category": "grocery", "url": "https://www.amazon.com/s?i=grocery"},
-        {"category": "books", "url": "https://www.amazon.com/s?i=stripbooks"},
+        {"category": "electronics", "url": "https://www.amazon.com/s?k=electronics"},
+        {"category": "fashion", "url": "https://www.amazon.com/s?k=fashion"},
+        {"category": "beauty", "url": "https://www.amazon.com/s?k=beauty"},
+        {"category": "home-kitchen", "url": "https://www.amazon.com/s?k=home+kitchen"},
+        {"category": "toys-games", "url": "https://www.amazon.com/s?k=toys+games"},
+        {"category": "sports-outdoors", "url": "https://www.amazon.com/s?k=sports+outdoors"},
+        {"category": "grocery", "url": "https://www.amazon.com/s?k=grocery"},
+        {"category": "books", "url": "https://www.amazon.com/s?k=books"},
     ]
 
     def start_requests(self):
@@ -35,6 +35,10 @@ class AmazonListingSpider(BaseListingSpider):
 
     def parse(self, response: scrapy.http.Response):
         cards = response.css('div.s-main-slot div[data-component-type="s-search-result"][data-asin]')
+
+        if not cards:
+            title = (response.css("title::text").get() or "").strip()
+            self.logger.warning("No Amazon listing cards found (url=%s, title=%r)", response.url, title[:120])
 
         for card in cards:
             asin = (card.attrib.get("data-asin") or "").strip()
