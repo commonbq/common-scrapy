@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 import re
-from urllib.parse import urlencode
+from urllib.parse import urlencode, urlparse
 
 import scrapy
 
@@ -29,13 +29,30 @@ class MacysListingSpider(BaseListingSpider):
         yield scrapy.Request(
             self._to_jina_url(api_url),
             callback=self.parse,
-            meta={"page_index": page_index, "api_url": api_url},
+            meta={"page_index": page_index, "api_url": api_url, "pathname": self._default_pathname()},
         )
 
     def parse(self, response: scrapy.http.Response):
         payload = self._extract_json_payload(response.text)
         if not payload:
             self.logger.warning("Unable to extract Macy's JSON payload")
+            return
+
+        redirect_pathname = self._extract_redirect_pathname(payload)
+        redirected = bool(response.meta.get("redirected"))
+        if redirect_pathname and not redirected:
+            page_index = int(response.meta.get("page_index", 1))
+            redirect_api = self._build_macys_api_url(page_index=page_index, pathname=redirect_pathname)
+            yield scrapy.Request(
+                self._to_jina_url(redirect_api),
+                callback=self.parse,
+                meta={
+                    "page_index": page_index,
+                    "api_url": redirect_api,
+                    "pathname": redirect_pathname,
+                    "redirected": True,
+                },
+            )
             return
 
         items = self._extract_products(payload)
@@ -47,17 +64,16 @@ class MacysListingSpider(BaseListingSpider):
             return
 
         next_page = current_page + 1
-        next_api = self._build_macys_api_url(next_page)
+        pathname = response.meta.get("pathname") or self._default_pathname()
+        next_api = self._build_macys_api_url(next_page, pathname=pathname)
         yield scrapy.Request(
             self._to_jina_url(next_api),
             callback=self.parse,
-            meta={"page_index": next_page, "api_url": next_api},
+            meta={"page_index": next_page, "api_url": next_api, "pathname": pathname, "redirected": True},
         )
 
-    def _build_macys_api_url(self, page_index: int) -> str:
-        target_url = self.resolve_target_url()
-        keyword = target_url.rstrip("/").split("/")[-1]
-        pathname = f"/shop/featured/{keyword}"
+    def _build_macys_api_url(self, page_index: int, pathname: str | None = None) -> str:
+        pathname = pathname or self._default_pathname()
         sort = (getattr(self, "sort", None) or "PRICE_LOW_TO_HIGH").strip()
 
         params = {
@@ -76,11 +92,24 @@ class MacysListingSpider(BaseListingSpider):
         }
         return f"https://www.macys.com/xapi/discover/v1/page?{urlencode(params)}"
 
+    def _default_pathname(self) -> str:
+        target_url = self.resolve_target_url()
+        parsed = urlparse(target_url)
+        return parsed.path or "/"
+
+    def _extract_redirect_pathname(self, payload: dict) -> str | None:
+        redirect = (payload or {}).get("redirect") or {}
+        url = (redirect or {}).get("url")
+        if not isinstance(url, str) or not url.strip():
+            return None
+        parsed = urlparse(url.strip())
+        return parsed.path or None
+
     def _to_jina_url(self, url: str) -> str:
         return f"https://r.jina.ai/http://{url.replace('https://', '').replace('http://', '')}"
 
     def _extract_json_payload(self, text: str) -> dict | None:
-        start = text.find('{"meta"')
+        start = text.find("{")
         if start == -1:
             return None
 
@@ -91,14 +120,14 @@ class MacysListingSpider(BaseListingSpider):
 
         raw_json = candidate[: end + 1]
         try:
-            return json.loads(raw_json)
+            payload = json.loads(raw_json)
+            return payload if isinstance(payload, dict) else None
         except json.JSONDecodeError:
             return None
 
     def _extract_products(self, payload: dict) -> list[dict]:
-        try:
-            collection = payload["body"]["canvas"]["rows"][0]["rowSortableGrid"]["zones"][1]["sortableGrid"]["collection"]
-        except Exception:
+        collection = self._find_product_collection(payload)
+        if not collection:
             return []
 
         out: list[dict] = []
@@ -138,6 +167,36 @@ class MacysListingSpider(BaseListingSpider):
             )
 
         return out
+
+    def _find_product_collection(self, payload: dict) -> list[dict]:
+        # Keep fast-path for known shape.
+        try:
+            collection = payload["body"]["canvas"]["rows"][0]["rowSortableGrid"]["zones"][1]["sortableGrid"]["collection"]
+            if isinstance(collection, list):
+                return collection
+        except Exception:
+            pass
+
+        # Fallback: recursively find a plausible product collection list.
+        def walk(node):
+            if isinstance(node, dict):
+                collection = node.get("collection")
+                if isinstance(collection, list) and collection:
+                    first = collection[0] if collection else None
+                    if isinstance(first, dict) and isinstance(first.get("product"), dict):
+                        return collection
+                for value in node.values():
+                    found = walk(value)
+                    if found:
+                        return found
+            elif isinstance(node, list):
+                for value in node:
+                    found = walk(value)
+                    if found:
+                        return found
+            return []
+
+        return walk(payload) or []
 
     def _product_url(self, product: dict) -> str | None:
         pid = product.get("id")
