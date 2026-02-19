@@ -2,23 +2,24 @@ from __future__ import annotations
 
 import json
 import re
-from typing import Iterable, Optional
+from typing import Iterable
 
 import scrapy
 
 from common.settings import PROXY
+from common.spiders.base_listing_spider import BaseListingSpider
 
 
-class NordstromListingSpider(scrapy.Spider):
+class NordstromListingSpider(BaseListingSpider):
     """Nordstrom product listing spider.
 
-    Current approach (per Tri request): fetch category/search HTML and extract embedded
-    listing data from script tags (e.g., __NEXT_DATA__ or other JSON blobs).
+    Supports listing-style category usage like other spiders:
+    -a category=<name>
+    -a category_url=<url>
+    -a url=<url>
 
-    Notes:
-    - Nordstrom frequently serves anti-bot/ISTL wrapper HTML to non-browser clients.
-      If we detect that wrapper, we optionally retry via a proxy (if configured).
-    - If we still can't find embedded data, we yield nothing (and log diagnostics).
+    Backward compatibility:
+    -a keyword=<term> still works and maps to Nordstrom search URL.
     """
 
     name = "nordstrom_listing"
@@ -33,16 +34,54 @@ class NordstromListingSpider(scrapy.Spider):
         "DOWNLOAD_DELAY": 1,
     }
 
-    def start_requests(self) -> Iterable[scrapy.Request]:
-        start_url = getattr(self, "url", None)
-        keyword = getattr(self, "keyword", None)
-        if not start_url and keyword:
-            start_url = f"https://www.nordstrom.com/sr?keyword={keyword}"
-        if not start_url:
-            raise ValueError("Provide -a url=<category/search url> or -a keyword=<term>")
-        yield self._make_request(start_url, dont_filter=True)
+    # Listing-style category map (same interface as other listing spiders).
+    categories = [
+        {"category": "women", "url": "https://www.nordstrom.com/browse/women"},
+        {"category": "men", "url": "https://www.nordstrom.com/browse/men"},
+        {"category": "kids", "url": "https://www.nordstrom.com/browse/kids"},
+        {"category": "beauty", "url": "https://www.nordstrom.com/browse/beauty"},
+        {"category": "home", "url": "https://www.nordstrom.com/browse/home"},
+        {"category": "designer", "url": "https://www.nordstrom.com/browse/designer"},
+        {"category": "sale", "url": "https://www.nordstrom.com/browse/sale"},
+    ]
 
-    def _make_request(self, url: str, *, dont_filter: bool = False, force_proxy: bool = False) -> scrapy.Request:
+    # Allow url/category_url/keyword flows without forcing category argument.
+    require_category_arg = False
+
+    def start_requests(self) -> Iterable[scrapy.Request]:
+        keyword = getattr(self, "keyword", None)
+
+        current_category = None
+        if self.category:
+            current_category = self.category
+            start_url = self.resolve_target_url()
+        elif self.category_url:
+            current_category = "category_url"
+            start_url = self.category_url
+        elif self.url:
+            current_category = "custom_url"
+            start_url = self.url
+        elif keyword:
+            current_category = "keyword"
+            start_url = f"https://www.nordstrom.com/sr?keyword={keyword}"
+        else:
+            available = ", ".join(self.available_categories())
+            raise ValueError(
+                "Provide -a category=<name> (recommended), -a category_url=<url>, "
+                "-a url=<category/search url>, or -a keyword=<term>. "
+                f"Available categories: {available}"
+            )
+
+        yield self._make_request(start_url, dont_filter=True, category=current_category)
+
+    def _make_request(
+        self,
+        url: str,
+        *,
+        dont_filter: bool = False,
+        force_proxy: bool = False,
+        category: str | None = None,
+    ) -> scrapy.Request:
         headers = {
             "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
             "accept-language": "en-US,en;q=0.9",
@@ -51,7 +90,7 @@ class NordstromListingSpider(scrapy.Spider):
                 "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
             ),
         }
-        meta = {"handle_httpstatus_all": True}
+        meta = {"handle_httpstatus_all": True, "category": category}
         # Only use proxy when explicitly forced, to avoid unnecessary proxy usage.
         if force_proxy and PROXY:
             meta["proxy"] = PROXY
@@ -80,10 +119,16 @@ class NordstromListingSpider(scrapy.Spider):
             )
             # If we somehow got here without proxy, retry once with proxy.
             if PROXY and not response.meta.get("proxy"):
-                yield self._make_request(response.url, dont_filter=True, force_proxy=True)
+                yield self._make_request(
+                    response.url,
+                    dont_filter=True,
+                    force_proxy=True,
+                    category=response.meta.get("category"),
+                )
                 return
 
-        products = self._extract_products_from_html(text)
+        current_category = response.meta.get("category")
+        products = self._extract_products_from_html(text, category=current_category)
         if not products:
             self.logger.warning(
                 "No embedded product data found in HTML. status=%s len=%s url=%s",
@@ -96,7 +141,7 @@ class NordstromListingSpider(scrapy.Spider):
         for p in products:
             yield p
 
-    def _extract_products_from_html(self, html: str) -> list[dict]:
+    def _extract_products_from_html(self, html: str, *, category: str | None = None) -> list[dict]:
         """Try a few common patterns for embedded listing data."""
 
         # 1) Next.js: <script id="__NEXT_DATA__" type="application/json">{...}</script>
@@ -105,7 +150,7 @@ class NordstromListingSpider(scrapy.Spider):
             blob = m.group("data").strip()
             try:
                 data = json.loads(blob)
-                products = self._products_from_next_data(data)
+                products = self._products_from_next_data(data, category=category)
                 if products:
                     return products
             except Exception:
@@ -113,7 +158,6 @@ class NordstromListingSpider(scrapy.Spider):
 
         # 2) JSON in an inline script: try to find a big JSON object containing 'products' or 'productResults'.
         #    (This is heuristic; we keep it conservative to avoid false positives.)
-        # Grab large inline scripts (no src) and scan for JSON-ish segments.
         scripts = re.findall(r"<script(?![^>]*\bsrc=)[^>]*>(?P<body>.*?)</script>", html, re.S | re.I)
         for body in sorted(scripts, key=len, reverse=True)[:3]:
             if "products" not in body and "product" not in body and "productResults" not in body:
@@ -127,20 +171,18 @@ class NordstromListingSpider(scrapy.Spider):
                 data = json.loads(candidate)
             except Exception:
                 continue
-            products = self._products_from_generic_state(data)
+            products = self._products_from_generic_state(data, category=category)
             if products:
                 return products
 
         return []
 
-    def _products_from_next_data(self, data: dict) -> list[dict]:
+    def _products_from_next_data(self, data: dict, *, category: str | None = None) -> list[dict]:
         """Extract products from a Next.js __NEXT_DATA__ payload (site-specific; best-effort)."""
-        # We don't know Nordstrom's exact Next state shape, so we search recursively.
         found = []
 
         def walk(obj):
             if isinstance(obj, dict):
-                # common shapes
                 if "products" in obj and isinstance(obj["products"], list):
                     for prod in obj["products"]:
                         if isinstance(prod, dict):
@@ -152,10 +194,9 @@ class NordstromListingSpider(scrapy.Spider):
                     walk(it)
 
         walk(data)
-        return [self._normalize_product(p) for p in found if self._looks_like_product(p)]
+        return [self._normalize_product(p, category=category) for p in found if self._looks_like_product(p)]
 
-    def _products_from_generic_state(self, data: dict) -> list[dict]:
-        # Same as above: walk and pull dicts that look like products.
+    def _products_from_generic_state(self, data: dict, *, category: str | None = None) -> list[dict]:
         found = []
 
         def walk(obj):
@@ -173,7 +214,7 @@ class NordstromListingSpider(scrapy.Spider):
         out = []
         seen = set()
         for p in found:
-            norm = self._normalize_product(p)
+            norm = self._normalize_product(p, category=category)
             key = norm.get("product_id") or norm.get("url") or json.dumps(norm, sort_keys=True)
             if key in seen:
                 continue
@@ -183,13 +224,12 @@ class NordstromListingSpider(scrapy.Spider):
 
     def _looks_like_product(self, obj: dict) -> bool:
         keys = set(obj.keys())
-        # very loose heuristic
         return (
             ("name" in keys or "productName" in keys or "title" in keys)
             and ("price" in keys or "prices" in keys or "priceRange" in keys or "salePrice" in keys)
         ) or ("productId" in keys and ("name" in keys or "productName" in keys))
 
-    def _normalize_product(self, p: dict) -> dict:
+    def _normalize_product(self, p: dict, *, category: str | None = None) -> dict:
         name = p.get("name") or p.get("productName") or p.get("title")
         product_id = p.get("productId") or p.get("id") or p.get("sku")
         url = p.get("url") or p.get("productUrl") or p.get("canonicalUrl")
@@ -207,6 +247,7 @@ class NordstromListingSpider(scrapy.Spider):
             image = image.get("url") or image.get("src")
 
         return {
+            "category": category,
             "product_id": product_id,
             "name": name,
             "price": price,
