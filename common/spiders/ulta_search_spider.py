@@ -2,14 +2,18 @@ from __future__ import annotations
 
 """Ulta keyword search spider.
 
-This is extracted from the previous `ulta_listing` spider behavior.
+Modes:
+- default/html: direct HTML card parsing
+- graphql: Ulta GraphQL APIs (/dxl/graphql)
 
 Usage:
   scrapy crawl ulta_search -a q=shampoo -a max_pages=2
+  scrapy crawl ulta_search -a q=shampoo -a mode=graphql -a max_pages=2
 """
 
 import json
-from urllib.parse import urlencode
+import re
+from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 
 import scrapy
 
@@ -17,7 +21,7 @@ from common.spiders.base_search_spider import BaseSearchSpider
 
 
 class UltaSearchSpider(BaseSearchSpider):
-    """Ulta search spider using Ulta's GraphQL APIs (/dxl/graphql)."""
+    """Ulta search spider with HTML parsing default and GraphQL fallback mode."""
 
     name = "ulta_search"
     module_params = {
@@ -33,20 +37,31 @@ class UltaSearchSpider(BaseSearchSpider):
     }
 
     def start_requests(self):
+        mode = (getattr(self, "mode", None) or "html").strip().lower()
+        base_path = f"https://www.ulta.com/search?search={(self.q or '').replace(' ', '+')}"
+
+        if mode == "html":
+            first = self._with_page(base_path, 1)
+            yield scrapy.Request(
+                first,
+                callback=self.parse_html_listing,
+                meta=({"page": 1, "mode": "html", "base_path": base_path}),
+            )
+            return
+
         page_query = (
             'query Page($stagingHost: String, $previewOptions: JSON, $moduleParams: JSON, $url: JSON) '
             '{ Page: Page(stagingHost: $stagingHost, previewOptions: $previewOptions, '
             'moduleParams: $moduleParams, url: $url, deliveryKey: "SDK") '
             '{ content customResponseAttributes meta __typename } }'
         )
-        base_path = f"https://www.ulta.com/search?search={(self.q or '').replace(' ', '+')}"
         variables = {"moduleParams": {}, "url": {"path": base_path}}
         url = self._build_graphql_get_url(page_query, "Page", variables)
         yield scrapy.Request(
             url,
             callback=self.parse_page_definition,
             headers=self._headers(),
-            meta=({"page": 1, "base_path": base_path}),
+            meta=({"page": 1, "base_path": base_path, "mode": "graphql"}),
         )
 
     def parse_page_definition(self, response: scrapy.http.Response):
@@ -108,7 +123,7 @@ class UltaSearchSpider(BaseSearchSpider):
                 "reviews_count": self._to_int(review_raw),
                 "is_sponsored": bool(item.get("sponsored")),
                 "source": "ulta_dxl_graphql",
-                "mode": "keyword",
+                "mode": "keyword_graphql",
                 "query": self.q,
             }
 
@@ -128,6 +143,70 @@ class UltaSearchSpider(BaseSearchSpider):
             callback=self.parse_listing,
             headers=self._headers(),
             meta=({"content_id": content_id, "page": next_page, "base_path": base_path}),
+        )
+
+    def parse_html_listing(self, response: scrapy.http.Response):
+        page = int(response.meta.get("page", 1))
+        seen: set[str] = set()
+        yielded = 0
+
+        anchors = response.xpath('//a[contains(@href,"/p/")]')
+        for a in anchors:
+            href = (a.attrib.get("href") or "").strip()
+            if "/p/" not in href:
+                continue
+            url = response.urljoin(href)
+            if url in seen:
+                continue
+            seen.add(url)
+
+            card = a.xpath('ancestor::*[self::article or self::li or self::div][1]')
+            title = " ".join(card.xpath('.//text()').getall()).strip() if card else ""
+            title = re.sub(r"\s+", " ", title)
+            img = (card.xpath('.//img/@src').get() if card else None) or (card.xpath('.//img/@data-src').get() if card else None)
+
+            prices = re.findall(r"\$\d+(?:\.\d{2})?(?:\s*-\s*\$\d+(?:\.\d{2})?)?", title)
+            list_price = prices[0] if prices else None
+            sale_price = None
+            if len(prices) > 1:
+                sale_price = prices[0]
+                list_price = prices[1]
+
+            sku_match = re.search(r"[?&]sku=(\d+)", url)
+            item_id = sku_match.group(1) if sku_match else None
+
+            yield {
+                "item_id": item_id,
+                "sku_id": item_id,
+                "brand": None,
+                "title": title or None,
+                "url": url,
+                "image_url": img,
+                "list_price": list_price,
+                "sale_price": sale_price,
+                "rating": None,
+                "reviews_count": None,
+                "is_sponsored": False,
+                "source": "ulta_direct_html",
+                "mode": "keyword_html",
+                "query": self.q,
+                "page": page,
+            }
+            yielded += 1
+
+        if yielded == 0:
+            self.logger.warning("Ulta HTML mode yielded 0 items (status=%s)", response.status)
+
+        if page >= self.max_pages:
+            return
+
+        next_page = page + 1
+        base_path = response.meta.get("base_path") or f"https://www.ulta.com/search?search={(self.q or '').replace(' ', '+')}"
+        next_url = self._with_page(base_path, next_page)
+        yield scrapy.Request(
+            next_url,
+            callback=self.parse_html_listing,
+            meta=({"page": next_page, "mode": "html", "base_path": base_path}),
         )
 
     def _build_noncached_url(self, content_id: str, page: int, base_path: str) -> str:
@@ -178,6 +257,14 @@ class UltaSearchSpider(BaseSearchSpider):
             elif isinstance(img, str):
                 return img
         return None
+
+    @staticmethod
+    def _with_page(url: str, page: int) -> str:
+        parts = urlparse(url)
+        qs = parse_qs(parts.query)
+        if page > 1:
+            qs["page"] = [str(page)]
+        return urlunparse(parts._replace(query=urlencode(qs, doseq=True)))
 
     def _to_float(self, value):
         try:
