@@ -1,6 +1,6 @@
-# Common Scrapy Templates
+# Common Scrapy Retailer Spiders
 
-An open, well-maintained collection of Scrapy templates for harvesting structured product data from major retailers. Each template encodes the HTTP request, pagination strategy, and response extraction rules needed for a specific storefront so you can stay focused on downstream data processing.
+An open, well-maintained collection of Scrapy spiders for harvesting structured product data from major retailers. Spiders are purpose-built per retailer with bootstrap/API/HTML fallback logic where needed.
 
 ## Installation
 
@@ -22,12 +22,12 @@ This project reads `PROXY` from a local `.env` file (recommended) via `python-do
   ```
 - Or you can still pass it inline for one-off runs:
   ```bash
-  PROXY=http://user:pass@host:1234 common-scrapy crawl kohls_products
+  PROXY=http://user:pass@host:1234 common-scrapy crawl kohls_listing -a category=women
   ```
 
-Standalone spiders also honor `PROXY`.
+All spiders honor `PROXY` via project-wide middleware.
 
-### List available templates
+### List available spiders
 
 ```bash
 common-scrapy list
@@ -39,47 +39,15 @@ common-scrapy list
 common-scrapy crawl <identifier> [additional Scrapy args]
 ```
 
-`<identifier>` resolution:
-
-- If `<identifier>` matches a purpose-built spider name (e.g. `target_listing`), it runs that spider.
-- Otherwise, it treats `<identifier>` as a template name and runs the parameterized `common` spider with `-a name=<identifier>`.
-
 Examples:
 
-- Purpose-built: `common-scrapy crawl target_search -a category=5xtc0 -a max_pages=2 -O target.jsonl`
-- Template: `common-scrapy crawl kohls_products -s LOG_LEVEL=INFO`
-- Template: `common-scrapy crawl sephora_products -o sephora.csv`
+- `common-scrapy crawl target_search -a category=5xtc0 -a max_pages=2 -O target.jsonl`
+- `common-scrapy crawl kohls_listing -a category=women -a max_pages=1 -O kohls_listing.jsonl`
+- `common-scrapy crawl sephora_listing -a category=makeup -a max_pages=1 -O sephora_listing.jsonl`
 
 All extra args are forwarded to `scrapy crawl` unchanged (feeds, settings overrides, etc.).
 
-## Available spiders / templates
-
-### Template-driven (via `common-scrapy crawl <template>`)
-
-(Templates are only used when there is no purpose-built spider with the same name.)
-
-- `kohls_products` – product listing crawl for Kohl's seasonal catalog endpoints.
-- `sephora_products` – product listing crawl for Sephora category APIs.
-
-#### Sample output
-
-**sephora_products** (1 item, trimmed)
-```json
-{
-  "brandName": "rhode",
-  "displayName": "Pocket Blush Buildable Hydrating Cream Blush",
-  "productId": "P517483",
-  "targetUrl": "/product/pocket-blush-P517483?skuId=2895845",
-  "heroImage": "https://www.sephora.com/productimages/sku/s2895845-main-zoom.jpg?imwidth=270&pb=clean-at-sephora",
-  "rating": "4.0598",
-  "reviews": "1153"
-}
-```
-
-**kohls_products**
-
-Kohl’s `/web/catalog/...` endpoint is currently **blocked from this environment** (returns Access Denied / non-JSON), so we can’t produce a live crawl sample right now. The repository includes a captured sample payload at:
-`common/templates/kohls_products/sample_response.json`
+## Available spiders
 
 ### Standalone spiders (via `scrapy crawl <spider>`)
 
@@ -96,6 +64,9 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 - `macys_listing` – Macy’s xapi listing (may route via fallback when blocked).
 - `ulta_listing` – Ulta category listing with two modes: GraphQL (`/dxl/graphql`, default) and direct HTML card parsing (`-a mode=html`).
 - `ulta_search` – Ulta keyword search (GraphQL).
+- `kohls_listing` – Kohl's listing spider using `/web/catalog/...` API with category shortcuts.
+- `sephora_listing` – Sephora listing spider using `/api/v2/catalog/categories/<slug>/seo` endpoint.
+- `stockx_listing` – StockX listing spider using `__NEXT_DATA__` bootstrap extraction.
 - `target_search` – Target RedSky (plp_search_v2) search API.
 - `target_listing` – deprecated alias for `target_search`.
 - `nordstrom_listing` – currently experimental (HTML script-tag extraction; often blocked).
@@ -237,6 +208,37 @@ Notes:
 Run example:
 `common-scrapy crawl ulta_search -a q=shampoo -a max_pages=1 -O ulta_search.jsonl`
 
+**kohls_listing**
+```json
+{
+  "item_id": "12345678",
+  "title": "Women's ...",
+  "url": "https://www.kohls.com/product/prd-...",
+  "price": 29.99,
+  "regular_price": 39.99,
+  "sale_price": 29.99,
+  "brand": "SONOMA Goods for Life",
+  "source": "kohls_web_catalog_api"
+}
+```
+Run example:
+`common-scrapy crawl kohls_listing -a category=women -a max_pages=1 -O kohls_listing.jsonl`
+
+**sephora_listing**
+```json
+{
+  "item_id": "P517483",
+  "title": "Pocket Blush Buildable Hydrating Cream Blush",
+  "url": "https://www.sephora.com/product/pocket-blush-P517483?skuId=2895845",
+  "brand": "rhode",
+  "rating": 4.0598,
+  "reviews_count": 1153,
+  "source": "sephora_catalog_api"
+}
+```
+Run example:
+`common-scrapy crawl sephora_listing -a category=makeup -a max_pages=1 -O sephora_listing.jsonl`
+
 **target_search**
 ```json
 {
@@ -349,27 +351,17 @@ Run examples:
 
 ## Contributing
 
-Issues and pull requests that add or improve retailer templates, pagination logic, or extraction helpers are welcome. Please keep templates well-commented, anonymize sensitive identifiers, and include notes on any authentication or proxy requirements to keep the collection healthy for the community.
+Issues and pull requests that add or improve retailer spiders, pagination logic, or extraction helpers are welcome.
 
 ### Project layout
 
-- `common/spiders/common_spider.py` – single parameterized spider that loads retailer-specific templates and converts API responses into normalized items.
-- `common/templates/` – each retailer lives in its own folder (for example, `common/templates/<retailer>/`) with three files:
-  - `request.json` – captured HTTP request, headers, query/body params, and pagination strategy.
-  - `sample.json` – a trimmed API response saved from the network inspector so you can reason about the payload without re-running the crawl.
-  - `extract.json` – schema describing what to copy out of the payload (see “Iterating on extraction”).
+- `common/spiders/` – retailer spiders (`*_listing_spider.py`, `*_search_spider.py`) and shared helpers.
 - `common/settings/` – shared Scrapy configuration; reads environment variables via `.env`.
 - `scrapy.cfg` – entry point for the `scrapy` CLI.
 
-### Iterating on extraction
+### Adding new retailer spiders
 
-- Reference `sample.json` to understand the payload shape without replaying the crawl.
-- Update `extract.json` to control which fields land in the final item. Set `$list` to the array that contains products, `$include` for top-level metadata to copy onto every record, and `$item` for nested lookups inside each product.
-- Save the file and re-run the spider to confirm you get the expected output.
-
-### Adding new retailer templates
-
-1. Capture a representative network request (e.g., via DevTools) and save the HAR snippet into `common/templates/<retailer>/request.json`.
-2. Grab a sample JSON response (copy/paste the network preview) and drop it into `common/templates/<retailer>/sample.json`. Update it as the API evolves.
-3. Populate `extract.json` with `$list`, `$include`, and `$item` sections so the spider knows which fields to emit.
-4. Run the spider with `scrapy crawl common -a name=<retailer>` to verify it paginates and emits data.
+1. Investigate real browser traffic and identify internal API/bootstrap/HTML patterns.
+2. Implement a purpose-built spider under `common/spiders/` with normalized output fields.
+3. Add category shortcuts (`categories`) where applicable.
+4. Validate with `max_pages=1` runs and update README examples/output snippets.
