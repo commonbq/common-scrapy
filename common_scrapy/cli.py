@@ -1,22 +1,14 @@
-"""Command line interface for running the Common spider.
-
-Behavior:
-- If the given identifier matches a purpose-built spider (e.g. `amazon_listing`),
-  run that spider.
-- Otherwise, treat it as a template name and run the parameterized `common` spider.
-"""
+"""Command line interface for running purpose-built spiders only."""
 
 from __future__ import annotations
 
+import inspect
 import os
 import pkgutil
-import inspect
 
 import click
 import scrapy
 from scrapy.cmdline import execute
-
-from common.spiders.common_spider import CommonSpider
 
 # Ensure Scrapy loads the project's settings when invoked as a standalone script.
 os.environ.setdefault("SCRAPY_SETTINGS_MODULE", "common.settings")
@@ -28,11 +20,7 @@ def cli() -> None:
 
 
 def _purpose_built_spider_names() -> set[str]:
-    """Discover purpose-built spiders under ``common.spiders``.
-
-    Convention: any module ending with ``_spider`` (excluding ``common_spider``)
-    may define one or more ``scrapy.Spider`` subclasses.
-    """
+    """Discover purpose-built spiders under ``common.spiders``."""
 
     import common.spiders as spiders_pkg
 
@@ -48,54 +36,40 @@ def _purpose_built_spider_names() -> set[str]:
         try:
             m = __import__(module_name, fromlist=["*"])
         except Exception:
-            # Don't fail CLI discovery if an optional spider module errors.
             continue
 
         for _, obj in inspect.getmembers(m, inspect.isclass):
             if not issubclass(obj, scrapy.Spider):
                 continue
             spider_name = getattr(obj, "name", None)
-            if isinstance(spider_name, str) and spider_name and spider_name != CommonSpider.name:
+            if isinstance(spider_name, str) and spider_name:
                 names.add(spider_name)
 
     return names
 
 
 @cli.command(context_settings={"ignore_unknown_options": True})
-@click.argument("template")
+@click.argument("spider")
 @click.argument("scrapy_args", nargs=-1, type=click.UNPROCESSED)
-def crawl(template: str, scrapy_args: tuple[str, ...]) -> None:
-    """Run a crawl.
-
-    If ``template`` matches a purpose-built spider name, run that spider.
-    Otherwise, run the parameterized ``common`` spider with ``-a name=<template>``.
-    """
+def crawl(spider: str, scrapy_args: tuple[str, ...]) -> None:
+    """Run only a purpose-built spider by name."""
 
     purpose_built = _purpose_built_spider_names()
 
-    if template in purpose_built:
-        argv = ["scrapy", "crawl", template, *scrapy_args]
-    else:
-        argv = [
-            "scrapy",
-            "crawl",
-            CommonSpider.name,
-            "-a",
-            f"name={template}",
-            *scrapy_args,
-        ]
+    if spider not in purpose_built:
+        available = ", ".join(sorted(purpose_built))
+        raise click.ClickException(
+            f"Unknown spider '{spider}'. Only purpose-built spiders are supported. "
+            f"Available: {available}"
+        )
 
-    execute(argv)
+    execute(["scrapy", "crawl", spider, *scrapy_args])
 
 
 @cli.command(name="list")
 def list_spiders() -> None:
-    """List all available spiders in this project."""
+    """List all available purpose-built spiders in this project."""
     spiders = sorted(_purpose_built_spider_names())
-
-    # Keep explicit visibility of the parameterized spider (if still present).
-    if CommonSpider.name not in spiders:
-        spiders.append(CommonSpider.name)
 
     if not spiders:
         click.echo("No spiders found.")
@@ -103,6 +77,7 @@ def list_spiders() -> None:
 
     for spider in spiders:
         click.echo(spider)
+
 
 def main() -> None:
     """CLI entry point used by ``python -m`` and console scripts."""
