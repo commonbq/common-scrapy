@@ -71,6 +71,7 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 | [`kohls_listing`](#kohls_listing) | Experimental | api | Kohl’s listing via `/web/catalog/...` API. |
 | [`sephora_listing`](#sephora_listing) | Experimental | api | Sephora listing via `/api/v2/catalog/categories/<slug>/seo`. |
 | [`stockx_listing`](#stockx_listing) | Experimental | bootstrap + html | StockX listing via `__NEXT_DATA__` bootstrap. |
+| [`fashionnova_listing`](#fashionnova_listing) | Active | api + html | Fashion Nova listing via Shopify Storefront GraphQL with HTML fallback. |
 | [`target_search`](#target_search) | Active | api | Target RedSky search API spider. |
 | [`target_listing`](#target_search) | Active (alias) | api | Deprecated alias of `target_search`. |
 | [`nordstrom_listing`](#nordstrom_listing) | Experimental | bootstrap + html | Nordstrom listing parser; often blocked/changed. |
@@ -255,6 +256,22 @@ Run example:
 ```
 Run example:
 `common-scrapy crawl stockx_listing -a category=sneakers -a max_pages=1 -O stockx_listing.jsonl`
+
+### fashionnova_listing
+```json
+{
+  "item_id": "123456789",
+  "title": "Curve Appeal Maxi Dress - Black",
+  "url": "https://www.fashionnova.com/products/curve-appeal-maxi-dress-black",
+  "price": 39.99,
+  "currency": "USD",
+  "brand": "Fashion Nova",
+  "source": "fashionnova_storefront_graphql"
+}
+```
+Run examples:
+- `common-scrapy crawl fashionnova_listing -a category=women -a max_pages=1 -O fashionnova_listing.jsonl`
+- `common-scrapy crawl fashionnova_listing -a category=women -a mode=html -a max_pages=1 -O fashionnova_listing_html.jsonl`
 
 ### target_search
 ```json
