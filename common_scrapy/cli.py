@@ -11,7 +11,6 @@ from __future__ import annotations
 import os
 import pkgutil
 import inspect
-from pathlib import Path
 
 import click
 import scrapy
@@ -90,19 +89,20 @@ def crawl(template: str, scrapy_args: tuple[str, ...]) -> None:
 
 
 @cli.command(name="list")
-def list_templates() -> None:
-    """List available templates under ``common/templates``."""
-    templates_dir = Path(__file__).resolve().parent.parent / "common" / "templates"
-    if not templates_dir.is_dir():
-        raise click.ClickException("Templates directory not found.")
+def list_spiders() -> None:
+    """List all available spiders in this project."""
+    spiders = sorted(_purpose_built_spider_names())
 
-    templates = sorted(entry.name for entry in templates_dir.iterdir() if entry.is_dir())
-    if not templates:
-        click.echo("No templates found.")
+    # Keep explicit visibility of the parameterized spider (if still present).
+    if CommonSpider.name not in spiders:
+        spiders.append(CommonSpider.name)
+
+    if not spiders:
+        click.echo("No spiders found.")
         return
 
-    for template in templates:
-        click.echo(template)
+    for spider in spiders:
+        click.echo(spider)
 
 def main() -> None:
     """CLI entry point used by ``python -m`` and console scripts."""
