@@ -36,14 +36,16 @@ common-scrapy list
 ### Run a crawl
 
 ```bash
-common-scrapy crawl <identifier> [additional Scrapy args]
+common-scrapy crawl <identifier> [--category <category>] [additional Scrapy args]
 ```
+
+> `--category` is required for listing spiders. If omitted, the CLI prints available categories for that spider.
 
 Examples:
 
-- `common-scrapy crawl target_search -a category=5xtc0 -a max_pages=2 -O target.jsonl`
-- `common-scrapy crawl kohls_listing -a category=women -a max_pages=1 -O kohls_listing.jsonl`
-- `common-scrapy crawl sephora_listing -a category=makeup -a max_pages=1 -O sephora_listing.jsonl`
+- `common-scrapy crawl target_search --category 5xtc0 -a max_pages=2 -O target.jsonl`
+- `common-scrapy crawl kohls_listing --category women -a max_pages=1 -O kohls_listing.jsonl`
+- `common-scrapy crawl sephora_listing --category makeup -a max_pages=1 -O sephora_listing.jsonl`
 
 All extra args are forwarded to `scrapy crawl` unchanged (feeds, settings overrides, etc.).
 
