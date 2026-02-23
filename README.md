@@ -53,33 +53,35 @@ All extra args are forwarded to `scrapy crawl` unchanged (feeds, settings overri
 
 These live under `common/spiders/*_listing_spider.py` and are purpose-built per retailer.
 
-- `amazon_listing` – category listing spider (requires category).
-- `amazon_search` – keyword search spider.
-- `walmart_listing` – category listing spider with anti-bot fallback.
-- `walmart_search` – keyword search spider.
-- `ebay_listing` – eBay category listing spider using bootstrap/model-state (`__NEXT_DATA__`) extraction with JSON-LD fallback.
-- `ebay_search` – eBay keyword search spider using bootstrap/model-state (`__NEXT_DATA__`) extraction with JSON-LD fallback.
-- `homedepot_listing` – Home Depot category listing spider using Apollo bootstrap state (`__APOLLO_STATE__`).
-- `homedepot_search` – Home Depot keyword search spider using Apollo bootstrap state (`__APOLLO_STATE__`).
-- `macys_listing` – Macy’s xapi listing (may route via fallback when blocked).
-- `ulta_listing` – Ulta category listing with two modes: GraphQL (`/dxl/graphql`, default) and direct HTML card parsing (`-a mode=html`).
-- `ulta_search` – Ulta keyword search (GraphQL).
-- `kohls_listing` – Kohl's listing spider using `/web/catalog/...` API with category shortcuts.
-- `sephora_listing` – Sephora listing spider using `/api/v2/catalog/categories/<slug>/seo` endpoint.
-- `stockx_listing` – StockX listing spider using `__NEXT_DATA__` bootstrap extraction.
-- `target_search` – Target RedSky (plp_search_v2) search API.
-- `target_listing` – deprecated alias for `target_search`.
-- `nordstrom_listing` – currently experimental (HTML script-tag extraction; often blocked).
-- `bestbuy_search` – Best Buy keyword search using Playwright + Apollo state extraction (`ApolloClientSingleton.cache.extract()`).
-- `bestbuy_listing` – Best Buy category/listing crawl using Playwright + Apollo state extraction (`ApolloClientSingleton.cache.extract()`).
-- `costco_search` – Costco keyword search spider with bootstrap (`__NEXT_DATA__`/`__APOLLO_STATE__`) + HTML fallback extraction.
-- `costco_listing` – Costco category listing spider with bootstrap (`__NEXT_DATA__`/`__APOLLO_STATE__`) + HTML fallback extraction.
-- `kroger_search` – Kroger keyword search spider with bootstrap (`__NEXT_DATA__`/`__APOLLO_STATE__`) + HTML fallback extraction.
-- `kroger_listing` – Kroger category listing spider with bootstrap (`__NEXT_DATA__`/`__APOLLO_STATE__`) + HTML fallback extraction.
-- `bathandbodyworks_listing` – Bath & Body Works listing spider with mode priority: internal API (`mode=api`), bootstrap (`mode=bootstrap`), HTML (`mode=html`).
-- `sallybeauty_listing` – Sally Beauty listing spider with mode priority: internal API (`mode=api`), bootstrap (`mode=bootstrap`), HTML (`mode=html`).
-- `maccosmetics_listing` – MAC Cosmetics listing spider with mode priority: internal API (`mode=api`, GraphQL endpoint), bootstrap (`mode=bootstrap`), HTML (`mode=html`).
-- `elfcosmetics_listing` – e.l.f. Cosmetics listing spider with mode priority: internal API (`mode=api`), bootstrap (`mode=bootstrap`), HTML (`mode=html`).
+| Spider Name | Status | Method | Description |
+|---|---|---|---|
+| [`amazon_search`](#amazon_search) | Active | html | Amazon keyword search spider. |
+| [`amazon_listing`](#amazon_listing-category) | Active | html | Amazon category listing spider (category shortcuts). |
+| [`walmart_search`](#walmart_search-keyword) | Active | api + html | Walmart keyword search spider. |
+| [`walmart_listing`](#walmart_listing-category) | Active | api + html | Walmart category listing spider with anti-bot fallback. |
+| [`ebay_search`](#ebay_search-keyword-bootstrapmodel-state) | Flaky | bootstrap + html | eBay keyword search via `__NEXT_DATA__` + fallback. |
+| [`ebay_listing`](#ebay_listing-category-bootstrapmodel-state) | Flaky | bootstrap + html | eBay category listing via `__NEXT_DATA__` + fallback. |
+| [`homedepot_search`](#homedepot_search-keyword-apollo-bootstrap) | Active | bootstrap + html | Home Depot keyword search via Apollo state. |
+| [`homedepot_listing`](#homedepot_listing-category-apollo-bootstrap) | Flaky | bootstrap + html | Home Depot category listing via Apollo state. |
+| [`macys_listing`](#macys_listing) | Active | api | Macy’s listing via xapi endpoint (with fallback routing). |
+| [`ulta_search`](#ulta_search-keyword) | Flaky | api | Ulta keyword search via GraphQL. |
+| [`ulta_listing`](#ulta_listing-category) | Active | api + html | Ulta category listing (GraphQL default, HTML fallback mode). |
+| [`kohls_listing`](#kohls_listing) | Experimental | api | Kohl’s listing via `/web/catalog/...` API. |
+| [`sephora_listing`](#sephora_listing) | Experimental | api | Sephora listing via `/api/v2/catalog/categories/<slug>/seo`. |
+| [`stockx_listing`](#stockx_listing) | Experimental | bootstrap + html | StockX listing via `__NEXT_DATA__` bootstrap. |
+| [`target_search`](#target_search) | Active | api | Target RedSky search API spider. |
+| [`target_listing`](#target_search) | Active (alias) | api | Deprecated alias of `target_search`. |
+| [`nordstrom_listing`](#nordstrom_listing) | Experimental | bootstrap + html | Nordstrom listing parser; often blocked/changed. |
+| [`bestbuy_search`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | Best Buy search via Playwright + Apollo cache extract. |
+| [`bestbuy_listing`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | Best Buy listing via Playwright + Apollo cache extract. |
+| [`costco_search`](#costco_search--costco_listing) | Active | bootstrap + html | Costco keyword search with state extraction + fallback. |
+| [`costco_listing`](#costco_search--costco_listing) | Active | bootstrap + html | Costco category listing with state extraction + fallback. |
+| [`kroger_search`](#kroger_search--kroger_listing) | Active | bootstrap + html | Kroger keyword search with state extraction + fallback. |
+| [`kroger_listing`](#kroger_search--kroger_listing) | Flaky | bootstrap + html | Kroger category listing with search fallback path. |
+| [`bathandbodyworks_listing`](#bathandbodyworks_listing) | Experimental | api + bootstrap + html | Bath & Body Works multi-mode listing spider. |
+| [`sallybeauty_listing`](#sallybeauty_listing) | Experimental | api + bootstrap + html | Sally Beauty multi-mode listing spider. |
+| [`maccosmetics_listing`](#maccosmetics_listing) | Experimental | api + bootstrap + html | MAC Cosmetics multi-mode listing spider. |
+| [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | e.l.f. Cosmetics multi-mode listing spider. |
 
 Many listing spiders accept `-a category=<name>` shortcuts (in addition to `-a category_url=<url>`), including Amazon, Walmart, eBay, Home Depot, Best Buy, Costco, and Kroger.
 
@@ -87,7 +89,7 @@ Many listing spiders accept `-a category=<name>` shortcuts (in addition to `-a c
 
 Below are trimmed examples from recent local test runs (JSONL output, 1 item shown).
 
-**amazon_search**
+### amazon_search
 ```json
 {
   "asin": "B08NF2W2V2",
@@ -101,7 +103,7 @@ Below are trimmed examples from recent local test runs (JSONL output, 1 item sho
 Run example:
 `common-scrapy crawl amazon_search -a q=sneakers -a max_pages=1 -O amazon_search.jsonl`
 
-**amazon_listing** (category)
+### amazon_listing (category)
 
 Supported built-in categories:
 `electronics`, `fashion`, `beauty`, `home-kitchen`, `toys-games`, `sports-outdoors`, `grocery`, `books`.
@@ -113,7 +115,7 @@ Notes:
 Run example:
 `common-scrapy crawl amazon_listing -a category=electronics -a max_pages=1 -O amazon_cat.jsonl`
 
-**walmart_listing** (category)
+### walmart_listing (category)
 ```json
 {
   "item_id": null,
@@ -127,12 +129,12 @@ Run example:
 Run example:
 `common-scrapy crawl walmart_listing -a category=electronics -a max_pages=1 -O walmart.jsonl`
 
-**walmart_search** (keyword)
+### walmart_search (keyword)
 
 Run example:
 `common-scrapy crawl walmart_search -a q=laptop -a max_pages=1 -O walmart_search.jsonl`
 
-**ebay_search** (keyword; bootstrap/model-state)
+### ebay_search (keyword; bootstrap/model-state)
 ```json
 {
   "item_id": "166543210987",
@@ -148,22 +150,22 @@ Run example:
 Run example:
 `common-scrapy crawl ebay_search -a q='iphone 14 pro' -a max_pages=1 -O ebay_search.jsonl`
 
-**ebay_listing** (category; bootstrap/model-state)
+### ebay_listing (category; bootstrap/model-state)
 
 Run example:
 `common-scrapy crawl ebay_listing -a category='laptops' -a max_pages=1 -O ebay_listing.jsonl`
 
-**homedepot_search** (keyword; Apollo bootstrap)
+### homedepot_search (keyword; Apollo bootstrap)
 
 Run example:
 `common-scrapy crawl homedepot_search -a q='screwdriver' -a max_pages=1 -O homedepot_search.jsonl`
 
-**homedepot_listing** (category; Apollo bootstrap)
+### homedepot_listing (category; Apollo bootstrap)
 
 Run example:
 `common-scrapy crawl homedepot_listing -a category='screwdrivers' -a max_pages=1 -O homedepot_listing.jsonl`
 
-**macys_listing**
+### macys_listing
 ```json
 {
   "item_id": "25092672",
@@ -177,7 +179,7 @@ Run example:
 }
 ```
 
-**ulta_listing** (category)
+### ulta_listing (category)
 ```json
 {
   "item_id": "2565096",
@@ -203,12 +205,12 @@ Notes:
 - `mode=html` is a fallback parser from rendered product cards and is useful when GraphQL responses are unstable.
 - HTML mode typically returns URL/title/image/price text first; GraphQL mode gives richer normalized fields (brand/rating/reviews/sponsored).
 
-**ulta_search** (keyword)
+### ulta_search (keyword)
 
 Run example:
 `common-scrapy crawl ulta_search -a q=shampoo -a max_pages=1 -O ulta_search.jsonl`
 
-**kohls_listing**
+### kohls_listing
 ```json
 {
   "item_id": "12345678",
@@ -224,7 +226,7 @@ Run example:
 Run example:
 `common-scrapy crawl kohls_listing -a category=women -a max_pages=1 -O kohls_listing.jsonl`
 
-**sephora_listing**
+### sephora_listing
 ```json
 {
   "item_id": "P517483",
@@ -239,7 +241,20 @@ Run example:
 Run example:
 `common-scrapy crawl sephora_listing -a category=makeup -a max_pages=1 -O sephora_listing.jsonl`
 
-**target_search**
+### stockx_listing
+```json
+{
+  "item_id": "air-jordan-1-retro-high-og-chicago-lost-and-found",
+  "title": "Air Jordan 1 Retro High OG Chicago Lost and Found",
+  "url": "https://stockx.com/air-jordan-1-retro-high-og-chicago-lost-and-found",
+  "price": null,
+  "source": "stockx_next_data|stockx_html_links_fallback"
+}
+```
+Run example:
+`common-scrapy crawl stockx_listing -a category=sneakers -a max_pages=1 -O stockx_listing.jsonl`
+
+### target_search
 ```json
 {
   "product_id": "xxxxx",
@@ -253,17 +268,17 @@ Run example:
 Run example:
 `common-scrapy crawl target_search -a category=5xtc0 -a max_pages=1 -O target.jsonl`
 
-**nordstrom_listing**
+### nordstrom_listing
 
 Currently blocked in this environment (often returns anti-bot interstitial / wrapper HTML), so sample output may be empty.
 
-**bestbuy_search / bestbuy_listing**
+### bestbuy_search / bestbuy_listing
 
 Best Buy pages currently use Apollo hydration (not `__NEXT_DATA__` on PLP/search). These spiders use Playwright to render the page, then extract normalized data from `ApolloClientSingleton.cache.extract()` (with inline bootstrap parsing fallback).
 
 If Best Buy serves a challenge/error variant, output may still be empty; Playwright materially improves reliability versus plain HTTP fetch.
 
-**costco_search / costco_listing**
+### costco_search / costco_listing
 
 These spiders try bootstrap state extraction first (`__NEXT_DATA__` / `__APOLLO_STATE__`), then fallback to JSON-LD and direct product-link HTML parsing.
 
@@ -271,7 +286,7 @@ Run examples:
 - `common-scrapy crawl costco_search -a q='coffee' -a max_pages=1 -O costco_search.jsonl`
 - `common-scrapy crawl costco_listing -a category='coffee' -a max_pages=1 -O costco_listing.jsonl`
 
-**kroger_search / kroger_listing**
+### kroger_search / kroger_listing
 
 These spiders try bootstrap state extraction first (`__NEXT_DATA__` / `__APOLLO_STATE__`), then fallback to JSON-LD and direct product-link HTML parsing.
 
@@ -279,7 +294,7 @@ Run examples:
 - `common-scrapy crawl kroger_search -a q='milk' -a max_pages=1 -O kroger_search.jsonl`
 - `common-scrapy crawl kroger_listing -a category='cereal' -a max_pages=1 -O kroger_listing.jsonl`
 
-**bathandbodyworks_listing**
+### bathandbodyworks_listing
 ```json
 {
   "item_id": "12345678",
@@ -296,7 +311,7 @@ Run examples:
 - `common-scrapy crawl bathandbodyworks_listing -a category='body-care' -a mode=bootstrap -a max_pages=1 -O bbw_bootstrap.jsonl`
 - `common-scrapy crawl bathandbodyworks_listing -a category='body-care' -a mode=html -a max_pages=1 -O bbw_html.jsonl`
 
-**sallybeauty_listing**
+### sallybeauty_listing
 ```json
 {
   "item_id": null,
@@ -315,7 +330,7 @@ Run examples:
 - `common-scrapy crawl sallybeauty_listing -a category='hair-care' -a mode=bootstrap -a max_pages=1 -O sally_bootstrap.jsonl`
 - `common-scrapy crawl sallybeauty_listing -a category='hair-care' -a mode=html -a max_pages=1 -O sally_html.jsonl`
 
-**maccosmetics_listing**
+### maccosmetics_listing
 ```json
 {
   "item_id": "MAC-12345",
@@ -332,7 +347,7 @@ Run examples:
 - `common-scrapy crawl maccosmetics_listing -a category='face' -a mode=bootstrap -a max_pages=1 -O mac_bootstrap.jsonl`
 - `common-scrapy crawl maccosmetics_listing -a category='face' -a mode=html -a max_pages=1 -O mac_html.jsonl`
 
-**elfcosmetics_listing**
+### elfcosmetics_listing
 ```json
 {
   "item_id": "ELF-12345",
