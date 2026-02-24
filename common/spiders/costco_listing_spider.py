@@ -104,7 +104,7 @@ class CostcoListingSpider(BaseListingSpider):
         seen: set[str] = set()
         for m in pat.finditer(html or ""):
             url = m.group("url")
-            if "/s?" in url or url in seen:
+            if "/s?" in url or ".product." not in url or url in seen:
                 continue
             seen.add(url)
             mid = re.search(r"(\d{6,})", url)

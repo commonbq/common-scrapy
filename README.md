@@ -345,6 +345,31 @@ Run examples:
 - `common-scrapy crawl costco_search -a q='coffee' -a max_pages=1 -O costco_search.jsonl`
 - `common-scrapy crawl costco_listing -a category='coffee' -a max_pages=1 -O costco_listing.jsonl`
 
+`costco_listing` sample output:
+```json
+{
+  "item_id": "100361434",
+  "title": null,
+  "url": "https://www.costco.com/kirkland-signature-colombian-coffee-dark-roast-3-lbs.product.100361434.html",
+  "price": null,
+  "currency": null,
+  "brand": null,
+  "rating": null,
+  "reviews_count": null,
+  "image_url": null,
+  "source": "costco_html_links_fallback",
+  "raw": null,
+  "mode": "category",
+  "category_url": "https://www.costco.com/coffee.html",
+  "page": 1,
+  "source_url": "https://www.costco.com/coffee.html"
+}
+```
+
+Notes:
+- Browser automation service was unavailable in this runtime; HTML investigation was done via spider response + HTTP checks.
+- NordVPN city-specific routing is not available for US in this CLI build; validated on multiple US servers (e.g., `us9174`, `us8117`) and Costco listing HTML fallback returned items.
+
 ### kroger_search / kroger_listing
 
 These spiders try bootstrap state extraction first (`__NEXT_DATA__` / `__APOLLO_STATE__`), then fallback to JSON-LD and direct product-link HTML parsing.
