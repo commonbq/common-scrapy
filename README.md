@@ -380,6 +380,29 @@ Best Buy pages currently use Apollo hydration (not `__NEXT_DATA__` on PLP/search
 
 If Best Buy serves a challenge/error variant, output may still be empty; Playwright materially improves reliability versus plain HTTP fetch.
 
+Run example:
+`common-scrapy crawl bestbuy_listing -a category=laptops -a max_pages=1 -O bestbuy_listing.jsonl`
+
+Sample output:
+```json
+{
+  "item_id": "6628354",
+  "title": "Dell - Plus - Copilot+ PC - 16\" 2K Touchscreen Laptop - AMD Ryzen AI 7 350 2025 - 32GB Memory - 1TB Storage - Ice Blue",
+  "url": "https://www.bestbuy.com/product/dell-plus-copilot-pc-16-2k-touchscreen-laptop-amd-ryzen-ai-7-350-2025-32gb-memory-1tb-storage-ice-blue/J3K4L63SVF/sku/6628354",
+  "brand": null,
+  "price": 799.99,
+  "currency": "USD",
+  "rating": 4.7,
+  "reviews_count": 439,
+  "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/7afd11ae-3eb7-46d2-ad3e-6690837b2fdd.jpg",
+  "source": "bestbuy_apollo_bootstrap",
+  "mode": "category",
+  "category_url": "https://www.bestbuy.com/site/all-laptops/laptops/abcat0502000.c?id=abcat0502000",
+  "page": 1,
+  "source_url": "https://www.bestbuy.com/site/all-laptops/laptops/abcat0502000.c?id=abcat0502000&cp=1&intl=nosplash"
+}
+```
+
 ### costco_search / costco_listing
 
 These spiders try bootstrap state extraction first (`__NEXT_DATA__` / `__APOLLO_STATE__`), then fallback to JSON-LD and direct product-link HTML parsing.
