@@ -349,6 +349,27 @@ Run examples:
 
 These spiders try bootstrap state extraction first (`__NEXT_DATA__` / `__APOLLO_STATE__`), then fallback to JSON-LD and direct product-link HTML parsing.
 
+`kroger_search` sample output:
+```json
+{
+  "item_id": "kroger-2-reduced-fat-milk-gallon",
+  "title": null,
+  "url": "https://www.kroger.com/p/kroger-2-reduced-fat-milk-gallon/0001111041700",
+  "price": null,
+  "currency": null,
+  "brand": null,
+  "rating": null,
+  "reviews_count": null,
+  "image_url": null,
+  "source": "kroger_html_links_fallback",
+  "raw": null,
+  "mode": "keyword",
+  "query": "milk",
+  "page": 1,
+  "source_url": "https://www.kroger.com/search?query=milk&searchType=default_search"
+}
+```
+
 `kroger_listing` sample output:
 ```json
 {
@@ -372,8 +393,9 @@ Run examples:
 - `common-scrapy crawl kroger_listing -a category='cereal' -a max_pages=1 -O kroger_listing.jsonl`
 
 Notes:
-- Browser check on `https://www.kroger.com/pl/cereal/09002` may show "No products loaded" for some sessions/locations.
-- In local validation with NordVPN US cities (Ashburn, Dallas), `kroger_listing` still returned items via fallback to search HTML links.
+- Browser check on `https://www.kroger.com/pl/cereal/09002` showed "No products loaded" in both NordVPN US Ashburn and Dallas sessions.
+- `kroger_search` still returns keyword results via HTML link fallback (`source=kroger_html_links_fallback`).
+- `kroger_listing` may still return 0 items even after search fallback, depending on location/session.
 
 ### bathandbodyworks_listing
 ```json
