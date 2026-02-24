@@ -80,7 +80,7 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 | [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | markdown/html | Bloomingdale's listing spider via mirror/HTML parsing (migration in progress). |
 | [`qvc_listing`](#qvc_listing) | Experimental | markdown/html | QVC listing spider via markdown mirror from category pages. |
 | [`target_search`](#target_search) | Active | api | Target RedSky search API spider. |
-| [`target_listing`](#target_search) | Active (alias) | api | Deprecated alias of `target_search`. |
+| [`target_listing`](#target_listing) | Active (alias) | api | Deprecated alias of `target_search`. |
 | [`nordstrom_listing`](#nordstrom_listing) | Experimental | bootstrap + html | Nordstrom listing parser; often blocked/changed. |
 | [`nordstromrack_listing`](#nordstromrack_listing) | Experimental | playwright + html | Nordstrom Rack listing spider via rendered category pages. |
 | [`bestbuy_search`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | Best Buy search via Playwright + Apollo cache extract. |
@@ -348,6 +348,29 @@ Run example:
 
 Run example:
 `common-scrapy crawl target_search -a category=5xtc0 -a max_pages=1 -O target.jsonl`
+
+### target_listing
+
+`target_listing` is a backwards-compatible alias of `target_search`.
+
+Sample output:
+```json
+{
+  "product_id": "81127431",
+  "name": "Women's Perfectly Cozy Jogger Pants - Stars Above™ Black M",
+  "price": "$22.00",
+  "url": "https://www.target.com/p/women-s-perfectly-cozy-jogger-pants-stars-above-black/-/A-81127431",
+  "image": "https://target.scene7.com/is/image/Target/GUEST_9f95ecf4-59f7-4008-b854-95380a6b6f89"
+}
+```
+
+Run example:
+`.venv/bin/scrapy crawl target_listing -a category=5xtc0 -a max_pages=1 -O target_listing.jsonl`
+
+Validation notes (2026-02-25):
+- Browser check confirmed product/category content renders for `https://www.target.com/c/women/-/N-5xtd3`.
+- Verified `target_listing` output while connected to NordVPN US cities: **Dallas**, **Seattle**, and **Ashburn**.
+- `target_listing` (`category=5xtc0`, `max_pages=1`) consistently returned **24 items** across those endpoints.
 
 ### nordstrom_listing
 
