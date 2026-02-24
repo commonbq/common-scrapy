@@ -380,10 +380,36 @@ Best Buy pages currently use Apollo hydration (not `__NEXT_DATA__` on PLP/search
 
 If Best Buy serves a challenge/error variant, output may still be empty; Playwright materially improves reliability versus plain HTTP fetch.
 
-Run example:
-`common-scrapy crawl bestbuy_listing -a category=laptops -a max_pages=1 -O bestbuy_listing.jsonl`
+Run examples:
+- `common-scrapy crawl bestbuy_search -a q='laptop' -a max_pages=1 -O bestbuy_search.jsonl`
+- `common-scrapy crawl bestbuy_listing -a category=laptops -a max_pages=1 -O bestbuy_listing.jsonl`
 
-Sample output:
+Validation notes (2026-02-25):
+- Browser check confirmed live product cards rendered on `searchpage.jsp?st=laptop`.
+- `bestbuy_search` (`max_pages=1`) returned items with `source=bestbuy_apollo_bootstrap` while connected to NordVPN US Dallas (`us9157`).
+- Also tested browser accessibility from NordVPN US Seattle (`us8242`) and US Ashburn (`us9510`); listing pages still rendered.
+
+`bestbuy_search` sample output:
+```json
+{
+  "item_id": "10460842",
+  "title": "HP - 14\" Laptop - Intel Processor N150 2025 - 4GB Memory - 128GB UFS - Willow Green",
+  "url": "https://www.bestbuy.com/product/hp-14-laptop-intel-processor-n150-2025-4gb-memory-128gb-ufs-willow-green/JJGQJQR8CP",
+  "brand": null,
+  "price": 189.98,
+  "currency": "USD",
+  "rating": 4.6,
+  "reviews_count": 1551,
+  "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/90a8a03b-c474-416d-bb79-579d46bf34d5.jpg",
+  "source": "bestbuy_apollo_bootstrap",
+  "mode": "keyword",
+  "query": "laptop",
+  "page": 1,
+  "source_url": "https://www.bestbuy.com/site/searchpage.jsp?st=laptop&intl=nosplash"
+}
+```
+
+`bestbuy_listing` sample output:
 ```json
 {
   "item_id": "6628354",
