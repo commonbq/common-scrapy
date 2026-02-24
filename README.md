@@ -85,6 +85,7 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 | [`sallybeauty_listing`](#sallybeauty_listing) | Experimental | api + bootstrap + html | Sally Beauty multi-mode listing spider. |
 | [`maccosmetics_listing`](#maccosmetics_listing) | Experimental | api + bootstrap + html | MAC Cosmetics multi-mode listing spider. |
 | [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | e.l.f. Cosmetics multi-mode listing spider. |
+| [`ae_listing`](#ae_listing) | Experimental | html | American Eagle listing spider via category-page product cards. |
 
 Many listing spiders accept `-a category=<name>` shortcuts (in addition to `-a category_url=<url>`), including Amazon, Walmart, eBay, Home Depot, Best Buy, Costco, and Kroger.
 
@@ -382,6 +383,27 @@ Run examples:
 - `common-scrapy crawl elfcosmetics_listing -a category='face' -a mode=api -a max_pages=1 -O elf_api.jsonl`
 - `common-scrapy crawl elfcosmetics_listing -a category='face' -a mode=bootstrap -a max_pages=1 -O elf_bootstrap.jsonl`
 - `common-scrapy crawl elfcosmetics_listing -a category='face' -a mode=html -a max_pages=1 -O elf_html.jsonl`
+
+### ae_listing
+```json
+{
+  "item_id": "1457_2980_808",
+  "title": "AE Big Hug V-Neck Sweatshirt",
+  "url": "https://www.ae.com/us/en/p/women/hoodies-sweatshirts/crew-neck-sweatshirts/ae-big-hug-v-neck-sweatshirt/1457_2980_808",
+  "price": 38.97,
+  "original_price": 64.95,
+  "currency": "USD",
+  "brand": "American Eagle",
+  "source": "ae_html",
+  "mode": "category_html"
+}
+```
+Run example:
+- `common-scrapy crawl ae_listing -a category='women-tops' -a max_pages=1 -O ae_listing.jsonl`
+
+Notes:
+- Verified in browser and direct HTTP while connected to NordVPN US (Dallas + Seattle).
+- In this environment, HTML category pages contain stable product cards/links (`/us/en/p/...`) suitable for listing extraction.
 
 ## Contributing
 
