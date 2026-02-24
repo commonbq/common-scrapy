@@ -76,8 +76,8 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 | [`lululemon_listing`](#lululemon_listing) | Active | bootstrap | lululemon listing spider via Next.js `__NEXT_DATA__`. |
 | [`jcpenney_listing`](#jcpenney_listing) | Active | api | JCPenney listing spider via search API bootstrap endpoint. |
 | [`dillards_listing`](#dillards_listing) | Experimental | bootstrap | Dillard's listing spider via `window.__INITIAL_STATE__`. |
-| [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | markdown/html | Bloomingdale's listing spider via `r.jina.ai` mirror parsing. |
-| [`qvc_listing`](#qvc_listing) | Experimental | markdown/html | QVC listing spider via `r.jina.ai` markdown mirror from category pages. |
+| [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | markdown/html | Bloomingdale's listing spider via mirror/HTML parsing (migration in progress). |
+| [`qvc_listing`](#qvc_listing) | Experimental | markdown/html | QVC listing spider via markdown mirror from category pages. |
 | [`target_search`](#target_search) | Active | api | Target RedSky search API spider. |
 | [`target_listing`](#target_search) | Active (alias) | api | Deprecated alias of `target_search`. |
 | [`nordstrom_listing`](#nordstrom_listing) | Experimental | bootstrap + html | Nordstrom listing parser; often blocked/changed. |
@@ -185,7 +185,7 @@ Run example:
   "price_text": "$6.99",
   "url": "https://www.macys.com/shop/product/floral-stickers-laptop-74-pcs-stickers-for-water-bottles?ID=25092672",
   "image_url": "7/optimized/34925717_fpx.tif",
-  "source": "macys_xapi_discover_v1_page_via_r.jina.ai"
+  "source": "macys_xapi_discover_v1_page"
 }
 ```
 
@@ -307,7 +307,7 @@ Run example:
   "title": "lwya by kim gravel balm bae center core lip balm quad",
   "url": "https://www.qvc.com/lwya-by-kim-gravel-balm-bae-center-core-lip-balm-quad.product.A711188.html?sc=PRODFEED",
   "price": 29.98,
-  "source": "qvc_markdown_via_r.jina.ai"
+  "source": "qvc_markdown"
 }
 ```
 Run example:
@@ -345,6 +345,27 @@ Run examples:
 - `common-scrapy crawl costco_search -a q='coffee' -a max_pages=1 -O costco_search.jsonl`
 - `common-scrapy crawl costco_listing -a category='coffee' -a max_pages=1 -O costco_listing.jsonl`
 
+`costco_search` sample output:
+```json
+{
+  "item_id": "100617983",
+  "title": null,
+  "url": "https://www.costco.com/lavazza-espresso-gran-crema-whole-bean-coffee-medium-22-lbs.product.100617983.html",
+  "price": null,
+  "currency": null,
+  "brand": null,
+  "rating": null,
+  "reviews_count": null,
+  "image_url": null,
+  "source": "costco_html_links_fallback",
+  "raw": null,
+  "mode": "keyword",
+  "query": "coffee",
+  "page": 1,
+  "source_url": "https://www.costco.com/s?keyword=coffee"
+}
+```
+
 `costco_listing` sample output:
 ```json
 {
@@ -367,8 +388,8 @@ Run examples:
 ```
 
 Notes:
-- Browser automation service was unavailable in this runtime; HTML investigation was done via spider response + HTTP checks.
-- NordVPN city-specific routing is not available for US in this CLI build; validated on multiple US servers (e.g., `us9174`, `us8117`) and Costco listing HTML fallback returned items.
+- Browser HTML inspection confirms Costco search results render product links for `keyword=coffee` in this runtime.
+- NordVPN US city variance observed while testing `costco_search` (`max_pages=1`): Ashburn (`us9512`) → 24 items, Los Angeles (`us5864`) → 24 items, Dallas (`us8104`) → 0 items. HTML links fallback remains the most reliable extraction path.
 
 ### kroger_search / kroger_listing
 
@@ -519,7 +540,7 @@ Tested with `~/workspace/commonbq/common-scrapy/.venv` and `max_pages=1` unless 
 
 | Spider | Command args | Result |
 |---|---|---|
-| `bloomingdales_listing` | `-a category=women` | Completed but returned **0 items** (HTTP 400 from `r.jina.ai` mirror in this run). |
+| `bloomingdales_listing` | `-a category=women` | Completed but returned **0 items** (mirror endpoint returned HTTP 400 in this run). |
 | `dillards_listing` | `-a category=women` | Completed with **0 items** (HTTP 200, but no `products` found in `window.__INITIAL_STATE__` for tested page). |
 | `jcpenney_listing` | `-a category=womens_tops -a max_pages=1` | ✅ **48 items** scraped. |
 | `lululemon_listing` | `-a category=women-shorts -a max_pages=1` | ✅ **40 items** scraped. |
