@@ -34,6 +34,11 @@ class UltaSearchSpider(BaseSearchSpider):
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
+        # Ulta blocks/degrades requests through the shared datacenter proxy.
+        # Use direct requests (with residential/VPN egress handled outside Scrapy).
+        "DOWNLOADER_MIDDLEWARES": {
+            "common.middlewares.CommonDownloaderMiddleware": None,
+        },
     }
 
     def start_requests(self):

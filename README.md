@@ -219,8 +219,31 @@ Notes:
 
 ### ulta_search (keyword)
 
-Run example:
-`common-scrapy crawl ulta_search -a q=shampoo -a max_pages=1 -O ulta_search.jsonl`
+```json
+{
+  "item_id": "xlsImpprod15511061",
+  "sku_id": "2580410",
+  "brand": "Redken",
+  "title": "All Soft Shampoo",
+  "url": "https://www.ulta.com/p/all-soft-shampoo-xlsImpprod15511061?sku=2580410",
+  "image_url": "https://media.ultainc.com/i/ulta/2580410",
+  "list_price": "$11.00 - $56.00",
+  "rating": 4.1,
+  "reviews_count": 1601,
+  "is_sponsored": false,
+  "source": "ulta_dxl_graphql"
+}
+```
+
+Run examples:
+- GraphQL mode (recommended):
+  `common-scrapy crawl ulta_search -a q=shampoo -a mode=graphql -a max_pages=1 -O ulta_search.jsonl`
+- HTML fallback mode:
+  `common-scrapy crawl ulta_search -a q=shampoo -a mode=html -a max_pages=1 -O ulta_search_html.jsonl`
+
+Notes:
+- `mode=graphql` is the stable path for normalized fields.
+- For reliability, run via US residential egress/VPN (validated from NordVPN US Dallas).
 
 ### kohls_listing
 ```json
