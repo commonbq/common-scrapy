@@ -351,7 +351,31 @@ Run example:
 
 ### nordstrom_listing
 
-Currently blocked in this environment (often returns anti-bot interstitial / wrapper HTML), so sample output may be empty.
+HTML-first Nordstrom listing spider that extracts products from embedded hydration data (`window.__INITIAL_CONFIG__`, with `__NEXT_DATA__`/generic JSON fallback).
+
+Run example:
+`common-scrapy crawl nordstrom_listing -a category=women -a max_pages=1 -O nordstrom_listing.jsonl`
+
+Sample output:
+```json
+{
+  "category": "women",
+  "product_id": 3865966,
+  "name": "Pure Luxe Underwire T-Shirt Bra",
+  "brand": "Natori",
+  "price": 29.6,
+  "url": "https://www.nordstrom.com/s/natori-pure-luxe-underwire-t-shirt-bra/3865966",
+  "image": "https://n.nordstrommedia.com/it/0777d4b6-d7ef-4809-84a5-36fe4da01aff.jpeg",
+  "rating": 4.5,
+  "reviews_count": 1715
+}
+```
+
+Validation notes (2026-02-25):
+- Browser check showed live product cards rendering on `https://www.nordstrom.com/browse/women`.
+- Confirmed while connected to NordVPN US cities: **Ashburn**, **Seattle**, and **Dallas**.
+- `nordstrom_listing` (`category=women`, `max_pages=1`) returned **81 items** in this environment.
+- One run hit an initial `502 Bad Gateway` but recovered via retry and completed successfully.
 
 ### nordstromrack_listing
 
