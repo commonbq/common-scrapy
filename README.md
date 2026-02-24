@@ -77,6 +77,7 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 | [`jcpenney_listing`](#jcpenney_listing) | Active | api | JCPenney listing spider via search API bootstrap endpoint. |
 | [`dillards_listing`](#dillards_listing) | Experimental | bootstrap | Dillard's listing spider via `window.__INITIAL_STATE__`. |
 | [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | markdown/html | Bloomingdale's listing spider via `r.jina.ai` mirror parsing. |
+| [`qvc_listing`](#qvc_listing) | Experimental | markdown/html | QVC listing spider via `r.jina.ai` markdown mirror from category pages. |
 | [`target_search`](#target_search) | Active | api | Target RedSky search API spider. |
 | [`target_listing`](#target_search) | Active (alias) | api | Deprecated alias of `target_search`. |
 | [`nordstrom_listing`](#nordstrom_listing) | Experimental | bootstrap + html | Nordstrom listing parser; often blocked/changed. |
@@ -299,6 +300,19 @@ Run example:
 Run example:
 `common-scrapy crawl bloomingdales_listing -a category=women -a max_pages=1 -O bloomingdales_listing.jsonl`
 
+### qvc_listing
+```json
+{
+  "item_id": "A711188",
+  "title": "lwya by kim gravel balm bae center core lip balm quad",
+  "url": "https://www.qvc.com/lwya-by-kim-gravel-balm-bae-center-core-lip-balm-quad.product.A711188.html?sc=PRODFEED",
+  "price": 29.98,
+  "source": "qvc_markdown_via_r.jina.ai"
+}
+```
+Run example:
+`common-scrapy crawl qvc_listing -a category=beauty -a max_pages=1 -O qvc_listing.jsonl`
+
 ### target_search
 ```json
 {
@@ -463,6 +477,7 @@ Tested with `~/workspace/commonbq/common-scrapy/.venv` and `max_pages=1` unless 
 | `jcpenney_listing` | `-a category=womens_tops -a max_pages=1` | ✅ **48 items** scraped. |
 | `lululemon_listing` | `-a category=women-shorts -a max_pages=1` | ✅ **40 items** scraped. |
 | `anthropologie_listing` | `-a category=women -a max_pages=1` | Completed with **0 items** (blocked/denied response pattern). |
+| `qvc_listing` | `-a category=beauty -a max_pages=1` | ✅ **109 items** scraped via markdown mirror. |
 
 Raw test artifacts (logs + JSON outputs) were written under `/tmp/spider-tests/` during verification.
 
