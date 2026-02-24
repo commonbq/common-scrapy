@@ -76,6 +76,7 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 | [`lululemon_listing`](#lululemon_listing) | Active | bootstrap | lululemon listing spider via Next.js `__NEXT_DATA__`. |
 | [`jcpenney_listing`](#jcpenney_listing) | Active | api | JCPenney listing spider via search API bootstrap endpoint. |
 | [`dillards_listing`](#dillards_listing) | Experimental | bootstrap | Dillard's listing spider via `window.__INITIAL_STATE__`. |
+| [`poshmark_listing`](#poshmark_listing) | Experimental | bootstrap | Poshmark listing spider via `window.__INITIAL_STATE__` category grid data. |
 | [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | markdown/html | Bloomingdale's listing spider via mirror/HTML parsing (migration in progress). |
 | [`qvc_listing`](#qvc_listing) | Experimental | markdown/html | QVC listing spider via markdown mirror from category pages. |
 | [`target_search`](#target_search) | Active | api | Target RedSky search API spider. |
@@ -296,6 +297,26 @@ Run example:
 ### dillards_listing
 Run example:
 `common-scrapy crawl dillards_listing -a category=women -a max_pages=1 -O dillards_listing.jsonl`
+
+### poshmark_listing
+```json
+{
+  "category": "women",
+  "item_id": "62bdd4097028ec9dd68ee867",
+  "title": "Size Large solid black yoga pants by Canta Bella",
+  "brand": "Canta Bella",
+  "url": "https://poshmark.com/listing/Size-Large-solid-black-yoga-pants-by-Canta-Bella-62bdd4097028ec9dd68ee867",
+  "price": 11.0,
+  "currency": "USD",
+  "source": "poshmark_bootstrap_initial_state"
+}
+```
+Run example:
+`common-scrapy crawl poshmark_listing -a category=women -a max_pages=1 -O poshmark_listing.jsonl`
+
+Notes:
+- Verified while connected to NordVPN US endpoints (Seattle and Los Angeles).
+- Category pages expose `window.__INITIAL_STATE__` with listing records at `$_category.gridData.data`.
 
 ### bloomingdales_listing
 Run example:
@@ -564,6 +585,7 @@ Tested with `~/workspace/commonbq/common-scrapy/.venv` and `max_pages=1` unless 
 |---|---|---|
 | `bloomingdales_listing` | `-a category=women` | Completed but returned **0 items** (mirror endpoint returned HTTP 400 in this run). |
 | `dillards_listing` | `-a category=women` | Completed with **0 items** (HTTP 200, but no `products` found in `window.__INITIAL_STATE__` for tested page). |
+| `poshmark_listing` | `-a category=women -a max_pages=1` | ✅ **48 items** scraped from `$_category.gridData.data` in `window.__INITIAL_STATE__`. |
 | `jcpenney_listing` | `-a category=womens_tops -a max_pages=1` | ✅ **48 items** scraped. |
 | `lululemon_listing` | `-a category=women-shorts -a max_pages=1` | ✅ **40 items** scraped. |
 | `anthropologie_listing` | `-a category=women -a max_pages=1` | Completed with **0 items** (blocked/denied response pattern). |
