@@ -72,6 +72,11 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 | [`sephora_listing`](#sephora_listing) | Experimental | api | Sephora listing via `/api/v2/catalog/categories/<slug>/seo`. |
 | [`stockx_listing`](#stockx_listing) | Experimental | bootstrap + html | StockX listing via `__NEXT_DATA__` bootstrap. |
 | [`fashionnova_listing`](#fashionnova_listing) | Active | api + html | Fashion Nova listing via Shopify Storefront GraphQL with HTML fallback. |
+| [`anthropologie_listing`](#anthropologie_listing) | Experimental | api + html | Anthropologie listing spider (API + HTML fallback). |
+| [`lululemon_listing`](#lululemon_listing) | Active | bootstrap | lululemon listing spider via Next.js `__NEXT_DATA__`. |
+| [`jcpenney_listing`](#jcpenney_listing) | Active | api | JCPenney listing spider via search API bootstrap endpoint. |
+| [`dillards_listing`](#dillards_listing) | Experimental | bootstrap | Dillard's listing spider via `window.__INITIAL_STATE__`. |
+| [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | markdown/html | Bloomingdale's listing spider via `r.jina.ai` mirror parsing. |
 | [`target_search`](#target_search) | Active | api | Target RedSky search API spider. |
 | [`target_listing`](#target_search) | Active (alias) | api | Deprecated alias of `target_search`. |
 | [`nordstrom_listing`](#nordstrom_listing) | Experimental | bootstrap + html | Nordstrom listing parser; often blocked/changed. |
@@ -274,6 +279,26 @@ Run examples:
 - `common-scrapy crawl fashionnova_listing -a category=women -a max_pages=1 -O fashionnova_listing.jsonl`
 - `common-scrapy crawl fashionnova_listing -a category=women -a mode=html -a max_pages=1 -O fashionnova_listing_html.jsonl`
 
+### anthropologie_listing
+Run example:
+`common-scrapy crawl anthropologie_listing -a category=women -a max_pages=1 -O anthropologie_listing.jsonl`
+
+### lululemon_listing
+Run example:
+`common-scrapy crawl lululemon_listing -a category=women-shorts -a max_pages=1 -O lululemon_listing.jsonl`
+
+### jcpenney_listing
+Run example:
+`common-scrapy crawl jcpenney_listing -a category=womens_tops -a max_pages=1 -O jcpenney_listing.jsonl`
+
+### dillards_listing
+Run example:
+`common-scrapy crawl dillards_listing -a category=women -a max_pages=1 -O dillards_listing.jsonl`
+
+### bloomingdales_listing
+Run example:
+`common-scrapy crawl bloomingdales_listing -a category=women -a max_pages=1 -O bloomingdales_listing.jsonl`
+
 ### target_search
 ```json
 {
@@ -404,6 +429,20 @@ Run example:
 Notes:
 - Verified in browser and direct HTTP while connected to NordVPN US (Dallas + Seattle).
 - In this environment, HTML category pages contain stable product cards/links (`/us/en/p/...`) suitable for listing extraction.
+
+## Local validation (2026-02-24)
+
+Tested with `~/workspace/commonbq/common-scrapy/.venv` and `max_pages=1` unless noted.
+
+| Spider | Command args | Result |
+|---|---|---|
+| `bloomingdales_listing` | `-a category=women` | Completed but returned **0 items** (HTTP 400 from `r.jina.ai` mirror in this run). |
+| `dillards_listing` | `-a category=women` | Completed with **0 items** (HTTP 200, but no `products` found in `window.__INITIAL_STATE__` for tested page). |
+| `jcpenney_listing` | `-a category=womens_tops -a max_pages=1` | ✅ **48 items** scraped. |
+| `lululemon_listing` | `-a category=women-shorts -a max_pages=1` | ✅ **40 items** scraped. |
+| `anthropologie_listing` | `-a category=women -a max_pages=1` | Completed with **0 items** (blocked/denied response pattern). |
+
+Raw test artifacts (logs + JSON outputs) were written under `/tmp/spider-tests/` during verification.
 
 ## Contributing
 
