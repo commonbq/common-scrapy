@@ -81,6 +81,7 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 | [`target_search`](#target_search) | Active | api | Target RedSky search API spider. |
 | [`target_listing`](#target_search) | Active (alias) | api | Deprecated alias of `target_search`. |
 | [`nordstrom_listing`](#nordstrom_listing) | Experimental | bootstrap + html | Nordstrom listing parser; often blocked/changed. |
+| [`nordstromrack_listing`](#nordstromrack_listing) | Experimental | playwright + html | Nordstrom Rack listing spider via rendered category pages. |
 | [`bestbuy_search`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | Best Buy search via Playwright + Apollo cache extract. |
 | [`bestbuy_listing`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | Best Buy listing via Playwright + Apollo cache extract. |
 | [`costco_search`](#costco_search--costco_listing) | Active | bootstrap + html | Costco keyword search with state extraction + fallback. |
@@ -330,6 +331,27 @@ Run example:
 ### nordstrom_listing
 
 Currently blocked in this environment (often returns anti-bot interstitial / wrapper HTML), so sample output may be empty.
+
+### nordstromrack_listing
+
+Playwright-rendered listing spider for Nordstrom Rack category pages.
+
+Run example:
+`common-scrapy crawl nordstromrack_listing -a category=dresses -a max_pages=1 -O nordstromrack_listing.jsonl`
+
+Sample output:
+```json
+{
+  "category": "dresses",
+  "product_id": "8210770",
+  "name": "One-Shoulder Front Twist A-Line Gown",
+  "url": "https://www.nordstromrack.com/s/marina-one-shoulder-front-twist-a-line-gown/8210770?origin=category-personalizedsort&breadcrumb=Home%2FWomen%2FClothing%2FDresses",
+  "image": "https://n.nordstrommedia.com/it/b91a2122-b716-4559-b990-4fc031eed7ca.jpeg?h=368&w=240&dpr=2",
+  "source_url": "https://www.nordstromrack.com/shop/women/clothing/dresses?page=1",
+  "page": 1,
+  "mode": "listing"
+}
+```
 
 ### bestbuy_search / bestbuy_listing
 
