@@ -169,6 +169,27 @@ Run example:
 
 ### homedepot_search (keyword; Apollo bootstrap)
 
+```json
+{
+  "item_id": "204663533",
+  "sku": "1000024249",
+  "brand": "Husky",
+  "title": "Screwdriver Set (2-Piece)",
+  "model": "246340020",
+  "url": "https://www.homedepot.com/p/Husky-Screwdriver-Set-2-Piece-246340020/204663533",
+  "image_url": "https://images.thdstatic.com/productImages/08052130-f21b-4366-93a8-9faecad0ba34/svn/husky-screwdriver-sets-246340020-64_300.jpg",
+  "price": 6.97,
+  "original_price": 6.97,
+  "rating": 4.63,
+  "reviews_count": 227,
+  "source": "homedepot_apollo_bootstrap",
+  "mode": "keyword",
+  "query": "screwdriver",
+  "category_url": null,
+  "page": 1
+}
+```
+
 Run example:
 `common-scrapy crawl homedepot_search -a q='screwdriver' -a max_pages=1 -O homedepot_search.jsonl`
 
