@@ -164,8 +164,28 @@ Run example:
 
 ### ebay_listing (category; bootstrap/model-state)
 
+```json
+{
+  "item_id": null,
+  "title": "Apple MacBook Air 13.3'' (256GB SSD, Apple M1, 8GB RAM) Laptop - Space Gray - MGN63LL/A (2020)",
+  "url": "https://www.ebay.com/p/9055828714",
+  "price": null,
+  "currency": null,
+  "image_url": "https://i.ebayimg.com/images/g/vtYAAOSwA3tnk8aQ/s-l400.webp",
+  "source": "ebay_jsonld_fallback",
+  "mode": "category",
+  "category_url": "https://www.ebay.com/b/Laptops-Netbooks/175672/bn_1648276",
+  "page": 1,
+  "source_url": "https://www.ebay.com/b/Laptops-Netbooks/175672/bn_1648276?_ipg=60&_pgn=1"
+}
+```
+
 Run example:
 `common-scrapy crawl ebay_listing -a category='laptops' -a max_pages=1 -O ebay_listing.jsonl`
+
+Notes:
+- Proxy-rendered category HTML may omit `__NEXT_DATA__` and serve unquoted `type=application/ld+json` blocks.
+- Spider now parses `ItemList`/`Product` JSON-LD fallback in that HTML mode.
 
 ### homedepot_search (keyword; Apollo bootstrap)
 

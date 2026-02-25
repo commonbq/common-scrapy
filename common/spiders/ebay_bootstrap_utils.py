@@ -8,7 +8,7 @@ from typing import Any, Iterable
 def extract_next_data(html: str) -> dict[str, Any] | None:
     """Return parsed __NEXT_DATA__ payload when present."""
     m = re.search(
-        r'<script[^>]*id=["\']__NEXT_DATA__["\'][^>]*>(?P<json>.*?)</script>',
+        r"<script[^>]*\bid=(?:['\"])?__NEXT_DATA__(?:['\"])?[^>]*>(?P<json>.*?)</script>",
         html or "",
         flags=re.DOTALL | re.IGNORECASE,
     )
@@ -23,7 +23,7 @@ def extract_next_data(html: str) -> dict[str, Any] | None:
 def extract_json_ld_products(html: str) -> Iterable[dict[str, Any]]:
     """Best-effort fallback for Product entries in application/ld+json blocks."""
     for m in re.finditer(
-        r'<script[^>]*type=["\']application/ld\+json["\'][^>]*>(?P<json>.*?)</script>',
+        r"<script[^>]*\btype=(?:['\"])?application/ld\+json(?:['\"])?[^>]*>(?P<json>.*?)</script>",
         html or "",
         flags=re.DOTALL | re.IGNORECASE,
     ):
@@ -36,22 +36,38 @@ def extract_json_ld_products(html: str) -> Iterable[dict[str, Any]]:
             continue
 
         for node in _iter_jsonld_nodes(obj):
-            if not isinstance(node, dict) or node.get("@type") != "Product":
+            if not isinstance(node, dict):
                 continue
-            offers = node.get("offers", {})
-            if isinstance(offers, list):
-                offers = offers[0] if offers else {}
 
-            url = node.get("url")
-            yield {
-                "item_id": _extract_item_id(url),
-                "title": node.get("name"),
-                "url": url,
-                "price": _coerce_num((offers or {}).get("price")),
-                "currency": (offers or {}).get("priceCurrency"),
-                "image_url": node.get("image", [None])[0] if isinstance(node.get("image"), list) else node.get("image"),
-                "source": "ebay_jsonld_fallback",
-            }
+            # Product node directly.
+            if node.get("@type") == "Product":
+                product_nodes = [node]
+            # ItemList often wraps products under itemListElement[].item.
+            elif node.get("@type") == "ItemList" and isinstance(node.get("itemListElement"), list):
+                product_nodes = []
+                for el in node.get("itemListElement", []):
+                    if isinstance(el, dict):
+                        cand = el.get("item") if isinstance(el.get("item"), dict) else el
+                        if isinstance(cand, dict) and cand.get("@type") == "Product":
+                            product_nodes.append(cand)
+            else:
+                product_nodes = []
+
+            for p in product_nodes:
+                offers = p.get("offers", {})
+                if isinstance(offers, list):
+                    offers = offers[0] if offers else {}
+
+                url = p.get("url")
+                yield {
+                    "item_id": _extract_item_id(url),
+                    "title": p.get("name"),
+                    "url": url,
+                    "price": _coerce_num((offers or {}).get("price")),
+                    "currency": (offers or {}).get("priceCurrency"),
+                    "image_url": p.get("image", [None])[0] if isinstance(p.get("image"), list) else p.get("image"),
+                    "source": "ebay_jsonld_fallback",
+                }
 
 
 def extract_items_from_next_data(next_data: dict[str, Any]) -> list[dict[str, Any]]:
