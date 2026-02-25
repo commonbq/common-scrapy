@@ -46,10 +46,20 @@ class AmazonListingSpider(BaseListingSpider):
                 continue
 
             title = (card.css("h2 a span::text").get() or card.css("h2 span::text").get() or "").strip()
-            product_url = response.urljoin(card.css("h2 a::attr(href)").get() or "")
+            product_href = (
+                card.css("h2 a::attr(href)").get()
+                or card.css("a.a-link-normal.s-no-outline::attr(href)").get()
+                or card.css(f'a[href*="/dp/{asin}"]::attr(href)').get()
+            )
+            product_url = response.urljoin(product_href) if product_href else f"https://www.amazon.com/dp/{asin}"
             image_url = card.css("img.s-image::attr(src)").get()
             rating_text = (card.css("span.a-icon-alt::text").get() or "").strip()
-            reviews_text = (card.css("span.a-size-base.s-underline-text::text").get() or "").strip()
+            reviews_text = (
+                card.css('a[href*="#customerReviews"] span::text').get()
+                or card.css('span[aria-label$="ratings"]::text').get()
+                or card.css("span.a-size-base.s-underline-text::text").get()
+                or ""
+            ).strip()
             price_whole = (card.css("span.a-price-whole::text").get() or "").strip()
             price_fraction = (card.css("span.a-price-fraction::text").get() or "").strip()
 
@@ -95,5 +105,12 @@ class AmazonListingSpider(BaseListingSpider):
         return float(match.group(1)) if match else None
 
     def _extract_int(self, text: str) -> int | None:
-        cleaned = re.sub(r"[^\d]", "", text)
+        compact = text.replace(",", "").strip().lower()
+        short = re.search(r"(\d+(?:\.\d+)?)\s*([km])", compact)
+        if short:
+            base = float(short.group(1))
+            mult = 1_000 if short.group(2) == "k" else 1_000_000
+            return int(base * mult)
+
+        cleaned = re.sub(r"[^\d]", "", compact)
         return int(cleaned) if cleaned else None

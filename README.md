@@ -124,6 +124,20 @@ Notes:
 - Uses Amazon search query URLs (`/s?k=...`) for category shortcuts.
 - If a page returns no cards, spider logs a warning with URL/title to help diagnose layout/response changes.
 
+```json
+{
+  "asin": "B00008BFZH",
+  "title": "Snap Circuits Jr. SC-100 Electronics Exploration Kit, Over 100 Projects, Full Color Project Manual, 28 Parts, STEM Educational Toy for Kids 8 +",
+  "url": "https://www.amazon.com/Snap-Circuits-SC-100-Electronics-Exploration/dp/B00008BFZH/ref=sr_1_1?...",
+  "image_url": "https://m.media-amazon.com/images/I/91THy3rMlCL._AC_UY218_.jpg",
+  "price": 29.98,
+  "rating": 4.8,
+  "reviews_count": 28851,
+  "is_prime": false,
+  "is_sponsored": false
+}
+```
+
 Run example:
 `common-scrapy crawl amazon_listing -a category=electronics -a max_pages=1 -O amazon_cat.jsonl`
 
