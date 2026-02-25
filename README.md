@@ -176,6 +176,8 @@ Run example:
 Notes:
 - Uses the same HTML parser as `walmart_listing`.
 - Walmart frequently serves a **"Robot or human?"** challenge depending on IP/proxy reputation; when blocked, no items are emitted and the spider logs a warning.
+- Browser inspection on `https://www.walmart.com/search?q=laptop` confirmed product cards + price blocks are present in rendered HTML in this runtime.
+- NordVPN US city checks (`max_pages=1`, `q=laptop`) returned stable output across Ashburn (`us11646`), Dallas (`us9147`), and Los Angeles (`us5381`) with 13 items each.
 
 ### ebay_search (keyword; bootstrap/model-state)
 ```json
