@@ -457,6 +457,24 @@ Run example:
 Run example:
 `common-scrapy crawl qvc_listing -a category=beauty -a max_pages=1 -O qvc_listing.jsonl`
 
+### saksfifthavenue_listing (category)
+```json
+{
+  "item_id": "0400026449047",
+  "title": "Prada Washed Re Nylon Rain Jacket",
+  "url": "https://www.saksfifthavenue.com/product/prada-washed-re-nylon-rain-jacket-0400026449047.html?dwvar_0400026449047_color=GREY",
+  "price": 6200.0,
+  "price_text": "$6,200",
+  "source": "saksfifthavenue_direct_html"
+}
+```
+Run example:
+`common-scrapy crawl saksfifthavenue_listing -a category=women -a max_pages=1 -O saksfifthavenue_listing.jsonl`
+
+Notes:
+- Validated from this runtime on 2026-02-25: `scrapy crawl saksfifthavenue_listing -a category=women -a max_pages=1` returned 24 items.
+- Test was repeated with NordVPN disconnected and still returned 24 items.
+
 ### target_search
 ```json
 {
