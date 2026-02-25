@@ -87,8 +87,9 @@ def crawl(spider: str, category: str | None, scrapy_args: tuple[str, ...]) -> No
     spider_cls = purpose_built[spider]
     available_categories = _available_categories(spider_cls)
     has_category_in_scrapy_args = any(arg.startswith("category=") for arg in scrapy_args)
+    requires_category = bool(getattr(spider_cls, "require_category_arg", True))
 
-    if available_categories and not category and not has_category_in_scrapy_args:
+    if requires_category and available_categories and not category and not has_category_in_scrapy_args:
         raise click.ClickException(
             f"Spider '{spider}' requires --category=<category>. "
             f"Available categories: {', '.join(available_categories)}"

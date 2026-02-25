@@ -142,9 +142,26 @@ Run example:
 `common-scrapy crawl walmart_listing -a category=electronics -a max_pages=1 -O walmart.jsonl`
 
 ### walmart_search (keyword)
+```json
+{
+  "item_id": "13542163431",
+  "title": "ASUS Vivobook Go 15.6” Laptop, Intel i3-N305, 8GB, 256GB, Windows 11 Home in S mode, Cool Silver, E1504GA-WS35",
+  "url": "https://www.walmart.com/sp/track?.../ip/.../13542163431",
+  "image_url": "https://i5.walmartimages.com/seo/...jpeg?odnHeight=288&odnWidth=288&odnBg=FFFFFF",
+  "price": 269.0,
+  "rating": null,
+  "reviews_count": null,
+  "is_sponsored": false,
+  "source": "walmart_html"
+}
+```
 
 Run example:
 `common-scrapy crawl walmart_search -a q=laptop -a max_pages=1 -O walmart_search.jsonl`
+
+Notes:
+- Uses the same HTML parser as `walmart_listing`.
+- Walmart frequently serves a **"Robot or human?"** challenge depending on IP/proxy reputation; when blocked, no items are emitted and the spider logs a warning.
 
 ### ebay_search (keyword; bootstrap/model-state)
 ```json
