@@ -174,8 +174,33 @@ Run example:
 
 ### homedepot_listing (category; Apollo bootstrap)
 
+```json
+{
+  "item_id": "301959988",
+  "sku": "1002646248",
+  "brand": "Husky",
+  "title": "6-in-1 Screwdriver",
+  "model": "132660011",
+  "url": "https://www.homedepot.com/p/Husky-6-in-1-Screwdriver-132660011/301959988",
+  "image_url": "https://images.thdstatic.com/productImages/53cb5fbd-cf6c-40c6-b395-9c42f4b36510/svn/husky-multi-bit-screwdrivers-132660011-64_300.jpg",
+  "price": 8.97,
+  "original_price": 8.97,
+  "rating": 4.7222,
+  "reviews_count": 781,
+  "source": "homedepot_apollo_bootstrap",
+  "mode": "category",
+  "query": null,
+  "category_url": "https://www.homedepot.com/b/Tools-Hand-Tools/Screwdrivers-Nut-Drivers/Screwdrivers/N-5yc1vZc25y",
+  "page": 1
+}
+```
+
 Run example:
 `common-scrapy crawl homedepot_listing -a category='screwdrivers' -a max_pages=1 -O homedepot_listing.jsonl`
+
+Notes:
+- Category page responses are currently flaky behind anti-bot/proxy variance; retrying or changing US egress may be required.
+- When listing mode is blocked, `homedepot_search` still returns the same normalized product schema and can be used as a fallback signal.
 
 ### macys_listing
 ```json
