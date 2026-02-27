@@ -27,7 +27,7 @@ from common.spiders.retail_bootstrap_utils import (
 
 class CostcoSearchSpider(BaseSearchSpider):
     name = "costco_search"
-    allowed_domains = ["costco.com", "www.costco.com", "r.jina.ai"]
+    allowed_domains = ["costco.com", "www.costco.com"]
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
@@ -88,7 +88,7 @@ class CostcoSearchSpider(BaseSearchSpider):
         seen: set[str] = set()
         for m in pat.finditer(html or ""):
             url = m.group("url")
-            if "/s?" in url or url in seen:
+            if "/s?" in url or ".product." not in url or url in seen:
                 continue
             seen.add(url)
             item_id = None

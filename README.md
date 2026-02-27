@@ -60,7 +60,7 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 | [`amazon_search`](#amazon_search) | Active | html | Amazon keyword search spider. |
 | [`amazon_listing`](#amazon_listing-category) | Active | html | Amazon category listing spider (category shortcuts). |
 | [`walmart_search`](#walmart_search-keyword) | Active | api + html | Walmart keyword search spider. |
-| [`walmart_listing`](#walmart_listing-category) | Active | api + html | Walmart category listing spider with anti-bot fallback. |
+| [`walmart_listing`](#walmart_listing-category) | Active | api + html | Walmart category listing spider (direct API+HTML flow). |
 | [`ebay_search`](#ebay_search-keyword-bootstrapmodel-state) | Flaky | bootstrap + html | eBay keyword search via `__NEXT_DATA__` + fallback. |
 | [`ebay_listing`](#ebay_listing-category-bootstrapmodel-state) | Flaky | bootstrap + html | eBay category listing via `__NEXT_DATA__` + fallback. |
 | [`homedepot_search`](#homedepot_search-keyword-apollo-bootstrap) | Active | bootstrap + html | Home Depot keyword search via Apollo state. |
@@ -77,8 +77,9 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 | [`jcpenney_listing`](#jcpenney_listing) | Active | api | JCPenney listing spider via search API bootstrap endpoint. |
 | [`dillards_listing`](#dillards_listing) | Experimental | bootstrap | Dillard's listing spider via `window.__INITIAL_STATE__`. |
 | [`poshmark_listing`](#poshmark_listing) | Experimental | bootstrap | Poshmark listing spider via `window.__INITIAL_STATE__` category grid data. |
-| [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | markdown/html | Bloomingdale's listing spider via mirror/HTML parsing (migration in progress). |
-| [`qvc_listing`](#qvc_listing) | Experimental | markdown/html | QVC listing spider via markdown mirror from category pages. |
+| [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | html + nuxt-state | Bloomingdale's listing spider via direct HTML/state extraction (resilient parser). |
+| [`qvc_listing`](#qvc_listing) | Experimental | html | QVC listing spider via direct category HTML parsing. |
+| [`saksfifthavenue_listing`](#saksfifthavenue_listing-category) | Experimental | html | Saks Fifth Avenue listing spider via direct category HTML cards. |
 | [`target_search`](#target_search) | Active | api | Target RedSky search API spider. |
 | [`target_listing`](#target_listing) | Active (alias) | api | Deprecated alias of `target_search`. |
 | [`nordstrom_listing`](#nordstrom_listing) | Experimental | bootstrap + html | Nordstrom listing parser; often blocked/changed. |
@@ -441,6 +442,16 @@ Notes:
 - Category pages expose `window.__INITIAL_STATE__` with listing records at `$_category.gridData.data`.
 
 ### bloomingdales_listing
+```json
+{
+  "item_id": "1234567",
+  "title": "AQUA ...",
+  "url": "https://www.bloomingdales.com/shop/product/...",
+  "price": 198.0,
+  "price_text": "$198.00",
+  "source": "bloomingdales_direct_html"
+}
+```
 Run example:
 `common-scrapy crawl bloomingdales_listing -a category=women -a max_pages=1 -O bloomingdales_listing.jsonl`
 
@@ -451,7 +462,7 @@ Run example:
   "title": "lwya by kim gravel balm bae center core lip balm quad",
   "url": "https://www.qvc.com/lwya-by-kim-gravel-balm-bae-center-core-lip-balm-quad.product.A711188.html?sc=PRODFEED",
   "price": 29.98,
-  "source": "qvc_markdown"
+  "source": "qvc_direct_html"
 }
 ```
 Run example:
@@ -472,8 +483,8 @@ Run example:
 `common-scrapy crawl saksfifthavenue_listing -a category=women -a max_pages=1 -O saksfifthavenue_listing.jsonl`
 
 Notes:
-- Validated from this runtime on 2026-02-25: `scrapy crawl saksfifthavenue_listing -a category=women -a max_pages=1` returned 24 items.
-- Test was repeated with NordVPN disconnected and still returned 24 items.
+- Saks is heavily anti-bot protected (DataDome). Direct HTTP requests may return `403` challenge pages from some runtimes/IPs.
+- Treat this spider as **best-effort/experimental**; verify output quality in your target environment before relying on unattended runs.
 
 ### target_search
 ```json
@@ -812,22 +823,6 @@ Run example:
 Notes:
 - Verified in browser and direct HTTP while connected to NordVPN US (Dallas + Seattle).
 - In this environment, HTML category pages contain stable product cards/links (`/us/en/p/...`) suitable for listing extraction.
-
-## Local validation (2026-02-24)
-
-Tested with `~/workspace/commonbq/common-scrapy/.venv` and `max_pages=1` unless noted.
-
-| Spider | Command args | Result |
-|---|---|---|
-| `bloomingdales_listing` | `-a category=women` | Completed but returned **0 items** (mirror endpoint returned HTTP 400 in this run). |
-| `dillards_listing` | `-a category=women` | Completed with **0 items** (HTTP 200, but no `products` found in `window.__INITIAL_STATE__` for tested page). |
-| `poshmark_listing` | `-a category=women -a max_pages=1` | ✅ **48 items** scraped from `$_category.gridData.data` in `window.__INITIAL_STATE__`. |
-| `jcpenney_listing` | `-a category=womens_tops -a max_pages=1` | ✅ **48 items** scraped. |
-| `lululemon_listing` | `-a category=women-shorts -a max_pages=1` | ✅ **40 items** scraped. |
-| `anthropologie_listing` | `-a category=women -a max_pages=1` | Completed with **0 items** (blocked/denied response pattern). |
-| `qvc_listing` | `-a category=beauty -a max_pages=1` | ✅ **109 items** scraped via markdown mirror. |
-
-Raw test artifacts (logs + JSON outputs) were written under `/tmp/spider-tests/` during verification.
 
 ## Contributing
 

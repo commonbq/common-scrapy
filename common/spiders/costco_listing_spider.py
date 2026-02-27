@@ -23,7 +23,7 @@ from common.spiders.retail_bootstrap_utils import (
 
 class CostcoListingSpider(BaseListingSpider):
     name = "costco_listing"
-    allowed_domains = ["costco.com", "www.costco.com", "r.jina.ai"]
+    allowed_domains = ["costco.com", "www.costco.com"]
 
     custom_settings = {"HTTPERROR_ALLOW_ALL": True, "DOWNLOAD_DELAY": 1}
 

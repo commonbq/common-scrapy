@@ -23,7 +23,7 @@ from common.spiders.retail_bootstrap_utils import (
 
 class KrogerListingSpider(BaseListingSpider):
     name = "kroger_listing"
-    allowed_domains = ["kroger.com", "www.kroger.com", "r.jina.ai"]
+    allowed_domains = ["kroger.com", "www.kroger.com"]
 
     custom_settings = {"HTTPERROR_ALLOW_ALL": True, "DOWNLOAD_DELAY": 1}
 

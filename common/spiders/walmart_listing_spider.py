@@ -11,7 +11,7 @@ from common.spiders.base_listing_spider import BaseListingSpider
 
 class WalmartListingSpider(BaseListingSpider):
     name = "walmart_listing"
-    allowed_domains = ["walmart.com", "www.walmart.com", "r.jina.ai"]
+    allowed_domains = ["walmart.com", "www.walmart.com"]
 
     custom_settings = {
         "CONCURRENT_REQUESTS_PER_DOMAIN": 8,
@@ -77,15 +77,7 @@ class WalmartListingSpider(BaseListingSpider):
 
     def parse(self, response: scrapy.http.Response):
         if self._is_blocked(response):
-            page = int(response.meta.get("page", 1))
-            original_url = response.meta.get("original_url") or response.url
-            fallback_url = f"https://r.jina.ai/http://{original_url.replace('https://', '').replace('http://', '')}"
-            self.logger.info("Walmart blocked direct request. Falling back to %s", fallback_url)
-            yield scrapy.Request(
-                fallback_url,
-                callback=self.parse_jina,
-                meta={"page": page, "original_url": original_url},
-            )
+            self.logger.warning("Walmart blocked direct request (status=%s) for %s", response.status, response.url)
             return
 
         cards = response.css("[data-item-id][data-type='items'], div[data-item-id]")
@@ -164,60 +156,6 @@ class WalmartListingSpider(BaseListingSpider):
             meta["proxy"] = PROXY
 
         yield scrapy.Request(next_url, callback=self.parse, meta=meta)
-
-    def parse_jina(self, response: scrapy.http.Response):
-        text = response.text
-
-        chunks = re.split(r"\n(?=\[### )", text)
-        for chunk in chunks:
-            m = re.search(r"\[###\s+(.*?)\]\((https?://[^)]+)\)", chunk)
-            if not m:
-                continue
-
-            title = (m.group(1) or "").strip()
-            url = (m.group(2) or "").strip()
-            if "walmart.com" not in url:
-                continue
-
-            item_id_match = re.search(r"/ip/[^/]+/(\d+)", url)
-            item_id = item_id_match.group(1) if item_id_match else None
-
-            image_match = re.search(r"!\[Image[^\]]*\]\((https?://[^)]+)\)", chunk)
-            price = self._extract_price(chunk)
-            rating = self._extract_float(chunk)
-
-            reviews_count = None
-            reviews_match = re.search(r"(\d[\d,]*)\s+reviews", chunk, flags=re.I)
-            if reviews_match:
-                reviews_count = self._extract_int(reviews_match.group(1))
-
-            yield {
-                "item_id": item_id,
-                "title": title,
-                "url": url,
-                "image_url": image_match.group(1) if image_match else None,
-                "price": price,
-                "rating": rating,
-                "reviews_count": reviews_count,
-                "is_sponsored": bool(re.search(r"\bSponsored\b", chunk, flags=re.I)),
-                "source": "r.jina.ai_fallback",
-            }
-
-        current_page = int(response.meta.get("page", 1))
-        if current_page >= self.max_pages:
-            return
-
-        original_url = response.meta.get("original_url")
-        if not original_url:
-            return
-
-        next_original = self._with_page(original_url, current_page + 1)
-        next_fallback = f"https://r.jina.ai/http://{next_original.replace('https://', '').replace('http://', '')}"
-        yield scrapy.Request(
-            next_fallback,
-            callback=self.parse_jina,
-            meta={"page": current_page + 1, "original_url": next_original},
-        )
 
     def _is_blocked(self, response: scrapy.http.Response) -> bool:
         body_lower = (response.text or "").lower()
