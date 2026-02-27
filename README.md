@@ -55,46 +55,48 @@ All extra args are forwarded to `scrapy crawl` unchanged (feeds, settings overri
 
 These live under `common/spiders/*_listing_spider.py` and are purpose-built per retailer.
 
-| Spider Name | Status | Method | Description |
-|---|---|---|---|
-| [`amazon_search`](#amazon_search) | Active | html | Amazon keyword search spider. |
-| [`amazon_listing`](#amazon_listing-category) | Active | html | Amazon category listing spider (category shortcuts). |
-| [`walmart_search`](#walmart_search-keyword) | Active | api + html | Walmart keyword search spider. |
-| [`walmart_listing`](#walmart_listing-category) | Active | api + html | Walmart category listing spider (direct API+HTML flow). |
-| [`ebay_search`](#ebay_search-keyword-bootstrapmodel-state) | Flaky | bootstrap + html | eBay keyword search via `__NEXT_DATA__` + fallback. |
-| [`ebay_listing`](#ebay_listing-category-bootstrapmodel-state) | Flaky | bootstrap + html | eBay category listing via `__NEXT_DATA__` + fallback. |
-| [`homedepot_search`](#homedepot_search-keyword-apollo-bootstrap) | Active | bootstrap + html | Home Depot keyword search via Apollo state. |
-| [`homedepot_listing`](#homedepot_listing-category-apollo-bootstrap) | Flaky | bootstrap + html | Home Depot category listing via Apollo state. |
-| [`macys_listing`](#macys_listing) | Active | api | Macy’s listing via xapi endpoint (with fallback routing). |
-| [`ulta_search`](#ulta_search-keyword) | Flaky | api | Ulta keyword search via GraphQL. |
-| [`ulta_listing`](#ulta_listing-category) | Active | api + html | Ulta category listing (GraphQL default, HTML fallback mode). |
-| [`kohls_listing`](#kohls_listing) | Experimental | api | Kohl’s listing via `/web/catalog/...` API. |
-| [`sephora_listing`](#sephora_listing) | Experimental | api | Sephora listing via `/api/v2/catalog/categories/<slug>/seo`. |
-| [`stockx_listing`](#stockx_listing) | Experimental | bootstrap + html | StockX listing via `__NEXT_DATA__` bootstrap. |
-| [`fashionnova_listing`](#fashionnova_listing) | Active | api + html | Fashion Nova listing via Shopify Storefront GraphQL with HTML fallback. |
-| [`anthropologie_listing`](#anthropologie_listing) | Experimental | api + html | Anthropologie listing spider (API + HTML fallback). |
-| [`lululemon_listing`](#lululemon_listing) | Active | bootstrap | lululemon listing spider via Next.js `__NEXT_DATA__`. |
-| [`jcpenney_listing`](#jcpenney_listing) | Active | api | JCPenney listing spider via search API bootstrap endpoint. |
-| [`dillards_listing`](#dillards_listing) | Experimental | bootstrap | Dillard's listing spider via `window.__INITIAL_STATE__`. |
-| [`poshmark_listing`](#poshmark_listing) | Experimental | bootstrap | Poshmark listing spider via `window.__INITIAL_STATE__` category grid data. |
-| [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | html + nuxt-state | Bloomingdale's listing spider via direct HTML/state extraction (resilient parser). |
-| [`qvc_listing`](#qvc_listing) | Experimental | html | QVC listing spider via direct category HTML parsing. |
-| [`saksfifthavenue_listing`](#saksfifthavenue_listing-category) | Experimental | html | Saks Fifth Avenue listing spider via direct category HTML cards. |
-| [`target_search`](#target_search) | Active | api | Target RedSky search API spider. |
-| [`target_listing`](#target_listing) | Active (alias) | api | Deprecated alias of `target_search`. |
-| [`nordstrom_listing`](#nordstrom_listing) | Experimental | bootstrap + html | Nordstrom listing parser; often blocked/changed. |
-| [`nordstromrack_listing`](#nordstromrack_listing) | Experimental | playwright + html | Nordstrom Rack listing spider via rendered category pages. |
-| [`bestbuy_search`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | Best Buy search via Playwright + Apollo cache extract. |
-| [`bestbuy_listing`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | Best Buy listing via Playwright + Apollo cache extract. |
-| [`costco_search`](#costco_search--costco_listing) | Active | bootstrap + html | Costco keyword search with state extraction + fallback. |
-| [`costco_listing`](#costco_search--costco_listing) | Active | bootstrap + html | Costco category listing with state extraction + fallback. |
-| [`kroger_search`](#kroger_search--kroger_listing) | Active | bootstrap + html | Kroger keyword search with state extraction + fallback. |
-| [`kroger_listing`](#kroger_search--kroger_listing) | Flaky | bootstrap + html | Kroger category listing with search fallback path. |
-| [`bathandbodyworks_listing`](#bathandbodyworks_listing) | Experimental | api + bootstrap + html | Bath & Body Works multi-mode listing spider. |
-| [`sallybeauty_listing`](#sallybeauty_listing) | Experimental | api + bootstrap + html | Sally Beauty multi-mode listing spider. |
-| [`maccosmetics_listing`](#maccosmetics_listing) | Experimental | api + bootstrap + html | MAC Cosmetics multi-mode listing spider. |
-| [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | e.l.f. Cosmetics multi-mode listing spider. |
-| [`ae_listing`](#ae_listing) | Experimental | html | American Eagle listing spider via category-page product cards. |
+| Spider Name | Status | Method | Description | Number of items output | Spider Categories | Sample output |
+|---|---|---|---|---|---|---|
+| [`amazon_search`](#amazon_search) | Active | html | Amazon keyword search spider. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`amazon_listing`](#amazon_listing-category) | Active | html | Amazon category listing spider (category shortcuts). | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`walmart_search`](#walmart_search-keyword) | Active | api + html | Walmart keyword search spider. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`walmart_listing`](#walmart_listing-category) | Active | api + html | Walmart category listing spider (direct API+HTML flow). | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`ebay_search`](#ebay_search-keyword-bootstrapmodel-state) | Flaky | bootstrap + html | eBay keyword search via `__NEXT_DATA__` + fallback. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`ebay_listing`](#ebay_listing-category-bootstrapmodel-state) | Flaky | bootstrap + html | eBay category listing via `__NEXT_DATA__` + fallback. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`homedepot_search`](#homedepot_search-keyword-apollo-bootstrap) | Active | bootstrap + html | Home Depot keyword search via Apollo state. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`homedepot_listing`](#homedepot_listing-category-apollo-bootstrap) | Flaky | bootstrap + html | Home Depot category listing via Apollo state. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`macys_listing`](#macys_listing) | Active | api | Macy’s listing via xapi endpoint (with fallback routing). | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`ulta_search`](#ulta_search-keyword) | Flaky | api | Ulta keyword search via GraphQL. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`ulta_listing`](#ulta_listing-category) | Active | api + html | Ulta category listing (GraphQL default, HTML fallback mode). | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`kohls_listing`](#kohls_listing) | Experimental | api | Kohl’s listing via `/web/catalog/...` API. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`sephora_listing`](#sephora_listing) | Experimental | api | Sephora listing via `/api/v2/catalog/categories/<slug>/seo`. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`stockx_listing`](#stockx_listing) | Experimental | bootstrap + html | StockX listing via `__NEXT_DATA__` bootstrap. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`fashionnova_listing`](#fashionnova_listing) | Active | api + html | Fashion Nova listing via Shopify Storefront GraphQL with HTML fallback. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`anthropologie_listing`](#anthropologie_listing) | Experimental | api + html | Anthropologie listing spider (API + HTML fallback). | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`lululemon_listing`](#lululemon_listing) | Active | bootstrap | lululemon listing spider via Next.js `__NEXT_DATA__`. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`jcpenney_listing`](#jcpenney_listing) | Active | api | JCPenney listing spider via search API bootstrap endpoint. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`dillards_listing`](#dillards_listing) | Experimental | bootstrap | Dillard's listing spider via `window.__INITIAL_STATE__`. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`poshmark_listing`](#poshmark_listing) | Experimental | bootstrap | Poshmark listing spider via `window.__INITIAL_STATE__` category grid data. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | html + nuxt-state | Bloomingdale's listing spider via direct HTML/state extraction (resilient parser). | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`qvc_listing`](#qvc_listing) | Experimental | html | QVC listing spider via direct category HTML parsing. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`saksfifthavenue_listing`](#saksfifthavenue_listing-category) | Experimental | html | Saks Fifth Avenue listing spider via direct category HTML cards. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`target_search`](#target_search) | Active | api | Target RedSky search API spider. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`target_listing`](#target_listing) | Active (alias) | api | Deprecated alias of `target_search`. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`nordstrom_listing`](#nordstrom_listing) | Experimental | bootstrap + html | Nordstrom listing parser; often blocked/changed. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`nordstromrack_listing`](#nordstromrack_listing) | Experimental | playwright + html | Nordstrom Rack listing spider via rendered category pages. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`bestbuy_search`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | Best Buy search via Playwright + Apollo cache extract. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`bestbuy_listing`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | Best Buy listing via Playwright + Apollo cache extract. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`costco_search`](#costco_search--costco_listing) | Active | bootstrap + html | Costco keyword search with state extraction + fallback. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`costco_listing`](#costco_search--costco_listing) | Active | bootstrap + html | Costco category listing with state extraction + fallback. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`kroger_search`](#kroger_search--kroger_listing) | Active | bootstrap + html | Kroger keyword search with state extraction + fallback. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`kroger_listing`](#kroger_search--kroger_listing) | Flaky | bootstrap + html | Kroger category listing with search fallback path. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`bathandbodyworks_listing`](#bathandbodyworks_listing) | Experimental | api + bootstrap + html | Bath & Body Works multi-mode listing spider. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`sallybeauty_listing`](#sallybeauty_listing) | Experimental | api + bootstrap + html | Sally Beauty multi-mode listing spider. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`maccosmetics_listing`](#maccosmetics_listing) | Experimental | api + bootstrap + html | MAC Cosmetics multi-mode listing spider. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | e.l.f. Cosmetics multi-mode listing spider. | Varies* | See spider section | See [Sample output](#sample-output) |
+| [`ae_listing`](#ae_listing) | Experimental | html | American Eagle listing spider via category-page product cards. | Varies* | See spider section | See [Sample output](#sample-output) |
+
+*`Number of items output` reflects recent local smoke runs (typically `max_pages=1`) and can vary by location, anti-bot behavior, and site changes.*
 
 Many listing spiders accept `-a category=<name>` shortcuts (in addition to `-a category_url=<url>`), including Amazon, Walmart, eBay, Home Depot, Best Buy, Costco, and Kroger.
 
