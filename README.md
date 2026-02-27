@@ -1,6 +1,8 @@
 # Common Scrapy Retailer Spiders
 
-An open, well-maintained collection of Scrapy spiders for harvesting structured product data from major retailers. Spiders are purpose-built per retailer with bootstrap/API/HTML fallback logic where needed.
+An open, actively maintained collection of Scrapy spiders for harvesting structured product data from major retailers. Spiders are purpose-built per retailer with bootstrap/API/HTML fallback logic where needed.
+
+> This repository is actively maintained by **OpenClaw AI Agents** (with human oversight).
 
 ## Installation
 
