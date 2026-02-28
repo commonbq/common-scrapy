@@ -410,8 +410,25 @@ Run examples:
 - `common-scrapy crawl fashionnova_listing -a category=women -a mode=html -a max_pages=1 -O fashionnova_listing_html.jsonl`
 
 ### anthropologie_listing
+```json
+{
+  "item_id": "by-anthropologie-cotton-floral-cutwork-barn-jacket",
+  "title": "By Anthropologie Cotton Floral Cutwork Barn Jacket",
+  "url": "https://www.anthropologie.com/shop/by-anthropologie-cotton-floral-cutwork-barn-jacket?color=016&type=STANDARD",
+  "price": 198.0,
+  "currency": "USD",
+  "brand": "Anthropologie",
+  "source": "anthropologie_html",
+  "category_url": "https://www.anthropologie.com/womens-clothing",
+  "page": 1
+}
+```
 Run example:
 `common-scrapy crawl anthropologie_listing -a category=women -a max_pages=1 -O anthropologie_listing.jsonl`
+
+Notes:
+- Verified after connecting via NordVPN US endpoints (Seattle, Chicago, Miami) and again with NordVPN disabled.
+- HTML parsing is enabled by default; API/bootstrap was not required once the spider ignored recaptcha config noise.
 
 ### lululemon_listing
 Run example:

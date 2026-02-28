@@ -23,7 +23,22 @@ class AnthropologieListingSpider(BaseListingSpider):
         yield scrapy.Request(self.resolve_target_url(), callback=self.parse_html, meta={"page": 1})
 
     def parse_html(self, response: scrapy.http.Response):
-        if response.status >= 400 or "captcha" in (response.text or "").lower() or "access denied" in (response.text or "").lower():
+        text = response.text or ""
+        lowered = text.lower()
+
+        # Anthropologie pages commonly include recaptcha config JS even when the page is valid,
+        # so a raw "captcha" keyword check causes false positives and drops real product pages.
+        blocked_markers = (
+            "access denied",
+            "verify you are human",
+            "request blocked",
+            "temporarily unavailable",
+            "bot detection",
+            "challenge-platform",
+        )
+        looks_blocked = response.status >= 400 or any(marker in lowered for marker in blocked_markers)
+
+        if looks_blocked and "/shop/" not in lowered:
             self.logger.warning("Anthropologie blocked/denied (status=%s)", response.status)
             return
 
