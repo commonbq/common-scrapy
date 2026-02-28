@@ -90,8 +90,8 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 | [`bestbuy_listing`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | Best Buy listing via Playwright + Apollo cache extract. | 10 (skipped2) | laptops, tvs, headphones, monitors, cell-phones | `{"item_id":"6572184","title":"Samsung - Galaxy Book4 15.6\" FHD Laptop - Intel Core 7- 16GB Memory - 512GB SSD - Silver","url":"https://www.bestbuy.com/product/samsung-galaxy-bo...` |
 | [`costco_search`](#costco_search--costco_listing) | Active | bootstrap + html | Costco keyword search with state extraction + fallback. | 0 (skipped2) | - | `{}` |
 | [`costco_listing`](#costco_search--costco_listing) | Active | bootstrap + html | Costco category listing with state extraction + fallback. | 24 (ok) | coffee, water, snacks, vitamins, laundry, paper-products | `{"item_id":"100501081","title":null,"url":"https://www.costco.com/starbucks-pike-place-medium-roast-k-cup-72-count.product.100501081.html","price":null,"currency":null,"brand":n...` |
-| [`kroger_search`](#kroger_search--kroger_listing) | Active | bootstrap + html | Kroger keyword search with state extraction + fallback. | 0 (skipped2) | - | `{}` |
-| [`kroger_listing`](#kroger_search--kroger_listing) | Flaky | bootstrap + html | Kroger category listing with search fallback path. | 24 (skipped2) | cereal, milk, eggs, bread, coffee, snacks | `{"item_id":"general-mills-cinnamon-toast-crunch-giant-size-cereal","title":null,"url":"https://www.kroger.com/p/general-mills-cinnamon-toast-crunch-giant-size-cereal/00016000126...` |
+| [`kroger_search`](#kroger_search--kroger_listing) | Active | bootstrap + html | Kroger keyword search with state extraction + fallback. | 27 (ok) | - | `{'item_id':'kroger-2-reduced-fat-milk-gallon','url':'https://www.kroger.com/p/kroger-2-reduced-fat-milk-gallon/0001111041700','source':'kroger_html_links_fallback'}` |
+| [`kroger_listing`](#kroger_search--kroger_listing) | Active | bootstrap + html | Kroger category listing with search fallback path. | 31 (ok) | cereal, milk, eggs, bread, coffee, snacks | `{'item_id':'kroger-vitamin-d-whole-milk-gallon','url':'https://www.kroger.com/p/kroger-vitamin-d-whole-milk-gallon/0001111040101','source':'kroger_html_links_fallback'}` |
 | [`bathandbodyworks_listing`](#bathandbodyworks_listing) | Experimental | api + bootstrap + html | Bath & Body Works multi-mode listing spider. | 0 (ok) | body-care, home-fragrance, hand-soaps | `{}` |
 | [`sallybeauty_listing`](#sallybeauty_listing) | Experimental | api + bootstrap + html | Sally Beauty multi-mode listing spider. | 1 (ok) | hair-color, hair-care, nails | `{"item_id":null,"title":"What's the issue? We’re dedicated to keeping SallyBeauty.com safe from bots and other malicious software. Sometimes a technical issue with your internet...` |
 | [`maccosmetics_listing`](#maccosmetics_listing) | Experimental | api + bootstrap + html | MAC Cosmetics multi-mode listing spider. | 66 (ok) | face, lips, eyes | `{"item_id":"13854","title":"4.8/5 ( 452 ) Lustreglass Sheer-Shine Lipstick Sheer Coverage, Glossy/High-Shine Finish, Infused With Raspberry Seed/Organic Extra Virgin Olive Oils ...` |
@@ -706,16 +706,16 @@ These spiders try bootstrap state extraction first (`__NEXT_DATA__` / `__APOLLO_
   "mode": "keyword",
   "query": "milk",
   "page": 1,
-  "source_url": "https://www.kroger.com/search?query=milk&searchType=default_search"
+  "source_url": "https://www.kroger.com/search?query=milk&searchType=default_search&sort=bestMatch"
 }
 ```
 
 `kroger_listing` sample output:
 ```json
 {
-  "item_id": "general-mills-cinnamon-toast-crunch-giant-size-cereal",
+  "item_id": "kroger-vitamin-d-whole-milk-gallon",
   "title": null,
-  "url": "https://www.kroger.com/p/general-mills-cinnamon-toast-crunch-giant-size-cereal/0001600012685",
+  "url": "https://www.kroger.com/p/kroger-vitamin-d-whole-milk-gallon/0001111040101",
   "price": null,
   "currency": null,
   "brand": null,
@@ -724,18 +724,20 @@ These spiders try bootstrap state extraction first (`__NEXT_DATA__` / `__APOLLO_
   "image_url": null,
   "source": "kroger_html_links_fallback",
   "mode": "category",
-  "category_url": "https://www.kroger.com/pl/cereal/09002"
+  "category_url": "https://www.kroger.com/pl/milk/02001",
+  "page": 1,
+  "source_url": "https://www.kroger.com/pl/milk/02001"
 }
 ```
 
 Run examples:
 - `common-scrapy crawl kroger_search -a q='milk' -a max_pages=1 -O kroger_search.jsonl`
-- `common-scrapy crawl kroger_listing -a category='cereal' -a max_pages=1 -O kroger_listing.jsonl`
+- `common-scrapy crawl kroger_listing -a category='milk' -a max_pages=1 -O kroger_listing.jsonl`
 
 Notes:
-- Browser check on `https://www.kroger.com/pl/cereal/09002` showed "No products loaded" in both NordVPN US Ashburn and Dallas sessions.
-- `kroger_search` still returns keyword results via HTML link fallback (`source=kroger_html_links_fallback`).
-- `kroger_listing` may still return 0 items even after search fallback, depending on location/session.
+- Added sort variant retries (`bestMatch`, `sale`) to mitigate zero-item responses from Akamai caches; `kroger_search` now emits ~27 items via HTML link fallback even when bootstrap state is stripped.
+- Listing spider now captures escaped `/p/slug` references that Kroger injects inside serialized props, so categories like `milk` return ~31 URLs before the search fallback is considered.
+- NordVPN US egress (New York, Chicago, Los Angeles, Dallas, Miami, Seattle) continued to return 403s/timeouts during curl checks; disconnecting NordVPN and routing through the configured BRD residential proxy remains the only reliable path in this environment.
 
 ### bathandbodyworks_listing
 ```json

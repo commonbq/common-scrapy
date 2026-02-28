@@ -122,9 +122,10 @@ class KrogerListingSpider(BaseListingSpider):
         return slug or None
 
     def _extract_product_links(self, html: str):
-        pat = re.compile(r'href=["\'](?P<url>/p/[^"\']+)["\']', re.I)
+        direct_pat = re.compile(r'href=["\'](?P<url>/p/[^"\']+)["\']', re.I)
+        escaped_pat = re.compile(r'\\/p\\/(?P<id>[A-Za-z0-9_-]+)')
         seen: set[str] = set()
-        for m in pat.finditer(html or ""):
+        for m in direct_pat.finditer(html or ""):
             rel = m.group("url")
             url = f"https://www.kroger.com{rel.split('?')[0]}"
             if url in seen:
@@ -142,5 +143,25 @@ class KrogerListingSpider(BaseListingSpider):
                 "reviews_count": None,
                 "image_url": None,
                 "source": "kroger_html_links_fallback",
+                "raw": None,
+            }
+
+        for m in escaped_pat.finditer(html or ""):
+            pid = m.group("id")
+            url = f"https://www.kroger.com/p/{pid}"
+            if url in seen:
+                continue
+            seen.add(url)
+            yield {
+                "item_id": pid,
+                "title": None,
+                "url": url,
+                "price": None,
+                "currency": None,
+                "brand": None,
+                "rating": None,
+                "reviews_count": None,
+                "image_url": None,
+                "source": "kroger_html_links_escaped_fallback",
                 "raw": None,
             }
