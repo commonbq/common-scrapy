@@ -95,7 +95,7 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 | [`bathandbodyworks_listing`](#bathandbodyworks_listing) | Experimental | api + bootstrap + html | Bath & Body Works multi-mode listing spider. | 0 (ok) | body-care, home-fragrance, hand-soaps | `{}` |
 | [`sallybeauty_listing`](#sallybeauty_listing) | Experimental | api + bootstrap + html | Sally Beauty multi-mode listing spider. | 1 (ok) | hair-color, hair-care, nails | `{"item_id":null,"title":"What's the issue? We’re dedicated to keeping SallyBeauty.com safe from bots and other malicious software. Sometimes a technical issue with your internet...` |
 | [`maccosmetics_listing`](#maccosmetics_listing) | Experimental | api + bootstrap + html | MAC Cosmetics multi-mode listing spider. | 66 (ok) | face, lips, eyes | `{"item_id":"13854","title":"4.8/5 ( 452 ) Lustreglass Sheer-Shine Lipstick Sheer Coverage, Glossy/High-Shine Finish, Infused With Raspberry Seed/Organic Extra Virgin Olive Oils ...` |
-| [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | e.l.f. Cosmetics multi-mode listing spider. | 0 (ok) | face, eyes, lips | `{}` |
+| [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | e.l.f. Cosmetics multi-mode listing spider. | 6 (ok) | face, eyes, lips | `{'item_id':'300261','title':'Soft Glam Satin Concealer','url':'https://www.elfcosmetics.com/soft-glam-satin-concealer/300262.html','price':9.0,'brand':'e.l.f. Cosmetics','source':'elfcosmetics_preloaded_state'...}` |
 | [`ae_listing`](#ae_listing) | Experimental | html | American Eagle listing spider via category-page product cards. | 30 (ok) | women-tops, women-jeans, men-tops | `{"item_id":"1457_2980_808","title":null,"url":"https://www.ae.com/us/en/p/women/hoodies-sweatshirts/crew-neck-sweatshirts/ae-big-hug-v-neck-sweatshirt/1457_2980_808","price":nul...` |
 
 *`Number of items output` reflects recent local smoke runs (typically `max_pages=1`) and can vary by location, anti-bot behavior, and site changes.*
@@ -799,7 +799,7 @@ Run examples:
   "price": 10.0,
   "currency": "USD",
   "brand": "e.l.f. Cosmetics",
-  "source": "elfcosmetics_internal_api|elfcosmetics_html"
+  "source": "elfcosmetics_internal_api|elfcosmetics_preloaded_state|elfcosmetics_html"
 }
 ```
 Run examples:

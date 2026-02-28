@@ -37,6 +37,25 @@ def extract_apollo_state(html: str) -> dict[str, Any] | None:
         return None
 
 
+def extract_preloaded_state(html: str) -> dict[str, Any] | None:
+    m = re.search(r'"__PRELOADED_STATE__"\s*:\s*\{', html or "")
+    if not m:
+        m = re.search(r'(?:window\.)?__PRELOADED_STATE__\s*=\s*\{', html or "")
+    if not m:
+        return None
+
+    start = m.end() - 1
+    obj_text = _extract_balanced_braces(html, start)
+    if not obj_text:
+        return None
+
+    try:
+        obj = json.loads(obj_text)
+        return obj if isinstance(obj, dict) else None
+    except Exception:
+        return None
+
+
 def extract_json_ld_products(html: str):
     scripts = re.findall(
         r'<script[^>]*type=["\']application/ld\+json["\'][^>]*>(.*?)</script>',

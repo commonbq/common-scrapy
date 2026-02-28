@@ -12,6 +12,7 @@ from common.spiders.retail_bootstrap_utils import (
     extract_items_from_unknown_state,
     extract_json_ld_products,
     extract_next_data,
+    extract_preloaded_state,
 )
 
 
@@ -100,6 +101,13 @@ class ElfcosmeticsListingSpider(BaseListingSpider):
         ap = extract_apollo_state(html)
         if ap:
             for item in extract_items_from_unknown_state(ap, source="elfcosmetics_apollo_state"):
+                yielded += 1
+                item.update({"mode": "category_bootstrap", "category_url": response.meta.get("origin"), "page": page})
+                yield item
+
+        preloaded = extract_preloaded_state(html)
+        if preloaded:
+            for item in extract_items_from_unknown_state(preloaded, source="elfcosmetics_preloaded_state"):
                 yielded += 1
                 item.update({"mode": "category_bootstrap", "category_url": response.meta.get("origin"), "page": page})
                 yield item
