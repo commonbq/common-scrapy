@@ -68,7 +68,10 @@ class CommonDownloaderMiddleware:
         return s
 
     def process_request(self, request, spider):
-        # Force all outgoing requests through configured proxy.
+        # Force all outgoing requests through configured proxy unless explicitly disabled.
+        if request.meta.get("disable_proxy"):
+            request.meta.pop("proxy", None)
+            return None
         if PROXY and not request.meta.get("proxy"):
             request.meta["proxy"] = PROXY
         return None

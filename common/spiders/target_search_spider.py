@@ -71,7 +71,7 @@ class TargetSearchSpider(BaseListingSpider):
         return scrapy.Request(
             url,
             headers=headers,
-            meta={"handle_httpstatus_all": True},
+            meta={"handle_httpstatus_all": True, "disable_proxy": True},
             callback=getattr(self, cb),
             dont_filter=dont_filter,
         )
@@ -115,7 +115,7 @@ class TargetSearchSpider(BaseListingSpider):
         return scrapy.Request(
             url,
             headers=headers,
-            meta={"handle_httpstatus_all": True},
+            meta={"handle_httpstatus_all": True, "disable_proxy": True},
             callback=self.parse_redsky,
             dont_filter=True,
         )
@@ -143,12 +143,19 @@ class TargetSearchSpider(BaseListingSpider):
         if not key:
             keys = re.findall(r'"key"\s*:\s*"([a-f0-9]{32})"', html, flags=re.I)
             key = keys[0] if keys else None
+        if not key:
+            # Recent Target pages embed the RedSky key inside escaped bootstrap
+            # JSON as apiKey, often as a longer token where the first 32 hex
+            # chars are the plp_search_v2 key.
+            keys = re.findall(r'apiKey\\":\\"([a-f0-9]{32,64})', html, flags=re.I)
+            if keys:
+                key = keys[0][:32]
 
         if not key:
             self.logger.warning(
                 "Could not discover Target RedSky key from HTML; trying known fallback key"
             )
-            key = "9f36aeafbe6070d7c5b2a22f2f63c6fd"
+            key = "9f36aeafbe60771e321a7cc95a781407"
 
         self._redsky_key = key
         yield self._make_redsky_request(offset=0)

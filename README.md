@@ -83,7 +83,7 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 | [`qvc_listing`](#qvc_listing) | Experimental | html | QVC listing spider via direct category HTML parsing. | 102 (ok) | beauty, fashion, home, kitchen | `{"item_id":"A711188","title":"lwya by kim gravel balm bae center core lip balm quad","url":"https://www.qvc.com/lwya-by-kim-gravel-balm-b...` |
 | [`saksfifthavenue_listing`](#saksfifthavenue_listing-category) | Experimental | html | Saks Fifth Avenue listing spider via direct category HTML cards. | 24 (ok) | women, men, shoes, beauty, handbags | `{"item_id":"0400026449047","title":"Prada Washed Re Nylon Rain Jacket","url":"https://www.saksfifthavenue.com/product/prada-washed-re-nyl...` |
 | [`target_search`](#target_search) | Active | api | Target RedSky search API spider. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
-| [`target_listing`](#target_listing) | Active (alias) | api | Deprecated alias of `target_search`. | 0 (ok) | - | `n/a` |
+| [`target_listing`](#target_listing) | Active (alias) | api | Deprecated alias of `target_search`. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
 | [`nordstrom_listing`](#nordstrom_listing) | Experimental | bootstrap + html | Nordstrom listing parser; often blocked/changed. | 0 (timeout2) | women, men, kids, beauty, home, designer, sale | `{}` |
 | [`nordstromrack_listing`](#nordstromrack_listing) | Experimental | playwright + html | Nordstrom Rack listing spider via rendered category pages. | 0 (skipped2) | dresses, women, men, shoes | `{}` |
 | [`bestbuy_search`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | Best Buy search via Playwright + Apollo cache extract. | 4 (skipped2) | - | `{"item_id":"6613879","title":"HP - 14\" Laptop - Intel Processor N150 2025 - 4GB Memory - 128GB UFS - Willow Green","url":"https://www.bestbuy.com/product/hp-14-laptop-intel-pro...` |
@@ -522,10 +522,11 @@ Sample output:
 Run example:
 `.venv/bin/scrapy crawl target_listing -a category=5xtc0 -a max_pages=1 -O target_listing.jsonl`
 
-Validation notes (2026-02-25):
-- Browser check confirmed product/category content renders for `https://www.target.com/c/women/-/N-5xtd3`.
-- Verified `target_listing` output while connected to NordVPN US cities: **Dallas**, **Seattle**, and **Ashburn**.
-- `target_listing` (`category=5xtc0`, `max_pages=1`) consistently returned **24 items** across those endpoints.
+Validation notes (2026-03-01):
+- Browser-control tool was unavailable during this run, so sorting behavior was validated via direct RedSky API probes (`sortBy`: `relevance`, `newest`, `PriceHigh`, `PriceLow`), all returning HTTP 200.
+- Fixed Target key extraction to parse escaped `apiKey` from bootstrap payload and use the first 32-hex chars for `plp_search_v2`.
+- Disabled proxy routing for Target spider requests (`disable_proxy`) because the configured proxy path returned RedSky 404 for this endpoint.
+- Verified `target_listing` (`category=5xtc0`, `max_pages=1`) returns **24 items** with NordVPN US cities **Ashburn** and **Dallas**, and also while NordVPN is disconnected.
 
 ### nordstrom_listing
 
