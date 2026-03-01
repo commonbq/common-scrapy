@@ -318,8 +318,10 @@ Run examples:
   `common-scrapy crawl ulta_listing -a category='shampoo' -a mode=html -a max_pages=1 -O ulta_html.jsonl`
 
 Notes:
+- GraphQL mode now retries once without `sort` when Ulta blocks sorted requests (e.g. `sort=new`, `sort=price_low`) before falling back to HTML.
 - `mode=html` is a fallback parser from rendered product cards and is useful when GraphQL responses are unstable.
 - HTML mode typically returns URL/title/image/price text first; GraphQL mode gives richer normalized fields (brand/rating/reviews/sponsored).
+- Validation (2026-03-01): NordVPN US Miami returned GraphQL data (`64` items, `source=ulta_dxl_graphql`) for `-a sort=new` via unsorted retry; with NordVPN disconnected Ulta returned `403` and `0` items.
 
 ### ulta_search (keyword)
 

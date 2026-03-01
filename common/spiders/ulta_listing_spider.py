@@ -43,13 +43,37 @@ class UltaListingSpider(BaseListingSpider):
         "breakpoint": "LG",
     }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._html_fallback_started = False
+
+
     def start_requests(self):
         mode = (getattr(self, "mode", None) or "graphql").strip().lower()
-        target = self.resolve_target_url()
+        target = self._target_with_sort(self.resolve_target_url())
+        meta = {
+            "mode": mode,
+            "target": target,
+            "cookiejar": self.name,
+            "disable_proxy": True,
+        }
+        yield scrapy.Request(
+            target,
+            callback=self._bootstrap_category_page,
+            headers=self._page_headers(),
+            meta=meta,
+            dont_filter=True,
+        )
+
+    def _bootstrap_category_page(self, response: scrapy.http.Response):
+        mode = response.meta.get("mode", "graphql")
+        target = response.meta.get("target") or self._target_with_sort(self.resolve_target_url())
 
         if mode == "html":
-            first = self._with_page(target, 1)
-            yield scrapy.Request(first, callback=self.parse_html_listing, meta=({"page": 1, "mode": "html", "origin": target}))
+            response.meta["origin"] = target
+            response.meta["page"] = response.meta.get("page") or 1
+            response.meta["mode"] = "html"
+            yield from self.parse_html_listing(response)
             return
 
         page_query = (
@@ -60,17 +84,32 @@ class UltaListingSpider(BaseListingSpider):
         )
         variables = {"moduleParams": {}, "url": {"path": target}}
         url = self._build_graphql_get_url(page_query, "Page", variables)
+        meta = {
+            "page": 1,
+            "mode": "graphql",
+            "category_url": target,
+            "cookiejar": response.meta.get("cookiejar"),
+            "disable_proxy": True,
+        }
         yield scrapy.Request(
             url,
             callback=self.parse_page_definition,
-            headers=self._headers(),
-            meta=({"page": 1, "mode": "graphql"}),
+            headers=self._headers(operation="Page", referer=target),
+            meta=meta,
+            dont_filter=True,
         )
 
     def parse_page_definition(self, response: scrapy.http.Response):
+
         payload = self._to_json(response)
         if not payload:
             self.logger.warning("Ulta Page query failed")
+            retry = self._build_unsorted_page_retry(response)
+            if retry is not None:
+                yield retry
+                return
+            for req in self._schedule_html_fallback(response):
+                yield req
             return
 
         modules = payload.get("data", {}).get("Page", {}).get("content", {}).get("modules", [])
@@ -83,24 +122,52 @@ class UltaListingSpider(BaseListingSpider):
 
         if not content_id:
             self.logger.warning("Could not locate ProductListingResults contentId")
+            retry = self._build_unsorted_page_retry(response)
+            if retry is not None:
+                yield retry
+                return
+            for req in self._schedule_html_fallback(response):
+                yield req
             return
 
-        first_url = self._build_noncached_url(content_id=content_id, page=1)
+        category_url = response.meta.get("category_url") or self._target_with_sort(self.resolve_target_url())
+        first_url = self._build_noncached_url(content_id=content_id, page=1, category_url=category_url)
         yield scrapy.Request(
             first_url,
             callback=self.parse_listing,
-            headers=self._headers(),
-            meta=({"content_id": content_id, "page": 1}),
+            headers=self._headers(operation="NonCachedPage", referer=category_url),
+            meta=({
+                "content_id": content_id,
+                "page": 1,
+                "disable_proxy": True,
+                "category_url": category_url,
+                "cookiejar": response.meta.get("cookiejar"),
+            }),
         )
 
     def parse_listing(self, response: scrapy.http.Response):
         payload = self._to_json(response)
         if not payload:
             self.logger.warning("Ulta NonCachedPage query failed for page=%s", response.meta.get("page"))
+            retry = self._build_unsorted_listing_retry(response)
+            if retry is not None:
+                yield retry
+                return
+            for req in self._schedule_html_fallback(response):
+                yield req
             return
 
         content = payload.get("data", {}).get("Page", {}).get("content", {})
         items = content.get("items", []) or []
+
+        if not items and int(response.meta.get("page", 1)) == 1:
+            retry = self._build_unsorted_listing_retry(response)
+            if retry is not None:
+                yield retry
+                return
+            for req in self._schedule_html_fallback(response):
+                yield req
+            return
 
         for item in items:
             action = item.get("action") or {}
@@ -121,7 +188,7 @@ class UltaListingSpider(BaseListingSpider):
                 "is_sponsored": bool(item.get("sponsored")),
                 "source": "ulta_dxl_graphql",
                 "mode": "category",
-                "category_url": self.resolve_target_url(),
+                "category_url": response.meta.get("category_url") or self.resolve_target_url(),
             }
 
         current_page = int(response.meta.get("page", 1))
@@ -130,12 +197,19 @@ class UltaListingSpider(BaseListingSpider):
 
         next_page = current_page + 1
         content_id = response.meta.get("content_id")
-        next_url = self._build_noncached_url(content_id=content_id, page=next_page)
+        category_url = response.meta.get("category_url") or self._target_with_sort(self.resolve_target_url())
+        next_url = self._build_noncached_url(content_id=content_id, page=next_page, category_url=category_url)
         yield scrapy.Request(
             next_url,
             callback=self.parse_listing,
-            headers=self._headers(),
-            meta=({"content_id": content_id, "page": next_page}),
+            headers=self._headers(operation="NonCachedPage", referer=category_url),
+            meta=({
+                "content_id": content_id,
+                "page": next_page,
+                "disable_proxy": True,
+                "category_url": category_url,
+                "cookiejar": response.meta.get("cookiejar"),
+            }),
         )
 
     def parse_html_listing(self, response: scrapy.http.Response):
@@ -195,11 +269,87 @@ class UltaListingSpider(BaseListingSpider):
         next_page = page + 1
         origin = response.meta.get("origin") or self.resolve_target_url()
         next_url = self._with_page(origin, next_page)
-        yield scrapy.Request(next_url, callback=self.parse_html_listing, meta=({"page": next_page, "mode": "html", "origin": origin}))
+        meta = {
+            "page": next_page,
+            "mode": "html",
+            "origin": origin,
+            "disable_proxy": True,
+            "cookiejar": response.meta.get("cookiejar"),
+        }
+        yield scrapy.Request(next_url, callback=self.parse_html_listing, meta=meta)
 
-    def _build_noncached_url(self, content_id: str, page: int) -> str:
-        base_path = self.resolve_target_url()
-        path = base_path if page == 1 else f"{base_path}&page={page}"
+
+    def _build_unsorted_page_retry(self, response: scrapy.http.Response):
+        if response.meta.get("unsorted_page_retry"):
+            return None
+        category_url = response.meta.get("category_url") or response.meta.get("target") or self._target_with_sort(self.resolve_target_url())
+        unsorted_url = self._without_sort(category_url)
+        if unsorted_url == category_url:
+            return None
+
+        page_query = (
+            'query Page($stagingHost: String, $previewOptions: JSON, $moduleParams: JSON, $url: JSON) '
+            '{ Page: Page(stagingHost: $stagingHost, previewOptions: $previewOptions, '
+            'moduleParams: $moduleParams, url: $url, deliveryKey: "SDK") '
+            '{ content customResponseAttributes meta __typename } }'
+        )
+        variables = {"moduleParams": {}, "url": {"path": unsorted_url}}
+        url = self._build_graphql_get_url(page_query, "Page", variables)
+        self.logger.info("Retrying Ulta Page query without sort parameter")
+        return scrapy.Request(
+            url,
+            callback=self.parse_page_definition,
+            headers=self._headers(operation="Page", referer=unsorted_url),
+            meta={
+                "page": 1,
+                "mode": "graphql",
+                "category_url": unsorted_url,
+                "cookiejar": response.meta.get("cookiejar"),
+                "disable_proxy": True,
+                "unsorted_page_retry": True,
+            },
+            dont_filter=True,
+        )
+
+    def _build_unsorted_listing_retry(self, response: scrapy.http.Response):
+        if response.meta.get("unsorted_listing_retry"):
+            return None
+        if int(response.meta.get("page", 1)) != 1:
+            return None
+        content_id = response.meta.get("content_id")
+        if not content_id:
+            return None
+
+        category_url = response.meta.get("category_url") or self._target_with_sort(self.resolve_target_url())
+        unsorted_url = self._without_sort(category_url)
+        if unsorted_url == category_url:
+            return None
+
+        self.logger.info("Retrying Ulta NonCachedPage query without sort parameter")
+        retry_url = self._build_noncached_url(content_id=content_id, page=1, category_url=unsorted_url)
+        return scrapy.Request(
+            retry_url,
+            callback=self.parse_listing,
+            headers=self._headers(operation="NonCachedPage", referer=unsorted_url),
+            meta={
+                "content_id": content_id,
+                "page": 1,
+                "disable_proxy": True,
+                "category_url": unsorted_url,
+                "cookiejar": response.meta.get("cookiejar"),
+                "unsorted_listing_retry": True,
+            },
+            dont_filter=True,
+        )
+
+    @staticmethod
+    def _without_sort(url: str) -> str:
+        parts = urlparse(url)
+        qs = parse_qs(parts.query)
+        qs.pop("sort", None)
+        return urlunparse(parts._replace(query=urlencode(qs, doseq=True)))
+    def _build_noncached_url(self, content_id: str, page: int, category_url: str) -> str:
+        path = self._with_page(category_url, page)
 
         query = (
             'query NonCachedPage($stagingHost: String, $previewOptions: JSON, $moduleParams: JSON) '
@@ -224,12 +374,73 @@ class UltaListingSpider(BaseListingSpider):
         }
         return f"https://www.ulta.com/dxl/graphql?{urlencode(params)}"
 
-    def _headers(self) -> dict:
-        return {
+    def _headers(self, operation: str | None = None, referer: str | None = None) -> dict:
+        headers = {
             "User-Agent": "Mozilla/5.0",
             "accept": "application/json,text/plain,*/*",
+            "accept-language": "en-US,en;q=0.9",
             "content-type": "application/json",
+            "apollo-require-preflight": "true",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-origin",
+            "sec-fetch-dest": "empty",
         }
+        if operation:
+            headers["x-apollo-operation-name"] = operation
+        if referer:
+            headers["Referer"] = referer
+        return headers
+
+    def _page_headers(self) -> dict:
+        return {
+            "User-Agent": "Mozilla/5.0",
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "accept-language": "en-US,en;q=0.9",
+        }
+
+    def _schedule_html_fallback(self, response: scrapy.http.Response):
+        if self._html_fallback_started:
+            return []
+        self._html_fallback_started = True
+        origin = response.meta.get("category_url") or response.meta.get("origin") or self._target_with_sort(self.resolve_target_url())
+        meta = {
+            "page": 1,
+            "mode": "html",
+            "origin": origin,
+            "disable_proxy": True,
+            "cookiejar": response.meta.get("cookiejar"),
+        }
+        request = scrapy.Request(
+            self._with_page(origin, 1),
+            callback=self.parse_html_listing,
+            meta=meta,
+            dont_filter=True,
+        )
+        return [request]
+
+    def _target_with_sort(self, target: str) -> str:
+        sort = (getattr(self, "sort", None) or "").strip().lower()
+        param = self._sort_param(sort)
+        if not param:
+            return target
+        parts = urlparse(target)
+        qs = parse_qs(parts.query)
+        qs["sort"] = [param]
+        return urlunparse(parts._replace(query=urlencode(qs, doseq=True)))
+
+    def _sort_param(self, sort: str) -> str | None:
+        order_map = {
+            "bestseller": "bestSeller",
+            "new": "newArrivals",
+            "price_low": "priceLowToHigh",
+            "price_high": "priceHighToLow",
+            "rating": "topRated",
+        }
+        if not sort:
+            return None
+        if sort in order_map.values():
+            return sort
+        return order_map.get(sort)
 
     def _to_json(self, response: scrapy.http.Response) -> dict | None:
         try:
