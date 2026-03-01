@@ -4,6 +4,8 @@ import json
 import re
 from typing import Any, Iterable
 
+from parsel import Selector
+
 
 def extract_next_data(html: str) -> dict[str, Any] | None:
     """Return parsed __NEXT_DATA__ payload when present."""
@@ -59,9 +61,13 @@ def extract_json_ld_products(html: str) -> Iterable[dict[str, Any]]:
                     offers = offers[0] if offers else {}
 
                 url = p.get("url")
+                item_id = _extract_item_id(url)
+                title = p.get("name")
+                if not _is_plausible_ebay_listing(item_id=item_id, title=title, url=url):
+                    continue
                 yield {
-                    "item_id": _extract_item_id(url),
-                    "title": p.get("name"),
+                    "item_id": item_id,
+                    "title": title,
                     "url": url,
                     "price": _coerce_num((offers or {}).get("price")),
                     "currency": (offers or {}).get("priceCurrency"),
@@ -69,6 +75,55 @@ def extract_json_ld_products(html: str) -> Iterable[dict[str, Any]]:
                     "source": "ebay_jsonld_fallback",
                 }
 
+
+
+
+def extract_items_from_html_cards(html: str) -> list[dict[str, Any]]:
+    """Fallback parser for server-rendered SRP cards (Marko HTML)."""
+    sel = Selector(text=html or "")
+    out: list[dict[str, Any]] = []
+    seen: set[tuple[str | None, str | None]] = set()
+
+    for card in sel.css("li.s-card"):
+        url = card.css("a.s-card__link::attr(href)").get()
+        title = " ".join(t.strip() for t in card.css("div.s-card__title span::text").getall() if t.strip())
+        if not title:
+            continue
+        if "opens in a new window" in title.lower():
+            title = re.sub(r"\s*Opens in a new window or tab\s*", "", title, flags=re.I).strip()
+
+        # usually first price is the main one
+        price_text = card.css("span.s-card__price::text").get()
+        currency = None
+        price = None
+        if price_text:
+            m = re.search(r"([£$€])?\s*([\d,]+(?:\.\d+)?)", price_text)
+            if m:
+                sym = m.group(1)
+                price = _coerce_num(m.group(2))
+                currency = {"$": "USD", "£": "GBP", "€": "EUR"}.get(sym)
+
+        item_id = _extract_item_id(url)
+        if not _is_plausible_ebay_listing(item_id=item_id, title=title, url=url):
+            continue
+
+        key = (item_id, title)
+        if key in seen:
+            continue
+        seen.add(key)
+
+        out.append({
+            "item_id": item_id,
+            "title": title,
+            "url": url,
+            "price": price,
+            "currency": currency,
+            "image_url": card.css("img.s-card__image::attr(src)").get(),
+            "seller": " ".join(t.strip() for t in card.css("div.su-card-container__attributes__secondary span.su-styled-text.primary.large::text").getall() if t.strip()) or None,
+            "source": "ebay_html_cards_fallback",
+        })
+
+    return out
 
 def extract_items_from_next_data(next_data: dict[str, Any]) -> list[dict[str, Any]]:
     """Walk unknown Next.js structure and normalize records that look like listings."""
@@ -195,6 +250,19 @@ def _extract_item_id(url: str | None) -> str | None:
         return None
     m = re.search(r"/itm/(\d+)", url)
     return m.group(1) if m else None
+
+
+def _is_plausible_ebay_listing(*, item_id: str | None, title: str | None, url: str | None) -> bool:
+    if not item_id:
+        return False
+    if not url or "/itm/" not in url:
+        return False
+    t = (title or "").strip().lower()
+    if not t or t in {"shop on ebay", "shop on ebay!"}:
+        return False
+    if "shop on ebay" in t and len(t) <= 20:
+        return False
+    return True
 
 
 def _iter_jsonld_nodes(obj: Any) -> Iterable[dict[str, Any]]:

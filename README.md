@@ -63,7 +63,7 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 | [`amazon_listing`](#amazon_listing-category) | Active | html | Amazon category listing spider (category shortcuts). | 22 (ok) | electronics, fashion, beauty, home-kitchen, toys-games, sports-outdoors, grocery, books | `{"asin":"B0DKDTBBF7","title":"2 Packs Electric Candle Lighters, Windproof Flameless USB Rechargeable Plasma Arc Long Lighter for Grill Fi...` |
 | [`walmart_search`](#walmart_search-keyword) | Active | api + html | Walmart keyword search spider. | 12 (ok) | - | `{"item_id":"13542163431","title":"ASUS Vivobook Go 15.6” Laptop, Intel i3-N305, 8GB, 256GB, Windows 11 Home in S mode, Cool Silver, E1504...` |
 | [`walmart_listing`](#walmart_listing-category) | Active | api + html | Walmart category listing spider (direct API+HTML flow). | 45 (ok) | electronics, home, clothing, beauty, toys, sports-and-outdoors, grocery | `{"item_id":"375041225","title":"Restaurado Apple iPhone 12 Restaurado - Desbloqueado para Cualquier Operador - 64GB Negro (Reacondicionad...` |
-| [`ebay_search`](#ebay_search-keyword-bootstrapmodel-state) | Flaky | bootstrap + html | eBay keyword search via `__NEXT_DATA__` + fallback. | 0 (ok) | - | `n/a` |
+| [`ebay_search`](#ebay_search-keyword-bootstrapmodel-state) | Flaky | bootstrap + html | eBay keyword search via `__NEXT_DATA__` + JSON-LD + HTML fallback (filters promo/non-item cards). | 60 (ok, VPN-dependent) | - | `{'item_id':'286393092388','title':'Dell Latitude Laptop Computer PC Intel i5 Up To 32GB RAM 1TB SSD Windows 11',...}` |
 | [`ebay_listing`](#ebay_listing-category-bootstrapmodel-state) | Flaky | bootstrap + html | eBay category listing via `__NEXT_DATA__` + fallback. | 4 (ok) | laptops, cell-phones, headphones, watches, video-games | `{"item_id":null,"title":"Apple MacBook Air 13.3'' (256GB SSD, Apple M1, 8GB RAM) Laptop - Space Gray - MGN63LL/A (2020)","url":"https://w...` |
 | [`homedepot_search`](#homedepot_search-keyword-apollo-bootstrap) | Active | bootstrap + html | Home Depot keyword search via Apollo state. | 24 (ok) | - | `{"item_id":"336787835","sku":"1014334650","brand":"Lukyamzn","title":"14 in. Dual-Core Celeron N4000 Laptop 6 GB RAM 128 GB SSD IPS Displ...` |
 | [`homedepot_listing`](#homedepot_listing-category-apollo-bootstrap) | Flaky | bootstrap + html | Home Depot category listing via Apollo state. | 0 (ok) | screwdrivers, drills, paint, light-bulbs, lumber | `n/a` |
@@ -187,18 +187,23 @@ Notes:
 ### ebay_search (keyword; bootstrap/model-state)
 ```json
 {
-  "item_id": "166543210987",
-  "title": "Apple iPhone 14 Pro Max 256GB - Space Black (Unlocked)",
-  "url": "https://www.ebay.com/itm/166543210987",
-  "price": 899.99,
+  "item_id": "286393092388",
+  "title": "Dell Latitude Laptop Computer PC Intel i5 Up To 32GB RAM 1TB SSD Windows 11",
+  "url": "https://www.ebay.com/itm/286393092388?...",
+  "price": 237.36,
   "currency": "USD",
-  "seller": "top_seller_store",
-  "condition": "Used"
+  "seller": "discountcomputerdepot 99.2% positive (153.3K)",
+  "source": "ebay_html_cards_fallback"
 }
 ```
 
 Run example:
-`common-scrapy crawl ebay_search -a q='iphone 14 pro' -a max_pages=1 -O ebay_search.jsonl`
+`common-scrapy crawl ebay_search -a q=laptop -a max_pages=1 -O ebay_search.jsonl`
+
+Notes:
+- Added filtering for non-listing promo cards (e.g. "Shop on eBay") so fallback HTML parsing only yields real `/itm/<id>` products.
+- US NordVPN city test (Chicago `us11915`) returned 60 items with `max_pages=1`.
+- No-VPN run in this environment often returns 0 items (HTTP 500/anti-bot), so eBay spiders remain marked **Flaky**.
 
 ### ebay_listing (category; bootstrap/model-state)
 
@@ -251,35 +256,24 @@ Notes:
 Run example:
 `common-scrapy crawl homedepot_search -a q='screwdriver' -a max_pages=1 -O homedepot_search.jsonl`
 
-### homedepot_listing (category; Apollo bootstrap)
+### homedepot_listing (category; Apollo/bootstrap + HTML fallback)
 
+Sample output (2026-03-01, no VPN):
 ```json
-{
-  "item_id": "301959988",
-  "sku": "1002646248",
-  "brand": "Husky",
-  "title": "6-in-1 Screwdriver",
-  "model": "132660011",
-  "url": "https://www.homedepot.com/p/Husky-6-in-1-Screwdriver-132660011/301959988",
-  "image_url": "https://images.thdstatic.com/productImages/53cb5fbd-cf6c-40c6-b395-9c42f4b36510/svn/husky-multi-bit-screwdrivers-132660011-64_300.jpg",
-  "price": 8.97,
-  "original_price": 8.97,
-  "rating": 4.7222,
-  "reviews_count": 781,
-  "source": "homedepot_apollo_bootstrap",
-  "mode": "category",
-  "query": null,
-  "category_url": "https://www.homedepot.com/b/Tools-Hand-Tools/Screwdrivers-Nut-Drivers/Screwdrivers/N-5yc1vZc25y",
-  "page": 1
-}
+[]
 ```
 
 Run example:
 `common-scrapy crawl homedepot_listing -a category='screwdrivers' -a max_pages=1 -O homedepot_listing.jsonl`
 
+Observed logs:
+- `HomeDepot listing fallback found 0 items (status=403)`
+- feed written with `0 items`
+
 Notes:
-- Category page responses are currently flaky behind anti-bot/proxy variance; retrying or changing US egress may be required.
-- When listing mode is blocked, `homedepot_search` still returns the same normalized product schema and can be used as a fallback signal.
+- Category and search/listing pages are currently blocked in this environment with Home Depot anti-bot (`403`, `Oops/Error Page`, or `Access Denied`) across multiple US NordVPN cities and sort orders.
+- Current fallback paths (`__APOLLO_STATE__`, JSON-LD, and HTML product links) cannot extract items when the origin serves only error/deny responses.
+- If this target is business-critical, use a dedicated unblocker/browser-rendering pipeline or provide an approved alternative data source.
 
 ### macys_listing
 ```json
