@@ -68,7 +68,7 @@ These live under `common/spiders/*_listing_spider.py` and are purpose-built per 
 | [`homedepot_search`](#homedepot_search-keyword-apollo-bootstrap) | Active | bootstrap + html | Home Depot keyword search via Apollo state. | 24 (ok) | - | `{"item_id":"336787835","sku":"1014334650","brand":"Lukyamzn","title":"14 in. Dual-Core Celeron N4000 Laptop 6 GB RAM 128 GB SSD IPS Displ...` |
 | [`homedepot_listing`](#homedepot_listing-category-apollo-bootstrap) | Flaky | bootstrap + html | Home Depot category listing via Apollo state. | 0 (ok) | screwdrivers, drills, paint, light-bulbs, lumber | `n/a` |
 | [`macys_listing`](#macys_listing) | Active | api | Macy’s listing via xapi endpoint (with fallback routing). | 60 (ok) | laptops, shoes, dresses, fragrance, bedding | `{"item_id":"17595303","title":"5Core AC Power Cord 6Ft 3 Prong US Male to Female Extension Adapter 18AWG 10A 7A 125V","brand":"5 Core","u...` |
-| [`ulta_search`](#ulta_search-keyword) | Flaky | api | Ulta keyword search via GraphQL. | 0 (timeout2) | - | `{}` |
+| [`ulta_search`](#ulta_search-keyword) | Active | api + html | Ulta keyword search via GraphQL (with unsorted retry + HTML fallback). | 64 (ok) | - | `{"item_id":"xlsImpprod15511061","title":"All Soft Shampoo","source":"ulta_dxl_graphql"...}` |
 | [`ulta_listing`](#ulta_listing-category) | Active | api + html | Ulta category listing (GraphQL default, HTML fallback mode). | 0 (ok) | shampoo, conditioner, cleanser, mascara, moisturizer | `n/a` |
 | [`kohls_listing`](#kohls_listing) | Experimental | api | Kohl’s listing via `/web/catalog/...` API. | 0 (ok) | women, men, sale | `n/a` |
 | [`sephora_listing`](#sephora_listing) | Experimental | api | Sephora listing via `/api/v2/catalog/categories/<slug>/seo`. | 60 (ok) | makeup, skincare, gifts, fragrance | `{"item_id":"P517483","title":"Pocket Blush Buildable Hydrating Cream Blush","url":"https://www.sephora.com/product/pocket-blush-P517483?s...` |
@@ -321,7 +321,7 @@ Notes:
 - GraphQL mode now retries once without `sort` when Ulta blocks sorted requests (e.g. `sort=new`, `sort=price_low`) before falling back to HTML.
 - `mode=html` is a fallback parser from rendered product cards and is useful when GraphQL responses are unstable.
 - HTML mode typically returns URL/title/image/price text first; GraphQL mode gives richer normalized fields (brand/rating/reviews/sponsored).
-- Validation (2026-03-01): NordVPN US Miami returned GraphQL data (`64` items, `source=ulta_dxl_graphql`) for `-a sort=new` via unsorted retry; with NordVPN disconnected Ulta returned `403` and `0` items.
+- Validation (2026-03-01): GraphQL mode returned `64` items across NordVPN US cities (Dallas, Atlanta, Chicago) for `q=shampoo`, `max_pages=1`; with NordVPN disconnected Ulta returned `403` and `0` items (including HTML fallback).
 
 ### ulta_search (keyword)
 

@@ -3,8 +3,8 @@ from __future__ import annotations
 """Ulta keyword search spider.
 
 Modes:
-- default/html: direct HTML card parsing
-- graphql: Ulta GraphQL APIs (/dxl/graphql)
+- default/graphql: Ulta GraphQL APIs (/dxl/graphql)
+- html: direct HTML card parsing
 
 Usage:
   scrapy crawl ulta_search -a q=shampoo -a max_pages=2
@@ -36,11 +36,16 @@ class UltaSearchSpider(BaseSearchSpider):
         "HTTPERROR_ALLOW_ALL": True,
     }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._html_fallback_started = False
+
     def start_requests(self):
-        mode = (getattr(self, "mode", None) or "html").strip().lower()
-        base_path = f"https://www.ulta.com/search?search={(self.q or '').replace(' ', '+')}"
+        mode = (getattr(self, "mode", None) or "graphql").strip().lower()
+        base_path = self._target_with_sort(self._base_search_url())
 
         if mode == "html":
+            self._html_fallback_started = True
             first = self._with_page(base_path, 1)
             yield scrapy.Request(
                 first,
@@ -49,25 +54,17 @@ class UltaSearchSpider(BaseSearchSpider):
             )
             return
 
-        page_query = (
-            'query Page($stagingHost: String, $previewOptions: JSON, $moduleParams: JSON, $url: JSON) '
-            '{ Page: Page(stagingHost: $stagingHost, previewOptions: $previewOptions, '
-            'moduleParams: $moduleParams, url: $url, deliveryKey: "SDK") '
-            '{ content customResponseAttributes meta __typename } }'
-        )
-        variables = {"moduleParams": {}, "url": {"path": base_path}}
-        url = self._build_graphql_get_url(page_query, "Page", variables)
-        yield scrapy.Request(
-            url,
-            callback=self.parse_page_definition,
-            headers=self._headers(),
-            meta=({"page": 1, "base_path": base_path, "mode": "graphql"}),
-        )
+        yield self._build_page_request(base_path)
 
     def parse_page_definition(self, response: scrapy.http.Response):
         payload = self._to_json(response)
         if not payload:
             self.logger.warning("Ulta Page query failed")
+            retry = self._retry_without_sort(response, reason="Page query failed")
+            if retry is not None:
+                yield retry
+            else:
+                yield from self._schedule_html_fallback(response)
             return
 
         modules = payload.get("data", {}).get("Page", {}).get("content", {}).get("modules", [])
@@ -80,18 +77,24 @@ class UltaSearchSpider(BaseSearchSpider):
 
         if not content_id:
             self.logger.warning("Could not locate ProductListingResults contentId")
+            retry = self._retry_without_sort(response, reason="missing ProductListingResults contentId")
+            if retry is not None:
+                yield retry
+            else:
+                yield from self._schedule_html_fallback(response)
             return
 
+        base_path = response.meta.get("base_path") or self._base_search_url()
         first_url = self._build_noncached_url(
             content_id=content_id,
             page=1,
-            base_path=response.meta.get("base_path") or f"https://www.ulta.com/search?search={(self.q or '').replace(' ', '+')}",
+            base_path=base_path,
         )
         yield scrapy.Request(
             first_url,
             callback=self.parse_listing,
             headers=self._headers(),
-            meta=({"content_id": content_id, "page": 1, "base_path": response.meta.get("base_path")}),
+            meta=({"content_id": content_id, "page": 1, "base_path": base_path}),
         )
 
     def parse_listing(self, response: scrapy.http.Response):
@@ -100,10 +103,23 @@ class UltaSearchSpider(BaseSearchSpider):
             self.logger.warning(
                 "Ulta NonCachedPage query failed for page=%s", response.meta.get("page")
             )
+            retry = self._retry_without_sort(response, reason="NonCachedPage query failed")
+            if retry is not None:
+                yield retry
+            else:
+                yield from self._schedule_html_fallback(response)
             return
 
         content = payload.get("data", {}).get("Page", {}).get("content", {})
         items = content.get("items", []) or []
+
+        if not items and int(response.meta.get("page", 1)) == 1:
+            retry = self._retry_without_sort(response, reason="NonCachedPage returned 0 items")
+            if retry is not None:
+                yield retry
+            else:
+                yield from self._schedule_html_fallback(response)
+            return
 
         for item in items:
             action = item.get("action") or {}
@@ -136,7 +152,7 @@ class UltaSearchSpider(BaseSearchSpider):
 
         next_page = current_page + 1
         content_id = response.meta.get("content_id")
-        base_path = response.meta.get("base_path") or f"https://www.ulta.com/search?search={(self.q or '').replace(' ', '+')}"
+        base_path = response.meta.get("base_path") or self._base_search_url()
         next_url = self._build_noncached_url(content_id=content_id, page=next_page, base_path=base_path)
         yield scrapy.Request(
             next_url,
@@ -201,13 +217,73 @@ class UltaSearchSpider(BaseSearchSpider):
             return
 
         next_page = page + 1
-        base_path = response.meta.get("base_path") or f"https://www.ulta.com/search?search={(self.q or '').replace(' ', '+')}"
+        base_path = response.meta.get("base_path") or self._base_search_url()
         next_url = self._with_page(base_path, next_page)
         yield scrapy.Request(
             next_url,
             callback=self.parse_html_listing,
             meta=({"page": next_page, "mode": "html", "base_path": base_path}),
+            dont_filter=True,
         )
+
+    def _build_page_request(self, base_path: str, meta: dict | None = None) -> scrapy.Request:
+        variables = {"moduleParams": {}, "url": {"path": base_path}}
+        req_meta = {"page": 1, "base_path": base_path, "mode": "graphql"}
+        if meta:
+            req_meta.update(meta)
+        return scrapy.Request(
+            self._build_graphql_get_url(self._page_query(), "Page", variables),
+            callback=self.parse_page_definition,
+            headers=self._headers(),
+            meta=req_meta,
+            dont_filter=True,
+        )
+
+    @staticmethod
+    def _page_query() -> str:
+        return (
+            'query Page($stagingHost: String, $previewOptions: JSON, $moduleParams: JSON, $url: JSON) '
+            '{ Page: Page(stagingHost: $stagingHost, previewOptions: $previewOptions, '
+            'moduleParams: $moduleParams, url: $url, deliveryKey: "SDK") '
+            '{ content customResponseAttributes meta __typename } }'
+        )
+
+    def _retry_without_sort(self, response: scrapy.http.Response, *, reason: str | None = None):
+        if response.meta.get("unsorted_page_retry"):
+            return None
+        base_path = response.meta.get("base_path") or self._target_with_sort(self._base_search_url())
+        unsorted = self._without_sort(base_path)
+        if unsorted == base_path:
+            return None
+        if reason:
+            self.logger.info("Ulta search %s; retrying without sort parameter", reason)
+        else:
+            self.logger.info("Ulta search retrying without sort parameter")
+        meta = dict(response.meta)
+        meta["base_path"] = unsorted
+        meta["page"] = 1
+        meta["unsorted_page_retry"] = True
+        meta.pop("content_id", None)
+        return self._build_page_request(unsorted, meta=meta)
+
+    def _schedule_html_fallback(self, response: scrapy.http.Response):
+        if self._html_fallback_started:
+            return []
+        self._html_fallback_started = True
+        base_path = self._without_sort(response.meta.get("base_path") or self._base_search_url())
+        self.logger.info("Falling back to Ulta search HTML parser")
+        first = self._with_page(base_path, 1)
+        return [
+            scrapy.Request(
+                first,
+                callback=self.parse_html_listing,
+                meta=({"page": 1, "mode": "html", "base_path": base_path}),
+                dont_filter=True,
+            )
+        ]
+
+    def _base_search_url(self) -> str:
+        return f"https://www.ulta.com/search?search={(self.q or '').replace(' ', '+')}"
 
     def _build_noncached_url(self, content_id: str, page: int, base_path: str) -> str:
         path = base_path if page == 1 else f"{base_path}&page={page}"
@@ -265,6 +341,39 @@ class UltaSearchSpider(BaseSearchSpider):
         if page > 1:
             qs["page"] = [str(page)]
         return urlunparse(parts._replace(query=urlencode(qs, doseq=True)))
+
+    def _target_with_sort(self, target: str) -> str:
+        sort = (getattr(self, "sort", None) or "").strip().lower()
+        param = self._sort_param(sort)
+        if not param:
+            return target
+        parts = urlparse(target)
+        qs = parse_qs(parts.query)
+        qs["sort"] = [param]
+        return urlunparse(parts._replace(query=urlencode(qs, doseq=True)))
+
+    @staticmethod
+    def _without_sort(url: str) -> str:
+        parts = urlparse(url)
+        qs = parse_qs(parts.query)
+        if "sort" not in qs:
+            return url
+        qs.pop("sort", None)
+        return urlunparse(parts._replace(query=urlencode(qs, doseq=True)))
+
+    def _sort_param(self, sort: str) -> str | None:
+        order_map = {
+            "bestseller": "bestSeller",
+            "new": "newArrivals",
+            "price_low": "priceLowToHigh",
+            "price_high": "priceHighToLow",
+            "rating": "topRated",
+        }
+        if not sort:
+            return None
+        if sort in order_map.values():
+            return sort
+        return order_map.get(sort)
 
     def _to_float(self, value):
         try:
