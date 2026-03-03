@@ -34,3 +34,5 @@ common_scrapy.egg-info/
 
 *.har
 *.csv
+
+data/

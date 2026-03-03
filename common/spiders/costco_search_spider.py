@@ -9,6 +9,7 @@ Strategy:
 
 Usage:
   scrapy crawl costco_search -a q=coffee -a max_pages=1
+  scrapy crawl costco_search -a q=coffee -a sort_by=lowestprice -a max_pages=1
 """
 
 import re
@@ -29,13 +30,29 @@ class CostcoSearchSpider(BaseSearchSpider):
     name = "costco_search"
     allowed_domains = ["costco.com", "www.costco.com"]
 
+    SORT_MAP = {
+        "bestmatch": "score desc",
+        "lowestprice": "price asc",
+        "highprice": "price desc",
+        "highestrated": "averageRating desc",
+        "newest": "newness desc",
+        "mostviewed": "item_page_views desc",
+    }
+
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
         "DOWNLOAD_DELAY": 1,
     }
 
+    def __init__(self, *args, **kwargs):
+        self.sort_by = (kwargs.get("sort_by") or "").strip().lower() or None
+        if self.sort_by and self.sort_by not in self.SORT_MAP:
+            valid = ", ".join(sorted(self.SORT_MAP))
+            raise ValueError(f"Invalid sort_by={self.sort_by!r}. Valid: {valid}")
+        super().__init__(*args, **kwargs)
+
     def start_requests(self):
-        yield scrapy.Request(self._build_url(self.q or "", 1), callback=self.parse, meta=({"page": 1}))
+        yield scrapy.Request(self._build_url(self.q or "", 1, self.sort_by), callback=self.parse, meta=({"page": 1}))
 
     def parse(self, response: scrapy.http.Response):
         page = int(response.meta.get("page", 1))
@@ -74,13 +91,15 @@ class CostcoSearchSpider(BaseSearchSpider):
 
         if page < self.args.max_pages:
             next_page = page + 1
-            yield scrapy.Request(self._build_url(self.q or "", next_page), callback=self.parse, meta=({"page": next_page}))
+            yield scrapy.Request(self._build_url(self.q or "", next_page, self.sort_by), callback=self.parse, meta=({"page": next_page}))
 
-    @staticmethod
-    def _build_url(q: str, page: int = 1) -> str:
+    @classmethod
+    def _build_url(cls, q: str, page: int = 1, sort_by: str | None = None) -> str:
         params = {"keyword": q}
         if page > 1:
             params["page"] = str(page)
+        if sort_by:
+            params["sortBy"] = cls.SORT_MAP.get(sort_by, sort_by)
         return f"https://www.costco.com/s?{urlencode(params)}"
 
     def _extract_product_links(self, html: str):

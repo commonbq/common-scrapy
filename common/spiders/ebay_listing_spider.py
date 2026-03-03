@@ -12,7 +12,12 @@ from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
-from common.spiders.ebay_bootstrap_utils import extract_items_from_next_data, extract_json_ld_products, extract_next_data
+from common.spiders.ebay_bootstrap_utils import (
+    extract_items_from_next_data,
+    extract_items_from_html_cards,
+    extract_json_ld_products,
+    extract_next_data,
+)
 
 
 class EbayListingSpider(BaseListingSpider):
@@ -57,6 +62,19 @@ class EbayListingSpider(BaseListingSpider):
 
         if yielded == 0:
             for item in extract_json_ld_products(response.text or ""):
+                item.update(
+                    {
+                        "mode": "category",
+                        "category_url": self.category_url or self.url,
+                        "page": page,
+                        "source_url": response.url,
+                    }
+                )
+                yielded += 1
+                yield item
+
+        if yielded == 0:
+            for item in extract_items_from_html_cards(response.text or ""):
                 item.update(
                     {
                         "mode": "category",

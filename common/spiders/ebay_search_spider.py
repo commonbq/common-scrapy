@@ -11,7 +11,12 @@ from urllib.parse import urlencode, urlparse, parse_qs, urlunparse
 import scrapy
 
 from common.spiders.base_search_spider import BaseSearchSpider
-from common.spiders.ebay_bootstrap_utils import extract_items_from_next_data, extract_json_ld_products, extract_next_data
+from common.spiders.ebay_bootstrap_utils import (
+    extract_items_from_next_data,
+    extract_items_from_html_cards,
+    extract_json_ld_products,
+    extract_next_data,
+)
 
 
 class EbaySearchSpider(BaseSearchSpider):
@@ -48,6 +53,19 @@ class EbaySearchSpider(BaseSearchSpider):
 
         if yielded == 0:
             for item in extract_json_ld_products(response.text or ""):
+                item.update(
+                    {
+                        "mode": "keyword",
+                        "query": self.q,
+                        "page": page,
+                        "source_url": response.url,
+                    }
+                )
+                yielded += 1
+                yield item
+
+        if yielded == 0:
+            for item in extract_items_from_html_cards(response.text or ""):
                 item.update(
                     {
                         "mode": "keyword",
