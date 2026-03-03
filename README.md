@@ -16,16 +16,9 @@ pip install common-scrapy
 
 ### Proxy configuration
 
-This project reads `PROXY` from a local `.env` file (recommended) via `python-dotenv`.
-
-- Create `./.env` (it’s gitignored) with:
-  ```
-  PROXY=http://user:pass@host:1234
-  ```
-- Or you can still pass it inline for one-off runs:
-  ```bash
-  PROXY=http://user:pass@host:1234 common-scrapy crawl kohls_listing -a category=women
-  ```
+```bash
+PROXY=http://user:pass@host:1234 common-scrapy crawl amazon_listing -a category=fashion
+```
 
 All spiders honor `PROXY` via project-wide middleware.
 
