@@ -15,53 +15,85 @@ class SephoraListingSpider(BaseListingSpider):
     custom_settings = {"HTTPERROR_ALLOW_ALL": True, "DOWNLOAD_DELAY": 1}
 
     categories = [
-        {"category": "makeup", "url": "https://www.sephora.com/shop/makeup-cosmetics", "slug": "makeup-cosmetics"},
-        {"category": "skincare", "url": "https://www.sephora.com/shop/skincare", "slug": "skincare"},
-        {"category": "gifts", "url": "https://www.sephora.com/shop/gifts", "slug": "gifts"},
-        {"category": "fragrance", "url": "https://www.sephora.com/shop/fragrance", "slug": "fragrance"},
+        {
+            "category": "makeup",
+            "url": "https://www.sephora.com/shop/makeup-cosmetics",
+            "slug": "makeup-cosmetics",
+        },
+        {
+            "category": "skincare",
+            "url": "https://www.sephora.com/shop/skincare",
+            "slug": "skincare",
+        },
+        {
+            "category": "gifts",
+            "url": "https://www.sephora.com/shop/gifts",
+            "slug": "gifts",
+        },
+        {
+            "category": "fragrance",
+            "url": "https://www.sephora.com/shop/fragrance",
+            "slug": "fragrance",
+        },
     ]
 
     def start_requests(self):
         page = 1
         api = self._build_api_url(page)
-        yield scrapy.Request(api, callback=self.parse, headers=self._headers(), meta={"page": page})
+        yield scrapy.Request(
+            api, callback=self.parse, headers=self._headers(), meta={"page": page}
+        )
 
     def parse(self, response: scrapy.http.Response):
         page = int(response.meta.get("page", 1))
         data = self._to_json(response)
         if not isinstance(data, dict):
-            self.logger.warning("Sephora listing non-JSON/blocked response status=%s", response.status)
+            self.logger.warning(
+                "Sephora listing non-JSON/blocked response status=%s", response.status
+            )
             return
 
         products = data.get("products") or []
+
         for p in products:
             url = p.get("targetUrl") or p.get("url")
             if isinstance(url, str) and url.startswith("/"):
                 url = f"https://www.sephora.com{url}"
+
             image = p.get("heroImage") or p.get("image")
             if isinstance(image, dict):
                 image = image.get("src") or image.get("url")
+
+            current_sku = p.get("currentSku") or {}
+
             yield {
-                "item_id": p.get("productId") or p.get("skuId"),
+                "productId": p.get("productId"),
+                "skuId": current_sku.get("skuId"),
                 "title": p.get("displayName") or p.get("productName"),
                 "url": url,
-                "price": self._to_float(p.get("currentSku") and (p.get("currentSku") or {}).get("listPrice")) or self._to_float(p.get("currentSku") and (p.get("currentSku") or {}).get("salePrice")),
-                "currency": "USD",
+                "price": self._to_float(current_sku.get("listPrice")),
+                "salePrice": self._to_float(current_sku.get("salePrice")),
+                "valuePrice": self._to_float(current_sku.get("valuePrice")),
                 "brand": p.get("brandName"),
                 "rating": self._to_float(p.get("rating")),
-                "reviews_count": self._to_int(p.get("reviews")),
-                "image_url": image,
+                "reviewsCount": self._to_int(p.get("reviews")),
+                "imageUrl": image,
                 "source": "sephora_catalog_api",
                 "mode": "category",
-                "category_url": self.category_url or self.url,
                 "page": page,
+                "rawProduct": p,
             }
 
         if page >= self.max_pages or not products:
             return
 
         next_page = page + 1
-        yield scrapy.Request(self._build_api_url(next_page), callback=self.parse, headers=self._headers(), meta={"page": next_page})
+        yield scrapy.Request(
+            self._build_api_url(next_page),
+            callback=self.parse,
+            headers=self._headers(),
+            meta={"page": next_page},
+        )
 
     def _build_api_url(self, page: int) -> str:
         slug = self._resolve_slug()
@@ -86,6 +118,7 @@ class SephoraListingSpider(BaseListingSpider):
             for c in self.categories:
                 if c.get("category") == self.category:
                     return c.get("slug")
+
         u = self.url or self.category_url or ""
         for c in self.categories:
             if c.get("url") == u:
@@ -111,6 +144,7 @@ class SephoraListingSpider(BaseListingSpider):
     @staticmethod
     def _to_float(v):
         try:
+            v = v.replace("$", "").strip()
             return float(v)
         except Exception:
             return None
