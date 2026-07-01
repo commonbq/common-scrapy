@@ -12,7 +12,33 @@ class SephoraListingSpider(BaseListingSpider):
     name = "sephora_listing"
     allowed_domains = ["sephora.com", "www.sephora.com"]
 
-    custom_settings = {"HTTPERROR_ALLOW_ALL": True, "DOWNLOAD_DELAY": 1}
+    custom_settings = {
+        "HTTPERROR_ALLOW_ALL": True,
+        "DOWNLOAD_DELAY": 1,
+        "FEED_EXPORT_FIELDS": [
+            "productId",
+            "skuId",
+            "title",
+            "url",
+            "price",
+            "salePrice",
+            "valuePrice",
+            "brand",
+            "rating",
+            "reviewsCount",
+            "isOnlyFewLeft",
+            "isOutOfStock",
+            "size",
+            "type",
+            "variationType",
+            "variationTypeDisplayName",
+            "variationValue",
+            "replenishmentAdjusterPrice",
+            "imageUrl",
+            "page",
+            "rawProduct",
+        ],
+    }
 
     categories = [
         {
@@ -65,6 +91,7 @@ class SephoraListingSpider(BaseListingSpider):
                 image = image.get("src") or image.get("url")
 
             current_sku = p.get("currentSku") or {}
+            sku_or_product = lambda field: current_sku.get(field, p.get(field))
 
             yield {
                 "productId": p.get("productId"),
@@ -77,9 +104,19 @@ class SephoraListingSpider(BaseListingSpider):
                 "brand": p.get("brandName"),
                 "rating": self._to_float(p.get("rating")),
                 "reviewsCount": self._to_int(p.get("reviews")),
+                "isOnlyFewLeft": sku_or_product("isOnlyFewLeft"),
+                "isOutOfStock": sku_or_product("isOutOfStock"),
+                "size": sku_or_product("size"),
+                "type": sku_or_product("type"),
+                "variationType": sku_or_product("variationType"),
+                "variationTypeDisplayName": sku_or_product(
+                    "variationTypeDisplayName"
+                ),
+                "variationValue": sku_or_product("variationValue"),
+                "replenishmentAdjusterPrice": self._to_float(
+                    sku_or_product("replenishmentAdjusterPrice")
+                ),
                 "imageUrl": image,
-                "source": "sephora_catalog_api",
-                "mode": "category",
                 "page": page,
                 "rawProduct": p,
             }
