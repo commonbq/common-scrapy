@@ -1,0 +1,52 @@
+name: Sephora Listing
+
+on:
+  schedule:
+    - cron: "0 13 * * *"
+  workflow_dispatch:
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    env:
+      GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/gcs-service-account.json
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        category:
+          - makeup
+          - skincare
+          - gifts
+          - fragrance
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: |
+            pyproject.toml
+            requirements.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+
+      - name: Write GCS service account key
+        run: |
+          printf '%s' '${{ secrets.GCS_SERVICE_ACCOUNT }}' > "${GOOGLE_APPLICATION_CREDENTIALS}"
+
+      - name: Set workflow date
+        run: echo "WORKFLOW_DATE=$(date -u +%F)" >> "$GITHUB_ENV"
+
+      - name: Run sephora_listing spider
+        run: |
+          scrapy crawl sephora_listing \
+            --category "${{ matrix.category }}" \
+            -O "gs://common-scrapy/sephora_listing/${{ matrix.category }}/${WORKFLOW_DATE}.csv"
