@@ -9,7 +9,8 @@ jobs:
   crawl:
     runs-on: ubuntu-latest
     env:
-      GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/gcs-service-account.json
+      GOOGLE_APPLICATION_CREDENTIALS: gcs-service-account.json
+
     strategy:
       fail-fast: false
       max-parallel: 1
