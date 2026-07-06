@@ -72,8 +72,10 @@ class CommonDownloaderMiddleware:
         if request.meta.get("disable_proxy"):
             request.meta.pop("proxy", None)
             return None
-        if PROXY and not request.meta.get("proxy"):
-            request.meta["proxy"] = PROXY
+        if not request.meta.get("proxy"):
+            proxy = spider.settings.get("PROXY") if "PROXY" in spider.settings else PROXY
+            if proxy:
+                request.meta["proxy"] = proxy
         return None
 
     def process_response(self, request, response, spider):
@@ -83,7 +85,7 @@ class CommonDownloaderMiddleware:
         return None
 
     def spider_opened(self, spider):
-        if PROXY:
+        if spider.settings.get("PROXY", PROXY):
             spider.logger.info("Spider opened: %s (proxy enabled)", spider.name)
         else:
             spider.logger.info("Spider opened: %s (proxy disabled)", spider.name)
