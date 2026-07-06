@@ -17,7 +17,7 @@ from dataclasses import dataclass
 import scrapy
 
 from common.settings import PROXY
-
+from datetime import datetime
 
 @dataclass
 class ListingArgs:
@@ -47,6 +47,11 @@ class BaseListingSpider(scrapy.Spider):
         self._validate_categories_schema_if_needed()
         if self.require_category_arg:
             self._require_category_arg()
+
+        self.job_timestamp = datetime.utcnow()
+
+    def get_timestamp(self) -> datetime:
+        return datetime.utcnow()
 
     def init_listing_args(
         self,
