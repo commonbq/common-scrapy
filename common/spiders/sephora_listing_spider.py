@@ -16,6 +16,7 @@ class SephoraListingSpider(BaseListingSpider):
         "HTTPERROR_ALLOW_ALL": True,
         "DOWNLOAD_DELAY": 1,
         "FEED_EXPORT_FIELDS": [
+            "category",
             "productId",
             "skuId",
             "title",
@@ -26,17 +27,31 @@ class SephoraListingSpider(BaseListingSpider):
             "brand",
             "rating",
             "reviewsCount",
-            "isOnlyFewLeft",
-            "isOutOfStock",
-            "size",
-            "type",
-            "variationType",
-            "variationTypeDisplayName",
-            "variationValue",
-            "replenishmentAdjusterPrice",
             "imageUrl",
+            "altImageUrl",
+            "imageAltText",
+            "biExclusiveLevel",
+            "isAppExclusive",
+            "isBI",
+            "isBestseller",
+            "isLimitedEdition",
+            "isLimitedTimeOffer",
+            "isNew",
+            "isOnlineOnly",
+            "isSephoraExclusive",
+            "moreColors",
+            "swatchType",
+            "swatchCount",
+            "swatchSkuIds",
+            "swatchSelectors",
+            "onSaleData",
+            "pickupEligible",
+            "sameDayEligible",
+            "shipToHomeEligible",
+            "sponsored",
             "page",
             "rawProduct",
+            "timestamp",
         ],
     }
 
@@ -86,14 +101,20 @@ class SephoraListingSpider(BaseListingSpider):
             if isinstance(url, str) and url.startswith("/"):
                 url = f"https://www.sephora.com{url}"
 
-            image = p.get("heroImage") or p.get("image")
-            if isinstance(image, dict):
-                image = image.get("src") or image.get("url")
+            image = self._extract_image_url(p.get("heroImage") or p.get("image"))
+            alt_image = self._extract_image_url(p.get("altImage"))
 
             current_sku = p.get("currentSku") or {}
             sku_or_product = lambda field: current_sku.get(field, p.get(field))
+            swatch_selectors = p.get("swatchSelectors") or []
+            swatch_sku_ids = [
+                swatch.get("skuId")
+                for swatch in swatch_selectors
+                if isinstance(swatch, dict) and swatch.get("skuId")
+            ]
 
             yield {
+                "category": self._current_category_name(),
                 "productId": p.get("productId"),
                 "skuId": current_sku.get("skuId"),
                 "title": p.get("displayName") or p.get("productName"),
@@ -104,21 +125,32 @@ class SephoraListingSpider(BaseListingSpider):
                 "brand": p.get("brandName"),
                 "rating": self._to_float(p.get("rating")),
                 "reviewsCount": self._to_int(p.get("reviews")),
-                "isOnlyFewLeft": sku_or_product("isOnlyFewLeft"),
-                "isOutOfStock": sku_or_product("isOutOfStock"),
-                "size": sku_or_product("size"),
-                "type": sku_or_product("type"),
-                "variationType": sku_or_product("variationType"),
-                "variationTypeDisplayName": sku_or_product(
-                    "variationTypeDisplayName"
-                ),
-                "variationValue": sku_or_product("variationValue"),
-                "replenishmentAdjusterPrice": self._to_float(
-                    sku_or_product("replenishmentAdjusterPrice")
-                ),
                 "imageUrl": image,
+                "altImageUrl": alt_image,
+                "currentSku": current_sku,
+                "imageAltText": current_sku.get("imageAltText"),
+                "biExclusiveLevel": current_sku.get("biExclusiveLevel"),
+                "isAppExclusive": current_sku.get("isAppExclusive"),
+                "isBI": current_sku.get("isBI"),
+                "isBestseller": current_sku.get("isBestseller"),
+                "isLimitedEdition": current_sku.get("isLimitedEdition"),
+                "isLimitedTimeOffer": current_sku.get("isLimitedTimeOffer"),
+                "isNew": current_sku.get("isNew"),
+                "isOnlineOnly": current_sku.get("isOnlineOnly"),
+                "isSephoraExclusive": current_sku.get("isSephoraExclusive"),
+                "moreColors": self._to_int(p.get("moreColors")),
+                "swatchType": p.get("swatchType"),
+                "swatchCount": len(swatch_selectors),
+                "swatchSkuIds": swatch_sku_ids,
+                "swatchSelectors": json.dumps(swatch_selectors),
+                "onSaleData": p.get("onSaleData"),
+                "pickupEligible": p.get("pickupEligible"),
+                "sameDayEligible": p.get("sameDayEligible"),
+                "shipToHomeEligible": p.get("shipToHomeEligible"),
+                "sponsored": p.get("sponsored"),
                 "page": page,
-                "rawProduct": p,
+                "rawProduct": json.dumps(p),
+                "timestamp": self.get_timestamp(),
             }
 
         if page >= self.max_pages or not products:
@@ -162,6 +194,16 @@ class SephoraListingSpider(BaseListingSpider):
                 return c.get("slug")
         raise ValueError("Provide -a category=<name> for sephora_listing")
 
+    def _current_category_name(self) -> str | None:
+        if self.category:
+            return self.category
+
+        u = self.url or self.category_url or ""
+        for c in self.categories:
+            if c.get("url") == u:
+                return c.get("category")
+        return None
+
     def _headers(self) -> dict:
         return {
             "accept": "application/json",
@@ -177,6 +219,12 @@ class SephoraListingSpider(BaseListingSpider):
             return json.loads(response.text)
         except Exception:
             return None
+
+    @staticmethod
+    def _extract_image_url(value):
+        if isinstance(value, dict):
+            return value.get("src") or value.get("url")
+        return value
 
     @staticmethod
     def _to_float(v):
