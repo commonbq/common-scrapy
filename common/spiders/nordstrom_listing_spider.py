@@ -64,6 +64,7 @@ class NordstromListingSpider(BaseListingSpider):
             "selectedColorFamilyCode",
             "colorVariants",
             "raw",
+            "timestamp",
         ],
     }
 
@@ -455,6 +456,7 @@ class NordstromListingSpider(BaseListingSpider):
                 else None
             ),
             "raw": p,
+            "timestamp": self.get_timestamp(),
         }
 
     def _select_primary_proposition(self, p: dict) -> dict | None:
