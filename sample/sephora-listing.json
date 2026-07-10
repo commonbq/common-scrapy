@@ -1,0 +1,4806 @@
+{
+  "browseFilterName": "group_id",
+  "browseFilterValue": "cat160006",
+  "breadcrumbsSeoJsonLd": "{\"itemListElement\":[{\"item\":{\"name\":\"Fragrance\",\"@id\":\"https://www.sephora.com/shop/fragrance\"},\"@type\":\"ListItem\",\"position\":1}],\"@type\":\"BreadcrumbList\",\"@context\":\"http://schema.org\"}",
+  "categories": [
+    {
+      "categoryId": "cat160006",
+      "displayName": "Fragrance",
+      "isSelected": true,
+      "level": 0,
+      "recordCount": "1790",
+      "subCategories": [
+        {
+          "categoryId": "cat1230041",
+          "displayName": "Value & Gift Sets",
+          "level": 1,
+          "recordCount": "213",
+          "targetUrl": "/shop/fragrance-value-sets-gifts"
+        },
+        {
+          "categoryId": "cat1750031",
+          "displayName": "Shop by Fragrance Family",
+          "level": 1,
+          "recordCount": "1442",
+          "targetUrl": "/shop/fragrance-families-notes"
+        },
+        {
+          "categoryId": "cat1230039",
+          "displayName": "Women",
+          "level": 1,
+          "recordCount": "1304",
+          "targetUrl": "/shop/fragrances-for-women"
+        },
+        {
+          "categoryId": "cat1870030",
+          "displayName": "Mini Size",
+          "level": 1,
+          "recordCount": "517",
+          "targetUrl": "/shop/mini-perfume"
+        },
+        {
+          "categoryId": "cat5000004",
+          "displayName": "Unisex / Genderless",
+          "level": 1,
+          "recordCount": "426",
+          "targetUrl": "/shop/unisex-perfume-cologne"
+        },
+        {
+          "categoryId": "cat2900032",
+          "displayName": "Vegan",
+          "level": 1,
+          "recordCount": "176",
+          "targetUrl": "/shop/vegan-fragrance"
+        },
+        {
+          "categoryId": "cat1230040",
+          "displayName": "Men",
+          "level": 1,
+          "recordCount": "442",
+          "targetUrl": "/shop/fragrances-for-men"
+        },
+        {
+          "categoryId": "cat60154",
+          "displayName": "Candles & Home Scents",
+          "level": 1,
+          "recordCount": "53",
+          "targetUrl": "/shop/home-fragrance"
+        }
+      ],
+      "targetUrl": "/shop/fragrance"
+    }
+  ],
+  "categoryId": "cat160006",
+  "content": {
+    "sid": "Fragrance",
+    "slug": "fragrance",
+    "marketingTilePositions": [
+      "1",
+      "6",
+      "14",
+      "25",
+      "38",
+      "52",
+      "59"
+    ],
+    "ugcWidget": {
+      "widgetId": "5285794"
+    },
+    "seoText": {
+      "json": {
+        "data": {},
+        "content": [
+          {
+            "data": {},
+            "content": [
+              {
+                "data": {},
+                "marks": [],
+                "value": "Looking for fragrance? We\u2019re here to help. Our fragrances for men and women feature top brands plus exclusive and niche scents.",
+                "nodeType": "text"
+              }
+            ],
+            "nodeType": "paragraph"
+          },
+          {
+            "data": {},
+            "content": [
+              {
+                "data": {},
+                "marks": [],
+                "value": "Don't forget to check out the ",
+                "nodeType": "text"
+              },
+              {
+                "data": {
+                  "uri": "/beauty/best-perfumes-for-women"
+                },
+                "content": [
+                  {
+                    "data": {},
+                    "marks": [],
+                    "value": "bestselling perfumes for women",
+                    "nodeType": "text"
+                  }
+                ],
+                "nodeType": "hyperlink"
+              },
+              {
+                "data": {},
+                "marks": [],
+                "value": " that she'll love.",
+                "nodeType": "text"
+              }
+            ],
+            "nodeType": "paragraph"
+          },
+          {
+            "data": {},
+            "content": [
+              {
+                "data": {},
+                "marks": [],
+                "value": "\u2020\u2020Beauty Insider members will earn four (4) points per dollar spent on Fragrance products from 12:01am PT 5/2/24 through 11:59pm PT 5/12/24 in Sephora US and Canada stores, Sephora at Kohl\u2019s, and on sephora.com, sephora.ca, and Kohls.com. Buy Online, Pick Up In Store orders placed after 5/12/24 do not qualify. Bonus points will be automatically credited to your Beauty Insider account within 24 hours after purchase or 24 hours after your Buy Online, Pick Up In Store order has been picked up. Points not earned on previous purchases, purchases of gift cards, gift wrapping, packaging, taxes, or shipping and handling charges. Points have no cash value and may not be bartered, sold, or transferred. Merchandise return will result in deduction of awarded points. If stacked with other point multiplier offers, points earned will increase by 1x. No minimum purchase required. Due to heavy demand, Sephora FLASH delivery times cannot be guaranteed for this promotion. Sephora may modify or cancel offer at any time.",
+                "nodeType": "text"
+              }
+            ],
+            "nodeType": "paragraph"
+          }
+        ],
+        "nodeType": "document"
+      }
+    },
+    "softLinks": [
+      {
+        "sys": {
+          "publishedVersion": 803
+        },
+        "sid": "RWD soft link_new fragrance_8112021",
+        "label": "New",
+        "media": {
+          "sid": "RWD soft link_new fragrance_8112021",
+          "src": "/contentimages/categorybanners/RWD/icons/new.svg",
+          "width": 28,
+          "height": 28
+        },
+        "action": {
+          "type": "ActionLinkInternal",
+          "sid": "SoftLink_NewFragranace",
+          "page": {
+            "type": "PageContent",
+            "slug": "new-perfumes",
+            "layout": {
+              "type": "LayoutProductGrid"
+            }
+          }
+        }
+      },
+      {
+        "sys": {
+          "publishedVersion": 801
+        },
+        "sid": "RWD soft link_bestseller fragrance_8112021",
+        "label": "Bestsellers",
+        "media": {
+          "sid": "RWD soft link_bestseller fragrance_8112021",
+          "src": "/contentimages/categorybanners/RWD/icons/bestsellers.svg",
+          "width": 28,
+          "height": 28
+        },
+        "action": {
+          "type": "ActionLinkInternal",
+          "sid": "SoftLink_BestsellersFragrance",
+          "page": {
+            "type": "PageContent",
+            "slug": "best-selling-perfume",
+            "layout": {
+              "type": "LayoutProductGrid"
+            }
+          }
+        }
+      },
+      {
+        "sys": {
+          "publishedVersion": 97
+        },
+        "sid": "fragrance_cat_soft-link_valuesets_us_ca_rwd_0525",
+        "label": "Value Sets",
+        "media": {
+          "sid": "RWD_soft_link_guidedselling_valuesets_rwd_image_050525",
+          "src": "/contentimages/homepage/091322/Homepage/RWD/value size 32@3x.jpg",
+          "width": 90,
+          "height": 90
+        },
+        "action": {
+          "type": "ActionLinkInternal",
+          "sid": "/shop/fragrance-value-sets-gifts",
+          "page": {
+            "type": "PageCategory",
+            "slug": "fragrance-value-sets-gifts"
+          }
+        }
+      },
+      {
+        "sys": {
+          "publishedVersion": 746
+        },
+        "sid": "RWD soft link_mini fragrance_8112021",
+        "label": "Mini Size",
+        "media": {
+          "sid": "RWD soft link_mini fragrance_8112021",
+          "src": "/contentimages/categorybanners/RWD/icons/minis.svg",
+          "width": 28,
+          "height": 28
+        },
+        "action": {
+          "type": "ActionLinkInternal",
+          "sid": "SoftLink_MiniFragrance",
+          "page": {
+            "type": "PageCategory",
+            "slug": "mini-perfume"
+          }
+        }
+      },
+      {
+        "sys": {
+          "publishedVersion": 54
+        },
+        "sid": "fragrance_cat_soft-link_valuesize_us_ca_rwd_25",
+        "label": "Jumbo Size",
+        "media": {
+          "sid": "RWD_soft_link_guidedselling_valuesize_rwd_image_25",
+          "src": "/contentimages/categorybanners/RWD/icons/value_size.svg",
+          "width": 90,
+          "height": 90
+        },
+        "action": {
+          "type": "ActionLinkInternal",
+          "sid": "/shop/fragrance?ref=filters[sizeRefinement]=Value",
+          "urlParameters": "?ref=filters[sizeRefinement]=value",
+          "page": {
+            "type": "PageCategory",
+            "slug": "fragrance"
+          }
+        }
+      },
+      {
+        "sys": {
+          "publishedVersion": 621
+        },
+        "sid": "RWD soft link_clean fragrance_042024",
+        "label": "Clean",
+        "media": {
+          "sid": "RWD_soft_link_clean_042024",
+          "src": "/contentimages/categorybanners/RWD/icons/clean-and-planet-aware-2024.svg",
+          "width": 28,
+          "height": 28
+        },
+        "action": {
+          "type": "ActionLinkInternal",
+          "sid": "SoftLink_CleanFragrance",
+          "page": {
+            "type": "PageCategory",
+            "slug": "clean-fragrance"
+          }
+        }
+      },
+      {
+        "sys": {
+          "publishedVersion": 1019
+        },
+        "sid": "RWD soft link_crueltyfreefrag052022",
+        "label": "Cruelty-Free",
+        "media": {
+          "sid": "RWD soft link_crueltyfreefrag052022",
+          "src": "/contentimages/meganav/icons/CrueltyFreeupdated.svg",
+          "width": 28,
+          "height": 28
+        },
+        "action": {
+          "type": "ActionLinkInternal",
+          "sid": "SoftLink_CrueltyFreeFragrance",
+          "urlParameters": "?ref=filters[ingredientPreferences]=crueltyFree",
+          "page": {
+            "type": "PageCategory",
+            "slug": "fragrance"
+          }
+        }
+      },
+      {
+        "sys": {
+          "publishedVersion": 843
+        },
+        "sid": "RWD soft link_fragrance notes_8112021",
+        "label": "Fragrance Notes Guide",
+        "media": {
+          "sid": "RWD soft link_fragrance notes_8112021",
+          "src": "/contentimages/categorybanners/RWD/icons/fragrances_guide.svg",
+          "width": 28,
+          "height": 28
+        },
+        "action": {
+          "type": "ActionLinkInternal",
+          "sid": "SoftLink_FraganceNotes",
+          "page": {
+            "type": "PageContent",
+            "slug": "fragrance-notes",
+            "layout": {
+              "type": "LayoutBuyingGuide"
+            }
+          }
+        }
+      },
+      {
+        "sys": {
+          "publishedVersion": 912
+        },
+        "sid": "RWD soft link_niche fragrance_8112021",
+        "label": "Niche Fragrances",
+        "media": {
+          "sid": "RWD soft link_niche fragrance_8112021",
+          "src": "/contentimages/categorybanners/RWD/icons/niche_fragrances.svg",
+          "width": 28,
+          "height": 28
+        },
+        "action": {
+          "type": "ActionLinkInternal",
+          "sid": "SoftLink_NicheFragrance",
+          "page": {
+            "type": "PageContent",
+            "slug": "niche-perfume",
+            "layout": {
+              "type": "LayoutBuyingGuide"
+            }
+          }
+        }
+      },
+      {
+        "sys": {
+          "publishedVersion": 869
+        },
+        "sid": "RWD soft link_fragrance under 45_8112021",
+        "label": "Best Perfume $50 and Under",
+        "media": {
+          "sid": "RWD soft link_fragrance under 45_8112021",
+          "src": "/contentimages/categorybanners/RWD/icons/under_45.svg",
+          "width": 28,
+          "height": 28
+        },
+        "action": {
+          "type": "ActionLinkInternal",
+          "sid": "SoftLink_BestAffordableFragrance",
+          "page": {
+            "type": "PageContent",
+            "slug": "best-affordable-perfumes",
+            "layout": {
+              "type": "LayoutBuyingGuide"
+            }
+          }
+        }
+      }
+    ],
+    "marketingTiles": [
+      {
+        "sys": {
+          "publishedVersion": 10,
+          "id": "44daLo6iObYrPtKcozMeo9"
+        },
+        "sid": "Phlur_LycheeIslandSwim_CGT_shared_051526_FY265389",
+        "mediaPlacement": "top",
+        "media": {
+          "sid": "Phlur_LycheeIslandSwim_CGT_media_shared_051526_FY265389",
+          "src": "/contentimages/26-05-15_phlur-island-swim-and-paradise-nectar_site-d-m_cntnt-grid-tile_us-can_2818.jpg",
+          "width": 460,
+          "height": 772,
+          "altText": "Pink\u2011to\u2011coral gradient background with text reading \u201cNew Phlur Body Mists\u201d and \u201cDive into summer with Island Swim & Paradise Nectar,\u201d followed by \u201cShop Now.\u201d Two Phlur body mist bottles are shown surrounded by flowers, shells, and fruit."
+        },
+        "action": {
+          "type": "ActionLinkInternal",
+          "sid": "/brand/phlur?sortBy=NEW",
+          "urlParameters": "?sortBy=NEW",
+          "page": {
+            "type": "PageBrand",
+            "slug": "phlur"
+          }
+        }
+      },
+      {
+        "sys": {
+          "publishedVersion": 4,
+          "id": "13DEnELOjhKAjwg15cxBS2"
+        },
+        "sid": "FathersDay_Bestselling_CGT_ALL_051426_fathersday0526_FY264895",
+        "mediaPlacement": "top",
+        "media": {
+          "sid": "FathersDay_Bestselling_CGT_media_ALL_051426_fathersday0526_FY264895",
+          "src": "/contentimages/2026-05-14_fday-fragrance-mbc_site-d-m_cat_contnt-grid-tile_bestselling-fragrance_us-can_2818.jpg",
+          "width": 460,
+          "height": 772,
+          "altText": "Neutral beige background with text reading \u201cGift Him New Fragrance\u201d and \u201cFrom Jean Paul Gaultier, Dolce&Gabbana, and more,\u201d followed by \u201cShop Now.\u201d Four men\u2019s fragrance bottles are lined up along the bottom in different shapes and colors."
+        },
+        "action": {
+          "type": "ActionLinkInternal",
+          "sid": "fragrances-for-men?sortBy=NEW",
+          "urlParameters": "?sortBy=NEW",
+          "page": {
+            "type": "PageCategory",
+            "slug": "fragrances-for-men"
+          }
+        }
+      },
+      {
+        "sys": {
+          "publishedVersion": 14,
+          "id": "7xbiOF3TLa2EfG83ylNoJE"
+        },
+        "sid": "Gamefication_3_FindAStore_CGT_shared_043026_FY265160",
+        "mediaPlacement": "top",
+        "media": {
+          "sid": "Gamefication_3_FindAStore_CGT_media_shared_043026_FY265160",
+          "src": "/contentimages/2026-04-30_loyalty-promo_gamification-challenge-3_site-d-m_cat_cntnt-grd-tile_us-can_3437_gr.jpg",
+          "width": 460,
+          "height": 772,
+          "altText": "Pink background with text reading \u201cDon\u2019t Miss up to 500 Points.\u201d Below: \u201cWhen you complete tasks like taking our free in\u2011store Fragrance Quiz. Find a Store.\u201d A badge reads \u201c+500 Bonus Points,\u201d with sparkles and a note saying \u201cStacks with other offers.\u201d"
+        },
+        "action": {
+          "type": "ActionLinkInternal",
+          "sid": "/beauty/challenges-may-beauty-challenge-2026",
+          "page": {
+            "type": "PageContent",
+            "slug": "challenges-may-beauty-challenge-2026",
+            "layout": {
+              "type": "LayoutOpen"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "currentPage": 1,
+  "deliveryOptions": {
+    "pickup": {
+      "pickupStoreId": "0018",
+      "pickupStoreName": "Pickup: VALLEY FAIR"
+    },
+    "sameDay": {
+      "sameDayZipCode": "95050-6730",
+      "sameDayTitle": "Same-Day Delivery"
+    }
+  },
+  "displayName": "Fragrance",
+  "resultId": "5ceddea1-e5f8-4590-9f09-05fd5a457a17",
+  "enableNoindexMetaTag": false,
+  "linkEquityBlock": {
+    "links": [
+      {
+        "url": "https://www.sephora.com/shop/cologne",
+        "anchorText": "Cologne for Men"
+      },
+      {
+        "url": "https://www.sephora.com/shop/fragrances-for-men",
+        "anchorText": "Fragrances for Men"
+      },
+      {
+        "url": "https://www.sephora.com/shop/perfume",
+        "anchorText": "Perfume & Perfumes for Women"
+      },
+      {
+        "url": "https://www.sephora.com/shop/perfume-gift-sets",
+        "anchorText": "Perfume Gift Sets, Perfume Sets & Perfume Gifts"
+      },
+      {
+        "url": "https://www.sephora.com/shop/body-mist-hair-mist",
+        "anchorText": "Body Spray, Body Mist, & Hair Mist"
+      },
+      {
+        "url": "https://www.sephora.com/shop/mini-perfume",
+        "anchorText": "Mini Perfume"
+      },
+      {
+        "url": "https://www.sephora.com/shop/mens-fragrance",
+        "anchorText": "Cologne & Cologne for Men"
+      },
+      {
+        "url": "https://www.sephora.com/shop/shop-travel-size-perfume",
+        "anchorText": "Travel Size Fragrance & Mini Fragrance"
+      },
+      {
+        "url": "https://www.sephora.com/shop/luxury-fragrance",
+        "anchorText": "Luxury & Designer Perfumes & Colognes"
+      }
+    ]
+  },
+  "navigationSeoJsonLd": "{\"@type\":\"ItemList\",\"@context\":\"http://schema.org\",\"itemListElement\":[{\"url\":\"https://www.sephora.com/shop/makeup-cosmetics\",\"name\":\"Makeup\",\"@type\":\"SiteNavigationElement\",\"position\":1,\"description\":\"Shop the best makeup now at Sephora and earn points with every purchase! Not yet a Beauty Insider? Join now for FREE!\"},{\"url\":\"https://www.sephora.com/shop/skincare \",\"name\":\"Skincare\",\"@type\":\"SiteNavigationElement\",\"position\":2,\"description\":\"Shop skincare products at Sephora. Find top-rated products from leading skincare brands to help target specific skin concerns and revitalize your look.\"},{\"url\":\"https://www.sephora.com/shop/hair-products\",\"name\":\"Hair\",\"@type\":\"SiteNavigationElement\",\"position\":3,\"description\":\"Explore our top-rated hair care products at Sephora. Browse an unrivaled selection of shampoos, conditioners, styling products, hair color and more from top brands.\"},{\"url\":\"https://www.sephora.com/shop/fragrance\",\"name\":\"Fragrance\",\"@type\":\"SiteNavigationElement\",\"position\":4,\"description\":\"Shop fragrances for women and men at Sephora. Find your favorite perfume or cologne or accentuate your style with a new scent.\"},{\"url\":\"https://www.sephora.com/shop/makeup-tools\",\"name\":\"Tools & Brushes\",\"@type\":\"SiteNavigationElement\",\"position\":5,\"description\":\"Shop beauty tools and accessories at Sephora. Find top-rated makeup tools, brushes, applicators, spa tools and more from leading brands.\"},{\"url\":\"https://www.sephora.com/shop/bath-body\",\"name\":\"Bath & Body\",\"@type\":\"SiteNavigationElement\",\"position\":6,\"description\":\"Shop bath & body products at Sephora. Find an unrivaled selection of the top moisturizers, cleansers, lotions, exfoliants, scrubs and more from top brands.\"},{\"url\":\"https://www.sephora.com/sale\",\"name\":\"Sale\",\"@type\":\"SiteNavigationElement\",\"position\":7,\"description\":\"Makeup sales are always on at Sephora. Shop discounted makeup, skincare, fragrance and hair care products at Sephora today. Free shipping and samples available.\"}]}",
+  "pageSize": 60,
+  "pageType": "TopCategory",
+  "products": [
+    {
+      "brandName": "Sephora Favorites",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Sephora Favorites - Women's Perfume Sampler Gift Set w/ Redeemable Voucher",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": true,
+        "isLimitedTimeOffer": false,
+        "isNew": true,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": true,
+        "listPrice": "$98.00",
+        "skuId": "2946333",
+        "valuePrice": "$169.00"
+      },
+      "displayName": "Women's Perfume Sampler Gift Set w/ Redeemable Voucher",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2946333-main-zoom.jpg?imwidth=270&pb=sephora-favorites-full-size",
+      "altImage": "https://www.sephora.com/productimages/sku/s2946333-main-zoom.jpg?imwidth=270&pb=sephora-favorites-full-size",
+      "swatchSelectors": [
+        {
+          "swatch": "Image - 36",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2946333-main-zoom.jpg?imwidth=270&pb=sephora-favorites-full-size"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P520745",
+      "rating": "4.7273",
+      "reviews": "220",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": false,
+      "targetUrl": "/product/deluxe-perfume-sampler-set-P520745?skuId=2946333",
+      "sponsored": false
+    },
+    {
+      "brandName": "KAYALI",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "KAYALI - YUM BOUJEE MARSHMALLOW | 81 Eau de Parfum Intense",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$29.00 - $150.00",
+        "skuId": "2804821"
+      },
+      "displayName": "YUM BOUJEE MARSHMALLOW | 81 Eau de Parfum Intense",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2804821-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2804821-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2804821+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2804821-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2804813+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2804813-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2804847+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2804847-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2804839+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2804839-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P512856",
+      "rating": "4.2066",
+      "reviews": "2401",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/kayali-yum-boujee-marshmallow-81-eau-de-parfum-intense-P512856?skuId=2804821",
+      "sponsored": false
+    },
+    {
+      "brandName": "Carolina Herrera",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Carolina Herrera - La Bomba Eau de Parfum",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": true,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": true,
+        "listPrice": "$36.00 - $165.00",
+        "skuId": "2929743"
+      },
+      "displayName": "La Bomba Eau de Parfum",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2929743-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2929743-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2929743+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2929743-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2929917+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2929917-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2929768+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2929768-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2929883+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2929883-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P520202",
+      "rating": "4.3776",
+      "reviews": "482",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/la-bomba-eau-de-parfum-P520202?skuId=2929743",
+      "sponsored": false
+    },
+    {
+      "brandName": "Valentino",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Valentino - Donna Born in Roma Eau de Parfum with Bourbon Vanilla & Jasmine",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$37.00 - $180.00",
+        "skuId": "2249696"
+      },
+      "displayName": "Donna Born in Roma Eau de Parfum with Bourbon Vanilla & Jasmine",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2249696-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2249696-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2249696+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2249696-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2249670+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2249670-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2249688+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2249688-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2370435+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2370435-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P449116",
+      "rating": "4.5207",
+      "reviews": "2923",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/born-in-roma-P449116?skuId=2249696",
+      "sponsored": false
+    },
+    {
+      "brandName": "KAYALI",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "KAYALI - Marshmallow Candy Mini Duo Perfume Gift Set",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": true,
+        "listPrice": "$28.00",
+        "skuId": "2936714"
+      },
+      "displayName": "Marshmallow Candy Mini Duo Perfume Gift Set",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2936714-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2936714-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "Image - 36",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2936714-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P520462",
+      "rating": "4.5977",
+      "reviews": "266",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/yum-boujee-marshmallow-vanilla-candy-rock-sugar-mini-duo-set-P520462?skuId=2936714",
+      "sponsored": false
+    },
+    {
+      "brandName": "KAYALI",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "KAYALI - YUM BOUJEE MARSHMALLOW | 81 Eau de Parfum Intense Travel Spray",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$29.00 - $32.00",
+        "skuId": "2804839"
+      },
+      "displayName": "YUM BOUJEE MARSHMALLOW | 81 Eau de Parfum Intense Travel Spray",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2804839-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2804839-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2804839+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2804839-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2804847+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2804847-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P512449",
+      "rating": "4.2066",
+      "reviews": "2401",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/kayali-yum-boujee-marshmallow-81-eau-de-parfum-intense-travel-spray-P512449?skuId=2804839",
+      "sponsored": false
+    },
+    {
+      "brandName": "Sol de Janeiro",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Sol de Janeiro - Cheirosa Perfume Mist Discovery Gift Set",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": true,
+        "isLimitedTimeOffer": false,
+        "isNew": true,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$36.00",
+        "skuId": "2948818",
+        "skuType": "This limited-edition set brings together the all-new floral Cheirosa 91 and three best-selling scents in travel-ready sizes that shine on their own or layer to make your custom scent. Comes in a reusable, sunny yellow jelly bag that's perfect for travel, poolside days, or quick touch-ups on the go.",
+        "valuePrice": "$40.00"
+      },
+      "displayName": "Cheirosa Perfume Mist Discovery Gift Set",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2948818-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2948818-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "Image - 36",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2948818-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P521486",
+      "rating": "4.65",
+      "reviews": "40",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/sol-de-janeiro-cheirosa-perfume-mist-discovery-gift-set-P521486?skuId=2948818",
+      "sponsored": false
+    },
+    {
+      "brandName": "Sephora Favorites",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Sephora Favorites - Flirty Trending Scents Perfume Sampler Set w/ Redeemable Voucher",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": true,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": true,
+        "listPrice": "$98.00",
+        "skuId": "2938082",
+        "valuePrice": "$152.00"
+      },
+      "displayName": "Flirty Trending Scents Perfume Sampler Set w/ Redeemable Voucher",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2938082-main-zoom.jpg?imwidth=270&pb=sephora-favorites-full-size",
+      "altImage": "https://www.sephora.com/productimages/sku/s2938082-main-zoom.jpg?imwidth=270&pb=sephora-favorites-full-size",
+      "swatchSelectors": [
+        {
+          "swatch": "Image - 36",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2938082-main-zoom.jpg?imwidth=270&pb=sephora-favorites-full-size"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P520718",
+      "rating": "3.1633",
+      "reviews": "49",
+      "pickupEligible": false,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/perfume-sampler-set-w-redeemable-voucher-P520718?skuId=2938082",
+      "sponsored": false
+    },
+    {
+      "brandName": "Valentino",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Valentino - Mini Donna Born in Roma & Donna Born in Roma Intense Perfume Set",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": true,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$38.00",
+        "skuId": "2701258",
+        "skuType": "na",
+        "valuePrice": "$48.00"
+      },
+      "displayName": "Mini Donna Born in Roma & Donna Born in Roma Intense Perfume Set",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2701258-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2701258-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "heroImage": "https://www.sephora.com/productimages/sku/s2701258-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P506963",
+      "rating": "3.8696",
+      "reviews": "92",
+      "pickupEligible": false,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/mini-donna-born-in-roma-donna-born-in-roma-intense-perfume-set-P506963?skuId=2701258",
+      "sponsored": false
+    },
+    {
+      "brandName": "KAYALI",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "KAYALI - EDEN Mini Replica Set",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": true,
+        "isLimitedTimeOffer": false,
+        "isNew": true,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": true,
+        "listPrice": "$100.00",
+        "skuId": "2936706",
+        "skuType": "Indulge in a world of juicy temptation with the limited-edition KAYALI Eden Obsessions Miniature Set.",
+        "valuePrice": "$128.00"
+      },
+      "displayName": "EDEN Mini Replica Set",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2936706-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2936706-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "Image - 42",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2936706-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P520449",
+      "rating": "4.7487",
+      "reviews": "199",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/kayali-eden-mini-replica-set-P520449?skuId=2936706",
+      "sponsored": false
+    },
+    {
+      "brandName": "CHANEL",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "CHANEL - COCO MADEMOISELLE Eau de Parfum",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$115.00 - $185.00",
+        "skuId": "513168"
+      },
+      "displayName": "COCO MADEMOISELLE Eau de Parfum",
+      "heroImage": "https://www.sephora.com/productimages/sku/s513168-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/product/p12495-av-1-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s513168+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s513168-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s513176+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s513176-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s1213826+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s1213826-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "heroImage": "https://www.sephora.com/productimages/sku/s1113281-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P12495",
+      "rating": "4.589",
+      "reviews": "1472",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/coco-mademoiselle-P12495?skuId=513168",
+      "sponsored": false
+    },
+    {
+      "brandName": "Carolina Herrera",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Carolina Herrera - Good Girl Blush Eau de Parfum with Floral Vanilla",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$39.00 - $205.00",
+        "skuId": "2645026"
+      },
+      "displayName": "Good Girl Blush Eau de Parfum with Floral Vanilla",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2645026-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2645026-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2645026+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2645026-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2671832+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2671832-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2645018+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2645018-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2899730+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2899730-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2843514+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2843514-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P504996",
+      "rating": "4.3683",
+      "reviews": "926",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/good-girl-blush-eau-de-parfum-P504996?skuId=2645026",
+      "sponsored": false
+    },
+    {
+      "brandName": "KAYALI",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "KAYALI - VANILLA | 28 Eau de Parfum",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": true,
+        "listPrice": "$29.00 - $150.00",
+        "skuId": "2163970"
+      },
+      "displayName": "VANILLA | 28 Eau de Parfum",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2163970-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2163970-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2163970+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2163970-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2224491+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2224491-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2411262+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2411262-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2599900+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2599900-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P439406",
+      "rating": "4.1093",
+      "reviews": "2899",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/kayali-vanilla-P439406?skuId=2163970",
+      "sponsored": false
+    },
+    {
+      "brandName": "Glossier",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Glossier - Glossier You Eau de Parfum",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": true,
+        "listPrice": "$32.00 - $116.00",
+        "skuId": "2649770"
+      },
+      "displayName": "Glossier You Eau de Parfum",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2649770-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2649770-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2649770+sw-62.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2649770-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2737690+sw-62.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2737690-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2771533+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2771533-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P504364",
+      "rating": "4.0533",
+      "reviews": "2083",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/glossier-glossier-you-eau-de-parfum-P504364?skuId=2649770",
+      "sponsored": false
+    },
+    {
+      "brandName": "Sol de Janeiro",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Sol de Janeiro - Cheeky Biqu\u00edni Hair & Body Perfume Mist",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": true,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$26.00",
+        "skuId": "2948834"
+      },
+      "displayName": "Cheeky Biqu\u00edni Hair & Body Perfume Mist",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2948834-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2948834-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "Image - Rectangle",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2948834-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P521836",
+      "rating": "4.6584",
+      "reviews": "202",
+      "pickupEligible": false,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/sol-de-janeiro-cheeky-biquini-hair-body-perfume-mist-P521836?skuId=2948834",
+      "sponsored": false
+    },
+    {
+      "brandName": "OUAI",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "OUAI - Mini St. Barts, Ibiza, Santorini & Melrose Hair & Body Mist Set",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": true,
+        "isLimitedTimeOffer": false,
+        "isNew": true,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": true,
+        "listPrice": "$35.00",
+        "skuId": "2956969",
+        "skuType": "HAIR & BODY MIST DELUXE SAMPLE SET",
+        "valuePrice": "$40.00"
+      },
+      "displayName": "Mini St. Barts, Ibiza, Santorini & Melrose Hair & Body Mist Set",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2956969-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2956969-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "Image - 42",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2956969-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P521385",
+      "rating": "4.1",
+      "reviews": "40",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/mini-st-barts-ibiza-santorini-melrose-hair-body-mist-set-P521385?skuId=2956969",
+      "sponsored": false
+    },
+    {
+      "brandName": "Summer Fridays",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Summer Fridays - Sunlit Vanilla Eau de Parfum with Caramel Travel Spray",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": true,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$30.00",
+        "skuId": "2940443"
+      },
+      "displayName": "Sunlit Vanilla Eau de Parfum with Caramel Travel Spray",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2940443-main-zoom.jpg?imwidth=270&pb=clean-at-sephora",
+      "altImage": "https://www.sephora.com/productimages/sku/s2940443-main-zoom.jpg?imwidth=270&pb=clean-at-sephora",
+      "swatchSelectors": [
+        {
+          "swatch": "Image - Rectangle",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2940443-main-zoom.jpg?imwidth=270&pb=clean-at-sephora"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P521692",
+      "rating": "4.1319",
+      "reviews": "599",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/summer-fridays-sunlit-vanilla-eau-de-parfum-with-caramel-travel-spray-P521692?skuId=2940443",
+      "sponsored": false
+    },
+    {
+      "brandName": "Sephora Favorites",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Sephora Favorites - Summer Scents Travel Spray Perfume Sampler Set w/ Redeemable Voucher",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": true,
+        "isLimitedTimeOffer": false,
+        "isNew": true,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": true,
+        "listPrice": "$38.00",
+        "skuId": "2979029",
+        "valuePrice": "$58.00"
+      },
+      "displayName": "Summer Scents Travel Spray Perfume Sampler Set w/ Redeemable Voucher",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2979029-main-zoom.jpg?imwidth=270&pb=sephora-favorites-travel-size",
+      "altImage": "https://www.sephora.com/productimages/sku/s2979029-main-zoom.jpg?imwidth=270&pb=sephora-favorites-travel-size",
+      "swatchSelectors": [
+        {
+          "swatch": "Image - 36",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2979029-main-zoom.jpg?imwidth=270&pb=sephora-favorites-travel-size"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P522233",
+      "rating": "4.7268",
+      "reviews": "183",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/womens-botf-travel-spray-sampler-set-P522233?skuId=2979029",
+      "sponsored": false
+    },
+    {
+      "brandName": "Yves Saint Laurent",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Yves Saint Laurent - Libre Eau De Parfum with Orange Blossom & Lavender",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$38.00 - $225.00",
+        "skuId": "2249746"
+      },
+      "displayName": "Libre Eau De Parfum with Orange Blossom & Lavender",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2249746-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2249746-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2249746+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2249746-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2249738+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2249738-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2249779+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2249779-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2371888+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2371888-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2724417+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2724417-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2249720+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2249720-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P448102",
+      "rating": "4.5337",
+      "reviews": "4525",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/libre-eau-de-parfum-P448102?skuId=2249746",
+      "sponsored": false
+    },
+    {
+      "brandName": "PHLUR",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "PHLUR - Mini Vanilla Skin Body & Hair Fragrance Mist",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$26.00",
+        "skuId": "2693349"
+      },
+      "displayName": "Mini Vanilla Skin Body & Hair Fragrance Mist",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2693349-main-zoom.jpg?imwidth=270&pb=allure-2024-bestofbeauty",
+      "altImage": "https://www.sephora.com/productimages/sku/s2693349-main-zoom.jpg?imwidth=270&pb=allure-2024-bestofbeauty",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2693349+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2693349-main-zoom.jpg?imwidth=270&pb=allure-2024-bestofbeauty"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P509258",
+      "rating": "4.0543",
+      "reviews": "442",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/phlur-vanilla-skin-hair-body-fragrance-mist-P509258?skuId=2693349",
+      "sponsored": false
+    },
+    {
+      "brandName": "Prada",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Prada - Paradoxe Eau de Parfum with White Musk & Amber",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$38.00 - $180.00",
+        "skuId": "2591170"
+      },
+      "displayName": "Paradoxe Eau de Parfum with White Musk & Amber",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2591170-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/product/p501198-av-1-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2591170+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2591170-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2591204+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2591204-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2591188+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2591188-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2608768+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2608768-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2591196+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2591196-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P501198",
+      "rating": "4.5398",
+      "reviews": "1684",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/paradoxe-eau-de-parfum-P501198?skuId=2591170",
+      "sponsored": false
+    },
+    {
+      "brandName": "Yves Saint Laurent",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Yves Saint Laurent - Libre Collection Mini Perfume Duo Set",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$40.00",
+        "skuId": "2801603",
+        "skuType": "c",
+        "valuePrice": "$60.00"
+      },
+      "displayName": "Libre Collection Mini Perfume Duo Set",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2801603-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2801603-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "Image - 36",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2801603-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P513277",
+      "rating": "4.225",
+      "reviews": "40",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/yves-saint-laurent-libre-collection-mini-perfume-duo-set-P513277?skuId=2801603",
+      "sponsored": false
+    },
+    {
+      "brandName": "BURBERRY",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "BURBERRY - Her Elixir de Parfum with Dark Red Berries, Jasmine & Vanilla",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$40.00 - $190.00",
+        "skuId": "2608735"
+      },
+      "displayName": "Her Elixir de Parfum with Dark Red Berries, Jasmine & Vanilla",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2608735-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2608735-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2608735+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2608735-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2603330+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2603330-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2603314+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2603314-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2603322+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2603322-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P502245",
+      "rating": "4.346",
+      "reviews": "1052",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/her-elixir-eau-de-parfum-intense-P502245?skuId=2608735",
+      "sponsored": false
+    },
+    {
+      "brandName": "TOM FORD",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "TOM FORD - Mini Lost Cherry & Soleil Blanc Eau de Parfum Perfume Gift Set",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": true,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$40.00",
+        "skuId": "2899094",
+        "valuePrice": "$56.00"
+      },
+      "displayName": "Mini Lost Cherry & Soleil Blanc Eau de Parfum Perfume Gift Set",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2899094-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2899094-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "Image - 36",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2899094-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P518361",
+      "rating": "3.6061",
+      "reviews": "33",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/tf-acs-set-lc-sb-2-4ml-botf-P518361?skuId=2899094",
+      "sponsored": false
+    },
+    {
+      "brandName": "DIOR",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "DIOR - Miss Dior Eau de Parfum",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$60.00 - $225.00",
+        "skuId": "2467371"
+      },
+      "displayName": "Miss Dior Eau de Parfum",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2467371-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2467371-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2467371+sw-62.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2467371-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2467355+sw-62.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2467355-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2467363+sw-62.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2467363-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2552982+sw-62.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2552982-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2531812+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2531812-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P474316",
+      "rating": "4.503",
+      "reviews": "2642",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/dior-miss-dior-eau-de-parfum-P474316?skuId=2467371",
+      "sponsored": false
+    },
+    {
+      "brandName": "KAYALI",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "KAYALI - Mini EDEN SWEET PEACH | 35 Eau de Parfum Travel Spray",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": true,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": true,
+        "listPrice": "$29.00 - $32.00",
+        "skuId": "2936664"
+      },
+      "displayName": "Mini EDEN SWEET PEACH | 35 Eau de Parfum Travel Spray",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2936664-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2936664-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2936664+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2936664-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2936722+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2936722-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P520456",
+      "rating": "4.4333",
+      "reviews": "300",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/kayali-eden-sweet-peach-35-eau-de-parfum-travel-spray-P520456?skuId=2936664",
+      "sponsored": false
+    },
+    {
+      "brandName": "BURBERRY",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "BURBERRY - Mini Her & Goddess Perfume Duo Set",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": true,
+        "listPrice": "$39.00",
+        "skuId": "2889350",
+        "valuePrice": "$40.00"
+      },
+      "displayName": "Mini Her & Goddess Perfume Duo Set",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2889350-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2889350-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "Image - 42",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2889350-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P513278",
+      "rating": "4.2949",
+      "reviews": "373",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/burberry-mini-her-goddess-perfume-coffret-set-P513278?skuId=2889350",
+      "sponsored": false
+    },
+    {
+      "brandName": "Rare Beauty by Selena Gomez",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Rare Beauty by Selena Gomez - Rare Eau de Parfum with Vanilla and Caramel",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$30.00 - $75.00",
+        "skuId": "2888188"
+      },
+      "displayName": "Rare Eau de Parfum with Vanilla and Caramel",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2888188-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2888188-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2888188+sw-62.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2888188-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2888196+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2888196-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P517178",
+      "rating": "4.396",
+      "reviews": "1366",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/rare-eau-de-parfum-P517178?skuId=2888188",
+      "sponsored": false
+    },
+    {
+      "brandName": "Gucci",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Gucci - Mini Flora Gorgeous Eau de Parfum Duo Set",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$35.00",
+        "skuId": "2795086",
+        "skuType": "na"
+      },
+      "displayName": "Mini Flora Gorgeous Eau de Parfum Duo Set",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2795086-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2795086-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "Image - 42",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2795086-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P513118",
+      "rating": "4.2697",
+      "reviews": "178",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/gucci-flora-gorgeous-eau-de-parfum-duo-set-P513118?skuId=2795086",
+      "sponsored": false
+    },
+    {
+      "brandName": "EILISH FRAGRANCES",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "EILISH FRAGRANCES - Eilish Eau de Parfum with Vanilla and Musk",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$30.00 - $82.00",
+        "skuId": "2948495"
+      },
+      "displayName": "Eilish Eau de Parfum with Vanilla and Musk",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2948495-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2948495-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2948495+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2948495-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2948404+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2948404-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2948420+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2948420-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2948438+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2948438-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P520204",
+      "rating": "3.9057",
+      "reviews": "53",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/eilish-1-eau-de-parfum-P520204?skuId=2948495",
+      "sponsored": false
+    },
+    {
+      "brandName": "OUAI",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "OUAI - Santorini Hair and Body Mist with Honeysuckle Peach + Honeysuckle",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": true,
+        "listPrice": "$28.00",
+        "skuId": "2902013"
+      },
+      "displayName": "Santorini Hair and Body Mist with Honeysuckle Peach + Honeysuckle",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2902013-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2902013-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "Image - Rectangle",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2902013-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P519774",
+      "rating": "4.7242",
+      "reviews": "1142",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/santorini-hair-body-mist-P519774?skuId=2902013",
+      "sponsored": false
+    },
+    {
+      "brandName": "Armani Beauty",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Armani Beauty - Power of You Eau de Parfum with Passion Fruit",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": true,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$32.00 - $138.00",
+        "skuId": "2945376"
+      },
+      "displayName": "Power of You Eau de Parfum with Passion Fruit",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2945376-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2945376-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2945376+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2945376-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2945350+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2945350-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2945368+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2945368-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P520331",
+      "rating": "4.4946",
+      "reviews": "1563",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/power-you-eau-de-parfum-P520331?skuId=2945376",
+      "sponsored": false
+    },
+    {
+      "brandName": "Glossier",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Glossier - Glossier You Perfume Sampler Set",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": true,
+        "listPrice": "$15.00",
+        "skuId": "2893667"
+      },
+      "displayName": "Glossier You Perfume Sampler Set",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2893667-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2893667-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "Image - 36",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2893667-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P517997",
+      "rating": "4.7521",
+      "reviews": "363",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/discovery-kit-vial-P517997?skuId=2893667",
+      "sponsored": false
+    },
+    {
+      "brandName": "Yves Saint Laurent",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Yves Saint Laurent - Libre Berry Crush Eau De Parfum with Raspberry",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$38.00 - $180.00",
+        "skuId": "2919744"
+      },
+      "displayName": "Libre Berry Crush Eau De Parfum with Raspberry",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2919744-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2919744-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2919744+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2919744-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2919751+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2919751-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2922904+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2922904-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2919769+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2919769-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P520837",
+      "rating": "4.6896",
+      "reviews": "1630",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/libre-berry-crush-P520837?skuId=2919744",
+      "sponsored": false
+    },
+    {
+      "brandName": "KAYALI",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "KAYALI - Vanilla Musk Mini Duo Perfume Gift Set",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": true,
+        "listPrice": "$28.00",
+        "skuId": "2936631"
+      },
+      "displayName": "Vanilla Musk Mini Duo Perfume Gift Set",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2936631-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2936631-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "Image - 36",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2936631-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P520484",
+      "rating": "3.8333",
+      "reviews": "30",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/musk-santal-vanilla-28-mini-duo-P520484?skuId=2936631",
+      "sponsored": false
+    },
+    {
+      "brandName": "Valentino",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Valentino - Donna Born In Roma Purple Melancholia Eau de Parfum",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": true,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$37.00 - $180.00",
+        "skuId": "2930154"
+      },
+      "displayName": "Donna Born In Roma Purple Melancholia Eau de Parfum",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2930154-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2930154-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2930154+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2930154-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2930147+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2930147-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2930097+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2930097-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2930139+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2930139-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P520824",
+      "rating": "4.5343",
+      "reviews": "1763",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/donna-born-in-roma-purple-melancholia-P520824?skuId=2930154",
+      "sponsored": false
+    },
+    {
+      "brandName": "Sol de Janeiro",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Sol de Janeiro - Cheirosa 62 Bum Bum Hair & Body Refillable Perfume Mist",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": true,
+        "listPrice": "$26.00 - $39.00",
+        "skuId": "1930759"
+      },
+      "displayName": "Cheirosa 62 Bum Bum Hair & Body Refillable Perfume Mist",
+      "heroImage": "https://www.sephora.com/productimages/sku/s1930759-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s1930759-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "Image - Rectangle",
+          "heroImage": "https://www.sephora.com/productimages/sku/s1930759-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "Image - Rectangle",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2908796-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "Image - 36",
+          "heroImage": "https://www.sephora.com/productimages/sku/s1985118-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P417312",
+      "rating": "4.4278",
+      "reviews": "3450",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/brazilian-crush-body-fragrance-mist-P417312?skuId=1930759",
+      "sponsored": false
+    },
+    {
+      "brandName": "Miu Miu",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Miu Miu - Mini Miutine Eau De Parfum Perfume Duo Gift Set",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$39.00",
+        "skuId": "2895423"
+      },
+      "displayName": "Mini Miutine Eau De Parfum Perfume Duo Gift Set",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2895423-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2895423-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "Image - 42",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2895423-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P517264",
+      "rating": "4.5938",
+      "reviews": "2981",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/mini-miutine-eau-de-parfum-perfume-duo-set-P517264?skuId=2895423",
+      "sponsored": false
+    },
+    {
+      "brandName": "CHANEL",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "CHANEL - CHANCE EAU TENDRE Eau de Toilette",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$98.00 - $155.00",
+        "skuId": "1237379"
+      },
+      "displayName": "CHANCE EAU TENDRE Eau de Toilette",
+      "heroImage": "https://www.sephora.com/productimages/sku/s1237379-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/product/p258612-av-1-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s1237379+sw-62.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s1237379-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s1237387+sw-62.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s1237387-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s1663632+sw-62.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s1663632-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s1400001+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s1400001-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P258612",
+      "rating": "4.6581",
+      "reviews": "699",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/chance-eau-tendre-P258612?skuId=1237379",
+      "sponsored": false
+    },
+    {
+      "brandName": "KAYALI",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "KAYALI - Vacay in a Bottle Discovery Set",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": true,
+        "isSephoraExclusive": false,
+        "listPrice": "$15.00",
+        "skuId": "2866762"
+      },
+      "displayName": "Vacay in a Bottle Discovery Set",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2866762-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2866762-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "Image - 36",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2866762-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P515942",
+      "rating": "3.1404",
+      "reviews": "57",
+      "pickupEligible": false,
+      "sameDayEligible": false,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/kayali-by-huda-vacation-in-bottle-sampler-set-P515942?skuId=2866762",
+      "sponsored": false
+    },
+    {
+      "brandName": "JIMMY CHOO",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "JIMMY CHOO - I Want Choo With Love Eau de Parfum",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$35.00 - $150.00",
+        "skuId": "2894434"
+      },
+      "displayName": "I Want Choo With Love Eau de Parfum",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2894434-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2894434-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2894434+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2894434-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2894459+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2894459-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2894467+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2894467-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2894442+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2894442-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P517288",
+      "rating": "4.8296",
+      "reviews": "452",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/i-want-choo-with-love-eau-de-parfum-P517288?skuId=2894434",
+      "sponsored": false
+    },
+    {
+      "brandName": "Yves Saint Laurent",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Yves Saint Laurent - Mini Black Opium & Libre Eau de Parfum Set",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": true,
+        "listPrice": "$38.00",
+        "skuId": "2561835",
+        "valuePrice": "$50.00"
+      },
+      "displayName": "Mini Black Opium & Libre Eau de Parfum Set",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2561835-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/product/p470257-av-15-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "heroImage": "https://www.sephora.com/productimages/sku/s2561835-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P470257",
+      "rating": "4.2596",
+      "reviews": "285",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/yves-saint-laurent-mini-black-opium-libre-eau-de-parfum-duo-P470257?skuId=2561835",
+      "sponsored": false
+    },
+    {
+      "brandName": "Valentino",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Valentino - Donna Born In Roma Eau de Parfum Travel Spray with Bourbon Vanilla & Jasmine",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$37.00",
+        "skuId": "2370435"
+      },
+      "displayName": "Donna Born In Roma Eau de Parfum Travel Spray with Bourbon Vanilla & Jasmine",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2370435-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2370435-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2370435+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2370435-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P449117",
+      "rating": "4.5206",
+      "reviews": "2906",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/born-in-roma-travel-spray-P449117?skuId=2370435",
+      "sponsored": false
+    },
+    {
+      "brandName": "Valentino",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Valentino - Donna Born In Roma Purple Melancholia Eau de Parfum Travel Spray",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": true,
+        "listPrice": "$37.00",
+        "skuId": "2930139"
+      },
+      "displayName": "Donna Born In Roma Purple Melancholia Eau de Parfum Travel Spray",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2930139-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2930139-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2930139+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2930139-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P520816",
+      "rating": "4.5343",
+      "reviews": "1763",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/donna-born-in-roma-purple-melancholia-travel-spray-P520816?skuId=2930139",
+      "sponsored": false
+    },
+    {
+      "brandName": "KAYALI",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "KAYALI - Mini EDEN PLUSH PEAR | 23 Eau de Parfum Travel Spray",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": true,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": true,
+        "listPrice": "$29.00 - $32.00",
+        "skuId": "2936680"
+      },
+      "displayName": "Mini EDEN PLUSH PEAR | 23 Eau de Parfum Travel Spray",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2936680-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2936680-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2936680+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2936680-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2936672+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2936672-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P524686",
+      "rating": "4.4198",
+      "reviews": "262",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/kayali-eden-plush-pear-23-eau-de-parfum-travel-spray-P524686?skuId=2936680",
+      "sponsored": false
+    },
+    {
+      "brandName": "Miu Miu",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Miu Miu - Fleur de Lait Eau de Parfum with Coconut Milk",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": true,
+        "listPrice": "$37.00 - $172.00",
+        "skuId": "2903979"
+      },
+      "displayName": "Fleur de Lait Eau de Parfum with Coconut Milk",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2903979-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2903979-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2903979+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2903979-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2903995+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2903995-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2904001+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2904001-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2904035+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2904035-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P520576",
+      "rating": "4.6188",
+      "reviews": "2592",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/fleur-de-lait-eau-de-parfum-P520576?skuId=2903979",
+      "sponsored": false
+    },
+    {
+      "brandName": "BURBERRY",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "BURBERRY - Burberry Goddess Eau de Parfum with Vanilla & Lavender",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$40.00 - $181.00",
+        "skuId": "2689644"
+      },
+      "displayName": "Burberry Goddess Eau de Parfum with Vanilla & Lavender",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2689644-main-zoom.jpg?imwidth=270&pb=allure-2024-bestofbeauty",
+      "altImage": "https://www.sephora.com/productimages/sku/s2689644-main-zoom.jpg?imwidth=270&pb=allure-2024-bestofbeauty",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2689644+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2689644-main-zoom.jpg?imwidth=270&pb=allure-2024-bestofbeauty"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2689636+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2689636-main-zoom.jpg?imwidth=270&pb=allure-2024-bestofbeauty"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2689628+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2689628-main-zoom.jpg?imwidth=270&pb=allure-2024-bestofbeauty"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2695302+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2695302-main-zoom.jpg?imwidth=270&pb=allure-2024-bestofbeauty"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2689610+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2689610-main-zoom.jpg?imwidth=270&pb=allure-2024-bestofbeauty"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P507316",
+      "rating": "4.5502",
+      "reviews": "1732",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/burberry-goddess-eau-de-parfum-P507316?skuId=2689644",
+      "sponsored": false
+    },
+    {
+      "brandName": "The 7 Virtues",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "The 7 Virtues - Strawberry Jam Eau de Parfum with Vanilla Marshmallow Travel Spray",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": true,
+        "listPrice": "$32.00",
+        "skuId": "2931871"
+      },
+      "displayName": "Strawberry Jam Eau de Parfum with Vanilla Marshmallow Travel Spray",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2931871-main-zoom.jpg?imwidth=270&pb=clean-at-sephora",
+      "altImage": "https://www.sephora.com/productimages/sku/s2931871-main-zoom.jpg?imwidth=270&pb=clean-at-sephora",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2931871+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2931871-main-zoom.jpg?imwidth=270&pb=clean-at-sephora"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P520087",
+      "rating": "4.6361",
+      "reviews": "338",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": false,
+      "targetUrl": "/product/strawberry-jam-eau-de-parfum-travel-spray-P520087?skuId=2931871",
+      "sponsored": false
+    },
+    {
+      "brandName": "KAYALI",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "KAYALI - VANILLA | 28 Eau de Parfum Travel Spray",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$29.00 - $32.00",
+        "skuId": "2599900"
+      },
+      "displayName": "VANILLA | 28 Eau de Parfum Travel Spray",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2599900-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2599900-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2599900+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2599900-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2411262+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2411262-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P468450",
+      "rating": "4.1093",
+      "reviews": "2899",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/kayali-vanilla-28-travel-spray-P468450?skuId=2599900",
+      "sponsored": false
+    },
+    {
+      "brandName": "CHANEL",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "CHANEL - CHANCE EAU SPLENDIDE Eau de Parfum Spray",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$115.00 - $185.00",
+        "skuId": "2862795"
+      },
+      "displayName": "CHANCE EAU SPLENDIDE Eau de Parfum Spray",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2862795-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2862795-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2862795+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2862795-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2947778+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2947778-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2862803+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2862803-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P515920",
+      "rating": "4.6927",
+      "reviews": "1012",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/chanel-eau-splendide-eau-de-parfum-P515920?skuId=2862795",
+      "sponsored": false
+    },
+    {
+      "brandName": "KAYALI",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "KAYALI - VANILLA CANDY ROCK SUGAR | 42 Eau de Parfum",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": true,
+        "listPrice": "$29.00 - $150.00",
+        "skuId": "2752657"
+      },
+      "displayName": "VANILLA CANDY ROCK SUGAR | 42 Eau de Parfum",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2752657-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2752657-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2752657+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2752657-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2752624+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2752624-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2752632+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2752632-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2752665+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2752665-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P511300",
+      "rating": "4.2025",
+      "reviews": "1985",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/kayali-vanilla-candy-rock-sugar-42-eau-de-parfum-P511300?skuId=2752657",
+      "sponsored": false
+    },
+    {
+      "brandName": "Miu Miu",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Miu Miu - Fleur de Lait Eau de Parfum Travel Spray with Coconut Milk",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": true,
+        "listPrice": "$37.00",
+        "skuId": "2904035"
+      },
+      "displayName": "Fleur de Lait Eau de Parfum Travel Spray with Coconut Milk",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2904035-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2904035-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2904035+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2904035-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P520581",
+      "rating": "4.6188",
+      "reviews": "2592",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/fleur-de-lait-eau-de-parfum-travel-spray-P520581?skuId=2904035",
+      "sponsored": false
+    },
+    {
+      "brandName": "Sol de Janeiro",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Sol de Janeiro - Refresco Para\u00edso Hair & Body Perfume Mist",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": true,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$26.00",
+        "skuId": "2948842"
+      },
+      "displayName": "Refresco Para\u00edso Hair & Body Perfume Mist",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2948842-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2948842-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "Image - Rectangle",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2948842-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P521396",
+      "rating": "4.4588",
+      "reviews": "194",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/sol-de-janeiro-refresco-paraiso-hair-body-perfume-mist-P521396?skuId=2948842",
+      "sponsored": false
+    },
+    {
+      "brandName": "KAYALI",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "KAYALI - EDEN SWEET PEACH |  35 Eau de Parfum",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": true,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": true,
+        "listPrice": "$29.00 - $150.00",
+        "skuId": "2936698"
+      },
+      "displayName": "EDEN SWEET PEACH |  35 Eau de Parfum",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2936698-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2936698-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2936698+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2936698-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2936656+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2936656-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2936722+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2936722-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2936664+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2936664-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P520457",
+      "rating": "4.4333",
+      "reviews": "300",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/kayali-eden-sweet-peach-35-eau-de-parfum-P520457?skuId=2936698",
+      "sponsored": false
+    },
+    {
+      "brandName": "BURBERRY",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "BURBERRY - Her Eau de Parfum with Berries, Amber and Musk",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$40.00 - $181.00",
+        "skuId": "2160455"
+      },
+      "displayName": "Her Eau de Parfum with Berries, Amber and Musk",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2160455-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2160455-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2160455+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2160455-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2160687+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2160687-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2160729+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2160729-main-zoom.jpg?imwidth=270"
+        },
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2644300+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2644300-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P437631",
+      "rating": "4.2672",
+      "reviews": "1774",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/her-eau-de-parfum-P437631?skuId=2160455",
+      "sponsored": false
+    },
+    {
+      "brandName": "CYKLAR",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "CYKLAR - Sacred Santal Roll-On Perfume Oil with Vanilla and Cashmere Wood",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": true,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": true,
+        "listPrice": "$24.00",
+        "skuId": "2921591"
+      },
+      "displayName": "Sacred Santal Roll-On Perfume Oil with Vanilla and Cashmere Wood",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2921591-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2921591-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2921591+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2921591-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P520257",
+      "rating": "4.5818",
+      "reviews": "55",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/cyklar-sacred-santal-roll-on-perfume-oil-with-vanilla-and-cashmere-wood-P520257?skuId=2921591",
+      "sponsored": false
+    },
+    {
+      "brandName": "Sol de Janeiro",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Sol de Janeiro - Limonada Gelada Hair & Body Perfume Mist",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": true,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$26.00",
+        "skuId": "2948826"
+      },
+      "displayName": "Limonada Gelada Hair & Body Perfume Mist",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2948826-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2948826-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "Image - Rectangle",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2948826-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P521838",
+      "rating": "4.3188",
+      "reviews": "229",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/sol-de-janeiro-limonada-gelada-hair-body-perfume-mist-P521838?skuId=2948826",
+      "sponsored": false
+    },
+    {
+      "brandName": "Sephora Favorites",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Sephora Favorites - Smells Like Love Sampler Set w/ Redeemable Voucher",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": true,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": true,
+        "listPrice": "$38.00",
+        "skuId": "2938074",
+        "valuePrice": "$60.00"
+      },
+      "displayName": "Smells Like Love Sampler Set w/ Redeemable Voucher",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2938074-main-zoom.jpg?imwidth=270&pb=sephora-favorites-travel-size",
+      "altImage": "https://www.sephora.com/productimages/sku/s2938074-main-zoom.jpg?imwidth=270&pb=sephora-favorites-travel-size",
+      "swatchSelectors": [
+        {
+          "swatch": "Image - 36",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2938074-main-zoom.jpg?imwidth=270&pb=sephora-favorites-travel-size"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P520719",
+      "rating": "2.9394",
+      "reviews": "33",
+      "pickupEligible": false,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/love-at-first-scent-travel-spray-sampler-set-w-redeemable-voucher-P520719?skuId=2938074",
+      "sponsored": false
+    },
+    {
+      "brandName": "Armani Beauty",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Armani Beauty - Power of You Eau de Parfum Travel Spray with Passion Fruit",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": false,
+        "isLimitedTimeOffer": false,
+        "isNew": true,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": false,
+        "listPrice": "$32.00",
+        "skuId": "2945368"
+      },
+      "displayName": "Power of You Eau de Parfum Travel Spray with Passion Fruit",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2945368-main-zoom.jpg?imwidth=270",
+      "altImage": "https://www.sephora.com/productimages/sku/s2945368-main-zoom.jpg?imwidth=270",
+      "swatchSelectors": [
+        {
+          "swatch": "https://www.sephora.com/productimages/sku/s2945368+sw-42.jpg",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2945368-main-zoom.jpg?imwidth=270"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P520319",
+      "rating": "4.4946",
+      "reviews": "1563",
+      "pickupEligible": true,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/power-you-eau-de-parfum-travel-spray-P520319?skuId=2945368",
+      "sponsored": false
+    },
+    {
+      "brandName": "Sephora Favorites",
+      "currentSku": {
+        "biExclusiveLevel": "none",
+        "imageAltText": "Sephora Favorites - Perfume Sampler Set with Floral & Vanilla Perfumes",
+        "isAppExclusive": false,
+        "isBI": false,
+        "isBestseller": true,
+        "isLimitedEdition": true,
+        "isLimitedTimeOffer": false,
+        "isNew": false,
+        "isOnlineOnly": false,
+        "isSephoraExclusive": true,
+        "listPrice": "$98.00",
+        "skuId": "2905644",
+        "valuePrice": "$164.00"
+      },
+      "displayName": "Perfume Sampler Set with Floral & Vanilla Perfumes",
+      "heroImage": "https://www.sephora.com/productimages/sku/s2905644-main-zoom.jpg?imwidth=270&pb=sephora-favorites-full-size",
+      "altImage": "https://www.sephora.com/productimages/sku/s2905644-main-zoom.jpg?imwidth=270&pb=sephora-favorites-full-size",
+      "swatchSelectors": [
+        {
+          "swatch": "Image - 36",
+          "heroImage": "https://www.sephora.com/productimages/sku/s2905644-main-zoom.jpg?imwidth=270&pb=sephora-favorites-full-size"
+        }
+      ],
+      "onSaleData": "NONE",
+      "productId": "P518123",
+      "rating": "3.2581",
+      "reviews": "31",
+      "pickupEligible": false,
+      "sameDayEligible": true,
+      "shipToHomeEligible": true,
+      "targetUrl": "/product/h25-winter-voc-P518123?skuId=2905644",
+      "sponsored": false
+    }
+  ],
+  "refinements": [
+    {
+      "displayName": "In Store & Delivery",
+      "type": "checkboxesWithDropDown",
+      "values": [
+        {
+          "refinementValue": "filters[Pickup]=",
+          "refinementValueDisplayName": "In Store",
+          "chicletDisplayName": "In Stock at",
+          "refinementValueStatus": 1
+        },
+        {
+          "refinementValue": "filters[SameDay]=",
+          "refinementValueDisplayName": "Same-Day Delivery",
+          "refinementValueStatus": 1
+        },
+        {
+          "refinementValue": "filters[ShipToHome]=",
+          "refinementValueDisplayName": "Get It Shipped",
+          "chicletDisplayName": "Ship to",
+          "refinementValueStatus": 1
+        }
+      ]
+    },
+    {
+      "displayName": "Your Beauty Preferences",
+      "type": "beautyPreferences"
+    },
+    {
+      "displayName": "Price Range",
+      "key": "Price",
+      "type": "range",
+      "values": [
+        {
+          "refinementValue": "pl=min&ph=25",
+          "refinementValueDisplayName": "Under $25",
+          "refinementValueStatus": 1
+        },
+        {
+          "refinementValue": "pl=25&ph=50",
+          "refinementValueDisplayName": "$25 to $50",
+          "refinementValueStatus": 1
+        },
+        {
+          "refinementValue": "pl=50&ph=100",
+          "refinementValueDisplayName": "$50 to $100",
+          "refinementValueStatus": 1
+        },
+        {
+          "refinementValue": "pl=100&ph=max",
+          "refinementValueDisplayName": "$100 and above",
+          "refinementValueStatus": 1
+        },
+        {
+          "refinementValue": "pl=min&ph=max&ptype=manual",
+          "refinementValueDisplayName": "min and max",
+          "refinementValueStatus": 1
+        }
+      ]
+    },
+    {
+      "displayName": "Brand",
+      "key": "Brand",
+      "type": "checkboxes",
+      "values": [
+        {
+          "count": 8,
+          "refinementValue": "filters[Brand]=Sephora Favorites",
+          "refinementValueDisplayName": "Sephora Favorites",
+          "refinementValueStatus": 1,
+          "key": "Sephora Favorites"
+        },
+        {
+          "count": 60,
+          "refinementValue": "filters[Brand]=KAYALI",
+          "refinementValueDisplayName": "KAYALI",
+          "refinementValueStatus": 1,
+          "key": "KAYALI"
+        },
+        {
+          "count": 29,
+          "refinementValue": "filters[Brand]=Carolina Herrera",
+          "refinementValueDisplayName": "Carolina Herrera",
+          "refinementValueStatus": 1,
+          "key": "Carolina Herrera"
+        },
+        {
+          "count": 35,
+          "refinementValue": "filters[Brand]=Valentino",
+          "refinementValueDisplayName": "Valentino",
+          "refinementValueStatus": 1,
+          "key": "Valentino"
+        },
+        {
+          "count": 30,
+          "refinementValue": "filters[Brand]=Sol de Janeiro",
+          "refinementValueDisplayName": "Sol de Janeiro",
+          "refinementValueStatus": 1,
+          "key": "Sol de Janeiro"
+        },
+        {
+          "count": 40,
+          "refinementValue": "filters[Brand]=CHANEL",
+          "refinementValueDisplayName": "CHANEL",
+          "refinementValueStatus": 1,
+          "key": "CHANEL"
+        },
+        {
+          "count": 16,
+          "refinementValue": "filters[Brand]=Glossier",
+          "refinementValueDisplayName": "Glossier",
+          "refinementValueStatus": 1,
+          "key": "Glossier"
+        },
+        {
+          "count": 11,
+          "refinementValue": "filters[Brand]=OUAI",
+          "refinementValueDisplayName": "OUAI",
+          "refinementValueStatus": 1,
+          "key": "OUAI"
+        },
+        {
+          "count": 2,
+          "refinementValue": "filters[Brand]=Summer Fridays",
+          "refinementValueDisplayName": "Summer Fridays",
+          "refinementValueStatus": 1,
+          "key": "Summer Fridays"
+        },
+        {
+          "count": 62,
+          "refinementValue": "filters[Brand]=Yves Saint Laurent",
+          "refinementValueDisplayName": "Yves Saint Laurent",
+          "refinementValueStatus": 1,
+          "key": "Yves Saint Laurent"
+        },
+        {
+          "count": 78,
+          "refinementValue": "filters[Brand]=PHLUR",
+          "refinementValueDisplayName": "PHLUR",
+          "refinementValueStatus": 1,
+          "key": "PHLUR"
+        },
+        {
+          "count": 49,
+          "refinementValue": "filters[Brand]=Prada",
+          "refinementValueDisplayName": "Prada",
+          "refinementValueStatus": 1,
+          "key": "Prada"
+        },
+        {
+          "count": 39,
+          "refinementValue": "filters[Brand]=BURBERRY",
+          "refinementValueDisplayName": "BURBERRY",
+          "refinementValueStatus": 1,
+          "key": "BURBERRY"
+        },
+        {
+          "count": 54,
+          "refinementValue": "filters[Brand]=TOM FORD",
+          "refinementValueDisplayName": "TOM FORD",
+          "refinementValueStatus": 1,
+          "key": "TOM FORD"
+        },
+        {
+          "count": 56,
+          "refinementValue": "filters[Brand]=DIOR",
+          "refinementValueDisplayName": "DIOR",
+          "refinementValueStatus": 1,
+          "key": "DIOR"
+        },
+        {
+          "count": 13,
+          "refinementValue": "filters[Brand]=Rare Beauty by Selena Gomez",
+          "refinementValueDisplayName": "Rare Beauty by Selena Gomez",
+          "refinementValueStatus": 1,
+          "key": "Rare Beauty by Selena Gomez"
+        },
+        {
+          "count": 41,
+          "refinementValue": "filters[Brand]=Gucci",
+          "refinementValueDisplayName": "Gucci",
+          "refinementValueStatus": 1,
+          "key": "Gucci"
+        },
+        {
+          "count": 6,
+          "refinementValue": "filters[Brand]=EILISH FRAGRANCES",
+          "refinementValueDisplayName": "EILISH FRAGRANCES",
+          "refinementValueStatus": 1,
+          "key": "EILISH FRAGRANCES"
+        },
+        {
+          "count": 38,
+          "refinementValue": "filters[Brand]=Armani Beauty",
+          "refinementValueDisplayName": "Armani Beauty",
+          "refinementValueStatus": 1,
+          "key": "Armani Beauty"
+        },
+        {
+          "count": 8,
+          "refinementValue": "filters[Brand]=Miu Miu",
+          "refinementValueDisplayName": "Miu Miu",
+          "refinementValueStatus": 1,
+          "key": "Miu Miu"
+        },
+        {
+          "count": 16,
+          "refinementValue": "filters[Brand]=JIMMY CHOO",
+          "refinementValueDisplayName": "JIMMY CHOO",
+          "refinementValueStatus": 1,
+          "key": "JIMMY CHOO"
+        },
+        {
+          "count": 24,
+          "refinementValue": "filters[Brand]=The 7 Virtues",
+          "refinementValueDisplayName": "The 7 Virtues",
+          "refinementValueStatus": 1,
+          "key": "The 7 Virtues"
+        },
+        {
+          "count": 11,
+          "refinementValue": "filters[Brand]=CYKLAR",
+          "refinementValueDisplayName": "CYKLAR",
+          "refinementValueStatus": 1,
+          "key": "CYKLAR"
+        },
+        {
+          "count": 14,
+          "refinementValue": "filters[Brand]=Ariana Grande",
+          "refinementValueDisplayName": "Ariana Grande",
+          "refinementValueStatus": 1,
+          "key": "Ariana Grande"
+        },
+        {
+          "count": 50,
+          "refinementValue": "filters[Brand]=Jo Malone London",
+          "refinementValueDisplayName": "Jo Malone London",
+          "refinementValueStatus": 1,
+          "key": "Jo Malone London"
+        },
+        {
+          "count": 70,
+          "refinementValue": "filters[Brand]=DolceGabbana",
+          "refinementValueDisplayName": "DolceGabbana",
+          "refinementValueStatus": 1,
+          "key": "DolceGabbana"
+        },
+        {
+          "count": 6,
+          "refinementValue": "filters[Brand]=Gisou",
+          "refinementValueDisplayName": "Gisou",
+          "refinementValueStatus": 1,
+          "key": "Gisou"
+        },
+        {
+          "count": 1,
+          "refinementValue": "filters[Brand]=K\u00e9rastase",
+          "refinementValueDisplayName": "K\u00e9rastase",
+          "refinementValueStatus": 1,
+          "key": "K\u00e9rastase"
+        },
+        {
+          "count": 34,
+          "refinementValue": "filters[Brand]=Maison Margiela",
+          "refinementValueDisplayName": "Maison Margiela",
+          "refinementValueStatus": 1,
+          "key": "Maison Margiela"
+        },
+        {
+          "count": 22,
+          "refinementValue": "filters[Brand]=SKYLAR",
+          "refinementValueDisplayName": "SKYLAR",
+          "refinementValueStatus": 1,
+          "key": "SKYLAR"
+        },
+        {
+          "count": 5,
+          "refinementValue": "filters[Brand]=COACH",
+          "refinementValueDisplayName": "COACH",
+          "refinementValueStatus": 1,
+          "key": "COACH"
+        },
+        {
+          "count": 21,
+          "refinementValue": "filters[Brand]=DedCool",
+          "refinementValueDisplayName": "DedCool",
+          "refinementValueStatus": 1,
+          "key": "DedCool"
+        },
+        {
+          "count": 10,
+          "refinementValue": "filters[Brand]=Azzaro",
+          "refinementValueDisplayName": "Azzaro",
+          "refinementValueStatus": 1,
+          "key": "Azzaro"
+        },
+        {
+          "count": 27,
+          "refinementValue": "filters[Brand]=Commodity",
+          "refinementValueDisplayName": "Commodity",
+          "refinementValueStatus": 1,
+          "key": "Commodity"
+        },
+        {
+          "count": 52,
+          "refinementValue": "filters[Brand]=Versace",
+          "refinementValueDisplayName": "Versace",
+          "refinementValueStatus": 1,
+          "key": "Versace"
+        },
+        {
+          "count": 23,
+          "refinementValue": "filters[Brand]=ViktorRolf",
+          "refinementValueDisplayName": "Viktor&Rolf",
+          "refinementValueStatus": 1,
+          "key": "ViktorRolf"
+        },
+        {
+          "count": 15,
+          "refinementValue": "filters[Brand]=BROWN GIRL Jane",
+          "refinementValueDisplayName": "BROWN GIRL Jane",
+          "refinementValueStatus": 1,
+          "key": "BROWN GIRL Jane"
+        },
+        {
+          "count": 27,
+          "refinementValue": "filters[Brand]=Rabanne",
+          "refinementValueDisplayName": "Rabanne",
+          "refinementValueStatus": 1,
+          "key": "Rabanne"
+        },
+        {
+          "count": 27,
+          "refinementValue": "filters[Brand]=LoveShackFancy",
+          "refinementValueDisplayName": "LoveShackFancy",
+          "refinementValueStatus": 1,
+          "key": "LoveShackFancy"
+        },
+        {
+          "count": 34,
+          "refinementValue": "filters[Brand]=Ellis Brooklyn",
+          "refinementValueDisplayName": "Ellis Brooklyn",
+          "refinementValueStatus": 1,
+          "key": "Ellis Brooklyn"
+        },
+        {
+          "count": 8,
+          "refinementValue": "filters[Brand]=FUGAZZI",
+          "refinementValueDisplayName": "FUGAZZI",
+          "refinementValueStatus": 1,
+          "key": "FUGAZZI"
+        },
+        {
+          "count": 1,
+          "refinementValue": "filters[Brand]=Jack Black",
+          "refinementValueDisplayName": "Jack Black",
+          "refinementValueStatus": 1,
+          "key": "Jack Black"
+        },
+        {
+          "count": 3,
+          "refinementValue": "filters[Brand]=dae",
+          "refinementValueDisplayName": "dae",
+          "refinementValueStatus": 1,
+          "key": "dae"
+        },
+        {
+          "count": 17,
+          "refinementValue": "filters[Brand]=Henry Rose",
+          "refinementValueDisplayName": "Henry Rose",
+          "refinementValueStatus": 1,
+          "key": "Henry Rose"
+        },
+        {
+          "count": 9,
+          "refinementValue": "filters[Brand]=FORVR MOOD",
+          "refinementValueDisplayName": "FORVR MOOD",
+          "refinementValueStatus": 1,
+          "key": "FORVR MOOD"
+        },
+        {
+          "count": 27,
+          "refinementValue": "filters[Brand]=Juliette has a gun",
+          "refinementValueDisplayName": "Juliette has a gun",
+          "refinementValueStatus": 1,
+          "key": "Juliette has a gun"
+        },
+        {
+          "count": 25,
+          "refinementValue": "filters[Brand]=Jean Paul Gaultier",
+          "refinementValueDisplayName": "Jean Paul Gaultier",
+          "refinementValueStatus": 1,
+          "key": "Jean Paul Gaultier"
+        },
+        {
+          "count": 25,
+          "refinementValue": "filters[Brand]=KILIAN Paris",
+          "refinementValueDisplayName": "KILIAN Paris",
+          "refinementValueStatus": 1,
+          "key": "KILIAN Paris"
+        },
+        {
+          "count": 14,
+          "refinementValue": "filters[Brand]=Chlo\u00e9",
+          "refinementValueDisplayName": "Chlo\u00e9",
+          "refinementValueStatus": 1,
+          "key": "Chlo\u00e9"
+        },
+        {
+          "count": 12,
+          "refinementValue": "filters[Brand]=Moroccanoil",
+          "refinementValueDisplayName": "Moroccanoil",
+          "refinementValueStatus": 1,
+          "key": "Moroccanoil"
+        },
+        {
+          "count": 3,
+          "refinementValue": "filters[Brand]=Evereden",
+          "refinementValueDisplayName": "Evereden",
+          "refinementValueStatus": 1,
+          "key": "Evereden"
+        },
+        {
+          "count": 35,
+          "refinementValue": "filters[Brand]=CLEAN RESERVE",
+          "refinementValueDisplayName": "CLEAN RESERVE",
+          "refinementValueStatus": 1,
+          "key": "CLEAN RESERVE"
+        },
+        {
+          "count": 1,
+          "refinementValue": "filters[Brand]=L'Occitane",
+          "refinementValueDisplayName": "L'Occitane",
+          "refinementValueStatus": 1,
+          "key": "L'Occitane"
+        },
+        {
+          "count": 15,
+          "refinementValue": "filters[Brand]=World of Chris Collins",
+          "refinementValueDisplayName": "World of Chris Collins",
+          "refinementValueStatus": 1,
+          "key": "World of Chris Collins"
+        },
+        {
+          "count": 30,
+          "refinementValue": "filters[Brand]=Marc Jacobs Beauty",
+          "refinementValueDisplayName": "Marc Jacobs Beauty",
+          "refinementValueStatus": 1,
+          "key": "Marc Jacobs Beauty"
+        },
+        {
+          "count": 2,
+          "refinementValue": "filters[Brand]=MERIT",
+          "refinementValueDisplayName": "MERIT",
+          "refinementValueStatus": 1,
+          "key": "MERIT"
+        },
+        {
+          "count": 12,
+          "refinementValue": "filters[Brand]=Nette",
+          "refinementValueDisplayName": "Nette",
+          "refinementValueStatus": 1,
+          "key": "Nette"
+        },
+        {
+          "count": 53,
+          "refinementValue": "filters[Brand]=NEST New York",
+          "refinementValueDisplayName": "NEST New York",
+          "refinementValueStatus": 1,
+          "key": "NEST New York"
+        },
+        {
+          "count": 9,
+          "refinementValue": "filters[Brand]=Lanc\u00f4me",
+          "refinementValueDisplayName": "Lanc\u00f4me",
+          "refinementValueStatus": 1,
+          "key": "Lanc\u00f4me"
+        },
+        {
+          "count": 26,
+          "refinementValue": "filters[Brand]=Maison Louis Marie",
+          "refinementValueDisplayName": "Maison Louis Marie",
+          "refinementValueStatus": 1,
+          "key": "Maison Louis Marie"
+        },
+        {
+          "count": 4,
+          "refinementValue": "filters[Brand]=JOSIE MARAN",
+          "refinementValueDisplayName": "JOSIE MARAN",
+          "refinementValueStatus": 1,
+          "key": "JOSIE MARAN"
+        },
+        {
+          "count": 22,
+          "refinementValue": "filters[Brand]=By Rosie Jane",
+          "refinementValueDisplayName": "By Rosie Jane",
+          "refinementValueStatus": 1,
+          "key": "By Rosie Jane"
+        },
+        {
+          "count": 3,
+          "refinementValue": "filters[Brand]=CANOPY",
+          "refinementValueDisplayName": "CANOPY",
+          "refinementValueStatus": 1,
+          "key": "CANOPY"
+        },
+        {
+          "count": 7,
+          "refinementValue": "filters[Brand]=Harlem Perfume Co",
+          "refinementValueDisplayName": "Harlem Perfume Co",
+          "refinementValueStatus": 1,
+          "key": "Harlem Perfume Co"
+        },
+        {
+          "count": 9,
+          "refinementValue": "filters[Brand]=LORE",
+          "refinementValueDisplayName": "LORE",
+          "refinementValueStatus": 1,
+          "key": "LORE"
+        },
+        {
+          "count": 15,
+          "refinementValue": "filters[Brand]=The Maker",
+          "refinementValueDisplayName": "The Maker",
+          "refinementValueStatus": 1,
+          "key": "The Maker"
+        },
+        {
+          "count": 6,
+          "refinementValue": "filters[Brand]=Fenty Beauty by Rihanna",
+          "refinementValueDisplayName": "Fenty Beauty by Rihanna",
+          "refinementValueStatus": 1,
+          "key": "Fenty Beauty by Rihanna"
+        },
+        {
+          "count": 23,
+          "refinementValue": "filters[Brand]=BORNTOSTANDOUT",
+          "refinementValueDisplayName": "BORNTOSTANDOUT",
+          "refinementValueStatus": 1,
+          "key": "BORNTOSTANDOUT"
+        },
+        {
+          "count": 22,
+          "refinementValue": "filters[Brand]=Boy Smells",
+          "refinementValueDisplayName": "Boy Smells",
+          "refinementValueStatus": 1,
+          "key": "Boy Smells"
+        },
+        {
+          "count": 5,
+          "refinementValue": "filters[Brand]=Salt Stone",
+          "refinementValueDisplayName": "Salt Stone",
+          "refinementValueStatus": 1,
+          "key": "Salt Stone"
+        },
+        {
+          "count": 19,
+          "refinementValue": "filters[Brand]=VOLUSPA",
+          "refinementValueDisplayName": "VOLUSPA",
+          "refinementValueStatus": 1,
+          "key": "VOLUSPA"
+        },
+        {
+          "count": 8,
+          "refinementValue": "filters[Brand]=Touchland",
+          "refinementValueDisplayName": "Touchland",
+          "refinementValueStatus": 1,
+          "key": "Touchland"
+        },
+        {
+          "count": 3,
+          "refinementValue": "filters[Brand]=Emi Jay",
+          "refinementValueDisplayName": "Emi Jay",
+          "refinementValueStatus": 1,
+          "key": "Emi Jay"
+        },
+        {
+          "count": 2,
+          "refinementValue": "filters[Brand]=Crown Affair",
+          "refinementValueDisplayName": "Crown Affair",
+          "refinementValueStatus": 1,
+          "key": "Crown Affair"
+        },
+        {
+          "count": 1,
+          "refinementValue": "filters[Brand]=Soft Services",
+          "refinementValueDisplayName": "Soft Services",
+          "refinementValueStatus": 1,
+          "key": "Soft Services"
+        },
+        {
+          "count": 2,
+          "refinementValue": "filters[Brand]=HUDA BEAUTY",
+          "refinementValueDisplayName": "HUDA BEAUTY",
+          "refinementValueStatus": 1,
+          "key": "HUDA BEAUTY"
+        },
+        {
+          "count": 17,
+          "refinementValue": "filters[Brand]=Ralph Lauren",
+          "refinementValueDisplayName": "Ralph Lauren",
+          "refinementValueStatus": 1,
+          "key": "Ralph Lauren"
+        },
+        {
+          "count": 1,
+          "refinementValue": "filters[Brand]=AKT London",
+          "refinementValueDisplayName": "AKT London",
+          "refinementValueStatus": 1,
+          "key": "AKT London"
+        },
+        {
+          "count": 1,
+          "refinementValue": "filters[Brand]=VIOLETTE_FR",
+          "refinementValueDisplayName": "VIOLETTE_FR",
+          "refinementValueStatus": 1,
+          "key": "VIOLETTE_FR"
+        },
+        {
+          "count": 9,
+          "refinementValue": "filters[Brand]=Hugo Boss",
+          "refinementValueDisplayName": "Hugo Boss",
+          "refinementValueStatus": 1,
+          "key": "Hugo Boss"
+        },
+        {
+          "count": 22,
+          "refinementValue": "filters[Brand]=Montale",
+          "refinementValueDisplayName": "Montale",
+          "refinementValueStatus": 1,
+          "key": "Montale"
+        },
+        {
+          "count": 1,
+          "refinementValue": "filters[Brand]=Bobbi Brown",
+          "refinementValueDisplayName": "Bobbi Brown",
+          "refinementValueStatus": 1,
+          "key": "Bobbi Brown"
+        },
+        {
+          "count": 8,
+          "refinementValue": "filters[Brand]=Charlotte Tilbury",
+          "refinementValueDisplayName": "Charlotte Tilbury",
+          "refinementValueStatus": 1,
+          "key": "Charlotte Tilbury"
+        },
+        {
+          "count": 3,
+          "refinementValue": "filters[Brand]=Ceremonia",
+          "refinementValueDisplayName": "Ceremonia",
+          "refinementValueStatus": 1,
+          "key": "Ceremonia"
+        },
+        {
+          "count": 2,
+          "refinementValue": "filters[Brand]=Pureology",
+          "refinementValueDisplayName": "Pureology",
+          "refinementValueStatus": 1,
+          "key": "Pureology"
+        },
+        {
+          "count": 2,
+          "refinementValue": "filters[Brand]=N\u00e9cessaire",
+          "refinementValueDisplayName": "N\u00e9cessaire",
+          "refinementValueStatus": 1,
+          "key": "N\u00e9cessaire"
+        },
+        {
+          "count": 3,
+          "refinementValue": "filters[Brand]=5 SENS",
+          "refinementValueDisplayName": "5 SENS",
+          "refinementValueStatus": 1,
+          "key": "5 SENS"
+        },
+        {
+          "count": 23,
+          "refinementValue": "filters[Brand]=HERM\u00c8S",
+          "refinementValueDisplayName": "HERM\u00c8S",
+          "refinementValueStatus": 1,
+          "key": "HERM\u00c8S"
+        },
+        {
+          "count": 8,
+          "refinementValue": "filters[Brand]=GUERLAIN",
+          "refinementValueDisplayName": "GUERLAIN",
+          "refinementValueStatus": 1,
+          "key": "GUERLAIN"
+        },
+        {
+          "count": 12,
+          "refinementValue": "filters[Brand]=Mugler",
+          "refinementValueDisplayName": "Mugler",
+          "refinementValueStatus": 1,
+          "key": "Mugler"
+        },
+        {
+          "count": 2,
+          "refinementValue": "filters[Brand]=PATRICK TA",
+          "refinementValueDisplayName": "PATRICK TA",
+          "refinementValueStatus": 1,
+          "key": "PATRICK TA"
+        },
+        {
+          "count": 6,
+          "refinementValue": "filters[Brand]=Montblanc",
+          "refinementValueDisplayName": "Montblanc",
+          "refinementValueStatus": 1,
+          "key": "Montblanc"
+        },
+        {
+          "count": 5,
+          "refinementValue": "filters[Brand]=Donna Karan",
+          "refinementValueDisplayName": "Donna Karan",
+          "refinementValueStatus": 1,
+          "key": "Donna Karan"
+        },
+        {
+          "count": 1,
+          "refinementValue": "filters[Brand]=amika",
+          "refinementValueDisplayName": "amika",
+          "refinementValueStatus": 1,
+          "key": "amika"
+        },
+        {
+          "count": 2,
+          "refinementValue": "filters[Brand]=Mane",
+          "refinementValueDisplayName": "Mane",
+          "refinementValueStatus": 1,
+          "key": "Mane"
+        },
+        {
+          "count": 3,
+          "refinementValue": "filters[Brand]=Fable Mane",
+          "refinementValueDisplayName": "Fable Mane",
+          "refinementValueStatus": 1,
+          "key": "Fable Mane"
+        },
+        {
+          "count": 2,
+          "refinementValue": "filters[Brand]=U Beauty",
+          "refinementValueDisplayName": "U Beauty",
+          "refinementValueStatus": 1,
+          "key": "U Beauty"
+        },
+        {
+          "count": 1,
+          "refinementValue": "filters[Brand]=IGK",
+          "refinementValueDisplayName": "IGK",
+          "refinementValueStatus": 1,
+          "key": "IGK"
+        },
+        {
+          "count": 6,
+          "refinementValue": "filters[Brand]=Givenchy",
+          "refinementValueDisplayName": "Givenchy",
+          "refinementValueStatus": 1,
+          "key": "Givenchy"
+        },
+        {
+          "count": 1,
+          "refinementValue": "filters[Brand]=maude",
+          "refinementValueDisplayName": "maude",
+          "refinementValueStatus": 1,
+          "key": "maude"
+        },
+        {
+          "count": 6,
+          "refinementValue": "filters[Brand]=Ruhveda",
+          "refinementValueDisplayName": "Ruhveda",
+          "refinementValueStatus": 1,
+          "key": "Ruhveda"
+        },
+        {
+          "count": 1,
+          "refinementValue": "filters[Brand]=OUI the People",
+          "refinementValueDisplayName": "OUI the People",
+          "refinementValueStatus": 1,
+          "key": "OUI the People"
+        }
+      ]
+    },
+    {
+      "displayName": "Rating",
+      "key": "Rating",
+      "type": "radios",
+      "values": [
+        {
+          "count": 1459,
+          "refinementValue": "filters[Rating]=\"4\"-\"inf\"",
+          "refinementValueDisplayName": "4 & up",
+          "refinementValueStatus": 1,
+          "key": "\"4\"-\"inf\""
+        },
+        {
+          "count": 1691,
+          "refinementValue": "filters[Rating]=\"3\"-\"inf\"",
+          "refinementValueDisplayName": "3 & up",
+          "refinementValueStatus": 1,
+          "key": "\"3\"-\"inf\""
+        },
+        {
+          "count": 1704,
+          "refinementValue": "filters[Rating]=\"2\"-\"inf\"",
+          "refinementValueDisplayName": "2 & up",
+          "refinementValueStatus": 1,
+          "key": "\"2\"-\"inf\""
+        },
+        {
+          "count": 1713,
+          "refinementValue": "filters[Rating]=\"1\"-\"inf\"",
+          "refinementValueDisplayName": "1 & up",
+          "refinementValueStatus": 1,
+          "key": "\"1\"-\"inf\""
+        }
+      ]
+    },
+    {
+      "displayName": "Fragrance Type",
+      "key": "fragranceType",
+      "type": "checkboxes",
+      "values": [
+        {
+          "count": 248,
+          "refinementValue": "filters[fragranceType]=warmSweetGourmands",
+          "refinementValueDisplayName": "Warm & Sweet Gourmands",
+          "refinementValueStatus": 1,
+          "key": "warmSweetGourmands"
+        },
+        {
+          "count": 228,
+          "refinementValue": "filters[fragranceType]=fruityFlorals",
+          "refinementValueDisplayName": "Fruity Florals",
+          "refinementValueStatus": 1,
+          "key": "fruityFlorals"
+        },
+        {
+          "count": 194,
+          "refinementValue": "filters[fragranceType]=warmFlorals",
+          "refinementValueDisplayName": "Warm Florals",
+          "refinementValueStatus": 1,
+          "key": "warmFlorals"
+        },
+        {
+          "count": 58,
+          "refinementValue": "filters[fragranceType]=warmSheer",
+          "refinementValueDisplayName": "Warm & Sheer",
+          "refinementValueStatus": 1,
+          "key": "warmSheer"
+        },
+        {
+          "count": 78,
+          "refinementValue": "filters[fragranceType]=freshCitrusFruits",
+          "refinementValueDisplayName": "Fresh Citrus & Fruits",
+          "refinementValueStatus": 1,
+          "key": "freshCitrusFruits"
+        },
+        {
+          "count": 82,
+          "refinementValue": "filters[fragranceType]=freshSolar",
+          "refinementValueDisplayName": "Fresh Solar",
+          "refinementValueStatus": 1,
+          "key": "freshSolar"
+        },
+        {
+          "count": 61,
+          "refinementValue": "filters[fragranceType]=classicFlorals",
+          "refinementValueDisplayName": "Classic Florals",
+          "refinementValueStatus": 1,
+          "key": "classicFlorals"
+        },
+        {
+          "count": 117,
+          "refinementValue": "filters[fragranceType]=citrusWoods",
+          "refinementValueDisplayName": "Citrus & Woods",
+          "refinementValueStatus": 1,
+          "key": "citrusWoods"
+        },
+        {
+          "count": 89,
+          "refinementValue": "filters[fragranceType]=warmWoods",
+          "refinementValueDisplayName": "Warm Woods",
+          "refinementValueStatus": 1,
+          "key": "warmWoods"
+        },
+        {
+          "count": 93,
+          "refinementValue": "filters[fragranceType]=woodySpices",
+          "refinementValueDisplayName": "Woody Spices",
+          "refinementValueStatus": 1,
+          "key": "woodySpices"
+        },
+        {
+          "count": 72,
+          "refinementValue": "filters[fragranceType]=freshFlorals",
+          "refinementValueDisplayName": "Fresh Florals",
+          "refinementValueStatus": 1,
+          "key": "freshFlorals"
+        },
+        {
+          "count": 37,
+          "refinementValue": "filters[fragranceType]=freshAquatics",
+          "refinementValueDisplayName": "Fresh Aquatics",
+          "refinementValueStatus": 1,
+          "key": "freshAquatics"
+        },
+        {
+          "count": 35,
+          "refinementValue": "filters[fragranceType]=earthyGreensHerbs",
+          "refinementValueDisplayName": "Earthy Greens & Herbs",
+          "refinementValueStatus": 1,
+          "key": "earthyGreensHerbs"
+        },
+        {
+          "count": 28,
+          "refinementValue": "filters[fragranceType]=powderyFlorals",
+          "refinementValueDisplayName": "Powdery Florals",
+          "refinementValueStatus": 1,
+          "key": "powderyFlorals"
+        },
+        {
+          "count": 34,
+          "refinementValue": "filters[fragranceType]=coolSpices",
+          "refinementValueDisplayName": "Cool Spices",
+          "refinementValueStatus": 1,
+          "key": "coolSpices"
+        },
+        {
+          "count": 22,
+          "refinementValue": "filters[fragranceType]=classicWoods",
+          "refinementValueDisplayName": "Classic Woods",
+          "refinementValueStatus": 1,
+          "key": "classicWoods"
+        }
+      ]
+    },
+    {
+      "displayName": "Size",
+      "key": "sizeRefinement",
+      "type": "checkboxes",
+      "values": [
+        {
+          "count": 109,
+          "refinementValue": "filters[sizeRefinement]=giftSet",
+          "refinementValueDisplayName": "Gift Set",
+          "refinementValueStatus": 1,
+          "key": "giftSet"
+        },
+        {
+          "count": 1117,
+          "refinementValue": "filters[sizeRefinement]=mini",
+          "refinementValueDisplayName": "Mini",
+          "refinementValueStatus": 1,
+          "key": "mini"
+        },
+        {
+          "count": 86,
+          "refinementValue": "filters[sizeRefinement]=value",
+          "refinementValueDisplayName": "Value",
+          "refinementValueStatus": 1,
+          "key": "value"
+        },
+        {
+          "count": 12,
+          "refinementValue": "filters[sizeRefinement]=refill",
+          "refinementValueDisplayName": "Refill",
+          "refinementValueStatus": 1,
+          "key": "refill"
+        }
+      ]
+    },
+    {
+      "displayName": "Fragrance Family",
+      "key": "fragranceFamily",
+      "type": "checkboxes",
+      "values": [
+        {
+          "count": 430,
+          "refinementValue": "filters[fragranceFamily]=warmspicy",
+          "refinementValueDisplayName": "Warm & Spicy",
+          "refinementValueStatus": 1,
+          "key": "warmspicy"
+        },
+        {
+          "count": 512,
+          "refinementValue": "filters[fragranceFamily]=floral",
+          "refinementValueDisplayName": "Floral",
+          "refinementValueStatus": 1,
+          "key": "floral"
+        },
+        {
+          "count": 266,
+          "refinementValue": "filters[fragranceFamily]=fresh",
+          "refinementValueDisplayName": "Fresh",
+          "refinementValueStatus": 1,
+          "key": "fresh"
+        },
+        {
+          "count": 260,
+          "refinementValue": "filters[fragranceFamily]=woodyEarthy",
+          "refinementValueDisplayName": "Woody & Earthy",
+          "refinementValueStatus": 1,
+          "key": "woodyEarthy"
+        }
+      ]
+    },
+    {
+      "displayName": "Formulation",
+      "key": "formulation",
+      "type": "checkboxes",
+      "values": [
+        {
+          "count": 1075,
+          "refinementValue": "filters[formulation]=spray",
+          "refinementValueDisplayName": "Spray",
+          "refinementValueStatus": 1,
+          "key": "spray"
+        },
+        {
+          "count": 54,
+          "refinementValue": "filters[formulation]=balm",
+          "refinementValueDisplayName": "Balm",
+          "refinementValueStatus": 1,
+          "key": "balm"
+        },
+        {
+          "count": 18,
+          "refinementValue": "filters[formulation]=liquid",
+          "refinementValueDisplayName": "Liquid",
+          "refinementValueStatus": 1,
+          "key": "liquid"
+        },
+        {
+          "count": 5,
+          "refinementValue": "filters[formulation]=cream",
+          "refinementValueDisplayName": "Cream",
+          "refinementValueStatus": 1,
+          "key": "cream"
+        },
+        {
+          "count": 20,
+          "refinementValue": "filters[formulation]=oil",
+          "refinementValueDisplayName": "Oil",
+          "refinementValueStatus": 1,
+          "key": "oil"
+        },
+        {
+          "count": 1,
+          "refinementValue": "filters[formulation]=lotion",
+          "refinementValueDisplayName": "Lotion",
+          "refinementValueStatus": 1,
+          "key": "lotion"
+        },
+        {
+          "count": 4,
+          "refinementValue": "filters[formulation]=gel",
+          "refinementValueDisplayName": "Gel",
+          "refinementValueStatus": 1,
+          "key": "gel"
+        }
+      ]
+    },
+    {
+      "displayName": "Sale",
+      "key": "on_sale",
+      "type": "checkboxes",
+      "values": [
+        {
+          "count": 33,
+          "refinementValue": "filters[on_sale]=true",
+          "refinementValueDisplayName": "Sale",
+          "refinementValueStatus": 1,
+          "key": "true"
+        }
+      ],
+      "property": "single"
+    },
+    {
+      "displayName": "Ingredient Preferences",
+      "key": "ingredientPreferences",
+      "type": "checkboxes",
+      "values": [
+        {
+          "count": 289,
+          "refinementValue": "filters[ingredientPreferences]=crueltyFree",
+          "refinementValueDisplayName": "Cruelty-Free",
+          "refinementValueStatus": 1,
+          "key": "crueltyFree"
+        },
+        {
+          "count": 365,
+          "refinementValue": "filters[ingredientPreferences]=vegan",
+          "refinementValueDisplayName": "Vegan",
+          "refinementValueStatus": 1,
+          "key": "vegan"
+        },
+        {
+          "count": 159,
+          "refinementValue": "filters[ingredientPreferences]=parabenFree",
+          "refinementValueDisplayName": "Paraben-free",
+          "refinementValueStatus": 1,
+          "key": "parabenFree"
+        },
+        {
+          "count": 83,
+          "refinementValue": "filters[ingredientPreferences]=siliconeFree",
+          "refinementValueDisplayName": "Silicone Free",
+          "refinementValueStatus": 1,
+          "key": "siliconeFree"
+        },
+        {
+          "count": 7,
+          "refinementValue": "filters[ingredientPreferences]=oilFree",
+          "refinementValueDisplayName": "Oil-free",
+          "refinementValueStatus": 1,
+          "key": "oilFree"
+        },
+        {
+          "count": 103,
+          "refinementValue": "filters[ingredientPreferences]=sulfateFree",
+          "refinementValueDisplayName": "Sulfate-free",
+          "refinementValueStatus": 1,
+          "key": "sulfateFree"
+        },
+        {
+          "count": 19,
+          "refinementValue": "filters[ingredientPreferences]=alcoholFree",
+          "refinementValueDisplayName": "Alcohol Free",
+          "refinementValueStatus": 1,
+          "key": "alcoholFree"
+        },
+        {
+          "count": 342,
+          "refinementValue": "filters[ingredientPreferences]=cleanAtSephora",
+          "refinementValueDisplayName": "Clean at Sephora",
+          "refinementValueStatus": 1,
+          "key": "cleanAtSephora"
+        },
+        {
+          "count": 5,
+          "refinementValue": "filters[ingredientPreferences]=squalane",
+          "refinementValueDisplayName": "Squalane",
+          "refinementValueStatus": 1,
+          "key": "squalane"
+        },
+        {
+          "count": 10,
+          "refinementValue": "filters[ingredientPreferences]=antioxidants",
+          "refinementValueDisplayName": "Anti-oxidants",
+          "refinementValueStatus": 1,
+          "key": "antioxidants"
+        },
+        {
+          "count": 14,
+          "refinementValue": "filters[ingredientPreferences]=niacinamide",
+          "refinementValueDisplayName": "Niacinamide",
+          "refinementValueStatus": 1,
+          "key": "niacinamide"
+        },
+        {
+          "count": 7,
+          "refinementValue": "filters[ingredientPreferences]=naturallyDerived",
+          "refinementValueDisplayName": "Naturally Derived",
+          "refinementValueStatus": 1,
+          "key": "naturallyDerived"
+        },
+        {
+          "count": 4,
+          "refinementValue": "filters[ingredientPreferences]=organic",
+          "refinementValueDisplayName": "Organic",
+          "refinementValueStatus": 1,
+          "key": "organic"
+        },
+        {
+          "count": 3,
+          "refinementValue": "filters[ingredientPreferences]=salicylicAcid",
+          "refinementValueDisplayName": "Salicylic Acid",
+          "refinementValueStatus": 1,
+          "key": "salicylicAcid"
+        },
+        {
+          "count": 3,
+          "refinementValue": "filters[ingredientPreferences]=ahaGlycolicAcid",
+          "refinementValueDisplayName": "AHA/Glycolic Acid",
+          "refinementValueStatus": 1,
+          "key": "ahaGlycolicAcid"
+        },
+        {
+          "count": 12,
+          "refinementValue": "filters[ingredientPreferences]=hyaluronicAcid",
+          "refinementValueDisplayName": "Hyaluronic Acid",
+          "refinementValueStatus": 1,
+          "key": "hyaluronicAcid"
+        },
+        {
+          "count": 7,
+          "refinementValue": "filters[ingredientPreferences]=fragranceFree",
+          "refinementValueDisplayName": "Fragrance Free",
+          "refinementValueStatus": 1,
+          "key": "fragranceFree"
+        },
+        {
+          "count": 1,
+          "refinementValue": "filters[ingredientPreferences]=vitaminC",
+          "refinementValueDisplayName": "Vitamin C",
+          "refinementValueStatus": 1,
+          "key": "vitaminC"
+        },
+        {
+          "count": 1,
+          "refinementValue": "filters[ingredientPreferences]=mineral",
+          "refinementValueDisplayName": "Mineral",
+          "refinementValueStatus": 1,
+          "key": "mineral"
+        },
+        {
+          "count": 1,
+          "refinementValue": "filters[ingredientPreferences]=peptides",
+          "refinementValueDisplayName": "Peptides",
+          "refinementValueStatus": 1,
+          "key": "peptides"
+        },
+        {
+          "count": 3,
+          "refinementValue": "filters[ingredientPreferences]=nonComedogenic",
+          "refinementValueDisplayName": "Non-Comedogenic",
+          "refinementValueStatus": 1,
+          "key": "nonComedogenic"
+        }
+      ]
+    },
+    {
+      "displayName": "Shopping Preferences",
+      "key": "shoppingPreferences",
+      "type": "checkboxes",
+      "values": [
+        {
+          "count": 336,
+          "refinementValue": "filters[shoppingPreferences]=onlyAtSephora",
+          "refinementValueDisplayName": "Only at Sephora",
+          "refinementValueStatus": 1,
+          "key": "onlyAtSephora"
+        },
+        {
+          "count": 30,
+          "refinementValue": "filters[shoppingPreferences]=bestOfAllure",
+          "refinementValueDisplayName": "Best of Allure",
+          "refinementValueStatus": 1,
+          "key": "bestOfAllure"
+        },
+        {
+          "count": 109,
+          "refinementValue": "filters[shoppingPreferences]=planetAware",
+          "refinementValueDisplayName": "Planet Aware",
+          "refinementValueStatus": 1,
+          "key": "planetAware"
+        },
+        {
+          "count": 38,
+          "refinementValue": "filters[shoppingPreferences]=blackOwnedBrands",
+          "refinementValueDisplayName": "Black-Owned Brands",
+          "refinementValueStatus": 1,
+          "key": "blackOwnedBrands"
+        },
+        {
+          "count": 23,
+          "refinementValue": "filters[shoppingPreferences]=koreanBeauty",
+          "refinementValueDisplayName": "Korean Beauty",
+          "refinementValueStatus": 1,
+          "key": "koreanBeauty"
+        }
+      ]
+    },
+    {
+      "displayName": "New",
+      "key": "isNew",
+      "type": "checkboxes",
+      "values": [
+        {
+          "count": 288,
+          "refinementValue": "filters[isNew]=true",
+          "refinementValueDisplayName": "New",
+          "refinementValueStatus": 1,
+          "key": "true"
+        }
+      ],
+      "property": "single"
+    },
+    {
+      "displayName": "Age Range",
+      "key": "ageRange",
+      "type": "checkboxes",
+      "values": [
+        {
+          "count": 22,
+          "refinementValue": "filters[ageRange]=20s",
+          "refinementValueDisplayName": "20s",
+          "refinementValueStatus": 1,
+          "key": "20s"
+        },
+        {
+          "count": 22,
+          "refinementValue": "filters[ageRange]=30s",
+          "refinementValueDisplayName": "30s",
+          "refinementValueStatus": 1,
+          "key": "30s"
+        },
+        {
+          "count": 22,
+          "refinementValue": "filters[ageRange]=40s",
+          "refinementValueDisplayName": "40s",
+          "refinementValueStatus": 1,
+          "key": "40s"
+        },
+        {
+          "count": 11,
+          "refinementValue": "filters[ageRange]=50s",
+          "refinementValueDisplayName": "50s +",
+          "refinementValueStatus": 1,
+          "key": "50s"
+        }
+      ]
+    },
+    {
+      "displayName": "Skin Type",
+      "key": "skinType",
+      "type": "checkboxes",
+      "values": [
+        {
+          "count": 16,
+          "refinementValue": "filters[skinType]=normalSk",
+          "refinementValueDisplayName": "Normal",
+          "refinementValueStatus": 1,
+          "key": "normalSk"
+        },
+        {
+          "count": 15,
+          "refinementValue": "filters[skinType]=drySk",
+          "refinementValueDisplayName": "Dry",
+          "refinementValueStatus": 1,
+          "key": "drySk"
+        },
+        {
+          "count": 14,
+          "refinementValue": "filters[skinType]=comboSk",
+          "refinementValueDisplayName": "Combination",
+          "refinementValueStatus": 1,
+          "key": "comboSk"
+        },
+        {
+          "count": 9,
+          "refinementValue": "filters[skinType]=oilySk",
+          "refinementValueDisplayName": "Oily",
+          "refinementValueStatus": 1,
+          "key": "oilySk"
+        },
+        {
+          "count": 4,
+          "refinementValue": "filters[skinType]=sensitiveSk",
+          "refinementValueDisplayName": "Sensitive",
+          "refinementValueStatus": 1,
+          "key": "sensitiveSk"
+        }
+      ]
+    },
+    {
+      "displayName": "Hair Texture",
+      "key": "hairTexture",
+      "type": "checkboxes",
+      "values": [
+        {
+          "count": 17,
+          "refinementValue": "filters[hairTexture]=wavy",
+          "refinementValueDisplayName": "Wavy",
+          "refinementValueStatus": 1,
+          "key": "wavy"
+        },
+        {
+          "count": 17,
+          "refinementValue": "filters[hairTexture]=straight",
+          "refinementValueDisplayName": "Straight",
+          "refinementValueStatus": 1,
+          "key": "straight"
+        },
+        {
+          "count": 8,
+          "refinementValue": "filters[hairTexture]=coily",
+          "refinementValueDisplayName": "Coily",
+          "refinementValueStatus": 1,
+          "key": "coily"
+        },
+        {
+          "count": 10,
+          "refinementValue": "filters[hairTexture]=curly",
+          "refinementValueDisplayName": "Curly",
+          "refinementValueStatus": 1,
+          "key": "curly"
+        }
+      ]
+    },
+    {
+      "displayName": "Hair Type",
+      "key": "hairType",
+      "type": "checkboxes",
+      "values": [
+        {
+          "count": 17,
+          "refinementValue": "filters[hairType]=thick",
+          "refinementValueDisplayName": "Thick",
+          "refinementValueStatus": 1,
+          "key": "thick"
+        },
+        {
+          "count": 17,
+          "refinementValue": "filters[hairType]=medium",
+          "refinementValueDisplayName": "Medium",
+          "refinementValueStatus": 1,
+          "key": "medium"
+        },
+        {
+          "count": 17,
+          "refinementValue": "filters[hairType]=fine",
+          "refinementValueDisplayName": "Fine",
+          "refinementValueStatus": 1,
+          "key": "fine"
+        }
+      ]
+    },
+    {
+      "displayName": "Skin Concerns",
+      "key": "skinConcerns",
+      "type": "checkboxes",
+      "values": [
+        {
+          "count": 12,
+          "refinementValue": "filters[skinConcerns]=dryness",
+          "refinementValueDisplayName": "Dryness",
+          "refinementValueStatus": 1,
+          "key": "dryness"
+        },
+        {
+          "count": 8,
+          "refinementValue": "filters[skinConcerns]=dullness",
+          "refinementValueDisplayName": "Dullness",
+          "refinementValueStatus": 1,
+          "key": "dullness"
+        },
+        {
+          "count": 1,
+          "refinementValue": "filters[skinConcerns]=lossOfFirmnessElasticity",
+          "refinementValueDisplayName": "Loss of Firmness/ Elasticity",
+          "refinementValueStatus": 1,
+          "key": "lossOfFirmnessElasticity"
+        },
+        {
+          "count": 3,
+          "refinementValue": "filters[skinConcerns]=redness",
+          "refinementValueDisplayName": "Redness",
+          "refinementValueStatus": 1,
+          "key": "redness"
+        },
+        {
+          "count": 1,
+          "refinementValue": "filters[skinConcerns]=fineLinesWrinkles",
+          "refinementValueDisplayName": "Fine Lines/ Wrinkles",
+          "refinementValueStatus": 1,
+          "key": "fineLinesWrinkles"
+        },
+        {
+          "count": 1,
+          "refinementValue": "filters[skinConcerns]=darkSpots",
+          "refinementValueDisplayName": "Dark Spots",
+          "refinementValueStatus": 1,
+          "key": "darkSpots"
+        },
+        {
+          "count": 1,
+          "refinementValue": "filters[skinConcerns]=pores",
+          "refinementValueDisplayName": "Pores",
+          "refinementValueStatus": 1,
+          "key": "pores"
+        },
+        {
+          "count": 1,
+          "refinementValue": "filters[skinConcerns]=unevenTexture",
+          "refinementValueDisplayName": "Uneven Texture",
+          "refinementValueStatus": 1,
+          "key": "unevenTexture"
+        }
+      ]
+    },
+    {
+      "displayName": "Benefits",
+      "key": "benefits",
+      "type": "checkboxes",
+      "values": [
+        {
+          "count": 4,
+          "refinementValue": "filters[benefits]=hydrating",
+          "refinementValueDisplayName": "Hydrating",
+          "refinementValueStatus": 1,
+          "key": "hydrating"
+        },
+        {
+          "count": 3,
+          "refinementValue": "filters[benefits]=moisturizing",
+          "refinementValueDisplayName": "Moisturizing",
+          "refinementValueStatus": 1,
+          "key": "moisturizing"
+        }
+      ]
+    },
+    {
+      "displayName": "Hair Concerns",
+      "key": "hairConcerns",
+      "type": "checkboxes",
+      "values": [
+        {
+          "count": 13,
+          "refinementValue": "filters[hairConcerns]=shine",
+          "refinementValueDisplayName": "Shine",
+          "refinementValueStatus": 1,
+          "key": "shine"
+        },
+        {
+          "count": 6,
+          "refinementValue": "filters[hairConcerns]=uvprorection",
+          "refinementValueDisplayName": "UV Protection",
+          "refinementValueStatus": 1,
+          "key": "uvprorection"
+        },
+        {
+          "count": 2,
+          "refinementValue": "filters[hairConcerns]=frizzHr",
+          "refinementValueDisplayName": "Frizz",
+          "refinementValueStatus": 1,
+          "key": "frizzHr"
+        },
+        {
+          "count": 1,
+          "refinementValue": "filters[hairConcerns]=curlEnhancing",
+          "refinementValueDisplayName": "Curl-Enhancing",
+          "refinementValueStatus": 1,
+          "key": "curlEnhancing"
+        },
+        {
+          "count": 1,
+          "refinementValue": "filters[hairConcerns]=volumizing",
+          "refinementValueDisplayName": "Volumizing",
+          "refinementValueStatus": 1,
+          "key": "volumizing"
+        },
+        {
+          "count": 1,
+          "refinementValue": "filters[hairConcerns]=oilyScalp",
+          "refinementValueDisplayName": "Oily Scalp",
+          "refinementValueStatus": 1,
+          "key": "oilyScalp"
+        },
+        {
+          "count": 1,
+          "refinementValue": "filters[hairConcerns]=holdStyleExtending",
+          "refinementValueDisplayName": "Hold & Style Extending",
+          "refinementValueStatus": 1,
+          "key": "holdStyleExtending"
+        },
+        {
+          "count": 8,
+          "refinementValue": "filters[hairConcerns]=dryness",
+          "refinementValueDisplayName": "Dryness",
+          "refinementValueStatus": 1,
+          "key": "dryness"
+        },
+        {
+          "count": 5,
+          "refinementValue": "filters[hairConcerns]=colorSafe",
+          "refinementValueDisplayName": "Color Safe",
+          "refinementValueStatus": 1,
+          "key": "colorSafe"
+        }
+      ]
+    }
+  ],
+  "relatedCategories": [],
+  "request": {
+    "sortBy": "RELEVANCE",
+    "sortOrder": "DESC",
+    "numResultsPerPage": 60,
+    "page": 1,
+    "section": "Products",
+    "term": "",
+    "browseFilterName": "group_id",
+    "browseFilterValue": "cat160006",
+    "us": [
+      "COUNTRY_US",
+      "desktop",
+      "web"
+    ],
+    "filters": [
+      {
+        "key": "availability",
+        "values": [
+          "store_0018",
+          "store_18",
+          "store_48",
+          "store_462",
+          "store_958",
+          "store_1274",
+          "store_1348",
+          "store_1362",
+          "store_1368",
+          "store_1794",
+          "store_2490",
+          "network_SEPHORAUS"
+        ]
+      }
+    ],
+    "variationsMap": {
+      "dtype": "object",
+      "values": {
+        "networkStatus": {
+          "aggregation": "max",
+          "field": "data.sku_availability.network_SEPHORAUS",
+          "value": null
+        },
+        "storeStatus": null,
+        "skuCount": null,
+        "saleCount": null,
+        "minListPrice": {
+          "aggregation": "min",
+          "field": "data.currentSku.listPriceFloat",
+          "value": null
+        },
+        "maxListPrice": {
+          "aggregation": "max",
+          "field": "data.currentSku.listPriceFloat",
+          "value": null
+        },
+        "minSalePrice": {
+          "aggregation": "min",
+          "field": "data.currentSku.salePriceFloat",
+          "value": null
+        },
+        "maxSalePrice": {
+          "aggregation": "max",
+          "field": "data.currentSku.salePriceFloat",
+          "value": null
+        },
+        "minPrice": {
+          "aggregation": "min",
+          "field": "data.currentSku.salePriceFloat",
+          "value": null
+        },
+        "maxPrice": {
+          "aggregation": "max",
+          "field": "data.currentSku.salePriceFloat",
+          "value": null
+        },
+        "moreColors": {
+          "aggregation": "all",
+          "field": "data.currentSku.colorName",
+          "value": null
+        }
+      }
+    },
+    "features": {
+      "queryItems": true,
+      "aATest": false,
+      "autoGeneratedRefinedQueryRules": true,
+      "manualSearchandizing": true,
+      "personalization": true,
+      "filterItems": true,
+      "useRerankerServiceForSearch": true,
+      "useRerankerServiceForBrowse": true,
+      "useRerankerServiceForAll": false,
+      "customAutosuggestUi": false,
+      "disableTestOnlyGlobalRulesSearch": false,
+      "disableTestOnlyGlobalRulesBrowse": false,
+      "useEnrichedAttributesAsFuzzySearchable": false
+    },
+    "featureVariants": {
+      "queryItems": "query_items_ctr_l2r_ctr_ss",
+      "aATest": null,
+      "autoGeneratedRefinedQueryRules": "soft_rules",
+      "manualSearchandizing": null,
+      "personalization": "default_personalization",
+      "filterItems": "sephora_weighted_ctr_w_atc_purchases_diff_periods_v2",
+      "useRerankerServiceForSearch": null,
+      "useRerankerServiceForBrowse": null,
+      "useRerankerServiceForAll": null,
+      "customAutosuggestUi": null,
+      "disableTestOnlyGlobalRulesSearch": null,
+      "disableTestOnlyGlobalRulesBrowse": null,
+      "useEnrichedAttributesAsFuzzySearchable": null
+    },
+    "fmtOptions": {
+      "groupsStart": "current",
+      "groupsMaxDepth": 1,
+      "showHiddenFacets": false,
+      "showHiddenFields": false,
+      "showProtectedFacets": false
+    },
+    "filterMatchTypes": [
+      {
+        "key": "availability",
+        "value": "any"
+      }
+    ]
+  },
+  "responseSource": "NLP",
+  "seoCanonicalUrl": "/shop/fragrance",
+  "seoContent": "Looking for fragrance? We\u2019re here to help. Our fragrances for men and women feature top brands plus exclusive and niche scents.\n\nDon't forget to check out the +[bestselling perfumes for women|/beauty/best-perfumes-for-women]+ that she'll love.\n\n\u2020\u2020Beauty Insider members will earn four (4) points per dollar spent on Fragrance products from 12:01am PT 5/2/24 through 11:59pm PT 5/12/24 in Sephora US and Canada stores, Sephora at Kohl\u2019s, and on sephora.com, sephora.ca, and Kohls.com. Buy Online, Pick Up In Store orders placed after 5/12/24 do not qualify. Bonus points will be automatically credited to your Beauty Insider account within 24 hours after purchase or 24 hours after your Buy Online, Pick Up In Store order has been picked up. Points not earned on previous purchases, purchases of gift cards, gift wrapping, packaging, taxes, or shipping and handling charges. Points have no cash value and may not be bartered, sold, or transferred. Merchandise return will result in deduction of awarded points. If stacked with other point multiplier offers, points earned will increase by 1x. No minimum purchase required. Due to heavy demand, Sephora FLASH delivery times cannot be guaranteed for this promotion. Sephora may modify or cancel offer at any time.",
+  "seoText": {
+    "json": {
+      "data": {},
+      "content": [
+        {
+          "data": {},
+          "content": [
+            {
+              "data": {},
+              "marks": [],
+              "value": "Looking for fragrance? We\u2019re here to help. Our fragrances for men and women feature top brands plus exclusive and niche scents.",
+              "nodeType": "text"
+            }
+          ],
+          "nodeType": "paragraph"
+        },
+        {
+          "data": {},
+          "content": [
+            {
+              "data": {},
+              "marks": [],
+              "value": "Don't forget to check out the ",
+              "nodeType": "text"
+            },
+            {
+              "data": {
+                "uri": "/beauty/best-perfumes-for-women"
+              },
+              "content": [
+                {
+                  "data": {},
+                  "marks": [],
+                  "value": "bestselling perfumes for women",
+                  "nodeType": "text"
+                }
+              ],
+              "nodeType": "hyperlink"
+            },
+            {
+              "data": {},
+              "marks": [],
+              "value": " that she'll love.",
+              "nodeType": "text"
+            }
+          ],
+          "nodeType": "paragraph"
+        },
+        {
+          "data": {},
+          "content": [
+            {
+              "data": {},
+              "marks": [],
+              "value": "\u2020\u2020Beauty Insider members will earn four (4) points per dollar spent on Fragrance products from 12:01am PT 5/2/24 through 11:59pm PT 5/12/24 in Sephora US and Canada stores, Sephora at Kohl\u2019s, and on sephora.com, sephora.ca, and Kohls.com. Buy Online, Pick Up In Store orders placed after 5/12/24 do not qualify. Bonus points will be automatically credited to your Beauty Insider account within 24 hours after purchase or 24 hours after your Buy Online, Pick Up In Store order has been picked up. Points not earned on previous purchases, purchases of gift cards, gift wrapping, packaging, taxes, or shipping and handling charges. Points have no cash value and may not be bartered, sold, or transferred. Merchandise return will result in deduction of awarded points. If stacked with other point multiplier offers, points earned will increase by 1x. No minimum purchase required. Due to heavy demand, Sephora FLASH delivery times cannot be guaranteed for this promotion. Sephora may modify or cancel offer at any time.",
+              "nodeType": "text"
+            }
+          ],
+          "nodeType": "paragraph"
+        }
+      ],
+      "nodeType": "document"
+    }
+  },
+  "seoKeywords": [],
+  "seoMetaDescription": "Shop fragrances for women and men at Sephora. Find your favorite perfume or cologne or accentuate your style with a new scent.",
+  "seoName": "fragrance",
+  "seoTitle": "Fragrance | Sephora",
+  "targetUrl": "/shop/fragrance",
+  "template": 0,
+  "totalProducts": 1790,
+  "ugcWidgetEnabled": false,
+  "responseFromMicroService": true,
+  "schemas": [
+    {
+      "@type": "ItemList",
+      "@context": "http://schema.org",
+      "itemListElement": [
+        {
+          "url": "https://www.sephora.com/shop/makeup-cosmetics",
+          "name": "Makeup",
+          "@type": "SiteNavigationElement",
+          "position": 1,
+          "description": "Shop the best makeup now at Sephora and earn points with every purchase! Not yet a Beauty Insider? Join now for FREE!"
+        },
+        {
+          "url": "https://www.sephora.com/shop/skincare ",
+          "name": "Skincare",
+          "@type": "SiteNavigationElement",
+          "position": 2,
+          "description": "Shop skincare products at Sephora. Find top-rated products from leading skincare brands to help target specific skin concerns and revitalize your look."
+        },
+        {
+          "url": "https://www.sephora.com/shop/hair-products",
+          "name": "Hair",
+          "@type": "SiteNavigationElement",
+          "position": 3,
+          "description": "Explore our top-rated hair care products at Sephora. Browse an unrivaled selection of shampoos, conditioners, styling products, hair color and more from top brands."
+        },
+        {
+          "url": "https://www.sephora.com/shop/fragrance",
+          "name": "Fragrance",
+          "@type": "SiteNavigationElement",
+          "position": 4,
+          "description": "Shop fragrances for women and men at Sephora. Find your favorite perfume or cologne or accentuate your style with a new scent."
+        },
+        {
+          "url": "https://www.sephora.com/shop/makeup-tools",
+          "name": "Tools & Brushes",
+          "@type": "SiteNavigationElement",
+          "position": 5,
+          "description": "Shop beauty tools and accessories at Sephora. Find top-rated makeup tools, brushes, applicators, spa tools and more from leading brands."
+        },
+        {
+          "url": "https://www.sephora.com/shop/bath-body",
+          "name": "Bath & Body",
+          "@type": "SiteNavigationElement",
+          "position": 6,
+          "description": "Shop bath & body products at Sephora. Find an unrivaled selection of the top moisturizers, cleansers, lotions, exfoliants, scrubs and more from top brands."
+        },
+        {
+          "url": "https://www.sephora.com/sale",
+          "name": "Sale",
+          "@type": "SiteNavigationElement",
+          "position": 7,
+          "description": "Makeup sales are always on at Sephora. Shop discounted makeup, skincare, fragrance and hair care products at Sephora today. Free shipping and samples available."
+        }
+      ]
+    },
+    {
+      "itemListElement": [
+        {
+          "item": {
+            "name": "Fragrance",
+            "@id": "https://www.sephora.com/shop/fragrance"
+          },
+          "@type": "ListItem",
+          "position": 1
+        }
+      ],
+      "@type": "BreadcrumbList",
+      "@context": "http://schema.org"
+    }
+  ],
+  "seoMetaContent": "Looking for fragrance? We\u2019re here to help. Our fragrances for men and women feature top brands plus exclusive and niche scents.\n\nDon't forget to check out the +[bestselling perfumes for women|/beauty/best-perfumes-for-women]+ that she'll love.\n\n\u2020\u2020Beauty Insider members will earn four (4) points per dollar spent on Fragrance products from 12:01am PT 5/2/24 through 11:59pm PT 5/12/24 in Sephora US and Canada stores, Sephora at Kohl\u2019s, and on sephora.com, sephora.ca, and Kohls.com. Buy Online, Pick Up In Store orders placed after 5/12/24 do not qualify. Bonus points will be automatically credited to your Beauty Insider account within 24 hours after purchase or 24 hours after your Buy Online, Pick Up In Store order has been picked up. Points not earned on previous purchases, purchases of gift cards, gift wrapping, packaging, taxes, or shipping and handling charges. Points have no cash value and may not be bartered, sold, or transferred. Merchandise return will result in deduction of awarded points. If stacked with other point multiplier offers, points earned will increase by 1x. No minimum purchase required. Due to heavy demand, Sephora FLASH delivery times cannot be guaranteed for this promotion. Sephora may modify or cancel offer at any time."
+}

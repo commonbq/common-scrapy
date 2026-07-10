@@ -37,3 +37,4 @@ common_scrapy.egg-info/
 *.json
 
 data/
+!sample/*.json

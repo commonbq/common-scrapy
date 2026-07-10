@@ -1,0 +1,2528 @@
+{
+  "id": "2786531",
+  "sellingBrand": "NORDSTROM",
+  "legacyStyleGroupId": "10110U",
+  "webPathAlias": "lancome-lancme-le-stylo-waterproof-long-lasting-eyeliner",
+  "copyProductTitle": "Le Stylo Waterproof Long Lasting Eyeliner",
+  "copyDescription": "",
+  "defaultCoreChoice": "4444449AVF",
+  "labelId": "1434",
+  "labelDisplayName": "Lanc\\u00f4me",
+  "propositions": [
+    {
+      "asOf": "2026-07-07T11:18:11.406Z",
+      "salability": {
+        "status": "SELLABLE",
+        "sellableAudiences": [],
+        "previewableAudiences": []
+      },
+      "availability": {
+        "isPickAndNotShip": false,
+        "shipQuantity": 4942,
+        "marketPickQuantity": 4942,
+        "pickQuantity": 3578,
+        "fulfillmentChannels": [
+          {
+            "type": "NORDSTROM_STORE",
+            "isShipAvailable": true,
+            "isMarketPickAvailable": true,
+            "isPickAvailable": true,
+            "nodes": [
+              {
+                "id": "34",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "73",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "222",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "228",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "230",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "345",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "348",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "349",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "360",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "361",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "384",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "524",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "538",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "600",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "706",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "751",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "763",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "765",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "772",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "773",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "774",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "789",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "1",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "4",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "5",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "6",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "9",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "10",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "20",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "25",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "32",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "210",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "220",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "221",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "223",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "225",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "227",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "232",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "235",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "237",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "238",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "239",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "282",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "283",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "320",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "321",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "322",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "326",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "330",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "333",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "340",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "341",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "342",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "380",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "386",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "420",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "421",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "422",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "423",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "425",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "434",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "520",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "521",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "523",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "526",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "527",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "531",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "535",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "621",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "622",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "623",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "629",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "631",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "637",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "723",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "724",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "730",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "731",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "732",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "733",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "746",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "750",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "759",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "760",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "762",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "37",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              },
+              {
+                "id": "234",
+                "type": "FL",
+                "isShipAvailable": true,
+                "isMarketPickAvailable": true,
+                "isPickAvailable": true
+              }
+            ]
+          }
+        ]
+      },
+      "sellingRetailPriceRange": {
+        "min": "29.00",
+        "max": "29.00"
+      },
+      "sellingRetailPercentageOffRange": {
+        "min": 0,
+        "max": 0
+      },
+      "baseRetailPriceRange": {
+        "min": "29.00",
+        "max": "29.00"
+      },
+      "enticementTags": [
+        {
+          "type": "GIFT_WITH_PURCHASE",
+          "displayDescription": "Receive deluxe samples of Absolue Longevity Soft Cream (0.16 oz.), Absolue Eye Cream (0.16 oz.), Absolue L\'Extrait Elixir Cream (0.16 oz.), Tonique Confort Hydrating Toner (1.69 oz.), Clarifique Refining Brightening Pro Solution (0.23 oz.), Hypn\\u00f4se Drama Mascara in Black (0.68 oz.) and L\'Absolu Rouge Drama Matte Lipstick in Rosemania (0.035 oz.) in a dual-compartment cosmetics bag with your $150 Lanc\\u00f4me purchase. A $181 value. Online only.\\n\\nRestrictions Apply. One of each gift per person, while supply lasts. Gift(s) will be added automatically in Checkout and shipped to the same address as your order. If associated with a Buy & Pick Up in Store order, gift(s) cannot be picked up and will be shipped to the address of your choice. Gifts cannot be shipped internationally. Gifts containing alcohol cannot be shipped to PO boxes, military APO/FPO or international addresses. Past purchases do not apply. If you return the qualifying item(s), please return the gift."
+        },
+        {
+          "type": "PURCHASE_WITH_PURCHASE",
+          "displayDescription": ""
+        }
+      ],
+      "services": [
+        {
+          "type": "EMAIL_GIFT_MESSAGE",
+          "fulfillmentChannel": "NORDSTROM_STORE"
+        },
+        {
+          "type": "EMAIL_GIFT_MESSAGE",
+          "fulfillmentChannel": "FULFILLMENT_CENTER"
+        },
+        {
+          "type": "EMAIL_GIFT_MESSAGE",
+          "fulfillmentChannel": "DROPSHIP"
+        },
+        {
+          "type": "EMAIL_GIFT_MESSAGE",
+          "fulfillmentChannel": "ECONCESSION"
+        },
+        {
+          "type": "GIFT_MESSAGE",
+          "fulfillmentChannel": "NORDSTROM_STORE"
+        },
+        {
+          "type": "GIFT_BAG",
+          "fulfillmentChannel": "NORDSTROM_STORE"
+        },
+        {
+          "type": "GIFT_BOX",
+          "fulfillmentChannel": "NORDSTROM_STORE"
+        },
+        {
+          "type": "GIFT_MESSAGE",
+          "fulfillmentChannel": "FULFILLMENT_CENTER"
+        },
+        {
+          "type": "GIFT_BAG",
+          "fulfillmentChannel": "FULFILLMENT_CENTER"
+        },
+        {
+          "type": "GIFT_BOX",
+          "fulfillmentChannel": "FULFILLMENT_CENTER"
+        }
+      ],
+      "sellingEventIds": [
+        "99997",
+        "99996"
+      ],
+      "coreChoiceSelections": [
+        {
+          "coreChoiceId": "4444449AVF",
+          "sellableSkus": [
+            "37993545"
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AV4",
+          "sellableSkus": [
+            "A6257028"
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AUM",
+          "sellableSkus": [
+            "37993533"
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AUT",
+          "sellableSkus": [
+            "37993544"
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AVP",
+          "sellableSkus": [
+            "37993522"
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AVY",
+          "sellableSkus": [
+            "37993525"
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AUP",
+          "sellableSkus": [
+            "37993526"
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AVC",
+          "sellableSkus": [
+            "37993546"
+          ]
+        }
+      ],
+      "isUnilateralMinimumAdvertisedPrice": false
+    }
+  ],
+  "coreProducts": [
+    {
+      "coreProductId": "3333336NGY",
+      "coreChoices": [
+        {
+          "coreChoiceId": "4444449AU3",
+          "displayColorDescription": "ROSE BLANCHE",
+          "colorFamily": {
+            "code": "WHI",
+            "label": "White"
+          },
+          "orderedShots": [
+            {
+              "shotName": "front:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/2071f7fc-db00-4e66-a883-61492147f2c3.jpeg",
+              "croppedImageAspectRatio": "225:3823"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/5df9d5b9-1448-40e8-af91-5cb7fe643935.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AUK",
+          "displayColorDescription": "10 BRONZE FOLIE",
+          "colorFamily": {
+            "code": "BRO",
+            "label": "Brown"
+          },
+          "orderedShots": [
+            {
+              "shotName": "front:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/60fc7bef-b73f-48bd-98d0-97b15e8ccc1a.jpeg",
+              "croppedImageAspectRatio": "221:3826"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/0827a015-b89b-4c4c-9cd5-c249a675ef1c.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AUM",
+          "displayColorDescription": "02 NOIR INTENSE",
+          "colorFamily": {
+            "code": "BLK",
+            "label": "Black"
+          },
+          "orderedShots": [
+            {
+              "shotName": "front:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/3d6a93a4-15ca-40d7-a3cb-0687f8948c0c.jpeg",
+              "croppedImageAspectRatio": "231:3824"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/19d70794-4437-4bcb-988a-a3fde06b1bcb.jpeg",
+              "croppedImageAspectRatio": "2640:2639"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/08553faa-3e92-4e71-93b8-4e722b84fdce.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/6addc556-6d0e-4cbb-9cd8-a80d2b3c8afc.jpeg",
+              "croppedImageAspectRatio": "2640:2663"
+            },
+            {
+              "shotName": "comparison:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/75ee0b7e-7f01-4519-a481-85aa1f85b47c.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/8d844ecd-baa0-4313-9ac2-373e4ec5ab2b.jpeg",
+              "croppedImageAspectRatio": "193:313"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/0237fffb-3bfb-4406-96ba-e6253c46394e.jpeg",
+              "croppedImageAspectRatio": "1320:1321"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fbf51164-00ce-48d8-9a8f-ae314f14ceab.jpeg",
+              "croppedImageAspectRatio": "1273:1078"
+            },
+            {
+              "shotName": "lifestyle:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/e557b1fc-b2ec-4dd8-b26b-162b05be4f8c.jpeg",
+              "croppedImageAspectRatio": "1320:1321"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fe4dc8c0-e2c9-48d2-9995-a523c0b9daa5.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AUN",
+          "displayColorDescription": "NOIR INTENSE",
+          "colorFamily": {
+            "code": "BLK",
+            "label": "Black"
+          },
+          "orderedShots": [
+            {
+              "shotName": "mainException",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fb6da92b-5227-432a-8edf-7daa74f049c0.jpeg",
+              "croppedImageAspectRatio": "97:1587"
+            },
+            {
+              "shotName": "comparison:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/1e4ce8a9-668c-4e91-ae09-a8dd76852d49.jpeg",
+              "croppedImageAspectRatio": "110:111"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/af3cad28-178c-49e6-a7af-a0d35108f365.jpeg",
+              "croppedImageAspectRatio": "806:591"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/45280a1b-60bf-4e6a-82ef-d9a2c4343fc6.jpeg",
+              "croppedImageAspectRatio": "45:319"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/2706bdc3-b4b9-48e3-b185-4d9055110715.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AUP",
+          "displayColorDescription": "01 NOIR ONYX",
+          "colorFamily": {
+            "code": "BLK",
+            "label": "Black"
+          },
+          "orderedShots": [
+            {
+              "shotName": "front:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/11af5f19-bce9-4bbd-b863-8bf13370caf8.jpeg",
+              "croppedImageAspectRatio": "235:3824"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/19d70794-4437-4bcb-988a-a3fde06b1bcb.jpeg",
+              "croppedImageAspectRatio": "2640:2639"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/08553faa-3e92-4e71-93b8-4e722b84fdce.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/6addc556-6d0e-4cbb-9cd8-a80d2b3c8afc.jpeg",
+              "croppedImageAspectRatio": "2640:2663"
+            },
+            {
+              "shotName": "comparison:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/75ee0b7e-7f01-4519-a481-85aa1f85b47c.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/aae336c1-4e3c-4979-8a88-ea278b9e2fbe.jpeg",
+              "croppedImageAspectRatio": "1203:1390"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/0237fffb-3bfb-4406-96ba-e6253c46394e.jpeg",
+              "croppedImageAspectRatio": "1320:1321"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fbf51164-00ce-48d8-9a8f-ae314f14ceab.jpeg",
+              "croppedImageAspectRatio": "1273:1078"
+            },
+            {
+              "shotName": "lifestyle:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/e557b1fc-b2ec-4dd8-b26b-162b05be4f8c.jpeg",
+              "croppedImageAspectRatio": "1320:1321"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/40344125-532d-4d59-95bd-d0ca29f32180.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AUS",
+          "displayColorDescription": "05 ERIKA F",
+          "colorFamily": {
+            "code": "GRY",
+            "label": "Grey"
+          },
+          "orderedShots": [
+            {
+              "shotName": "front:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/6ffb98f8-5822-4f4b-b997-571fdd93d9ad.jpeg",
+              "croppedImageAspectRatio": "236:3825"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/19d70794-4437-4bcb-988a-a3fde06b1bcb.jpeg",
+              "croppedImageAspectRatio": "2640:2639"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/08553faa-3e92-4e71-93b8-4e722b84fdce.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/6addc556-6d0e-4cbb-9cd8-a80d2b3c8afc.jpeg",
+              "croppedImageAspectRatio": "2640:2663"
+            },
+            {
+              "shotName": "comparison:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/75ee0b7e-7f01-4519-a481-85aa1f85b47c.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/e6c90497-825d-4228-b782-1e35c5e872b2.jpeg",
+              "croppedImageAspectRatio": "973:1859"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/0237fffb-3bfb-4406-96ba-e6253c46394e.jpeg",
+              "croppedImageAspectRatio": "1320:1321"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fbf51164-00ce-48d8-9a8f-ae314f14ceab.jpeg",
+              "croppedImageAspectRatio": "1273:1078"
+            },
+            {
+              "shotName": "lifestyle:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/e557b1fc-b2ec-4dd8-b26b-162b05be4f8c.jpeg",
+              "croppedImageAspectRatio": "1320:1321"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/d99d9391-348a-4bb6-aef5-4411e74f1151.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AUT",
+          "displayColorDescription": "08 REVE ANTHRACITE",
+          "colorFamily": {
+            "code": "GRY",
+            "label": "Grey"
+          },
+          "orderedShots": [
+            {
+              "shotName": "front:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/34d7cbd2-cc55-450e-becc-488e8f91247a.jpeg",
+              "croppedImageAspectRatio": "47:765"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/19d70794-4437-4bcb-988a-a3fde06b1bcb.jpeg",
+              "croppedImageAspectRatio": "2640:2639"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/08553faa-3e92-4e71-93b8-4e722b84fdce.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/6addc556-6d0e-4cbb-9cd8-a80d2b3c8afc.jpeg",
+              "croppedImageAspectRatio": "2640:2663"
+            },
+            {
+              "shotName": "comparison:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/75ee0b7e-7f01-4519-a481-85aa1f85b47c.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/db98351b-d87a-45e7-b648-dc58a52ecb0e.jpeg",
+              "croppedImageAspectRatio": "1199:1816"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/0237fffb-3bfb-4406-96ba-e6253c46394e.jpeg",
+              "croppedImageAspectRatio": "1320:1321"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fbf51164-00ce-48d8-9a8f-ae314f14ceab.jpeg",
+              "croppedImageAspectRatio": "1273:1078"
+            },
+            {
+              "shotName": "lifestyle:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/e557b1fc-b2ec-4dd8-b26b-162b05be4f8c.jpeg",
+              "croppedImageAspectRatio": "1320:1321"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/281ab1f8-9f76-44bb-86c8-88a32a2079ec.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AUV",
+          "displayColorDescription": "STEEL",
+          "colorFamily": {
+            "code": "GRY",
+            "label": "Grey"
+          },
+          "orderedShots": [
+            {
+              "shotName": "mainException",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/3ef058af-b43d-4ca3-913f-eaa62441e623.jpeg",
+              "croppedImageAspectRatio": "99:1586"
+            },
+            {
+              "shotName": "comparison:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/26825344-fe9f-4550-a6f4-687ee0088245.jpeg",
+              "croppedImageAspectRatio": "264:269"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/3840e34d-ec61-438b-8c68-7320e373eb31.jpeg",
+              "croppedImageAspectRatio": "1210:887"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/0b33a4d0-0a69-4cc5-9a15-8e6b08493361.jpeg",
+              "croppedImageAspectRatio": "75:532"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/883ec7a4-3d09-4ead-a5f3-e5c795fad98b.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AV2",
+          "displayColorDescription": "SMOOTH FRENCH VIRIDIAN",
+          "colorFamily": {
+            "code": "BLU",
+            "label": "Blue"
+          },
+          "orderedShots": [
+            {
+              "shotName": "mainException",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/2f2dd3c4-3b2a-4568-8fac-d5d8e12dc53b.jpeg",
+              "croppedImageAspectRatio": "98:1607"
+            },
+            {
+              "shotName": "comparison:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/7794771b-41ee-4a19-a8b3-9c8911f2a3de.jpeg",
+              "croppedImageAspectRatio": "2638:2637"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/32758c72-f8d8-4c11-83a7-1fbbce30aaef.jpeg",
+              "croppedImageAspectRatio": "1209:886"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/74e613c8-d8c7-48c1-af61-61dd6d098857.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AV3",
+          "displayColorDescription": "BLUE OASIS",
+          "colorFamily": {
+            "code": "BLU",
+            "label": "Blue"
+          },
+          "orderedShots": [
+            {
+              "shotName": "mainException",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/a686e267-fe9b-4a0c-b3cb-3cfd346a9f4f.jpeg",
+              "croppedImageAspectRatio": "94:1571"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/3bcf8b26-a5af-473c-aec3-c8b93a1e82ea.jpeg",
+              "croppedImageAspectRatio": "201:1595"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/02949368-9ab0-4089-a0b7-4c58c26fe1bb.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AV4",
+          "displayColorDescription": "RADIANT WHITE",
+          "colorFamily": {
+            "code": "WHI",
+            "label": "White"
+          },
+          "orderedShots": [
+            {
+              "shotName": "front:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/8d6284d1-ad97-4cce-89ed-c31769ad81e6.jpeg",
+              "croppedImageAspectRatio": "49:319"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/bb32ee69-adfd-429a-bbba-8dc0551c633d.jpeg",
+              "croppedImageAspectRatio": "2404:2917"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/4634ef36-056d-4297-ba9f-4efb2641d2d4.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/9224b0e1-0da6-4287-84dd-8e82aa315dc2.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AV5",
+          "displayColorDescription": "L\'AUBERGE ROSE",
+          "colorFamily": {
+            "code": "PIN",
+            "label": "Pink"
+          },
+          "orderedShots": [
+            {
+              "shotName": "mainException",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/38b4435f-d8ab-43c2-ac8e-165bac537f41.jpeg",
+              "croppedImageAspectRatio": ""
+            },
+            {
+              "shotName": "comparison:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/8e282aa4-8dd7-4dd0-bfc0-d94ac13204bb.jpeg",
+              "croppedImageAspectRatio": "330:331"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/641c3508-598c-4ae3-9e92-6d612c15e10e.jpeg",
+              "croppedImageAspectRatio": "1209:886"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/c3841b1f-d932-4eb0-b9c8-b3bb234517d7.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AV6",
+          "displayColorDescription": "CAFE",
+          "colorFamily": {
+            "code": "BRO",
+            "label": "Brown"
+          },
+          "orderedShots": [
+            {
+              "shotName": "front:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/7e563a9c-10aa-4eac-92f9-7ec7ccbfd50f.jpeg",
+              "croppedImageAspectRatio": "221:3819"
+            },
+            {
+              "shotName": "comparison:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/ee2787ac-44c5-48da-8a38-6ceed26e0e18.jpeg",
+              "croppedImageAspectRatio": "879:880"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/9c258ce8-581a-4ef8-95df-b4865bac4ba4.jpeg",
+              "croppedImageAspectRatio": "1209:886"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/6d87d813-5f2d-4a3f-a686-503b6fc96b78.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AV9",
+          "displayColorDescription": "BRUNS FRIVOLE",
+          "colorFamily": {
+            "code": "BRO",
+            "label": "Brown"
+          },
+          "orderedShots": [
+            {
+              "shotName": "front:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/ffb4a7f6-1f02-4edf-a756-8f1430d69765.jpeg",
+              "croppedImageAspectRatio": "221:3819"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/60c0aaa9-ec65-42c9-a939-7b0c527df4e9.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AVA",
+          "displayColorDescription": "BRONZE (PEARL)",
+          "colorFamily": {
+            "code": "MTRSTCP",
+            "label": "Metallic Rust/Copper"
+          },
+          "orderedShots": [
+            {
+              "shotName": "mainException",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/9e2f3f95-921c-4272-81ac-cd8f61efeb29.jpeg",
+              "croppedImageAspectRatio": "47:791"
+            },
+            {
+              "shotName": "comparison:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/7ac5f4fa-7779-4b19-ade0-58294ff2ee59.jpeg",
+              "croppedImageAspectRatio": "2640:2647"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/c74a8d82-6adf-4161-bc78-9aaa560bbc93.jpeg",
+              "croppedImageAspectRatio": "2417:1773"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/706b50eb-3c3e-4b05-9060-e227c5c6d1ca.jpeg",
+              "croppedImageAspectRatio": "201:1595"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/c6bc55ca-4b5e-45ff-8385-85ab27e84785.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AVC",
+          "displayColorDescription": "04 BRONZE RICH",
+          "colorFamily": {
+            "code": "MTRSTCP",
+            "label": "Metallic Rust/Copper"
+          },
+          "orderedShots": [
+            {
+              "shotName": "front:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/9caaff79-35d4-47b8-b60f-c34a571f215d.jpeg",
+              "croppedImageAspectRatio": "29:478"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/19d70794-4437-4bcb-988a-a3fde06b1bcb.jpeg",
+              "croppedImageAspectRatio": "2640:2639"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/08553faa-3e92-4e71-93b8-4e722b84fdce.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/6addc556-6d0e-4cbb-9cd8-a80d2b3c8afc.jpeg",
+              "croppedImageAspectRatio": "2640:2663"
+            },
+            {
+              "shotName": "comparison:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/75ee0b7e-7f01-4519-a481-85aa1f85b47c.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/96d02fbd-a3f3-4605-a8c0-c8099f7ed24e.jpeg",
+              "croppedImageAspectRatio": "1202:1589"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/0237fffb-3bfb-4406-96ba-e6253c46394e.jpeg",
+              "croppedImageAspectRatio": "1320:1321"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fbf51164-00ce-48d8-9a8f-ae314f14ceab.jpeg",
+              "croppedImageAspectRatio": "1273:1078"
+            },
+            {
+              "shotName": "lifestyle:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/e557b1fc-b2ec-4dd8-b26b-162b05be4f8c.jpeg",
+              "croppedImageAspectRatio": "1320:1321"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/75196c00-f996-47fb-bc3c-9fae5a5f2332.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AVE",
+          "displayColorDescription": "CHOCOLAT",
+          "colorFamily": {
+            "code": "BRO",
+            "label": "Brown"
+          },
+          "orderedShots": [
+            {
+              "shotName": "mainException",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/f0acf382-a6fc-45ee-9fe3-a8db42222c82.jpeg",
+              "croppedImageAspectRatio": "34:529"
+            },
+            {
+              "shotName": "comparison:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/4537bbfa-d58a-475a-ad3d-cf1775e26c33.jpeg",
+              "croppedImageAspectRatio": "165:166"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/9ac9e7d2-2757-4c21-ab9b-3e04a619ce7a.jpeg",
+              "croppedImageAspectRatio": "1209:886"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/3b0b560b-94f1-4567-9ebe-148c17f2a485.jpeg",
+              "croppedImageAspectRatio": "226:1595"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/5001bcb0-65c8-433f-bd6d-912a4f68d924.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AVF",
+          "displayColorDescription": "03 CHOCOLATE",
+          "colorFamily": {
+            "code": "BRO",
+            "label": "Brown"
+          },
+          "orderedShots": [
+            {
+              "shotName": "front:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/90afe19e-bed3-4e1e-9b74-c98a2ffe3b1e.jpeg",
+              "croppedImageAspectRatio": "229:3824"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/19d70794-4437-4bcb-988a-a3fde06b1bcb.jpeg",
+              "croppedImageAspectRatio": "2640:2639"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/08553faa-3e92-4e71-93b8-4e722b84fdce.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/6addc556-6d0e-4cbb-9cd8-a80d2b3c8afc.jpeg",
+              "croppedImageAspectRatio": "2640:2663"
+            },
+            {
+              "shotName": "comparison:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/75ee0b7e-7f01-4519-a481-85aa1f85b47c.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/d149079f-ea05-4eaf-8cba-6da451e3027f.jpeg",
+              "croppedImageAspectRatio": "2396:2911"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/0237fffb-3bfb-4406-96ba-e6253c46394e.jpeg",
+              "croppedImageAspectRatio": "1320:1321"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fbf51164-00ce-48d8-9a8f-ae314f14ceab.jpeg",
+              "croppedImageAspectRatio": "1273:1078"
+            },
+            {
+              "shotName": "lifestyle:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/e557b1fc-b2ec-4dd8-b26b-162b05be4f8c.jpeg",
+              "croppedImageAspectRatio": "1320:1321"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/7f5450d8-e385-41ed-a33c-161c2c2b6ba2.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AVN",
+          "displayColorDescription": "IVY",
+          "colorFamily": {
+            "code": "BEI",
+            "label": "Beige"
+          },
+          "orderedShots": [
+            {
+              "shotName": "mainException",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/e80b012c-9c01-410c-bb74-7d759890d42d.jpeg",
+              "croppedImageAspectRatio": "97:1585"
+            },
+            {
+              "shotName": "comparison:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/5867c79c-ddeb-4db5-ad91-8fa4c5a30c02.jpeg",
+              "croppedImageAspectRatio": "120:121"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/64acc736-963e-4ce8-9259-7fbdae9a87f7.jpeg",
+              "croppedImageAspectRatio": "1209:886"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/030f7b65-dbc1-416d-a6ff-69aab4ac0992.jpeg",
+              "croppedImageAspectRatio": "75:532"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/1862bed9-35ca-4791-a1f9-3067c6ec4a45.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AVP",
+          "displayColorDescription": "06 IVY",
+          "colorFamily": {
+            "code": "GRE",
+            "label": "Green"
+          },
+          "orderedShots": [
+            {
+              "shotName": "front:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/89252a49-b00e-40cf-88b3-6ffee38e8044.jpeg",
+              "croppedImageAspectRatio": "232:3825"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/19d70794-4437-4bcb-988a-a3fde06b1bcb.jpeg",
+              "croppedImageAspectRatio": "2640:2639"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/08553faa-3e92-4e71-93b8-4e722b84fdce.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/6addc556-6d0e-4cbb-9cd8-a80d2b3c8afc.jpeg",
+              "croppedImageAspectRatio": "2640:2663"
+            },
+            {
+              "shotName": "comparison:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/75ee0b7e-7f01-4519-a481-85aa1f85b47c.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/98b93011-0840-425b-a316-dd4747d0880b.jpeg",
+              "croppedImageAspectRatio": "973:1859"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/0237fffb-3bfb-4406-96ba-e6253c46394e.jpeg",
+              "croppedImageAspectRatio": "1320:1321"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fbf51164-00ce-48d8-9a8f-ae314f14ceab.jpeg",
+              "croppedImageAspectRatio": "1273:1078"
+            },
+            {
+              "shotName": "lifestyle:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/e557b1fc-b2ec-4dd8-b26b-162b05be4f8c.jpeg",
+              "croppedImageAspectRatio": "1320:1321"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/bbc98215-7dbb-4cbf-818e-4ef4dcb8e8ae.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AVT",
+          "displayColorDescription": "CREME DE MENTHE",
+          "colorFamily": {
+            "code": "GRE",
+            "label": "Green"
+          },
+          "orderedShots": [
+            {
+              "shotName": "front:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/2f6e5c33-35db-41e5-adae-84b870a5798e.jpeg",
+              "croppedImageAspectRatio": "45:766"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/31dc3053-1447-44f7-ad1e-20470966aa85.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AVU",
+          "displayColorDescription": "JADE",
+          "colorFamily": {
+            "code": "GRE",
+            "label": "Green"
+          },
+          "orderedShots": [
+            {
+              "shotName": "front:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/8e052b54-46db-4549-8243-8bbadebaf02d.jpeg",
+              "croppedImageAspectRatio": "13:225"
+            },
+            {
+              "shotName": "comparison:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/9fdce9b7-38a2-44c0-8a9e-697a2685c690.jpeg",
+              "croppedImageAspectRatio": "330:331"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/2cf8b819-488d-49b5-999f-36a5867a1d7c.jpeg",
+              "croppedImageAspectRatio": "2419:1773"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/26b01fed-f83c-4b9b-9cea-9acc24cff2d5.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AVW",
+          "displayColorDescription": "MINUIT",
+          "colorFamily": {
+            "code": "BLU",
+            "label": "Blue"
+          },
+          "orderedShots": [
+            {
+              "shotName": "front:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/9c22f0a7-e1a8-439c-b876-d32332409238.jpeg",
+              "croppedImageAspectRatio": "117:1912"
+            },
+            {
+              "shotName": "brand:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/759a8265-30f5-4177-8d16-1695c86853cf.jpeg",
+              "croppedImageAspectRatio": "2416:1771"
+            },
+            {
+              "shotName": "comparison:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/99037c01-f995-4f34-887c-8f59cfdf73d9.jpeg",
+              "croppedImageAspectRatio": "110:111"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/b0cbb8ef-1df1-478d-b019-2bb9f55568f3.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AVX",
+          "displayColorDescription": "TEMPO MEDITERRANEAN",
+          "colorFamily": {
+            "code": "BLU",
+            "label": "Blue"
+          },
+          "orderedShots": [
+            {
+              "shotName": "front:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/34f29b30-0faf-4953-978b-e94f4f6e8bd7.jpeg",
+              "croppedImageAspectRatio": "222:3827"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/f601610f-a19b-458c-b991-7d0025d95592.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AVY",
+          "displayColorDescription": "07 MINUIT ILLUSION",
+          "colorFamily": {
+            "code": "BLU",
+            "label": "Blue"
+          },
+          "orderedShots": [
+            {
+              "shotName": "front:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/0c783982-4835-4839-81c6-fb3a70ea1d8d.jpeg",
+              "croppedImageAspectRatio": "26:159"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/19d70794-4437-4bcb-988a-a3fde06b1bcb.jpeg",
+              "croppedImageAspectRatio": "2640:2639"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/08553faa-3e92-4e71-93b8-4e722b84fdce.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/6addc556-6d0e-4cbb-9cd8-a80d2b3c8afc.jpeg",
+              "croppedImageAspectRatio": "2640:2663"
+            },
+            {
+              "shotName": "comparison:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/75ee0b7e-7f01-4519-a481-85aa1f85b47c.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/4d867550-2cd0-4bc7-8f7f-2e87833d3cca.jpeg",
+              "croppedImageAspectRatio": "67:104"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/0237fffb-3bfb-4406-96ba-e6253c46394e.jpeg",
+              "croppedImageAspectRatio": "1320:1321"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fbf51164-00ce-48d8-9a8f-ae314f14ceab.jpeg",
+              "croppedImageAspectRatio": "1273:1078"
+            },
+            {
+              "shotName": "lifestyle:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/e557b1fc-b2ec-4dd8-b26b-162b05be4f8c.jpeg",
+              "croppedImageAspectRatio": "1320:1321"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/d7f445ce-6cc7-4217-a5b8-7fa9b971af40.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AVZ",
+          "displayColorDescription": "AZURE",
+          "colorFamily": {
+            "code": "GRE",
+            "label": "Green"
+          },
+          "orderedShots": [
+            {
+              "shotName": "mainException",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/055585ec-86c5-41ab-b98c-fa7565b22d6f.jpeg",
+              "croppedImageAspectRatio": "97:1587"
+            },
+            {
+              "shotName": "comparison:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/ec3d33f2-f7fb-4e73-9f07-8c8230a0924f.jpeg",
+              "croppedImageAspectRatio": "440:447"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/f8ecc5b6-e908-4027-b851-82f8d9acc33f.jpeg",
+              "croppedImageAspectRatio": "1209:886"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/7f037671-f233-4a69-9e8f-295969310886.jpeg",
+              "croppedImageAspectRatio": "45:319"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/c3050a92-49d8-4209-bd25-d20116885985.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AW7",
+          "displayColorDescription": "SAPPHIRE",
+          "colorFamily": {
+            "code": "BLU",
+            "label": "Blue"
+          },
+          "orderedShots": [
+            {
+              "shotName": "front:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/85febce2-78a7-461c-8c04-5a304c2fd77f.jpeg",
+              "croppedImageAspectRatio": "110:1909"
+            },
+            {
+              "shotName": "comparison:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/155ecb48-c54f-449a-8367-efa74380b633.jpeg",
+              "croppedImageAspectRatio": "440:443"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/8f319ee3-a9cd-4009-a15c-f0a4930fa833.jpeg",
+              "croppedImageAspectRatio": "1210:887"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/30ea5442-467c-4bf5-883d-ff17c51ebeff.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AW8",
+          "displayColorDescription": "TURQUOISE",
+          "colorFamily": {
+            "code": "BLU",
+            "label": "Blue"
+          },
+          "orderedShots": [
+            {
+              "shotName": "front:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/ae623a5d-0eed-43e9-ba13-57d26babed7b.jpeg",
+              "croppedImageAspectRatio": "220:3819"
+            },
+            {
+              "shotName": "comparison:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/79eb940b-9237-41ec-b3d5-406057910434.jpeg",
+              "croppedImageAspectRatio": "110:111"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/9dc24cbd-a983-458e-b3e0-2bfd80e6e26c.jpeg",
+              "croppedImageAspectRatio": "2419:1773"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/5337b29b-5616-4afd-aba6-d5efc8d3d5a5.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AWA",
+          "displayColorDescription": "REFLET COBALT",
+          "colorFamily": {
+            "code": "BLU",
+            "label": "Blue"
+          },
+          "orderedShots": [
+            {
+              "shotName": "front:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/c1d55178-bf14-4182-b47a-41d7441426fb.jpeg",
+              "croppedImageAspectRatio": "220:3823"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/849f2c0c-a2c8-4a8b-a07c-69a87aeb749e.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AWB",
+          "displayColorDescription": "PRUNE",
+          "colorFamily": {
+            "code": "PUR",
+            "label": "Purple"
+          },
+          "orderedShots": [
+            {
+              "shotName": "front:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/80d37f93-5100-4f37-b298-d2dd5a967e96.jpeg",
+              "croppedImageAspectRatio": "261:1913"
+            },
+            {
+              "shotName": "comparison:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/52123347-cfee-46ab-ba3b-c872ce2bb2bc.jpeg",
+              "croppedImageAspectRatio": "1320:1343"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/31bf53b2-a5bf-4ed0-a604-484355256b50.jpeg",
+              "croppedImageAspectRatio": "2419:1772"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/853ba152-ceed-4c04-a881-577a1fe6352c.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AWH",
+          "displayColorDescription": "AMETHYST",
+          "colorFamily": {
+            "code": "PUR",
+            "label": "Purple"
+          },
+          "orderedShots": [
+            {
+              "shotName": "front:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/e6debe52-b7f9-4343-a25f-35309a716b71.jpeg",
+              "croppedImageAspectRatio": "232:3853"
+            },
+            {
+              "shotName": "comparison:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/45000856-1bf5-43b9-b287-8dc3187c8a28.jpeg",
+              "croppedImageAspectRatio": "1320:1327"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/ecdc6f51-7a71-4f8f-bc0d-fdd3efe6be90.jpeg",
+              "croppedImageAspectRatio": "1210:887"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/b54a38dd-97bd-41b1-96ca-eae5805dfb79.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AWL",
+          "displayColorDescription": "AUBERGINE",
+          "colorFamily": {
+            "code": "PUR",
+            "label": "Purple"
+          },
+          "orderedShots": [
+            {
+              "shotName": "mainException",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/874959e6-fbfe-494d-aed4-3df9735d87e9.jpeg",
+              "croppedImageAspectRatio": "97:1587"
+            },
+            {
+              "shotName": "comparison:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/70646cd0-7e7c-4939-91d0-bd63ec7f4564.jpeg",
+              "croppedImageAspectRatio": "440:443"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/7cc927b7-2931-495f-a29c-fcc317a4bb90.jpeg",
+              "croppedImageAspectRatio": "1210:887"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/95f27a77-6d9b-4ca9-9cf0-19f54eb9af4b.jpeg",
+              "croppedImageAspectRatio": "226:1595"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/ebab50a8-2cf5-479b-8c9c-a81af4f7070b.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AWM",
+          "displayColorDescription": "09 PRUNE RADICAL",
+          "colorFamily": {
+            "code": "PUR",
+            "label": "Purple"
+          },
+          "orderedShots": [
+            {
+              "shotName": "front:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/f0bb87f7-deb8-4111-b88f-dbb910659c76.jpeg",
+              "croppedImageAspectRatio": "76:1275"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/19d70794-4437-4bcb-988a-a3fde06b1bcb.jpeg",
+              "croppedImageAspectRatio": "2640:2639"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/08553faa-3e92-4e71-93b8-4e722b84fdce.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "front:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/6addc556-6d0e-4cbb-9cd8-a80d2b3c8afc.jpeg",
+              "croppedImageAspectRatio": "2640:2663"
+            },
+            {
+              "shotName": "comparison:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/75ee0b7e-7f01-4519-a481-85aa1f85b47c.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/c551ba48-7043-4b37-bec3-4ea861fe6d72.jpeg",
+              "croppedImageAspectRatio": "1049:1878"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/0237fffb-3bfb-4406-96ba-e6253c46394e.jpeg",
+              "croppedImageAspectRatio": "1320:1321"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fbf51164-00ce-48d8-9a8f-ae314f14ceab.jpeg",
+              "croppedImageAspectRatio": "1273:1078"
+            },
+            {
+              "shotName": "lifestyle:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/e557b1fc-b2ec-4dd8-b26b-162b05be4f8c.jpeg",
+              "croppedImageAspectRatio": "1320:1321"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/16a9b6df-5cca-4fdf-a05c-032ee23a13d1.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AWN",
+          "displayColorDescription": "10 RUBY FEVER",
+          "colorFamily": {
+            "code": "BUR",
+            "label": "Burgundy"
+          },
+          "orderedShots": [
+            {
+              "shotName": "front:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/8ec882c8-95f7-4594-95c7-e34bdbc71138.jpeg",
+              "croppedImageAspectRatio": "628:3825"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/a9a723cc-64ba-402f-98d7-fb819e746823.jpeg",
+              "croppedImageAspectRatio": "403:489"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/ee3cfe6c-d4ae-44a8-a039-64fe7b380fb6.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AWP",
+          "displayColorDescription": "GOLDEN RIVIERA",
+          "colorFamily": {
+            "code": "MXG",
+            "label": "Metallic Gold"
+          },
+          "orderedShots": [
+            {
+              "shotName": "mainException",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/c4b630ba-05cf-40cd-8432-425b005f4454.jpeg",
+              "croppedImageAspectRatio": "96:1589"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/618b09d6-7f20-4223-bd34-ba13a7a80ec9.jpeg",
+              "croppedImageAspectRatio": "71:532"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/1b87c40e-60dc-492c-9f29-39ee5697fa2d.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "4444449AWQ",
+          "displayColorDescription": "BURNT SIENNA",
+          "colorFamily": {
+            "code": "BEI",
+            "label": "Beige"
+          },
+          "orderedShots": [
+            {
+              "shotName": "mainException",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/dbe8ef8a-adda-4226-9b1d-7ca06f3471d9.jpeg",
+              "croppedImageAspectRatio": "98:1607"
+            },
+            {
+              "shotName": "comparison:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/64ad35c2-3aa1-43de-9c28-35d521d9d074.jpeg",
+              "croppedImageAspectRatio": "330:331"
+            },
+            {
+              "shotName": "zoom:product",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/00c80f68-3444-4bd6-936f-66e5d2ca9a1f.jpeg",
+              "croppedImageAspectRatio": "806:591"
+            },
+            {
+              "shotName": "howToOrInfo:onFigure",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/fada1f63-d319-438b-b5bd-756123b065ff.jpeg",
+              "croppedImageAspectRatio": "1:1"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/df229448-078a-429c-8cfc-c6fc193403fc.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        },
+        {
+          "coreChoiceId": "44444FYUD7",
+          "displayColorDescription": "MARINE CHIC",
+          "colorFamily": {
+            "code": "BLU",
+            "label": "Blue"
+          },
+          "orderedShots": [
+            {
+              "shotName": "mainException",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/175708b8-b40f-4092-a308-b8c72028a6a0.jpeg",
+              "croppedImageAspectRatio": "118:1583"
+            },
+            {
+              "shotName": "misc",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/297fc9bd-15ae-429f-954e-e43dfad8bffe.jpeg",
+              "croppedImageAspectRatio": "214:1595"
+            },
+            {
+              "shotName": "swatch",
+              "fileFormat": "JPEG",
+              "imageUrl": "https://n.nordstrommedia.com/it/9bc67879-755f-40ac-b8f5-0b55bbcd398f.jpeg",
+              "croppedImageAspectRatio": ""
+            }
+          ]
+        }
+      ],
+      "isCustomizationRequired": "NO",
+      "nptHierarchy": "npt.beauty_and_personal_care.makeup.eye_makeup.eyeliner",
+      "gender": {
+        "code": "FEM",
+        "label": "Female"
+      },
+      "waterResistance": {
+        "code": "WTRPRF",
+        "label": "Waterproof"
+      },
+      "meetsNordstromNaturalBeautyRequirements": "NOT_PROVIDED"
+    }
+  ],
+  "partnerRelationships": {},
+  "reviews": {
+    "numberOfReviews": 2736,
+    "averageRating": 4.5,
+    "maximumRating": 5,
+    "secondaryRatings": []
+  }
+}

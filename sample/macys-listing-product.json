@@ -1,0 +1,172 @@
+{
+  "id": 20030204,
+  "identifier": {
+    "productUrl": "/shop/product/lancome-advanced-genifique-concentrate-3.4-oz.?ID=20030204",
+    "productId": 20030204
+  },
+  "detail": {
+    "name": "Advanced G&eacute;nifique Concentrate, 3.4 oz.",
+    "brand": "Lanc&ocirc;me",
+    "flags": {
+      "registrable": true,
+      "memberProduct": true,
+      "intlSuppressProduct": true,
+      "PDPColorized": true
+    },
+    "reviewStatistics": {
+      "aggregate": {
+        "rating": 4.7,
+        "count": 16382
+      }
+    },
+    "typeName": "SKIN_CARE"
+  },
+  "relationships": {
+    "taxonomy": {
+      "defaultCategoryId": 30078
+    }
+  },
+  "imagery": {
+    "additionalImageSource": [
+      {
+        "filePath": "4/optimized/32327264_fpx.tif"
+      },
+      {
+        "filePath": "1/optimized/25813951_fpx.tif"
+      },
+      {
+        "filePath": "0/optimized/25813940_fpx.tif"
+      },
+      {
+        "filePath": "4/optimized/25813944_fpx.tif"
+      },
+      {
+        "filePath": "0/optimized/25813950_fpx.tif"
+      },
+      {
+        "filePath": "2/optimized/25813952_fpx.tif"
+      },
+      {
+        "filePath": "3/optimized/25813943_fpx.tif"
+      },
+      {
+        "filePath": "2/optimized/25813942_fpx.tif"
+      },
+      {
+        "filePath": "1/optimized/25813941_fpx.tif"
+      },
+      {
+        "filePath": "0/optimized/22564930_fpx.tif"
+      },
+      {
+        "filePath": "7/optimized/25847607_fpx.tif"
+      }
+    ],
+    "primaryImage": {
+      "filePath": "4/optimized/32327264_fpx.tif"
+    }
+  },
+  "availability": {
+    "active": true,
+    "available": true
+  },
+  "traits": {
+    "colors": {
+      "selectedColor": {
+        "id": 9789372,
+        "name": "No Color",
+        "imagery": {
+          "additionalImageSource": [
+            {
+              "filePath": "4/optimized/32327264_fpx.tif"
+            },
+            {
+              "filePath": "1/optimized/25813951_fpx.tif"
+            },
+            {
+              "filePath": "0/optimized/25813940_fpx.tif"
+            },
+            {
+              "filePath": "4/optimized/25813944_fpx.tif"
+            },
+            {
+              "filePath": "0/optimized/25813950_fpx.tif"
+            },
+            {
+              "filePath": "2/optimized/25813952_fpx.tif"
+            },
+            {
+              "filePath": "3/optimized/25813943_fpx.tif"
+            },
+            {
+              "filePath": "2/optimized/25813942_fpx.tif"
+            },
+            {
+              "filePath": "1/optimized/25813941_fpx.tif"
+            },
+            {
+              "filePath": "0/optimized/22564930_fpx.tif"
+            },
+            {
+              "filePath": "7/optimized/25847607_fpx.tif"
+            }
+          ],
+          "primaryImage": {
+            "filePath": "4/optimized/32327264_fpx.tif"
+          }
+        }
+      }
+    },
+    "types": {}
+  },
+  "pricing": {
+    "price": {
+      "priceType": {
+        "applicableToAllUpcs": true
+      },
+      "tieredPrice": [
+        {
+          "label": "[PRICE]",
+          "values": [
+            {
+              "value": 220.0,
+              "formattedValue": "$220.00",
+              "type": "regular"
+            }
+          ]
+        }
+      ],
+      "priceTypeId": 0
+    },
+    "badges": [
+      {
+        "checkoutDescription": "Free 6-Pc. Gift",
+        "description": "with any $75 Lanc\u00f4me Purchase.",
+        "promoId": "19954866",
+        "header": "Free gift with purchase",
+        "applicableToAllUpcs": true,
+        "offer": "BONUS_OFFER",
+        "image": {
+          "filePath": "7/optimized/37022027_fpx.tif",
+          "urlTemplate": "https://slimages.macysassets.com/is/image/MCY/products/[IMAGEFILEPATH]?$thumb$"
+        },
+        "promotionType": "Threshold GWP",
+        "autoApplyEligible": true
+      },
+      {
+        "checkoutDescription": "The best value of the summer! This summer tote bag includes 2 iconic full-size products and 2 deluxe mini travel sizes. Available for $40 with any Lanc\u00f4me purchase, a $163 value!",
+        "description": "The best value of the summer! This summer tote bag",
+        "promoId": "19954262",
+        "header": "Bonus Offer with Purchase",
+        "applicableToAllUpcs": true,
+        "offer": "SPECIAL_OFFER",
+        "image": {
+          "filePath": "8/optimized/37628748_fpx.tif",
+          "urlTemplate": "https://slimages.macysassets.com/is/image/MCY/products/[IMAGEFILEPATH]?$thumb$"
+        },
+        "promotionType": "PWP",
+        "autoApplyEligible": true
+      }
+    ]
+  }
+}
