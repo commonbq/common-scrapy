@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import json
-import re
 from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 
 import scrapy
@@ -12,13 +11,8 @@ from common.spiders.base_listing_spider import BaseListingSpider
 class UltaListingSpider(BaseListingSpider):
     """Ulta category listing spider.
 
-    Modes:
-    - default/graphql: Ulta GraphQL APIs (/dxl/graphql)
-    - html: direct HTML card parsing
-
     Examples:
     - scrapy crawl ulta_listing -a category='shampoo' -a max_pages=1
-    - scrapy crawl ulta_listing -a category='shampoo' -a mode=html -a max_pages=1
     """
 
     name = "ulta_listing"
@@ -43,39 +37,8 @@ class UltaListingSpider(BaseListingSpider):
         "breakpoint": "LG",
     }
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self._html_fallback_started = False
-
-
     def start_requests(self):
-        mode = (getattr(self, "mode", None) or "graphql").strip().lower()
         target = self._target_with_sort(self.resolve_target_url())
-        meta = {
-            "mode": mode,
-            "target": target,
-            "cookiejar": self.name,
-            "disable_proxy": True,
-        }
-        yield scrapy.Request(
-            target,
-            callback=self._bootstrap_category_page,
-            headers=self._page_headers(),
-            meta=meta,
-            dont_filter=True,
-        )
-
-    def _bootstrap_category_page(self, response: scrapy.http.Response):
-        mode = response.meta.get("mode", "graphql")
-        target = response.meta.get("target") or self._target_with_sort(self.resolve_target_url())
-
-        if mode == "html":
-            response.meta["origin"] = target
-            response.meta["page"] = response.meta.get("page") or 1
-            response.meta["mode"] = "html"
-            yield from self.parse_html_listing(response)
-            return
-
         page_query = (
             'query Page($stagingHost: String, $previewOptions: JSON, $moduleParams: JSON, $url: JSON) '
             '{ Page: Page(stagingHost: $stagingHost, previewOptions: $previewOptions, '
@@ -86,9 +49,8 @@ class UltaListingSpider(BaseListingSpider):
         url = self._build_graphql_get_url(page_query, "Page", variables)
         meta = {
             "page": 1,
-            "mode": "graphql",
             "category_url": target,
-            "cookiejar": response.meta.get("cookiejar"),
+            "cookiejar": self.name,
             "disable_proxy": True,
         }
         yield scrapy.Request(
@@ -107,9 +69,6 @@ class UltaListingSpider(BaseListingSpider):
             retry = self._build_unsorted_page_retry(response)
             if retry is not None:
                 yield retry
-                return
-            for req in self._schedule_html_fallback(response):
-                yield req
             return
 
         modules = payload.get("data", {}).get("Page", {}).get("content", {}).get("modules", [])
@@ -125,9 +84,6 @@ class UltaListingSpider(BaseListingSpider):
             retry = self._build_unsorted_page_retry(response)
             if retry is not None:
                 yield retry
-                return
-            for req in self._schedule_html_fallback(response):
-                yield req
             return
 
         category_url = response.meta.get("category_url") or self._target_with_sort(self.resolve_target_url())
@@ -152,9 +108,6 @@ class UltaListingSpider(BaseListingSpider):
             retry = self._build_unsorted_listing_retry(response)
             if retry is not None:
                 yield retry
-                return
-            for req in self._schedule_html_fallback(response):
-                yield req
             return
 
         content = payload.get("data", {}).get("Page", {}).get("content", {})
@@ -164,9 +117,6 @@ class UltaListingSpider(BaseListingSpider):
             retry = self._build_unsorted_listing_retry(response)
             if retry is not None:
                 yield retry
-                return
-            for req in self._schedule_html_fallback(response):
-                yield req
             return
 
         for item in items:
@@ -212,77 +162,10 @@ class UltaListingSpider(BaseListingSpider):
             }),
         )
 
-    def parse_html_listing(self, response: scrapy.http.Response):
-        page = int(response.meta.get("page", 1))
-        seen: set[str] = set()
-        yielded = 0
-
-        anchors = response.xpath('//a[contains(@href,"/p/")]')
-        for a in anchors:
-            href = (a.attrib.get("href") or "").strip()
-            if "/p/" not in href:
-                continue
-            url = response.urljoin(href)
-            if url in seen:
-                continue
-            seen.add(url)
-
-            card = a.xpath('ancestor::*[self::article or self::li or self::div][1]')
-            title = " ".join(card.xpath('.//text()').getall()).strip() if card else ""
-            title = re.sub(r"\s+", " ", title)
-            img = (card.xpath('.//img/@src').get() if card else None) or (card.xpath('.//img/@data-src').get() if card else None)
-
-            prices = re.findall(r"\$\d+(?:\.\d{2})?(?:\s*-\s*\$\d+(?:\.\d{2})?)?", title)
-            list_price = prices[0] if prices else None
-            sale_price = None
-            if len(prices) > 1:
-                sale_price = prices[0]
-                list_price = prices[1]
-
-            sku_match = re.search(r"[?&]sku=(\d+)", url)
-            item_id = sku_match.group(1) if sku_match else None
-
-            yield {
-                "item_id": item_id,
-                "sku_id": item_id,
-                "brand": None,
-                "title": title or None,
-                "url": url,
-                "image_url": img,
-                "list_price": list_price,
-                "sale_price": sale_price,
-                "rating": None,
-                "reviews_count": None,
-                "is_sponsored": False,
-                "source": "ulta_direct_html",
-                "mode": "category_html",
-                "category_url": response.meta.get("origin") or self.resolve_target_url(),
-                "page": page,
-            }
-            yielded += 1
-
-        if yielded == 0:
-            self.logger.warning("Ulta HTML mode yielded 0 items (status=%s)", response.status)
-
-        if page >= self.max_pages:
-            return
-        next_page = page + 1
-        origin = response.meta.get("origin") or self.resolve_target_url()
-        next_url = self._with_page(origin, next_page)
-        meta = {
-            "page": next_page,
-            "mode": "html",
-            "origin": origin,
-            "disable_proxy": True,
-            "cookiejar": response.meta.get("cookiejar"),
-        }
-        yield scrapy.Request(next_url, callback=self.parse_html_listing, meta=meta)
-
-
     def _build_unsorted_page_retry(self, response: scrapy.http.Response):
         if response.meta.get("unsorted_page_retry"):
             return None
-        category_url = response.meta.get("category_url") or response.meta.get("target") or self._target_with_sort(self.resolve_target_url())
+        category_url = response.meta.get("category_url") or self._target_with_sort(self.resolve_target_url())
         unsorted_url = self._without_sort(category_url)
         if unsorted_url == category_url:
             return None
@@ -302,7 +185,6 @@ class UltaListingSpider(BaseListingSpider):
             headers=self._headers(operation="Page", referer=unsorted_url),
             meta={
                 "page": 1,
-                "mode": "graphql",
                 "category_url": unsorted_url,
                 "cookiejar": response.meta.get("cookiejar"),
                 "disable_proxy": True,
@@ -348,6 +230,7 @@ class UltaListingSpider(BaseListingSpider):
         qs = parse_qs(parts.query)
         qs.pop("sort", None)
         return urlunparse(parts._replace(query=urlencode(qs, doseq=True)))
+
     def _build_noncached_url(self, content_id: str, page: int, category_url: str) -> str:
         path = self._with_page(category_url, page)
 
@@ -390,33 +273,6 @@ class UltaListingSpider(BaseListingSpider):
         if referer:
             headers["Referer"] = referer
         return headers
-
-    def _page_headers(self) -> dict:
-        return {
-            "User-Agent": "Mozilla/5.0",
-            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-            "accept-language": "en-US,en;q=0.9",
-        }
-
-    def _schedule_html_fallback(self, response: scrapy.http.Response):
-        if self._html_fallback_started:
-            return []
-        self._html_fallback_started = True
-        origin = response.meta.get("category_url") or response.meta.get("origin") or self._target_with_sort(self.resolve_target_url())
-        meta = {
-            "page": 1,
-            "mode": "html",
-            "origin": origin,
-            "disable_proxy": True,
-            "cookiejar": response.meta.get("cookiejar"),
-        }
-        request = scrapy.Request(
-            self._with_page(origin, 1),
-            callback=self.parse_html_listing,
-            meta=meta,
-            dont_filter=True,
-        )
-        return [request]
 
     def _target_with_sort(self, target: str) -> str:
         sort = (getattr(self, "sort", None) or "").strip().lower()
