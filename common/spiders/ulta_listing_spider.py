@@ -6,6 +6,7 @@ from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
+from common.utils import dict_get
 
 
 class UltaListingSpider(BaseListingSpider):
@@ -21,12 +22,61 @@ class UltaListingSpider(BaseListingSpider):
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
         "PROXY_KEEP_HEADERS": True,
+        "FEED_EXPORT_FIELDS": [
+            "category",
+            "skuId",
+            "action",
+            "productId",
+            "bookmarked",
+            "image",
+            "altImage",
+            "bookmarkAccessibility",
+            "addToBagAccessibility",
+            "badge",
+            "sponsored",
+            "brandName",
+            "productName",
+            "priceLabel",
+            "rating",
+            "reviewCount",
+            "listPrice",
+            "salePrice",
+            "discount",
+            "promoText",
+            "additionalOffersText",
+            "reviewAccessibilityLabel",
+            "variantLabel",
+            "kitPrice",
+            "formatOnLoadBeacon",
+            "formatOnViewBeacon",
+            "sponsoredBadgeLabel",
+            "isLimitedStock",
+            "productCardTags",
+            "badgeTags",
+            "dataCapture",
+        ],
     }
 
     categories = [
         {
-            "category": "face",
-            "url": "https://www.ulta.com/shop/makeup/face",
+            "category": "makeup",
+            "url": "https://www.ulta.com/shop/makeup/all",
+        },
+        {
+            "category": "skin-care",
+            "url": "https://www.ulta.com/shop/skin-care/all",
+        },
+        {
+            "category": "hair-care",
+            "url": "https://www.ulta.com/shop/hair/all",
+        },
+        {
+            "category": "fragrance",
+            "url": "https://www.ulta.com/shop/fragrance/all",
+        },
+        {
+            "category": "body-care",
+            "url": "https://www.ulta.com/shop/body-care/all",
         },
     ]
 
@@ -82,15 +132,24 @@ class UltaListingSpider(BaseListingSpider):
 
     def parse_listing(self, response: scrapy.http.Response):
         payload = response.json()
-        content = payload.get("data", {}).get("Page", {}).get("content", {})
-        items = content.get("items", []) or []
+        items = dict_get(payload, "data.Page.content.items") or []
+
+        current_page = int(response.meta.get("page", 1))
+        if not items and current_page == 1:
+            self.logger.warning(
+                "No items found for category %s on page %s",
+                self.category,
+                response.meta.get("page"),
+            )
+            yield response.request.replace(dont_filter=True)
+            return
+
         for item in items:
             yield {
                 **item,
                 "category": self.category,
             }
 
-        current_page = int(response.meta.get("page", 1))
         if current_page >= self.max_pages or not items:
             return
 
