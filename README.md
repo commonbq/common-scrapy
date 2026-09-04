@@ -50,6 +50,16 @@ All extra args are forwarded to `scrapy crawl` unchanged (feeds, settings overri
 
 These live under `common/spiders/*_listing_spider.py` and are purpose-built per retailer.
 
+Working spiders running daily in production:
+
+| Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
+|---|---|---|---|---|---|---|---|
+| [`macys_listing`](#macys_listing) | Active | api | Akamai | Macy’s listing via xapi endpoint (with fallback routing). | 60 (ok) | laptops, shoes, dresses, fragrance, bedding | `{"item_id":"17595303","title":"5Core AC Power Cord 6Ft 3 Prong US Male to Female Extension Adapter 18AWG 10A 7A 125V","brand":"5 Core","u...` |
+| [`nordstrom_listing`](#nordstrom_listing) | Experimental | bootstrap + html | PerimeterX / HUMAN | Nordstrom listing parser; often blocked/changed. | 0 (timeout2) | women, men, kids, beauty, home, designer, sale | `{}` |
+| [`sephora_listing`](#sephora_listing) | Experimental | api | Akamai | Sephora listing via `/api/v2/catalog/categories/<slug>/seo`. | 60 (ok) | makeup, skincare, gifts, fragrance | `{"item_id":"P517483","title":"Pocket Blush Buildable Hydrating Cream Blush","url":"https://www.sephora.com/product/pocket-blush-P517483?s...` |
+| [`ulta_listing`](#ulta_listing-category) | Active | api + html | Akamai | Ulta category listing (GraphQL default, HTML fallback mode). | 0 (ok) | shampoo, conditioner, cleanser, mascara, moisturizer | `n/a` |
+| [`ulta_search`](#ulta_search-keyword) | Active | api + html | Akamai | Ulta keyword search via GraphQL (with unsorted retry + HTML fallback). | 64 (ok) | - | `{"item_id":"xlsImpprod15511061","title":"All Soft Shampoo","source":"ulta_dxl_graphql"...}` |
+
 Spiders below are returning items in recent smoke runs:
 
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
@@ -71,16 +81,13 @@ Spiders below are returning items in recent smoke runs:
 | [`kroger_search`](#kroger_search--kroger_listing) | Active | bootstrap + html | unknown (timeout/no verdict) | Kroger keyword search with state extraction + fallback. | 27 (ok) | - | `{'item_id':'kroger-2-reduced-fat-milk-gallon','url':'https://www.kroger.com/p/kroger-2-reduced-fat-milk-gallon/0001111041700','source':'kroger_html_links_fallback'}` |
 | [`lululemon_listing`](#lululemon_listing) | Active | bootstrap | Akamai | lululemon listing spider via Next.js `__NEXT_DATA__`. | 40 (ok) | women-shorts, women-leggings, men-shorts, bags | `{"category":"women-shorts","product_id":"prod11860112","name":"Shake It Out High-Rise Running Short 2.5\"","brand":"lululemon","price":["...` |
 | [`maccosmetics_listing`](#maccosmetics_listing) | Experimental | api + bootstrap + html | Akamai | MAC Cosmetics multi-mode listing spider. | 66 (ok) | face, lips, eyes | `{"item_id":"13854","title":"4.8/5 ( 452 ) Lustreglass Sheer-Shine Lipstick Sheer Coverage, Glossy/High-Shine Finish, Infused With Raspberry Seed/Organic Extra Virgin Olive Oils ...` |
-| [`macys_listing`](#macys_listing) | Active | api | Akamai | Macy’s listing via xapi endpoint (with fallback routing). | 60 (ok) | laptops, shoes, dresses, fragrance, bedding | `{"item_id":"17595303","title":"5Core AC Power Cord 6Ft 3 Prong US Male to Female Extension Adapter 18AWG 10A 7A 125V","brand":"5 Core","u...` |
 | [`poshmark_listing`](#poshmark_listing) | Experimental | bootstrap | none detected | Poshmark listing spider via `window.__INITIAL_STATE__` category grid data. | 48 (ok) | women, men, kids, home, electronics, pets | `{"category":"women","item_id":"6989d90ac4e7b4d4de556bac","title":"🔥Stunning  Farm Rio NWT Size Large Tropical Midi Dress with Sleeves – V...` |
 | [`qvc_listing`](#qvc_listing) | Experimental | html | Akamai | QVC listing spider via direct category HTML parsing. | 102 (ok) | beauty, fashion, home, kitchen | `{"item_id":"A711188","title":"lwya by kim gravel balm bae center core lip balm quad","url":"https://www.qvc.com/lwya-by-kim-gravel-balm-b...` |
 | [`saksfifthavenue_listing`](#saksfifthavenue_listing-category) | Experimental | html | DataDome | Saks Fifth Avenue listing spider via direct category HTML cards. | 24 (ok) | women, men, shoes, beauty, handbags | `{"item_id":"0400026449047","title":"Prada Washed Re Nylon Rain Jacket","url":"https://www.saksfifthavenue.com/product/prada-washed-re-nyl...` |
 | [`sallybeauty_listing`](#sallybeauty_listing) | Experimental | api + bootstrap + html | PerimeterX / HUMAN (px-captcha signals) | Sally Beauty multi-mode listing spider. | 1 (ok) | hair-color, hair-care, nails | `{"item_id":null,"title":"What's the issue? We’re dedicated to keeping SallyBeauty.com safe from bots and other malicious software. Sometimes a technical issue with your internet...` |
-| [`sephora_listing`](#sephora_listing) | Experimental | api | Akamai | Sephora listing via `/api/v2/catalog/categories/<slug>/seo`. | 60 (ok) | makeup, skincare, gifts, fragrance | `{"item_id":"P517483","title":"Pocket Blush Buildable Hydrating Cream Blush","url":"https://www.sephora.com/product/pocket-blush-P517483?s...` |
 | [`stockx_listing`](#stockx_listing) | Experimental | bootstrap + html | Cloudflare | StockX listing via `__NEXT_DATA__` bootstrap. | 41 (ok) | sneakers, apparel, electronics, trading-cards, collectibles | `{"item_id":"brands","title":"Brands","url":"https://stockx.com/brands","price":null,"currency":null}` |
 | [`target_listing`](#target_listing) | Active (alias) | api | PerimeterX / HUMAN (cookie signals) | Deprecated alias of `target_search`. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
 | [`target_search`](#target_search) | Active | api | PerimeterX / HUMAN (cookie signals) | Target RedSky search API spider. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
-| [`ulta_search`](#ulta_search-keyword) | Active | api + html | Akamai | Ulta keyword search via GraphQL (with unsorted retry + HTML fallback). | 64 (ok) | - | `{"item_id":"xlsImpprod15511061","title":"All Soft Shampoo","source":"ulta_dxl_graphql"...}` |
 | [`walmart_listing`](#walmart_listing-category) | Active | api + html | Akamai (+ PerimeterX/HUMAN signals) | Walmart category listing spider (direct API+HTML flow). | 45 (ok) | electronics, home, clothing, beauty, toys, sports-and-outdoors, grocery | `{"item_id":"375041225","title":"Restaurado Apple iPhone 12 Restaurado - Desbloqueado para Cualquier Operador - 64GB Negro (Reacondicionad...` |
 | [`walmart_search`](#walmart_search-keyword) | Active | api + html | Akamai (+ PerimeterX/HUMAN signals) | Walmart keyword search spider. | 12 (ok) | - | `{"item_id":"13542163431","title":"ASUS Vivobook Go 15.6” Laptop, Intel i3-N305, 8GB, 256GB, Windows 11 Home in S mode, Cool Silver, E1504...` |
 
@@ -96,9 +103,7 @@ These are still being worked on and currently returned `0` items in recent smoke
 | [`dillards_listing`](#dillards_listing) | Experimental | bootstrap | Akamai | Dillard's listing spider via `window.__INITIAL_STATE__`. | 0 (ok) | women, men, shoes, handbags, beauty, juniors, home | `n/a` |
 | [`homedepot_listing`](#homedepot_listing-category-apollo-bootstrap) | Flaky | bootstrap + html | Akamai | Home Depot category listing via Apollo state. | 0 (ok) | screwdrivers, drills, paint, light-bulbs, lumber | `n/a` |
 | [`kohls_listing`](#kohls_listing) | Experimental | api | Akamai (Cloudflare challenge assets also observed) | Kohl’s listing via `/web/catalog/...` API. | 0 (ok) | women, men, sale | `n/a` |
-| [`nordstrom_listing`](#nordstrom_listing) | Experimental | bootstrap + html | PerimeterX / HUMAN | Nordstrom listing parser; often blocked/changed. | 0 (timeout2) | women, men, kids, beauty, home, designer, sale | `{}` |
 | [`nordstromrack_listing`](#nordstromrack_listing) | Experimental | playwright + html | PerimeterX / HUMAN | Nordstrom Rack listing spider via rendered category pages. | 0 (skipped2) | dresses, women, men, shoes | `{}` |
-| [`ulta_listing`](#ulta_listing-category) | Active | api + html | Akamai | Ulta category listing (GraphQL default, HTML fallback mode). | 0 (ok) | shampoo, conditioner, cleanser, mascara, moisturizer | `n/a` |
 
 *`Number of items output` reflects recent local smoke runs (typically `max_pages=1`) and can vary by location, anti-bot behavior, and site changes.*
 Many listing spiders accept `-a category=<name>` shortcuts (in addition to `-a category_url=<url>`), including Amazon, Walmart, eBay, Home Depot, Best Buy, Costco, and Kroger.
