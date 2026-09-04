@@ -64,7 +64,7 @@ class BaseListingSpider(scrapy.Spider):
         self.args = ListingArgs(
             max_pages=int(max_pages or 1),
             url=(url or "").strip() or None,
-            category=(category or "").strip().lower() or None,
+            category=(category or "").strip() or None,
             category_url=(category_url or "").strip() or None,
         )
         return self.args
@@ -91,7 +91,7 @@ class BaseListingSpider(scrapy.Spider):
 
     @category.setter
     def category(self, value: str | None):
-        self.args.category = (value or "").strip().lower() or None
+        self.args.category = (value or "").strip() or None
 
     @property
     def category_url(self) -> str | None:
