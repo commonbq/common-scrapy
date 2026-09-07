@@ -60,6 +60,7 @@ Working spiders running daily in production:
 | [`sephora_listing`](#sephora_listing) | Experimental | api | Akamai | Sephora listing via `/api/v2/catalog/categories/<slug>/seo`. | 60 (ok) | makeup, skincare, gifts, fragrance | `{"item_id":"P517483","title":"Pocket Blush Buildable Hydrating Cream Blush","url":"https://www.sephora.com/product/pocket-blush-P517483?s...` |
 | [`ulta_listing`](#ulta_listing-category) | Active | api + html | Akamai | Ulta category listing (GraphQL default, HTML fallback mode). | 0 (ok) | shampoo, conditioner, cleanser, mascara, moisturizer | `n/a` |
 | [`ulta_search`](#ulta_search-keyword) | Active | api + html | Akamai | Ulta keyword search via GraphQL (with unsorted retry + HTML fallback). | 64 (ok) | - | `{"item_id":"xlsImpprod15511061","title":"All Soft Shampoo","source":"ulta_dxl_graphql"...}` |
+| [`walmart_listing`](#walmart_listing-category) | Active | api + html | Akamai (+ PerimeterX/HUMAN signals) | Walmart category listing spider (direct API+HTML flow). | 45 (ok) | electronics, home, clothing, beauty, toys, sports-and-outdoors, grocery | `{"productId":"19231301884","usItemId":"19231301884","title":"No Boundaries Women's Faux Leather Loafers","brand":"No Boundaries"...` |
 
 Spiders below are returning items in recent smoke runs:
 
@@ -88,7 +89,6 @@ Spiders below are returning items in recent smoke runs:
 | [`stockx_listing`](#stockx_listing) | Experimental | bootstrap + html | Cloudflare | StockX listing via `__NEXT_DATA__` bootstrap. | 41 (ok) | sneakers, apparel, electronics, trading-cards, collectibles | `{"item_id":"brands","title":"Brands","url":"https://stockx.com/brands","price":null,"currency":null}` |
 | [`target_listing`](#target_listing) | Active (alias) | api | PerimeterX / HUMAN (cookie signals) | Deprecated alias of `target_search`. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
 | [`target_search`](#target_search) | Active | api | PerimeterX / HUMAN (cookie signals) | Target RedSky search API spider. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
-| [`walmart_listing`](#walmart_listing-category) | Active | api + html | Akamai (+ PerimeterX/HUMAN signals) | Walmart category listing spider (direct API+HTML flow). | 45 (ok) | electronics, home, clothing, beauty, toys, sports-and-outdoors, grocery | `{"item_id":"375041225","title":"Restaurado Apple iPhone 12 Restaurado - Desbloqueado para Cualquier Operador - 64GB Negro (Reacondicionad...` |
 | [`walmart_search`](#walmart_search-keyword) | Active | api + html | Akamai (+ PerimeterX/HUMAN signals) | Walmart keyword search spider. | 12 (ok) | - | `{"item_id":"13542163431","title":"ASUS Vivobook Go 15.6” Laptop, Intel i3-N305, 8GB, 256GB, Windows 11 Home in S mode, Cool Silver, E1504...` |
 
 #### In-progress spiders
@@ -155,11 +155,31 @@ Run example:
 ### walmart_listing (category)
 ```json
 {
-  "item_id": null,
-  "title": "Restored Dell Latitude 3190 | 11.6\" Touchscreen Laptop PC | Intel Core Pentium Silver N5030 (1.1 GHz) | 8GB RAM | 128GB SSD | Windows 11 Pro $178.00",
-  "price": 178.0,
-  "url": "https://www.walmart.com/sp/track?...",
-  "image_url": "https://i5.walmartimages.com/seo/...jpeg?odnHeight=576&odnWidth=576&odnBg=FFFFFF"
+  "url": "https://www.walmart.com/ip/W-NB-HORSEBIT-LOAFER/19231301884?...",
+  "page": 1,
+  "position": 20,
+  "productId": "19231301884",
+  "usItemId": "19231301884",
+  "offerId": "22830F1D3D4938EEA4A44EC7DE147CFF",
+  "title": "No Boundaries Women's Faux Leather Loafers",
+  "brand": "No Boundaries",
+  "productType": "Casual & Dress Shoes",
+  "sellerId": "F55CDC31AB754BB68FE0B39041159D63",
+  "sellerName": "Walmart.com",
+  "imageUrl": "https://i5.walmartimages.com/seo/W-NB-HORSEBIT-LOAFER_...jpeg",
+  "currency": "USD",
+  "price": 26.98,
+  "currentPrice": 26.98,
+  "rating": 4.6,
+  "reviewsCount": 35,
+  "availabilityStatus": "IN_STOCK",
+  "isOutOfStock": false,
+  "fulfillmentType": "STORE",
+  "badgeText": "Best seller",
+  "badgeKey": "BESTSELLER",
+  "isSponsored": false,
+  "variantCount": 0,
+  "variants": []
 }
 ```
 
