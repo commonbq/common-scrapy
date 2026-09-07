@@ -448,6 +448,9 @@ class WalmartListingSpider(BaseListingSpider):
 
         variants = []
         for variant in product.get("variantList") or []:
+            if not variant:
+                continue
+
             variant_url = variant.get("canonicalUrl")
 
             variants.append({
