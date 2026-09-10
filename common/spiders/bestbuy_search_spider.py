@@ -12,7 +12,7 @@ import scrapy
 from playwright.async_api import async_playwright
 
 from common.spiders.base_search_spider import BaseSearchSpider
-from common.spiders.bestbuy_bootstrap_utils import extract_bestbuy_items_from_apollo_cache, extract_bestbuy_items_from_bootstrap
+from common.spiders.bestbuy_bootstrap_utils import extract_bestbuy_items_from_bootstrap
 
 
 class BestbuySearchSpider(BaseSearchSpider):

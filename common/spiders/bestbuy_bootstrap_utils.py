@@ -10,75 +10,33 @@ def extract_bestbuy_items_from_bootstrap(html: str) -> list[dict[str, Any]]:
     out: list[dict[str, Any]] = []
     seen: set[str] = set()
 
-    for payload in _extract_apollo_transport_payloads(html or ""):
+    for payload in _extract_apollo_transport_payloads(html):
         for node in _walk(payload):
-            if not _looks_like_product(node):
-                continue
-            item = _normalize_product(node)
-            sku = item.get("item_id")
-            if not sku or sku in seen:
-                continue
-            seen.add(sku)
-            out.append(item)
+            product = node
+            listing_context: dict[str, Any] = {}
 
-    return out
+            # The current category response nests each Product in a
+            # BestMediaAdsAcceptedSku record. Capture useful listing metadata
+            # from that wrapper before the recursive walk reaches Product.
+            nested_product = node.get("product") if isinstance(node, dict) else None
+            if isinstance(nested_product, dict) and _looks_like_product(nested_product):
+                product = nested_product
+                listing_context = {
+                    "isSponsored": node.get("__typename") == "BestMediaAdsAcceptedSku",
+                    "position": node.get("rank"),
+                    "primaryCategoryId": node.get("primaryCategoryId"),
+                    "campaignId": node.get("campaignId"),
+                }
 
-
-def extract_bestbuy_items_from_apollo_cache(cache: dict[str, Any]) -> list[dict[str, Any]]:
-    """Extract product records from Apollo normalized cache (`cache.extract()`)."""
-    if not isinstance(cache, dict):
-        return []
-
-    root = cache.get("ROOT_QUERY") if isinstance(cache.get("ROOT_QUERY"), dict) else {}
-    out: list[dict[str, Any]] = []
-    seen: set[str] = set()
-
-    search_keys = [k for k in root.keys() if isinstance(k, str) and k.startswith("search(")]
-    for sk in search_keys:
-        ref = (root.get(sk) or {}).get("__ref") if isinstance(root.get(sk), dict) else None
-        if not ref:
-            continue
-        search_obj = cache.get(ref) if isinstance(cache.get(ref), dict) else {}
-        docs = search_obj.get("documents") if isinstance(search_obj, dict) else None
-        if not isinstance(docs, list):
-            continue
-
-        for doc in docs:
-            product_ref = None
-            if isinstance(doc, dict):
-                prod = doc.get("product")
-                if isinstance(prod, dict):
-                    product_ref = prod.get("__ref")
-
-            if not product_ref:
-                continue
-
-            product = cache.get(product_ref)
-            if not isinstance(product, dict):
+            if not isinstance(product, dict) or not _looks_like_product(product):
                 continue
 
             item = _normalize_product(product)
-            sku = item.get("item_id")
-            if not sku or sku in seen:
-                continue
-            seen.add(sku)
-            out.append(item)
-
-    # Fallback for listing pages where SearchConnection.documents is absent:
-    # scan normalized cache entries directly.
-    if not out:
-        for key, val in cache.items():
-            if not isinstance(key, str) or not key.startswith("Product:"):
-                continue
-            if not isinstance(val, dict) or not _looks_like_product(val):
-                continue
-
-            item = _normalize_product(val)
-            sku = item.get("item_id")
-            if not sku or sku in seen:
-                continue
-            seen.add(sku)
-            out.append(item)
+            item.update(listing_context)
+            sku = item.get("skuId")
+            if sku not in seen:
+                seen.add(sku)
+                out.append(item)
 
     return out
 
@@ -173,7 +131,12 @@ def _looks_like_product(d: dict[str, Any]) -> bool:
         return False
     has_name = isinstance(d.get("name"), dict)
     has_url = isinstance(d.get("url"), dict)
-    has_price = any(k.startswith("price(") for k in d.keys())
+    # Older Apollo responses key this field with its GraphQL arguments (for
+    # example ``price(locationId:...)``).  Current Next.js listing responses,
+    # including the saved sample, expose it as a regular ``price`` field.
+    has_price = isinstance(d.get("price"), dict) or any(
+        isinstance(k, str) and k.startswith("price(") for k in d.keys()
+    )
     return has_name and has_url and has_price
 
 
@@ -183,23 +146,56 @@ def _normalize_product(d: dict[str, Any]) -> dict[str, Any]:
     img = d.get("primaryImage") if isinstance(d.get("primaryImage"), dict) else {}
     review = d.get("reviewInfo") if isinstance(d.get("reviewInfo"), dict) else {}
 
-    price_key = next((k for k in d.keys() if isinstance(k, str) and k.startswith("price(")), None)
-    price_obj = d.get(price_key) if price_key and isinstance(d.get(price_key), dict) else {}
+    price_obj = d.get("price") if isinstance(d.get("price"), dict) else None
+    if price_obj is None:
+        price_key = next(
+            (k for k in d.keys() if isinstance(k, str) and k.startswith("price(")), None
+        )
+        price_obj = (
+            d.get(price_key) if price_key and isinstance(d.get(price_key), dict) else {}
+        )
 
     pdp = url.get("pdp") or url.get("skuSpecificUrl") or url.get("relativePdp")
     if isinstance(pdp, str) and pdp.startswith("/"):
         pdp = f"https://www.bestbuy.com{pdp}"
 
+    title = name.get("short") or name.get("title")
+    current_price = _first_present(
+        price_obj, "customerPrice", "currentPrice", "displayableCustomerPrice"
+    )
+    original_price = _first_present(price_obj, "regularPrice", "originalPrice")
+    brand = (
+        (d.get("brand") or {}).get("name")
+        if isinstance(d.get("brand"), dict)
+        else d.get("brand")
+    )
+    if not brand and isinstance(title, str) and " - " in title:
+        # Best Buy's short product names consistently start with "Brand - ".
+        brand = title.split(" - ", 1)[0].strip() or None
+
     return {
-        "item_id": str(d.get("skuId")) if d.get("skuId") is not None else None,
-        "title": name.get("short") or name.get("title"),
+        "skuId": str(d.get("skuId")) if d.get("skuId") is not None else None,
+        "title": title,
         "url": pdp,
-        "brand": (d.get("brand") or {}).get("name") if isinstance(d.get("brand"), dict) else None,
-        "price": price_obj.get("customerPrice") or price_obj.get("displayableCustomerPrice"),
-        "currency": "USD",
+        "brand": brand,
+        "price": current_price,
+        "originalPrice": original_price,
+        "discountAmount": price_obj.get("totalSavings"),
+        "discountPercent": price_obj.get("totalSavingsPercent"),
+        "priceBadge": price_obj.get("preferredBadging")
+        or price_obj.get("saleEventMessageType"),
+        "isMAP": price_obj.get("isMAP"),
         "rating": review.get("averageRating"),
-        "reviews_count": review.get("reviewCount"),
-        "image_url": img.get("href") or img.get("piscesHref"),
-        "source": "bestbuy_apollo_bootstrap",
+        "reviewCount": review.get("reviewCount"),
+        "imageUrl": img.get("href") or img.get("piscesHref"),
+        "openBoxCondition": d.get("openBoxCondition"),
         "raw": d,
     }
+
+
+def _first_present(values: dict[str, Any], *keys: str) -> Any:
+    """Return the first present, non-null value without discarding zeroes."""
+    for key in keys:
+        if key in values and values[key] is not None:
+            return values[key]
+    return None

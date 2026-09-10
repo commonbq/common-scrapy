@@ -4,16 +4,16 @@ from __future__ import annotations
 
 Usage examples:
   scrapy crawl bestbuy_listing -a category='laptops' -a max_pages=1
-  scrapy crawl bestbuy_listing -a category_url='https://www.bestbuy.com/site/all-laptops/laptops/abcat0502000.c?id=abcat0502000' -a max_pages=1
 """
 
 from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 
 import scrapy
-from playwright.async_api import async_playwright
 
 from common.spiders.base_listing_spider import BaseListingSpider
-from common.spiders.bestbuy_bootstrap_utils import extract_bestbuy_items_from_apollo_cache, extract_bestbuy_items_from_bootstrap
+from common.spiders.bestbuy_bootstrap_utils import (
+    extract_bestbuy_items_from_bootstrap,
+)
 
 
 class BestbuyListingSpider(BaseListingSpider):
@@ -23,97 +23,95 @@ class BestbuyListingSpider(BaseListingSpider):
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
         "DOWNLOAD_DELAY": 0.5,
+        "FEED_EXPORT_FIELDS": [
+            "skuId",
+            "title",
+            "url",
+            "brand",
+            "price",
+            "originalPrice",
+            "discountAmount",
+            "discountPercent",
+            "priceBadge",
+            "isMAP",
+            "rating",
+            "reviewCount",
+            "imageUrl",
+            "openBoxCondition",
+            "isSponsored",
+            "position",
+            "primaryCategoryId",
+            "campaignId",
+            "category",
+            "page",
+            "listingUrl",
+            "raw",
+            "timestamp",
+        ]
     }
 
     categories = [
-        {"category": "laptops", "url": "https://www.bestbuy.com/site/all-laptops/laptops/abcat0502000.c?id=abcat0502000"},
-        {"category": "tvs", "url": "https://www.bestbuy.com/site/tv-home-theater/televisions/abcat0101001.c?id=abcat0101001"},
-        {"category": "headphones", "url": "https://www.bestbuy.com/site/headphones/all-headphones/abcat0204000.c?id=abcat0204000"},
-        {"category": "monitors", "url": "https://www.bestbuy.com/site/computer-cards-components/monitors/abcat0509000.c?id=abcat0509000"},
-        {"category": "cell-phones", "url": "https://www.bestbuy.com/site/cell-phones/all-cell-phones/pcmcat311200050005.c?id=pcmcat311200050005"},
+        {
+            "category": "laptops",
+            "url": "https://www.bestbuy.com/site/all-laptops/laptops/abcat0502000.c?id=abcat0502000",
+        },
+        {
+            "category": "tvs",
+            "url": "https://www.bestbuy.com/site/tv-home-theater/televisions/abcat0101001.c?id=abcat0101001",
+        },
+        {
+            "category": "headphones",
+            "url": "https://www.bestbuy.com/site/headphones/all-headphones/abcat0204000.c?id=abcat0204000",
+        },
+        {
+            "category": "monitors",
+            "url": "https://www.bestbuy.com/site/computer-cards-components/monitors/abcat0509000.c?id=abcat0509000",
+        },
+        {
+            "category": "cell-phones",
+            "url": "https://www.bestbuy.com/site/cell-phones/all-cell-phones/pcmcat311200050005.c?id=pcmcat311200050005",
+        },
     ]
 
     def start_requests(self):
         target = self._resolve_target_url()
         target = self._ensure_nosplash(self._with_page(target, 1))
-        yield scrapy.Request(target, callback=self.parse_listing_page, meta=({"page": 1}))
+        yield scrapy.Request(
+            target,
+            callback=self.parse_listing_page,
+            meta={"page": 1},
+        )
 
     async def parse_listing_page(self, response: scrapy.http.Response):
         page_num = int(response.meta.get("page", 1))
-        html = response.text or ""
+        items = extract_bestbuy_items_from_bootstrap(response.text)
 
-        emitted = 0
-
-        for item in extract_bestbuy_items_from_bootstrap(html):
-            emitted += 1
+        for item in items:
             item.update(
                 {
-                    "mode": "category",
-                    "category_url": self.category_url or self.url,
+                    "category": self.category,
                     "page": page_num,
-                    "source_url": response.url,
+                    "listingUrl": response.url,
+                    "timestamp": self.get_timestamp(),
                 }
             )
             yield item
 
-        if emitted == 0:
-            cache_obj, rendered_html = await self._fetch_playwright_state(response.url)
-            for item in extract_bestbuy_items_from_apollo_cache(cache_obj):
-                emitted += 1
-                item.update(
-                    {
-                        "mode": "category",
-                        "category_url": self.category_url or self.url,
-                        "page": page_num,
-                        "source_url": response.url,
-                    }
-                )
-                yield item
-
-            if emitted == 0 and rendered_html:
-                for item in extract_bestbuy_items_from_bootstrap(rendered_html):
-                    emitted += 1
-                    item.update(
-                        {
-                            "mode": "category",
-                            "category_url": self.category_url or self.url,
-                            "page": page_num,
-                            "source_url": response.url,
-                        }
-                    )
-                    yield item
-
-        if emitted == 0:
-            self.logger.warning("BestBuy listing produced 0 items page=%s status=%s", page_num, response.status)
+        if not items:
+            self.logger.warning(
+                "BestBuy listing produced 0 items page=%s status=%s",
+                page_num,
+                response.status,
+            )
 
         if page_num < self.args.max_pages:
             next_page = page_num + 1
-            next_url = self._ensure_nosplash(self._with_page(self._resolve_target_url(), next_page))
-            yield scrapy.Request(next_url, callback=self.parse_listing_page, meta=({"page": next_page}))
-
-    async def _fetch_playwright_state(self, url: str) -> tuple[dict, str]:
-        cache_obj: dict = {}
-        html = ""
-        try:
-            async with async_playwright() as p:
-                browser = await p.chromium.launch(headless=True)
-                context = await browser.new_context(locale="en-US", user_agent="Mozilla/5.0")
-                page = await context.new_page()
-                await page.goto(url, wait_until="domcontentloaded", timeout=90000)
-                await page.wait_for_timeout(3000)
-                cache_obj = await page.evaluate(
-                    """() => {
-                      const s = Object.getOwnPropertySymbols(window).find(x => String(x).includes('ApolloClientSingleton'));
-                      if (!s || !window[s] || !window[s].cache || !window[s].cache.extract) return {};
-                      try { return window[s].cache.extract() || {}; } catch (e) { return {}; }
-                    }"""
-                )
-                html = await page.content()
-                await context.close()
-                await browser.close()
-        except Exception as exc:
-            self.logger.warning("Playwright fallback failed: %s", exc)
-        return cache_obj if isinstance(cache_obj, dict) else {}, html
+            next_url = self._ensure_nosplash(
+                self._with_page(self._resolve_target_url(), next_page)
+            )
+            yield scrapy.Request(
+                next_url, callback=self.parse_listing_page, meta=({"page": next_page})
+            )
 
     def _resolve_target_url(self) -> str:
         if self.url:
