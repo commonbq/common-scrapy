@@ -290,12 +290,10 @@ def _extract_item_id(url: str | None) -> str | None:
 
 
 def _is_plausible_ebay_listing(*, item_id: str | None, title: str | None, url: str | None) -> bool:
-    if not url:
+    if not item_id or not url:
         return False
     normalized = url.lower()
-    if "/itm/" not in normalized and "/p/" not in normalized:
-        return False
-    if "/itm/" in normalized and not item_id:
+    if "/itm/" not in normalized:
         return False
     t = (title or "").strip().lower()
     if not t or t in {"shop on ebay", "shop on ebay!"}:

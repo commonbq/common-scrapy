@@ -3,6 +3,8 @@ from __future__ import annotations
 import unittest
 from pathlib import Path
 
+from scrapy.http import Request, TextResponse
+
 from common.spiders.ebay_bootstrap_utils import (
     extract_browse_tiles_from_html,
     extract_items_from_html_cards,
@@ -51,6 +53,27 @@ class EbayListingSpiderTests(unittest.TestCase):
             request = next(spider.start_requests())
             self.assertEqual(request.meta.get("proxy"), "http://proxy.local:8080")
             self.assertEqual(request.meta.get("page"), 1)
+        finally:
+            base_listing_spider.PROXY = original_proxy
+
+    def test_parse_pagination_request_keeps_proxy_meta(self):
+        import common.spiders.base_listing_spider as base_listing_spider
+
+        original_proxy = base_listing_spider.PROXY
+        base_listing_spider.PROXY = "http://proxy.local:8080"
+        try:
+            spider = EbayListingSpider(category="collectibles-art/antiques", max_pages=2)
+            spider.category_url = spider._resolve_target_url()
+            request = Request(
+                url="https://www.ebay.com/b/Antiques/20081/bn_1851017?_ipg=60&_pgn=1",
+                meta={"page": 1, "original_url": "https://www.ebay.com/b/Antiques/20081/bn_1851017?_ipg=60&_pgn=1"},
+            )
+            response = TextResponse(url=request.url, body=b"", encoding="utf-8", request=request)
+
+            follow_up_requests = [x for x in spider.parse(response) if isinstance(x, Request)]
+            self.assertEqual(len(follow_up_requests), 1)
+            self.assertEqual(follow_up_requests[0].meta.get("proxy"), "http://proxy.local:8080")
+            self.assertEqual(follow_up_requests[0].meta.get("page"), 2)
         finally:
             base_listing_spider.PROXY = original_proxy
 
