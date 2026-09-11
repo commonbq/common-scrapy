@@ -86,6 +86,36 @@ class EbayListingSpiderTests(unittest.TestCase):
         finally:
             base_listing_spider.PROXY = original_proxy
 
+    def test_browse_tile_fallback_not_used_when_listing_items_exist(self):
+        spider = EbayListingSpider(category="collectibles-art/antiques", max_pages=1)
+        spider.category_url = spider._resolve_target_url()
+        html = """
+        <html><body>
+          <ul>
+            <li class="s-card">
+              <a class="s-card__link" href="https://www.ebay.com/itm/123456789012"></a>
+              <div class="s-card__title"><span>Vintage Clock</span></div>
+              <span class="s-card__price">$42.00</span>
+            </li>
+          </ul>
+          <section class="dp-browse-destinations-module">
+            <div class="su-card-container">
+              <a class="su-item-card__title" href="https://www.ebay.com/b/Antique-Furniture/20091/bn_1865102">Antique Furniture</a>
+            </div>
+          </section>
+        </body></html>
+        """
+        req = Request(
+            url="https://www.ebay.com/b/Antiques/20081/bn_1851017?_ipg=60&_pgn=1",
+            meta={"page": 1, "original_url": "https://www.ebay.com/b/Antiques/20081/bn_1851017?_ipg=60&_pgn=1"},
+        )
+        response = TextResponse(url=req.url, body=html.encode("utf-8"), encoding="utf-8", request=req)
+
+        outputs = [x for x in spider.parse(response) if isinstance(x, dict)]
+        self.assertEqual(len(outputs), 1)
+        self.assertEqual(outputs[0]["url"], "https://www.ebay.com/itm/123456789012")
+        self.assertEqual(outputs[0]["source"], "ebay_html_cards_fallback")
+
 
 if __name__ == "__main__":
     unittest.main()

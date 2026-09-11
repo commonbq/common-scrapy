@@ -132,7 +132,7 @@ def extract_browse_tiles_from_html(html: str) -> list[dict[str, Any]]:
     out: list[dict[str, Any]] = []
     seen: set[tuple[str | None, str | None]] = set()
 
-    for card in sel.css("div.su-card-container"):
+    for card in sel.css(".dp-browse-destinations-module div.su-card-container"):
         url = card.css("a.su-item-card__title::attr(href)").get()
         title = " ".join(t.strip() for t in card.css("a.su-item-card__title *::text, a.su-item-card__title::text").getall() if t.strip())
         if not _is_plausible_ebay_browse_card(title=title, url=url):
