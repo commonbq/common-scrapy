@@ -16,6 +16,7 @@ import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
 from common.spiders.ebay_bootstrap_utils import (
+    extract_browse_tiles_from_html,
     extract_items_from_next_data,
     extract_items_from_html_cards,
     extract_json_ld_products,
@@ -99,6 +100,19 @@ class EbayListingSpider(BaseListingSpider):
 
         if yielded == 0:
             for item in extract_items_from_html_cards(response.text or ""):
+                item.update(
+                    {
+                        "mode": "category",
+                        "category_url": self.category_url or self.url,
+                        "page": page,
+                        "source_url": response.url,
+                    }
+                )
+                yield item
+                yielded += 1
+
+        if yielded == 0:
+            for item in extract_browse_tiles_from_html(response.text or ""):
                 item.update(
                     {
                         "mode": "category",

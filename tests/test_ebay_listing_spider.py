@@ -3,7 +3,10 @@ from __future__ import annotations
 import unittest
 from pathlib import Path
 
-from common.spiders.ebay_bootstrap_utils import extract_items_from_html_cards
+from common.spiders.ebay_bootstrap_utils import (
+    extract_browse_tiles_from_html,
+    extract_items_from_html_cards,
+)
 from common.spiders.ebay_listing_spider import EbayListingSpider
 
 
@@ -22,16 +25,21 @@ class EbayListingSpiderTests(unittest.TestCase):
         spider = EbayListingSpider(category=url, max_pages=1)
         self.assertEqual(spider._resolve_target_url(), url)
 
-    def test_antique_fixture_parses_non_zero_items(self):
+    def test_antique_fixture_parses_non_zero_browse_tiles(self):
         fixture_path = Path(__file__).resolve().parents[1] / "sample" / "ebay-antiques-sample.html"
         html = fixture_path.read_text(encoding="utf-8")
-        items = extract_items_from_html_cards(html)
+        items = extract_browse_tiles_from_html(html)
 
         self.assertGreater(len(items), 0)
         first = items[0]
         self.assertIsInstance(first.get("title"), str)
         self.assertTrue(first.get("url", "").startswith("https://www.ebay.com/"))
-        self.assertEqual(first.get("source"), "ebay_html_cards_fallback")
+        self.assertEqual(first.get("source"), "ebay_html_browse_tiles_fallback")
+
+    def test_antique_fixture_has_no_item_cards(self):
+        fixture_path = Path(__file__).resolve().parents[1] / "sample" / "ebay-antiques-sample.html"
+        html = fixture_path.read_text(encoding="utf-8")
+        self.assertEqual(extract_items_from_html_cards(html), [])
 
     def test_start_requests_uses_proxy_meta(self):
         import common.spiders.base_listing_spider as base_listing_spider

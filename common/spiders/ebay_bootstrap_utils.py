@@ -123,28 +123,25 @@ def extract_items_from_html_cards(html: str) -> list[dict[str, Any]]:
             "source": "ebay_html_cards_fallback",
         })
 
-    # Newer browse pages expose cards under su-card-container / su-item-card.
+    return out
+
+
+def extract_browse_tiles_from_html(html: str) -> list[dict[str, Any]]:
+    """Fallback parser for browse destination tiles (non-item category pages)."""
+    sel = Selector(text=html or "")
+    out: list[dict[str, Any]] = []
+    seen: set[tuple[str | None, str | None]] = set()
+
     for card in sel.css("div.su-card-container"):
         url = card.css("a.su-item-card__title::attr(href)").get()
         title = " ".join(t.strip() for t in card.css("a.su-item-card__title *::text, a.su-item-card__title::text").getall() if t.strip())
         if not _is_plausible_ebay_browse_card(title=title, url=url):
             continue
 
-        item_id = _extract_item_id(url)
-        key = (item_id, title)
+        key = (title, url)
         if key in seen:
             continue
         seen.add(key)
-
-        price_text = card.css("span.su-styled-text.bold::text").get()
-        currency = None
-        price = None
-        if price_text:
-            m = re.search(r"([£$€])?\s*([\d,]+(?:\.\d+)?)", price_text)
-            if m:
-                sym = m.group(1)
-                price = _coerce_num(m.group(2))
-                currency = {"$": "USD", "£": "GBP", "€": "EUR"}.get(sym)
 
         image_url = card.css("img::attr(src)").get()
         if not image_url:
@@ -153,14 +150,14 @@ def extract_items_from_html_cards(html: str) -> list[dict[str, Any]]:
                 image_url = srcset.split(",")[0].strip().split(" ")[0]
 
         out.append({
-            "item_id": item_id,
+            "item_id": None,
             "title": title,
             "url": url,
-            "price": price,
-            "currency": currency,
+            "price": None,
+            "currency": None,
             "image_url": image_url,
             "seller": None,
-            "source": "ebay_html_cards_fallback",
+            "source": "ebay_html_browse_tiles_fallback",
         })
 
     return out
