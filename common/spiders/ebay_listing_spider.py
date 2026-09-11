@@ -70,10 +70,14 @@ class EbayListingSpider(BaseListingSpider):
         page = int(response.meta.get("page", 1))
 
         yielded = 0
+        found_listing_candidates = False
 
         next_data = extract_next_data(response.text or "")
         if next_data:
-            for item in extract_items_from_next_data(next_data):
+            next_items = extract_items_from_next_data(next_data)
+            if next_items:
+                found_listing_candidates = True
+            for item in next_items:
                 item.update(
                     {
                         "mode": "category",
@@ -86,7 +90,10 @@ class EbayListingSpider(BaseListingSpider):
                 yield item
 
         if yielded == 0:
-            for item in extract_json_ld_products(response.text or ""):
+            jsonld_items = list(extract_json_ld_products(response.text or ""))
+            if jsonld_items:
+                found_listing_candidates = True
+            for item in jsonld_items:
                 item.update(
                     {
                         "mode": "category",
@@ -99,7 +106,10 @@ class EbayListingSpider(BaseListingSpider):
                 yield item
 
         if yielded == 0:
-            for item in extract_items_from_html_cards(response.text or ""):
+            html_items = extract_items_from_html_cards(response.text or "")
+            if html_items:
+                found_listing_candidates = True
+            for item in html_items:
                 item.update(
                     {
                         "mode": "category",
@@ -111,7 +121,7 @@ class EbayListingSpider(BaseListingSpider):
                 yield item
                 yielded += 1
 
-        if yielded == 0:
+        if yielded == 0 and not found_listing_candidates:
             for item in extract_browse_tiles_from_html(response.text or ""):
                 item.update(
                     {
