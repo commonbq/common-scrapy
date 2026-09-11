@@ -123,6 +123,46 @@ def extract_items_from_html_cards(html: str) -> list[dict[str, Any]]:
             "source": "ebay_html_cards_fallback",
         })
 
+    # Newer browse pages expose cards under su-card-container / su-item-card.
+    for card in sel.css("div.su-card-container"):
+        url = card.css("a.su-item-card__title::attr(href)").get()
+        title = " ".join(t.strip() for t in card.css("a.su-item-card__title *::text, a.su-item-card__title::text").getall() if t.strip())
+        if not _is_plausible_ebay_listing(item_id=_extract_item_id(url), title=title, url=url):
+            continue
+
+        item_id = _extract_item_id(url)
+        key = (item_id, title)
+        if key in seen:
+            continue
+        seen.add(key)
+
+        price_text = card.css("span.su-styled-text.bold::text").get()
+        currency = None
+        price = None
+        if price_text:
+            m = re.search(r"([£$€])?\s*([\d,]+(?:\.\d+)?)", price_text)
+            if m:
+                sym = m.group(1)
+                price = _coerce_num(m.group(2))
+                currency = {"$": "USD", "£": "GBP", "€": "EUR"}.get(sym)
+
+        image_url = card.css("img::attr(src)").get()
+        if not image_url:
+            srcset = card.css("img::attr(srcset)").get()
+            if srcset:
+                image_url = srcset.split(",")[0].strip().split(" ")[0]
+
+        out.append({
+            "item_id": item_id,
+            "title": title,
+            "url": url,
+            "price": price,
+            "currency": currency,
+            "image_url": image_url,
+            "seller": None,
+            "source": "ebay_html_cards_fallback",
+        })
+
     return out
 
 def extract_items_from_next_data(next_data: dict[str, Any]) -> list[dict[str, Any]]:
@@ -253,9 +293,10 @@ def _extract_item_id(url: str | None) -> str | None:
 
 
 def _is_plausible_ebay_listing(*, item_id: str | None, title: str | None, url: str | None) -> bool:
-    if not item_id:
+    if not url:
         return False
-    if not url or "/itm/" not in url:
+    normalized = url.lower()
+    if not any(x in normalized for x in ("/itm/", "/p/", "/b/", "/sch/i.html")):
         return False
     t = (title or "").strip().lower()
     if not t or t in {"shop on ebay", "shop on ebay!"}:
