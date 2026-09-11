@@ -127,7 +127,7 @@ def extract_items_from_html_cards(html: str) -> list[dict[str, Any]]:
     for card in sel.css("div.su-card-container"):
         url = card.css("a.su-item-card__title::attr(href)").get()
         title = " ".join(t.strip() for t in card.css("a.su-item-card__title *::text, a.su-item-card__title::text").getall() if t.strip())
-        if not _is_plausible_ebay_listing(item_id=_extract_item_id(url), title=title, url=url):
+        if not _is_plausible_ebay_browse_card(title=title, url=url):
             continue
 
         item_id = _extract_item_id(url)
@@ -296,7 +296,23 @@ def _is_plausible_ebay_listing(*, item_id: str | None, title: str | None, url: s
     if not url:
         return False
     normalized = url.lower()
-    if not any(x in normalized for x in ("/itm/", "/p/", "/b/", "/sch/i.html")):
+    if "/itm/" not in normalized and "/p/" not in normalized:
+        return False
+    if "/itm/" in normalized and not item_id:
+        return False
+    t = (title or "").strip().lower()
+    if not t or t in {"shop on ebay", "shop on ebay!"}:
+        return False
+    if "shop on ebay" in t and len(t) <= 20:
+        return False
+    return True
+
+
+def _is_plausible_ebay_browse_card(*, title: str | None, url: str | None) -> bool:
+    if not url:
+        return False
+    normalized = url.lower()
+    if "/b/" not in normalized and "/sch/i.html" not in normalized:
         return False
     t = (title or "").strip().lower()
     if not t or t in {"shop on ebay", "shop on ebay!"}:
