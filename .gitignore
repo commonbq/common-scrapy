@@ -35,6 +35,7 @@ common_scrapy.egg-info/
 *.har
 *.csv
 *.json
+!common/spiders/ebay_category_urls.json
 
 data/
 !sample/*.json
