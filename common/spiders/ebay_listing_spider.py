@@ -7,17 +7,42 @@ Usage examples:
   scrapy crawl ebay_listing -a category_url='https://www.ebay.com/b/Laptops-Netbooks/175672/bn_1648276' -a max_pages=2
 """
 
+import json
+import re
+from pathlib import Path
 from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
 from common.spiders.ebay_bootstrap_utils import (
+    extract_browse_tiles_from_html,
     extract_items_from_next_data,
     extract_items_from_html_cards,
     extract_json_ld_products,
     extract_next_data,
 )
+
+
+def _slug(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
+
+
+def _build_categories() -> list[dict[str, str]]:
+    data_path = Path(__file__).resolve().parent / "ebay_category_urls.json"
+    with data_path.open("r", encoding="utf-8") as fp:
+        category_dict = json.load(fp)
+
+    categories: list[dict[str, str]] = []
+    for top_level, section in category_dict.items():
+        if not isinstance(top_level, str) or not isinstance(section, dict):
+            continue
+        top_slug = _slug(top_level)
+        for label, url in section.items():
+            if not isinstance(label, str) or not isinstance(url, str):
+                continue
+            categories.append({"category": f"{top_slug}/{_slug(label)}", "url": url})
+    return categories
 
 
 class EbayListingSpider(BaseListingSpider):
@@ -28,27 +53,29 @@ class EbayListingSpider(BaseListingSpider):
         "HTTPERROR_ALLOW_ALL": True,
     }
 
-    categories = [
-        {"category": "laptops", "url": "https://www.ebay.com/b/Laptops-Netbooks/175672/bn_1648276"},
-        {"category": "cell-phones", "url": "https://www.ebay.com/b/Cell-Phones-Smartphones/9355/bn_320094"},
-        {"category": "headphones", "url": "https://www.ebay.com/b/Headphones/112529/bn_738106"},
-        {"category": "watches", "url": "https://www.ebay.com/b/Wristwatches/31387/bn_2408459"},
-        {"category": "video-games", "url": "https://www.ebay.com/b/Video-Games/139973/bn_1850390"},
-    ]
+    categories: list[dict[str, str]] = _build_categories()
 
     def start_requests(self):
         target_url = self._with_page(self._resolve_target_url(), 1)
-        yield scrapy.Request(target_url, callback=self.parse, meta=({"page": 1, "original_url": target_url}))
+        yield scrapy.Request(
+            target_url,
+            callback=self.parse,
+            meta=self.proxy_meta({"page": 1, "original_url": target_url}),
+        )
 
     def parse(self, response: scrapy.http.Response):
         original_url = response.meta.get("original_url") or response.url
         page = int(response.meta.get("page", 1))
 
         yielded = 0
+        found_listing_candidates = False
 
         next_data = extract_next_data(response.text or "")
         if next_data:
-            for item in extract_items_from_next_data(next_data):
+            next_items = extract_items_from_next_data(next_data)
+            if next_items:
+                found_listing_candidates = True
+            for item in next_items:
                 item.update(
                     {
                         "mode": "category",
@@ -61,7 +88,10 @@ class EbayListingSpider(BaseListingSpider):
                 yield item
 
         if yielded == 0:
-            for item in extract_json_ld_products(response.text or ""):
+            jsonld_items = list(extract_json_ld_products(response.text or ""))
+            if jsonld_items:
+                found_listing_candidates = True
+            for item in jsonld_items:
                 item.update(
                     {
                         "mode": "category",
@@ -74,7 +104,23 @@ class EbayListingSpider(BaseListingSpider):
                 yield item
 
         if yielded == 0:
-            for item in extract_items_from_html_cards(response.text or ""):
+            html_items = extract_items_from_html_cards(response.text or "")
+            if html_items:
+                found_listing_candidates = True
+            for item in html_items:
+                item.update(
+                    {
+                        "mode": "category",
+                        "category_url": self.category_url or self.url,
+                        "page": page,
+                        "source_url": response.url,
+                    }
+                )
+                yield item
+                yielded += 1
+
+        if yielded == 0 and not found_listing_candidates:
+            for item in extract_browse_tiles_from_html(response.text or ""):
                 item.update(
                     {
                         "mode": "category",
@@ -90,12 +136,17 @@ class EbayListingSpider(BaseListingSpider):
             yield scrapy.Request(
                 next_url,
                 callback=self.parse,
-                meta=({"page": page + 1, "original_url": next_url}),
+                meta=self.proxy_meta({"page": page + 1, "original_url": next_url}),
             )
 
     def _resolve_target_url(self) -> str:
         if self.url:
             return self.url
+        if self.category and self.category.startswith(("http://", "https://")):
+            if self.category_url and self.category_url != self.category:
+                raise ValueError("Provide either -a category=<url> or -a category_url=<url>, not both")
+            self.category_url = self.category
+            return self.category_url
         if self.category_url:
             return self.category_url
         for entry in self.categories:

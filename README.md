@@ -73,7 +73,7 @@ Spiders below are returning items in recent smoke runs:
 | [`ae_listing`](#ae_listing) | Experimental | html | Akamai (signals in headers) | American Eagle listing spider via category-page product cards. | 30 (ok) | women-tops, women-jeans, men-tops | `{"item_id":"1457_2980_808","title":null,"url":"https://www.ae.com/us/en/p/women/hoodies-sweatshirts/crew-neck-sweatshirts/ae-big-hug-v-neck-sweatshirt/1457_2980_808","price":nul...` |
 | [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | html + nuxt-state | Akamai | Bloomingdale's listing spider via direct HTML/state extraction (resilient parser). | 8 (ok) | women, men, shoes, beauty, home | `{"item_id":"5973765","title":"Tumbled Woven Verne Pants","url":"https://www.bloomingdales.com/shop/product/cinq-a-sept-tumbled-woven-vern...` |
 | [`costco_listing`](#costco_search--costco_listing) | Active | bootstrap + html | Akamai | Costco category listing with state extraction + fallback. | 24 (ok) | coffee, water, snacks, vitamins, laundry, paper-products | `{"item_id":"100501081","title":null,"url":"https://www.costco.com/starbucks-pike-place-medium-roast-k-cup-72-count.product.100501081.html","price":null,"currency":null,"brand":n...` |
-| [`ebay_listing`](#ebay_listing-category-bootstrapmodel-state) | Flaky | bootstrap + html | Akamai | eBay category listing via `__NEXT_DATA__` + fallback. | 4 (ok) | laptops, cell-phones, headphones, watches, video-games | `{"item_id":null,"title":"Apple MacBook Air 13.3'' (256GB SSD, Apple M1, 8GB RAM) Laptop - Space Gray - MGN63LL/A (2020)","url":"https://w...` |
+| [`ebay_listing`](#ebay_listing-category-bootstrapmodel-state) | Flaky | bootstrap + html | Akamai | eBay category listing via `__NEXT_DATA__` + fallback. | 18 (Antiques fixture browse tiles) | 209 `top-level/subcategory` slugs from `ebay_category_urls.json` | `{"item_id":"286393092388","title":"Dell Latitude Laptop Computer PC Intel i5 Up To 32GB RAM 1TB SSD Windows 11","url":"https://www.ebay.com/itm/286393092388?...","price":237.36,...` |
 | [`ebay_search`](#ebay_search-keyword-bootstrapmodel-state) | Flaky | bootstrap + html | Akamai | eBay keyword search via `__NEXT_DATA__` + JSON-LD + HTML fallback (filters promo/non-item cards). | 60 (ok, VPN-dependent) | - | `{'item_id':'286393092388','title':'Dell Latitude Laptop Computer PC Intel i5 Up To 32GB RAM 1TB SSD Windows 11',...}` |
 | [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | none detected (CloudFront CDN only) | e.l.f. Cosmetics multi-mode listing spider. | 6 (ok) | face, eyes, lips | `{'item_id':'300261','title':'Soft Glam Satin Concealer','url':'https://www.elfcosmetics.com/soft-glam-satin-concealer/300262.html','price':9.0,'brand':'e.l.f. Cosmetics','source':'elfcosmetics_preloaded_state'...}` |
 | [`fashionnova_listing`](#fashionnova_listing) | Active | api + html | Cloudflare | Fashion Nova listing via Shopify Storefront GraphQL with HTML fallback. | 48 (ok) | women, new, dresses, jeans, sale | `{"item_id":"175898317","title":"Classic High Waist Skinny Jeans - Dark Denim","url":"https://www.fashionnova.com/products/dark-blue-class...` |
@@ -235,26 +235,30 @@ Notes:
 
 ```json
 {
-  "item_id": null,
-  "title": "Apple MacBook Air 13.3'' (256GB SSD, Apple M1, 8GB RAM) Laptop - Space Gray - MGN63LL/A (2020)",
-  "url": "https://www.ebay.com/p/9055828714",
-  "price": null,
-  "currency": null,
-  "image_url": "https://i.ebayimg.com/images/g/vtYAAOSwA3tnk8aQ/s-l400.webp",
-  "source": "ebay_jsonld_fallback",
+  "item_id": "286393092388",
+  "title": "Dell Latitude Laptop Computer PC Intel i5 Up To 32GB RAM 1TB SSD Windows 11",
+  "url": "https://www.ebay.com/itm/286393092388?...",
+  "price": 237.36,
+  "currency": "USD",
+  "image_url": "https://i.ebayimg.com/images/g/...../s-l500.webp",
+  "source": "ebay_html_cards_fallback",
   "mode": "category",
-  "category_url": "https://www.ebay.com/b/Laptops-Netbooks/175672/bn_1648276",
+  "category_url": "https://www.ebay.com/b/Computers-Tablets-Network-Hardware/58058/bn_1865247",
   "page": 1,
-  "source_url": "https://www.ebay.com/b/Laptops-Netbooks/175672/bn_1648276?_ipg=60&_pgn=1"
+  "source_url": "https://www.ebay.com/b/Computers-Tablets-Network-Hardware/58058/bn_1865247?_ipg=60&_pgn=1"
 }
 ```
 
 Run example:
-`common-scrapy crawl ebay_listing -a category='laptops' -a max_pages=1 -O ebay_listing.jsonl`
+`common-scrapy crawl ebay_listing -a category='electronics/computers-tablets-networking' -a max_pages=1 -O ebay_listing.jsonl`
+
+URL input example:
+`common-scrapy crawl ebay_listing -a category='https://www.ebay.com/b/Antiques/20081/bn_1851017' -a max_pages=1 -O ebay_listing.jsonl`
 
 Notes:
-- Proxy-rendered category HTML may omit `__NEXT_DATA__` and serve unquoted `type=application/ld+json` blocks.
-- Spider now parses `ItemList`/`Product` JSON-LD fallback in that HTML mode.
+- Category slugs are generated from the supplied nested eBay dictionary (`common/spiders/ebay_category_urls.json`) as `top-level/subcategory`.
+- Proxy-backed requests are enabled via the shared listing spider proxy meta helper.
+- Some browse pages render `su-card-container` destination tiles instead of product item cards; the spider emits those with source `ebay_html_browse_tiles_fallback` when product extractors return no items.
 
 ### homedepot_search (keyword; Apollo bootstrap)
 

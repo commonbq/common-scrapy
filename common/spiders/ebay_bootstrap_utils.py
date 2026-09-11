@@ -125,6 +125,43 @@ def extract_items_from_html_cards(html: str) -> list[dict[str, Any]]:
 
     return out
 
+
+def extract_browse_tiles_from_html(html: str) -> list[dict[str, Any]]:
+    """Fallback parser for browse destination tiles (non-item category pages)."""
+    sel = Selector(text=html or "")
+    out: list[dict[str, Any]] = []
+    seen: set[tuple[str | None, str | None]] = set()
+
+    for card in sel.css(".dp-browse-destinations-module div.su-card-container"):
+        url = card.css("a.su-item-card__title::attr(href)").get()
+        title = " ".join(t.strip() for t in card.css("a.su-item-card__title *::text, a.su-item-card__title::text").getall() if t.strip())
+        if not _is_plausible_ebay_browse_card(title=title, url=url):
+            continue
+
+        key = (title, url)
+        if key in seen:
+            continue
+        seen.add(key)
+
+        image_url = card.css("img::attr(src)").get()
+        if not image_url:
+            srcset = card.css("img::attr(srcset)").get()
+            if srcset:
+                image_url = srcset.split(",")[0].strip().split(" ")[0]
+
+        out.append({
+            "item_id": None,
+            "title": title,
+            "url": url,
+            "price": None,
+            "currency": None,
+            "image_url": image_url,
+            "seller": None,
+            "source": "ebay_html_browse_tiles_fallback",
+        })
+
+    return out
+
 def extract_items_from_next_data(next_data: dict[str, Any]) -> list[dict[str, Any]]:
     """Walk unknown Next.js structure and normalize records that look like listings."""
     hits: list[dict[str, Any]] = []
@@ -253,9 +290,24 @@ def _extract_item_id(url: str | None) -> str | None:
 
 
 def _is_plausible_ebay_listing(*, item_id: str | None, title: str | None, url: str | None) -> bool:
-    if not item_id:
+    if not item_id or not url:
         return False
-    if not url or "/itm/" not in url:
+    normalized = url.lower()
+    if "/itm/" not in normalized:
+        return False
+    t = (title or "").strip().lower()
+    if not t or t in {"shop on ebay", "shop on ebay!"}:
+        return False
+    if "shop on ebay" in t and len(t) <= 20:
+        return False
+    return True
+
+
+def _is_plausible_ebay_browse_card(*, title: str | None, url: str | None) -> bool:
+    if not url:
+        return False
+    normalized = url.lower()
+    if "/b/" not in normalized and "/sch/i.html" not in normalized:
         return False
     t = (title or "").strip().lower()
     if not t or t in {"shop on ebay", "shop on ebay!"}:
