@@ -5,40 +5,99 @@ import re
 from typing import Any
 
 
-def extract_bestbuy_items_from_bootstrap(html: str) -> list[dict[str, Any]]:
-    """Extract product-like records from BestBuy Apollo bootstrap scripts."""
+def extract_bestbuy_items_from_apollo(html: str) -> list[dict[str, Any]]:
+    """Extract all product collections from Best Buy's Apollo transport.
+
+    Besides the primary ``SearchConnection``, deal pages can place products in
+    hero and promotional carousels. Scan every product-shaped Apollo node and
+    deduplicate the results by SKU so those collections are included too.
+    """
+    return _extract_product_like_items(_extract_apollo_transport_payloads(html))
+
+
+def _extract_items_from_search_connections(
+    payloads: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
     out: list[dict[str, Any]] = []
     seen: set[str] = set()
 
-    for payload in _extract_apollo_transport_payloads(html):
+    for payload in payloads:
+        for node in _walk(payload):
+            if node.get("__typename") != "SearchConnection":
+                continue
+
+            documents = node.get("documents")
+            if not isinstance(documents, list):
+                continue
+
+            for document in documents:
+                if not isinstance(document, dict):
+                    continue
+                product = document.get("product")
+                if not isinstance(product, dict) or not _looks_like_product(product):
+                    continue
+
+                item = _normalize_product(product)
+                item.update(_listing_context(document))
+                sku = item.get("skuId")
+                if sku and sku not in seen:
+                    seen.add(sku)
+                    out.append(item)
+
+    return out
+
+
+def _extract_product_like_items(
+    payloads: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    out: list[dict[str, Any]] = []
+    seen: set[str] = set()
+
+    for payload in payloads:
         for node in _walk(payload):
             product = node
             listing_context: dict[str, Any] = {}
 
-            # The current category response nests each Product in a
-            # BestMediaAdsAcceptedSku record. Capture useful listing metadata
-            # from that wrapper before the recursive walk reaches Product.
-            nested_product = node.get("product") if isinstance(node, dict) else None
+            nested_product = node.get("product")
             if isinstance(nested_product, dict) and _looks_like_product(nested_product):
                 product = nested_product
-                listing_context = {
-                    "isSponsored": node.get("__typename") == "BestMediaAdsAcceptedSku",
-                    "position": node.get("rank"),
-                    "primaryCategoryId": node.get("primaryCategoryId"),
-                    "campaignId": node.get("campaignId"),
-                }
+                listing_context = _listing_context(node)
 
-            if not isinstance(product, dict) or not _looks_like_product(product):
+            if not _looks_like_product(product):
                 continue
 
             item = _normalize_product(product)
             item.update(listing_context)
             sku = item.get("skuId")
-            if sku not in seen:
+            if sku and sku not in seen:
                 seen.add(sku)
                 out.append(item)
 
     return out
+
+
+def extract_bestbuy_items_from_bootstrap(html: str) -> list[dict[str, Any]]:
+    """Extract listing products from BestBuy Apollo bootstrap data.
+
+    Prefer products in the listing's ``SearchConnection``. If that structure
+    is absent in an older response, fall back to scanning all product-like
+    records in the bootstrap payload.
+    """
+    payloads = _extract_apollo_transport_payloads(html)
+    listing_items = _extract_items_from_search_connections(payloads)
+    if listing_items:
+        return listing_items
+
+    return _extract_product_like_items(payloads)
+
+
+def _listing_context(document: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "isSponsored": document.get("__typename") == "BestMediaAdsAcceptedSku",
+        "position": document.get("rank"),
+        "primaryCategoryId": document.get("primaryCategoryId"),
+        "campaignId": document.get("campaignId"),
+    }
 
 
 def _extract_apollo_transport_payloads(html: str) -> list[dict[str, Any]]:
@@ -163,7 +222,12 @@ def _normalize_product(d: dict[str, Any]) -> dict[str, Any]:
     current_price = _first_present(
         price_obj, "customerPrice", "currentPrice", "displayableCustomerPrice"
     )
-    original_price = _first_present(price_obj, "regularPrice", "originalPrice")
+    original_price = _first_present(
+        price_obj,
+        "regularPrice",
+        "originalPrice",
+        "displayableRegularPrice",
+    )
     brand = (
         (d.get("brand") or {}).get("name")
         if isinstance(d.get("brand"), dict)

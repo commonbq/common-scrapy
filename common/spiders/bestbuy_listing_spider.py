@@ -12,7 +12,7 @@ import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
 from common.spiders.bestbuy_bootstrap_utils import (
-    extract_bestbuy_items_from_bootstrap,
+    extract_bestbuy_items_from_apollo,
 )
 
 
@@ -43,6 +43,7 @@ class BestbuyListingSpider(BaseListingSpider):
             "primaryCategoryId",
             "campaignId",
             "category",
+            "subCategory",
             "page",
             "listingUrl",
             "raw",
@@ -84,18 +85,46 @@ class BestbuyListingSpider(BaseListingSpider):
 
     async def parse_listing_page(self, response: scrapy.http.Response):
         page_num = int(response.meta.get("page", 1))
-        items = extract_bestbuy_items_from_bootstrap(response.text)
-
+        items = extract_bestbuy_items_from_apollo(response.text)
         for item in items:
             item.update(
                 {
                     "category": self.category,
+                    "subCategory": response.meta.get("sub_category"),
                     "page": page_num,
                     "listingUrl": response.url,
                     "timestamp": self.get_timestamp(),
                 }
             )
             yield item
+
+        subcategories: dict[str, str] = {}
+        if page_num == 1:
+            for link in response.css("main a.cn-carousel-item"):
+                href = link.attrib.get("href")
+                if not href:
+                    continue
+                subcategory_url = response.urljoin(href)
+                subcategory_name = link.xpath(
+                    "normalize-space(string(.))"
+                ).get()
+                subcategories[subcategory_name] = subcategory_url
+
+        if subcategories:
+            self.logger.info(
+                "BestBuy category page: following %s subcategories",
+                len(subcategories),
+            )
+            for subcategory_name, subcategory_url in subcategories.items():
+                url = self._ensure_nosplash(self._with_page(subcategory_url, 1))
+                yield scrapy.Request(
+                    url,
+                    callback=self.parse_listing_page,
+                    meta={
+                        "page": 1,
+                        "sub_category": subcategory_name,
+                    },
+                )
 
         if not items:
             self.logger.warning(
@@ -104,13 +133,19 @@ class BestbuyListingSpider(BaseListingSpider):
                 response.status,
             )
 
-        if page_num < self.args.max_pages:
+        if items and page_num < self.args.max_pages:
             next_page = page_num + 1
             next_url = self._ensure_nosplash(
-                self._with_page(self._resolve_target_url(), next_page)
+                self._with_page(response.url, next_page)
             )
             yield scrapy.Request(
-                next_url, callback=self.parse_listing_page, meta=({"page": next_page})
+                next_url,
+                callback=self.parse_listing_page,
+                meta={
+                    "page": next_page,
+                    "is_subcategory": response.meta.get("is_subcategory", False),
+                    "sub_category": response.meta.get("sub_category"),
+                },
             )
 
     def _resolve_target_url(self) -> str:
