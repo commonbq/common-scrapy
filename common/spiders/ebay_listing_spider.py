@@ -53,9 +53,7 @@ class EbayListingSpider(BaseListingSpider):
         "HTTPERROR_ALLOW_ALL": True,
     }
 
-    categories: list[dict[str, str]] = []
-
-    categories = _build_categories()
+    categories: list[dict[str, str]] = _build_categories()
 
     def start_requests(self):
         target_url = self._with_page(self._resolve_target_url(), 1)
@@ -144,10 +142,12 @@ class EbayListingSpider(BaseListingSpider):
     def _resolve_target_url(self) -> str:
         if self.url:
             return self.url
-        if self.category_url:
-            return self.category_url
         if self.category and self.category.startswith(("http://", "https://")):
+            if self.category_url and self.category_url != self.category:
+                raise ValueError("Provide either -a category=<url> or -a category_url=<url>, not both")
             self.category_url = self.category
+            return self.category_url
+        if self.category_url:
             return self.category_url
         for entry in self.categories:
             if entry.get("category") == self.category:

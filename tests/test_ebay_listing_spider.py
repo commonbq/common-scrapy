@@ -27,6 +27,15 @@ class EbayListingSpiderTests(unittest.TestCase):
         spider = EbayListingSpider(category=url, max_pages=1)
         self.assertEqual(spider._resolve_target_url(), url)
 
+    def test_conflicting_category_and_category_url_raises(self):
+        spider = EbayListingSpider(
+            category="https://www.ebay.com/b/Antiques/20081/bn_1851017",
+            category_url="https://www.ebay.com/b/Computers-Tablets-Network-Hardware/58058/bn_1865247",
+            max_pages=1,
+        )
+        with self.assertRaises(ValueError):
+            spider._resolve_target_url()
+
     def test_antique_fixture_parses_non_zero_browse_tiles(self):
         fixture_path = Path(__file__).resolve().parents[1] / "sample" / "ebay-antiques-sample.html"
         html = fixture_path.read_text(encoding="utf-8")
