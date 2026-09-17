@@ -12,10 +12,7 @@ import scrapy
 
 from common.spiders.base_search_spider import BaseSearchSpider
 from common.spiders.ebay_bootstrap_utils import (
-    extract_items_from_next_data,
-    extract_items_from_html_cards,
-    extract_json_ld_products,
-    extract_next_data,
+    extract_marko_products,
 )
 
 
@@ -29,52 +26,24 @@ class EbaySearchSpider(BaseSearchSpider):
 
     def start_requests(self):
         url = self._build_search_url(self.q or "")
-        yield scrapy.Request(url, callback=self.parse, meta=({"page": 1, "original_url": url}))
+        yield scrapy.Request(
+            url, callback=self.parse, meta=({"page": 1, "original_url": url})
+        )
 
     def parse(self, response: scrapy.http.Response):
         original_url = response.meta.get("original_url") or response.url
         page = int(response.meta.get("page", 1))
 
-        yielded = 0
-
-        next_data = extract_next_data(response.text or "")
-        if next_data:
-            for item in extract_items_from_next_data(next_data):
-                item.update(
-                    {
-                        "mode": "keyword",
-                        "query": self.q,
-                        "page": page,
-                        "source_url": response.url,
-                    }
-                )
-                yielded += 1
-                yield item
-
-        if yielded == 0:
-            for item in extract_json_ld_products(response.text or ""):
-                item.update(
-                    {
-                        "mode": "keyword",
-                        "query": self.q,
-                        "page": page,
-                        "source_url": response.url,
-                    }
-                )
-                yielded += 1
-                yield item
-
-        if yielded == 0:
-            for item in extract_items_from_html_cards(response.text or ""):
-                item.update(
-                    {
-                        "mode": "keyword",
-                        "query": self.q,
-                        "page": page,
-                        "source_url": response.url,
-                    }
-                )
-                yield item
+        for item in extract_marko_products(response.text or ""):
+            item.update(
+                {
+                    "mode": "keyword",
+                    "query": self.q,
+                    "page": page,
+                    "sourceUrl": response.url,
+                }
+            )
+            yield item
 
         if page < self.args.max_pages:
             next_url = self._with_page(original_url, page + 1)

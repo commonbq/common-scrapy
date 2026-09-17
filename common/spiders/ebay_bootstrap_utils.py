@@ -7,134 +7,45 @@ from typing import Any, Iterable
 from parsel import Selector
 
 
-def extract_next_data(html: str) -> dict[str, Any] | None:
-    """Return parsed __NEXT_DATA__ payload when present."""
-    m = re.search(
-        r"<script[^>]*\bid=(?:['\"])?__NEXT_DATA__(?:['\"])?[^>]*>(?P<json>.*?)</script>",
-        html or "",
-        flags=re.DOTALL | re.IGNORECASE,
-    )
-    if not m:
-        return None
-    try:
-        return json.loads(m.group("json"))
-    except Exception:
-        return None
-
-
-def extract_json_ld_products(html: str) -> Iterable[dict[str, Any]]:
-    """Best-effort fallback for Product entries in application/ld+json blocks."""
-    for m in re.finditer(
-        r"<script[^>]*\btype=(?:['\"])?application/ld\+json(?:['\"])?[^>]*>(?P<json>.*?)</script>",
-        html or "",
-        flags=re.DOTALL | re.IGNORECASE,
-    ):
-        raw = (m.group("json") or "").strip()
-        if not raw:
-            continue
-        try:
-            obj = json.loads(raw)
-        except Exception:
-            continue
-
-        for node in _iter_jsonld_nodes(obj):
-            if not isinstance(node, dict):
-                continue
-
-            # Product node directly.
-            if node.get("@type") == "Product":
-                product_nodes = [node]
-            # ItemList often wraps products under itemListElement[].item.
-            elif node.get("@type") == "ItemList" and isinstance(node.get("itemListElement"), list):
-                product_nodes = []
-                for el in node.get("itemListElement", []):
-                    if isinstance(el, dict):
-                        cand = el.get("item") if isinstance(el.get("item"), dict) else el
-                        if isinstance(cand, dict) and cand.get("@type") == "Product":
-                            product_nodes.append(cand)
-            else:
-                product_nodes = []
-
-            for p in product_nodes:
-                offers = p.get("offers", {})
-                if isinstance(offers, list):
-                    offers = offers[0] if offers else {}
-
-                url = p.get("url")
-                item_id = _extract_item_id(url)
-                title = p.get("name")
-                if not _is_plausible_ebay_listing(item_id=item_id, title=title, url=url):
-                    continue
-                yield {
-                    "item_id": item_id,
-                    "title": title,
-                    "url": url,
-                    "price": _coerce_num((offers or {}).get("price")),
-                    "currency": (offers or {}).get("priceCurrency"),
-                    "image_url": p.get("image", [None])[0] if isinstance(p.get("image"), list) else p.get("image"),
-                    "source": "ebay_jsonld_fallback",
-                }
-
-
-
-
-def extract_items_from_html_cards(html: str) -> list[dict[str, Any]]:
-    """Fallback parser for server-rendered SRP cards (Marko HTML)."""
+def extract_marko_products(html: str) -> list[dict[str, Any]]:
+    """Extract eBay search-result products from Marko hydration state."""
     sel = Selector(text=html or "")
-    out: list[dict[str, Any]] = []
-    seen: set[tuple[str | None, str | None]] = set()
+    cards: list[dict[str, Any]] = []
+    seen: set[str] = set()
 
-    for card in sel.css("li.s-card"):
-        url = card.css("a.s-card__link::attr(href)").get()
-        title = " ".join(t.strip() for t in card.css("div.s-card__title span::text").getall() if t.strip())
-        if not title:
+    for script in sel.css("script"):
+        source = script.xpath("string()").get() or ""
+        if "$brwweb_C" not in source:
             continue
-        if "opens in a new window" in title.lower():
-            title = re.sub(r"\s*Opens in a new window or tab\s*", "", title, flags=re.I).strip()
+        for payload in _iter_marko_payloads(source):
+            for card in _iter_marko_listing_cards(payload):
+                product_id = _as_str(card.get("listingId"))
+                if not product_id or product_id in seen:
+                    continue
+                seen.add(product_id)
+                cards.append(card)
 
-        # usually first price is the main one
-        price_text = card.css("span.s-card__price::text").get()
-        currency = None
-        price = None
-        if price_text:
-            m = re.search(r"([£$€])?\s*([\d,]+(?:\.\d+)?)", price_text)
-            if m:
-                sym = m.group(1)
-                price = _coerce_num(m.group(2))
-                currency = {"$": "USD", "£": "GBP", "€": "EUR"}.get(sym)
-
-        item_id = _extract_item_id(url)
-        if not _is_plausible_ebay_listing(item_id=item_id, title=title, url=url):
-            continue
-
-        key = (item_id, title)
-        if key in seen:
-            continue
-        seen.add(key)
-
-        out.append({
-            "item_id": item_id,
-            "title": title,
-            "url": url,
-            "price": price,
-            "currency": currency,
-            "image_url": card.css("img.s-card__image::attr(src)").get(),
-            "seller": " ".join(t.strip() for t in card.css("div.su-card-container__attributes__secondary span.su-styled-text.primary.large::text").getall() if t.strip()) or None,
-            "source": "ebay_html_cards_fallback",
-        })
-
-    return out
+    return [
+        _normalize_marko_listing(card, position)
+        for position, card in enumerate(cards, start=1)
+    ]
 
 
-def extract_browse_tiles_from_html(html: str) -> list[dict[str, Any]]:
-    """Fallback parser for browse destination tiles (non-item category pages)."""
+def extract_subcategories_from_html(html: str) -> list[dict[str, Any]]:
+    """Return the subcategory name and URL for each browse destination tile."""
     sel = Selector(text=html or "")
     out: list[dict[str, Any]] = []
     seen: set[tuple[str | None, str | None]] = set()
 
     for card in sel.css(".dp-browse-destinations-module div.su-card-container"):
         url = card.css("a.su-item-card__title::attr(href)").get()
-        title = " ".join(t.strip() for t in card.css("a.su-item-card__title *::text, a.su-item-card__title::text").getall() if t.strip())
+        title = " ".join(
+            t.strip()
+            for t in card.css(
+                "a.su-item-card__title *::text, a.su-item-card__title::text"
+            ).getall()
+            if t.strip()
+        )
         if not _is_plausible_ebay_browse_card(title=title, url=url):
             continue
 
@@ -143,125 +54,186 @@ def extract_browse_tiles_from_html(html: str) -> list[dict[str, Any]]:
             continue
         seen.add(key)
 
-        image_url = card.css("img::attr(src)").get()
-        if not image_url:
-            srcset = card.css("img::attr(srcset)").get()
-            if srcset:
-                image_url = srcset.split(",")[0].strip().split(" ")[0]
-
-        out.append({
-            "item_id": None,
-            "title": title,
-            "url": url,
-            "price": None,
-            "currency": None,
-            "image_url": image_url,
-            "seller": None,
-            "source": "ebay_html_browse_tiles_fallback",
-        })
+        out.append(
+            {
+                "subCategory": title,
+                "url": url,
+            }
+        )
 
     return out
 
-def extract_items_from_next_data(next_data: dict[str, Any]) -> list[dict[str, Any]]:
-    """Walk unknown Next.js structure and normalize records that look like listings."""
-    hits: list[dict[str, Any]] = []
 
-    def walk(node: Any) -> None:
-        if isinstance(node, dict):
-            if _looks_like_listing(node):
-                hits.append(_normalize_listing(node))
-            for v in node.values():
-                walk(v)
-        elif isinstance(node, list):
-            for v in node:
-                walk(v)
-
-    walk(next_data)
-
-    out: list[dict[str, Any]] = []
-    seen: set[tuple[str | None, str | None, str | None]] = set()
-    for h in hits:
-        key = (h.get("item_id"), h.get("title"), h.get("url"))
-        if key in seen:
+def _iter_marko_payloads(source: str) -> Iterable[Any]:
+    """Decode JSON arguments passed to eBay's ``$brwweb_C.concat(...)``."""
+    decoder = json.JSONDecoder()
+    cursor = 0
+    marker = ".concat("
+    while True:
+        marker_index = source.find(marker, cursor)
+        if marker_index < 0:
+            return
+        json_start = marker_index + len(marker)
+        try:
+            payload, consumed = decoder.raw_decode(source[json_start:])
+        except (TypeError, ValueError, json.JSONDecodeError):
+            cursor = json_start
             continue
-        seen.add(key)
-        out.append(h)
-    return out
+        yield payload
+        cursor = json_start + consumed
 
 
-def _looks_like_listing(d: dict[str, Any]) -> bool:
-    has_title = any(k in d for k in ("title", "itemTitle", "name"))
-    has_id_or_url = any(k in d for k in ("itemId", "legacyItemId", "id", "itemWebUrl", "itemHref", "url"))
-    has_price = any(k in d for k in ("price", "currentPrice", "displayPrice"))
-    return has_title and has_id_or_url and has_price
+def _iter_marko_listing_cards(value: Any) -> Iterable[dict[str, Any]]:
+    if isinstance(value, dict):
+        action = value.get("action") if isinstance(value.get("action"), dict) else {}
+        url = action.get("URL")
+        ordering = (
+            value.get("itemPropertyOrdering")
+            if isinstance(value.get("itemPropertyOrdering"), dict)
+            else {}
+        )
+        if (
+            value.get("_type") == "ListingItemCard"
+            and value.get("listingId")
+            and isinstance(url, str)
+            and "displayPrice" in value
+            and "imageContainer" in value
+            and "LIST_LAYOUT" in ordering
+        ):
+            yield value
+        for child in value.values():
+            yield from _iter_marko_listing_cards(child)
+    elif isinstance(value, list):
+        for child in value:
+            yield from _iter_marko_listing_cards(child)
 
 
-def _normalize_listing(d: dict[str, Any]) -> dict[str, Any]:
-    raw_price = d.get("price") or d.get("currentPrice") or d.get("displayPrice")
-    price, currency = _coerce_price(raw_price)
+def _normalize_marko_listing(card: dict[str, Any], position: int) -> dict[str, Any]:
+    action = card.get("action") if isinstance(card.get("action"), dict) else {}
+    price, currency = _marko_money(card.get("displayPrice"))
+    original_price, original_currency = _marko_money(card.get("previousPrice"))
 
-    shipping = d.get("shipping") if isinstance(d.get("shipping"), dict) else {}
-    shipping_cost = shipping.get("cost") if isinstance(shipping, dict) else {}
+    title_spans = _marko_text_spans(card.get("title"))
+    title = " ".join(
+        text for text in title_spans if text.lower() not in {"new listing", "sponsored"}
+    ).strip()
+    is_new_listing = any(text.lower() == "new listing" for text in title_spans)
 
-    seller = d.get("seller") if isinstance(d.get("seller"), dict) else {}
-    condition = d.get("condition") if isinstance(d.get("condition"), dict) else {}
+    condition_text = _marko_text(card.get("listingCondition"))
+    condition = condition_text
+    brand = None
+    if condition_text and "·" in condition_text:
+        condition, brand = [part.strip() for part in condition_text.split("·", 1)]
 
-    images = d.get("images") or d.get("image") or d.get("thumbnailImages")
-    image_url = None
-    if isinstance(images, list) and images:
-        image_url = images[0] if isinstance(images[0], str) else images[0].get("imageUrl")
-    elif isinstance(images, dict):
-        image_url = images.get("imageUrl") or images.get("url")
-    elif isinstance(images, str):
-        image_url = images
+    image_container = (
+        card.get("imageContainer")
+        if isinstance(card.get("imageContainer"), dict)
+        else {}
+    )
+    image_values = [image_container.get("image")]
+    secondary_images = image_container.get("secondaryImages")
+    if isinstance(secondary_images, list):
+        image_values.extend(secondary_images)
+    image_urls = []
+    for image in image_values:
+        image_url = image.get("URL") if isinstance(image, dict) else None
+        if image_url and image_url not in image_urls:
+            image_urls.append(image_url)
 
-    url = d.get("itemWebUrl") or d.get("itemHref") or d.get("url")
+    shipping_text = _marko_text(card.get("logisticsCost"))
+    shipping_cost, shipping_currency = _money(shipping_text)
+    if shipping_text and "free" in shipping_text.lower():
+        shipping_cost = 0.0
+        shipping_currency = currency
 
-    return {
-        "item_id": _as_str(d.get("itemId") or d.get("legacyItemId") or d.get("id") or _extract_item_id(url)),
-        "title": d.get("title") or d.get("itemTitle") or d.get("name"),
-        "url": url,
+    quantity_text = _marko_text(card.get("quantity"))
+    hotness_text = _marko_text(card.get("itemHotness"))
+    purchase_options = _marko_text(card.get("purchaseOptions"))
+    search = card.get("__search") if isinstance(card.get("__search"), dict) else {}
+    watch_text = _marko_text(search.get("watchCountTotal"))
+    product_review = (
+        card.get("productReview") if isinstance(card.get("productReview"), dict) else {}
+    )
+
+    record = {
+        "productId": _as_str(card.get("listingId")),
+        "title": title or None,
+        "url": action.get("URL"),
         "price": price,
         "currency": currency,
-        "shipping": _coerce_num((shipping_cost or {}).get("value")) if isinstance(shipping_cost, dict) else None,
-        "shipping_currency": (shipping_cost or {}).get("currency") if isinstance(shipping_cost, dict) else None,
-        "seller": seller.get("username") or seller.get("name"),
-        "seller_feedback_score": seller.get("feedbackScore"),
-        "condition": condition.get("displayName") or condition.get("name"),
-        "location": _coerce_location(d),
-        "image_url": image_url,
-        "listing_type": _coerce_listing_type(d),
-        "source": "ebay_next_data",
+        "originalPrice": original_price,
+        "originalCurrency": original_currency,
+        "discountPercentage": _discount_percentage(price, original_price),
+        "imageUrl": image_urls[0] if image_urls else None,
+        "imageUrls": image_urls,
+        "condition": condition,
+        "brand": brand,
+        "quantityAvailable": _count_from_text(quantity_text),
+        "quantityText": quantity_text,
+        "shippingCost": shipping_cost,
+        "shippingCurrency": shipping_currency,
+        "shippingText": shipping_text,
+        "deliveryText": _marko_text(card.get("deliveryOptions")),
+        "purchaseOptions": purchase_options,
+        "acceptsBestOffer": (
+            True
+            if purchase_options and "best offer" in purchase_options.lower()
+            else None
+        ),
+        "soldCount": (
+            _count_from_text(hotness_text)
+            if hotness_text and "sold" in hotness_text.lower()
+            else None
+        ),
+        "hotnessText": hotness_text,
+        "watchCount": _count_from_text(watch_text),
+        "watchText": watch_text,
+        "isSponsored": bool(card.get("sponsoredInfo")),
+        "isNewListing": True if is_new_listing else None,
+        "ratingValue": _marko_scalar(product_review.get("reviews")),
+        "reviewCount": _coerce_int(_marko_scalar(product_review.get("reviewCount"))),
+        "position": position,
+        "raw": card,
+    }
+    return {
+        key: value for key, value in record.items() if value is not None and value != []
     }
 
 
-def _coerce_location(d: dict[str, Any]) -> str | None:
-    loc = d.get("location")
-    if isinstance(loc, str):
-        return loc
-    if isinstance(loc, dict):
-        parts = [loc.get("city"), loc.get("state"), loc.get("country")]
-        parts = [p for p in parts if p]
-        return ", ".join(parts) if parts else None
-    return d.get("itemLocation")
+def _marko_text_spans(value: Any) -> list[str]:
+    if not isinstance(value, dict):
+        return []
+    spans = value.get("textSpans")
+    if isinstance(spans, list):
+        return [
+            str(span["text"]).strip()
+            for span in spans
+            if isinstance(span, dict) and span.get("text")
+        ]
+    return _marko_text_spans(value.get("text"))
 
 
-def _coerce_listing_type(d: dict[str, Any]) -> str | None:
-    listing = d.get("listing")
-    if isinstance(listing, dict):
-        return listing.get("listingType")
-    return d.get("listingType")
+def _marko_text(value: Any) -> str | None:
+    text = " ".join(_marko_text_spans(value)).strip()
+    return text or None
 
 
-def _coerce_price(raw_price: Any) -> tuple[float | None, str | None]:
-    if isinstance(raw_price, dict):
-        v = raw_price.get("value") or raw_price.get("amount")
-        c = raw_price.get("currency") or raw_price.get("currencyCode")
-        return _coerce_num(v), c
-    if isinstance(raw_price, str):
-        m = re.search(r"([\d,.]+)", raw_price)
-        return (_coerce_num(m.group(1)) if m else None), None
-    return None, None
+def _marko_scalar(value: Any) -> Any:
+    if not isinstance(value, dict):
+        return value
+    scalar = value.get("value")
+    if isinstance(scalar, dict):
+        return scalar.get("value")
+    return scalar
+
+
+def _marko_money(value: Any) -> tuple[float | None, str | None]:
+    if not isinstance(value, dict):
+        return None, None
+    money = value.get("value")
+    if not isinstance(money, dict):
+        return None, None
+    return _coerce_num(money.get("value")), _as_str(money.get("currency"))
 
 
 def _coerce_num(v: Any) -> float | None:
@@ -278,29 +250,42 @@ def _coerce_num(v: Any) -> float | None:
     return None
 
 
+def _coerce_int(value: Any) -> int | None:
+    number = _coerce_num(value)
+    return int(number) if number is not None else None
+
+
+def _money(text: str | None) -> tuple[float | None, str | None]:
+    if not text:
+        return None, None
+    match = re.search(r"(?:(USD|GBP|EUR)\s*)?([£$€])?\s*([\d,]+(?:\.\d+)?)", text, re.I)
+    if not match:
+        return None, None
+    currency = (match.group(1) or "").upper() or {
+        "$": "USD",
+        "£": "GBP",
+        "€": "EUR",
+    }.get(match.group(2))
+    return _coerce_num(match.group(3)), currency
+
+
+def _count_from_text(text: str | None) -> int | None:
+    if not text:
+        return None
+    match = re.search(r"([\d,]+)", text)
+    return int(match.group(1).replace(",", "")) if match else None
+
+
+def _discount_percentage(
+    price: float | None, original_price: float | None
+) -> float | None:
+    if price is None or not original_price or price > original_price:
+        return None
+    return round((original_price - price) / original_price * 100, 2)
+
+
 def _as_str(v: Any) -> str | None:
     return str(v) if v is not None else None
-
-
-def _extract_item_id(url: str | None) -> str | None:
-    if not url:
-        return None
-    m = re.search(r"/itm/(\d+)", url)
-    return m.group(1) if m else None
-
-
-def _is_plausible_ebay_listing(*, item_id: str | None, title: str | None, url: str | None) -> bool:
-    if not item_id or not url:
-        return False
-    normalized = url.lower()
-    if "/itm/" not in normalized:
-        return False
-    t = (title or "").strip().lower()
-    if not t or t in {"shop on ebay", "shop on ebay!"}:
-        return False
-    if "shop on ebay" in t and len(t) <= 20:
-        return False
-    return True
 
 
 def _is_plausible_ebay_browse_card(*, title: str | None, url: str | None) -> bool:
@@ -315,18 +300,3 @@ def _is_plausible_ebay_browse_card(*, title: str | None, url: str | None) -> boo
     if "shop on ebay" in t and len(t) <= 20:
         return False
     return True
-
-
-def _iter_jsonld_nodes(obj: Any) -> Iterable[dict[str, Any]]:
-    if isinstance(obj, dict):
-        graph = obj.get("@graph")
-        if isinstance(graph, list):
-            for g in graph:
-                if isinstance(g, dict):
-                    yield g
-        else:
-            yield obj
-    elif isinstance(obj, list):
-        for x in obj:
-            if isinstance(x, dict):
-                yield x

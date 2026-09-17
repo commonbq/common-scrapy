@@ -1,4 +1,4 @@
-{
+EBAY_CATEGORIES = {
   "eBay Motors": {
     "Parts & Accessories": "https://www.ebay.com/b/Auto-Parts-Accessories/6028/bn_569479",
     "Other Vehicles & Trailers": "https://www.ebay.com/b/Other-Vehicles-Trailers/6038/bn_1865426",
