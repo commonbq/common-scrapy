@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-"""eBay category listing spider (bootstrap/model-state first).
+"""eBay category listing spider (Marko hydration state first).
 
 Usage examples:
   scrapy crawl ebay_listing -a category='laptops' -a max_pages=2
@@ -13,11 +13,10 @@ import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
 from common.spiders.ebay_bootstrap_utils import (
-    extract_items_from_next_data,
-    extract_items_from_html_cards,
-    extract_json_ld_products,
-    extract_next_data,
+    extract_subcategories_from_html,
+    extract_marko_products,
 )
+from common.spiders.ebay_categories import EBAY_CATEGORIES
 
 
 class EbayListingSpider(BaseListingSpider):
@@ -28,82 +27,66 @@ class EbayListingSpider(BaseListingSpider):
         "HTTPERROR_ALLOW_ALL": True,
     }
 
-    categories = [
-        {"category": "laptops", "url": "https://www.ebay.com/b/Laptops-Netbooks/175672/bn_1648276"},
-        {"category": "cell-phones", "url": "https://www.ebay.com/b/Cell-Phones-Smartphones/9355/bn_320094"},
-        {"category": "headphones", "url": "https://www.ebay.com/b/Headphones/112529/bn_738106"},
-        {"category": "watches", "url": "https://www.ebay.com/b/Wristwatches/31387/bn_2408459"},
-        {"category": "video-games", "url": "https://www.ebay.com/b/Video-Games/139973/bn_1850390"},
-    ]
+    categories = EBAY_CATEGORIES
 
     def start_requests(self):
-        target_url = self._with_page(self._resolve_target_url(), 1)
-        yield scrapy.Request(target_url, callback=self.parse, meta=({"page": 1, "original_url": target_url}))
+        if self.args.category not in self.categories:
+            raise ValueError(
+                f"Invalid category '{self.args.category}'. Available categories: {list(self.categories.keys())}"
+            )
+
+        for subCategory, subCategoryUrl in self.categories[self.args.category].items():
+            self.logger.info(
+                f"Starting requests for subCategory: {subCategory} ({subCategoryUrl})"
+            )
+            yield scrapy.Request(
+                subCategoryUrl,
+                callback=self.parse,
+                meta={
+                    "page": 1,
+                    "category": self.args.category,
+                    "subCategory": subCategory,
+                },
+            )
 
     def parse(self, response: scrapy.http.Response):
-        original_url = response.meta.get("original_url") or response.url
         page = int(response.meta.get("page", 1))
 
-        yielded = 0
+        ecommerce_context = {
+            "category": response.meta.get("category"),
+            "subCategory": response.meta.get("subCategory"),
+            "page": page,
+            "listingUrl": response.url,
+        }
 
-        next_data = extract_next_data(response.text or "")
-        if next_data:
-            for item in extract_items_from_next_data(next_data):
-                item.update(
-                    {
-                        "mode": "category",
-                        "category_url": self.category_url or self.url,
-                        "page": page,
-                        "source_url": response.url,
-                    }
+        items = extract_marko_products(response.text)
+        for item in items:
+            item.update(ecommerce_context)
+            yield item
+
+        if page == 1:
+            for subCategory in extract_subcategories_from_html(response.text):
+                subCategory_url = response.urljoin(subCategory["url"])
+                yield scrapy.Request(
+                    subCategory_url,
+                    callback=self.parse,
+                    meta={
+                        "page": 1,
+                        "category": response.meta.get("category"),
+                        "subCategory": subCategory["subCategory"],
+                    },
                 )
-                yielded += 1
-                yield item
 
-        if yielded == 0:
-            for item in extract_json_ld_products(response.text or ""):
-                item.update(
-                    {
-                        "mode": "category",
-                        "category_url": self.category_url or self.url,
-                        "page": page,
-                        "source_url": response.url,
-                    }
-                )
-                yielded += 1
-                yield item
-
-        if yielded == 0:
-            for item in extract_items_from_html_cards(response.text or ""):
-                item.update(
-                    {
-                        "mode": "category",
-                        "category_url": self.category_url or self.url,
-                        "page": page,
-                        "source_url": response.url,
-                    }
-                )
-                yield item
-
-        if page < self.args.max_pages:
-            next_url = self._with_page(original_url, page + 1)
+        if page < self.args.max_pages and items:
+            next_url = self._with_page(response.url, page + 1)
             yield scrapy.Request(
                 next_url,
                 callback=self.parse,
-                meta=({"page": page + 1, "original_url": next_url}),
+                meta={
+                    **response.meta,
+                    "page": page + 1,
+                },
             )
-
-    def _resolve_target_url(self) -> str:
-        if self.url:
-            return self.url
-        if self.category_url:
-            return self.category_url
-        for entry in self.categories:
-            if entry.get("category") == self.category:
-                self.category_url = entry.get("url")
-                return self.category_url
-        names = ", ".join(sorted([c["category"] for c in self.categories]))
-        raise ValueError(f"Unknown category '{self.category}'. Use one of: {names}")
 
     @staticmethod
     def _with_page(url: str, page: int) -> str:

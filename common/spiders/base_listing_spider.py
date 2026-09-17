@@ -16,7 +16,6 @@ from dataclasses import dataclass
 
 import scrapy
 
-from common.settings import PROXY
 from datetime import datetime
 
 @dataclass
@@ -101,16 +100,6 @@ class BaseListingSpider(scrapy.Spider):
     def category_url(self, value: str | None):
         self.args.category_url = (value or "").strip() or None
 
-    def proxy_meta(self, meta: dict | None = None) -> dict:
-        meta = dict(meta or {})
-        if PROXY:
-            meta["proxy"] = PROXY
-        return meta
-
-    # Backwards-compatible alias retained for compatibility.
-    def maybe_proxy_meta(self, meta: dict | None = None) -> dict:
-        return dict(meta or {})
-
     def available_categories(self) -> list[str]:
         names: list[str] = []
         for entry in self.categories or []:
@@ -139,6 +128,9 @@ class BaseListingSpider(scrapy.Spider):
     def _validate_categories_schema_if_needed(self):
         if not self.require_category_arg:
             return
+        if isinstance(self.categories, dict):
+            return
+
         if not isinstance(self.categories, list) or not self.categories:
             raise ValueError("Listing spider must define `categories` as a non-empty list of {'category','url'} dicts")
         for i, entry in enumerate(self.categories):

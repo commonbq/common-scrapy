@@ -65,6 +65,8 @@ Working spiders running daily in production:
 | [`ulta_search`](#ulta_search-keyword) | Active | api + html | Akamai | Ulta keyword search via GraphQL (with unsorted retry + HTML fallback). | 64 (ok) | - | `{"item_id":"xlsImpprod15511061","title":"All Soft Shampoo","source":"ulta_dxl_graphql"...}` |
 | [`walmart_listing`](#walmart_listing-category) | Active | api + html | Akamai (+ PerimeterX/HUMAN signals) | Walmart category listing spider (direct API+HTML flow). | 45 (ok) | electronics, home, clothing, beauty, toys, sports-and-outdoors, grocery | `{"productId":"19231301884","usItemId":"19231301884","title":"No Boundaries Women's Faux Leather Loafers","brand":"No Boundaries"...` |
 | [`walmart_search`](#walmart_search-keyword) | Active | api + html | Akamai (+ PerimeterX/HUMAN signals) | Walmart keyword search spider. | 12 (ok) | - | `{"item_id":"13542163431","title":"ASUS Vivobook Go 15.6” Laptop, Intel i3-N305, 8GB, 256GB, Windows 11 Home in S mode, Cool Silver, E1504...` |
+| [`ebay_listing`](#ebay_listing-category-marko-hydration-state) | Active | Marko + html | Akamai | Stable eBay category listing extraction from Marko hydration state, with HTML subcategory discovery. | 18 (Antiques fixture browse tiles) | 18 top-level groups / 209 subcategories from `ebay_categories.py` | `{"productId":"234346994063","title":"MacBook Pro 15 Inch 256GB SSD 16 GB i7 3.40Ghz Apple Retina Big Sur 3yr Warranty","price":439.0,"currency":"USD",...}` |
+| [`ebay_search`](#ebay_search-keyword-marko-hydration-state) | Active | Marko | Akamai | Stable eBay keyword search extraction from Marko `ListingItemCard` hydration data. | 60 (ok) | - | `{"productId":"234346994063","title":"MacBook Pro 15 Inch 256GB SSD 16 GB i7 3.40Ghz Apple Retina Big Sur 3yr Warranty","price":439.0,"currency":"USD",...}` |
 
 Spiders below are returning items in recent smoke runs:
 
@@ -73,8 +75,6 @@ Spiders below are returning items in recent smoke runs:
 | [`ae_listing`](#ae_listing) | Experimental | html | Akamai (signals in headers) | American Eagle listing spider via category-page product cards. | 30 (ok) | women-tops, women-jeans, men-tops | `{"item_id":"1457_2980_808","title":null,"url":"https://www.ae.com/us/en/p/women/hoodies-sweatshirts/crew-neck-sweatshirts/ae-big-hug-v-neck-sweatshirt/1457_2980_808","price":nul...` |
 | [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | html + nuxt-state | Akamai | Bloomingdale's listing spider via direct HTML/state extraction (resilient parser). | 8 (ok) | women, men, shoes, beauty, home | `{"item_id":"5973765","title":"Tumbled Woven Verne Pants","url":"https://www.bloomingdales.com/shop/product/cinq-a-sept-tumbled-woven-vern...` |
 | [`costco_listing`](#costco_search--costco_listing) | Active | bootstrap + html | Akamai | Costco category listing with state extraction + fallback. | 24 (ok) | coffee, water, snacks, vitamins, laundry, paper-products | `{"item_id":"100501081","title":null,"url":"https://www.costco.com/starbucks-pike-place-medium-roast-k-cup-72-count.product.100501081.html","price":null,"currency":null,"brand":n...` |
-| [`ebay_listing`](#ebay_listing-category-bootstrapmodel-state) | Flaky | bootstrap + html | Akamai | eBay category listing via `__NEXT_DATA__` + fallback. | 4 (ok) | laptops, cell-phones, headphones, watches, video-games | `{"item_id":null,"title":"Apple MacBook Air 13.3'' (256GB SSD, Apple M1, 8GB RAM) Laptop - Space Gray - MGN63LL/A (2020)","url":"https://w...` |
-| [`ebay_search`](#ebay_search-keyword-bootstrapmodel-state) | Flaky | bootstrap + html | Akamai | eBay keyword search via `__NEXT_DATA__` + JSON-LD + HTML fallback (filters promo/non-item cards). | 60 (ok, VPN-dependent) | - | `{'item_id':'286393092388','title':'Dell Latitude Laptop Computer PC Intel i5 Up To 32GB RAM 1TB SSD Windows 11',...}` |
 | [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | none detected (CloudFront CDN only) | e.l.f. Cosmetics multi-mode listing spider. | 6 (ok) | face, eyes, lips | `{'item_id':'300261','title':'Soft Glam Satin Concealer','url':'https://www.elfcosmetics.com/soft-glam-satin-concealer/300262.html','price':9.0,'brand':'e.l.f. Cosmetics','source':'elfcosmetics_preloaded_state'...}` |
 | [`fashionnova_listing`](#fashionnova_listing) | Active | api + html | Cloudflare | Fashion Nova listing via Shopify Storefront GraphQL with HTML fallback. | 48 (ok) | women, new, dresses, jeans, sale | `{"item_id":"175898317","title":"Classic High Waist Skinny Jeans - Dark Denim","url":"https://www.fashionnova.com/products/dark-blue-class...` |
 | [`homedepot_search`](#homedepot_search-keyword-apollo-bootstrap) | Active | bootstrap + html | Akamai | Home Depot keyword search via Apollo state. | 24 (ok) | - | `{"item_id":"336787835","sku":"1014334650","brand":"Lukyamzn","title":"14 in. Dual-Core Celeron N4000 Laptop 6 GB RAM 128 GB SSD IPS Displ...` |
@@ -210,16 +210,38 @@ Notes:
 - Browser inspection on `https://www.walmart.com/search?q=laptop` confirmed product cards + price blocks are present in rendered HTML in this runtime.
 - NordVPN US city checks (`max_pages=1`, `q=laptop`) returned stable output across Ashburn (`us11646`), Dallas (`us9147`), and Los Angeles (`us5381`) with 13 items each.
 
-### ebay_search (keyword; bootstrap/model-state)
+### ebay_search (keyword; Marko hydration state)
 ```json
 {
-  "item_id": "286393092388",
-  "title": "Dell Latitude Laptop Computer PC Intel i5 Up To 32GB RAM 1TB SSD Windows 11",
-  "url": "https://www.ebay.com/itm/286393092388?...",
-  "price": 237.36,
+  "productId": "234346994063",
+  "title": "MacBook Pro 15 Inch 256GB SSD 16 GB i7 3.40Ghz Apple Retina Big Sur 3yr Warranty",
+  "url": "https://www.ebay.com/itm/234346994063?...",
+  "price": 439.0,
   "currency": "USD",
-  "seller": "discountcomputerdepot 99.2% positive (153.3K)",
-  "source": "ebay_html_cards_fallback"
+  "originalPrice": 878.0,
+  "originalCurrency": "USD",
+  "discountPercentage": 50.0,
+  "imageUrl": "https://i.ebayimg.com/images/g/tLEAAOSwzOJjKIz4/s-l400.webp",
+  "imageUrls": [
+    "https://i.ebayimg.com/images/g/tLEAAOSwzOJjKIz4/s-l400.webp",
+    "https://i.ebayimg.com/images/g/md4AAOSwGwFiJjhM/s-l400.webp",
+    "https://i.ebayimg.com/images/g/SSkAAOSwYEphOWNZ/s-l400.webp",
+    "https://i.ebayimg.com/images/g/WIkAAOSwTkxiJjhV/s-l400.webp"
+  ],
+  "condition": "Pre-Owned",
+  "brand": "Apple",
+  "quantityAvailable": 1,
+  "quantityText": "1 remaining",
+  "shippingCost": 0.0,
+  "shippingCurrency": "USD",
+  "shippingText": "Free shipping",
+  "deliveryText": "Est. delivery Sat, Sep 19",
+  "isSponsored": true,
+  "position": 60,
+  "mode": "keyword",
+  "query": "laptop",
+  "page": 1,
+  "sourceUrl": "https://www.ebay.com/sch/i.html?_nkw=laptop&_ipg=60"
 }
 ```
 
@@ -227,34 +249,58 @@ Run example:
 `common-scrapy crawl ebay_search -a q=laptop -a max_pages=1 -O ebay_search.jsonl`
 
 Notes:
-- Added filtering for non-listing promo cards (e.g. "Shop on eBay") so fallback HTML parsing only yields real `/itm/<id>` products.
-- US NordVPN city test (Chicago `us11915`) returned 60 items with `max_pages=1`.
-- No-VPN run in this environment often returns 0 items (HTTP 500/anti-bot), so eBay spiders remain marked **Flaky**.
+- The example omits the large `raw` eBay `ListingItemCard` payload for readability.
+- Products are extracted directly from eBay's Marko hydration data and normalized from `ListingItemCard` records.
+- Non-listing Marko records and promotional cards are ignored.
+- The Marko extraction path is stable and returned 60 items with `q=laptop` and `max_pages=1`.
 
-### ebay_listing (category; bootstrap/model-state)
+### ebay_listing (category; Marko hydration state)
 
 ```json
 {
-  "item_id": null,
-  "title": "Apple MacBook Air 13.3'' (256GB SSD, Apple M1, 8GB RAM) Laptop - Space Gray - MGN63LL/A (2020)",
-  "url": "https://www.ebay.com/p/9055828714",
-  "price": null,
-  "currency": null,
-  "image_url": "https://i.ebayimg.com/images/g/vtYAAOSwA3tnk8aQ/s-l400.webp",
-  "source": "ebay_jsonld_fallback",
-  "mode": "category",
-  "category_url": "https://www.ebay.com/b/Laptops-Netbooks/175672/bn_1648276",
+  "productId": "234346994063",
+  "title": "MacBook Pro 15 Inch 256GB SSD 16 GB i7 3.40Ghz Apple Retina Big Sur 3yr Warranty",
+  "url": "https://www.ebay.com/itm/234346994063?...",
+  "price": 439.0,
+  "currency": "USD",
+  "originalPrice": 878.0,
+  "originalCurrency": "USD",
+  "discountPercentage": 50.0,
+  "imageUrl": "https://i.ebayimg.com/images/g/tLEAAOSwzOJjKIz4/s-l400.webp",
+  "imageUrls": [
+    "https://i.ebayimg.com/images/g/tLEAAOSwzOJjKIz4/s-l400.webp",
+    "https://i.ebayimg.com/images/g/md4AAOSwGwFiJjhM/s-l400.webp",
+    "https://i.ebayimg.com/images/g/SSkAAOSwYEphOWNZ/s-l400.webp",
+    "https://i.ebayimg.com/images/g/WIkAAOSwTkxiJjhV/s-l400.webp"
+  ],
+  "condition": "Pre-Owned",
+  "brand": "Apple",
+  "quantityAvailable": 1,
+  "quantityText": "1 remaining",
+  "shippingCost": 0.0,
+  "shippingCurrency": "USD",
+  "shippingText": "Free shipping",
+  "deliveryText": "Est. delivery Sat, Sep 19",
+  "isSponsored": true,
+  "position": 60,
+  "category": "Electronics",
+  "subCategory": "Apple",
   "page": 1,
-  "source_url": "https://www.ebay.com/b/Laptops-Netbooks/175672/bn_1648276?_ipg=60&_pgn=1"
+  "listingUrl": "https://www.ebay.com/b/Apple-Laptops-Netbooks/175672/bn_2780164"
 }
 ```
 
 Run example:
-`common-scrapy crawl ebay_listing -a category='laptops' -a max_pages=1 -O ebay_listing.jsonl`
+`common-scrapy crawl ebay_listing -a category=Electronics -a max_pages=1 -O ebay_listing.jsonl`
 
 Notes:
-- Proxy-rendered category HTML may omit `__NEXT_DATA__` and serve unquoted `type=application/ld+json` blocks.
-- Spider now parses `ItemList`/`Product` JSON-LD fallback in that HTML mode.
+- The example omits the large `raw` eBay `ListingItemCard` payload for readability.
+- Products are extracted directly from eBay's Marko hydration data and normalized from `ListingItemCard` records.
+- The Marko product extraction path is stable; HTML parsing is used only to discover nested browse categories.
+- A top-level category request crawls each configured subcategory in `common/spiders/ebay_categories.py`.
+- Product pages emit commerce fields such as current/original price, discount, seller feedback, condition, shipping, delivery, returns, listing type, bid/sold counts, and sponsorship status when present.
+- Browse pages such as the Antiques fixture contain destination tiles rather than products; these are extracted as `subCategory`/`url` pairs and followed until listing pages are reached.
+- All emitted eBay field names use camelCase.
 
 ### homedepot_search (keyword; Apollo bootstrap)
 
