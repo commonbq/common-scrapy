@@ -1,3 +1,4 @@
+import os
 from dotenv import dotenv_values
 
 
@@ -91,4 +92,4 @@ FEED_EXPORT_ENCODING = "utf-8"
 
 COMMON_ENV = dotenv_values()
 
-PROXY = COMMON_ENV.get("PROXY", None)
+PROXY = os.environ.get("PROXY") or COMMON_ENV.get("PROXY")

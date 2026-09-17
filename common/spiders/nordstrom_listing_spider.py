@@ -111,7 +111,6 @@ class NordstromListingSpider(BaseListingSpider):
         url: str,
         *,
         dont_filter: bool = False,
-        force_proxy: bool = False,
         category: str | None = None,
     ) -> scrapy.Request:
         headers = {
@@ -123,8 +122,6 @@ class NordstromListingSpider(BaseListingSpider):
             ),
         }
         meta = {"handle_httpstatus_all": True, "category": category}
-        if force_proxy and PROXY:
-            meta["proxy"] = PROXY
 
         return scrapy.Request(url, headers=headers, meta=meta, dont_filter=dont_filter)
 
@@ -147,14 +144,7 @@ class NordstromListingSpider(BaseListingSpider):
                 len(text),
                 bool(response.meta.get("proxy")),
             )
-            if PROXY and not response.meta.get("proxy"):
-                yield self._make_request(
-                    response.url,
-                    dont_filter=True,
-                    force_proxy=True,
-                    category=response.meta.get("category"),
-                )
-                return
+            return
 
         current_category = response.meta.get("category")
         products = self._extract_products_from_html(text, category=current_category)
