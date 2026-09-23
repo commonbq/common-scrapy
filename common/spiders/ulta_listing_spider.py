@@ -25,6 +25,7 @@ class UltaListingSpider(BaseListingSpider):
         "FEED_EXPORT_FIELDS": [
             "category",
             "skuId",
+            "action",
             "productId",
             "bookmarked",
             "image",
