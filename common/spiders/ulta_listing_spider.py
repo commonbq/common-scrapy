@@ -105,12 +105,14 @@ class UltaListingSpider(BaseListingSpider):
     def _build_page_request(
         self, category_url: str, meta: dict | None = None
     ) -> scrapy.Request:
+        page = int((meta or {}).get("page", 1))
+        page_url = self._with_page(category_url, page=page)
         payload = {
             "query": self._page_query(),
-            "variables": {"moduleParams": {}, "url": {"path": category_url}},
+            "variables": {"moduleParams": {}, "url": {"path": page_url}},
             "operationName": "Page",
         }
-        req_meta = {"page": 1, "category_url": category_url, "mode": "graphql"}
+        req_meta = {"page": page, "category_url": category_url, "mode": "graphql"}
         if meta:
             req_meta.update(meta)
         return scrapy.Request(
@@ -118,7 +120,7 @@ class UltaListingSpider(BaseListingSpider):
             method="POST",
             body=json.dumps(payload),
             callback=self.parse_page_definition,
-            headers=self._headers(operation="Page", referer=category_url),
+            headers=self._headers(operation="Page", referer=page_url),
             meta=req_meta,
             dont_filter=True,
         )

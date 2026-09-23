@@ -223,7 +223,7 @@ class UltaListingSpiderTests(unittest.TestCase):
         self.assertEqual(payload["operationName"], "Page")
         self.assertEqual(
             payload["variables"]["url"]["path"],
-            "https://www.ulta.com/shop/makeup/all",
+            "https://www.ulta.com/shop/makeup/all?page=2",
         )
 
     def test_parse_listing_non_json_after_rediscovery_stops_retry_loop(self):
