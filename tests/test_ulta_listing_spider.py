@@ -49,6 +49,33 @@ class UltaListingSpiderTests(unittest.TestCase):
             "sponsored": False,
         }
 
+    def test_dictionary_categories_resolve_and_preserve_url_overrides(self):
+        from common_scrapy.cli import _available_categories
+
+        self.assertEqual(
+            _available_categories(UltaListingSpider), self.spider.available_categories()
+        )
+        for category, url in UltaListingSpider.categories.items():
+            self.assertEqual(
+                UltaListingSpider(category=category).resolve_target_url(), url
+            )
+        with self.assertRaisesRegex(ValueError, "Available categories:.*makeup"):
+            UltaListingSpider()
+        with self.assertRaisesRegex(ValueError, "Unknown category"):
+            UltaListingSpider(category="unknown").resolve_target_url()
+        spider = UltaListingSpider(
+            category="custom",
+            category_url="https://www.ulta.com/shop/custom",
+            url="https://www.ulta.com/shop/override",
+        )
+        self.assertEqual(
+            spider.resolve_target_url(), "https://www.ulta.com/shop/override"
+        )
+        spider.url = None
+        self.assertEqual(
+            spider.resolve_target_url(), "https://www.ulta.com/shop/custom"
+        )
+
     def test_discovery_uses_full_url_and_empty_runtime_parameters(self):
         payload = json.loads(self.first.body)
         self.assertEqual(self.first.method, "POST")

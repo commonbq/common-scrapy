@@ -374,7 +374,8 @@ invalid, exhausted, or repeated results terminate without HTML fallback.
 common-scrapy crawl ulta_listing -a category=makeup -a max_pages=2 -O ulta.jsonl
 ```
 
-Categories: `makeup`, `skin-care`, `hair-care`, `fragrance`, `body-care`.
+Categories are a name-to-URL dictionary: `makeup`, `skin-care`, `hair-care`,
+`fragrance`, `body-care`.
 Use `-a url='https://www.ulta.com/shop/makeup/eyes/mascara'` with a category
 label to override the route.
 
@@ -401,7 +402,7 @@ plus `category`. Illustrative exported card (abbreviated):
 Validation (2026-09-23): terminal crawl with `category=makeup`, `max_pages=2`
 returned **152 product records with 152 distinct SKUs** through the configured
 proxy. All 3 requests (discovery plus 2 product pages) returned HTTP 200, and the
-spider finished normally. Direct egress returned HTTP 403. All 9 Ulta regression
+spider finished normally. Direct egress returned HTTP 403. All 10 Ulta regression
 tests pass, including authenticated proxy handoff, unchanged item schema,
 discovery, pagination, bounded rediscovery, and error termination.
 

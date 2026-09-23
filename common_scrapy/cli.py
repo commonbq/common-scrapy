@@ -55,6 +55,8 @@ def _purpose_built_spider_names() -> set[str]:
 
 def _available_categories(spider_cls: type[scrapy.Spider]) -> list[str]:
     categories = getattr(spider_cls, "categories", None)
+    if isinstance(categories, Mapping):
+        return sorted(key for key in categories if isinstance(key, str))
     if not isinstance(categories, list):
         return []
 

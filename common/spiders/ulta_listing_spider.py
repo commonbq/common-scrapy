@@ -57,28 +57,26 @@ class UltaListingSpider(BaseListingSpider):
         ],
     }
 
-    categories = [
-        {
-            "category": "makeup",
-            "url": "https://www.ulta.com/shop/makeup/all",
-        },
-        {
-            "category": "skin-care",
-            "url": "https://www.ulta.com/shop/skin-care/all",
-        },
-        {
-            "category": "hair-care",
-            "url": "https://www.ulta.com/shop/hair/all",
-        },
-        {
-            "category": "fragrance",
-            "url": "https://www.ulta.com/shop/fragrance/all",
-        },
-        {
-            "category": "body-care",
-            "url": "https://www.ulta.com/shop/body-care/all",
-        },
-    ]
+    categories = {
+        "makeup": "https://www.ulta.com/shop/makeup/all",
+        "skin-care": "https://www.ulta.com/shop/skin-care/all",
+        "hair-care": "https://www.ulta.com/shop/hair/all",
+        "fragrance": "https://www.ulta.com/shop/fragrance/all",
+        "body-care": "https://www.ulta.com/shop/body-care/all",
+    }
+
+    def available_categories(self) -> list[str]:
+        return sorted(self.categories)
+
+    def resolve_target_url(self) -> str:
+        if self.url or self.category_url:
+            return self.url or self.category_url
+        if self.category in self.categories:
+            return self.categories[self.category]
+        available = ", ".join(self.available_categories())
+        raise ValueError(
+            f"Unknown category '{self.category}'. Available categories: {available}"
+        )
 
     GRAPHQL_URL = "https://www.ulta.com/dxl/graphql?ultasite=en-us"
 
