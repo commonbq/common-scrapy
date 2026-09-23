@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-"""Best Buy category/listing spider (Playwright-assisted Apollo extraction).
+"""Best Buy category/listing spider using Apollo data from HTTP responses.
 
 Usage examples:
   scrapy crawl bestbuy_listing -a category='laptops' -a max_pages=1

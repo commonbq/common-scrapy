@@ -5,14 +5,12 @@ from typing import Iterable
 from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 
 import scrapy
-from parsel import Selector
-from playwright.async_api import async_playwright
 
 from common.spiders.base_listing_spider import BaseListingSpider
 
 
 class NordstromrackListingSpider(BaseListingSpider):
-    """Nordstrom Rack listing spider (Playwright-rendered HTML extraction).
+    """Nordstrom Rack listing spider using direct HTML responses.
 
     Example:
       scrapy crawl nordstromrack_listing -a category=dresses -a max_pages=1 -O nordstromrack_listing.jsonl
@@ -40,20 +38,14 @@ class NordstromrackListingSpider(BaseListingSpider):
         target = self._with_page(target, 1)
         yield scrapy.Request(target, callback=self.parse_listing_page, meta={"page": 1})
 
-    async def parse_listing_page(self, response: scrapy.http.Response):
+    def parse_listing_page(self, response: scrapy.http.Response):
         page_num = int(response.meta.get("page", 1))
         target_url = response.url
 
-        rendered_html = await self._render_with_playwright(target_url)
-        if not rendered_html:
-            self.logger.warning("Nordstrom Rack Playwright render failed page=%s url=%s", page_num, target_url)
-            return
-
         emitted = 0
-        sel = Selector(text=rendered_html)
         seen: set[str] = set()
 
-        for a in sel.css('a[href*="/s/"]'):
+        for a in response.css('a[href*="/s/"]'):
             href = (a.attrib.get("href") or "").strip()
             if not href:
                 continue
@@ -107,22 +99,6 @@ class NordstromrackListingSpider(BaseListingSpider):
             next_page = page_num + 1
             next_url = self._with_page(self.resolve_target_url() if (self.url or self.category_url or self.category) else self.categories[0]["url"], next_page)
             yield scrapy.Request(next_url, callback=self.parse_listing_page, meta={"page": next_page})
-
-    async def _render_with_playwright(self, url: str) -> str:
-        try:
-            async with async_playwright() as p:
-                browser = await p.chromium.launch(headless=True)
-                context = await browser.new_context(locale="en-US", user_agent="Mozilla/5.0")
-                page = await context.new_page()
-                await page.goto(url, wait_until="domcontentloaded", timeout=90000)
-                await page.wait_for_timeout(4000)
-                html = await page.content()
-                await context.close()
-                await browser.close()
-                return html
-        except Exception as exc:
-            self.logger.warning("Playwright render failed for Nordstrom Rack: %s", exc)
-            return ""
 
     @staticmethod
     def _with_page(url: str, page: int) -> str:

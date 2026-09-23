@@ -56,8 +56,8 @@ Working spiders running daily in production:
 |---|---|---|---|---|---|---|---|
 | [`amazon_listing`](#amazon_listing-category) | Active | html | none detected | Amazon category listing spider (category shortcuts). | 22 (ok) | electronics, fashion, beauty, home-kitchen, toys-games, sports-outdoors, grocery, books | `{"asin":"B0DKDTBBF7","title":"2 Packs Electric Candle Lighters, Windproof Flameless USB Rechargeable Plasma Arc Long Lighter for Grill Fi...` |
 | [`amazon_search`](#amazon_search) | Active | html | none detected | Amazon keyword search spider. | 22 (ok) | - | `{"asin":"B0GHQRV71M","title":"16\" FHD IPS Laptop Computer - 16GB RAM 512GB SSD, Pentium N100(Beat to i3-1115G4, 4 Cores Up to 3.4GHz), B...` |
-| [`bestbuy_listing`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | unknown (timeout/no verdict) | Best Buy listing via Playwright + Apollo cache extract. | 10 (skipped2) | laptops, tvs, headphones, monitors, cell-phones | `{"item_id":"6572184","title":"Samsung - Galaxy Book4 15.6\" FHD Laptop - Intel Core 7- 16GB Memory - 512GB SSD - Silver","url":"https://www.bestbuy.com/product/samsung-galaxy-bo...` |
-| [`bestbuy_search`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | unknown (timeout/no verdict) | Best Buy search via Playwright + Apollo cache extract. | 4 (skipped2) | - | `{"item_id":"6613879","title":"HP - 14\" Laptop - Intel Processor N150 2025 - 4GB Memory - 128GB UFS - Willow Green","url":"https://www.bestbuy.com/product/hp-14-laptop-intel-pro...` |
+| [`bestbuy_listing`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | unknown (timeout/no verdict) | Best Buy listing via direct HTTP + Apollo bootstrap extraction. | 10 (skipped2) | laptops, tvs, headphones, monitors, cell-phones | `{"item_id":"6572184","title":"Samsung - Galaxy Book4 15.6\" FHD Laptop - Intel Core 7- 16GB Memory - 512GB SSD - Silver","url":"https://www.bestbuy.com/product/samsung-galaxy-bo...` |
+| [`bestbuy_search`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | unknown (timeout/no verdict) | Best Buy search via direct HTTP + Apollo bootstrap extraction. | 4 (skipped2) | - | `{"item_id":"6613879","title":"HP - 14\" Laptop - Intel Processor N150 2025 - 4GB Memory - 128GB UFS - Willow Green","url":"https://www.bestbuy.com/product/hp-14-laptop-intel-pro...` |
 | [`macys_listing`](#macys_listing) | Active | api | Akamai | Macy’s listing via xapi endpoint (with fallback routing). | 60 (ok) | laptops, shoes, dresses, fragrance, bedding | `{"item_id":"17595303","title":"5Core AC Power Cord 6Ft 3 Prong US Male to Female Extension Adapter 18AWG 10A 7A 125V","brand":"5 Core","u...` |
 | [`nordstrom_listing`](#nordstrom_listing) | Active | bootstrap + html | PerimeterX / HUMAN | Nordstrom listing parser; often blocked/changed. | 0 (timeout2) | women, men, kids, beauty, home, designer, sale | `{}` |
 | [`sephora_listing`](#sephora_listing) | Active | api | Akamai | Sephora listing via `/api/v2/catalog/categories/<slug>/seo`. | 60 (ok) | makeup, skincare, gifts, fragrance | `{"item_id":"P517483","title":"Pocket Blush Buildable Hydrating Cream Blush","url":"https://www.sephora.com/product/pocket-blush-P517483?s...` |
@@ -103,7 +103,7 @@ These are still being worked on and currently returned `0` items in recent smoke
 | [`dillards_listing`](#dillards_listing) | Experimental | bootstrap | Akamai | Dillard's listing spider via `window.__INITIAL_STATE__`. | 0 (ok) | women, men, shoes, handbags, beauty, juniors, home | `n/a` |
 | [`homedepot_listing`](#homedepot_listing-category-apollo-bootstrap) | Flaky | bootstrap + html | Akamai | Home Depot category listing via Apollo state. | 0 (ok) | screwdrivers, drills, paint, light-bulbs, lumber | `n/a` |
 | [`kohls_listing`](#kohls_listing) | Experimental | api | Akamai (Cloudflare challenge assets also observed) | Kohl’s listing via `/web/catalog/...` API. | 0 (ok) | women, men, sale | `n/a` |
-| [`nordstromrack_listing`](#nordstromrack_listing) | Experimental | playwright + html | PerimeterX / HUMAN | Nordstrom Rack listing spider via rendered category pages. | 0 (skipped2) | dresses, women, men, shoes | `{}` |
+| [`nordstromrack_listing`](#nordstromrack_listing) | Experimental | html | PerimeterX / HUMAN | Nordstrom Rack listing spider via direct category-page HTML. | 0 (skipped2) | dresses, women, men, shoes | `{}` |
 
 *`Number of items output` reflects recent local smoke runs (typically `max_pages=1`) and can vary by location, anti-bot behavior, and site changes.*
 Many listing spiders accept `-a category=<name>` shortcuts (in addition to `-a category_url=<url>`), including Amazon, Walmart, eBay, Home Depot, Best Buy, and Kroger. Costco listing uses category-only selection.
@@ -686,7 +686,7 @@ Validation notes (2026-02-25):
 
 ### nordstromrack_listing
 
-Playwright-rendered listing spider for Nordstrom Rack category pages.
+Direct-HTTP listing spider for Nordstrom Rack category pages.
 
 Run example:
 `common-scrapy crawl nordstromrack_listing -a category=dresses -a max_pages=1 -O nordstromrack_listing.jsonl`
@@ -707,9 +707,9 @@ Sample output:
 
 ### bestbuy_search / bestbuy_listing
 
-Best Buy pages currently use Apollo hydration (not `__NEXT_DATA__` on PLP/search). These spiders use Playwright to render the page, then extract normalized data from `ApolloClientSingleton.cache.extract()` (with inline bootstrap parsing fallback).
+Best Buy pages currently use Apollo hydration (not `__NEXT_DATA__` on PLP/search). These spiders extract normalized data from the Apollo bootstrap embedded in the direct HTTP response.
 
-If Best Buy serves a challenge/error variant, output may still be empty; Playwright materially improves reliability versus plain HTTP fetch.
+If Best Buy serves a challenge/error variant, output may be empty.
 
 Run examples:
 - `common-scrapy crawl bestbuy_search -a q='laptop' -a max_pages=1 -O bestbuy_search.jsonl`

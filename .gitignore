@@ -31,6 +31,7 @@ htmlcov/
 dist/
 common_scrapy.egg-info/
 .DS_Store
+build/
 
 *.har
 *.csv
