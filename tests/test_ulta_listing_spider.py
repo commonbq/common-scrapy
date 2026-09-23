@@ -181,6 +181,51 @@ class UltaListingSpiderTests(unittest.TestCase):
         self.assertEqual(fallback_request.url, "https://www.ulta.com/shop/makeup/all")
         self.assertEqual(fallback_request.callback.__name__, "parse_html_listing")
 
+    def test_parse_listing_rediscovery_when_next_page_content_id_missing(self):
+        spider = UltaListingSpider(category="makeup", max_pages=2)
+        request = Request(
+            url=spider.GRAPHQL_URL,
+            method="POST",
+            meta={
+                "page": 1,
+                "category_url": "https://www.ulta.com/shop/makeup/all",
+            },
+        )
+        response = self._json_response(
+            request,
+            {
+                "data": {
+                    "Page": {
+                        "content": {
+                            "items": [
+                                {
+                                    "productId": "prod-1",
+                                    "skuId": "sku-1",
+                                    "brandName": "Ulta Beauty Collection",
+                                    "productName": "Hydrating Foundation",
+                                    "action": {"url": "/p/hydrating-foundation?sku=sku-1"},
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+        )
+
+        outputs = list(spider.parse_listing(response))
+
+        self.assertEqual(len(outputs), 2)
+        rediscovery_request = outputs[1]
+        self.assertIsInstance(rediscovery_request, Request)
+        self.assertEqual(rediscovery_request.callback.__name__, "parse_page_definition")
+        self.assertEqual(rediscovery_request.meta["page"], 2)
+        payload = json.loads(rediscovery_request.body.decode("utf-8"))
+        self.assertEqual(payload["operationName"], "Page")
+        self.assertEqual(
+            payload["variables"]["url"]["path"],
+            "https://www.ulta.com/shop/makeup/all",
+        )
+
     def test_parse_listing_non_json_after_rediscovery_stops_retry_loop(self):
         spider = UltaListingSpider(category="makeup", max_pages=1)
         request = Request(

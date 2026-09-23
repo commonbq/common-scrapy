@@ -252,19 +252,33 @@ class UltaListingSpider(BaseListingSpider):
             return
 
         next_page = current_page + 1
+        content_id = response.meta.get("content_id")
         next_page_url = self._with_page(category_url, page=next_page)
+        if not content_id:
+            self.logger.warning(
+                "Missing contentId for category %s before requesting page %s",
+                self.category,
+                next_page,
+            )
+            yield self._build_page_request(
+                category_url,
+                meta={
+                    "page": next_page,
+                    "category_url": category_url,
+                    "rediscovery_attempted": True,
+                },
+            )
+            return
         yield scrapy.Request(
             self.GRAPHQL_URL,
             method="POST",
-            body=json.dumps(
-                self._build_payload(next_page_url, response.meta.get("content_id"))
-            ),
+            body=json.dumps(self._build_payload(next_page_url, content_id)),
             callback=self.parse_listing,
             headers=self._headers(operation="NonCachedPage", referer=next_page_url),
             meta={
                 "page": next_page,
                 "category_url": category_url,
-                "content_id": response.meta.get("content_id"),
+                "content_id": content_id,
                 "rediscovery_attempted": False,
             },
         )
