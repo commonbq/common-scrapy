@@ -61,7 +61,7 @@ Working spiders running daily in production:
 | [`macys_listing`](#macys_listing) | Active | api | Akamai | Macy’s listing via xapi endpoint (with fallback routing). | 60 (ok) | laptops, shoes, dresses, fragrance, bedding | `{"item_id":"17595303","title":"5Core AC Power Cord 6Ft 3 Prong US Male to Female Extension Adapter 18AWG 10A 7A 125V","brand":"5 Core","u...` |
 | [`nordstrom_listing`](#nordstrom_listing) | Active | bootstrap + html | PerimeterX / HUMAN | Nordstrom listing parser; often blocked/changed. | 0 (timeout2) | women, men, kids, beauty, home, designer, sale | `{}` |
 | [`sephora_listing`](#sephora_listing) | Active | api | Akamai | Sephora listing via `/api/v2/catalog/categories/<slug>/seo`. | 60 (ok) | makeup, skincare, gifts, fragrance | `{"item_id":"P517483","title":"Pocket Blush Buildable Hydrating Cream Blush","url":"https://www.sephora.com/product/pocket-blush-P517483?s...` |
-| [`ulta_listing`](#ulta_listing-category) | Active | api + html | Akamai | Ulta category listing (GraphQL default, HTML fallback mode). | 0 (ok) | shampoo, conditioner, cleanser, mascara, moisturizer | `n/a` |
+| [`ulta_listing`](#ulta_listing-category) | Active | api + html | Akamai | Ulta category listing (GraphQL module discovery + HTML fallback). | 0 (403 off-US) | makeup, skin-care, hair-care, fragrance, body-care | `{"category":"makeup","item_id":"prod-1","sku_id":"sku-1","brand":"...","source":"ulta_dxl_graphql"...}` |
 | [`ulta_search`](#ulta_search-keyword) | Active | api + html | Akamai | Ulta keyword search via GraphQL (with unsorted retry + HTML fallback). | 64 (ok) | - | `{"item_id":"xlsImpprod15511061","title":"All Soft Shampoo","source":"ulta_dxl_graphql"...}` |
 | [`walmart_listing`](#walmart_listing-category) | Active | api + html | Akamai (+ PerimeterX/HUMAN signals) | Walmart category listing spider (direct API+HTML flow). | 45 (ok) | electronics, home, clothing, beauty, toys, sports-and-outdoors, grocery | `{"productId":"19231301884","usItemId":"19231301884","title":"No Boundaries Women's Faux Leather Loafers","brand":"No Boundaries"...` |
 | [`walmart_search`](#walmart_search-keyword) | Active | api + html | Akamai (+ PerimeterX/HUMAN signals) | Walmart keyword search spider. | 12 (ok) | - | `{"item_id":"13542163431","title":"ASUS Vivobook Go 15.6” Laptop, Intel i3-N305, 8GB, 256GB, Windows 11 Home in S mode, Cool Silver, E1504...` |
@@ -364,30 +364,34 @@ Notes:
 ### ulta_listing (category)
 ```json
 {
-  "item_id": "2565096",
-  "sku_id": "2565096",
-  "brand": null,
-  "title": "3 sizes Hydrate Shampoo for Dry Hair $12.00 - $90.00 Add to bag",
-  "list_price": "$12.00 - $90.00",
-  "sale_price": null,
-  "url": "https://www.ulta.com/p/hydrate-shampoo-dry-hair-pimprod2017791?sku=2565096",
-  "image_url": "https://media.ultainc.com/i/ulta/2565096?w=200&$ProductCardNeutralBGLight$&h=200&fmt=auto",
-  "source": "ulta_direct_html",
-  "mode": "category_html"
+  "category": "makeup",
+  "item_id": "prod-1",
+  "sku_id": "sku-1",
+  "brand": "Ulta Beauty Collection",
+  "title": "Hydrating Foundation",
+  "url": "https://www.ulta.com/p/hydrating-foundation?sku=sku-1",
+  "image_url": "https://images.example/sku-1.jpg",
+  "list_price": "$20.00",
+  "sale_price": "$15.00",
+  "rating": 4.5,
+  "reviews_count": 123,
+  "is_sponsored": false,
+  "source": "ulta_dxl_graphql",
+  "mode": "category"
 }
 ```
 
 Run examples:
 - GraphQL mode (default):
-  `common-scrapy crawl ulta_listing -a category='shampoo' -a max_pages=1 -O ulta.jsonl`
+  `common-scrapy crawl ulta_listing -a category='makeup' -a max_pages=1 -O ulta.jsonl`
 - HTML mode:
-  `common-scrapy crawl ulta_listing -a category='shampoo' -a mode=html -a max_pages=1 -O ulta_html.jsonl`
+  `common-scrapy crawl ulta_listing -a category='makeup' -a mode=html -a max_pages=1 -O ulta_html.jsonl`
 
 Notes:
-- GraphQL mode now retries once without `sort` when Ulta blocks sorted requests (e.g. `sort=new`, `sort=price_low`) before falling back to HTML.
+- GraphQL mode first runs the `Page` query, extracts the live `ProductListingResults` module ID, then calls `NonCachedPage` with that discovered `contentId`.
+- If the first GraphQL listing response is blocked, non-JSON, or empty, the spider performs one bounded rediscovery before falling back to HTML.
 - `mode=html` is a fallback parser from rendered product cards and is useful when GraphQL responses are unstable.
-- HTML mode typically returns URL/title/image/price text first; GraphQL mode gives richer normalized fields (brand/rating/reviews/sponsored).
-- Validation (2026-03-01): GraphQL mode returned `64` items across NordVPN US cities (Dallas, Atlanta, Chicago) for `q=shampoo`, `max_pages=1`; with NordVPN disconnected Ulta returned `403` and `0` items (including HTML fallback).
+- Validation (2026-09-23): off-US local egress returned `403` and `0` items before application GraphQL completed; the spider now avoids hard-coded `contentId` values and should return non-zero items with valid US egress.
 
 ### ulta_search (keyword)
 
