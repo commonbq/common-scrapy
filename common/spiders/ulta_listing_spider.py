@@ -308,14 +308,12 @@ class UltaListingSpider(BaseListingSpider):
                     './/img/@data-src'
                 ).get()
 
-            prices = re.findall(
-                r"\$\d+(?:\.\d{2})?(?:\s*-\s*\$\d+(?:\.\d{2})?)?", title
-            )
-            list_price = prices[0] if prices else None
+            price_values = re.findall(r"\$\d+(?:\.\d{2})?", title)
+            list_price = price_values[0] if price_values else None
             sale_price = None
-            if len(prices) > 1:
-                sale_price = prices[0]
-                list_price = prices[1]
+            if len(price_values) > 1:
+                sale_price = price_values[0]
+                list_price = price_values[1]
 
             sku_match = re.search(r"[?&]sku=(\d+)", url)
             sku_id = sku_match.group(1) if sku_match else None

@@ -268,6 +268,35 @@ class UltaListingSpiderTests(unittest.TestCase):
 
         self.assertEqual(outputs, [])
 
+    def test_parse_html_listing_splits_price_ranges(self):
+        spider = UltaListingSpider(category="makeup", max_pages=1)
+        html = """
+        <html><body>
+          <article>
+            <a href="/p/hydrate-shampoo?sku=2565096">
+              <img src="https://images.example/2565096.jpg" />
+              <span>Hydrate Shampoo $12.00 - $90.00</span>
+            </a>
+          </article>
+        </body></html>
+        """
+        request = Request(
+            url="https://www.ulta.com/shop/makeup/all",
+            meta={"page": 1, "category_url": "https://www.ulta.com/shop/makeup/all"},
+        )
+        response = TextResponse(
+            url=request.url,
+            body=html.encode("utf-8"),
+            encoding="utf-8",
+            request=request,
+        )
+
+        outputs = list(spider.parse_html_listing(response))
+
+        self.assertEqual(len(outputs), 1)
+        self.assertEqual(outputs[0]["sale_price"], "$12.00")
+        self.assertEqual(outputs[0]["list_price"], "$90.00")
+
 
 if __name__ == "__main__":
     unittest.main()
