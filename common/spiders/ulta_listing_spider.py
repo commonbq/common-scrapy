@@ -211,10 +211,7 @@ class UltaListingSpider(BaseListingSpider):
         items = [item for item in items if isinstance(item, dict)]
         page = response.meta["page"]
         if not items:
-            if page == 1 and not response.meta.get("rediscovered"):
-                yield self._graphql_request({**response.meta, "rediscovered": True})
-            else:
-                self.logger.info("Ulta listing exhausted (page=%s)", page)
+            self.logger.info("Ulta listing exhausted (page=%s)", page)
             return
         yielded = False
         for item in items:
