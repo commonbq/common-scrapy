@@ -295,8 +295,8 @@ class UltaListingSpiderTests(unittest.TestCase):
         outputs = list(spider.parse_html_listing(response))
 
         self.assertEqual(len(outputs), 1)
-        self.assertEqual(outputs[0]["sale_price"], "$12.00")
-        self.assertEqual(outputs[0]["list_price"], "$90.00")
+        self.assertIsNone(outputs[0]["sale_price"])
+        self.assertEqual(outputs[0]["list_price"], "$12.00")
 
 
 if __name__ == "__main__":

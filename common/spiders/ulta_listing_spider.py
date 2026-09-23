@@ -79,13 +79,13 @@ class UltaListingSpider(BaseListingSpider):
         self._html_fallback_started = False
 
     def start_requests(self):
-        category_url = self._with_page(self.resolve_target_url(), page=1)
+        category_url = self._without_page(self.resolve_target_url())
         mode = (getattr(self, "mode", None) or "graphql").strip().lower()
 
         if mode == "html":
             self._html_fallback_started = True
             yield scrapy.Request(
-                category_url,
+                self._with_page(category_url, page=1),
                 callback=self.parse_html_listing,
                 meta={"page": 1, "category_url": category_url, "mode": "html"},
                 dont_filter=True,
@@ -105,6 +105,7 @@ class UltaListingSpider(BaseListingSpider):
     def _build_page_request(
         self, category_url: str, meta: dict | None = None
     ) -> scrapy.Request:
+        category_url = self._without_page(category_url)
         page = int((meta or {}).get("page", 1))
         page_url = self._with_page(category_url, page=page)
         payload = {
@@ -172,7 +173,9 @@ class UltaListingSpider(BaseListingSpider):
             yield from self._schedule_html_fallback(response)
             return
 
-        category_url = response.meta.get("category_url") or self.resolve_target_url()
+        category_url = self._without_page(
+            response.meta.get("category_url") or self.resolve_target_url()
+        )
         page = int(response.meta.get("page", 1))
         page_url = self._with_page(category_url, page=page)
         yield scrapy.Request(
@@ -226,7 +229,9 @@ class UltaListingSpider(BaseListingSpider):
                 yield from self._schedule_html_fallback(response)
             return
 
-        category_url = response.meta.get("category_url") or self.resolve_target_url()
+        category_url = self._without_page(
+            response.meta.get("category_url") or self.resolve_target_url()
+        )
 
         for item in items:
             action = item.get("action") or {}
@@ -313,9 +318,6 @@ class UltaListingSpider(BaseListingSpider):
             price_values = re.findall(r"\$\d+(?:\.\d{2})?", title)
             list_price = price_values[0] if price_values else None
             sale_price = None
-            if len(price_values) > 1:
-                sale_price = price_values[0]
-                list_price = price_values[1]
 
             sku_match = re.search(r"[?&]sku=(\d+)", url)
             sku_id = sku_match.group(1) if sku_match else None
@@ -367,7 +369,9 @@ class UltaListingSpider(BaseListingSpider):
             return None
         if response.meta.get("rediscovery_attempted"):
             return None
-        category_url = response.meta.get("category_url") or self.resolve_target_url()
+        category_url = self._without_page(
+            response.meta.get("category_url") or self.resolve_target_url()
+        )
         if reason:
             self.logger.info("Ulta listing %s; rediscovering contentId", reason)
         return self._build_page_request(
@@ -383,14 +387,13 @@ class UltaListingSpider(BaseListingSpider):
         if self._html_fallback_started:
             return []
         self._html_fallback_started = True
-        category_url = self._with_page(
-            response.meta.get("category_url") or self.resolve_target_url(),
-            page=1,
+        category_url = self._without_page(
+            response.meta.get("category_url") or self.resolve_target_url()
         )
         self.logger.info("Falling back to Ulta listing HTML parser")
         return [
             scrapy.Request(
-                category_url,
+                self._with_page(category_url, page=1),
                 callback=self.parse_html_listing,
                 meta={"page": 1, "category_url": category_url, "mode": "html"},
                 dont_filter=True,
@@ -435,6 +438,15 @@ class UltaListingSpider(BaseListingSpider):
             if isinstance(image, str):
                 return image
         return None
+
+    @staticmethod
+    def _without_page(url: str) -> str:
+        parts = urlparse(url)
+        qs = parse_qs(parts.query)
+        if "page" not in qs:
+            return url
+        qs.pop("page", None)
+        return urlunparse(parts._replace(query=urlencode(qs, doseq=True)))
 
     @staticmethod
     def _to_float(value):
