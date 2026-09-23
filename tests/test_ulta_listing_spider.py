@@ -251,6 +251,23 @@ class UltaListingSpiderTests(unittest.TestCase):
         fallback_request = outputs[0]
         self.assertEqual(fallback_request.callback.__name__, "parse_html_listing")
 
+    def test_parse_html_listing_stops_when_no_cards_found(self):
+        spider = UltaListingSpider(category="makeup", max_pages=2)
+        request = Request(
+            url="https://www.ulta.com/shop/makeup/all",
+            meta={"page": 1, "category_url": "https://www.ulta.com/shop/makeup/all"},
+        )
+        response = TextResponse(
+            url=request.url,
+            body=b"<html><body><div>No products</div></body></html>",
+            encoding="utf-8",
+            request=request,
+        )
+
+        outputs = list(spider.parse_html_listing(response))
+
+        self.assertEqual(outputs, [])
+
 
 if __name__ == "__main__":
     unittest.main()

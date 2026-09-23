@@ -346,6 +346,7 @@ class UltaListingSpider(BaseListingSpider):
                 self.category,
                 response.status,
             )
+            return
 
         if page >= self.max_pages:
             return
