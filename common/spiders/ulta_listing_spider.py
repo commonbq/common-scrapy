@@ -267,7 +267,7 @@ class UltaListingSpider(BaseListingSpider):
                 meta={
                     "page": next_page,
                     "category_url": category_url,
-                    "rediscovery_attempted": True,
+                    "rediscovery_attempted": False,
                 },
             )
             return

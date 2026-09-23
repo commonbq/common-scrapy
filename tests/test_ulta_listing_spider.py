@@ -219,6 +219,7 @@ class UltaListingSpiderTests(unittest.TestCase):
         self.assertIsInstance(rediscovery_request, Request)
         self.assertEqual(rediscovery_request.callback.__name__, "parse_page_definition")
         self.assertEqual(rediscovery_request.meta["page"], 2)
+        self.assertEqual(rediscovery_request.meta["rediscovery_attempted"], False)
         payload = json.loads(rediscovery_request.body.decode("utf-8"))
         self.assertEqual(payload["operationName"], "Page")
         self.assertEqual(
