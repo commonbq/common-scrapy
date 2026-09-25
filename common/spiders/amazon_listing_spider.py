@@ -99,23 +99,26 @@ class AmazonListingSpider(BaseListingSpider):
         category = response.meta.get("category")
         current_page = int(response.meta.get("page", 1))
         if current_page == 1:
-            sub_categories = response.css(
-                "#s-refinements ul[aria-labelledby='n-title'] a.a-link-normal"
+            sub_categories = response.xpath(
+                '//*[normalize-space()="Shop by category"]'
+                '/ancestor::div[contains(concat(" ", normalize-space(@class), " "), '
+                '" dcl-container-inner ")][1]'
+                '//li[contains(concat(" ", normalize-space(@class), " "), '
+                '" dcl-carousel-element ")]//a[contains(@href, "/b?") '
+                'and contains(@href, "node=")]'
             )
-            if not sub_categories:
-                section_header = response.xpath('//span[text()="Shop by category"]')
-                if section_header:
-                    section_header = section_header[0]
-                    parent = section_header.xpath("./../../../../..")
-                    sub_categories = parent.css(
-                        ".dcl-carousel .a-carousel-card a.a-link-normal"
-                    )
 
-            for sub_category in sub_categories:
+            for sub_category_link in sub_categories:
+                href = sub_category_link.attrib.get("href")
+                sub_category = sub_category_link.xpath(
+                    'normalize-space(.//div[contains(concat(" ", '
+                    'normalize-space(@class), " "), " dcl-card-footer ")])'
+                ).get()
+                if not href or not sub_category:
+                    continue
                 sub_category_url = response.urljoin(
-                    sub_category.css("::attr(href)").get()
+                    href
                 )
-                sub_category = sub_category.css("span::text").get()
                 yield scrapy.Request(
                     sub_category_url,
                     callback=self.parse,
@@ -211,7 +214,11 @@ class AmazonListingSpider(BaseListingSpider):
             yield response.follow(
                 next_href,
                 callback=self.parse,
-                meta={"page": current_page + 1},
+                meta={
+                    "page": current_page + 1,
+                    "category": category,
+                    "sub_category": response.meta.get("sub_category"),
+                },
             )
             return
 
@@ -219,7 +226,11 @@ class AmazonListingSpider(BaseListingSpider):
         yield scrapy.Request(
             next_url,
             callback=self.parse,
-            meta={"page": current_page + 1},
+            meta={
+                "page": current_page + 1,
+                "category": category,
+                "sub_category": response.meta.get("sub_category"),
+            },
         )
 
     @staticmethod
