@@ -45,7 +45,7 @@ class AmazonListingSpider(BaseListingSpider):
             "url": "https://www.amazon.com/b?node=3760911",
         },
         {
-            "category": "Clothing, Shoes & Jewelry",
+            "category": "Clothing Shoes & Jewelry",
             "category_id": "7141123011",
             "url": "https://www.amazon.com/b?node=7141123011",
         },

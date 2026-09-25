@@ -53,7 +53,7 @@ EBAY_CATEGORIES = {
     "Wedding Supplies": "https://www.ebay.com/b/Wedding-Supplies/11827/bn_1309133",
     "Kitchen Fixtures": "https://www.ebay.com/b/Kitchen-Fixtures/177073/bn_7117210204"
   },
-  "Clothing, Shoes & Accessories": {
+  "Clothing Shoes & Accessories": {
     "Women": "https://www.ebay.com/b/Womens-Clothing-Shoes-Accessories/260010/bn_7116391826",
     "Men": "https://www.ebay.com/b/Mens-Clothing-Shoes-Accessories/260012/bn_7116419459",
     "Kids": "https://www.ebay.com/b/Kids-Clothing-Shoes-Accessories/171146/bn_1642843",
@@ -99,7 +99,7 @@ EBAY_CATEGORIES = {
     "Other Sporting Goods": "https://www.ebay.com/b/Other-Sporting-Goods/310/bn_1865322",
     "Wholesale Lots": "https://www.ebay.com/b/Sporting-Goods-Wholesale-Lots/40146/bn_1865395"
   },
-  "Books, Movies & Music": {
+  "Books Movies & Music": {
     "Musical Instruments & Gear": "https://www.ebay.com/b/Musical-Instruments-Gear/619/bn_1865601",
     "Books & Magazines": "https://www.ebay.com/b/Books-Magazines/267/bn_1854946",
     "Music": "https://www.ebay.com/b/Music/11233/bn_1861335",
