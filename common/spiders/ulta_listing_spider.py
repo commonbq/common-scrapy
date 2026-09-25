@@ -6,14 +6,14 @@ from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
-from common.utils import dict_get
+from common.spiders.ulta_search_spider import UltaSearchSpider
 
 
 class UltaListingSpider(BaseListingSpider):
     """Ulta category listing spider.
 
     Examples:
-    - scrapy crawl ulta_listing -a category='shampoo' -a max_pages=1
+    - scrapy crawl ulta_listing -a category='makeup' -a max_pages=1
     """
 
     name = "ulta_listing"
@@ -57,122 +57,185 @@ class UltaListingSpider(BaseListingSpider):
         ],
     }
 
-    categories = [
-        {
-            "category": "makeup",
-            "url": "https://www.ulta.com/shop/makeup/all",
-        },
-        {
-            "category": "skin-care",
-            "url": "https://www.ulta.com/shop/skin-care/all",
-        },
-        {
-            "category": "hair-care",
-            "url": "https://www.ulta.com/shop/hair/all",
-        },
-        {
-            "category": "fragrance",
-            "url": "https://www.ulta.com/shop/fragrance/all",
-        },
-        {
-            "category": "body-care",
-            "url": "https://www.ulta.com/shop/body-care/all",
-        },
-    ]
-
-    module_params = {
-        "gti": "761dff0b-9c5c-411d-b508-3ee9f646e7cb",
-        "loginStatus": "anonymous",
-        "retailerVisitorId": "bff8c299-5cd1-4012-ae07-2c4ce39c6e45",
-        "breakpoint": "XL",
+    categories = {
+        "makeup": "https://www.ulta.com/shop/makeup/all",
+        "skin-care": "https://www.ulta.com/shop/skin-care/all",
+        "hair-care": "https://www.ulta.com/shop/hair/all",
+        "fragrance": "https://www.ulta.com/shop/fragrance/all",
+        "body-care": "https://www.ulta.com/shop/body-care/all",
     }
-    CONTENT_ID = "cb7c0efb-8772-4abc-9be0-4dfaf1b625ee"
+
+    def available_categories(self) -> list[str]:
+        return sorted(self.categories)
+
+    def resolve_target_url(self) -> str:
+        if self.url or self.category_url:
+            return self.url or self.category_url
+        if self.category in self.categories:
+            return self.categories[self.category]
+        available = ", ".join(self.available_categories())
+        raise ValueError(
+            f"Unknown category '{self.category}'. Available categories: {available}"
+        )
+
     GRAPHQL_URL = "https://www.ulta.com/dxl/graphql?ultasite=en-us"
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._seen_products = set()
+
+    async def start(self):
+        for request in self.start_requests():
+            yield request
+
     def start_requests(self):
-        category_url = self.resolve_target_url()
-        category_url = self._with_page(category_url, page=1)
-        payload = self._build_payload(category_url)
-        yield scrapy.Request(
-            self.GRAPHQL_URL,
-            method="POST",
-            body=json.dumps(payload),
-            callback=self.parse_listing,
-            headers=self._headers(operation="NonCachedPage", referer=category_url),
-            meta={
-                "page": 1,
-                "category_url": category_url,
-            },
-        )
+        meta = {
+            "page": 1,
+            "category_url": self._with_page(self.resolve_target_url(), 1),
+        }
+        yield self._graphql_request(meta)
 
     @staticmethod
     def _with_page(url: str, page: int) -> str:
         parts = urlparse(url)
-        qs = parse_qs(parts.query)
+        qs = parse_qs(parts.query, keep_blank_values=True)
+        qs.pop("page", None)
         if page > 1:
             qs["page"] = [str(page)]
         return urlunparse(parts._replace(query=urlencode(qs, doseq=True)))
 
-    def _build_payload(self, path: str) -> str:
-        query = (
-            "query NonCachedPage($stagingHost: String, $previewOptions: JSON, $moduleParams: JSON) "
-            "{ Page: NonCachedPage(stagingHost:$stagingHost, previewOptions:$previewOptions, "
-            'moduleParams:$moduleParams, url: {path: "'
-            + path
-            + '"}, contentId: "'
-            + self.CONTENT_ID
-            + '") { content customResponseAttributes meta __typename } }'
-        )
-        variables = {"moduleParams": self.module_params}
-        return {
-            "query": query,
-            "variables": variables,
-            "operationName": "NonCachedPage",
+    def _graphql_request(self, meta, content_id=None):
+        # Carry crawl state only. HttpProxyMiddleware strips credentials from
+        # meta["proxy"]; copying that URL to a new request loses authentication.
+        # Let the project middleware apply the configured proxy afresh.
+        meta = {
+            key: value
+            for key, value in meta.items()
+            if key
+            in {"page", "category_url", "cookiejar", "content_id", "rediscovered"}
         }
-
-    def parse_listing(self, response: scrapy.http.Response):
-        payload = response.json()
-        items = dict_get(payload, "data.Page.content.items") or []
-
-        current_page = int(response.meta.get("page", 1))
-        if not items and current_page == 1:
-            self.logger.warning(
-                "No items found for category %s on page %s",
-                self.category,
-                response.meta.get("page"),
-            )
-            yield response.request.replace(dont_filter=True)
-            return
-
-        for item in items:
-            yield {
-                **item,
-                "category": self.category,
+        meta["dont_retry"] = True
+        meta["dont_cache"] = True
+        path = meta["category_url"]
+        if content_id:
+            meta["content_id"] = content_id
+            payload = self._build_payload(path, content_id)
+            callback = self.parse_listing
+        else:
+            meta.pop("content_id", None)
+            payload = {
+                "query": UltaSearchSpider._page_query(),
+                "variables": {"moduleParams": {}, "url": {"path": path}},
+                "operationName": "Page",
             }
-
-        if current_page >= self.max_pages or not items:
-            return
-
-        next_page = current_page + 1
-        category_url = self._with_page(
-            response.meta.get("category_url") or self.resolve_target_url(),
-            page=next_page,
-        )
-        payload = self._build_payload(category_url)
-        yield scrapy.Request(
+            callback = self.parse_page_definition
+        return scrapy.Request(
             self.GRAPHQL_URL,
             method="POST",
             body=json.dumps(payload),
-            callback=self.parse_listing,
-            headers=self._headers(operation="NonCachedPage", referer=category_url),
-            meta=(
-                {
-                    "page": next_page,
-                    "category_url": category_url,
-                    "cookiejar": response.meta.get("cookiejar"),
-                }
-            ),
+            headers=self._headers(payload["operationName"], path),
+            callback=callback,
+            errback=self._request_failed,
+            meta=meta,
+            dont_filter=bool(meta.get("rediscovered")),
         )
+
+    def _build_payload(self, path: str, content_id: str) -> dict:
+        query = (
+            "query NonCachedPage($stagingHost: String, $previewOptions: JSON, $moduleParams: JSON) "
+            "{ Page: NonCachedPage(stagingHost:$stagingHost, previewOptions:$previewOptions, "
+            "moduleParams:$moduleParams, url: {path: "
+            + json.dumps(path)
+            + "}, contentId: "
+            + json.dumps(content_id)
+            + ") { content customResponseAttributes meta __typename } }"
+        )
+        return {
+            "query": query,
+            "variables": {
+                "moduleParams": {"breakpoint": "XL", "loginStatus": "anonymous"}
+            },
+            "operationName": "NonCachedPage",
+        }
+
+    @staticmethod
+    def _content(response):
+        if response.status != 200:
+            return None
+        try:
+            payload = json.loads(response.text)
+            if payload.get("errors"):
+                return None
+            content = payload["data"]["Page"]["content"]
+            return content if isinstance(content, dict) else None
+        except (ValueError, KeyError, TypeError, AttributeError):
+            return None
+
+    @classmethod
+    def _find_module(cls, node):
+        if isinstance(node, dict):
+            if (
+                node.get("type") == "ProductListingResults"
+                and isinstance(node.get("id"), str)
+                and node["id"]
+            ):
+                return node["id"]
+            children = node.values()
+        elif isinstance(node, list):
+            children = node
+        else:
+            return None
+        for child in children:
+            content_id = cls._find_module(child)
+            if content_id:
+                return content_id
+        return None
+
+    def parse_page_definition(self, response):
+        content_id = self._find_module(self._content(response))
+        if not content_id:
+            self.logger.warning(
+                "Ulta module discovery failed (status=%s)", response.status
+            )
+            return
+        yield self._graphql_request(response.meta, content_id)
+
+    def parse_listing(self, response):
+        content = self._content(response)
+        items = content.get("items") if content is not None else None
+        if not isinstance(items, list):
+            self.logger.warning(
+                "Ulta listing response invalid (status=%s)", response.status
+            )
+            return
+        items = [item for item in items if isinstance(item, dict)]
+        page = response.meta["page"]
+        if not items:
+            self.logger.info("Ulta listing exhausted (page=%s)", page)
+            return
+        yielded = False
+        for item in items:
+            action = item.get("action") or {}
+            url = action.get("url") if isinstance(action, dict) else None
+            key = item.get("skuId") or item.get("productId") or url
+            if key and key in self._seen_products:
+                continue
+            if key:
+                self._seen_products.add(key)
+            yielded = True
+            yield {**item, "category": self.category}
+        if yielded and page < self.max_pages:
+            meta = {
+                **response.meta,
+                "page": page + 1,
+                "category_url": self._with_page(
+                    response.meta["category_url"], page + 1
+                ),
+            }
+            yield self._graphql_request(meta, response.meta["content_id"])
+
+    def _request_failed(self, failure):
+        self.logger.warning("Ulta request failed: %s", failure.type.__name__)
 
     def _headers(
         self, operation: str | None = None, referer: str | None = None

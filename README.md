@@ -61,7 +61,7 @@ Working spiders running daily in production:
 | [`macys_listing`](#macys_listing) | Active | api | Akamai | Macy’s listing via xapi endpoint (with fallback routing). | 60 (ok) | laptops, shoes, dresses, fragrance, bedding | `{"item_id":"17595303","title":"5Core AC Power Cord 6Ft 3 Prong US Male to Female Extension Adapter 18AWG 10A 7A 125V","brand":"5 Core","u...` |
 | [`nordstrom_listing`](#nordstrom_listing) | Active | bootstrap + html | PerimeterX / HUMAN | Nordstrom listing parser; often blocked/changed. | 0 (timeout2) | women, men, kids, beauty, home, designer, sale | `{}` |
 | [`sephora_listing`](#sephora_listing) | Active | api | Akamai | Sephora listing via `/api/v2/catalog/categories/<slug>/seo`. | 60 (ok) | makeup, skincare, gifts, fragrance | `{"item_id":"P517483","title":"Pocket Blush Buildable Hydrating Cream Blush","url":"https://www.sephora.com/product/pocket-blush-P517483?s...` |
-| [`ulta_listing`](#ulta_listing-category) | Active | api + html | Akamai | Ulta category listing (GraphQL default, HTML fallback mode). | 0 (ok) | shampoo, conditioner, cleanser, mascara, moisturizer | `n/a` |
+| [`ulta_listing`](#ulta_listing-category) | Active | api | Akamai | Ulta category listing with dynamic GraphQL module discovery. | 152 (2 pages, proxy) | makeup, skin-care, hair-care, fragrance, body-care | `n/a` |
 | [`ulta_search`](#ulta_search-keyword) | Active | api + html | Akamai | Ulta keyword search via GraphQL (with unsorted retry + HTML fallback). | 64 (ok) | - | `{"item_id":"xlsImpprod15511061","title":"All Soft Shampoo","source":"ulta_dxl_graphql"...}` |
 | [`walmart_listing`](#walmart_listing-category) | Active | api + html | Akamai (+ PerimeterX/HUMAN signals) | Walmart category listing spider (direct API+HTML flow). | 45 (ok) | electronics, home, clothing, beauty, toys, sports-and-outdoors, grocery | `{"productId":"19231301884","usItemId":"19231301884","title":"No Boundaries Women's Faux Leather Loafers","brand":"No Boundaries"...` |
 | [`walmart_search`](#walmart_search-keyword) | Active | api + html | Akamai (+ PerimeterX/HUMAN signals) | Walmart keyword search spider. | 12 (ok) | - | `{"item_id":"13542163431","title":"ASUS Vivobook Go 15.6” Laptop, Intel i3-N305, 8GB, 256GB, Windows 11 Home in S mode, Cool Silver, E1504...` |
@@ -362,32 +362,57 @@ Notes:
 ```
 
 ### ulta_listing (category)
+
+GraphQL-only listing: discover the current `ProductListingResults` module with
+`Page`, then request its cards with `NonCachedPage`. No fixed content or visitor
+IDs are required. Product requests supply the desktop breakpoint (`XL`) and
+anonymous login status. Requests use JSON POST and retain the module ID while paginating
+with `page=N`. An empty first page triggers one rediscovery attempt; blocked,
+invalid, exhausted, or repeated results terminate without HTML fallback.
+
+```sh
+common-scrapy crawl ulta_listing -a category=makeup -a max_pages=2 -O ulta.jsonl
+```
+
+Categories are a name-to-URL dictionary: `makeup`, `skin-care`, `hair-care`,
+`fragrance`, `body-care`.
+Use `-a url='https://www.ulta.com/shop/makeup/eyes/mascara'` with a category
+label to override the route.
+
+The item schema and export columns remain unchanged: original Ulta card fields
+plus `category`. Illustrative exported card (abbreviated):
+
 ```json
 {
-  "item_id": "2565096",
-  "sku_id": "2565096",
-  "brand": null,
-  "title": "3 sizes Hydrate Shampoo for Dry Hair $12.00 - $90.00 Add to bag",
-  "list_price": "$12.00 - $90.00",
-  "sale_price": null,
-  "url": "https://www.ulta.com/p/hydrate-shampoo-dry-hair-pimprod2017791?sku=2565096",
-  "image_url": "https://media.ultainc.com/i/ulta/2565096?w=200&$ProductCardNeutralBGLight$&h=200&fmt=auto",
-  "source": "ulta_direct_html",
-  "mode": "category_html"
+  "category": "makeup",
+  "productId": "pimprod1",
+  "skuId": "123",
+  "brandName": "Brand",
+  "productName": "Mascara",
+  "action": {"url": "/p/mascara-pimprod1?sku=123"},
+  "image": {"imageUrl": "https://media.ultainc.com/i/ulta/123"},
+  "listPrice": "$20",
+  "salePrice": "$15",
+  "rating": "4.5",
+  "reviewCount": "1,234",
+  "sponsored": false
 }
 ```
 
-Run examples:
-- GraphQL mode (default):
-  `common-scrapy crawl ulta_listing -a category='shampoo' -a max_pages=1 -O ulta.jsonl`
-- HTML mode:
-  `common-scrapy crawl ulta_listing -a category='shampoo' -a mode=html -a max_pages=1 -O ulta_html.jsonl`
+Validation (2026-09-23): terminal crawl with `category=makeup`, `max_pages=2`
+returned **152 product records with 152 distinct SKUs** through the configured
+proxy. All 3 requests (discovery plus 2 product pages) returned HTTP 200, and the
+spider finished normally. Direct egress returned HTTP 403. All 10 Ulta regression
+tests pass, including authenticated proxy handoff, unchanged item schema,
+discovery, pagination, bounded rediscovery, and error termination.
 
-Notes:
-- GraphQL mode now retries once without `sort` when Ulta blocks sorted requests (e.g. `sort=new`, `sort=price_low`) before falling back to HTML.
-- `mode=html` is a fallback parser from rendered product cards and is useful when GraphQL responses are unstable.
-- HTML mode typically returns URL/title/image/price text first; GraphQL mode gives richer normalized fields (brand/rating/reviews/sponsored).
-- Validation (2026-03-01): GraphQL mode returned `64` items across NordVPN US cities (Dallas, Atlanta, Chicago) for `q=shampoo`, `max_pages=1`; with NordVPN disconnected Ulta returned `403` and `0` items (including HTML fallback).
+Validation command (disable the development item cap to verify both pages):
+
+```sh
+pipenv run scrapy crawl ulta_listing -a category=makeup -a max_pages=2 -s HTTPCACHE_ENABLED=False -s CLOSESPIDER_ITEMCOUNT=0 -O /tmp/ulta-issue60-verified.jsonl
+```
+
+Run regression tests: `python -m unittest discover -s tests -p 'test_ulta*' -v`.
 
 ### ulta_search (keyword)
 
