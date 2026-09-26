@@ -45,6 +45,8 @@ _ROOT_CATEGORY_TITLES = {
     "health-personal-care": "Health & Personal Care",
 }
 
+DEFAULT_WAREHOUSE_NUMBER = "847"
+
 
 def _sample_path(name: str) -> Path:
     return Path(__file__).resolve().parents[2] / "sample" / name
@@ -343,7 +345,9 @@ class CostcoListingSpider(BaseListingSpider):
             r'"productApiWarehouseNumber":"(?P<warehouse>\d+)"', "\n".join(rows)
         )
         warehouse_number = (
-            warehouse_match.group("warehouse") if warehouse_match else "847"
+            warehouse_match.group("warehouse")
+            if warehouse_match
+            else DEFAULT_WAREHOUSE_NUMBER
         )
         return {
             "category_id": category_id,
@@ -506,7 +510,10 @@ class CostcoListingSpider(BaseListingSpider):
             return None
 
         current_price = self._first_float(
-            rollups.get("price") or rollups.get("inventory(847-wh, price)")
+            rollups.get("price")
+            or rollups.get(
+                f"inventory({DEFAULT_WAREHOUSE_NUMBER}-wh, price)"
+            )
         )
         original_price = self._first_float(rollups.get("originalPrice"))
         brand = product.get("brand")
