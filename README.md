@@ -73,7 +73,7 @@ Spiders below are returning items in recent smoke runs:
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
 | [`ae_listing`](#ae_listing) | Experimental | html | Akamai (signals in headers) | American Eagle listing spider via category-page product cards. | 30 (ok) | women-tops, women-jeans, men-tops | `{"item_id":"1457_2980_808","title":null,"url":"https://www.ae.com/us/en/p/women/hoodies-sweatshirts/crew-neck-sweatshirts/ae-big-hug-v-neck-sweatshirt/1457_2980_808","price":nul...` |
-| [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | html + nuxt-state | Akamai | Bloomingdale's listing spider via direct HTML/state extraction (resilient parser). | 8 (ok) | women, men, shoes, beauty, home | `{"item_id":"5973765","title":"Tumbled Woven Verne Pants","url":"https://www.bloomingdales.com/shop/product/cinq-a-sept-tumbled-woven-vern...` |
+| [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | html + nuxt-state | Akamai | Bloomingdale's listing spider via Nuxt SSR state contract parsing (splash->leaf aware). | 8 (ok) | new-now, women, beauty, shoes, handbags, jewelry-accessories, men, kids, home, sale, gifts, designers | `{"item_id":"5973765","title":"Tumbled Woven Verne Pants","url":"https://www.bloomingdales.com/shop/product/cinq-a-sept-tumbled-woven-vern...` |
 | [`costco_listing`](#costco_search--costco_listing) | Active | bootstrap + html | Akamai | Costco category listing with state extraction + fallback. | 24 (ok) | coffee, water, snacks, vitamins, laundry, paper-products | `{"item_id":"100501081","title":null,"url":"https://www.costco.com/starbucks-pike-place-medium-roast-k-cup-72-count.product.100501081.html","price":null,"currency":null,"brand":n...` |
 | [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | none detected (CloudFront CDN only) | e.l.f. Cosmetics multi-mode listing spider. | 6 (ok) | face, eyes, lips | `{'item_id':'300261','title':'Soft Glam Satin Concealer','url':'https://www.elfcosmetics.com/soft-glam-satin-concealer/300262.html','price':9.0,'brand':'e.l.f. Cosmetics','source':'elfcosmetics_preloaded_state'...}` |
 | [`fashionnova_listing`](#fashionnova_listing) | Active | api + html | Cloudflare | Fashion Nova listing via Shopify Storefront GraphQL with HTML fallback. | 48 (ok) | women, new, dresses, jeans, sale | `{"item_id":"175898317","title":"Classic High Waist Skinny Jeans - Dark Denim","url":"https://www.fashionnova.com/products/dark-blue-class...` |
@@ -563,11 +563,23 @@ Notes:
   "url": "https://www.bloomingdales.com/shop/product/...",
   "price": 198.0,
   "price_text": "$198.00",
-  "source": "bloomingdales_direct_html"
+  "original_price": 248.0,
+  "original_price_text": "$248.00",
+  "image": "https://...",
+  "brand": "AQUA",
+  "rating": 4.6,
+  "review_count": 12,
+  "source": "bloomingdales_nuxt_state"
 }
 ```
 Run example:
 `common-scrapy crawl bloomingdales_listing -a category=women -a max_pages=1 -O bloomingdales_listing.jsonl`
+
+Contract notes:
+- Uses a single authoritative parser for `<script type="application/json" data-nuxt-data="nuxt-app" data-ssr="true">...` state.
+- Women seed URL is a splash page; parser auto-resolves to a discovered leaf browse URL before pagination.
+- Category payload URLs are normalized into `subcategory_urls` and `facet_urls` metadata on emitted items.
+- Access-denied/block pages raise a visible runtime error.
 
 ### qvc_listing
 ```json
