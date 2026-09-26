@@ -3,6 +3,7 @@ from __future__ import annotations
 import base64
 import binascii
 import json
+import re
 from urllib.parse import parse_qs, urlencode, urljoin, urlparse, urlunparse
 
 import scrapy
@@ -153,7 +154,7 @@ class AeListingSpider(BaseListingSpider):
         for script in response.xpath('//script[@type="fastboot/shoebox"]'):
             encoded = (script.attrib.get("id") or "").strip()
             path = cls._decode_shoebox_id(encoded)
-            if not path.startswith("/browse/v1/category/"):
+            if not re.fullmatch(r"/browse/v1/category/[^/?]+", path):
                 continue
             payload = cls._json_obj(script.xpath("text()").get())
             if payload:
@@ -164,6 +165,8 @@ class AeListingSpider(BaseListingSpider):
     def _decode_shoebox_id(encoded: str) -> str:
         if not encoded:
             return ""
+        if encoded.startswith("shoebox-"):
+            encoded = encoded.removeprefix("shoebox-")
         padded = encoded + ("=" * ((4 - len(encoded) % 4) % 4))
         try:
             return base64.urlsafe_b64decode(padded.encode()).decode("utf-8")

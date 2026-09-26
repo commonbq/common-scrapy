@@ -4,12 +4,42 @@ import json
 import unittest
 from pathlib import Path
 
-from scrapy.http import Request, TextResponse
+from scrapy.http import HtmlResponse, Request, TextResponse
 
 from common.spiders.ae_listing_spider import AeListingSpider
 
 
 class AeListingSpiderTests(unittest.TestCase):
+    def test_real_fastboot_shoebox_id_prefix_is_decoded(self):
+        self.assertEqual(
+            AeListingSpider._decode_shoebox_id(
+                "shoebox-L2Jyb3dzZS92MS9jYXRlZ29yeS93b21lbnM"
+            ),
+            "/browse/v1/category/womens",
+        )
+
+    def test_navigation_shoebox_is_skipped_before_product_payload(self):
+        navigation_id = "shoebox-L2Jyb3dzZS92MS9jYXRlZ29yeS93b21lbnMvbmF2aWdhdGlvbg"
+        browse_id = "shoebox-L2Jyb3dzZS92MS9jYXRlZ29yeS93b21lbnM"
+        html = f'''<html><body>
+          <script type="fastboot/shoebox" id="{navigation_id}">
+            {{"data": [], "included": []}}
+          </script>
+          <script type="fastboot/shoebox" id="{browse_id}">
+            {{"data": {{}}, "included": [{{"type": "product"}}]}}
+          </script>
+        </body></html>'''
+        response = HtmlResponse(
+            url="https://www.ae.com/us/en/c/women/womens",
+            body=html.encode(),
+            encoding="utf-8",
+        )
+
+        path, payload = AeListingSpider._extract_shoebox_payload(response)
+
+        self.assertEqual(path, "/browse/v1/category/womens")
+        self.assertEqual(payload["included"][0]["type"], "product")
+
     def setUp(self):
         self.spider = AeListingSpider(category="women-tops", max_pages=3)
         self.sample_dir = Path(__file__).resolve().parents[1] / "sample"
