@@ -37,16 +37,12 @@ class BloomingdalesListingSpider(BaseListingSpider):
         for category, url in BLOOMINGDALES_CATEGORIES.items()
     ]
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self._seen_item_ids: set[str] = set()
-
     def start_requests(self):
         target_url = self.resolve_target_url()
         yield scrapy.Request(
             self._page_url(target_url, 1),
             callback=self.parse,
-            meta={"page": 1, "seed_category_url": target_url},
+            meta={"page": 1, "seed_category_url": target_url, "_seen_item_ids": set()},
             headers=self._request_headers(),
         )
 
@@ -62,6 +58,7 @@ class BloomingdalesListingSpider(BaseListingSpider):
 
         category_metadata = self._extract_category_metadata(state, response.url)
         page = int(response.meta.get("page", 1) or 1)
+        seen_item_ids = response.meta.get("_seen_item_ids") or set()
 
         if (
             page == 1
@@ -80,6 +77,7 @@ class BloomingdalesListingSpider(BaseListingSpider):
                     "page": 1,
                     "resolved_leaf": True,
                     "seed_category_url": response.meta.get("seed_category_url", response.url),
+                    "_seen_item_ids": seen_item_ids,
                 },
                 headers=self._request_headers(),
             )
@@ -88,10 +86,10 @@ class BloomingdalesListingSpider(BaseListingSpider):
         extracted_products = self._extract_products(state)
         for product in extracted_products:
             item_id = product.get("item_id")
-            if item_id and item_id in self._seen_item_ids:
+            if item_id and item_id in seen_item_ids:
                 continue
             if item_id:
-                self._seen_item_ids.add(item_id)
+                seen_item_ids.add(item_id)
 
             product["category"] = self.category
             product["seed_category_url"] = response.meta.get("seed_category_url", response.url)
@@ -114,6 +112,7 @@ class BloomingdalesListingSpider(BaseListingSpider):
                 "page": page + 1,
                 "resolved_leaf": response.meta.get("resolved_leaf", False),
                 "seed_category_url": response.meta.get("seed_category_url", response.url),
+                "_seen_item_ids": seen_item_ids,
             },
             headers=self._request_headers(),
         )
@@ -440,9 +439,15 @@ class BloomingdalesListingSpider(BaseListingSpider):
 
     def _has_next_page_signal(self, state: list, page: int) -> bool | None:
         saw_pagination = False
+        visited_refs: set[int] = set()
 
         def walk(node) -> bool:
             nonlocal saw_pagination
+            if isinstance(node, int) and 0 <= node < len(state):
+                if node in visited_refs:
+                    return False
+                visited_refs.add(node)
+                return walk(state[node])
             if isinstance(node, dict):
                 total_pages = node.get("totalPages") or node.get("totalpages")
                 current_page = (
