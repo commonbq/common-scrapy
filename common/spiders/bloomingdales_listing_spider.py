@@ -85,8 +85,8 @@ class BloomingdalesListingSpider(BaseListingSpider):
             )
             return
 
-        new_items = 0
-        for product in self._extract_products(state):
+        extracted_products = self._extract_products(state)
+        for product in extracted_products:
             item_id = product.get("item_id")
             if item_id and item_id in self._seen_item_ids:
                 continue
@@ -97,10 +97,9 @@ class BloomingdalesListingSpider(BaseListingSpider):
             product["seed_category_url"] = response.meta.get("seed_category_url", response.url)
             product["subcategory_urls"] = category_metadata["subcategories"]
             product["facet_urls"] = category_metadata["facets"]
-            new_items += 1
             yield product
 
-        if page >= self.max_pages:
+        if page >= self.max_pages or not extracted_products:
             return
 
         yield scrapy.Request(
