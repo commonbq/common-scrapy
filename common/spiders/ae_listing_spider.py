@@ -70,8 +70,12 @@ class AeListingSpider(BaseListingSpider):
         return sorted(self.categories)
 
     def resolve_target_url(self) -> str:
-        if self.url or self.category_url:
-            return self.url or self.category_url
+        if self.url and self.category_url:
+            raise ValueError("Provide only one of -a url or -a category_url")
+        if self.url:
+            return self.url
+        if self.category_url:
+            return self.category_url
         if self.category in self.categories:
             return self.categories[self.category]
         available = ", ".join(self.available_categories())
@@ -81,6 +85,7 @@ class AeListingSpider(BaseListingSpider):
 
     def start_requests(self):
         target = self.resolve_target_url()
+        self._seen_products.clear()
         yield scrapy.Request(
             target,
             callback=self.parse_html,
@@ -178,6 +183,14 @@ class AeListingSpider(BaseListingSpider):
     def _yield_products(
         self, payload: dict, *, page: int, category: str | None, category_url: str
     ):
+        """Yield normalized listing items from a browse payload.
+
+        Expected payload shape:
+        - `included`: list of `{"type": "product", "attributes": {...}}` entries.
+        - fields parsed when present: id, displayName, url, salePrice, listPrice,
+          plpImages, brand, rating, and reviewCount.
+        """
+        base_origin = self._base_origin(category_url)
         for entry in payload.get("included") or []:
             if not isinstance(entry, dict) or entry.get("type") != "product":
                 continue
@@ -187,22 +200,26 @@ class AeListingSpider(BaseListingSpider):
             url = attrs.get("url")
             if not isinstance(url, str) or not url:
                 continue
-            canonical_url = category_url if url == "/" else urljoin(category_url, url)
+            if url == "/":
+                continue
+            canonical_url = urljoin(base_origin, url)
             item_id = self._item_id(entry, attrs, canonical_url)
             if item_id in self._seen_products:
                 continue
             self._seen_products.add(item_id)
+            price = self._to_float(attrs.get("salePrice"))
+            original_price = self._to_float(attrs.get("listPrice"))
             yield {
                 "item_id": item_id,
                 "title": attrs.get("displayName"),
                 "url": canonical_url,
-                "price": self._to_float(attrs.get("salePrice")),
-                "original_price": self._to_float(attrs.get("listPrice")),
-                "currency": "USD",
+                "price": price,
+                "original_price": original_price,
+                "currency": "USD" if (price is not None or original_price is not None) else None,
                 "brand": attrs.get("brand") or "American Eagle",
                 "rating": self._to_float(attrs.get("rating")),
                 "reviews_count": self._to_int(attrs.get("reviewCount")),
-                "image_url": self._image_url(attrs, category_url),
+                "image_url": self._image_url(attrs, base_origin),
                 "category": category,
                 "category_url": category_url,
                 "page": page,
@@ -253,7 +270,7 @@ class AeListingSpider(BaseListingSpider):
         return None
 
     @classmethod
-    def _image_url(cls, attrs: dict, category_url: str) -> str | None:
+    def _image_url(cls, attrs: dict, base_origin: str) -> str | None:
         plp_images = attrs.get("plpImages")
         if isinstance(plp_images, list):
             for image in plp_images:
@@ -262,7 +279,7 @@ class AeListingSpider(BaseListingSpider):
                 for key in ("url", "imageUrl", "src"):
                     value = image.get(key)
                     if isinstance(value, str) and value:
-                        return urljoin(category_url, value)
+                        return urljoin(base_origin, value)
         return None
 
     def _build_next_request(
@@ -275,7 +292,7 @@ class AeListingSpider(BaseListingSpider):
         category_url: str,
         reference_url: str,
     ) -> scrapy.Request | None:
-        if page >= self.max_pages or not browse_path:
+        if page >= self._max_pages_limit() or not browse_path:
             return None
         meta = payload.get("meta")
         if not isinstance(meta, dict):
@@ -315,12 +332,27 @@ class AeListingSpider(BaseListingSpider):
 
     @staticmethod
     def _headers(*, referer: str, wants_json: bool) -> dict[str, str]:
-        return {
+        headers = {
             "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
             "accept": "application/json,text/plain,*/*"
             if wants_json
             else "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
             "accept-language": "en-US,en;q=0.9",
             "referer": referer,
-            "x-requested-with": "XMLHttpRequest" if wants_json else "fetch",
         }
+        if wants_json:
+            headers["x-requested-with"] = "XMLHttpRequest"
+        return headers
+
+    def _max_pages_limit(self) -> int:
+        try:
+            return max(int(self.max_pages), 1)
+        except (TypeError, ValueError):
+            return 1
+
+    @staticmethod
+    def _base_origin(url: str) -> str:
+        parts = urlparse(url)
+        if not parts.scheme or not parts.netloc:
+            return url
+        return f"{parts.scheme}://{parts.netloc}/"

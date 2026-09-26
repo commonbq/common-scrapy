@@ -55,6 +55,14 @@ class AeListingSpiderTests(unittest.TestCase):
             ).resolve_target_url(),
             "https://www.ae.com/override",
         )
+        with self.assertRaisesRegex(
+            ValueError, r"Provide only one of -a url or -a category_url"
+        ):
+            AeListingSpider(
+                category="women-tops",
+                url="https://www.ae.com/override",
+                category_url="https://www.ae.com/custom",
+            ).resolve_target_url()
 
     def test_parse_html_uses_fastboot_payload_and_schedules_browse_page(self):
         body = (self.sample_dir / "ae-listing-sample.html").read_text(encoding="utf-8")
@@ -136,6 +144,12 @@ class AeListingSpiderTests(unittest.TestCase):
         )
         self.assertEqual(len(page3_outputs), 1)
         self.assertEqual(page3_outputs[0]["item_id"], "1457_3333_300")
+
+    def test_start_requests_resets_seen_products_for_new_run(self):
+        self.spider._seen_products.add("1457_1111_100")
+        requests = list(self.spider.start_requests())
+        self.assertEqual(len(requests), 1)
+        self.assertEqual(self.spider._seen_products, set())
 
     def test_zero_product_and_blocked_pages_yield_no_results(self):
         empty_body = (self.sample_dir / "ae-listing-empty.html").read_text(encoding="utf-8")
