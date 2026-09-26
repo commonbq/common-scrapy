@@ -69,8 +69,12 @@ class BloomingdalesListingSpider(BaseListingSpider):
             and self._is_splash_state(state)
             and category_metadata["leaf_urls"]
         ):
+            redirect_leaf = self._select_leaf_url(
+                category_metadata["leaf_urls"],
+                response.meta.get("seed_category_url", response.url),
+            )
             yield scrapy.Request(
-                self._page_url(category_metadata["leaf_urls"][0], 1),
+                self._page_url(redirect_leaf, 1),
                 callback=self.parse,
                 meta={
                     "page": 1,
@@ -96,7 +100,7 @@ class BloomingdalesListingSpider(BaseListingSpider):
             new_items += 1
             yield product
 
-        if page >= self.max_pages or new_items == 0:
+        if page >= self.max_pages:
             return
 
         yield scrapy.Request(
@@ -265,14 +269,17 @@ class BloomingdalesListingSpider(BaseListingSpider):
         return current[0], current[1], None, None
 
     def _extract_category_metadata(self, state: list, current_url: str) -> dict[str, list[str]]:
-        urls: set[str] = set()
+        urls: list[str] = []
+        seen_urls: set[str] = set()
         visited_refs: set[int] = set()
 
         def walk(node):
             if isinstance(node, str):
                 normalized = self._normalize_category_url(node)
                 if normalized and self._is_shop_category_url(normalized):
-                    urls.add(normalized)
+                    if normalized not in seen_urls:
+                        seen_urls.add(normalized)
+                        urls.append(normalized)
                 return
             if isinstance(node, int) and 0 <= node < len(state):
                 if node in visited_refs:
@@ -294,7 +301,7 @@ class BloomingdalesListingSpider(BaseListingSpider):
         facets: list[str] = []
         leaf_urls: list[str] = []
 
-        for url in sorted(urls):
+        for url in urls:
             if self._is_facet_url(url):
                 facets.append(url)
             else:
@@ -366,6 +373,8 @@ class BloomingdalesListingSpider(BaseListingSpider):
 
         normalized = self._normalize_url(url.strip())
         parsed = urlparse(normalized)
+        if parsed.netloc not in {"www.bloomingdales.com", "bloomingdales.com"}:
+            return None
         if "/shop/" not in parsed.path or "/shop/product/" in parsed.path:
             return None
 
@@ -398,7 +407,11 @@ class BloomingdalesListingSpider(BaseListingSpider):
 
     def _is_shop_category_url(self, url: str) -> bool:
         parsed = urlparse(url)
-        return "/shop/" in parsed.path and "/shop/product/" not in parsed.path
+        return (
+            parsed.netloc in {"www.bloomingdales.com", "bloomingdales.com"}
+            and "/shop/" in parsed.path
+            and "/shop/product/" not in parsed.path
+        )
 
     def _is_leaf_category_url(self, url: str) -> bool:
         path = urlparse(url).path.strip("/")
@@ -417,6 +430,16 @@ class BloomingdalesListingSpider(BaseListingSpider):
         }
         keys = {k for k, _ in parse_qsl(urlparse(url).query, keep_blank_values=True)}
         return bool(keys & facet_keys)
+
+    def _select_leaf_url(self, leaf_urls: list[str], seed_url: str) -> str:
+        seed_path = urlparse(seed_url).path.strip("/").split("/")
+        branch_prefix = "/".join(seed_path[:2]) if len(seed_path) >= 2 else ""
+        if branch_prefix:
+            for url in leaf_urls:
+                path = urlparse(url).path.strip("/")
+                if path.startswith(branch_prefix):
+                    return url
+        return leaf_urls[0]
 
     def _extract_brand(self, detail: dict) -> str | None:
         if not isinstance(detail, dict):
