@@ -1,0 +1,2430 @@
+{
+  "source": "embedded Next.js React Flight category tree in captured Costco Coffee HTML",
+  "captured_at": "2026-09-26",
+  "count": 432,
+  "parent_count": 131,
+  "categories_by_parent": {
+    "2-Day Delivery": [
+      {
+        "name": "Household",
+        "url": "https://www.costco.com/household.html",
+        "product_count": 69
+      }
+    ],
+    "Apple Products": [
+      {
+        "name": "AirPods",
+        "url": "https://www.costco.com/airpods.html",
+        "product_count": 3
+      },
+      {
+        "name": "Apple TV",
+        "url": "https://www.costco.com/apple-tv.html",
+        "product_count": 2
+      },
+      {
+        "name": "Apple Watch",
+        "url": "https://www.costco.com/apple-smart-watch.html",
+        "product_count": 17
+      },
+      {
+        "name": "iPad",
+        "url": "https://www.costco.com/ipad.html",
+        "product_count": 12
+      },
+      {
+        "name": "Mac",
+        "url": "https://www.costco.com/mac.html",
+        "product_count": 12
+      },
+      {
+        "name": "MacBook",
+        "url": "https://www.costco.com/macbooks.html",
+        "product_count": 13
+      }
+    ],
+    "Appliances": [
+      {
+        "name": "Compact Appliances",
+        "url": "https://www.costco.com/small-space-appliances.html",
+        "product_count": 59
+      },
+      {
+        "name": "Cooking Appliances",
+        "url": "https://www.costco.com/cooking-appliances.html",
+        "product_count": 166
+      },
+      {
+        "name": "Dishwashers",
+        "url": "https://www.costco.com/dishwashers.html",
+        "product_count": 64
+      },
+      {
+        "name": "Kitchen Appliance Packages",
+        "url": "https://www.costco.com/kitchen-suites.html",
+        "product_count": 60
+      },
+      {
+        "name": "Microwaves",
+        "url": "https://www.costco.com/microwaves.html",
+        "product_count": 34
+      },
+      {
+        "name": "Refrigerators",
+        "url": "https://www.costco.com/refrigerators.html",
+        "product_count": 169
+      },
+      {
+        "name": "Small Kitchen Appliances",
+        "url": "https://www.costco.com/small-kitchen-appliances.html",
+        "product_count": 129
+      }
+    ],
+    "Audio/Video": [
+      {
+        "name": "Bluetooth Speakers",
+        "url": "https://www.costco.com/bluetooth-speakers.html",
+        "product_count": 19
+      },
+      {
+        "name": "Home Audio",
+        "url": "https://www.costco.com/home-audio.html",
+        "product_count": 19
+      },
+      {
+        "name": "Projectors",
+        "url": "https://www.costco.com/projectors-screens.html",
+        "product_count": 6
+      },
+      {
+        "name": "Soundbars",
+        "url": "https://www.costco.com/soundbars.html",
+        "product_count": 11
+      },
+      {
+        "name": "Streaming Devices",
+        "url": "https://www.costco.com/media-players.html",
+        "product_count": 2
+      }
+    ],
+    "Baby": [
+      {
+        "name": "Baby Diapers",
+        "url": "https://www.costco.com/diapers.html",
+        "product_count": 7
+      },
+      {
+        "name": "Baby Wipes",
+        "url": "https://www.costco.com/diapers-wipes.html",
+        "product_count": 3
+      },
+      {
+        "name": "Clothing for Babies",
+        "url": "https://www.costco.com/babies-clothing.html",
+        "product_count": 15
+      },
+      {
+        "name": "Training Pants",
+        "url": "https://www.costco.com/training-pants.html",
+        "product_count": 2
+      }
+    ],
+    "Bath": [
+      {
+        "name": "Bathroom Hardware",
+        "url": "https://www.costco.com/bathroom-accessories.html",
+        "product_count": 11
+      },
+      {
+        "name": "Bathroom Sink Faucets",
+        "url": "https://www.costco.com/bathroom-faucets.html",
+        "product_count": 17
+      },
+      {
+        "name": "Bathroom Vanities",
+        "url": "https://www.costco.com/vanities.html",
+        "product_count": 25
+      },
+      {
+        "name": "Showers",
+        "url": "https://www.costco.com/showers.html",
+        "product_count": 24
+      }
+    ],
+    "Bathroom Vanities": [
+      {
+        "name": "Double Sink Vanities",
+        "url": "https://www.costco.com/double-sink-vanities.html",
+        "product_count": 23
+      },
+      {
+        "name": "Single Sink Vanities",
+        "url": "https://www.costco.com/single-sink-vanities.html",
+        "product_count": 20
+      }
+    ],
+    "Beach": [
+      {
+        "name": "Beach Towels",
+        "url": "https://www.costco.com/beach-towels.html",
+        "product_count": 5
+      },
+      {
+        "name": "Swim for Kids",
+        "url": "https://www.costco.com/kids-swim.html",
+        "product_count": 2
+      },
+      {
+        "name": "Swimwear for Men",
+        "url": "https://www.costco.com/mens-swimwear.html",
+        "product_count": 2
+      },
+      {
+        "name": "Swimwear for Women",
+        "url": "https://www.costco.com/womens-swimwear.html",
+        "product_count": 6
+      }
+    ],
+    "Beauty": [
+      {
+        "name": "Beauty Gift Sets",
+        "url": "https://www.costco.com/beauty-gift-sets.html",
+        "product_count": 13
+      },
+      {
+        "name": "Beauty Supplements",
+        "url": "https://www.costco.com/skin-vitamins-supplements.html",
+        "product_count": 3
+      },
+      {
+        "name": "Fragrances",
+        "url": "https://www.costco.com/fragrances.html",
+        "product_count": 46
+      },
+      {
+        "name": "Hair Care",
+        "url": "https://www.costco.com/hair-care.html",
+        "product_count": 69
+      },
+      {
+        "name": "Makeup",
+        "url": "https://www.costco.com/cosmetics.html",
+        "product_count": 28
+      },
+      {
+        "name": "Nail Care",
+        "url": "https://www.costco.com/nail-care.html",
+        "product_count": 1
+      },
+      {
+        "name": "Skin Care",
+        "url": "https://www.costco.com/skin-care.html",
+        "product_count": 217
+      }
+    ],
+    "Bedding": [
+      {
+        "name": "Bed Sheets",
+        "url": "https://www.costco.com/sheets.html",
+        "product_count": 19
+      },
+      {
+        "name": "Comforters",
+        "url": "https://www.costco.com/comforters.html",
+        "product_count": 54
+      },
+      {
+        "name": "Pillows",
+        "url": "https://www.costco.com/pillows.html",
+        "product_count": 66
+      }
+    ],
+    "Bedroom Furniture": [
+      {
+        "name": "Bedroom Sets",
+        "url": "https://www.costco.com/bedroom-sets.html",
+        "product_count": 67
+      }
+    ],
+    "Bedroom Sets": [
+      {
+        "name": "California King Bedroom Sets",
+        "url": "https://www.costco.com/cal-king-bedroom-sets.html",
+        "product_count": 17
+      },
+      {
+        "name": "Full Bedroom Sets",
+        "url": "https://www.costco.com/full-bedroom-sets.html",
+        "product_count": 7
+      },
+      {
+        "name": "King Bedroom Sets",
+        "url": "https://www.costco.com/king-bedroom-sets.html",
+        "product_count": 31
+      },
+      {
+        "name": "Queen Bedroom Sets",
+        "url": "https://www.costco.com/queen-bedroom-sets.html",
+        "product_count": 32
+      },
+      {
+        "name": "Twin Bedroom Sets",
+        "url": "https://www.costco.com/twin-bedroom-sets.html",
+        "product_count": 1
+      }
+    ],
+    "Black Friday": [
+      {
+        "name": "Black Friday",
+        "url": "https://www.costco.com/black-friday.html",
+        "product_count": 2
+      }
+    ],
+    "Bluetooth Speakers": [
+      {
+        "name": "Home Bluetooth Speakers",
+        "url": "https://www.costco.com/home-bluetooth-speakers.html",
+        "product_count": 4
+      },
+      {
+        "name": "Portable Bluetooth Speakers",
+        "url": "https://www.costco.com/portable-bluetooth-speakers.html",
+        "product_count": 12
+      }
+    ],
+    "Bracelets": [
+      {
+        "name": "Diamond Bracelets",
+        "url": "https://www.costco.com/diamond-bracelets.html",
+        "product_count": 24
+      },
+      {
+        "name": "Gemstone Bracelets",
+        "url": "https://www.costco.com/gemstone-bracelets.html",
+        "product_count": 3
+      },
+      {
+        "name": "Gold Bracelets",
+        "url": "https://www.costco.com/gold-bracelets.html",
+        "product_count": 37
+      },
+      {
+        "name": "Pearl Bracelets",
+        "url": "https://www.costco.com/pearl-bracelets.html",
+        "product_count": 4
+      }
+    ],
+    "Building Supplies": [
+      {
+        "name": "Fencing",
+        "url": "https://www.costco.com/fencing.html",
+        "product_count": 5
+      },
+      {
+        "name": "Gutter Guards",
+        "url": "https://www.costco.com/pumps-drainage.html",
+        "product_count": 1
+      },
+      {
+        "name": "Interior Doors",
+        "url": "https://www.costco.com/doors-door-hardware.html",
+        "product_count": 2
+      }
+    ],
+    "Camping Gear": [
+      {
+        "name": "Camping Accessories",
+        "url": "https://www.costco.com/camping-accessories.html",
+        "product_count": 15
+      },
+      {
+        "name": "Camping Cots",
+        "url": "https://www.costco.com/camping-cots.html",
+        "product_count": 2
+      },
+      {
+        "name": "Camping Lanterns",
+        "url": "https://www.costco.com/camping-lanterns.html",
+        "product_count": 3
+      },
+      {
+        "name": "Coolers",
+        "url": "https://www.costco.com/coolers.html",
+        "product_count": 20
+      },
+      {
+        "name": "Sleeping Bags",
+        "url": "https://www.costco.com/sleeping-bags.html",
+        "product_count": 1
+      }
+    ],
+    "Candy": [
+      {
+        "name": "Chocolates",
+        "url": "https://www.costco.com/chocolates.html",
+        "product_count": 96
+      }
+    ],
+    "Canned Goods": [
+      {
+        "name": "Canned Meats",
+        "url": "https://www.costco.com/canned-meats.html",
+        "product_count": 17
+      }
+    ],
+    "Car Electronics": [
+      {
+        "name": "Electric Vehicle Chargers",
+        "url": "https://www.costco.com/electric-vehicle-chargers.html",
+        "product_count": 3
+      }
+    ],
+    "Ceiling Fans": [
+      {
+        "name": "Fandeliers",
+        "url": "https://www.costco.com/fandeliers.html",
+        "product_count": 8
+      },
+      {
+        "name": "Indoor Ceiling Fans",
+        "url": "https://www.costco.com/indoor-ceiling-fans.html",
+        "product_count": 11
+      },
+      {
+        "name": "Outdoor Ceiling Fans",
+        "url": "https://www.costco.com/outdoor-ceiling-fans.html",
+        "product_count": 4
+      },
+      {
+        "name": "Smart Ceiling Fans",
+        "url": "https://www.costco.com/smart-ceiling-fans.html",
+        "product_count": 1
+      }
+    ],
+    "Christmas Decorations": [
+      {
+        "name": "Christmas Ornaments",
+        "url": "https://www.costco.com/ornaments.html",
+        "product_count": 9
+      },
+      {
+        "name": "Christmas Table Top Decorations",
+        "url": "https://www.costco.com/holiday-tabletop.html",
+        "product_count": 25
+      },
+      {
+        "name": "Outdoor Christmas Decorations",
+        "url": "https://www.costco.com/outdoor-decorations.html",
+        "product_count": 27
+      }
+    ],
+    "Cleaning Supplies": [
+      {
+        "name": "Cleaning Tools",
+        "url": "https://www.costco.com/cleaning-supplies.html",
+        "product_count": 34
+      },
+      {
+        "name": "Trash Bags",
+        "url": "https://www.costco.com/trash-bags.html",
+        "product_count": 16
+      }
+    ],
+    "Clothing for Kids": [
+      {
+        "name": "Activewear for Kids",
+        "url": "https://www.costco.com/kids-activewear.html",
+        "product_count": 15
+      },
+      {
+        "name": "Bottoms for Kids",
+        "url": "https://www.costco.com/kids-bottoms.html",
+        "product_count": 5
+      },
+      {
+        "name": "Dresses for Kids",
+        "url": "https://www.costco.com/kids-dresses.html",
+        "product_count": 3
+      },
+      {
+        "name": "Outerwear for Kids",
+        "url": "https://www.costco.com/kids-outerwear.html",
+        "product_count": 4
+      },
+      {
+        "name": "Sets for Kids",
+        "url": "https://www.costco.com/kids-sets.html",
+        "product_count": 26
+      },
+      {
+        "name": "Sleepwear for Kids",
+        "url": "https://www.costco.com/kids-sleepwear.html",
+        "product_count": 11
+      },
+      {
+        "name": "Socks, Underwear, Accessories for Kids",
+        "url": "https://www.costco.com/kids-basics-accessories.html",
+        "product_count": 2
+      },
+      {
+        "name": "Swim for Kids",
+        "url": "https://www.costco.com/kids-swim.html",
+        "product_count": 2
+      },
+      {
+        "name": "Tops for Kids",
+        "url": "https://www.costco.com/kids-tops.html",
+        "product_count": 5
+      }
+    ],
+    "Clothing for Men": [
+      {
+        "name": "Accessories for Men",
+        "url": "https://www.costco.com/accessories.html",
+        "product_count": 4
+      },
+      {
+        "name": "Activewear for Men",
+        "url": "https://www.costco.com/mens-activewear.html",
+        "product_count": 20
+      },
+      {
+        "name": "Shirts for Men",
+        "url": "https://www.costco.com/mens-shirts.html",
+        "product_count": 34
+      },
+      {
+        "name": "Shorts for Men",
+        "url": "https://www.costco.com/mens-shorts.html",
+        "product_count": 10
+      },
+      {
+        "name": "Suits for Men",
+        "url": "https://www.costco.com/mens-suits.html",
+        "product_count": 3
+      },
+      {
+        "name": "Swimwear for Men",
+        "url": "https://www.costco.com/mens-swimwear.html",
+        "product_count": 2
+      }
+    ],
+    "Clothing for Women": [
+      {
+        "name": "Accessories for Women",
+        "url": "https://www.costco.com/womens-accessories.html",
+        "product_count": 5
+      },
+      {
+        "name": "Activewear for Women",
+        "url": "https://www.costco.com/womens-activewear.html",
+        "product_count": 41
+      },
+      {
+        "name": "Dresses for Women",
+        "url": "https://www.costco.com/womens-dresses-skirts.html",
+        "product_count": 6
+      },
+      {
+        "name": "Shorts for Women",
+        "url": "https://www.costco.com/womens-shorts.html",
+        "product_count": 6
+      },
+      {
+        "name": "Swimwear for Women",
+        "url": "https://www.costco.com/womens-swimwear.html",
+        "product_count": 6
+      }
+    ],
+    "Clothing for Youth": [
+      {
+        "name": "Activewear for Youth",
+        "url": "https://www.costco.com/youth-activewear.html",
+        "product_count": 13
+      },
+      {
+        "name": "Bottoms for Youth",
+        "url": "https://www.costco.com/youth-bottoms.html",
+        "product_count": 15
+      },
+      {
+        "name": "Dresses for Youth",
+        "url": "https://www.costco.com/youth-dresses.html",
+        "product_count": 2
+      },
+      {
+        "name": "Outerwear for Youth",
+        "url": "https://www.costco.com/youth-outerwear.html",
+        "product_count": 14
+      },
+      {
+        "name": "Sets for Youth",
+        "url": "https://www.costco.com/youth-sets.html",
+        "product_count": 4
+      },
+      {
+        "name": "Sleepwear for Youth",
+        "url": "https://www.costco.com/youth-sleepwear.html",
+        "product_count": 4
+      },
+      {
+        "name": "Socks, Underwear, Accessories for Youth",
+        "url": "https://www.costco.com/youth-basics-accessories.html",
+        "product_count": 3
+      },
+      {
+        "name": "Tops for Youth",
+        "url": "https://www.costco.com/youth-tops.html",
+        "product_count": 5
+      }
+    ],
+    "Coffee": [
+      {
+        "name": "Coffee Creamers",
+        "url": "https://www.costco.com/creamer-sweeteners.html",
+        "product_count": 22
+      },
+      {
+        "name": "Ground Coffee",
+        "url": "https://www.costco.com/ground-coffee.html",
+        "product_count": 19
+      },
+      {
+        "name": "Instant Coffee",
+        "url": "https://www.costco.com/instant-coffee.html",
+        "product_count": 8
+      },
+      {
+        "name": "Whole Bean Coffee",
+        "url": "https://www.costco.com/whole-bean-coffee.html",
+        "product_count": 42
+      }
+    ],
+    "Comforters": [
+      {
+        "name": "Comforter Sets",
+        "url": "https://www.costco.com/comforter-sets.html",
+        "product_count": 25
+      }
+    ],
+    "Compact Appliances": [
+      {
+        "name": "Apartment Size Refrigerators",
+        "url": "https://www.costco.com/small-refrigerators.html",
+        "product_count": 4
+      },
+      {
+        "name": "Small Dishwashers",
+        "url": "https://www.costco.com/small-dishwashers.html",
+        "product_count": 1
+      },
+      {
+        "name": "Small Microwaves",
+        "url": "https://www.costco.com/small-microwaves.html",
+        "product_count": 3
+      },
+      {
+        "name": "Small Space Laundry Appliances",
+        "url": "https://www.costco.com/small-washers-dryers.html",
+        "product_count": 43
+      }
+    ],
+    "Computer Software": [
+      {
+        "name": "Checks",
+        "url": "https://www.costco.com/check-services.html",
+        "product_count": 1
+      },
+      {
+        "name": "Microsoft Office Suite",
+        "url": "https://www.costco.com/microsoft.html",
+        "product_count": 3
+      },
+      {
+        "name": "Tax Preparation Software",
+        "url": "https://www.costco.com/tax-preparation-software.html",
+        "product_count": 1
+      }
+    ],
+    "Computers": [
+      {
+        "name": "Computer Accessories",
+        "url": "https://www.costco.com/computer-accessories.html",
+        "product_count": 4
+      },
+      {
+        "name": "Computer Software",
+        "url": "https://www.costco.com/software.html",
+        "product_count": 8
+      },
+      {
+        "name": "Laptops",
+        "url": "https://www.costco.com/laptops.html",
+        "product_count": 89
+      },
+      {
+        "name": "Monitors",
+        "url": "https://www.costco.com/monitors.html",
+        "product_count": 37
+      },
+      {
+        "name": "PC Gaming",
+        "url": "https://www.costco.com/pc-gaming.html",
+        "product_count": 56
+      },
+      {
+        "name": "Printers",
+        "url": "https://www.costco.com/printers-all-in-ones-scanners.html",
+        "product_count": 20
+      }
+    ],
+    "Cooking Appliances": [
+      {
+        "name": "Cooktops",
+        "url": "https://www.costco.com/cooktops.html",
+        "product_count": 24
+      },
+      {
+        "name": "Range Hoods",
+        "url": "https://www.costco.com/range-hoods.html",
+        "product_count": 5
+      },
+      {
+        "name": "Ranges",
+        "url": "https://www.costco.com/ranges.html",
+        "product_count": 105
+      },
+      {
+        "name": "Wall Ovens",
+        "url": "https://www.costco.com/wall-ovens.html",
+        "product_count": 29
+      }
+    ],
+    "Costco Direct": [
+      {
+        "name": "Appliances",
+        "url": "https://www.costco.com/costco-direct-appliances.html",
+        "product_count": 1
+      },
+      {
+        "name": "Fitness",
+        "url": "https://www.costco.com/costco-direct-fitness.html",
+        "product_count": 1
+      },
+      {
+        "name": "Furniture",
+        "url": "https://www.costco.com/costco-direct-furniture.html",
+        "product_count": 1
+      },
+      {
+        "name": "Home Upgrades",
+        "url": "https://www.costco.com/costco-direct-home-upgrades.html",
+        "product_count": 1
+      },
+      {
+        "name": "Mattresses",
+        "url": "https://www.costco.com/costco-direct-mattresses.html",
+        "product_count": 3
+      },
+      {
+        "name": "Toys",
+        "url": "https://www.costco.com/costco-direct-toys.html",
+        "product_count": 1
+      },
+      {
+        "name": "TVs",
+        "url": "https://www.costco.com/costco-direct-tvs.html",
+        "product_count": 1
+      }
+    ],
+    "Costco Services for Members": [
+      {
+        "name": "Checks",
+        "url": "https://www.costco.com/check-services.html",
+        "product_count": 1
+      }
+    ],
+    "Cyber Monday": [
+      {
+        "name": "Cyber Monday",
+        "url": "https://www.costco.com/cyber-monday-offers.html",
+        "product_count": 1
+      }
+    ],
+    "Deli": [
+      {
+        "name": "Caviar",
+        "url": "https://www.costco.com/caviar.html",
+        "product_count": 19
+      },
+      {
+        "name": "Deli Meat",
+        "url": "https://www.costco.com/deli-meats.html",
+        "product_count": 7
+      }
+    ],
+    "Diamond Earrings": [
+      {
+        "name": "Diamond Hoops",
+        "url": "https://www.costco.com/diamond-hoops.html",
+        "product_count": 28
+      },
+      {
+        "name": "Diamond Studs",
+        "url": "https://www.costco.com/diamond-studs.html",
+        "product_count": 29
+      }
+    ],
+    "Dining Collections": [
+      {
+        "name": "Corrine",
+        "url": "https://www.costco.com/corrine-dining-collection.html",
+        "product_count": 1
+      },
+      {
+        "name": "Jordan",
+        "url": "https://www.costco.com/jordan-dining-collection.html",
+        "product_count": 2
+      },
+      {
+        "name": "Midtown",
+        "url": "https://www.costco.com/midtown-dining-collection.html",
+        "product_count": 1
+      },
+      {
+        "name": "Stone Harbor",
+        "url": "https://www.costco.com/stone-harbor-dining-collection.html",
+        "product_count": 1
+      }
+    ],
+    "Dryers": [
+      {
+        "name": "Electric Dryers",
+        "url": "https://www.costco.com/electric-dryers.html",
+        "product_count": 56
+      },
+      {
+        "name": "Gas Dryers",
+        "url": "https://www.costco.com/gas-dryers.html",
+        "product_count": 54
+      }
+    ],
+    "Earrings": [
+      {
+        "name": "Diamond Earrings",
+        "url": "https://www.costco.com/diamond-earrings.html",
+        "product_count": 108
+      },
+      {
+        "name": "Gemstone Earrings",
+        "url": "https://www.costco.com/gemstone-earrings.html",
+        "product_count": 37
+      },
+      {
+        "name": "Gold Earrings",
+        "url": "https://www.costco.com/gold-earrings.html",
+        "product_count": 33
+      },
+      {
+        "name": "One-of-a-Kind Earrings",
+        "url": "https://www.costco.com/one-of-a-kind-earrings.html",
+        "product_count": 6
+      },
+      {
+        "name": "Pearl Earrings",
+        "url": "https://www.costco.com/pearl-earrings.html",
+        "product_count": 15
+      }
+    ],
+    "Electronics": [
+      {
+        "name": "Allstate Protection Plans",
+        "url": "https://www.costco.com/protection-plans.html",
+        "product_count": 16
+      },
+      {
+        "name": "Apple Products",
+        "url": "https://www.costco.com/apple-brand-showcase.html",
+        "product_count": 59
+      },
+      {
+        "name": "Audio/Video",
+        "url": "https://www.costco.com/audio-video.html",
+        "product_count": 60
+      },
+      {
+        "name": "Batteries",
+        "url": "https://www.costco.com/batteries.html",
+        "product_count": 7
+      },
+      {
+        "name": "Gaming Gift Cards",
+        "url": "https://www.costco.com/digital-codes.html",
+        "product_count": 9
+      },
+      {
+        "name": "Musical Instruments",
+        "url": "https://www.costco.com/musical-instruments.html",
+        "product_count": 19
+      },
+      {
+        "name": "TVs",
+        "url": "https://www.costco.com/televisions.html",
+        "product_count": 176
+      },
+      {
+        "name": "Wearable Technology",
+        "url": "https://www.costco.com/wearable-technology.html",
+        "product_count": 31
+      }
+    ],
+    "Engagement Rings": [
+      {
+        "name": "Halo Rings",
+        "url": "https://www.costco.com/halo-rings.html",
+        "product_count": 16
+      },
+      {
+        "name": "Multi-Stone Rings",
+        "url": "https://www.costco.com/side-stone-rings.html",
+        "product_count": 19
+      },
+      {
+        "name": "Solitaire Rings",
+        "url": "https://www.costco.com/solitaire-rings.html",
+        "product_count": 44
+      },
+      {
+        "name": "Three-stone Rings",
+        "url": "https://www.costco.com/three-stone-rings.html",
+        "product_count": 9
+      }
+    ],
+    "Entryway Furniture": [
+      {
+        "name": "Closet Organizers",
+        "url": "https://www.costco.com/closet.html",
+        "product_count": 15
+      }
+    ],
+    "Explore Our Brands": [
+      {
+        "name": "Apple Products",
+        "url": "https://www.costco.com/apple-brand-showcase.html",
+        "product_count": 59
+      }
+    ],
+    "Fire Safety": [
+      {
+        "name": "Fire Extinguishers",
+        "url": "https://www.costco.com/fire-extinguishers.html",
+        "product_count": 3
+      }
+    ],
+    "First Aid": [
+      {
+        "name": "First Aid Kits",
+        "url": "https://www.costco.com/first-aid-kits.html",
+        "product_count": 9
+      }
+    ],
+    "Flooring": [
+      {
+        "name": "Engineered Wood Flooring",
+        "url": "https://www.costco.com/engineered-wood-flooring.html",
+        "product_count": 2
+      },
+      {
+        "name": "Flooring Accessories",
+        "url": "https://www.costco.com/flooring-accessories.html",
+        "product_count": 3
+      },
+      {
+        "name": "Installed Flooring",
+        "url": "https://www.costco.com/installed-flooring.html",
+        "product_count": 1
+      },
+      {
+        "name": "Laminate Flooring",
+        "url": "https://www.costco.com/laminate.html",
+        "product_count": 5
+      },
+      {
+        "name": "Vinyl Flooring",
+        "url": "https://www.costco.com/vinyl-tile.html",
+        "product_count": 11
+      }
+    ],
+    "Flowers": [
+      {
+        "name": "Bouquets",
+        "url": "https://www.costco.com/bouquets.html",
+        "product_count": 16
+      },
+      {
+        "name": "Bulk Flowers",
+        "url": "https://www.costco.com/bulk-flowers.html",
+        "product_count": 30
+      },
+      {
+        "name": "Floral Centerpieces",
+        "url": "https://www.costco.com/floral-centerpieces.html",
+        "product_count": 1
+      },
+      {
+        "name": "Next Business Day Delivery",
+        "url": "https://www.costco.com/next-business-day-delivery.html",
+        "product_count": 50
+      },
+      {
+        "name": "Roses",
+        "url": "https://www.costco.com/roses.html",
+        "product_count": 17
+      },
+      {
+        "name": "Vase Arrangements",
+        "url": "https://www.costco.com/floral-arrangements.html",
+        "product_count": 30
+      }
+    ],
+    "Freezers": [
+      {
+        "name": "Chest Freezers",
+        "url": "https://www.costco.com/chest-freezers.html",
+        "product_count": 13
+      },
+      {
+        "name": "Upright Freezers",
+        "url": "https://www.costco.com/upright-freezers.html",
+        "product_count": 16
+      }
+    ],
+    "Frozen Foods": [
+      {
+        "name": "Frozen Meals",
+        "url": "https://www.costco.com/frozen-meals.html",
+        "product_count": 10
+      }
+    ],
+    "Funeral": [
+      {
+        "name": "Caskets",
+        "url": "https://www.costco.com/funeral-caskets.html",
+        "product_count": 9
+      },
+      {
+        "name": "Urns",
+        "url": "https://www.costco.com/funeral-urns.html",
+        "product_count": 2
+      }
+    ],
+    "Furniture": [
+      {
+        "name": "Bedroom Furniture",
+        "url": "https://www.costco.com/bedroom-furniture.html",
+        "product_count": 176
+      },
+      {
+        "name": "Entryway Furniture",
+        "url": "https://www.costco.com/entryway-furniture.html",
+        "product_count": 59
+      },
+      {
+        "name": "Fireplaces and Stoves",
+        "url": "https://www.costco.com/fireplaces.html",
+        "product_count": 16
+      },
+      {
+        "name": "Living Room Furniture",
+        "url": "https://www.costco.com/living-room.html",
+        "product_count": 346
+      }
+    ],
+    "Game Room": [
+      {
+        "name": "Poker",
+        "url": "https://www.costco.com/poker.html",
+        "product_count": 1
+      },
+      {
+        "name": "Pool Tables",
+        "url": "https://www.costco.com/billiard-tables.html",
+        "product_count": 4
+      },
+      {
+        "name": "Table Tennis",
+        "url": "https://www.costco.com/table-tennis.html",
+        "product_count": 4
+      }
+    ],
+    "Gaming Accessories": [
+      {
+        "name": "Nintendo Switch 2 Accessories",
+        "url": "https://www.costco.com/nintendo-switch-2-accessories.html",
+        "product_count": 5
+      },
+      {
+        "name": "Nintendo Switch Accessories",
+        "url": "https://www.costco.com/nintendo-accessories.html",
+        "product_count": 2
+      },
+      {
+        "name": "Playstation Accessories",
+        "url": "https://www.costco.com/playstation-accessories.html",
+        "product_count": 6
+      }
+    ],
+    "Gift Baskets": [
+      {
+        "name": "Holiday Gift Baskets",
+        "url": "https://www.costco.com/holiday-gift-baskets.html",
+        "product_count": 83
+      }
+    ],
+    "Golf": [
+      {
+        "name": "Golf Accessories",
+        "url": "https://www.costco.com/golf-accessories.html",
+        "product_count": 9
+      },
+      {
+        "name": "Golf Balls",
+        "url": "https://www.costco.com/golf-balls.html",
+        "product_count": 2
+      },
+      {
+        "name": "Golf Clubs",
+        "url": "https://www.costco.com/golf-clubs.html",
+        "product_count": 10
+      },
+      {
+        "name": "Golf Gloves",
+        "url": "https://www.costco.com/golf-gloves.html",
+        "product_count": 5
+      },
+      {
+        "name": "Golf Simulators and Training Aids",
+        "url": "https://www.costco.com/golf-simulators-training-aids.html",
+        "product_count": 5
+      }
+    ],
+    "Hair Care": [
+      {
+        "name": "Hair Growth Products",
+        "url": "https://www.costco.com/hair-growth-products.html",
+        "product_count": 10
+      }
+    ],
+    "Halloween": [
+      {
+        "name": "Halloween Candy",
+        "url": "https://www.costco.com/halloween-candy.html",
+        "product_count": 82
+      },
+      {
+        "name": "Halloween Costumes",
+        "url": "https://www.costco.com/costume-dress-up.html",
+        "product_count": 18
+      },
+      {
+        "name": "Halloween Decorations",
+        "url": "https://www.costco.com/halloween-decorations.html",
+        "product_count": 26
+      }
+    ],
+    "Hearing Care Products": [
+      {
+        "name": "Assisted Hearing Aids",
+        "url": "https://www.costco.com/assisted-hearing-devices.html",
+        "product_count": 21
+      },
+      {
+        "name": "Costco Hearing Aid Center",
+        "url": "https://www.costco.com/hearing-aid-center.html",
+        "product_count": 1
+      }
+    ],
+    "Home Audio": [
+      {
+        "name": "AV Receivers",
+        "url": "https://www.costco.com/audio-video-receivers.html",
+        "product_count": 2
+      },
+      {
+        "name": "Home Theater Sound Systems",
+        "url": "https://www.costco.com/home-theater-systems.html",
+        "product_count": 3
+      },
+      {
+        "name": "Home Theater Speakers",
+        "url": "https://www.costco.com/speakers.html",
+        "product_count": 2
+      },
+      {
+        "name": "Soundbars",
+        "url": "https://www.costco.com/soundbars.html",
+        "product_count": 11
+      },
+      {
+        "name": "Subwoofers",
+        "url": "https://www.costco.com/subwoofers.html",
+        "product_count": 4
+      }
+    ],
+    "Home Decor": [
+      {
+        "name": "Digital Picture Frames",
+        "url": "https://www.costco.com/digital-picture-frames.html",
+        "product_count": 2
+      },
+      {
+        "name": "Lamps",
+        "url": "https://www.costco.com/lighting-lamps.html",
+        "product_count": 23
+      },
+      {
+        "name": "Mirrors",
+        "url": "https://www.costco.com/mirrors.html",
+        "product_count": 12
+      },
+      {
+        "name": "Picture Frames",
+        "url": "https://www.costco.com/picture-frames.html",
+        "product_count": 2
+      },
+      {
+        "name": "Wall Decor",
+        "url": "https://www.costco.com/wall-decor.html",
+        "product_count": 4
+      },
+      {
+        "name": "Window Treatments",
+        "url": "https://www.costco.com/window-treatments.html",
+        "product_count": 14
+      }
+    ],
+    "Home Health Care": [
+      {
+        "name": "Electrical Muscle Stimulation",
+        "url": "https://www.costco.com/electrical-muscle-stimulation.html",
+        "product_count": 5
+      },
+      {
+        "name": "First Aid",
+        "url": "https://www.costco.com/home-health-care-first-aid.html",
+        "product_count": 15
+      },
+      {
+        "name": "Light Therapy",
+        "url": "https://www.costco.com/light-therapy.html",
+        "product_count": 2
+      }
+    ],
+    "Home Improvement": [
+      {
+        "name": "Building Supplies",
+        "url": "https://www.costco.com/building-materials.html",
+        "product_count": 12
+      },
+      {
+        "name": "Fire Safety",
+        "url": "https://www.costco.com/fire-safety.html",
+        "product_count": 11
+      },
+      {
+        "name": "Flooring",
+        "url": "https://www.costco.com/flooring.html",
+        "product_count": 31
+      },
+      {
+        "name": "Garage",
+        "url": "https://www.costco.com/garage.html",
+        "product_count": 54
+      },
+      {
+        "name": "Generators",
+        "url": "https://www.costco.com/generators.html",
+        "product_count": 32
+      },
+      {
+        "name": "Safes",
+        "url": "https://www.costco.com/hardware-safes.html",
+        "product_count": 19
+      }
+    ],
+    "Kitchen Appliance Packages": [
+      {
+        "name": "Electric Kitchen Appliance Packages",
+        "url": "https://www.costco.com/electric-kitchen.html",
+        "product_count": 28
+      },
+      {
+        "name": "Gas Kitchen Appliance Packages",
+        "url": "https://www.costco.com/gas-kitchen.html",
+        "product_count": 27
+      }
+    ],
+    "Landscaping": [
+      {
+        "name": "Fencing",
+        "url": "https://www.costco.com/fencing.html",
+        "product_count": 5
+      },
+      {
+        "name": "Landscape Fabric",
+        "url": "https://www.costco.com/garden-center-landscaping-accessories.html",
+        "product_count": 1
+      }
+    ],
+    "Laptops": [
+      {
+        "name": "Chromebooks",
+        "url": "https://www.costco.com/chromebooks.html",
+        "product_count": 2
+      },
+      {
+        "name": "Gaming Laptops",
+        "url": "https://www.costco.com/gaming-laptops.html",
+        "product_count": 11
+      },
+      {
+        "name": "MacBook",
+        "url": "https://www.costco.com/macbooks.html",
+        "product_count": 13
+      },
+      {
+        "name": "Windows Copilot+ PCs",
+        "url": "https://www.costco.com/windows-copilot-pcs.html",
+        "product_count": 27
+      },
+      {
+        "name": "Windows Laptops",
+        "url": "https://www.costco.com/pc-laptops.html",
+        "product_count": 73
+      }
+    ],
+    "Light Bulbs": [
+      {
+        "name": "LED Light Bulbs",
+        "url": "https://www.costco.com/led-light-bulbs.html",
+        "product_count": 7
+      }
+    ],
+    "Living Room Furniture": [
+      {
+        "name": "Living Room Sets",
+        "url": "https://www.costco.com/living-room-sets.html",
+        "product_count": 58
+      },
+      {
+        "name": "Loveseats",
+        "url": "https://www.costco.com/loveseats.html",
+        "product_count": 16
+      },
+      {
+        "name": "Recliners",
+        "url": "https://www.costco.com/recliners.html",
+        "product_count": 33
+      },
+      {
+        "name": "Sectional Sofas",
+        "url": "https://www.costco.com/sofas-sectionals.html",
+        "product_count": 123
+      }
+    ],
+    "Living Room Sets": [
+      {
+        "name": "Austin",
+        "url": "https://www.costco.com/austin-living-room-set.html",
+        "product_count": 1
+      },
+      {
+        "name": "Larsen",
+        "url": "https://www.costco.com/larsen-living-room-set.html",
+        "product_count": 4
+      },
+      {
+        "name": "Luca",
+        "url": "https://www.costco.com/luca-living-room-set.html",
+        "product_count": 3
+      },
+      {
+        "name": "West Park",
+        "url": "https://www.costco.com/west-park-living-room-set.html",
+        "product_count": 3
+      }
+    ],
+    "Luggage": [
+      {
+        "name": "Carry-Ons",
+        "url": "https://www.costco.com/carry-ons.html",
+        "product_count": 8
+      },
+      {
+        "name": "Duffel Bags",
+        "url": "https://www.costco.com/duffel-bags.html",
+        "product_count": 11
+      },
+      {
+        "name": "Luggage Sets",
+        "url": "https://www.costco.com/luggage-sets.html",
+        "product_count": 27
+      },
+      {
+        "name": "Umbrellas",
+        "url": "https://www.costco.com/travel-accessories.html",
+        "product_count": 4
+      }
+    ],
+    "Mac": [
+      {
+        "name": "iMac",
+        "url": "https://www.costco.com/imac.html",
+        "product_count": 3
+      },
+      {
+        "name": "Mac mini",
+        "url": "https://www.costco.com/mac-mini.html",
+        "product_count": 7
+      },
+      {
+        "name": "Mac Studio",
+        "url": "https://www.costco.com/mac-studio.html",
+        "product_count": 2
+      }
+    ],
+    "MacBook": [
+      {
+        "name": "MacBook Air",
+        "url": "https://www.costco.com/macbook-air.html",
+        "product_count": 2
+      },
+      {
+        "name": "Macbook Neo",
+        "url": "https://www.costco.com/macbook-neo.html",
+        "product_count": 2
+      },
+      {
+        "name": "MacBook Pro",
+        "url": "https://www.costco.com/macbook-pro.html",
+        "product_count": 9
+      }
+    ],
+    "Massage Equipment": [
+      {
+        "name": "Massage Accessories",
+        "url": "https://www.costco.com/massage-accessories.html",
+        "product_count": 11
+      },
+      {
+        "name": "Massage Chairs",
+        "url": "https://www.costco.com/massage-chairs-cushions.html",
+        "product_count": 27
+      },
+      {
+        "name": "Massage Tables",
+        "url": "https://www.costco.com/massage-tables.html",
+        "product_count": 4
+      }
+    ],
+    "Mattresses": [
+      {
+        "name": "Adjustable Beds",
+        "url": "https://www.costco.com/adjustable-beds.html",
+        "product_count": 8
+      },
+      {
+        "name": "California King Size Mattresses",
+        "url": "https://www.costco.com/cal-king-mattresses.html",
+        "product_count": 17
+      },
+      {
+        "name": "Full Size Mattresses",
+        "url": "https://www.costco.com/full-mattresses.html",
+        "product_count": 25
+      },
+      {
+        "name": "King Size Mattresses",
+        "url": "https://www.costco.com/king-mattresses.html",
+        "product_count": 53
+      },
+      {
+        "name": "Queen Size Mattresses",
+        "url": "https://www.costco.com/queen-mattresses.html",
+        "product_count": 52
+      },
+      {
+        "name": "Twin Size Mattresses",
+        "url": "https://www.costco.com/twin-mattresses.html",
+        "product_count": 11
+      },
+      {
+        "name": "Twin XL Size Mattresses",
+        "url": "https://www.costco.com/twin-xl-mattresses.html",
+        "product_count": 3
+      }
+    ],
+    "Men's Grooming": [
+      {
+        "name": "Men's Deodorant",
+        "url": "https://www.costco.com/mens-deodorant.html",
+        "product_count": 6
+      },
+      {
+        "name": "Men's Hair Care",
+        "url": "https://www.costco.com/mens-hair-care.html",
+        "product_count": 6
+      },
+      {
+        "name": "Men's Skin Care",
+        "url": "https://www.costco.com/mens-skin-care.html",
+        "product_count": 4
+      }
+    ],
+    "Microwaves": [
+      {
+        "name": "Countertop Microwaves",
+        "url": "https://www.costco.com/countertop-microwaves.html",
+        "product_count": 6
+      },
+      {
+        "name": "Over-the-Range Microwaves",
+        "url": "https://www.costco.com/over-the-range-microwaves.html",
+        "product_count": 28
+      }
+    ],
+    "Monitors": [
+      {
+        "name": "4K Monitors",
+        "url": "https://www.costco.com/4k-monitors.html",
+        "product_count": 7
+      },
+      {
+        "name": "Curved Monitors",
+        "url": "https://www.costco.com/curved-monitors.html",
+        "product_count": 11
+      },
+      {
+        "name": "Gaming Monitors",
+        "url": "https://www.costco.com/gaming-monitors.html",
+        "product_count": 20
+      },
+      {
+        "name": "Portable Monitors",
+        "url": "https://www.costco.com/portable-monitors.html",
+        "product_count": 2
+      },
+      {
+        "name": "Smart Monitors",
+        "url": "https://www.costco.com/smart-monitors.html",
+        "product_count": 1
+      },
+      {
+        "name": "Ultrawide Monitors",
+        "url": "https://www.costco.com/ultrawide-monitors.html",
+        "product_count": 9
+      },
+      {
+        "name": "Widescreen Monitors",
+        "url": "https://www.costco.com/widescreen-monitors.html",
+        "product_count": 13
+      }
+    ],
+    "Musical Instruments": [
+      {
+        "name": "Drum Sets",
+        "url": "https://www.costco.com/drum-sets.html",
+        "product_count": 3
+      },
+      {
+        "name": "Karaoke Machines",
+        "url": "https://www.costco.com/karaoke.html",
+        "product_count": 1
+      }
+    ],
+    "Necklaces": [
+      {
+        "name": "Diamond Necklaces",
+        "url": "https://www.costco.com/diamond-necklaces.html",
+        "product_count": 72
+      },
+      {
+        "name": "Gemstone Necklaces",
+        "url": "https://www.costco.com/gemstone-necklaces.html",
+        "product_count": 33
+      },
+      {
+        "name": "Gold Necklaces",
+        "url": "https://www.costco.com/gold-necklaces.html",
+        "product_count": 74
+      },
+      {
+        "name": "One-of-a-Kind Necklaces",
+        "url": "https://www.costco.com/one-of-a-kind-necklaces.html",
+        "product_count": 16
+      },
+      {
+        "name": "Pearl Necklaces",
+        "url": "https://www.costco.com/pearl-necklaces.html",
+        "product_count": 31
+      }
+    ],
+    "Nintendo": [
+      {
+        "name": "Nintendo Switch",
+        "url": "https://www.costco.com/nintendo-switch.html",
+        "product_count": 2
+      },
+      {
+        "name": "Nintendo Switch 2",
+        "url": "https://www.costco.com/nintendo-switch-2.html",
+        "product_count": 17
+      }
+    ],
+    "Nintendo Switch": [
+      {
+        "name": "Nintendo Switch Accessories",
+        "url": "https://www.costco.com/nintendo-accessories.html",
+        "product_count": 2
+      }
+    ],
+    "Nintendo Switch 2": [
+      {
+        "name": "Nintendo Switch 2 Accessories",
+        "url": "https://www.costco.com/nintendo-switch-2-accessories.html",
+        "product_count": 5
+      },
+      {
+        "name": "Nintendo Switch 2 Games",
+        "url": "https://www.costco.com/nintendo-switch-2-games.html",
+        "product_count": 8
+      }
+    ],
+    "Nutrition": [
+      {
+        "name": "Protein",
+        "url": "https://www.costco.com/protein.html",
+        "product_count": 59
+      },
+      {
+        "name": "Sports Nutrition Supplements",
+        "url": "https://www.costco.com/sports-nutrition.html",
+        "product_count": 20
+      }
+    ],
+    "Office Electronics": [
+      {
+        "name": "Paper Shredders",
+        "url": "https://www.costco.com/shredders.html",
+        "product_count": 3
+      },
+      {
+        "name": "Printers",
+        "url": "https://www.costco.com/printers-all-in-ones-scanners.html",
+        "product_count": 20
+      }
+    ],
+    "Office Furniture Sets": [
+      {
+        "name": "Harrington",
+        "url": "https://www.costco.com/harrington-office-furniture-collection.html",
+        "product_count": 5
+      },
+      {
+        "name": "North Haven",
+        "url": "https://www.costco.com/north-haven-office-furniture-collection.html",
+        "product_count": 5
+      },
+      {
+        "name": "Tuscan",
+        "url": "https://www.costco.com/tuscan-office-furniture-collection.html",
+        "product_count": 2
+      }
+    ],
+    "Office Products": [
+      {
+        "name": "Basic Office Supplies",
+        "url": "https://www.costco.com/office-supplies.html",
+        "product_count": 12
+      },
+      {
+        "name": "Office Electronics",
+        "url": "https://www.costco.com/business-equipment.html",
+        "product_count": 23
+      },
+      {
+        "name": "Paper",
+        "url": "https://www.costco.com/office-paper.html",
+        "product_count": 8
+      },
+      {
+        "name": "Printers",
+        "url": "https://www.costco.com/printers-all-in-ones-scanners.html",
+        "product_count": 20
+      },
+      {
+        "name": "Writing Supplies",
+        "url": "https://www.costco.com/writing-supplies.html",
+        "product_count": 11
+      }
+    ],
+    "Oral Care": [
+      {
+        "name": "Teeth Whitening",
+        "url": "https://www.costco.com/teeth-whitening.html",
+        "product_count": 1
+      },
+      {
+        "name": "Toothbrush Replacement Heads",
+        "url": "https://www.costco.com/toothbrush-replacement-heads.html",
+        "product_count": 5
+      }
+    ],
+    "Outdoor Lighting": [
+      {
+        "name": "Christmas Lights",
+        "url": "https://www.costco.com/christmas-lights.html",
+        "product_count": 10
+      },
+      {
+        "name": "Landscape Lighting",
+        "url": "https://www.costco.com/landscape-lighting.html",
+        "product_count": 23
+      },
+      {
+        "name": "Outdoor String Lights",
+        "url": "https://www.costco.com/outdoor-string-lights.html",
+        "product_count": 9
+      },
+      {
+        "name": "Smart Outdoor Lighting",
+        "url": "https://www.costco.com/smart-outdoor-lighting.html",
+        "product_count": 5
+      }
+    ],
+    "Outdoor Power Equipment": [
+      {
+        "name": "Chainsaws",
+        "url": "https://www.costco.com/chain-saws.html",
+        "product_count": 2
+      },
+      {
+        "name": "Lawn Mowers",
+        "url": "https://www.costco.com/lawn-mowers.html",
+        "product_count": 7
+      },
+      {
+        "name": "Pressure Washers",
+        "url": "https://www.costco.com/tools-pressure-washers.html",
+        "product_count": 6
+      }
+    ],
+    "PC Gaming": [
+      {
+        "name": "Gaming Chairs",
+        "url": "https://www.costco.com/gaming-chairs.html",
+        "product_count": 5
+      },
+      {
+        "name": "Gaming Laptops",
+        "url": "https://www.costco.com/gaming-laptops.html",
+        "product_count": 11
+      },
+      {
+        "name": "Gaming Monitors",
+        "url": "https://www.costco.com/gaming-monitors.html",
+        "product_count": 20
+      },
+      {
+        "name": "Handheld Gaming",
+        "url": "https://www.costco.com/handheld-gaming.html",
+        "product_count": 2
+      }
+    ],
+    "Pearl Necklaces": [
+      {
+        "name": "Pearl Strands",
+        "url": "https://www.costco.com/pearl-strands.html",
+        "product_count": 11
+      }
+    ],
+    "Personal Care": [
+      {
+        "name": "Deodorant",
+        "url": "https://www.costco.com/deodorant.html",
+        "product_count": 8
+      },
+      {
+        "name": "Feminine Hygiene Products",
+        "url": "https://www.costco.com/feminine-hygiene.html",
+        "product_count": 8
+      },
+      {
+        "name": "Incontinence",
+        "url": "https://www.costco.com/incontinence.html",
+        "product_count": 3
+      },
+      {
+        "name": "Men's Grooming",
+        "url": "https://www.costco.com/mens-grooming.html",
+        "product_count": 34
+      },
+      {
+        "name": "Moisturizers",
+        "url": "https://www.costco.com/moisturizers.html",
+        "product_count": 86
+      },
+      {
+        "name": "Oral Care",
+        "url": "https://www.costco.com/oral-care.html",
+        "product_count": 43
+      }
+    ],
+    "Pet Supplies": [
+      {
+        "name": "Cat Food",
+        "url": "https://www.costco.com/cat-food.html",
+        "product_count": 9
+      },
+      {
+        "name": "Cat Trees",
+        "url": "https://www.costco.com/cat-supplies.html",
+        "product_count": 8
+      },
+      {
+        "name": "Dog and Cat Beds",
+        "url": "https://www.costco.com/dog-beds.html",
+        "product_count": 13
+      },
+      {
+        "name": "Dog Food",
+        "url": "https://www.costco.com/dog-food.html",
+        "product_count": 20
+      },
+      {
+        "name": "Pet Enclosures",
+        "url": "https://www.costco.com/houses-kennels-crates.html",
+        "product_count": 23
+      },
+      {
+        "name": "Pet Supplements",
+        "url": "https://www.costco.com/pet-supplements.html",
+        "product_count": 41
+      },
+      {
+        "name": "Pet Technology",
+        "url": "https://www.costco.com/pet-technology.html",
+        "product_count": 15
+      }
+    ],
+    "Pillows": [
+      {
+        "name": "Bed Pillows",
+        "url": "https://www.costco.com/bed-pillows.html",
+        "product_count": 41
+      },
+      {
+        "name": "Memory Foam Pillows",
+        "url": "https://www.costco.com/memory-foam.html",
+        "product_count": 12
+      }
+    ],
+    "Playstation": [
+      {
+        "name": "Playstation 5 Consoles",
+        "url": "https://www.costco.com/playstation-consoles.html",
+        "product_count": 2
+      },
+      {
+        "name": "Playstation Accessories",
+        "url": "https://www.costco.com/playstation-accessories.html",
+        "product_count": 6
+      },
+      {
+        "name": "Playstation Games",
+        "url": "https://www.costco.com/playstation-games.html",
+        "product_count": 2
+      }
+    ],
+    "Poultry": [
+      {
+        "name": "Chicken",
+        "url": "https://www.costco.com/chicken.html",
+        "product_count": 2
+      },
+      {
+        "name": "Duck",
+        "url": "https://www.costco.com/duck.html",
+        "product_count": 6
+      },
+      {
+        "name": "Turkey",
+        "url": "https://www.costco.com/turkey.html",
+        "product_count": 3
+      }
+    ],
+    "Printers": [
+      {
+        "name": "3D Printers",
+        "url": "https://www.costco.com/3d-printers.html",
+        "product_count": 5
+      },
+      {
+        "name": "Inkjet Printers",
+        "url": "https://www.costco.com/inkjet-printers.html",
+        "product_count": 9
+      },
+      {
+        "name": "Laser Printers",
+        "url": "https://www.costco.com/laser-printers.html",
+        "product_count": 5
+      },
+      {
+        "name": "Photo Printers",
+        "url": "https://www.costco.com/photo-printers.html",
+        "product_count": 1
+      }
+    ],
+    "Produce": [
+      {
+        "name": "Fresh Fruits",
+        "url": "https://www.costco.com/fresh-fruit.html",
+        "product_count": 5
+      },
+      {
+        "name": "Fresh Vegetables",
+        "url": "https://www.costco.com/fresh-vegetables.html",
+        "product_count": 5
+      }
+    ],
+    "Ranges": [
+      {
+        "name": "Electric Ranges",
+        "url": "https://www.costco.com/ranges-electric.html",
+        "product_count": 55
+      },
+      {
+        "name": "Gas Ranges",
+        "url": "https://www.costco.com/ranges-gas.html",
+        "product_count": 50
+      },
+      {
+        "name": "Professional Style Ranges",
+        "url": "https://www.costco.com/professional-style-ranges.html",
+        "product_count": 2
+      }
+    ],
+    "Refrigerators": [
+      {
+        "name": "Bottom Freezer Refrigerators",
+        "url": "https://www.costco.com/refrigerators-bottom-mount-door.html",
+        "product_count": 6
+      },
+      {
+        "name": "Four-Door Refrigerators",
+        "url": "https://www.costco.com/four-door-refrigerators.html",
+        "product_count": 42
+      },
+      {
+        "name": "Freezerless Refrigerators",
+        "url": "https://www.costco.com/freezerless-refrigerators.html",
+        "product_count": 6
+      },
+      {
+        "name": "French Door Refrigerators",
+        "url": "https://www.costco.com/french-door-refrigerators.html",
+        "product_count": 110
+      },
+      {
+        "name": "Side-By-Side Refrigerators",
+        "url": "https://www.costco.com/refrigerators-side-by-side.html",
+        "product_count": 25
+      },
+      {
+        "name": "Top Freezer Refrigerators",
+        "url": "https://www.costco.com/top-mount-refrigerators.html",
+        "product_count": 13
+      }
+    ],
+    "Rings": [
+      {
+        "name": "Engagement Rings",
+        "url": "https://www.costco.com/diamond-rings.html",
+        "product_count": 179
+      },
+      {
+        "name": "Gemstone Rings",
+        "url": "https://www.costco.com/gemstone-rings.html",
+        "product_count": 27
+      },
+      {
+        "name": "One-of-a-Kind Rings",
+        "url": "https://www.costco.com/one-of-a-kind-rings.html",
+        "product_count": 103
+      },
+      {
+        "name": "Pearl Rings",
+        "url": "https://www.costco.com/pearl-rings.html",
+        "product_count": 2
+      }
+    ],
+    "Rugs": [
+      {
+        "name": "Area Rugs",
+        "url": "https://www.costco.com/area-rugs.html",
+        "product_count": 608
+      },
+      {
+        "name": "Outdoor Rugs",
+        "url": "https://www.costco.com/rugs-outdoor-collections.html",
+        "product_count": 35
+      },
+      {
+        "name": "Rug Pads",
+        "url": "https://www.costco.com/rug-pads.html",
+        "product_count": 2
+      }
+    ],
+    "Safes": [
+      {
+        "name": "Gun Safes",
+        "url": "https://www.costco.com/executive-vaults.html",
+        "product_count": 10
+      }
+    ],
+    "Shirts for Men": [
+      {
+        "name": "Casual Shirts",
+        "url": "https://www.costco.com/mens-casual-shirts.html",
+        "product_count": 17
+      },
+      {
+        "name": "Polo Shirts",
+        "url": "https://www.costco.com/mens-polo-shirts.html",
+        "product_count": 5
+      }
+    ],
+    "Showers": [
+      {
+        "name": "Shower Heads",
+        "url": "https://www.costco.com/shower-heads.html",
+        "product_count": 14
+      }
+    ],
+    "Skin Care": [
+      {
+        "name": "Cleansers",
+        "url": "https://www.costco.com/premium-cleansers.html",
+        "product_count": 10
+      },
+      {
+        "name": "Moisturizers",
+        "url": "https://www.costco.com/moisturizers.html",
+        "product_count": 86
+      }
+    ],
+    "Small Kitchen Appliances": [
+      {
+        "name": "Air Fryers",
+        "url": "https://www.costco.com/air-fryers.html",
+        "product_count": 16
+      },
+      {
+        "name": "Ice Makers",
+        "url": "https://www.costco.com/ice-makers.html",
+        "product_count": 4
+      },
+      {
+        "name": "Rice Cookers",
+        "url": "https://www.costco.com/rice-cookers.html",
+        "product_count": 6
+      },
+      {
+        "name": "Specialty Appliances",
+        "url": "https://www.costco.com/specialty-kitchen-appliances.html",
+        "product_count": 28
+      },
+      {
+        "name": "Vacuum Sealers",
+        "url": "https://www.costco.com/vacuum-sealers.html",
+        "product_count": 4
+      }
+    ],
+    "Small Space Laundry Appliances": [
+      {
+        "name": "Laundry Centers",
+        "url": "https://www.costco.com/laundry-centers.html",
+        "product_count": 20
+      },
+      {
+        "name": "Washer Dryer Combos",
+        "url": "https://www.costco.com/washer-dryer-combo.html",
+        "product_count": 21
+      }
+    ],
+    "Smart Lighting": [
+      {
+        "name": "Smart Ceiling Fans",
+        "url": "https://www.costco.com/smart-ceiling-fans.html",
+        "product_count": 1
+      },
+      {
+        "name": "Smart Outdoor Lighting",
+        "url": "https://www.costco.com/smart-outdoor-lighting.html",
+        "product_count": 5
+      }
+    ],
+    "Smart Watches": [
+      {
+        "name": "Apple Watch",
+        "url": "https://www.costco.com/apple-smart-watch.html",
+        "product_count": 17
+      },
+      {
+        "name": "Samsung Galaxy Watch",
+        "url": "https://www.costco.com/samsung-smart-watch.html",
+        "product_count": 4
+      }
+    ],
+    "Snacks": [
+      {
+        "name": "Cookies",
+        "url": "https://www.costco.com/cookies.html",
+        "product_count": 55
+      },
+      {
+        "name": "Crackers",
+        "url": "https://www.costco.com/crackers.html",
+        "product_count": 29
+      },
+      {
+        "name": "Dried Fruit",
+        "url": "https://www.costco.com/dried-fruit.html",
+        "product_count": 14
+      },
+      {
+        "name": "Popcorn",
+        "url": "https://www.costco.com/popcorn.html",
+        "product_count": 19
+      }
+    ],
+    "Special Events": [
+      {
+        "name": "Special Events Menu",
+        "url": "https://www.costco.com/special-events-menu.html",
+        "product_count": 207
+      }
+    ],
+    "Specialty Appliances": [
+      {
+        "name": "Deep Fryers",
+        "url": "https://www.costco.com/deep-fryers.html",
+        "product_count": 1
+      },
+      {
+        "name": "Food Dehydrators",
+        "url": "https://www.costco.com/food-dehydrators.html",
+        "product_count": 2
+      },
+      {
+        "name": "Food Waste Recyclers",
+        "url": "https://www.costco.com/food-waste-recyclers.html",
+        "product_count": 1
+      },
+      {
+        "name": "Freeze Dryers",
+        "url": "https://www.costco.com/freeze-dryers.html",
+        "product_count": 3
+      },
+      {
+        "name": "Novelty Treat Makers",
+        "url": "https://www.costco.com/novelty-treat-makers.html",
+        "product_count": 6
+      },
+      {
+        "name": "Popcorn Makers",
+        "url": "https://www.costco.com/popcorn-makers.html",
+        "product_count": 3
+      }
+    ],
+    "Streaming Devices": [
+      {
+        "name": "Apple TV",
+        "url": "https://www.costco.com/apple-tv.html",
+        "product_count": 2
+      }
+    ],
+    "Sunglasses": [
+      {
+        "name": "Sunglasses for Men",
+        "url": "https://www.costco.com/mens-sunglasses.html",
+        "product_count": 24
+      },
+      {
+        "name": "Sunglasses for Women",
+        "url": "https://www.costco.com/womens-sunglasses.html",
+        "product_count": 22
+      },
+      {
+        "name": "Unisex Sunglasses",
+        "url": "https://www.costco.com/unisex-sunglasses.html",
+        "product_count": 39
+      }
+    ],
+    "TV Accessories": [
+      {
+        "name": "HDMI Cables",
+        "url": "https://www.costco.com/hdmi-cables.html",
+        "product_count": 1
+      },
+      {
+        "name": "TV Mounting Service",
+        "url": "https://www.costco.com/tv-mounting-service.html",
+        "product_count": 4
+      },
+      {
+        "name": "TV Wall Mounts",
+        "url": "https://www.costco.com/tv-mounts.html",
+        "product_count": 9
+      }
+    ],
+    "TVs": [
+      {
+        "name": "32 inch or Smaller TVs",
+        "url": "https://www.costco.com/32-inch-or-smaller-tvs.html",
+        "product_count": 1
+      },
+      {
+        "name": "43 inch TVs",
+        "url": "https://www.costco.com/39-inch-tvs-through-43-inch-tvs.html",
+        "product_count": 3
+      },
+      {
+        "name": "50 inch TVs",
+        "url": "https://www.costco.com/44-inch-tvs-through-54-inch-tvs.html",
+        "product_count": 8
+      },
+      {
+        "name": "55 inch TVs",
+        "url": "https://www.costco.com/55-inch-tvs-through-64-inch-tvs.html",
+        "product_count": 27
+      },
+      {
+        "name": "65 inch TVs",
+        "url": "https://www.costco.com/65-inch-tvs-through-69-inch-tvs.html",
+        "product_count": 43
+      },
+      {
+        "name": "70 inch TVs",
+        "url": "https://www.costco.com/70-inch-tvs-through-74-inch-tvs.html",
+        "product_count": 2
+      },
+      {
+        "name": "75 inch TVs",
+        "url": "https://www.costco.com/75-inch-tvs-through-84-inch-tvs.html",
+        "product_count": 43
+      },
+      {
+        "name": "85 inch TVs",
+        "url": "https://www.costco.com/85-inch-tvs-through-97-inch-tvs.html",
+        "product_count": 21
+      },
+      {
+        "name": "98 inch or Larger TVs",
+        "url": "https://www.costco.com/98-inch-or-larger-tvs.html",
+        "product_count": 11
+      },
+      {
+        "name": "Projectors",
+        "url": "https://www.costco.com/projectors-screens.html",
+        "product_count": 6
+      },
+      {
+        "name": "TV Accessories",
+        "url": "https://www.costco.com/mounts-cables.html",
+        "product_count": 14
+      },
+      {
+        "name": "TV Mounting Service",
+        "url": "https://www.costco.com/tv-mounting-service.html",
+        "product_count": 4
+      }
+    ],
+    "Tableware": [
+      {
+        "name": "Dinnerware Sets",
+        "url": "https://www.costco.com/dinnerware.html",
+        "product_count": 32
+      },
+      {
+        "name": "Flatware Sets",
+        "url": "https://www.costco.com/flatware.html",
+        "product_count": 23
+      }
+    ],
+    "Tailgating Essentials": [
+      {
+        "name": "Sports Fan Shop",
+        "url": "https://www.costco.com/sports-fan-team-shop.html",
+        "product_count": 14
+      }
+    ],
+    "Toys": [
+      {
+        "name": "Electronics For Kids",
+        "url": "https://www.costco.com/electronics-tech-toys.html",
+        "product_count": 2
+      },
+      {
+        "name": "Ride-On Toys",
+        "url": "https://www.costco.com/ride-on-toys.html",
+        "product_count": 1
+      },
+      {
+        "name": "Trading Cards",
+        "url": "https://www.costco.com/trading-cards.html",
+        "product_count": 10
+      }
+    ],
+    "Urns": [
+      {
+        "name": "Urns",
+        "url": "https://www.costco.com/urns-urns.html",
+        "product_count": 1
+      }
+    ],
+    "View More Categories": [
+      {
+        "name": "Join Costco",
+        "url": "https://www.costco.com/join-costco.html",
+        "product_count": 6
+      },
+      {
+        "name": "Buying Guides",
+        "url": "https://www.costco.com/buying-guides.html",
+        "product_count": 1
+      },
+      {
+        "name": "Costco Hearing Aid Center",
+        "url": "https://www.costco.com/hearing-aid-center.html",
+        "product_count": 1
+      },
+      {
+        "name": "Costco Optical",
+        "url": "https://www.costco.com/optical.html",
+        "product_count": 1
+      },
+      {
+        "name": "Costco Services for Members",
+        "url": "https://www.costco.com/services.html",
+        "product_count": 13
+      },
+      {
+        "name": "Explore Our Brands",
+        "url": "https://www.costco.com/featured-brands.html",
+        "product_count": 60
+      },
+      {
+        "name": "Funeral",
+        "url": "https://www.costco.com/funeral.html",
+        "product_count": 11
+      },
+      {
+        "name": "New Items",
+        "url": "https://www.costco.com/whats-new.html",
+        "product_count": 26
+      }
+    ],
+    "Wall Ovens": [
+      {
+        "name": "Double Wall Ovens",
+        "url": "https://www.costco.com/double-wall-ovens.html",
+        "product_count": 10
+      },
+      {
+        "name": "Single Wall Ovens",
+        "url": "https://www.costco.com/single-wall-ovens.html",
+        "product_count": 7
+      },
+      {
+        "name": "Wall Oven Microwave Combos",
+        "url": "https://www.costco.com/wall-oven-microwave-combos.html",
+        "product_count": 13
+      }
+    ],
+    "Watches": [
+      {
+        "name": "Luxury Watches",
+        "url": "https://www.costco.com/luxury-watches.html",
+        "product_count": 12
+      },
+      {
+        "name": "Smart Watches",
+        "url": "https://www.costco.com/smart-watches.html",
+        "product_count": 26
+      }
+    ],
+    "Wearable Technology": [
+      {
+        "name": "Fitness Trackers",
+        "url": "https://www.costco.com/fitness-trackers.html",
+        "product_count": 16
+      },
+      {
+        "name": "Smart Watches",
+        "url": "https://www.costco.com/smart-watches.html",
+        "product_count": 26
+      }
+    ],
+    "Window Treatments": [
+      {
+        "name": "Curtain Rods",
+        "url": "https://www.costco.com/curtain-rods.html",
+        "product_count": 2
+      }
+    ],
+    "Windows Laptops": [
+      {
+        "name": "Gaming Laptops",
+        "url": "https://www.costco.com/gaming-laptops.html",
+        "product_count": 11
+      },
+      {
+        "name": "Microsoft Surface Laptops",
+        "url": "https://www.costco.com/microsoft-surface-laptops.html",
+        "product_count": 3
+      },
+      {
+        "name": "Windows Copilot+ PCs",
+        "url": "https://www.costco.com/windows-copilot-pcs.html",
+        "product_count": 27
+      }
+    ],
+    "Winter Sports": [
+      {
+        "name": "Snowshoes",
+        "url": "https://www.costco.com/snowshoes.html",
+        "product_count": 3
+      }
+    ],
+    "Writing Supplies": [
+      {
+        "name": "Pens",
+        "url": "https://www.costco.com/writing-supplies-pens.html",
+        "product_count": 2
+      }
+    ],
+    "iPad": [
+      {
+        "name": "iPad Air",
+        "url": "https://www.costco.com/ipad-air.html",
+        "product_count": 4
+      },
+      {
+        "name": "iPad Pro",
+        "url": "https://www.costco.com/ipad-pro.html",
+        "product_count": 6
+      }
+    ]
+  }
+}
