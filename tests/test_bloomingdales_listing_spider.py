@@ -12,6 +12,15 @@ from common.spiders.bloomingdales_listing_spider import (
 
 
 class BloomingdalesListingSpiderTests(unittest.TestCase):
+    def test_reference_resolution_handles_cycles_with_memoization(self):
+        spider = BloomingdalesListingSpider(category="women")
+        state = [{"self": 0, "name": 1}, "Dress"]
+
+        resolved = spider._resolve_ref(state, 0, memo={})
+
+        self.assertEqual(resolved["self"], 0)
+        self.assertEqual(resolved["name"], "Dress")
+
     def setUp(self):
         self.spider = BloomingdalesListingSpider(category="women", max_pages=2)
         self.sample_dir = Path(__file__).resolve().parents[1] / "sample"

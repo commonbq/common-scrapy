@@ -120,13 +120,14 @@ class BloomingdalesListingSpider(BaseListingSpider):
     def _extract_products(self, state: list) -> list[dict]:
         products_by_id: dict[int, dict] = {}
         url_nodes: list[dict] = []
+        resolved_refs: dict[int, object] = {}
 
         for node in state:
             if not isinstance(node, dict):
                 continue
 
             if "id" in node and "detail" in node:
-                pid = self._resolve_ref(state, node.get("id"))
+                pid = self._resolve_ref(state, node.get("id"), memo=resolved_refs)
                 if isinstance(pid, int):
                     products_by_id[pid] = node
 
@@ -135,19 +136,25 @@ class BloomingdalesListingSpider(BaseListingSpider):
 
         out: list[dict] = []
         for node in url_nodes:
-            raw_url = self._resolve_ref(state, node.get("productUrl"))
-            pid = self._resolve_ref(state, node.get("productId"))
+            raw_url = self._resolve_ref(
+                state, node.get("productUrl"), memo=resolved_refs
+            )
+            pid = self._resolve_ref(state, node.get("productId"), memo=resolved_refs)
             if not isinstance(raw_url, str):
                 continue
 
             product_node = products_by_id.get(pid) if isinstance(pid, int) else None
             detail = (
-                self._resolve_ref(state, (product_node or {}).get("detail"))
+                self._resolve_ref(
+                    state, (product_node or {}).get("detail"), memo=resolved_refs
+                )
                 if product_node
                 else {}
             )
             pricing = (
-                self._resolve_ref(state, (product_node or {}).get("pricing"))
+                self._resolve_ref(
+                    state, (product_node or {}).get("pricing"), memo=resolved_refs
+                )
                 if product_node
                 else {}
             )
@@ -209,18 +216,47 @@ class BloomingdalesListingSpider(BaseListingSpider):
                     return value
         return []
 
-    def _resolve_ref(self, state: list, value, depth: int = 0):
+    def _resolve_ref(
+        self,
+        state: list,
+        value,
+        depth: int = 0,
+        seen: set[int] | None = None,
+        memo: dict[int, object] | None = None,
+    ):
         if depth > 50:
             return value
 
         if isinstance(value, int) and 0 <= value < len(state):
-            return self._resolve_ref(state, state[value], depth + 1)
+            if memo is not None and value in memo:
+                return memo[value]
+            if seen is None:
+                seen = set()
+            if value in seen:
+                return value
+            seen.add(value)
+            resolved = self._resolve_ref(
+                state,
+                state[value],
+                depth + 1,
+                seen,
+                memo,
+            )
+            seen.remove(value)
+            if memo is not None:
+                memo[value] = resolved
+            return resolved
 
         if isinstance(value, list):
-            return [self._resolve_ref(state, v, depth + 1) for v in value]
+            return [
+                self._resolve_ref(state, v, depth + 1, seen, memo) for v in value
+            ]
 
         if isinstance(value, dict):
-            return {k: self._resolve_ref(state, v, depth + 1) for k, v in value.items()}
+            return {
+                k: self._resolve_ref(state, v, depth + 1, seen, memo)
+                for k, v in value.items()
+            }
 
         return value
 
