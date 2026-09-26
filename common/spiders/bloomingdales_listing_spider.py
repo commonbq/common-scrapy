@@ -99,9 +99,12 @@ class BloomingdalesListingSpider(BaseListingSpider):
             product["facet_urls"] = category_metadata["facets"]
             yield product
 
-        if page >= self.max_pages or (
-            not extracted_products and not self._has_next_page_signal(state, page)
-        ):
+        if page >= self.max_pages:
+            return
+        has_next_page_signal = self._has_next_page_signal(state, page)
+        if has_next_page_signal is False:
+            return
+        if not extracted_products and has_next_page_signal is not True:
             return
 
         yield scrapy.Request(
@@ -418,8 +421,8 @@ class BloomingdalesListingSpider(BaseListingSpider):
         )
 
     def _is_leaf_category_url(self, url: str) -> bool:
-        path = urlparse(url).path.strip("/")
-        return path.count("/") >= 2
+        segments = [segment for segment in urlparse(url).path.strip("/").split("/") if segment]
+        return len(segments) > 2 and segments[0] == "shop"
 
     def _is_facet_url(self, url: str) -> bool:
         facet_keys = {
@@ -435,8 +438,11 @@ class BloomingdalesListingSpider(BaseListingSpider):
         keys = {k for k, _ in parse_qsl(urlparse(url).query, keep_blank_values=True)}
         return bool(keys & facet_keys)
 
-    def _has_next_page_signal(self, state: list, page: int) -> bool:
+    def _has_next_page_signal(self, state: list, page: int) -> bool | None:
+        saw_pagination = False
+
         def walk(node) -> bool:
+            nonlocal saw_pagination
             if isinstance(node, dict):
                 total_pages = node.get("totalPages") or node.get("totalpages")
                 current_page = (
@@ -446,20 +452,30 @@ class BloomingdalesListingSpider(BaseListingSpider):
                     or node.get("Pageindex")
                     or node.get("pageindex")
                 )
-                if self._to_int(total_pages) and self._to_int(total_pages) > page:
-                    return True
+                total_pages_int = self._to_int(total_pages)
+                current_page_int = self._to_int(current_page)
+                if total_pages_int is not None:
+                    saw_pagination = True
+                    if total_pages_int > page:
+                        return True
                 if (
-                    self._to_int(total_pages)
-                    and self._to_int(current_page)
-                    and self._to_int(current_page) < self._to_int(total_pages)
+                    total_pages_int is not None
+                    and current_page_int is not None
+                    and current_page_int < total_pages_int
                 ):
+                    saw_pagination = True
                     return True
                 return any(walk(value) for value in node.values())
             if isinstance(node, list):
                 return any(walk(value) for value in node)
             return False
 
-        return any(walk(node) for node in state)
+        has_next = any(walk(node) for node in state)
+        if has_next:
+            return True
+        if saw_pagination:
+            return False
+        return None
 
     def _select_leaf_url(self, leaf_urls: list[str], seed_url: str) -> str:
         seed_path = urlparse(seed_url).path.strip("/").split("/")
