@@ -35,9 +35,24 @@ class AmazonListingSpiderTests(unittest.TestCase):
         self.assertEqual(requests[0].meta["category"], "Home & Kitchen")
         self.assertEqual(requests[0].meta["sub_category"], "Bed & bath")
         self.assertIn("node=1057792", requests[0].url)
+        self.assertNotIn("pf_rd_", requests[0].url)
+        self.assertNotIn("ref_", requests[0].url)
         self.assertNotIn(
             "Shopbop", {request.meta["sub_category"] for request in requests}
         )
+
+    def test_category_urls_are_canonicalized_by_node(self):
+        tracked_url = (
+            "https://www.amazon.com/b/home-products?node=1057792"
+            "&pf_rd_p=tracking-token&pf_rd_r=request-token&ref_=nav"
+        )
+
+        canonical = AmazonListingSpider._canonicalize_category_url(tracked_url)
+
+        self.assertEqual(canonical, "https://www.amazon.com/b?node=1057792")
+
+    def test_crawl_depth_is_limited_to_four(self):
+        self.assertEqual(AmazonListingSpider.custom_settings["DEPTH_LIMIT"], 4)
 
 
 if __name__ == "__main__":

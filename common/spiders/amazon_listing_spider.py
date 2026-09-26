@@ -15,6 +15,7 @@ class AmazonListingSpider(BaseListingSpider):
     custom_settings = {
         "CONCURRENT_REQUESTS_PER_DOMAIN": 4,
         "DOWNLOAD_DELAY": 0,
+        "DEPTH_LIMIT": 4,
         "FEED_EXPORT_FIELDS": [
             "asin",
             "title",
@@ -116,8 +117,8 @@ class AmazonListingSpider(BaseListingSpider):
                 ).get()
                 if not href or not sub_category:
                     continue
-                sub_category_url = response.urljoin(
-                    href
+                sub_category_url = self._canonicalize_category_url(
+                    response.urljoin(href)
                 )
                 yield scrapy.Request(
                     sub_category_url,
@@ -239,6 +240,27 @@ class AmazonListingSpider(BaseListingSpider):
         qs = parse_qs(parts.query)
         qs["page"] = [str(page)]
         return urlunparse(parts._replace(query=urlencode(qs, doseq=True)))
+
+    @staticmethod
+    def _canonicalize_category_url(url: str) -> str:
+        """Remove Amazon tracking parameters from browse-node URLs.
+
+        Amazon commonly links the same category node with different ``pf_rd_*``
+        and ``ref_`` values. Keeping only the node ID gives Scrapy a stable
+        request fingerprint so its duplicate filter can collapse those links.
+        """
+        parts = urlparse(url)
+        node = (parse_qs(parts.query).get("node") or [None])[0]
+        if not node:
+            return url
+        return urlunparse(
+            parts._replace(
+                path="/b",
+                params="",
+                query=urlencode({"node": node}),
+                fragment="",
+            )
+        )
 
     def _extract_float(self, text: str) -> float | None:
         match = re.search(r"(\d+(?:\.\d+)?)", text)
