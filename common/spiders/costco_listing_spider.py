@@ -222,14 +222,10 @@ class CostcoListingSpider(BaseListingSpider):
 
         total_size = self._extract_total_size(payload)
         offset = int(response.meta.get("offset", 0))
-        if (
-            yielded
-            and page < self.max_pages
-            and (
-                total_size is None
-                or offset + page_size < total_size
-                or len(results) >= page_size
-            )
+        if page < self.max_pages and (
+            total_size is None
+            or offset + page_size < total_size
+            or len(results) >= page_size
         ):
             next_offset = offset + page_size
             yield self._build_search_request(response.meta, next_offset, page + 1)
@@ -341,14 +337,9 @@ class CostcoListingSpider(BaseListingSpider):
             or 20
         )
         page_size = max(1, min(page_size, 96))
-        warehouse_match = re.search(
-            r'"productApiWarehouseNumber":"(?P<warehouse>\d+)"', "\n".join(rows)
-        )
-        warehouse_number = (
-            warehouse_match.group("warehouse")
-            if warehouse_match
-            else DEFAULT_WAREHOUSE_NUMBER
-        )
+        warehouse_number = self._first_key(parsed_rows, "productApiWarehouseNumber")
+        if not isinstance(warehouse_number, str):
+            warehouse_number = DEFAULT_WAREHOUSE_NUMBER
         return {
             "category_id": category_id,
             "category_title": category_title or self.category or page_id,
