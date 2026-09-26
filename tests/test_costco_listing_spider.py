@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import unittest
 from pathlib import Path
+from unittest.mock import Mock
 
 from scrapy.http import TextResponse
 
@@ -75,6 +76,8 @@ class CostcoListingSpiderTests(unittest.TestCase):
         payload = json.loads(request.body)
         self.assertEqual(payload["pageSize"], 24)
         self.assertEqual(payload["offset"], 0)
+        self.assertEqual(payload["warehouseId"], "847")
+        self.assertEqual(payload["deliveryLocations"], ["847"])
         self.assertEqual(payload["pageCategories"], ["coffee-sweeteners"])
         self.assertEqual(
             payload["filterBy"], ['attributes.category_uri: ANY("coffee-sweeteners")']
@@ -152,6 +155,23 @@ class CostcoListingSpiderTests(unittest.TestCase):
             list(self.spider.parse_search(self.response(request, '{"searchResult":{}}'))),
             [],
         )
+
+    def test_scrapeops_proxy_keeps_costco_api_headers(self):
+        self.spider.settings = Mock()
+        self.spider.settings.get.return_value = (
+            "http://scrapeops.country=us:secret@proxy.scrapeops.io:5353"
+        )
+        request = self.listing_request()
+        self.assertEqual(
+            request.meta["proxy"],
+            "http://scrapeops.country=us.keep_headers=true:secret@proxy.scrapeops.io:5353",
+        )
+
+    def test_non_scrapeops_proxy_is_left_to_project_middleware(self):
+        self.spider.settings = Mock()
+        self.spider.settings.get.return_value = "http://localhost:8080"
+        request = self.listing_request()
+        self.assertNotIn("proxy", request.meta)
 
 
 if __name__ == "__main__":

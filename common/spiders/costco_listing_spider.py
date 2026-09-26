@@ -13,7 +13,7 @@ import json
 import re
 from pathlib import Path
 from typing import Any
-from urllib.parse import urljoin, urlparse
+from urllib.parse import quote, urljoin, urlparse, urlsplit, urlunsplit
 
 import scrapy
 
@@ -243,6 +243,9 @@ class CostcoListingSpider(BaseListingSpider):
             "offset": offset,
             "page": page,
         }
+        proxy = self._search_api_proxy()
+        if proxy:
+            request_meta["proxy"] = proxy
         return scrapy.Request(
             search_config["endpoint"],
             method=(search_config.get("method") or "POST").upper(),
@@ -351,8 +354,36 @@ class CostcoListingSpider(BaseListingSpider):
             "page_size": page_size,
             "search_config": search_config,
             "subcategories": subcategories,
-            "warehouse_id": f"{warehouse_number}-wh",
+            "warehouse_id": warehouse_number.removesuffix("-wh"),
         }
+
+    def _search_api_proxy(self) -> str | None:
+        """Preserve the GRS credentials when requests use ScrapeOps.
+
+        ScrapeOps removes custom origin headers by default. Costco's GRS API
+        authenticates with ``client-identifier`` and therefore needs the
+        provider's ``keep_headers`` option on this request.
+        """
+        if not hasattr(self, "settings"):
+            return None
+        proxy = self.settings.get("PROXY")
+        if not isinstance(proxy, str) or not proxy:
+            return None
+        parts = urlsplit(proxy)
+        if parts.hostname != "proxy.scrapeops.io" or not parts.username:
+            return None
+        username = parts.username
+        if ".keep_headers=true" not in username:
+            username = f"{username}.keep_headers=true"
+        credentials = quote(username, safe=".=_-")
+        if parts.password is not None:
+            credentials += f":{quote(parts.password, safe='')}"
+        host = parts.hostname
+        if parts.port is not None:
+            host += f":{parts.port}"
+        return urlunsplit(
+            (parts.scheme, f"{credentials}@{host}", parts.path, parts.query, parts.fragment)
+        )
 
     def _extract_subcategories(
         self, parsed_rows: dict[str, Any], source_url: str
