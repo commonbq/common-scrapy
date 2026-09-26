@@ -82,7 +82,7 @@ class BloomingdalesListingSpiderTests(unittest.TestCase):
         self.assertEqual(first["title"], "Floral Dress")
         self.assertEqual(
             first["url"],
-            "https://www.bloomingdales.com/shop/product/aqua-floral-dress?ID=111111",
+            "https://www.bloomingdales.com/shop/product/aqua-floral-dress?ID=111111&CategoryID=21683",
         )
         self.assertEqual(first["price"], 120.0)
         self.assertEqual(first["original_price"], 150.0)
