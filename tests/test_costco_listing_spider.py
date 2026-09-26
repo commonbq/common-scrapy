@@ -55,7 +55,9 @@ class CostcoListingSpiderTests(unittest.TestCase):
                     },
                 }
             )
-        return json.dumps({"searchResult": {"results": results, "totalSize": total_size}})
+        return json.dumps(
+            {"searchResult": {"results": results, "totalSize": total_size}}
+        )
 
     def test_category_mapping_expands_from_inventory(self):
         self.assertIn("coffee/single-serve", self.spider.available_categories())
@@ -71,7 +73,7 @@ class CostcoListingSpiderTests(unittest.TestCase):
             request.url, "https://gdx-api.costco.com/catalog/search/api/v1/search"
         )
         payload = json.loads(request.body)
-        self.assertEqual(payload["pageSize"], 20)
+        self.assertEqual(payload["pageSize"], 24)
         self.assertEqual(payload["offset"], 0)
         self.assertEqual(payload["pageCategories"], ["coffee-sweeteners"])
         self.assertEqual(
@@ -95,7 +97,7 @@ class CostcoListingSpiderTests(unittest.TestCase):
         request = self.listing_request()
         item, follow_up = list(
             self.spider.parse_search(
-                self.response(request, self.search_payload(["100361434"], total_size=21))
+                self.response(request, self.search_payload(["100361434"], total_size=25))
             )
         )
         self.assertEqual(item["item_id"], "100361434")
@@ -111,11 +113,11 @@ class CostcoListingSpiderTests(unittest.TestCase):
         self.assertEqual(item["category_name"], "Coffee")
         self.assertEqual(item["page"], 1)
         self.assertEqual(follow_up.meta["page"], 2)
-        self.assertEqual(json.loads(follow_up.body)["offset"], 20)
+        self.assertEqual(json.loads(follow_up.body)["offset"], 24)
         duplicate_page = list(
             self.spider.parse_search(
                 self.response(
-                    follow_up, self.search_payload(["100361434"], total_size=21)
+                    follow_up, self.search_payload(["100361434"], total_size=25)
                 )
             )
         )
@@ -135,7 +137,7 @@ class CostcoListingSpiderTests(unittest.TestCase):
         )
         flight = self.spider._extract_flight_context(html, "https://www.costco.com/coffee.html")
         self.assertIsNotNone(flight)
-        self.assertEqual(flight["page_size"], 20)
+        self.assertEqual(flight["page_size"], 24)
         self.assertEqual(
             flight["subcategories"][0]["url"],
             "https://www.costco.com/tea.html?deliveryFacetFlag=true&refine=x",

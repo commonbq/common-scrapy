@@ -122,7 +122,7 @@ class CostcoListingSpider(BaseListingSpider):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self._seen_products: set[str] = set()
+        self._seen_products: set[tuple[str | None, str]] = set()
 
     def available_categories(self) -> list[str]:
         aliases = {
@@ -204,11 +204,15 @@ class CostcoListingSpider(BaseListingSpider):
         page_size = int(response.meta["page_size"])
         yielded = 0
         for item in results:
-            key = item.get("item_id") or item.get("url") or item.get("title")
-            if key and key in self._seen_products:
+            item_key = item.get("item_id") or item.get("url") or item.get("title")
+            seen_key = (
+                response.meta.get("category_url"),
+                str(item_key),
+            ) if item_key is not None else None
+            if seen_key and seen_key in self._seen_products:
                 continue
-            if key:
-                self._seen_products.add(key)
+            if seen_key:
+                self._seen_products.add(seen_key)
             yielded += 1
             yield {
                 **item,
@@ -332,8 +336,8 @@ class CostcoListingSpider(BaseListingSpider):
             return None
         subcategories = self._extract_subcategories(parsed_rows, source_url)
         page_size = int(
-            (search_config.get("required_request_parameters") or {}).get("pageSize")
-            or display_config.get("resultsPerPage")
+            display_config.get("resultsPerPage")
+            or (search_config.get("required_request_parameters") or {}).get("pageSize")
             or 20
         )
         page_size = max(1, min(page_size, 96))
