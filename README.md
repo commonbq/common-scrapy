@@ -930,16 +930,23 @@ Run examples:
   "original_price": 64.95,
   "currency": "USD",
   "brand": "American Eagle",
-  "source": "ae_html",
-  "mode": "category_html"
+  "rating": 4.7,
+  "reviews_count": 123,
+  "image_url": "https://images.ae.com/is/image/aeo/1457_2980_808_of?$pdp-m-opt$",
+  "category": "women-tops",
+  "category_url": "https://www.ae.com/us/en/c/women/tops/cat10049",
+  "source": "ae_fastboot_shoebox",
+  "mode": "browse_api"
 }
 ```
 Run example:
-- `common-scrapy crawl ae_listing -a category='women-tops' -a max_pages=1 -O ae_listing.jsonl`
+- `common-scrapy crawl ae_listing -a category='women-all' -a max_pages=1 -O ae_listing.jsonl`
+- `common-scrapy crawl ae_listing -a category_url='https://www.ae.com/us/en/c/women/womens' -a max_pages=1 -O ae_listing.jsonl`
 
 Notes:
-- Verified in browser and direct HTTP while connected to NordVPN US (Dallas + Seattle).
-- In this environment, HTML category pages contain stable product cards/links (`/us/en/p/...`) suitable for listing extraction.
+- Category pages expose the authoritative product payload in FastBoot shoebox scripts (`<script type="fastboot/shoebox">`) with IDs that base64url-decode to `/browse/v1/category/{category}`.
+- Pagination uses `/browse/v1/category/{category}?offset={offset}&rows={rows}` with `meta.offset`, `meta.rows`, and `meta.totalProducts`.
+- Requests should keep browser-like headers (`accept`, `accept-language`, `referer`, `user-agent`, and `x-requested-with`).
 
 ## Contributing
 
