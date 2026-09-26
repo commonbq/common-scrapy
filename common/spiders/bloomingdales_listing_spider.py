@@ -99,7 +99,7 @@ class BloomingdalesListingSpider(BaseListingSpider):
             product["facet_urls"] = category_metadata["facets"]
             yield product
 
-        if page >= self.max_pages or not extracted_products:
+        if page >= self.max_pages:
             return
 
         yield scrapy.Request(
@@ -223,49 +223,49 @@ class BloomingdalesListingSpider(BaseListingSpider):
     def _extract_prices(
         self, pricing: dict
     ) -> tuple[float | None, str | None, float | None, str | None]:
-        values: list[tuple[float | None, str | None]] = []
+        def money_pair(node) -> tuple[float | None, str | None]:
+            if not isinstance(node, dict):
+                return None, None
+            text = node.get("formattedValue") if isinstance(node.get("formattedValue"), str) else None
+            numeric = self._to_float(node.get("value"))
+            if numeric is None and text:
+                numeric = self._to_float(text)
+            return numeric, text
 
-        def walk(node):
-            if isinstance(node, dict):
-                has_money_shape = "value" in node or "formattedValue" in node
-                if has_money_shape:
-                    formatted = node.get("formattedValue")
-                    text = formatted if isinstance(formatted, str) else None
-                    numeric = self._to_float(node.get("value"))
-                    if numeric is None and text:
-                        numeric = self._to_float(text)
-                    if numeric is not None or text:
-                        values.append((numeric, text))
-                for child in node.values():
-                    walk(child)
-            elif isinstance(node, list):
-                for child in node:
-                    walk(child)
+        price = pricing.get("price") if isinstance(pricing, dict) else None
+        tiered = price.get("tieredPrice") if isinstance(price, dict) else None
+        if isinstance(tiered, list):
+            ordered_pairs: list[tuple[float | None, str | None]] = []
+            for tier in tiered:
+                values = (tier or {}).get("values")
+                if not isinstance(values, list):
+                    continue
+                for value_node in values:
+                    pair = money_pair(value_node)
+                    if pair != (None, None):
+                        ordered_pairs.append(pair)
+            if ordered_pairs:
+                current = ordered_pairs[0]
+                original = next(
+                    (
+                        pair
+                        for pair in ordered_pairs[1:]
+                        if pair[0] is None or current[0] is None or pair[0] != current[0]
+                    ),
+                    (None, None),
+                )
+                return current[0], current[1], original[0], original[1]
 
-        walk(pricing)
+        current = self._first_nested_value(pricing, "salePrice", "currentPrice", "promoPrice", "value")
+        original = self._first_nested_value(pricing, "originalPrice", "wasPrice", "regularPrice", "listPrice")
+        current_val = self._to_float(current)
+        original_val = self._to_float(original)
+        if current_val is not None or original_val is not None:
+            current_text = str(current) if isinstance(current, str) else None
+            original_text = str(original) if isinstance(original, str) else None
+            return current_val, current_text, original_val, original_text
 
-        if not values:
-            return None, None, None, None
-
-        deduped: list[tuple[float | None, str | None]] = []
-        seen: set[tuple[float | None, str | None]] = set()
-        for pair in values:
-            if pair in seen:
-                continue
-            deduped.append(pair)
-            seen.add(pair)
-
-        with_numeric = [pair for pair in deduped if pair[0] is not None]
-        if with_numeric:
-            with_numeric.sort(key=lambda x: x[0])
-            current = with_numeric[0]
-            original = with_numeric[-1]
-            if current[0] == original[0]:
-                original = (None, None)
-            return current[0], current[1], original[0], original[1]
-
-        current = deduped[0]
-        return current[0], current[1], None, None
+        return None, None, None, None
 
     def _extract_category_metadata(self, state: list, current_url: str) -> dict[str, list[str]]:
         urls: list[str] = []
