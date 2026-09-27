@@ -72,7 +72,7 @@ Spiders below are returning items in recent smoke runs:
 
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
-| [`ae_listing`](#ae_listing) | Experimental | html | Akamai (signals in headers) | American Eagle listing spider via category-page product cards. | 30 (ok) | women-tops, women-jeans, men-tops | `{"item_id":"1457_2980_808","title":null,"url":"https://www.ae.com/us/en/p/women/hoodies-sweatshirts/crew-neck-sweatshirts/ae-big-hug-v-neck-sweatshirt/1457_2980_808","price":nul...` |
+| [`ae_listing`](#ae_listing) | Experimental | html | Akamai (signals in headers) | American Eagle listing spider via category-page product cards. | 30 (ok) | women, men, aerie | `{"item_id":"1457_2980_808","title":null,"url":"https://www.ae.com/us/en/p/women/hoodies-sweatshirts/crew-neck-sweatshirts/ae-big-hug-v-neck-sweatshirt/1457_2980_808","price":nul...` |
 | [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | html + nuxt-state | Akamai | Bloomingdale's listing spider via direct HTML/state extraction (resilient parser). | 8 (ok) | women, men, shoes, beauty, home | `{"item_id":"5973765","title":"Tumbled Woven Verne Pants","url":"https://www.bloomingdales.com/shop/product/cinq-a-sept-tumbled-woven-vern...` |
 | [`costco_listing`](#costco_search--costco_listing) | Active | bootstrap + html | Akamai | Costco category listing with state extraction + fallback. | 24 (ok) | coffee, water, snacks, vitamins, laundry, paper-products | `{"item_id":"100501081","title":null,"url":"https://www.costco.com/starbucks-pike-place-medium-roast-k-cup-72-count.product.100501081.html","price":null,"currency":null,"brand":n...` |
 | [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | none detected (CloudFront CDN only) | e.l.f. Cosmetics multi-mode listing spider. | 6 (ok) | face, eyes, lips | `{'item_id':'300261','title':'Soft Glam Satin Concealer','url':'https://www.elfcosmetics.com/soft-glam-satin-concealer/300262.html','price':9.0,'brand':'e.l.f. Cosmetics','source':'elfcosmetics_preloaded_state'...}` |
@@ -933,18 +933,19 @@ Run examples:
   "rating": 4.7,
   "reviews_count": 123,
   "image_url": "https://images.ae.com/is/image/aeo/1457_2980_808_of?$pdp-m-opt$",
-  "category": "women-tops",
-  "category_url": "https://www.ae.com/us/en/c/women/tops/cat10049",
+  "category": "women",
+  "subcategory": "tops",
+  "listing_url": "https://www.ae.com/us/en/c/women/tops/cat10049",
   "source": "ae_fastboot_shoebox",
   "mode": "browse_api"
 }
 ```
 Run example:
-- `common-scrapy crawl ae_listing -a category='women-all' -a max_pages=1 -O ae_listing.jsonl`
-- `common-scrapy crawl ae_listing -a category_url='https://www.ae.com/us/en/c/women/womens' -a max_pages=1 -O ae_listing.jsonl`
+- `common-scrapy crawl ae_listing -a category='women' -a max_pages=1 -O ae_listing.jsonl`
 
 Notes:
 - Category pages expose the authoritative product payload in FastBoot shoebox scripts (`<script type="fastboot/shoebox">`) with IDs that base64url-decode to `/browse/v1/category/{category}`.
+- Selecting a category (`women`, `men`, or `aerie`) starts every configured subcategory in that group.
 - Pagination uses `/browse/v1/category/{category}?offset={offset}&rows={rows}` with `meta.offset`, `meta.rows`, and `meta.totalProducts`.
 - Requests should keep browser-like headers (`accept`, `accept-language`, `referer`, `user-agent`, and `x-requested-with`).
 

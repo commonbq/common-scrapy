@@ -55,11 +55,7 @@ class AeListingSpider(BaseListingSpider):
         },
     }
 
-    categories = {
-        f"{section}-{name}": url
-        for section, values in AE_CATEGORIES.items()
-        for name, url in values.items()
-    }
+    categories = AE_CATEGORIES
 
     custom_settings = {"HTTPERROR_ALLOW_ALL": True, "DOWNLOAD_DELAY": 1}
 
@@ -70,13 +66,7 @@ class AeListingSpider(BaseListingSpider):
     def available_categories(self) -> list[str]:
         return sorted(self.categories)
 
-    def resolve_target_url(self) -> str:
-        if self.url and self.category_url:
-            raise ValueError("Provide only one of -a url or -a category_url")
-        if self.url:
-            return self.url
-        if self.category_url:
-            return self.category_url
+    def _selected_subcategories(self) -> dict[str, str]:
         if self.category in self.categories:
             return self.categories[self.category]
         available = ", ".join(self.available_categories())
@@ -85,14 +75,19 @@ class AeListingSpider(BaseListingSpider):
         )
 
     def start_requests(self):
-        target = self.resolve_target_url()
         self._seen_products.clear()
-        yield scrapy.Request(
-            target,
-            callback=self.parse_html,
-            headers=self._headers(referer=target, wants_json=False),
-            meta={"page": 1, "category": self.category, "category_url": target},
-        )
+        for subcategory, target in self._selected_subcategories().items():
+            yield scrapy.Request(
+                target,
+                callback=self.parse_html,
+                headers=self._headers(referer=target, wants_json=False),
+                meta={
+                    "page": 1,
+                    "category": self.category,
+                    "subcategory": subcategory,
+                    "listing_url": target,
+                },
+            )
 
     def parse_html(self, response: scrapy.http.Response):
         browse_path, payload = self._extract_shoebox_payload(response)
@@ -107,14 +102,16 @@ class AeListingSpider(BaseListingSpider):
             payload,
             page=int(response.meta.get("page", 1)),
             category=response.meta.get("category"),
-            category_url=response.meta.get("category_url") or response.url,
+            subcategory=response.meta.get("subcategory"),
+            listing_url=response.meta.get("listing_url") or response.url,
         )
         next_request = self._build_next_request(
             payload=payload,
             page=int(response.meta.get("page", 1)),
             browse_path=browse_path,
             category=response.meta.get("category"),
-            category_url=response.meta.get("category_url") or response.url,
+            subcategory=response.meta.get("subcategory"),
+            listing_url=response.meta.get("listing_url") or response.url,
             reference_url=response.url,
         )
         if next_request:
@@ -134,15 +131,17 @@ class AeListingSpider(BaseListingSpider):
             payload,
             page=page,
             category=response.meta.get("category"),
-            category_url=response.meta.get("category_url") or response.url,
+            subcategory=response.meta.get("subcategory"),
+            listing_url=response.meta.get("listing_url") or response.url,
         )
         next_request = self._build_next_request(
             payload=payload,
             page=page,
             browse_path=response.meta.get("browse_path"),
             category=response.meta.get("category"),
-            category_url=response.meta.get("category_url") or response.url,
-            reference_url=response.meta.get("category_url") or response.url,
+            subcategory=response.meta.get("subcategory"),
+            listing_url=response.meta.get("listing_url") or response.url,
+            reference_url=response.meta.get("listing_url") or response.url,
         )
         if next_request:
             yield next_request
@@ -184,7 +183,13 @@ class AeListingSpider(BaseListingSpider):
         return payload if isinstance(payload, dict) else None
 
     def _yield_products(
-        self, payload: dict, *, page: int, category: str | None, category_url: str
+        self,
+        payload: dict,
+        *,
+        page: int,
+        category: str | None,
+        subcategory: str | None,
+        listing_url: str,
     ):
         """Yield normalized listing items from a browse payload.
 
@@ -193,7 +198,7 @@ class AeListingSpider(BaseListingSpider):
         - fields parsed when present: id, displayName, url, salePrice, listPrice,
           plpImages, brand, rating, and reviewCount.
         """
-        base_origin = self._base_origin(category_url)
+        base_origin = self._base_origin(listing_url)
         for entry in payload.get("included") or []:
             if not isinstance(entry, dict) or entry.get("type") != "product":
                 continue
@@ -224,7 +229,8 @@ class AeListingSpider(BaseListingSpider):
                 "reviews_count": self._to_int(attrs.get("reviewCount")),
                 "image_url": self._image_url(attrs, base_origin),
                 "category": category,
-                "category_url": category_url,
+                "subcategory": subcategory,
+                "listing_url": listing_url,
                 "page": page,
                 "source": "ae_fastboot_shoebox",
                 "mode": "browse_api",
@@ -292,7 +298,8 @@ class AeListingSpider(BaseListingSpider):
         page: int,
         browse_path: str | None,
         category: str | None,
-        category_url: str,
+        subcategory: str | None,
+        listing_url: str,
         reference_url: str,
     ) -> scrapy.Request | None:
         if page >= self._max_pages_limit() or not browse_path:
@@ -316,11 +323,12 @@ class AeListingSpider(BaseListingSpider):
         return scrapy.Request(
             next_url,
             callback=self.parse_browse,
-            headers=self._headers(referer=category_url, wants_json=True),
+            headers=self._headers(referer=listing_url, wants_json=True),
             meta={
                 "page": page + 1,
                 "category": category,
-                "category_url": category_url,
+                "subcategory": subcategory,
+                "listing_url": listing_url,
                 "browse_path": browse_path,
             },
         )

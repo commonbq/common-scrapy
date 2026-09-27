@@ -41,7 +41,7 @@ class AeListingSpiderTests(unittest.TestCase):
         self.assertEqual(payload["included"][0]["type"], "product")
 
     def setUp(self):
-        self.spider = AeListingSpider(category="women-tops", max_pages=3)
+        self.spider = AeListingSpider(category="women", max_pages=3)
         self.sample_dir = Path(__file__).resolve().parents[1] / "sample"
 
     def response(self, request: Request, body: str | bytes, *, status: int = 200):
@@ -55,44 +55,22 @@ class AeListingSpiderTests(unittest.TestCase):
             status=status,
         )
 
-    def test_category_dictionary_and_overrides(self):
-        self.assertEqual(len(self.spider.categories), 29)
+    def test_category_dictionary_is_grouped_by_user_selectable_category(self):
+        self.assertEqual(set(self.spider.categories), {"women", "men", "aerie"})
         self.assertEqual(
-            self.spider.categories["women-tops"],
+            self.spider.categories["women"]["tops"],
             "https://www.ae.com/us/en/c/women/tops/cat10049",
         )
         self.assertEqual(
-            self.spider.categories["men-clearance"],
+            self.spider.categories["men"]["clearance"],
             "https://www.ae.com/us/en/c/men/clearance/clrmens",
         )
         self.assertEqual(
-            self.spider.categories["aerie-all"],
+            self.spider.categories["aerie"]["all"],
             "https://www.ae.com/us/en/c/aerie/clothing-accessories/cat870009",
         )
-        self.assertEqual(
-            AeListingSpider(category="women-tops").resolve_target_url(),
-            "https://www.ae.com/us/en/c/women/tops/cat10049",
-        )
-        self.assertEqual(
-            AeListingSpider(
-                category="women-tops", category_url="https://www.ae.com/custom"
-            ).resolve_target_url(),
-            "https://www.ae.com/custom",
-        )
-        self.assertEqual(
-            AeListingSpider(
-                category="women-tops", url="https://www.ae.com/override"
-            ).resolve_target_url(),
-            "https://www.ae.com/override",
-        )
-        with self.assertRaisesRegex(
-            ValueError, r"Provide only one of -a url or -a category_url"
-        ):
-            AeListingSpider(
-                category="women-tops",
-                url="https://www.ae.com/override",
-                category_url="https://www.ae.com/custom",
-            ).resolve_target_url()
+        with self.assertRaisesRegex(ValueError, "Unknown category 'women-tops'"):
+            AeListingSpider(category="women-tops")._selected_subcategories()
 
     def test_parse_html_uses_fastboot_payload_and_schedules_browse_page(self):
         body = (self.sample_dir / "ae-listing-sample.html").read_text(encoding="utf-8")
@@ -100,8 +78,9 @@ class AeListingSpiderTests(unittest.TestCase):
             url="https://www.ae.com/us/en/c/women/tops/cat10049",
             meta={
                 "page": 1,
-                "category": "women-tops",
-                "category_url": "https://www.ae.com/us/en/c/women/tops/cat10049",
+                "category": "women",
+                "subcategory": "tops",
+                "listing_url": "https://www.ae.com/us/en/c/women/tops/cat10049",
             },
         )
         response = self.response(request, body)
@@ -119,7 +98,8 @@ class AeListingSpiderTests(unittest.TestCase):
         self.assertEqual(items[0]["original_price"], 64.95)
         self.assertEqual(items[0]["rating"], 4.7)
         self.assertEqual(items[0]["reviews_count"], 123)
-        self.assertEqual(items[0]["category"], "women-tops")
+        self.assertEqual(items[0]["category"], "women")
+        self.assertEqual(items[0]["subcategory"], "tops")
 
         follow = next(x for x in outputs if isinstance(x, Request))
         self.assertIn("/browse/v1/category/womens", follow.url)
@@ -136,8 +116,9 @@ class AeListingSpiderTests(unittest.TestCase):
             url="https://www.ae.com/browse/v1/category/womens?offset=2&rows=2",
             meta={
                 "page": 2,
-                "category": "women-tops",
-                "category_url": "https://www.ae.com/us/en/c/women/tops/cat10049",
+                "category": "women",
+                "subcategory": "tops",
+                "listing_url": "https://www.ae.com/us/en/c/women/tops/cat10049",
                 "browse_path": "/browse/v1/category/womens",
             },
         )
@@ -178,8 +159,12 @@ class AeListingSpiderTests(unittest.TestCase):
     def test_start_requests_resets_seen_products_for_new_run(self):
         self.spider._seen_products.add("1457_1111_100")
         requests = list(self.spider.start_requests())
-        self.assertEqual(len(requests), 1)
+        self.assertEqual(len(requests), len(self.spider.categories["women"]))
         self.assertEqual(self.spider._seen_products, set())
+        self.assertEqual(
+            {request.meta["subcategory"] for request in requests},
+            set(self.spider.categories["women"]),
+        )
 
     def test_zero_product_and_blocked_pages_yield_no_results(self):
         empty_body = (self.sample_dir / "ae-listing-empty.html").read_text(encoding="utf-8")
@@ -190,8 +175,9 @@ class AeListingSpiderTests(unittest.TestCase):
             url="https://www.ae.com/us/en/c/women/tops/cat10049",
             meta={
                 "page": 1,
-                "category": "women-tops",
-                "category_url": "https://www.ae.com/us/en/c/women/tops/cat10049",
+                "category": "women",
+                "subcategory": "tops",
+                "listing_url": "https://www.ae.com/us/en/c/women/tops/cat10049",
             },
         )
         self.assertEqual(list(self.spider.parse_html(self.response(request, empty_body))), [])
