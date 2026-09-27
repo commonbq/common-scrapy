@@ -98,7 +98,7 @@ These are still being worked on and currently returned `0` items in recent smoke
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
 | [`anthropologie_listing`](#anthropologie_listing) | Experimental | api + html | PerimeterX / HUMAN | Anthropologie listing spider (API + HTML fallback). | 0 (ok) | women, dresses, sale | `n/a` |
-| [`bathandbodyworks_listing`](#bathandbodyworks_listing) | Experimental | api + bootstrap + html | PerimeterX / HUMAN (px-captcha) | Bath & Body Works multi-mode listing spider. | 0 (ok) | body-care, home-fragrance, hand-soaps | `{}` |
+| [`bathandbodyworks_listing`](#bathandbodyworks_listing) | Working | JSON-LD | ScrapeOps proxy | Bath & Body Works category listing spider. | 114 unique candle products in live smoke test | body-care, candles, home-fragrance, hand-soaps-sanitizers, men, laundry-care, kitchen-care, gifts | `sample/bathandbodyworks-listing-sample.html` |
 | [`costco_search`](#costco_search--costco_listing) | Active | bootstrap + html | Akamai | Costco keyword search with state extraction + fallback. | 0 (skipped2) | - | `{}` |
 | [`dillards_listing`](#dillards_listing) | Experimental | bootstrap | Akamai | Dillard's listing spider via `window.__INITIAL_STATE__`. | 0 (ok) | women, men, shoes, handbags, beauty, juniors, home | `n/a` |
 | [`homedepot_listing`](#homedepot_listing-category-apollo-bootstrap) | Flaky | bootstrap + html | Akamai | Home Depot category listing via Apollo state. | 0 (ok) | screwdrivers, drills, paint, light-bulbs, lumber | `n/a` |
@@ -875,19 +875,23 @@ Notes:
 ### bathandbodyworks_listing
 ```json
 {
-  "item_id": "12345678",
-  "title": "Body Lotion ...",
-  "url": "https://www.bathandbodyworks.com/p/...",
-  "price": 16.95,
+  "item_id": "028029924",
+  "title": "Leaves 3-Wick Candle",
+  "url": "https://www.bathandbodyworks.com/p/leaves-3-wick-candle-028029924",
+  "price": 13.95,
+  "original_price": 26.95,
   "currency": "USD",
   "brand": "Bath & Body Works",
-  "source": "bathandbodyworks_internal_api|bathandbodyworks_html"
+  "category": "candles",
+  "subcategory": "3-wick-candles",
+  "source": "bathandbodyworks_jsonld_itemlist"
 }
 ```
-Run examples:
-- `common-scrapy crawl bathandbodyworks_listing -a category='body-care' -a mode=api -a max_pages=1 -O bbw_api.jsonl`
-- `common-scrapy crawl bathandbodyworks_listing -a category='body-care' -a mode=bootstrap -a max_pages=1 -O bbw_bootstrap.jsonl`
-- `common-scrapy crawl bathandbodyworks_listing -a category='body-care' -a mode=html -a max_pages=1 -O bbw_html.jsonl`
+Run example:
+- `common-scrapy crawl bathandbodyworks_listing -a category='candles' -a max_pages=1 -O bbw.jsonl`
+
+The selected category expands to all configured child URLs. Products are parsed from
+the authoritative JSON-LD `ItemList` and deduplicated by SKU across subcategories.
 
 ### sallybeauty_listing
 ```json

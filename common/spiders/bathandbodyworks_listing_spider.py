@@ -1,228 +1,210 @@
 from __future__ import annotations
 
 import json
-import re
-from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
+from urllib.parse import parse_qs, urlencode, urljoin, urlparse, urlunparse
 
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
-from common.spiders.retail_bootstrap_utils import (
-    extract_apollo_state,
-    extract_items_from_unknown_state,
-    extract_json_ld_products,
-    extract_next_data,
-)
+
+
+def _urls(parent: str, *slugs: str) -> dict[str, str]:
+    return {
+        slug: f"https://www.bathandbodyworks.com/c/{parent}/{slug}"
+        for slug in slugs
+    }
+
+
+BATHANDBODYWORKS_CATEGORIES = {
+    "body-care": _urls(
+        "body-care",
+        "all-fragrance", "perfume-cologne", "body-sprays-mists",
+        "all-moisturizers", "body-cream", "body-lotion", "all-bath-shower",
+        "body-wash-shower-gel", "body-scrub", "travel", "lip-gloss-balms",
+        "wellness-body-care", "moisturizing-body-wash",
+    ),
+    "candles": _urls(
+        "all-candles", "3-wick-candles", "4-wick-candles",
+        "single-wick-candles", "candle-holders",
+    ),
+    "home-fragrance": _urls(
+        "home-fragrance", "all-wallflowers", "wallflowers-refills",
+        "wallflowers-plugs", "reeds", "room-sprays-mists", "car-fragrance",
+        "wallflowers-create-your-set", "hanging-fragrance-diffusers",
+    ),
+    "hand-soaps-sanitizers": _urls(
+        "hand-soaps-sanitizers", "all-hand-soaps", "foaming-hand-soap",
+        "gel-hand-soaps", "moisturizing-hand-soaps", "revitalizing-hand-soaps",
+        "hand-soap-refills", "hand-soap-holders", "all-hand-sanitizers",
+        "pocketbac-hand-sanitizers", "hand-sanitizer-sprays",
+        "pocketbac-sanitizer-holders",
+    ),
+    "men": {
+        **_urls(
+            "mens-shop", "mens-body-care", "mens-fragrance",
+            "mens-shower-gel-body-wash", "mens-body-lotion-body-cream",
+        ),
+        **_urls("mens-collection", "mens-deodorant"),
+    },
+    "laundry-care": {
+        **_urls("laundry-care", "all-laundry"),
+        **_urls(
+            "home-care/all-laundry", "laundry-detergent", "fragrance-boosters",
+            "dryer-sheets",
+        ),
+    },
+    "kitchen-care": _urls(
+        "kitchen-care", "all-kitchen-care", "dish-wash", "counter-spray",
+    ),
+    "gifts": _urls(
+        "gifts", "gifts-for-her", "gifts-for-him", "gift-sets",
+        "gifts-under-20", "accessories", "boxes-bags",
+    ),
+}
 
 
 class BathandbodyworksListingSpider(BaseListingSpider):
+    """Bath & Body Works listings from category-page JSON-LD."""
+
     name = "bathandbodyworks_listing"
     allowed_domains = ["bathandbodyworks.com", "www.bathandbodyworks.com"]
-
     custom_settings = {"HTTPERROR_ALLOW_ALL": True, "DOWNLOAD_DELAY": 1}
+    categories = BATHANDBODYWORKS_CATEGORIES
 
-    categories = [
-        {
-            "category": "body-care",
-            "url": "https://www.bathandbodyworks.com/c/body-care",
-            "api_cgid": "body-care",
-        },
-        {
-            "category": "home-fragrance",
-            "url": "https://www.bathandbodyworks.com/c/home-fragrance",
-            "api_cgid": "home-fragrance",
-        },
-        {
-            "category": "hand-soaps",
-            "url": "https://www.bathandbodyworks.com/c/hand-soaps",
-            "api_cgid": "hand-soaps",
-        },
-    ]
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._seen_products: set[str] = set()
 
-    def start_requests(self):
-        mode = (getattr(self, "mode", None) or "api").strip().lower()
-        target = self.resolve_target_url()
-        if mode == "html":
-            yield scrapy.Request(target, callback=self.parse_html, meta=({"page": 1, "origin": target}))
-            return
-        if mode == "bootstrap":
-            yield scrapy.Request(target, callback=self.parse_bootstrap, meta=({"page": 1, "origin": target}))
-            return
+    def available_categories(self) -> list[str]:
+        return sorted(self.categories)
 
-        api_url = self._build_api_url(page=1)
-        if api_url:
-            yield scrapy.Request(api_url, callback=self.parse_api, meta=({"page": 1, "origin": target}), headers={"x-requested-with": "XMLHttpRequest"})
-        else:
-            yield scrapy.Request(target, callback=self.parse_bootstrap, meta=({"page": 1, "origin": target}))
-
-    def _build_api_url(self, page: int) -> str | None:
-        cgid = None
-        if self.category:
-            for c in self.categories:
-                if c.get("category") == self.category:
-                    cgid = c.get("api_cgid")
-                    break
-        if not cgid:
-            u = urlparse(self.resolve_target_url())
-            parts = [p for p in (u.path or "").split("/") if p]
-            if parts:
-                cgid = parts[-1]
-        if not cgid:
-            return None
-
-        # Browser-observed SFCC/Mobify stack (preferred internal API path)
-        start = max(page - 1, 0) * 48
-        return (
-            "https://www.bathandbodyworks.com/mobify/proxy/api/search/shopper-search/v1/"
-            "organizations/f_ecom_bbdl_prd/product-search?"
-            + urlencode(
-                {
-                    "siteId": "BathAndBodyWorks",
-                    "q": "*",
-                    "refine": f"cgid={cgid}",
-                    "start": start,
-                    "count": 48,
-                }
-            )
+    def _selected_subcategories(self) -> dict[str, str]:
+        if self.category in self.categories:
+            return self.categories[self.category]
+        available = ", ".join(self.available_categories())
+        raise ValueError(
+            f"Unknown category '{self.category}'. Available categories: {available}"
         )
 
-    def parse_api(self, response: scrapy.http.Response):
-        page = int(response.meta.get("page", 1))
-        yielded = 0
+    def start_requests(self):
+        self._seen_products.clear()
+        for subcategory, listing_url in self._selected_subcategories().items():
+            yield scrapy.Request(
+                self._page_url(listing_url, 1),
+                callback=self.parse,
+                headers=self._headers(),
+                meta={
+                    "page": 1,
+                    "category": self.category,
+                    "subcategory": subcategory,
+                    "listing_url": listing_url,
+                },
+            )
 
-        try:
-            payload = json.loads(response.text)
-        except Exception:
-            payload = None
-
-        if isinstance(payload, dict):
-            for item in extract_items_from_unknown_state(payload, source="bathandbodyworks_internal_api"):
-                yielded += 1
-                item.update({"mode": "category", "category_url": response.meta.get("origin"), "page": page})
-                yield item
-
-        if yielded == 0:
-            # many SFCC endpoints return HTML snippets
-            for item in self._extract_html_cards(response):
-                yielded += 1
-                item.update({"source": "bathandbodyworks_internal_api_html", "mode": "category", "category_url": response.meta.get("origin"), "page": page})
-                yield item
-
-        if yielded == 0:
-            origin = response.meta.get("origin") or self.resolve_target_url()
-            yield scrapy.Request(origin, callback=self.parse_bootstrap, meta=({"page": page, "origin": origin}), dont_filter=True)
+    def parse(self, response: scrapy.http.Response):
+        if response.status >= 400 or self._blocked(response.text):
+            self.logger.warning(
+                "Bath & Body Works listing blocked (status=%s url=%s)",
+                response.status,
+                response.url,
+            )
             return
 
-        if page < self.max_pages:
-            next_page = page + 1
-            api_url = self._build_api_url(next_page)
-            if api_url:
-                yield scrapy.Request(api_url, callback=self.parse_api, meta=({"page": next_page, "origin": response.meta.get("origin")}), headers={"x-requested-with": "XMLHttpRequest"})
-
-    def parse_bootstrap(self, response: scrapy.http.Response):
         page = int(response.meta.get("page", 1))
-        html = response.text or ""
         yielded = 0
-
-        nd = extract_next_data(html)
-        if nd:
-            for item in extract_items_from_unknown_state(nd, source="bathandbodyworks_next_data"):
-                yielded += 1
-                item.update({"mode": "category_bootstrap", "category_url": response.meta.get("origin"), "page": page})
-                yield item
-
-        ap = extract_apollo_state(html)
-        if ap:
-            for item in extract_items_from_unknown_state(ap, source="bathandbodyworks_apollo_state"):
-                yielded += 1
-                item.update({"mode": "category_bootstrap", "category_url": response.meta.get("origin"), "page": page})
-                yield item
-
-        if yielded == 0:
-            for item in extract_json_ld_products(html):
-                yielded += 1
-                item.update({"mode": "category_bootstrap", "category_url": response.meta.get("origin"), "page": page})
-                yield item
-
-        if yielded == 0:
-            for item in self._extract_html_cards(response):
-                yielded += 1
-                item.update({"source": "bathandbodyworks_html_fallback", "mode": "category_html", "category_url": response.meta.get("origin"), "page": page})
-                yield item
-
-    def parse_html(self, response: scrapy.http.Response):
-        page = int(response.meta.get("page", 1))
-        count = 0
-        for item in self._extract_html_cards(response):
-            count += 1
-            item.update({"source": "bathandbodyworks_html", "mode": "category_html", "category_url": response.meta.get("origin"), "page": page})
-            yield item
-        if count == 0:
-            self.logger.warning("Bath & Body Works html mode returned 0 items (status=%s)", response.status)
-
-    def _extract_html_cards(self, response: scrapy.http.Response):
-        seen: set[str] = set()
-        ctype = (response.headers.get(b"content-type") or b"").decode("utf-8", errors="ignore").lower()
-        if "json" in ctype and "html" not in ctype:
-            for m in re.finditer(r'"(?:url|link)"\s*:\s*"(?P<u>https?://www\\.bathandbodyworks\\.com[^"]+)"', response.text or ""):
-                url = m.group("u")
-                if url in seen:
-                    continue
-                seen.add(url)
-                yield {
-                    "item_id": self._extract_id(url),
-                    "title": None,
-                    "url": url,
-                    "price": None,
-                    "currency": None,
-                    "brand": "Bath & Body Works",
-                    "rating": None,
-                    "reviews_count": None,
-                    "image_url": None,
-                    "raw": None,
-                }
-            return
-
-        for a in response.xpath('//a[contains(@href,"/p/") or contains(@href,"/product") or contains(@href,"/pd/")]'):
-            href = (a.attrib.get("href") or "").strip()
-            if not href:
+        for product in self._extract_products(response):
+            item_id = product["item_id"]
+            if item_id in self._seen_products:
                 continue
-            url = response.urljoin(href)
-            if url in seen:
-                continue
-            seen.add(url)
-            card = a.xpath('ancestor::*[self::article or self::li or self::div][1]')
-            text = re.sub(r"\s+", " ", " ".join(card.xpath('.//text()').getall())).strip() if card else ""
-            img = (card.xpath('.//img/@src').get() if card else None) or (card.xpath('.//img/@data-src').get() if card else None)
-            price = self._extract_price(text)
-            item_id = self._extract_id(url)
+            self._seen_products.add(item_id)
+            yielded += 1
             yield {
-                "item_id": item_id,
-                "title": text or None,
-                "url": url,
-                "price": price,
-                "currency": "USD" if price is not None else None,
-                "brand": "Bath & Body Works",
-                "rating": None,
-                "reviews_count": None,
-                "image_url": img,
-                "raw": None,
+                **product,
+                "category": response.meta["category"],
+                "subcategory": response.meta["subcategory"],
+                "listing_url": response.meta["listing_url"],
+                "page": page,
+                "source": "bathandbodyworks_jsonld_itemlist",
+                "mode": "category",
             }
 
-    @staticmethod
-    def _extract_price(text: str) -> float | None:
-        m = re.search(r"\$(\d+(?:\.\d{1,2})?)", text or "")
-        return float(m.group(1)) if m else None
+        if yielded and page < self.max_pages:
+            yield scrapy.Request(
+                self._page_url(response.meta["listing_url"], page + 1),
+                callback=self.parse,
+                headers=self._headers(),
+                meta={**response.meta, "page": page + 1},
+            )
+
+    @classmethod
+    def _extract_products(cls, response: scrapy.http.Response):
+        for raw in response.xpath('//script[@type="application/ld+json"]/text()').getall():
+            try:
+                payload = json.loads(raw)
+            except (TypeError, ValueError):
+                continue
+            nodes = payload if isinstance(payload, list) else [payload]
+            for node in nodes:
+                if not isinstance(node, dict) or node.get("@type") != "ItemList":
+                    continue
+                for entry in node.get("itemListElement") or []:
+                    item = entry.get("item") if isinstance(entry, dict) else None
+                    if not isinstance(item, dict) or item.get("@type") != "Product":
+                        continue
+                    offers = item.get("offers") if isinstance(item.get("offers"), dict) else {}
+                    specs = offers.get("priceSpecification") or []
+                    list_price = next(
+                        (cls._float(spec.get("price")) for spec in specs
+                         if isinstance(spec, dict) and spec.get("priceType") == "https://schema.org/ListPrice"),
+                        None,
+                    )
+                    url = entry.get("url") or item.get("url") or offers.get("url")
+                    item_id = item.get("sku") or item.get("@id")
+                    if not url or not item_id:
+                        continue
+                    image = item.get("image")
+                    if isinstance(image, list):
+                        image = image[0] if image else None
+                    brand = item.get("brand")
+                    yield {
+                        "item_id": str(item_id),
+                        "title": item.get("name"),
+                        "url": urljoin(response.url, url),
+                        "price": cls._float(offers.get("price")),
+                        "original_price": list_price,
+                        "currency": offers.get("priceCurrency"),
+                        "brand": brand.get("name") if isinstance(brand, dict) else brand,
+                        "availability": offers.get("availability"),
+                        "image_url": urljoin(response.url, image) if image else None,
+                        "raw": None,
+                    }
 
     @staticmethod
-    def _extract_id(url: str) -> str | None:
-        m = re.search(r"(?:sku=|/p/|/pd/)([A-Za-z0-9_-]{4,})", url or "")
-        return m.group(1) if m else None
+    def _float(value) -> float | None:
+        try:
+            return float(value)
+        except (TypeError, ValueError):
+            return None
 
     @staticmethod
-    def _with_page(url: str, page: int) -> str:
-        parts = urlparse(url)
-        qs = parse_qs(parts.query)
+    def _page_url(url: str, page: int) -> str:
+        parsed = urlparse(url)
+        query = parse_qs(parsed.query, keep_blank_values=True)
         if page > 1:
-            qs["page"] = [str(page)]
-        return urlunparse(parts._replace(query=urlencode(qs, doseq=True)))
+            query["page"] = [str(page)]
+        else:
+            query.pop("page", None)
+        return urlunparse(parsed._replace(query=urlencode(query, doseq=True)))
+
+    @staticmethod
+    def _blocked(text: str) -> bool:
+        lowered = (text or "").lower()
+        return any(marker in lowered for marker in ("access denied", "verify you are human", "request blocked"))
+
+    @staticmethod
+    def _headers() -> dict[str, str]:
+        return {
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "accept-language": "en-US,en;q=0.9",
+            "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+        }
