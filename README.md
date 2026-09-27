@@ -72,9 +72,9 @@ Spiders below are returning items in recent smoke runs:
 
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
-| [`ae_listing`](#ae_listing) | Experimental | html | Akamai (signals in headers) | American Eagle listing spider via category-page product cards. | 30 (ok) | women, men, aerie | `{"item_id":"1457_2980_808","title":null,"url":"https://www.ae.com/us/en/p/women/hoodies-sweatshirts/crew-neck-sweatshirts/ae-big-hug-v-neck-sweatshirt/1457_2980_808","price":nul...` |
+| [`ae_listing`](#ae_listing) | Experimental | FastBoot + API | Akamai (signals in headers) | American Eagle listing spider via FastBoot shoebox state and browse API pagination. | 30 (ok) | women, men, aerie | `{"item_id":"1457_2980_808","title":"AE Big Hug V-Neck Sweatshirt","url":"https://www.ae.com/us/en/p/women/hoodies-sweatshirts/crew-neck-sweatshirts/ae-big-hug-v-neck-sweatshirt/1457_2980_808","price":38.97...` |
 | [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | html + nuxt-state | Akamai | Bloomingdale's listing spider via Nuxt SSR state contract parsing (splash->leaf aware). | 8 (ok) | new-now, women, beauty, shoes, handbags, jewelry-accessories, men, kids, home, sale, gifts, designers | `{"item_id":"5973765","title":"Tumbled Woven Verne Pants","url":"https://www.bloomingdales.com/shop/product/cinq-a-sept-tumbled-woven-vern...` |
-| [`costco_listing`](#costco_search--costco_listing) | Active | bootstrap + html | Akamai | Costco category listing with state extraction + fallback. | 24 (ok) | coffee, water, snacks, vitamins, laundry, paper-products | `{"item_id":"100501081","title":null,"url":"https://www.costco.com/starbucks-pike-place-medium-roast-k-cup-72-count.product.100501081.html","price":null,"currency":null,"brand":n...` |
+| [`costco_listing`](#costco_search--costco_listing) | Active | React Flight + API | Akamai | Costco category listing with React Flight discovery and GRS search pagination. | 24 (ok) | 131 parent groups / 432 subcategory entries from `costco-categories.json` | `{"item_id":"100501081","title":"Starbucks Pike Place Medium Roast K-Cup","url":"https://www.costco.com/starbucks-pike-place-medium-roast-k-cup-72-count.product.100501081.html","price":...` |
 | [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | none detected (CloudFront CDN only) | e.l.f. Cosmetics multi-mode listing spider. | 6 (ok) | face, eyes, lips | `{'item_id':'300261','title':'Soft Glam Satin Concealer','url':'https://www.elfcosmetics.com/soft-glam-satin-concealer/300262.html','price':9.0,'brand':'e.l.f. Cosmetics','source':'elfcosmetics_preloaded_state'...}` |
 | [`fashionnova_listing`](#fashionnova_listing) | Active | api + html | Cloudflare | Fashion Nova listing via Shopify Storefront GraphQL with HTML fallback. | 48 (ok) | women, new, dresses, jeans, sale | `{"item_id":"175898317","title":"Classic High Waist Skinny Jeans - Dark Denim","url":"https://www.fashionnova.com/products/dark-blue-class...` |
 | [`homedepot_search`](#homedepot_search-keyword-apollo-bootstrap) | Active | bootstrap + html | Akamai | Home Depot keyword search via Apollo state. | 24 (ok) | - | `{"item_id":"336787835","sku":"1014334650","brand":"Lukyamzn","title":"14 in. Dual-Core Celeron N4000 Laptop 6 GB RAM 128 GB SSD IPS Displ...` |
@@ -569,6 +569,10 @@ Notes:
   "brand": "AQUA",
   "rating": 4.6,
   "review_count": 12,
+  "category": "women",
+  "category_root_url": "https://www.bloomingdales.com/shop/womens-apparel?id=2910",
+  "subcategory_urls": ["https://www.bloomingdales.com/shop/womens-apparel/dresses?id=21683"],
+  "facet_urls": [],
   "source": "bloomingdales_nuxt_state"
 }
 ```
@@ -576,6 +580,8 @@ Run example:
 `common-scrapy crawl bloomingdales_listing -a category=women -a max_pages=1 -O bloomingdales_listing.jsonl`
 
 Contract notes:
+- Supported top-level categories are `new-now`, `women`, `beauty`, `shoes`, `handbags`, `jewelry-accessories`, `men`, `kids`, `home`, `sale`, `gifts`, and `designers`.
+- The spider accepts category selection only; direct `url` and `category_url` overrides are not used.
 - Uses a single authoritative parser for `<script type="application/json" data-nuxt-data="nuxt-app" data-ssr="true">...` state.
 - A top-level category splash starts every discovered leaf browse URL before pagination.
 - Category payload URLs are normalized into `subcategory_urls` and `facet_urls` metadata on emitted items.
@@ -756,7 +762,7 @@ Validation notes (2026-02-25):
 
 ### costco_search / costco_listing
 
-These spiders try bootstrap state extraction first (`__NEXT_DATA__` / `__APOLLO_STATE__`), then fallback to JSON-LD and direct product-link HTML parsing.
+`costco_search` retains its existing search extraction flow. `costco_listing` uses the current category-page contract: React Flight discovers the category and GRS search configuration, then the GRS API returns paginated products.
 
 Run examples:
 - `common-scrapy crawl costco_search -a q='coffee' -a max_pages=1 -O costco_search.jsonl`
@@ -787,29 +793,30 @@ Run examples:
 ```json
 {
   "item_id": "100361434",
-  "title": null,
+  "title": "Kirkland Signature Colombian Coffee",
   "url": "https://www.costco.com/kirkland-signature-colombian-coffee-dark-roast-3-lbs.product.100361434.html",
-  "price": null,
-  "currency": null,
-  "brand": null,
-  "rating": null,
-  "reviews_count": null,
-  "image_url": null,
-  "source": "costco_html_links_fallback",
-  "raw": null,
+  "price": 14.99,
+  "original_price": 19.99,
+  "currency": "USD",
+  "brand": "Kirkland Signature",
+  "rating": 4.7,
+  "reviews_count": 123,
+  "image_url": "https://images.costco-static.com/100361434.jpg",
+  "source": "costco_grs_search_api",
   "mode": "category",
   "category": "coffee",
-  "subcategory": "coffee",
-  "listing_url": "https://www.costco.com/coffee.html",
+  "subcategory": "ground-coffee",
+  "listing_url": "https://www.costco.com/ground-coffee.html",
   "page": 1,
-  "source_url": "https://www.costco.com/coffee.html"
+  "source_url": "https://www.costco.com/ground-coffee.html"
 }
 ```
 
 Notes:
-- Selecting a category starts that category and every configured descendant; selecting `grocery-household` starts the entire group.
-- Browser HTML inspection confirms Costco search results render product links for `keyword=coffee` in this runtime.
-- NordVPN US city variance observed while testing `costco_search` (`max_pages=1`): Ashburn (`us9512`) → 24 items, Los Angeles (`us5864`) → 24 items, Dallas (`us8104`) → 0 items. HTML links fallback remains the most reliable extraction path.
+- `costco_listing` exposes all 131 parent groups and 432 subcategory entries from `sample/costco-categories.json`.
+- Selecting a parent category starts every listed child; for example, `category=coffee` starts its four inventory entries.
+- The listing spider accepts category selection only; direct `url` and `category_url` overrides are not used.
+- Pagination uses the discovered `pageSize`, category page ID, and GRS `offset` contract.
 
 ### kroger_search / kroger_listing
 
@@ -959,6 +966,7 @@ Run example:
 - `common-scrapy crawl ae_listing -a category='women' -a max_pages=1 -O ae_listing.jsonl`
 
 Notes:
+- The spider accepts category selection only; direct `url` and `category_url` overrides are not used.
 - Category pages expose the authoritative product payload in FastBoot shoebox scripts (`<script type="fastboot/shoebox">`) with IDs that base64url-decode to `/browse/v1/category/{category}`.
 - Selecting a category (`women`, `men`, or `aerie`) starts every configured subcategory in that group.
 - Pagination uses `/browse/v1/category/{category}?offset={offset}&rows={rows}` with `meta.offset`, `meta.rows`, and `meta.totalProducts`.
