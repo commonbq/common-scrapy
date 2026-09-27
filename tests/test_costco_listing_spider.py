@@ -5,7 +5,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import Mock
 
-from scrapy.http import TextResponse
+from scrapy.http import Request, TextResponse
 
 from common.spiders.costco_listing_spider import CostcoListingSpider
 
@@ -19,7 +19,15 @@ class CostcoListingSpiderTests(unittest.TestCase):
 
     def setUp(self):
         self.spider = CostcoListingSpider(category="coffee", max_pages=2)
-        self.first = next(self.spider.start_requests())
+        self.first = Request(
+            "https://www.costco.com/coffee.html",
+            meta={
+                "page": 1,
+                "subcategory": "coffee",
+                "listing_url": "https://www.costco.com/coffee.html",
+                "source_url": "https://www.costco.com/coffee.html",
+            },
+        )
 
     def response(self, request, body, *, status=200):
         return TextResponse(
@@ -60,31 +68,46 @@ class CostcoListingSpiderTests(unittest.TestCase):
             {"searchResult": {"results": results, "totalSize": total_size}}
         )
 
-    def test_category_mapping_expands_from_inventory(self):
-        self.assertIn("coffee/single-serve", self.spider.available_categories())
+    def test_category_mapping_includes_the_complete_inventory(self):
+        inventory = json.loads(
+            (
+                Path(__file__).resolve().parents[1]
+                / "sample"
+                / "costco-categories.json"
+            ).read_text(encoding="utf-8")
+        )
+        self.assertEqual(len(self.spider.categories), inventory["parent_count"])
         self.assertEqual(
-            CostcoListingSpider(category="coffee/tea")._selected_subcategories(),
-            {"coffee/tea": "https://www.costco.com/tea.html"},
+            sum(len(children) for children in self.spider.categories.values()),
+            inventory["count"],
+        )
+        self.assertEqual(
+            set(self.spider.available_categories()), set(self.spider.categories)
+        )
+        self.assertEqual(
+            self.spider._selected_subcategories(),
+            {
+                "coffee-creamers": "https://www.costco.com/creamer-sweeteners.html",
+                "whole-bean-coffee": "https://www.costco.com/whole-bean-coffee.html",
+                "ground-coffee": "https://www.costco.com/ground-coffee.html",
+                "instant-coffee": "https://www.costco.com/instant-coffee.html",
+            },
         )
 
     def test_category_starts_all_of_its_subcategories(self):
         coffee_requests = list(self.spider.start_requests())
         self.assertEqual(
             {request.meta["subcategory"] for request in coffee_requests},
-            {
-                alias
-                for alias in self.spider.categories["grocery-household"]
-                if alias == "coffee" or alias.startswith("coffee/")
-            },
+            set(self.spider.categories["coffee"]),
         )
-        grocery = CostcoListingSpider(category="grocery-household")
-        grocery_requests = list(grocery.start_requests())
+        appliances = CostcoListingSpider(category="appliances")
+        appliance_requests = list(appliances.start_requests())
         self.assertEqual(
-            {request.meta["subcategory"] for request in grocery_requests},
-            set(grocery.categories["grocery-household"]),
+            {request.meta["subcategory"] for request in appliance_requests},
+            set(appliances.categories["appliances"]),
         )
         self.assertTrue(
-            all("category_url" not in request.meta for request in grocery_requests)
+            all("category_url" not in request.meta for request in appliance_requests)
         )
 
     def test_fixture_discovers_subcategories_and_builds_api_request(self):

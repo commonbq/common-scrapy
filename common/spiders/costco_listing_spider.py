@@ -20,31 +20,6 @@ import scrapy
 from common.spiders.base_listing_spider import BaseListingSpider
 from common.spiders.retail_bootstrap_utils import extract_next_flight_rows
 
-COSTCO_CATEGORY_SEED = {
-    "grocery-household": {
-        "all": "https://www.costco.com/grocery-household.html",
-        "coffee": "https://www.costco.com/coffee.html",
-        "coffee/single-serve": "https://www.costco.com/single-serve-coffee.html",
-        "coffee/whole-bean": "https://www.costco.com/whole-bean-coffee.html",
-        "coffee/ground": "https://www.costco.com/ground-coffee.html",
-        "coffee/instant": "https://www.costco.com/instant-coffee.html",
-        "coffee/creamers": "https://www.costco.com/creamer-sweeteners.html",
-        "coffee/tea": "https://www.costco.com/tea.html",
-        "water": "https://www.costco.com/water.html",
-        "snacks": "https://www.costco.com/snacks.html",
-        "laundry": "https://www.costco.com/laundry-detergent.html",
-        "paper-products": "https://www.costco.com/paper-products.html",
-    },
-    "health-personal-care": {
-        "vitamins": "https://www.costco.com/vitamins.html",
-    },
-}
-
-_ROOT_CATEGORY_TITLES = {
-    "grocery-household": "Grocery & Household",
-    "health-personal-care": "Health & Personal Care",
-}
-
 DEFAULT_WAREHOUSE_NUMBER = "847"
 
 
@@ -52,17 +27,8 @@ def _sample_path(name: str) -> Path:
     return Path(__file__).resolve().parents[2] / "sample" / name
 
 
-def _slug_from_url(url: str, parent_alias: str | None = None) -> str:
-    slug = Path(urlparse(url).path).name.removesuffix(".html")
-    parts = [part for part in slug.split("-") if part]
-    if parent_alias:
-        parent_parts = {
-            part for part in parent_alias.split("/")[-1].split("-") if part
-        }
-        trimmed = [part for part in parts if part not in parent_parts]
-        if trimmed:
-            parts = trimmed
-    return "-".join(parts) or slug
+def _category_slug(name: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
 
 
 def _load_categories_by_parent() -> dict[str, list[dict[str, Any]]]:
@@ -75,37 +41,27 @@ def _load_categories_by_parent() -> dict[str, list[dict[str, Any]]]:
 
 
 def _expand_costco_categories() -> dict[str, dict[str, str]]:
-    expanded = copy.deepcopy(COSTCO_CATEGORY_SEED)
     categories_by_parent = _load_categories_by_parent()
-
-    for root_slug, root_title in _ROOT_CATEGORY_TITLES.items():
-        bucket = expanded.setdefault(root_slug, {})
-        url_aliases = {url: alias for alias, url in bucket.items()}
-        visited_titles: set[str] = set()
-
-        def visit(parent_title: str, alias_prefix: str | None = None):
-            if parent_title in visited_titles:
-                return
-            visited_titles.add(parent_title)
-            for entry in categories_by_parent.get(parent_title, []):
-                if not isinstance(entry, dict):
-                    continue
-                url = entry.get("url")
-                title = entry.get("name")
-                if not isinstance(url, str) or not isinstance(title, str):
-                    continue
-                absolute_url = urljoin("https://www.costco.com", url)
-                alias = url_aliases.get(absolute_url)
-                if alias is None:
-                    leaf = _slug_from_url(absolute_url, alias_prefix)
-                    alias = f"{alias_prefix}/{leaf}" if alias_prefix else leaf
-                    if alias not in bucket:
-                        bucket[alias] = absolute_url
-                    url_aliases[absolute_url] = alias
-                if title in categories_by_parent:
-                    visit(title, alias)
-
-        visit(root_title)
+    expanded: dict[str, dict[str, str]] = {}
+    for parent_name, entries in categories_by_parent.items():
+        if not isinstance(parent_name, str) or not isinstance(entries, list):
+            continue
+        parent_slug = _category_slug(parent_name)
+        if not parent_slug:
+            continue
+        bucket: dict[str, str] = {}
+        for entry in entries:
+            if not isinstance(entry, dict):
+                continue
+            name = entry.get("name")
+            url = entry.get("url")
+            if not isinstance(name, str) or not isinstance(url, str):
+                continue
+            child_slug = _category_slug(name)
+            if child_slug:
+                bucket[child_slug] = urljoin("https://www.costco.com", url)
+        if bucket:
+            expanded[parent_slug] = bucket
     return expanded
 
 
@@ -125,14 +81,7 @@ class CostcoListingSpider(BaseListingSpider):
         self._seen_products: set[tuple[str | None, str]] = set()
 
     def available_categories(self) -> list[str]:
-        aliases = set(self.categories)
-        aliases.update(
-            alias
-            for group in self.categories.values()
-            for alias in group
-            if alias != "all"
-        )
-        return sorted(aliases)
+        return sorted(self.categories)
 
     def _selected_subcategories(self) -> dict[str, str]:
         if not self.category:
@@ -142,14 +91,6 @@ class CostcoListingSpider(BaseListingSpider):
             )
         if self.category in self.categories:
             return self.categories[self.category]
-        for group in self.categories.values():
-            if self.category in group:
-                prefix = f"{self.category}/"
-                return {
-                    alias: url
-                    for alias, url in group.items()
-                    if alias == self.category or alias.startswith(prefix)
-                }
         available = ", ".join(self.available_categories())
         raise ValueError(
             f"Unknown category '{self.category}'. Available categories: {available}"
@@ -427,7 +368,7 @@ class CostcoListingSpider(BaseListingSpider):
                     {
                         "title": title,
                         "url": url,
-                        "alias": _slug_from_url(url, self.category or None),
+                        "alias": _category_slug(title),
                         "row_id": row_id,
                     }
                 )
