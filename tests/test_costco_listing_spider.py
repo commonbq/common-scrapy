@@ -63,8 +63,28 @@ class CostcoListingSpiderTests(unittest.TestCase):
     def test_category_mapping_expands_from_inventory(self):
         self.assertIn("coffee/single-serve", self.spider.available_categories())
         self.assertEqual(
-            CostcoListingSpider(category="coffee/tea").resolve_target_url(),
-            "https://www.costco.com/tea.html",
+            CostcoListingSpider(category="coffee/tea")._selected_subcategories(),
+            {"coffee/tea": "https://www.costco.com/tea.html"},
+        )
+
+    def test_category_starts_all_of_its_subcategories(self):
+        coffee_requests = list(self.spider.start_requests())
+        self.assertEqual(
+            {request.meta["subcategory"] for request in coffee_requests},
+            {
+                alias
+                for alias in self.spider.categories["grocery-household"]
+                if alias == "coffee" or alias.startswith("coffee/")
+            },
+        )
+        grocery = CostcoListingSpider(category="grocery-household")
+        grocery_requests = list(grocery.start_requests())
+        self.assertEqual(
+            {request.meta["subcategory"] for request in grocery_requests},
+            set(grocery.categories["grocery-household"]),
+        )
+        self.assertTrue(
+            all("category_url" not in request.meta for request in grocery_requests)
         )
 
     def test_fixture_discovers_subcategories_and_builds_api_request(self):
@@ -114,6 +134,8 @@ class CostcoListingSpiderTests(unittest.TestCase):
             "https://www.costco.com/test-100361434.product.100361434.html",
         )
         self.assertEqual(item["category_name"], "Coffee")
+        self.assertEqual(item["category"], "coffee")
+        self.assertEqual(item["subcategory"], "coffee")
         self.assertEqual(item["page"], 1)
         self.assertEqual(follow_up.meta["page"], 2)
         self.assertEqual(json.loads(follow_up.body)["offset"], 24)

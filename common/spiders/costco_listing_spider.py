@@ -4,7 +4,7 @@ from __future__ import annotations
 
 Usage examples:
   scrapy crawl costco_listing -a category='coffee' -a max_pages=1
-  scrapy crawl costco_listing -a category_url='https://www.costco.com/coffee.html' -a max_pages=1
+  scrapy crawl costco_listing -a category='grocery-household' -a max_pages=1
 """
 
 import copy
@@ -125,37 +125,49 @@ class CostcoListingSpider(BaseListingSpider):
         self._seen_products: set[tuple[str | None, str]] = set()
 
     def available_categories(self) -> list[str]:
-        aliases = {
+        aliases = set(self.categories)
+        aliases.update(
             alias
             for group in self.categories.values()
             for alias in group
             if alias != "all"
-        }
+        )
         return sorted(aliases)
 
-    def resolve_target_url(self) -> str:
-        if self.url or self.category_url:
-            return self.url or self.category_url
+    def _selected_subcategories(self) -> dict[str, str]:
         if not self.category:
             available = ", ".join(self.available_categories())
             raise ValueError(
                 f"Provide -a category=<name>. Available categories: {available}"
             )
+        if self.category in self.categories:
+            return self.categories[self.category]
         for group in self.categories.values():
             if self.category in group:
-                return group[self.category]
+                prefix = f"{self.category}/"
+                return {
+                    alias: url
+                    for alias, url in group.items()
+                    if alias == self.category or alias.startswith(prefix)
+                }
         available = ", ".join(self.available_categories())
         raise ValueError(
             f"Unknown category '{self.category}'. Available categories: {available}"
         )
 
     def start_requests(self):
-        category_url = self.resolve_target_url()
-        yield scrapy.Request(
-            category_url,
-            callback=self.parse,
-            meta={"page": 1, "category_url": category_url, "source_url": category_url},
-        )
+        self._seen_products.clear()
+        for subcategory, listing_url in self._selected_subcategories().items():
+            yield scrapy.Request(
+                listing_url,
+                callback=self.parse,
+                meta={
+                    "page": 1,
+                    "subcategory": subcategory,
+                    "listing_url": listing_url,
+                    "source_url": listing_url,
+                },
+            )
 
     def parse(self, response: scrapy.http.Response):
         if self._is_blocked_response(response.text, response.status):
@@ -173,7 +185,8 @@ class CostcoListingSpider(BaseListingSpider):
             "category_name": flight["category_title"],
             "category_page_id": flight["page_id"],
             "category_id": flight["category_id"],
-            "category_url": self.category_url or self.url or response.url,
+            "subcategory": response.meta.get("subcategory"),
+            "listing_url": response.meta.get("listing_url") or response.url,
             "page": 1,
             "page_size": flight["page_size"],
             "source_url": response.url,
@@ -206,7 +219,7 @@ class CostcoListingSpider(BaseListingSpider):
         for item in results:
             item_key = item.get("item_id") or item.get("url") or item.get("title")
             seen_key = (
-                response.meta.get("category_url"),
+                response.meta.get("listing_url"),
                 str(item_key),
             ) if item_key is not None else None
             if seen_key and seen_key in self._seen_products:
@@ -218,8 +231,9 @@ class CostcoListingSpider(BaseListingSpider):
                 **item,
                 "mode": "category",
                 "category": response.meta.get("category"),
+                "subcategory": response.meta.get("subcategory"),
                 "category_name": response.meta.get("category_name"),
-                "category_url": response.meta.get("category_url"),
+                "listing_url": response.meta.get("listing_url"),
                 "page": page,
                 "source_url": response.meta.get("source_url"),
             }
@@ -249,7 +263,7 @@ class CostcoListingSpider(BaseListingSpider):
         return scrapy.Request(
             search_config["endpoint"],
             method=(search_config.get("method") or "POST").upper(),
-            headers=self._search_headers(search_config, request_meta["category_url"]),
+            headers=self._search_headers(search_config, request_meta["listing_url"]),
             body=json.dumps(payload),
             callback=self.parse_search,
             meta=request_meta,
