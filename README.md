@@ -97,7 +97,7 @@ These are still being worked on and currently returned `0` items in recent smoke
 
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
-| [`anthropologie_listing`](#anthropologie_listing) | Experimental | api + html | PerimeterX / HUMAN | Anthropologie listing spider (API + HTML fallback). | 0 (ok) | women, dresses, sale | `n/a` |
+| [`anthropologie_listing`](#anthropologie_listing) | Working | JSON-LD | ScrapeOps proxy | Anthropologie category listing spider. | 36 unique products in sample | new, top-rated, dresses, clothing, shoes, accessories, weddings, home-furniture, beauty, maeve, gifts-holiday, sale | `sample/anthropologie-listing-sample.html` |
 | [`bathandbodyworks_listing`](#bathandbodyworks_listing) | Experimental | api + bootstrap + html | PerimeterX / HUMAN (px-captcha) | Bath & Body Works multi-mode listing spider. | 0 (ok) | body-care, home-fragrance, hand-soaps | `{}` |
 | [`costco_search`](#costco_search--costco_listing) | Active | bootstrap + html | Akamai | Costco keyword search with state extraction + fallback. | 0 (skipped2) | - | `{}` |
 | [`dillards_listing`](#dillards_listing) | Experimental | bootstrap | Akamai | Dillard's listing spider via `window.__INITIAL_STATE__`. | 0 (ok) | women, men, shoes, handbags, beauty, juniors, home | `n/a` |
@@ -511,17 +511,20 @@ Run examples:
   "price": 198.0,
   "currency": "USD",
   "brand": "Anthropologie",
-  "source": "anthropologie_html",
-  "category_url": "https://www.anthropologie.com/womens-clothing",
+  "source": "anthropologie_jsonld_itemlist",
+  "category": "clothing",
+  "subcategory": "shop-all",
+  "listing_url": "https://www.anthropologie.com/womens-clothing",
   "page": 1
 }
 ```
 Run example:
-`common-scrapy crawl anthropologie_listing -a category=women -a max_pages=1 -O anthropologie_listing.jsonl`
+`common-scrapy crawl anthropologie_listing -a category=clothing -a max_pages=1 -O anthropologie_listing.jsonl`
 
 Notes:
-- Verified after connecting via NordVPN US endpoints (Seattle, Chicago, Miami) and again with NordVPN disabled.
-- HTML parsing is enabled by default; API/bootstrap was not required once the spider ignored recaptcha config noise.
+- A category expands to all of its configured subcategory URLs; direct URL overrides are not supported.
+- Products are parsed from the authoritative JSON-LD `ItemList`, deduplicated by product slug, and pagination stops on an empty or duplicate-only page.
+- The deterministic fixture was captured from `/womens-clothing` through the configured ScrapeOps US proxy.
 
 ### lululemon_listing
 Run example:
