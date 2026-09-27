@@ -74,7 +74,7 @@ Spiders below are returning items in recent smoke runs:
 |---|---|---|---|---|---|---|---|
 | [`ae_listing`](#ae_listing) | Experimental | html | Akamai (signals in headers) | American Eagle listing spider via category-page product cards. | 30 (ok) | women, men, aerie | `{"item_id":"1457_2980_808","title":null,"url":"https://www.ae.com/us/en/p/women/hoodies-sweatshirts/crew-neck-sweatshirts/ae-big-hug-v-neck-sweatshirt/1457_2980_808","price":nul...` |
 | [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | html + nuxt-state | Akamai | Bloomingdale's listing spider via Nuxt SSR state contract parsing (splash->leaf aware). | 8 (ok) | new-now, women, beauty, shoes, handbags, jewelry-accessories, men, kids, home, sale, gifts, designers | `{"item_id":"5973765","title":"Tumbled Woven Verne Pants","url":"https://www.bloomingdales.com/shop/product/cinq-a-sept-tumbled-woven-vern...` |
-| [`costco_listing`](#costco_search--costco_listing) | Active | bootstrap + html | Akamai | Costco category listing with state extraction + fallback. | 24 (ok) | coffee, water, snacks, vitamins, laundry, paper-products | `{"item_id":"100501081","title":null,"url":"https://www.costco.com/starbucks-pike-place-medium-roast-k-cup-72-count.product.100501081.html","price":null,"currency":null,"brand":n...` |
+| [`costco_listing`](#costco_search--costco_listing) | Active | React Flight + API | Akamai | Costco category listing with React Flight discovery and GRS search. | 24 (ok) | 131 parent groups / 432 subcategories from `costco-categories.json` | `{"item_id":"100501081","title":null,"url":"https://www.costco.com/starbucks-pike-place-medium-roast-k-cup-72-count.product.100501081.html","price":null,"currency":null,"brand":n...` |
 | [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | none detected (CloudFront CDN only) | e.l.f. Cosmetics multi-mode listing spider. | 6 (ok) | face, eyes, lips | `{'item_id':'300261','title':'Soft Glam Satin Concealer','url':'https://www.elfcosmetics.com/soft-glam-satin-concealer/300262.html','price':9.0,'brand':'e.l.f. Cosmetics','source':'elfcosmetics_preloaded_state'...}` |
 | [`fashionnova_listing`](#fashionnova_listing) | Active | api + html | Cloudflare | Fashion Nova listing via Shopify Storefront GraphQL with HTML fallback. | 48 (ok) | women, new, dresses, jeans, sale | `{"item_id":"175898317","title":"Classic High Waist Skinny Jeans - Dark Denim","url":"https://www.fashionnova.com/products/dark-blue-class...` |
 | [`homedepot_search`](#homedepot_search-keyword-apollo-bootstrap) | Active | bootstrap + html | Akamai | Home Depot keyword search via Apollo state. | 24 (ok) | - | `{"item_id":"336787835","sku":"1014334650","brand":"Lukyamzn","title":"14 in. Dual-Core Celeron N4000 Laptop 6 GB RAM 128 GB SSD IPS Displ...` |
@@ -807,7 +807,8 @@ Run examples:
 ```
 
 Notes:
-- Selecting a category starts that category and every configured descendant; selecting `grocery-household` starts the entire group.
+- The 131 selectable parent categories and their 432 subcategory entries are loaded from `sample/costco-categories.json`.
+- Selecting a parent category starts every subcategory listed under it; for example, `category=coffee` starts all four coffee entries in the inventory.
 - Browser HTML inspection confirms Costco search results render product links for `keyword=coffee` in this runtime.
 - NordVPN US city variance observed while testing `costco_search` (`max_pages=1`): Ashburn (`us9512`) → 24 items, Los Angeles (`us5864`) → 24 items, Dallas (`us8104`) → 0 items. HTML links fallback remains the most reliable extraction path.
 
