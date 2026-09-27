@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import ast
 import json
 import re
 from typing import Any
@@ -35,6 +36,29 @@ def extract_apollo_state(html: str) -> dict[str, Any] | None:
         return obj if isinstance(obj, dict) else None
     except Exception:
         return None
+
+
+def extract_next_flight_rows(html: str) -> list[str]:
+    rows: list[str] = []
+    scripts = re.findall(r"<script>(.*?)</script>", html or "", flags=re.S | re.I)
+    for script in scripts:
+        code = (script or "").strip()
+        if code.startswith("(self.__next_f=self.__next_f||[]).push("):
+            payload = code[len("(self.__next_f=self.__next_f||[]).push(") : -1]
+        elif code.startswith("self.__next_f.push("):
+            payload = code[len("self.__next_f.push(") : -1]
+        else:
+            continue
+        try:
+            chunk = ast.literal_eval(payload)
+        except Exception:
+            continue
+        if len(chunk) < 2 or not isinstance(chunk[1], str):
+            continue
+        rows.extend(
+            row for row in re.split(r"(?m)^(?=[0-9a-f]+:)", chunk[1]) if row
+        )
+    return rows
 
 
 def extract_preloaded_state(html: str) -> dict[str, Any] | None:

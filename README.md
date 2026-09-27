@@ -106,7 +106,7 @@ These are still being worked on and currently returned `0` items in recent smoke
 | [`nordstromrack_listing`](#nordstromrack_listing) | Experimental | playwright + html | PerimeterX / HUMAN | Nordstrom Rack listing spider via rendered category pages. | 0 (skipped2) | dresses, women, men, shoes | `{}` |
 
 *`Number of items output` reflects recent local smoke runs (typically `max_pages=1`) and can vary by location, anti-bot behavior, and site changes.*
-Many listing spiders accept `-a category=<name>` shortcuts (in addition to `-a category_url=<url>`), including Amazon, Walmart, eBay, Home Depot, Best Buy, Costco, and Kroger.
+Many listing spiders accept `-a category=<name>` shortcuts (in addition to `-a category_url=<url>`), including Amazon, Walmart, eBay, Home Depot, Best Buy, and Kroger. Costco listing uses category-only selection.
 
 #### Sample output
 
@@ -798,13 +798,16 @@ Run examples:
   "source": "costco_html_links_fallback",
   "raw": null,
   "mode": "category",
-  "category_url": "https://www.costco.com/coffee.html",
+  "category": "coffee",
+  "subcategory": "coffee",
+  "listing_url": "https://www.costco.com/coffee.html",
   "page": 1,
   "source_url": "https://www.costco.com/coffee.html"
 }
 ```
 
 Notes:
+- Selecting a category starts that category and every configured descendant; selecting `grocery-household` starts the entire group.
 - Browser HTML inspection confirms Costco search results render product links for `keyword=coffee` in this runtime.
 - NordVPN US city variance observed while testing `costco_search` (`max_pages=1`): Ashburn (`us9512`) → 24 items, Los Angeles (`us5864`) → 24 items, Dallas (`us8104`) → 0 items. HTML links fallback remains the most reliable extraction path.
 
