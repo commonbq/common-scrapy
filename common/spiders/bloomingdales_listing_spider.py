@@ -37,12 +37,21 @@ class BloomingdalesListingSpider(BaseListingSpider):
         for category, url in BLOOMINGDALES_CATEGORIES.items()
     ]
 
+    def _selected_category_url(self) -> str:
+        try:
+            return BLOOMINGDALES_CATEGORIES[self.category]
+        except KeyError:
+            available = ", ".join(sorted(BLOOMINGDALES_CATEGORIES))
+            raise ValueError(
+                f"Unknown category '{self.category}'. Available categories: {available}"
+            ) from None
+
     def start_requests(self):
-        target_url = self.resolve_target_url()
+        target_url = self._selected_category_url()
         yield scrapy.Request(
             self._page_url(target_url, 1),
             callback=self.parse,
-            meta={"page": 1, "seed_category_url": target_url, "_seen_item_ids": set()},
+            meta={"page": 1, "category_root_url": target_url, "_seen_item_ids": set()},
             headers=self._request_headers(),
         )
 
@@ -66,21 +75,23 @@ class BloomingdalesListingSpider(BaseListingSpider):
             and self._is_splash_state(state)
             and category_metadata["leaf_urls"]
         ):
-            redirect_leaf = self._select_leaf_url(
-                category_metadata["leaf_urls"],
-                response.meta.get("seed_category_url", response.url),
-            )
-            yield scrapy.Request(
-                self._page_url(redirect_leaf, 1),
-                callback=self.parse,
-                meta={
-                    "page": 1,
-                    "resolved_leaf": True,
-                    "seed_category_url": response.meta.get("seed_category_url", response.url),
-                    "_seen_item_ids": seen_item_ids,
-                },
-                headers=self._request_headers(),
-            )
+            root_url = response.meta.get("category_root_url", response.url)
+            for leaf_url in self._category_leaf_urls(
+                category_metadata["leaf_urls"], root_url
+            ):
+                yield scrapy.Request(
+                    self._page_url(leaf_url, 1),
+                    callback=self.parse,
+                    meta={
+                        "page": 1,
+                        "resolved_leaf": True,
+                        "category_root_url": response.meta.get(
+                            "category_root_url", response.url
+                        ),
+                        "_seen_item_ids": seen_item_ids,
+                    },
+                    headers=self._request_headers(),
+                )
             return
 
         extracted_products = self._extract_products(state)
@@ -92,7 +103,9 @@ class BloomingdalesListingSpider(BaseListingSpider):
                 seen_item_ids.add(item_id)
 
             product["category"] = self.category
-            product["seed_category_url"] = response.meta.get("seed_category_url", response.url)
+            product["category_root_url"] = response.meta.get(
+                "category_root_url", response.url
+            )
             product["subcategory_urls"] = category_metadata["subcategories"]
             product["facet_urls"] = category_metadata["facets"]
             yield product
@@ -111,7 +124,9 @@ class BloomingdalesListingSpider(BaseListingSpider):
             meta={
                 "page": page + 1,
                 "resolved_leaf": response.meta.get("resolved_leaf", False),
-                "seed_category_url": response.meta.get("seed_category_url", response.url),
+                "category_root_url": response.meta.get(
+                    "category_root_url", response.url
+                ),
                 "_seen_item_ids": seen_item_ids,
             },
             headers=self._request_headers(),
@@ -518,15 +533,18 @@ class BloomingdalesListingSpider(BaseListingSpider):
             return False
         return None
 
-    def _select_leaf_url(self, leaf_urls: list[str], seed_url: str) -> str:
-        seed_path = urlparse(seed_url).path.strip("/").split("/")
-        branch_prefix = "/".join(seed_path[:2]) if len(seed_path) >= 2 else ""
-        if branch_prefix:
-            for url in leaf_urls:
-                path = urlparse(url).path.strip("/")
-                if path.startswith(branch_prefix):
-                    return url
-        return leaf_urls[0]
+    @staticmethod
+    def _category_leaf_urls(leaf_urls: list[str], root_url: str) -> list[str]:
+        root_parts = urlparse(root_url).path.strip("/").split("/")
+        branch_prefix = "/".join(root_parts[:2]) if len(root_parts) >= 2 else ""
+        if not branch_prefix:
+            return leaf_urls
+        matching = [
+            url
+            for url in leaf_urls
+            if urlparse(url).path.strip("/").startswith(f"{branch_prefix}/")
+        ]
+        return matching or leaf_urls
 
     def _extract_brand(self, detail: dict) -> str | None:
         if not isinstance(detail, dict):

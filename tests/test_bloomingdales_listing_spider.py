@@ -34,7 +34,7 @@ class BloomingdalesListingSpiderTests(unittest.TestCase):
             meta={
                 "page": page,
                 "resolved_leaf": resolved_leaf,
-                "seed_category_url": BLOOMINGDALES_CATEGORIES["women"],
+                "category_root_url": BLOOMINGDALES_CATEGORIES["women"],
             },
         )
         return TextResponse(
@@ -50,11 +50,15 @@ class BloomingdalesListingSpiderTests(unittest.TestCase):
         self.assertEqual(self.spider.available_categories(), expected)
         for category, url in BLOOMINGDALES_CATEGORIES.items():
             self.assertEqual(
-                BloomingdalesListingSpider(category=category).resolve_target_url(),
+                BloomingdalesListingSpider(category=category)._selected_category_url(),
                 url,
             )
+        with self.assertRaisesRegex(ValueError, "Unknown category 'not-a-category'"):
+            BloomingdalesListingSpider(
+                category="not-a-category"
+            )._selected_category_url()
 
-    def test_splash_response_redirects_to_leaf_browse_page(self):
+    def test_splash_response_requests_all_leaf_browse_pages(self):
         response = self._response(
             BLOOMINGDALES_CATEGORIES["women"],
             self._fixture("bloomingdales-women-splash.html"),
@@ -62,15 +66,36 @@ class BloomingdalesListingSpiderTests(unittest.TestCase):
 
         outputs = list(self.spider.parse(response))
 
-        self.assertEqual(len(outputs), 1)
-        follow = outputs[0]
-        self.assertIsInstance(follow, Request)
+        self.assertEqual(len(outputs), 2)
+        self.assertTrue(all(isinstance(follow, Request) for follow in outputs))
         self.assertEqual(
-            follow.url,
-            "https://www.bloomingdales.com/shop/womens-apparel/dresses?id=21683",
+            {follow.url for follow in outputs},
+            {
+                "https://www.bloomingdales.com/shop/womens-apparel/dresses?id=21683",
+                "https://www.bloomingdales.com/shop/womens-apparel/tops?id=100",
+            },
         )
-        self.assertEqual(follow.meta["page"], 1)
-        self.assertTrue(follow.meta["resolved_leaf"])
+        self.assertTrue(all(follow.meta["page"] == 1 for follow in outputs))
+        self.assertTrue(all(follow.meta["resolved_leaf"] for follow in outputs))
+
+    def test_start_requests_uses_category_only(self):
+        requests = list(self.spider.start_requests())
+        self.assertEqual(len(requests), 1)
+        self.assertEqual(requests[0].url, BLOOMINGDALES_CATEGORIES["women"])
+        self.assertNotIn("category_url", requests[0].meta)
+
+    def test_leaf_selection_keeps_all_children_in_selected_branch(self):
+        leaves = [
+            "https://www.bloomingdales.com/shop/womens-apparel/dresses?id=21683",
+            "https://www.bloomingdales.com/shop/womens-apparel/tops?id=2911",
+            "https://www.bloomingdales.com/shop/mens/clothing?id=1001",
+        ]
+        self.assertEqual(
+            self.spider._category_leaf_urls(
+                leaves, BLOOMINGDALES_CATEGORIES["women"]
+            ),
+            leaves[:2],
+        )
 
     def test_leaf_contract_parsing_extracts_fields_and_paginates(self):
         response = self._response(

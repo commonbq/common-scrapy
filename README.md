@@ -577,7 +577,7 @@ Run example:
 
 Contract notes:
 - Uses a single authoritative parser for `<script type="application/json" data-nuxt-data="nuxt-app" data-ssr="true">...` state.
-- Women seed URL is a splash page; parser auto-resolves to a discovered leaf browse URL before pagination.
+- A top-level category splash starts every discovered leaf browse URL before pagination.
 - Category payload URLs are normalized into `subcategory_urls` and `facet_urls` metadata on emitted items.
 - Access-denied/block pages raise a visible runtime error.
 
