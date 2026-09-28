@@ -1036,3 +1036,12 @@ Issues and pull requests that add or improve retailer spiders, pagination logic,
 2. Implement a purpose-built spider under `common/spiders/` with normalized output fields.
 3. Add category shortcuts (`categories`) where applicable.
 4. Validate with `max_pages=1` runs and update README examples/output snippets.
+### Gap listing spider
+
+`gap_listing` uses Gap's public commerce search API and exports a stable field
+order through `FEED_EXPORT_FIELDS`. Choose `women`, `men`, or `girls`; each
+selection expands to its maintained child listing URLs.
+
+```bash
+scrapy crawl gap_listing -a category=women -a max_pages=1 -O gap.jsonl
+```
