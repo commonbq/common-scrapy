@@ -486,6 +486,14 @@ Run example:
 Run example:
 `common-scrapy crawl stockx_listing -a category=sneakers -a max_pages=1 -O stockx_listing.jsonl`
 
+### elfcosmetics_listing
+e.l.f. listing pages are server-rendered Shopify Hydrogen collection pages. The
+spider follows the collection's `page` links and exports a stable field order,
+including category and source-page context.
+
+Run example:
+`common-scrapy crawl elfcosmetics_listing -a category=face -a mode=html -a max_pages=1 -O elfcosmetics_listing.jsonl`
+
 ### fashionnova_listing
 ```json
 {

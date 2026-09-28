@@ -20,12 +20,38 @@ class ElfcosmeticsListingSpider(BaseListingSpider):
     name = "elfcosmetics_listing"
     allowed_domains = ["elfcosmetics.com", "www.elfcosmetics.com"]
 
-    custom_settings = {"HTTPERROR_ALLOW_ALL": True, "DOWNLOAD_DELAY": 1}
+    custom_settings = {
+        "HTTPERROR_ALLOW_ALL": True,
+        "DOWNLOAD_DELAY": 1,
+        "FEED_EXPORT_FIELDS": [
+            "item_id",
+            "title",
+            "url",
+            "price",
+            "currency",
+            "brand",
+            "rating",
+            "reviews_count",
+            "image_url",
+            "category",
+            "category_url",
+            "page",
+            "source",
+            "source_url",
+            "raw",
+        ],
+    }
 
     categories = [
-        {"category": "face", "url": "https://www.elfcosmetics.com/face"},
-        {"category": "eyes", "url": "https://www.elfcosmetics.com/eyes"},
-        {"category": "lips", "url": "https://www.elfcosmetics.com/lips"},
+        {"category": "makeup", "url": "https://www.elfcosmetics.com/collections/all-makeup"},
+        {"category": "face", "url": "https://www.elfcosmetics.com/collections/face"},
+        {"category": "eyes", "url": "https://www.elfcosmetics.com/collections/eyes"},
+        {"category": "lips", "url": "https://www.elfcosmetics.com/collections/lips"},
+        {"category": "skin-care", "url": "https://www.elfcosmetics.com/collections/skin-care"},
+        {"category": "hair", "url": "https://www.elfcosmetics.com/collections/hair"},
+        {"category": "brushes", "url": "https://www.elfcosmetics.com/collections/brushes"},
+        {"category": "best-sellers", "url": "https://www.elfcosmetics.com/collections/best-sellers"},
+        {"category": "whats-new", "url": "https://www.elfcosmetics.com/collections/whats-new"},
     ]
 
     def start_requests(self):
@@ -95,44 +121,70 @@ class ElfcosmeticsListingSpider(BaseListingSpider):
         if nd:
             for item in extract_items_from_unknown_state(nd, source="elfcosmetics_next_data"):
                 yielded += 1
-                item.update({"mode": "category_bootstrap", "category_url": response.meta.get("origin"), "page": page})
+                item.update(self._context(response, page, "elfcosmetics_next_data"))
                 yield item
 
         ap = extract_apollo_state(html)
         if ap:
             for item in extract_items_from_unknown_state(ap, source="elfcosmetics_apollo_state"):
                 yielded += 1
-                item.update({"mode": "category_bootstrap", "category_url": response.meta.get("origin"), "page": page})
+                item.update(self._context(response, page, "elfcosmetics_apollo_state"))
                 yield item
 
         preloaded = extract_preloaded_state(html)
         if preloaded:
             for item in extract_items_from_unknown_state(preloaded, source="elfcosmetics_preloaded_state"):
                 yielded += 1
-                item.update({"mode": "category_bootstrap", "category_url": response.meta.get("origin"), "page": page})
+                item.update(self._context(response, page, "elfcosmetics_preloaded_state"))
                 yield item
 
         if yielded == 0:
             for item in extract_json_ld_products(html):
                 yielded += 1
-                item.update({"mode": "category_bootstrap", "category_url": response.meta.get("origin"), "page": page})
+                item.update(self._context(response, page, "elfcosmetics_json_ld"))
                 yield item
 
         if yielded == 0:
             for item in self._extract_html_cards(response):
                 yielded += 1
-                item.update({"source": "elfcosmetics_html_fallback", "mode": "category_html", "category_url": response.meta.get("origin"), "page": page})
+                item.update(self._context(response, page, "elfcosmetics_html"))
                 yield item
+
+        yield from self._next_page_requests(response, page)
 
     def parse_html(self, response: scrapy.http.Response):
         page = int(response.meta.get("page", 1))
         count = 0
         for item in self._extract_html_cards(response):
             count += 1
-            item.update({"source": "elfcosmetics_html", "mode": "category_html", "category_url": response.meta.get("origin"), "page": page})
+            item.update(self._context(response, page, "elfcosmetics_html"))
             yield item
         if count == 0:
             self.logger.warning("e.l.f. html mode returned 0 items (status=%s)", response.status)
+        yield from self._next_page_requests(response, page, callback=self.parse_html)
+
+    def _context(self, response: scrapy.http.Response, page: int, source: str) -> dict:
+        return {
+            "source": source,
+            "mode": "category_html" if source == "elfcosmetics_html" else "category_bootstrap",
+            "category": self.category,
+            "category_url": response.meta.get("origin"),
+            "page": page,
+            "source_url": response.url,
+        }
+
+    def _next_page_requests(self, response, page, callback=None):
+        if page >= self.max_pages:
+            return
+        href = response.xpath('//a[@rel="next"]/@href').get()
+        if not href:
+            href = response.xpath(f'//a[contains(@href,"page={page + 1}")]/@href').get()
+        if href:
+            yield response.follow(
+                href,
+                callback=callback or self.parse_bootstrap,
+                meta={"page": page + 1, "origin": response.meta.get("origin")},
+            )
 
     def _extract_html_cards(self, response: scrapy.http.Response):
         seen: set[str] = set()
