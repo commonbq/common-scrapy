@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import re
 from urllib.parse import urljoin, urlsplit
 
@@ -14,7 +15,7 @@ QVC_CATEGORIES = {
 
 
 class QvcListingSpider(BaseListingSpider):
-    """Extract QVC listings from the server-rendered category product grid."""
+    """Extract QVC's server-rendered listing cards and embedded page state."""
 
     name = "qvc_listing"
     allowed_domains = ["qvc.com", "www.qvc.com"]
@@ -25,9 +26,10 @@ class QvcListingSpider(BaseListingSpider):
         "CONCURRENT_REQUESTS_PER_DOMAIN": 1,
         "DOWNLOAD_DELAY": 1,
         "FEED_EXPORT_FIELDS": [
-            "category", "item_id", "title", "brand", "url", "image_url",
-            "price", "original_price", "currency", "rating", "reviews_count",
-            "page", "source",
+            "category", "category_id", "item_id", "title", "brand", "url",
+            "image_url", "price", "original_price", "currency", "rating",
+            "reviews_count", "badge", "shipping_promo", "special_price_code",
+            "installment_count", "colors_count", "total_products", "page", "source",
         ],
     }
 
@@ -60,36 +62,63 @@ class QvcListingSpider(BaseListingSpider):
             )
 
     def parse(self, response: scrapy.http.Response):
-        cards = response.css("article.product-card[data-product-id]")
+        cards = response.css("#searchResults .galleryItem[data-item-id]")
         if not cards:
             self.logger.warning(
                 "QVC product grid unavailable: status=%s url=%s", response.status, response.url
             )
             return
 
-        page = int(response.meta.get("page") or 1)
+        state = self._bootstrap_state(response.text)
+        page = self._integer(state.get("currentPage")) or int(response.meta.get("page") or 1)
+        category_id = state.get("category_id")
+        total_products = self._integer(
+            response.css("#searchResults::attr(data-total-products)").get()
+        )
+
         for card in cards:
-            item_id = (card.attrib.get("data-product-id") or "").strip()
+            item_id = (card.attrib.get("data-item-id") or "").strip()
             if not item_id or item_id in self._seen_ids:
                 continue
             self._seen_ids.add(item_id)
+
+            link = card.css(".productInfoWrapper > a[href]::attr(href)").get()
+            image = card.css(".productImg img::attr(data-src)").get()
+            rating_text = card.css(".productRatings .sr-only::text").get()
+            reviews_text = card.css(".productNumberOfReviews [aria-hidden=true]::text").get()
+            badge = card.css(".productBadge span::text, .productPromo::text").get()
+
             yield {
                 "category": response.meta.get("category"),
+                "category_id": category_id,
                 "item_id": item_id,
-                "title": self._text(card.css(".product-card__title::text").get()),
-                "brand": self._text(card.css(".product-card__brand::text").get()),
-                "url": urljoin(response.url, card.css("a.product-card__link::attr(href)").get() or ""),
-                "image_url": urljoin(response.url, card.css("img.product-card__image::attr(src)").get() or ""),
-                "price": self._number(card.css(".product-card__price::attr(data-price)").get()),
-                "original_price": self._number(card.css(".product-card__original-price::attr(data-price)").get()),
-                "currency": card.css(".product-card__price::attr(data-currency)").get() or "USD",
-                "rating": self._number(card.css(".product-card__rating::attr(data-rating)").get()),
-                "reviews_count": self._integer(card.css(".product-card__rating::attr(data-review-count)").get()),
+                "title": self._text(card.attrib.get("data-cnstrc-item-name")),
+                "brand": None,
+                "url": urljoin(response.url, link or ""),
+                "image_url": urljoin(response.url, image or ""),
+                "price": self._number(
+                    card.css(".priceSell::attr(data-sale-price)").get()
+                    or card.attrib.get("data-cnstrc-item-price")
+                ),
+                "original_price": self._number(
+                    card.css(".priceOld [aria-hidden=true]::text").get()
+                ),
+                "currency": "USD",
+                "rating": self._number(rating_text),
+                "reviews_count": self._integer(reviews_text),
+                "badge": self._text(badge),
+                "shipping_promo": self._text(card.css(".productPromoShipping::text").get()),
+                "special_price_code": card.attrib.get("data-item-spc"),
+                "installment_count": self._integer(
+                    card.css(".productEZPay::attr(data-install-num)").get()
+                ),
+                "colors_count": len(card.css(".colorList .swatch[data-colorcode]")),
+                "total_products": total_products,
                 "page": page,
-                "source": "qvc_server_rendered_product_grid",
+                "source": "qvc_server_rendered_gallery_with_utag_state",
             }
 
-        next_href = response.css("a.pagination__next::attr(href)").get()
+        next_href = response.css('link[rel="next"]::attr(href)').get()
         if next_href and page < self.max_pages:
             yield response.follow(
                 next_href,
@@ -97,6 +126,17 @@ class QvcListingSpider(BaseListingSpider):
                 headers=self._headers(),
                 meta={**response.meta, "page": page + 1},
             )
+
+    @staticmethod
+    def _bootstrap_state(html: str) -> dict:
+        match = re.search(r"\bvar\s+utag_data\s*=\s*({.*?})\s*;", html, re.DOTALL)
+        if not match:
+            return {}
+        try:
+            state = json.loads(match.group(1))
+        except json.JSONDecodeError:
+            return {}
+        return state if isinstance(state, dict) else {}
 
     @staticmethod
     def _text(value: str | None) -> str | None:
