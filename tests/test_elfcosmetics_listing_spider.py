@@ -1,3 +1,4 @@
+from pathlib import Path
 import unittest
 
 from scrapy.http import HtmlResponse, Request
@@ -10,37 +11,49 @@ class ElfcosmeticsListingSpiderTests(unittest.TestCase):
         self.spider = ElfcosmeticsListingSpider(category="face", max_pages=2)
 
     def response(self):
-        request = Request(
-            "https://www.elfcosmetics.com/collections/face",
-            meta={"page": 1, "origin": "https://www.elfcosmetics.com/collections/face"},
-        )
-        body = b"""<html><body>
-          <a href='/products/banner-product'>Promotional banner</a>
-          <article><a aria-label='View details for Halo Glow Setting Powder'
-            href='/products/halo-glow-setting-powder?Color=Light'>
-            <img src='https://cdn.example/powder.jpg'/><span>Halo Glow Setting Powder</span>
-            <span>$8.00</span></a></article>
-          <a rel='next' href='/collections/face?page=2'>Next</a>
-        </body></html>"""
-        return HtmlResponse(request.url, request=request, body=body, encoding="utf-8")
+        url = "https://www.elfcosmetics.com/collections/face"
+        request = Request(url, meta={"page": 1, "origin": url})
+        body = (Path(__file__).parents[1] / "sample" / "elfcosmetics-face.html").read_bytes()
+        return HtmlResponse(url, request=request, body=body, encoding="utf-8")
 
-    def test_feed_export_fields_are_stable(self):
-        self.assertEqual(
-            self.spider.custom_settings["FEED_EXPORT_FIELDS"],
-            ["item_id", "title", "url", "price", "currency", "brand", "rating",
-             "reviews_count", "image_url", "category", "category_url", "page", "source",
-             "source_url", "raw"],
-        )
+    def test_feed_export_fields_include_bootstrap_product_data(self):
+        fields = self.spider.custom_settings["FEED_EXPORT_FIELDS"]
+        for field in (
+            "variant_id",
+            "compare_at_price",
+            "available_for_sale",
+            "images",
+            "selected_options",
+            "swatches",
+            "raw",
+        ):
+            self.assertIn(field, fields)
 
-    def test_html_items_include_export_context_and_pagination(self):
+    def test_bootstrap_items_include_rich_data_and_pagination(self):
         output = list(self.spider.parse(self.response()))
-        item, request = output
-        self.assertEqual(item["item_id"], "halo-glow-setting-powder")
-        self.assertEqual(item["title"], "Halo Glow Setting Powder")
-        self.assertEqual(item["price"], 8.0)
-        self.assertEqual(item["category"], "face")
-        self.assertEqual(item["source"], "elfcosmetics_html")
-        self.assertEqual(request.url, "https://www.elfcosmetics.com/collections/face?page=2")
+        items, requests = (
+            [value for value in output if isinstance(value, dict)],
+            [value for value in output if isinstance(value, Request)],
+        )
+
+        self.assertEqual(len(items), 9)
+        self.assertEqual(items[0]["item_id"], "8949173813336")
+        self.assertEqual(items[0]["variant_id"], "44556751241304")
+        self.assertEqual(items[0]["title"], "Sheer For It Bronzer Tint")
+        self.assertEqual(items[0]["price"], 6.0)
+        self.assertEqual(items[0]["currency"], "USD")
+        self.assertFalse(items[0]["available_for_sale"])
+        self.assertEqual(items[0]["selected_options"][0]["value"], "Fair/Light Neutral")
+        self.assertEqual(len(items[0]["images"]), 2)
+        self.assertEqual(len(items[0]["swatches"]), 4)
+        self.assertEqual(items[0]["source"], "elfcosmetics_hydrogen_bootstrap")
+        self.assertEqual(requests[0].url, "https://www.elfcosmetics.com/collections/face?page=2")
+
+    def test_missing_bootstrap_data_does_not_fall_back(self):
+        url = "https://www.elfcosmetics.com/collections/face"
+        request = Request(url, meta={"page": 1, "origin": url})
+        response = HtmlResponse(url, request=request, body=b"<html></html>", encoding="utf-8")
+        self.assertEqual(list(self.spider.parse(response)), [])
 
 
 if __name__ == "__main__":

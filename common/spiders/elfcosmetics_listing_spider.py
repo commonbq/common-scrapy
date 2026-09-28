@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import re
 from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 
@@ -17,14 +18,20 @@ class ElfcosmeticsListingSpider(BaseListingSpider):
         "DOWNLOAD_DELAY": 1,
         "FEED_EXPORT_FIELDS": [
             "item_id",
+            "variant_id",
             "title",
             "url",
             "price",
+            "compare_at_price",
             "currency",
             "brand",
+            "available_for_sale",
             "rating",
             "reviews_count",
             "image_url",
+            "images",
+            "selected_options",
+            "swatches",
             "category",
             "category_url",
             "page",
@@ -48,87 +55,149 @@ class ElfcosmeticsListingSpider(BaseListingSpider):
 
     def start_requests(self):
         target = self.resolve_target_url()
-        first = self._with_page(target, 1)
-        yield scrapy.Request(first, callback=self.parse, meta={"page": 1, "origin": target})
+        yield scrapy.Request(
+            self._with_page(target, 1),
+            callback=self.parse,
+            meta={"page": 1, "origin": target},
+        )
 
     def parse(self, response: scrapy.http.Response):
         page = int(response.meta.get("page", 1))
-        count = 0
-        for item in self._extract_html_cards(response):
-            count += 1
-            item.update(self._context(response, page))
-            yield item
-        if count == 0:
-            self.logger.warning("e.l.f. parser returned 0 items (status=%s)", response.status)
-        yield from self._next_page_requests(response, page)
+        listing = self._extract_listing(response.text)
+        products = listing.get("products") or []
 
-    def _context(self, response: scrapy.http.Response, page: int) -> dict:
-        return {
-            "source": "elfcosmetics_html",
-            "mode": "category_html",
-            "category": self.category,
-            "category_url": response.meta.get("origin"),
-            "page": page,
-            "source_url": response.url,
-        }
+        for product in products:
+            if not isinstance(product, dict) or product.get("type") != "product":
+                continue
+            yield self._product_item(product, response, page)
 
-    def _next_page_requests(self, response, page):
-        if page >= self.max_pages:
-            return
-        href = response.xpath('//a[@rel="next"]/@href').get()
-        if not href:
-            href = response.xpath(f'//a[contains(@href,"page={page + 1}")]/@href').get()
-        if href:
-            yield response.follow(
-                href,
+        if not products:
+            self.logger.warning("e.l.f. bootstrap parser returned 0 items (status=%s)", response.status)
+
+        pagination = listing.get("pagination") or {}
+        if page < min(self.max_pages, int(pagination.get("totalPages") or page)):
+            yield scrapy.Request(
+                self._with_page(response.meta.get("origin") or response.url, page + 1),
                 callback=self.parse,
                 meta={"page": page + 1, "origin": response.meta.get("origin")},
             )
 
-    def _extract_html_cards(self, response: scrapy.http.Response):
-        seen: set[str] = set()
-        # Hydrogen product cards expose their name through this accessible label.
-        # Requiring it avoids treating promotional banner links as catalog items.
-        links = response.xpath(
-            '//a[starts-with(@aria-label,"View details for ") '
-            'and (contains(@href,"/products/") or contains(@href,"/p/"))]'
-        )
-        for a in links:
-            href = (a.attrib.get("href") or "").strip()
-            if not href:
-                continue
-            url = response.urljoin(href)
-            if url in seen:
-                continue
-            seen.add(url)
-            card = a.xpath('ancestor::*[self::article or self::li or self::div][1]')
-            text = re.sub(r"\s+", " ", " ".join(card.xpath('.//text()').getall())).strip() if card else ""
-            title = (a.attrib.get("aria-label") or "").removeprefix("View details for ").strip()
-            img = (card.xpath('.//img/@src').get() if card else None) or (card.xpath('.//img/@data-src').get() if card else None)
-            m = re.search(r"\$(\d+(?:\.\d{1,2})?)", text)
-            price = float(m.group(1)) if m else None
-            yield {
-                "item_id": self._extract_id(url),
-                "title": title or text or None,
-                "url": url,
-                "price": price,
-                "currency": "USD" if price is not None else None,
-                "brand": "e.l.f. Cosmetics",
-                "rating": None,
-                "reviews_count": None,
-                "image_url": img,
-                "raw": None,
+    def _product_item(self, product: dict, response: scrapy.http.Response, page: int) -> dict:
+        price = product.get("price") or {}
+        compare_at_price = product.get("compareAtPrice") or {}
+        images = product.get("images") or []
+        options = product.get("selectedOptions") or []
+        handle = product.get("handle")
+        query = urlencode(
+            {
+                option["name"]: option["value"]
+                for option in options
+                if isinstance(option, dict) and option.get("name") and option.get("value")
             }
+        )
+        url = response.urljoin(f"/products/{handle}")
+        if query:
+            url = f"{url}?{query}"
+
+        return {
+            "item_id": product.get("id"),
+            "variant_id": product.get("variationId"),
+            "title": product.get("title"),
+            "url": url,
+            "price": self._number(price.get("amount")),
+            "compare_at_price": self._number(compare_at_price.get("amount")),
+            "currency": price.get("currencyCode"),
+            "brand": "e.l.f. Cosmetics",
+            "available_for_sale": product.get("availableForSale"),
+            "rating": None,
+            "reviews_count": None,
+            "image_url": images[0].get("url") if images else None,
+            "images": images,
+            "selected_options": options,
+            "swatches": product.get("swatches") or [],
+            "category": self.category,
+            "category_url": response.meta.get("origin"),
+            "page": page,
+            "source": "elfcosmetics_hydrogen_bootstrap",
+            "source_url": response.url,
+            "raw": product,
+        }
+
+    @classmethod
+    def _extract_listing(cls, html: str) -> dict:
+        match = re.search(
+            r'streamController\.enqueue\(("(?:\\.|[^"\\])*")\)',
+            html or "",
+            re.DOTALL,
+        )
+        if not match:
+            return {}
+
+        try:
+            stream_payload = json.loads(match.group(1))
+            flattened = json.loads(stream_payload)
+        except (TypeError, ValueError, json.JSONDecodeError):
+            return {}
+        if not isinstance(flattened, list):
+            return {}
+
+        root = cls._decode_flattened(flattened)
+        loader_data = root.get("loaderData") if isinstance(root, dict) else None
+        if not isinstance(loader_data, dict):
+            return {}
+        for route_data in loader_data.values():
+            if isinstance(route_data, dict) and isinstance(route_data.get("products"), list):
+                return route_data
+        return {}
 
     @staticmethod
-    def _extract_id(url: str) -> str | None:
-        m = re.search(r"(?:variant=|/products/|/p/)([A-Za-z0-9_-]{4,})", url or "")
-        return m.group(1) if m else None
+    def _decode_flattened(flattened: list):
+        cache: dict[int, object] = {}
+        resolving: set[int] = set()
+
+        def resolve(reference):
+            if not isinstance(reference, int) or isinstance(reference, bool):
+                return decode(reference)
+            if reference < 0 or reference >= len(flattened):
+                return None
+            if reference in cache:
+                return cache[reference]
+            if reference in resolving:
+                return None
+            resolving.add(reference)
+            value = decode(flattened[reference])
+            resolving.remove(reference)
+            cache[reference] = value
+            return value
+
+        def decode(value):
+            if isinstance(value, list):
+                return [resolve(entry) for entry in value]
+            if isinstance(value, dict):
+                decoded = {}
+                for key_reference, entry in value.items():
+                    if key_reference.startswith("_") and key_reference[1:].isdigit():
+                        key = resolve(int(key_reference[1:]))
+                    else:
+                        key = key_reference
+                    if isinstance(key, str):
+                        decoded[key] = resolve(entry)
+                return decoded
+            return value
+
+        return resolve(0)
+
+    @staticmethod
+    def _number(value):
+        try:
+            return float(value) if value is not None else None
+        except (TypeError, ValueError):
+            return None
 
     @staticmethod
     def _with_page(url: str, page: int) -> str:
         parts = urlparse(url)
-        qs = parse_qs(parts.query)
+        query = parse_qs(parts.query)
         if page > 1:
-            qs["page"] = [str(page)]
-        return urlunparse(parts._replace(query=urlencode(qs, doseq=True)))
+            query["page"] = [str(page)]
+        return urlunparse(parts._replace(query=urlencode(query, doseq=True)))

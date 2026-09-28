@@ -953,19 +953,25 @@ Run examples:
 ### elfcosmetics_listing
 ```json
 {
-  "item_id": "soft-glam-satin-foundation",
+  "item_id": "8696341102680",
+  "variant_id": "43876616192088",
   "title": "Soft Glam Satin Foundation",
   "url": "https://www.elfcosmetics.com/products/soft-glam-satin-foundation?Color=21+Light+Neutral",
   "price": 8.0,
   "currency": "USD",
   "brand": "e.l.f. Cosmetics",
+  "available_for_sale": true,
+  "selected_options": [{"name": "Color", "value": "21 Light Neutral"}],
+  "images": [{"altText": "...", "url": "https://cdn.shopify.com/..."}],
+  "swatches": [{"availableForSale": true, "color": "#d8a47e"}],
   "category": "face",
   "page": 1,
-  "source": "elfcosmetics_html"
+  "source": "elfcosmetics_hydrogen_bootstrap"
 }
 ```
-The spider reads server-rendered Shopify Hydrogen product cards, follows the
-collection's next-page link, and exports fields in a stable order.
+The spider decodes Shopify Hydrogen's streamed React Router bootstrap data. It
+exports product and variant IDs, availability, images, selected options,
+swatches, pricing, and the raw product object, then follows bootstrap pagination.
 
 Run example:
 `common-scrapy crawl elfcosmetics_listing -a category=face -a max_pages=1 -O elfcosmetics_listing.jsonl`
