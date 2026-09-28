@@ -32,6 +32,7 @@ class PoshmarkListingSpiderTest(unittest.TestCase):
         self.assertEqual(item["price"], 35.0)
         self.assertEqual(item["currency"], "USD")
         self.assertEqual(item["url"], "https://poshmark.com/listing/Test-Dress-abc123")
+        self.assertEqual(item["raw"], product)
 
     def test_missing_bootstrap_products_fails_visibly(self):
         request = Request("https://poshmark.com/category/Women", meta={"category": "women", "page": 1})

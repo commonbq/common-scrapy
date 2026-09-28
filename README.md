@@ -635,6 +635,7 @@ Run example:
 Poshmark category pages expose their first 48 listing records in the server-rendered
 `window.__INITIAL_STATE__` payload. The spider deliberately uses only that authoritative
 bootstrap payload and exports a stable field order through `FEED_EXPORT_FIELDS`.
+Each exported item also includes the complete source listing object in `raw`.
 
 Supported categories are `women`, `men`, `kids`, `home`, `electronics`, and `pets`.
 

@@ -70,6 +70,7 @@ class PoshmarkListingSpider(BaseListingSpider):
             "source",
             "category_url",
             "page",
+            "raw",
         ]
     }
 
@@ -109,6 +110,7 @@ class PoshmarkListingSpider(BaseListingSpider):
                 "source": "poshmark_bootstrap_state",
                 "category_url": response.url,
                 "page": response.meta.get("page", 1),
+                "raw": product,
             }
 
     def _extract_initial_state(self, html: str) -> dict:
