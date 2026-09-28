@@ -33,7 +33,7 @@ class ElfcosmeticsListingSpiderTests(unittest.TestCase):
         )
 
     def test_html_items_include_export_context_and_pagination(self):
-        output = list(self.spider.parse_html(self.response()))
+        output = list(self.spider.parse(self.response()))
         item, request = output
         self.assertEqual(item["item_id"], "halo-glow-setting-powder")
         self.assertEqual(item["title"], "Halo Glow Setting Powder")

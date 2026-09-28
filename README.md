@@ -968,7 +968,7 @@ The spider reads server-rendered Shopify Hydrogen product cards, follows the
 collection's next-page link, and exports fields in a stable order.
 
 Run example:
-`common-scrapy crawl elfcosmetics_listing -a category=face -a mode=html -a max_pages=1 -O elfcosmetics_listing.jsonl`
+`common-scrapy crawl elfcosmetics_listing -a category=face -a max_pages=1 -O elfcosmetics_listing.jsonl`
 
 ### ae_listing
 ```json

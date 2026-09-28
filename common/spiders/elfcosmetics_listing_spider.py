@@ -1,19 +1,11 @@
 from __future__ import annotations
 
-import json
 import re
 from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
-from common.spiders.retail_bootstrap_utils import (
-    extract_apollo_state,
-    extract_items_from_unknown_state,
-    extract_json_ld_products,
-    extract_next_data,
-    extract_preloaded_state,
-)
 
 
 class ElfcosmeticsListingSpider(BaseListingSpider):
@@ -55,125 +47,32 @@ class ElfcosmeticsListingSpider(BaseListingSpider):
     ]
 
     def start_requests(self):
-        mode = (getattr(self, "mode", None) or "api").strip().lower()
         target = self.resolve_target_url()
-        if mode == "html":
-            first = self._with_page(target, 1)
-            yield scrapy.Request(first, callback=self.parse_html, meta=({"page": 1, "origin": target}))
-            return
-        if mode == "bootstrap":
-            first = self._with_page(target, 1)
-            yield scrapy.Request(first, callback=self.parse_bootstrap, meta=({"page": 1, "origin": target}))
-            return
+        first = self._with_page(target, 1)
+        yield scrapy.Request(first, callback=self.parse, meta={"page": 1, "origin": target})
 
-        api_url = self._build_api_url(page=1)
-        if api_url:
-            yield scrapy.Request(api_url, callback=self.parse_api, meta=({"page": 1, "origin": target}), headers={"accept": "application/json,text/plain,*/*"})
-        else:
-            first = self._with_page(target, 1)
-            yield scrapy.Request(first, callback=self.parse_bootstrap, meta=({"page": 1, "origin": target}))
-
-    def _build_api_url(self, page: int) -> str | None:
-        # Browser-observed SFCC/Mobify internal API shape
-        cgid = self.category or urlparse(self.resolve_target_url()).path.strip("/").split("/")[0]
-        start = max(page - 1, 0) * 48
-        return (
-            "https://www.elfcosmetics.com/mobify/proxy/api/search/shopper-search/v1/"
-            "organizations/f_ecom_bbxc_prd/product-search?"
-            + urlencode(
-                {
-                    "siteId": "elf-us",
-                    "q": "*",
-                    "refine": f"cgid={cgid}",
-                    "start": start,
-                    "count": 48,
-                }
-            )
-        )
-
-    def parse_api(self, response: scrapy.http.Response):
-        page = int(response.meta.get("page", 1))
-        yielded = 0
-
-        try:
-            payload = json.loads(response.text)
-        except Exception:
-            payload = None
-
-        if isinstance(payload, dict):
-            for item in extract_items_from_unknown_state(payload, source="elfcosmetics_internal_api"):
-                yielded += 1
-                item.update({"mode": "category", "category_url": response.meta.get("origin"), "page": page})
-                yield item
-
-        if yielded == 0:
-            origin = response.meta.get("origin") or self.resolve_target_url()
-            first = self._with_page(origin, page)
-            yield scrapy.Request(first, callback=self.parse_bootstrap, meta=({"page": page, "origin": origin}), dont_filter=True)
-            return
-
-    def parse_bootstrap(self, response: scrapy.http.Response):
-        page = int(response.meta.get("page", 1))
-        html = response.text or ""
-        yielded = 0
-
-        nd = extract_next_data(html)
-        if nd:
-            for item in extract_items_from_unknown_state(nd, source="elfcosmetics_next_data"):
-                yielded += 1
-                item.update(self._context(response, page, "elfcosmetics_next_data"))
-                yield item
-
-        ap = extract_apollo_state(html)
-        if ap:
-            for item in extract_items_from_unknown_state(ap, source="elfcosmetics_apollo_state"):
-                yielded += 1
-                item.update(self._context(response, page, "elfcosmetics_apollo_state"))
-                yield item
-
-        preloaded = extract_preloaded_state(html)
-        if preloaded:
-            for item in extract_items_from_unknown_state(preloaded, source="elfcosmetics_preloaded_state"):
-                yielded += 1
-                item.update(self._context(response, page, "elfcosmetics_preloaded_state"))
-                yield item
-
-        if yielded == 0:
-            for item in extract_json_ld_products(html):
-                yielded += 1
-                item.update(self._context(response, page, "elfcosmetics_json_ld"))
-                yield item
-
-        if yielded == 0:
-            for item in self._extract_html_cards(response):
-                yielded += 1
-                item.update(self._context(response, page, "elfcosmetics_html"))
-                yield item
-
-        yield from self._next_page_requests(response, page)
-
-    def parse_html(self, response: scrapy.http.Response):
+    def parse(self, response: scrapy.http.Response):
         page = int(response.meta.get("page", 1))
         count = 0
         for item in self._extract_html_cards(response):
             count += 1
-            item.update(self._context(response, page, "elfcosmetics_html"))
+            item.update(self._context(response, page))
             yield item
         if count == 0:
-            self.logger.warning("e.l.f. html mode returned 0 items (status=%s)", response.status)
-        yield from self._next_page_requests(response, page, callback=self.parse_html)
+            self.logger.warning("e.l.f. parser returned 0 items (status=%s)", response.status)
+        yield from self._next_page_requests(response, page)
 
-    def _context(self, response: scrapy.http.Response, page: int, source: str) -> dict:
+    def _context(self, response: scrapy.http.Response, page: int) -> dict:
         return {
-            "source": source,
-            "mode": "category_html" if source == "elfcosmetics_html" else "category_bootstrap",
+            "source": "elfcosmetics_html",
+            "mode": "category_html",
             "category": self.category,
             "category_url": response.meta.get("origin"),
             "page": page,
             "source_url": response.url,
         }
 
-    def _next_page_requests(self, response, page, callback=None):
+    def _next_page_requests(self, response, page):
         if page >= self.max_pages:
             return
         href = response.xpath('//a[@rel="next"]/@href').get()
@@ -182,7 +81,7 @@ class ElfcosmeticsListingSpider(BaseListingSpider):
         if href:
             yield response.follow(
                 href,
-                callback=callback or self.parse_bootstrap,
+                callback=self.parse,
                 meta={"page": page + 1, "origin": response.meta.get("origin")},
             )
 
