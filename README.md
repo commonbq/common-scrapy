@@ -476,15 +476,25 @@ Run example:
 ### stockx_listing
 ```json
 {
-  "item_id": "air-jordan-1-retro-high-og-chicago-lost-and-found",
-  "title": "Air Jordan 1 Retro High OG Chicago Lost and Found",
-  "url": "https://stockx.com/air-jordan-1-retro-high-og-chicago-lost-and-found",
-  "price": null,
-  "source": "stockx_next_data|stockx_html_links_fallback"
+  "item_id": "9acafeb5-bc4a-4d66-bc3a-4899d2e64775",
+  "title": "Jordan 4 Retro Toro Bravo (2026)",
+  "brand": "Jordan",
+  "price": 155,
+  "highest_bid": 347,
+  "last_sale_price": 153,
+  "currency": "USD",
+  "url": "https://stockx.com/air-jordan-4-retro-toro-bravo-2026",
+  "product_category": "sneakers",
+  "source": "stockx_next_data_browse"
 }
 ```
 Run example:
 `common-scrapy crawl stockx_listing -a category=sneakers -a max_pages=1 -O stockx_listing.jsonl`
+
+The spider reads the authoritative `browse.results` query from StockX's
+`__NEXT_DATA__` state, follows its `pageCount`, and deduplicates products by ID.
+Available categories are `sneakers`, `apparel`, `electronics`, `trading-cards`,
+and `collectibles`.
 
 ### fashionnova_listing
 ```json
