@@ -84,7 +84,7 @@ Spiders below are returning items in recent smoke runs:
 | [`lululemon_listing`](#lululemon_listing) | Active | bootstrap | Akamai | lululemon listing spider via Next.js `__NEXT_DATA__`. | 40 (ok) | women-shorts, women-leggings, men-shorts, bags | `{"category":"women-shorts","product_id":"prod11860112","name":"Shake It Out High-Rise Running Short 2.5\"","brand":"lululemon","price":["...` |
 | [`maccosmetics_listing`](#maccosmetics_listing) | Experimental | api + bootstrap + html | Akamai | MAC Cosmetics multi-mode listing spider. | 66 (ok) | face, lips, eyes | `{"item_id":"13854","title":"4.8/5 ( 452 ) Lustreglass Sheer-Shine Lipstick Sheer Coverage, Glossy/High-Shine Finish, Infused With Raspberry Seed/Organic Extra Virgin Olive Oils ...` |
 | [`poshmark_listing`](#poshmark_listing) | Experimental | bootstrap | none detected | Poshmark listing spider via `window.__INITIAL_STATE__` category grid data. | 48 (ok) | women, men, kids, home, electronics, pets | `{"category":"women","item_id":"6989d90ac4e7b4d4de556bac","title":"🔥Stunning  Farm Rio NWT Size Large Tropical Midi Dress with Sleeves – V...` |
-| [`qvc_listing`](#qvc_listing) | Experimental | html | Akamai | QVC listing spider via direct category HTML parsing. | 102 (ok) | beauty, fashion, home, kitchen | `{"item_id":"A711188","title":"lwya by kim gravel balm bae center core lip balm quad","url":"https://www.qvc.com/lwya-by-kim-gravel-balm-b...` |
+| [`qvc_listing`](#qvc_listing) | Experimental | html + bootstrap | Akamai | QVC listing spider via server-rendered gallery cards and `utag_data` page state. | 96 (Beauty proxy capture) | fashion | `{"category":"beauty","category_id":"NAV6285","item_id":"A740517","title":"Whish 12 Days of Beauty Whishes Advent Calendar","price":59.98,...}` |
 | [`saksfifthavenue_listing`](#saksfifthavenue_listing-category) | Experimental | html | DataDome | Saks Fifth Avenue listing spider via direct category HTML cards. | 24 (ok) | women, men, shoes, beauty, handbags | `{"item_id":"0400026449047","title":"Prada Washed Re Nylon Rain Jacket","url":"https://www.saksfifthavenue.com/product/prada-washed-re-nyl...` |
 | [`sallybeauty_listing`](#sallybeauty_listing) | Experimental | api + bootstrap + html | PerimeterX / HUMAN (px-captcha signals) | Sally Beauty multi-mode listing spider. | 1 (ok) | hair-color, hair-care, nails | `{"item_id":null,"title":"What's the issue? We’re dedicated to keeping SallyBeauty.com safe from bots and other malicious software. Sometimes a technical issue with your internet...` |
 | [`stockx_listing`](#stockx_listing) | Experimental | bootstrap + html | Cloudflare | StockX listing via `__NEXT_DATA__` bootstrap. | 41 (ok) | sneakers, apparel, electronics, trading-cards, collectibles | `{"item_id":"brands","title":"Brands","url":"https://stockx.com/brands","price":null,"currency":null}` |
@@ -619,17 +619,58 @@ Contract notes:
 - Access-denied/block pages raise a visible runtime error.
 
 ### qvc_listing
+
+QVC renders the initial category product grid in HTML. The spider treats
+`#searchResults .galleryItem[data-item-id]` as the authoritative product source;
+it does not call the product-list endpoint found in QVC's JavaScript configuration
+because the captured category page did not use that endpoint to populate its grid.
+
 ```json
 {
-  "item_id": "A711188",
-  "title": "lwya by kim gravel balm bae center core lip balm quad",
-  "url": "https://www.qvc.com/lwya-by-kim-gravel-balm-bae-center-core-lip-balm-quad.product.A711188.html?sc=PRODFEED",
-  "price": 29.98,
-  "source": "qvc_direct_html"
+  "category": "beauty",
+  "category_id": "NAV6285",
+  "item_id": "A740517",
+  "title": "Whish 12 Days of Beauty Whishes Advent Calendar",
+  "brand": null,
+  "url": "https://www.qvc.com/whish-12-days-of-beauty-whishes-advent-calendar.product.A740517.html?sc=NAVLIST",
+  "image_url": "https://qvc.scene7.com/is/image/QVC/a/17/a740517.001?$aemprodgallery80$",
+  "price": 59.98,
+  "original_price": 73.0,
+  "currency": "USD",
+  "rating": null,
+  "reviews_count": null,
+  "badge": "Today's Special Value",
+  "shipping_promo": "Free Standard S&H",
+  "special_price_code": "TSV",
+  "installment_count": 3,
+  "colors_count": 0,
+  "total_products": 5326,
+  "page": 1,
+  "source": "qvc_server_rendered_gallery_with_utag_state"
 }
 ```
+
 Run example:
-`common-scrapy crawl qvc_listing -a category=beauty -a max_pages=1 -O qvc_listing.jsonl`
+
+`common-scrapy crawl qvc_listing -a category=fashion -a max_pages=1 -O qvc_listing.jsonl`
+
+Contract notes:
+
+- The built-in category is `fashion`. A direct page can also be supplied with
+  `-a url=<category-url>` or `-a category_url=<category-url>` while retaining a
+  category label.
+- The fixed 20-field export contract includes product identity, URLs, prices,
+  ratings, merchandising badges, shipping promotion, installment count, color
+  count, category ID, page number, and listing total.
+- `utag_data` supplies `category_id` and `currentPage`; card extraction still
+  works when that optional bootstrap object is absent.
+- Pagination follows QVC's canonical `<link rel="next">` and stops at
+  `max_pages`. Products are deduplicated by `item_id` across pages.
+- If the expected gallery is missing, the spider logs
+  `QVC product grid unavailable` and emits no fallback data.
+- QVC is protected by Akamai. Direct requests from some networks return HTTP
+  `418`; use a permitted, appropriately configured proxy route and disable the
+  Scrapy HTTP cache when validating live behavior.
 
 ### poshmark_listing
 Poshmark category pages expose their first 48 listing records in the server-rendered
