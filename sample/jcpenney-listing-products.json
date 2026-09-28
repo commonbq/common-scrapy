@@ -1,0 +1,33 @@
+{
+  "organicZoneInfo": {
+    "totalPages": 1,
+    "products": [
+      {
+        "ppId": "ppr5008584232",
+        "name": "St. John's Bay Womens Boat Neck Elbow Sleeve T-Shirt",
+        "brand": "St. John's Bay",
+        "pdpUrl": "/p/st-johns-bay-womens-boat-neck-elbow-sleeve-t-shirt/ppr5008584232",
+        "currentMin": 12.99,
+        "currentMax": 16.99,
+        "originalMin": 24.00,
+        "originalMax": 24.00,
+        "averageRating": 4.4,
+        "reviewCount": 118,
+        "skuSwatch": [{"colorizedImageId": "DP0227202417044112M"}]
+      },
+      {
+        "ppId": "ppr5008423311",
+        "name": "Liz Claiborne Womens V Neck Long Sleeve Blouse",
+        "brandName": "Liz Claiborne",
+        "pdpUrl": "/p/liz-claiborne-womens-v-neck-long-sleeve-blouse/ppr5008423311",
+        "currentMin": 21.99,
+        "currentMax": 21.99,
+        "originalMin": 40.00,
+        "originalMax": 40.00,
+        "averageRating": 4.7,
+        "reviewCount": 42,
+        "skuSwatch": [{"colorizedImageId": "DP0112202418021123M"}]
+      }
+    ]
+  }
+}
