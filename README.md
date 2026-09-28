@@ -999,6 +999,23 @@ Notes:
 
 ## Contributing
 
+### fashionnova_listing
+
+```bash
+scrapy crawl fashionnova_listing -a category=dresses -a max_pages=1 \
+  -s HTTPCACHE_ENABLED=False -O fashionnova.jsonl
+```
+
+The category map mirrors the current Fashion Nova women's navigation, including
+the current dress occasion subcategories. Product data comes from the
+server-rendered Schema.org `CollectionPage` / `ItemList` JSON-LD; pagination uses
+the collection `page` query parameter. The spider intentionally does not parse
+Hydrogen's internal serialized React stream.
+
+Each item uses the stable `FEED_EXPORT_FIELDS` order defined by the spider and
+includes SKU, prices, availability, canonical URL, image, category context,
+page, extraction source, and the original JSON-LD product object.
+
 Issues and pull requests that add or improve retailer spiders, pagination logic, or extraction helpers are welcome.
 
 ### Project layout
