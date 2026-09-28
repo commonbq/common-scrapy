@@ -25,6 +25,7 @@ class DillardsListingSpiderTest(unittest.TestCase):
         self.assertEqual("520620253", item["item_id"])
         self.assertEqual(208.0, item["price"])
         self.assertEqual(20, item["reviews_count"])
+        self.assertEqual("20619482", item["raw"]["partNumber"])
         self.assertEqual("https://www.dillards.com/c/women-dresses?pageNumber=2", request.url)
 
     def test_deduplicates_items(self):

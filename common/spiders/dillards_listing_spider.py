@@ -37,7 +37,7 @@ class DillardsListingSpider(BaseListingSpider):
         "FEED_EXPORT_FIELDS": [
             "category", "subcategory", "item_id", "part_number", "title", "brand",
             "url", "image_url", "price", "price_max", "currency", "rating",
-            "reviews_count", "page", "source",
+            "reviews_count", "page", "source", "raw",
         ],
     }
 
@@ -101,6 +101,7 @@ class DillardsListingSpider(BaseListingSpider):
                 "reviews_count": self._integer(product.get("numReviews")),
                 "page": page,
                 "source": "dillards_bootstrap_initial_state",
+                "raw": product,
             }
 
         total_pages = int(float(widget.get("totalPages") or 1))
