@@ -46,6 +46,7 @@ class SallybeautyListingSpider(BaseListingSpider):
             yield request
 
     def parse(self, response: scrapy.http.Response):
+        page = int(response.meta.get("page", 1))
         cards = response.css('[data-pid].product, [data-pid].product-tile, .product-grid .product-tile')
         if not cards:
             raise RuntimeError(f"No Sally Beauty product grid found at {response.url}")
@@ -68,10 +69,32 @@ class SallybeautyListingSpider(BaseListingSpider):
                 "currency": "USD" if prices else None,
                 "rating": self._number(card.css('[itemprop="ratingValue"]::attr(content), .ratings::attr(data-rating)').get()),
                 "reviews_count": self._integer(card.css('[itemprop="reviewCount"]::attr(content), .review-count::text').get()),
-                "page": response.meta.get("page", 1),
-                "source": "sallybeauty_sfcc_product_grid",
+                "page": page,
+                "source": (
+                    "sallybeauty_sfcc_search_update_grid"
+                    if "Search-UpdateGrid" in response.url
+                    else "sallybeauty_sfcc_product_grid"
+                ),
                 "category_url": response.meta.get("category_url", response.url),
             }
+
+        if page >= self.max_pages:
+            return
+
+        # SFCC advertises the exact AJAX endpoint, category id, refinements,
+        # sort order, and offset in this URL. Follow it rather than trying to
+        # reproduce storefront state from the friendly category URL.
+        next_url = response.css(
+            '[data-url*="Search-UpdateGrid"]::attr(data-url), '
+            'a[href*="Search-UpdateGrid"]::attr(href)'
+        ).get()
+        if next_url:
+            yield response.follow(
+                next_url,
+                callback=self.parse,
+                headers={"X-Requested-With": "XMLHttpRequest"},
+                meta={**response.meta, "page": page + 1},
+            )
 
     @staticmethod
     def _number(value):
