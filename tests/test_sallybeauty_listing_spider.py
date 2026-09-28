@@ -11,7 +11,7 @@ class SallybeautyListingSpiderTest(unittest.TestCase):
         self.spider = SallybeautyListingSpider(category="hair-care", max_pages="1")
         url = "https://www.sallybeauty.com/hair-care/shop-by-product/shampoo/"
         request = Request(url, meta={"page": 1, "category_url": url})
-        body = Path("tests/fixtures/sallybeauty_shampoo.html").read_bytes()
+        body = Path("sample/sallybeauty-listing-product.html").read_bytes()
         self.response = HtmlResponse(url, request=request, body=body, encoding="utf-8")
 
     def test_feed_contract_and_items(self):
