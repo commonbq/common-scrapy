@@ -347,6 +347,21 @@ Notes:
 - Current fallback paths (`__APOLLO_STATE__`, JSON-LD, and HTML product links) cannot extract items when the origin serves only error/deny responses.
 - If this target is business-critical, use a dedicated unblocker/browser-rendering pipeline or provide an approved alternative data source.
 
+### maccosmetics_listing (Shopify collection catalog)
+
+MAC Cosmetics now exposes its current catalog through Shopify collection pages. The
+spider includes all 79 collections published in the store sitemap and parses the
+server-rendered Shopify analytics catalog as its authoritative product source.
+
+```bash
+scrapy crawl maccosmetics_listing -a category=face -a max_pages=1 \
+  -s HTTPCACHE_ENABLED=False -O maccosmetics_listing.jsonl
+```
+
+The stable `FEED_EXPORT_FIELDS` contract exports category, Shopify product ID,
+SKU, title, brand, product type, product and image URLs, USD price, page, source,
+and the raw catalog object. Collection pagination is followed up to `max_pages`.
+
 ### macys_listing
 ```json
 {
