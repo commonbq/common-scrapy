@@ -631,6 +631,16 @@ Contract notes:
 Run example:
 `common-scrapy crawl qvc_listing -a category=beauty -a max_pages=1 -O qvc_listing.jsonl`
 
+### poshmark_listing
+Poshmark category pages expose their first 48 listing records in the server-rendered
+`window.__INITIAL_STATE__` payload. The spider deliberately uses only that authoritative
+bootstrap payload and exports a stable field order through `FEED_EXPORT_FIELDS`.
+
+Supported categories are `women`, `men`, `kids`, `home`, `electronics`, and `pets`.
+
+Run example:
+`common-scrapy crawl poshmark_listing -a category=women -a max_pages=1 -s HTTPCACHE_ENABLED=False -O poshmark_listing.jsonl`
+
 ### saksfifthavenue_listing (category)
 ```json
 {
