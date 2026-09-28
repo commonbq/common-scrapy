@@ -634,7 +634,15 @@ Run example:
 
 ### target_listing
 
-`target_listing` is a backwards-compatible alias of `target_search`.
+`target_listing` uses Target's RedSky `plp_search_v2` response as its
+authoritative product source. A named department expands to each configured
+subcategory; direct Target category IDs remain supported for focused runs.
+
+Available departments include `grocery`, `women`, `men`, `kids`, `baby`,
+`home`, `kitchen-dining`, `patio-garden`, `beauty`, `personal-care`, `health`,
+`household-essentials`, `pets`, `toys`, `electronics`, `video-games`,
+`sports-outdoors`, `school-office`, `movies-music-books`, `gift-cards`, and
+`clearance`. The `grocery` department expands to 14 current child listings.
 
 Sample output:
 ```json
@@ -649,6 +657,13 @@ Sample output:
 
 Run example:
 `.venv/bin/scrapy crawl target_listing -a category=5xtc0 -a max_pages=1 -O target_listing.jsonl`
+
+Department example:
+`scrapy crawl target_listing -a category=grocery -a max_pages=1 -O target_grocery.jsonl`
+
+The feed contract is fixed with `FEED_EXPORT_FIELDS`: product ID, title, brand,
+current/original price, currency, URL, image, rating/review count, category and
+subcategory context, page, extraction source, and raw RedSky product data.
 
 Validation notes (2026-03-01):
 - Browser-control tool was unavailable during this run, so sorting behavior was validated via direct RedSky API probes (`sortBy`: `relevance`, `newest`, `PriceHigh`, `PriceLow`), all returning HTTP 200.
