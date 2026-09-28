@@ -86,7 +86,7 @@ Spiders below are returning items in recent smoke runs:
 | [`poshmark_listing`](#poshmark_listing) | Experimental | bootstrap | none detected | Poshmark listing spider via `window.__INITIAL_STATE__` category grid data. | 48 (ok) | women, men, kids, home, electronics, pets | `{"category":"women","item_id":"6989d90ac4e7b4d4de556bac","title":"🔥Stunning  Farm Rio NWT Size Large Tropical Midi Dress with Sleeves – V...` |
 | [`qvc_listing`](#qvc_listing) | Experimental | html | Akamai | QVC listing spider via direct category HTML parsing. | 102 (ok) | beauty, fashion, home, kitchen | `{"item_id":"A711188","title":"lwya by kim gravel balm bae center core lip balm quad","url":"https://www.qvc.com/lwya-by-kim-gravel-balm-b...` |
 | [`saksfifthavenue_listing`](#saksfifthavenue_listing-category) | Experimental | html | DataDome | Saks Fifth Avenue listing spider via direct category HTML cards. | 24 (ok) | women, men, shoes, beauty, handbags | `{"item_id":"0400026449047","title":"Prada Washed Re Nylon Rain Jacket","url":"https://www.saksfifthavenue.com/product/prada-washed-re-nyl...` |
-| [`sallybeauty_listing`](#sallybeauty_listing) | Experimental | api + bootstrap + html | PerimeterX / HUMAN (px-captcha signals) | Sally Beauty multi-mode listing spider. | 1 (ok) | hair-color, hair-care, nails | `{"item_id":null,"title":"What's the issue? We’re dedicated to keeping SallyBeauty.com safe from bots and other malicious software. Sometimes a technical issue with your internet...` |
+| [`sallybeauty_listing`](#sallybeauty_listing) | Experimental | html + AJAX | PerimeterX / HUMAN (px-captcha signals) | Sally Beauty SFCC product-grid spider with `Search-UpdateGrid` pagination. | 2 (fixture) | hair-color, hair-care, textured-curly-hair, hair-extensions, tools-brushes, nails, cosmetics-skin-care, fragrances, mens-grooming, salon-supplies, new, deals | `{"category":"hair-care","item_id":"SBS-539230","title":"Low Porosity Aloe Vera Gel Shampoo","brand":"Texture ID","price":11.99...` |
 | [`stockx_listing`](#stockx_listing) | Experimental | bootstrap + html | Cloudflare | StockX listing via `__NEXT_DATA__` bootstrap. | 41 (ok) | sneakers, apparel, electronics, trading-cards, collectibles | `{"item_id":"brands","title":"Brands","url":"https://stockx.com/brands","price":null,"currency":null}` |
 | [`target_listing`](#target_listing) | Active (alias) | api | PerimeterX / HUMAN (cookie signals) | Deprecated alias of `target_search`. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
 | [`target_search`](#target_search) | Active | api | PerimeterX / HUMAN (cookie signals) | Target RedSky search API spider. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
@@ -936,23 +936,59 @@ Run examples:
 - `common-scrapy crawl bathandbodyworks_listing -a category='body-care' -a mode=html -a max_pages=1 -O bbw_html.jsonl`
 
 ### sallybeauty_listing
+
+Extracts Sally Beauty product tiles from the server-rendered Salesforce Commerce
+Cloud listing page. For later batches, the spider follows the exact
+`Search-UpdateGrid` URL advertised by the page's Load More control. That endpoint
+returns another HTML product-grid fragment rather than JSON. Reusing the supplied
+URL preserves the storefront's category ID, refinements, sort order, page size,
+and offset.
+
+Run examples:
+
+- `common-scrapy crawl sallybeauty_listing -a category='hair-care' -a max_pages=1 -O sallybeauty.jsonl`
+- `common-scrapy crawl sallybeauty_listing -a category='hair-care' -a max_pages=3 -O sallybeauty.jsonl`
+- `common-scrapy crawl sallybeauty_listing -a category='hair-care' -a url='https://www.sallybeauty.com/hair-care/shop-by-product/shampoo/' -a max_pages=2 -O shampoo.jsonl`
+
+The export contract is ordered as:
+
+`category`, `item_id`, `title`, `brand`, `url`, `image_url`, `price`,
+`price_max`, `currency`, `rating`, `reviews_count`, `page`, `source`, and
+`category_url`.
+
 ```json
 {
-  "item_id": null,
-  "title": "Gift Cards",
-  "url": "https://www.sallybeauty.com/giftCards.html",
-  "price": null,
-  "currency": null,
-  "brand": "Sally Beauty",
-  "source": "sallybeauty_html",
-  "mode": "category_html",
-  "category_url": "https://www.sallybeauty.com/hair-care/"
+  "category": "hair-care",
+  "item_id": "SBS-539230",
+  "title": "Low Porosity Aloe Vera Gel Shampoo",
+  "brand": "Texture ID",
+  "url": "https://www.sallybeauty.com/hair-care/shop-by-product/shampoo/low-porosity-aloe-vera-gel-shampoo/SBS-539230.html",
+  "image_url": "https://www.sallybeauty.com/images/539230.jpg",
+  "price": 11.99,
+  "price_max": null,
+  "currency": "USD",
+  "rating": 4.6,
+  "reviews_count": 29,
+  "page": 1,
+  "source": "sallybeauty_sfcc_product_grid",
+  "category_url": "https://www.sallybeauty.com/hair-care/shop-by-product/shampoo/"
 }
 ```
-Run examples:
-- `common-scrapy crawl sallybeauty_listing -a category='hair-care' -a mode=api -a max_pages=1 -O sally_api.jsonl`
-- `common-scrapy crawl sallybeauty_listing -a category='hair-care' -a mode=bootstrap -a max_pages=1 -O sally_bootstrap.jsonl`
-- `common-scrapy crawl sallybeauty_listing -a category='hair-care' -a mode=html -a max_pages=1 -O sally_html.jsonl`
+
+Notes:
+
+- Page 1 uses `source=sallybeauty_sfcc_product_grid`; AJAX batches use
+  `source=sallybeauty_sfcc_search_update_grid`.
+- `max_pages` includes the initial listing page. Pagination stops when that
+  limit is reached or the response no longer advertises a `Search-UpdateGrid`
+  URL.
+- The spider intentionally raises an error if a response contains no expected
+  product grid, so a PerimeterX challenge cannot be mistaken for product data.
+- Sally Beauty currently returns PerimeterX `PX-ABR`/captcha responses to some
+  automated egress. Use an authorized proxy or network path when needed.
+- Representative redacted responses are available in
+  `sample/sallybeauty-listing-product.html` and
+  `sample/sallybeauty-listing-product-page-2.html`.
 
 ### maccosmetics_listing
 ```json
