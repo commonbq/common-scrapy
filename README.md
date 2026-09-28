@@ -953,19 +953,22 @@ Run examples:
 ### elfcosmetics_listing
 ```json
 {
-  "item_id": "ELF-12345",
-  "title": "Primer ...",
-  "url": "https://www.elfcosmetics.com/products/...",
-  "price": 10.0,
+  "item_id": "soft-glam-satin-foundation",
+  "title": "Soft Glam Satin Foundation",
+  "url": "https://www.elfcosmetics.com/products/soft-glam-satin-foundation?Color=21+Light+Neutral",
+  "price": 8.0,
   "currency": "USD",
   "brand": "e.l.f. Cosmetics",
-  "source": "elfcosmetics_internal_api|elfcosmetics_preloaded_state|elfcosmetics_html"
+  "category": "face",
+  "page": 1,
+  "source": "elfcosmetics_html"
 }
 ```
-Run examples:
-- `common-scrapy crawl elfcosmetics_listing -a category='face' -a mode=api -a max_pages=1 -O elf_api.jsonl`
-- `common-scrapy crawl elfcosmetics_listing -a category='face' -a mode=bootstrap -a max_pages=1 -O elf_bootstrap.jsonl`
-- `common-scrapy crawl elfcosmetics_listing -a category='face' -a mode=html -a max_pages=1 -O elf_html.jsonl`
+The spider reads server-rendered Shopify Hydrogen product cards, follows the
+collection's next-page link, and exports fields in a stable order.
+
+Run example:
+`common-scrapy crawl elfcosmetics_listing -a category=face -a mode=html -a max_pages=1 -O elfcosmetics_listing.jsonl`
 
 ### ae_listing
 ```json
