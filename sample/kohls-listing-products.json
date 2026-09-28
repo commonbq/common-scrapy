@@ -1,0 +1,27 @@
+{
+  "payload": {
+    "totalProducts": 2,
+    "products": [
+      {
+        "productId": "4920973",
+        "productTitle": "Women's Croft & Barrow Effortless Stretch Pull-On Straight-Leg Pants",
+        "brand": "Croft & Barrow",
+        "productDetailsUrl": "/product/prd-4920973/womens-croft-barrow-effortless-stretch-pull-on-straight-leg-pants.jsp",
+        "imageUrl": "https://media.kohlsimg.com/is/image/kohls/4920973_Black",
+        "averageRating": 4.3,
+        "reviews": 1642,
+        "prices": [{"regularPrice": {"minPrice": 44.0}, "salePrice": {"minPrice": 29.99}, "currencyCode": "USD"}]
+      },
+      {
+        "productId": "6751358",
+        "productTitle": "Women's Sonoma Goods For Life Supersoft Crewneck Tee",
+        "brandName": "Sonoma Goods For Life",
+        "productDetailsUrl": "/product/prd-6751358/womens-sonoma-goods-for-life-supersoft-crewneck-tee.jsp",
+        "imageURL": "https://media.kohlsimg.com/is/image/kohls/6751358_White",
+        "averageRating": 4.5,
+        "reviewCount": 238,
+        "prices": [{"regularPrice": {"minPrice": 20.0}, "currencyCode": "USD"}]
+      }
+    ]
+  }
+}
