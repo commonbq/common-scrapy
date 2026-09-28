@@ -542,8 +542,14 @@ Run example:
 `common-scrapy crawl jcpenney_listing -a category=womens_tops -a max_pages=1 -O jcpenney_listing.jsonl`
 
 ### dillards_listing
+Extracts the authoritative `CatalogEntryList` from Dillard's `window.__INITIAL_STATE__` bootstrap data. The category inventory covers 10 top-level departments and 124 current child listing URLs; selecting a department crawls every child and deduplicates products by catalog entry ID. Pagination uses Dillard's `pageNumber` query parameter and is bounded by `max_pages` per child listing.
+
 Run example:
 `common-scrapy crawl dillards_listing -a category=women -a max_pages=1 -O dillards_listing.jsonl`
+
+Current category names: `women`, `lingerie`, `juniors`, `shoes`, `handbags`, `accessories`, `men`, `kids`, `home`, `beauty`.
+
+The site is protected by Akamai and may return an HTTP 200 access-denied page from datacenter IPs. Use the configured residential proxy; the spider deliberately stops when the authoritative bootstrap contract is absent.
 
 ### poshmark_listing
 ```json
