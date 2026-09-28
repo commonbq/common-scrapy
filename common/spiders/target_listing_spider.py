@@ -368,9 +368,14 @@ class TargetListingSpider(BaseListingSpider):
 
         if not image and isinstance(item, dict):
             enrichment = item.get("enrichment") or {}
+            image_info = enrichment.get("image_info") or {}
+            primary_image = image_info.get("primary_image") or {}
+            if isinstance(primary_image, dict):
+                image = primary_image.get("url")
+
             imgs = enrichment.get("images")
             if isinstance(imgs, dict):
-                image = imgs.get("primary_image_url") or (imgs.get("alternate_image_urls") or [None])[0]
+                image = image or imgs.get("primary_image_url") or (imgs.get("alternate_image_urls") or [None])[0]
             elif isinstance(imgs, list) and imgs:
                 first = imgs[0]
                 if isinstance(first, dict):
@@ -382,6 +387,10 @@ class TargetListingSpider(BaseListingSpider):
             if isinstance(primary_brand, dict)
             else primary_brand
         )
+        rating_summary = (
+            ((p.get("ratings_and_reviews") or {}).get("statistics") or {}).get("rating")
+            or {}
+        )
 
         return {
             "product_id": tcin,
@@ -392,7 +401,15 @@ class TargetListingSpider(BaseListingSpider):
             "currency": currency,
             "url": url,
             "image": image,
-            "rating": p.get("average_rating") or p.get("rating"),
-            "reviews_count": p.get("total_reviews") or p.get("review_count"),
+            "rating": (
+                p.get("average_rating")
+                or p.get("rating")
+                or rating_summary.get("average")
+            ),
+            "reviews_count": (
+                p.get("total_reviews")
+                or p.get("review_count")
+                or rating_summary.get("count")
+            ),
             "raw": p,
         }

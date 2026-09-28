@@ -35,15 +35,22 @@ class TargetListingSpiderTests(unittest.TestCase):
                                 "primary_brand": {"name": "Good & Gather"},
                                 "enrichment": {
                                     "buy_url": "/p/coffee/-/A-123",
-                                    "images": {"primary_image_url": "https://example.test/123.jpg"},
+                                    "image_info": {
+                                        "primary_image": {
+                                            "url": "https://example.test/123.jpg"
+                                        }
+                                    },
                                 },
                             },
                             "price": {
                                 "formatted_current_price": "$8.99",
                                 "formatted_comparison_price": "$10.99",
                             },
-                            "average_rating": 4.5,
-                            "total_reviews": 42,
+                            "ratings_and_reviews": {
+                                "statistics": {
+                                    "rating": {"average": 4.5, "count": 42}
+                                }
+                            },
                         },
                         {"tcin": "123", "title": "duplicate"},
                     ]
@@ -65,6 +72,9 @@ class TargetListingSpiderTests(unittest.TestCase):
         self.assertEqual(len(items), 1)
         self.assertEqual(items[0]["product_id"], "123")
         self.assertEqual(items[0]["brand"], "Good & Gather")
+        self.assertEqual(items[0]["image"], "https://example.test/123.jpg")
+        self.assertEqual(items[0]["rating"], 4.5)
+        self.assertEqual(items[0]["reviews_count"], 42)
         self.assertEqual(items[0]["category"], "grocery")
         self.assertEqual(items[0]["source"], "target_redsky_plp_search_v2")
         self.assertEqual(
