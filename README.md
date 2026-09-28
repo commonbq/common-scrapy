@@ -103,7 +103,7 @@ These are still being worked on and currently returned `0` items in recent smoke
 | [`dillards_listing`](#dillards_listing) | Experimental | bootstrap | Akamai | Dillard's listing spider via `window.__INITIAL_STATE__`. | 0 (ok) | women, men, shoes, handbags, beauty, juniors, home | `n/a` |
 | [`homedepot_listing`](#homedepot_listing-category-apollo-bootstrap) | Flaky | bootstrap + html | Akamai | Home Depot category listing via Apollo state. | 0 (ok) | screwdrivers, drills, paint, light-bulbs, lumber | `n/a` |
 | [`kohls_listing`](#kohls_listing) | Experimental | api | Akamai (Cloudflare challenge assets also observed) | Kohl’s listing via `/web/catalog/...` API. | 0 (ok) | women, men, sale | `n/a` |
-| [`nordstromrack_listing`](#nordstromrack_listing) | Experimental | html | PerimeterX / HUMAN | Nordstrom Rack listing spider via direct category-page HTML. | 0 (skipped2) | dresses, women, men, shoes | `{}` |
+| [`nordstromrack_listing`](#nordstromrack_listing) | Experimental | JSON-LD | Fastly (`x-jungle`) | Nordstrom Rack category listings from server-rendered Schema.org `ItemList` data. | 2 (fixture; live 403) | women, men, kids, shoes, bags-and-accessories, beauty, home, clearance | `{"item_id":"7788991","title":"Pleated Midi Dress","brand":"Donna Ricco","price":34.97,"currency":"USD",...}` |
 
 *`Number of items output` reflects recent local smoke runs (typically `max_pages=1`) and can vary by location, anti-bot behavior, and site changes.*
 Many listing spiders accept `-a category=<name>` shortcuts (in addition to `-a category_url=<url>`), including Amazon, Walmart, eBay, Home Depot, Best Buy, and Kroger. Costco listing uses category-only selection.
@@ -732,24 +732,44 @@ Validation notes (2026-02-25):
 
 ### nordstromrack_listing
 
-Direct-HTTP listing spider for Nordstrom Rack category pages.
+Direct-HTTP listing spider for Nordstrom Rack category pages. It reads the
+server-rendered Schema.org `ItemList` JSON-LD, deduplicates products, and follows
+the category `page` query parameter up to `max_pages`.
 
 Run example:
-`common-scrapy crawl nordstromrack_listing -a category=dresses -a max_pages=1 -O nordstromrack_listing.jsonl`
+`common-scrapy crawl nordstromrack_listing -a category=women -a max_pages=1 -O nordstromrack_listing.jsonl`
+
+Available categories: `women`, `men`, `kids`, `shoes`,
+`bags-and-accessories`, `beauty`, `home`, and `clearance`.
+
+The export contract is ordered and includes `item_id`, `title`, `brand`,
+`price`, `price_max`, `currency`, `availability`, `url`, `image_url`,
+`category`, `page`, `position`, `source`, and the original JSON-LD product in
+`raw`.
 
 Sample output:
 ```json
 {
-  "category": "dresses",
-  "product_id": "8210770",
-  "name": "One-Shoulder Front Twist A-Line Gown",
-  "url": "https://www.nordstromrack.com/s/marina-one-shoulder-front-twist-a-line-gown/8210770?origin=category-personalizedsort&breadcrumb=Home%2FWomen%2FClothing%2FDresses",
-  "image": "https://n.nordstrommedia.com/it/b91a2122-b716-4559-b990-4fc031eed7ca.jpeg?h=368&w=240&dpr=2",
-  "source_url": "https://www.nordstromrack.com/shop/women/clothing/dresses?page=1",
+  "item_id": "7788991",
+  "title": "Pleated Midi Dress",
+  "brand": "Donna Ricco",
+  "price": 34.97,
+  "price_max": 49.97,
+  "currency": "USD",
+  "availability": "InStock",
+  "url": "https://www.nordstromrack.com/s/pleated-midi-dress/7788991",
+  "image_url": "https://n.nordstrommedia.com/id/example.jpeg",
+  "category": "women",
   "page": 1,
-  "mode": "listing"
+  "position": 1,
+  "source": "nordstromrack_itemlist_json_ld",
+  "raw": {"@type": "Product", "sku": "7788991"}
 }
 ```
+
+Live requests returned Fastly's `x-jungle` HTTP 403 response during the latest
+validation. The checked-in representative fixture exercises the same JSON-LD
+contract deterministically.
 
 ### bestbuy_search / bestbuy_listing
 

@@ -12,6 +12,8 @@ class NordstromrackListingSpiderTests(unittest.TestCase):
         self.assertEqual(len(items), 2)
         self.assertEqual(items[0]["item_id"], "7788991")
         self.assertEqual(items[0]["price"], 34.97)
+        self.assertEqual(items[0]["raw"]["sku"], "7788991")
+        self.assertEqual(items[0]["raw"]["@type"], "Product")
         self.assertEqual(list(items[0]), self.spider.custom_settings["FEED_EXPORT_FIELDS"])
 
 if __name__ == "__main__": unittest.main()
