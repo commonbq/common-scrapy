@@ -19,6 +19,7 @@ dependencies = [
     "click>=8.3,<9",
     "scrapy>=2.13,<3",
     "python-dotenv>=1.0,<2",
+    "curl-cffi>=0.13,<1",
 ]
 classifiers = [
     "Programming Language :: Python :: 3",
