@@ -553,6 +553,12 @@ Run example:
 `common-scrapy crawl lululemon_listing -a category=women-shorts -a max_pages=1 -O lululemon_listing.jsonl`
 
 ### jcpenney_listing
+Extracts the authoritative `organicZoneInfo.products` collection from JCPenney's
+search-service JSON endpoint. The stable `FEED_EXPORT_FIELDS` contract includes
+category and page context, identifiers, pricing, rating, media, and the raw source
+record. The endpoint is protected by Akamai and fails visibly when its expected
+JSON contract is unavailable.
+
 Run example:
 `common-scrapy crawl jcpenney_listing -a category=womens_tops -a max_pages=1 -O jcpenney_listing.jsonl`
 
