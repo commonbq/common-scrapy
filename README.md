@@ -80,6 +80,7 @@ Spiders below are returning items in recent smoke runs:
 | [`homedepot_listing`](#homedepot_listing-category-apollo-state) | Flaky | bootstrap | Akamai | Home Depot department listings from embedded Apollo state. | 2 (fixture) | appliances, bath, building-materials, decor-and-furniture, electrical, flooring, hardware, heating-and-cooling, kitchen, lawn-and-garden, lighting, paint, plumbing, storage, tools | `{"category":"tools","item_id":"100000001","sku":"1000000001","title":"16 oz. Fiberglass Claw Hammer","brand":"Husky","price":14.97...` |
 | [`homedepot_search`](#homedepot_search-keyword-apollo-bootstrap) | Active | bootstrap + html | Akamai | Home Depot keyword search via Apollo state. | 24 (ok) | - | `{"item_id":"336787835","sku":"1014334650","brand":"Lukyamzn","title":"14 in. Dual-Core Celeron N4000 Laptop 6 GB RAM 128 GB SSD IPS Displ...` |
 | [`jcpenney_listing`](#jcpenney_listing) | Active | api | Akamai (+ reCAPTCHA scripts observed) | JCPenney listing spider via search API bootstrap endpoint. | 48 (ok) | womens_tops, mens_shirts | `{"item_id":"ppr5008584232","title":"St. John's Bay Womens Boat Neck Elbow Sleeve T-Shirt","brand":"st. john's bay","url":"https://www.jcp...` |
+| [`ikea_listing`](#ikea_listing) | Active | api | none detected | IKEA category listings from the SIK search API. | 21 (ok) | 221 unique targets from 23 departments | `{"category":"st004","item_id":"60561248","title":"STORKLINTA","product_type":"6-drawer dresser","price":249.99,...}` |
 | [`kroger_listing`](#kroger_search--kroger_listing) | Active | Redux bootstrap | unknown (timeout/no verdict) | Kroger category listings from `window.__INITIAL_STATE__` search products. | 2 (fixture) | cereal, milk, eggs, bread, coffee, snacks | `{"category":"cereal","item_id":"0001111012345","title":"Kroger Toasted Oats Cereal","brand":"Kroger","price":3.99,...}` |
 | [`kroger_search`](#kroger_search--kroger_listing) | Active | bootstrap + html | unknown (timeout/no verdict) | Kroger keyword search with state extraction + fallback. | 27 (ok) | - | `{'item_id':'kroger-2-reduced-fat-milk-gallon','url':'https://www.kroger.com/p/kroger-2-reduced-fat-milk-gallon/0001111041700','source':'kroger_html_links_fallback'}` |
 | [`lululemon_listing`](#lululemon_listing) | Active | bootstrap | Akamai | lululemon listing spider via Next.js `__NEXT_DATA__`. | 40 (ok) | women-shorts, women-leggings, men-shorts, bags | `{"category":"women-shorts","product_id":"prod11860112","name":"Shake It Out High-Rise Running Short 2.5\"","brand":"lululemon","price":["...` |
@@ -1035,6 +1036,24 @@ Run examples:
 - `common-scrapy crawl bathandbodyworks_listing -a category='body-care' -a mode=api -a max_pages=1 -O bbw_api.jsonl`
 - `common-scrapy crawl bathandbodyworks_listing -a category='body-care' -a mode=bootstrap -a max_pages=1 -O bbw_bootstrap.jsonl`
 - `common-scrapy crawl bathandbodyworks_listing -a category='body-care' -a mode=html -a max_pages=1 -O bbw_html.jsonl`
+
+### ikea_listing
+
+Uses IKEA's SIK category-search endpoint as the single authoritative product
+source. The bundled inventory is normalized from 23 product departments and
+deduplicated by listing URL; category arguments are the final IKEA category
+tokens (for example, `st004`). Requests use 24-product windows and stop at the
+reported product total or `max_pages`.
+
+Run example:
+
+- `common-scrapy crawl ikea_listing -a category=st004 -a max_pages=2 -O ikea.jsonl -s HTTPCACHE_ENABLED=False`
+
+The ordered export fields are `category`, `item_id`, `title`, `product_type`,
+`dimensions`, `url`, `image_url`, `image_urls`, `price`, `currency`, `rating`,
+`reviews_count`, `badge`, `design`, `availability`, `page`, `category_url`, and
+`source`. The live verification returned 21 products in the first 24-slot window
+and 45 unique products across two windows (breakout slots are not products).
 
 ### sallybeauty_listing
 
