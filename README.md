@@ -79,7 +79,7 @@ Spiders below are returning items in recent smoke runs:
 | [`fashionnova_listing`](#fashionnova_listing) | Active | api + html | Cloudflare | Fashion Nova listing via Shopify Storefront GraphQL with HTML fallback. | 48 (ok) | women, new, dresses, jeans, sale | `{"item_id":"175898317","title":"Classic High Waist Skinny Jeans - Dark Denim","url":"https://www.fashionnova.com/products/dark-blue-class...` |
 | [`homedepot_search`](#homedepot_search-keyword-apollo-bootstrap) | Active | bootstrap + html | Akamai | Home Depot keyword search via Apollo state. | 24 (ok) | - | `{"item_id":"336787835","sku":"1014334650","brand":"Lukyamzn","title":"14 in. Dual-Core Celeron N4000 Laptop 6 GB RAM 128 GB SSD IPS Displ...` |
 | [`jcpenney_listing`](#jcpenney_listing) | Active | api | Akamai (+ reCAPTCHA scripts observed) | JCPenney listing spider via search API bootstrap endpoint. | 48 (ok) | womens_tops, mens_shirts | `{"item_id":"ppr5008584232","title":"St. John's Bay Womens Boat Neck Elbow Sleeve T-Shirt","brand":"st. john's bay","url":"https://www.jcp...` |
-| [`kroger_listing`](#kroger_search--kroger_listing) | Active | bootstrap + html | unknown (timeout/no verdict) | Kroger category listing with search fallback path. | 31 (ok) | cereal, milk, eggs, bread, coffee, snacks | `{'item_id':'kroger-vitamin-d-whole-milk-gallon','url':'https://www.kroger.com/p/kroger-vitamin-d-whole-milk-gallon/0001111040101','source':'kroger_html_links_fallback'}` |
+| [`kroger_listing`](#kroger_search--kroger_listing) | Active | Redux bootstrap | unknown (timeout/no verdict) | Kroger category listings from `window.__INITIAL_STATE__` search products. | 2 (fixture) | cereal, milk, eggs, bread, coffee, snacks | `{"category":"cereal","item_id":"0001111012345","title":"Kroger Toasted Oats Cereal","brand":"Kroger","price":3.99,...}` |
 | [`kroger_search`](#kroger_search--kroger_listing) | Active | bootstrap + html | unknown (timeout/no verdict) | Kroger keyword search with state extraction + fallback. | 27 (ok) | - | `{'item_id':'kroger-2-reduced-fat-milk-gallon','url':'https://www.kroger.com/p/kroger-2-reduced-fat-milk-gallon/0001111041700','source':'kroger_html_links_fallback'}` |
 | [`lululemon_listing`](#lululemon_listing) | Active | bootstrap | Akamai | lululemon listing spider via Next.js `__NEXT_DATA__`. | 40 (ok) | women-shorts, women-leggings, men-shorts, bags | `{"category":"women-shorts","product_id":"prod11860112","name":"Shake It Out High-Rise Running Short 2.5\"","brand":"lululemon","price":["...` |
 | [`maccosmetics_listing`](#maccosmetics_listing) | Experimental | api + bootstrap + html | Akamai | MAC Cosmetics multi-mode listing spider. | 66 (ok) | face, lips, eyes | `{"item_id":"13854","title":"4.8/5 ( 452 ) Lustreglass Sheer-Shine Lipstick Sheer Coverage, Glossy/High-Shine Finish, Infused With Raspberry Seed/Organic Extra Virgin Olive Oils ...` |
@@ -944,7 +944,9 @@ Notes:
 
 ### kroger_search / kroger_listing
 
-These spiders try bootstrap state extraction first (`__NEXT_DATA__` / `__APOLLO_STATE__`), then fallback to JSON-LD and direct product-link HTML parsing.
+`kroger_search` tries bootstrap state extraction first (`__NEXT_DATA__` /
+`__APOLLO_STATE__`), then falls back to JSON-LD and direct product-link HTML
+parsing.
 
 `kroger_search` sample output:
 ```json
@@ -970,20 +972,21 @@ These spiders try bootstrap state extraction first (`__NEXT_DATA__` / `__APOLLO_
 `kroger_listing` sample output:
 ```json
 {
-  "item_id": "kroger-vitamin-d-whole-milk-gallon",
-  "title": null,
-  "url": "https://www.kroger.com/p/kroger-vitamin-d-whole-milk-gallon/0001111040101",
-  "price": null,
-  "currency": null,
-  "brand": null,
-  "rating": null,
-  "reviews_count": null,
-  "image_url": null,
-  "source": "kroger_html_links_fallback",
-  "mode": "category",
-  "category_url": "https://www.kroger.com/pl/milk/02001",
+  "category": "cereal",
+  "item_id": "0001111012345",
+  "title": "Kroger Toasted Oats Cereal",
+  "brand": "Kroger",
+  "url": "https://www.kroger.com/p/kroger-toasted-oats-cereal/0001111012345",
+  "image_url": "https://www.kroger.com/product/images/large/front/0001111012345",
+  "price": 3.99,
+  "regular_price": 4.49,
+  "currency": "USD",
+  "availability": "InStock",
+  "size": "18 oz",
+  "source": "kroger_initial_state_search_products",
+  "category_url": "https://www.kroger.com/pl/cereal/09002",
   "page": 1,
-  "source_url": "https://www.kroger.com/pl/milk/02001"
+  "raw": {"upc": "0001111012345", "description": "Kroger Toasted Oats Cereal"}
 }
 ```
 
@@ -993,7 +996,10 @@ Run examples:
 
 Notes:
 - Added sort variant retries (`bestMatch`, `sale`) to mitigate zero-item responses from Akamai caches; `kroger_search` now emits ~27 items via HTML link fallback even when bootstrap state is stripped.
-- Listing spider now captures escaped `/p/slug` references that Kroger injects inside serialized props, so categories like `milk` return ~31 URLs before the search fallback is considered.
+- `kroger_listing` reads only `window.__INITIAL_STATE__.search.searchAll.response.products`; it raises a visible error when the state or product collection is absent instead of exporting partial fallback records.
+- Its ordered 15-field export contract is `category`, `item_id`, `title`, `brand`, `url`, `image_url`, `price`, `regular_price`, `currency`, `availability`, `size`, `source`, `category_url`, `page`, and `raw`.
+- Products are deduplicated by UPC. Pagination uses Kroger's `page` parameter, the Redux `pageSize`, and `productsInfo.totalCount`, and stops at `max_pages`.
+- The six maintained category shortcuts are `cereal`, `bread`, `coffee`, `eggs`, `milk`, and `snacks`. A direct fixture or listing URL can be supplied with `-a url=<listing-url>`.
 - NordVPN US egress (New York, Chicago, Los Angeles, Dallas, Miami, Seattle) continued to return 403s/timeouts during curl checks; disconnecting NordVPN and routing through the configured BRD residential proxy remains the only reliable path in this environment.
 
 ### bathandbodyworks_listing
