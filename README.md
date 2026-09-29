@@ -77,6 +77,7 @@ Spiders below are returning items in recent smoke runs:
 | [`costco_listing`](#costco_search--costco_listing) | Active | React Flight + API | Akamai | Costco category listing with React Flight discovery and GRS search pagination. | 24 (ok) | 131 parent groups / 432 subcategory entries from `costco-categories.json` | `{"item_id":"100501081","title":"Starbucks Pike Place Medium Roast K-Cup","url":"https://www.costco.com/starbucks-pike-place-medium-roast-k-cup-72-count.product.100501081.html","price":...` |
 | [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | none detected (CloudFront CDN only) | e.l.f. Cosmetics multi-mode listing spider. | 6 (ok) | face, eyes, lips | `{'item_id':'300261','title':'Soft Glam Satin Concealer','url':'https://www.elfcosmetics.com/soft-glam-satin-concealer/300262.html','price':9.0,'brand':'e.l.f. Cosmetics','source':'elfcosmetics_preloaded_state'...}` |
 | [`fashionnova_listing`](#fashionnova_listing) | Active | api + html | Cloudflare | Fashion Nova listing via Shopify Storefront GraphQL with HTML fallback. | 48 (ok) | women, new, dresses, jeans, sale | `{"item_id":"175898317","title":"Classic High Waist Skinny Jeans - Dark Denim","url":"https://www.fashionnova.com/products/dark-blue-class...` |
+| [`homedepot_listing`](#homedepot_listing-category-apollo-state) | Flaky | bootstrap | Akamai | Home Depot department listings from embedded Apollo state. | 2 (fixture) | appliances, bath, building-materials, decor-and-furniture, electrical, flooring, hardware, heating-and-cooling, kitchen, lawn-and-garden, lighting, paint, plumbing, storage, tools | `{"category":"tools","item_id":"100000001","sku":"1000000001","title":"16 oz. Fiberglass Claw Hammer","brand":"Husky","price":14.97...` |
 | [`homedepot_search`](#homedepot_search-keyword-apollo-bootstrap) | Active | bootstrap + html | Akamai | Home Depot keyword search via Apollo state. | 24 (ok) | - | `{"item_id":"336787835","sku":"1014334650","brand":"Lukyamzn","title":"14 in. Dual-Core Celeron N4000 Laptop 6 GB RAM 128 GB SSD IPS Displ...` |
 | [`jcpenney_listing`](#jcpenney_listing) | Active | api | Akamai (+ reCAPTCHA scripts observed) | JCPenney listing spider via search API bootstrap endpoint. | 48 (ok) | womens_tops, mens_shirts | `{"item_id":"ppr5008584232","title":"St. John's Bay Womens Boat Neck Elbow Sleeve T-Shirt","brand":"st. john's bay","url":"https://www.jcp...` |
 | [`kroger_listing`](#kroger_search--kroger_listing) | Active | Redux bootstrap | unknown (timeout/no verdict) | Kroger category listings from `window.__INITIAL_STATE__` search products. | 2 (fixture) | cereal, milk, eggs, bread, coffee, snacks | `{"category":"cereal","item_id":"0001111012345","title":"Kroger Toasted Oats Cereal","brand":"Kroger","price":3.99,...}` |
@@ -101,7 +102,6 @@ These are still being worked on and currently returned `0` items in recent smoke
 | [`bathandbodyworks_listing`](#bathandbodyworks_listing) | Experimental | api + bootstrap + html | PerimeterX / HUMAN (px-captcha) | Bath & Body Works multi-mode listing spider. | 0 (ok) | body-care, home-fragrance, hand-soaps | `{}` |
 | [`costco_search`](#costco_search--costco_listing) | Active | bootstrap + html | Akamai | Costco keyword search with state extraction + fallback. | 0 (skipped2) | - | `{}` |
 | [`dillards_listing`](#dillards_listing) | Experimental | bootstrap | Akamai | Dillard's listing spider via `window.__INITIAL_STATE__`. | 0 (ok) | women, men, shoes, handbags, beauty, juniors, home | `n/a` |
-| [`homedepot_listing`](#homedepot_listing-category-apollo-bootstrap) | Flaky | bootstrap + html | Akamai | Home Depot category listing via Apollo state. | 0 (ok) | screwdrivers, drills, paint, light-bulbs, lumber | `n/a` |
 | [`kohls_listing`](#kohls_listing) | Experimental | api | Akamai (Cloudflare challenge assets also observed) | Kohl’s listing via `/web/catalog/...` API. | 0 (ok) | women, men, sale | `n/a` |
 | [`nordstromrack_listing`](#nordstromrack_listing) | Experimental | JSON-LD | Fastly (`x-jungle`) | Nordstrom Rack category listings from server-rendered Schema.org `ItemList` data. | 2 (fixture; live 403) | women, men, kids, shoes, bags-and-accessories, beauty, home, clearance | `{"item_id":"7788991","title":"Pleated Midi Dress","brand":"Donna Ricco","price":34.97,"currency":"USD",...}` |
 
@@ -328,24 +328,41 @@ Notes:
 Run example:
 `common-scrapy crawl homedepot_search -a q='screwdriver' -a max_pages=1 -O homedepot_search.jsonl`
 
-### homedepot_listing (category; Apollo/bootstrap + HTML fallback)
+### homedepot_listing (category; Apollo state)
 
-Sample output (2026-03-01, no VPN):
+Supported built-in categories:
+`appliances`, `bath`, `building-materials`, `decor-and-furniture`, `electrical`, `flooring`, `hardware`, `heating-and-cooling`, `kitchen`, `lawn-and-garden`, `lighting`, `paint`, `plumbing`, `storage`, `tools`.
+
 ```json
-[]
+{
+  "category": "tools",
+  "item_id": "100000001",
+  "sku": "1000000001",
+  "title": "16 oz. Fiberglass Claw Hammer",
+  "brand": "Husky",
+  "model": "N-G16CHD",
+  "url": "https://www.homedepot.com/p/Husky-16-oz-Fiberglass-Claw-Hammer-N-G16CHD/100000001",
+  "image_url": "https://images.thdstatic.com/productImages/hammer_300.jpg",
+  "price": 14.97,
+  "original_price": 17.97,
+  "currency": "USD",
+  "rating": 4.7,
+  "reviews_count": 238,
+  "availability": "InStock",
+  "source": "homedepot_apollo_state",
+  "category_url": "https://www.homedepot.com/b/Tools/N-5yc1vZc1xy",
+  "page": 1
+}
 ```
 
 Run example:
-`common-scrapy crawl homedepot_listing -a category='screwdrivers' -a max_pages=1 -O homedepot_listing.jsonl`
-
-Observed logs:
-- `HomeDepot listing fallback found 0 items (status=403)`
-- feed written with `0 items`
+`common-scrapy crawl homedepot_listing -a category=tools -a max_pages=1 -O homedepot_listing.jsonl`
 
 Notes:
-- Category and search/listing pages are currently blocked in this environment with Home Depot anti-bot (`403`, `Oops/Error Page`, or `Access Denied`) across multiple US NordVPN cities and sort orders.
-- Current fallback paths (`__APOLLO_STATE__`, JSON-LD, and HTML product links) cannot extract items when the origin serves only error/deny responses.
-- If this target is business-critical, use a dedicated unblocker/browser-rendering pipeline or provide an approved alternative data source.
+- Products are extracted from the PLP's embedded `window.__APOLLO_STATE__`; missing Apollo state or product references fail the crawl visibly instead of emitting a silent empty feed.
+- Output uses a fixed 17-field export order: category, identifiers, product details, pricing, reviews, availability, source, category URL, and page.
+- Duplicate Apollo references are removed by item ID. Additional pages use Home Depot's `Nao` offset in increments of 24.
+- A direct live request returned Home Depot's 403 anti-bot response during the latest verification. The checked-in representative fixture emitted 2 products and is covered by deterministic contract tests.
 
 ### maccosmetics_listing (Shopify collection catalog)
 
