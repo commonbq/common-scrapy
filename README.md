@@ -73,6 +73,7 @@ Spiders below are returning items in recent smoke runs:
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
 | [`ae_listing`](#ae_listing) | Experimental | FastBoot + API | Akamai (signals in headers) | American Eagle listing spider via FastBoot shoebox state and browse API pagination. | 30 (ok) | women, men, aerie | `{"item_id":"1457_2980_808","title":"AE Big Hug V-Neck Sweatshirt","url":"https://www.ae.com/us/en/p/women/hoodies-sweatshirts/crew-neck-sweatshirts/ae-big-hug-v-neck-sweatshirt/1457_2980_808","price":38.97...` |
+| [`asos_listing`](#asos_listing) | Experimental | bootstrap + API | Akamai | ASOS US listings from `window.asos.plp._data`, with pagination through the hydrated search API contract. | 72 (one page) | complete women/men navigation inventory from `asos_categories.py` | `{"item_id":"210638191","title":"ASOS DESIGN slip cami maxi dress with lace insert in chocolate brown","price":99.99,"currency":"USD"...}` |
 | [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | html + nuxt-state | Akamai | Bloomingdale's listing spider via Nuxt SSR state contract parsing (splash->leaf aware). | 8 (ok) | new-now, women, beauty, shoes, handbags, jewelry-accessories, men, kids, home, sale, gifts, designers | `{"item_id":"5973765","title":"Tumbled Woven Verne Pants","url":"https://www.bloomingdales.com/shop/product/cinq-a-sept-tumbled-woven-vern...` |
 | [`costco_listing`](#costco_search--costco_listing) | Active | React Flight + API | Akamai | Costco category listing with React Flight discovery and GRS search pagination. | 24 (ok) | 131 parent groups / 432 subcategory entries from `costco-categories.json` | `{"item_id":"100501081","title":"Starbucks Pike Place Medium Roast K-Cup","url":"https://www.costco.com/starbucks-pike-place-medium-roast-k-cup-72-count.product.100501081.html","price":...` |
 | [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | none detected (CloudFront CDN only) | e.l.f. Cosmetics multi-mode listing spider. | 6 (ok) | face, eyes, lips | `{'item_id':'300261','title':'Soft Glam Satin Concealer','url':'https://www.elfcosmetics.com/soft-glam-satin-concealer/300262.html','price':9.0,'brand':'e.l.f. Cosmetics','source':'elfcosmetics_preloaded_state'...}` |
@@ -151,6 +152,27 @@ Notes:
 
 Run example:
 `common-scrapy crawl amazon_listing -a category=electronics -a max_pages=1 -O amazon_cat.jsonl`
+
+### asos_listing
+
+ASOS page 1 is read from the server-rendered `window.asos.plp._data` bootstrap. Later pages use the search API and carry its query contract, including `keyStoreDataversion`, directly from that bootstrap.
+
+```json
+{
+  "category": "women-fall-occasionwear",
+  "item_id": "210638191",
+  "style_id": "156233978",
+  "title": "ASOS DESIGN slip cami maxi dress with lace insert in chocolate brown",
+  "brand": "ASOS DESIGN",
+  "color": "Chocolate",
+  "price": 99.99,
+  "currency": "USD",
+  "source": "asos_plp_hydration"
+}
+```
+
+Run example:
+`HTTPCACHE_ENABLED=False common-scrapy crawl asos_listing -a category=women-fall-occasionwear -a max_pages=2 -O asos.jsonl -s HTTPCACHE_ENABLED=False`
 
 ### walmart_listing (category)
 ```json
