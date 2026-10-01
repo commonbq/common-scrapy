@@ -159,7 +159,7 @@ ASOS page 1 is read from the server-rendered `window.asos.plp._data` bootstrap. 
 
 The bootstrap currently nests the listing under a `search` object (`state["search"]["products"]`), with the older flat `{products, itemCount, query}` shape still supported. Product fields are normalized from both shapes, since the PLP sends a bare numeric `price` with `description`/`image` while the search API keeps a nested price object with `name`/`imageUrl`.
 
-The `women` and `men` shortcuts target each department's "New In" listing (`cid=27108` / `cid=27110`). The department landing pages themselves (`/us/women/`, `/us/men/`) are navigation-only and serve no listing data, so they cannot be crawled directly. Every other category alias comes from the 412-CID inventory in `asos_categories.py`.
+The `women` and `men` shortcuts target each department's "New In" listing (`cid=27108` / `cid=27110`). The department landing pages themselves (`/us/women/`, `/us/men/`) are navigation-only and serve no listing data, so they cannot be crawled directly. Every other category alias comes from the 412-CID inventory in `asos_categories.py`. Where an alias shares its URL with a department shortcut (`women-view-all` / `men-view-all` both target the same `cid=27108` / `cid=27110` listing), an explicitly supplied `category=` is resolved by its own category key, so those aliases export their own `View all` label rather than the shortcut's `New In`.
 
 Representative output item from the committed fixture:
 ```json
@@ -198,7 +198,7 @@ the fixture server answers with a gateway error instead of the sample HTML.
 | 211160391 | Second product | ASOS DESIGN | 45.00 |  | USD | false |
 
 Verification notes:
-* The committed fixture exports 2 items with every `FEED_EXPORT_FIELDS` field populated, including `raw`. The pagination handoff is covered by deterministic contract tests rather than a live crawl.
+* The committed fixture exports 2 items and every `FEED_EXPORT_FIELDS` key is present on both, including a populated `raw` (15 keys each). Values are not all non-null: `subcategory` is `null` for a direct-URL crawl and the second item has no `original_price`. The pagination handoff is covered by deterministic contract tests rather than a live crawl.
 * The API handoff drops `proxy`/`_auth_proxy` from the copied request meta. `HttpProxyMiddleware` rewrites `meta["proxy"]` to the credential-free URL and stashes the credentialed one in `_auth_proxy`, so forwarding either key would make the follow-up request look pre-authenticated, skip re-attaching `Proxy-Authorization`, and fail the API leg with HTTP 407. `tests/test_asos_listing_spider.py` asserts the follow-up re-applies proxy authentication end to end.
 * Live output is currently **unverified**: a direct cache-disabled storefront attempt from this runner did not complete, so no live item count or `total_count` is claimed here. Treat `category=women` / `category=men` runs as unverified until run against the real storefront.
 * In this sandbox Scrapy receives a 407 on the proxy CONNECT tunnel for the API leg specifically, while `curl` succeeds on an identical URL. The generated API URL is correct; the page-1 hydration leg is unaffected. Treat multi-page runs as unverified locally until run on a host without the TLS-intercepting middlebox.

@@ -43,7 +43,7 @@ class AsosListingSpider(BaseListingSpider):
     def start_requests(self):
         self._seen_products.clear()
         target = self.resolve_target_url()
-        selected = next((entry for entry in self.categories if entry["url"] == target), {})
+        selected = self._selected_entry(target)
         yield scrapy.Request(
             target,
             callback=self.parse,
@@ -54,6 +54,24 @@ class AsosListingSpider(BaseListingSpider):
                 "page": 1,
             },
         )
+
+    def _selected_entry(self, target: str) -> dict:
+        """Return the category entry that describes the resolved target URL.
+
+        `categories` puts the department shortcuts ahead of the generated
+        inventory aliases, and the department shortcuts share their URLs with the
+        `women-view-all` / `men-view-all` aliases (all four point at the same
+        department "New In" listing). Matching on URL alone therefore labelled an
+        explicit `category=women-view-all` run as `subcategory="New In"` instead
+        of its own `"View all"` label. Resolve a supplied category by its own
+        category key first, then fall back to the URL lookup that serves
+        `category_url=` and `url=` crawls.
+        """
+        if self.category:
+            for entry in self.categories or []:
+                if entry.get("category") == self.category:
+                    return entry
+        return next((entry for entry in (self.categories or []) if entry.get("url") == target), {})
 
     def parse(self, response: scrapy.http.Response):
         if response.status != 200:

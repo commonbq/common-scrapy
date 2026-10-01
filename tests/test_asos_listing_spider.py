@@ -53,6 +53,46 @@ class AsosListingSpiderTests(unittest.TestCase):
         self.assertNotEqual(women.resolve_target_url(), AsosListingSpider(
             category="women-fall-occasionwear").resolve_target_url())
 
+    def test_explicit_category_wins_over_url_department_lookup(self):
+        """`women-view-all` shares its URL with the `women` shortcut.
+
+        `categories` orders the department shortcuts first, so matching the resolved
+        URL alone labelled the `*-view-all` aliases as `New In`. An explicitly
+        supplied category must be resolved by its own category key so it exports its
+        own label.
+        """
+        expected = {"women": "New In", "men": "New In",
+                    "women-view-all": "View all", "men-view-all": "View all"}
+        for category, subcategory in expected.items():
+            with self.subTest(category=category):
+                spider = AsosListingSpider(category=category, max_pages=2)
+                target = spider.resolve_target_url()
+                selected = spider._selected_entry(target)
+                self.assertEqual(selected.get("category"), category)
+                self.assertEqual(selected.get("subcategory"), subcategory)
+
+    def test_direct_url_crawl_falls_back_to_url_lookup(self):
+        """A `category_url` crawl has no category key, so the URL fallback still runs."""
+        url = "https://www.asos.com/us/women/new-in/cat/?cid=27108"
+        spider = AsosListingSpider(category_url=url, max_pages=2)
+        self.assertEqual(spider._selected_entry(spider.resolve_target_url()).get("category"), "women")
+
+    def test_readme_evidence_matches_committed_fixture(self):
+        """The documented reproducibility evidence must describe the committed fixture."""
+        readme = Path("README.md").read_text(encoding="utf-8")
+        state = AsosListingSpider._search_state(
+            json.loads(json.dumps(AsosListingSpider._extract_hydration(self.sample))))
+        fixture_ids = [str(product["id"]) for product in state["products"]]
+
+        # No stale item IDs from an earlier fixture revision may linger in the docs.
+        self.assertNotIn("210638191", readme)
+        self.assertNotIn("210638192", readme)
+        for item_id in fixture_ids:
+            self.assertIn(item_id, readme)
+        # The documented counts must be fixture counts, never an unverified live claim.
+        self.assertIn("2 (fixture; live unverified)", readme)
+        self.assertNotIn("72 (live)", readme)
+
     def test_hydration_mapping_feed_contract_and_proxy_handoff(self):
         outputs = list(self.spider.parse(self.response()))
         item = outputs[0]
@@ -67,6 +107,11 @@ class AsosListingSpiderTests(unittest.TestCase):
         self.assertTrue(item["image_url"].startswith("https://"))
         self.assertIsNotNone(item["raw"])
         self.assertEqual(item["raw"]["id"], 211160390)
+        # Every export field is present on every item, even when the value is null.
+        for output in outputs:
+            if isinstance(output, dict):
+                self.assertEqual(set(output), set(self.spider.custom_settings["FEED_EXPORT_FIELDS"]))
+                self.assertIsNotNone(output["raw"])
         follow = outputs[-1]
         self.assertIn("/categories/53315?", follow.url)
         self.assertIn("keyStoreDataversion=fixture-version", follow.url)
