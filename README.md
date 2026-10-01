@@ -65,7 +65,7 @@ Working spiders running daily in production:
 | [`ulta_search`](#ulta_search-keyword) | Active | api + html | Akamai | Ulta keyword search via GraphQL (with unsorted retry + HTML fallback). | 64 (ok) | - | `{"item_id":"xlsImpprod15511061","title":"All Soft Shampoo","source":"ulta_dxl_graphql"...}` |
 | [`walmart_listing`](#walmart_listing-category) | Active | api + html | Akamai (+ PerimeterX/HUMAN signals) | Walmart category listing spider (direct API+HTML flow). | 45 (ok) | electronics, home, clothing, beauty, toys, sports-and-outdoors, grocery | `{"productId":"19231301884","usItemId":"19231301884","title":"No Boundaries Women's Faux Leather Loafers","brand":"No Boundaries"...` |
 | [`walmart_search`](#walmart_search-keyword) | Active | api + html | Akamai (+ PerimeterX/HUMAN signals) | Walmart keyword search spider. | 12 (ok) | - | `{"item_id":"13542163431","title":"ASUS Vivobook Go 15.6” Laptop, Intel i3-N305, 8GB, 256GB, Windows 11 Home in S mode, Cool Silver, E1504...` |
-| [`wayfair_listing`](#wayfair_listing) | Experimental | server-rendered HTML cards | none detected | Wayfair listing cards with semantic selectors and tracking metadata. | 1 (current direct sofas response) | 15 departments / 668 menu links; 577 verified listing targets | `{"item_id":"W117645758","title":"Boneless 96\" Sectional Couches...","price":399.99,...}` |
+| [`wayfair_listing`](#wayfair_listing) | Experimental | server-rendered HTML cards | none detected | Wayfair listing cards with semantic selectors and tracking metadata. | 1 (committed sofas fixture; no live crawl run) | 15 departments / 668 menu links; 577 verified listing targets | `{"item_id":"W117645758","title":"Boneless 96\" Sectional Couches...","price":399.99,...}` |
 | [`ebay_listing`](#ebay_listing-category-marko-hydration-state) | Active | Marko + html | Akamai | Stable eBay category listing extraction from Marko hydration state, with HTML subcategory discovery. | 18 (Antiques fixture browse tiles) | 18 top-level groups / 209 subcategories from `ebay_categories.py` | `{"productId":"234346994063","title":"MacBook Pro 15 Inch 256GB SSD 16 GB i7 3.40Ghz Apple Retina Big Sur 3yr Warranty","price":439.0,"currency":"USD",...}` |
 | [`ebay_search`](#ebay_search-keyword-marko-hydration-state) | Active | Marko | Akamai | Stable eBay keyword search extraction from Marko `ListingItemCard` hydration data. | 60 (ok) | - | `{"productId":"234346994063","title":"MacBook Pro 15 Inch 256GB SSD 16 GB i7 3.40Ghz Apple Retina Big Sur 3yr Warranty","price":439.0,"currency":"USD",...}` |
 
@@ -120,7 +120,7 @@ informational pages such as `/affirm` and Design Services are never announced as
 categories. Pages without a product grid fail visibly.
 
 ```bash
-HTTPCACHE_ENABLED=False common-scrapy crawl wayfair_listing -a category=sofas -a max_pages=2 -O wayfair.jsonl -s HTTPCACHE_ENABLED=False
+common-scrapy crawl wayfair_listing -a category=sofas -a max_pages=2 -O wayfair.jsonl -s HTTPCACHE_ENABLED=False
 ```
 
 Fields are exported in a fixed order: category context, listing/variant IDs,
@@ -131,7 +131,46 @@ the rendered Next link (`?curpage=N`) and deduplicates by listing ID.
 
 #### Sample output
 
-Below are trimmed examples from recent local test runs (JSONL output, 1 item shown).
+The item below is the real export produced by parsing the committed
+`sample/wayfair-sofas-sample.html` fixture through `wayfair_listing`
+(`-a category=sofas -a max_pages=1`); long values are trimmed and `raw` is
+abbreviated to its key names:
+
+```json
+{
+  "item_id": "W117645758",
+  "variant_id": "W117645758_1924516003_1924516004",
+  "title": "Boneless 96\" Sectional Couches For Living Room Modern Modular L-Shape Cloud Sofa Compression-Boneless Deep Seat Couch With Chaise",
+  "brand": "Latitude Run®",
+  "selected_options": "Black Corduroy, Left Hand Facing",
+  "option_ids": [1924516004, 1924516003],
+  "choices_text": "5 Colors",
+  "url": "https://www.wayfair.com/furniture/pdp/latitude-run-boneless-96-sectional-couches-...-w117645758.html?piid=1924516003%2C1924516004",
+  "image_url": "https://assets.wfcdn.com/im/75631410/resize-h400-w400^compr-r85/4574/457449932/Boneless+96\"+Sectional+Couches+...jpg",
+  "image_srcset": "<5 CDN widths, 600w/500w/400w/300w/200w>",
+  "price": 399.99,
+  "original_price": 419.99,
+  "currency": "USD",
+  "rating": 4.23,
+  "reviews_count": 513,
+  "promotion": "Big Furniture Sale",
+  "promotion_type": "MAJOR_PROMOTION",
+  "availability": "672 Left in Stock",
+  "delivery": "FREE Delivery",
+  "is_sponsored": false,
+  "category": "sofas",
+  "department": "Furniture",
+  "page": 1,
+  "position": 1,
+  "source_url": "https://www.wayfair.com/furniture/sb0/sofas-c413892.html",
+  "source": "wayfair_server_rendered_listing_card",
+  "raw": {"index": 1, "pageNumber": -1, "metadata": "<41 keys: displayListingId, leadPrice, averageRating, ...>"}
+}
+```
+
+Note: the committed fixture contains exactly one real product card, so the
+committed sample output is 1 item. The summary table's item count reflects this
+fixture run, not a live crawl.
 
 ### amazon_search
 ```json
