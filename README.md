@@ -73,6 +73,7 @@ Spiders below are returning items in recent smoke runs:
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
 | [`ae_listing`](#ae_listing) | Experimental | FastBoot + API | Akamai (signals in headers) | American Eagle listing spider via FastBoot shoebox state and browse API pagination. | 30 (ok) | women, men, aerie | `{"item_id":"1457_2980_808","title":"AE Big Hug V-Neck Sweatshirt","url":"https://www.ae.com/us/en/p/women/hoodies-sweatshirts/crew-neck-sweatshirts/ae-big-hug-v-neck-sweatshirt/1457_2980_808","price":38.97...` |
+| [`adorama_listing`](#adorama_listing) | Experimental | Next.js hydration | DataDome | Adorama category listings from the server-rendered `__NEXT_DATA__` bootstrap with `?startAt=` pagination. | 24 (1 page) / 48 (2 pages) | 11 departments / 1079 targets from `adorama_categories.py` | `{"item_id":"GCGWPTRODEC4","sku":"GCGWPTRODEC4","title":"Gator Cases Titan Case for Rodecaster Pro, 4 Mics and 4 Headsets","brand":"Gator Cases","price":539.99,"url":"https://www.adorama.com/gator-cases-titan-rodecaster-pro-4-mics-4-headsets/p/gcgwptrodec4","page":1,...}` |
 | [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | html + nuxt-state | Akamai | Bloomingdale's listing spider via Nuxt SSR state contract parsing (splash->leaf aware). | 8 (ok) | new-now, women, beauty, shoes, handbags, jewelry-accessories, men, kids, home, sale, gifts, designers | `{"item_id":"5973765","title":"Tumbled Woven Verne Pants","url":"https://www.bloomingdales.com/shop/product/cinq-a-sept-tumbled-woven-vern...` |
 | [`costco_listing`](#costco_search--costco_listing) | Active | React Flight + API | Akamai | Costco category listing with React Flight discovery and GRS search pagination. | 24 (ok) | 131 parent groups / 432 subcategory entries from `costco-categories.json` | `{"item_id":"100501081","title":"Starbucks Pike Place Medium Roast K-Cup","url":"https://www.costco.com/starbucks-pike-place-medium-roast-k-cup-72-count.product.100501081.html","price":...` |
 | [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | none detected (CloudFront CDN only) | e.l.f. Cosmetics multi-mode listing spider. | 6 (ok) | face, eyes, lips | `{'item_id':'300261','title':'Soft Glam Satin Concealer','url':'https://www.elfcosmetics.com/soft-glam-satin-concealer/300262.html','price':9.0,'brand':'e.l.f. Cosmetics','source':'elfcosmetics_preloaded_state'...}` |
@@ -1180,7 +1181,70 @@ swatches, pricing, and the raw product object, then follows bootstrap pagination
 Run example:
 `common-scrapy crawl elfcosmetics_listing -a category=face -a max_pages=1 -O elfcosmetics_listing.jsonl`
 
+### adorama_listing
+
+`adorama_listing` reads one authoritative source: the server-rendered
+`<script id="__NEXT_DATA__" type="application/json">` bootstrap on Adorama's
+`/l/<Department>/<Category>/...` pages. Adorama has no client-side listing XHR for
+those pages — the SSR payload already carries a full 24-product page — so the
+hydration state *is* the contract. There is no HTML-card or JSON-LD fallback; a
+missing or drifted bootstrap fails loudly instead.
+
+The inventory in `common/spiders/adorama_categories.py` holds **1,079 crawlable
+URLs across 11 departments**, normalized from
+`https://www.adorama.com/UnifySiteMaps/Category.xml`. The 11 depth-1 department
+landing pages (`/l/Photography`, `/l/Audio`, …) are deliberately excluded: they
+hydrate `pageInfo.pageType == "bcmsSitePage"` with no product grid. Depth-2+
+nodes hydrate `pageInfo.pageType == "listPage"`.
+
+Selections use the full `/l/` path slug (`department-category-subcategory`) rather
+than the bare label, because Adorama reuses labels across branches — `Microphone
+Cases` exists under both `Audio/Audio-Bags-and-Cases` and
+`Audio/Microphone-Accessories`, and `Tripods and Supports` appears at two depths
+inside `Photography`.
+
+```bash
+# 24 items
+common-scrapy crawl adorama_listing -a category=audio-audio-bags-and-cases-microphone-cases \
+  -a max_pages=1 -s HTTPCACHE_ENABLED=False -O adorama.jsonl
+
+# 48 items (follows ?startAt=24, no duplicate SKUs)
+common-scrapy crawl adorama_listing -a category=audio-audio-bags-and-cases-microphone-cases \
+  -a max_pages=2 -s HTTPCACHE_ENABLED=False -O adorama.jsonl
+
+# 24 items
+common-scrapy crawl adorama_listing -a category=photography-cameras \
+  -a max_pages=1 -s HTTPCACHE_ENABLED=False -O adorama.jsonl
+```
+
+`-a category_url=` and `-a url=` both accept any concrete `/l/...` listing page,
+including refined listings (`?sel=Filter-By_BRAND-Sony`) — refinements are
+preserved when the `?startAt=` hand-off is built.
+
+```json
+{"item_id":"GCGWPTRODEC4","sku":"GCGWPTRODEC4","title":"Gator Cases Titan Case for Rodecaster Pro, 4 Mics and 4 Headsets","brand":"Gator Cases","manufacturer":"GWP-TITANRODECASTER4","model":"GWP-TITANRODECASTER4","price":539.99,"original_price":863.99,"currency":"USD","savings":324,"url":"https://www.adorama.com/gator-cases-titan-rodecaster-pro-4-mics-4-headsets/p/gcgwptrodec4","image":"https://www.adorama.com/images/product/GCGWPTRODEC4.jpg","in_stock":true,"stock_status":"In Stock","condition":"new","badge":"38% Off","shipping":"FREE 2-Day Shipping","category":"Microphone Cases","subcategory":"Audio Bags and Cases","department":"Audio","page":1,"position":1,"total_count":129,"source":"adorama_next_data_products","raw":{...}}
+```
+
+Notes:
+- Pagination follows `pageProps.nextPageUrl` (`?startAt={n}`, 24 per page) and
+  stops at `max_pages`, an empty `products` list, or a missing `nextPageUrl`.
+  Items are deduplicated by SKU.
+- The bootstrap is decoded with a real HTML parser plus `json.loads`, never a
+  greedy regex across inline `<script>` blocks.
+- `total_count` comes from `itemsStats.New.count` (129 for the Microphone Cases
+  listing, 2420 for Photography → Cameras).
+- `in_stock` is `flags.isAvailableForPurchase` and not `stock == "Out"`, so
+  pre-order lines report `in_stock: false` with their real `stock_status` (e.g.
+  `"Pre Order Now"`).
+- Adorama's `/api/products-v2` and `/api/productOptions/` PDP-microservice
+  endpoints are **not** used for listing; they are not needed and returned
+  DataDome errors during investigation.
+- DataDome guards the storefront. If requests start failing, escalate the proxy
+  (`residential=true`, `render_js=true`) — the spider raises an explicit
+  `RuntimeError` naming the status and URL rather than silently returning zero.
+
 ### ae_listing
+
 ```json
 {
   "item_id": "1457_2980_808",
