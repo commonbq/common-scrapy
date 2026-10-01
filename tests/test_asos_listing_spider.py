@@ -1,5 +1,6 @@
 from pathlib import Path
 import json
+import re
 import unittest
 
 from scrapy.http import Request, TextResponse
@@ -26,10 +27,13 @@ class AsosListingSpiderTests(unittest.TestCase):
 
     def test_inventory_and_category_selection(self):
         self.assertEqual(set(ASOS_CATEGORY_INVENTORY), {"women", "men"})
-        self.assertGreater(len(ASOS_CATEGORIES), 100)
+        self.assertEqual(sum(len(entries) for entries in ASOS_CATEGORY_INVENTORY.values()), 571)
+        self.assertEqual(len(ASOS_CATEGORIES), 412)
         self.assertIn("cid=53315", self.spider.resolve_target_url())
         self.assertEqual(len({entry["cid"] for entry in ASOS_CATEGORIES}), len(ASOS_CATEGORIES))
         self.assertEqual(len({entry["category"] for entry in ASOS_CATEGORIES}), len(ASOS_CATEGORIES))
+        self.assertTrue(all(re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", entry["category"])
+                            for entry in ASOS_CATEGORIES))
 
     def test_hydration_mapping_feed_contract_and_proxy_handoff(self):
         outputs = list(self.spider.parse(self.response()))
@@ -75,6 +79,10 @@ class AsosListingSpiderTests(unittest.TestCase):
         payload = {"products": []}
         with self.assertRaisesRegex(RuntimeError, "numeric itemCount"):
             list(self.spider.parse_api(self.response(json.dumps(payload), page=2, api_query={"offset": 2, "limit": 2})))
+
+    def test_challenge_page_fails_with_targeted_error(self):
+        with self.assertRaisesRegex(RuntimeError, "Akamai access-denied/challenge"):
+            list(self.spider.parse(self.response("<html><title>Access Denied</title>Reference #18.</html>")))
 
 
 if __name__ == "__main__":

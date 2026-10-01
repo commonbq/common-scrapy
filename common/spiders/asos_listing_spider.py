@@ -58,6 +58,11 @@ class AsosListingSpider(BaseListingSpider):
     def parse(self, response: scrapy.http.Response):
         if response.status != 200:
             raise RuntimeError(f"ASOS listing returned HTTP {response.status}: {response.url}")
+        if self._is_challenge(response.text):
+            raise RuntimeError(
+                f"ASOS listing returned an Akamai access-denied/challenge page at {response.url}; "
+                "check the configured proxy"
+            )
         state = self._extract_hydration(response.text)
         if not isinstance(state, dict):
             raise RuntimeError(f"No valid ASOS window.asos.plp._data hydration found at {response.url}")
@@ -200,10 +205,22 @@ class AsosListingSpider(BaseListingSpider):
                     # single/double-quoted JavaScript bootstrap string.
                     decoded = ast.literal_eval(f"{quote}{raw}{quote}")
                     state = json.loads(decoded)
-                except (TypeError, ValueError):
+                except (SyntaxError, TypeError, ValueError):
                     return None
                 return state if isinstance(state, dict) else None
         return None
+
+    @staticmethod
+    def _is_challenge(document: str) -> bool:
+        text = (document or "").lower()
+        markers = (
+            "access denied",
+            "reference #18.",
+            "akamai bot manager",
+            "_abck",
+            "bm_sz",
+        )
+        return any(marker in text for marker in markers)
 
     @staticmethod
     def _html_headers():

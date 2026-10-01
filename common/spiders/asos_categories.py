@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from urllib.parse import parse_qs, urlparse
 
 ASOS_CATEGORY_INVENTORY = {
@@ -581,7 +582,8 @@ ASOS_CATEGORY_INVENTORY = {
 }
 
 def _slug(value: str) -> str:
-    return "-".join(value.lower().replace("&", "and").replace("+", "plus").split())
+    expanded = value.lower().replace("&", "and").replace("+", "plus")
+    return re.sub(r"[^a-z0-9]+", "-", expanded).strip("-")
 
 
 def flatten_categories() -> list[dict[str, str]]:
