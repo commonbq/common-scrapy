@@ -38,7 +38,11 @@ class IkeaListingSpider(BaseListingSpider):
     allowed_domains = ["ikea.com", "www.ikea.com", "sik.search.blue.cdtapps.com"]
     require_category_arg = False
 
-    API_URL = "https://sik.search.blue.cdtapps.com/us/en/search?c=listaf&v=20250507"
+    SIK_BASE_URL = "https://sik.search.blue.cdtapps.com/us/en"
+    # IKEA validates the SIK query version server-side: an unknown value returns
+    # HTTP 400 rather than an empty result set, so it is pinned to the last known
+    # good value but overridable with `-a sik_version=` when IKEA rotates it.
+    DEFAULT_SIK_VERSION = "20250507"
     PAGE_SIZE = 24
     categories = _load_categories()
 
@@ -61,6 +65,16 @@ class IkeaListingSpider(BaseListingSpider):
             "badge",
             "design",
             "availability",
+            "item_no_global",
+            "product_class",
+            "department",
+            "category_path",
+            "business_area",
+            "product_type_tag",
+            "variant_count",
+            "colors",
+            "quick_facts",
+            "image_alt",
             "page",
             "category_url",
             "source",
@@ -71,6 +85,13 @@ class IkeaListingSpider(BaseListingSpider):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._seen_ids: set[str] = set()
+        self.sik_version = str(
+            kwargs.get("sik_version") or self.DEFAULT_SIK_VERSION
+        ).strip()
+
+    @property
+    def api_url(self) -> str:
+        return f"{self.SIK_BASE_URL}/search?c=listaf&v={self.sik_version}"
 
     def start_requests(self):
         category_url = self.resolve_target_url()
@@ -111,7 +132,7 @@ class IkeaListingSpider(BaseListingSpider):
             ],
         }
         return scrapy.Request(
-            self.API_URL,
+            self.api_url,
             method="POST",
             body=json.dumps(body, separators=(",", ":")),
             headers={
@@ -134,7 +155,9 @@ class IkeaListingSpider(BaseListingSpider):
         category_id = response.meta["category_id"]
         category_url = response.meta["category_url"]
         if response.status != 200:
-            raise RuntimeError(f"IKEA SIK request failed with HTTP {response.status}: {response.url}")
+            raise RuntimeError(
+                f"IKEA SIK request failed with HTTP {response.status}: {response.url}.{self._version_hint()}"
+            )
         try:
             payload = json.loads(response.text)
         except json.JSONDecodeError as exc:
@@ -152,7 +175,13 @@ class IkeaListingSpider(BaseListingSpider):
                 None,
             )
         if not primary:
-            raise RuntimeError("IKEA SIK response is missing PRIMARY_AREA; schema may have changed")
+            # A retired SIK version is the most common cause: the live API answers
+            # `{"status":400,...,"detail":"Invalid API version"}`, which carries no
+            # PRIMARY_AREA (and may arrive as 200 through a proxy).
+            raise RuntimeError(
+                f"IKEA SIK response is missing PRIMARY_AREA; schema may have changed."
+                f"{self._version_hint()}"
+            )
 
         products = [entry["product"] for entry in primary.get("items", []) if entry.get("product")]
         if not products and page == 1:
@@ -184,9 +213,16 @@ class IkeaListingSpider(BaseListingSpider):
 
     @staticmethod
     def _product_item(
-        product: dict[str, Any], item_id: str, category_id: str, category_url: str, page: int
+        product: dict[str, Any],
+        item_id: str,
+        category_id: str,
+        category_url: str,
+        page: int,
     ) -> dict[str, Any]:
         price = product.get("salesPrice") or {}
+        # The API reports the canonical category path for each product, which can
+        # differ from the crawled category (cross-listed / variant entries).
+        category_path = product.get("categoryPath") or []
         images = [image.get("url") for image in product.get("allProductImage", []) if image.get("url")]
         badge = product.get("badge") or product.get("itemTag")
         return {
@@ -205,12 +241,31 @@ class IkeaListingSpider(BaseListingSpider):
             "badge": badge.get("text") if isinstance(badge, dict) else badge,
             "design": product.get("validDesignText"),
             "availability": "InStock" if product.get("onlineSellable") else "OutOfStock",
+            "item_no_global": product.get("itemNoGlobal"),
+            "product_class": product.get("filterClass"),
+            "department": category_path[0].get("name") if category_path else None,
+            "category_path": [entry.get("name") for entry in category_path] or None,
+            "business_area": (product.get("businessStructure") or {}).get("productAreaName"),
+            "product_type_tag": (product.get("optimizelyAttributes") or {}).get("PRODUCT_TYPE"),
+            "variant_count": (product.get("gprDescription") or {}).get("numberOfVariants"),
+            "colors": [color.get("name") for color in product.get("colors") or []],
+            "quick_facts": [
+                fact.get("name") for fact in product.get("quickFacts") or [] if fact.get("name")
+            ]
+            or None,
+            "image_alt": product.get("mainImageAlt"),
             "page": page,
             "category_url": category_url,
             "source": "ikea_sik_search",
             "raw": product,
         }
 
+    def _version_hint(self) -> str:
+        return (
+            " IKEA validates the SIK query version and rejects unknown values with"
+            ' {"detail":"Invalid API version"}; retry with'
+            f" -a sik_version=<current value> (currently {self.sik_version})."
+        )
     @staticmethod
     def _category_id(url: str) -> str | None:
         match = re.search(r"-([a-z]*\d+)/?(?:\?.*)?$", url)

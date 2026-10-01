@@ -45,6 +45,42 @@ class IkeaListingSpiderTest(unittest.TestCase):
         self.assertEqual(item["raw"], self.product["product"])
         self.assertEqual(json.loads(second.body)["components"][0]["window"], {"size": 24, "offset": 24})
 
+    def test_exports_api_derived_enrichment_fields(self):
+        first = next(self.spider.start_requests())
+        item = list(self.spider.parse(self.response(first)))[0]
+        raw = self.product["product"]
+        # Each new field is read straight from the API payload, not invented.
+        self.assertEqual(item["item_no_global"], raw["itemNoGlobal"])
+        self.assertEqual(item["product_class"], raw["filterClass"])
+        self.assertEqual(item["department"], raw["categoryPath"][0]["name"])
+        self.assertEqual(
+            item["category_path"], [entry["name"] for entry in raw["categoryPath"]]
+        )
+        self.assertEqual(
+            item["business_area"], raw["businessStructure"]["productAreaName"]
+        )
+        self.assertEqual(item["product_type_tag"], raw["optimizelyAttributes"]["PRODUCT_TYPE"])
+        self.assertEqual(item["variant_count"], raw["gprDescription"]["numberOfVariants"])
+        self.assertEqual(item["colors"], [c["name"] for c in raw["colors"]])
+        self.assertEqual(item["image_alt"], raw["mainImageAlt"])
+        self.assertEqual(item["quick_facts"], [f["name"] for f in raw["quickFacts"]])
+
+    def test_enrichment_fields_tolerate_missing_optional_keys(self):
+        first = next(self.spider.start_requests())
+        payload = {
+            "component": "PRIMARY_AREA",
+            "items": [{"type": "PRODUCT", "product": {"itemNo": "1", "name": "Sparse"}}],
+            "metadata": {"start": 0, "end": 24, "max": 1, "itemsPerType": {"PRODUCT": 1}},
+        }
+        item = list(self.spider.parse(self.response_from(first, payload)))[0]
+        self.assertIsNone(item["department"])
+        self.assertIsNone(item["category_path"])
+        self.assertIsNone(item["business_area"])
+        self.assertIsNone(item["variant_count"])
+        self.assertIsNone(item["quick_facts"])
+        self.assertEqual(item["colors"], [])
+        self.assertEqual(item["item_id"], "1")
+
     def test_accepts_url_only_input(self):
         spider = IkeaListingSpider(url="https://www.ikea.com/us/en/cat/dressers-chests-of-drawers-st004/")
         request = next(spider.start_requests())
@@ -61,7 +97,55 @@ class IkeaListingSpiderTest(unittest.TestCase):
     def test_inventory_has_unique_urls(self):
         urls = [entry["url"] for entry in self.spider.categories]
         self.assertEqual(len(urls), len(set(urls)))
-        self.assertGreaterEqual(len(urls), 200)
+        # Exact count from the captured inventory, not a loose lower bound: the
+        # issue requires the complete concrete inventory.
+        self.assertEqual(len(urls), 221)
+
+    def test_sik_version_is_configurable(self):
+        self.assertIn("v=20250507", self.spider.api_url)
+        overridden = IkeaListingSpider(category="st004", sik_version="20990101")
+        self.assertIn("v=20990101", overridden.api_url)
+        self.assertTrue(overridden.api_url.startswith(IkeaListingSpider.SIK_BASE_URL))
+
+    def test_bad_sik_version_error_suggests_override(self):
+        spider = IkeaListingSpider(category="st004", sik_version="99999999")
+        request = next(spider.start_requests())
+        # Verified live: the API answers an unknown version with
+        # {"status":400,...,"detail":"Invalid API version"} and no PRIMARY_AREA.
+        body = json.dumps(
+            {"status": 400, "title": "Bad Request", "detail": "Invalid API version"}
+        ).encode()
+        response = TextResponse(request.url, request=request, body=body, encoding="utf-8")
+        with self.assertRaisesRegex(RuntimeError, "sik_version=<current value>"):
+            list(spider.parse(response))
+
+    def test_live_results_wrapped_shape_is_parsed(self):
+        # Verified live 2026-10-01: the storefront returns
+        # {"usergroup","results","testActivationTriggers","metadata"} where
+        # results[0] is the PRIMARY_AREA and carries the window under `metadata`.
+        payload = {
+            "usergroup": "USERGROUP",
+            "results": [
+                {
+                    "component": "PRIMARY_AREA",
+                    "viewMode": "GRID",
+                    "items": [self.product, {"type": "NEW_PRODUCT"}],
+                    "metadata": {
+                        "start": 0,
+                        "end": 24,
+                        "max": 150,
+                        "itemsPerType": {"PRODUCT": 148, "NEW_PRODUCT": 1},
+                    },
+                }
+            ],
+            "metadata": {"categoryPage": {"categoryKey": "st004"}},
+        }
+        request = next(self.spider.start_requests())
+        outputs = list(self.spider.parse(self.response_from(request, payload)))
+        item, second = outputs
+        self.assertEqual(item["item_id"], "60561248")
+        # itemsPerType.PRODUCT (148) > end (24), so page 2 must be requested.
+        self.assertEqual(json.loads(second.body)["components"][0]["window"]["offset"], 24)
 
     def test_missing_primary_area_fails_loudly(self):
         request = next(self.spider.start_requests())
@@ -85,8 +169,8 @@ class IkeaListingSpiderTest(unittest.TestCase):
             list(self.spider.parse(response))
 
     def test_captured_top_level_shape_is_parsed(self):
-        # The real SIK response is a single PRIMARY_AREA object with `items` and
-        # `metadata_window`; it has no `results` array.
+        # The bundled capture is a reduced single PRIMARY_AREA object with `items`
+        # and `metadata_window`; it has no `results` array.
         capture = json.loads(Path("sample/ikea-sik-sample.json").read_text())
         captured = capture["requests"][0]["response"]
         payload = {
