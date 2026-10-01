@@ -73,7 +73,7 @@ Spiders below are returning items in recent smoke runs:
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
 | [`ae_listing`](#ae_listing) | Experimental | FastBoot + API | Akamai (signals in headers) | American Eagle listing spider via FastBoot shoebox state and browse API pagination. | 30 (ok) | women, men, aerie | `{"item_id":"1457_2980_808","title":"AE Big Hug V-Neck Sweatshirt","url":"https://www.ae.com/us/en/p/women/hoodies-sweatshirts/crew-neck-sweatshirts/ae-big-hug-v-neck-sweatshirt/1457_2980_808","price":38.97...` |
-| [`asos_listing`](#asos_listing) | Experimental | bootstrap + API | Akamai | ASOS US listings from `window.asos.plp._data`, with pagination through the hydrated search API contract. | 72 (live) | complete women/men navigation inventory from `asos_categories.py` | `{"item_id":"211643574","title":"ASOS DESIGN knitted zebra print sweater with fringe in black and white","price":69.99,"currency":"USD"...}` |
+| [`asos_listing`](#asos_listing) | Experimental | bootstrap + API | Akamai | ASOS US listings from `window.asos.plp._data`, with pagination through the hydrated search API contract. | 2 (fixture; live unverified) | complete women/men navigation inventory from `asos_categories.py` | `{"item_id":"211160390","title":"ASOS DESIGN stretch chiffon scarf detail plunge draped maxi dress in chocolate","price":69.99,"currency":"USD"...}` |
 | [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | html + nuxt-state | Akamai | Bloomingdale's listing spider via Nuxt SSR state contract parsing (splash->leaf aware). | 8 (ok) | new-now, women, beauty, shoes, handbags, jewelry-accessories, men, kids, home, sale, gifts, designers | `{"item_id":"5973765","title":"Tumbled Woven Verne Pants","url":"https://www.bloomingdales.com/shop/product/cinq-a-sept-tumbled-woven-vern...` |
 | [`costco_listing`](#costco_search--costco_listing) | Active | React Flight + API | Akamai | Costco category listing with React Flight discovery and GRS search pagination. | 24 (ok) | 131 parent groups / 432 subcategory entries from `costco-categories.json` | `{"item_id":"100501081","title":"Starbucks Pike Place Medium Roast K-Cup","url":"https://www.costco.com/starbucks-pike-place-medium-roast-k-cup-72-count.product.100501081.html","price":...` |
 | [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | none detected (CloudFront CDN only) | e.l.f. Cosmetics multi-mode listing spider. | 6 (ok) | face, eyes, lips | `{'item_id':'300261','title':'Soft Glam Satin Concealer','url':'https://www.elfcosmetics.com/soft-glam-satin-concealer/300262.html','price':9.0,'brand':'e.l.f. Cosmetics','source':'elfcosmetics_preloaded_state'...}` |
@@ -161,28 +161,41 @@ The bootstrap currently nests the listing under a `search` object (`state["searc
 
 The `women` and `men` shortcuts target each department's "New In" listing (`cid=27108` / `cid=27110`). The department landing pages themselves (`/us/women/`, `/us/men/`) are navigation-only and serve no listing data, so they cannot be crawled directly. Every other category alias comes from the 412-CID inventory in `asos_categories.py`.
 
+Representative output item from the committed fixture:
 ```json
 {
-  "category": "women",
-  "subcategory": "New In",
-  "item_id": "211643574",
-  "style_id": "160242909",
-  "title": "ASOS DESIGN knitted zebra print sweater with fringe in black and white",
+  "category": "custom",
+  "subcategory": null,
+  "item_id": "211160390",
+  "style_id": "158157966",
+  "title": "ASOS DESIGN stretch chiffon scarf detail plunge draped maxi dress in chocolate",
   "brand": "ASOS DESIGN",
-  "color": "MULTI",
+  "color": "Chocolate",
   "price": 69.99,
+  "original_price": 99.99,
   "currency": "USD",
-  "total_count": 7375,
+  "total_count": 1591,
   "source": "asos_plp_hydration",
-  "raw": {"id": 211643574, "productCode": 160242909, "...": "..."}
+  "raw": {"id": 211160390, "productCode": 158157966, "...": "..."}
 }
 ```
 
-Run example (72 items from the `women` department listing, verified live 2026-10-01):
-`HTTPCACHE_ENABLED=False common-scrapy crawl asos_listing -a category=women -a max_pages=2 -O asos.jsonl -s HTTPCACHE_ENABLED=False`
+Run example (2 items from the committed hydration fixture):
+```bash
+python3 -m http.server 8765 --bind 127.0.0.1 &
+HTTPCACHE_ENABLED=False python3 -m common_scrapy.cli crawl asos_listing \
+  -a category_url=http://127.0.0.1:8765/sample/asos-listing-sample.html \
+  -a max_pages=1 -O asos.jsonl -s HTTPCACHE_ENABLED=False
+```
 
-Live verification notes:
-* `category=women` → 72 items, `total_count` 7377; `category=men` → 72 items, `total_count` 2168. All exported fields populated and `raw` present on every item.
+| item_id | title | brand | price | original_price | currency | is_selling_fast |
+|---|---|---|---:|---:|---|---|
+| 211160390 | ASOS DESIGN stretch chiffon scarf detail plunge draped maxi dress in chocolate | ASOS DESIGN | 69.99 | 99.99 | USD | true |
+| 211160391 | Second product | ASOS DESIGN | 45.00 |  | USD | false |
+
+Verification notes:
+* The committed fixture exports 2 items with every `FEED_EXPORT_FIELDS` field populated, including `raw`. The pagination handoff is covered by deterministic contract tests rather than a live crawl.
+* Live output is currently **unverified**: a direct cache-disabled storefront attempt from this runner did not complete, so no live item count or `total_count` is claimed here. Treat `category=women` / `category=men` runs as unverified until run against the real storefront.
 * In this sandbox Scrapy receives a 407 on the proxy CONNECT tunnel for the API leg specifically, while `curl` succeeds on an identical URL. The generated API URL is correct; the page-1 hydration leg is unaffected. Treat multi-page runs as unverified locally until run on a host without the TLS-intercepting middlebox.
 * An Akamai access-denied/challenge page is detected before hydration extraction and fails with a targeted message rather than a generic "no valid hydration" error.
 
