@@ -163,7 +163,14 @@ class IkeaListingSpider(BaseListingSpider):
         new_products = 0
         for product in products:
             item_id = str(product.get("itemNo") or product.get("id") or "").strip()
-            if not item_id or item_id in self._seen_ids:
+            if not item_id:
+                # A product without an identifier cannot be deduplicated or linked; fail
+                # loudly instead of silently exporting nothing and stopping pagination.
+                raise RuntimeError(
+                    f"IKEA SIK product entry on page {page} is missing itemNo/id; "
+                    "schema may have changed"
+                )
+            if item_id in self._seen_ids:
                 continue
             self._seen_ids.add(item_id)
             new_products += 1

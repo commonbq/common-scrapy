@@ -49,6 +49,8 @@ class IkeaListingSpiderTest(unittest.TestCase):
         spider = IkeaListingSpider(url="https://www.ikea.com/us/en/cat/dressers-chests-of-drawers-st004/")
         request = next(spider.start_requests())
         self.assertEqual(request.meta["category_id"], "st004")
+        with self.assertRaises(ValueError):
+            next(IkeaListingSpider().start_requests())
 
     def test_deduplicates_products_between_pages(self):
         first = next(self.spider.start_requests())
@@ -68,3 +70,39 @@ class IkeaListingSpiderTest(unittest.TestCase):
         )
         with self.assertRaisesRegex(RuntimeError, "missing PRIMARY_AREA"):
             list(self.spider.parse(response))
+
+    def test_product_without_identifier_fails_loudly(self):
+        request = next(self.spider.start_requests())
+        payload = {
+            "component": "PRIMARY_AREA",
+            "items": [{"type": "PRODUCT", "product": {"name": "No id product"}}],
+            "metadata_window": {"start": 0, "end": 24, "max": 147, "itemsPerType": {"PRODUCT": 147}},
+        }
+        response = TextResponse(
+            request.url, request=request, body=json.dumps(payload).encode(), encoding="utf-8"
+        )
+        with self.assertRaisesRegex(RuntimeError, "missing itemNo/id"):
+            list(self.spider.parse(response))
+
+    def test_captured_top_level_shape_is_parsed(self):
+        # The real SIK response is a single PRIMARY_AREA object with `items` and
+        # `metadata_window`; it has no `results` array.
+        capture = json.loads(Path("sample/ikea-sik-sample.json").read_text())
+        captured = capture["requests"][0]["response"]
+        payload = {
+            "component": captured["component"],
+            "items": [captured["first_item"], {"type": "OFFERS"}],
+            "metadata_window": captured["metadata_window"],
+        }
+        request = next(self.spider.start_requests())
+        outputs = list(self.spider.parse(self.response_from(request, payload)))
+        item, second = outputs
+        self.assertEqual(item["item_id"], "60561248")
+        self.assertEqual(item["title"], "STORKLINTA")
+        # metadata_window.itemsPerType.PRODUCT = 147 > end (24), so page 2 follows.
+        self.assertEqual(json.loads(second.body)["components"][0]["window"]["offset"], 24)
+
+    def response_from(self, request, payload):
+        return TextResponse(
+            request.url, request=request, body=json.dumps(payload).encode(), encoding="utf-8"
+        )
