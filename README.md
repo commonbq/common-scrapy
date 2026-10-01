@@ -1162,7 +1162,7 @@ Flow:
 2. Batch the pids (`TILE_BATCH_SIZE`, 20 per request) into `Tile-GetProductsJSON`.
 3. Emit one item per returned product, deduplicated by `item_id`.
 4. Paginate with `Search-UpdateGrid?cgid=<slug>&start=<n>&sz=<sz>` until
-   `start >= total`, `max_pages` is reached, or a page yields no new ids.
+   `start >= total`, `max_pages` is reached, or a grid page yields no new ids.
 
 Two details worth knowing:
 
@@ -1173,6 +1173,13 @@ Two details worth knowing:
 - The friendly category URL renders the storefront's default page size (20),
   which is smaller than `PAGE_SIZE` (60), so pagination advances by the number of
   pids the grid actually served rather than `page * PAGE_SIZE`.
+- `data-cnstrc-num-results` is rendered on the category page but **not** on the
+  `Search-UpdateGrid` fragments, so the page-1 total is remembered and reused for
+  later pages; otherwise `start >= total` could never fire and the crawl would
+  run one grid past the end of the listing.
+- The next-page request is decided once per grid page, after all its pid batches
+  have answered. A batch that comes back with an empty `productsJSON` (retired
+  pids) is skipped without cancelling pagination for the sibling batches.
 
 Run examples:
 
@@ -1235,10 +1242,13 @@ Notes:
   controller.
 - The spider fails loudly on a non-200 response, an access-denied/challenge body,
   a non-JSON tile body, a missing `productsJSON` key, a tile without an `id`, or
-  a grid with no `data-pid` tiles, so a stale category map cannot masquerade as
-  an empty category.
+  a **page-1** grid with no `data-pid` tiles, so a stale category map cannot
+  masquerade as an empty category. On later pages an empty grid is treated as the
+  end of the listing, not an error.
 - Fixtures live in `sample/gamestop-listing-grid.html`,
   `sample/gamestop-tile-products.json`, and `sample/gamestop-categories.json`.
+- Tests: `.venv/bin/python -m unittest tests.test_gamestop_listing_spider`
+  (28 network-free fixture tests).
 ### maccosmetics_listing
 ```json
 {

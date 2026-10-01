@@ -91,7 +91,7 @@ class GamestopListingSpiderTests(unittest.TestCase):
         # productsJSON.
         self.assertIn("data=229049", first.url)
         self.assertNotIn("pids=", first.url)
-        self.assertEqual(first.meta["allow_next_page"], True)
+        self.assertEqual(first.meta["page_state"]["batches"], 1)
 
     def test_parse_grid_chunks_pids_at_tile_batch_size(self):
         pids = "".join(f'<div data-pid="{i}"></div>' for i in range(1, 46))
@@ -103,11 +103,12 @@ class GamestopListingSpiderTests(unittest.TestCase):
 
         requests = list(self.spider.parse_grid(response))
 
-        # 45 pids at 20 per batch -> 3 requests, and only the first may paginate.
+        # 45 pids at 20 per batch -> 3 requests, all sharing one page state so
+        # pagination is decided once for the whole grid rather than per batch.
         self.assertEqual(len(requests), 3)
-        self.assertEqual(
-            [r.meta["allow_next_page"] for r in requests], [True, False, False]
-        )
+        state = requests[0].meta["page_state"]
+        self.assertEqual(state["batches"], 3)
+        self.assertEqual([r.meta["page_state"] for r in requests], [state] * 3)
 
     def test_parse_grid_without_tiles_raises(self):
         response = make_response(
@@ -126,6 +127,52 @@ class GamestopListingSpiderTests(unittest.TestCase):
             '<div data-cnstrc-num-results="821"></div>',
         )
         self.assertEqual(GamestopListingSpider._total_results(response), 821)
+
+    def test_page_total_is_remembered_when_grid_fragments_omit_it(self):
+        """Regression: Search-UpdateGrid fragments carry no result count.
+
+        Reading 0 for pages 2+ made the `next_start >= total` stop condition
+        false forever, so the crawl requested one extra empty grid past the end
+        of the listing and `parse_grid` turned that normal end into an error.
+        """
+        url = "https://www.gamestop.com/consoles-hardware"
+        page1 = make_response(
+            url,
+            f'<div data-cnstrc-num-results="60">{self.grid_html}</div>',
+            meta={"page": 1, "category_url": url, "cgid": None},
+        )
+        total = list(self.spider.parse_grid(page1))[0].meta["total"]
+        self.assertEqual(total, 60)
+
+        # Page 2 is the AJAX fragment: same category, no data-cnstrc-num-results.
+        fragment = make_response(
+            "https://www.gamestop.com/on/demandware.store/x/Search-UpdateGrid",
+            self.grid_html,
+            meta={"page": 2, "category_url": url, "cgid": "consoles", "start": 20},
+        )
+        page2_total = list(self.spider.parse_grid(fragment))[0].meta["total"]
+
+        self.assertEqual(page2_total, 60)
+
+    def test_empty_grid_ends_the_listing_instead_of_raising_after_page_one(self):
+        """Regression: running past the end of the listing is normal, not fatal."""
+        url = "https://www.gamestop.com/consoles-hardware"
+        fragment = make_response(
+            "https://www.gamestop.com/on/demandware.store/x/Search-UpdateGrid",
+            '<div id="product-grid-wrapper"></div>',
+            meta={"page": 3, "category_url": url, "cgid": "consoles", "start": 120},
+        )
+
+        self.assertEqual(list(self.spider.parse_grid(fragment)), [])
+
+        # Page 1 still raises, because there it really does mean a stale slug.
+        landing = make_response(
+            url,
+            '<div id="product-grid-wrapper" data-cnstrc-num-results="0"></div>',
+            meta={"page": 1, "category_url": url, "cgid": None},
+        )
+        with self.assertRaises(RuntimeError):
+            list(self.spider.parse_grid(landing))
 
     def test_cgid_is_read_from_the_pages_own_grid_link(self):
         # The friendly slug is not the cgid, and the mapping is not derivable
@@ -155,7 +202,7 @@ class GamestopListingSpiderTests(unittest.TestCase):
                 "cgid": "consoles",
                 "pids": ["106429"],
                 "total": 821,
-                "allow_next_page": True,
+                "page_state": {"batches": 1, "batches_done": 0, "emitted": 0},
                 "category": "consoles-hardware",
             },
         )
@@ -212,7 +259,7 @@ class GamestopListingSpiderTests(unittest.TestCase):
                 "cgid": "consoles",
                 "pids": ["119149"],
                 "total": 821,
-                "allow_next_page": True,
+                "page_state": {"batches": 1, "batches_done": 0, "emitted": 0},
                 "category": "consoles-hardware",
             },
         )
@@ -246,7 +293,7 @@ class GamestopListingSpiderTests(unittest.TestCase):
                 "cgid": "consoles",
                 "pids": ["1"],
                 "total": 1,
-                "allow_next_page": True,
+                "page_state": {"batches": 1, "batches_done": 0, "emitted": 0},
                 "category": "consoles-hardware",
             },
         )
@@ -266,12 +313,80 @@ class GamestopListingSpiderTests(unittest.TestCase):
                 "cgid": "consoles",
                 "pids": ["9", "8"],
                 "total": 821,
-                "allow_next_page": True,
+                "page_state": {"batches": 1, "batches_done": 0, "emitted": 0},
                 "category": "consoles-hardware",
             },
         )
 
         self.assertEqual(list(self.spider.parse_tiles(response)), [])
+
+    def test_empty_batch_does_not_still_the_next_grid_page(self):
+        """Regression: a retired-pid batch must not stop pagination.
+
+        The first batch of a grid page can come back empty while its sibling
+        batches still hold live products. The next-page request is decided once
+        for the whole grid, so it is emitted after the *last* batch answers.
+        """
+        url = "https://www.gamestop.com/consoles-hardware"
+        pids = [str(i) for i in range(1, 26)]
+        grid_html = (
+            '<div data-cnstrc-num-results="818">'
+            + "".join(f'<div data-pid="{pid}"></div>' for pid in pids)
+            + '<a href="/on/demandware.store/Sites-gamestop-us-Site/default/'
+            'Search-UpdateGrid?cgid=consoles&amp;start=0&amp;sz=60"></a>'
+            "</div>"
+        )
+        batches = list(
+            self.spider.parse_grid(
+                make_response(
+                    url,
+                    grid_html,
+                    meta={"page": 1, "category_url": url, "cgid": None},
+                )
+            )
+        )
+        self.assertEqual(len(batches), 2)
+
+        # First batch: retired pids -> empty productsJSON.
+        first_batch = make_response(
+            url,
+            json.dumps({"action": "Tile-GetProductsJSON", "productsJSON": {}}),
+            content_type="application/json",
+            meta=batches[0].meta,
+        )
+        self.assertEqual(list(self.spider.parse_tiles(first_batch)), [])
+        # Only one of the two batches is in, so no page-2 request yet.
+        self.assertEqual(batches[0].meta["page_state"]["batches_done"], 1)
+
+        # Second batch: live products, and only now is the grid page complete.
+        second = batches[1]
+        live = make_response(
+            url,
+            json.dumps(
+                {
+                    "productsJSON": {
+                        pid: {
+                            "id": pid,
+                            "name": f"P{pid}",
+                            "url": f"/p/{pid}.html",
+                            "price": {"base": "1.00"},
+                            "availability": {"available": True},
+                        }
+                        for pid in pids[20:]
+                    }
+                }
+            ),
+            content_type="application/json",
+            meta=second.meta,
+        )
+        results = list(self.spider.parse_tiles(live))
+        items = [r for r in results if isinstance(r, dict)]
+        requests = [r for r in results if not isinstance(r, dict)]
+
+        self.assertEqual(len(items), 5)
+        self.assertEqual(len(requests), 1)
+        self.assertIn("Search-UpdateGrid", requests[0].url)
+        self.assertIn("start=25", requests[0].url)
 
     def test_missing_products_json_key_raises(self):
         url = "https://www.gamestop.com/consoles-hardware"
@@ -285,7 +400,7 @@ class GamestopListingSpiderTests(unittest.TestCase):
                 "cgid": "consoles",
                 "pids": ["1"],
                 "total": 1,
-                "allow_next_page": True,
+                "page_state": {"batches": 1, "batches_done": 0, "emitted": 0},
                 "category": "consoles-hardware",
             },
         )
@@ -306,7 +421,7 @@ class GamestopListingSpiderTests(unittest.TestCase):
                 "cgid": "consoles",
                 "pids": ["k"],
                 "total": 1,
-                "allow_next_page": True,
+                "page_state": {"batches": 1, "batches_done": 0, "emitted": 0},
                 "category": "consoles-hardware",
             },
         )
@@ -339,7 +454,7 @@ class GamestopListingSpiderTests(unittest.TestCase):
                 "cgid": "consoles",
                 "pids": ["1"],
                 "total": 821,
-                "allow_next_page": True,
+                "page_state": {"batches": 1, "batches_done": 0, "emitted": 0},
                 "category": "consoles-hardware",
             },
         )
@@ -382,7 +497,7 @@ class GamestopListingSpiderTests(unittest.TestCase):
                 "grid_start": page_size - 1,
                 "grid_size": 1,
                 "total": page_size,
-                "allow_next_page": True,
+                "page_state": {"batches": 1, "batches_done": 0, "emitted": 0},
                 "category": "consoles-hardware",
             },
         )
@@ -416,7 +531,7 @@ class GamestopListingSpiderTests(unittest.TestCase):
                 "grid_start": 0,
                 "grid_size": 25,
                 "total": 818,
-                "allow_next_page": True,
+                "page_state": {"batches": 1, "batches_done": 0, "emitted": 0},
                 "category": "consoles-hardware",
             },
         )
@@ -458,7 +573,7 @@ class GamestopListingSpiderTests(unittest.TestCase):
                 "grid_start": 20,
                 "grid_size": 60,
                 "total": 818,
-                "allow_next_page": True,
+                "page_state": {"batches": 1, "batches_done": 0, "emitted": 0},
                 "category": "consoles-hardware",
             },
         )
@@ -492,7 +607,7 @@ class GamestopListingSpiderTests(unittest.TestCase):
                 "cgid": "consoles",
                 "pids": ["1"],
                 "total": 821,
-                "allow_next_page": True,
+                "page_state": {"batches": 1, "batches_done": 0, "emitted": 0},
                 "category": "consoles-hardware",
             },
         )
@@ -522,14 +637,22 @@ class GamestopListingSpiderTests(unittest.TestCase):
                 "cgid": "consoles",
                 "pids": ["1"],
                 "total": 821,
-                "allow_next_page": True,
+                "page_state": {"batches": 1, "batches_done": 0, "emitted": 0},
                 "category": "consoles-hardware",
             },
         )
 
-        # First call emits the item, second call must not repeat it.
+        # First call emits the item, second call must not repeat it. Each grid
+        # page gets its own page state, so the repeat is built as page 2.
         list(self.spider.parse_tiles(response))
-        second_pass = list(self.spider.parse_tiles(response))
+        page2_meta = dict(response.meta)
+        page2_meta["page"] = 2
+        page2_meta["page_state"] = {"batches": 1, "batches_done": 0, "emitted": 0}
+        second_pass = list(
+            self.spider.parse_tiles(
+                make_response(url, json.dumps(payload), content_type="application/json", meta=page2_meta)
+            )
+        )
 
         self.assertEqual(second_pass, [])
 
@@ -570,7 +693,7 @@ class GamestopListingSpiderTests(unittest.TestCase):
                 "cgid": "consoles",
                 "pids": ["1"],
                 "total": 1,
-                "allow_next_page": True,
+                "page_state": {"batches": 1, "batches_done": 0, "emitted": 0},
                 "category": "consoles-hardware",
             },
         )
@@ -597,7 +720,7 @@ class GamestopListingSpiderTests(unittest.TestCase):
                 "cgid": "consoles",
                 "pids": ["106429"],
                 "total": 821,
-                "allow_next_page": True,
+                "page_state": {"batches": 1, "batches_done": 0, "emitted": 0},
                 "category": "consoles-hardware",
             },
         )

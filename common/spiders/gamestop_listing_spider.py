@@ -149,6 +149,10 @@ class GamestopListingSpider(BaseListingSpider):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._seen_ids: set[str] = set()
+        # `data-cnstrc-num-results` is rendered on the friendly category page but
+        # NOT on the Search-UpdateGrid fragments used for page 2+, so the page-1
+        # total has to be remembered or later pages would see 0 results.
+        self._known_totals: dict[str, int] = {}
 
     # ---------------------------------------------------------------- requests
 
@@ -209,8 +213,17 @@ class GamestopListingSpider(BaseListingSpider):
 
         pids = response.css('[data-pid]::attr(data-pid)').getall()
         if not pids:
-            # An empty grid means the cgid/URL does not resolve to a product
-            # listing. Silently returning would hide a broken category map.
+            if page > 1:
+                # Only page 1 proves the category slug/cgid is stale. On later
+                # pages an empty grid just means the offset ran past the end of
+                # the listing, which is a normal end, not a broken category map.
+                self.logger.info(
+                    "GameStop %s page %s returned no [data-pid] tiles; "
+                    "treating it as the end of the listing",
+                    category_url,
+                    page,
+                )
+                return
             raise RuntimeError(
                 f"GameStop grid returned no [data-pid] tiles for page {page} of "
                 f"{category_url}; the category slug/cgid may be stale "
@@ -218,6 +231,13 @@ class GamestopListingSpider(BaseListingSpider):
             )
 
         total = self._total_results(response)
+        if total:
+            self._known_totals[category_url] = total
+        else:
+            # Grid fragments carry no `data-cnstrc-num-results`; fall back to the
+            # page-1 total so pagination can still stop at the real end instead of
+            # requesting one empty grid past it.
+            total = self._known_totals.get(category_url, 0)
         # The friendly slug is not the Demandware cgid, so resolve it here from the
         # grid page itself (the tile JSON response carries no navigation links).
         cgid = cgid or self._cgid_from(response)
@@ -230,16 +250,23 @@ class GamestopListingSpider(BaseListingSpider):
             cgid,
         )
 
-        for batch_start in range(0, len(pids), self.TILE_BATCH_SIZE):
-            batch = pids[batch_start : batch_start + self.TILE_BATCH_SIZE]
+        batches = [
+            pids[at : at + self.TILE_BATCH_SIZE]
+            for at in range(0, len(pids), self.TILE_BATCH_SIZE)
+        ]
+        # One mutable state dict shared by every batch of this grid page. The
+        # decision to request the next grid page must depend on the *whole* grid,
+        # not on whichever batch happens to answer last: a retired-pid batch that
+        # returns an empty productsJSON must not silence the page-2 request while
+        # its sibling batches still produced items.
+        page_state = {"batches": len(batches), "batches_done": 0, "emitted": 0}
+        for batch in batches:
             yield self._tile_request(
                 batch,
                 category_url=category_url,
                 page=page,
                 cgid=cgid,
-                # Only the first batch continues pagination; otherwise page 2 would
-                # be requested once per batch.
-                allow_next_page=batch_start == 0,
+                page_state=page_state,
                 total=total,
                 # Pagination advances by the whole grid, not this batch: a 60-pid
                 # grid sent as 3 batches must still advance past all 60.
@@ -254,7 +281,7 @@ class GamestopListingSpider(BaseListingSpider):
         category_url: str,
         page: int,
         cgid: str | None,
-        allow_next_page: bool,
+        page_state: dict[str, int],
         total: int | None = None,
         grid_start: int = 0,
         grid_size: int = 0,
@@ -278,7 +305,7 @@ class GamestopListingSpider(BaseListingSpider):
                 "total": total,
                 "grid_start": grid_start,
                 "grid_size": grid_size,
-                "allow_next_page": allow_next_page,
+                "page_state": page_state,
                 "category": self._category_for(category_url),
             },
             dont_filter=True,
@@ -289,9 +316,6 @@ class GamestopListingSpider(BaseListingSpider):
         category_url = response.meta["category_url"]
         cgid = response.meta.get("cgid")
         category = response.meta.get("category")
-        total = response.meta.get("total")
-        grid_start = int(response.meta.get("grid_start") or 0)
-        grid_size = int(response.meta.get("grid_size") or 0)
         self._reject_challenge(response)
 
         try:
@@ -315,8 +339,21 @@ class GamestopListingSpider(BaseListingSpider):
             )
 
         # An empty dict means the pid batch was expired/invalid. This is expected
-        # for retired pids, so log it and continue instead of crashing the crawl.
-        if not products:
+        # for retired pids, so it is logged and skipped rather than crashing the
+        # crawl -- but it still counts as a finished batch, because the sibling
+        # batches of the same grid page are the ones that decide pagination.
+        emitted = 0
+        if products:
+            for product in products.values():
+                item = self._product_item(product, category_url, category, page)
+                if item is None:
+                    continue
+                if item["item_id"] in self._seen_ids:
+                    continue
+                self._seen_ids.add(item["item_id"])
+                emitted += 1
+                yield item
+        else:
             self.logger.warning(
                 "GameStop returned an empty productsJSON for a %s-pid batch on page %s "
                 "of %s; skipping the batch",
@@ -324,32 +361,51 @@ class GamestopListingSpider(BaseListingSpider):
                 page,
                 category_url,
             )
+
+        yield from self._next_grid_page(response, emitted)
+
+    def _next_grid_page(
+        self,
+        response: scrapy.http.Response,
+        emitted: int,
+    ):
+        """Advance the grid once *every* tile batch of this page has been parsed.
+
+        Aggregating across batches is what makes the stop conditions correct: an
+        empty batch of retired pids neither ends the crawl nor consumes the page-2
+        request, and the "no new ids" stop only fires when a whole grid page
+        produced nothing.
+        """
+        page_state = response.meta.get("page_state")
+        if not page_state:
+            return
+        page_state["emitted"] += emitted
+        page_state["batches_done"] += 1
+        if page_state["batches_done"] < page_state["batches"]:
             return
 
-        emitted = 0
-        for product in products.values():
-            item = self._product_item(product, category_url, category, page)
-            if item is None:
-                continue
-            if item["item_id"] in self._seen_ids:
-                continue
-            self._seen_ids.add(item["item_id"])
-            emitted += 1
-            yield item
-
-        if not response.meta.get("allow_next_page") or page >= self.max_pages:
+        page = int(response.meta["page"])
+        if page >= self.max_pages:
             return
 
+        category_url = response.meta["category_url"]
+        cgid = response.meta.get("cgid")
+        total = response.meta.get("total")
+        grid_start = int(response.meta.get("grid_start") or 0)
+        grid_size = int(response.meta.get("grid_size") or 0)
         if total is None:
-            total = self._total_results(response)
+            # Grid fragments do not carry `data-cnstrc-num-results`, so fall back to
+            # the total read from the page-1 category URL.
+            total = self._known_totals.get(category_url, 0)
+
         # Next offset is the end of the grid this batch came from -- not the end of
         # the batch, which would re-request the middle of the grid.
         next_start = grid_start + (grid_size or len(response.meta.get("pids") or []))
         if total and next_start >= int(total):
             return
-        if not emitted:
-            # No new ids on a later page means the grid looped or the category
-            # ran out; stop rather than paginating forever.
+        if not page_state["emitted"]:
+            # A whole grid page with no new ids means the grid looped or the
+            # category ran out; stop rather than paginating forever.
             return
 
         if not cgid:
