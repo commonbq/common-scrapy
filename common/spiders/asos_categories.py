@@ -612,3 +612,18 @@ def flatten_categories() -> list[dict[str, str]]:
 
 
 ASOS_CATEGORIES = flatten_categories()
+
+# Stable shortcuts for the issue's documented department-level crawl commands.
+# Keep these separate from ASOS_CATEGORIES so the captured 412-CID inventory
+# remains deduplicated and its exact-count regression test stays meaningful.
+ASOS_DEPARTMENT_CATEGORIES = [
+    {
+        "category": department,
+        "subcategory": entries[0]["subcategory"],
+        "department": department,
+        "cid": entries[0]["cid"],
+        "url": entries[0]["url"],
+    }
+    for department in ASOS_CATEGORY_INVENTORY
+    if (entries := [entry for entry in ASOS_CATEGORIES if entry["department"] == department])
+]

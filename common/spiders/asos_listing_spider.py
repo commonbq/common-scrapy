@@ -7,7 +7,7 @@ from urllib.parse import parse_qs, urlencode, urljoin, urlparse
 
 import scrapy
 
-from common.spiders.asos_categories import ASOS_CATEGORIES
+from common.spiders.asos_categories import ASOS_CATEGORIES, ASOS_DEPARTMENT_CATEGORIES
 from common.spiders.base_listing_spider import BaseListingSpider
 
 
@@ -16,7 +16,7 @@ class AsosListingSpider(BaseListingSpider):
 
     name = "asos_listing"
     allowed_domains = ["asos.com", "www.asos.com", "localhost", "127.0.0.1"]
-    categories = ASOS_CATEGORIES
+    categories = ASOS_DEPARTMENT_CATEGORIES + ASOS_CATEGORIES
     require_category_arg = False
 
     custom_settings = {

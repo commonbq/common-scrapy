@@ -35,6 +35,12 @@ class AsosListingSpiderTests(unittest.TestCase):
         self.assertTrue(all(re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", entry["category"])
                             for entry in ASOS_CATEGORIES))
 
+    def test_documented_department_aliases_resolve(self):
+        women = AsosListingSpider(category="women", max_pages=2)
+        men = AsosListingSpider(category="men", max_pages=2)
+        self.assertIn("/us/women/", women.resolve_target_url())
+        self.assertIn("/us/men/", men.resolve_target_url())
+
     def test_hydration_mapping_feed_contract_and_proxy_handoff(self):
         outputs = list(self.spider.parse(self.response()))
         item = outputs[0]

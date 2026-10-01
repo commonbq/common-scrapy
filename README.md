@@ -155,7 +155,7 @@ Run example:
 
 ### asos_listing
 
-ASOS page 1 is read from the server-rendered `window.asos.plp._data` bootstrap. Later pages use the search API and carry its query contract, including `keyStoreDataversion`, directly from that bootstrap.
+ASOS page 1 is read from the server-rendered `window.asos.plp._data` bootstrap. Later pages use the search API and carry its query contract, including `keyStoreDataversion`, directly from that bootstrap. Use the stable `women` or `men` department shortcut, or any category alias from `asos_categories.py`.
 
 ```json
 {
@@ -172,7 +172,7 @@ ASOS page 1 is read from the server-rendered `window.asos.plp._data` bootstrap. 
 ```
 
 Run example:
-`HTTPCACHE_ENABLED=False common-scrapy crawl asos_listing -a category=women-fall-occasionwear -a max_pages=2 -O asos.jsonl -s HTTPCACHE_ENABLED=False`
+`HTTPCACHE_ENABLED=False common-scrapy crawl asos_listing -a category=women -a max_pages=2 -O asos.jsonl -s HTTPCACHE_ENABLED=False`
 
 ### walmart_listing (category)
 ```json
