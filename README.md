@@ -84,6 +84,7 @@ Spiders below are returning items in recent smoke runs:
 | [`kroger_search`](#kroger_search--kroger_listing) | Active | bootstrap + html | unknown (timeout/no verdict) | Kroger keyword search with state extraction + fallback. | 27 (ok) | - | `{'item_id':'kroger-2-reduced-fat-milk-gallon','url':'https://www.kroger.com/p/kroger-2-reduced-fat-milk-gallon/0001111041700','source':'kroger_html_links_fallback'}` |
 | [`lululemon_listing`](#lululemon_listing) | Active | bootstrap | Akamai | lululemon listing spider via Next.js `__NEXT_DATA__`. | 40 (ok) | women-shorts, women-leggings, men-shorts, bags | `{"category":"women-shorts","product_id":"prod11860112","name":"Shake It Out High-Rise Running Short 2.5\"","brand":"lululemon","price":["...` |
 | [`maccosmetics_listing`](#maccosmetics_listing) | Experimental | api + bootstrap + html | Akamai | MAC Cosmetics multi-mode listing spider. | 66 (ok) | face, lips, eyes | `{"item_id":"13854","title":"4.8/5 ( 452 ) Lustreglass Sheer-Shine Lipstick Sheer Coverage, Glossy/High-Shine Finish, Infused With Raspberry Seed/Organic Extra Virgin Olive Oils ...` |
+| [`petsmart_listing`](#petsmart_listing) | Experimental | bootstrap | Akamai Bot Manager | PetSmart listings from the inline Algolia `InstantSearchInitialResults` hydration state. | 80 (2-page proxy smoke) | 7 departments / 113 targets | `{"category":"dog/food","item_id":"5252900","master_product_id":36648,"title":"Purina Pro Plan Sensitive Skin and Stomach Dry Dog Food Adult Salmon & Rice Formula...","price":77.99,...}` |
 | [`poshmark_listing`](#poshmark_listing) | Experimental | bootstrap | none detected | Poshmark listing spider via `window.__INITIAL_STATE__` category grid data. | 48 (ok) | women, men, kids, home, electronics, pets | `{"category":"women","item_id":"6989d90ac4e7b4d4de556bac","title":"🔥Stunning  Farm Rio NWT Size Large Tropical Midi Dress with Sleeves – V...` |
 | [`qvc_listing`](#qvc_listing) | Experimental | html + bootstrap | Akamai | QVC listing spider via server-rendered gallery cards and `utag_data` page state. | 96 (Beauty proxy capture) | fashion | `{"category":"beauty","category_id":"NAV6285","item_id":"A740517","title":"Whish 12 Days of Beauty Whishes Advent Calendar","price":59.98,...}` |
 | [`zappos_listing`](#zappos_listing) | Experimental | Redux hydration | none detected through proxy | Zappos listings from `window.__INITIAL_STATE__.products.list`. | 100 (one-page proxy smoke) | 4 departments / 50 targets | `{"item_id":"8910671","title":"Kiruna Padded Parka","brand":"Fjällräven","price":300.0,...}` |
@@ -634,6 +635,37 @@ Run example:
 Current category names: `women`, `lingerie`, `juniors`, `shoes`, `handbags`, `accessories`, `men`, `kids`, `home`, `beauty`.
 
 The site is protected by Akamai and may return an HTTP 200 access-denied page from datacenter IPs. Use the configured residential proxy; the spider deliberately stops when the authoritative bootstrap contract is absent.
+
+### petsmart_listing
+
+PetSmart PLPs use one data path: the Algolia InstantSearch response that the Next.js
+App Router server-renders into the page as
+`window[Symbol.for("InstantSearchInitialResults")] = {...}`. Unlike the RSC stream
+(`self.__next_f.push`) this global is emitted **unescaped** into a plain inline
+`<script>`, so the payload is JSON-decoded directly out of the response body — no HTML
+card parsing and no JSON-LD. Each hit carries ~80 attributes (pricing ranges, UPC,
+Bazaarvoice reviews, availability flags, merchandising hierarchy, category paths).
+
+Pagination is server-rendered via `?page=N` (1-based) and stops at `max_pages` or the
+Algolia 1000-hit traversal cap. Note that `total_count` can exceed that cap: `dog/food`
+reports `nbHits=1795` across 25 pages, but only the first 1000 hits are reachable.
+
+Product URLs are **derived from the hydration state**, not scraped. The hit's
+`masterProductID` maps to PetSmart's ID-based PDP lookup
+`https://www.petsmart.com/-<masterProductID>.html`, which resolves to the SEO-canonical
+slug URL. Verified live against master IDs `3022`, `57927`, `68835`, `101413`, `36650`.
+
+Category shortcuts cover 7 departments / 113 targets, where the shortcut is the category
+URL path (e.g. `dog`, `dog/food`, `dog/food/dry-food`). Direct `category_url` / `url`
+input is also accepted. The inventory lives in `common/spiders/petsmart_categories.py`.
+
+```bash
+HTTPCACHE_ENABLED=False common-scrapy crawl petsmart_listing --category dog/food -a max_pages=2 -O petsmart.jsonl -s HTTPCACHE_ENABLED=False
+```
+
+```json
+{"category":"dog/food","department":"dog","item_id":"5252900","master_product_id":36648,"sku":"5252900","upc":"038100175526","title":"Purina Pro Plan Sensitive Skin and Stomach Dry Dog Food Adult Salmon & Rice Formula Digestive Health","brand":"Purina Pro Plan","manufacturer":"NESTLE PURINA DRY","url":"https://www.petsmart.com/-36648.html","image_url":"https://s7d2.scene7.com/is/image/PetSmart/5252900?$sclp-prd-main_large$","price":77.99,"list_price":77.99,"currency":"USD","availability":"in_stock","in_stock_in_store":true,"is_subscription_enabled":true,"rating":4.5,"reviews_count":9116,"category_path":"Dog > Food > Dry Food","primary_category":"Dry Food","pet_type":["Dog"],"page":1,"position":1,"total_count":1795,"source_url":"https://www.petsmart.com/dog/food/","source":"petsmart_instantsearch_algolia"}
+```
 
 ### poshmark_listing
 ```json

@@ -1,0 +1,152 @@
+"""Captured PetSmart department navigation inventory (2026-10-02).
+
+PetSmart does not expose a clean category sitemap or a category XHR, so the
+inventory below was recovered from the L1 hub mega-menu markup. Each list starts
+with the department landing page followed by its subcategories in menu order.
+"""
+
+PETSMART_CATEGORY_INVENTORY = {
+    "dog": [
+        "https://www.petsmart.com/dog",
+        "https://www.petsmart.com/dog/beds-and-furniture/",
+        "https://www.petsmart.com/dog/bowls-and-feeders/",
+        "https://www.petsmart.com/dog/cleaning-supplies/",
+        "https://www.petsmart.com/dog/cleaning-supplies/vacuums/",
+        "https://www.petsmart.com/dog/clothing-and-shoes/",
+        "https://www.petsmart.com/dog/collars-harnesses-and-leashes/",
+        "https://www.petsmart.com/dog/crates-gates-and-containment/",
+        "https://www.petsmart.com/dog/flea-and-tick/",
+        "https://www.petsmart.com/dog/food/",
+        "https://www.petsmart.com/dog/food/canned-food/",
+        "https://www.petsmart.com/dog/food/dry-food/",
+        "https://www.petsmart.com/dog/food/food-toppers/",
+        "https://www.petsmart.com/dog/food/fresh-and-frozen-food/",
+        "https://www.petsmart.com/dog/food/veterinary-diets/",
+        "https://www.petsmart.com/dog/grooming-supplies/",
+        "https://www.petsmart.com/dog/toys/",
+        "https://www.petsmart.com/dog/training-and-behavior/",
+        "https://www.petsmart.com/dog/treats/",
+        "https://www.petsmart.com/dog/vitamins-and-supplements/",
+    ],
+    "cat": [
+        "https://www.petsmart.com/cat",
+        "https://www.petsmart.com/cat/beds-and-furniture/",
+        "https://www.petsmart.com/cat/beds-and-furniture/furniture-and-towers/",
+        "https://www.petsmart.com/cat/flea-and-tick/",
+        "https://www.petsmart.com/cat/food-and-treats/",
+        "https://www.petsmart.com/cat/food-and-treats/dry-food/",
+        "https://www.petsmart.com/cat/food-and-treats/food-toppers/",
+        "https://www.petsmart.com/cat/food-and-treats/treats/",
+        "https://www.petsmart.com/cat/food-and-treats/veterinary-diets/",
+        "https://www.petsmart.com/cat/food-and-treats/wet-food/",
+        "https://www.petsmart.com/cat/litter-and-waste-disposal/",
+        "https://www.petsmart.com/cat/litter-and-waste-disposal/litter/",
+        "https://www.petsmart.com/cat/litter-and-waste-disposal/litter-boxes/",
+        "https://www.petsmart.com/cat/toys/",
+        "https://www.petsmart.com/cat/vitamins-and-supplements/",
+    ],
+    "fish": [
+        "https://www.petsmart.com/fish",
+        "https://www.petsmart.com/fish/decor-gravel-and-substrate/",
+        "https://www.petsmart.com/fish/decor-gravel-and-substrate/ornaments/",
+        "https://www.petsmart.com/fish/filters-and-pumps/",
+        "https://www.petsmart.com/fish/filters-and-pumps/filter-media/",
+        "https://www.petsmart.com/fish/filters-and-pumps/filters/",
+        "https://www.petsmart.com/fish/fish-shops/",
+        "https://www.petsmart.com/fish/fish-shops/betta/",
+        "https://www.petsmart.com/fish/fish-shops/cichlid/",
+        "https://www.petsmart.com/fish/fish-shops/goldfish/",
+        "https://www.petsmart.com/fish/fish-shops/koi-and-pond/",
+        "https://www.petsmart.com/fish/fish-shops/live-plants/",
+        "https://www.petsmart.com/fish/fish-shops/marine-and-freshwater/",
+        "https://www.petsmart.com/fish/food-and-care/",
+        "https://www.petsmart.com/fish/food-and-care/food/",
+        "https://www.petsmart.com/fish/heating-and-lighting/",
+        "https://www.petsmart.com/fish/live-fish/",
+        "https://www.petsmart.com/fish/starter-kits/",
+        "https://www.petsmart.com/fish/tanks-aquariums-and-nets/",
+        "https://www.petsmart.com/fish/tanks-aquariums-and-nets/aquarium-stands/",
+        "https://www.petsmart.com/fish/tanks-aquariums-and-nets/aquariums/",
+    ],
+    "bird": [
+        "https://www.petsmart.com/bird",
+        "https://www.petsmart.com/bird/bird-shops/",
+        "https://www.petsmart.com/bird/bird-shops/cockatiel/",
+        "https://www.petsmart.com/bird/bird-shops/conure/",
+        "https://www.petsmart.com/bird/bird-shops/finch-and-canary/",
+        "https://www.petsmart.com/bird/bird-shops/lovebird/",
+        "https://www.petsmart.com/bird/bird-shops/parakeet/",
+        "https://www.petsmart.com/bird/bird-shops/parrot/",
+        "https://www.petsmart.com/bird/bird-shops/wild-bird/",
+        "https://www.petsmart.com/bird/cages-and-stands/",
+        "https://www.petsmart.com/bird/cages-and-stands/cages/",
+        "https://www.petsmart.com/bird/food-and-treats/",
+        "https://www.petsmart.com/bird/health-care-and-vitamins/",
+        "https://www.petsmart.com/bird/live-birds/",
+        "https://www.petsmart.com/bird/toys-perches-and-decor/",
+    ],
+    "reptile": [
+        "https://www.petsmart.com/reptile",
+        "https://www.petsmart.com/reptile/cleaning-and-water-care/",
+        "https://www.petsmart.com/reptile/environmental-control-and-lighting/",
+        "https://www.petsmart.com/reptile/feeders-and-food-storage/",
+        "https://www.petsmart.com/reptile/food/",
+        "https://www.petsmart.com/reptile/habitats-and-decor/",
+        "https://www.petsmart.com/reptile/habitats-and-decor/habitat-decor/",
+        "https://www.petsmart.com/reptile/habitats-and-decor/terrariums/",
+        "https://www.petsmart.com/reptile/live-reptiles/",
+        "https://www.petsmart.com/reptile/reptile-shop/",
+        "https://www.petsmart.com/reptile/reptile-shop/bearded-dragon/",
+        "https://www.petsmart.com/reptile/reptile-shop/chameleon/",
+        "https://www.petsmart.com/reptile/reptile-shop/frog/",
+        "https://www.petsmart.com/reptile/reptile-shop/gecko-and-lizard/",
+        "https://www.petsmart.com/reptile/reptile-shop/hermit-crab/",
+        "https://www.petsmart.com/reptile/reptile-shop/snake/",
+        "https://www.petsmart.com/reptile/reptile-shop/spiders-and-more/",
+        "https://www.petsmart.com/reptile/reptile-shop/turtle/",
+        "https://www.petsmart.com/reptile/starter-kits/",
+        "https://www.petsmart.com/reptile/substrate-and-bedding/",
+        "https://www.petsmart.com/reptile/vitamins-and-supplements/",
+    ],
+    "small-pet": [
+        "https://www.petsmart.com/small-pet",
+        "https://www.petsmart.com/small-pet/cages-habitats-and-hutches/",
+        "https://www.petsmart.com/small-pet/food-treats-and-hay/",
+        "https://www.petsmart.com/small-pet/health-and-grooming/",
+        "https://www.petsmart.com/small-pet/live-small-pets/",
+        "https://www.petsmart.com/small-pet/small-pet-shops/",
+        "https://www.petsmart.com/small-pet/small-pet-shops/chinchilla/",
+        "https://www.petsmart.com/small-pet/small-pet-shops/ferret/",
+        "https://www.petsmart.com/small-pet/small-pet-shops/guinea-pig/",
+        "https://www.petsmart.com/small-pet/small-pet-shops/hamster-and-gerbil/",
+        "https://www.petsmart.com/small-pet/small-pet-shops/hedgehog-and-sugar-glider/",
+        "https://www.petsmart.com/small-pet/small-pet-shops/rabbit/",
+        "https://www.petsmart.com/small-pet/small-pet-shops/rat-and-mouse/",
+        "https://www.petsmart.com/small-pet/toys-and-habitat-accessories/",
+    ],
+    "farm-animal": [
+        "https://www.petsmart.com/farm-animal",
+        "https://www.petsmart.com/farm-animal/chicken-and-poultry/",
+        "https://www.petsmart.com/farm-animal/cow/",
+        "https://www.petsmart.com/farm-animal/duck/",
+        "https://www.petsmart.com/farm-animal/goat/",
+        "https://www.petsmart.com/farm-animal/horse/",
+        "https://www.petsmart.com/farm-animal/pig/",
+    ],
+}
+
+
+def _slug_from_url(url: str) -> str:
+    """Turn a category URL path into a `-a category=` shortcut (e.g. dog/food/dry-food)."""
+    return "/".join(segment for segment in url.split("://", 1)[-1].split("/")[1:] if segment)
+
+
+PETSMART_CATEGORIES = [
+    {"category": _slug_from_url(urls[0]), "department": department, "url": urls[0]}
+    for department, urls in PETSMART_CATEGORY_INVENTORY.items()
+]
+PETSMART_CATEGORIES.extend(
+    {"category": _slug_from_url(url), "department": department, "url": url}
+    for department, urls in PETSMART_CATEGORY_INVENTORY.items()
+    for url in urls[1:]
+)
