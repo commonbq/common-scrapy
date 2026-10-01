@@ -62,6 +62,7 @@ class NeweggListingSpider(BaseListingSpider):
             "tags",
             "page",
             "source",
+            "raw",
         ],
     }
 
@@ -244,4 +245,7 @@ class NeweggListingSpider(BaseListingSpider):
             "tags": cell.get("CustomTags"),
             "page": page,
             "source": "newegg_initial_state",
+            # Verbatim hydration-state entry so downstream consumers can re-derive
+            # fields when the SSR schema changes.
+            "raw": product,
         }

@@ -1,6 +1,7 @@
 import json
 import unittest
 
+import scrapy
 from scrapy.http import HtmlResponse, Request
 
 from common.spiders.newegg_listing_spider import NeweggListingSpider
@@ -82,6 +83,12 @@ class NeweggListingSpiderTests(unittest.TestCase):
         self.assertEqual(second["brand"], "Intel")
         self.assertEqual(second["rating"], 4.7)
         self.assertEqual(second["reviews_count"], 388)
+        self.assertEqual(second["url"], "https://www.newegg.com/intel-core-i3-10100f/p/N82E16819113737")
+        self.assertEqual(second["image"], "https://img.test/19-113-737-01.png")
+        # Every exported item carries the verbatim hydration entry in ``raw``.
+        self.assertEqual(first["raw"], self.product)
+        self.assertEqual(second["raw"], self.second_product)
+        self.assertEqual(first["raw"]["ItemCell"]["FinalPrice"], 469)
         self.assertEqual(request.url, "https://www.newegg.com/Desktop-CPU-Processor/SubCategory/ID-343/Page-2")
 
     def test_partial_final_page_keeps_first_page_size(self):
@@ -97,13 +104,17 @@ class NeweggListingSpiderTests(unittest.TestCase):
             response_for({"Products": [self.second_product] * 4, "TotalItemCount": 40}, page=2),
             "https://www.newegg.com/Desktop-CPU-Processor/SubCategory/ID-343", 2,
             page_size=request.cb_kwargs["page_size"]))
+        # No out-of-range page 3 may be scheduled; all outputs are deduplicated items.
         self.assertTrue(all(isinstance(output, dict) for output in page2))
+        self.assertFalse([o for o in page2 if isinstance(o, scrapy.Request)])
 
     def test_direct_url_modes_construct_and_http_errors_pass_through(self):
         url = "https://www.newegg.com/Desktop-CPU-Processor/SubCategory/ID-343"
         self.assertEqual(NeweggListingSpider(url=url).resolve_target_url(), url)
         self.assertEqual(NeweggListingSpider(category_url=url).resolve_target_url(), url)
         self.assertTrue(NeweggListingSpider.custom_settings["HTTPERROR_ALLOW_ALL"])
+        # The base-class gate must stay disabled or direct-URL runs cannot construct.
+        self.assertFalse(NeweggListingSpider.require_category_arg)
         with self.assertRaisesRegex(ValueError, "Provide -a category"):
             NeweggListingSpider()
 
