@@ -80,7 +80,7 @@ Spiders below are returning items in recent smoke runs:
 | [`homedepot_listing`](#homedepot_listing-category-apollo-state) | Flaky | bootstrap | Akamai | Home Depot department listings from embedded Apollo state. | 2 (fixture) | appliances, bath, building-materials, decor-and-furniture, electrical, flooring, hardware, heating-and-cooling, kitchen, lawn-and-garden, lighting, paint, plumbing, storage, tools | `{"category":"tools","item_id":"100000001","sku":"1000000001","title":"16 oz. Fiberglass Claw Hammer","brand":"Husky","price":14.97...` |
 | [`homedepot_search`](#homedepot_search-keyword-apollo-bootstrap) | Active | bootstrap + html | Akamai | Home Depot keyword search via Apollo state. | 24 (ok) | - | `{"item_id":"336787835","sku":"1014334650","brand":"Lukyamzn","title":"14 in. Dual-Core Celeron N4000 Laptop 6 GB RAM 128 GB SSD IPS Displ...` |
 | [`jcpenney_listing`](#jcpenney_listing) | Active | api | Akamai (+ reCAPTCHA scripts observed) | JCPenney listing spider via search API bootstrap endpoint. | 48 (ok) | womens_tops, mens_shirts | `{"item_id":"ppr5008584232","title":"St. John's Bay Womens Boat Neck Elbow Sleeve T-Shirt","brand":"st. john's bay","url":"https://www.jcp...` |
-| [`ikea_listing`](#ikea_listing) | Active | api | none detected | IKEA category listings from the SIK search API. | 46 (ok) | 221 unique targets from 23 departments | `{"category":"st004","item_id":"50561244","title":"STORKLINTA","product_type":"6-drawer dresser","price":279.99,"department":"Storage & organization",...}` |
+| [`ikea_listing`](#ikea_listing) | Active | api + html | none detected | IKEA category listings from the SIK search API, with a server-rendered HTML fallback. | 46 (api, ok) / 24 (html, ok) | 221 unique targets from 23 departments | `{"category":"st004","item_id":"50561244","title":"STORKLINTA","product_type":"6-drawer dresser","price":279.99,"department":"Storage & organization",...}` |
 | [`kroger_listing`](#kroger_search--kroger_listing) | Active | Redux bootstrap | unknown (timeout/no verdict) | Kroger category listings from `window.__INITIAL_STATE__` search products. | 2 (fixture) | cereal, milk, eggs, bread, coffee, snacks | `{"category":"cereal","item_id":"0001111012345","title":"Kroger Toasted Oats Cereal","brand":"Kroger","price":3.99,...}` |
 | [`kroger_search`](#kroger_search--kroger_listing) | Active | bootstrap + html | unknown (timeout/no verdict) | Kroger keyword search with state extraction + fallback. | 27 (ok) | - | `{'item_id':'kroger-2-reduced-fat-milk-gallon','url':'https://www.kroger.com/p/kroger-2-reduced-fat-milk-gallon/0001111041700','source':'kroger_html_links_fallback'}` |
 | [`lululemon_listing`](#lululemon_listing) | Active | bootstrap | Akamai | lululemon listing spider via Next.js `__NEXT_DATA__`. | 40 (ok) | women-shorts, women-leggings, men-shorts, bags | `{"category":"women-shorts","product_id":"prod11860112","name":"Shake It Out High-Rise Running Short 2.5\"","brand":"lululemon","price":["...` |
@@ -1042,8 +1042,16 @@ Run examples:
 Uses IKEA's SIK category-search endpoint as the single authoritative product
 source. The bundled inventory is normalized from 23 product departments and
 deduplicated by IKEA item number; category arguments are the final IKEA category
-tokens (for example, `st004`). Requests use 24-product windows and stop at the
-reported product total or `max_pages`.
+tokens (for example, `st004`).
+
+Pagination uses fixed 24-**slot** windows — offsets `0, 24, 48, ...` — not
+24-product windows. A window is a mixed slot budget: the storefront fills it with
+`PRODUCT` entries *and* typed breakouts (`AFFORDABILITY`, `NEW_PRODUCT`, `OFFERS`),
+so a full 24-slot window yields fewer than 24 products. In the live `st004` run
+below, window 1 held 24 slots of which 22 were products, and window 2 held 24
+products because it carried no breakouts. The crawl stops at `max_pages`, when the
+window's `end` reaches `itemsPerType.PRODUCT` (or `max`), or when a window returns
+no new products.
 
 IKEA validates the SIK query version server-side and rejects an unknown value with
 `{"detail":"Invalid API version"}`, which carries no `PRIMARY_AREA`. The version is
@@ -1053,14 +1061,34 @@ the override, so a retired version is diagnosable from the log alone.
 
 The live response wraps the component as `{"results": [{"component":
 "PRIMARY_AREA", "items": [...], "metadata": {...}}], "metadata": {...}}`, where
-window counts live under the component's `metadata`. Only `PRODUCT` entries are
-yielded — the same 24-slot window also carries `AFFORDABILITY` and `NEW_PRODUCT`
-breakouts — so 24 slots do not yield 24 products.
+window counts live under the component's `metadata`. The bundled capture
+(`sample/ikea-sik-sample.json`) is instead a reduced top-level `PRIMARY_AREA` with
+`metadata_window`; both shapes are supported and both are fixture-tested.
 
-Run example:
+Because `require_category_arg` is disabled (so `-a url=` / `-a category_url=` runs
+are accepted), `BaseListingSpider` skips its own categories schema check. The
+spider therefore validates its own inventory at construction: every entry must be a
+dict with non-empty string `category` and `url`, and the `category` token must be
+recoverable from the `url` — the same value `resolve_target_url()` feeds to SIK. A
+malformed inventory entry fails immediately rather than as a confusing
+`Unknown category` error at crawl time.
+
+`-a mode=html` selects the server-rendered fallback described in issue #114: it
+fetches the category PLP and parses the `.js-product-list[data-category]` container
+state plus the `.plp-fragment-wrapper` cards, rejecting a hub-only URL (no
+product-list container) with a clear error. It is opt-in and page 1 only — the
+storefront hydrates windows 2+ through SIK, so there is no HTML equivalent of offset
+windows, and a silent automatic downgrade would hide exactly the schema drift the
+API path reports loudly. HTML items set `source: "ikea_plp_html"` and leave the
+API-only enrichment fields (`item_no_global`, `department`, `category_path`,
+`business_area`, `product_type_tag`, `variant_count`, `colors`, `quick_facts`) as
+`None`, since the rendered card does not carry them.
+
+Run examples:
 
 - `common-scrapy crawl ikea_listing -a category=st004 -a max_pages=2 -O ikea.jsonl -s HTTPCACHE_ENABLED=False`
 - `common-scrapy crawl ikea_listing -a category=st004 -a max_pages=2 -a sik_version=<version> -O ikea.jsonl -s HTTPCACHE_ENABLED=False`
+- `common-scrapy crawl ikea_listing -a category=st004 -a mode=html -O ikea_html.jsonl -s HTTPCACHE_ENABLED=False`
 
 The ordered export fields are `category`, `item_id`, `title`, `product_type`,
 `dimensions`, `url`, `image_url`, `image_urls`, `price`, `currency`, `rating`,
@@ -1078,10 +1106,16 @@ can differ from the crawled category for cross-listed entries. Optional keys
 degrade to `None` (or `[]` for `colors`) when absent.
 
 Live verification (`-s HTTPCACHE_ENABLED=False`, `category=st004`, `max_pages=2`,
-2026-10-01 UTC) exported **46 unique items** with `raw` present on every row:
-22 products in the first 24-slot window and 24 in the second. The API reported
-`itemsPerType.PRODUCT = 148` for this category, so the crawl stopped at
-`max_pages` rather than exhausting the category.
+2026-10-01 UTC, re-confirmed 2026-10-02 UTC) exported **46 unique items** with
+`raw` present on every row: 22 products in the first 24-slot window and 24 in the
+second. The API reported `itemsPerType.PRODUCT = 148` for this category, so the
+crawl stopped at `max_pages` rather than exhausting the category.
+
+The HTML path was verified live on the same category (2026-10-02 UTC,
+`sample/ikea-plp-fixture.html` reduced from that capture): **24 items** exported
+from the 24 server-rendered cards, all unique, `raw` present on 24/24. The reduced
+fixture keeps the first 2 cards, so the fixture test asserts 2 items; the 24-item
+figure is the live crawl, not the fixture.
 
 ### sallybeauty_listing
 

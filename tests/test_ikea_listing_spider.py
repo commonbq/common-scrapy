@@ -2,7 +2,7 @@ import json
 import unittest
 from pathlib import Path
 
-from scrapy.http import TextResponse
+from scrapy.http import HtmlResponse, TextResponse
 
 from common.spiders.ikea_listing_spider import IkeaListingSpider
 
@@ -101,6 +101,120 @@ class IkeaListingSpiderTest(unittest.TestCase):
         # issue requires the complete concrete inventory.
         self.assertEqual(len(urls), 221)
 
+    def test_inventory_entries_pass_schema_validation(self):
+        # require_category_arg=False makes BaseListingSpider skip its
+        # `_validate_categories_schema_if_needed` check, so the spider validates
+        # the inventory itself. Every entry must still be a well-formed dict.
+        for entry in self.spider.categories:
+            self.assertIsInstance(entry, dict)
+            self.assertIsInstance(entry["category"], str)
+            self.assertTrue(entry["category"])
+            self.assertIsInstance(entry["url"], str)
+            self.assertTrue(entry["url"])
+            # The category token has to be recoverable from the url, since that
+            # is what resolve_target_url() feeds to the SIK request.
+            self.assertEqual(
+                IkeaListingSpider._category_id(entry["url"]), entry["category"]
+            )
+        # The default construction path runs the same validation.
+        self.assertEqual(len(IkeaListingSpider(category="st004").categories), 221)
+
+    def test_malformed_inventory_is_rejected(self):
+        # A bad entry must fail at construction, not later as a confusing
+        # "Unknown category" error at crawl time.
+        with self.assertRaisesRegex(ValueError, "missing string 'category'"):
+            self._spider_with_inventory(
+                [{"category": "", "url": "https://www.ikea.com/us/en/cat/x-st999/"}]
+            )
+        with self.assertRaisesRegex(ValueError, "does not match the token"):
+            self._spider_with_inventory(
+                [
+                    {
+                        "category": "st004",
+                        "url": "https://www.ikea.com/us/en/cat/other-st001/",
+                    }
+                ]
+            )
+        with self.assertRaisesRegex(ValueError, "missing string 'url'"):
+            self._spider_with_inventory([{"category": "st004", "url": ""}])
+        with self.assertRaisesRegex(ValueError, "missing string 'url'"):
+            self._spider_with_inventory([{"category": "st004"}])
+
+    @staticmethod
+    def _spider_with_inventory(categories):
+        class _Spider(IkeaListingSpider):
+            pass
+
+        _Spider.categories = categories
+        return _Spider(category="st004")
+
+    def test_unknown_mode_is_rejected(self):
+        with self.assertRaisesRegex(ValueError, "Unknown -a mode"):
+            IkeaListingSpider(category="st004", mode="jsonld")
+
+    def test_html_fallback_parses_server_rendered_cards(self):
+        # Reduced capture of the live st004 PLP (2026-10-02 UTC): the
+        # `.js-product-list[data-category]` state plus the first two of the 24
+        # server-rendered `.plp-fragment-wrapper` cards.
+        spider = IkeaListingSpider(category="st004", max_pages=2, mode="html")
+        request = next(spider.start_requests())
+        self.assertEqual(request.url, spider.resolve_target_url())
+        self.assertEqual(request.callback.__func__, IkeaListingSpider.parse_html)
+        items = list(spider.parse_html(self.html_response(request)))
+        self.assertEqual(len(items), 2)
+        first = items[0]
+        self.assertEqual(first["item_id"], "60561248")
+        self.assertEqual(first["title"], "STORKLINTA")
+        self.assertEqual(first["product_type"], "6-drawer dresser")
+        self.assertEqual(first["design"], "white/anchor/unlock function")
+        self.assertEqual(first["dimensions"], '55 1/8x18 7/8x29 1/2 "')
+        self.assertEqual(first["price"], 249.99)
+        self.assertEqual(first["currency"], "USD")
+        self.assertEqual(first["rating"], 3.9)
+        self.assertEqual(first["reviews_count"], 320)
+        self.assertEqual(first["badge"], "Best seller")
+        self.assertEqual(first["availability"], "InStock")
+        self.assertEqual(first["source"], "ikea_plp_html")
+        self.assertEqual(first["page"], 1)
+        self.assertTrue(first["url"].endswith("-60561248/"))
+        self.assertTrue(first["image_url"].endswith("_s5.jpg?f=xxs"))
+        self.assertEqual(len(first["image_urls"]), 2)
+        self.assertIn("Modern white chest of drawers", first["image_alt"])
+        # Every exported item carries `raw` in both modes.
+        self.assertTrue(all("raw" in item and item["raw"] for item in items))
+        self.assertEqual(first["raw"]["itemNo"], "60561248")
+        # The HTML path is page 1 only: it must not chain a second request.
+        self.assertNotIn("data-category", {k for k in first["raw"]})
+
+    def test_html_fallback_hub_url_is_rejected_clearly(self):
+        # Issue #114: a hub-only URL must be rejected, not silently empty.
+        spider = IkeaListingSpider(
+            url="https://www.ikea.com/us/en/cat/storage-organization-st001/", mode="html"
+        )
+        request = next(spider.start_requests())
+        body = b"<html><body><div class='plp-main-container'></div></body></html>"
+        response = HtmlResponse(
+            request.url, request=request, body=body, encoding="utf-8"
+        )
+        with self.assertRaisesRegex(RuntimeError, "category hub"):
+            list(spider.parse_html(response))
+
+    def test_html_fallback_requires_product_cards(self):
+        spider = IkeaListingSpider(category="st004", mode="html")
+        request = next(spider.start_requests())
+        body = b"<html><body><div class='js-product-list' data-category='{}'></div></body></html>"
+        response = HtmlResponse(
+            request.url, request=request, body=body, encoding="utf-8"
+        )
+        with self.assertRaisesRegex(RuntimeError, "plp-fragment-wrapper"):
+            list(spider.parse_html(response))
+
+    def test_api_mode_does_not_request_the_html_page(self):
+        # mode=html is opt-in; the default run must hit SIK only.
+        first = next(self.spider.start_requests())
+        self.assertIn("sik.search.blue.cdtapps.com", first.url)
+        self.assertEqual(first.callback.__func__, IkeaListingSpider.parse)
+
     def test_sik_version_is_configurable(self):
         self.assertIn("v=20250507", self.spider.api_url)
         overridden = IkeaListingSpider(category="st004", sik_version="20990101")
@@ -189,4 +303,12 @@ class IkeaListingSpiderTest(unittest.TestCase):
     def response_from(self, request, payload):
         return TextResponse(
             request.url, request=request, body=json.dumps(payload).encode(), encoding="utf-8"
+        )
+
+    def html_response(self, request, name="ikea-plp-sample.html"):
+        return HtmlResponse(
+            request.url,
+            request=request,
+            body=Path("sample", name).read_bytes(),
+            encoding="utf-8",
         )

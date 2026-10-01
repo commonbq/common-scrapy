@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+import html
 import json
 import re
 from typing import Any
+from urllib.parse import urljoin
 
 import scrapy
 
@@ -39,6 +41,13 @@ class IkeaListingSpider(BaseListingSpider):
     require_category_arg = False
 
     SIK_BASE_URL = "https://sik.search.blue.cdtapps.com/us/en"
+    # "api" (default) uses the SIK JSON endpoint. "html" is the diagnostic /
+    # fallback path described in issue #114: it parses the server-rendered
+    # `.plp-fragment-wrapper` cards of the category PLP. HTML covers page 1
+    # only, so it is opt-in rather than an automatic fallback — a silent
+    # downgrade would hide exactly the schema drift the API path reports loudly.
+    DEFAULT_MODE = "api"
+    HTML_MODES = {"html", "fallback"}
     # IKEA validates the SIK query version server-side: an unknown value returns
     # HTTP 400 rather than an empty result set, so it is pinned to the last known
     # good value but overridable with `-a sik_version=` when IKEA rotates it.
@@ -88,6 +97,40 @@ class IkeaListingSpider(BaseListingSpider):
         self.sik_version = str(
             kwargs.get("sik_version") or self.DEFAULT_SIK_VERSION
         ).strip()
+        self.mode = str(kwargs.get("mode") or self.DEFAULT_MODE).strip().lower()
+        if self.mode not in {self.DEFAULT_MODE} | self.HTML_MODES:
+            raise ValueError(
+                f"Unknown -a mode={self.mode!r}. Use 'api' (default) or 'html'."
+            )
+        self._validate_inventory()
+
+    def _validate_inventory(self) -> None:
+        """Enforce the `{'category', 'url'}` inventory contract.
+
+        `BaseListingSpider._validate_categories_schema_if_needed` returns early
+        whenever `require_category_arg` is False, which this spider needs so
+        that `-a url=` / `-a category_url=` runs reach `start_requests()`. The
+        inventory is therefore never schema-checked by the base class, so a
+        malformed entry in `ikea_categories.py` would only surface much later as
+        a confusing `Unknown category ... Available categories: ...` error.
+        Validate it here instead.
+        """
+        if not isinstance(self.categories, list) or not self.categories:
+            raise ValueError(
+                "IKEA inventory must define `categories` as a non-empty list of "
+                "{'category','url'} dicts"
+            )
+        for i, entry in enumerate(self.categories):
+            if not isinstance(entry, dict):
+                raise ValueError(f"categories[{i}] must be a dict")
+            for key in ("category", "url"):
+                if not isinstance(entry.get(key), str) or not entry[key]:
+                    raise ValueError(f"categories[{i}] missing string '{key}'")
+            if self._category_id(entry["url"]) != entry["category"]:
+                raise ValueError(
+                    f"categories[{i}] 'category' {entry['category']!r} does not match "
+                    f"the token in its url {entry['url']!r}"
+                )
 
     @property
     def api_url(self) -> str:
@@ -100,7 +143,18 @@ class IkeaListingSpider(BaseListingSpider):
             raise ValueError(
                 "IKEA listing URL must end in a category token such as 'st004' or '10451'"
             )
+        if self.mode in self.HTML_MODES:
+            yield self._html_request(category_id, category_url, page=1)
+            return
         yield self._api_request(category_id, category_url, page=1)
+
+    def _html_request(self, category_id: str, category_url: str, *, page: int):
+        return scrapy.Request(
+            category_url,
+            callback=self.parse_html,
+            meta={"page": page, "category_id": category_id, "category_url": category_url},
+            dont_filter=True,
+        )
 
     def _api_request(self, category_id: str, category_url: str, *, page: int):
         body = {
@@ -210,6 +264,147 @@ class IkeaListingSpider(BaseListingSpider):
         end = int(window.get("end") or page * self.PAGE_SIZE)
         if page < self.max_pages and new_products and end < int(total):
             yield self._api_request(category_id, category_url, page=page + 1)
+
+    def parse_html(self, response: scrapy.http.Response, **kwargs):
+        """Diagnostic/fallback path: parse the server-rendered PLP cards.
+
+        Issue #114 asks for a server-rendered fallback so page 1 stays crawlable
+        if the SIK endpoint is unavailable. It is deliberately opt-in
+        (`-a mode=html`) and page 1 only: the storefront hydrates the rest of
+        the grid through SIK, so there is no HTML equivalent of offset windows.
+        """
+        page = int(response.meta["page"])
+        category_url = response.meta["category_url"]
+        if response.status != 200:
+            raise RuntimeError(
+                f"IKEA listing page failed with HTTP {response.status}: {response.url}"
+            )
+        container = response.css(".js-product-list")
+        if not container:
+            # A hub-only category (e.g. storage-organization-st001) renders no
+            # product-list state at all. Say so rather than yielding nothing.
+            raise RuntimeError(
+                f"No .js-product-list container at {response.url}; this URL is a "
+                "category hub, not a product listing"
+            )
+        state = self._product_list_state(container)
+
+        cards = response.css(".plp-fragment-wrapper[data-product-number]")
+        if not cards:
+            raise RuntimeError(
+                f"No .plp-fragment-wrapper product cards found at {response.url}; "
+                "the server-rendered grid markup may have changed"
+            )
+
+        category_id = self._category_id(category_url) or state.get("id") or ""
+        for card in cards:
+            item_id = (card.attrib.get("data-product-number") or "").strip()
+            if not item_id:
+                raise RuntimeError(
+                    f"IKEA HTML card on page {page} is missing data-product-number; "
+                    "schema may have changed"
+                )
+            if item_id in self._seen_ids:
+                continue
+            self._seen_ids.add(item_id)
+            yield self._html_card_item(card, item_id, category_id, category_url, page)
+
+    @staticmethod
+    def _product_list_state(container) -> dict[str, Any]:
+        """Decode `.js-product-list[data-category]`; the state is HTML-escaped JSON."""
+        raw = container.attrib.get("data-category")
+        if not raw:
+            return {}
+        try:
+            state = json.loads(raw)
+        except json.JSONDecodeError:
+            state = json.loads(html.unescape(raw))
+        return state if isinstance(state, dict) else {}
+
+    def _html_card_item(
+        self,
+        card,
+        item_id: str,
+        category_id: str,
+        category_url: str,
+        page: int,
+    ) -> dict[str, Any]:
+        # The card description packs type, finish and measurements into one
+        # comma-separated string, e.g. "6-drawer dresser, white, 27 1/2x18 7/8x38 5/8".
+        description = self._text(
+            card.css(".plp-price-module__description::text").get()
+        )
+        parts = [part.strip() for part in description.split(",")] if description else []
+        product_type = parts[0] if parts else None
+        design = parts[1] if len(parts) > 2 else None
+        dimensions = parts[-1] if len(parts) > 2 else None
+
+        price = card.attrib.get("data-price")
+        images = card.css("img.plp-product__image::attr(src)").getall()
+        image_urls = [urljoin(category_url, src) for src in images if src]
+        main_image = image_urls[0] if image_urls else None
+        # Rating is only in the screen-reader text ("Review: 3.9 out of 5 stars.
+        # Total reviews: "); the visible count sits in a separate span.
+        reviews = self._text(
+            card.css(".plp-price-module__rating-label-count::text").get()
+        )
+        rating = self._text(card.css(".plp-rating__sr-only::text").get())
+        # A card with a filled add-to-cart button is orderable; without one the
+        # product is not currently sold online.
+        add_to_cart = bool(card.css(".plp-btn--icon-emphasised"))
+        badge = self._text(card.css(".plp-product-badge::text").get())
+
+        product = {
+            "itemNo": item_id,
+            "name": card.attrib.get("data-product-name"),
+            "typeName": product_type,
+            "validDesignText": design,
+            "itemMeasureReferenceText": dimensions,
+            "pipUrl": urljoin(
+                category_url,
+                card.css(".plp-price-module__product-link::attr(href)").get() or "",
+            ),
+            "mainImageUrl": main_image,
+            "mainImageAlt": self._text(
+                card.css("img.plp-product__image::attr(alt)").get()
+            ),
+            # The rendered card carries a main image plus one contextual shot;
+            # map them onto the same key the API path uses so `image_urls`
+            # stays populated in both modes.
+            "allProductImage": [{"url": src} for src in image_urls],
+            "salesPrice": {
+                "numeral": float(price) if price else None,
+                "currencyCode": card.attrib.get("data-currency"),
+            },
+            "ratingValue": self._float(self._re(r"([\d.]+)\s+out of", rating)),
+            "ratingCount": self._int(re.sub(r"[^\d]", "", reviews or "")),
+            "badge": {"text": badge} if badge else None,
+            "onlineSellable": add_to_cart,
+        }
+        return self._product_item(product, item_id, category_id, category_url, page) | {
+            "source": "ikea_plp_html",
+            "raw": product,
+        }
+
+    @staticmethod
+    def _text(value: str | None) -> str | None:
+        value = (value or "").strip()
+        return value or None
+
+    @staticmethod
+    def _re(pattern: str, value: str | None):
+        if not value:
+            return None
+        match = re.search(pattern, value)
+        return match.group(1) if match else None
+
+    @staticmethod
+    def _int(value: str | None) -> int | None:
+        return int(value) if value and value.isdigit() else None
+
+    @staticmethod
+    def _float(value: str | None) -> float | None:
+        return float(value) if value else None
 
     @staticmethod
     def _product_item(
