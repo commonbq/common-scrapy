@@ -86,7 +86,9 @@ class AsosListingSpider(BaseListingSpider):
         page = int(response.meta["page"])
         offset = int(response.meta["api_query"]["offset"])
         limit = int(response.meta["api_query"]["limit"])
-        total = self._integer(payload.get("itemCount")) or 0
+        total = self._integer(payload.get("itemCount"))
+        if total is None:
+            raise RuntimeError(f"ASOS search API has no numeric itemCount at {response.url}")
         if products and page < self.max_pages and offset + len(products) < total:
             query = dict(response.meta["api_query"])
             query["offset"] = offset + limit
@@ -160,7 +162,7 @@ class AsosListingSpider(BaseListingSpider):
             "style_id": str(product.get("productCode") or product.get("colourWayId") or "") or None,
             "title": product.get("name"),
             "brand": product.get("brandName"),
-            "url": urljoin("https://www.asos.com/", product_url) if product_url else None,
+            "url": urljoin("https://www.asos.com/us/", str(product_url).lstrip("/")) if product_url else None,
             "image_url": self._https_url(image_url),
             "color": product.get("colour"),
             "price": self._number(current.get("value")),

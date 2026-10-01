@@ -588,14 +588,19 @@ def flatten_categories() -> list[dict[str, str]]:
     """Flatten navigation labels and deduplicate identical category IDs."""
     categories = []
     seen = set()
+    aliases = set()
     for department, entries in ASOS_CATEGORY_INVENTORY.items():
         for label, url in entries.items():
             cid = parse_qs(urlparse(url).query).get("cid", [None])[0]
             if not cid or cid in seen:
                 continue
             seen.add(cid)
+            alias = f"{department}-{_slug(label)}"
+            if alias in aliases:
+                alias = f"{alias}-{cid}"
+            aliases.add(alias)
             categories.append({
-                "category": f"{department}-{_slug(label)}",
+                "category": alias,
                 "subcategory": label,
                 "department": department,
                 "cid": cid,

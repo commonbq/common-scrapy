@@ -29,6 +29,7 @@ class AsosListingSpiderTests(unittest.TestCase):
         self.assertGreater(len(ASOS_CATEGORIES), 100)
         self.assertIn("cid=53315", self.spider.resolve_target_url())
         self.assertEqual(len({entry["cid"] for entry in ASOS_CATEGORIES}), len(ASOS_CATEGORIES))
+        self.assertEqual(len({entry["category"] for entry in ASOS_CATEGORIES}), len(ASOS_CATEGORIES))
 
     def test_hydration_mapping_feed_contract_and_proxy_handoff(self):
         outputs = list(self.spider.parse(self.response()))
@@ -38,6 +39,7 @@ class AsosListingSpiderTests(unittest.TestCase):
         self.assertEqual(item["style_id"], "156233978")
         self.assertEqual(item["price"], 99.99)
         self.assertEqual(item["original_price"], 120.0)
+        self.assertTrue(item["url"].startswith("https://www.asos.com/us/"))
         self.assertTrue(item["image_url"].startswith("https://"))
         follow = outputs[-1]
         self.assertIn("/categories/53315?", follow.url)
@@ -70,6 +72,9 @@ class AsosListingSpiderTests(unittest.TestCase):
                 list(self.spider.parse(self.response(body)))
         with self.assertRaisesRegex(RuntimeError, "invalid JSON"):
             list(self.spider.parse_api(self.response("not json", page=2, api_query={"offset": 2, "limit": 2})))
+        payload = {"products": []}
+        with self.assertRaisesRegex(RuntimeError, "numeric itemCount"):
+            list(self.spider.parse_api(self.response(json.dumps(payload), page=2, api_query={"offset": 2, "limit": 2})))
 
 
 if __name__ == "__main__":
