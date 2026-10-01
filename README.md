@@ -1041,7 +1041,7 @@ Run examples:
 
 Uses IKEA's SIK category-search endpoint as the single authoritative product
 source. The bundled inventory is normalized from 23 product departments and
-deduplicated by listing URL; category arguments are the final IKEA category
+deduplicated by IKEA item number; category arguments are the final IKEA category
 tokens (for example, `st004`). Requests use 24-product windows and stop at the
 reported product total or `max_pages`.
 
@@ -1052,8 +1052,9 @@ Run example:
 The ordered export fields are `category`, `item_id`, `title`, `product_type`,
 `dimensions`, `url`, `image_url`, `image_urls`, `price`, `currency`, `rating`,
 `reviews_count`, `badge`, `design`, `availability`, `page`, `category_url`, and
-`source`. The live verification returned 21 products in the first 24-slot window
-and 45 unique products across two windows (breakout slots are not products).
+`source`, and `raw`. The live verification returned 21 products in the first
+24-slot window and 45 unique products across two windows (breakout slots are not
+products).
 
 ### sallybeauty_listing
 

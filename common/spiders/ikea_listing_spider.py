@@ -36,6 +36,7 @@ def _load_categories() -> list[dict[str, str]]:
 class IkeaListingSpider(BaseListingSpider):
     name = "ikea_listing"
     allowed_domains = ["ikea.com", "www.ikea.com", "sik.search.blue.cdtapps.com"]
+    require_category_arg = False
 
     API_URL = "https://sik.search.blue.cdtapps.com/us/en/search?c=listaf&v=20250507"
     PAGE_SIZE = 24
@@ -63,6 +64,7 @@ class IkeaListingSpider(BaseListingSpider):
             "page",
             "category_url",
             "source",
+            "raw",
         ],
     }
 
@@ -138,14 +140,17 @@ class IkeaListingSpider(BaseListingSpider):
         except json.JSONDecodeError as exc:
             raise RuntimeError("IKEA SIK returned a non-JSON response") from exc
 
-        primary = next(
-            (
-                result
-                for result in payload.get("results", [])
-                if result.get("component") == "PRIMARY_AREA"
-            ),
-            None,
-        )
+        if payload.get("component") == "PRIMARY_AREA":
+            primary = payload
+        else:
+            primary = next(
+                (
+                    result
+                    for result in payload.get("results", [])
+                    if result.get("component") == "PRIMARY_AREA"
+                ),
+                None,
+            )
         if not primary:
             raise RuntimeError("IKEA SIK response is missing PRIMARY_AREA; schema may have changed")
 
@@ -164,7 +169,7 @@ class IkeaListingSpider(BaseListingSpider):
             new_products += 1
             yield self._product_item(product, item_id, category_id, category_url, page)
 
-        window = primary.get("metadata") or {}
+        window = primary.get("metadata_window") or primary.get("metadata") or {}
         total = (window.get("itemsPerType") or {}).get("PRODUCT") or window.get("max") or 0
         end = int(window.get("end") or page * self.PAGE_SIZE)
         if page < self.max_pages and new_products and end < int(total):
@@ -196,6 +201,7 @@ class IkeaListingSpider(BaseListingSpider):
             "page": page,
             "category_url": category_url,
             "source": "ikea_sik_search",
+            "raw": product,
         }
 
     @staticmethod

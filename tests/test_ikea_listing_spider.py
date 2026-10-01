@@ -15,18 +15,14 @@ class IkeaListingSpiderTest(unittest.TestCase):
 
     def response(self, request, *, start=0, end=24, total=147):
         payload = {
-            "results": [
-                {
-                    "component": "PRIMARY_AREA",
-                    "items": [self.product, {"type": "OFFERS"}],
-                    "metadata": {
-                        "start": start,
-                        "end": end,
-                        "max": total,
-                        "itemsPerType": {"PRODUCT": total},
-                    },
-                }
-            ]
+            "component": "PRIMARY_AREA",
+            "items": [self.product, {"type": "OFFERS"}],
+            "metadata_window": {
+                "start": start,
+                "end": end,
+                "max": total,
+                "itemsPerType": {"PRODUCT": total},
+            },
         }
         return TextResponse(
             request.url,
@@ -46,7 +42,13 @@ class IkeaListingSpiderTest(unittest.TestCase):
         self.assertEqual(item["price"], 249.99)
         self.assertEqual(item["rating"], 3.9)
         self.assertEqual(item["reviews_count"], 319)
+        self.assertEqual(item["raw"], self.product["product"])
         self.assertEqual(json.loads(second.body)["components"][0]["window"], {"size": 24, "offset": 24})
+
+    def test_accepts_url_only_input(self):
+        spider = IkeaListingSpider(url="https://www.ikea.com/us/en/cat/dressers-chests-of-drawers-st004/")
+        request = next(spider.start_requests())
+        self.assertEqual(request.meta["category_id"], "st004")
 
     def test_deduplicates_products_between_pages(self):
         first = next(self.spider.start_requests())
