@@ -537,10 +537,15 @@ class GamestopListingSpider(BaseListingSpider):
 
     @staticmethod
     def _availability(availability: dict[str, Any]) -> str:
-        if availability.get("available"):
-            return "InStock"
-        if availability.get("readyToOrder"):
-            return "PreOrder"
+        # `preorder` is checked first: preorder items are frequently also flagged
+        # `available` (they can be bought before release), so testing `available`
+        # ahead of it would label a real preorder as in stock.
+        # `readyToOrder` is deliberately NOT consulted -- it is an SFCC
+        # product-selection flag (the variant is selectable), not a preorder
+        # indicator, and in the captured payload it is `true` alongside
+        # `available: true` for ordinary in-stock products.
         if availability.get("preorder"):
             return "PreOrder"
+        if availability.get("available"):
+            return "InStock"
         return "OutOfStock"

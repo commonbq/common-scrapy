@@ -270,6 +270,31 @@ class GamestopListingSpiderTests(unittest.TestCase):
         self.assertEqual(item["list_price"], "109.99")
         self.assertIsNone(item["pro_price"])
 
+    def test_preorder_wins_over_available_in_stock_status(self):
+        # A preorder product is often also flagged `available` (it can be bought
+        # before release), so the preorder flag has to be tested first.
+        self.assertEqual(
+            GamestopListingSpider._availability(
+                {"preorder": True, "available": True, "readyToOrder": None}
+            ),
+            "PreOrder",
+        )
+        # `readyToOrder` is an SFCC product-selection flag, not a preorder
+        # indicator: it must not promote an unavailable variant to "PreOrder".
+        self.assertEqual(
+            GamestopListingSpider._availability(
+                {"preorder": None, "available": False, "readyToOrder": True}
+            ),
+            "OutOfStock",
+        )
+        # Ordinary in-stock product carrying the selection flag stays in stock.
+        self.assertEqual(
+            GamestopListingSpider._availability(
+                {"preorder": None, "available": True, "readyToOrder": True}
+            ),
+            "InStock",
+        )
+
     def test_base_price_used_when_no_sale_price(self):
         url = "https://www.gamestop.com/consoles-hardware"
         payload = {

@@ -77,7 +77,7 @@ Spiders below are returning items in recent smoke runs:
 | [`costco_listing`](#costco_search--costco_listing) | Active | React Flight + API | Akamai | Costco category listing with React Flight discovery and GRS search pagination. | 24 (ok) | 131 parent groups / 432 subcategory entries from `costco-categories.json` | `{"item_id":"100501081","title":"Starbucks Pike Place Medium Roast K-Cup","url":"https://www.costco.com/starbucks-pike-place-medium-roast-k-cup-72-count.product.100501081.html","price":...` |
 | [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | none detected (CloudFront CDN only) | e.l.f. Cosmetics multi-mode listing spider. | 6 (ok) | face, eyes, lips | `{'item_id':'300261','title':'Soft Glam Satin Concealer','url':'https://www.elfcosmetics.com/soft-glam-satin-concealer/300262.html','price':9.0,'brand':'e.l.f. Cosmetics','source':'elfcosmetics_preloaded_state'...}` |
 | [`fashionnova_listing`](#fashionnova_listing) | Active | api + html | Cloudflare | Fashion Nova listing via Shopify Storefront GraphQL with HTML fallback. | 48 (ok) | women, new, dresses, jeans, sale | `{"item_id":"175898317","title":"Classic High Waist Skinny Jeans - Dark Denim","url":"https://www.fashionnova.com/products/dark-blue-class...` |
-| [`gamestop_listing`](#gamestop_listing) | Active | api | none detected (ScrapeOps proxy) | GameStop SFCC Demandware listing via the `Tile-GetProductsJSON` controller (no HTML fallback). | 140 (3 pages, proxy) | 119 URLs across 33 category groups from `gamestop_categories.py` | `{"category":"consoles-hardware","item_id":"106429","title":"Nintendo Wii Original Console with Wii Remote - Super Mario Bros. 25th Anniversary Edition Red","price":"139.99","availability":"InStock","source":"gamestop_tile_json"...` |
+| [`gamestop_listing`](#gamestop_listing) | Active | api | none detected (ScrapeOps proxy) | GameStop SFCC Demandware listing via the `Tile-GetProductsJSON` controller (no HTML fallback). | 139 (3 pages, proxy) | 119 URLs across 33 category groups from `gamestop_categories.py` | `{"category":"consoles-hardware","item_id":"106429","title":"Nintendo Wii Original Console with Wii Remote - Super Mario Bros. 25th Anniversary Edition Red","price":"139.99","availability":"InStock","source":"gamestop_tile_json"...` |
 | [`homedepot_listing`](#homedepot_listing-category-apollo-state) | Flaky | bootstrap | Akamai | Home Depot department listings from embedded Apollo state. | 2 (fixture) | appliances, bath, building-materials, decor-and-furniture, electrical, flooring, hardware, heating-and-cooling, kitchen, lawn-and-garden, lighting, paint, plumbing, storage, tools | `{"category":"tools","item_id":"100000001","sku":"1000000001","title":"16 oz. Fiberglass Claw Hammer","brand":"Husky","price":14.97...` |
 | [`homedepot_search`](#homedepot_search-keyword-apollo-bootstrap) | Active | bootstrap + html | Akamai | Home Depot keyword search via Apollo state. | 24 (ok) | - | `{"item_id":"336787835","sku":"1014334650","brand":"Lukyamzn","title":"14 in. Dual-Core Celeron N4000 Laptop 6 GB RAM 128 GB SSD IPS Displ...` |
 | [`jcpenney_listing`](#jcpenney_listing) | Active | api | Akamai (+ reCAPTCHA scripts observed) | JCPenney listing spider via search API bootstrap endpoint. | 48 (ok) | womens_tops, mens_shirts | `{"item_id":"ppr5008584232","title":"St. John's Bay Womens Boat Neck Elbow Sleeve T-Shirt","brand":"st. john's bay","url":"https://www.jcp...` |
@@ -1237,7 +1237,13 @@ Notes:
 - `price` uses the sale price when GameStop provides one, otherwise the base
   price; `list_price` keeps the base price for comparison.
 - `availability` is normalized to `InStock` / `PreOrder` / `OutOfStock` from the
-  tile `availability` object.
+  tile `availability` object. The explicit `preorder` flag is checked **first**,
+  because a preorder item is often also flagged `available` (it can be bought
+  before release) and testing `available` first would report it as in stock.
+  `readyToOrder` is deliberately ignored -- it is an SFCC product-selection flag
+  (the variant is selectable), not a preorder indicator, and in the captured
+  payload it is `true` alongside `available: true` for ordinary in-stock
+  products.
 - `source` is always `gamestop_tile_json` -- every item comes from the same JSON
   controller.
 - The spider fails loudly on a non-200 response, an access-denied/challenge body,
@@ -1248,7 +1254,7 @@ Notes:
 - Fixtures live in `sample/gamestop-listing-grid.html`,
   `sample/gamestop-tile-products.json`, and `sample/gamestop-categories.json`.
 - Tests: `.venv/bin/python -m unittest tests.test_gamestop_listing_spider`
-  (28 network-free fixture tests).
+  (29 network-free fixture tests).
 ### maccosmetics_listing
 ```json
 {
