@@ -106,7 +106,7 @@ class AsosListingSpider(BaseListingSpider):
                 self._api_url(response.meta["cid"], query),
                 callback=self.parse_api,
                 headers=self._api_headers(response.meta["referer"]),
-                meta={**response.meta, "page": page + 1, "api_query": query},
+                meta=self._api_meta(response.meta, page=page + 1, api_query=query),
             )
 
     def _emit_products(self, products, response, payload, source):
@@ -136,7 +136,13 @@ class AsosListingSpider(BaseListingSpider):
             self._api_url(cid, api_query),
             callback=self.parse_api,
             headers=self._api_headers(response.url),
-            meta={**response.meta, "page": next_page, "cid": cid, "api_query": api_query, "referer": response.url},
+            meta=self._api_meta(
+                response.meta,
+                page=next_page,
+                cid=cid,
+                api_query=api_query,
+                referer=response.url,
+            ),
         )
 
     # Fields the PLP bootstrap sends that are not part of the search API request
@@ -148,6 +154,21 @@ class AsosListingSpider(BaseListingSpider):
         "browsedRegion", "deliveryCurrency", "experiment", "isSearchPage",
         "page", "searchTerm", "web analytics", "personalisation",
     }
+
+    @staticmethod
+    def _api_meta(base_meta: dict, **overrides) -> dict:
+        """Copy spider state onto an API request without leaking proxy credentials.
+
+        `HttpProxyMiddleware` rewrites `meta["proxy"]` to the credential-free URL and
+        stashes the credentialed one in `meta["_auth_proxy"]` before the request is
+        sent. Copying either key forward makes the follow-up request look like it was
+        already authenticated, so the middleware reuses the sanitized URL without
+        re-attaching `Proxy-Authorization` and the API leg fails with HTTP 407.
+        Dropping both lets the project middleware restore auth on every API request.
+        """
+        meta = {key: value for key, value in base_meta.items() if key not in ("proxy", "_auth_proxy")}
+        meta.update(overrides)
+        return meta
 
     @classmethod
     def _normalized_query(cls, query: dict) -> dict:

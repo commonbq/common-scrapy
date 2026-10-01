@@ -71,7 +71,41 @@ class AsosListingSpiderTests(unittest.TestCase):
         self.assertIn("/categories/53315?", follow.url)
         self.assertIn("keyStoreDataversion=fixture-version", follow.url)
         self.assertIn("offset=2", follow.url)
-        self.assertEqual(follow.meta["proxy"], "http://proxy.invalid:8080")
+        # The API handoff must not inherit the page-1 proxy state: `HttpProxyMiddleware`
+        # has already sanitized it, and forwarding it would skip re-authentication.
+        self.assertNotIn("proxy", follow.meta)
+        self.assertNotIn("_auth_proxy", follow.meta)
+        self.assertEqual(follow.meta["cid"], "53315")
+        self.assertEqual(follow.meta["page"], 2)
+
+    def test_followup_reapplies_authenticated_proxy(self):
+        from scrapy.downloadermiddlewares.httpproxy import HttpProxyMiddleware
+        from scrapy.settings import Settings
+        from common.middlewares import CommonDownloaderMiddleware
+
+        self.spider.settings = Settings({"PROXY": "http://user:password@localhost:8080"})
+        project_proxy = CommonDownloaderMiddleware()
+        http_proxy = HttpProxyMiddleware()
+
+        first = Request("https://www.asos.com/us/women/", meta={"page": 1})
+        project_proxy.process_request(first, self.spider)
+        http_proxy.process_request(first, self.spider)
+        self.assertEqual(first.meta["proxy"], "http://localhost:8080")
+        authorization = first.headers["Proxy-Authorization"]
+
+        # Simulate the page-1 response as the downloader would hand it back.
+        page_one = TextResponse(
+            "https://www.asos.com/us/women/occasionwear/cat/?cid=53315",
+            request=Request(first.url, meta=dict(first.meta)),
+            body=self.sample, encoding="utf-8",
+        )
+        following = [r for r in self.spider.parse(page_one) if isinstance(r, Request)][-1]
+        self.assertNotIn("_auth_proxy", following.meta)
+        self.assertNotIn("proxy", following.meta)
+
+        project_proxy.process_request(following, self.spider)
+        http_proxy.process_request(following, self.spider)
+        self.assertEqual(following.headers["Proxy-Authorization"], authorization)
 
     def test_legacy_flat_hydration_shape_is_still_supported(self):
         # ASOS previously hydrated a flat {products, itemCount, query} object; the

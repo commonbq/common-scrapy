@@ -185,8 +185,12 @@ Run example (2 items from the committed hydration fixture):
 python3 -m http.server 8765 --bind 127.0.0.1 &
 HTTPCACHE_ENABLED=False python3 -m common_scrapy.cli crawl asos_listing \
   -a category_url=http://127.0.0.1:8765/sample/asos-listing-sample.html \
-  -a max_pages=1 -O asos.jsonl -s HTTPCACHE_ENABLED=False
+  -a max_pages=1 -O asos.jsonl -s HTTPCACHE_ENABLED=False -s PROXY=
 ```
+
+`-s PROXY=` is required for a local fixture run: the project downloader middleware otherwise
+forces every request, including `127.0.0.1`, through the configured `PROXY` from `.env`, and
+the fixture server answers with a gateway error instead of the sample HTML.
 
 | item_id | title | brand | price | original_price | currency | is_selling_fast |
 |---|---|---|---:|---:|---|---|
@@ -195,6 +199,7 @@ HTTPCACHE_ENABLED=False python3 -m common_scrapy.cli crawl asos_listing \
 
 Verification notes:
 * The committed fixture exports 2 items with every `FEED_EXPORT_FIELDS` field populated, including `raw`. The pagination handoff is covered by deterministic contract tests rather than a live crawl.
+* The API handoff drops `proxy`/`_auth_proxy` from the copied request meta. `HttpProxyMiddleware` rewrites `meta["proxy"]` to the credential-free URL and stashes the credentialed one in `_auth_proxy`, so forwarding either key would make the follow-up request look pre-authenticated, skip re-attaching `Proxy-Authorization`, and fail the API leg with HTTP 407. `tests/test_asos_listing_spider.py` asserts the follow-up re-applies proxy authentication end to end.
 * Live output is currently **unverified**: a direct cache-disabled storefront attempt from this runner did not complete, so no live item count or `total_count` is claimed here. Treat `category=women` / `category=men` runs as unverified until run against the real storefront.
 * In this sandbox Scrapy receives a 407 on the proxy CONNECT tunnel for the API leg specifically, while `curl` succeeds on an identical URL. The generated API URL is correct; the page-1 hydration leg is unaffected. Treat multi-page runs as unverified locally until run on a host without the TLS-intercepting middlebox.
 * An Akamai access-denied/challenge page is detected before hydration extraction and fails with a targeted message rather than a generic "no valid hydration" error.
