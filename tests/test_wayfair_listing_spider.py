@@ -7,6 +7,7 @@ from scrapy.selector import Selector
 from common.spiders.wayfair_categories import (
     WAYFAIR_CATEGORIES,
     WAYFAIR_CATEGORY_INVENTORY,
+    classify_target,
 )
 from common.spiders.wayfair_listing_spider import WayfairListingSpider
 
@@ -39,6 +40,31 @@ class WayfairListingSpiderTests(unittest.TestCase):
             "https://www.wayfair.com/furniture/sb0/sofas-c413892.html",
         )
 
+    def test_only_listing_targets_are_runnable_categories(self):
+        # Hubs and informational pages stay in the inventory but must not be crawl targets.
+        self.assertEqual(classify_target("https://www.wayfair.com/m/living-room"), "hub")
+        self.assertEqual(classify_target("https://www.wayfair.com/affirm"), "informational")
+        self.assertEqual(classify_target("https://www.wayfair.com/help/article/returns/"), "informational")
+        self.assertEqual(classify_target("https://www.wayfair.com/design-services/?src=furn"), "informational")
+        self.assertEqual(classify_target("https://www.wayfair.com/ideas-and-advice/type/x~M1"), "informational")
+        self.assertEqual(classify_target(
+            "https://www.wayfair.com/furniture/cat/furniture-c45974.html", is_department_root=True), "hub")
+        self.assertEqual(classify_target("https://www.wayfair.com/furniture/sb0/sofas-c413892.html"), "listing")
+
+        urls = {entry["url"] for entry in WAYFAIR_CATEGORIES}
+        for bad in (
+            "https://www.wayfair.com/help/article/returns/",
+            "https://www.wayfair.com/affirm",
+            "https://www.wayfair.com/design-services/?src=furn",
+            "https://www.wayfair.com/m/motion-upholstery",
+            "https://www.wayfair.com/furniture/cat/furniture-c45974.html",
+        ):
+            with self.subTest(url=bad):
+                self.assertNotIn(bad, urls)
+        # Real listings, including brand and curated collections, remain exposed.
+        self.assertIn("https://www.wayfair.com/furniture/sb0/sofas-c413892.html", urls)
+        self.assertIn("https://www.wayfair.com/curated/top-rated-furniture~ev426445.html", urls)
+
     def test_fixture_card_extracts_all_normalized_fields(self):
         card = Selector(text=self.sample).xpath('//*[@data-test-id="ListingCard"]')[0]
         item = self.spider._extract_card(card, "https://www.wayfair.com/furniture/")
@@ -65,6 +91,19 @@ class WayfairListingSpiderTests(unittest.TestCase):
         self.assertEqual(len(requests), 1)
         self.assertEqual(requests[0].url, "https://www.wayfair.com/furniture/sb0/sofas-c413892.html?curpage=2")
         self.assertEqual(list(self.spider.parse(self.response(body, page=2))), [])
+
+    def test_is_sponsored_reads_card_own_clio_context(self):
+        # Regression: isSponsored is on the ListingCard, while the inner CardWrapper
+        # context carries only listing/variant IDs, so reading it from the wrapper
+        # always produced false.
+        sponsored = self.sample.replace(
+            'data-clio-context=\'{"indexWithinParent":1,"isSponsored":false}\'',
+            'data-clio-context=\'{"indexWithinParent":1,"isSponsored":true}\'',
+        )
+        self.assertNotEqual(sponsored, self.sample)
+        card = Selector(text=sponsored).xpath('//*[@data-test-id="ListingCard"]')[0]
+        item = self.spider._extract_card(card, "https://www.wayfair.com/furniture/")
+        self.assertTrue(item["is_sponsored"])
 
     def test_hub_page_without_browse_grid_fails_visibly(self):
         with self.assertRaisesRegex(ValueError, "hub or blocked"):

@@ -112,6 +112,9 @@ class WayfairListingSpider(BaseListingSpider):
 
         context_node = card.xpath('.//*[@data-clio-context and @data-test-id="CardWrapper"][1]')
         context = self._json_object(context_node.attrib.get("data-clio-context"))
+        # `isSponsored` lives on the ListingCard's own clio context; the inner
+        # CardWrapper context only carries displayListingID/VariantID.
+        card_context = self._json_object(card.attrib.get("data-clio-context"))
         href = card.xpath('.//a[contains(@href, "/pdp/")][1]/@href').get()
         image = card.xpath('.//img[@data-name-id="ListingCardImageCarouselLeadImage"][1]')
         if not image:
@@ -152,7 +155,7 @@ class WayfairListingSpider(BaseListingSpider):
             "delivery": metadata.get("shippingBadgeText") or self._text(
                 card.xpath('.//*[@data-name-id="ShippingWidgetPlainText"]//text()').getall()
             ) or None,
-            "is_sponsored": bool(context.get("isSponsored", False)),
+            "is_sponsored": bool(card_context.get("isSponsored", False)),
             "raw": tracking or None,
         }
 
