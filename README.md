@@ -86,6 +86,7 @@ Spiders below are returning items in recent smoke runs:
 | [`maccosmetics_listing`](#maccosmetics_listing) | Experimental | api + bootstrap + html | Akamai | MAC Cosmetics multi-mode listing spider. | 66 (ok) | face, lips, eyes | `{"item_id":"13854","title":"4.8/5 ( 452 ) Lustreglass Sheer-Shine Lipstick Sheer Coverage, Glossy/High-Shine Finish, Infused With Raspberry Seed/Organic Extra Virgin Olive Oils ...` |
 | [`poshmark_listing`](#poshmark_listing) | Experimental | bootstrap | none detected | Poshmark listing spider via `window.__INITIAL_STATE__` category grid data. | 48 (ok) | women, men, kids, home, electronics, pets | `{"category":"women","item_id":"6989d90ac4e7b4d4de556bac","title":"🔥Stunning  Farm Rio NWT Size Large Tropical Midi Dress with Sleeves – V...` |
 | [`qvc_listing`](#qvc_listing) | Experimental | html + bootstrap | Akamai | QVC listing spider via server-rendered gallery cards and `utag_data` page state. | 96 (Beauty proxy capture) | fashion | `{"category":"beauty","category_id":"NAV6285","item_id":"A740517","title":"Whish 12 Days of Beauty Whishes Advent Calendar","price":59.98,...}` |
+| [`zappos_listing`](#zappos_listing) | Experimental | Redux hydration | none detected through proxy | Zappos listings from `window.__INITIAL_STATE__.products.list`. | 100 (one-page proxy smoke) | 4 departments / 50 targets | `{"item_id":"8910671","title":"Kiruna Padded Parka","brand":"Fjällräven","price":300.0,...}` |
 | [`saksfifthavenue_listing`](#saksfifthavenue_listing-category) | Experimental | html | DataDome | Saks Fifth Avenue listing spider via direct category HTML cards. | 24 (ok) | women, men, shoes, beauty, handbags | `{"item_id":"0400026449047","title":"Prada Washed Re Nylon Rain Jacket","url":"https://www.saksfifthavenue.com/product/prada-washed-re-nyl...` |
 | [`sallybeauty_listing`](#sallybeauty_listing) | Experimental | html + AJAX | PerimeterX / HUMAN (px-captcha signals) | Sally Beauty SFCC product-grid spider with `Search-UpdateGrid` pagination. | 2 (fixture) | hair-color, hair-care, textured-curly-hair, hair-extensions, tools-brushes, nails, cosmetics-skin-care, fragrances, mens-grooming, salon-supplies, new, deals | `{"category":"hair-care","item_id":"SBS-539230","title":"Low Porosity Aloe Vera Gel Shampoo","brand":"Texture ID","price":11.99...` |
 | [`stockx_listing`](#stockx_listing) | Experimental | bootstrap + html | Cloudflare | StockX listing via `__NEXT_DATA__` bootstrap. | 41 (ok) | sneakers, apparel, electronics, trading-cards, collectibles | `{"item_id":"brands","title":"Brands","url":"https://stockx.com/brands","price":null,"currency":null}` |
@@ -112,6 +113,23 @@ Many listing spiders accept `-a category=<name>` shortcuts (in addition to `-a c
 #### Sample output
 
 Below are trimmed examples from recent local test runs (JSONL output, 1 item shown).
+
+### zappos_listing
+
+`zappos_listing` uses one authoritative source: the server-rendered Redux state
+at `window.__INITIAL_STATE__.products.list`. It supports four department
+shortcuts plus every captured Department subcategory, direct `category_url` or
+`url` input, and follows the HTML `rel=next` link. Its ordered
+`FEED_EXPORT_FIELDS` contract includes product/style IDs, price, color, rating,
+sale state, crawl context, and the raw hydrated product record.
+
+```bash
+HTTPCACHE_ENABLED=False common-scrapy crawl zappos_listing --category women -a max_pages=2 -O zappos.jsonl -s HTTPCACHE_ENABLED=False
+```
+
+```json
+{"category":"women","department":"Women","item_id":"8910671","style_id":"4036549","title":"Kiruna Padded Parka","brand":"Fjällräven","color":"Black","price":300.0,"original_price":375.0,"currency":"USD","rating":3.7,"reviews_count":38,"on_sale":true,"page":1,"source":"zappos_initial_state_products"}
+```
 
 ### amazon_search
 ```json
