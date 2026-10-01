@@ -155,7 +155,9 @@ Run example:
 
 ### asos_listing
 
-ASOS page 1 is read from the server-rendered `window.asos.plp._data` bootstrap. Later pages use the search API and carry its query contract, including `keyStoreDataversion`, directly from that bootstrap.
+ASOS page 1 is read from the server-rendered `window.asos.plp._data` bootstrap. Later pages use the search API and carry its query contract, including `keyStoreDataversion`, directly from that bootstrap. The handoff forwards every non-null field of the hydrated `query` object rather than a fixed allowlist, so refined categories keep their `brand`/`sizeFilter`/`priceFilter` refinements on later pages instead of widening back to the bare CID; only browser-only keys (`browsedRegion`, `deliveryCurrency`, `experiment`, …) are dropped. Structured filters are JSON-encoded in the query string, matching the hydrated contract.
+
+The bootstrap currently nests the listing under a `search` object (`state["search"]["products"]`), with the older flat `{products, itemCount, query}` shape still supported. Product fields are normalized from both shapes, since the PLP sends a bare numeric `price` with `description`/`image` while the search API keeps a nested price object with `name`/`imageUrl`.
 
 The `women` and `men` shortcuts target each department's "New In" listing (`cid=27108` / `cid=27110`). The department landing pages themselves (`/us/women/`, `/us/men/`) are navigation-only and serve no listing data, so they cannot be crawled directly. Every other category alias comes from the 412-CID inventory in `asos_categories.py`.
 
@@ -176,8 +178,13 @@ The `women` and `men` shortcuts target each department's "New In" listing (`cid=
 }
 ```
 
-Run example (72 items from the `women` department listing):
+Run example (72 items from the `women` department listing, verified live 2026-10-01):
 `HTTPCACHE_ENABLED=False common-scrapy crawl asos_listing -a category=women -a max_pages=2 -O asos.jsonl -s HTTPCACHE_ENABLED=False`
+
+Live verification notes:
+* `category=women` → 72 items, `total_count` 7377; `category=men` → 72 items, `total_count` 2168. All exported fields populated and `raw` present on every item.
+* In this sandbox Scrapy receives a 407 on the proxy CONNECT tunnel for the API leg specifically, while `curl` succeeds on an identical URL. The generated API URL is correct; the page-1 hydration leg is unaffected. Treat multi-page runs as unverified locally until run on a host without the TLS-intercepting middlebox.
+* An Akamai access-denied/challenge page is detected before hydration extraction and fails with a targeted message rather than a generic "no valid hydration" error.
 
 ### walmart_listing (category)
 ```json

@@ -139,13 +139,28 @@ class AsosListingSpider(BaseListingSpider):
             meta={**response.meta, "page": next_page, "cid": cid, "api_query": api_query, "referer": response.url},
         )
 
-    @staticmethod
-    def _normalized_query(query: dict) -> dict:
-        allowed = {
-            "store", "country", "currency", "keyStoreDataversion", "lang",
-            "rowlength", "channel", "offset", "limit", "sort", "q",
-        }
-        result = {key: value for key, value in query.items() if key in allowed and value is not None}
+    # Fields the PLP bootstrap sends that are not part of the search API request
+    # contract. Everything else in the hydrated query is forwarded verbatim so that
+    # refined categories (e.g. `women-adidas`, which hydrate from `/refine/.../`) keep
+    # their brand/size/price filters on the page-2 handoff instead of silently
+    # widening back to the bare CID.
+    _non_api_query_fields = {
+        "browsedRegion", "deliveryCurrency", "experiment", "isSearchPage",
+        "page", "searchTerm", "web analytics", "personalisation",
+    }
+
+    @classmethod
+    def _normalized_query(cls, query: dict) -> dict:
+        result = {}
+        for key, value in query.items():
+            if value is None or key in cls._non_api_query_fields:
+                continue
+            if isinstance(value, (str, int, float, bool)):
+                result[key] = value
+            elif isinstance(value, (dict, list)):
+                # ASOS encodes structured filters (priceFilter, sizeFilter) as JSON
+                # in the query string, matching the hydrated contract.
+                result[key] = json.dumps(value, separators=(",", ":"))
         result.setdefault("store", "US")
         result.setdefault("country", "US")
         result.setdefault("currency", "USD")

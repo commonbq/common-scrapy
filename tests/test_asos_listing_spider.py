@@ -145,6 +145,20 @@ class AsosListingSpiderTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "numeric itemCount"):
             list(self.spider.parse(self.response(body)))
 
+    def test_api_handoff_preserves_refinement_filters(self):
+        """Refined categories must keep their filters on the page-2 API handoff."""
+        state = self.search_state()
+        state["query"].update({"offset": 0, "sizeFilter": ["12"], "brand": ["Adidas"]})
+        state["itemCount"] = 100
+        body = (
+            "<script>window.asos.plp._data=JSON.parse(" +
+            json.dumps(json.dumps({"search": state})) + ")</script>"
+        )
+        api_query = list(self.spider.parse(self.response(body)))[-1].meta["api_query"]
+        self.assertEqual(api_query["brand"], '["Adidas"]')
+        self.assertEqual(api_query["sizeFilter"], '["12"]')
+        self.assertEqual(api_query["offset"], 2)
+
     def test_url_normalization(self):
         self.assertEqual(AsosListingSpider._https_url("//images.example/a.jpg"), "https://images.example/a.jpg")
         self.assertEqual(AsosListingSpider._https_url("images.example/a.jpg"), "https://images.example/a.jpg")
