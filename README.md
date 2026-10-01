@@ -89,6 +89,7 @@ Spiders below are returning items in recent smoke runs:
 | [`saksfifthavenue_listing`](#saksfifthavenue_listing-category) | Experimental | html | DataDome | Saks Fifth Avenue listing spider via direct category HTML cards. | 24 (ok) | women, men, shoes, beauty, handbags | `{"item_id":"0400026449047","title":"Prada Washed Re Nylon Rain Jacket","url":"https://www.saksfifthavenue.com/product/prada-washed-re-nyl...` |
 | [`sallybeauty_listing`](#sallybeauty_listing) | Experimental | html + AJAX | PerimeterX / HUMAN (px-captcha signals) | Sally Beauty SFCC product-grid spider with `Search-UpdateGrid` pagination. | 2 (fixture) | hair-color, hair-care, textured-curly-hair, hair-extensions, tools-brushes, nails, cosmetics-skin-care, fragrances, mens-grooming, salon-supplies, new, deals | `{"category":"hair-care","item_id":"SBS-539230","title":"Low Porosity Aloe Vera Gel Shampoo","brand":"Texture ID","price":11.99...` |
 | [`stockx_listing`](#stockx_listing) | Experimental | bootstrap + html | Cloudflare | StockX listing via `__NEXT_DATA__` bootstrap. | 41 (ok) | sneakers, apparel, electronics, trading-cards, collectibles | `{"item_id":"brands","title":"Brands","url":"https://stockx.com/brands","price":null,"currency":null}` |
+| [`staples_listing`](#staples_listing) | Experimental | Next.js hydration | Akamai | Staples category listings from server-rendered `__NEXT_DATA__`. | 40 (one page) | 34 roots / 208 subcategories from `staples_categories.py` | `{"item_id":"82656","title":"Staples 1\" 3-Ring View Binder...","price":10.09,"currency":"USD"...}` |
 | [`target_listing`](#target_listing) | Active (alias) | api | PerimeterX / HUMAN (cookie signals) | Deprecated alias of `target_search`. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
 | [`target_search`](#target_search) | Active | api | PerimeterX / HUMAN (cookie signals) | Target RedSky search API spider. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
 
@@ -527,6 +528,33 @@ The spider reads the authoritative `browse.results` query from StockX's
 `__NEXT_DATA__` state, follows its `pageCount`, and deduplicates products by ID.
 Available categories are `sneakers`, `apparel`, `electronics`, `trading-cards`,
 and `collectibles`.
+
+### staples_listing
+
+Staples listings use one data path: `props.initialStateOrStore.searchState.productTileData`
+inside the server-rendered `script#__NEXT_DATA__`. Pagination follows `link[rel=next]`.
+The sitemap inventory includes 34 roots and 208 subcategories; `binders` is a verified
+product-bearing leaf. Direct Staples requests may require the configured US proxy.
+
+```json
+{
+  "category": "binders",
+  "item_id": "82656",
+  "title": "Staples 1\" 3-Ring View Binder, D-Ring, White (55406/26432)",
+  "brand": "Staples",
+  "model": "55406/26432",
+  "price": 10.09,
+  "currency": "USD",
+  "rating": 4.68,
+  "reviews_count": 1543,
+  "in_stock": true,
+  "page": 1,
+  "source": "staples_next_data"
+}
+```
+
+Run example:
+`HTTPCACHE_ENABLED=False common-scrapy crawl staples_listing -a category=binders -a max_pages=2 -O staples.jsonl -s HTTPCACHE_ENABLED=False`
 
 ### fashionnova_listing
 ```json
