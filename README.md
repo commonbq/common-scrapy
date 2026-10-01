@@ -77,6 +77,7 @@ Spiders below are returning items in recent smoke runs:
 | [`costco_listing`](#costco_search--costco_listing) | Active | React Flight + API | Akamai | Costco category listing with React Flight discovery and GRS search pagination. | 24 (ok) | 131 parent groups / 432 subcategory entries from `costco-categories.json` | `{"item_id":"100501081","title":"Starbucks Pike Place Medium Roast K-Cup","url":"https://www.costco.com/starbucks-pike-place-medium-roast-k-cup-72-count.product.100501081.html","price":...` |
 | [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | none detected (CloudFront CDN only) | e.l.f. Cosmetics multi-mode listing spider. | 6 (ok) | face, eyes, lips | `{'item_id':'300261','title':'Soft Glam Satin Concealer','url':'https://www.elfcosmetics.com/soft-glam-satin-concealer/300262.html','price':9.0,'brand':'e.l.f. Cosmetics','source':'elfcosmetics_preloaded_state'...}` |
 | [`fashionnova_listing`](#fashionnova_listing) | Active | api + html | Cloudflare | Fashion Nova listing via Shopify Storefront GraphQL with HTML fallback. | 48 (ok) | women, new, dresses, jeans, sale | `{"item_id":"175898317","title":"Classic High Waist Skinny Jeans - Dark Denim","url":"https://www.fashionnova.com/products/dark-blue-class...` |
+| [`gamestop_listing`](#gamestop_listing) | Active | api | none detected (ScrapeOps proxy) | GameStop SFCC Demandware listing via the `Tile-GetProductsJSON` controller (no HTML fallback). | 140 (3 pages, proxy) | 119 URLs across 33 category groups from `gamestop_categories.py` | `{"category":"consoles-hardware","item_id":"106429","title":"Nintendo Wii Original Console with Wii Remote - Super Mario Bros. 25th Anniversary Edition Red","price":"139.99","availability":"InStock","source":"gamestop_tile_json"...` |
 | [`homedepot_listing`](#homedepot_listing-category-apollo-state) | Flaky | bootstrap | Akamai | Home Depot department listings from embedded Apollo state. | 2 (fixture) | appliances, bath, building-materials, decor-and-furniture, electrical, flooring, hardware, heating-and-cooling, kitchen, lawn-and-garden, lighting, paint, plumbing, storage, tools | `{"category":"tools","item_id":"100000001","sku":"1000000001","title":"16 oz. Fiberglass Claw Hammer","brand":"Husky","price":14.97...` |
 | [`homedepot_search`](#homedepot_search-keyword-apollo-bootstrap) | Active | bootstrap + html | Akamai | Home Depot keyword search via Apollo state. | 24 (ok) | - | `{"item_id":"336787835","sku":"1014334650","brand":"Lukyamzn","title":"14 in. Dual-Core Celeron N4000 Laptop 6 GB RAM 128 GB SSD IPS Displ...` |
 | [`jcpenney_listing`](#jcpenney_listing) | Active | api | Akamai (+ reCAPTCHA scripts observed) | JCPenney listing spider via search API bootstrap endpoint. | 48 (ok) | womens_tops, mens_shirts | `{"item_id":"ppr5008584232","title":"St. John's Bay Womens Boat Neck Elbow Sleeve T-Shirt","brand":"st. john's bay","url":"https://www.jcp...` |
@@ -1137,6 +1138,107 @@ Notes:
   `sample/sallybeauty-listing-product.html` and
   `sample/sallybeauty-listing-product-page-2.html`.
 
+### gamestop_listing
+
+GameStop runs on Salesforce Commerce Cloud (Demandware) behind a Constructor.io
+"hybrid" browse front end. The PLP HTML does **not** contain product data: the
+server renders empty tile shells that carry only a `data-pid`, and `main.js`
+hydrates each tile from a first-party JSON controller:
+
+```
+/on/demandware.store/Sites-gamestop-us-Site/default/Tile-GetProductsJSON
+    ?deliveryAttribute=&data=<comma-separated-pids>&useTileImage=true
+```
+
+This spider uses exactly one data direction -- that JSON controller. There is no
+HTML tile scraping, no Constructor.io browse call, and no rendered-browser
+fallback. If the controller stops answering correctly the spider raises instead
+of silently emitting empty tile shells.
+
+Flow:
+
+1. Fetch the category page (or a later `Search-UpdateGrid` fragment) and read the
+   `data-pid` list plus `data-cnstrc-num-results` (total).
+2. Batch the pids (`TILE_BATCH_SIZE`, 20 per request) into `Tile-GetProductsJSON`.
+3. Emit one item per returned product, deduplicated by `item_id`.
+4. Paginate with `Search-UpdateGrid?cgid=<slug>&start=<n>&sz=<sz>` until
+   `start >= total`, `max_pages` is reached, or a page yields no new ids.
+
+Two details worth knowing:
+
+- The `cgid` used for pagination is the Demandware category id (`consoles`,
+  `toys-and-collectibles-funko`, ...), which is **not** the friendly URL slug
+  (`consoles-hardware`, `collectibles/funko`). The spider reads it back from the
+  page's own `Search-UpdateGrid` link rather than guessing.
+- The friendly category URL renders the storefront's default page size (20),
+  which is smaller than `PAGE_SIZE` (60), so pagination advances by the number of
+  pids the grid actually served rather than `page * PAGE_SIZE`.
+
+Run examples:
+
+- `common-scrapy crawl gamestop_listing -a category='consoles-hardware' -a max_pages=1 -O gamestop.jsonl`
+- `common-scrapy crawl gamestop_listing -a category='consoles-hardware' -a max_pages=3 -O gamestop.jsonl`
+- `common-scrapy crawl gamestop_listing -a category='collectibles-funko' -a max_pages=2 -O funko.jsonl`
+- `common-scrapy crawl gamestop_listing -a category_url='https://www.gamestop.com/consoles-hardware' -a max_pages=1 -O gamestop.jsonl`
+
+Category shortcuts come from `common/spiders/gamestop_categories.py` (the full
+header-menu taxonomy, 119 URLs across 33 category groups). Category keys are the full
+URL path slug, e.g. `consoles-hardware`, `video-games-nintendo-switch`,
+`collectibles-funko`, because leaf slugs alone collide across departments.
+
+The export contract is ordered as:
+
+`category`, `department`, `item_id`, `title`, `url`, `image_url`, `image_alt`,
+`price`, `list_price`, `pro_price`, `price_min`, `price_max`, `currency`,
+`availability`, `is_digital_product`, `badge`, `rating`, `reviews_count`,
+`market_price`, `release_date`, `product_platform`, `short_description`, `page`,
+`category_url`, `source`, and `raw`.
+
+```json
+{
+  "category": "consoles-hardware",
+  "department": "consoles-hardware",
+  "item_id": "106429",
+  "title": "Nintendo Wii Original Console with Wii Remote - Super Mario Bros. 25th Anniversary Edition Red",
+  "url": "https://www.gamestop.com/consoles-hardware/retro-consoles/products/nintendo-wii-original-console-with-wii-remote---super-mario-bros.-25th-anniversary-edition-red/106429.html",
+  "image_url": "https://media.gamestop.com/i/gamestop/10121186?",
+  "image_alt": "Nintendo Wii Original Console with Wii Remote - Super Mario Bros. 25th Anniversary Edition Red",
+  "price": "139.99",
+  "list_price": "139.99",
+  "pro_price": "132.99",
+  "price_min": null,
+  "price_max": null,
+  "currency": "USD",
+  "availability": "InStock",
+  "is_digital_product": false,
+  "badge": "BUY CONSOLE, SAVE 10% PO ACC.",
+  "rating": "83.85",
+  "reviews_count": "654",
+  "market_price": null,
+  "release_date": null,
+  "product_platform": null,
+  "short_description": null,
+  "page": 1,
+  "category_url": "https://www.gamestop.com/consoles-hardware",
+  "source": "gamestop_tile_json",
+  "raw": { "id": "106429", "name": "...", "price": { "base": "139.99", "sale": null, "pro": "132.99" } }
+}
+```
+
+Notes:
+
+- `price` uses the sale price when GameStop provides one, otherwise the base
+  price; `list_price` keeps the base price for comparison.
+- `availability` is normalized to `InStock` / `PreOrder` / `OutOfStock` from the
+  tile `availability` object.
+- `source` is always `gamestop_tile_json` -- every item comes from the same JSON
+  controller.
+- The spider fails loudly on a non-200 response, an access-denied/challenge body,
+  a non-JSON tile body, a missing `productsJSON` key, a tile without an `id`, or
+  a grid with no `data-pid` tiles, so a stale category map cannot masquerade as
+  an empty category.
+- Fixtures live in `sample/gamestop-listing-grid.html`,
+  `sample/gamestop-tile-products.json`, and `sample/gamestop-categories.json`.
 ### maccosmetics_listing
 ```json
 {
