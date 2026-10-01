@@ -14,6 +14,10 @@ class BathAndBodyWorksListingSpider(BaseListingSpider):
 
     name = "bathandbodyworks_listing"
     allowed_domains = ["bathandbodyworks.com", "www.bathandbodyworks.com"]
+    # This spider supports direct `url=`/`category_url=` runs, so it must opt out of
+    # the base class's category-only gate; resolve_target_url() still rejects a run
+    # with no usable target.
+    require_category_arg = False
     categories = flattened_categories()
 
     custom_settings = {
@@ -27,6 +31,11 @@ class BathAndBodyWorksListingSpider(BaseListingSpider):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        if not (self.category or self.category_url or self.url):
+            raise ValueError(
+                "Provide -a category=<name>, category_url=<url>, or url=<url>. "
+                f"Available categories: {', '.join(self.available_categories())}"
+            )
         self._seen_ids: set[str] = set()
 
     def start_requests(self):

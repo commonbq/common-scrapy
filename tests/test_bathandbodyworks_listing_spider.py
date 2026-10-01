@@ -33,6 +33,19 @@ class BathAndBodyWorksListingSpiderTest(unittest.TestCase):
         self.assertEqual(items[0]["availability"], "InStock")
         self.assertEqual(requests[0].url, "https://www.bathandbodyworks.com/c/body-care?start=2")
 
+    def test_direct_url_and_category_url_modes_construct_and_resolve(self):
+        # The base class's category-only gate must not fire before resolve_target_url().
+        url = "https://www.bathandbodyworks.com/c/body-care"
+        self.assertEqual(BathAndBodyWorksListingSpider(url=url).resolve_target_url(), url)
+        self.assertEqual(BathAndBodyWorksListingSpider(category_url=url).resolve_target_url(), url)
+        requests = list(BathAndBodyWorksListingSpider(url=url).start_requests())
+        self.assertEqual(requests[0].url, url)
+        self.assertTrue(requests[0].meta["allow_offsite"])
+
+    def test_missing_target_fails_visibly(self):
+        with self.assertRaisesRegex(ValueError, "Provide -a category"):
+            BathAndBodyWorksListingSpider()
+
     def test_missing_hydration_fails_visibly(self):
         with self.assertRaisesRegex(RuntimeError, "mobify-data hydration"):
             list(self.spider.parse(self.response("<html></html>")))
