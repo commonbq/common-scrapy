@@ -5,7 +5,11 @@ import unittest
 
 from scrapy.http import Request, TextResponse
 
-from common.spiders.asos_categories import ASOS_CATEGORIES, ASOS_CATEGORY_INVENTORY
+from common.spiders.asos_categories import (
+    ASOS_CATEGORIES,
+    ASOS_CATEGORY_INVENTORY,
+    ASOS_DEPARTMENT_TARGETS,
+)
 from common.spiders.asos_listing_spider import AsosListingSpider
 
 
@@ -36,34 +40,60 @@ class AsosListingSpiderTests(unittest.TestCase):
                             for entry in ASOS_CATEGORIES))
 
     def test_documented_department_aliases_resolve(self):
+        # The department landing pages serve no PLP hydration, so these shortcuts
+        # must stay pinned to explicit department-wide listings.
+        for department, target in ASOS_DEPARTMENT_TARGETS.items():
+            with self.subTest(department=department):
+                spider = AsosListingSpider(category=department, max_pages=2)
+                self.assertEqual(spider.resolve_target_url(), target["url"])
         women = AsosListingSpider(category="women", max_pages=2)
         men = AsosListingSpider(category="men", max_pages=2)
         self.assertIn("/us/women/", women.resolve_target_url())
         self.assertIn("/us/men/", men.resolve_target_url())
+        self.assertNotEqual(women.resolve_target_url(), AsosListingSpider(
+            category="women-fall-occasionwear").resolve_target_url())
 
     def test_hydration_mapping_feed_contract_and_proxy_handoff(self):
         outputs = list(self.spider.parse(self.response()))
         item = outputs[0]
         self.assertEqual(list(item), self.spider.custom_settings["FEED_EXPORT_FIELDS"])
-        self.assertEqual(item["item_id"], "210638191")
-        self.assertEqual(item["style_id"], "156233978")
-        self.assertEqual(item["price"], 99.99)
-        self.assertEqual(item["original_price"], 120.0)
+        self.assertEqual(item["item_id"], "211160390")
+        self.assertEqual(item["style_id"], "158157966")
+        self.assertEqual(item["price"], 69.99)
+        self.assertEqual(item["original_price"], 99.99)
+        self.assertEqual(item["currency"], "USD")
+        self.assertEqual(item["title"], "ASOS DESIGN stretch chiffon scarf detail plunge draped maxi dress in chocolate")
         self.assertTrue(item["url"].startswith("https://www.asos.com/us/"))
         self.assertTrue(item["image_url"].startswith("https://"))
+        self.assertIsNotNone(item["raw"])
+        self.assertEqual(item["raw"]["id"], 211160390)
         follow = outputs[-1]
         self.assertIn("/categories/53315?", follow.url)
         self.assertIn("keyStoreDataversion=fixture-version", follow.url)
         self.assertIn("offset=2", follow.url)
         self.assertEqual(follow.meta["proxy"], "http://proxy.invalid:8080")
 
+    def test_legacy_flat_hydration_shape_is_still_supported(self):
+        # ASOS previously hydrated a flat {products, itemCount, query} object; the
+        # search API still returns that shape, so both must keep working.
+        state = {"products": [{"id": 1, "name": "Legacy", "price": {"current": {"value": 10.0}, "currency": "USD"},
+                               "url": "x/prd/1", "imageUrl": "images.example/a.jpg"}],
+                 "itemCount": 5, "query": {"cid": "53315", "offset": 0, "limit": 1}}
+        body = ("<script>window.asos.plp._data=JSON.parse(" +
+                json.dumps(json.dumps(state)) + ")</script>")
+        item = list(self.spider.parse(self.response(body)))[0]
+        self.assertEqual(item["item_id"], "1")
+        self.assertEqual(item["price"], 10.0)
+        self.assertEqual(item["currency"], "USD")
+
     def test_api_mapping_deduplication_and_pagination(self):
-        list(self.spider.parse(self.response()))
+        first_page = list(self.spider.parse(self.response()))
+        seen = first_page[0]["item_id"]
         query = {"offset": 2, "limit": 2, "store": "US", "country": "US"}
         payload = {
             "itemCount": 5,
             "products": [
-                {"id": 210638191, "name": "duplicate"},
+                {"id": int(seen), "name": "duplicate"},
                 {"id": 210638193, "name": "new", "price": {"current": {"value": 10}, "currency": "USD"}},
             ],
         }
@@ -72,12 +102,17 @@ class AsosListingSpiderTests(unittest.TestCase):
         self.assertEqual(outputs[0]["source"], "asos_search_api")
         self.assertEqual(outputs[-1].meta["api_query"]["offset"], 4)
 
+    def search_state(self):
+        """Return a mutable copy of the fixture's `search` listing node."""
+        return self.spider._search_state(json.loads(json.dumps(
+            AsosListingSpider._extract_hydration(self.sample))))
+
     def test_hydration_does_not_handoff_when_page_is_complete_or_empty(self):
-        state = AsosListingSpider._extract_hydration(self.sample)
+        state = self.search_state()
         state["itemCount"] = len(state["products"])
         body = (
             "<script>window.asos.plp._data=JSON.parse(" +
-            json.dumps(json.dumps(state)) + ")</script>"
+            json.dumps(json.dumps({"search": state})) + ")</script>"
         )
         self.assertTrue(all(isinstance(output, dict) for output in self.spider.parse(self.response(body))))
 
@@ -85,27 +120,27 @@ class AsosListingSpiderTests(unittest.TestCase):
         state["itemCount"] = 10
         body = (
             "<script>window.asos.plp._data=JSON.parse(" +
-            json.dumps(json.dumps(state)) + ")</script>"
+            json.dumps(json.dumps({"search": state})) + ")</script>"
         )
         self.assertEqual(list(self.spider.parse(self.response(body))), [])
 
     def test_hydration_handoff_preserves_nonzero_offset(self):
-        state = AsosListingSpider._extract_hydration(self.sample)
+        state = self.search_state()
         state["query"]["offset"] = 10
         state["itemCount"] = 20
         body = (
             "<script>window.asos.plp._data=JSON.parse(" +
-            json.dumps(json.dumps(state)) + ")</script>"
+            json.dumps(json.dumps({"search": state})) + ")</script>"
         )
         outputs = list(self.spider.parse(self.response(body)))
         self.assertEqual(outputs[-1].meta["api_query"]["offset"], 12)
 
     def test_hydration_missing_item_count_fails_before_handoff(self):
-        state = AsosListingSpider._extract_hydration(self.sample)
+        state = self.search_state()
         state.pop("itemCount")
         body = (
             "<script>window.asos.plp._data=JSON.parse(" +
-            json.dumps(json.dumps(state)) + ")</script>"
+            json.dumps(json.dumps({"search": state})) + ")</script>"
         )
         with self.assertRaisesRegex(RuntimeError, "numeric itemCount"):
             list(self.spider.parse(self.response(body)))

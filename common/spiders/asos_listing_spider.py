@@ -66,6 +66,7 @@ class AsosListingSpider(BaseListingSpider):
         state = self._extract_hydration(response.text)
         if not isinstance(state, dict):
             raise RuntimeError(f"No valid ASOS window.asos.plp._data hydration found at {response.url}")
+        state = self._search_state(state)
         products = state.get("products")
         if not isinstance(products, list):
             raise RuntimeError(f"ASOS hydration has no list-valued products at {response.url}")
@@ -91,7 +92,6 @@ class AsosListingSpider(BaseListingSpider):
         products = payload.get("products") if isinstance(payload, dict) else None
         if not isinstance(products, list):
             raise RuntimeError(f"ASOS search API has no list-valued products at {response.url}")
-
         yield from self._emit_products(products, response, payload, "asos_search_api")
         page = int(response.meta["page"])
         offset = int(response.meta["api_query"]["offset"])
@@ -159,28 +159,40 @@ class AsosListingSpider(BaseListingSpider):
         return f"https://www.asos.com/api/product/search/v2/categories/{cid}?{urlencode(query)}"
 
     def _item(self, product, response, page, position, total, source):
-        price = product.get("price") if isinstance(product.get("price"), dict) else {}
-        current = price.get("current") if isinstance(price.get("current"), dict) else {}
-        previous = price.get("previous") if isinstance(price.get("previous"), dict) else {}
-        rrp = price.get("rrp") if isinstance(price.get("rrp"), dict) else {}
-        original = previous.get("value") if previous.get("value") is not None else rrp.get("value")
+        price = product.get("price")
+        # The PLP bootstrap now sends a bare numeric `price` with `description` and
+        # `image`, while the search API keeps the nested price object with `name` and
+        # `imageUrl`. Normalize both shapes into the exported field contract.
+        if isinstance(price, dict):
+            current = price.get("current") if isinstance(price.get("current"), dict) else {}
+            previous = price.get("previous") if isinstance(price.get("previous"), dict) else {}
+            rrp = price.get("rrp") if isinstance(price.get("rrp"), dict) else {}
+            original = previous.get("value") if previous.get("value") is not None else rrp.get("value")
+            current_value = current.get("value")
+            currency = price.get("currency")
+        else:
+            current_value = price
+            original = product.get("reducedPrice")
+            currency = product.get("currency") or "USD"
         product_url = product.get("url")
-        image_url = product.get("imageUrl")
+        image_url = product.get("imageUrl") or product.get("image")
         return {
             "category": response.meta.get("category"),
             "subcategory": response.meta.get("subcategory"),
             "item_id": str(product.get("id")),
             "style_id": str(product.get("productCode") or product.get("colourWayId") or "") or None,
-            "title": product.get("name"),
+            "title": product.get("name") or product.get("description"),
             "brand": product.get("brandName"),
             "url": urljoin("https://www.asos.com/us/", str(product_url).lstrip("/")) if product_url else None,
             "image_url": self._https_url(image_url),
             "color": product.get("colour"),
-            "price": self._number(current.get("value")),
+            "price": self._number(current_value),
             "original_price": self._number(original),
-            "currency": price.get("currency"),
-            "is_marked_down": self._boolean(price.get("isMarkedDown")),
-            "is_outlet_price": self._boolean(price.get("isOutletPrice")),
+            "currency": currency,
+            "is_marked_down": self._boolean(price.get("isMarkedDown")) if isinstance(price, dict)
+                            else self._boolean(product.get("isSale")),
+            "is_outlet_price": self._boolean(price.get("isOutletPrice")) if isinstance(price, dict)
+                                else self._boolean(product.get("isOutlet")),
             "is_selling_fast": self._boolean(product.get("isSellingFast")),
             "page": page,
             "position": position,
@@ -189,6 +201,20 @@ class AsosListingSpider(BaseListingSpider):
             "source": source,
             "raw": product,
         }
+
+    @classmethod
+    def _search_state(cls, state: dict) -> dict:
+        """Return the node that carries products/itemCount/query.
+
+        ASOS moved the listing payload under a `search` object while keeping the
+        older flat shape working, so accept both. Verified live 2026-10-01: the
+        current response hydrates `state["search"]["products"]` with the products
+        list, `itemCount` and `query` as siblings.
+        """
+        search = state.get("search")
+        if isinstance(search, dict) and isinstance(search.get("products"), list):
+            return search
+        return state
 
     @classmethod
     def _extract_hydration(cls, document: str) -> dict | None:

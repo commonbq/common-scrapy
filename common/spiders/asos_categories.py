@@ -614,16 +614,35 @@ def flatten_categories() -> list[dict[str, str]]:
 ASOS_CATEGORIES = flatten_categories()
 
 # Stable shortcuts for the issue's documented department-level crawl commands.
-# Keep these separate from ASOS_CATEGORIES so the captured 412-CID inventory
-# remains deduplicated and its exact-count regression test stays meaningful.
+#
+# The department landing pages (/us/women/, /us/men/) are navigation-only and serve
+# no PLP hydration, so a department crawl has to target a department-wide listing
+# instead. Each target below is an explicit "New In" department listing verified to
+# return the full `window.asos.plp._data` bootstrap with a department-wide itemCount
+# (women cid=27108, men cid=27110). They are pinned rather than derived from the
+# editorial inventory so that refreshing ASOS_CATEGORY_INVENTORY cannot silently
+# repoint `category=women` at an unrelated editorial leaf.
+#
+# Kept separate from ASOS_CATEGORIES so the captured 412-CID inventory remains
+# deduplicated and its exact-count regression test stays meaningful.
+ASOS_DEPARTMENT_TARGETS = {
+    "women": {
+        "url": "https://www.asos.com/us/women/new-in/cat/?cid=27108",
+        "subcategory": "New In",
+    },
+    "men": {
+        "url": "https://www.asos.com/us/men/new-in/cat/?cid=27110",
+        "subcategory": "New In",
+    },
+}
+
 ASOS_DEPARTMENT_CATEGORIES = [
     {
         "category": department,
-        "subcategory": entries[0]["subcategory"],
+        "subcategory": target["subcategory"],
         "department": department,
-        "cid": entries[0]["cid"],
-        "url": entries[0]["url"],
+        "cid": parse_qs(urlparse(target["url"]).query).get("cid", [None])[0],
+        "url": target["url"],
     }
-    for department in ASOS_CATEGORY_INVENTORY
-    if (entries := [entry for entry in ASOS_CATEGORIES if entry["department"] == department])
+    for department, target in ASOS_DEPARTMENT_TARGETS.items()
 ]
