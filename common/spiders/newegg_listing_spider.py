@@ -16,6 +16,9 @@ from common.spiders.base_listing_spider import BaseListingSpider
 class NeweggListingSpider(BaseListingSpider):
     name = "newegg_listing"
     allowed_domains = ["newegg.com", "www.newegg.com"]
+    # Direct url=/category_url= runs are supported, so opt out of the base class
+    # category-only gate; resolve_target_url() still rejects a run with no target.
+    require_category_arg = False
 
     # Stable entry points. Any concrete Newegg category URL is also accepted via
     # ``category_url`` or ``url``; the live navigation endpoint remains the
@@ -34,6 +37,9 @@ class NeweggListingSpider(BaseListingSpider):
     custom_settings = {
         "CONCURRENT_REQUESTS_PER_DOMAIN": 2,
         "DOWNLOAD_DELAY": 0.25,
+        # Let the explicit status checks in parse()/parse_categories() run so
+        # non-2xx responses surface the documented actionable errors.
+        "HTTPERROR_ALLOW_ALL": True,
         "FEED_EXPORT_FIELDS": [
             "item_id",
             "title",
@@ -69,6 +75,11 @@ class NeweggListingSpider(BaseListingSpider):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        if not (self.category or self.category_url or self.url):
+            raise ValueError(
+                "Provide -a category=<name>, category_url=<url>, or url=<url>. "
+                f"Available categories: {', '.join(self.available_categories())}"
+            )
         self._seen: set[str] = set()
 
     def start_requests(self) -> Iterable[scrapy.Request]:
@@ -99,7 +110,9 @@ class NeweggListingSpider(BaseListingSpider):
 
         def visit(node):
             if isinstance(node, dict):
-                url = node.get("url") or node.get("Url") or node.get("CustomLink")
+                # The RolloverMenu contract lets an explicit CustomLink override any
+                # generated/generic URL field, so prefer it when present.
+                url = node.get("CustomLink") or node.get("url") or node.get("Url")
                 store_type = node.get("StoreType")
                 store_id = node.get("StoreId")
                 store_name = node.get("StoreName") or node.get("Description")
@@ -123,12 +136,12 @@ class NeweggListingSpider(BaseListingSpider):
         visit(payload)
         return list(dict.fromkeys(found))
 
-    def _page_request(self, url: str, page: int):
+    def _page_request(self, url: str, page: int, page_size: int | None = None):
         return scrapy.Request(
             self._page_url(url, page),
             headers=self.headers,
             callback=self.parse,
-            cb_kwargs={"listing_url": url, "page": page},
+            cb_kwargs={"listing_url": url, "page": page, "page_size": page_size},
             dont_filter=True,
         )
 
@@ -154,7 +167,7 @@ class NeweggListingSpider(BaseListingSpider):
             raise ValueError("window.__initialState__ was not an object")
         return state
 
-    def parse(self, response, listing_url: str, page: int):
+    def parse(self, response, listing_url: str, page: int, page_size: int | None = None):
         if response.status != 200:
             raise RuntimeError(f"Newegg listing returned HTTP {response.status}: {response.url}")
         try:
@@ -183,10 +196,13 @@ class NeweggListingSpider(BaseListingSpider):
             self.logger.warning("Newegg page %s contained no new product IDs", page)
 
         total = state.get("TotalItemCount")
-        page_size = len(products)
+        # Recomputing the size from every response inflates last_page when the final
+        # page is partial. Keep the first-page size (or an explicit page_size passed
+        # down from the previous request) across callbacks.
+        page_size = page_size or len(products)
         last_page = math.ceil(total / page_size) if isinstance(total, int) and page_size else page
         if page < self.max_pages and page < last_page:
-            yield self._page_request(listing_url, page + 1)
+            yield self._page_request(listing_url, page + 1, page_size)
 
     @staticmethod
     def _product_item(product: dict, listing_url: str, page: int) -> dict:

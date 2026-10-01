@@ -41,7 +41,7 @@ Examples:
 - `common-scrapy crawl target_search --category 5xtc0 -a max_pages=2 -O target.jsonl`
 - `common-scrapy crawl kohls_listing --category women -a max_pages=1 -O kohls_listing.jsonl`
 - `common-scrapy crawl sephora_listing --category makeup -a max_pages=1 -O sephora_listing.jsonl`
-- `common-scrapy crawl newegg_listing --category desktop-cpu-processors -a max_pages=2 -O newegg.jsonl`
+- `common-scrapy crawl newegg_listing --category desktop-cpu-processors -a max_pages=2 -O newegg.jsonl` (36 items on page 1 in the 2026-09-29 live run)
 
 `newegg_listing` parses the server-rendered `window.__initialState__.Products`
 payload. It accepts `category`, `category_url`, or `url`; use
