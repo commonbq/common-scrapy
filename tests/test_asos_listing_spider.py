@@ -66,6 +66,44 @@ class AsosListingSpiderTests(unittest.TestCase):
         self.assertEqual(outputs[0]["source"], "asos_search_api")
         self.assertEqual(outputs[-1].meta["api_query"]["offset"], 4)
 
+    def test_hydration_does_not_handoff_when_page_is_complete_or_empty(self):
+        state = AsosListingSpider._extract_hydration(self.sample)
+        state["itemCount"] = len(state["products"])
+        body = (
+            "<script>window.asos.plp._data=JSON.parse(" +
+            json.dumps(json.dumps(state)) + ")</script>"
+        )
+        self.assertTrue(all(isinstance(output, dict) for output in self.spider.parse(self.response(body))))
+
+        state["products"] = []
+        state["itemCount"] = 10
+        body = (
+            "<script>window.asos.plp._data=JSON.parse(" +
+            json.dumps(json.dumps(state)) + ")</script>"
+        )
+        self.assertEqual(list(self.spider.parse(self.response(body))), [])
+
+    def test_hydration_handoff_preserves_nonzero_offset(self):
+        state = AsosListingSpider._extract_hydration(self.sample)
+        state["query"]["offset"] = 10
+        state["itemCount"] = 20
+        body = (
+            "<script>window.asos.plp._data=JSON.parse(" +
+            json.dumps(json.dumps(state)) + ")</script>"
+        )
+        outputs = list(self.spider.parse(self.response(body)))
+        self.assertEqual(outputs[-1].meta["api_query"]["offset"], 12)
+
+    def test_hydration_missing_item_count_fails_before_handoff(self):
+        state = AsosListingSpider._extract_hydration(self.sample)
+        state.pop("itemCount")
+        body = (
+            "<script>window.asos.plp._data=JSON.parse(" +
+            json.dumps(json.dumps(state)) + ")</script>"
+        )
+        with self.assertRaisesRegex(RuntimeError, "numeric itemCount"):
+            list(self.spider.parse(self.response(body)))
+
     def test_url_normalization(self):
         self.assertEqual(AsosListingSpider._https_url("//images.example/a.jpg"), "https://images.example/a.jpg")
         self.assertEqual(AsosListingSpider._https_url("images.example/a.jpg"), "https://images.example/a.jpg")

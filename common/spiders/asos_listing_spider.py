@@ -71,7 +71,12 @@ class AsosListingSpider(BaseListingSpider):
             raise RuntimeError(f"ASOS hydration has no list-valued products at {response.url}")
 
         yield from self._emit_products(products, response, state, "asos_plp_hydration")
-        if self.max_pages > 1:
+        total = self._integer(state.get("itemCount"))
+        query = state.get("query")
+        offset = self._integer(query.get("offset")) if isinstance(query, dict) else None
+        if self.max_pages > 1 and products and total is None:
+            raise RuntimeError(f"ASOS hydration has no numeric itemCount at {response.url}")
+        if self.max_pages > 1 and products and total is not None and (offset or 0) + len(products) < total:
             request = self._api_request(response, state, next_page=2)
             if request:
                 yield request
@@ -124,8 +129,9 @@ class AsosListingSpider(BaseListingSpider):
         limit = self._integer(query.get("limit")) or len(state.get("products", []))
         if not cid or not limit:
             raise RuntimeError(f"ASOS hydration is missing cid/limit for API handoff at {response.url}")
+        offset = self._integer(query.get("offset")) or 0
         api_query = self._normalized_query(query)
-        api_query.update({"offset": limit, "limit": limit})
+        api_query.update({"offset": offset + limit, "limit": limit})
         return scrapy.Request(
             self._api_url(cid, api_query),
             callback=self.parse_api,
