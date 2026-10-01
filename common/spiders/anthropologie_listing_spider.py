@@ -105,7 +105,7 @@ class AnthropologieListingSpider(BaseListingSpider):
                 "image_url": f"https://images.urbndata.com/is/image/Anthropologie/{image}?$an-category$" if image else None,
                 "price": self._number(sku.get("salePriceLow") or sku.get("listPriceLow")),
                 "original_price": self._number(sku.get("listPriceLow")),
-                "currency": "USD",
+                "currency": self._currency(response.url, tile, product, sku),
                 "availability": "InStock" if sku.get("hasAvailableSku") else "OutOfStock",
                 "rating": self._number(reviews.get("averageRating")),
                 "reviews_count": reviews.get("count"),
@@ -141,6 +141,17 @@ class AnthropologieListingSpider(BaseListingSpider):
         """Return the storefront locale path (``/en-ca``) or '' for the US site."""
         match = re.match(r"^/(en|fr)-[a-z]{2}(?=/|$)", urlparse(url).path.lower())
         return match.group(0) if match else ""
+
+    @classmethod
+    def _currency(cls, category_url: str, tile: dict, product: dict, sku: dict) -> str:
+        # Prefer the hydrated currency so a localized storefront is not mislabeled.
+        for source in (sku, tile, product):
+            for key in ("currencyCode", "currency", "currencyIsoCode"):
+                value = source.get(key)
+                if isinstance(value, str) and value.strip():
+                    return value.strip().upper()
+        # Fall back to the crawled storefront locale; /en-ca/ is the Canadian site.
+        return "CAD" if cls._locale_prefix(category_url) else "USD"
 
     @classmethod
     def _product_url(cls, category_url: str, slug: str, color: str | None) -> str:

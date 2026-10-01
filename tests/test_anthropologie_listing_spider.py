@@ -42,6 +42,7 @@ class AnthropologieListingSpiderTest(unittest.TestCase):
         self.assertEqual(output[0]["price"], 118.0)
         self.assertEqual(output[0]["color_count"], 2)
         self.assertEqual(output[0]["source"], "urbn_pinia_hydration")
+        self.assertEqual(output[0]["currency"], "USD")
         self.assertEqual(output[1].url, "https://www.anthropologie.com/womens-clothing?page=2")
 
     def test_missing_hydration_fails_visibly(self):
@@ -62,6 +63,41 @@ class AnthropologieListingSpiderTest(unittest.TestCase):
         self.assertEqual(AnthropologieListingSpider(category_url=url).resolve_target_url(), url)
         with self.assertRaisesRegex(ValueError, "Provide -a category"):
             AnthropologieListingSpider()
+
+    def test_every_exported_item_carries_a_non_empty_raw(self):
+        tiles = [
+            {
+                "recordType": "PRODUCT",
+                "faceOutColorCode": str(index),
+                "faceOutImage": f"img_{index}",
+                "product": {"productId": f"AN-{index:013d}-000", "productSlug": f"item-{index}"},
+                "skuInfo": {"hasAvailableSku": True, "listPriceLow": 10 * index},
+            }
+            for index in range(1, 4)
+        ]
+        state = {"category": {"currentPage": 1, "totalPages": 1,
+                               "pages": {"1": {"wrapper": {"tiles": tiles}}}}}
+        items = [out for out in self.spider.parse(self.response(state)) if isinstance(out, dict)]
+        self.assertEqual(len(items), 3)
+        for item in items:
+            self.assertIn("raw", item)
+            self.assertIsInstance(item["raw"], dict)
+            self.assertTrue(item["raw"], "raw must not be an empty placeholder")
+            self.assertEqual(item["raw"]["recordType"], "PRODUCT")
+
+    def test_currency_follows_the_crawled_storefront(self):
+        ca = "https://www.anthropologie.com/en-ca/womens-clothing"
+        us = "https://www.anthropologie.com/womens-clothing"
+        # Locale fallback when the hydration carries no explicit currency.
+        self.assertEqual(AnthropologieListingSpider._currency(ca, {}, {}, {}), "CAD")
+        self.assertEqual(AnthropologieListingSpider._currency(us, {}, {}, {}), "USD")
+        # An explicit hydrated currency always wins over the locale fallback.
+        self.assertEqual(
+            AnthropologieListingSpider._currency(us, {}, {}, {"currencyCode": "cad"}), "CAD")
+        self.assertEqual(
+            AnthropologieListingSpider._currency(ca, {"currency": "USD"}, {}, {}), "USD")
+        self.assertEqual(
+            AnthropologieListingSpider._currency(us, {"currency": " "}, {}, {}), "USD")
 
     def test_locale_is_preserved_in_product_urls(self):
         self.assertEqual(
