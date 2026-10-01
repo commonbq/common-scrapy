@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 
 import scrapy
@@ -14,6 +15,9 @@ class AnthropologieListingSpider(BaseListingSpider):
 
     name = "anthropologie_listing"
     allowed_domains = ["www.anthropologie.com", "anthropologie.com", "127.0.0.1"]
+    # Direct url=/category_url= runs are supported, so opt out of the base class
+    # category-only gate; resolve_target_url() still rejects a run with no target.
+    require_category_arg = False
     categories = flattened_categories()
 
     custom_settings = {
@@ -44,14 +48,23 @@ class AnthropologieListingSpider(BaseListingSpider):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        if not (self.category or self.category_url or self.url):
+            raise ValueError(
+                "Provide -a category=<name>, category_url=<url>, or url=<url>. "
+                f"Available categories: {', '.join(self.available_categories())}"
+            )
         self.seen_product_ids: set[str] = set()
 
     def start_requests(self):
+        target = self.resolve_target_url()
+        # Preserve a page encoded in the selected URL. The inventory includes a
+        # dedicated `?page=2` entry; forcing page 1 here made it unreachable.
+        start_page = self._page_of(target) or 1
         yield scrapy.Request(
-            self._with_page(self.resolve_target_url(), 1),
+            self._with_page(target, start_page),
             callback=self.parse,
             headers=self._headers(),
-            meta={"category": self.category, "page": 1},
+            meta={"category": self.category, "page": start_page},
         )
 
     def parse(self, response: scrapy.http.Response):
@@ -88,7 +101,7 @@ class AnthropologieListingSpider(BaseListingSpider):
                 "style_number": product.get("styleNumber"),
                 "title": product.get("displayName"),
                 "brand": product.get("brand"),
-                "url": f"https://www.anthropologie.com/shop/{slug}?color={color}&type=STANDARD" if slug else None,
+                "url": self._product_url(response.url, slug, color) if slug else None,
                 "image_url": f"https://images.urbndata.com/is/image/Anthropologie/{image}?$an-category$" if image else None,
                 "price": self._number(sku.get("salePriceLow") or sku.get("listPriceLow")),
                 "original_price": self._number(sku.get("listPriceLow")),
@@ -120,6 +133,31 @@ class AnthropologieListingSpider(BaseListingSpider):
     def _number(value):
         try:
             return float(value) if value is not None else None
+        except (TypeError, ValueError):
+            return None
+
+    @staticmethod
+    def _locale_prefix(url: str) -> str:
+        """Return the storefront locale path (``/en-ca``) or '' for the US site."""
+        match = re.match(r"^/(en|fr)-[a-z]{2}(?=/|$)", urlparse(url).path.lower())
+        return match.group(0) if match else ""
+
+    @classmethod
+    def _product_url(cls, category_url: str, slug: str, color: str | None) -> str:
+        # Keep the crawled storefront locale so localized listings link back to the
+        # same locale instead of silently switching to the US /shop/ path.
+        return (
+            f"https://www.anthropologie.com{cls._locale_prefix(category_url)}"
+            f"/shop/{slug}?color={color}&type=STANDARD"
+        )
+
+    @staticmethod
+    def _page_of(url: str):
+        values = parse_qs(urlparse(url).query).get("page")
+        if not values:
+            return None
+        try:
+            return int(values[0])
         except (TypeError, ValueError):
             return None
 

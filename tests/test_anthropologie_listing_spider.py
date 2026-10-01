@@ -50,6 +50,31 @@ class AnthropologieListingSpiderTest(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "No Anthropologie urbnInitialPiniaState"):
             list(self.spider.parse(response))
 
+    def test_page_2_category_preserves_starting_page(self):
+        spider = AnthropologieListingSpider(category="womens-clothing-page-2", max_pages=3)
+        request = list(spider.start_requests())[0]
+        self.assertIn("page=2", request.url)
+        self.assertEqual(request.meta["page"], 2)
+
+    def test_direct_url_and_category_url_modes_construct(self):
+        url = "https://www.anthropologie.com/womens-clothing"
+        self.assertEqual(AnthropologieListingSpider(url=url).resolve_target_url(), url)
+        self.assertEqual(AnthropologieListingSpider(category_url=url).resolve_target_url(), url)
+        with self.assertRaisesRegex(ValueError, "Provide -a category"):
+            AnthropologieListingSpider()
+
+    def test_locale_is_preserved_in_product_urls(self):
+        self.assertEqual(
+            AnthropologieListingSpider._product_url(
+                "https://www.anthropologie.com/en-ca/womens-clothing", "goldie-sweater", "702"),
+            "https://www.anthropologie.com/en-ca/shop/goldie-sweater?color=702&type=STANDARD",
+        )
+        self.assertEqual(
+            AnthropologieListingSpider._product_url(
+                "https://www.anthropologie.com/womens-clothing", "goldie-sweater", "702"),
+            "https://www.anthropologie.com/shop/goldie-sweater?color=702&type=STANDARD",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
