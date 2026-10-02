@@ -2,6 +2,7 @@ import json
 import unittest
 import urllib.parse as urlparse
 from pathlib import Path
+from urllib.parse import urljoin
 
 from scrapy.http import Request, TextResponse
 from scrapy.settings import Settings
@@ -18,7 +19,7 @@ class FootlockerListingSpiderTest(unittest.TestCase):
     def setUp(self):
         self.settings = Settings()
         self.settings.set("PROXY", "http://scrapeops.country=us:test_key@proxy.scrapeops.io:5353")
-        self.spider = FootlockerListingSpider(category="mens-shoes", settings=self.settings, max_pages=2)
+        self.spider = FootlockerListingSpider(category="all-men-s-shoes", settings=self.settings, max_pages=2)
 
         self.header_json = json.loads(Path("sample/footlocker-header.json").read_text())
         self.mens_shoes_html = Path("sample/footlocker-mens-shoes.html").read_text()
@@ -132,6 +133,7 @@ class FootlockerListingSpiderTest(unittest.TestCase):
         self.assertIn("raw", first_item)
 
         # Test brand derivation from title if product.brand is missing
+        self.spider._seen_ids = set()  # allow the same fixture products to be re-parsed
         product_no_brand = self.api_page0_json["products"][1].copy()
         product_no_brand["brand"] = None
         request_no_brand = Request(API_BASE, meta={
@@ -196,6 +198,10 @@ class FootlockerListingSpiderTest(unittest.TestCase):
         spider_with_category = FootlockerListingSpider(category="all-men-s-shoes", settings=self.settings, max_pages=1)
         # Manually set resolved categories (this is normally done by earlier stages)
         spider_with_category._resolved_categories = self.spider._resolved_categories
+        # ``start_requests`` only fetches the header when there is nothing to
+        # resolve yet; with categories already resolved it goes straight to the
+        # API crawl.
+        spider_with_category._categories_to_resolve = self.spider._resolved_categories
         spider_with_category._category_resolution_in_progress = False
 
         requests = list(spider_with_category.start_requests())

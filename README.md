@@ -1245,30 +1245,6 @@ Flow:
 3. Emit one item per returned product, deduplicated by `item_id`.
 4. Paginate with `Search-UpdateGrid?cgid=<slug>&start=<n>&sz=<sz>` until
 
-### footlocker_listing
-
-Foot Locker category listings from the ZGW search API. The spider uses a two-stage process:
-
-1. It first fetches `https://www.footlocker.com/api/content/en/header.public.json` to get the navigation taxonomy.
-2. For each category link (e.g., `/category/mens/shoes.html`):
-   a. If the URL contains `?query=`, the `searchParams` are extracted directly from the URL.
-   b. Otherwise, it fetches the HTML for that category page to extract `searchParams` from the `window.footlocker.STATE_FROM_SERVER` JavaScript blob.
-3. Once `searchParams` are resolved for a category, the spider makes direct API calls to `https://www.footlocker.com/zgw/search-core/products/v3/search` for product data, using the resolved `searchParams`.
-
-Residential proxy is required for the ZGW API calls (`scrapeops.country=us.residential=true`).
-
-Flow:
-
-1. `start_requests` initiates a request to `header.public.json`.
-2. `parse_header_json_for_categories` parses the JSON and populates an internal list of categories to resolve.
-3. `_resolve_category_search_params` is called: for `?query=` links, it extracts `searchParams` directly; for others, it makes `scrapy.Request`s to the category HTML pages, calling `parse_search_params_from_html`.
-4. `parse_search_params_from_html` extracts `searchParams` from `window.footlocker.STATE_FROM_SERVER` and adds them to the category entry.
-5. Once all `searchParams` are resolved, `_start_api_crawls` is called.
-6. `_start_api_crawls` then makes `_api_request` calls to the ZGW API for each resolved category, passing `searchParams` and other metadata.
-7. `parse_api_products` parses the API response, yields product items, and makes further `_api_request` calls for pagination until `max_pages` is reached or no more products are available.
-
-```json
-{"band":"Men's","sub_category":"Shoes","category":"all-men-s-shoes","item_id":"T8013103","title":"Jordan Retro 12 - Men's","url":"https://www.footlocker.com/product/T8013103.html","image_url":"https://images.footlocker.com/is/image/EBFL2/T8013103","price":215.0,"original_price":215.0,"currency":"USD","availability":"InStock","brand":"Jordan","rating":5.0,"reviews_count":999,"page":1,"category_url":"/category/mens/shoes.html","source":"footlocker_api","raw":{"badges":{"isDiscountsExcluded":true,"isPromoted":false,"isNewProduct":true,"isSale":false},"baseOptions":[{"selected":{"mapEnable":false,"style":"White/Green/Gold"}}],"baseProduct":"T8013103","images":[{"format":"large","url":"https://images.footlocker.com/is/image/EBFL2/T8013103","altText":"T8013103_large"}],"name":"Jordan Retro 12 - Men's","originalPrice":{"value":215.0,"formattedValue":"$215.00"},"price":{"value":215.0,"formattedValue":"$215.00"},"reviewRatings":{"reviews":999,"rating":5.0},"sku":"T8013103","imageSku":"T8013103","variantOptions":[{"imageSku":"","images":[{"altText":"T8013003_small","format":"small","url":"https://images.footlocker.com/is/image/EBFL2/T8013003?wid=100&hei=100&fmt=png-alpha"}],"color":"Red/Black","price":{"discountPercent":0.0,"salePrice":215.0,"formattedSalePrice":"$215.00","formattedListPrice":"$215.00","listPrice":215.0},"review":{"totalReviews":998.0,"averageRating":5.0},"name":"Jordan Retro 12 - Men's","flagsAndRestrictions":{"isMemberOnlySale":false,"hasShippingRestrictions":false,"saleProduct":false,"defaultStyle":false,"isBannerOnly":false,"isOnlineOnly":false,"recaptchaOn":false,"shipToAndFromStore":true,"hasVendorShippingPrice":false,"newProduct":false,"freeShipping":true,"excludedFromDiscount":true,"mapEnabled":false},"media":{},"sellable":true,"sku":"T8013003"}],"variantsCount":1,"media":{},"isSaleProduct":false,"isNewProduct":true,"launchProduct":false,"isSponsoredProduct":false}}
    `start >= total`, `max_pages` is reached, or a grid page yields no new ids.
 
 Two details worth knowing:
@@ -1362,6 +1338,56 @@ Notes:
   `sample/gamestop-tile-products.json`, and `sample/gamestop-categories.json`.
 - Tests: `.venv/bin/python -m unittest tests.test_gamestop_listing_spider`
   (29 network-free fixture tests).
+### footlocker_listing
+
+Foot Locker category listings from the ZGW search API. Residential ScrapeOps proxy is
+required for the API calls (`scrapeops.country=us.residential=true`); the header and
+category HTML pages go through the plain datacenter route.
+
+Flow:
+
+1. `start_requests` fetches `https://www.footlocker.com/api/content/en/header.public.json`.
+2. `parse_header_json_for_categories` walks the `ContentBand` components, whose list items
+   are `headerSection*` bands; each band holds `headerCategory` groups of
+   `headerCategoryLink`s. It rebuilds a band -> sub-category -> link tree.
+   - When `-a category=<slug>` is given, only the taxonomy link whose slugified text matches
+     is resolved (so a scoped run resolves a single category instead of the whole menu).
+3. `_resolve_category_search_params` resolves `searchParams` for each category link:
+   - a link with `?query=` uses that value directly;
+   - otherwise the category HTML is fetched and `searchParams` is read from
+     `window.footlocker.STATE_FROM_SERVER.page.category["<path>"].searchParams`
+     (`parse_search_params_from_html` / `_extract_search_params_from_html`).
+   A category that cannot be resolved is recorded and skipped rather than deadlocking the
+   crawl; `_start_api_crawls` fires once every category has resolved or failed.
+4. `_start_api_crawls` issues `_api_request`s to the ZGW search endpoint. Without
+   `-a category`, every resolved category is crawled; with it, only the matching
+   `category_slug`.
+5. `parse_api_products` yields one item per returned product and paginates via
+   `currentPage` until `max_pages` or the last page.
+
+Category slugs come from the header link text via `_slugify` (e.g. `All Men's Shoes` ->
+`all-men-s-shoes`); the resolved set is exposed through the spider's `available_categories()`.
+
+Run examples:
+
+- `common-scrapy crawl footlocker_listing -a category='all-men-s-shoes' -a max_pages=1 -O footlocker.jsonl`
+- `common-scrapy crawl footlocker_listing -a category='all-men-s-shoes' -a max_pages=3 -O footlocker.jsonl`
+- `common-scrapy crawl footlocker_listing -a max_pages=1 -O footlocker-all.jsonl` (every resolved category)
+
+Export contract: `band`, `sub_category`, `category`, `item_id`, `title`, `url`, `image_url`,
+`price`, `original_price`, `currency`, `availability`, `brand`, `rating`, `reviews_count`,
+`page`, `category_url`, `source`, `raw`.
+
+Fixtures: `sample/footlocker-header.json` (captured `header.public.json`),
+`sample/footlocker-mens-shoes.html` (captured category HTML with the `STATE_FROM_SERVER`
+blob), and `sample/footlocker-mens-shoes-api-page0.json` (captured ZGW page 0).
+
+Tests: `python -m unittest tests.test_footlocker_listing_spider` (9 network-free fixture tests).
+
+```json
+{"band":"Men's","sub_category":"Shoes","category":"all-men-s-shoes","item_id":"O2463102","title":"Jordan Air Jordan Retro 4 - Men's","url":"https://www.footlocker.com/product/O2463102.html","image_url":"https://images.footlocker.com/is/image/EBFL2/O2463102","price":220.0,"original_price":220.0,"currency":"USD","availability":"OutOfStock","brand":"Jordan","rating":5.0,"reviews_count":5,"page":1,"category_url":"/category/mens/shoes.html","source":"footlocker_api","raw":{"badges":{"isDiscountsExcluded":true,"isPromoted":false,"isNewProduct":true,"isSale":false},"baseProduct":"O2463102","name":"Jordan Air Jordan Retro 4 - Men's","price":{"value":220.0,"formattedValue":"$220.00"},"originalPrice":{"value":220.0,"formattedValue":"$220.00"},"reviewRatings":{"reviews":5,"rating":5.0},"sku":"O2463102","imageSku":"O2463102","variantsCount":1}}
+```
+
 ### maccosmetics_listing
 ```json
 {

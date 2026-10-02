@@ -4,7 +4,7 @@ import json
 import re
 import time
 from typing import Any
-from urllib.parse import parse_qsl, unquote, urlencode, urljoin, urlsplit, urlunsplit
+from urllib.parse import unquote, urljoin, urlsplit, urlunsplit
 
 import scrapy
 
@@ -24,6 +24,47 @@ _SLUG_CLEAN_RE = re.compile(r"[^a-z0-9]+")
 
 def _slugify(value: str) -> str:
     return _SLUG_CLEAN_RE.sub("-", value.lower()).strip("-")
+
+def _match_braces(text: str, start: int) -> int:
+    """Return the index of the ``}`` matching the ``{`` at ``start`` (or -1).
+
+    Brace counting is string-aware so ``}`` characters inside JSON strings do
+    not terminate the object early.
+    """
+    depth = 0
+    in_string = False
+    escaped = False
+    for i in range(start, len(text)):
+        ch = text[i]
+        if in_string:
+            if escaped:
+                escaped = False
+            elif ch == "\\":
+                escaped = True
+            elif ch == '"':
+                in_string = False
+        elif ch == '"':
+            in_string = True
+        elif ch == "{":
+            depth += 1
+        elif ch == "}":
+            depth -= 1
+            if depth == 0:
+                return i
+    return -1
+
+def _extract_js_object(text: str, key: str) -> str | None:
+    """Extract the ``{...}`` object literal that follows ``key`` in ``text``."""
+    key_idx = text.find(key)
+    if key_idx == -1:
+        return None
+    open_idx = text.find("{", key_idx + len(key))
+    if open_idx == -1:
+        return None
+    close_idx = _match_braces(text, open_idx)
+    if close_idx == -1:
+        return None
+    return text[open_idx:close_idx + 1]
 
 def _iter_nav_nodes(tree: dict[str, Any]):
     # This expects a dictionary structure where each value is a dictionary
@@ -87,6 +128,8 @@ class FootlockerListingSpider(BaseListingSpider):
         # _categories_to_resolve will be populated from header.public.json
         self._categories_to_resolve: list[dict[str, Any]] = [] 
         self._resolved_categories: list[dict[str, Any]] = []
+        self._failed_categories: set[str] = set()
+        self._seen_ids: set[str] = set()
         self._category_resolution_in_progress = False
 
     def start_requests(self):
@@ -115,25 +158,46 @@ class FootlockerListingSpider(BaseListingSpider):
         # Let's rebuild that structure from data["page"]["components"]
         rebuilt_tree = {}
         for component in data.get("page", {}).get("components", []):
-            if component.get("type") == "header_section":
-                for section_item in component.get("list", []):
-                    if section_item.get("type") == "headerCategory":
-                        band_name = section_item.get("name")
-                        if band_name:
-                            rebuilt_tree[band_name] = {}
-                            for cat_item in section_item.get("categories", {}).get("list", []):
-                                sub_name = cat_item.get("name")
-                                if sub_name:
-                                    rebuilt_tree[band_name][sub_name] = {}
-                                    for link_item in cat_item.get("links", {}).get("list", []):
-                                        link_name = link_item.get("text")
-                                        link_url = link_item.get("url")
-                                        if link_name and link_url:
-                                            rebuilt_tree[band_name][sub_name][link_name] = link_url
+            # Real header pages wrap each band as a ``headerSection*`` list item
+            # (e.g. ``headerSectionOne``) inside a ``ContentBand`` component.
+            for section_item in component.get("list", []):
+                if not isinstance(section_item, dict):
+                    continue
+                if not str(section_item.get("type", "")).startswith("headerSection"):
+                    continue
+                band_name = section_item.get("name")
+                if not band_name:
+                    continue
+                rebuilt_tree.setdefault(band_name, {})
+                categories = section_item.get("categories") or {}
+                for cat_item in categories.get("list", []):
+                    sub_name = cat_item.get("name")
+                    if not sub_name:
+                        continue
+                    rebuilt_tree[band_name].setdefault(sub_name, {})
+                    links = cat_item.get("links") or {}
+                    for link_item in links.get("list", []):
+                        link_name = link_item.get("text")
+                        link_url = link_item.get("url")
+                        if link_name and link_url:
+                            rebuilt_tree[band_name][sub_name][link_name] = link_url
         
         # Now populate _categories_to_resolve from the rebuilt tree
         for entry in _iter_nav_nodes(rebuilt_tree):
             self._categories_to_resolve.append(entry)
+
+        # When a single category is requested, only resolve that one. Resolving
+        # the whole taxonomy (227+ HTML pages) for a scoped run is wasteful and
+        # slow. Fall back to the full list if the slug matches nothing so the
+        # caller still gets the base-class "Unknown category" error (listing the
+        # available slugs) instead of a silent empty crawl.
+        if self.args.category:
+            matching = [
+                e for e in self._categories_to_resolve
+                if _slugify(e["name"]) == self.args.category
+            ]
+            if matching:
+                self._categories_to_resolve = matching
         
         # Now initiate the searchParams resolution stage
         self._category_resolution_in_progress = True # Indicate that we are moving to next stage
@@ -177,10 +241,12 @@ class FootlockerListingSpider(BaseListingSpider):
             self._resolved_categories.append(entry)
             self.logger.debug(f"Resolved HTML-based category: {entry['name']} -> {entry['searchParams']}")
         else:
+            self._failed_categories.add(entry["url"])
             self.logger.warning(f"Could not resolve searchParams for {entry['url']}")
         
-        # Check if all categories have been resolved
-        if len(self._resolved_categories) == len(self._categories_to_resolve):
+        # Check if all categories have been resolved (or have permanently failed).
+        # A single unresolvable category must not deadlock the whole crawl.
+        if self._categories_to_resolve and len(self._resolved_categories) + len(self._failed_categories) >= len(self._categories_to_resolve):
             self._category_resolution_in_progress = False
             yield from self._start_api_crawls()
 
@@ -189,25 +255,26 @@ class FootlockerListingSpider(BaseListingSpider):
         if not script_blob:
             return None
         try:
-            # Find the window.footlocker = { ... } object
-            match = re.search(r"window\.footlocker\\s*=\\s*(\\{.*?\\})\\s*;?", script_blob, re.DOTALL)
-            if not match:
+            # ``window.footlocker`` is a JS object literal (unquoted keys), so it
+            # cannot be parsed with json directly -- brace-match it first.
+            outer = _extract_js_object(script_blob, "window.footlocker")
+            if not outer:
                 self.logger.warning(f"Could not find window.footlocker state in script for {response.url}")
                 return None
-            full_js_obj_str = match.group(1)
 
-            # Find STATE_FROM_SERVER within that object
-            state_from_server_match = re.search(r"STATE_FROM_SERVER\\s*:\\s*(\\{.*?\\})", full_js_obj_str, re.DOTALL)
-            if not state_from_server_match:
+            state_from_server_str = _extract_js_object(outer, "STATE_FROM_SERVER")
+            if not state_from_server_str:
                 self.logger.warning(f"Could not find STATE_FROM_SERVER within window.footlocker for {response.url}")
                 return None
-            state_from_server_str = state_from_server_match.group(1)
             state = json.loads(state_from_server_str)
-            
+
             # The key in page.category can vary. Iterate to find a matching one.
+            # Keys are site-relative paths (e.g. ``/category/mens/shoes.html``)
+            # while ``response.url`` is absolute, so compare URL paths.
             category_map = state.get('page', {}).get('category', {})
+            target = urlsplit(response.url).path
             for url_key, details in category_map.items():
-                if url_key.split('?')[0] == response.url.split('?')[0]:
+                if urlsplit(url_key).path == target:
                     return details.get("searchParams")
         except Exception as e:
             self.logger.error(f"Error parsing STATE_FROM_SERVER on {response.url}: {e}")
@@ -294,26 +361,22 @@ class FootlockerListingSpider(BaseListingSpider):
         if plain: # For HTML requests, use plain datacenter proxy
             return proxy
 
-        username = parts.username
-        if RESIDENTIAL_PROXY not in username:
-            username = f"{username}.{RESIDENTIAL_PROXY}"
+        if RESIDENTIAL_PROXY in parts.username:
+            return proxy
 
-        credentials = unquote(username, safe=".:=_") # Unquote first, then re-quote for safety
-        if parts.password is not None:
-            credentials += f":{unquote(parts.password, safe='')}" # Also unquote password
-        
-        # The quote/unquote logic for credentials is tricky.
-        # Scrapy passes the raw proxy string from settings.
-        # If it's already encoded, unquoting might break it.
-        # Let's assume proxy from settings is already correctly encoded.
-        # Just append the residential part if not present.
+        # Append the residential option to the ScrapeOps username and rebuild the
+        # proxy URL, preserving any password. The credentials from settings are
+        # already in the form Scrapy expects, so pass them through verbatim.
+        username = f"{parts.username}.{RESIDENTIAL_PROXY}"
+        credentials = username if parts.password is None else f"{username}:{parts.password}"
+        return urlunsplit(
+            (parts.scheme, f"{credentials}@{parts.hostname}:{parts.port}", parts.path, parts.query, parts.fragment)
+        )
 
-        if RESIDENTIAL_PROXY not in parts.username:
-            new_username = f"{parts.username}.{RESIDENTIAL_PROXY}"
-            # Reconstruct the URL with the modified username
-            return urlunsplit((parts.scheme, f"{new_username}:{parts.password}@{parts.hostname}:{parts.port}", parts.path, parts.query, parts.fragment))
-        return proxy
 
+    def new_item(self) -> dict[str, Any]:
+        """Create an empty exportable item (Scrapy exports plain dicts)."""
+        return {}
 
     def parse_api_products(self, response: scrapy.http.Response):
         data = json.loads(response.text)
@@ -330,11 +393,18 @@ class FootlockerListingSpider(BaseListingSpider):
             return
 
         for product in products:
+            # The ZGW search API can repeat a product across adjacent pages, so
+            # dedupe on the listing id the same way the other listing spiders do.
+            item_id = product.get("sku") or product.get("baseProduct")
+            if not item_id or item_id in self._seen_ids:
+                continue
+            self._seen_ids.add(item_id)
+
             item = self.new_item()
             item["band"] = metadata["band"]
             item["sub_category"] = metadata["sub_category"]
             item["category"] = metadata["category_slug"] # Use the resolved category_slug
-            item["item_id"] = product.get("sku") or product.get("baseProduct")
+            item["item_id"] = item_id
             item["title"] = product.get("name")
             item["url"] = urljoin(SITE_BASE, f"/product/{item['item_id']}.html")
             image_base = "https://images.footlocker.com/is/image/EBFL2/"
