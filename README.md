@@ -77,6 +77,7 @@ Spiders below are returning items in recent smoke runs:
 | [`costco_listing`](#costco_search--costco_listing) | Active | React Flight + API | Akamai | Costco category listing with React Flight discovery and GRS search pagination. | 24 (ok) | 131 parent groups / 432 subcategory entries from `costco-categories.json` | `{"item_id":"100501081","title":"Starbucks Pike Place Medium Roast K-Cup","url":"https://www.costco.com/starbucks-pike-place-medium-roast-k-cup-72-count.product.100501081.html","price":...` |
 | [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | none detected (CloudFront CDN only) | e.l.f. Cosmetics multi-mode listing spider. | 6 (ok) | face, eyes, lips | `{'item_id':'300261','title':'Soft Glam Satin Concealer','url':'https://www.elfcosmetics.com/soft-glam-satin-concealer/300262.html','price':9.0,'brand':'e.l.f. Cosmetics','source':'elfcosmetics_preloaded_state'...}` |
 | [`fashionnova_listing`](#fashionnova_listing) | Active | api + html | Cloudflare | Fashion Nova listing via Shopify Storefront GraphQL with HTML fallback. | 48 (ok) | women, new, dresses, jeans, sale | `{"item_id":"175898317","title":"Classic High Waist Skinny Jeans - Dark Denim","url":"https://www.fashionnova.com/products/dark-blue-class...` |
+| [`nike_listing`](#nike_listing) | Active | api | none detected (ScrapeOps proxy; keep_headers) | Nike product wall via `__NEXT_DATA__` hydration + `api.nike.com` product-wall API pagination (no HTML fallback). | 239 (page 1, proxy) | 168 unique URLs across 6 departments from `nike_categories.py` | `{"category":"mens-shoes-nik1zy7ok","item_id":"IX3952-600","title":"Nike Moon Shoe OG","price":105,"currency":"USD","source":"nike_next_data"...` |
 | [`gamestop_listing`](#gamestop_listing) | Active | api | none detected (ScrapeOps proxy) | GameStop SFCC Demandware listing via the `Tile-GetProductsJSON` controller (no HTML fallback). | 139 (3 pages, proxy) | 119 URLs across 33 category groups from `gamestop_categories.py` | `{"category":"consoles-hardware","item_id":"106429","title":"Nintendo Wii Original Console with Wii Remote - Super Mario Bros. 25th Anniversary Edition Red","price":"139.99","availability":"InStock","source":"gamestop_tile_json"...` |
 | [`homedepot_listing`](#homedepot_listing-category-apollo-state) | Flaky | bootstrap | Akamai | Home Depot department listings from embedded Apollo state. | 2 (fixture) | appliances, bath, building-materials, decor-and-furniture, electrical, flooring, hardware, heating-and-cooling, kitchen, lawn-and-garden, lighting, paint, plumbing, storage, tools | `{"category":"tools","item_id":"100000001","sku":"1000000001","title":"16 oz. Fiberglass Claw Hammer","brand":"Husky","price":14.97...` |
 | [`homedepot_search`](#homedepot_search-keyword-apollo-bootstrap) | Active | bootstrap + html | Akamai | Home Depot keyword search via Apollo state. | 24 (ok) | - | `{"item_id":"336787835","sku":"1014334650","brand":"Lukyamzn","title":"14 in. Dual-Core Celeron N4000 Laptop 6 GB RAM 128 GB SSD IPS Displ...` |
@@ -1408,6 +1409,115 @@ Notes:
 - Selecting a category (`women`, `men`, or `aerie`) starts every configured subcategory in that group.
 - Pagination uses `/browse/v1/category/{category}?offset={offset}&rows={rows}` with `meta.offset`, `meta.rows`, and `meta.totalProducts`.
 - Requests should keep browser-like headers (`accept`, `accept-language`, `referer`, `user-agent`, and `x-requested-with`).
+
+### nike_listing
+
+Nike runs a Next.js catch-all route (`/w/[[...slug]]`). The product wall is
+hydrated into `script#__NEXT_DATA__` on page 1, and every later page is served by
+the first-party product-wall API on `api.nike.com`:
+
+```
+/discover/product_wall/v1/marketplace/US/language/en/consumerChannelId/<uuid>
+    ?path=/w/<slug>&attributeIds=<uuids>&queryType=PRODUCTS&anchor=<n>&count=<n>
+```
+
+This spider uses exactly one data direction -- that hydration state and the API it
+points at. There is no HTML card scraping and no rendered-browser fallback. Both
+legs return the same product object shape, so a single parser builds every item.
+
+Two details are load-bearing:
+
+- `api.nike.com` rejects requests without `nike-api-caller-id`, answering HTTP 200
+  with `{"errors":[{"code":"NIKE_API_CALLER_ID_HEADER_NOT_PRESENT"}]}` -- so a
+  status check alone would read a rejected request as a valid empty last page.
+  The spider raises on that envelope instead.
+- ScrapeOps strips custom request headers by default, so the API leg applies the
+  provider's `keep_headers=true` username option (mirroring
+  `costco_listing_spider._search_api_proxy`); without it the header is dropped in
+  transit and Nike returns exactly that error.
+
+The bundled inventory preserves the desktop global navigation hierarchy
+(`department -> group -> subcategory -> url`), flattened to 168 unique URLs across
+Men, Women, Kids, Jordan, NikeSKIMS, and Sport. Six URLs are linked from two
+departments (for example `/w/sunglasses-arlyp` from both Men and Women); the
+spider deduplicates by URL and keeps the first department, matching the
+repository convention. Entries are keyed by the URL path slug (for example
+`mens-shoes-nik1zy7ok`), which is already unique across the whole inventory.
+
+Grouping is *not* the unit of output: a `productGroupings[]` entry holds every
+colorway it collects and each has its own `productCode`, so collapsing to one item
+per group would silently drop colorways. Items are deduplicated by
+`(category, productCode)`.
+
+Pagination reads the next relative path from the previous response's own
+pagination field (`Wall.pageData.next` on page 1, `pages.next` afterwards) and
+never hard-codes the channel/attribute UUIDs or the anchor, because Nike rotates
+them. The crawl stops at `max_pages` or when the current page carries no further
+`next`.
+
+Run examples:
+
+- `common-scrapy crawl nike_listing -a category=mens-shoes-nik1zy7ok -a max_pages=2 -O nike.jsonl -s HTTPCACHE_ENABLED=False`
+- `common-scrapy crawl nike_listing -a category=womens-shoes-5e1x6zy7ok -a max_pages=1 -O nike_women.jsonl -s HTTPCACHE_ENABLED=False`
+- `common-scrapy crawl nike_listing -a category_url='https://www.nike.com/w/mens-shoes-nik1zy7ok' -a max_pages=1 -O nike.jsonl`
+
+The ordered export fields are `category`, `department`, `group`, `item_id`,
+`title`, `subtitle`, `url`, `image_url`, `price`, `list_price`,
+`discount_percent`, `employee_price`, `currency`, `color`, `color_hex`,
+`color_description`, `product_type`, `availability`, `badge`, `promotion`,
+`is_new_until`, `page`, `category_url`, `source`, and `raw`.
+
+```json
+{
+  "category": "mens-shoes-nik1zy7ok",
+  "department": "Men",
+  "group": "Shoes",
+  "item_id": "IX3952-600",
+  "title": "Nike Moon Shoe OG",
+  "subtitle": "Men's Shoes",
+  "url": "https://www.nike.com/t/moon-shoe-og-mens-shoes-QjBip6mn/IX3952-600",
+  "image_url": "https://static.nike.com/a/images/t_default/.../NIKE+MOON+SHOE+OG.png",
+  "price": 105,
+  "list_price": null,
+  "discount_percent": null,
+  "employee_price": 63,
+  "currency": "USD",
+  "color": "Red",
+  "color_hex": "B40033",
+  "color_description": "Tough Red/Mystic Dates/Gum Light Brown/Sail",
+  "product_type": "FOOTWEAR",
+  "availability": "InStock",
+  "badge": "Just In",
+  "promotion": null,
+  "is_new_until": "2026-10-14T14:00:00.000Z",
+  "page": 1,
+  "category_url": "https://www.nike.com/w/mens-shoes-nik1zy7ok",
+  "source": "nike_next_data",
+  "raw": { "productCode": "IX3952-600", "copy": { "title": "Nike Moon Shoe OG" } }
+}
+```
+
+Notes:
+
+- `price` is `prices.currentPrice` and `list_price` is only populated when
+  `discountPercentage` is non-zero, so an undiscounted item does not report the
+  same value twice as if it had been marked down.
+- `availability` maps Nike's `featuredAttributes`: `COMING_SOON` -> `PreOrder`,
+  `RESTOCK` -> `BackInStock`, otherwise `InStock`.
+- `promotion` carries the customer-facing promotion title from the first `PW`
+  product-wall visibility (for example "See Price in Bag").
+- `source` is `nike_next_data` for page 1 and `nike_product_wall_api` for later
+  pages.
+- The spider fails loudly on a non-200 response, an access-denied/challenge body,
+  a missing `script#__NEXT_DATA__` block, a missing
+  `props.pageProps.initialState.Wall`, a malformed JSON body, a response missing
+  `productGroupings`, a product without a `productCode`, or a Nike `errors`
+  envelope, so a retired category slug or a stripped caller header cannot
+  masquerade as an empty listing.
+- Fixtures live in `sample/nike-listing-next-data.html`,
+  `sample/nike-product-wall-page.json`, and `sample/nike-categories.json`.
+- Tests: `.venv/bin/python -m unittest tests.test_nike_listing_spider`
+  (33 network-free fixture tests).
 
 ## Contributing
 
