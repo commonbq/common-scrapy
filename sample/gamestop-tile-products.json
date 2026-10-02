@@ -1,0 +1,807 @@
+{
+  "action": "Tile-GetProductsJSON",
+  "queryString": "data=224744%2C402379%2C424543%2C143259%2C416188%2C294963%2C224746%2C909275%2C229026%2C229025%2C401639%2C451607%2C131069%2C119149%2C131061%2C450924%2C446348%2C299009%2C106429%2C134406&useTileImage=true",
+  "locale": "default",
+  "productsJSON": {
+    "106429": {
+      "id": "106429",
+      "constructorItemId": "10113363++Nintendo Wii",
+      "constructorVariationId": "106429",
+      "url": "/consoles-hardware/retro-consoles/products/nintendo-wii-original-console-with-wii-remote---super-mario-bros.-25th-anniversary-edition-red/106429.html",
+      "name": "Nintendo Wii Original Console with Wii Remote - Super Mario Bros. 25th Anniversary Edition Red",
+      "productPlatform": [],
+      "price": {
+        "base": "139.99",
+        "sale": null,
+        "pro": "132.99",
+        "min": null,
+        "max": null
+      },
+      "availability": {
+        "readyToOrder": true,
+        "available": true,
+        "preorder": null,
+        "allowBOPS": true,
+        "allowSDD": true,
+        "isDigitalProduct": false
+      },
+      "releaseDate": null,
+      "bopsPromoAlternate": null,
+      "badge": "BUY CONSOLE, SAVE 10% PO ACC.",
+      "image": {
+        "title": "Nintendo Wii Original Console with Wii Remote - Super Mario Bros. 25th Anniversary Edition Red",
+        "base": "https://media.gamestop.com/i/gamestop/10121186?"
+      },
+      "ratings": {
+        "percentage": "83.85",
+        "count": "654"
+      },
+      "marketPrice": null,
+      "gradingProvider": null,
+      "hidePricePDP": null,
+      "hideProPricePDP": null,
+      "seePriceInCart": null,
+      "shortDescription": ""
+    },
+    "119149": {
+      "id": "119149",
+      "constructorItemId": "10115705++With 3.5mm Jack Controller-Xbox One-500gb",
+      "constructorVariationId": "119149",
+      "url": "/consoles-hardware/xbox-one/consoles/products/microsoft-xbox-one-500gb-console-black-with-3.5mm-jack-controller/119149.html",
+      "name": "Microsoft Xbox One 500GB Console Black with 3.5mm Jack Controller",
+      "productPlatform": [],
+      "price": {
+        "base": "109.99",
+        "sale": "89.99",
+        "pro": null,
+        "min": null,
+        "max": null
+      },
+      "availability": {
+        "readyToOrder": true,
+        "available": true,
+        "preorder": null,
+        "allowBOPS": true,
+        "allowSDD": true,
+        "isDigitalProduct": false
+      },
+      "releaseDate": null,
+      "bopsPromoAlternate": null,
+      "badge": "UP TO $20 OFF",
+      "image": {
+        "title": "Microsoft Xbox One 500GB Console Black with 3.5mm Jack Controller",
+        "base": "https://media.gamestop.com/i/gamestop/10129112?"
+      },
+      "ratings": {
+        "percentage": "74.71",
+        "count": "3662"
+      },
+      "marketPrice": null,
+      "gradingProvider": null,
+      "hidePricePDP": null,
+      "hideProPricePDP": null,
+      "seePriceInCart": null,
+      "shortDescription": ""
+    },
+    "131061": {
+      "id": "131061",
+      "constructorItemId": "10138875++White-Xbox One-500gb",
+      "constructorVariationId": "131061",
+      "url": "/consoles-hardware/xbox-one/consoles/products/microsoft-xbox-one-s-500gb-console---white/131061.html",
+      "name": "Microsoft Xbox One S 500GB Console - White",
+      "productPlatform": [],
+      "price": {
+        "base": "169.99",
+        "sale": "149.99",
+        "pro": null,
+        "min": null,
+        "max": null
+      },
+      "availability": {
+        "readyToOrder": true,
+        "available": true,
+        "preorder": null,
+        "allowBOPS": true,
+        "allowSDD": true,
+        "isDigitalProduct": false
+      },
+      "releaseDate": null,
+      "bopsPromoAlternate": null,
+      "badge": "UP TO $20 OFF",
+      "image": {
+        "title": "Microsoft Xbox One S 500GB Console - White",
+        "base": "https://media.gamestop.com/i/gamestop/10138879/Microsoft-Xbox-One-S-500GB-Console-White?"
+      },
+      "ratings": {
+        "percentage": "82.01",
+        "count": "4003"
+      },
+      "marketPrice": null,
+      "gradingProvider": null,
+      "hidePricePDP": null,
+      "hideProPricePDP": null,
+      "seePriceInCart": null,
+      "shortDescription": ""
+    },
+    "131069": {
+      "id": "131069",
+      "constructorItemId": "10138875++White-Xbox One-1tb",
+      "constructorVariationId": "131069",
+      "url": "/consoles-hardware/xbox-one/consoles/products/microsoft-xbox-one-s-console-1tb---white/131069.html",
+      "name": "Microsoft Xbox One S Console 1TB - White",
+      "productPlatform": [],
+      "price": {
+        "base": "199.99",
+        "sale": "179.99",
+        "pro": null,
+        "min": null,
+        "max": null
+      },
+      "availability": {
+        "readyToOrder": true,
+        "available": true,
+        "preorder": null,
+        "allowBOPS": true,
+        "allowSDD": true,
+        "isDigitalProduct": false
+      },
+      "releaseDate": null,
+      "bopsPromoAlternate": null,
+      "badge": "UP TO $20 OFF",
+      "image": {
+        "title": "Microsoft Xbox One S Console 1TB - White",
+        "base": "https://media.gamestop.com/i/gamestop/10138875?"
+      },
+      "ratings": {
+        "percentage": "82.01",
+        "count": "4003"
+      },
+      "marketPrice": null,
+      "gradingProvider": null,
+      "hidePricePDP": null,
+      "hideProPricePDP": null,
+      "seePriceInCart": null,
+      "shortDescription": ""
+    },
+    "134406": {
+      "id": "134406",
+      "constructorItemId": "10134659++Black-PlayStation 4-1tb",
+      "constructorVariationId": "134406",
+      "url": "/consoles-hardware/playstation-4/consoles/products/sony-playstation-4-pro-black-1tb/134406.html",
+      "name": "Sony PlayStation 4 Pro Black 1TB",
+      "productPlatform": [],
+      "price": {
+        "base": "189.99",
+        "sale": "169.99",
+        "pro": null,
+        "min": null,
+        "max": null
+      },
+      "availability": {
+        "readyToOrder": true,
+        "available": true,
+        "preorder": null,
+        "allowBOPS": true,
+        "allowSDD": true,
+        "isDigitalProduct": false
+      },
+      "releaseDate": null,
+      "bopsPromoAlternate": null,
+      "badge": "UP TO $20 OFF",
+      "image": {
+        "title": "Sony PlayStation 4 Pro Black 1TB",
+        "base": "https://media.gamestop.com/i/gamestop/10134659/Sony-PlayStation-4-Pro-1TB-Console-Black?"
+      },
+      "ratings": {
+        "percentage": "90.08",
+        "count": "9421"
+      },
+      "marketPrice": null,
+      "gradingProvider": null,
+      "hidePricePDP": null,
+      "hideProPricePDP": null,
+      "seePriceInCart": null,
+      "shortDescription": ""
+    },
+    "143259": {
+      "id": "143259",
+      "constructorItemId": "10141820++Nintendo Switch-32gb",
+      "constructorVariationId": "143259",
+      "url": "/consoles-hardware/nintendo-switch/consoles/products/nintendo-switch-with-neon-blue-red-joy-con-controller-previous-model/143259.html",
+      "name": "Nintendo Switch with Neon Blue/Red Joy-Con Controller (Previous Model)",
+      "productPlatform": [],
+      "price": {
+        "base": "199.99",
+        "sale": "179.99",
+        "pro": null,
+        "min": null,
+        "max": null
+      },
+      "availability": {
+        "readyToOrder": true,
+        "available": true,
+        "preorder": null,
+        "allowBOPS": true,
+        "allowSDD": true,
+        "isDigitalProduct": false
+      },
+      "releaseDate": null,
+      "bopsPromoAlternate": null,
+      "badge": "UP TO $20 OFF",
+      "image": {
+        "title": "Nintendo Switch with Neon Blue/Red Joy-Con Controller &#40;Previous Model&#41;",
+        "base": "https://media.gamestop.com/i/gamestop/10141820_neon-blueneon-red?"
+      },
+      "ratings": {
+        "percentage": "92.03",
+        "count": "6627"
+      },
+      "marketPrice": null,
+      "gradingProvider": null,
+      "hidePricePDP": null,
+      "hideProPricePDP": null,
+      "seePriceInCart": null,
+      "shortDescription": ""
+    },
+    "224744": {
+      "id": "224744",
+      "constructorItemId": "11108371++Standard-Xbox Series X-1tb",
+      "constructorVariationId": "224744",
+      "url": "/consoles-hardware/xbox-series-x%7Cs/consoles/products/microsoft-xbox-series-x-console-1tb-ssd---4k-gaming---120fps---carbon-black/224744.html",
+      "name": "Microsoft Xbox Series X Console 1TB SSD - 4K Gaming - 120FPS - Carbon Black",
+      "productPlatform": [],
+      "price": {
+        "base": "799.99",
+        "sale": null,
+        "pro": null,
+        "min": null,
+        "max": null
+      },
+      "availability": {
+        "readyToOrder": true,
+        "available": true,
+        "preorder": null,
+        "allowBOPS": true,
+        "allowSDD": true,
+        "isDigitalProduct": false
+      },
+      "releaseDate": null,
+      "bopsPromoAlternate": null,
+      "badge": "BUY CONSOLE, SAVE 10% PO ACC.",
+      "image": {
+        "title": "Microsoft Xbox Series X Console 1TB SSD - 4K Gaming - 120FPS - Carbon Black",
+        "base": "https://media.gamestop.com/i/gamestop/11108371?"
+      },
+      "ratings": {
+        "percentage": "91.67",
+        "count": "7842"
+      },
+      "marketPrice": null,
+      "gradingProvider": null,
+      "hidePricePDP": null,
+      "hideProPricePDP": null,
+      "seePriceInCart": null,
+      "shortDescription": ""
+    },
+    "224746": {
+      "id": "224746",
+      "constructorItemId": "11207109++Standard-Xbox Series S-512gb",
+      "constructorVariationId": "224746",
+      "url": "/consoles-hardware/xbox-series-x%7Cs/consoles/products/microsoft-xbox-series-s-all-digital-console-512gb-ssd---120fps---robot-white/224746.html",
+      "name": "Microsoft Xbox Series S All Digital Console 512GB SSD - 120FPS - Robot White",
+      "productPlatform": [],
+      "price": {
+        "base": "499.99",
+        "sale": null,
+        "pro": null,
+        "min": null,
+        "max": null
+      },
+      "availability": {
+        "readyToOrder": true,
+        "available": true,
+        "preorder": null,
+        "allowBOPS": true,
+        "allowSDD": true,
+        "isDigitalProduct": false
+      },
+      "releaseDate": null,
+      "bopsPromoAlternate": null,
+      "badge": "BUY CONSOLE, SAVE 10% PO ACC.",
+      "image": {
+        "title": "Microsoft Xbox Series S All Digital Console 512GB SSD - 120FPS - Robot White",
+        "base": "https://media.gamestop.com/i/gamestop/11207109?"
+      },
+      "ratings": {
+        "percentage": null,
+        "count": null
+      },
+      "marketPrice": null,
+      "gradingProvider": null,
+      "hidePricePDP": null,
+      "hideProPricePDP": null,
+      "seePriceInCart": null,
+      "shortDescription": ""
+    },
+    "229025": {
+      "id": "229025",
+      "constructorItemId": "11108140++Standard-PlayStation 5",
+      "constructorVariationId": "229025",
+      "url": "/consoles-hardware/playstation-5/consoles/products/sony-playstation-5-console/229025.html",
+      "name": "Sony PlayStation 5 Console",
+      "productPlatform": [],
+      "price": {
+        "base": "569.99",
+        "sale": null,
+        "pro": "541.49",
+        "min": null,
+        "max": null
+      },
+      "availability": {
+        "readyToOrder": true,
+        "available": true,
+        "preorder": null,
+        "allowBOPS": true,
+        "allowSDD": true,
+        "isDigitalProduct": false
+      },
+      "releaseDate": null,
+      "bopsPromoAlternate": null,
+      "badge": "BUY CONSOLE, SAVE 10% PO ACC.",
+      "image": {
+        "title": "Sony PlayStation 5 Console",
+        "base": "https://media.gamestop.com/i/gamestop/11108140?"
+      },
+      "ratings": {
+        "percentage": "89.98",
+        "count": "5793"
+      },
+      "marketPrice": null,
+      "gradingProvider": null,
+      "hidePricePDP": null,
+      "hideProPricePDP": null,
+      "seePriceInCart": null,
+      "shortDescription": ""
+    },
+    "229026": {
+      "id": "229026",
+      "constructorItemId": "11108141++Standard-PlayStation 5",
+      "constructorVariationId": "229026",
+      "url": "/consoles-hardware/playstation-5/consoles/products/sony-playstation-5-digital-edition-console/229026.html",
+      "name": "Sony PlayStation 5 Digital Edition Console",
+      "productPlatform": [],
+      "price": {
+        "base": "559.99",
+        "sale": null,
+        "pro": "531.99",
+        "min": null,
+        "max": null
+      },
+      "availability": {
+        "readyToOrder": true,
+        "available": true,
+        "preorder": null,
+        "allowBOPS": true,
+        "allowSDD": true,
+        "isDigitalProduct": false
+      },
+      "releaseDate": null,
+      "bopsPromoAlternate": null,
+      "badge": "BUY CONSOLE, SAVE 10% PO ACC.",
+      "image": {
+        "title": "Sony PlayStation 5 Digital Edition Console",
+        "base": "https://media.gamestop.com/i/gamestop/11108141/Sony-PlayStation-5-Digital-Edition-Console?"
+      },
+      "ratings": {
+        "percentage": "86.21",
+        "count": "1710"
+      },
+      "marketPrice": null,
+      "gradingProvider": null,
+      "hidePricePDP": null,
+      "hideProPricePDP": null,
+      "seePriceInCart": null,
+      "shortDescription": ""
+    },
+    "294963": {
+      "id": "294963",
+      "constructorItemId": "11106262++Midnight Black-PlayStation 5",
+      "constructorVariationId": "294963",
+      "url": "/gaming-accessories/controllers/playstation-5/products/sony-dualsense-wireless-controller-for-playstation-5---midnight-black/294963.html",
+      "name": "Sony DualSense Wireless Controller for PlayStation 5 - Midnight Black",
+      "productPlatform": [],
+      "price": {
+        "base": "74.99",
+        "sale": null,
+        "pro": null,
+        "min": null,
+        "max": null
+      },
+      "availability": {
+        "readyToOrder": true,
+        "available": true,
+        "preorder": null,
+        "allowBOPS": true,
+        "allowSDD": true,
+        "isDigitalProduct": false
+      },
+      "releaseDate": null,
+      "bopsPromoAlternate": null,
+      "badge": null,
+      "image": {
+        "title": "Sony DualSense Wireless Controller for PlayStation 5 - Midnight Black",
+        "base": "https://media.gamestop.com/i/gamestop/11146116/Sony-DualSense-Wireless-Controller-for-PlayStation-5?"
+      },
+      "ratings": {
+        "percentage": "87.65",
+        "count": "12114"
+      },
+      "marketPrice": null,
+      "gradingProvider": null,
+      "hidePricePDP": null,
+      "hideProPricePDP": null,
+      "seePriceInCart": null,
+      "shortDescription": ""
+    },
+    "299009": {
+      "id": "299009",
+      "constructorItemId": "11149258++Nintendo Switch",
+      "constructorVariationId": "299009",
+      "url": "/consoles-hardware/nintendo-switch/consoles/products/nintendo-switch-oled-console-with-white-joy-con/299009.html",
+      "name": "Nintendo Switch OLED Console with White Joy-Con",
+      "productPlatform": [],
+      "price": {
+        "base": "399.99",
+        "sale": null,
+        "pro": null,
+        "min": null,
+        "max": null
+      },
+      "availability": {
+        "readyToOrder": true,
+        "available": true,
+        "preorder": null,
+        "allowBOPS": true,
+        "allowSDD": true,
+        "isDigitalProduct": false
+      },
+      "releaseDate": null,
+      "bopsPromoAlternate": null,
+      "badge": "BUY CONSOLE, SAVE 10% PO ACC.",
+      "image": {
+        "title": "Nintendo Switch OLED Console with White Joy-Con",
+        "base": "https://media.gamestop.com/i/gamestop/11149258?"
+      },
+      "ratings": {
+        "percentage": "93.67",
+        "count": "5858"
+      },
+      "marketPrice": null,
+      "gradingProvider": null,
+      "hidePricePDP": null,
+      "hideProPricePDP": null,
+      "seePriceInCart": null,
+      "shortDescription": ""
+    },
+    "401639": {
+      "id": "401639",
+      "constructorItemId": "20009075++PlayStation 5",
+      "constructorVariationId": "401639",
+      "url": "/consoles-hardware/playstation-5/consoles/products/sony-playstation-portal-remote-player-for-ps5-console/401639.html",
+      "name": "Sony PlayStation Portal Remote Player for PS5 Console",
+      "productPlatform": [],
+      "price": {
+        "base": "249.99",
+        "sale": null,
+        "pro": null,
+        "min": null,
+        "max": null
+      },
+      "availability": {
+        "readyToOrder": true,
+        "available": true,
+        "preorder": null,
+        "allowBOPS": true,
+        "allowSDD": true,
+        "isDigitalProduct": false
+      },
+      "releaseDate": null,
+      "bopsPromoAlternate": null,
+      "badge": null,
+      "image": {
+        "title": "Sony PlayStation Portal Remote Player for PS5 Console",
+        "base": "https://media.gamestop.com/i/gamestop/20009075/Sony-PlayStation-Portal-Remote-Player-for-PS5-Console?"
+      },
+      "ratings": {
+        "percentage": "74.64",
+        "count": "209"
+      },
+      "marketPrice": null,
+      "gradingProvider": null,
+      "hidePricePDP": null,
+      "hideProPricePDP": null,
+      "seePriceInCart": null,
+      "shortDescription": ""
+    },
+    "402379": {
+      "id": "402379",
+      "constructorItemId": "20009351++Standard-PlayStation 5",
+      "constructorVariationId": "402379",
+      "url": "/consoles-hardware/playstation-5/consoles/products/sony-playstation-5-slim-console-disc-edition/402379.html",
+      "name": "Sony PlayStation 5 Slim Console Disc Edition",
+      "productPlatform": [],
+      "price": {
+        "base": "649.99",
+        "sale": null,
+        "pro": null,
+        "min": null,
+        "max": null
+      },
+      "availability": {
+        "readyToOrder": true,
+        "available": true,
+        "preorder": null,
+        "allowBOPS": true,
+        "allowSDD": true,
+        "isDigitalProduct": false
+      },
+      "releaseDate": null,
+      "bopsPromoAlternate": true,
+      "badge": "BUY CONSOLE, SAVE 10% PO ACC.",
+      "image": {
+        "title": "Sony PlayStation 5 Slim Console Disc Edition",
+        "base": "https://media.gamestop.com/i/gamestop/20009351?"
+      },
+      "ratings": {
+        "percentage": "89.98",
+        "count": "5793"
+      },
+      "marketPrice": null,
+      "gradingProvider": null,
+      "hidePricePDP": null,
+      "hideProPricePDP": null,
+      "seePriceInCart": null,
+      "shortDescription": ""
+    },
+    "416188": {
+      "id": "416188",
+      "constructorItemId": "20015604++PlayStation 5-2tb",
+      "constructorVariationId": "416188",
+      "url": "/consoles-hardware/playstation-5/consoles/products/sony-playstation-5-pro-console/416188.html",
+      "name": "Sony PlayStation 5 Pro Console",
+      "productPlatform": [],
+      "price": {
+        "base": "899.99",
+        "sale": null,
+        "pro": null,
+        "min": null,
+        "max": null
+      },
+      "availability": {
+        "readyToOrder": null,
+        "available": false,
+        "preorder": null,
+        "allowBOPS": true,
+        "allowSDD": true,
+        "isDigitalProduct": false
+      },
+      "releaseDate": null,
+      "bopsPromoAlternate": true,
+      "badge": "BUY CONSOLE, SAVE 10% PO ACC.",
+      "image": {
+        "title": "Sony PlayStation 5 Pro Console",
+        "base": "https://media.gamestop.com/i/gamestop/20015604/Sony-PlayStation-5-Pro-Console?"
+      },
+      "ratings": {
+        "percentage": "92.27",
+        "count": "344"
+      },
+      "marketPrice": null,
+      "gradingProvider": null,
+      "hidePricePDP": null,
+      "hideProPricePDP": null,
+      "seePriceInCart": null,
+      "shortDescription": ""
+    },
+    "424543": {
+      "id": "424543",
+      "constructorItemId": "20019700++Nintendo Switch 2-256gb",
+      "constructorVariationId": "424543",
+      "url": "/consoles-hardware/nintendo-switch-2/products/nintendo-switch-2/424543.html",
+      "name": "Nintendo Switch 2",
+      "productPlatform": [],
+      "price": {
+        "base": "499.99",
+        "sale": null,
+        "pro": null,
+        "min": null,
+        "max": null
+      },
+      "availability": {
+        "readyToOrder": true,
+        "available": true,
+        "preorder": null,
+        "allowBOPS": true,
+        "allowSDD": true,
+        "isDigitalProduct": false
+      },
+      "releaseDate": null,
+      "bopsPromoAlternate": true,
+      "badge": "BUY CONSOLE, SAVE 10% PO ACC.",
+      "image": {
+        "title": "Nintendo Switch 2",
+        "base": "https://media.gamestop.com/i/gamestop/20019700/Nintendo-Switch-2?"
+      },
+      "ratings": {
+        "percentage": "93.32",
+        "count": "1156"
+      },
+      "marketPrice": null,
+      "gradingProvider": null,
+      "hidePricePDP": null,
+      "hideProPricePDP": null,
+      "seePriceInCart": null,
+      "shortDescription": ""
+    },
+    "446348": {
+      "id": "446348",
+      "constructorItemId": "20035213++Nintendo Switch 2",
+      "constructorVariationId": "446348",
+      "url": "/consoles-hardware/nintendo-switch/nintendo-switch-amiibo/products/the-legend-of-zelda-series-minerus-construct-amiibo/446348.html",
+      "name": "The Legend of Zelda Series Mineru's Construct amiibo",
+      "productPlatform": [],
+      "price": {
+        "base": "34.99",
+        "sale": null,
+        "pro": null,
+        "min": null,
+        "max": null
+      },
+      "availability": {
+        "readyToOrder": true,
+        "available": true,
+        "preorder": null,
+        "allowBOPS": true,
+        "allowSDD": true,
+        "isDigitalProduct": false
+      },
+      "releaseDate": null,
+      "bopsPromoAlternate": null,
+      "badge": null,
+      "image": {
+        "title": "The Legend of Zelda Series Mineru&#39;s Construct amiibo",
+        "base": "https://media.gamestop.com/i/gamestop/20035213?"
+      },
+      "ratings": {
+        "percentage": "86.67",
+        "count": "6"
+      },
+      "marketPrice": null,
+      "gradingProvider": null,
+      "hidePricePDP": null,
+      "hideProPricePDP": null,
+      "seePriceInCart": null,
+      "shortDescription": ""
+    },
+    "450924": {
+      "id": "450924",
+      "constructorItemId": "20037680++Nintendo Switch 2",
+      "constructorVariationId": "450924",
+      "url": "/consoles-hardware/nintendo-switch-2/products/nintendo-switch-2-and-mario-kart-world-bundle/450924.html",
+      "name": "Nintendo Switch 2 and Mario Kart World Bundle",
+      "productPlatform": [],
+      "price": {
+        "base": "549.99",
+        "sale": null,
+        "pro": null,
+        "min": null,
+        "max": null
+      },
+      "availability": {
+        "readyToOrder": true,
+        "available": true,
+        "preorder": null,
+        "allowBOPS": true,
+        "allowSDD": true,
+        "isDigitalProduct": false
+      },
+      "releaseDate": null,
+      "bopsPromoAlternate": null,
+      "badge": "BUY CONSOLE, SAVE 10% PO ACC.",
+      "image": {
+        "title": "Nintendo Switch 2 and Mario Kart World Bundle",
+        "base": "https://media.gamestop.com/i/gamestop/20037680/Nintendo-Switch-2-and-Mario-Kart-World-Bundle?"
+      },
+      "ratings": {
+        "percentage": null,
+        "count": null
+      },
+      "marketPrice": null,
+      "gradingProvider": null,
+      "hidePricePDP": null,
+      "hideProPricePDP": null,
+      "seePriceInCart": null,
+      "shortDescription": ""
+    },
+    "451607": {
+      "id": "451607",
+      "constructorItemId": "20037854++Nintendo Switch 2",
+      "constructorVariationId": "451607",
+      "url": "/consoles-hardware/nintendo-switch-2/products/nintendo-switch-2-the-legend-of-zelda-40th-anniversary-edition/451607.html",
+      "name": "Nintendo Switch 2 The Legend of Zelda 40th Anniversary Edition",
+      "productPlatform": [],
+      "price": {
+        "base": "519.99",
+        "sale": null,
+        "pro": null,
+        "min": null,
+        "max": null
+      },
+      "availability": {
+        "readyToOrder": null,
+        "available": false,
+        "preorder": null,
+        "allowBOPS": false,
+        "allowSDD": false,
+        "isDigitalProduct": false
+      },
+      "releaseDate": "10/29/2026",
+      "bopsPromoAlternate": null,
+      "badge": "BUY CONSOLE, SAVE 10% PO ACC.",
+      "image": {
+        "title": "Nintendo Switch 2 The Legend of Zelda 40th Anniversary Edition",
+        "base": "https://media.gamestop.com/i/gamestop/20037854/Nintendo-Switch-2-The-Legend-of-Zelda-40th-Anniversary-Edition?"
+      },
+      "ratings": {
+        "percentage": null,
+        "count": null
+      },
+      "marketPrice": null,
+      "gradingProvider": null,
+      "hidePricePDP": null,
+      "hideProPricePDP": null,
+      "seePriceInCart": null,
+      "shortDescription": ""
+    },
+    "909275": {
+      "id": "909275",
+      "constructorItemId": "10114375++Black-PlayStation 4-500gb",
+      "constructorVariationId": "909275",
+      "url": "/products/sony-playstation-4--console-500gb---black/909275.html",
+      "name": "Sony PlayStation 4  Console 500GB - Black",
+      "productPlatform": [],
+      "price": {
+        "base": "129.99",
+        "sale": "109.99",
+        "pro": null,
+        "min": null,
+        "max": null
+      },
+      "availability": {
+        "readyToOrder": true,
+        "available": true,
+        "preorder": null,
+        "allowBOPS": true,
+        "allowSDD": true,
+        "isDigitalProduct": false
+      },
+      "releaseDate": null,
+      "bopsPromoAlternate": null,
+      "badge": "UP TO $20 OFF",
+      "image": {
+        "title": "Sony PlayStation 4  Console 500GB - Black",
+        "base": "https://media.gamestop.com/i/gamestop/10114375/Sony-PlayStation-4-500GB-Console-Black?"
+      },
+      "ratings": {
+        "percentage": "79.18",
+        "count": "5685"
+      },
+      "marketPrice": null,
+      "gradingProvider": null,
+      "hidePricePDP": null,
+      "hideProPricePDP": null,
+      "seePriceInCart": null,
+      "shortDescription": ""
+    }
+  }
+}
