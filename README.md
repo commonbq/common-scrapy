@@ -95,6 +95,7 @@ Spiders below are returning items in recent smoke runs:
 | [`staples_listing`](#staples_listing) | Experimental | Next.js hydration | Akamai | Staples category listings from server-rendered `__NEXT_DATA__`. | 40 (one page) | 34 roots / 208 subcategories from `staples_categories.py` | `{"item_id":"82656","title":"Staples 1\" 3-Ring View Binder...","price":10.09,"currency":"USD"...}` |
 | [`target_listing`](#target_listing) | Active (alias) | api | PerimeterX / HUMAN (cookie signals) | Deprecated alias of `target_search`. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
 | [`target_search`](#target_search) | Active | api | PerimeterX / HUMAN (cookie signals) | Target RedSky search API spider. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
+| [`victoriassecret_listing`](#victoriassecret_listing) | Active | api | none detected (ScrapeOps proxy, plain datacenter route) | Victoria's Secret / PINK listings from the first-party `stacks` JSON API; page 0 reads `collectionId` from SSR `clientProps`. | 192 (2 pages, live) | 427 targets across `vs` + `pink` brands from `victoriassecret_categories.py` | `{"category":"vs-bras","brand":"vs","item_id":"11295563|7I65","name":"Signature Shine Cotton Lightly Lined Balconette Bra","price":49.95,...}` |
 
 #### In-progress spiders
 
@@ -1451,3 +1452,102 @@ selection expands to its maintained child listing URLs.
 ```bash
 scrapy crawl gap_listing -a category=women -a max_pages=1 -O gap.jsonl
 ```
+
+### victoriassecret_listing
+
+`victoriassecret_listing` covers the Victoria's Secret and PINK US storefronts
+via a **single data direction**: the first-party `stacks` JSON API. The category
+SSR page is fetched only to discover the `collectionId` (plus the brand and the
+`isBrasOrPanties` flag) from the embedded `<script id="clientProps">` block;
+every product then comes from `api.victoriassecret.com`. There is no HTML card
+scraping, no `__NEXT_DATA__` parsing, and no browser fallback.
+
+Flow:
+
+1. Fetch the category PLP and read `clientProps.reactQueryState.queries[]` for
+   the entry whose `queryKey[0] == "collectionStacks"` -> `collectionId`,
+   `brand`, `isBrasOrPanties` (`clientProps.brand` is the authoritative brand).
+2. Page 0: `GET https://api.victoriassecret.com/stacks/v46/` with the full query
+   (`activeCountry`, `collectionId`, `orderBy`, `limit`, `isDomestic`,
+   `isBrasOrPanties`, `brand`, `maxSwatches`, `isPersonalized`,
+   `isWishlistEnabled`, `recCues`) -> `stacks[0].list` plus `TotalItems`.
+3. Pages 1..N: `GET .../stacks/v46/stack?...&offset=<n>`, advancing by the number
+   of items the API actually served until `offset >= TotalItems`, `max_pages` is
+   reached, or a page returns no products.
+
+Two details worth knowing:
+
+- **The trailing slash matters.** Page 0 is `.../stacks/v46/?...`; dropping the
+  slash makes the gateway answer a flat `404 page not found` (HTTP 200 body).
+  Load-more uses `.../stacks/v46/stack?...`.
+- **A minimal query 400s.** `collectionId` + `brand` alone returns
+  `{"error":"bad-request"}`; the full parameter set above is required.
+- **Images need a rendition prefix.** The API returns extension-less paths
+  (`png/zz/26/08/28/01/112955637I65_OM_F`); only the `380x507` rendition under
+  `/p/<w>x<h>/<path>.jpg` resolved in testing.
+
+Category shortcuts come from `common/spiders/victoriassecret_categories.py` (the
+full `vs` + `pink` mega-menu, flattened to 427 targets). Slugs are
+brand-prefixed (`vs-bras`, `vs-bras-push-up`) because leaf labels collide across
+departments. Run the module directly to list or resolve them:
+
+```bash
+python -m common.spiders.victoriassecret_categories
+python -m common.spiders.victoriassecret_categories --category vs-bras
+```
+
+Run examples:
+
+- `common-scrapy crawl victoriassecret_listing --category vs-bras -a max_pages=3 -O vs.jsonl -s HTTPCACHE_ENABLED=False`
+- `common-scrapy crawl victoriassecret_listing --category pink-panties -a max_pages=1 -O pink.jsonl -s HTTPCACHE_ENABLED=False`
+- `common-scrapy crawl victoriassecret_listing --category vs-bras-push-up -a max_pages=1 -O pushup.jsonl -s HTTPCACHE_ENABLED=False`
+
+The export contract is ordered as:
+
+`category`, `brand`, `top_category`, `sub_category`, `item_id`,
+`master_style_id`, `name`, `family`, `color`, `url`, `image_url`, `price`,
+`list_price`, `sale_price`, `alt_prices`, `currency`, `rating`, `reviews_count`,
+`swatch_count`, `is_new`, `is_clearance`, `is_gift_card`, `page`, `category_url`,
+`source`, and `raw`.
+
+```json
+{
+  "category": "vs-bras",
+  "brand": "vs",
+  "top_category": "BRAS",
+  "sub_category": null,
+  "item_id": "11295563|7I65",
+  "master_style_id": "5000010932",
+  "name": "Signature Shine Cotton Lightly Lined Balconette Bra",
+  "family": "The T-shirt",
+  "color": "Print",
+  "url": "https://www.victoriassecret.com/us/vs/bras-catalog/5000010932?brand=vs&collectionId=e88ab444-c093-4a29-a7c9-ef78f2a3e557",
+  "image_url": "https://www.victoriassecret.com/p/380x507/png/zz/26/08/28/01/112955637I65_OM_F.jpg",
+  "price": 49.95,
+  "list_price": null,
+  "sale_price": null,
+  "alt_prices": ["or Buy 2, Get 1 Free VS Bras"],
+  "currency": "USD",
+  "rating": 4.52,
+  "reviews_count": 269,
+  "swatch_count": 16,
+  "is_new": false,
+  "is_clearance": false,
+  "is_gift_card": false,
+  "page": 1,
+  "category_url": "https://www.victoriassecret.com/us/vs/bras",
+  "source": "victoriassecret_listing"
+}
+```
+
+Verified on 2026-10-03 UTC through the plain ScrapeOps datacenter route
+(`scrapeops.country=us`, no `residential`/`bypass`), `HTTPCACHE_ENABLED=False`:
+
+- `vs-bras`, `max_pages=2`: **192 items** (96 per page), all unique, `raw` present
+  on 192/192, `image_url` present on 192/192.
+- `pink-panties`, `max_pages=1`: **96 items**, `brand: pink` (brand read from
+  `clientProps`, not the slug).
+- `vs-bras-push-up`, `max_pages=1`: **96 items**, `sub_category: "Push-Up"`.
+
+No HTML-card or `__NEXT_DATA__` path exists in this spider, so a gateway change
+surfaces as a logged non-JSON response rather than silent empty results.
