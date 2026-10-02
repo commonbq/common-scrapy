@@ -1,0 +1,142 @@
+{
+ "id": "shop",
+ "type": "shoproot",
+ "name": "shop",
+ "categories": [
+  {
+   "id": "cookware",
+   "type": "supercat",
+   "name": "Cookware",
+   "template": "heroOpt",
+   "categories": [
+    {
+     "id": "stovetop-cookware",
+     "type": "header",
+     "name": "Cookware Essentials",
+     "template": "clickableHeader",
+     "displayColumn": "A",
+     "referenceCategoryPath": "cookware/stovetop-view-all",
+     "displayTypeMobile": "Button",
+     "hasBodyLink": true,
+     "hasGlobalLink": true
+    },
+    {
+     "id": "cookware-sets",
+     "type": "subcat",
+     "name": "Cookware Sets",
+     "template": "SubCategory",
+     "hasBodyLink": true,
+     "hasGlobalLink": true,
+     "imagePath": "wcm/202639/0008/img98"
+    },
+    {
+     "id": "fry-pans-skillets",
+     "type": "subcat",
+     "name": "Fry Pans &amp; Skillets",
+     "template": "SubCategory",
+     "hasBodyLink": true,
+     "hasGlobalLink": true,
+     "imagePath": "wcm/202615/0296/img1"
+    },
+    {
+     "id": "dutch-ovens-braisers",
+     "type": "subcat",
+     "name": "Dutch Ovens &amp; Braisers",
+     "template": "SubCategory",
+     "hasBodyLink": true,
+     "hasGlobalLink": true,
+     "imagePath": "wcm/202635/0326/img1"
+    },
+    {
+     "id": "saucepans-sauciers",
+     "type": "subcat",
+     "name": "Saucepans &amp; Sauciers",
+     "template": "SubCategory",
+     "hasBodyLink": true,
+     "hasGlobalLink": true,
+     "imagePath": "wcm/202619/0013/img1"
+    },
+    {
+     "id": "stock-soup-multi-pots",
+     "type": "subcat",
+     "name": "Stockpots &amp; Multipots",
+     "template": "SubCategory",
+     "hasBodyLink": true,
+     "hasGlobalLink": true,
+     "imagePath": "wcm/202628/0015/img57"
+    }
+   ],
+   "tabs": "W1",
+   "hasGlobalLink": true,
+   "imagePath": "wcm/202639/0007/img140"
+  },
+  {
+   "id": "cooks-tools",
+   "type": "supercat",
+   "name": "Cooks' Tools",
+   "template": "heroOpt",
+   "categories": [
+    {
+     "id": "kitchen-tools",
+     "type": "header",
+     "name": "Cooking Tools",
+     "template": "clickableHeader",
+     "displayColumn": "A",
+     "referenceCategoryPath": "cooks-tools/utensils-view-all",
+     "displayTypeMobile": "Button",
+     "hasBodyLink": true,
+     "hasGlobalLink": true
+    },
+    {
+     "id": "tool-sets",
+     "type": "subcat",
+     "name": "Utensil Sets",
+     "template": "SubCategory",
+     "hasBodyLink": true,
+     "hasGlobalLink": true,
+     "imagePath": "wcm/202639/0008/img283"
+    },
+    {
+     "id": "turner-spatulas",
+     "type": "subcat",
+     "name": "Spatulas &amp; Turners",
+     "template": "SubCategory",
+     "hasBodyLink": true,
+     "hasGlobalLink": true,
+     "imagePath": "wcm/202639/0007/img46"
+    },
+    {
+     "id": "slotted-spoons-sets",
+     "type": "subcat",
+     "name": "Spoons, Ladles &amp; Whisks",
+     "template": "SubCategory",
+     "hasBodyLink": true,
+     "hasGlobalLink": true,
+     "imagePath": "wcm/202639/0007/img134"
+    },
+    {
+     "id": "tongs",
+     "type": "subcat",
+     "name": "Tongs &amp; Forks",
+     "template": "SubCategory",
+     "hasBodyLink": true,
+     "hasGlobalLink": true,
+     "imagePath": "wcm/202628/0014/img1"
+    },
+    {
+     "id": "salt-pepper-mills",
+     "type": "subcat",
+     "name": "Salt &amp; Pepper Mills",
+     "template": "SubCategory",
+     "hasBodyLink": true,
+     "hasGlobalLink": true,
+     "imagePath": "wcm/202639/0007/img280"
+    }
+   ],
+   "tabs": "W1",
+   "hasGlobalLink": true,
+   "imagePath": "wcm/202619/0345/img1"
+  }
+ ],
+ "tabs": "WW3"
+}
