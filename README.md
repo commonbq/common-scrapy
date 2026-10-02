@@ -82,8 +82,8 @@ Spiders below are returning items in recent smoke runs:
 | [`jcpenney_listing`](#jcpenney_listing) | Active | api | Akamai (+ reCAPTCHA scripts observed) | JCPenney listing spider via search API bootstrap endpoint. | 48 (ok) | womens_tops, mens_shirts | `{"item_id":"ppr5008584232","title":"St. John's Bay Womens Boat Neck Elbow Sleeve T-Shirt","brand":"st. john's bay","url":"https://www.jcp...` |
 | [`kroger_listing`](#kroger_search--kroger_listing) | Active | Redux bootstrap | unknown (timeout/no verdict) | Kroger category listings from `window.__INITIAL_STATE__` search products. | 2 (fixture) | cereal, milk, eggs, bread, coffee, snacks | `{"category":"cereal","item_id":"0001111012345","title":"Kroger Toasted Oats Cereal","brand":"Kroger","price":3.99,...}` |
 | [`kroger_search`](#kroger_search--kroger_listing) | Active | bootstrap + html | unknown (timeout/no verdict) | Kroger keyword search with state extraction + fallback. | 27 (ok) | - | `{'item_id':'kroger-2-reduced-fat-milk-gallon','url':'https://www.kroger.com/p/kroger-2-reduced-fat-milk-gallon/0001111041700','source':'kroger_html_links_fallback'}` |
+| [`levis_listing`](#levis_listing) | Active | bootstrap | none detected through proxy | Levi's listings from SSR `__LSCO_INITIAL_STATE__.ssrViewStoreProductList`. | 48 (2 pages, live proxy) | 5 sections / 83 PLP targets from `levi_categories.py` | `{"category":"shop-all-men-s-jeans","item_id":"005053473","title":"505™ Regular Dobby Men's Jeans","brand":"Levi's","price":64.99...` |
 | [`lululemon_listing`](#lululemon_listing) | Active | bootstrap | Akamai | lululemon listing spider via Next.js `__NEXT_DATA__`. | 40 (ok) | women-shorts, women-leggings, men-shorts, bags | `{"category":"women-shorts","product_id":"prod11860112","name":"Shake It Out High-Rise Running Short 2.5\"","brand":"lululemon","price":["...` |
-| [`maccosmetics_listing`](#maccosmetics_listing) | Experimental | api + bootstrap + html | Akamai | MAC Cosmetics multi-mode listing spider. | 66 (ok) | face, lips, eyes | `{"item_id":"13854","title":"4.8/5 ( 452 ) Lustreglass Sheer-Shine Lipstick Sheer Coverage, Glossy/High-Shine Finish, Infused With Raspberry Seed/Organic Extra Virgin Olive Oils ...` |
 | [`poshmark_listing`](#poshmark_listing) | Experimental | bootstrap | none detected | Poshmark listing spider via `window.__INITIAL_STATE__` category grid data. | 48 (ok) | women, men, kids, home, electronics, pets | `{"category":"women","item_id":"6989d90ac4e7b4d4de556bac","title":"🔥Stunning  Farm Rio NWT Size Large Tropical Midi Dress with Sleeves – V...` |
 | [`qvc_listing`](#qvc_listing) | Experimental | html + bootstrap | Akamai | QVC listing spider via server-rendered gallery cards and `utag_data` page state. | 96 (Beauty proxy capture) | fashion | `{"category":"beauty","category_id":"NAV6285","item_id":"A740517","title":"Whish 12 Days of Beauty Whishes Advent Calendar","price":59.98,...}` |
 | [`zappos_listing`](#zappos_listing) | Experimental | Redux hydration | none detected through proxy | Zappos listings from `window.__INITIAL_STATE__.products.list`. | 100 (one-page proxy smoke) | 4 departments / 50 targets | `{"item_id":"8910671","title":"Kiruna Padded Parka","brand":"Fjällräven","price":300.0,...}` |
@@ -113,6 +113,32 @@ Many listing spiders accept `-a category=<name>` shortcuts (in addition to `-a c
 #### Sample output
 
 Below are trimmed examples from recent local test runs (JSONL output, 1 item shown).
+
+### levis_listing
+
+`levis_listing` uses one authoritative source: the LSCO React SSR hydration
+blob installed via `Object.defineProperty(window, "__LSCO_INITIAL_STATE__", {value:
+{...}})` and read at `ssrViewStoreProductList`. Products are already in the HTML
+— there is no `__NEXT_DATA__` and no product XHR to replay — and pagination is a
+pure SSR re-render driven by the 0-indexed `?page=<N>` query string. The spider
+ships the full header-navigation taxonomy (5 sections / 83 PLP targets from
+`levi_categories.py`) plus direct `category_url` or `url` input, and stops on the
+`pagination.totalPages` / `currentPage` window, de-duplicating on `code`.
+
+Its ordered `FEED_EXPORT_FIELDS` contract carries the section/group context,
+title/brand/url, primary gallery and swatch images, current and pre-discount
+prices, discount/rating/review data, merchandising badges, colorway count,
+availability flags, the PLP `category_code` and the raw hydrated product record
+(`raw` is present on every item).
+
+```bash
+rm -f levis-out.csv
+HTTPCACHE_ENABLED=False common-scrapy crawl levis_listing --category shop-all-men-s-jeans -a max_pages=2 -O levis-out.csv -s HTTPCACHE_ENABLED=False
+```
+
+```json
+{"category":"shop-all-men-s-jeans","department":"Men","subcategory":"Men’s Jeans","item_id":"005053473","title":"505™ Regular Dobby Men's Jeans","brand":"Levi's","url":"https://www.levi.com/US/en_US/clothing/men/jeans/straight/505TM-regular-dobby-mens-jeans/p/005053473","image_url":"https://lscoglobal.scene7.com/is/image/lscoglobal/MB_00505-3473_GLO_CM_DA?$qv_desktop_full$","swatch_url":"https://lscoglobal.scene7.com/is/image/lscoglobal/MB_00505-3473_GLO_CL_SW?$swatch$","price":64.99,"original_price":74.95,"currency":"USD","discount_pct":null,"rating":3.8395,"reviews_count":4168,"on_sale":true,"merchant_badge":"Best Seller","promotional_badge":"30% off Applied at Checkout","color_count":22,"coming_soon":false,"sold_out":false,"category_code":"levi_clothing_men_jeans","page":1,"position":1,"total_count":174,"source":"levis_lsco_initial_state_products"}
+```
 
 ### zappos_listing
 
