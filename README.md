@@ -78,6 +78,7 @@ Spiders below are returning items in recent smoke runs:
 | [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | none detected (CloudFront CDN only) | e.l.f. Cosmetics multi-mode listing spider. | 6 (ok) | face, eyes, lips | `{'item_id':'300261','title':'Soft Glam Satin Concealer','url':'https://www.elfcosmetics.com/soft-glam-satin-concealer/300262.html','price':9.0,'brand':'e.l.f. Cosmetics','source':'elfcosmetics_preloaded_state'...}` |
 | [`fashionnova_listing`](#fashionnova_listing) | Active | api + html | Cloudflare | Fashion Nova listing via Shopify Storefront GraphQL with HTML fallback. | 48 (ok) | women, new, dresses, jeans, sale | `{"item_id":"175898317","title":"Classic High Waist Skinny Jeans - Dark Denim","url":"https://www.fashionnova.com/products/dark-blue-class...` |
 | [`gamestop_listing`](#gamestop_listing) | Active | api | none detected (ScrapeOps proxy) | GameStop SFCC Demandware listing via the `Tile-GetProductsJSON` controller (no HTML fallback). | 139 (3 pages, proxy) | 119 URLs across 33 category groups from `gamestop_categories.py` | `{"category":"consoles-hardware","item_id":"106429","title":"Nintendo Wii Original Console with Wii Remote - Super Mario Bros. 25th Anniversary Edition Red","price":"139.99","availability":"InStock","source":"gamestop_tile_json"...` |
+| [`footlocker_listing`](#footlocker_listing) | Active | api | residential proxy (ScrapeOps) | Foot Locker category listings from the ZGW search API (residential proxy required). | 48 (1 page, residential proxy) | Dynamically resolved from `header.public.json` | `{"band":"Men's","sub_category":"Shoes","category":"all-men-s-shoes","item_id":"T8013103","title":"Jordan Retro 12 - Men's","url":"https://www.footlocker.com/product/T8013103.html","image_url":"https://images.footlocker.com/is/image/EBFL2/T8013103","price":215.0,"original_price":215.0,"currency":"USD","availability":"InStock","brand":"Jordan","rating":5.0,"reviews_count":999,"page":1,"category_url":"/category/mens/shoes.html","source":"footlocker_api"...` |
 | [`homedepot_listing`](#homedepot_listing-category-apollo-state) | Flaky | bootstrap | Akamai | Home Depot department listings from embedded Apollo state. | 2 (fixture) | appliances, bath, building-materials, decor-and-furniture, electrical, flooring, hardware, heating-and-cooling, kitchen, lawn-and-garden, lighting, paint, plumbing, storage, tools | `{"category":"tools","item_id":"100000001","sku":"1000000001","title":"16 oz. Fiberglass Claw Hammer","brand":"Husky","price":14.97...` |
 | [`homedepot_search`](#homedepot_search-keyword-apollo-bootstrap) | Active | bootstrap + html | Akamai | Home Depot keyword search via Apollo state. | 24 (ok) | - | `{"item_id":"336787835","sku":"1014334650","brand":"Lukyamzn","title":"14 in. Dual-Core Celeron N4000 Laptop 6 GB RAM 128 GB SSD IPS Displ...` |
 | [`jcpenney_listing`](#jcpenney_listing) | Active | api | Akamai (+ reCAPTCHA scripts observed) | JCPenney listing spider via search API bootstrap endpoint. | 48 (ok) | womens_tops, mens_shirts | `{"item_id":"ppr5008584232","title":"St. John's Bay Womens Boat Neck Elbow Sleeve T-Shirt","brand":"st. john's bay","url":"https://www.jcp...` |
@@ -1243,6 +1244,31 @@ Flow:
 2. Batch the pids (`TILE_BATCH_SIZE`, 20 per request) into `Tile-GetProductsJSON`.
 3. Emit one item per returned product, deduplicated by `item_id`.
 4. Paginate with `Search-UpdateGrid?cgid=<slug>&start=<n>&sz=<sz>` until
+
+### footlocker_listing
+
+Foot Locker category listings from the ZGW search API. The spider uses a two-stage process:
+
+1. It first fetches `https://www.footlocker.com/api/content/en/header.public.json` to get the navigation taxonomy.
+2. For each category link (e.g., `/category/mens/shoes.html`):
+   a. If the URL contains `?query=`, the `searchParams` are extracted directly from the URL.
+   b. Otherwise, it fetches the HTML for that category page to extract `searchParams` from the `window.footlocker.STATE_FROM_SERVER` JavaScript blob.
+3. Once `searchParams` are resolved for a category, the spider makes direct API calls to `https://www.footlocker.com/zgw/search-core/products/v3/search` for product data, using the resolved `searchParams`.
+
+Residential proxy is required for the ZGW API calls (`scrapeops.country=us.residential=true`).
+
+Flow:
+
+1. `start_requests` initiates a request to `header.public.json`.
+2. `parse_header_json_for_categories` parses the JSON and populates an internal list of categories to resolve.
+3. `_resolve_category_search_params` is called: for `?query=` links, it extracts `searchParams` directly; for others, it makes `scrapy.Request`s to the category HTML pages, calling `parse_search_params_from_html`.
+4. `parse_search_params_from_html` extracts `searchParams` from `window.footlocker.STATE_FROM_SERVER` and adds them to the category entry.
+5. Once all `searchParams` are resolved, `_start_api_crawls` is called.
+6. `_start_api_crawls` then makes `_api_request` calls to the ZGW API for each resolved category, passing `searchParams` and other metadata.
+7. `parse_api_products` parses the API response, yields product items, and makes further `_api_request` calls for pagination until `max_pages` is reached or no more products are available.
+
+```json
+{"band":"Men's","sub_category":"Shoes","category":"all-men-s-shoes","item_id":"T8013103","title":"Jordan Retro 12 - Men's","url":"https://www.footlocker.com/product/T8013103.html","image_url":"https://images.footlocker.com/is/image/EBFL2/T8013103","price":215.0,"original_price":215.0,"currency":"USD","availability":"InStock","brand":"Jordan","rating":5.0,"reviews_count":999,"page":1,"category_url":"/category/mens/shoes.html","source":"footlocker_api","raw":{"badges":{"isDiscountsExcluded":true,"isPromoted":false,"isNewProduct":true,"isSale":false},"baseOptions":[{"selected":{"mapEnable":false,"style":"White/Green/Gold"}}],"baseProduct":"T8013103","images":[{"format":"large","url":"https://images.footlocker.com/is/image/EBFL2/T8013103","altText":"T8013103_large"}],"name":"Jordan Retro 12 - Men's","originalPrice":{"value":215.0,"formattedValue":"$215.00"},"price":{"value":215.0,"formattedValue":"$215.00"},"reviewRatings":{"reviews":999,"rating":5.0},"sku":"T8013103","imageSku":"T8013103","variantOptions":[{"imageSku":"","images":[{"altText":"T8013003_small","format":"small","url":"https://images.footlocker.com/is/image/EBFL2/T8013003?wid=100&hei=100&fmt=png-alpha"}],"color":"Red/Black","price":{"discountPercent":0.0,"salePrice":215.0,"formattedSalePrice":"$215.00","formattedListPrice":"$215.00","listPrice":215.0},"review":{"totalReviews":998.0,"averageRating":5.0},"name":"Jordan Retro 12 - Men's","flagsAndRestrictions":{"isMemberOnlySale":false,"hasShippingRestrictions":false,"saleProduct":false,"defaultStyle":false,"isBannerOnly":false,"isOnlineOnly":false,"recaptchaOn":false,"shipToAndFromStore":true,"hasVendorShippingPrice":false,"newProduct":false,"freeShipping":true,"excludedFromDiscount":true,"mapEnabled":false},"media":{},"sellable":true,"sku":"T8013003"}],"variantsCount":1,"media":{},"isSaleProduct":false,"isNewProduct":true,"launchProduct":false,"isSponsoredProduct":false}}
    `start >= total`, `max_pages` is reached, or a grid page yields no new ids.
 
 Two details worth knowing:
