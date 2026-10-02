@@ -85,7 +85,8 @@ Spiders below are returning items in recent smoke runs:
 | [`kroger_listing`](#kroger_search--kroger_listing) | Active | Redux bootstrap | unknown (timeout/no verdict) | Kroger category listings from `window.__INITIAL_STATE__` search products. | 2 (fixture) | cereal, milk, eggs, bread, coffee, snacks | `{"category":"cereal","item_id":"0001111012345","title":"Kroger Toasted Oats Cereal","brand":"Kroger","price":3.99,...}` |
 | [`kroger_search`](#kroger_search--kroger_listing) | Active | bootstrap + html | unknown (timeout/no verdict) | Kroger keyword search with state extraction + fallback. | 27 (ok) | - | `{'item_id':'kroger-2-reduced-fat-milk-gallon','url':'https://www.kroger.com/p/kroger-2-reduced-fat-milk-gallon/0001111041700','source':'kroger_html_links_fallback'}` |
 | [`lululemon_listing`](#lululemon_listing) | Active | bootstrap | Akamai | lululemon listing spider via Next.js `__NEXT_DATA__`. | 40 (ok) | women-shorts, women-leggings, men-shorts, bags | `{"category":"women-shorts","product_id":"prod11860112","name":"Shake It Out High-Rise Running Short 2.5\"","brand":"lululemon","price":["...` |
-| [`maccosmetics_listing`](#maccosmetics_listing) | Experimental | api + bootstrap + html | Akamai | MAC Cosmetics multi-mode listing spider. | 66 (ok) | face, lips, eyes | `{"item_id":"13854","title":"4.8/5 ( 452 ) Lustreglass Sheer-Shine Lipstick Sheer Coverage, Glossy/High-Shine Finish, Infused With Raspberry Seed/Organic Extra Virgin Olive Oils ...` |
+| [`maccosmetics_listing`](#maccosmetics_listing) | Experimental | api + bootstrap + html | Akamai | MAC Cosmetics multi-mode listing spider. | 66 (ok) | face, lips, eyes | | `{"item_id":"13854","title":"4.8/5 ( 452 ) Lustreglass Sheer-Shine Lipstick Sheer Coverage, Glossy/High-Shine Finish, Infused With Raspberry Seed/Organic Extra Virgin Olive Oils ...` |
+| [`officedepot_listing`](#officedepot_listing) | Active | bootstrap | none detected (ScrapeOps proxy) | Office Depot / OfficeMax category listings from inline `window.ODSEARCHBROWSE_INITIAL_STATE` SSR hydration; taxonomy resolved from the header mega-menu JSON. | 59 (2 pages, furniture) | 388 browse PLPs from `header-menu-excel/products.json` | `{"department":"Furniture","item_id":"9003237","title":"Serta® Smart Layers™ Brinkley Ergonomic Bonded Leather High-Back Executive Office Chair, Black/Silver","price":299.99,"availability":"InStock","source":"officedepot_bootstrap"...}`
 | [`poshmark_listing`](#poshmark_listing) | Experimental | bootstrap | none detected | Poshmark listing spider via `window.__INITIAL_STATE__` category grid data. | 48 (ok) | women, men, kids, home, electronics, pets | `{"category":"women","item_id":"6989d90ac4e7b4d4de556bac","title":"🔥Stunning  Farm Rio NWT Size Large Tropical Midi Dress with Sleeves – V...` |
 | [`qvc_listing`](#qvc_listing) | Experimental | html + bootstrap | Akamai | QVC listing spider via server-rendered gallery cards and `utag_data` page state. | 96 (Beauty proxy capture) | fashion | `{"category":"beauty","category_id":"NAV6285","item_id":"A740517","title":"Whish 12 Days of Beauty Whishes Advent Calendar","price":59.98,...}` |
 | [`zappos_listing`](#zappos_listing) | Experimental | Redux hydration | none detected through proxy | Zappos listings from `window.__INITIAL_STATE__.products.list`. | 100 (one-page proxy smoke) | 4 departments / 50 targets | `{"item_id":"8910671","title":"Kiruna Padded Parka","brand":"Fjällräven","price":300.0,...}` |
@@ -1218,6 +1219,64 @@ Notes:
 - Representative redacted responses are available in
   `sample/sallybeauty-listing-product.html` and
   `sample/sallybeauty-listing-product-page-2.html`.
+
+### officedepot_listing
+
+Office Depot / OfficeMax category listings from the inline Redux hydration state
+`window.ODSEARCHBROWSE_INITIAL_STATE`. The category taxonomy is resolved at
+start-up from the first-party header mega-menu JSON
+(`https://ma.officedepot.com/header-menu-excel/products.json`). A plain ScrapeOps
+datacenter route returned real SSR HTML for every page fetched; no residential or
+`bypass` option is required.
+
+Flow:
+
+1. `start_requests` fetches the header mega-menu JSON and walks
+   `responseObject.menuList` (department -> level-2 -> level-3). Only
+   `/b/<slug>/N-<navId>` browse PLPs are crawled (388 entries); `/l/...` editorial
+   landing pages are skipped. Every entry is registered under both a plain slug and a
+   `<department>-<name>` qualified slug, so duplicate leaf names (for example
+   "Sheet Protectors" under Office Supplies and School Supplies) can be selected
+   unambiguously.
+2. Each selected category PLP is fetched with `?page=N` (1-based). The server-rendered
+   page embeds `window.ODSEARCHBROWSE_INITIAL_STATE` as a JS object literal that also
+   contains bare `undefined` tokens (invalid strict JSON); the spider brace-matches the
+   object and rewrites `undefined` -> `null` before `json.loads`.
+3. Products are read from `products.products[]`; `products.total` is the authoritative
+   stop and pagination continues while `current_page * page_size < total` and
+   `page <= max_pages`. Items are deduplicated by `item_id` across pages.
+
+Category slugs come from the leaf name via `_slugify` (for example `Office Chairs` ->
+`office-chairs`); the resolved set is exposed through the spider's
+`available_categories()` (plain and qualified slugs).
+
+Run examples:
+
+- `common-scrapy crawl officedepot_listing -a category='furniture' -a max_pages=2 -O officedepot.jsonl`
+- `common-scrapy crawl officedepot_listing -a category='office-chairs' -a max_pages=1 -O officedepot.jsonl`
+- `common-scrapy crawl officedepot_listing -a max_pages=1 -O officedepot-all.jsonl` (all 388 browse PLPs)
+
+Export contract: `department`, `sub_category`, `category`, `item_id`, `title`, `brand`,
+`url`, `image_url`, `price`, `original_price`, `list_price`, `currency`, `availability`,
+`rating`, `reviews_count`, `item_number`, `description`, `catalog_labels`, `category_id`,
+`page`, `category_url`, `breadcrumbs`, `source`, `raw`.
+
+Fixtures: `sample/officedepot-header.json` (captured
+`header-menu-excel/products.json`) and `sample/officedepot-category-page.html` (reduced
+capture of `/b/furniture/N-917` carrying the `ODSEARCHBROWSE_INITIAL_STATE` blob).
+
+Tests: `python -m unittest tests.test_officedepot_listing_spider` (16 network-free tests).
+
+Live verification (`-s HTTPCACHE_ENABLED=False`, 2026-10-02 UTC):
+
+- `category=furniture, max_pages=2` -> **59 items** (page 1: 34 products, page 2: 34
+  products with 9 cross-page duplicates removed), 3 HTTP 200 requests, `finish_reason=finished`.
+- `category=office-chairs, max_pages=1` -> **24 items**, 4-level breadcrumbs
+  (`Home > Furniture > Chairs & Seating > Office Chairs`).
+
+```json
+{"department":"Furniture","sub_category":null,"category":"Furniture","item_id":"9003237","title":"Serta® Smart Layers™ Brinkley Ergonomic Bonded Leather High-Back Executive Office Chair, Black/Silver","brand":"Serta","url":"https://www.officedepot.com/a/products/9003237/Serta-Smart-Layers-Brinkley-Ergonomic-Bonded/","image_url":"https://media.officedepot.com/images/t_large%2Cf_auto/products/9003237/1.jpg","price":299.99,"original_price":299.99,"list_price":586.81,"currency":"USD","availability":"InStock","rating":4.5169,"reviews_count":178,"item_number":"9003237","description":"...","catalog_labels":["ecoConscious","lessHarshChemicals"],"category_id":"593061","page":1,"category_url":"https://www.officedepot.com/b/furniture/N-917?page=1","breadcrumbs":["Home","Furniture"],"source":"officedepot_bootstrap","raw":{...}}
+```
 
 ### gamestop_listing
 
