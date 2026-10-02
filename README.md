@@ -73,6 +73,7 @@ Spiders below are returning items in recent smoke runs:
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
 | [`ae_listing`](#ae_listing) | Experimental | FastBoot + API | Akamai (signals in headers) | American Eagle listing spider via FastBoot shoebox state and browse API pagination. | 30 (ok) | women, men, aerie | `{"item_id":"1457_2980_808","title":"AE Big Hug V-Neck Sweatshirt","url":"https://www.ae.com/us/en/p/women/hoodies-sweatshirts/crew-neck-sweatshirts/ae-big-hug-v-neck-sweatshirt/1457_2980_808","price":38.97...` |
+| [`anthropologie_listing`](#anthropologie_listing) | Experimental | Pinia hydration | PerimeterX / HUMAN | Anthropologie listing spider using the server-rendered Pinia product state. | 37 (ok, proxy) | womens-clothing, dresses, shoes, sale and refinements | `{"item_id":"AN-4114086690121-000","title":"By Anthropologie Goldie 100% Cashmere Sweater","price":138.0,...}` |
 | [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | html + nuxt-state | Akamai | Bloomingdale's listing spider via Nuxt SSR state contract parsing (splash->leaf aware). | 8 (ok) | new-now, women, beauty, shoes, handbags, jewelry-accessories, men, kids, home, sale, gifts, designers | `{"item_id":"5973765","title":"Tumbled Woven Verne Pants","url":"https://www.bloomingdales.com/shop/product/cinq-a-sept-tumbled-woven-vern...` |
 | [`costco_listing`](#costco_search--costco_listing) | Active | React Flight + API | Akamai | Costco category listing with React Flight discovery and GRS search pagination. | 24 (ok) | 131 parent groups / 432 subcategory entries from `costco-categories.json` | `{"item_id":"100501081","title":"Starbucks Pike Place Medium Roast K-Cup","url":"https://www.costco.com/starbucks-pike-place-medium-roast-k-cup-72-count.product.100501081.html","price":...` |
 | [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | none detected (CloudFront CDN only) | e.l.f. Cosmetics multi-mode listing spider. | 6 (ok) | face, eyes, lips | `{'item_id':'300261','title':'Soft Glam Satin Concealer','url':'https://www.elfcosmetics.com/soft-glam-satin-concealer/300262.html','price':9.0,'brand':'e.l.f. Cosmetics','source':'elfcosmetics_preloaded_state'...}` |
@@ -102,7 +103,6 @@ These are still being worked on and currently returned `0` items in recent smoke
 
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
-| [`anthropologie_listing`](#anthropologie_listing) | Experimental | api + html | PerimeterX / HUMAN | Anthropologie listing spider (API + HTML fallback). | 0 (ok) | women, dresses, sale | `n/a` |
 | [`bathandbodyworks_listing`](#bathandbodyworks_listing) | Experimental | api + bootstrap + html | PerimeterX / HUMAN (px-captcha) | Bath & Body Works multi-mode listing spider. | 0 (ok) | body-care, home-fragrance, hand-soaps | `{}` |
 | [`costco_search`](#costco_search--costco_listing) | Active | bootstrap + html | Akamai | Costco keyword search with state extraction + fallback. | 0 (skipped2) | - | `{}` |
 | [`dillards_listing`](#dillards_listing) | Experimental | bootstrap | Akamai | Dillard's listing spider via `window.__INITIAL_STATE__`. | 0 (ok) | women, men, shoes, handbags, beauty, juniors, home | `n/a` |
@@ -593,25 +593,41 @@ Run examples:
 - `common-scrapy crawl fashionnova_listing -a category=women -a mode=html -a max_pages=1 -O fashionnova_listing_html.jsonl`
 
 ### anthropologie_listing
+
+Extracts one authoritative source: the `category.pages[page].wrapper.tiles` product records in the server-rendered `urbnInitialPiniaState` Pinia payload. The captured inventory contains nine US/CA category and refinement URLs in `common/spiders/anthropologie_categories.py`. Pagination uses the `page` query parameter and the hydrated `totalPages` value; duplicate product IDs are suppressed across pages. A starting `page` encoded in the selected URL is preserved (so the `womens-clothing-page-2` alias crawls page 2, not page 1), and product links keep the crawled storefront locale (`/en-ca/` URLs export `/en-ca/shop/...` links). `currency` prefers a hydrated currency code and otherwise follows the crawled storefront (`CAD` for `/en-ca/`, `USD` for the US site). Missing or malformed hydration and pages without product records fail visibly. Every exported item carries the full hydrated `raw` tile record.
+
+Run with cache disabled:
+
+`HTTPCACHE_ENABLED=False common-scrapy crawl anthropologie_listing -a category=womens-clothing -a max_pages=1 -O anthropologie_listing.jsonl`
+
+Exported fields are `category`, `item_id`, `style_number`, `title`, `brand`, `url`, `image_url`, `price`, `original_price`, `currency`, `availability`, `rating`, `reviews_count`, `color`, `color_count`, `badges`, `source`, `category_url`, `page`, `position`, and `raw`.
+
 ```json
 {
-  "item_id": "by-anthropologie-cotton-floral-cutwork-barn-jacket",
-  "title": "By Anthropologie Cotton Floral Cutwork Barn Jacket",
-  "url": "https://www.anthropologie.com/shop/by-anthropologie-cotton-floral-cutwork-barn-jacket?color=016&type=STANDARD",
-  "price": 198.0,
+  "item_id": "AN-4114086690121-000",
+  "style_number": "4114086690121",
+  "title": "By Anthropologie Goldie 100% Cashmere Sweater",
+  "brand": "By Anthropologie",
+  "url": "https://www.anthropologie.com/shop/by-anthropologie-goldie-100-cashmere-sweater?color=702&type=STANDARD",
+  "price": 138.0,
+  "original_price": 138.0,
   "currency": "USD",
-  "brand": "Anthropologie",
-  "source": "anthropologie_html",
-  "category_url": "https://www.anthropologie.com/womens-clothing",
+  "availability": "InStock",
+  "rating": 4.5869,
+  "reviews_count": 656,
+  "color_count": 29,
+  "source": "urbn_pinia_hydration",
+  "category_url": "https://www.anthropologie.com/womens-clothing?page=1",
   "page": 1
 }
 ```
 Run example:
-`common-scrapy crawl anthropologie_listing -a category=women -a max_pages=1 -O anthropologie_listing.jsonl`
+`common-scrapy crawl anthropologie_listing -a category=womens-clothing -a max_pages=1 -O anthropologie_listing.jsonl`
 
 Notes:
-- Verified after connecting via NordVPN US endpoints (Seattle, Chicago, Miami) and again with NordVPN disabled.
-- HTML parsing is enabled by default; API/bootstrap was not required once the spider ignored recaptcha config noise.
+- Direct traffic may receive HTTP 403; the 2026-09-29 live verification used the configured US proxy and exported 37 unique products from HTTP 200. A 2026-10-02 re-verification attempt returned HTTP 403 again (PerimeterX), so the 37 figure is the most recent successful live run and the current item count is unconfirmed.
+- Direct `-a url=<listing-url>` and `-a category_url=<listing-url>` runs are supported; a bare run with no target fails with the available category list.
+- The spider intentionally does not fall back to DOM cards or another endpoint when the hydration contract is absent.
 
 ### lululemon_listing
 Run example:
