@@ -98,6 +98,7 @@ Spiders below are returning items in recent smoke runs:
 | [`stockx_listing`](#stockx_listing) | Experimental | bootstrap + html | Cloudflare | StockX listing via `__NEXT_DATA__` bootstrap. | 41 (ok) | sneakers, apparel, electronics, trading-cards, collectibles | `{"item_id":"brands","title":"Brands","url":"https://stockx.com/brands","price":null,"currency":null}` |
 | [`staples_listing`](#staples_listing) | Experimental | Next.js hydration | Akamai | Staples category listings from server-rendered `__NEXT_DATA__`. | 40 (one page) | 34 roots / 208 subcategories from `staples_categories.py` | `{"item_id":"82656","title":"Staples 1\" 3-Ring View Binder...","price":10.09,"currency":"USD"...}` |
 | [`target_listing`](#target_listing) | Active (alias) | api | PerimeterX / HUMAN (cookie signals) | Deprecated alias of `target_search`. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
+| [`uniqlo_listing`](#uniqlo_listing) | Experimental | api | none detected (plain ScrapeOps datacenter route) | UNIQLO US category listings from the first-party commerce BFF products API. | 36 (one page, ok) | 2741 taxonomy URLs (4 genders / 46 classes / 212 categories / 2479 subcategories) from `uniqlo-categories.json` | `{"item_id":"E424873-000-00","title":"Crew Neck T-Shirt","color":"White","price":19.9,"currency":"USD"...}` |
 | [`target_search`](#target_search) | Active | api | PerimeterX / HUMAN (cookie signals) | Target RedSky search API spider. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
 | [`victoriassecret_listing`](#victoriassecret_listing) | Active | api | none detected (ScrapeOps proxy, plain datacenter route) | Victoria's Secret / PINK listings from the first-party `stacks` JSON API; page 0 reads `collectionId` from SSR `clientProps`. | 192 (2 pages, live) | 427 targets across `vs` + `pink` brands from `victoriassecret_categories.py` | `{"category":"vs-bras","brand":"vs","item_id":"11295563|7I65","name":"Signature Shine Cotton Lightly Lined Balconette Bra","price":49.95,...}` |
 
@@ -182,6 +183,41 @@ HTTPCACHE_ENABLED=False common-scrapy crawl zappos_listing --category women -a m
 ```json
 {"category":"women","department":"Women","item_id":"8910671","style_id":"4036549","title":"Kiruna Padded Parka","brand":"Fjällräven","color":"Black","price":300.0,"original_price":375.0,"currency":"USD","rating":3.7,"reviews_count":38,"on_sale":true,"page":1,"source":"zappos_initial_state_products"}
 ```
+
+### uniqlo_listing
+
+`uniqlo_listing` uses one authoritative source: the first-party commerce BFF products
+endpoint `https://www.uniqlo.com/us/api/commerce/v5/en/products`. UNIQLO's SSR shell
+ships the full navigation taxonomy in `window.__PRELOADED_STATE__.taxonomies` but an
+*empty* product grid (`search.search.productIds == []`); the React app hydrates it
+client-side over XHR. This spider therefore never scrapes HTML cards or JSON-LD.
+
+- **Taxonomy.** `sample/uniqlo-categories.json` (harvested from `__PRELOADED_STATE__`)
+  is committed and flattened by `uniqlo_categories.py` into 2741 selectable URLs:
+  4 genders / 46 classes / 212 categories / 2479 subcategories. Every entry keeps the
+  Fast Retailing taxonomy id chain the API expects in its `path` query parameter
+  (`genderId[,classId[,categoryId[,subCategoryId]]]`), so no page has to be re-resolved.
+  Select with `-a category=<slug>` or `-a category_url=<url>` (any of the 2741 URLs).
+- **Products.** `GET /us/api/commerce/v5/en/products?path=<ids>&limit=36&offset=<n>`,
+  paged via `pagination.total` / `offset`. `max_pages` caps the number of API pages.
+- **Identifiers.** `productId` alone is *not* unique: the same `E424873-000` comes back
+  once per colourway with a distinct `representativeColorDisplayCode`. UNIQLO's own
+  hydration state names rows `<productId>-<colorCode>`, so `item_id` joins the two
+  (e.g. `E424873-000-00`) and `style_id` is the numeric style (`424873`).
+- **Prices.** `prices.base` is the regular price and `prices.promo` the discounted one,
+  so a sale row exports `price` = promo value, `original_price` = base value and
+  `on_sale: true`. `on_sale` only fires when the row actually shows two prices
+  (`isDualPrice`, or `promo.value != base.value`), so a plain `promo` block that merely
+  repeats `base.value` is not treated as a sale. No discounted row appeared in the
+  live payloads sampled so far, so this path is covered by unit tests rather than a
+  live capture.
+
+```json
+{"category":"t-shirts-and-tank-tops","category_name":"T-Shirts and Tank Tops","department":"Women","subcategory":"T-Shirts, Sweats & Fleece","item_id":"E424873-000-00","style_id":"424873","title":"Crew Neck T-Shirt","brand":"UNIQLO","gender":"WOMEN","color":"White","color_code":"00","url":"https://www.uniqlo.com/us/en/products/E424873-000","image_url":"https://image.uniqlo.com/UQ/ST3/us/imagesgoods/424873/item/usgoods_00_424873_3x4.jpg","price":19.9,"original_price":null,"currency":"USD","on_sale":false,"rating":4.7,"reviews_count":2858,"available_sizes":["XXS","XS","S","M","L","XL","XXL"],"page":1,"position":1,"total_count":69,"items_per_page":36,"taxonomy_path":"22210,23295,23335","source":"uniqlo_commerce_bff_products"}
+```
+
+Run example:
+`HTTPCACHE_ENABLED=False common-scrapy crawl uniqlo_listing -a category=t-shirts-and-tank-tops -a max_pages=2 -O uniqlo.jsonl -s HTTPCACHE_ENABLED=False`
 
 ### amazon_search
 ```json
