@@ -77,7 +77,7 @@ Spiders below are returning items in recent smoke runs:
 | [`asos_listing`](#asos_listing) | Experimental | bootstrap + API | Akamai | ASOS US listings from `window.asos.plp._data`, with pagination through the hydrated search API contract. | 2 (fixture; live unverified) | complete women/men navigation inventory from `asos_categories.py` | `{"item_id":"211160390","title":"ASOS DESIGN stretch chiffon scarf detail plunge draped maxi dress in chocolate","price":69.99,"currency":"USD"...}` |
 | [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | html + nuxt-state | Akamai | Bloomingdale's listing spider via Nuxt SSR state contract parsing (splash->leaf aware). | 8 (ok) | new-now, women, beauty, shoes, handbags, jewelry-accessories, men, kids, home, sale, gifts, designers | `{"item_id":"5973765","title":"Tumbled Woven Verne Pants","url":"https://www.bloomingdales.com/shop/product/cinq-a-sept-tumbled-woven-vern...` |
 | [`costco_listing`](#costco_search--costco_listing) | Active | React Flight + API | Akamai | Costco category listing with React Flight discovery and GRS search pagination. | 24 (ok) | 131 parent groups / 432 subcategory entries from `costco-categories.json` | `{"item_id":"100501081","title":"Starbucks Pike Place Medium Roast K-Cup","url":"https://www.costco.com/starbucks-pike-place-medium-roast-k-cup-72-count.product.100501081.html","price":...` |
-| [`dickssportinggoods_listing`](#dickssportinggoods_listing) | Active | api | Akamai | DICK'S Sporting Goods category listings from the first-party catalog product-search API. | 48 (ok) | 1287 unique categories from 10 departments | `{"item_id":"13286436","title":"adidas FIFA World Cup Historical Mini Soccer Ball Set","brand":"adidas","price":141.52,"currency":"USD",...}` |
+| [`dickssportinggoods_listing`](#dickssportinggoods_listing) | Active | api | Akamai | DICK'S Sporting Goods category listings from the first-party catalog product-search API. | 48 (ok) | 1287 unique categories from 10 departments | `{"item_id":"13286436","title":"adidas FIFA World Cup Historical Mini Soccer Ball Set","brand":"adidas","price":148.97,"currency":"USD",...}` |
 | [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | none detected (CloudFront CDN only) | e.l.f. Cosmetics multi-mode listing spider. | 6 (ok) | face, eyes, lips | `{'item_id':'300261','title':'Soft Glam Satin Concealer','url':'https://www.elfcosmetics.com/soft-glam-satin-concealer/300262.html','price':9.0,'brand':'e.l.f. Cosmetics','source':'elfcosmetics_preloaded_state'...}` |
 | [`fashionnova_listing`](#fashionnova_listing) | Active | api + html | Cloudflare | Fashion Nova listing via Shopify Storefront GraphQL with HTML fallback. | 48 (ok) | women, new, dresses, jeans, sale | `{"item_id":"175898317","title":"Classic High Waist Skinny Jeans - Dark Denim","url":"https://www.fashionnova.com/products/dark-blue-class...` |
 | [`nike_listing`](#nike_listing) | Active | api | none detected (ScrapeOps proxy; keep_headers) | Nike product wall via `__NEXT_DATA__` hydration + `api.nike.com` product-wall API pagination (no HTML fallback). | 239 (page 1, proxy) | 168 unique URLs across 6 departments from `nike_categories.py` | `{"category":"mens-shoes-nik1zy7ok","item_id":"IX3952-600","title":"Nike Moon Shoe OG","price":105,"currency":"USD","source":"nike_next_data"...` |
@@ -1871,6 +1871,8 @@ Verified live (`category=cookware-sets`, `max_pages=1`, ScrapeOps proxy,
   "category_id": 201847,
   "category_url": "https://www.dickssportinggoods.com/c/soccer-gear-equipment",
   "category_page_type": "c",
+  "catalog_id": "12301",
+  "store_id": 15108,
   "item_id": "13286436",
   "partnumber": "26968873",
   "parent_partnumber": "25ADIUSOCCWC26HSTMFAA",
@@ -1878,7 +1880,7 @@ Verified live (`category=cookware-sets`, `max_pages=1`, ScrapeOps proxy,
   "brand": "adidas",
   "url": "https://www.dickssportinggoods.com/p/adidas-fifa-world-cup-historical-mini-soccer-ball-set-25adiusoccwc26hstmfaa/25adiusoccwc26hstmfaa",
   "image_url": "https://dks.scene7.com/is/image/dkscdn/25ADIUSOCCWC26HSTMFAA_White?$DSG_ProductCard$",
-  "price": 141.52,
+  "price": 148.97,
   "list_price": 250.0,
   "map_price": null,
   "discount_percent": 43.39,
@@ -1913,26 +1915,26 @@ Notes:
   same `catgroupId`). Every request's `selectedCategory` is `12301_<catgroupId>`,
   so a target must match the bundled inventory; `category`, `category_url`, and
   `url` all resolve against it.
-- The catalog host is Akamai-protected: the plain datacenter ScrapeOps route is
-  rejected, so the spider appends `scrapeops.country=us.bypass=5` to the proxy
-  username for product requests only. The SEO category host needs no bypass.
+- The catalog host is Akamai-protected and direct requests are rejected. Product
+  API requests explicitly use the configured project `PROXY` unchanged; the
+  former hard-coded `bypass=5` route no longer returns catalog JSON.
 - `price` is the `offerprice` facet whose `[start,end]` window contains "now"
   (the payload carries several historical/upcoming windows), falling back to
   `listprice`. `list_price`, `map_price`, and `discount_percent` come from the
   same `floatFacets`/`dsgPriceIndicators` block. `product_attributes` is the
   parsed `attributes` JSON (e.g. `X_BRAND`, `PRIMARY_CATEGORY_DSG`).
 - The ordered export fields are `category`, `department`, `category_name`,
-  `category_id`, `category_url`, `category_page_type`, `item_id`, `partnumber`,
+  `category_id`, `category_url`, `category_page_type`, `catalog_id`, `store_id`,
+  `item_id`, `partnumber`,
   `parent_partnumber`, `title`, `brand`, `url`, `image_url`, `image_alt`, `price`,
   `list_price`, `map_price`, `discount_percent`, `currency`, `rating`,
   `reviews_count`, `is_coming_soon`, `is_color_pinned`, `product_attributes`,
   `primary_category`, `page`, `position`, `total_count`, `source_url`, `source`,
   and `raw`.
 - Live verification (`-s HTTPCACHE_ENABLED=False`, `category=soccer-gear-equipment`,
-  `max_pages=1`, 2026-10-02 UTC) exported **48 unique items** with `raw` present
-  on all 48. The API reported `totalCount=5577` for the category, so the run was
-  bounded by `max_pages`. A first attempt returned a transient ScrapeOps error
-  page and no items; the retry succeeded with zero errors.
+  `max_pages=1`, 2026-10-03 UTC) exported **48 unique items** with `raw` present
+  on all 48 and no null titles or prices. The API reported `totalCount=5600`, so
+  the run was bounded by `max_pages`.
 
 ## Contributing
 
