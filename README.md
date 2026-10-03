@@ -87,6 +87,7 @@ Spiders below are returning items in recent smoke runs:
 | [`kroger_listing`](#kroger_search--kroger_listing) | Active | Redux bootstrap | unknown (timeout/no verdict) | Kroger category listings from `window.__INITIAL_STATE__` search products. | 2 (fixture) | cereal, milk, eggs, bread, coffee, snacks | `{"category":"cereal","item_id":"0001111012345","title":"Kroger Toasted Oats Cereal","brand":"Kroger","price":3.99,...}` |
 | [`kroger_search`](#kroger_search--kroger_listing) | Active | bootstrap + html | unknown (timeout/no verdict) | Kroger keyword search with state extraction + fallback. | 27 (ok) | - | `{'item_id':'kroger-2-reduced-fat-milk-gallon','url':'https://www.kroger.com/p/kroger-2-reduced-fat-milk-gallon/0001111041700','source':'kroger_html_links_fallback'}` |
 | [`lululemon_listing`](#lululemon_listing) | Active | bootstrap | Akamai | lululemon listing spider via Next.js `__NEXT_DATA__`. | 40 (ok) | women-shorts, women-leggings, men-shorts, bags | `{"category":"women-shorts","product_id":"prod11860112","name":"Shake It Out High-Rise Running Short 2.5\"","brand":"lululemon","price":["...` |
+| [`llbean_listing`](#llbean_listing) | Active | api | none detected (ScrapeOps `country=us` route required) | L.L.Bean listing via the UDAL `product-discovery` JSON endpoint (no HTML fallback). | 96 (2 pages, proxy) | 11 departments / 500 targets from `llbean_categories.py` | `{"category":"Gift Shop","item_id":"1000316302","sku_id":"1000316302","title":"Women's The Original Double L® Sweater, Crewneck","brand":"L.L.Bean","price":49.99,"original_price":69.95,"currency":"USD","rating":4.4,"reviews_count":359,"color":"Classic Navy","size":"X-Small","availability":"IN","on_sale":true,"page":1,"position":1,"total_count":626,"source":"llbean_udal_product_discovery"...` |
 | [`maccosmetics_listing`](#maccosmetics_listing) | Experimental | api + bootstrap + html | Akamai | MAC Cosmetics multi-mode listing spider. | 66 (ok) | face, lips, eyes | `{"item_id":"13854","title":"4.8/5 ( 452 ) Lustreglass Sheer-Shine Lipstick Sheer Coverage, Glossy/High-Shine Finish, Infused With Raspberry Seed/Organic Extra Virgin Olive Oils ...` |
 | [`officedepot_listing`](#officedepot_listing) | Active | bootstrap | none detected (ScrapeOps proxy) | Office Depot / OfficeMax category listings from inline `window.ODSEARCHBROWSE_INITIAL_STATE` SSR hydration; taxonomy resolved from the header mega-menu JSON. | 59 (2 pages, furniture) | 388 browse PLPs from `header-menu-excel/products.json` | `{"department":"Furniture","item_id":"9003237","title":"Serta® Smart Layers™ Brinkley Ergonomic Bonded Leather High-Back Executive Office Chair, Black/Silver","price":299.99,"availability":"InStock","source":"officedepot_bootstrap"...}`
 | [`poshmark_listing`](#poshmark_listing) | Experimental | bootstrap | none detected | Poshmark listing spider via `window.__INITIAL_STATE__` category grid data. | 48 (ok) | women, men, kids, home, electronics, pets | `{"category":"women","item_id":"6989d90ac4e7b4d4de556bac","title":"🔥Stunning  Farm Rio NWT Size Large Tropical Midi Dress with Sleeves – V...` |
@@ -119,6 +120,51 @@ Many listing spiders accept `-a category=<name>` shortcuts (in addition to `-a c
 #### Sample output
 
 Below are trimmed examples from recent local test runs (JSONL output, 1 item shown).
+
+### llbean_listing
+
+`llbean_listing` uses one authoritative source: the first-party UDAL JSON
+endpoint `/api/udal/product-discovery/search`. The PLP HTML carries no products
+-- the server-rendered `window.__INITIAL_STATE__` blob only holds the page
+descriptor with an empty `docs` array -- so there is no HTML path to fall back
+to.
+
+```bash
+HTTPCACHE_ENABLED=False common-scrapy crawl llbean_listing --category "Gift Shop" -a max_pages=2 -O llbean.jsonl -s HTTPCACHE_ENABLED=False
+```
+
+```json
+{"category":"Gift Shop","department":"Gift Shop","item_id":"1000316302","sku_id":"1000316302","title":"Women's The Original Double L® Sweater, Crewneck","brand":"L.L.Bean","url":"https://www.llbean.com/llb/shop/20010334?page=The-Original-Double-L-Crewneck-Novely-Sweater-Womens-Petite","image_url":"https://cdni.llbean.net/is/image/wim/527356_49104_44?wid=302&hei=352","price":49.99,"original_price":69.95,"currency":"USD","rating":4.4,"reviews_count":359,"color":"Classic Navy","size":"X-Small","availability":"IN","on_sale":true,"page":1,"position":1,"total_count":626,"source_url":"https://www.llbean.com/api/udal/product-discovery/search?categoryId=509870&pageSize=48&start=0","source":"llbean_udal_product_discovery","raw":{...}}
+```
+
+500 targets across 11 departments come from the homepage
+`headerReducer.navData` capture in `llbean_categories.py` (the site
+`sitemap.xml` is bot-challenged). Because that capture is flattened one level,
+the same leaf name recurs across departments, so `-a category=` names are
+qualified with the department -- and, where that still collides, the category id:
+
+```bash
+# both forms are valid; the first is unique, the second is disambiguated
+common-scrapy crawl llbean_listing --category "Gift Shop"
+common-scrapy crawl llbean_listing --category "Clothing / Sweaters [611]"
+```
+
+Three behaviours worth knowing before changing the pagination:
+
+- **`start` is the only honoured offset.** The endpoint accepts `pageOffset` /
+  `pageNumber` and silently ignores them, so page 2 returns page 1. The spider
+  advances `start` by `pageSize` (48) and stops at `response.numFound`.
+- **`docs` are one row per SKU, not per product.** The same `itemID_s` /
+  `pageID_s` recurs across sizes, so items are de-duplicated on `skuID_s` and
+  `item_id` is that same SKU id.
+- **A US proxy route is required.** A direct request to a category URL
+  302-redirects to the international `global.llbean.com` storefront, so the
+  `scrapeops.country=us` route is what returns the real US site.
+
+`price` takes `minSalePrice_f` when present and `original_price` is only carried
+when the full price differs; `size` and `rating`/`reviews_count` are `null` for
+the SKUs the API omits them for (37/96 and 1/96 respectively on a two-page Gift
+Shop run).
 
 ### zappos_listing
 
