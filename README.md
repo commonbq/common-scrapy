@@ -73,11 +73,15 @@ Spiders below are returning items in recent smoke runs:
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
 | [`ae_listing`](#ae_listing) | Experimental | FastBoot + API | Akamai (signals in headers) | American Eagle listing spider via FastBoot shoebox state and browse API pagination. | 30 (ok) | women, men, aerie | `{"item_id":"1457_2980_808","title":"AE Big Hug V-Neck Sweatshirt","url":"https://www.ae.com/us/en/p/women/hoodies-sweatshirts/crew-neck-sweatshirts/ae-big-hug-v-neck-sweatshirt/1457_2980_808","price":38.97...` |
+| [`asos_listing`](#asos_listing) | Experimental | bootstrap + API | Akamai | ASOS US listings from `window.asos.plp._data`, with pagination through the hydrated search API contract. | 2 (fixture; live unverified) | complete women/men navigation inventory from `asos_categories.py` | `{"item_id":"211160390","title":"ASOS DESIGN stretch chiffon scarf detail plunge draped maxi dress in chocolate","price":69.99,"currency":"USD"...}` |
 | [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | html + nuxt-state | Akamai | Bloomingdale's listing spider via Nuxt SSR state contract parsing (splash->leaf aware). | 8 (ok) | new-now, women, beauty, shoes, handbags, jewelry-accessories, men, kids, home, sale, gifts, designers | `{"item_id":"5973765","title":"Tumbled Woven Verne Pants","url":"https://www.bloomingdales.com/shop/product/cinq-a-sept-tumbled-woven-vern...` |
 | [`costco_listing`](#costco_search--costco_listing) | Active | React Flight + API | Akamai | Costco category listing with React Flight discovery and GRS search pagination. | 24 (ok) | 131 parent groups / 432 subcategory entries from `costco-categories.json` | `{"item_id":"100501081","title":"Starbucks Pike Place Medium Roast K-Cup","url":"https://www.costco.com/starbucks-pike-place-medium-roast-k-cup-72-count.product.100501081.html","price":...` |
 | [`dickssportinggoods_listing`](#dickssportinggoods_listing) | Active | api | Akamai | DICK'S Sporting Goods category listings from the first-party catalog product-search API. | 48 (ok) | 1287 unique categories from 10 departments | `{"item_id":"13286436","title":"adidas FIFA World Cup Historical Mini Soccer Ball Set","brand":"adidas","price":141.52,"currency":"USD",...}` |
 | [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | none detected (CloudFront CDN only) | e.l.f. Cosmetics multi-mode listing spider. | 6 (ok) | face, eyes, lips | `{'item_id':'300261','title':'Soft Glam Satin Concealer','url':'https://www.elfcosmetics.com/soft-glam-satin-concealer/300262.html','price':9.0,'brand':'e.l.f. Cosmetics','source':'elfcosmetics_preloaded_state'...}` |
 | [`fashionnova_listing`](#fashionnova_listing) | Active | api + html | Cloudflare | Fashion Nova listing via Shopify Storefront GraphQL with HTML fallback. | 48 (ok) | women, new, dresses, jeans, sale | `{"item_id":"175898317","title":"Classic High Waist Skinny Jeans - Dark Denim","url":"https://www.fashionnova.com/products/dark-blue-class...` |
+| [`nike_listing`](#nike_listing) | Active | api | none detected (ScrapeOps proxy; keep_headers) | Nike product wall via `__NEXT_DATA__` hydration + `api.nike.com` product-wall API pagination (no HTML fallback). | 239 (page 1, proxy) | 168 unique URLs across 6 departments from `nike_categories.py` | `{"category":"mens-shoes-nik1zy7ok","item_id":"IX3952-600","title":"Nike Moon Shoe OG","price":105,"currency":"USD","source":"nike_next_data"...` |
+| [`gamestop_listing`](#gamestop_listing) | Active | api | none detected (ScrapeOps proxy) | GameStop SFCC Demandware listing via the `Tile-GetProductsJSON` controller (no HTML fallback). | 139 (3 pages, proxy) | 119 URLs across 33 category groups from `gamestop_categories.py` | `{"category":"consoles-hardware","item_id":"106429","title":"Nintendo Wii Original Console with Wii Remote - Super Mario Bros. 25th Anniversary Edition Red","price":"139.99","availability":"InStock","source":"gamestop_tile_json"...` |
+| [`footlocker_listing`](#footlocker_listing) | Active | api | residential proxy (ScrapeOps) | Foot Locker category listings from the ZGW search API (residential proxy required). | 48 (1 page, residential proxy) | Dynamically resolved from `header.public.json` | `{"band":"Men's","sub_category":"Shoes","category":"all-men-s-shoes","item_id":"T8013103","title":"Jordan Retro 12 - Men's","url":"https://www.footlocker.com/product/T8013103.html","image_url":"https://images.footlocker.com/is/image/EBFL2/T8013103","price":215.0,"original_price":215.0,"currency":"USD","availability":"InStock","brand":"Jordan","rating":5.0,"reviews_count":999,"page":1,"category_url":"/category/mens/shoes.html","source":"footlocker_api"...` |
 | [`homedepot_listing`](#homedepot_listing-category-apollo-state) | Flaky | bootstrap | Akamai | Home Depot department listings from embedded Apollo state. | 2 (fixture) | appliances, bath, building-materials, decor-and-furniture, electrical, flooring, hardware, heating-and-cooling, kitchen, lawn-and-garden, lighting, paint, plumbing, storage, tools | `{"category":"tools","item_id":"100000001","sku":"1000000001","title":"16 oz. Fiberglass Claw Hammer","brand":"Husky","price":14.97...` |
 | [`homedepot_search`](#homedepot_search-keyword-apollo-bootstrap) | Active | bootstrap + html | Akamai | Home Depot keyword search via Apollo state. | 24 (ok) | - | `{"item_id":"336787835","sku":"1014334650","brand":"Lukyamzn","title":"14 in. Dual-Core Celeron N4000 Laptop 6 GB RAM 128 GB SSD IPS Displ...` |
 | [`jcpenney_listing`](#jcpenney_listing) | Active | api | Akamai (+ reCAPTCHA scripts observed) | JCPenney listing spider via search API bootstrap endpoint. | 48 (ok) | womens_tops, mens_shirts | `{"item_id":"ppr5008584232","title":"St. John's Bay Womens Boat Neck Elbow Sleeve T-Shirt","brand":"st. john's bay","url":"https://www.jcp...` |
@@ -85,7 +89,9 @@ Spiders below are returning items in recent smoke runs:
 | [`kroger_listing`](#kroger_search--kroger_listing) | Active | Redux bootstrap | unknown (timeout/no verdict) | Kroger category listings from `window.__INITIAL_STATE__` search products. | 2 (fixture) | cereal, milk, eggs, bread, coffee, snacks | `{"category":"cereal","item_id":"0001111012345","title":"Kroger Toasted Oats Cereal","brand":"Kroger","price":3.99,...}` |
 | [`kroger_search`](#kroger_search--kroger_listing) | Active | bootstrap + html | unknown (timeout/no verdict) | Kroger keyword search with state extraction + fallback. | 27 (ok) | - | `{'item_id':'kroger-2-reduced-fat-milk-gallon','url':'https://www.kroger.com/p/kroger-2-reduced-fat-milk-gallon/0001111041700','source':'kroger_html_links_fallback'}` |
 | [`lululemon_listing`](#lululemon_listing) | Active | bootstrap | Akamai | lululemon listing spider via Next.js `__NEXT_DATA__`. | 40 (ok) | women-shorts, women-leggings, men-shorts, bags | `{"category":"women-shorts","product_id":"prod11860112","name":"Shake It Out High-Rise Running Short 2.5\"","brand":"lululemon","price":["...` |
+| [`llbean_listing`](#llbean_listing) | Active | api | none detected (ScrapeOps `country=us` route required) | L.L.Bean listing via the UDAL `product-discovery` JSON endpoint (no HTML fallback). | 96 (2 pages, proxy) | 11 departments / 500 targets from `llbean_categories.py` | `{"category":"Gift Shop","item_id":"1000316302","sku_id":"1000316302","title":"Women's The Original Double L® Sweater, Crewneck","brand":"L.L.Bean","price":49.99,"original_price":69.95,"currency":"USD","rating":4.4,"reviews_count":359,"color":"Classic Navy","size":"X-Small","availability":"IN","on_sale":true,"page":1,"position":1,"total_count":626,"source":"llbean_udal_product_discovery"...` |
 | [`maccosmetics_listing`](#maccosmetics_listing) | Experimental | api + bootstrap + html | Akamai | MAC Cosmetics multi-mode listing spider. | 66 (ok) | face, lips, eyes | `{"item_id":"13854","title":"4.8/5 ( 452 ) Lustreglass Sheer-Shine Lipstick Sheer Coverage, Glossy/High-Shine Finish, Infused With Raspberry Seed/Organic Extra Virgin Olive Oils ...` |
+| [`officedepot_listing`](#officedepot_listing) | Active | bootstrap | none detected (ScrapeOps proxy) | Office Depot / OfficeMax category listings from inline `window.ODSEARCHBROWSE_INITIAL_STATE` SSR hydration; taxonomy resolved from the header mega-menu JSON. | 59 (2 pages, furniture) | 388 browse PLPs from `header-menu-excel/products.json` | `{"department":"Furniture","item_id":"9003237","title":"Serta® Smart Layers™ Brinkley Ergonomic Bonded Leather High-Back Executive Office Chair, Black/Silver","price":299.99,"availability":"InStock","source":"officedepot_bootstrap"...}`
 | [`poshmark_listing`](#poshmark_listing) | Experimental | bootstrap | none detected | Poshmark listing spider via `window.__INITIAL_STATE__` category grid data. | 48 (ok) | women, men, kids, home, electronics, pets | `{"category":"women","item_id":"6989d90ac4e7b4d4de556bac","title":"🔥Stunning  Farm Rio NWT Size Large Tropical Midi Dress with Sleeves – V...` |
 | [`qvc_listing`](#qvc_listing) | Experimental | html + bootstrap | Akamai | QVC listing spider via server-rendered gallery cards and `utag_data` page state. | 96 (Beauty proxy capture) | fashion | `{"category":"beauty","category_id":"NAV6285","item_id":"A740517","title":"Whish 12 Days of Beauty Whishes Advent Calendar","price":59.98,...}` |
 | [`zappos_listing`](#zappos_listing) | Experimental | Redux hydration | none detected through proxy | Zappos listings from `window.__INITIAL_STATE__.products.list`. | 100 (one-page proxy smoke) | 4 departments / 50 targets | `{"item_id":"8910671","title":"Kiruna Padded Parka","brand":"Fjällräven","price":300.0,...}` |
@@ -94,7 +100,9 @@ Spiders below are returning items in recent smoke runs:
 | [`stockx_listing`](#stockx_listing) | Experimental | bootstrap + html | Cloudflare | StockX listing via `__NEXT_DATA__` bootstrap. | 41 (ok) | sneakers, apparel, electronics, trading-cards, collectibles | `{"item_id":"brands","title":"Brands","url":"https://stockx.com/brands","price":null,"currency":null}` |
 | [`staples_listing`](#staples_listing) | Experimental | Next.js hydration | Akamai | Staples category listings from server-rendered `__NEXT_DATA__`. | 40 (one page) | 34 roots / 208 subcategories from `staples_categories.py` | `{"item_id":"82656","title":"Staples 1\" 3-Ring View Binder...","price":10.09,"currency":"USD"...}` |
 | [`target_listing`](#target_listing) | Active (alias) | api | PerimeterX / HUMAN (cookie signals) | Deprecated alias of `target_search`. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
+| [`uniqlo_listing`](#uniqlo_listing) | Experimental | api | none detected (plain ScrapeOps datacenter route) | UNIQLO US category listings from the first-party commerce BFF products API. | 36 (one page, ok) | 2741 taxonomy URLs (4 genders / 46 classes / 212 categories / 2479 subcategories) from `uniqlo-categories.json` | `{"item_id":"E424873-000-00","title":"Crew Neck T-Shirt","color":"White","price":19.9,"currency":"USD"...}` |
 | [`target_search`](#target_search) | Active | api | PerimeterX / HUMAN (cookie signals) | Target RedSky search API spider. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
+| [`victoriassecret_listing`](#victoriassecret_listing) | Active | api | none detected (ScrapeOps proxy, plain datacenter route) | Victoria's Secret / PINK listings from the first-party `stacks` JSON API; page 0 reads `collectionId` from SSR `clientProps`. | 192 (2 pages, live) | 427 targets across `vs` + `pink` brands from `victoriassecret_categories.py` | `{"category":"vs-bras","brand":"vs","item_id":"11295563|7I65","name":"Signature Shine Cotton Lightly Lined Balconette Bra","price":49.95,...}` |
 
 #### In-progress spiders
 
@@ -116,6 +124,51 @@ Many listing spiders accept `-a category=<name>` shortcuts (in addition to `-a c
 
 Below are trimmed examples from recent local test runs (JSONL output, 1 item shown).
 
+### llbean_listing
+
+`llbean_listing` uses one authoritative source: the first-party UDAL JSON
+endpoint `/api/udal/product-discovery/search`. The PLP HTML carries no products
+-- the server-rendered `window.__INITIAL_STATE__` blob only holds the page
+descriptor with an empty `docs` array -- so there is no HTML path to fall back
+to.
+
+```bash
+HTTPCACHE_ENABLED=False common-scrapy crawl llbean_listing --category "Gift Shop" -a max_pages=2 -O llbean.jsonl -s HTTPCACHE_ENABLED=False
+```
+
+```json
+{"category":"Gift Shop","department":"Gift Shop","item_id":"1000316302","sku_id":"1000316302","title":"Women's The Original Double L® Sweater, Crewneck","brand":"L.L.Bean","url":"https://www.llbean.com/llb/shop/20010334?page=The-Original-Double-L-Crewneck-Novely-Sweater-Womens-Petite","image_url":"https://cdni.llbean.net/is/image/wim/527356_49104_44?wid=302&hei=352","price":49.99,"original_price":69.95,"currency":"USD","rating":4.4,"reviews_count":359,"color":"Classic Navy","size":"X-Small","availability":"IN","on_sale":true,"page":1,"position":1,"total_count":626,"source_url":"https://www.llbean.com/api/udal/product-discovery/search?categoryId=509870&pageSize=48&start=0","source":"llbean_udal_product_discovery","raw":{...}}
+```
+
+500 targets across 11 departments come from the homepage
+`headerReducer.navData` capture in `llbean_categories.py` (the site
+`sitemap.xml` is bot-challenged). Because that capture is flattened one level,
+the same leaf name recurs across departments, so `-a category=` names are
+qualified with the department -- and, where that still collides, the category id:
+
+```bash
+# both forms are valid; the first is unique, the second is disambiguated
+common-scrapy crawl llbean_listing --category "Gift Shop"
+common-scrapy crawl llbean_listing --category "Clothing / Sweaters [611]"
+```
+
+Three behaviours worth knowing before changing the pagination:
+
+- **`start` is the only honoured offset.** The endpoint accepts `pageOffset` /
+  `pageNumber` and silently ignores them, so page 2 returns page 1. The spider
+  advances `start` by `pageSize` (48) and stops at `response.numFound`.
+- **`docs` are one row per SKU, not per product.** The same `itemID_s` /
+  `pageID_s` recurs across sizes, so items are de-duplicated on `skuID_s` and
+  `item_id` is that same SKU id.
+- **A US proxy route is required.** A direct request to a category URL
+  302-redirects to the international `global.llbean.com` storefront, so the
+  `scrapeops.country=us` route is what returns the real US site.
+
+`price` takes `minSalePrice_f` when present and `original_price` is only carried
+when the full price differs; `size` and `rating`/`reviews_count` are `null` for
+the SKUs the API omits them for (37/96 and 1/96 respectively on a two-page Gift
+Shop run).
+
 ### zappos_listing
 
 `zappos_listing` uses one authoritative source: the server-rendered Redux state
@@ -132,6 +185,41 @@ HTTPCACHE_ENABLED=False common-scrapy crawl zappos_listing --category women -a m
 ```json
 {"category":"women","department":"Women","item_id":"8910671","style_id":"4036549","title":"Kiruna Padded Parka","brand":"Fjällräven","color":"Black","price":300.0,"original_price":375.0,"currency":"USD","rating":3.7,"reviews_count":38,"on_sale":true,"page":1,"source":"zappos_initial_state_products"}
 ```
+
+### uniqlo_listing
+
+`uniqlo_listing` uses one authoritative source: the first-party commerce BFF products
+endpoint `https://www.uniqlo.com/us/api/commerce/v5/en/products`. UNIQLO's SSR shell
+ships the full navigation taxonomy in `window.__PRELOADED_STATE__.taxonomies` but an
+*empty* product grid (`search.search.productIds == []`); the React app hydrates it
+client-side over XHR. This spider therefore never scrapes HTML cards or JSON-LD.
+
+- **Taxonomy.** `sample/uniqlo-categories.json` (harvested from `__PRELOADED_STATE__`)
+  is committed and flattened by `uniqlo_categories.py` into 2741 selectable URLs:
+  4 genders / 46 classes / 212 categories / 2479 subcategories. Every entry keeps the
+  Fast Retailing taxonomy id chain the API expects in its `path` query parameter
+  (`genderId[,classId[,categoryId[,subCategoryId]]]`), so no page has to be re-resolved.
+  Select with `-a category=<slug>` or `-a category_url=<url>` (any of the 2741 URLs).
+- **Products.** `GET /us/api/commerce/v5/en/products?path=<ids>&limit=36&offset=<n>`,
+  paged via `pagination.total` / `offset`. `max_pages` caps the number of API pages.
+- **Identifiers.** `productId` alone is *not* unique: the same `E424873-000` comes back
+  once per colourway with a distinct `representativeColorDisplayCode`. UNIQLO's own
+  hydration state names rows `<productId>-<colorCode>`, so `item_id` joins the two
+  (e.g. `E424873-000-00`) and `style_id` is the numeric style (`424873`).
+- **Prices.** `prices.base` is the regular price and `prices.promo` the discounted one,
+  so a sale row exports `price` = promo value, `original_price` = base value and
+  `on_sale: true`. `on_sale` only fires when the row actually shows two prices
+  (`isDualPrice`, or `promo.value != base.value`), so a plain `promo` block that merely
+  repeats `base.value` is not treated as a sale. No discounted row appeared in the
+  live payloads sampled so far, so this path is covered by unit tests rather than a
+  live capture.
+
+```json
+{"category":"t-shirts-and-tank-tops","category_name":"T-Shirts and Tank Tops","department":"Women","subcategory":"T-Shirts, Sweats & Fleece","item_id":"E424873-000-00","style_id":"424873","title":"Crew Neck T-Shirt","brand":"UNIQLO","gender":"WOMEN","color":"White","color_code":"00","url":"https://www.uniqlo.com/us/en/products/E424873-000","image_url":"https://image.uniqlo.com/UQ/ST3/us/imagesgoods/424873/item/usgoods_00_424873_3x4.jpg","price":19.9,"original_price":null,"currency":"USD","on_sale":false,"rating":4.7,"reviews_count":2858,"available_sizes":["XXS","XS","S","M","L","XL","XXL"],"page":1,"position":1,"total_count":69,"items_per_page":36,"taxonomy_path":"22210,23295,23335","source":"uniqlo_commerce_bff_products"}
+```
+
+Run example:
+`HTTPCACHE_ENABLED=False common-scrapy crawl uniqlo_listing -a category=t-shirts-and-tank-tops -a max_pages=2 -O uniqlo.jsonl -s HTTPCACHE_ENABLED=False`
 
 ### amazon_search
 ```json
@@ -172,6 +260,57 @@ Notes:
 
 Run example:
 `common-scrapy crawl amazon_listing -a category=electronics -a max_pages=1 -O amazon_cat.jsonl`
+
+### asos_listing
+
+ASOS page 1 is read from the server-rendered `window.asos.plp._data` bootstrap. Later pages use the search API and carry its query contract, including `keyStoreDataversion`, directly from that bootstrap. The handoff forwards every non-null field of the hydrated `query` object rather than a fixed allowlist, so refined categories keep their `brand`/`sizeFilter`/`priceFilter` refinements on later pages instead of widening back to the bare CID; only browser-only keys (`browsedRegion`, `deliveryCurrency`, `experiment`, …) are dropped. Structured filters are JSON-encoded in the query string, matching the hydrated contract.
+
+The bootstrap currently nests the listing under a `search` object (`state["search"]["products"]`), with the older flat `{products, itemCount, query}` shape still supported. Product fields are normalized from both shapes, since the PLP sends a bare numeric `price` with `description`/`image` while the search API keeps a nested price object with `name`/`imageUrl`.
+
+The `women` and `men` shortcuts target each department's "New In" listing (`cid=27108` / `cid=27110`). The department landing pages themselves (`/us/women/`, `/us/men/`) are navigation-only and serve no listing data, so they cannot be crawled directly. Every other category alias comes from the 412-CID inventory in `asos_categories.py`. Where an alias shares its URL with a department shortcut (`women-view-all` / `men-view-all` both target the same `cid=27108` / `cid=27110` listing), an explicitly supplied `category=` is resolved by its own category key, so those aliases export their own `View all` label rather than the shortcut's `New In`.
+
+Representative output item from the committed fixture:
+```json
+{
+  "category": "custom",
+  "subcategory": null,
+  "item_id": "211160390",
+  "style_id": "158157966",
+  "title": "ASOS DESIGN stretch chiffon scarf detail plunge draped maxi dress in chocolate",
+  "brand": "ASOS DESIGN",
+  "color": "Chocolate",
+  "price": 69.99,
+  "original_price": 99.99,
+  "currency": "USD",
+  "total_count": 1591,
+  "source": "asos_plp_hydration",
+  "raw": {"id": 211160390, "productCode": 158157966, "...": "..."}
+}
+```
+
+Run example (2 items from the committed hydration fixture):
+```bash
+python3 -m http.server 8765 --bind 127.0.0.1 &
+HTTPCACHE_ENABLED=False python3 -m common_scrapy.cli crawl asos_listing \
+  -a category_url=http://127.0.0.1:8765/sample/asos-listing-sample.html \
+  -a max_pages=1 -O asos.jsonl -s HTTPCACHE_ENABLED=False -s PROXY=
+```
+
+`-s PROXY=` is required for a local fixture run: the project downloader middleware otherwise
+forces every request, including `127.0.0.1`, through the configured `PROXY` from `.env`, and
+the fixture server answers with a gateway error instead of the sample HTML.
+
+| item_id | title | brand | price | original_price | currency | is_selling_fast |
+|---|---|---|---:|---:|---|---|
+| 211160390 | ASOS DESIGN stretch chiffon scarf detail plunge draped maxi dress in chocolate | ASOS DESIGN | 69.99 | 99.99 | USD | true |
+| 211160391 | Second product | ASOS DESIGN | 45.00 |  | USD | false |
+
+Verification notes:
+* The committed fixture exports 2 items and every `FEED_EXPORT_FIELDS` key is present on both, including a populated `raw` (15 keys each). Values are not all non-null: `subcategory` is `null` for a direct-URL crawl and the second item has no `original_price`. The pagination handoff is covered by deterministic contract tests rather than a live crawl.
+* The API handoff drops `proxy`/`_auth_proxy` from the copied request meta. `HttpProxyMiddleware` rewrites `meta["proxy"]` to the credential-free URL and stashes the credentialed one in `_auth_proxy`, so forwarding either key would make the follow-up request look pre-authenticated, skip re-attaching `Proxy-Authorization`, and fail the API leg with HTTP 407. `tests/test_asos_listing_spider.py` asserts the follow-up re-applies proxy authentication end to end.
+* Live output is currently **unverified**: a direct cache-disabled storefront attempt from this runner did not complete, so no live item count or `total_count` is claimed here. Treat `category=women` / `category=men` runs as unverified until run against the real storefront.
+* In this sandbox Scrapy receives a 407 on the proxy CONNECT tunnel for the API leg specifically, while `curl` succeeds on an identical URL. The generated API URL is correct; the page-1 hydration leg is unaffected. Treat multi-page runs as unverified locally until run on a host without the TLS-intercepting middlebox.
+* An Akamai access-denied/challenge page is detected before hydration extraction and fails with a targeted message rather than a generic "no valid hydration" error.
 
 ### walmart_listing (category)
 ```json
@@ -1219,6 +1358,232 @@ Notes:
   `sample/sallybeauty-listing-product.html` and
   `sample/sallybeauty-listing-product-page-2.html`.
 
+### officedepot_listing
+
+Office Depot / OfficeMax category listings from the inline Redux hydration state
+`window.ODSEARCHBROWSE_INITIAL_STATE`. The category taxonomy is resolved at
+start-up from the first-party header mega-menu JSON
+(`https://ma.officedepot.com/header-menu-excel/products.json`). A plain ScrapeOps
+datacenter route returned real SSR HTML for every page fetched; no residential or
+`bypass` option is required.
+
+Flow:
+
+1. `start_requests` fetches the header mega-menu JSON and walks
+   `responseObject.menuList` (department -> level-2 -> level-3). Only
+   `/b/<slug>/N-<navId>` browse PLPs are crawled (388 entries); `/l/...` editorial
+   landing pages are skipped. Every entry is registered under both a plain slug and a
+   `<department>-<name>` qualified slug, so duplicate leaf names (for example
+   "Sheet Protectors" under Office Supplies and School Supplies) can be selected
+   unambiguously.
+2. Each selected category PLP is fetched with `?page=N` (1-based). The server-rendered
+   page embeds `window.ODSEARCHBROWSE_INITIAL_STATE` as a JS object literal that also
+   contains bare `undefined` tokens (invalid strict JSON); the spider brace-matches the
+   object and rewrites `undefined` -> `null` before `json.loads`.
+3. Products are read from `products.products[]`; `products.total` is the authoritative
+   stop and pagination continues while `current_page * page_size < total` and
+   `page <= max_pages`. Items are deduplicated by `item_id` across pages.
+
+Category slugs come from the leaf name via `_slugify` (for example `Office Chairs` ->
+`office-chairs`); the resolved set is exposed through the spider's
+`available_categories()` (plain and qualified slugs).
+
+Run examples:
+
+- `common-scrapy crawl officedepot_listing -a category='furniture' -a max_pages=2 -O officedepot.jsonl`
+- `common-scrapy crawl officedepot_listing -a category='office-chairs' -a max_pages=1 -O officedepot.jsonl`
+- `common-scrapy crawl officedepot_listing -a max_pages=1 -O officedepot-all.jsonl` (all 388 browse PLPs)
+
+Export contract: `department`, `sub_category`, `category`, `item_id`, `title`, `brand`,
+`url`, `image_url`, `price`, `original_price`, `list_price`, `currency`, `availability`,
+`rating`, `reviews_count`, `item_number`, `description`, `catalog_labels`, `category_id`,
+`page`, `category_url`, `breadcrumbs`, `source`, `raw`.
+
+Fixtures: `sample/officedepot-header.json` (captured
+`header-menu-excel/products.json`) and `sample/officedepot-category-page.html` (reduced
+capture of `/b/furniture/N-917` carrying the `ODSEARCHBROWSE_INITIAL_STATE` blob).
+
+Tests: `python -m unittest tests.test_officedepot_listing_spider` (16 network-free tests).
+
+Live verification (`-s HTTPCACHE_ENABLED=False`, 2026-10-02 UTC):
+
+- `category=furniture, max_pages=2` -> **59 items** (page 1: 34 products, page 2: 34
+  products with 9 cross-page duplicates removed), 3 HTTP 200 requests, `finish_reason=finished`.
+- `category=office-chairs, max_pages=1` -> **24 items**, 4-level breadcrumbs
+  (`Home > Furniture > Chairs & Seating > Office Chairs`).
+
+```json
+{"department":"Furniture","sub_category":null,"category":"Furniture","item_id":"9003237","title":"Serta® Smart Layers™ Brinkley Ergonomic Bonded Leather High-Back Executive Office Chair, Black/Silver","brand":"Serta","url":"https://www.officedepot.com/a/products/9003237/Serta-Smart-Layers-Brinkley-Ergonomic-Bonded/","image_url":"https://media.officedepot.com/images/t_large%2Cf_auto/products/9003237/1.jpg","price":299.99,"original_price":299.99,"list_price":586.81,"currency":"USD","availability":"InStock","rating":4.5169,"reviews_count":178,"item_number":"9003237","description":"...","catalog_labels":["ecoConscious","lessHarshChemicals"],"category_id":"593061","page":1,"category_url":"https://www.officedepot.com/b/furniture/N-917?page=1","breadcrumbs":["Home","Furniture"],"source":"officedepot_bootstrap","raw":{...}}
+```
+
+### gamestop_listing
+
+GameStop runs on Salesforce Commerce Cloud (Demandware) behind a Constructor.io
+"hybrid" browse front end. The PLP HTML does **not** contain product data: the
+server renders empty tile shells that carry only a `data-pid`, and `main.js`
+hydrates each tile from a first-party JSON controller:
+
+```
+/on/demandware.store/Sites-gamestop-us-Site/default/Tile-GetProductsJSON
+    ?deliveryAttribute=&data=<comma-separated-pids>&useTileImage=true
+```
+
+This spider uses exactly one data direction -- that JSON controller. There is no
+HTML tile scraping, no Constructor.io browse call, and no rendered-browser
+fallback. If the controller stops answering correctly the spider raises instead
+of silently emitting empty tile shells.
+
+Flow:
+
+1. Fetch the category page (or a later `Search-UpdateGrid` fragment) and read the
+   `data-pid` list plus `data-cnstrc-num-results` (total).
+2. Batch the pids (`TILE_BATCH_SIZE`, 20 per request) into `Tile-GetProductsJSON`.
+3. Emit one item per returned product, deduplicated by `item_id`.
+4. Paginate with `Search-UpdateGrid?cgid=<slug>&start=<n>&sz=<sz>` until
+
+   `start >= total`, `max_pages` is reached, or a grid page yields no new ids.
+
+Two details worth knowing:
+
+- The `cgid` used for pagination is the Demandware category id (`consoles`,
+  `toys-and-collectibles-funko`, ...), which is **not** the friendly URL slug
+  (`consoles-hardware`, `collectibles/funko`). The spider reads it back from the
+  page's own `Search-UpdateGrid` link rather than guessing.
+- The friendly category URL renders the storefront's default page size (20),
+  which is smaller than `PAGE_SIZE` (60), so pagination advances by the number of
+  pids the grid actually served rather than `page * PAGE_SIZE`.
+- `data-cnstrc-num-results` is rendered on the category page but **not** on the
+  `Search-UpdateGrid` fragments, so the page-1 total is remembered and reused for
+  later pages; otherwise `start >= total` could never fire and the crawl would
+  run one grid past the end of the listing.
+- The next-page request is decided once per grid page, after all its pid batches
+  have answered. A batch that comes back with an empty `productsJSON` (retired
+  pids) is skipped without cancelling pagination for the sibling batches.
+
+Run examples:
+
+- `common-scrapy crawl gamestop_listing -a category='consoles-hardware' -a max_pages=1 -O gamestop.jsonl`
+- `common-scrapy crawl gamestop_listing -a category='consoles-hardware' -a max_pages=3 -O gamestop.jsonl`
+- `common-scrapy crawl gamestop_listing -a category='collectibles-funko' -a max_pages=2 -O funko.jsonl`
+- `common-scrapy crawl gamestop_listing -a category_url='https://www.gamestop.com/consoles-hardware' -a max_pages=1 -O gamestop.jsonl`
+
+Category shortcuts come from `common/spiders/gamestop_categories.py` (the full
+header-menu taxonomy, 119 URLs across 33 category groups). Category keys are the full
+URL path slug, e.g. `consoles-hardware`, `video-games-nintendo-switch`,
+`collectibles-funko`, because leaf slugs alone collide across departments.
+
+The export contract is ordered as:
+
+`category`, `department`, `item_id`, `title`, `url`, `image_url`, `image_alt`,
+`price`, `list_price`, `pro_price`, `price_min`, `price_max`, `currency`,
+`availability`, `is_digital_product`, `badge`, `rating`, `reviews_count`,
+`market_price`, `release_date`, `product_platform`, `short_description`, `page`,
+`category_url`, `source`, and `raw`.
+
+```json
+{
+  "category": "consoles-hardware",
+  "department": "consoles-hardware",
+  "item_id": "106429",
+  "title": "Nintendo Wii Original Console with Wii Remote - Super Mario Bros. 25th Anniversary Edition Red",
+  "url": "https://www.gamestop.com/consoles-hardware/retro-consoles/products/nintendo-wii-original-console-with-wii-remote---super-mario-bros.-25th-anniversary-edition-red/106429.html",
+  "image_url": "https://media.gamestop.com/i/gamestop/10121186?",
+  "image_alt": "Nintendo Wii Original Console with Wii Remote - Super Mario Bros. 25th Anniversary Edition Red",
+  "price": "139.99",
+  "list_price": "139.99",
+  "pro_price": "132.99",
+  "price_min": null,
+  "price_max": null,
+  "currency": "USD",
+  "availability": "InStock",
+  "is_digital_product": false,
+  "badge": "BUY CONSOLE, SAVE 10% PO ACC.",
+  "rating": "83.85",
+  "reviews_count": "654",
+  "market_price": null,
+  "release_date": null,
+  "product_platform": null,
+  "short_description": null,
+  "page": 1,
+  "category_url": "https://www.gamestop.com/consoles-hardware",
+  "source": "gamestop_tile_json",
+  "raw": { "id": "106429", "name": "...", "price": { "base": "139.99", "sale": null, "pro": "132.99" } }
+}
+```
+
+Notes:
+
+- `price` uses the sale price when GameStop provides one, otherwise the base
+  price; `list_price` keeps the base price for comparison.
+- `availability` is normalized to `InStock` / `PreOrder` / `OutOfStock` from the
+  tile `availability` object. The explicit `preorder` flag is checked **first**,
+  because a preorder item is often also flagged `available` (it can be bought
+  before release) and testing `available` first would report it as in stock.
+  `readyToOrder` is deliberately ignored -- it is an SFCC product-selection flag
+  (the variant is selectable), not a preorder indicator, and in the captured
+  payload it is `true` alongside `available: true` for ordinary in-stock
+  products.
+- `source` is always `gamestop_tile_json` -- every item comes from the same JSON
+  controller.
+- The spider fails loudly on a non-200 response, an access-denied/challenge body,
+  a non-JSON tile body, a missing `productsJSON` key, a tile without an `id`, or
+  a **page-1** grid with no `data-pid` tiles, so a stale category map cannot
+  masquerade as an empty category. On later pages an empty grid is treated as the
+  end of the listing, not an error.
+- Fixtures live in `sample/gamestop-listing-grid.html`,
+  `sample/gamestop-tile-products.json`, and `sample/gamestop-categories.json`.
+- Tests: `.venv/bin/python -m unittest tests.test_gamestop_listing_spider`
+  (29 network-free fixture tests).
+### footlocker_listing
+
+Foot Locker category listings from the ZGW search API. Residential ScrapeOps proxy is
+required for the API calls (`scrapeops.country=us.residential=true`); the header and
+category HTML pages go through the plain datacenter route.
+
+Flow:
+
+1. `start_requests` fetches `https://www.footlocker.com/api/content/en/header.public.json`.
+2. `parse_header_json_for_categories` walks the `ContentBand` components, whose list items
+   are `headerSection*` bands; each band holds `headerCategory` groups of
+   `headerCategoryLink`s. It rebuilds a band -> sub-category -> link tree.
+   - When `-a category=<slug>` is given, only the taxonomy link whose slugified text matches
+     is resolved (so a scoped run resolves a single category instead of the whole menu).
+3. `_resolve_category_search_params` resolves `searchParams` for each category link:
+   - a link with `?query=` uses that value directly;
+   - otherwise the category HTML is fetched and `searchParams` is read from
+     `window.footlocker.STATE_FROM_SERVER.page.category["<path>"].searchParams`
+     (`parse_search_params_from_html` / `_extract_search_params_from_html`).
+   A category that cannot be resolved is recorded and skipped rather than deadlocking the
+   crawl; `_start_api_crawls` fires once every category has resolved or failed.
+4. `_start_api_crawls` issues `_api_request`s to the ZGW search endpoint. Without
+   `-a category`, every resolved category is crawled; with it, only the matching
+   `category_slug`.
+5. `parse_api_products` yields one item per returned product and paginates via
+   `currentPage` until `max_pages` or the last page.
+
+Category slugs come from the header link text via `_slugify` (e.g. `All Men's Shoes` ->
+`all-men-s-shoes`); the resolved set is exposed through the spider's `available_categories()`.
+
+Run examples:
+
+- `common-scrapy crawl footlocker_listing -a category='all-men-s-shoes' -a max_pages=1 -O footlocker.jsonl`
+- `common-scrapy crawl footlocker_listing -a category='all-men-s-shoes' -a max_pages=3 -O footlocker.jsonl`
+- `common-scrapy crawl footlocker_listing -a max_pages=1 -O footlocker-all.jsonl` (every resolved category)
+
+Export contract: `band`, `sub_category`, `category`, `item_id`, `title`, `url`, `image_url`,
+`price`, `original_price`, `currency`, `availability`, `brand`, `rating`, `reviews_count`,
+`page`, `category_url`, `source`, `raw`.
+
+Fixtures: `sample/footlocker-header.json` (captured `header.public.json`),
+`sample/footlocker-mens-shoes.html` (captured category HTML with the `STATE_FROM_SERVER`
+blob), and `sample/footlocker-mens-shoes-api-page0.json` (captured ZGW page 0).
+
+Tests: `python -m unittest tests.test_footlocker_listing_spider` (9 network-free fixture tests).
+
+```json
+{"band":"Men's","sub_category":"Shoes","category":"all-men-s-shoes","item_id":"O2463102","title":"Jordan Air Jordan Retro 4 - Men's","url":"https://www.footlocker.com/product/O2463102.html","image_url":"https://images.footlocker.com/is/image/EBFL2/O2463102","price":220.0,"original_price":220.0,"currency":"USD","availability":"OutOfStock","brand":"Jordan","rating":5.0,"reviews_count":5,"page":1,"category_url":"/category/mens/shoes.html","source":"footlocker_api","raw":{"badges":{"isDiscountsExcluded":true,"isPromoted":false,"isNewProduct":true,"isSale":false},"baseProduct":"O2463102","name":"Jordan Air Jordan Retro 4 - Men's","price":{"value":220.0,"formattedValue":"$220.00"},"originalPrice":{"value":220.0,"formattedValue":"$220.00"},"reviewRatings":{"reviews":5,"rating":5.0},"sku":"O2463102","imageSku":"O2463102","variantsCount":1}}
+```
+
 ### maccosmetics_listing
 ```json
 {
@@ -1292,6 +1657,114 @@ Notes:
 - Pagination uses `/browse/v1/category/{category}?offset={offset}&rows={rows}` with `meta.offset`, `meta.rows`, and `meta.totalProducts`.
 - Requests should keep browser-like headers (`accept`, `accept-language`, `referer`, `user-agent`, and `x-requested-with`).
 
+### nike_listing
+
+Nike runs a Next.js catch-all route (`/w/[[...slug]]`). The product wall is
+hydrated into `script#__NEXT_DATA__` on page 1, and every later page is served by
+the first-party product-wall API on `api.nike.com`:
+
+```
+/discover/product_wall/v1/marketplace/US/language/en/consumerChannelId/<uuid>
+    ?path=/w/<slug>&attributeIds=<uuids>&queryType=PRODUCTS&anchor=<n>&count=<n>
+```
+
+This spider uses exactly one data direction -- that hydration state and the API it
+points at. There is no HTML card scraping and no rendered-browser fallback. Both
+legs return the same product object shape, so a single parser builds every item.
+
+Two details are load-bearing:
+
+- `api.nike.com` rejects requests without `nike-api-caller-id`, answering HTTP 200
+  with `{"errors":[{"code":"NIKE_API_CALLER_ID_HEADER_NOT_PRESENT"}]}` -- so a
+  status check alone would read a rejected request as a valid empty last page.
+  The spider raises on that envelope instead.
+- ScrapeOps strips custom request headers by default, so the API leg applies the
+  provider's `keep_headers=true` username option (mirroring
+  `costco_listing_spider._search_api_proxy`); without it the header is dropped in
+  transit and Nike returns exactly that error.
+
+The bundled inventory preserves the desktop global navigation hierarchy
+(`department -> group -> subcategory -> url`), flattened to 168 unique URLs across
+Men, Women, Kids, Jordan, NikeSKIMS, and Sport. Six URLs are linked from two
+departments (for example `/w/sunglasses-arlyp` from both Men and Women); the
+spider deduplicates by URL and keeps the first department, matching the
+repository convention. Entries are keyed by the URL path slug (for example
+`mens-shoes-nik1zy7ok`), which is already unique across the whole inventory.
+
+Grouping is *not* the unit of output: a `productGroupings[]` entry holds every
+colorway it collects and each has its own `productCode`, so collapsing to one item
+per group would silently drop colorways. Items are deduplicated by
+`(category, productCode)`.
+
+Pagination reads the next relative path from the previous response's own
+pagination field (`Wall.pageData.next` on page 1, `pages.next` afterwards) and
+never hard-codes the channel/attribute UUIDs or the anchor, because Nike rotates
+them. The crawl stops at `max_pages` or when the current page carries no further
+`next`.
+
+Run examples:
+
+- `common-scrapy crawl nike_listing -a category=mens-shoes-nik1zy7ok -a max_pages=2 -O nike.jsonl -s HTTPCACHE_ENABLED=False`
+- `common-scrapy crawl nike_listing -a category=womens-shoes-5e1x6zy7ok -a max_pages=1 -O nike_women.jsonl -s HTTPCACHE_ENABLED=False`
+- `common-scrapy crawl nike_listing -a category_url='https://www.nike.com/w/mens-shoes-nik1zy7ok' -a max_pages=1 -O nike.jsonl`
+
+The ordered export fields are `category`, `department`, `group`, `item_id`,
+`title`, `subtitle`, `url`, `image_url`, `price`, `list_price`,
+`discount_percent`, `employee_price`, `currency`, `color`, `color_hex`,
+`color_description`, `product_type`, `availability`, `badge`, `promotion`,
+`is_new_until`, `page`, `category_url`, `source`, and `raw`.
+
+```json
+{
+  "category": "mens-shoes-nik1zy7ok",
+  "department": "Men",
+  "group": "Shoes",
+  "item_id": "IX3952-600",
+  "title": "Nike Moon Shoe OG",
+  "subtitle": "Men's Shoes",
+  "url": "https://www.nike.com/t/moon-shoe-og-mens-shoes-QjBip6mn/IX3952-600",
+  "image_url": "https://static.nike.com/a/images/t_default/.../NIKE+MOON+SHOE+OG.png",
+  "price": 105,
+  "list_price": null,
+  "discount_percent": null,
+  "employee_price": 63,
+  "currency": "USD",
+  "color": "Red",
+  "color_hex": "B40033",
+  "color_description": "Tough Red/Mystic Dates/Gum Light Brown/Sail",
+  "product_type": "FOOTWEAR",
+  "availability": "InStock",
+  "badge": "Just In",
+  "promotion": null,
+  "is_new_until": "2026-10-14T14:00:00.000Z",
+  "page": 1,
+  "category_url": "https://www.nike.com/w/mens-shoes-nik1zy7ok",
+  "source": "nike_next_data",
+  "raw": { "productCode": "IX3952-600", "copy": { "title": "Nike Moon Shoe OG" } }
+}
+```
+
+Notes:
+
+- `price` is `prices.currentPrice` and `list_price` is only populated when
+  `discountPercentage` is non-zero, so an undiscounted item does not report the
+  same value twice as if it had been marked down.
+- `availability` maps Nike's `featuredAttributes`: `COMING_SOON` -> `PreOrder`,
+  `RESTOCK` -> `BackInStock`, otherwise `InStock`.
+- `promotion` carries the customer-facing promotion title from the first `PW`
+  product-wall visibility (for example "See Price in Bag").
+- `source` is `nike_next_data` for page 1 and `nike_product_wall_api` for later
+  pages.
+- The spider fails loudly on a non-200 response, an access-denied/challenge body,
+  a missing `script#__NEXT_DATA__` block, a missing
+  `props.pageProps.initialState.Wall`, a malformed JSON body, a response missing
+  `productGroupings`, a product without a `productCode`, or a Nike `errors`
+  envelope, so a retired category slug or a stripped caller header cannot
+  masquerade as an empty listing.
+- Fixtures live in `sample/nike-listing-next-data.html`,
+  `sample/nike-product-wall-page.json`, and `sample/nike-categories.json`.
+- Tests: `.venv/bin/python -m unittest tests.test_nike_listing_spider`
+  (33 network-free fixture tests).
 ### dickssportinggoods_listing
 ```json
 {
@@ -1406,3 +1879,102 @@ selection expands to its maintained child listing URLs.
 ```bash
 scrapy crawl gap_listing -a category=women -a max_pages=1 -O gap.jsonl
 ```
+
+### victoriassecret_listing
+
+`victoriassecret_listing` covers the Victoria's Secret and PINK US storefronts
+via a **single data direction**: the first-party `stacks` JSON API. The category
+SSR page is fetched only to discover the `collectionId` (plus the brand and the
+`isBrasOrPanties` flag) from the embedded `<script id="clientProps">` block;
+every product then comes from `api.victoriassecret.com`. There is no HTML card
+scraping, no `__NEXT_DATA__` parsing, and no browser fallback.
+
+Flow:
+
+1. Fetch the category PLP and read `clientProps.reactQueryState.queries[]` for
+   the entry whose `queryKey[0] == "collectionStacks"` -> `collectionId`,
+   `brand`, `isBrasOrPanties` (`clientProps.brand` is the authoritative brand).
+2. Page 0: `GET https://api.victoriassecret.com/stacks/v46/` with the full query
+   (`activeCountry`, `collectionId`, `orderBy`, `limit`, `isDomestic`,
+   `isBrasOrPanties`, `brand`, `maxSwatches`, `isPersonalized`,
+   `isWishlistEnabled`, `recCues`) -> `stacks[0].list` plus `TotalItems`.
+3. Pages 1..N: `GET .../stacks/v46/stack?...&offset=<n>`, advancing by the number
+   of items the API actually served until `offset >= TotalItems`, `max_pages` is
+   reached, or a page returns no products.
+
+Two details worth knowing:
+
+- **The trailing slash matters.** Page 0 is `.../stacks/v46/?...`; dropping the
+  slash makes the gateway answer a flat `404 page not found` (HTTP 200 body).
+  Load-more uses `.../stacks/v46/stack?...`.
+- **A minimal query 400s.** `collectionId` + `brand` alone returns
+  `{"error":"bad-request"}`; the full parameter set above is required.
+- **Images need a rendition prefix.** The API returns extension-less paths
+  (`png/zz/26/08/28/01/112955637I65_OM_F`); only the `380x507` rendition under
+  `/p/<w>x<h>/<path>.jpg` resolved in testing.
+
+Category shortcuts come from `common/spiders/victoriassecret_categories.py` (the
+full `vs` + `pink` mega-menu, flattened to 427 targets). Slugs are
+brand-prefixed (`vs-bras`, `vs-bras-push-up`) because leaf labels collide across
+departments. Run the module directly to list or resolve them:
+
+```bash
+python -m common.spiders.victoriassecret_categories
+python -m common.spiders.victoriassecret_categories --category vs-bras
+```
+
+Run examples:
+
+- `common-scrapy crawl victoriassecret_listing --category vs-bras -a max_pages=3 -O vs.jsonl -s HTTPCACHE_ENABLED=False`
+- `common-scrapy crawl victoriassecret_listing --category pink-panties -a max_pages=1 -O pink.jsonl -s HTTPCACHE_ENABLED=False`
+- `common-scrapy crawl victoriassecret_listing --category vs-bras-push-up -a max_pages=1 -O pushup.jsonl -s HTTPCACHE_ENABLED=False`
+
+The export contract is ordered as:
+
+`category`, `brand`, `top_category`, `sub_category`, `item_id`,
+`master_style_id`, `name`, `family`, `color`, `url`, `image_url`, `price`,
+`list_price`, `sale_price`, `alt_prices`, `currency`, `rating`, `reviews_count`,
+`swatch_count`, `is_new`, `is_clearance`, `is_gift_card`, `page`, `category_url`,
+`source`, and `raw`.
+
+```json
+{
+  "category": "vs-bras",
+  "brand": "vs",
+  "top_category": "BRAS",
+  "sub_category": null,
+  "item_id": "11295563|7I65",
+  "master_style_id": "5000010932",
+  "name": "Signature Shine Cotton Lightly Lined Balconette Bra",
+  "family": "The T-shirt",
+  "color": "Print",
+  "url": "https://www.victoriassecret.com/us/vs/bras-catalog/5000010932?brand=vs&collectionId=e88ab444-c093-4a29-a7c9-ef78f2a3e557",
+  "image_url": "https://www.victoriassecret.com/p/380x507/png/zz/26/08/28/01/112955637I65_OM_F.jpg",
+  "price": 49.95,
+  "list_price": null,
+  "sale_price": null,
+  "alt_prices": ["or Buy 2, Get 1 Free VS Bras"],
+  "currency": "USD",
+  "rating": 4.52,
+  "reviews_count": 269,
+  "swatch_count": 16,
+  "is_new": false,
+  "is_clearance": false,
+  "is_gift_card": false,
+  "page": 1,
+  "category_url": "https://www.victoriassecret.com/us/vs/bras",
+  "source": "victoriassecret_listing"
+}
+```
+
+Verified on 2026-10-03 UTC through the plain ScrapeOps datacenter route
+(`scrapeops.country=us`, no `residential`/`bypass`), `HTTPCACHE_ENABLED=False`:
+
+- `vs-bras`, `max_pages=2`: **192 items** (96 per page), all unique, `raw` present
+  on 192/192, `image_url` present on 192/192.
+- `pink-panties`, `max_pages=1`: **96 items**, `brand: pink` (brand read from
+  `clientProps`, not the slug).
+- `vs-bras-push-up`, `max_pages=1`: **96 items**, `sub_category: "Push-Up"`.
+
+No HTML-card or `__NEXT_DATA__` path exists in this spider, so a gateway change
+surfaces as a logged non-JSON response rather than silent empty results.

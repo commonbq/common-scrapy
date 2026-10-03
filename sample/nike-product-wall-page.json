@@ -1,0 +1,140 @@
+{
+  "productGroupings": [
+    {
+      "cardType": "default",
+      "products": [
+        {
+          "groupKey": "S1QClz",
+          "productCode": "CW2289-111",
+          "productType": "FOOTWEAR",
+          "productSubType": "STANDARD",
+          "globalProductId": "58ab5028-3e43-343d-9b35-49e0334fd775",
+          "copy": {
+            "title": "Nike Air Force 1 Mid '07",
+            "subTitle": "Men's Shoes"
+          },
+          "displayColors": {
+            "simpleColor": {
+              "label": "White",
+              "hex": "F0F4FF"
+            },
+            "colorDescription": "White/White"
+          },
+          "prices": {
+            "currency": "USD",
+            "currentPrice": 125.0,
+            "employeePrice": 75.0,
+            "initialPrice": 125.0,
+            "discountPercentage": 0,
+            "employeeDiscountPercentage": 40
+          },
+          "colorwayImages": {
+            "portraitURL": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/04421d64-7214-4718-ba73-93e6d1447bac/AIR+FORCE+1+MID+%2707.png",
+            "squarishURL": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/0447d3b3-28d3-4ba3-a6d6-deb0b21558af/AIR+FORCE+1+MID+%2707.png"
+          },
+          "featuredAttributes": null,
+          "pdpUrl": {
+            "url": "https://www.nike.com/t/air-force-1-mid-07-mens-shoes-S1QClz/CW2289-111",
+            "path": "/t/air-force-1-mid-07-mens-shoes-S1QClz/CW2289-111"
+          },
+          "isNewUntil": null,
+          "promotions": null,
+          "badgeAttribute": null,
+          "badgeLabel": null
+        },
+        {
+          "groupKey": "S1QClz",
+          "productCode": "CW2289-001",
+          "productType": "FOOTWEAR",
+          "productSubType": "STANDARD",
+          "globalProductId": "d1e53dbf-c206-30f2-987b-d953232546f7",
+          "copy": {
+            "title": "Nike Air Force 1 Mid '07",
+            "subTitle": "Men's Shoes"
+          },
+          "displayColors": {
+            "simpleColor": {
+              "label": "Black",
+              "hex": "27292B"
+            },
+            "colorDescription": "Black/Black"
+          },
+          "prices": {
+            "currency": "USD",
+            "currentPrice": 125.0,
+            "employeePrice": 75.0,
+            "initialPrice": 125.0,
+            "discountPercentage": 0,
+            "employeeDiscountPercentage": 40
+          },
+          "colorwayImages": {
+            "portraitURL": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/70b5f06a-f023-4ff3-9822-da33ab4a6d18/AIR+FORCE+1+MID+%2707.png",
+            "squarishURL": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/94eddf77-9d08-4ff0-a0a0-59a73cfe5d65/AIR+FORCE+1+MID+%2707.png"
+          },
+          "featuredAttributes": null,
+          "pdpUrl": {
+            "url": "https://www.nike.com/t/air-force-1-mid-07-mens-shoes-S1QClz/CW2289-001",
+            "path": "/t/air-force-1-mid-07-mens-shoes-S1QClz/CW2289-001"
+          },
+          "isNewUntil": null,
+          "promotions": null,
+          "badgeAttribute": null,
+          "badgeLabel": null
+        }
+      ]
+    },
+    {
+      "cardType": "default",
+      "products": [
+        {
+          "groupKey": "coGJvO7Y",
+          "productCode": "IV5678-102",
+          "productType": "FOOTWEAR",
+          "productSubType": "STANDARD",
+          "globalProductId": "9072c69c-8ec7-4170-b5cf-b9ecd82c0409",
+          "copy": {
+            "title": "Air Jordan 5 Retro \"Sunset\"",
+            "subTitle": "Women's Shoes"
+          },
+          "displayColors": {
+            "simpleColor": {
+              "label": "White",
+              "hex": "F0F4FF"
+            },
+            "colorDescription": "White/Fire Red/Sunset"
+          },
+          "prices": {
+            "currency": "USD",
+            "currentPrice": 205.0,
+            "employeePrice": 123.0,
+            "initialPrice": 205.0,
+            "discountPercentage": 0,
+            "employeeDiscountPercentage": 40
+          },
+          "colorwayImages": {
+            "portraitURL": "https://static.nike.com/a/images/t_default/u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/0a7070a9-0e7b-4440-acbe-2ff9e9937965/WMNS+AIR+JORDAN+5+RETRO.png",
+            "squarishURL": "https://static.nike.com/a/images/t_default/u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/66ff0ad1-6e3f-4fff-940c-dc0237750a0c/WMNS+AIR+JORDAN+5+RETRO.png"
+          },
+          "featuredAttributes": [
+            "PROMOS_EXCLUDED",
+            "JUST_IN"
+          ],
+          "pdpUrl": {
+            "url": "https://www.nike.com/t/air-jordan-5-retro-sunset-womens-shoes-coGJvO7Y/IV5678-102",
+            "path": "/t/air-jordan-5-retro-sunset-womens-shoes-coGJvO7Y/IV5678-102"
+          },
+          "isNewUntil": "2026-10-09T14:17:00.000Z",
+          "promotions": null,
+          "badgeAttribute": "JUST_IN",
+          "badgeLabel": "Just In"
+        }
+      ]
+    }
+  ],
+  "pages": {
+    "next": "/discover/product_wall/v1/marketplace/US/language/en/consumerChannelId/d9a5bc42-4b9c-4976-858a-f159cf99c647?path=/w/mens-shoes-nik1zy7ok&attributeIds=16633190-45e5-4830-a068-232ac7aea82c,0f64ecc7-d624-4e91-b171-b83a03dd8550&queryType=PRODUCTS&anchor=48&count=24",
+    "prev": "/discover/product_wall/v1/marketplace/US/language/en/consumerChannelId/d9a5bc42-4b9c-4976-858a-f159cf99c647?path=/w/mens-shoes-nik1zy7ok&attributeIds=16633190-45e5-4830-a068-232ac7aea82c,0f64ecc7-d624-4e91-b171-b83a03dd8550&queryType=PRODUCTS&anchor=0&count=24",
+    "totalPages": 33,
+    "totalResources": 786
+  }
+}
