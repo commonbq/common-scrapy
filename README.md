@@ -72,6 +72,7 @@ Spiders below are returning items in recent smoke runs:
 
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
+| [`adidas_listing`](#adidas_listing) | Experimental | Next.js hydration | Akamai (ScrapeOps 367 on plain route; `residential=true` worked) | adidas listings from server-rendered `__NEXT_DATA__` `props.pageProps.products`, paginated by `?start=`. | 96 (2 pages, proxy) | 25 sections / 196 categories from `adidas_categories.py` | `{"item_id":"KI8294","title":"ADIZERO ADIOS PRO 5 Running Shoes","brand":"Men Performance","price":275.0,"currency":"USD",...}` |
 | [`ae_listing`](#ae_listing) | Experimental | FastBoot + API | Akamai (signals in headers) | American Eagle listing spider via FastBoot shoebox state and browse API pagination. | 30 (ok) | women, men, aerie | `{"item_id":"1457_2980_808","title":"AE Big Hug V-Neck Sweatshirt","url":"https://www.ae.com/us/en/p/women/hoodies-sweatshirts/crew-neck-sweatshirts/ae-big-hug-v-neck-sweatshirt/1457_2980_808","price":38.97...` |
 | [`asos_listing`](#asos_listing) | Experimental | bootstrap + API | Akamai | ASOS US listings from `window.asos.plp._data`, with pagination through the hydrated search API contract. | 2 (fixture; live unverified) | complete women/men navigation inventory from `asos_categories.py` | `{"item_id":"211160390","title":"ASOS DESIGN stretch chiffon scarf detail plunge draped maxi dress in chocolate","price":69.99,"currency":"USD"...}` |
 | [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | html + nuxt-state | Akamai | Bloomingdale's listing spider via Nuxt SSR state contract parsing (splash->leaf aware). | 8 (ok) | new-now, women, beauty, shoes, handbags, jewelry-accessories, men, kids, home, sale, gifts, designers | `{"item_id":"5973765","title":"Tumbled Woven Verne Pants","url":"https://www.bloomingdales.com/shop/product/cinq-a-sept-tumbled-woven-vern...` |
@@ -126,6 +127,31 @@ Many listing spiders accept `-a category=<name>` shortcuts (in addition to `-a c
 
 Below are trimmed examples from recent local test runs (JSONL output, 1 item shown).
 
+### adidas_listing
+
+`adidas_listing` uses one authoritative source: the server-rendered Next.js
+hydration blob at `script#__NEXT_DATA__` -> `props.pageProps`. Products live in
+`props.pageProps.products` (48 per window), the category taxonomy is captured in
+`adidas_categories.py` (25 sitemap sections / 196 category URLs), and pagination
+is a pure hydration re-render driven by the `?start=<N>` query parameter stepping
+by `info.viewSize`. It supports `-a category=<name>`, `-a category_url=<url>`, or
+`-a url=<url>`, and deduplicates products by `id` across pages.
+
+Pricing uses the `sale` entry as the current price and the `original` entry as the
+list price when a discount is present (adidas hangs a negative
+`discountPercentage` off the `original` entry). `colorway_count` / `colorway_ids`
+carry the sibling colour SKU list (`colourVariations`); the PLP hydration exposes
+no human-readable colour names. `brand` is the adidas `subTitle` product line
+(e.g. `Men Performance`) and `product_category` is the merch category
+(e.g. `Performance`). Every item carries the full `raw` hydrated product record.
+
+```bash
+HTTPCACHE_ENABLED=False common-scrapy crawl adidas_listing -a category=mens-running-shoes -a max_pages=2 -O adidas.jsonl -s HTTPCACHE_ENABLED=False
+```
+
+```json
+{"category":"mens-running-shoes","department":"MEN'S SHOES","subcategory":"Men's Running Shoes","item_id":"KI8294","style_id":"ONN61","title":"ADIZERO ADIOS PRO 5 Running Shoes","brand":"Men Performance","product_category":"Performance","colorway_count":3,"colorway_ids":"KI8294, KJ7039, KJ7040","price":275.0,"original_price":null,"discount_percentage":null,"currency":"USD","rating":4.8001,"reviews_count":5,"on_sale":false,"sold_out":false,"badges":"New","page":1,"position":1,"total_count":241,"source":"adidas_next_data_page_props_products"}
+```
 ### llbean_listing
 
 `llbean_listing` uses one authoritative source: the first-party UDAL JSON
