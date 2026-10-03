@@ -94,6 +94,7 @@ Spiders below are returning items in recent smoke runs:
 | [`llbean_listing`](#llbean_listing) | Active | api | none detected (ScrapeOps `country=us` route required) | L.L.Bean listing via the UDAL `product-discovery` JSON endpoint (no HTML fallback). | 96 (2 pages, proxy) | 11 departments / 500 targets from `llbean_categories.py` | `{"category":"Gift Shop","item_id":"1000316302","sku_id":"1000316302","title":"Women's The Original Double L® Sweater, Crewneck","brand":"L.L.Bean","price":49.99,"original_price":69.95,"currency":"USD","rating":4.4,"reviews_count":359,"color":"Classic Navy","size":"X-Small","availability":"IN","on_sale":true,"page":1,"position":1,"total_count":626,"source":"llbean_udal_product_discovery"...` |
 | [`maccosmetics_listing`](#maccosmetics_listing) | Experimental | api + bootstrap + html | Akamai | MAC Cosmetics multi-mode listing spider. | 66 (ok) | face, lips, eyes | `{"item_id":"13854","title":"4.8/5 ( 452 ) Lustreglass Sheer-Shine Lipstick Sheer Coverage, Glossy/High-Shine Finish, Infused With Raspberry Seed/Organic Extra Virgin Olive Oils ...` |
 | [`officedepot_listing`](#officedepot_listing) | Active | bootstrap | none detected (ScrapeOps proxy) | Office Depot / OfficeMax category listings from inline `window.ODSEARCHBROWSE_INITIAL_STATE` SSR hydration; taxonomy resolved from the header mega-menu JSON. | 59 (2 pages, furniture) | 388 browse PLPs from `header-menu-excel/products.json` | `{"department":"Furniture","item_id":"9003237","title":"Serta® Smart Layers™ Brinkley Ergonomic Bonded Leather High-Back Executive Office Chair, Black/Silver","price":299.99,"availability":"InStock","source":"officedepot_bootstrap"...}`
+| [`michaels_listing`](#michaels_listing) | Experimental | Next.js RSC hydration | none detected (Akamai fronted; no challenge observed) | Michaels listings from the server-rendered React Server Component payload (`self.__next_f` -> `initialProducts`), paginated by `?page=`. | 40 (1 page, live proxy; page 2 blocked by a local 407 on CONNECT) | 3,611 categories under 33 departments from `sitemap_MIK_category.xml` | `{"category":"home-decor-floral-arrangements","item_id":"10809872","title":"11\" Pink Peony & Cream Rose Mix Bouquet by Ashland®","brand":"Michaels","price":9.99,"rating":4.5...` |
 | [`poshmark_listing`](#poshmark_listing) | Experimental | bootstrap | none detected | Poshmark listing spider via `window.__INITIAL_STATE__` category grid data. | 48 (ok) | women, men, kids, home, electronics, pets | `{"category":"women","item_id":"6989d90ac4e7b4d4de556bac","title":"🔥Stunning  Farm Rio NWT Size Large Tropical Midi Dress with Sleeves – V...` |
 | [`qvc_listing`](#qvc_listing) | Experimental | html + bootstrap | Akamai | QVC listing spider via server-rendered gallery cards and `utag_data` page state. | 96 (Beauty proxy capture) | fashion | `{"category":"beauty","category_id":"NAV6285","item_id":"A740517","title":"Whish 12 Days of Beauty Whishes Advent Calendar","price":59.98,...}` |
 | [`zappos_listing`](#zappos_listing) | Experimental | Redux hydration | none detected through proxy | Zappos listings from `window.__INITIAL_STATE__.products.list`. | 100 (one-page proxy smoke) | 4 departments / 50 targets | `{"item_id":"8910671","title":"Kiruna Padded Parka","brand":"Fjällräven","price":300.0,...}` |
@@ -1954,6 +1955,58 @@ includes SKU, prices, availability, canonical URL, image, category context,
 page, extraction source, and the original JSON-LD product object.
 
 Issues and pull requests that add or improve retailer spiders, pagination logic, or extraction helpers are welcome.
+
+### michaels_listing
+
+`michaels_listing` uses one authoritative source: the Next.js App Router
+**React Server Component** payload. Michaels has no `__NEXT_DATA__` blob -- the
+server streams its flight payload through `self.__next_f.push([1, "<json>"])`.
+Concatenating those chunks gives one text buffer in which the whole product
+grid is already present as `initialProducts` (40 rows per window), next to
+`initialTotal` (the true category size) and `initialFilters` (facets with
+counts). Nothing has to be re-requested client-side and nothing is scraped out
+of rendered DOM, so there is no HTML fallback path.
+
+```bash
+HTTPCACHE_ENABLED=False common-scrapy crawl michaels_listing --category home-decor-floral-arrangements -a max_pages=2 -O michaels.jsonl -s HTTPCACHE_ENABLED=False
+```
+
+```json
+{"category":"home-decor-floral-arrangements","department":"home-decor","subcategory":"floral-arrangements","item_id":"10809872","sku":"10809872","master_sku":null,"title":"11\" Pink Peony & Cream Rose Mix Bouquet by Ashland®","brand":"Michaels","product_category":"Fall Stem Bundles","taxonomy_path":"Fall Stem Bundles","url":"https://www.michaels.com/product/11-pink-peony-cream-rose-mix-bouquet-by-ashland-10809872","image_url":"https://imgs.michaels.com/7903ee7b-1298-4ad2-9244-56224c0f6033.jpg?fit=inside|540:540","image_count":3,"price":9.99,"original_price":null,"currency":"USD","on_sale":false,"rating":4.5,"reviews_count":16,"badges":"Same Day Delivery|Free Store Pickup","store_pickup":false,"same_day_delivery":true,"available_to_ship":true,"page":1,"position":1,"total_count":3319,"source":"michaels_nextjs_rsc_initial_products"}
+```
+
+Pagination is ordinary SSR: `?page=<N>` re-renders the route and hydrates the
+next window, and a page past the end comes back as a valid document with
+`initialProducts: []` and `initialTotal: 0`, so the crawl ends there instead of
+erroring. Items are deduplicated by `skuNumber`.
+
+Categories come from the sitemap the site advertises in `robots.txt`
+(`sitemap_MIK_category.xml`), which is parsed at crawl time rather than
+committed as a 3,611-entry literal -- 3,611 categories under 33 departments, up
+to five levels deep. That is the only other request the spider makes, and it
+exists solely to resolve `-a category=` to a PLP URL and to label items with
+their department. **Leaf slugs repeat across departments** (the live sitemap has
+five different `floral-arrangements` pages), so a repeated leaf is qualified
+with its department: `home-decor-floral-arrangements`, `floral-floral-arrangements`.
+`-a category_url=/shop/home-decor/floral-arrangements/` also works and needs no
+slug lookup.
+
+Field notes:
+
+- `raw` is the full hydrated product record. The RSC protocol serialises absent
+  values as the literal string `"$undefined"`; those are normalised to `null`
+  rather than shipped into every exported row.
+- `badges` is the boolean badge map flattened into labels (`Sale`, `Clearance`,
+  `New`, `Great Buy`, `Everyday Value`, `Doorbuster`, `Coming Soon`,
+  `Michaels Exclusive`, `Free Shipping`, `Same Day Delivery`, `Store Only`, ...).
+- `availability` (`store_pickup`, `available_to_ship`, `same_day_delivery`,
+  `in_stock`) reflects the fulfilment flags the PLP renders for the store the
+  request was geo-routed to, so it is per-run state rather than a catalogue fact.
+- `color_count` / `variant_count` come from `colorSwatches` / `variantCount`
+  (`"Color:3"`); most listings rows carry none.
+
+Tests: `python -m unittest tests.test_michaels_listing_spider` (22 tests, all
+offline against the fixtures in `sample/`).
 
 ### Project layout
 
