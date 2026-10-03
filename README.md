@@ -72,6 +72,7 @@ Spiders below are returning items in recent smoke runs:
 
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
+| [`academy_listing`](#academy_listing) | Active | api | PerimeterX (`scrapeops.country=us.bypass=5` needed for the API host) | Academy Sports + Outdoors category listings from the first-party `/api/category/v3/{categoryId}` catalog API; taxonomy captured from the global header `window.ASOData` component registry. | 96 (2 pages, hot-deals) | 228 unique categories from 12 departments | `{"category":"deals-clearance-hot-deals","item_id":"27288501","title":"YETI Camino Carryall 20 Tote Bag","brand":"YETI","price":140.0,"currency":"USD","source":"academy_category_api",...}` |
 | [`adidas_listing`](#adidas_listing) | Experimental | Next.js hydration | Akamai (ScrapeOps 367 on plain route; `residential=true` worked) | adidas listings from server-rendered `__NEXT_DATA__` `props.pageProps.products`, paginated by `?start=`. | 96 (2 pages, proxy) | 25 sections / 196 categories from `adidas_categories.py` | `{"item_id":"KI8294","title":"ADIZERO ADIOS PRO 5 Running Shoes","brand":"Men Performance","price":275.0,"currency":"USD",...}` |
 | [`ae_listing`](#ae_listing) | Experimental | FastBoot + API | Akamai (signals in headers) | American Eagle listing spider via FastBoot shoebox state and browse API pagination. | 30 (ok) | women, men, aerie | `{"item_id":"1457_2980_808","title":"AE Big Hug V-Neck Sweatshirt","url":"https://www.ae.com/us/en/p/women/hoodies-sweatshirts/crew-neck-sweatshirts/ae-big-hug-v-neck-sweatshirt/1457_2980_808","price":38.97...` |
 | [`asos_listing`](#asos_listing) | Experimental | bootstrap + API | Akamai | ASOS US listings from `window.asos.plp._data`, with pagination through the hydrated search API contract. | 2 (fixture; live unverified) | complete women/men navigation inventory from `asos_categories.py` | `{"item_id":"211160390","title":"ASOS DESIGN stretch chiffon scarf detail plunge draped maxi dress in chocolate","price":69.99,"currency":"USD"...}` |
@@ -126,6 +127,143 @@ Many listing spiders accept `-a category=<name>` shortcuts (in addition to `-a c
 #### Sample output
 
 Below are trimmed examples from recent local test runs (JSONL output, 1 item shown).
+
+### academy_listing
+`academy_listing` uses exactly one data direction: the first-party catalog API.
+
+```text
+GET https://www.academy.com/api/category/v3/{categoryId}
+    ?web=true&displayFacets=true&recordsPerPage=48&pageNumber=N
+```
+
+Academy is a React SSR storefront (not Next.js). It ships one hydration
+assignment per component into `window.ASOData`, keyed by a rotating
+`comp-blt<...>` id, and the PLP component (`rcn: "productListingPage240"`)
+only carries the **first** slice of products — `?page=N` on the browse URL is
+ignored by SSR. There is **no HTML / JSON-LD fallback**: if the API stops
+answering, the spider raises instead of silently yielding an empty grid.
+
+```json
+{
+  "category": "deals-clearance-hot-deals",
+  "department": "Deals + Clearance",
+  "category_name": "Hot Deals",
+  "category_id": "210952",
+  "category_url": "https://www.academy.com/c/hot-deals",
+  "item_id": "27288501",
+  "partnumber": "133107944",
+  "parent_partnumber": "133107944",
+  "sku_id": "166647293",
+  "title": "YETI Camino Carryall 20 Tote Bag",
+  "brand": "YETI",
+  "url": "https://www.academy.com/p/yeti-camino-carryall-20-tote-bag/133107944",
+  "image_url": "https://academy.scene7.com/is/image/academy/21744293",
+  "image_alt": "YETI Camino Carryall 20 Tote Bag",
+  "price": 140.0,
+  "list_price": 140.0,
+  "map_price": 140.0,
+  "sale_price": 140.0,
+  "promo_message": null,
+  "promo_code": null,
+  "promo_price": null,
+  "currency": "USD",
+  "rating": 4.9,
+  "reviews_count": 534,
+  "color": "Green",
+  "size": null,
+  "in_stock": true,
+  "free_shipping": true,
+  "gift_card": false,
+  "primary_category": "Tote Bags",
+  "category_ids": [
+    "3074457345616984107",
+    "3074457345616985615",
+    "3074457345616981115",
+    "3074457345616941639",
+    "239455",
+    "3074457345617141098",
+    "3074457345616992101",
+    "3074457345616915098",
+    "3074457345616952607",
+    "146752",
+    "3074457345616975104",
+    "3074457345616974599",
+    "230953",
+    "3074457345617113098",
+    "181314",
+    "3074457345616912627",
+    "239082",
+    "3074457345616941149",
+    "3074457345616968651",
+    "3074457345617045599",
+    "35202",
+    "197936",
+    "3074457345616999623",
+    "3074457345616951147",
+    "3074457345616974600",
+    "3074457345616951146",
+    "3074457345616957608",
+    "216438",
+    "210952"
+  ],
+  "page": 1,
+  "position": 1,
+  "total_count": 506,
+  "source_url": "https://www.academy.com/api/category/v3/210952?web=true&displayFacets=true&recordsPerPage=48&pageNumber=1",
+  "source": "academy_category_api",
+  "raw": {
+    "_omitted": "(full product object retained in the feed)"
+  }
+}
+```
+
+Run examples:
+- `common-scrapy crawl academy_listing -a category=deals-clearance-hot-deals -a max_pages=2 -O academy.jsonl -s HTTPCACHE_ENABLED=False`
+- `common-scrapy crawl academy_listing -a url=https://www.academy.com/c/hot-deals -a max_pages=1 -O academy.jsonl`
+- `common-scrapy crawl academy_listing -O academy.jsonl` (crawls the whole taxonomy)
+
+Notes:
+- `pageNumber` on this endpoint is **1-based** (unlike most Algolia-backed
+  endpoints), and `nbHits`/`nbPages` in the same payload drive the stop
+  condition. `recordsPerPage=48` is honoured.
+- The bundle `academy_categories.py` captures the header taxonomy from
+  `window.ASOData['comp-<blt...>']` with `rcn: "header240"`, at
+  `cms.shop.shop_navigation[0].l1_level` (recursing `l2_level` -> `l3_level`
+  -> `l4_level`), as **246 id-bearing nodes across 12 departments (97 level-2,
+  137 level-3)**, collapsing to **228 unique category ids**. Nodes without a
+  `categoryId` cannot be requested from `/api/category/v3/`, so they are
+  dropped and their id-bearing children are kept.
+- Cross-listed nodes repeat the same `categoryId` under several departments
+  (e.g. "Shoes + Boots" and "Men's Shoes" are both `15646`), so the spider
+  dedupes on `categoryId` and keeps every referencing department. Where a
+  parent department node reuses a child's id without a browse URL (e.g.
+  "Deals + Clearance" == "Hot Deals" == `210952`), the URL-bearing cross-listing
+  wins so `-a url=...` resolves. Category slugs are department-qualified, e.g.
+  `deals-clearance-hot-deals`.
+- The API host is PerimeterX-protected: the plain datacenter route returns a stub
+  instead of JSON, so the spider appends `scrapeops.country=us.bypass=5` to the
+  ScrapeOps proxy username for product requests only.
+- `price` prefers `defaultSku.salePrice` and falls back to `minEffectivePrice` /
+  `minProductPrice`; `list_price` comes from `defaultSku.listPrice`, falling back
+  to `mapPrice` (the struck-through value). `brand` is the `facet_Brand` facet,
+  `rating`/`reviews_count` come from `descriptiveAttributes` (falling back to
+  `averageRating`/`reviewCount`), and `color`/`size` from
+  `defaultSku.color` / `definingAttributes`.
+- `url` is built from the bare `seoURL` slug as
+  `https://www.academy.com/p/<slug>/<partNumber>`, and protocol-relative
+  Scene7 images (`//academy.scene7.com/...`) are absolutized to `https://`.
+- The ordered export fields are `category`, `department`, `category_name`,
+  `category_id`, `category_url`, `item_id`, `partnumber`, `parent_partnumber`,
+  `sku_id`, `title`, `brand`, `url`, `image_url`, `image_alt`, `price`,
+  `list_price`, `map_price`, `sale_price`, `promo_message`, `promo_code`,
+  `promo_price`, `currency`, `rating`, `reviews_count`, `color`, `size`,
+  `in_stock`, `free_shipping`, `gift_card`, `primary_category`, `category_ids`,
+  `page`, `position`, `total_count`, `source_url`, `source`, and `raw`.
+
+Verified live (`category=deals-clearance-hot-deals`, `max_pages=2`, ScrapeOps
+proxy, 2026-10-03 UTC): **96 items, 96 unique `item_id`s**, 22 distinct brands,
+`raw` present on 96/96. `category=sports-soccer`, `max_pages=1`: **48 items**,
+48 unique, `nbHits=845`.
 
 ### adidas_listing
 
