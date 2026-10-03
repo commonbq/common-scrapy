@@ -102,6 +102,7 @@ Spiders below are returning items in recent smoke runs:
 | [`uniqlo_listing`](#uniqlo_listing) | Experimental | api | none detected (plain ScrapeOps datacenter route) | UNIQLO US category listings from the first-party commerce BFF products API. | 36 (one page, ok) | 2741 taxonomy URLs (4 genders / 46 classes / 212 categories / 2479 subcategories) from `uniqlo-categories.json` | `{"item_id":"E424873-000-00","title":"Crew Neck T-Shirt","color":"White","price":19.9,"currency":"USD"...}` |
 | [`target_search`](#target_search) | Active | api | PerimeterX / HUMAN (cookie signals) | Target RedSky search API spider. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
 | [`victoriassecret_listing`](#victoriassecret_listing) | Active | api | none detected (ScrapeOps proxy, plain datacenter route) | Victoria's Secret / PINK listings from the first-party `stacks` JSON API; page 0 reads `collectionId` from SSR `clientProps`. | 192 (2 pages, live) | 427 targets across `vs` + `pink` brands from `victoriassecret_categories.py` | `{"category":"vs-bras","brand":"vs","item_id":"11295563|7I65","name":"Signature Shine Cotton Lightly Lined Balconette Bra","price":49.95,...}` |
+| [`williams_sonoma_listing`](#williams_sonoma_listing) | Active | api | Akamai (not an issue for API) | Williams-Sonoma category listings via the Constructor.io browse API (taxonomy from the runtime category-tree API). | 100 (1 page, proxy) | ~3500 group_ids from the runtime category-tree API | `{"category":"cookware-sets","item_id":"greenpan-reserve-pro-ceramic-nonstick-10-piece-cookware-set","title":"GreenPan™ Reserve Pro Ceramic Nonstick 10-Piece Cookware Set","price":399.95,"currency":"USD","image_url":"https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202631/0164/img2c.jpg","flags":["freeShip","more_colors"],"source":"williams_sonoma_constructor_browse"...` |
 
 #### In-progress spiders
 
@@ -1764,6 +1765,51 @@ Notes:
   `sample/nike-product-wall-page.json`, and `sample/nike-categories.json`.
 - Tests: `.venv/bin/python -m unittest tests.test_nike_listing_spider`
   (33 network-free fixture tests).
+### williams_sonoma_listing
+
+Williams-Sonoma (US) category listings via the Constructor.io browse API. The
+category taxonomy is pulled from the first-party category-tree JSON API on every
+run, so category changes on the site are reflected without spider updates;
+product data comes from `https://ac.cnstrc.com/browse/group_id/{group_id}`.
+
+No HTML parsing or rendered browser is used: category pages are JavaScript
+shells that hydrate products client-side. The spider reads the Constructor.io
+API key from `window.__INITIAL_STATE__` on a sample category page once per run
+and then queries the browse endpoint directly; if the key cannot be read it
+fails loudly rather than falling back to a hardcoded value.
+
+Select a category by `group_id`, by URL, or crawl every category:
+
+- `common-scrapy crawl williams_sonoma_listing -a category=cookware-sets -a max_pages=1 -O ws.jsonl`
+- `common-scrapy crawl williams_sonoma_listing -a category_url='https://www.williams-sonoma.com/shop/cookware/cookware-sets/' -a max_pages=1 -O ws.jsonl`
+- `common-scrapy crawl williams_sonoma_listing -a all_categories=true -a max_pages=1 -O ws-full.jsonl`
+
+Pagination follows the `page` parameter until `page * page_size >= total_num_results`,
+`max_pages` is reached, or a page returns no results. Products are deduplicated by
+`item_id`. Editorial/collection hubs that exist in the taxonomy but have no
+Constructor group behind them are logged and skipped instead of failing the crawl.
+
+Export contract: `category`, `category_name`, `parent_category`, `item_id`,
+`title`, `url`, `brand`, `sku`, `price`, `regular_price`, `price_min`,
+`price_max`, `regular_price_min`, `regular_price_max`, `sale_price_min`,
+`sale_price_max`, `discount_percent`, `price_type`, `currency`, `image_url`,
+`image_alt`, `alt_images_count`, `swatches_count`, `flags`, `pip_type`,
+`quick_buy`, `description`, `short_description`, `product_details`, `group_ids`,
+`page`, `category_url`, `source`, and `raw`.
+
+Fixtures: `sample/williams-sonoma-category-tree.json`,
+`sample/williams-sonoma-browse-items.json`, and
+`sample/williams-sonoma-context.html`. Tests:
+`python -m unittest tests.test_williams_sonoma_listing_spider` (29 network-free
+fixture tests).
+
+```json
+{"category":"cookware-sets","category_name":"Cookware Sets","parent_category":"Cookware","item_id":"greenpan-reserve-pro-ceramic-nonstick-10-piece-cookware-set","title":"GreenPan™ Reserve Pro Ceramic Nonstick 10-Piece Cookware Set","url":"https://www.williams-sonoma.com/products/greenpan-reserve-pro-ceramic-nonstick-10-piece-cookware-set/","brand":null,"sku":10486629,"price":399.95,"regular_price":580,"price_min":399.95,"price_max":399.95,"discount_percent":31,"price_type":"Discount","currency":"USD","image_url":"https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202631/0164/img2c.jpg","flags":["freeShip","more_colors","newcore","organic"],"pip_type":"simple-buy","quick_buy":true,"page":1,"category_url":"https://www.williams-sonoma.com/shop/cookware/cookware-sets/","source":"williams_sonoma_constructor_browse"}
+```
+
+Verified live (`category=cookware-sets`, `max_pages=1`, ScrapeOps proxy,
+2026-10-02 UTC): **100 items, 100 unique `item_id`s**, with `raw` present on
+100/100.
 
 ## Contributing
 
