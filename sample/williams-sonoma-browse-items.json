@@ -1,0 +1,296 @@
+{
+ "response": {
+  "total_num_results": 227,
+  "results": [
+   {
+    "data": {
+     "id": "greenpan-reserve-pro-ceramic-nonstick-10-piece-cookware-set",
+     "url": "https://www.williams-sonoma.com/products/greenpan-reserve-pro-ceramic-nonstick-10-piece-cookware-set/",
+     "title": "GreenPan\u2122 Reserve Pro Ceramic Nonstick 10-Piece Cookware Set",
+     "flags": [
+      "freeShip",
+      "more_colors",
+      "newcore",
+      "organic"
+     ],
+     "pipType": "simple-buy",
+     "newcore": true,
+     "prodinfo": "8\" Fry Pan: 8 1/4\" diam., 3 1/2\" high; 1 lb. 13 oz. 10\" Fry Pan: 10 3/4\" diam., 3 3/4\" high; 2 lb. 2.5-Qt. Saucepan: 7 1/2\" diam., 6 1/3\" high with lid; 2 lb. 3.75-Qt. Saut\u00e9 Pan: 10 1/2\" diam., 5 1/2\"",
+     "image_url": "https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202631/0164/img2c.jpg",
+     "leaderSku": 10486629,
+     "altImages": "https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202634/0352/greenpan-reserve-pro-ceramic-nonstick-10-piece-cookware-se-j.jpg,https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202631/0277/greenpan-reserve-pro-ceramic-nonstick-10-piece-cookware-se-j.jpg,https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202634/0353/greenpan-reserve-pro-ceramic-nonstick-10-piece-cookware-se-j.jpg,https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202634/0353/greenpan-reserve-pro-ceramic-nonstick-10-piece-cookware-se-4-j.jpg,https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202634/0353/greenpan-reserve-pro-ceramic",
+     "lowestPrice": 399.95,
+     "description": "Proving that premium cookware can deliver sophisticated style, the GreenPan\u2122 Reserve Pro series features contemporary designs and lustrous gold-tone handles. Don't let their good looks fool you - thes",
+     "highestPrice": 399.95,
+     "salePriceMax": 399.95,
+     "salePriceMin": 399.95,
+     "swatchPrices": "10486629;399.95;399.95;580.00;580.00;Discount~10486611;399.95;399.95;580.00;580.00;Discount~10486595;399.95;399.95;580.00;580.00;Discount~6278487;399.95;399.95;580.00;580.00;Discount~1794612;399.95;39",
+     "leaderSkuImage": "https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202631/0164/img2c.jpg",
+     "regularPriceMax": 580,
+     "swatchesDisplay": "10486629;https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202627/0068/img2b.jpg;https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202631/0164/img2c.jpg;Bordeaux~10486611;https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202627/0068/img1b.jpg;https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202631/",
+     "regularPriceMin": 580,
+     "productPriceType": "Discount",
+     "moreSwatchesCount": 4,
+     "maxDiscountPercent": 31,
+     "eligibleForQuickBuy": true,
+     "group_ids": [
+      "black-cookware",
+      "new-view-all",
+      "lynden-lane",
+      "red-cookware"
+     ],
+     "skuid": 10486629,
+     "thumb_image": "https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202631/0164/img2c.jpg",
+     "variation_id": "greenpan-reserve-pro-ceramic-nonstick-10-piece-cookware-set-10486629",
+     "facets": [
+      {
+       "name": "avlIn12W",
+       "values": [
+        999999
+       ]
+      },
+      {
+       "name": "avlIn12WPlus",
+       "values": [
+        999999
+       ]
+      },
+      {
+       "name": "avlIn2W",
+       "values": [
+        57
+       ]
+      },
+      {
+       "name": "avlIn4W",
+       "values": [
+        57
+       ]
+      },
+      {
+       "name": "avlIn6W",
+       "values": [
+        162
+       ]
+      },
+      {
+       "name": "avlIn8W",
+       "values": [
+        162
+       ]
+      },
+      {
+       "name": "avlIn8WPlus",
+       "values": [
+        999999
+       ]
+      },
+      {
+       "name": "productType",
+       "values": [
+        "Cookware Sets"
+       ]
+      },
+      {
+       "name": "store_ids",
+       "values": [
+        "ONLINE"
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "data": {
+     "id": "chef-classic-ss-11-piece-cookware-set",
+     "url": "https://www.williams-sonoma.com/products/chef-classic-ss-11-piece-cookware-set/",
+     "flags": [
+      "freeShip",
+      "organic"
+     ],
+     "title": "Cuisinart Chef's Classic Stainless Steel 11-Piece Cookware Set",
+     "pipType": "simple-buy",
+     "prodinfo": "1 1/2-Qt. Saucepan: 6 1/2\" diam., 3\" high with lid; 1 lb. 8 oz. 2 1/2-Qt. Saucepan: 7 3/4\" diam., 3 3/4\" high with lid; 2 lb. 11 oz. 3-Qt. Saut\u00e9 Pan: 8\" diam., 5 1/2\" high with lid; 3 lb. 8-Qt. Stockp",
+     "altImages": "https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202621/0009/cuisinart-chefs-classic-stainless-steel-11-piece-cookware--j.jpg,https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202618/0007/cuisinart-chefs-classic-stainless-steel-11-piece-cookware--j.jpg,https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202618/0006/cuisinart-chefs-classic-stainless-steel-11-piece-cookware--j.jpg,https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202631/0094/cuisinart-chefs-classic-stainless-steel-11-piece-cookware--1-j.jpg,https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202631/0094/cuisinart-chefs-classic-stai",
+     "leaderSku": 4086870,
+     "image_url": "https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202617/0371/img2c.jpg",
+     "description": "Inspired by the equipment used in professional French kitchens, the Chef's Classic collection from Cuisinart is ideal for both special-occasion cooking and everyday meal prep. Aluminum bases deliver s",
+     "hoverImages": "cookware-sets|https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202621/0009/cuisinart-chefs-classic-stainless-steel-11-piece-cookware--j.jpg;stovetop-view-all|https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202621/0009/cuisinart-chefs-classic-stainless-steel-11-piece-cookware--j.jpg;cookware-cuisinart|https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202621/0009/cuisinart-chefs-classic-stainless-steel-11-piece-cookware--j.jpg;cookware-best-sellers|https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202621/0009/cuisinart-chefs-classic-stainless-steel-11-piece-cookware--j.jpg;gifts-for-cooks|https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202621/0009/cuisinart-chefs-classic-stainless-steel-11-piece-cookware--j.jpg;registry-cookware|https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202621/0009/cuisinart-chefs-classic-stainless-steel-11-piece-cookware--j.jpg;college-cookware-electrics|https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202621/0009/cuisinart-chefs-classic-stainless-steel-11-piece-cookware--j.jpg;jeremy-scheck|https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202621/0009/cuisinart-chefs-classic-stainless-steel-11-piece-cookware--j.jpg",
+     "lowestPrice": 179.95,
+     "salePriceMax": 179.95,
+     "productBlurb": "Experience professional-quality cookware at home with Cuisinart's Chef's Classic\u2122 collection. Each piece is expertly crafted of mirror-polished stainless steel with an aluminum base for superior heat conductivity.",
+     "salePriceMin": 179.95,
+     "highestPrice": 179.95,
+     "leaderSkuImage": "https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202617/0371/img2c.jpg",
+     "regularPriceMax": 290,
+     "regularPriceMin": 290,
+     "productPriceType": "Discount",
+     "maxDiscountPercent": 38,
+     "eligibleForQuickBuy": true,
+     "group_ids": [
+      "healthy-kitchen",
+      "stovetop-view-all",
+      "all-college-kitchen",
+      "registry-cookware"
+     ],
+     "skuid": 4086870,
+     "thumb_image": "https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202617/0371/img2c.jpg",
+     "variation_id": "chef-classic-ss-11-piece-cookware-set-4086870",
+     "facets": [
+      {
+       "name": "avlIn12W",
+       "values": [
+        3075
+       ]
+      },
+      {
+       "name": "avlIn12WPlus",
+       "values": [
+        3075
+       ]
+      },
+      {
+       "name": "avlIn2W",
+       "values": [
+        1084
+       ]
+      },
+      {
+       "name": "avlIn4W",
+       "values": [
+        1746
+       ]
+      },
+      {
+       "name": "avlIn6W",
+       "values": [
+        3075
+       ]
+      },
+      {
+       "name": "avlIn8W",
+       "values": [
+        3075
+       ]
+      },
+      {
+       "name": "avlIn8WPlus",
+       "values": [
+        3075
+       ]
+      },
+      {
+       "name": "avlNow",
+       "values": [
+        557
+       ]
+      },
+      {
+       "name": "productType",
+       "values": [
+        "Cookware Sets"
+       ]
+      },
+      {
+       "name": "store_ids",
+       "values": [
+        "ONLINE"
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "data": {
+     "id": "flat-tinned-pan",
+     "url": "/products/flat-tinned-pan/",
+     "title": "Flat Tinned Pan",
+     "lowestPrice": 49.5,
+     "regularPriceMin": 49.5,
+     "highestPrice": 49.5,
+     "image_url": "https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/1/img2c.jpg",
+     "leaderSku": 1,
+     "skuid": 1,
+     "flags": [],
+     "productPriceType": "Regular",
+     "eligibleForQuickBuy": false,
+     "group_ids": [
+      "fry-pans-skillets"
+     ]
+    }
+   }
+  ],
+  "groups": [
+   {
+    "group_id": "cookware-sets",
+    "display_name": "Cookware Sets",
+    "count": 227,
+    "data": {},
+    "children": [],
+    "parents": [
+     {
+      "display_name": "All",
+      "group_id": "all"
+     },
+     {
+      "display_name": "Cookware",
+      "group_id": "cookware"
+     }
+    ]
+   }
+  ],
+  "facets": [
+   {
+    "name": "priceTier"
+   },
+   {
+    "name": "brand_attr"
+   },
+   {
+    "name": "collection"
+   },
+   {
+    "name": "material"
+   },
+   {
+    "name": "features"
+   },
+   {
+    "name": "lowestPrice"
+   },
+   {
+    "name": "quickShipLocations"
+   },
+   {
+    "name": "store_ids"
+   },
+   {
+    "name": "rushShipLocations"
+   },
+   {
+    "name": "opt"
+   },
+   {
+    "name": "shape"
+   },
+   {
+    "name": "fulfillment_locations"
+   },
+   {
+    "name": "feedId"
+   },
+   {
+    "name": "highestPrice"
+   },
+   {
+    "name": "regularPrice"
+   }
+  ]
+ },
+ "result_id": "c7c0bd4e-f04c-4235-85e3-9511a8ce4807",
+ "request": {
+  "query": "key_REDACTEDfixture0000",
+  "page": 1,
+  "num_results_per_page": 100
+ }
+}
