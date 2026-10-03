@@ -155,9 +155,21 @@ class UniqloListingSpider(BaseListingSpider):
         prices = product.get("prices") if isinstance(product.get("prices"), dict) else {}
         base = prices.get("base") if isinstance(prices.get("base"), dict) else {}
         promo = prices.get("promo") if isinstance(prices.get("promo"), dict) else {}
-        price = self._money(base.get("value"))
-        original_price = self._money(promo.get("value"))
-        currency = self._currency(base) or self._currency(promo)
+
+        # The BFF nests the *regular* price under ``base`` and the *discounted*
+        # price under ``promo``; ``isDualPrice`` marks a row that genuinely shows
+        # both. So ``promo`` is the price you actually pay and ``base`` is the
+        # struck-through "original". Mapping them the other way round would report
+        # every sale at full price.
+        base_value = self._money(base.get("value"))
+        promo_value = self._money(promo.get("value"))
+        on_sale = bool(
+            promo_value is not None
+            and (prices.get("isDualPrice") or base_value != promo_value)
+        )
+        price = promo_value if on_sale and promo_value is not None else base_value
+        original_price = base_value if on_sale else None
+        currency = self._currency(promo) or self._currency(base)
         rating = product.get("rating") if isinstance(product.get("rating"), dict) else {}
 
         return {
@@ -177,10 +189,7 @@ class UniqloListingSpider(BaseListingSpider):
             "price": price,
             "original_price": original_price,
             "currency": currency,
-            "on_sale": bool(
-                promo and original_price is not None
-                and (price is None or original_price != price)
-            ),
+            "on_sale": on_sale,
             "promotion_text": str(product.get("promotionText") or "").strip() or None,
             "rating": self._number(rating.get("average")),
             "reviews_count": self._integer(rating.get("count")),

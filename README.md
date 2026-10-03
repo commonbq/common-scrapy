@@ -153,6 +153,13 @@ client-side over XHR. This spider therefore never scrapes HTML cards or JSON-LD.
   once per colourway with a distinct `representativeColorDisplayCode`. UNIQLO's own
   hydration state names rows `<productId>-<colorCode>`, so `item_id` joins the two
   (e.g. `E424873-000-00`) and `style_id` is the numeric style (`424873`).
+- **Prices.** `prices.base` is the regular price and `prices.promo` the discounted one,
+  so a sale row exports `price` = promo value, `original_price` = base value and
+  `on_sale: true`. `on_sale` only fires when the row actually shows two prices
+  (`isDualPrice`, or `promo.value != base.value`), so a plain `promo` block that merely
+  repeats `base.value` is not treated as a sale. No discounted row appeared in the
+  live payloads sampled so far, so this path is covered by unit tests rather than a
+  live capture.
 
 ```json
 {"category":"t-shirts-and-tank-tops","category_name":"T-Shirts and Tank Tops","department":"Women","subcategory":"T-Shirts, Sweats & Fleece","item_id":"E424873-000-00","style_id":"424873","title":"Crew Neck T-Shirt","brand":"UNIQLO","gender":"WOMEN","color":"White","color_code":"00","url":"https://www.uniqlo.com/us/en/products/E424873-000","image_url":"https://image.uniqlo.com/UQ/ST3/us/imagesgoods/424873/item/usgoods_00_424873_3x4.jpg","price":19.9,"original_price":null,"currency":"USD","on_sale":false,"rating":4.7,"reviews_count":2858,"available_sizes":["XXS","XS","S","M","L","XL","XXL"],"page":1,"position":1,"total_count":69,"items_per_page":36,"taxonomy_path":"22210,23295,23335","source":"uniqlo_commerce_bff_products"}

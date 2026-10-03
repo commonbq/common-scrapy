@@ -177,12 +177,49 @@ class UniqloListingSpiderTests(unittest.TestCase):
         self.assertEqual(items[0]["total_count"], 69)
 
     def test_promotional_item_maps_prices(self):
-        payload = load_sample("uniqlo-products-womens-tshirts.json")
-        promo = next(i for i in payload["result"]["items"] if (i.get("prices") or {}).get("promo"))
-        item = self.spider._item(promo, self.response(payload), 1, 2, 69, 36)
-        self.assertIsNotNone(item["price"])
-        self.assertIsNotNone(item["original_price"])
-        self.assertIsInstance(item["on_sale"], bool)
+        """A genuinely discounted row: ``promo`` is the price paid, ``base`` the original."""
+        item = self.spider._item(
+            {
+                "productId": "E999999-000",
+                "name": "Sale Jacket",
+                "prices": {
+                    "base": {"value": 79.9, "currency": {"code": "USD"}},
+                    "promo": {"value": 39.95, "currency": {"code": "USD"}},
+                    "isDualPrice": True,
+                },
+                "promotionText": "Limited time offer",
+            },
+            self.response({}), 1, 1, 10, 10,
+        )
+        self.assertEqual(item["price"], 39.95)
+        self.assertEqual(item["original_price"], 79.9)
+        self.assertTrue(item["on_sale"])
+        self.assertEqual(item["promotion_text"], "Limited time offer")
+        self.assertEqual(item["currency"], "USD")
+
+    def test_non_discounted_item_has_no_original_price(self):
+        """``promo`` present but equal to ``base`` (or absent) is not a sale."""
+        for prices in (
+            {"base": {"value": 9.9}, "promo": {"value": 9.9}, "isDualPrice": False},
+            {"base": {"value": 19.9}, "promo": None, "isDualPrice": False},
+        ):
+            item = self.spider._item(
+                {"productId": "E999999-000", "prices": prices},
+                self.response({}), 1, 1, 10, 10,
+            )
+            self.assertEqual(item["price"], 9.9 if prices["base"]["value"] == 9.9 else 19.9)
+            self.assertIsNone(item["original_price"])
+            self.assertFalse(item["on_sale"])
+
+    def test_committed_fixture_rows_are_all_regular_priced(self):
+        """Regression guard: no committed fixture row is actually on sale."""
+        for name in ("uniqlo-products-womens-tshirts.json", "uniqlo-products-womens-tshirts-page2.json"):
+            payload = load_sample(name)
+            for product in payload["result"]["items"]:
+                item = self.spider._item(product, self.response(payload), 1, 1, 69, 36)
+                self.assertFalse(item["on_sale"], product["productId"])
+                self.assertIsNone(item["original_price"], product["productId"])
+                self.assertEqual(item["price"], (product["prices"]["base"] or {}).get("value"))
 
     def test_item_id_appends_the_representative_colour_code(self):
         self.assertEqual(UniqloListingSpider._item_id({"productId": "E424873-000", "representativeColorDisplayCode": "32"}), "E424873-000-32")
