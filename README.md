@@ -99,7 +99,7 @@ These are still being worked on and currently returned `0` items in recent smoke
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
 | [`anthropologie_listing`](#anthropologie_listing) | Experimental | api + html | PerimeterX / HUMAN | Anthropologie listing spider (API + HTML fallback). | 0 (ok) | women, dresses, sale | `n/a` |
-| [`bathandbodyworks_listing`](#bathandbodyworks_listing) | Active | Mobify React Query hydration | PerimeterX / HUMAN (px-captcha) | Bath & Body Works category listings from server-rendered product state. | 2 (fixture) | 65 current navigation targets | `{"category":"body-care","item_id":"028005116","title":"A Thousand Wishes Ultimate Hydration Body Cream",...}` |
+| [`bathandbodyworks_listing`](#bathandbodyworks_listing) | Active | Mobify React Query hydration | PerimeterX / HUMAN (px-captcha) | Bath & Body Works category listings from server-rendered product state. | 48 (live, one page) | 65 current navigation targets | `{"category":"body-care","item_id":"028030187","title":"Vanilla Silk Skin Replenishing Body Wash",...}` |
 | [`costco_search`](#costco_search--costco_listing) | Active | bootstrap + html | Akamai | Costco keyword search with state extraction + fallback. | 0 (skipped2) | - | `{}` |
 | [`dillards_listing`](#dillards_listing) | Experimental | bootstrap | Akamai | Dillard's listing spider via `window.__INITIAL_STATE__`. | 0 (ok) | women, men, shoes, handbags, beauty, juniors, home | `n/a` |
 | [`kohls_listing`](#kohls_listing) | Experimental | api | Akamai (Cloudflare challenge assets also observed) | Kohl’s listing via `/web/catalog/...` API. | 0 (ok) | women, men, sale | `n/a` |
@@ -1049,12 +1049,11 @@ Run examples:
 - `common-scrapy crawl bathandbodyworks_listing -a category=body-care -a max_pages=1 -O bbw.jsonl -s HTTPCACHE_ENABLED=False`
 - Pass any of the 65 aliases, such as `3-wick-candles`, or use `-a url=<listing-url>`.
 
-Live verification status: as of 2026-10-02 a live request for
-`https://www.bathandbodyworks.com/c/body-care` returns an HTTP 307 challenge
-page from the Fastly/Varnish edge with no `Location` header, so the crawl emits
-0 items and the storefront is currently unreachable from a plain client. The
-committed `sample/bathandbodyworks-listing-products.html` fixture yields 2
-items. Live output counts are unverified until the challenge clears.
+Live verification status: as of 2026-10-03, a one-page live crawl of
+`https://www.bathandbodyworks.com/c/body-care` returned HTTP 200 and exported
+48 items, all with a non-empty `raw` hydrated record. The committed
+`sample/bathandbodyworks-listing-products.html` fixture yields 2 items for
+deterministic tests.
 
 The ordered `FEED_EXPORT_FIELDS` contract includes identifiers, name and brand,
 product/media URLs, sale and regular prices, availability, rating/review data,
