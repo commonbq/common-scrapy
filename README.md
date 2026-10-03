@@ -78,6 +78,7 @@ Spiders below are returning items in recent smoke runs:
 | [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | none detected (CloudFront CDN only) | e.l.f. Cosmetics multi-mode listing spider. | 6 (ok) | face, eyes, lips | `{'item_id':'300261','title':'Soft Glam Satin Concealer','url':'https://www.elfcosmetics.com/soft-glam-satin-concealer/300262.html','price':9.0,'brand':'e.l.f. Cosmetics','source':'elfcosmetics_preloaded_state'...}` |
 | [`fashionnova_listing`](#fashionnova_listing) | Active | api + html | Cloudflare | Fashion Nova listing via Shopify Storefront GraphQL with HTML fallback. | 48 (ok) | women, new, dresses, jeans, sale | `{"item_id":"175898317","title":"Classic High Waist Skinny Jeans - Dark Denim","url":"https://www.fashionnova.com/products/dark-blue-class...` |
 | [`gamestop_listing`](#gamestop_listing) | Active | api | none detected (ScrapeOps proxy) | GameStop SFCC Demandware listing via the `Tile-GetProductsJSON` controller (no HTML fallback). | 139 (3 pages, proxy) | 119 URLs across 33 category groups from `gamestop_categories.py` | `{"category":"consoles-hardware","item_id":"106429","title":"Nintendo Wii Original Console with Wii Remote - Super Mario Bros. 25th Anniversary Edition Red","price":"139.99","availability":"InStock","source":"gamestop_tile_json"...` |
+| [`footlocker_listing`](#footlocker_listing) | Active | api | residential proxy (ScrapeOps) | Foot Locker category listings from the ZGW search API (residential proxy required). | 48 (1 page, residential proxy) | Dynamically resolved from `header.public.json` | `{"band":"Men's","sub_category":"Shoes","category":"all-men-s-shoes","item_id":"T8013103","title":"Jordan Retro 12 - Men's","url":"https://www.footlocker.com/product/T8013103.html","image_url":"https://images.footlocker.com/is/image/EBFL2/T8013103","price":215.0,"original_price":215.0,"currency":"USD","availability":"InStock","brand":"Jordan","rating":5.0,"reviews_count":999,"page":1,"category_url":"/category/mens/shoes.html","source":"footlocker_api"...` |
 | [`homedepot_listing`](#homedepot_listing-category-apollo-state) | Flaky | bootstrap | Akamai | Home Depot department listings from embedded Apollo state. | 2 (fixture) | appliances, bath, building-materials, decor-and-furniture, electrical, flooring, hardware, heating-and-cooling, kitchen, lawn-and-garden, lighting, paint, plumbing, storage, tools | `{"category":"tools","item_id":"100000001","sku":"1000000001","title":"16 oz. Fiberglass Claw Hammer","brand":"Husky","price":14.97...` |
 | [`homedepot_search`](#homedepot_search-keyword-apollo-bootstrap) | Active | bootstrap + html | Akamai | Home Depot keyword search via Apollo state. | 24 (ok) | - | `{"item_id":"336787835","sku":"1014334650","brand":"Lukyamzn","title":"14 in. Dual-Core Celeron N4000 Laptop 6 GB RAM 128 GB SSD IPS Displ...` |
 | [`jcpenney_listing`](#jcpenney_listing) | Active | api | Akamai (+ reCAPTCHA scripts observed) | JCPenney listing spider via search API bootstrap endpoint. | 48 (ok) | womens_tops, mens_shirts | `{"item_id":"ppr5008584232","title":"St. John's Bay Womens Boat Neck Elbow Sleeve T-Shirt","brand":"st. john's bay","url":"https://www.jcp...` |
@@ -1303,6 +1304,7 @@ Flow:
 2. Batch the pids (`TILE_BATCH_SIZE`, 20 per request) into `Tile-GetProductsJSON`.
 3. Emit one item per returned product, deduplicated by `item_id`.
 4. Paginate with `Search-UpdateGrid?cgid=<slug>&start=<n>&sz=<sz>` until
+
    `start >= total`, `max_pages` is reached, or a grid page yields no new ids.
 
 Two details worth knowing:
@@ -1396,6 +1398,56 @@ Notes:
   `sample/gamestop-tile-products.json`, and `sample/gamestop-categories.json`.
 - Tests: `.venv/bin/python -m unittest tests.test_gamestop_listing_spider`
   (29 network-free fixture tests).
+### footlocker_listing
+
+Foot Locker category listings from the ZGW search API. Residential ScrapeOps proxy is
+required for the API calls (`scrapeops.country=us.residential=true`); the header and
+category HTML pages go through the plain datacenter route.
+
+Flow:
+
+1. `start_requests` fetches `https://www.footlocker.com/api/content/en/header.public.json`.
+2. `parse_header_json_for_categories` walks the `ContentBand` components, whose list items
+   are `headerSection*` bands; each band holds `headerCategory` groups of
+   `headerCategoryLink`s. It rebuilds a band -> sub-category -> link tree.
+   - When `-a category=<slug>` is given, only the taxonomy link whose slugified text matches
+     is resolved (so a scoped run resolves a single category instead of the whole menu).
+3. `_resolve_category_search_params` resolves `searchParams` for each category link:
+   - a link with `?query=` uses that value directly;
+   - otherwise the category HTML is fetched and `searchParams` is read from
+     `window.footlocker.STATE_FROM_SERVER.page.category["<path>"].searchParams`
+     (`parse_search_params_from_html` / `_extract_search_params_from_html`).
+   A category that cannot be resolved is recorded and skipped rather than deadlocking the
+   crawl; `_start_api_crawls` fires once every category has resolved or failed.
+4. `_start_api_crawls` issues `_api_request`s to the ZGW search endpoint. Without
+   `-a category`, every resolved category is crawled; with it, only the matching
+   `category_slug`.
+5. `parse_api_products` yields one item per returned product and paginates via
+   `currentPage` until `max_pages` or the last page.
+
+Category slugs come from the header link text via `_slugify` (e.g. `All Men's Shoes` ->
+`all-men-s-shoes`); the resolved set is exposed through the spider's `available_categories()`.
+
+Run examples:
+
+- `common-scrapy crawl footlocker_listing -a category='all-men-s-shoes' -a max_pages=1 -O footlocker.jsonl`
+- `common-scrapy crawl footlocker_listing -a category='all-men-s-shoes' -a max_pages=3 -O footlocker.jsonl`
+- `common-scrapy crawl footlocker_listing -a max_pages=1 -O footlocker-all.jsonl` (every resolved category)
+
+Export contract: `band`, `sub_category`, `category`, `item_id`, `title`, `url`, `image_url`,
+`price`, `original_price`, `currency`, `availability`, `brand`, `rating`, `reviews_count`,
+`page`, `category_url`, `source`, `raw`.
+
+Fixtures: `sample/footlocker-header.json` (captured `header.public.json`),
+`sample/footlocker-mens-shoes.html` (captured category HTML with the `STATE_FROM_SERVER`
+blob), and `sample/footlocker-mens-shoes-api-page0.json` (captured ZGW page 0).
+
+Tests: `python -m unittest tests.test_footlocker_listing_spider` (9 network-free fixture tests).
+
+```json
+{"band":"Men's","sub_category":"Shoes","category":"all-men-s-shoes","item_id":"O2463102","title":"Jordan Air Jordan Retro 4 - Men's","url":"https://www.footlocker.com/product/O2463102.html","image_url":"https://images.footlocker.com/is/image/EBFL2/O2463102","price":220.0,"original_price":220.0,"currency":"USD","availability":"OutOfStock","brand":"Jordan","rating":5.0,"reviews_count":5,"page":1,"category_url":"/category/mens/shoes.html","source":"footlocker_api","raw":{"badges":{"isDiscountsExcluded":true,"isPromoted":false,"isNewProduct":true,"isSale":false},"baseProduct":"O2463102","name":"Jordan Air Jordan Retro 4 - Men's","price":{"value":220.0,"formattedValue":"$220.00"},"originalPrice":{"value":220.0,"formattedValue":"$220.00"},"reviewRatings":{"reviews":5,"rating":5.0},"sku":"O2463102","imageSku":"O2463102","variantsCount":1}}
+```
+
 ### maccosmetics_listing
 ```json
 {
