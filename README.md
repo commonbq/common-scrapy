@@ -101,6 +101,7 @@ Spiders below are returning items in recent smoke runs:
 | [`sallybeauty_listing`](#sallybeauty_listing) | Experimental | html + AJAX | PerimeterX / HUMAN (px-captcha signals) | Sally Beauty SFCC product-grid spider with `Search-UpdateGrid` pagination. | 2 (fixture) | hair-color, hair-care, textured-curly-hair, hair-extensions, tools-brushes, nails, cosmetics-skin-care, fragrances, mens-grooming, salon-supplies, new, deals | `{"category":"hair-care","item_id":"SBS-539230","title":"Low Porosity Aloe Vera Gel Shampoo","brand":"Texture ID","price":11.99...` |
 | [`stockx_listing`](#stockx_listing) | Experimental | bootstrap + html | Cloudflare | StockX listing via `__NEXT_DATA__` bootstrap. | 41 (ok) | sneakers, apparel, electronics, trading-cards, collectibles | `{"item_id":"brands","title":"Brands","url":"https://stockx.com/brands","price":null,"currency":null}` |
 | [`staples_listing`](#staples_listing) | Experimental | Next.js hydration | Akamai | Staples category listings from server-rendered `__NEXT_DATA__`. | 40 (one page) | 34 roots / 208 subcategories from `staples_categories.py` | `{"item_id":"82656","title":"Staples 1\" 3-Ring View Binder...","price":10.09,"currency":"USD"...}` |
+| [`petco_listing`](#petco_listing) | Experimental | bootstrap (Next.js `__NEXT_DATA__`) | none detected | Petco category listings from the server-rendered Constructor.io search hydration. | 48 (one page) | 22 roots / 286 nodes / 264 `-a category=` entries from `petco_categories.py` | `{"item_id":"6848523","title":"Purina Cat Chow Indoor Healthy Weight and Hairball with Chicken Dry Cat Food, 15 lbs.","brand":"Purina Cat Chow","price":18.99,"original_price":19.99,"rating":4.8141,"source":"petco_next_data"...}` |
 | [`target_listing`](#target_listing) | Active (alias) | api | PerimeterX / HUMAN (cookie signals) | Deprecated alias of `target_search`. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
 | [`uniqlo_listing`](#uniqlo_listing) | Experimental | api | none detected (plain ScrapeOps datacenter route) | UNIQLO US category listings from the first-party commerce BFF products API. | 36 (one page, ok) | 2741 taxonomy URLs (4 genders / 46 classes / 212 categories / 2479 subcategories) from `uniqlo-categories.json` | `{"item_id":"E424873-000-00","title":"Crew Neck T-Shirt","color":"White","price":19.9,"currency":"USD"...}` |
 | [`target_search`](#target_search) | Active | api | PerimeterX / HUMAN (cookie signals) | Target RedSky search API spider. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
@@ -766,6 +767,67 @@ product-bearing leaf. Direct Staples requests may require the configured US prox
 
 Run example:
 `HTTPCACHE_ENABLED=False common-scrapy crawl staples_listing -a category=binders -a max_pages=2 -O staples.jsonl -s HTTPCACHE_ENABLED=False`
+
+### petco_listing
+
+Petco listings use one data path: `props.pageProps.pageData.constructorResults.response`
+inside the server-rendered `script#__NEXT_DATA__`. That object carries the whole
+first-party Constructor.io response used to paint the grid, so the spider needs a single
+request per page and no HTML/JSON-LD fallback:
+
+- `response.results[]` — grid rows. Each row holds a `data` block (the default/first
+  variation: `itemname`, `mfName`, `rdprice`, `listprice`, `AverageRating`,
+  `TotalReviewCount`, `catEntryID`, `parentCatEntryID`, `image_url`, `url`, `facets[]`,
+  `group_ids[]`, `PTC_OMNI_*` flags) plus `variations[]` (the remaining size variants,
+  exported as `variants_count` / `variant_ids`).
+- `response.total_num_results` — category total (433 for `dry-cat-food`, 1059 for
+  `dry-dog-food` at authoring time); `constructorResults.request` echoes `page`,
+  `num_results_per_page` (48), `sort_by` and `sort_order`.
+- `response.facets[]`, `response.groups[]`, `response.sort_options[]`, plus
+  `pageData.breadcrumbs[]`, `pageData.categoryId` and `pageData.h1title`.
+
+Pagination is plain SSR `?page=N` (the parameter is replaced, never appended), bounded by
+`max_pages` and by `page * items_per_page < total_num_results`; rows are de-duplicated by
+`item_id` (`catEntryID`). `in_stock` is derived from price presence — the grid only returns
+priced rows and the hydration carries no stock flag.
+
+`petco_categories.py` holds the full inventory taken from the mega-menu (22 roots / 286
+nodes); `-a category=` takes the slug of the whole category path so departments never
+collide (`cat-cat-food-dry-cat-food`, `dog-dog-food-dry-dog-food`). `-a url=` also accepts
+any PLP URL directly.
+
+```json
+{
+  "category": "cat-cat-food-dry-cat-food",
+  "department": "Cat",
+  "subcategory": "Dry Cat Food",
+  "category_id": "10195",
+  "category_name": "Dry Cat Food & Kibble",
+  "breadcrumb_path": "Cat Supplies > Cat Food > Dry Cat Food & Kibble",
+  "item_id": "6848523",
+  "title": "Purina Cat Chow Indoor Healthy Weight and Hairball with Chicken Dry Cat Food, 15 lbs.",
+  "brand": "Purina Cat Chow",
+  "price": 18.99,
+  "original_price": 19.99,
+  "currency": "USD",
+  "rating": 4.8141,
+  "reviews_count": 3770,
+  "in_stock": true,
+  "variants_count": 2,
+  "page": 1,
+  "position": 1,
+  "total_count": 433,
+  "items_per_page": 48,
+  "search_engine": "constructor.io",
+  "source": "petco_next_data"
+}
+```
+
+Run example:
+`HTTPCACHE_ENABLED=False common-scrapy crawl petco_listing -a category=cat-cat-food-dry-cat-food -a max_pages=2 -O petco.jsonl -s HTTPCACHE_ENABLED=False`
+
+Run example (raw page URL, e.g. to start on page 2):
+`HTTPCACHE_ENABLED=False common-scrapy crawl petco_listing -a url="https://www.petco.com/shop/en/petcostore/category/cat/cat-food/dry-cat-food?page=2" -O petco.jsonl -s HTTPCACHE_ENABLED=False`
 
 ### fashionnova_listing
 ```json
