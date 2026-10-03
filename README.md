@@ -88,6 +88,7 @@ Spiders below are returning items in recent smoke runs:
 | [`qvc_listing`](#qvc_listing) | Experimental | html + bootstrap | Akamai | QVC listing spider via server-rendered gallery cards and `utag_data` page state. | 96 (Beauty proxy capture) | fashion | `{"category":"beauty","category_id":"NAV6285","item_id":"A740517","title":"Whish 12 Days of Beauty Whishes Advent Calendar","price":59.98,...}` |
 | [`saksfifthavenue_listing`](#saksfifthavenue_listing-category) | Experimental | html | DataDome | Saks Fifth Avenue listing spider via direct category HTML cards. | 24 (ok) | women, men, shoes, beauty, handbags | `{"item_id":"0400026449047","title":"Prada Washed Re Nylon Rain Jacket","url":"https://www.saksfifthavenue.com/product/prada-washed-re-nyl...` |
 | [`sallybeauty_listing`](#sallybeauty_listing) | Experimental | html + AJAX | PerimeterX / HUMAN (px-captcha signals) | Sally Beauty SFCC product-grid spider with `Search-UpdateGrid` pagination. | 2 (fixture) | hair-color, hair-care, textured-curly-hair, hair-extensions, tools-brushes, nails, cosmetics-skin-care, fragrances, mens-grooming, salon-supplies, new, deals | `{"category":"hair-care","item_id":"SBS-539230","title":"Low Porosity Aloe Vera Gel Shampoo","brand":"Texture ID","price":11.99...` |
+| [`belk_listing`](#belk_listing) | Experimental | api | none detected (first-party JSON) | Belk listings from the `/ecom/cio/v1/web/category/{path}?v2=true` search facade. | 60 (one page, ok) | 13 departments / 427 browse categories from `belk_categories.py` | `{"item_id":"2900965MULANEYW","title":"Mulaney Flats","brand":"DV Dolce Vita","price":45.5,"original_price":65.0,"discount_percent":30.0,"currency":"USD"...}` |
 | [`stockx_listing`](#stockx_listing) | Experimental | bootstrap + html | Cloudflare | StockX listing via `__NEXT_DATA__` bootstrap. | 41 (ok) | sneakers, apparel, electronics, trading-cards, collectibles | `{"item_id":"brands","title":"Brands","url":"https://stockx.com/brands","price":null,"currency":null}` |
 | [`staples_listing`](#staples_listing) | Experimental | Next.js hydration | Akamai | Staples category listings from server-rendered `__NEXT_DATA__`. | 40 (one page) | 34 roots / 208 subcategories from `staples_categories.py` | `{"item_id":"82656","title":"Staples 1\" 3-Ring View Binder...","price":10.09,"currency":"USD"...}` |
 | [`target_listing`](#target_listing) | Active (alias) | api | PerimeterX / HUMAN (cookie signals) | Deprecated alias of `target_search`. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
@@ -555,6 +556,70 @@ product-bearing leaf. Direct Staples requests may require the configured US prox
 
 Run example:
 `HTTPCACHE_ENABLED=False common-scrapy crawl staples_listing -a category=binders -a max_pages=2 -O staples.jsonl -s HTTPCACHE_ENABLED=False`
+
+### belk_listing
+
+Belk listings use **one** data path: the first-party search facade that the site itself calls.
+The category HTML carries the Next.js App Router React Flight mega-menu but deliberately
+does **not** contain product records, and there is no JSON-LD to fall back on.
+
+```text
+https://www.belk.com/ecom/cio/v1/web/category/{categoryPath}?v2=true&start={offset}&sz=60
+```
+
+`product_tiles` holds the full record for each item (brand, original/sale price ranges,
+coupons, `promotions` such as `BOGO`, badge, colour swatches, rating/review count) and
+`header.count` carries the category total. Pagination is offset based: the API advertises
+the next offset itself in `pagination.navs[*].params` (`start=60&sz=60`), which the spider
+reuses, and `max_pages` bounds the run.
+
+`belk_categories.py` holds the inventory extracted from the homepage mega-menu
+(`self.__next_f.push([1, ...])` → `categories.desktop.categories`): **13 departments, 741 nav
+nodes, max depth 4, 427 unique browse categories**. Two mega-menu details are handled
+explicitly — `/search/` "Shop All..." shortcuts are not categories (but their real browse
+children still are), and a cross-linked path such as `/fan-gear/` is reported under its
+shallowest (real) department rather than whichever department linked it first.
+
+Note that `https://www.belk.com/sitemap_29-category.xml` advertises 8,489 category URLs but
+is **stale** — it still lists paths the API no longer resolves — so it is not used as the
+taxonomy source.
+
+Two categories in the inventory are landing pages rather than PLPs (`/clearance/`,
+`/brands/designer-brands/`); the API answers those with `{"metaData": {"redirectUrl": ...}}`
+and the spider raises a loud error naming the redirect instead of emitting zero items.
+
+```json
+{
+  "category": "shoes/womens-shoes/flats",
+  "department": "Shoes",
+  "subcategory": "Women's Shoes > Flats",
+  "category_id": "shoes-womens-shoes-flats",
+  "item_id": "2900965MULANEYW",
+  "title": "Mulaney Flats",
+  "brand": "DV Dolce Vita",
+  "url": "https://www.belk.com/p/dv-dolce-vita-mulaney-flats/2900965MULANEYW.html",
+  "price": 45.5,
+  "original_price": 65.0,
+  "discount_percent": 30.0,
+  "currency": "USD",
+  "badge": "badge-db-buys",
+  "color": "IVORY",
+  "swatches": ["IVORY"],
+  "page": 1,
+  "position": 1,
+  "total_count": 1637,
+  "source": "belk_cio_category_api"
+}
+```
+
+Run examples:
+`HTTPCACHE_ENABLED=False common-scrapy crawl belk_listing -a category=shoes/womens-shoes/flats -a max_pages=1 -O belk.jsonl -s HTTPCACHE_ENABLED=False`
+`common-scrapy crawl belk_listing -a category=home/home-decor -a max_pages=3 -O belk_home.jsonl`
+`common-scrapy crawl belk_listing -a category_url=https://www.belk.com/jewelry/fashion-jewelry/bracelets/ -O belk_bracelets.jsonl`
+
+`-a category=` accepts the full browse path (`shoes/womens-shoes/flats`) or an unambiguous
+trailing segment (`flats`); `-a category_url=` and `-a url=` accept a browse page URL or a
+ready-made API URL.
 
 ### fashionnova_listing
 ```json
