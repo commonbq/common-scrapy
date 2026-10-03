@@ -57,23 +57,23 @@ class DickssportinggoodsListingSpiderTest(unittest.TestCase):
         self.assertEqual(search_vo["searchTypes"], ["COLOR_PINNING"])
         self.assertEqual(request.meta["category"], "soccer-gear-equipment")
 
-    def test_product_request_adds_scrapeops_bypass_to_proxy(self):
+    def test_product_request_uses_configured_proxy_without_rewriting_route(self):
         spider = DickssportinggoodsListingSpider(category="soccer-gear-equipment")
         spider.settings = Settings(
             {"PROXY": "http://scrapeops.country=us:tok@proxy.scrapeops.io:5353"}
         )
         proxy = self.first_request(spider).meta.get("proxy")
-        self.assertIn("scrapeops.country=us.bypass=5", proxy)
+        self.assertIn("scrapeops.country=us", proxy)
+        self.assertNotIn("bypass=", proxy)
         self.assertIn("tok@proxy.scrapeops.io:5353", proxy)
 
-    def test_proxy_helper_preserves_existing_bypass(self):
+    def test_proxy_helper_preserves_existing_route(self):
         spider = DickssportinggoodsListingSpider(category="soccer-gear-equipment")
         spider.settings = Settings(
             {"PROXY": "http://scrapeops.country=us.bypass=7:tok@proxy.scrapeops.io:5353"}
         )
         proxy = self.first_request(spider).meta.get("proxy")
         self.assertIn("bypass=7", proxy)
-        self.assertNotIn("bypass=5", proxy)
 
     def test_default_run_targets_every_inventory_category(self):
         spider = DickssportinggoodsListingSpider()
@@ -112,6 +112,8 @@ class DickssportinggoodsListingSpiderTest(unittest.TestCase):
         self.assertEqual(item["reviews_count"], 125)
         self.assertEqual(item["discount_percent"], 43.39)
         self.assertEqual(item["primary_category"], "SoccerBalls-253295")
+        self.assertEqual(item["catalog_id"], "12301")
+        self.assertEqual(item["store_id"], 15108)
         self.assertEqual(item["product_attributes"]["X_BRAND"], "adidas")
         self.assertEqual(item["source"], "dickssportinggoods_search_api")
         self.assertEqual(item["source_url"], request.url)

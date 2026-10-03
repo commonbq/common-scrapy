@@ -24,10 +24,8 @@ SPA's ``seoDao.makeSEODataRequest$`` calls), captured once into
     GET https://api-search.dickssportinggoods.com/seo-category/v1/categories
         ?seoUrl=<seoToken>&storeId=15108&children=true&published=true
 
-Akamai protection differs per host: the SEO category host answers on the plain
-datacenter route, while the catalog product host requires a stronger bypass
-(``scrapeops.country=us.bypass=5``).  ``_search_api_proxy()`` adds that option to
-the ScrapeOps username for product requests only.
+Akamai protection requires the configured project proxy for the catalog host.
+``_search_api_proxy()`` attaches that route explicitly to product requests.
 
 Flow:
     category (or all categories)
@@ -41,10 +39,11 @@ import json
 import re
 import time
 from typing import Any
-from urllib.parse import quote, urlencode, urlsplit, urlunsplit
+from urllib.parse import urlencode
 
 import scrapy
 
+from common.settings import PROXY
 from common.spiders.base_listing_spider import BaseListingSpider
 from common.spiders.dickssportinggoods_categories import (
     DICKSSPORTINGGOODS_CATEGORY_INVENTORY,
@@ -57,11 +56,6 @@ STORE_ID = 15108
 PAGE_SIZE = 48
 IMAGE_BASE = "https://dks.scene7.com/is/image/dkscdn/"
 IMAGE_PRESET = "?$DSG_ProductCard$"
-
-# ScrapeOps option appended to the proxy username for the Akamai-protected
-# catalog host. `bypass=5` was the lightest level that returned product JSON;
-# the plain route and `bypass=2/3/4` returned the Akamai "Site Unavailable" page.
-PRODUCT_API_BYPASS = 5
 
 _SLUG_RE = re.compile(r"[^a-z0-9]+")
 
@@ -133,6 +127,8 @@ class DickssportinggoodsListingSpider(BaseListingSpider):
             "category_id",
             "category_url",
             "category_page_type",
+            "catalog_id",
+            "store_id",
             "item_id",
             "partnumber",
             "parent_partnumber",
@@ -265,7 +261,7 @@ class DickssportinggoodsListingSpider(BaseListingSpider):
         if any(marker in lowered for marker in self.CHALLENGE_MARKERS):
             raise RuntimeError(
                 f"DICK'S v2/search returned a bot-challenge page at {response.url}; "
-                "the catalog host needs the ScrapeOps bypass proxy."
+                "the catalog host needs a working configured proxy route."
             )
         try:
             payload = response.json()
@@ -304,6 +300,8 @@ class DickssportinggoodsListingSpider(BaseListingSpider):
             "category_id": entry.get("catgroupId"),
             "category_url": entry.get("url"),
             "category_page_type": entry.get("page_type"),
+            "catalog_id": CATALOG_ID,
+            "store_id": STORE_ID,
             "item_id": item_id,
             "partnumber": self._text(product.get("partnumber")),
             "parent_partnumber": product.get("parentPartnumber"),
@@ -379,32 +377,16 @@ class DickssportinggoodsListingSpider(BaseListingSpider):
     # ------------------------------------------------------------------ proxy
 
     def _search_api_proxy(self) -> str | None:
-        """Return the ScrapeOps proxy URL with the catalog-host bypass option.
+        """Return the configured project proxy for the product API.
 
-        DICK'S catalog host is Akamai-protected: the plain datacenter route is
-        rejected while ``bypass=5`` returns JSON. Copy the configured proxy and
-        append the option to the username, preserving credentials.
+        ``PROXY`` is normally loaded from ``.env`` by ``common.settings`` and
+        is not registered as a Scrapy setting. Keep routing explicit so API
+        requests cannot accidentally go direct, and preserve the configured
+        provider route unchanged.
         """
-        if not hasattr(self, "settings"):
-            return None
-        proxy = self.settings.get("PROXY")
-        if not isinstance(proxy, str) or not proxy:
-            return None
-        parts = urlsplit(proxy)
-        if parts.hostname != "proxy.scrapeops.io" or not parts.username:
-            return None
-        username = parts.username
-        if ".bypass=" not in username:
-            username = f"{username}.bypass={PRODUCT_API_BYPASS}"
-        credentials = quote(username, safe=".=_-")
-        if parts.password is not None:
-            credentials += f":{quote(parts.password, safe='')}"
-        host = parts.hostname
-        if parts.port is not None:
-            host += f":{parts.port}"
-        return urlunsplit(
-            (parts.scheme, f"{credentials}@{host}", parts.path, parts.query, parts.fragment)
-        )
+        configured = self.settings.get("PROXY") if hasattr(self, "settings") else None
+        proxy = configured or PROXY
+        return proxy if isinstance(proxy, str) and proxy else None
 
     # ------------------------------------------------------------------ utils
 
