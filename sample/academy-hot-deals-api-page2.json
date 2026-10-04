@@ -1,0 +1,1753 @@
+{
+ "page": 2,
+ "nbHits": 506,
+ "nbPages": 11,
+ "hitsPerPage": 48,
+ "status": 200,
+ "index": "prodlive-skus-data-inventoryaware",
+ "query": "",
+ "filteredView": false,
+ "hits": [
+  {
+   "catentryId": "41678517",
+   "name": "Nike Men's Dri-FIT Challenger Brief Lined Running Shorts 5 in",
+   "sellable": "true",
+   "uniqueId": "41678517",
+   "maxProductPrice": 42.0,
+   "minProductPrice": 32.97,
+   "maxEffectivePrice": 29.4,
+   "minEffectivePrice": 23.08,
+   "maxEffectivePriceReg": 29.4,
+   "minEffectivePriceReg": 23.08,
+   "defaultSku": {
+    "salePrice": 42.0,
+    "savings": "",
+    "uniqueId": 67291506,
+    "listPrice": 42.0,
+    "listPriceV2": 33.6,
+    "priceMessage": "priceInCart",
+    "priceMessageV2": "priceInCart",
+    "ppuMsg": "",
+    "color": "Blue",
+    "skuIdentifier": "thunder-blue-thunder-blue-thunder-blue-reflective-silver-x-large",
+    "defaultSkuIdentifier": "thunder-blue-thunder-blue-thunder-blue-reflective-silver-x-large",
+    "skuId": "153325842",
+    "definingAttributes": {
+     "Size": "X Large",
+     "Color": "Thunder Blue / Thunder Blue / Thunder Blue / Reflective Silver"
+    },
+    "listPriceV2Reg": 33.6,
+    "priceMessageV2Reg": "priceInCart"
+   },
+   "seoURL": "nike-mens-dri-fit-challenger-brief-lined-running-shorts-5-in-135645455",
+   "fullImage": "//academy.scene7.com/is/image/academy/21356607",
+   "promoMessage": "30% Off Clothes + Shoes",
+   "promoCode": "1003714",
+   "promoPrice": "23.0800",
+   "thumbnail": "//academy.scene7.com/is/image/academy/21356607",
+   "partNumber": "135645455",
+   "primaryCatgroupName": "Men's Running Shorts",
+   "descriptiveAttributes": {
+    "vendorName": "NIKE USA INC",
+    "rating": "4",
+    "reviewcount": "111",
+    "averageRating": "4.7",
+    "udamsrp": "40.00"
+   },
+   "ppuEnabled": "false",
+   "xfullimage": "//academy.scene7.com/is/image/academy/21356607",
+   "skuIdentifier": "thunder-blue-thunder-blue-thunder-blue-reflective-silver-x-large",
+   "objectType": "Product",
+   "orderCount": 8,
+   "giftCardFlag": "N",
+   "ecomCodeDesc": "01 SELL ONLINE",
+   "mapPrice": 33.6,
+   "mapPriceFlag": "N",
+   "brandColorCount": "4",
+   "flavourCount": "0",
+   "paternCount": "0",
+   "teamCount": "0",
+   "freeShipping": false,
+   "xccStrikethroughPromotion": "true",
+   "promoMessageReg": "30% Off Clothes + Shoes",
+   "promoCodeReg": "1003714",
+   "promoPriceReg": "23.0800",
+   "xccStrikethroughPromotionReg": "true",
+   "guestMessageText": "",
+   "listPrice": 42.0,
+   "salePrice": 0.0,
+   "catalogId": [
+    "10051"
+   ],
+   "shipToStoreFlag": [
+    "N"
+   ],
+   "categoryIds": [
+    "3074457345616984107",
+    "3074457345616907268",
+    "3074457345616930120",
+    "3074457345617055098",
+    "3074457345616978103",
+    "3074457345616941613",
+    "15061",
+    "3074457345616924239",
+    "3074457345617285599",
+    "3074457345616907260",
+    "3074457345616932654",
+    "3074457345616916148",
+    "3074457345616984614",
+    "3074457345616912627",
+    "3074457345616981101",
+    "3074457345616978598",
+    "3074457345616973144",
+    "3074457345616968705",
+    "3074457345616941723",
+    "3074457345616941133",
+    "3074457345616998615",
+    "3074457345616972126",
+    "197936",
+    "3074457345616992119",
+    "3074457345617171598",
+    "210952",
+    "3074457345616998619",
+    "239431",
+    "3074457345616909620",
+    "239154",
+    "3074457345616941715",
+    "3074457345616941639",
+    "3074457345617166098",
+    "3074457345616941117",
+    "3074457345616998653",
+    "3074457345616998730",
+    "3074457345616941714",
+    "239153",
+    "3074457345616952607",
+    "146752",
+    "3074457345616973146",
+    "3074457345616950102",
+    "3074457345616979602",
+    "15054",
+    "15053",
+    "3074457345616941627",
+    "3074457345617056098",
+    "3074457345616941624",
+    "3074457345616941625",
+    "3074457345616907119",
+    "3074457345616907117",
+    "3074457345616941148",
+    "3074457345616921641",
+    "3074457345616921599",
+    "3074457345616968650",
+    "3074457345616951147",
+    "3074457345616951146",
+    "3074457345616957608",
+    "235932"
+   ],
+   "sameDayDeliveryEligible": [
+    "Y"
+   ],
+   "parentPartNumber": "135645455",
+   "definingAttributes": {
+    "Size": "X Large",
+    "Color": "Thunder Blue / Thunder Blue / Thunder Blue / Reflective Silver"
+   },
+   "ppuMsg": "",
+   "inventory_pick": [],
+   "inventory_sts": [],
+   "clearanceSuppression": false,
+   "startDate": "2022-12-06T10:00:54.217Z",
+   "embargoDate": "",
+   "pick_oos": "0",
+   "sts_oos": "1",
+   "stsfs_oos": "1",
+   "sth_oos": "0",
+   "lsi_oos": "0",
+   "rollUpPromoPriceMessage": "priceInCart",
+   "rollUpPromoPriceMessageReg": "priceInCart",
+   "Clearance_Status": [
+    "M"
+   ],
+   "maxProductPrice_1": 0.0,
+   "minProductPrice_1": 0.0,
+   "maxProductPrice_2": 0.0,
+   "minProductPrice_2": 0.0,
+   "minMSRP": "40",
+   "maxMSRP": "40",
+   "Color": [
+    "Thunder Blue / Thunder Blue / Thunder Blue / Reflective Silver"
+   ],
+   "facet_Deals": [
+    "New Colors"
+   ],
+   "_rankingInfo": {
+    "forcedTypoFirstInRanking": true,
+    "nbTypos": 0,
+    "firstMatchedWord": 0,
+    "proximityDistance": 0,
+    "userScore": 354,
+    "geoDistance": 0,
+    "geoPrecision": 1,
+    "nbExactWords": 0,
+    "words": 0,
+    "filters": 11
+   },
+   "customBadges": [],
+   "facet_Brand": "Nike",
+   "nonPricingAdbugs": [],
+   "averageRating": "4.7",
+   "reviewCount": "111",
+   "industrySubGroup_image": {
+    "Red": "//academy.scene7.com/is/image/academy/21476412",
+    "Blue": "//academy.scene7.com/is/image/academy/21356607",
+    "Black": "//academy.scene7.com/is/image/academy/21009959",
+    "Grey": "//academy.scene7.com/is/image/academy/21010223"
+   },
+   "industrySubGroup_ImageSku": [
+    {
+     "weightage": 1,
+     "image": "//academy.scene7.com/is/image/academy/21356607",
+     "color": "Blue",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21356608",
+      "//academy.scene7.com/is/image/academy/21356609"
+     ],
+     "skuIdentifier": "thunder-blue-thunder-blue-thunder-blue-reflective-silver-x-large",
+     "skuId": "153325842"
+    },
+    {
+     "weightage": 2,
+     "image": "//academy.scene7.com/is/image/academy/21010223",
+     "color": "Grey",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21009987",
+      "//academy.scene7.com/is/image/academy/21010109"
+     ],
+     "skuIdentifier": "grey-large",
+     "skuId": "135645535"
+    },
+    {
+     "weightage": 7,
+     "image": "//academy.scene7.com/is/image/academy/21009959",
+     "color": "Black",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21009960",
+      "//academy.scene7.com/is/image/academy/21009961"
+     ],
+     "skuIdentifier": "black-xx-large",
+     "skuId": "135645501"
+    },
+    {
+     "weightage": 8,
+     "image": "//academy.scene7.com/is/image/academy/21476412",
+     "color": "Red",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21476413",
+      "//academy.scene7.com/is/image/academy/21476414"
+     ],
+     "skuIdentifier": "lt-crimson-lt-crimson-black-reflective-silv-medium",
+     "skuId": "160794524"
+    }
+   ],
+   "swatches_nonmapprice": {
+    "priceInfo": {
+     "facet_Deals": [],
+     "maxMSRP": "40.00",
+     "minProductPrice": 42.0,
+     "maxEffectivePrice": 29.4,
+     "maxProductPrice": 42.0,
+     "minMSRP": "40.00",
+     "minEffectivePriceReg": 29.4,
+     "clearanceStatus": [
+      "N"
+     ],
+     "minEffectivePrice": 29.4,
+     "valuedCost": 18.4,
+     "maxEffectivePriceReg": 29.4,
+     "listPrice": 42.0,
+     "salePrice": 42.0,
+     "savings": "",
+     "priceMessage": "",
+     "promoPrice": 29.4,
+     "promoPriceReg": 29.4,
+     "xccStrikethroughPromotion": "true",
+     "xccStrikethroughPromotionReg": "true"
+    },
+    "brandColorCount": "3",
+    "flavourCount": "0",
+    "teamCount": "0",
+    "paternCount": "0",
+    "swatches": [
+     {
+      "weightage": 1,
+      "image": "//academy.scene7.com/is/image/academy/21356607",
+      "color": "Blue",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21356608",
+       "//academy.scene7.com/is/image/academy/21356609"
+      ],
+      "skuIdentifier": "thunder-blue-thunder-blue-thunder-blue-reflective-silver-x-large",
+      "skuId": "153325842"
+     },
+     {
+      "weightage": 2,
+      "image": "//academy.scene7.com/is/image/academy/21010223",
+      "color": "Grey",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21009987",
+       "//academy.scene7.com/is/image/academy/21010109"
+      ],
+      "skuIdentifier": "grey-large",
+      "skuId": "135645535"
+     },
+     {
+      "weightage": 7,
+      "image": "//academy.scene7.com/is/image/academy/21009959",
+      "color": "Black",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21009960",
+       "//academy.scene7.com/is/image/academy/21009961"
+      ],
+      "skuIdentifier": "black-xx-large",
+      "skuId": "135645501"
+     }
+    ]
+   },
+   "swatches_mapprice": {
+    "priceInfo": {
+     "facet_Deals": [],
+     "maxMSRP": "40.00",
+     "minMapPrice": 33.6,
+     "rollUpPromoPriceMessage": "priceInCart",
+     "maxMapPrice": 33.6,
+     "minProductPrice": 32.97,
+     "maxEffectivePrice": 23.08,
+     "maxProductPrice": 32.97,
+     "rollUpPromoPriceMessageReg": "priceInCart",
+     "minMSRP": "40.00",
+     "minEffectivePriceReg": 23.08,
+     "clearanceStatus": [
+      "Y"
+     ],
+     "minEffectivePrice": 23.08,
+     "valuedCost": 19.32,
+     "maxEffectivePriceReg": 23.08,
+     "listPrice": 33.6,
+     "salePrice": 23.08,
+     "savings": "45%",
+     "priceMessage": "priceInCart",
+     "promoPrice": 0.0,
+     "promoPriceReg": 0.0,
+     "mapPrice": 33.6,
+     "dollarSavings": 10.520000000000003,
+     "percentSavings": "45%",
+     "listPriceV2": 33.6,
+     "listPriceV2Reg": 33.6,
+     "priceMessageV2": "priceInCart",
+     "priceMessageV2Reg": "priceInCart",
+     "xccStrikethroughPromotion": "true",
+     "xccStrikethroughPromotionReg": "true"
+    },
+    "brandColorCount": "1",
+    "flavourCount": "0",
+    "teamCount": "0",
+    "paternCount": "0",
+    "swatches": [
+     {
+      "weightage": 8,
+      "image": "//academy.scene7.com/is/image/academy/21476412",
+      "color": "Red",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21476413",
+       "//academy.scene7.com/is/image/academy/21476414"
+      ],
+      "skuIdentifier": "lt-crimson-lt-crimson-black-reflective-silv-medium",
+      "skuId": "160794524"
+     }
+    ]
+   },
+   "definingAttribute_SwatchesImage": {},
+   "definingAttribute_SwatchesImageSku": [],
+   "objectID": "153325842",
+   "skuIds": [
+    "76685521",
+    "76681513",
+    "76685533",
+    "67291518",
+    "67291506",
+    "67291509",
+    "67291517",
+    "67291505",
+    "42004711",
+    "42004716",
+    "42004788",
+    "42004696",
+    "42004719",
+    "42004574",
+    "42004599",
+    "42004566",
+    "42004564",
+    "42004576"
+   ],
+   "primaryCatgroupId": "3074457345616968705",
+   "isQuickViewEligible": false,
+   "is_assembly_required": "",
+   "facet_IndustrySubGroup": [
+    "Blue"
+   ]
+  },
+  {
+   "catentryId": "46804502",
+   "name": "Under Armour Women's Motion Jacket",
+   "sellable": "true",
+   "uniqueId": "46804502",
+   "maxProductPrice": 55.0,
+   "minProductPrice": 55.0,
+   "maxEffectivePrice": 38.5,
+   "minEffectivePrice": 38.5,
+   "maxEffectivePriceReg": 38.5,
+   "minEffectivePriceReg": 38.5,
+   "defaultSku": {
+    "salePrice": 55.0,
+    "savings": "",
+    "uniqueId": 75940016,
+    "listPrice": 55.0,
+    "listPriceV2": 0.0,
+    "priceMessage": "",
+    "priceMessageV2": "priceInCart",
+    "ppuMsg": "",
+    "color": "Red",
+    "skuIdentifier": "dark-maroon-fuchsia-dusk-x-small",
+    "defaultSkuIdentifier": "dark-maroon-fuchsia-dusk-x-small",
+    "skuId": "156732363",
+    "definingAttributes": {
+     "Size": "X Small",
+     "Color": "Dark Maroon /  / Fuchsia Dusk"
+    },
+    "listPriceV2Reg": 0.0,
+    "priceMessageV2Reg": "priceInCart"
+   },
+   "seoURL": "under-armour-womens-motion-jacket",
+   "fullImage": "//academy.scene7.com/is/image/academy/21464139",
+   "promoMessage": "30% Off Clothes + Shoes",
+   "promoCode": "1003714",
+   "promoPrice": "38.5000",
+   "thumbnail": "//academy.scene7.com/is/image/academy/21464139",
+   "partNumber": "138403865",
+   "primaryCatgroupName": "Women's Training Clothing",
+   "descriptiveAttributes": {
+    "vendorName": "UNDER ARMOUR",
+    "rating": "4",
+    "reviewcount": "25",
+    "averageRating": "4.7",
+    "udamsrp": "55.00"
+   },
+   "ppuEnabled": "false",
+   "xfullimage": "//academy.scene7.com/is/image/academy/21464139",
+   "skuIdentifier": "dark-maroon-fuchsia-dusk-x-small",
+   "objectType": "Product",
+   "orderCount": 8,
+   "giftCardFlag": "N",
+   "ecomCodeDesc": "01 SELL ONLINE",
+   "mapPrice": 0.0,
+   "mapPriceFlag": "N",
+   "brandColorCount": "4",
+   "flavourCount": "0",
+   "paternCount": "0",
+   "teamCount": "0",
+   "freeShipping": true,
+   "xccStrikethroughPromotion": "true",
+   "promoMessageReg": "30% Off Clothes + Shoes",
+   "promoCodeReg": "1003714",
+   "promoPriceReg": "38.5000",
+   "xccStrikethroughPromotionReg": "true",
+   "guestMessageText": "",
+   "listPrice": 0.0,
+   "salePrice": 0.0,
+   "catalogId": [
+    "10051"
+   ],
+   "shipToStoreFlag": [
+    "N"
+   ],
+   "categoryIds": [
+    "3074457345616984107",
+    "239431",
+    "3074457345616984128",
+    "15123",
+    "3074457345616941639",
+    "3074457345616978600",
+    "3074457345616907261",
+    "239433",
+    "3074457345616998653",
+    "15082",
+    "3074457345617189598",
+    "3074457345616998727",
+    "3074457345616952607",
+    "146752",
+    "3074457345617069598",
+    "3074457345616973147",
+    "146756",
+    "3074457345616908151",
+    "3074457345616914100",
+    "3074457345616979606",
+    "3074457345616916148",
+    "15053",
+    "3074457345616912627",
+    "3074457345616981101",
+    "3074457345616908185",
+    "3074457345616973144",
+    "3074457345616921641",
+    "3074457345616941149",
+    "3074457345616968652",
+    "3074457345616968651",
+    "3074457345617045599",
+    "3074457345616968694",
+    "3074457345616972127",
+    "3074457345616972126",
+    "197936",
+    "3074457345616951147",
+    "3074457345616907270",
+    "3074457345616908181",
+    "3074457345616951146",
+    "3074457345616957608",
+    "235932",
+    "210952",
+    "235934"
+   ],
+   "sameDayDeliveryEligible": [
+    "Y"
+   ],
+   "parentPartNumber": "138403865",
+   "definingAttributes": {
+    "Size": "X Small",
+    "Color": "Dark Maroon /  / Fuchsia Dusk"
+   },
+   "ppuMsg": "",
+   "inventory_pick": [],
+   "inventory_sts": [],
+   "clearanceSuppression": false,
+   "startDate": "2023-04-11T08:15:46.473Z",
+   "embargoDate": "",
+   "pick_oos": "1",
+   "stsfs_oos": "1",
+   "sth_oos": "1",
+   "lsi_oos": "0",
+   "rollUpPromoPriceMessage": "priceInCart",
+   "rollUpPromoPriceMessageReg": "priceInCart",
+   "Clearance_Status": [
+    "N"
+   ],
+   "maxProductPrice_1": 0.0,
+   "minProductPrice_1": 0.0,
+   "maxProductPrice_2": 0.0,
+   "minProductPrice_2": 0.0,
+   "minMSRP": "55",
+   "maxMSRP": "55",
+   "Color": [
+    "Dark Maroon /  / Fuchsia Dusk"
+   ],
+   "facet_Deals": [],
+   "_rankingInfo": {
+    "forcedTypoFirstInRanking": true,
+    "nbTypos": 0,
+    "firstMatchedWord": 0,
+    "proximityDistance": 0,
+    "userScore": 353,
+    "geoDistance": 0,
+    "geoPrecision": 1,
+    "nbExactWords": 0,
+    "words": 0,
+    "filters": 11
+   },
+   "customBadges": [],
+   "facet_Brand": "Under Armour",
+   "nonPricingAdbugs": [
+    "N"
+   ],
+   "averageRating": "4.7",
+   "reviewCount": "25",
+   "industrySubGroup_image": {
+    "Red": "//academy.scene7.com/is/image/academy/21464139",
+    "Black": "//academy.scene7.com/is/image/academy/21110070",
+    "Green": "//academy.scene7.com/is/image/academy/21549184",
+    "Grey": "//academy.scene7.com/is/image/academy/21287034"
+   },
+   "industrySubGroup_ImageSku": [
+    {
+     "weightage": 1,
+     "image": "//academy.scene7.com/is/image/academy/21464139",
+     "color": "Red",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21464141",
+      "//academy.scene7.com/is/image/academy/21464140"
+     ],
+     "skuIdentifier": "dark-maroon-fuchsia-dusk-x-small",
+     "skuId": "156732363"
+    },
+    {
+     "weightage": 2,
+     "image": "//academy.scene7.com/is/image/academy/21549184",
+     "color": "Green",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21549185",
+      "//academy.scene7.com/is/image/academy/21549186"
+     ],
+     "skuIdentifier": "dark-green-04-large",
+     "skuId": "162182652"
+    },
+    {
+     "weightage": 10,
+     "image": "//academy.scene7.com/is/image/academy/21110070",
+     "color": "Black",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21110000",
+      "//academy.scene7.com/is/image/academy/21109861"
+     ],
+     "skuIdentifier": "black-jet-gray-medium",
+     "skuId": "138533109"
+    },
+    {
+     "weightage": 14,
+     "image": "//academy.scene7.com/is/image/academy/21287034",
+     "color": "Grey",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21287035",
+      "//academy.scene7.com/is/image/academy/21287032"
+     ],
+     "skuIdentifier": "tetra-gray-ash-taupe-x-small",
+     "skuId": "148021262"
+    }
+   ],
+   "swatches_nonmapprice": {
+    "priceInfo": {
+     "facet_Deals": [],
+     "maxMSRP": "55.00",
+     "minProductPrice": 55.0,
+     "maxEffectivePrice": 38.5,
+     "maxProductPrice": 55.0,
+     "minMSRP": "55.00",
+     "minEffectivePriceReg": 38.5,
+     "clearanceStatus": [
+      "N"
+     ],
+     "minEffectivePrice": 38.5,
+     "valuedCost": 25.9,
+     "maxEffectivePriceReg": 38.5,
+     "listPrice": 55.0,
+     "salePrice": 55.0,
+     "savings": "",
+     "priceMessage": "",
+     "promoPrice": 38.5,
+     "promoPriceReg": 38.5,
+     "xccStrikethroughPromotion": "true",
+     "xccStrikethroughPromotionReg": "true"
+    },
+    "brandColorCount": "1",
+    "flavourCount": "0",
+    "teamCount": "0",
+    "paternCount": "0",
+    "swatches": [
+     {
+      "weightage": 1,
+      "image": "//academy.scene7.com/is/image/academy/21464139",
+      "color": "Red",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21464141",
+       "//academy.scene7.com/is/image/academy/21464140"
+      ],
+      "skuIdentifier": "dark-maroon-fuchsia-dusk-x-small",
+      "skuId": "156732363"
+     }
+    ]
+   },
+   "swatches_mapprice": {
+    "priceInfo": {
+     "facet_Deals": [],
+     "maxMSRP": "55.00",
+     "minMapPrice": 41.22,
+     "rollUpPromoPriceMessage": "priceInCart",
+     "maxMapPrice": 41.25,
+     "minProductPrice": 55.0,
+     "maxEffectivePrice": 38.5,
+     "maxProductPrice": 55.0,
+     "rollUpPromoPriceMessageReg": "priceInCart",
+     "minMSRP": "55.00",
+     "minEffectivePriceReg": 38.5,
+     "clearanceStatus": [
+      "N"
+     ],
+     "minEffectivePrice": 38.5,
+     "valuedCost": 25.575,
+     "maxEffectivePriceReg": 38.5,
+     "listPrice": 41.22,
+     "salePrice": 38.5,
+     "savings": "30%",
+     "priceMessage": "priceInCart",
+     "promoPrice": 0.0,
+     "promoPriceReg": 0.0,
+     "mapPrice": 41.22,
+     "dollarSavings": 2.719999999999999,
+     "percentSavings": "30%",
+     "listPriceV2": 41.22,
+     "listPriceV2Reg": 41.22,
+     "priceMessageV2": "priceInCart",
+     "priceMessageV2Reg": "priceInCart",
+     "xccStrikethroughPromotion": "true",
+     "xccStrikethroughPromotionReg": "true"
+    },
+    "brandColorCount": "3",
+    "flavourCount": "0",
+    "teamCount": "0",
+    "paternCount": "0",
+    "swatches": [
+     {
+      "weightage": 2,
+      "image": "//academy.scene7.com/is/image/academy/21549184",
+      "color": "Green",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21549185",
+       "//academy.scene7.com/is/image/academy/21549186"
+      ],
+      "skuIdentifier": "dark-green-04-large",
+      "skuId": "162182652"
+     },
+     {
+      "weightage": 10,
+      "image": "//academy.scene7.com/is/image/academy/21110070",
+      "color": "Black",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21110000",
+       "//academy.scene7.com/is/image/academy/21109861"
+      ],
+      "skuIdentifier": "black-jet-gray-medium",
+      "skuId": "138533109"
+     },
+     {
+      "weightage": 14,
+      "image": "//academy.scene7.com/is/image/academy/21287034",
+      "color": "Grey",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21287035",
+       "//academy.scene7.com/is/image/academy/21287032"
+      ],
+      "skuIdentifier": "tetra-gray-ash-taupe-x-small",
+      "skuId": "148021262"
+     }
+    ]
+   },
+   "definingAttribute_SwatchesImage": {},
+   "definingAttribute_SwatchesImageSku": [],
+   "objectID": "156732363",
+   "skuIds": [
+    "84222005",
+    "84244504",
+    "84251007",
+    "84222001",
+    "84244506",
+    "75940195",
+    "75940024",
+    "75940222",
+    "75940045",
+    "75940016",
+    "59158004",
+    "57446587",
+    "50012013",
+    "50012016",
+    "50012006",
+    "50012007",
+    "50012010"
+   ],
+   "primaryCatgroupId": "3074457345616978600",
+   "isQuickViewEligible": false,
+   "is_assembly_required": "",
+   "facet_IndustrySubGroup": [
+    "Red"
+   ]
+  },
+  {
+   "catentryId": "55975920",
+   "name": "YETI Rambler 30 oz Stackable Cup with MagSlider",
+   "sellable": "true",
+   "uniqueId": "55975920",
+   "maxProductPrice": 35.0,
+   "minProductPrice": 19.97,
+   "maxEffectivePrice": 35.0,
+   "minEffectivePrice": 19.97,
+   "maxEffectivePriceReg": 35.0,
+   "minEffectivePriceReg": 19.97,
+   "defaultSku": {
+    "salePrice": 19.97,
+    "savings": "43%",
+    "uniqueId": 57240537,
+    "listPrice": 35.0,
+    "listPriceV2": 40.0,
+    "priceMessage": "wasNowPrice,hotDealsAvailable,priceInCart",
+    "priceMessageV2": "wasNowPrice,hotDealsAvailable,priceInCart",
+    "ppuMsg": "",
+    "color": "Pink",
+    "skuIdentifier": "bright-pink-04",
+    "defaultSkuIdentifier": "bright-pink-04",
+    "skuId": "148056086",
+    "definingAttributes": {
+     "Color": "Bright Pink 04"
+    },
+    "dollarSavings": 15.030000000000001,
+    "percentSavings": "43%",
+    "listPriceV2Reg": 40.0,
+    "priceMessageV2Reg": "wasNowPrice,hotDealsAvailable,priceInCart"
+   },
+   "seoURL": "yeti-rambler-30-oz-stackable-cup-with-magslider",
+   "fullImage": "//academy.scene7.com/is/image/academy/21329800",
+   "promoMessage": "",
+   "promoCode": "",
+   "promoPrice": "",
+   "thumbnail": "//academy.scene7.com/is/image/academy/21329800",
+   "partNumber": "148056060",
+   "primaryCatgroupName": "Tumblers + Cups",
+   "descriptiveAttributes": {
+    "vendorName": "YETI HOLDINGS INC YETI COOLERS LLC",
+    "rating": "4",
+    "reviewcount": "126",
+    "averageRating": "4.6",
+    "udamsrp": "35.00"
+   },
+   "ppuEnabled": "false",
+   "xfullimage": "//academy.scene7.com/is/image/academy/21329800",
+   "skuIdentifier": "bright-pink-04",
+   "objectType": "Product",
+   "orderCount": 8,
+   "giftCardFlag": "N",
+   "ecomCodeDesc": "01 SELL ONLINE",
+   "mapPrice": 40.0,
+   "mapPriceFlag": "N",
+   "brandColorCount": "5",
+   "flavourCount": "0",
+   "paternCount": "0",
+   "teamCount": "0",
+   "freeShipping": true,
+   "xccStrikethroughPromotion": "true",
+   "promoMessageReg": "",
+   "promoCodeReg": "",
+   "promoPriceReg": "",
+   "xccStrikethroughPromotionReg": "true",
+   "guestMessageText": "",
+   "listPrice": 0.0,
+   "salePrice": 0.0,
+   "catalogId": [
+    "10051"
+   ],
+   "shipToStoreFlag": [
+    "Y"
+   ],
+   "categoryIds": [
+    "3074457345616908598",
+    "3074457345616941639",
+    "181314",
+    "3074457345616924153",
+    "3074457345616914608",
+    "220431",
+    "3074457345616941674",
+    "3074457345616924169",
+    "3074457345616941149",
+    "16290",
+    "3074457345616952607",
+    "3074457345616915099",
+    "146752",
+    "3074457345617002604",
+    "197936",
+    "3074457345616951147",
+    "3074457345616990612",
+    "3074457345616957608",
+    "3074457345616951146",
+    "3074457345616990616",
+    "197951",
+    "3074457345616972627",
+    "210952",
+    "3074457345616912146"
+   ],
+   "sameDayDeliveryEligible": [
+    "Y"
+   ],
+   "parentPartNumber": "148056060",
+   "definingAttributes": {
+    "Color": "Bright Pink 04"
+   },
+   "ppuMsg": "",
+   "inventory_pick": [],
+   "inventory_sts": [],
+   "clearanceSuppression": false,
+   "startDate": "2024-02-22T00:00:00.000Z",
+   "embargoDate": "",
+   "pick_oos": "0",
+   "sts_oos": "1",
+   "stsfs_oos": "1",
+   "sth_oos": "1",
+   "lsi_oos": "0",
+   "rollUpPromoPriceMessage": "priceInCart",
+   "rollUpPromoPriceMessageReg": "priceInCart",
+   "Clearance_Status": [
+    "M"
+   ],
+   "maxProductPrice_1": 0.0,
+   "minProductPrice_1": 0.0,
+   "maxProductPrice_2": 0.0,
+   "minProductPrice_2": 0.0,
+   "minMSRP": "35",
+   "maxMSRP": "35",
+   "Color": [
+    "Bright Pink 04"
+   ],
+   "facet_Deals": [
+    "Hot Deal"
+   ],
+   "_rankingInfo": {
+    "forcedTypoFirstInRanking": true,
+    "nbTypos": 0,
+    "firstMatchedWord": 0,
+    "proximityDistance": 0,
+    "userScore": 352,
+    "geoDistance": 0,
+    "geoPrecision": 1,
+    "nbExactWords": 0,
+    "words": 0,
+    "filters": 11
+   },
+   "customBadges": [],
+   "facet_Brand": "YETI",
+   "nonPricingAdbugs": [],
+   "averageRating": "4.6",
+   "reviewCount": "126",
+   "industrySubGroup_image": {
+    "White": "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071503715-white/85df718d-1028-4719-8897-c13203ff19dc",
+    "Pink": "//academy.scene7.com/is/image/academy/21329800",
+    "Beige": "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071504241/c5ecfe49-2d33-492b-8931-ed66e789e24c",
+    "Blue": "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071503716-blue/cc64619a-1391-41b5-b7fc-d326d5643879",
+    "Orange": "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071505466/4b345bfb-05de-4db3-84f1-be824e377c80"
+   },
+   "industrySubGroup_ImageSku": [
+    {
+     "weightage": 1,
+     "image": "//academy.scene7.com/is/image/academy/21329800",
+     "color": "Pink",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21329801",
+      "//academy.scene7.com/is/image/academy/21329802"
+     ],
+     "skuIdentifier": "bright-pink-04",
+     "skuId": "148056086"
+    },
+    {
+     "weightage": 2,
+     "image": "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071503716-blue/cc64619a-1391-41b5-b7fc-d326d5643879",
+     "color": "Blue",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071503716-blue/548b7453-01c9-4f05-a286-6be19171aa62",
+      "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071503716-blue/11f57b2a-ab84-4c8a-8f56-ab50172f5adb"
+     ],
+     "skuIdentifier": "seafoam",
+     "skuId": "148056123"
+    },
+    {
+     "weightage": 3,
+     "image": "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071504241/c5ecfe49-2d33-492b-8931-ed66e789e24c",
+     "color": "Beige",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071504241/acc1ed47-43e3-4eaa-85dd-6750bc16a651",
+      "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071504241/440f9e28-0909-434a-863f-323eee4cd15c"
+     ],
+     "skuIdentifier": "cape-taupe",
+     "skuId": "150017262"
+    },
+    {
+     "weightage": 4,
+     "image": "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071505466/4b345bfb-05de-4db3-84f1-be824e377c80",
+     "color": "Orange",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071505466/e1a40dec-5440-4fa4-aa47-9e472acbf004",
+      "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071505466/45088f79-1d24-4dc1-a85b-5bf529679e53"
+     ],
+     "skuIdentifier": "lowcountry-peach",
+     "skuId": "150017254"
+    },
+    {
+     "weightage": 5,
+     "image": "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071503715-white/85df718d-1028-4719-8897-c13203ff19dc",
+     "color": "White",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071503715-white/81f944c9-bd8c-48a0-b4a0-268f41281d56",
+      "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071503715-white/dd56adc0-136b-4541-8f89-3c0e580f1cae"
+     ],
+     "skuIdentifier": "white",
+     "skuId": "148056115"
+    }
+   ],
+   "swatches_nonmapprice": {
+    "priceInfo": {
+     "facet_Deals": [
+      "Hot Deal"
+     ],
+     "maxMSRP": "35.00",
+     "minProductPrice": 19.97,
+     "maxEffectivePrice": 19.97,
+     "maxProductPrice": 19.97,
+     "minMSRP": "35.00",
+     "minEffectivePriceReg": 19.97,
+     "clearanceStatus": [
+      "N"
+     ],
+     "minEffectivePrice": 19.97,
+     "valuedCost": 21.0,
+     "maxEffectivePriceReg": 19.97,
+     "listPrice": 35.0,
+     "salePrice": 19.97,
+     "savings": "43%",
+     "priceMessage": "wasNowPrice",
+     "promoPrice": 0.0,
+     "promoPriceReg": 0.0,
+     "dollarSavings": 15.030000000000001,
+     "percentSavings": "43%",
+     "listPriceV2": 19.97,
+     "listPriceV2Reg": 19.97
+    },
+    "brandColorCount": "1",
+    "flavourCount": "0",
+    "teamCount": "0",
+    "paternCount": "0",
+    "swatches": [
+     {
+      "weightage": 1,
+      "image": "//academy.scene7.com/is/image/academy/21329800",
+      "color": "Pink",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21329801",
+       "//academy.scene7.com/is/image/academy/21329802"
+      ],
+      "skuIdentifier": "bright-pink-04",
+      "skuId": "148056086"
+     }
+    ]
+   },
+   "swatches_mapprice": {
+    "priceInfo": {
+     "facet_Deals": [],
+     "maxMSRP": "35.00",
+     "minMapPrice": 40.0,
+     "rollUpPromoPriceMessage": "priceInCart",
+     "maxMapPrice": 40.0,
+     "minProductPrice": 24.97,
+     "maxEffectivePrice": 35.0,
+     "maxProductPrice": 35.0,
+     "rollUpPromoPriceMessageReg": "priceInCart",
+     "minMSRP": "35.00",
+     "minEffectivePriceReg": 24.97,
+     "clearanceStatus": [
+      "M"
+     ],
+     "minEffectivePrice": 24.97,
+     "valuedCost": 21.0,
+     "maxEffectivePriceReg": 35.0,
+     "listPrice": 40.0,
+     "salePrice": 24.97,
+     "savings": "29%",
+     "priceMessage": "priceInCart",
+     "promoPrice": 0.0,
+     "promoPriceReg": 0.0,
+     "mapPrice": 40.0,
+     "dollarSavings": 15.030000000000001,
+     "percentSavings": "29%",
+     "listPriceV2": 40.0,
+     "listPriceV2Reg": 40.0,
+     "priceMessageV2": "priceInCart",
+     "priceMessageV2Reg": "priceInCart",
+     "xccStrikethroughPromotion": "true",
+     "xccStrikethroughPromotionReg": "true"
+    },
+    "brandColorCount": "4",
+    "flavourCount": "0",
+    "teamCount": "0",
+    "paternCount": "0",
+    "swatches": [
+     {
+      "weightage": 2,
+      "image": "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071503716-blue/cc64619a-1391-41b5-b7fc-d326d5643879",
+      "color": "Blue",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071503716-blue/548b7453-01c9-4f05-a286-6be19171aa62",
+       "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071503716-blue/11f57b2a-ab84-4c8a-8f56-ab50172f5adb"
+      ],
+      "skuIdentifier": "seafoam",
+      "skuId": "148056123"
+     },
+     {
+      "weightage": 3,
+      "image": "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071504241/c5ecfe49-2d33-492b-8931-ed66e789e24c",
+      "color": "Beige",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071504241/acc1ed47-43e3-4eaa-85dd-6750bc16a651",
+       "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071504241/440f9e28-0909-434a-863f-323eee4cd15c"
+      ],
+      "skuIdentifier": "cape-taupe",
+      "skuId": "150017262"
+     },
+     {
+      "weightage": 4,
+      "image": "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071505466/4b345bfb-05de-4db3-84f1-be824e377c80",
+      "color": "Orange",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071505466/e1a40dec-5440-4fa4-aa47-9e472acbf004",
+       "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071505466/45088f79-1d24-4dc1-a85b-5bf529679e53"
+      ],
+      "skuIdentifier": "lowcountry-peach",
+      "skuId": "150017254"
+     },
+     {
+      "weightage": 5,
+      "image": "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071503715-white/85df718d-1028-4719-8897-c13203ff19dc",
+      "color": "White",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071503715-white/81f944c9-bd8c-48a0-b4a0-268f41281d56",
+       "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-30-oz-stackable-cup-with-magslider-21071503715-white/dd56adc0-136b-4541-8f89-3c0e580f1cae"
+      ],
+      "skuIdentifier": "white",
+      "skuId": "148056115"
+     }
+    ]
+   },
+   "definingAttribute_SwatchesImage": {},
+   "definingAttribute_SwatchesImageSku": [],
+   "objectID": "148056086",
+   "skuIds": [
+    "56987220",
+    "56991596",
+    "55981053",
+    "55981027",
+    "57240537"
+   ],
+   "primaryCatgroupId": "197951",
+   "isQuickViewEligible": false,
+   "is_assembly_required": "",
+   "facet_IndustrySubGroup": [
+    "Pink"
+   ]
+  },
+  {
+   "catentryId": "52437001",
+   "name": "Yeti Hopper Backpack M12 Soft Cooler",
+   "sellable": "true",
+   "uniqueId": "52437001",
+   "maxProductPrice": 275.0,
+   "minProductPrice": 219.97,
+   "maxEffectivePrice": 275.0,
+   "minEffectivePrice": 219.97,
+   "maxEffectivePriceReg": 275.0,
+   "minEffectivePriceReg": 219.97,
+   "defaultSku": {
+    "salePrice": 220.0,
+    "savings": "20%",
+    "uniqueId": 89349201,
+    "listPrice": 275.0,
+    "listPriceV2": 275.0,
+    "priceMessage": "priceInCart",
+    "priceMessageV2": "priceInCart",
+    "ppuMsg": "",
+    "color": "Green",
+    "skuIdentifier": "seafoam",
+    "defaultSkuIdentifier": "seafoam",
+    "skuId": "164547117",
+    "definingAttributes": {
+     "Color": "Seafoam"
+    },
+    "dollarSavings": 55.0,
+    "percentSavings": "20%",
+    "listPriceV2Reg": 275.0,
+    "priceMessageV2Reg": "priceInCart"
+   },
+   "seoURL": "yeti-hopper-backpack-m12",
+   "fullImage": "//academy.scene7.com/is/image/academy/21675459",
+   "promoMessage": "",
+   "promoCode": "",
+   "promoPrice": "",
+   "thumbnail": "//academy.scene7.com/is/image/academy/21675459",
+   "partNumber": "141199455",
+   "primaryCatgroupName": "Backpack Coolers",
+   "descriptiveAttributes": {
+    "vendorName": "YETI HOLDINGS INC YETI COOLERS LLC",
+    "rating": "4",
+    "reviewcount": "144",
+    "averageRating": "4.7",
+    "udamsrp": "275.00"
+   },
+   "ppuEnabled": "false",
+   "xfullimage": "//academy.scene7.com/is/image/academy/21675459",
+   "skuIdentifier": "seafoam",
+   "objectType": "Product",
+   "orderCount": 8,
+   "giftCardFlag": "N",
+   "ecomCodeDesc": "01 SELL ONLINE",
+   "mapPrice": 275.0,
+   "mapPriceFlag": "Y",
+   "brandColorCount": "7",
+   "flavourCount": "0",
+   "paternCount": "0",
+   "teamCount": "0",
+   "freeShipping": true,
+   "xccStrikethroughPromotion": "true",
+   "promoMessageReg": "",
+   "promoCodeReg": "",
+   "promoPriceReg": "",
+   "xccStrikethroughPromotionReg": "true",
+   "guestMessageText": "",
+   "listPrice": 275.0,
+   "salePrice": 0.0,
+   "catalogId": [
+    "10051"
+   ],
+   "shipToStoreFlag": [
+    "Y"
+   ],
+   "categoryIds": [
+    "3074457345616982104",
+    "3074457345616932685",
+    "3074457345616984107",
+    "3074457345616908598",
+    "3074457345616985615",
+    "3074457345616941639",
+    "239455",
+    "3074457345617141098",
+    "3074457345616954170",
+    "220431",
+    "3074457345616941674",
+    "3074457345616924169",
+    "3074457345616952607",
+    "3074457345616915099",
+    "146752",
+    "3074457345616990623",
+    "3074457345616912146",
+    "181314",
+    "3074457345616924153",
+    "234431",
+    "3074457345616914608",
+    "3074457345616941149",
+    "3074457345617002604",
+    "197936",
+    "3074457345616951147",
+    "15996",
+    "3074457345616951146",
+    "3074457345616957608",
+    "3074457345616972627",
+    "210952"
+   ],
+   "sameDayDeliveryEligible": [
+    "Y"
+   ],
+   "parentPartNumber": "141199455",
+   "definingAttributes": {
+    "Color": "Seafoam"
+   },
+   "ppuMsg": "",
+   "inventory_pick": [],
+   "inventory_sts": [],
+   "clearanceSuppression": false,
+   "startDate": "2023-10-03T00:00:00.000Z",
+   "embargoDate": "",
+   "pick_oos": "0",
+   "sts_oos": "1",
+   "sth_oos": "0",
+   "lsi_oos": "0",
+   "rollUpPromoPriceMessage": "priceInCart",
+   "rollUpPromoPriceMessageReg": "priceInCart",
+   "Clearance_Status": [
+    "M"
+   ],
+   "maxProductPrice_1": 0.0,
+   "minProductPrice_1": 0.0,
+   "maxProductPrice_2": 0.0,
+   "minProductPrice_2": 0.0,
+   "minMSRP": "275",
+   "maxMSRP": "275",
+   "Color": [
+    "Seafoam"
+   ],
+   "facet_Deals": [],
+   "_rankingInfo": {
+    "forcedTypoFirstInRanking": true,
+    "nbTypos": 0,
+    "firstMatchedWord": 0,
+    "proximityDistance": 0,
+    "userScore": 351,
+    "geoDistance": 0,
+    "geoPrecision": 1,
+    "nbExactWords": 0,
+    "words": 0,
+    "filters": 11
+   },
+   "customBadges": [],
+   "facet_Brand": "YETI",
+   "averageRating": "4.7",
+   "reviewCount": "144",
+   "industrySubGroup_image": {
+    "Blue": "//academy.scene7.com/is/image/academy//coolers/yeti-hopper-backpack-m12-soft-cooler-18060131263-blue/9f5440e5-e3c9-4b3f-a83d-a1461002d51e",
+    "Purple": "//academy.scene7.com/is/image/academy/21611653",
+    "Black": "//academy.scene7.com/is/image/academy//coolers/yeti-hopper-backpack-m12-soft-cooler-18060131264-black/ffcadb04-cec5-4509-87d1-bff588a588a7",
+    "Orange": "//academy.scene7.com/is/image/academy//coolers/yeti-hopper-backpack-m12-soft-cooler-18060131608/074f927a-9802-4723-aaf4-339cd87b7cfb",
+    "Green": "//academy.scene7.com/is/image/academy//coolers/yeti-hopper-backpack-m12-soft-cooler-18060131302/80efa1d5-79c5-4f48-a41f-45b925c07fef"
+   },
+   "industrySubGroup_ImageSku": [
+    {
+     "weightage": 1,
+     "image": "//academy.scene7.com/is/image/academy/21675459",
+     "color": "Green",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21675460",
+      "//academy.scene7.com/is/image/academy/21675461"
+     ],
+     "skuIdentifier": "seafoam",
+     "skuId": "164547117"
+    },
+    {
+     "weightage": 2,
+     "image": "//academy.scene7.com/is/image/academy/21611653",
+     "color": "Purple",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21611750",
+      "//academy.scene7.com/is/image/academy/21611797"
+     ],
+     "skuIdentifier": "desert-bloom",
+     "skuId": "164546878"
+    },
+    {
+     "weightage": 3,
+     "image": "//academy.scene7.com/is/image/academy/21622990",
+     "color": "Blue",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21622991",
+      "//academy.scene7.com/is/image/academy/21622992"
+     ],
+     "skuIdentifier": "classic-navy",
+     "skuId": "165984511"
+    },
+    {
+     "weightage": 5,
+     "image": "//academy.scene7.com/is/image/academy//coolers/yeti-hopper-backpack-m12-soft-cooler-18060131608/074f927a-9802-4723-aaf4-339cd87b7cfb",
+     "color": "Orange",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy//soft-sided-coolers/yeti-hopper-backpack-m12-soft-cooler-18060131608/074f927a-9802-4723-aaf4-339cd87b7cfb",
+      "//academy.scene7.com/is/image/academy//soft-sided-coolers/yeti-hopper-backpack-m12-soft-cooler-18060131608/d065d95b-8cb8-4cfb-bed9-b9fee1b42a1e"
+     ],
+     "skuIdentifier": "peach-beekeeper",
+     "skuId": "155321538"
+    },
+    {
+     "weightage": 7,
+     "image": "//academy.scene7.com/is/image/academy//coolers/yeti-hopper-backpack-m12-soft-cooler-18060131264-black/ffcadb04-cec5-4509-87d1-bff588a588a7",
+     "color": "Black",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy//soft-sided-coolers/yeti-hopper-backpack-m12-soft-cooler-18060131264-black/ffcadb04-cec5-4509-87d1-bff588a588a7",
+      "//academy.scene7.com/is/image/academy//soft-sided-coolers/yeti-hopper-backpack-m12-soft-cooler-18060131264-black/ca5569fc-1e11-4c50-95ce-5167d94a45af"
+     ],
+     "skuIdentifier": "charcoal",
+     "skuId": "141199480"
+    }
+   ],
+   "swatches_nonmapprice": {
+    "priceInfo": {
+     "facet_Deals": [],
+     "maxMSRP": "275.00",
+     "minProductPrice": 275.0,
+     "maxEffectivePrice": 275.0,
+     "maxProductPrice": 275.0,
+     "minMSRP": "275.00",
+     "minEffectivePriceReg": 275.0,
+     "clearanceStatus": [
+      "N"
+     ],
+     "minEffectivePrice": 275.0,
+     "valuedCost": 178.75,
+     "maxEffectivePriceReg": 275.0,
+     "listPrice": 275.0,
+     "salePrice": 275.0,
+     "savings": "",
+     "priceMessage": "",
+     "promoPrice": 0.0,
+     "promoPriceReg": 0.0
+    },
+    "brandColorCount": "4",
+    "flavourCount": "0",
+    "teamCount": "0",
+    "paternCount": "0",
+    "swatches": [
+     {
+      "weightage": 3,
+      "image": "//academy.scene7.com/is/image/academy/21622990",
+      "color": "Blue",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21622991",
+       "//academy.scene7.com/is/image/academy/21622992"
+      ],
+      "skuIdentifier": "classic-navy",
+      "skuId": "165984511"
+     },
+     {
+      "weightage": 7,
+      "image": "//academy.scene7.com/is/image/academy//coolers/yeti-hopper-backpack-m12-soft-cooler-18060131264-black/ffcadb04-cec5-4509-87d1-bff588a588a7",
+      "color": "Black",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy//soft-sided-coolers/yeti-hopper-backpack-m12-soft-cooler-18060131264-black/ffcadb04-cec5-4509-87d1-bff588a588a7",
+       "//academy.scene7.com/is/image/academy//soft-sided-coolers/yeti-hopper-backpack-m12-soft-cooler-18060131264-black/ca5569fc-1e11-4c50-95ce-5167d94a45af"
+      ],
+      "skuIdentifier": "charcoal",
+      "skuId": "141199480"
+     }
+    ]
+   },
+   "swatches_mapprice": {
+    "priceInfo": {
+     "facet_Deals": [],
+     "maxMSRP": "275.00",
+     "minMapPrice": 275.0,
+     "rollUpPromoPriceMessage": "priceInCart",
+     "maxMapPrice": 275.0,
+     "minProductPrice": 219.97,
+     "maxEffectivePrice": 220.0,
+     "maxProductPrice": 220.0,
+     "rollUpPromoPriceMessageReg": "priceInCart",
+     "minMSRP": "275.00",
+     "minEffectivePriceReg": 219.97,
+     "clearanceStatus": [
+      "M"
+     ],
+     "minEffectivePrice": 219.97,
+     "valuedCost": 178.75,
+     "maxEffectivePriceReg": 220.0,
+     "listPrice": 275.0,
+     "salePrice": 220.0,
+     "savings": "20%",
+     "priceMessage": "priceInCart",
+     "promoPrice": 0.0,
+     "promoPriceReg": 0.0,
+     "mapPrice": 275.0,
+     "dollarSavings": 55.0,
+     "percentSavings": "20%",
+     "listPriceV2": 275.0,
+     "listPriceV2Reg": 275.0,
+     "priceMessageV2": "priceInCart",
+     "priceMessageV2Reg": "priceInCart",
+     "xccStrikethroughPromotion": "true",
+     "xccStrikethroughPromotionReg": "true"
+    },
+    "brandColorCount": "3",
+    "flavourCount": "0",
+    "teamCount": "0",
+    "paternCount": "0",
+    "swatches": [
+     {
+      "weightage": 1,
+      "image": "//academy.scene7.com/is/image/academy/21675459",
+      "color": "Green",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21675460",
+       "//academy.scene7.com/is/image/academy/21675461"
+      ],
+      "skuIdentifier": "seafoam",
+      "skuId": "164547117"
+     },
+     {
+      "weightage": 2,
+      "image": "//academy.scene7.com/is/image/academy/21611653",
+      "color": "Purple",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21611750",
+       "//academy.scene7.com/is/image/academy/21611797"
+      ],
+      "skuIdentifier": "desert-bloom",
+      "skuId": "164546878"
+     },
+     {
+      "weightage": 5,
+      "image": "//academy.scene7.com/is/image/academy//coolers/yeti-hopper-backpack-m12-soft-cooler-18060131608/074f927a-9802-4723-aaf4-339cd87b7cfb",
+      "color": "Orange",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy//soft-sided-coolers/yeti-hopper-backpack-m12-soft-cooler-18060131608/074f927a-9802-4723-aaf4-339cd87b7cfb",
+       "//academy.scene7.com/is/image/academy//soft-sided-coolers/yeti-hopper-backpack-m12-soft-cooler-18060131608/d065d95b-8cb8-4cfb-bed9-b9fee1b42a1e"
+      ],
+      "skuIdentifier": "peach-beekeeper",
+      "skuId": "155321538"
+     }
+    ]
+   },
+   "definingAttribute_SwatchesImage": {},
+   "definingAttribute_SwatchesImageSku": [],
+   "objectID": "164547117",
+   "skuIds": [
+    "88427008",
+    "89349201",
+    "87844502",
+    "70192603",
+    "56976768",
+    "52438503",
+    "52438501"
+   ],
+   "primaryCatgroupId": "3074457345616982104",
+   "isQuickViewEligible": false,
+   "SPECIALORDER": "N",
+   "is_assembly_required": "",
+   "facet_IndustrySubGroup": [
+    "Green"
+   ]
+  },
+  {
+   "catentryId": "272953",
+   "name": "Field Logic Big Shooter 3-D Deer Target",
+   "sellable": "true",
+   "uniqueId": "272953",
+   "maxProductPrice": 169.99,
+   "minProductPrice": 169.99,
+   "maxEffectivePrice": 135.99,
+   "minEffectivePrice": 135.99,
+   "maxEffectivePriceReg": 135.99,
+   "minEffectivePriceReg": 135.99,
+   "defaultSku": {
+    "salePrice": 169.99,
+    "savings": "",
+    "uniqueId": 272954,
+    "listPrice": 169.99,
+    "listPriceV2": 0.0,
+    "priceMessage": "",
+    "ppuMsg": "",
+    "skuIdentifier": "",
+    "defaultSkuIdentifier": "",
+    "skuId": "020420832",
+    "definingAttributes": {},
+    "listPriceV2Reg": 0.0
+   },
+   "seoURL": "field-logic-big-shooter-3-d-deer-target",
+   "fullImage": "//academy.scene7.com/is/image/academy/10151025",
+   "promoMessage": "20% Off Sports + Outdoors Gear",
+   "promoCode": "1003715",
+   "promoPrice": "135.9900",
+   "thumbnail": "//academy.scene7.com/is/image/academy/10151025",
+   "partNumber": "020420832P",
+   "primaryCatgroupName": "3D Targets",
+   "descriptiveAttributes": {
+    "vendorName": "FIELD LOGIC",
+    "rating": "3",
+    "reviewcount": "36",
+    "averageRating": "3.1"
+   },
+   "ppuEnabled": "false",
+   "xfullimage": "//academy.scene7.com/is/image/academy/10151025",
+   "skuIdentifier": "",
+   "objectType": "Product",
+   "orderCount": 8,
+   "giftCardFlag": "N",
+   "ecomCodeDesc": "07 SELL ONLINE AND DROPSHIP",
+   "mapPrice": 109.99,
+   "mapPriceFlag": "N",
+   "brandColorCount": "0",
+   "flavourCount": "0",
+   "paternCount": "0",
+   "teamCount": "0",
+   "freeShipping": false,
+   "rebatePromotion": {
+    "messageText": "$20 Rebate Available",
+    "startDateTime": "Aug 1, 2026, 5:00:00\u202fAM",
+    "promotionCode": "1003560",
+    "link": "https://assets.contentstack.io/v3/assets/blt964243cdd7810dea/blt60dc28231647220a/6a70e284f71efd2c24a42b34/Glendel_Target_$20_Rebate_(1).pdf",
+    "description": "$20 Rebate Available",
+    "endDateTime": "Jan 1, 2027, 5:59:59\u202fAM"
+   },
+   "xccStrikethroughPromotion": "true",
+   "promoMessageReg": "20% Off Sports + Outdoors Gear",
+   "promoCodeReg": "1003715",
+   "promoPriceReg": "135.9900",
+   "xccStrikethroughPromotionReg": "true",
+   "guestMessageText": "",
+   "listPrice": 169.99,
+   "salePrice": 0.0,
+   "catalogId": [
+    "10051"
+   ],
+   "shipToStoreFlag": [
+    "N"
+   ],
+   "categoryIds": [
+    "3074457345616984601",
+    "3074457345616941639",
+    "15881",
+    "220431",
+    "3074457345616952607",
+    "3074457345616921646",
+    "3074457345616921647",
+    "3074457345616968632",
+    "197936",
+    "3074457345616951147",
+    "196130",
+    "3074457345616951146",
+    "3074457345616957608",
+    "15758",
+    "15857",
+    "210952"
+   ],
+   "sameDayDeliveryEligible": [
+    "N"
+   ],
+   "parentPartNumber": "020420832P",
+   "definingAttributes": {},
+   "ppuMsg": "",
+   "inventory_pick": [],
+   "inventory_sts": [],
+   "clearanceSuppression": false,
+   "startDate": "2026-05-28T14:42:45.374Z",
+   "embargoDate": "",
+   "pick_oos": "1",
+   "sts_oos": "1",
+   "stsfs_oos": "1",
+   "sth_oos": "1",
+   "lsi_oos": "0",
+   "rollUpPromoPriceMessage": "",
+   "rollUpPromoPriceMessageReg": "",
+   "Clearance_Status": [
+    "N"
+   ],
+   "maxProductPrice_1": 0.0,
+   "minProductPrice_1": 0.0,
+   "maxProductPrice_2": 0.0,
+   "minProductPrice_2": 0.0,
+   "minMSRP": "",
+   "maxMSRP": "",
+   "Color": [
+    "000"
+   ],
+   "facet_Deals": [],
+   "_rankingInfo": {
+    "forcedTypoFirstInRanking": true,
+    "nbTypos": 0,
+    "firstMatchedWord": 0,
+    "proximityDistance": 0,
+    "userScore": 350,
+    "geoDistance": 0,
+    "geoPrecision": 1,
+    "nbExactWords": 0,
+    "words": 0,
+    "filters": 11
+   },
+   "customBadges": [],
+   "facet_Brand": "Field Logic",
+   "nonPricingAdbugs": [],
+   "averageRating": "3.1",
+   "reviewCount": "36",
+   "xccRebatePromotion": {
+    "0911": {
+     "app": {
+      "description": "$20 Rebate Available.",
+      "endDateTime": "Dec 31, 2025, 11:59:59 PM",
+      "link": "https://assets.contentstack.io/v3/assets/blt964243cdd7810dea/bltc38e8dd7cc455625/6893bb35709c2980e7d5dc7a/FT-10184_$20_Glendel_Target_USA.pdf",
+      "messageText": "$20 Rebate Available.",
+      "promotionCode": "1002579",
+      "startDateTime": "Aug 6, 2025, 12:00:00 AM"
+     },
+     "mo": {
+      "description": "$20 Rebate Available.",
+      "endDateTime": "Dec 31, 2025, 11:59:59 PM",
+      "link": "https://assets.contentstack.io/v3/assets/blt964243cdd7810dea/bltc38e8dd7cc455625/6893bb35709c2980e7d5dc7a/FT-10184_$20_Glendel_Target_USA.pdf",
+      "messageText": "$20 Rebate Available.",
+      "promotionCode": "1002579",
+      "startDateTime": "Aug 6, 2025, 12:00:00 AM"
+     },
+     "web": {
+      "description": "$20 Rebate Available.",
+      "endDateTime": "Dec 31, 2025, 11:59:59 PM",
+      "link": "https://assets.contentstack.io/v3/assets/blt964243cdd7810dea/bltc38e8dd7cc455625/6893bb35709c2980e7d5dc7a/FT-10184_$20_Glendel_Target_USA.pdf",
+      "messageText": "$20 Rebate Available.",
+      "promotionCode": "1002579",
+      "startDateTime": "Aug 6, 2025, 12:00:00 AM"
+     }
+    },
+    "0912": {
+     "app": {
+      "description": "$20 Rebate Available.",
+      "endDateTime": "Dec 31, 2025, 11:59:59 PM",
+      "link": "https://assets.contentstack.io/v3/assets/blt964243cdd7810dea/bltc38e8dd7cc455625/6893bb35709c2980e7d5dc7a/FT-10184_$20_Glendel_Target_USA.pdf",
+      "messageText": "$20 Rebate Available.",
+      "promotionCode": "1002579",
+      "startDateTime": "Aug 6, 2025, 12:00:00 AM"
+     },
+     "mo": {
+      "description": "$20 Rebate Available.",
+      "endDateTime": "Dec 31, 2025, 11:59:59 PM",
+      "link": "https://assets.contentstack.io/v3/assets/blt964243cdd7810dea/bltc38e8dd7cc455625/6893bb35709c2980e7d5dc7a/FT-10184_$20_Glendel_Target_USA.pdf",
+      "messageText": "$20 Rebate Available.",
+      "promotionCode": "1002579",
+      "startDateTime": "Aug 6, 2025, 12:00:00 AM"
+     },
+     "web": {
+      "description": "$20 Rebate Available.",
+      "endDateTime": "Dec 31, 2025, 11:59:59 PM",
+      "link": "https://assets.contentstack.io/v3/assets/blt964243cdd7810dea/bltc38e8dd7cc455625/6893bb35709c2980e7d5dc7a/FT-10184_$20_Glendel_Target_USA.pdf",
+      "messageText": "$20 Rebate Available.",
+      "promotionCode": "1002579",
+      "startDateTime": "Aug 6, 2025, 12:00:00 AM"
+     }
+    }
+   },
+   "industrySubGroup_image": {},
+   "industrySubGroup_ImageSku": [
+    {
+     "image": "//academy.scene7.com/is/image/academy/10151025",
+     "color": "",
+     "alternateImages": [],
+     "skuIdentifier": "",
+     "skuId": "020420832"
+    }
+   ],
+   "swatches_nonmapprice": {
+    "priceInfo": {
+     "facet_Deals": [],
+     "maxMSRP": "",
+     "minProductPrice": 169.99,
+     "maxEffectivePrice": 135.99,
+     "maxProductPrice": 169.99,
+     "minMSRP": "",
+     "minEffectivePriceReg": 135.99,
+     "clearanceStatus": [
+      "N"
+     ],
+     "minEffectivePrice": 135.99,
+     "valuedCost": 98.82,
+     "maxEffectivePriceReg": 135.99,
+     "listPrice": 169.99,
+     "salePrice": 169.99,
+     "savings": "",
+     "priceMessage": "",
+     "promoPrice": 135.99,
+     "promoPriceReg": 135.99,
+     "xccStrikethroughPromotion": "true",
+     "xccStrikethroughPromotionReg": "true"
+    },
+    "brandColorCount": "1",
+    "flavourCount": "0",
+    "teamCount": "0",
+    "paternCount": "0",
+    "swatches": [
+     {
+      "image": "//academy.scene7.com/is/image/academy/10151025",
+      "color": "",
+      "alternateImages": [],
+      "skuIdentifier": "",
+      "skuId": "020420832"
+     }
+    ]
+   },
+   "swatches_mapprice": {},
+   "definingAttribute_SwatchesImage": {},
+   "definingAttribute_SwatchesImageSku": [],
+   "objectID": "020420832",
+   "skuIds": [
+    "272954"
+   ],
+   "primaryCatgroupId": "3074457345616984601",
+   "isQuickViewEligible": false,
+   "is_assembly_required": ""
+  }
+ ]
+}
