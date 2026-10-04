@@ -122,7 +122,7 @@ These are still being worked on and currently returned `0` items in recent smoke
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
 | [`anthropologie_listing`](#anthropologie_listing) | Experimental | api + html | PerimeterX / HUMAN | Anthropologie listing spider (API + HTML fallback). | 0 (ok) | women, dresses, sale | `n/a` |
-| [`bathandbodyworks_listing`](#bathandbodyworks_listing) | Experimental | api + bootstrap + html | PerimeterX / HUMAN (px-captcha) | Bath & Body Works multi-mode listing spider. | 0 (ok) | body-care, home-fragrance, hand-soaps | `{}` |
+| [`bathandbodyworks_listing`](#bathandbodyworks_listing) | Active | Mobify React Query hydration | PerimeterX / HUMAN (px-captcha) | Bath & Body Works category listings from server-rendered product state. | 48 (live, one page) | 65 current navigation targets | `{"category":"body-care","item_id":"028030187","title":"Vanilla Silk Skin Replenishing Body Wash",...}` |
 | [`costco_search`](#costco_search--costco_listing) | Active | bootstrap + html | Akamai | Costco keyword search with state extraction + fallback. | 0 (skipped2) | - | `{}` |
 | [`dillards_listing`](#dillards_listing) | Experimental | bootstrap | Akamai | Dillard's listing spider via `window.__INITIAL_STATE__`. | 0 (ok) | women, men, shoes, handbags, beauty, juniors, home | `n/a` |
 | [`kohls_listing`](#kohls_listing) | Experimental | api | Akamai (Cloudflare challenge assets also observed) | Kohl’s listing via `/web/catalog/...` API. | 0 (ok) | women, men, sale | `n/a` |
@@ -1624,21 +1624,45 @@ Notes:
 - NordVPN US egress (New York, Chicago, Los Angeles, Dallas, Miami, Seattle) continued to return 403s/timeouts during curl checks; disconnecting NordVPN and routing through the configured BRD residential proxy remains the only reliable path in this environment.
 
 ### bathandbodyworks_listing
+
+Extracts the authoritative product `hits` from the `products` React Query inside
+the server-rendered `#mobify-data` payload. There are no API/HTML fallback modes:
+missing hydration or an empty product collection fails visibly. The nested
+`BATHANDBODYWORKS_CATEGORIES` inventory contains 65 current navigation targets
+across sale, new, gifts, body care, candles, home fragrance, soaps and sanitizers,
+men's, and home care. Products are deduplicated by `productId`; additional pages
+use the storefront's `start` offset and obey `max_pages`.
+
 ```json
 {
-  "item_id": "12345678",
-  "title": "Body Lotion ...",
-  "url": "https://www.bathandbodyworks.com/p/...",
-  "price": 16.95,
+  "item_id": "028005116",
+  "title": "A Thousand Wishes Ultimate Hydration Body Cream",
+  "url": "https://www.bathandbodyworks.com/p/a-thousand-wishes-ultimate-hydration-body-cream-028005116",
+  "price": 4.95,
+  "regular_price": 18.95,
   "currency": "USD",
-  "brand": "Bath & Body Works",
-  "source": "bathandbodyworks_internal_api|bathandbodyworks_html"
+  "availability": "InStock",
+  "rating": 4.8455,
+  "reviews_count": 5132,
+  "source": "bathandbodyworks_mobify_react_query"
 }
 ```
+
 Run examples:
-- `common-scrapy crawl bathandbodyworks_listing -a category='body-care' -a mode=api -a max_pages=1 -O bbw_api.jsonl`
-- `common-scrapy crawl bathandbodyworks_listing -a category='body-care' -a mode=bootstrap -a max_pages=1 -O bbw_bootstrap.jsonl`
-- `common-scrapy crawl bathandbodyworks_listing -a category='body-care' -a mode=html -a max_pages=1 -O bbw_html.jsonl`
+
+- `common-scrapy crawl bathandbodyworks_listing -a category=body-care -a max_pages=1 -O bbw.jsonl -s HTTPCACHE_ENABLED=False`
+- Pass any of the 65 aliases, such as `3-wick-candles`, or use `-a url=<listing-url>`.
+
+Live verification status: as of 2026-10-03, a one-page live crawl of
+`https://www.bathandbodyworks.com/c/body-care` returned HTTP 200 and exported
+48 items, all with a non-empty `raw` hydrated record. The committed
+`sample/bathandbodyworks-listing-products.html` fixture yields 2 items for
+deterministic tests.
+
+The ordered `FEED_EXPORT_FIELDS` contract includes identifiers, name and brand,
+product/media URLs, sale and regular prices, availability, rating/review data,
+product type, fragrance, size, color, position, source, crawl context, and the raw
+hydrated record.
 
 ### ikea_listing
 
