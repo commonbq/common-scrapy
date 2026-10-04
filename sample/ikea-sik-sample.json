@@ -1,0 +1,602 @@
+{
+  "captured_at": "2026-09-29T01:00:00Z",
+  "listing_url": "https://www.ikea.com/us/en/cat/dressers-storage-drawers-st004/",
+  "note": "Reduced capture: each response retains metadata and the first returned item only.",
+  "requests": [
+    {
+      "method": "POST",
+      "url": "https://sik.search.blue.cdtapps.com/us/en/search?c=listaf&v=20250507",
+      "headers": {
+        "referer": "https://www.ikea.com/",
+        "content-type": "text/plain;charset=UTF-8",
+        "session-id": "<redacted>"
+      },
+      "body": {
+        "searchParameters": {
+          "input": "st004",
+          "type": "CATEGORY"
+        },
+        "isUserLoggedIn": false,
+        "isB2B": false,
+        "considerationLevel": "HIGH_TECHNICAL",
+        "listingABTest": true,
+        "components": [
+          {
+            "component": "PRIMARY_AREA",
+            "columns": 4,
+            "types": {
+              "main": "PRODUCT",
+              "breakouts": [
+                "PLANNER",
+                "LOGIN_REMINDER",
+                "MATTRESS_WARRANTY",
+                "AFFORDABILITY",
+                "OFFERS",
+                "NEW_PRODUCT"
+              ]
+            },
+            "filterConfig": {
+              "max-num-filters": 4
+            },
+            "window": {
+              "size": 24,
+              "offset": 0
+            },
+            "allVariants": false,
+            "forceFilterCalculation": true
+          }
+        ]
+      },
+      "status": 200,
+      "response": {
+        "metadata": {
+          "categoryPage": {
+            "categoryName": "Dressers & storage drawers",
+            "categoryKey": "st004",
+            "categoryUrl": "https://www.ikea.com/us/en/cat/dressers-storage-drawers-st004/",
+            "categoryParents": [
+              "st001"
+            ]
+          }
+        },
+        "component": "PRIMARY_AREA",
+        "viewMode": "GRID",
+        "metadata_window": {
+          "start": 0,
+          "end": 24,
+          "max": 150,
+          "itemsPerType": {
+            "PRODUCT": 147,
+            "AFFORDABILITY": 1,
+            "OFFERS": 1,
+            "NEW_PRODUCT": 1
+          }
+        },
+        "first_item": {
+          "metadata": "v1;1;PRODUCT;60561248;products_main;",
+          "product": {
+            "name": "STORKLINTA",
+            "typeName": "6-drawer dresser",
+            "itemMeasureReferenceText": "55 1/8x18 7/8x29 1/2 \"",
+            "mainImageUrl": "https://www.ikea.com/us/en/images/products/storklinta-6-drawer-dresser-white-anchor-unlock-function__1590235_pe1038874_s5.jpg",
+            "pipUrl": "https://www.ikea.com/us/en/p/storklinta-6-drawer-dresser-white-anchor-unlock-function-60561248/",
+            "filterClass": "chest of drawers",
+            "allProductImage": [
+              {
+                "altText": "Modern white chest of drawers, six drawers with smooth lines, safe with anchoring feature.",
+                "type": "MAIN_PRODUCT_IMAGE",
+                "url": "https://www.ikea.com/us/en/images/products/storklinta-6-drawer-dresser-white-anchor-unlock-function__1590235_pe1038874_s5.jpg"
+              },
+              {
+                "altText": "Modern bedroom with white STORKLINTA chest, sleek design, smooth drawers, top decor, and green plant.",
+                "type": "CONTEXT_PRODUCT_IMAGE",
+                "url": "https://www.ikea.com/us/en/images/products/storklinta-6-drawer-dresser-white-anchor-unlock-function__1344049_pe949711_s5.jpg"
+              },
+              {
+                "altText": "STORKLINTA 6-drawer dresser, white/anchor/unlock function, 55 1/8x18 7/8x29 1/2 \"",
+                "type": "CONTEXT_PRODUCT_IMAGE",
+                "url": "https://www.ikea.com/us/en/images/products/storklinta-6-drawer-dresser-white-anchor-unlock-function__1522380_pe1013612_s5.jpg"
+              },
+              {
+                "altText": "STORKLINTA 6-drawer dresser, white/anchor/unlock function, 55 1/8x18 7/8x29 1/2 \"",
+                "type": "FUNCTIONAL_PRODUCT_IMAGE",
+                "url": "https://www.ikea.com/us/en/images/products/storklinta-6-drawer-dresser-white-anchor-unlock-function__1522376_pe1013608_s5.jpg"
+              },
+              {
+                "altText": "White STORKLINTA chest drawer, sleek design, smooth edges, horizontal lines.",
+                "type": "QUALITY_PRODUCT_IMAGE",
+                "url": "https://www.ikea.com/us/en/images/products/storklinta-6-drawer-dresser-white-anchor-unlock-function__1343993_pe949667_s5.jpg"
+              }
+            ],
+            "id": "60561248",
+            "itemNoGlobal": "70627550",
+            "onlineSellable": true,
+            "lastChance": false,
+            "gprDescription": {
+              "numberOfVariants": 2,
+              "variants": [
+                {
+                  "id": "50561244",
+                  "pipUrl": "https://www.ikea.com/us/en/p/storklinta-6-drawer-dresser-dark-brown-oak-effect-anchor-unlock-function-50561244/",
+                  "imageUrl": "https://www.ikea.com/us/en/images/products/storklinta-6-drawer-dresser-dark-brown-oak-effect-anchor-unlock-function__1590232_pe1038871_s5.jpg",
+                  "imageAlt": "STORKLINTA 6-drawer dresser, dark-brown/oak effect anchor/unlock function, 55 1/8x18 7/8x29 1/2 \"",
+                  "quickFacts": [
+                    {
+                      "type": "TEST_WINNER",
+                      "id": "200",
+                      "name": "Designed to meet the US Federal Stability Standard",
+                      "typeName": "Test winner"
+                    },
+                    {
+                      "type": "FEATURES",
+                      "id": "73187",
+                      "name": "Large capacity",
+                      "typeName": "Features"
+                    }
+                  ],
+                  "availability": [],
+                  "ratingValue": 3.9,
+                  "ratingCount": 319,
+                  "name": "STORKLINTA",
+                  "typeName": "6-drawer dresser",
+                  "itemMeasureReferenceText": "55 1/8x18 7/8x29 1/2 \"",
+                  "mainImageUrl": "https://www.ikea.com/us/en/images/products/storklinta-6-drawer-dresser-dark-brown-oak-effect-anchor-unlock-function__1590232_pe1038871_s5.jpg",
+                  "mainImageAlt": "Brown storklint chest with 6 drawers, modern design",
+                  "contextualImageUrl": "https://www.ikea.com/us/en/images/products/storklinta-6-drawer-dresser-dark-brown-oak-effect-anchor-unlock-function__1522381_pe1013611_s5.jpg",
+                  "contextualImageAlt": "STORKLINTA 6-drawer dresser, dark-brown/oak effect anchor/unlock function, 55 1/8x18 7/8x29 1/2 \"",
+                  "itemNoGlobal": "80627559",
+                  "onlineSellable": true,
+                  "lastChance": false,
+                  "itemNo": "50561244",
+                  "itemType": "ART",
+                  "salesPrice": {
+                    "currencyCode": "USD",
+                    "numeral": 279.99,
+                    "current": {
+                      "prefix": "$",
+                      "wholeNumber": "279",
+                      "separator": ".",
+                      "decimals": "99",
+                      "suffix": "",
+                      "isRegularCurrency": false,
+                      "style": "SUPER"
+                    },
+                    "isBreathTaking": false,
+                    "discount": "",
+                    "tag": "NONE",
+                    "priceText": "Price",
+                    "tags": [],
+                    "tagWithText": {
+                      "tag": "NONE"
+                    }
+                  },
+                  "optimizelyAttributes": {
+                    "PRODUCT_TYPE": "standard"
+                  },
+                  "validDesignText": "dark-brown/oak effect anchor/unlock function",
+                  "allProductImage": [
+                    {
+                      "altText": "STORKLINTA 6-drawer dresser, dark-brown/oak effect anchor/unlock function, 55 1/8x18 7/8x29 1/2 \"",
+                      "type": "CONTEXT_PRODUCT_IMAGE",
+                      "url": "https://www.ikea.com/us/en/images/products/storklinta-6-drawer-dresser-dark-brown-oak-effect-anchor-unlock-function__1522381_pe1013611_s5.jpg"
+                    },
+                    {
+                      "altText": "Brown storklint chest with 6 drawers, modern design",
+                      "type": "MAIN_PRODUCT_IMAGE",
+                      "url": "https://www.ikea.com/us/en/images/products/storklinta-6-drawer-dresser-dark-brown-oak-effect-anchor-unlock-function__1590232_pe1038871_s5.jpg"
+                    },
+                    {
+                      "altText": "Modern bedroom with storklint chest, dark wood, sleek design, purple walls, plants, mirror, and artwork.",
+                      "type": "CONTEXT_PRODUCT_IMAGE",
+                      "url": "https://www.ikea.com/us/en/images/products/storklinta-6-drawer-dresser-dark-brown-oak-effect-anchor-unlock-function__1344047_pe949709_s5.jpg"
+                    },
+                    {
+                      "altText": "Dark brown STORKLINTA drawer, smooth finish, sleek handles, modern design.",
+                      "type": "QUALITY_PRODUCT_IMAGE",
+                      "url": "https://www.ikea.com/us/en/images/products/storklinta-6-drawer-dresser-dark-brown-oak-effect-anchor-unlock-function__1343990_pe949664_s5.jpg"
+                    }
+                  ]
+                },
+                {
+                  "id": "00561246",
+                  "pipUrl": "https://www.ikea.com/us/en/p/storklinta-6-drawer-dresser-oak-effect-anchor-unlock-function-00561246/",
+                  "imageUrl": "https://www.ikea.com/us/en/images/products/storklinta-6-drawer-dresser-oak-effect-anchor-unlock-function__1590204_pe1038843_s5.jpg",
+                  "imageAlt": "STORKLINTA 6-drawer dresser, oak effect/anchor/unlock function, 55 1/8x18 7/8x29 1/2 \"",
+                  "quickFacts": [
+                    {
+                      "type": "TEST_WINNER",
+                      "id": "200",
+                      "name": "Designed to meet the US Federal Stability Standard",
+                      "typeName": "Test winner"
+                    }
+                  ],
+                  "availability": [],
+                  "ratingValue": 3.9,
+                  "ratingCount": 319,
+                  "name": "STORKLINTA",
+                  "typeName": "6-drawer dresser",
+                  "itemMeasureReferenceText": "55 1/8x18 7/8x29 1/2 \"",
+                  "mainImageUrl": "https://www.ikea.com/us/en/images/products/storklinta-6-drawer-dresser-oak-effect-anchor-unlock-function__1590204_pe1038843_s5.jpg",
+                  "mainImageAlt": "STORKLINTA chest: light wood, 6 drawers, simple design.",
+                  "contextualImageUrl": "https://www.ikea.com/us/en/images/products/storklinta-6-drawer-dresser-oak-effect-anchor-unlock-function__1344051_pe949710_s5.jpg",
+                  "contextualImageAlt": "Modern light brown wooden chest with drawers, 6 drawers, shiny objects, plant, mirror, simple, bedroom with plants.",
+                  "itemNoGlobal": "30627547",
+                  "onlineSellable": true,
+                  "lastChance": false,
+                  "itemNo": "00561246",
+                  "itemType": "ART",
+                  "salesPrice": {
+                    "currencyCode": "USD",
+                    "numeral": 279.99,
+                    "current": {
+                      "prefix": "$",
+                      "wholeNumber": "279",
+                      "separator": ".",
+                      "decimals": "99",
+                      "suffix": "",
+                      "isRegularCurrency": false,
+                      "style": "SUPER"
+                    },
+                    "isBreathTaking": false,
+                    "discount": "",
+                    "tag": "NONE",
+                    "priceText": "Price",
+                    "tags": [],
+                    "tagWithText": {
+                      "tag": "NONE"
+                    }
+                  },
+                  "optimizelyAttributes": {
+                    "PRODUCT_TYPE": "standard"
+                  },
+                  "validDesignText": "oak effect/anchor/unlock function",
+                  "allProductImage": [
+                    {
+                      "altText": "Modern light brown wooden chest with drawers, 6 drawers, shiny objects, plant, mirror, simple, bedroom with plants.",
+                      "type": "CONTEXT_PRODUCT_IMAGE",
+                      "url": "https://www.ikea.com/us/en/images/products/storklinta-6-drawer-dresser-oak-effect-anchor-unlock-function__1344051_pe949710_s5.jpg"
+                    },
+                    {
+                      "altText": "STORKLINTA 6-drawer dresser, oak effect/anchor/unlock function, 55 1/8x18 7/8x29 1/2 \"",
+                      "type": "CONTEXT_PRODUCT_IMAGE",
+                      "url": "https://www.ikea.com/us/en/images/products/storklinta-6-drawer-dresser-oak-effect-anchor-unlock-function__1522379_pe1013609_s5.jpg"
+                    },
+                    {
+                      "altText": "STORKLINTA chest: light wood, 6 drawers, simple design.",
+                      "type": "MAIN_PRODUCT_IMAGE",
+                      "url": "https://www.ikea.com/us/en/images/products/storklinta-6-drawer-dresser-oak-effect-anchor-unlock-function__1590204_pe1038843_s5.jpg"
+                    },
+                    {
+                      "altText": "STORKLINTA 6-drawer dresser, oak effect/anchor/unlock function, 55 1/8x18 7/8x29 1/2 \"",
+                      "type": "FUNCTIONAL_PRODUCT_IMAGE",
+                      "url": "https://www.ikea.com/us/en/images/products/storklinta-6-drawer-dresser-oak-effect-anchor-unlock-function__1522375_pe1013605_s5.jpg"
+                    },
+                    {
+                      "altText": "Light wood grain drawer close-up, showing modern design with cut-out handle, highlighting natural texture and clean lines.",
+                      "type": "QUALITY_PRODUCT_IMAGE",
+                      "url": "https://www.ikea.com/us/en/images/products/storklinta-6-drawer-dresser-oak-effect-anchor-unlock-function__1343996_pe949670_s5.jpg"
+                    }
+                  ]
+                }
+              ],
+              "variations": [
+                {
+                  "id": "colour",
+                  "name": "Color",
+                  "count": 3,
+                  "values": [
+                    {
+                      "name": "dark-brown/oak effect anchor/unlock function",
+                      "products": [
+                        "50561244"
+                      ]
+                    },
+                    {
+                      "name": "oak effect/anchor/unlock function",
+                      "products": [
+                        "00561246"
+                      ]
+                    },
+                    {
+                      "name": "white/anchor/unlock function",
+                      "products": [
+                        "60561248"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "colors": [
+              {
+                "name": "white",
+                "id": "10156",
+                "hex": "ffffff"
+              }
+            ],
+            "badge": {
+              "type": "TOP_SELLER",
+              "text": "Best seller"
+            },
+            "tag": "NONE",
+            "quickFacts": [
+              {
+                "type": "TEST_WINNER",
+                "id": "200",
+                "name": "Designed to meet the US Federal Stability Standard",
+                "typeName": "Test winner"
+              },
+              {
+                "type": "FEATURES",
+                "id": "73187",
+                "name": "Large capacity",
+                "typeName": "Features"
+              }
+            ],
+            "features": [],
+            "availability": [],
+            "ratingValue": 3.9,
+            "ratingCount": 319,
+            "itemNo": "60561248",
+            "itemType": "ART",
+            "salesPrice": {
+              "currencyCode": "USD",
+              "numeral": 249.99,
+              "current": {
+                "prefix": "$",
+                "wholeNumber": "249",
+                "separator": ".",
+                "decimals": "99",
+                "suffix": "",
+                "isRegularCurrency": false,
+                "style": "SUPER"
+              },
+              "isBreathTaking": false,
+              "discount": "",
+              "tag": "NONE",
+              "priceText": "Price",
+              "advertisement": {
+                "text": "In-store only price $199.99",
+                "validityDisclaimer": "Offer valid from Sep 8, 2026 until Dec 24, 2026",
+                "validForCustomers": [
+                  "IKEAFamily"
+                ],
+                "exclusiveToIkeaMemberText": "Exclusive IKEA family offer",
+                "validFrom": "2026-09-08",
+                "validTo": "2026-12-24"
+              },
+              "tags": [],
+              "tagWithText": {
+                "tag": "NONE"
+              }
+            },
+            "contextualImageUrl": "https://www.ikea.com/us/en/images/products/storklinta-6-drawer-dresser-white-anchor-unlock-function__1344049_pe949711_s5.jpg",
+            "contextualImageAlt": "Modern bedroom with white STORKLINTA chest, sleek design, smooth drawers, top decor, and green plant.",
+            "mainImageAlt": "Modern white chest of drawers, six drawers with smooth lines, safe with anchoring feature.",
+            "businessStructure": {
+              "homeFurnishingBusinessName": "Bedroom furniture",
+              "homeFurnishingBusinessNo": "04",
+              "productAreaName": "Chest of drawers",
+              "productAreaNo": "0431",
+              "productRangeAreaName": "Chests & other furniture",
+              "productRangeAreaNo": "043"
+            },
+            "categoryPath": [
+              {
+                "name": "Storage & organization",
+                "key": "st001"
+              },
+              {
+                "name": "Dressers & storage drawers",
+                "key": "st004"
+              },
+              {
+                "name": "Dressers & chests of drawers",
+                "key": "10451"
+              }
+            ],
+            "validDesignText": "white/anchor/unlock function",
+            "heroBackoffData": {},
+            "optimizelyAttributes": {
+              "PRODUCT_TYPE": "standard"
+            }
+          },
+          "type": "PRODUCT",
+          "label": "Product",
+          "actionTokens": [],
+          "isBreakout": false
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "https://sik.search.blue.cdtapps.com/us/en/search?c=listaf&v=20250507",
+      "headers": {
+        "referer": "https://www.ikea.com/",
+        "content-type": "text/plain;charset=UTF-8",
+        "session-id": "<redacted>"
+      },
+      "body": {
+        "searchParameters": {
+          "input": "st004",
+          "type": "CATEGORY"
+        },
+        "isUserLoggedIn": false,
+        "isB2B": false,
+        "considerationLevel": "HIGH_TECHNICAL",
+        "components": [
+          {
+            "component": "PRIMARY_AREA",
+            "columns": 4,
+            "types": {
+              "main": "PRODUCT",
+              "breakouts": [
+                "PLANNER",
+                "LOGIN_REMINDER",
+                "MATTRESS_WARRANTY",
+                "AFFORDABILITY",
+                "OFFERS",
+                "NEW_PRODUCT"
+              ]
+            },
+            "filterConfig": {
+              "max-num-filters": 4
+            },
+            "sort": "RELEVANCE",
+            "window": {
+              "offset": 24,
+              "size": 24
+            },
+            "allVariants": false
+          }
+        ]
+      },
+      "status": 200,
+      "response": {
+        "metadata": {
+          "categoryPage": {
+            "categoryName": "Dressers & storage drawers",
+            "categoryKey": "st004",
+            "categoryUrl": "https://www.ikea.com/us/en/cat/dressers-storage-drawers-st004/",
+            "categoryParents": [
+              "st001"
+            ]
+          }
+        },
+        "component": "PRIMARY_AREA",
+        "viewMode": "GRID",
+        "metadata_window": {
+          "start": 24,
+          "end": 48,
+          "max": 147,
+          "itemsPerType": {
+            "PRODUCT": 147
+          }
+        },
+        "first_item": {
+          "metadata": "v1;25;PRODUCT;70561672;products_main;",
+          "product": {
+            "name": "KILBERGET",
+            "typeName": "6-drawer dresser",
+            "itemMeasureReferenceText": "56 3/4x30 3/4 \"",
+            "mainImageUrl": "https://www.ikea.com/us/en/images/products/kilberget-6-drawer-dresser-white-anchor-unlock-function__1590226_pe1038865_s5.jpg",
+            "pipUrl": "https://www.ikea.com/us/en/p/kilberget-6-drawer-dresser-white-anchor-unlock-function-70561672/",
+            "filterClass": "chest of drawers",
+            "allProductImage": [
+              {
+                "altText": "Minimalist bedroom with white KILBERGET chest, mirror, wicker chair, and lamp.",
+                "type": "CONTEXT_PRODUCT_IMAGE",
+                "url": "https://www.ikea.com/us/en/images/products/kilberget-6-drawer-dresser-white-anchor-unlock-function__1283565_pe932531_s5.jpg"
+              },
+              {
+                "altText": "White 6-drawer KILBERGET chest under mirror, left with clothes, top with lamp and yellow flowers, traditional design.",
+                "type": "CONTEXT_PRODUCT_IMAGE",
+                "url": "https://www.ikea.com/us/en/images/products/kilberget-6-drawer-dresser-white-anchor-unlock-function__1283564_pe932530_s5.jpg"
+              },
+              {
+                "altText": "KILBERGET white dresser, six-drawer, simple design.",
+                "type": "MAIN_PRODUCT_IMAGE",
+                "url": "https://www.ikea.com/us/en/images/products/kilberget-6-drawer-dresser-white-anchor-unlock-function__1590226_pe1038865_s5.jpg"
+              },
+              {
+                "altText": "A white dresser drawer open with folded pants, showcasing storage and organisation.",
+                "type": "FUNCTIONAL_PRODUCT_IMAGE",
+                "url": "https://www.ikea.com/us/en/images/products/kilberget-6-drawer-dresser-white-anchor-unlock-function__1283563_pe932529_s5.jpg"
+              },
+              {
+                "altText": "White dresser close-up, smooth edges, sturdy drawers, round knobs",
+                "type": "QUALITY_PRODUCT_IMAGE",
+                "url": "https://www.ikea.com/us/en/images/products/kilberget-6-drawer-dresser-white-anchor-unlock-function__1283562_pe932528_s5.jpg"
+              }
+            ],
+            "id": "70561672",
+            "itemNoGlobal": "20609916",
+            "onlineSellable": true,
+            "lastChance": false,
+            "gprDescription": {
+              "numberOfVariants": 0,
+              "variants": []
+            },
+            "colors": [
+              {
+                "name": "white",
+                "id": "10156",
+                "hex": "ffffff"
+              }
+            ],
+            "tag": "NONE",
+            "quickFacts": [
+              {
+                "type": "TEST_WINNER",
+                "id": "200",
+                "name": "Designed to meet the US Federal Stability Standard",
+                "typeName": "Test winner"
+              }
+            ],
+            "features": [],
+            "availability": [],
+            "ratingValue": 3.8,
+            "ratingCount": 77,
+            "itemNo": "70561672",
+            "itemType": "ART",
+            "salesPrice": {
+              "currencyCode": "USD",
+              "numeral": 249.99,
+              "current": {
+                "prefix": "$",
+                "wholeNumber": "249",
+                "separator": ".",
+                "decimals": "99",
+                "suffix": "",
+                "isRegularCurrency": false,
+                "style": "SUPER"
+              },
+              "isBreathTaking": false,
+              "discount": "",
+              "tag": "NONE",
+              "priceText": "Price",
+              "tags": [],
+              "tagWithText": {
+                "tag": "NONE"
+              }
+            },
+            "contextualImageUrl": "https://www.ikea.com/us/en/images/products/kilberget-6-drawer-dresser-white-anchor-unlock-function__1283565_pe932531_s5.jpg",
+            "contextualImageAlt": "Minimalist bedroom with white KILBERGET chest, mirror, wicker chair, and lamp.",
+            "mainImageAlt": "KILBERGET white dresser, six-drawer, simple design.",
+            "businessStructure": {
+              "homeFurnishingBusinessName": "Bedroom furniture",
+              "homeFurnishingBusinessNo": "04",
+              "productAreaName": "Chest of drawers",
+              "productAreaNo": "0431",
+              "productRangeAreaName": "Chests & other furniture",
+              "productRangeAreaNo": "043"
+            },
+            "categoryPath": [
+              {
+                "name": "Storage & organization",
+                "key": "st001"
+              },
+              {
+                "name": "Dressers & storage drawers",
+                "key": "st004"
+              },
+              {
+                "name": "Dressers & chests of drawers",
+                "key": "10451"
+              }
+            ],
+            "validDesignText": "white/anchor/unlock function",
+            "heroBackoffData": {},
+            "optimizelyAttributes": {
+              "PRODUCT_TYPE": "backoff"
+            }
+          },
+          "type": "PRODUCT",
+          "label": "Product",
+          "actionTokens": [],
+          "isBreakout": false
+        }
+      }
+    }
+  ]
+}

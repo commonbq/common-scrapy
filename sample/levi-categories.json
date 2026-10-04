@@ -1,0 +1,444 @@
+{
+  "New": [
+    {
+      "name": "Men's New Arrivals",
+      "url": "https://www.levi.com/US/en_US/new-arrivals/mens-new-arrivals/c/levi_clothing_men_new_arrivals_us"
+    },
+    {
+      "name": "Women's New Arrivals",
+      "url": "https://www.levi.com/US/en_US/new-arrivals/womens-new-arrivals/c/levi_clothing_women_new_arrivals_us"
+    },
+    {
+      "name": "Kids' New Arrivals",
+      "url": "https://www.levi.com/US/en_US/new-arrivals/kids-new-arrivals/c/levi_clothing_kids_new_arrivals_us"
+    }
+  ],
+  "Men": [
+    {
+      "name": "Shop All Men’s Jeans",
+      "url": "https://www.levi.com/US/en_US/clothing/men/jeans/c/levi_clothing_men_jeans"
+    },
+    {
+      "name": "New Denim Fits",
+      "url": "https://www.levi.com/US/en_US/features/mens-new-jeans"
+    },
+    {
+      "name": "Straight Jeans",
+      "url": "https://www.levi.com/US/en_US/clothing/men/jeans/straight/c/levi_clothing_men_jeans_straight"
+    },
+    {
+      "name": "Loose & Baggy Jeans",
+      "url": "https://www.levi.com/US/en_US/clothing/men/jeans/loose/c/levi_clothing_men_jeans_loose"
+    },
+    {
+      "name": "Relaxed Jeans",
+      "url": "https://www.levi.com/US/en_US/clothing/men/jeans/relaxed/c/levi_clothing_men_jeans_relaxed"
+    },
+    {
+      "name": "Slim & Skinny Jeans",
+      "url": "https://www.levi.com/US/en_US/clothing/men/jeans/slim/c/levi_clothing_men_jeans_slim"
+    },
+    {
+      "name": "Tapered Jeans",
+      "url": "https://www.levi.com/US/en_US/clothing/men/jeans/taper/c/levi_clothing_men_jeans_taper"
+    },
+    {
+      "name": "Bootcut Jeans",
+      "url": "https://www.levi.com/US/en_US/clothing/men/jeans/bootcut/c/levi_clothing_men_jeans_bootcut"
+    },
+    {
+      "name": "501 Original",
+      "url": "https://www.levi.com/US/en_US/jeans-by-fit-number/men/jeans/501/c/levi_jeans_by_fit_number_men_jeans_501"
+    },
+    {
+      "name": "501® Loose",
+      "url": "https://www.levi.com/US/en_US/jeans-by-fit-number/men/jeans/501/501-loose-mens-jeans/p/0057U0007"
+    },
+    {
+      "name": "Baggy Barrel Jeans",
+      "url": "https://www.levi.com/US/en_US/clothing/men/baggy-barrel-mens-jeans/p/0057O0001"
+    },
+    {
+      "name": "Extra Baggy Jeans",
+      "url": "https://www.levi.com/US/en_US/clothing/men/jeans/loose/c/levi_clothing_men_jeans_loose/facets/feature-fit_name/extra%20baggy"
+    },
+    {
+      "name": "Selvedge Denim",
+      "url": "https://www.levi.com/US/en_US/selvedge-denim/selvedge/c/levi_clothing_men_selvedge_us"
+    },
+    {
+      "name": "Shop All Men’s",
+      "url": "https://www.levi.com/US/en_US/clothing/men/c/levi_clothing_men"
+    },
+    {
+      "name": "Pants & Chinos",
+      "url": "https://www.levi.com/US/en_US/clothing/men/pants/c/levi_clothing_men_trousers_pants"
+    },
+    {
+      "name": "Shirts & T-Shirts",
+      "url": "https://www.levi.com/US/en_US/clothing/men/shirts/c/levi_clothing_men_shirts"
+    },
+    {
+      "name": "Sweaters & Sweatshirts",
+      "url": "https://www.levi.com/US/en_US/clothing/men/sweaters-sweatshirts/c/levi_clothing_men_sweaters_sweatshirts"
+    },
+    {
+      "name": "Denim Jackets & Outerwear",
+      "url": "https://www.levi.com/US/en_US/clothing/men/outerwear/c/levi_clothing_men_outerwear"
+    },
+    {
+      "name": "Shorts",
+      "url": "https://www.levi.com/US/en_US/clothing/men/shorts/c/levi_clothing_men_shorts"
+    },
+    {
+      "name": "Overalls",
+      "url": "https://www.levi.com/US/en_US/overalls/c/levi_clothing_men_overalls"
+    },
+    {
+      "name": "Big & Tall",
+      "url": "https://www.levi.com/US/en_US/big-tall/c/levi_clothing_men_big_tall"
+    },
+    {
+      "name": "Underwear & Socks",
+      "url": "https://www.levi.com/US/en_US/underwear-socks/men/c/levi_underwear_socks_men"
+    },
+    {
+      "name": "Accessories",
+      "url": "https://www.levi.com/US/en_US/accessories/men/c/levi_accessories_men"
+    },
+    {
+      "name": "Sale",
+      "url": "https://www.levi.com/US/en_US/sale/mens-sale/c/levi_clothing_men_sale_us"
+    },
+    {
+      "name": "Men's New Arrivals",
+      "url": "https://www.levi.com/US/en_US/new-arrivals/mens-new-arrivals/c/levi_clothing_men_new_arrivals_us"
+    },
+    {
+      "name": "Men's Bestsellers",
+      "url": "https://www.levi.com/US/en_US/best-sellers/men/c/levi_clothing_men_bestsellers_us"
+    },
+    {
+      "name": "Wear to Work",
+      "url": "https://www.levi.com/US/en_US/wear-to-work/c/levi_clothing_wear_to_work_us"
+    },
+    {
+      "name": "A Fall Color Story",
+      "url": "https://www.levi.com/US/en_US/features/fall-color-story"
+    },
+    {
+      "name": "Levi's® Workwear",
+      "url": "https://www.levi.com/US/en_US/workwear/c/levi_clothing_men_workwear"
+    },
+    {
+      "name": "Blue Tab™",
+      "url": "https://www.levi.com/US/en_US/blue-tab/c/levi_clothing_blue_tab_us"
+    },
+    {
+      "name": "Jeans Guide",
+      "url": "https://www.levi.com/US/en_US/features/men-jeans-guide"
+    },
+    {
+      "name": "Tee Guide",
+      "url": "https://www.levi.com/US/en_US/features/mens-tees-guide"
+    },
+    {
+      "name": "Collections & Collaborations",
+      "url": "https://www.levi.com/US/en_US/shop/collections"
+    },
+    {
+      "name": "Secondhand",
+      "url": "https://www.secondhand.levi.com/"
+    },
+    {
+      "name": "Blog: Off The Cuff",
+      "url": "https://www.levi.com/US/en_US/blog"
+    }
+  ],
+  "Women": [
+    {
+      "name": "Shop All Women's Jeans",
+      "url": "https://www.levi.com/US/en_US/clothing/women/jeans/c/levi_clothing_women_jeans"
+    },
+    {
+      "name": "Trending Low Rise",
+      "url": "https://www.levi.com/US/en_US/clothing/women/jeans/low-rise/c/levi_clothing_women_jeans_low_rise"
+    },
+    {
+      "name": "Loose & Baggy Jeans",
+      "url": "https://www.levi.com/US/en_US/clothing/women/jeans/loose/c/levi_clothing_women_jeans_loose"
+    },
+    {
+      "name": "Straight Jeans",
+      "url": "https://www.levi.com/US/en_US/clothing/women/jeans/straight/c/levi_clothing_women_jeans_straight"
+    },
+    {
+      "name": "Barrel & Taper Jeans",
+      "url": "https://www.levi.com/US/en_US/clothing/women/jeans/barrel/c/levi_clothing_women_jeans_barrel"
+    },
+    {
+      "name": "Wide-Leg Jeans",
+      "url": "https://www.levi.com/US/en_US/clothing/women/jeans/wide-leg/c/levi_clothing_women_jeans_wide_leg"
+    },
+    {
+      "name": "Bootcut & Flare Jeans",
+      "url": "https://www.levi.com/US/en_US/clothing/women/jeans/bootcut/c/levi_clothing_women_jeans_bootcut"
+    },
+    {
+      "name": "Slim & Skinny Jeans",
+      "url": "https://www.levi.com/US/en_US/clothing/women/jeans/slim/c/levi_clothing_women_jeans_slim"
+    },
+    {
+      "name": "New Denim Fits",
+      "url": "https://www.levi.com/US/en_US/features/womens-new-jeans"
+    },
+    {
+      "name": "501® Jeans",
+      "url": "https://www.levi.com/US/en_US/jeans-by-fit-number/women/jeans/501/c/levi_jeans_by_fit_number_women_jeans_501"
+    },
+    {
+      "name": "700 Series",
+      "url": "https://www.levi.com/US/en_US/700-series/c/levi_clothing_women_700_series_us/"
+    },
+    {
+      "name": "Ribcage",
+      "url": "https://www.levi.com/US/en_US/clothing/women/jeans/ribcage-jeans/c/levi_clothing_women_jeans_ribcage"
+    },
+    {
+      "name": "Cinch",
+      "url": "https://www.levi.com/US/en_US/clothing/women/jeans/cinch-jeans/c/levi_clothing_women_jeans_cinch"
+    },
+    {
+      "name": "Shop All Women’s",
+      "url": "https://www.levi.com/US/en_US/clothing/women/c/levi_clothing_women"
+    },
+    {
+      "name": "Tops",
+      "url": "https://www.levi.com/US/en_US/clothing/women/shirts-blouses-tops/c/levi_clothing_women_shirts_blouses_tops"
+    },
+    {
+      "name": "Dresses & Skirts",
+      "url": "https://www.levi.com/US/en_US/clothing/women/dresses-skirts/c/levi_clothing_women_dresses_skirts"
+    },
+    {
+      "name": "Pants",
+      "url": "https://www.levi.com/US/en_US/clothing/women/pants/c/levi_clothing_women_pants"
+    },
+    {
+      "name": "Sweaters & Sweatshirts",
+      "url": "https://www.levi.com/US/en_US/clothing/women/sweaters-sweatshirts/c/levi_clothing_women_sweaters_sweatshirts"
+    },
+    {
+      "name": "Denim Jackets & Outerwear",
+      "url": "https://www.levi.com/US/en_US/clothing/women/outerwear/c/levi_clothing_women_outerwear"
+    },
+    {
+      "name": "Overalls & Jumpsuits",
+      "url": "https://www.levi.com/US/en_US/clothing/women/overalls-jumpsuits/c/levi_clothing_women_overalls_jumpsuits"
+    },
+    {
+      "name": "Shorts",
+      "url": "https://www.levi.com/US/en_US/clothing/women/shorts/c/levi_clothing_women_shorts"
+    },
+    {
+      "name": "Accessories",
+      "url": "https://www.levi.com/US/en_US/accessories/women/c/levi_accessories_women"
+    },
+    {
+      "name": "Plus Size (14-26)",
+      "url": "https://www.levi.com/US/en_US/clothing/women/plus-size/c/levi_clothing_women_plus_sizes"
+    },
+    {
+      "name": "Sale",
+      "url": "https://www.levi.com/US/en_US/sale/womens-sale/c/levi_clothing_women_sale_us"
+    },
+    {
+      "name": "Women's New Arrivals",
+      "url": "https://www.levi.com/US/en_US/new-arrivals/womens-new-arrivals/c/levi_clothing_women_new_arrivals_us"
+    },
+    {
+      "name": "Women's Bestsellers",
+      "url": "https://www.levi.com/US/en_US/best-sellers/women/c/levi_clothing_women_bestsellers_us"
+    },
+    {
+      "name": "Curve-Friendly Denim",
+      "url": "https://www.levi.com/US/en_US/curve-friendly/c/levi_clothing_curve_friendly_fits"
+    },
+    {
+      "name": "Wear to Work",
+      "url": "https://www.levi.com/US/en_US/wear-to-work/c/levi_clothing_wear_to_work_us"
+    },
+    {
+      "name": "A Fall Color Story",
+      "url": "https://www.levi.com/US/en_US/features/fall-color-story"
+    },
+    {
+      "name": "Y2K Revival",
+      "url": "https://www.levi.com/US/en_US/trend-edits/c/levi_clothing_trend_edits_us"
+    },
+    {
+      "name": "Blue Tab™",
+      "url": "https://www.levi.com/US/en_US/blue-tab/c/levi_clothing_blue_tab_us"
+    },
+    {
+      "name": "Selvedge Denim ",
+      "url": "https://www.levi.com/US/en_US/selvedge-denim/selvedge/c/levi_clothing_women_selvedge_us"
+    },
+    {
+      "name": "Jeans Guide",
+      "url": "https://www.levi.com/US/en_US/features/women-jeans-guide"
+    },
+    {
+      "name": "Tee Guide",
+      "url": "https://www.levi.com/US/en_US/features/womens-tees-guide"
+    },
+    {
+      "name": "Collections & Collaborations",
+      "url": "https://www.levi.com/US/en_US/shop/collections"
+    },
+    {
+      "name": "Secondhand",
+      "url": "https://www.secondhand.levi.com/"
+    },
+    {
+      "name": "Blog: Off The Cuff",
+      "url": "https://www.levi.com/US/en_US/blog"
+    }
+  ],
+  "Kids": [
+    {
+      "name": "Shop All Kids",
+      "url": "https://www.levi.com/US/en_US/clothing/kids/c/levi_clothing_kids"
+    },
+    {
+      "name": "Boys (8-20)",
+      "url": "https://www.levi.com/US/en_US/clothing/kids/big-boys/c/levi_clothing_kids_big_boys"
+    },
+    {
+      "name": "Little Boys (4–7x)",
+      "url": "https://www.levi.com/US/en_US/clothing/kids/little-boys/c/levi_clothing_kids_little_boys"
+    },
+    {
+      "name": "Girls (7–16)",
+      "url": "https://www.levi.com/US/en_US/clothing/kids/big-girls/c/levi_clothing_kids_big_girls"
+    },
+    {
+      "name": "Little Girls (4–6x)",
+      "url": "https://www.levi.com/US/en_US/clothing/kids/little-girls/c/levi_clothing_kids_little_girls"
+    },
+    {
+      "name": "Toddler",
+      "url": "https://www.levi.com/US/en_US/clothing/kids/toddler/c/levi_clothing_kids_toddler"
+    },
+    {
+      "name": "Baby",
+      "url": "https://www.levi.com/US/en_US/clothing/kids/baby/c/levi_clothing_kids_baby"
+    },
+    {
+      "name": "Sale",
+      "url": "https://www.levi.com/US/en_US/sale/kids-sale/c/levi_clothing_kids_sale_us"
+    },
+    {
+      "name": "Kids' New Arrivals",
+      "url": "https://www.levi.com/US/en_US/new-arrivals/kids-new-arrivals/c/levi_clothing_kids_new_arrivals_us"
+    },
+    {
+      "name": "Kids' Bestsellers",
+      "url": "https://www.levi.com/US/en_US/best-sellers/kids/c/levi_clothing_kids_bestsellers_us"
+    },
+    {
+      "name": "Blog: Off The Cuff",
+      "url": "https://www.levi.com/US/en_US/blog"
+    }
+  ],
+  "Sale": [
+    {
+      "name": "Shop All Men's Sale",
+      "url": "https://www.levi.com/US/en_US/sale/mens-sale/c/levi_clothing_men_sale_us"
+    },
+    {
+      "name": "New to Men's Sale",
+      "url": "https://www.levi.com/US/en_US/sale/mens-sale/new-to-mens-sale/c/new_levi_clothing_men_sale_us"
+    },
+    {
+      "name": "Jeans",
+      "url": "https://www.levi.com/US/en_US/sale/mens-sale/c/levi_clothing_men_sale_us/facets/productitemtype/jeans"
+    },
+    {
+      "name": "Shirts & T-Shirts",
+      "url": "https://www.levi.com/US/en_US/sale/mens-sale/c/levi_clothing_men_sale_us/facets/productitemtype/t-shirts/productitemtype/shirts/productitemtype/tank%20tops/productitemtype/polos/productitemtype/henleys"
+    },
+    {
+      "name": "Pants & Chinos",
+      "url": "https://www.levi.com/US/en_US/sale/mens-sale/c/levi_clothing_men_sale_us/facets/productitemtype/pants/productitemtype/sweatpants"
+    },
+    {
+      "name": "Jean Jackets & Outerwear",
+      "url": "https://www.levi.com/US/en_US/sale/mens-sale/c/levi_clothing_men_sale_us/facets/productitemtype/trucker%20jean%20jacket/productitemtype/coats/productitemtype/vests/productitemtype/jackets"
+    },
+    {
+      "name": "Sweaters & Sweatshirts",
+      "url": "https://www.levi.com/US/en_US/sale/mens-sale/c/levi_clothing_men_sale_us/facets/productitemtype/sweatshirts/productitemtype/sweaters"
+    },
+    {
+      "name": "Shorts",
+      "url": "https://www.levi.com/US/en_US/sale/mens-sale/c/levi_clothing_men_sale_us/facets/productitemtype/shorts"
+    },
+    {
+      "name": "Accessories",
+      "url": "https://www.levi.com/US/en_US/sale/sale-accessories/c/levi_accessories_sale_us"
+    },
+    {
+      "name": "Big & Tall",
+      "url": "https://www.levi.com/US/en_US/sale/mens-sale/c/levi_clothing_men_sale_us/facets/feature-size_group/men%27s%20big%20%26%20tall/feature-size_group/men%27s%20tall"
+    },
+    {
+      "name": "Shop All Women's Sale",
+      "url": "https://www.levi.com/US/en_US/sale/womens-sale/c/levi_clothing_women_sale_us"
+    },
+    {
+      "name": "New to Women's Sale",
+      "url": "https://www.levi.com/US/en_US/sale/womens-sale/new-to-womens-sale/c/new_levi_clothing_women_sale_us"
+    },
+    {
+      "name": "Jeans",
+      "url": "https://www.levi.com/US/en_US/sale/womens-sale/jeans/c/levi_clothing_women_sale_jeans_us"
+    },
+    {
+      "name": "Tops",
+      "url": "https://www.levi.com/US/en_US/sale/womens-sale/tops/c/levi_clothing_women_sale_tops_us"
+    },
+    {
+      "name": "Pants",
+      "url": "https://www.levi.com/US/en_US/sale/womens-sale/pants/c/levi_clothing_women_sale_pants_us"
+    },
+    {
+      "name": "Jean Jackets & Outerwear",
+      "url": "https://www.levi.com/US/en_US/sale/womens-sale/outerwear/c/levi_clothing_women_sale_jackets_us"
+    },
+    {
+      "name": "Sweaters & Sweatshirts",
+      "url": "https://www.levi.com/US/en_US/sale/womens-sale/tops/c/levi_clothing_women_sale_tops_us/facets/productitemtype/sweatshirts/productitemtype/sweaters"
+    },
+    {
+      "name": "Shorts",
+      "url": "https://www.levi.com/US/en_US/sale/womens-sale/shorts-capris/c/levi_clothing_women_sale_shorts_capris_us"
+    },
+    {
+      "name": "Dresses & Skirts",
+      "url": "https://www.levi.com/US/en_US/sale/womens-sale/dresses-skirts/c/levi_clothing_women_sale_dresses_skirts_us"
+    },
+    {
+      "name": "Accessories",
+      "url": "https://www.levi.com/US/en_US/sale/sale-accessories/womens-sale-accessories/c/levi_accessories_women_sale_us"
+    },
+    {
+      "name": "Plus",
+      "url": "https://www.levi.com/US/en_US/sale/womens-sale/c/levi_clothing_women_sale_us/facets/feature-size_group/women%27s%20plus%20size"
+    },
+    {
+      "name": "Shop All Kid's Sale",
+      "url": "https://www.levi.com/US/en_US/sale/kids-sale/c/levi_clothing_kids_sale_us"
+    }
+  ]
+}
