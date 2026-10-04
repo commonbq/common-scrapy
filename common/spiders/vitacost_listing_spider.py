@@ -85,7 +85,7 @@ class VitacostListingSpider(BaseListingSpider):
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
-        "DOWNLOADER_MIDLIERES": {
+        "DOWNLOADER_MIDDLEWARES": {
             "common.middlewares.CommonDownloaderMiddleware": None,
             "common.spiders.vitacost_listing_spider.VitacostProxyMiddleware": 543,
         },
