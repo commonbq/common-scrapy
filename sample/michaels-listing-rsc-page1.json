@@ -1,0 +1,476 @@
+{
+ "props": {
+  "initialProducts": [
+   {
+    "id": "10809872",
+    "skuNumber": "10809872",
+    "masterSku": "$undefined",
+    "pdpUrl": "/product/11-pink-peony-cream-rose-mix-bouquet-by-ashland-10809872",
+    "name": "11\" Pink Peony & Cream Rose Mix Bouquet by Ashland®",
+    "description": "11\" Pink Peony & Cream Rose Mix Bouquet by Ashland®",
+    "price": 9.99,
+    "priceDisplay": "$$9.99",
+    "originalPrice": "$undefined",
+    "orgPriceDisplay": "$undefined",
+    "rating": 4.5,
+    "reviewCount": 16,
+    "image": "https://imgs.michaels.com/7903ee7b-1298-4ad2-9244-56224c0f6033.jpg?fit=inside|540:540",
+    "images": [
+     "https://imgs.michaels.com/7903ee7b-1298-4ad2-9244-56224c0f6033.jpg?fit=inside|540:540",
+     "https://imgs.michaels.com/2e3698b3-bfbb-4bbf-a837-e0e576f0f33c.jpg?fit=inside|540:540",
+     "https://imgs.michaels.com/f31fceda-125f-41aa-9f95-2c2036c02446.jpg?fit=inside|540:540"
+    ],
+    "category": "Fall Stem Bundles",
+    "brand": "Michaels",
+    "size": "$undefined",
+    "color": "$undefined",
+    "colorSwatches": [],
+    "variantCount": "",
+    "variantCounts": {},
+    "availability": {
+     "storePickup": true,
+     "shipToMe": true,
+     "scheduledDelivery": false,
+     "stockCount": "$undefined",
+     "storeName": "MacArthur Park",
+     "storeCode": "1056"
+    },
+    "badges": {
+     "freeStorePickup": true,
+     "michaelsExclusive": false,
+     "michaelsProPack": false,
+     "onlineOnly": false,
+     "notAvailableToShip": false,
+     "sameDayDeliveryBadge": true,
+     "globalNonDiscountable": false,
+     "couponExclusion": false,
+     "sale": false,
+     "newPdt": false,
+     "clearance": false,
+     "greatBuy": false,
+     "comingSoon": false,
+     "everydayValue": false,
+     "doorbuster": false,
+     "shipsForFree": false
+    },
+    "isProPack": false,
+    "isExclusive": false,
+    "storeOnly": false,
+    "isSponsored": false,
+    "isOnlineOnly": false,
+    "isBundle": false,
+    "badge": "$undefined",
+    "promotionMessage": "30% off every regular price purchase with code GETMY30",
+    "promotionExpiry": "2026-10-03T23:59:59.000Z",
+    "shipping": {
+     "freeShippingEligible": "$undefined",
+     "freeStandardShipping": "$undefined",
+     "overrideShippingRate": "$undefined",
+     "shipMinimumOrderQuantity": 1,
+     "bopisMinimumOrderQuantity": 1
+    },
+    "analyticsProductDetailView": {
+     "channel": "1",
+     "skuNumber": "10809872",
+     "itemName": "11\" Pink Peony & Cream Rose Mix Bouquet by Ashland®",
+     "averageRating": 4.5,
+     "commentCount": 16,
+     "fullTaxonomyPath": "Fall Stem Bundles",
+     "itemProperties": "$undefined",
+     "subSkus": "$undefined",
+     "itemPrice": {
+      "price": "$$9.99",
+      "orgPrice": null,
+      "priceRange": null,
+      "orgPriceRange": null,
+      "unitPrice": null,
+      "unitPriceRange": null,
+      "priceFlag": null,
+      "savedAmount": null,
+      "savedPercent": null,
+      "numberPrice": "9.99"
+     },
+     "badges": {
+      "freeStorePickup": true,
+      "sameDayDelivery": true
+     }
+    }
+   },
+   {
+    "id": "10809896",
+    "skuNumber": "10809896",
+    "masterSku": "$undefined",
+    "pdpUrl": "/product/15-rust-foliage-mix-real-touch-premade-arrangement-by-ashland-10809896",
+    "name": "15\" Rust Foliage Mix Real Touch Premade Arrangement by Ashland®",
+    "description": "15\" Rust Foliage Mix Real Touch Premade Arrangement by Ashland®",
+    "price": 14.99,
+    "priceDisplay": "$$14.99",
+    "originalPrice": 29.99,
+    "orgPriceDisplay": "Reg.$29.99",
+    "rating": 5,
+    "reviewCount": 1,
+    "image": "https://imgs.michaels.com/4a59929a-36eb-4c1f-939b-b72acc2199e5.jpg?fit=inside|540:540",
+    "images": [
+     "https://imgs.michaels.com/4a59929a-36eb-4c1f-939b-b72acc2199e5.jpg?fit=inside|540:540",
+     "https://imgs.michaels.com/a0c24116-c3eb-493a-b8eb-c4543bc7b667.jpg?fit=inside|540:540",
+     "https://imgs.michaels.com/2abad08d-db92-44e0-a143-4e1233a597eb.jpg?fit=inside|540:540"
+    ],
+    "category": "Fall Floral Arrangements",
+    "brand": "Michaels",
+    "size": "$undefined",
+    "color": "$undefined",
+    "colorSwatches": [],
+    "variantCount": "",
+    "variantCounts": {},
+    "availability": {
+     "storePickup": false,
+     "shipToMe": true,
+     "scheduledDelivery": false,
+     "stockCount": "$undefined",
+     "storeName": "MacArthur Park",
+     "storeCode": "1056"
+    },
+    "badges": {
+     "freeStorePickup": true,
+     "michaelsExclusive": false,
+     "michaelsProPack": false,
+     "onlineOnly": false,
+     "notAvailableToShip": false,
+     "sameDayDeliveryBadge": true,
+     "globalNonDiscountable": false,
+     "couponExclusion": false,
+     "sale": true,
+     "newPdt": false,
+     "clearance": false,
+     "greatBuy": false,
+     "comingSoon": false,
+     "everydayValue": false,
+     "doorbuster": false,
+     "shipsForFree": false
+    },
+    "isProPack": false,
+    "isExclusive": false,
+    "storeOnly": false,
+    "isSponsored": false,
+    "isOnlineOnly": false,
+    "isBundle": false,
+    "badge": "Sale",
+    "promotionMessage": null,
+    "promotionExpiry": null,
+    "shipping": {
+     "freeShippingEligible": "$undefined",
+     "freeStandardShipping": "$undefined",
+     "overrideShippingRate": "$undefined",
+     "shipMinimumOrderQuantity": 1,
+     "bopisMinimumOrderQuantity": 1
+    },
+    "analyticsProductDetailView": {
+     "channel": "1",
+     "skuNumber": "10809896",
+     "itemName": "15\" Rust Foliage Mix Real Touch Premade Arrangement by Ashland®",
+     "averageRating": 5,
+     "commentCount": 1,
+     "fullTaxonomyPath": "Fall Floral Arrangements",
+     "itemProperties": "$undefined",
+     "subSkus": "$undefined",
+     "itemPrice": {
+      "price": "$$14.99",
+      "orgPrice": "Reg.$29.99",
+      "priceRange": null,
+      "orgPriceRange": null,
+      "unitPrice": null,
+      "unitPriceRange": null,
+      "priceFlag": "0",
+      "savedAmount": "$$15.00",
+      "savedPercent": "50%",
+      "numberPrice": "14.99"
+     },
+     "badges": {
+      "freeStorePickup": true,
+      "sale": true,
+      "sameDayDelivery": true
+     }
+    }
+   },
+   {
+    "id": "10811162",
+    "skuNumber": "10811162",
+    "masterSku": "$undefined",
+    "pdpUrl": "/product/12-red-peony-mix-bouquet-by-ashland-10811162",
+    "name": "12\" Red Peony Mix Bouquet by Ashland®",
+    "description": "12\" Red Peony Mix Bouquet by Ashland®",
+    "price": 4.99,
+    "priceDisplay": "$$4.99",
+    "originalPrice": 9.99,
+    "orgPriceDisplay": "Reg.$9.99",
+    "rating": 5,
+    "reviewCount": 8,
+    "image": "https://imgs.michaels.com/d7e4a4f0-f4ea-4331-b7a0-d6d22df452d5.jpg?fit=inside|540:540",
+    "images": [
+     "https://imgs.michaels.com/d7e4a4f0-f4ea-4331-b7a0-d6d22df452d5.jpg?fit=inside|540:540",
+     "https://imgs.michaels.com/3ae500cc-a5cd-4e0a-a77c-7c6462145f21.jpg?fit=inside|540:540",
+     "https://imgs.michaels.com/1bb17e9a-df2a-4dcb-917b-88ba32a702b5.jpg?fit=inside|540:540"
+    ],
+    "category": "Halloween Floral Bundles & Bouquets",
+    "brand": "Michaels",
+    "size": "$undefined",
+    "color": "$undefined",
+    "colorSwatches": [],
+    "variantCount": "",
+    "variantCounts": {},
+    "availability": {
+     "storePickup": true,
+     "shipToMe": true,
+     "scheduledDelivery": false,
+     "stockCount": "$undefined",
+     "storeName": "MacArthur Park",
+     "storeCode": "1056"
+    },
+    "badges": {
+     "freeStorePickup": true,
+     "michaelsExclusive": false,
+     "michaelsProPack": false,
+     "onlineOnly": false,
+     "notAvailableToShip": false,
+     "sameDayDeliveryBadge": true,
+     "globalNonDiscountable": false,
+     "couponExclusion": false,
+     "sale": true,
+     "newPdt": false,
+     "clearance": false,
+     "greatBuy": false,
+     "comingSoon": false,
+     "everydayValue": false,
+     "doorbuster": false,
+     "shipsForFree": false
+    },
+    "isProPack": false,
+    "isExclusive": false,
+    "storeOnly": false,
+    "isSponsored": false,
+    "isOnlineOnly": false,
+    "isBundle": false,
+    "badge": "Sale",
+    "promotionMessage": null,
+    "promotionExpiry": null,
+    "shipping": {
+     "freeShippingEligible": "$undefined",
+     "freeStandardShipping": "$undefined",
+     "overrideShippingRate": "$undefined",
+     "shipMinimumOrderQuantity": 1,
+     "bopisMinimumOrderQuantity": 1
+    },
+    "analyticsProductDetailView": {
+     "channel": "1",
+     "skuNumber": "10811162",
+     "itemName": "12\" Red Peony Mix Bouquet by Ashland®",
+     "averageRating": 5,
+     "commentCount": 8,
+     "fullTaxonomyPath": "Halloween Floral Bundles & Bouquets",
+     "itemProperties": "$undefined",
+     "subSkus": "$undefined",
+     "itemPrice": {
+      "price": "$$4.99",
+      "orgPrice": "Reg.$9.99",
+      "priceRange": null,
+      "orgPriceRange": null,
+      "unitPrice": null,
+      "unitPriceRange": null,
+      "priceFlag": "0",
+      "savedAmount": "$$5.00",
+      "savedPercent": "50%",
+      "numberPrice": "4.99"
+     },
+     "badges": {
+      "freeStorePickup": true,
+      "sale": true,
+      "sameDayDelivery": true
+     }
+    }
+   },
+   {
+    "id": "10128385",
+    "skuNumber": "10128385",
+    "masterSku": "M10128385",
+    "pdpUrl": "/product/8-rose-bundle-by-ashland-10128385",
+    "name": "8\" Rose Bundle by Ashland®",
+    "description": "8\" Rose Bundle by Ashland®",
+    "price": 10.99,
+    "priceDisplay": "$$10.99",
+    "originalPrice": "$undefined",
+    "orgPriceDisplay": "$undefined",
+    "rating": 4.6689,
+    "reviewCount": 740,
+    "image": "https://imgs.michaels.com/8d71e5f9-c725-443a-bef8-d57da55270da.jpg?fit=inside|540:540",
+    "images": [
+     "https://imgs.michaels.com/8d71e5f9-c725-443a-bef8-d57da55270da.jpg?fit=inside|540:540",
+     "https://imgs.michaels.com/52b593e8-5dae-4a51-a111-16bd752147e6.jpg?fit=inside|540:540",
+     "https://imgs.michaels.com/545cad9e-194d-4365-a38c-bc8c4eda91cb.jpg?fit=inside|540:540",
+     "https://imgs.michaels.com/de15c7c9-f009-4f6b-b183-3e479c4bc49f.jpg?fit=inside|540:540"
+    ],
+    "category": "Bridal Bouquets",
+    "brand": "Michaels",
+    "size": "$undefined",
+    "color": "$undefined",
+    "colorSwatches": [
+     {
+      "color": "Cream",
+      "image": "https://imgs.michaels.com/8d71e5f9-c725-443a-bef8-d57da55270da.jpg?fit=inside|540:540",
+      "images": [
+       "https://imgs.michaels.com/8d71e5f9-c725-443a-bef8-d57da55270da.jpg?fit=inside|540:540"
+      ],
+      "swatchImage": "https://imgs.michaels.com/8d71e5f9-c725-443a-bef8-d57da55270da.jpg?fit=inside|60:60",
+      "sku": "10128385",
+      "pdpUrl": ""
+     },
+     {
+      "color": "Red",
+      "image": "https://imgs.michaels.com/78e21a59-efdd-4e19-955d-75bdfed3d917.jpg?fit=inside|540:540",
+      "images": [
+       "https://imgs.michaels.com/78e21a59-efdd-4e19-955d-75bdfed3d917.jpg?fit=inside|540:540"
+      ],
+      "swatchImage": "https://imgs.michaels.com/78e21a59-efdd-4e19-955d-75bdfed3d917.jpg?fit=inside|60:60",
+      "sku": "10128386",
+      "pdpUrl": ""
+     },
+     {
+      "color": "Pink",
+      "image": "https://imgs.michaels.com/7869a494-9c75-4c4b-85f0-a12016351d5a.jpg?fit=inside|540:540",
+      "images": [
+       "https://imgs.michaels.com/7869a494-9c75-4c4b-85f0-a12016351d5a.jpg?fit=inside|540:540"
+      ],
+      "swatchImage": "https://imgs.michaels.com/7869a494-9c75-4c4b-85f0-a12016351d5a.jpg?fit=inside|60:60",
+      "sku": "10128383",
+      "pdpUrl": ""
+     }
+    ],
+    "variantCount": "Color:3",
+    "variantCounts": {
+     "Color": 3
+    },
+    "availability": {
+     "storePickup": true,
+     "shipToMe": true,
+     "scheduledDelivery": false,
+     "stockCount": "$undefined",
+     "storeName": "MacArthur Park",
+     "storeCode": "1056"
+    },
+    "badges": {
+     "freeStorePickup": true,
+     "michaelsExclusive": false,
+     "michaelsProPack": false,
+     "onlineOnly": false,
+     "notAvailableToShip": false,
+     "sameDayDeliveryBadge": true,
+     "globalNonDiscountable": false,
+     "couponExclusion": false,
+     "sale": false,
+     "newPdt": false,
+     "clearance": false,
+     "greatBuy": false,
+     "comingSoon": false,
+     "everydayValue": false,
+     "doorbuster": false,
+     "shipsForFree": false
+    },
+    "isProPack": false,
+    "isExclusive": false,
+    "storeOnly": false,
+    "isSponsored": false,
+    "isOnlineOnly": false,
+    "isBundle": false,
+    "badge": "$undefined",
+    "promotionMessage": "30% off every regular price purchase with code GETMY30",
+    "promotionExpiry": "2026-10-03T23:59:59.000Z",
+    "shipping": {
+     "freeShippingEligible": "$undefined",
+     "freeStandardShipping": "$undefined",
+     "overrideShippingRate": "$undefined",
+     "shipMinimumOrderQuantity": 1,
+     "bopisMinimumOrderQuantity": 1
+    },
+    "analyticsProductDetailView": {
+     "channel": "1",
+     "skuNumber": "10128385",
+     "itemName": "8\" Rose Bundle by Ashland®",
+     "averageRating": 4.6689,
+     "commentCount": 740,
+     "fullTaxonomyPath": "Bridal Bouquets",
+     "itemProperties": "$undefined",
+     "subSkus": [
+      {
+       "skuNumber": "10128385"
+      },
+      {
+       "skuNumber": "10128386"
+      },
+      {
+       "skuNumber": "10128383"
+      }
+     ],
+     "itemPrice": {
+      "price": "$$10.99",
+      "orgPrice": null,
+      "priceRange": null,
+      "orgPriceRange": null,
+      "unitPrice": null,
+      "unitPriceRange": null,
+      "priceFlag": null,
+      "savedAmount": null,
+      "savedPercent": null,
+      "numberPrice": "10.99"
+     },
+     "badges": {
+      "freeStorePickup": true,
+      "sameDayDelivery": true
+     }
+    }
+   }
+  ],
+  "initialFilters": [
+   {
+    "id": "customfeatures",
+    "name": "Product Features",
+    "facetKey": "CustomFeatures",
+    "type": "checkbox",
+    "options": [
+     {
+      "id": "UV Resistant",
+      "label": "UV Resistant",
+      "count": 15,
+      "checked": false
+     },
+     {
+      "id": "Repositionable",
+      "label": "Repositionable",
+      "count": 64,
+      "checked": false
+     }
+    ]
+   },
+   {
+    "id": "flowerplanttype",
+    "name": "Flower/Plant Type",
+    "facetKey": "FlowerPlantType",
+    "type": "checkbox",
+    "options": [
+     {
+      "id": "Zebra",
+      "label": "Zebra",
+      "count": 1,
+      "checked": false
+     },
+     {
+      "id": "Zamioculcas",
+      "label": "Zamioculcas",
+      "count": 1,
+      "checked": false
+     }
+    ]
+   }
+  ],
+  "initialTotal": 3315
+ },
+ "_note": "Trimmed real capture of the Michaels RSC flight payload, page 1 of /shop/home-decor/floral-arrangements. Product records and facet counts are verbatim; unrelated i18n/config blobs and 36 of the 40 rows are omitted."
+}

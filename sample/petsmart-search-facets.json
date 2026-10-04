@@ -1,0 +1,20 @@
+{
+ "facets": {
+  "custom_category_names": {
+   "Sale > October Event": 31612,
+   "Dog": 25633,
+   "Featured Brands": 15189,
+   "Cat": 6575,
+   "Dog > Food": 2972,
+   "Dog > Food > Dry Food": 1794,
+   "Bird": 892,
+   "Cat > Toys": 536,
+   "Bird > Bird Shops": 487,
+   "Bird > Bird Shops > Cockatiel": 193
+  }
+ },
+ "nbHits": 34000,
+ "query": "",
+ "hitsPerPage": 0,
+ "index": "r-US_products_best-sellers"
+}

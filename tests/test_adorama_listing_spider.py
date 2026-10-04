@@ -1,222 +1,162 @@
 from pathlib import Path
 import json
-import re
 import unittest
 
 from scrapy.http import Request, TextResponse
 
-from common.spiders.adorama_categories import (
-    ADORAMA_CATEGORIES,
-    ADORAMA_CATEGORY_INVENTORY,
-    ADORAMA_PAGE_SIZE,
-)
+from common.spiders.adorama_categories import ADORAMA_CATEGORIES, ADORAMA_CATEGORY_INVENTORY
 from common.spiders.adorama_listing_spider import AdoramaListingSpider
 
 
-CATEGORY = "audio-audio-bags-and-cases-microphone-cases"
-LISTING_URL = "https://www.adorama.com/l/Audio/Audio-Bags-and-Cases/Microphone-Cases"
+def _hydration(page_props: dict) -> str:
+    payload = {"props": {"pageProps": page_props}}
+    return f'<script id="__NEXT_DATA__" type="application/json">{json.dumps(payload)}</script>'
 
 
 class AdoramaListingSpiderTests(unittest.TestCase):
     def setUp(self):
-        self.spider = AdoramaListingSpider(category=CATEGORY, max_pages=2)
-        self.sample = Path("sample/adorama-listing-sample.html").read_text(encoding="utf-8")
+        self.spider = AdoramaListingSpider(category="cameras", max_pages=2)
+        self.page1 = Path("sample/adorama-listing-cameras-p1.html").read_text(encoding="utf-8")
+        self.page2 = Path("sample/adorama-listing-cameras-p2.html").read_text(encoding="utf-8")
 
-    def response(self, body=None, *, status=200, page=1, listing_url=LISTING_URL):
-        url = AdoramaListingSpider._page_url(listing_url, page)
-        meta = {
-            "category": "Microphone Cases",
-            "subcategory": "Audio Bags and Cases",
-            "department": "Audio",
-            "page": page,
-            "listing_url": listing_url,
-        }
-        return TextResponse(
-            url, request=Request(url, meta=meta), body=body or self.sample,
-            encoding="utf-8", status=status,
+    def response(self, body=None, *, page=1):
+        url = "https://www.adorama.com/l/Photography/Cameras" + ("?startAt=24" if page == 2 else "")
+        request = Request(
+            url,
+            meta={
+                "category": "cameras", "department": "Photography",
+                "subcategory": "Cameras", "category_path": "/l/Photography/Cameras",
+                "page": page, "proxy": "http://proxy.invalid:8080",
+            },
         )
+        return TextResponse(url, request=request, body=body or self.page1, encoding="utf-8")
 
-    def state(self):
-        props = AdoramaListingSpider._page_props(
-            AdoramaListingSpider._extract_hydration(self.sample)
-        )
-        return json.loads(json.dumps(props))
+    @staticmethod
+    def split(outputs):
+        # Materialize once: `parse` returns a generator that a single pass exhausts.
+        outputs = list(outputs)
+        items = [o for o in outputs if isinstance(o, dict)]
+        requests = [o for o in outputs if not isinstance(o, dict)]
+        return items, requests
 
-    def body_with(self, props):
-        state = {"props": {"pageProps": props}}
-        return (
-            '<html><script id="__NEXT_DATA__" type="application/json">'
-            + json.dumps(state) + "</script></html>"
-        )
-
-    # --- inventory -----------------------------------------------------
-
-    def test_inventory_covers_every_crawlable_category(self):
+    def test_inventory_and_category_selection(self):
         self.assertEqual(len(ADORAMA_CATEGORY_INVENTORY), 11)
         self.assertEqual(len(ADORAMA_CATEGORIES), 1079)
-        # 1090 sitemap URLs minus the 11 depth-1 CMS landing pages.
-        self.assertEqual(len(ADORAMA_CATEGORIES), 1090 - 11)
-        self.assertEqual(len({c["category"] for c in ADORAMA_CATEGORIES}), 1079)
-        self.assertEqual(len({c["url"] for c in ADORAMA_CATEGORIES}), 1079)
-        self.assertTrue(all(c["depth"] >= 2 for c in ADORAMA_CATEGORIES))
-        self.assertTrue(all(re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", c["category"])
-                            for c in ADORAMA_CATEGORIES))
-        # Adorama reuses labels across branches, so path-keyed slugs must not collide.
-        self.assertEqual(len([c for c in ADORAMA_CATEGORIES if c["label"] == "Microphone Cases"]), 2)
+        self.assertEqual(len({entry["url"] for entry in ADORAMA_CATEGORIES}), 1079)
+        self.assertEqual(len({entry["category"] for entry in ADORAMA_CATEGORIES}), 1079)
+        self.assertEqual(self.spider.resolve_target_url(), "https://www.adorama.com/l/Photography/Cameras")
+        # Depth-1 department landings have no product grid and must not be crawlable.
+        self.assertNotIn("https://www.adorama.com/l/Photography", {e["url"] for e in ADORAMA_CATEGORIES})
+        leaf = next(e for e in ADORAMA_CATEGORIES if e["category"] == "microphone-cases")
+        self.assertEqual(leaf["url"], "https://www.adorama.com/l/Audio/Audio-Bags-and-Cases/Microphone-Cases")
 
-    def test_documented_category_resolves(self):
-        self.assertEqual(self.spider.resolve_target_url(), LISTING_URL)
-        cameras = AdoramaListingSpider(category="photography-cameras", max_pages=1)
-        self.assertEqual(cameras.resolve_target_url(), "https://www.adorama.com/l/Photography/Cameras")
-
-    def test_direct_url_and_category_url_are_accepted(self):
-        for arg in ("url", "category_url"):
-            with self.subTest(arg=arg):
-                spider = AdoramaListingSpider(**{arg: LISTING_URL}, max_pages=1)
-                self.assertEqual(spider.resolve_target_url(), LISTING_URL)
-        with self.assertRaisesRegex(ValueError, "Provide -a category"):
-            AdoramaListingSpider(max_pages=1)
-        with self.assertRaisesRegex(ValueError, "Unknown category"):
-            AdoramaListingSpider(category="not-a-department", max_pages=1)
-
-    # --- hydration mapping ----------------------------------------------
-
-    def test_hydration_mapping_and_feed_contract(self):
-        outputs = list(self.spider.parse(self.response()))
-        self.assertEqual(len(outputs), 24 + 1)  # 24 items + the page-2 request
-        item = outputs[0]
-        self.assertEqual(list(item), self.spider.custom_settings["FEED_EXPORT_FIELDS"])
-        self.assertEqual(item["item_id"], "GCGWPTRODEC4")
-        self.assertEqual(item["sku"], "GCGWPTRODEC4")
-        self.assertEqual(item["title"],
-                         "Gator Cases Titan Case for Rodecaster Pro, 4 Mics and 4 Headsets")
-        self.assertEqual(item["brand"], "Gator Cases")
-        self.assertEqual(item["manufacturer"], "GWP-TITANRODECASTER4")
-        self.assertEqual(item["price"], 539.99)
-        self.assertEqual(item["original_price"], 863.99)
-        self.assertEqual(item["currency"], "USD")
-        self.assertEqual(item["savings"], 324)
-        self.assertEqual(item["url"], "https://www.adorama.com/gator-cases-titan-rodecaster-pro-4-mics-4-headsets/p/gcgwptrodec4")
-        self.assertEqual(item["image"], "https://www.adorama.com/images/product/GCGWPTRODEC4.jpg")
-        self.assertTrue(item["in_stock"])
-        self.assertEqual(item["stock_status"], "In Stock")
-        self.assertEqual(item["condition"], "new")
-        self.assertEqual(item["badge"], "38% Off")
-        self.assertEqual(item["shipping"], "FREE 2-Day Shipping")
-        self.assertEqual(item["category"], "Microphone Cases")
-        self.assertEqual(item["subcategory"], "Audio Bags and Cases")
-        self.assertEqual(item["department"], "Audio")
-        self.assertEqual(item["page"], 1)
-        self.assertEqual(item["position"], 1)
-        self.assertEqual(item["total_count"], 129)
-        self.assertEqual(item["source"], "adorama_next_data_products")
-        self.assertEqual(item["raw"]["sku"], "GCGWPTRODEC4")
-
-    def test_condition_and_stock_flags(self):
-        props = self.state()
-        product = props["products"][1]
-        product["flags"].update({"isUsed": True, "isAvailableForPurchase": False})
-        product["stock"] = "Out"
-        product["subStatus"] = {"name": "Backordered"}
-        item = list(self.spider.parse(self.response(self.body_with(props))))[1]
-        self.assertEqual(item["condition"], "used")
-        self.assertFalse(item["in_stock"])
-        self.assertEqual(item["stock_status"], "Backordered")
-
-    def test_badge_falls_back_to_persuasion_message(self):
-        props = self.state()
-        props["products"][0].pop("badgeText")
-        item = list(self.spider.parse(self.response(self.body_with(props))))[0]
-        self.assertEqual(item["badge"], "Limited Quantity Available \u2013 Buy Now")
-
-    # --- pagination ------------------------------------------------------
-
-    def test_pagination_follows_next_page_url_and_dedupes(self):
-        outputs = list(self.spider.parse(self.response()))
-        follow = outputs[-1]
-        self.assertTrue(hasattr(follow, "url"))
-        self.assertEqual(follow.url, f"{LISTING_URL}?startAt=24")
-        self.assertEqual(follow.cb_kwargs["page"], 2)
-
-        # Replaying page 1 must not emit anything new and must not loop.
-        self.assertEqual([o for o in outputs if hasattr(o, "url")], [follow])
-        self.assertEqual(list(self.spider.parse(self.response(page=2))), [])
-
-    def test_max_pages_caps_pagination(self):
-        spider = AdoramaListingSpider(category=CATEGORY, max_pages=1)
-        outputs = list(spider.parse(self.response()))
-        self.assertTrue(all(not hasattr(o, "url") for o in outputs))
-
-    def test_pagination_stops_without_next_page_url(self):
-        props = self.state()
-        props["nextPageUrl"] = None
-        outputs = list(self.spider.parse(self.response(self.body_with(props))))
-        self.assertEqual(len(outputs), 24)
-        self.assertTrue(all(not hasattr(o, "url") for o in outputs))
-
-    def test_empty_products_stops_pagination(self):
-        props = self.state()
-        props["products"] = []
-        self.assertEqual(list(self.spider.parse(self.response(self.body_with(props)))), [])
-
-    def test_page_url_builder(self):
-        self.assertEqual(AdoramaListingSpider._page_url(LISTING_URL, 1), LISTING_URL)
-        self.assertEqual(AdoramaListingSpider._page_url(LISTING_URL, 2), f"{LISTING_URL}?startAt=24")
-        self.assertEqual(AdoramaListingSpider._page_url(LISTING_URL, 3), f"{LISTING_URL}?startAt=48")
-        # Existing refinements survive the pagination hand-off.
-        refined = f"{LISTING_URL}?sel=Filter-By_BRAND-Sony"
+    def test_hydration_yields_24_items_and_feed_contract(self):
+        items, requests = self.split(self.spider.parse(self.response()))
+        self.assertEqual(len(items), 24)
+        self.assertEqual(len(requests), 1)
+        self.assertEqual(list(items[0]), self.spider.custom_settings["FEED_EXPORT_FIELDS"])
+        first = items[0]
+        self.assertEqual(first["item_id"], "KKRK0603A")
         self.assertEqual(
-            AdoramaListingSpider._page_url(refined, 2),
-            f"{refined}&startAt=24",
+            first["title"],
+            "Kodak Charmera Millenium Edition 1.6MP Keychain Digital Camera, w/32GB Card",
         )
+        self.assertEqual(first["brand"], "Kodak")
+        self.assertEqual(first["url"], "https://www.adorama.com/kodak-charmera-millenium-edition-keychain-camera-1-6-mp/p/kkrk0603a")
+        self.assertEqual(first["image_url"], "https://www.adorama.com/images/product/KKRK0603A.JPG")
+        self.assertEqual(first["currency"], "USD")
+        self.assertEqual(first["price"], 54.94)
+        self.assertTrue(first["in_stock"])
+        self.assertEqual(first["total_count"], 3077)
+        self.assertEqual(first["items_per_page"], 24)
+        self.assertEqual(first["page_type"], "listPage")
+        self.assertEqual(first["source"], "adorama_next_data")
+        self.assertEqual(first["category_id"], "239101")
+        self.assertEqual(first["category_path"], "/l/Photography/Cameras")
+        self.assertEqual(first["category_path_hierarchy"], "Photography/Cameras/Digital Point & Shoot Cameras")
 
-    # --- failure modes ---------------------------------------------------
+    def test_next_page_url_and_max_pages(self):
+        _, requests = self.split(self.spider.parse(self.response()))
+        self.assertEqual(len(requests), 1)
+        first = requests[0]
+        self.assertEqual(first.url, "https://www.adorama.com/l/Photography/Cameras?startAt=24")
+        self.assertEqual(first.meta["page"], 2)
+        self.assertEqual(first.meta["proxy"], "http://proxy.invalid:8080")
+        self.assertEqual(first.meta["category_path"], "/l/Photography/Cameras")
 
-    def test_non_200_fails_with_proxy_guidance(self):
-        with self.assertRaisesRegex(RuntimeError, "HTTP 403.*DataDome"):
-            list(self.spider.parse(self.response("<html></html>", status=403)))
+        items, requests = self.split(self.spider.parse(self.response(self.page2, page=2)))
+        self.assertEqual(len(items), 24)
+        self.assertEqual(items[0]["page"], 2)
+        self.assertEqual(items[0]["position"], 1)
+        # max_pages=2 is reached, so the page-2 `nextPageUrl` is not followed.
+        self.assertEqual(requests, [])
 
-    def test_missing_or_malformed_hydration_fails_visibly(self):
-        with self.assertRaisesRegex(RuntimeError, "no <script id="):
-            list(self.spider.parse(self.response("<html><body>no state</body></html>")))
-        broken = '<html><script id="__NEXT_DATA__" type="application/json">{"props":</script></html>'
-        with self.assertRaisesRegex(RuntimeError, "not valid JSON"):
-            list(self.spider.parse(self.response(broken)))
-        with self.assertRaisesRegex(RuntimeError, "no props.pageProps"):
-            list(self.spider.parse(self.response(
-                '<html><script id="__NEXT_DATA__" type="application/json">{"props":{}}</script></html>')))
+    def test_pagination_does_not_duplicate_skus(self):
+        page1_skus = [i["item_id"] for i in self.split(self.spider.parse(self.response()))[0]]
+        page2_skus = [i["item_id"] for i in self.split(self.spider.parse(self.response(self.page2, page=2)))[0]]
+        self.assertEqual(len(page1_skus), 24)
+        self.assertEqual(len(page2_skus), 24)
+        self.assertEqual(set(page1_skus) & set(page2_skus), set())
 
-    def test_schema_drift_fails_visibly(self):
-        props = self.state()
-        props.pop("products")
-        with self.assertRaisesRegex(RuntimeError, "no props.pageProps.products list"):
-            list(self.spider.parse(self.response(self.body_with(props))))
+        # Replaying page 1 against an already-populated dedupe set yields nothing new.
+        replayed, _ = self.split(self.spider.parse(self.response()))
+        self.assertEqual(replayed, [])
 
-    def test_department_landing_page_is_rejected(self):
-        props = self.state()
-        props["pageInfo"]["pageType"] = "bcmsSitePage"
-        with self.assertRaisesRegex(RuntimeError, "pageType='bcmsSitePage'"):
-            list(self.spider.parse(self.response(self.body_with(props))))
+    def test_max_pages_one_skips_follow(self):
+        spider = AdoramaListingSpider(category="cameras", max_pages=1)
+        items, requests = self.split(spider.parse(self.response()))
+        self.assertEqual(len(items), 24)
+        self.assertEqual(requests, [])
 
-    def test_hydration_extraction_ignores_other_inline_scripts(self):
-        """A greedy regex over <script> blocks would splice these into the payload."""
-        injected = (
-            "<script>window.__OTHER__ = {\"products\": [{\"sku\": \"SPOOF\"}]};</script>"
-            '<script id="__NEXT_DATA__" type="application/json">'
-            + json.dumps({"props": {"pageProps": {"products": [{"sku": "REAL"}]}}})
-            + "</script>"
-            '<script>window.__TRAILING__ = "products";</script>'
+    def test_malformed_missing_and_empty_hydration_fail_visibly(self):
+        cases = [
+            ("<html></html>", "No valid Adorama"),
+            ('<script id="__NEXT_DATA__">bad</script>', "No valid Adorama"),
+            ('<script id="__NEXT_DATA__">[]</script>', "No valid Adorama"),
+            ('<script id="__NEXT_DATA__">{}</script>', "no props.pageProps"),
+            (_hydration({"pageInfo": {"pageType": "listPage"}}), "no list-valued products"),
+            (_hydration({"pageInfo": {"pageType": "listPage"}, "products": []}), "zero products"),
+            (_hydration({"pageInfo": {"pageType": "bcmsSitePage"}, "products": [{"sku": "X1"}]}), "CMS landing page"),
+        ]
+        for body, message in cases:
+            with self.subTest(message=message), self.assertRaisesRegex(RuntimeError, message):
+                list(self.spider.parse(self.response(body)))
+
+    def test_non_200_fails_visibly(self):
+        request = Request("https://www.adorama.com/l/Photography/Cameras", meta={"page": 1})
+        blocked = TextResponse(
+            "https://www.adorama.com/l/Photography/Cameras", request=request,
+            body="<html>blocked</html>", status=403, encoding="utf-8",
         )
-        outputs = list(self.spider.parse(self.response(injected)))
-        self.assertEqual([o["item_id"] for o in outputs], ["REAL"])
+        with self.assertRaisesRegex(RuntimeError, "HTTP 403"):
+            list(self.spider.parse(blocked))
 
-    def test_page_size_constant_matches_hydration_contract(self):
-        self.assertEqual(ADORAMA_PAGE_SIZE, 24)
-        props = self.state()
-        self.assertEqual(props["defaultPerPage"], ADORAMA_PAGE_SIZE)
-        self.assertEqual(len(props["products"]), ADORAMA_PAGE_SIZE)
-        self.assertEqual(props["nextPageUrl"], f"/l/Audio/Audio-Bags-and-Cases/Microphone-Cases?startAt=24")
+    def test_rating_and_savings_mapping(self):
+        items = self.split(self.spider.parse(self.response()))[0]
+        rated = [i for i in items if i["rating"] is not None]
+        self.assertTrue(rated, "fixture should contain rated products")
+        self.assertEqual(rated[0]["rating"], 5)
+        self.assertEqual(rated[0]["reviews_count"], 5)
 
+        saved = [i for i in items if i["savings_amount"] is not None]
+        self.assertTrue(saved, "fixture should contain discounted products")
+        self.assertGreater(saved[0]["list_price"], saved[0]["price"])
+        self.assertEqual(saved[0]["savings_amount"], round(saved[0]["list_price"] - saved[0]["price"], 2))
 
-if __name__ == "__main__":
-    unittest.main()
+        # `in_stock` reflects physical stock; pre-order SKUs stay purchasable but
+        # are not in stock, so the two flags must be reported independently.
+        self.assertEqual({i["stock"] for i in items}, {"In", "Out"})
+        for item in items:
+            self.assertEqual(item["in_stock"], item["stock"] == "In")
+        preorder = [i for i in items if i["stock"] == "Out"]
+        self.assertTrue(preorder)
+        self.assertTrue(any(i["is_available_for_purchase"] for i in preorder))
+
+    def test_url_or_category_arg_required(self):
+        with self.assertRaisesRegex(ValueError, "Provide -a category"):
+            AdoramaListingSpider()
+
+    def test_leaves_raw_source_entry_untouched(self):
+        item = list(self.spider.parse(self.response()))[0]
+        self.assertEqual(item["raw"]["sku"], "KKRK0603A")
+        self.assertEqual(item["source_url"], "https://www.adorama.com/l/Photography/Cameras")
