@@ -37,6 +37,7 @@ build/
 *.csv
 *.json
 !common/spiders/ebay_category_urls.json
+!common/spiders/newegg_category_urls.json
 
 data/
 !sample/*.json

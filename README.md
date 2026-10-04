@@ -94,6 +94,7 @@ Spiders below are returning items in recent smoke runs:
 | [`llbean_listing`](#llbean_listing) | Active | api | none detected (ScrapeOps `country=us` route required) | L.L.Bean listing via the UDAL `product-discovery` JSON endpoint (no HTML fallback). | 96 (2 pages, proxy) | 11 departments / 500 targets from `llbean_categories.py` | `{"category":"Gift Shop","item_id":"1000316302","sku_id":"1000316302","title":"Women's The Original Double L® Sweater, Crewneck","brand":"L.L.Bean","price":49.99,"original_price":69.95,"currency":"USD","rating":4.4,"reviews_count":359,"color":"Classic Navy","size":"X-Small","availability":"IN","on_sale":true,"page":1,"position":1,"total_count":626,"source":"llbean_udal_product_discovery"...` |
 | [`maccosmetics_listing`](#maccosmetics_listing) | Experimental | api + bootstrap + html | Akamai | MAC Cosmetics multi-mode listing spider. | 66 (ok) | face, lips, eyes | `{"item_id":"13854","title":"4.8/5 ( 452 ) Lustreglass Sheer-Shine Lipstick Sheer Coverage, Glossy/High-Shine Finish, Infused With Raspberry Seed/Organic Extra Virgin Olive Oils ...` |
 | [`officedepot_listing`](#officedepot_listing) | Active | bootstrap | none detected (ScrapeOps proxy) | Office Depot / OfficeMax category listings from inline `window.ODSEARCHBROWSE_INITIAL_STATE` SSR hydration; taxonomy resolved from the header mega-menu JSON. | 59 (2 pages, furniture) | 388 browse PLPs from `header-menu-excel/products.json` | `{"department":"Furniture","item_id":"9003237","title":"Serta® Smart Layers™ Brinkley Ergonomic Bonded Leather High-Back Executive Office Chair, Black/Silver","price":299.99,"availability":"InStock","source":"officedepot_bootstrap"...}`
+| [`newegg_listing`](#newegg_listing) | Active | bootstrap | none detected | Newegg listings from the inline `window.__initialState__` hydration blob (`Products[]` + `TotalItemCount`); taxonomy captured from `/api/RolloverMenu?CountryCode=USA`. | 72 (2 pages, Desktop CPU) | 17 departments / 1,357 taxonomy URLs (1,159 SubCategory PLPs) | `{"item_id":"19-113-877","title":"AMD Ryzen 7 9800X3D - Ryzen 7 9000 Series Zen 5 8-Core 5.2 GHz - Socket AM5 120W ...","brand":"AMD","price":469.0,...}` |
 | [`poshmark_listing`](#poshmark_listing) | Experimental | bootstrap | none detected | Poshmark listing spider via `window.__INITIAL_STATE__` category grid data. | 48 (ok) | women, men, kids, home, electronics, pets | `{"category":"women","item_id":"6989d90ac4e7b4d4de556bac","title":"🔥Stunning  Farm Rio NWT Size Large Tropical Midi Dress with Sleeves – V...` |
 | [`qvc_listing`](#qvc_listing) | Experimental | html + bootstrap | Akamai | QVC listing spider via server-rendered gallery cards and `utag_data` page state. | 96 (Beauty proxy capture) | fashion | `{"category":"beauty","category_id":"NAV6285","item_id":"A740517","title":"Whish 12 Days of Beauty Whishes Advent Calendar","price":59.98,...}` |
 | [`zappos_listing`](#zappos_listing) | Experimental | Redux hydration | none detected through proxy | Zappos listings from `window.__INITIAL_STATE__.products.list`. | 100 (one-page proxy smoke) | 4 departments / 50 targets | `{"item_id":"8910671","title":"Kiruna Padded Parka","brand":"Fjällräven","price":300.0,...}` |
@@ -221,6 +222,65 @@ HTTPCACHE_ENABLED=False common-scrapy crawl levis_listing --category shop-all-me
 ```json
 {"category":"shop-all-men-s-jeans","department":"Men","subcategory":"Men’s Jeans","item_id":"005053473","title":"505™ Regular Dobby Men's Jeans","brand":"Levi's","url":"https://www.levi.com/US/en_US/clothing/men/jeans/straight/505TM-regular-dobby-mens-jeans/p/005053473","image_url":"https://lscoglobal.scene7.com/is/image/lscoglobal/MB_00505-3473_GLO_CM_DA?$qv_desktop_full$","swatch_url":"https://lscoglobal.scene7.com/is/image/lscoglobal/MB_00505-3473_GLO_CL_SW?$swatch$","price":64.99,"original_price":74.95,"currency":"USD","discount_pct":null,"rating":3.8395,"reviews_count":4168,"on_sale":true,"merchant_badge":"Best Seller","promotional_badge":"30% off Applied at Checkout","color_count":22,"coming_soon":false,"sold_out":false,"category_code":"levi_clothing_men_jeans","page":1,"position":1,"total_count":174,"source":"levis_lsco_initial_state_products"}
 ```
+### newegg_listing
+
+`newegg_listing` uses one authoritative source: the server-rendered
+`window.__initialState__` hydration blob. Every Newegg category page ships its
+first result window inline as `Products[]` plus `TotalItemCount` and
+`PageInfo` — there is no Next.js flight data, no product XHR, and no
+`application/ld+json` to reconcile against, so nothing is scraped from the HTML
+cards and there is no second fallback route. The assignment is located with a
+narrow regex and then **balance-decoded** from the first `{`, so unrelated
+scripts in the document are never mistaken for the state object.
+
+The category inventory in `newegg_categories.py` /
+`newegg_category_urls.json` is captured from the first-party navigation endpoint:
+
+```
+GET https://www.newegg.com/api/RolloverMenu?CountryCode=USA
+```
+
+That payload nests **1,789** nodes across **17** departments, of which **1,357**
+resolve to distinct taxonomy listing URLs (`{Store,Category,SubCategory}/ID-*`).
+`CustomLink` wins when present, and `StoreType=0` grouping nodes are skipped
+because they carry no listing. Slugs are built from the store name with
+**casing preserved** — Newegg answers a lower-cased slug with a 301 that can
+land on a *different* store (`/automotive-tools/Store/ID-38` →
+`/Office/Store/ID-38`). Each entry is tagged with its `kind`;
+**1,159 `SubCategory` leaves are product listings**, while `Store` and
+`Category` nodes are navigation hubs that render zero products (verified by
+sampling the live storefront), and the spider logs an explicit diagnostic if
+pointed at one.
+
+Pagination is a plain SSR re-render: page 1 uses the leaf URL and later pages
+append `/Page-{n}`. The crawl stops at `max_pages`, the `TotalItemCount`-derived
+last page, or an empty `Products` array, and de-duplicates on `ProductNumber`
+because grouped and marketplace offers overlap — a 2-page Desktop CPU crawl
+yields 72 unique SKUs from 72 offers, of which 36 are third-party marketplace
+listings.
+
+Product URLs are rebuilt purely from hydration data
+(`Description.UrlKeywords` + `ItemCell.Item` → `/{slug}/p/{item}`), and images
+are resolved through the page's own `ImagePathPattern` ladder. That ladder tops
+out at `ProductImageOriginal` (~6 MB per image), so the default rung is 180,
+which serves the 200px rendition and averages **~9 KB per image** across a real
+crawl; pass `-a image_size=1280` for originals.
+
+Its ordered `FEED_EXPORT_FIELDS` contract carries the department/breadcrumb
+context, SKU, title, brand, model, URL, image, current and pre-discount prices,
+discount/rating/review data, stock, seller and shipping, promotion and tag
+badges, offer-group size, and the raw hydrated product record (`raw` is present
+on every item).
+
+```bash
+rm -f newegg-out.json
+common-scrapy crawl newegg_listing -a category=components-storage-core-component-cpu-processor-desktop-cpu-processor -a max_pages=2 -O newegg-out.json -s HTTPCACHE_ENABLED=False
+```
+
+```json
+{"category":"components-storage-core-component-cpu-processor-desktop-cpu-processor","department":"Components & Storage","subcategory":"Components & Storage > Core Component > CPU / Processor > Desktop CPU Processor","item_id":"19-113-877","title":"AMD Ryzen 7 9800X3D - Ryzen 7 9000 Series Zen 5 8-Core 5.2 GHz - Socket AM5 120W - AMD Radeon Graphics Desktop Processor - 100-100001084WOF","brand":"AMD","model":"100-100001084WOF","url":"https://www.newegg.com/amd-ryzen-7-9000-series-ryzen-7-9800x3d-granite-ridge-zen-5-socket-am5-desktop-cpu-processor/p/19-113-877","image_url":"https://c1.neweggimages.com/NeweggImage/ProductImageCompressAll200/19-113-877-01.png","price":469.0,"original_price":497.49,"currency":"USD","discount_pct":5.73,"rating":4.8,"reviews_count":729,"on_sale":true,"in_stock":true,"seller":"Newegg","ships_from":"United States","shipping_charge":0.01,"promotional_badge":"Save 5% | Promotion Deal","group_item_count":142,"category_name":"CPU","subcategory_name":"Desktop CPU Processor","page":1,"position":1,"total_count":1181,"source_url":"https://www.newegg.com/Desktop-CPU-Processor/SubCategory/ID-343","source":"newegg_initial_state_products"}
+```
+
 ### zappos_listing
 
 `zappos_listing` uses one authoritative source: the server-rendered Redux state
