@@ -107,7 +107,7 @@ Spiders below are returning items in recent smoke runs:
 | [`llbean_listing`](#llbean_listing) | Active | api | none detected (ScrapeOps `country=us` route required) | L.L.Bean listing via the UDAL `product-discovery` JSON endpoint (no HTML fallback). | 96 (2 pages, proxy) | 11 departments / 500 targets from `llbean_categories.py` | `{"category":"Gift Shop","item_id":"1000316302","sku_id":"1000316302","title":"Women's The Original Double L® Sweater, Crewneck","brand":"L.L.Bean","price":49.99,"original_price":69.95,"currency":"USD","rating":4.4,"reviews_count":359,"color":"Classic Navy","size":"X-Small","availability":"IN","on_sale":true,"page":1,"position":1,"total_count":626,"source":"llbean_udal_product_discovery"...` |
 | [`maccosmetics_listing`](#maccosmetics_listing) | Experimental | api + bootstrap + html | Akamai | MAC Cosmetics multi-mode listing spider. | 66 (ok) | face, lips, eyes | `{"item_id":"13854","title":"4.8/5 ( 452 ) Lustreglass Sheer-Shine Lipstick Sheer Coverage, Glossy/High-Shine Finish, Infused With Raspberry Seed/Organic Extra Virgin Olive Oils ...` |
 | [`officedepot_listing`](#officedepot_listing) | Active | bootstrap | none detected (ScrapeOps proxy) | Office Depot / OfficeMax category listings from inline `window.ODSEARCHBROWSE_INITIAL_STATE` SSR hydration; taxonomy resolved from the header mega-menu JSON. | 59 (2 pages, furniture) | 388 browse PLPs from `header-menu-excel/products.json` | `{"department":"Furniture","item_id":"9003237","title":"Serta® Smart Layers™ Brinkley Ergonomic Bonded Leather High-Back Executive Office Chair, Black/Silver","price":299.99,"availability":"InStock","source":"officedepot_bootstrap"...}`
-| [`petsmart_listing`](#petsmart_listing) | Active | api | none detected (Akamai sensor served, API open; no proxy needed) | PetSmart category listings from the first-party `/api/search/1/indexes/<replica>/query` endpoint the storefront's Algolia client is pinned to. | 200 (2 pages x 100, ok) | 491 category paths / 7 departments from `petsmart_categories.py` | `{"category":"dog/food/dry-food","item_id":"5252900","title":"Purina Pro Plan Sensitive Skin and Stomach Dry Dog Food Adult Salmon & Rice Formula Digestive Health","brand":"Purina Pro Plan","price":77.99,"currency":"USD","rating":4.5,"reviews_count":9118,"url":"https://www.petsmart.com/dog/food/dry-food/purina-pro-plan-...-36648.html",...}` |
+| [`petsmart_listing`](#petsmart_listing) | Active | api | none detected (Akamai sensor served, API open; no proxy needed) | PetSmart category listings from the first-party `/api/search/1/indexes/<replica>/query` endpoint the storefront's Algolia client is pinned to. | 200 (2 pages x 100, ok) | 491 category paths / 7 departments from `petsmart_categories.py` | `{"category":"dog/food/dry-food","item_id":"5252900","title":"Purina Pro Plan Sensitive Skin and Stomach Dry Dog Food Adult Salmon & Rice Formula Digestive Health","brand":"Purina Pro Plan","price":77.99,"currency":"USD","rating":4.5,"reviews_count":9118,"pet_types":"Dog","life_stages":"Adult","nutritional_options":"With-Grain","health_considerations":"Sensitive Skin, Sensitive Stomach","carton_weight":30.4,"total_cups_per_package":118.3,"autoship_interval":8,"url":"https://www.petsmart.com/dog/food/dry-food/purina-pro-plan-...-36648.html",...}` |
 | [`michaels_listing`](#michaels_listing) | Experimental | Next.js RSC hydration | none detected (Akamai fronted; no challenge observed) | Michaels listings from the server-rendered React Server Component payload (`self.__next_f` -> `initialProducts`), paginated by `?page=`. | 40 (1 page, live proxy; page 2 blocked by a local 407 on CONNECT) | 3,611 categories under 33 departments from `sitemap_MIK_category.xml` | `{"category":"home-decor-floral-arrangements","item_id":"10809872","title":"11\" Pink Peony & Cream Rose Mix Bouquet by Ashland®","brand":"Michaels","price":9.99,"rating":4.5...` |
 | [`poshmark_listing`](#poshmark_listing) | Experimental | bootstrap | none detected | Poshmark listing spider via `window.__INITIAL_STATE__` category grid data. | 48 (ok) | women, men, kids, home, electronics, pets | `{"category":"women","item_id":"6989d90ac4e7b4d4de556bac","title":"🔥Stunning  Farm Rio NWT Size Large Tropical Midi Dress with Sleeves – V...` |
 | [`qvc_listing`](#qvc_listing) | Experimental | html + bootstrap | Akamai | QVC listing spider via server-rendered gallery cards and `utag_data` page state. | 96 (Beauty proxy capture) | fashion | `{"category":"beauty","category_id":"NAV6285","item_id":"A740517","title":"Whish 12 Days of Beauty Whishes Advent Calendar","price":59.98,...}` |
@@ -393,9 +393,23 @@ API route is both lighter and more stable.
   `CANONICAL_URL_OVERRIDES`.
 - **Three sort replicas.** `-a sort=best-sellers` (default, storefront default),
   `top-rated`, `new-arrivals`.
-- **`attributesToRetrieve`.** Only the ~46 attributes the item reads are pulled,
-  which keeps a 100-hit page at ~450 KB instead of ~1.9 MB (the full payload
+- **`attributesToRetrieve`.** Only the ~57 attributes the item reads are pulled,
+  which keeps a 100-hit page at ~480 KB instead of ~1.9 MB (the full payload
   repeats an HTML `long_description` per hit).
+- **Browse facets and fulfilment detail.** The PLP facet rail
+  (`dogLifestages`, `nutritionalOptions`, `customHealthConsideration`,
+  `foodCategory`), the pet audience (`customPet`), shipping carton dimensions,
+  `totalCupsPerPackage`, `conversionRate`, the autoship cadence
+  (`recommendedAutoshipFrequency` + unit of measure), `maxOrderQty`, media
+  availability and `lastModifiedMillis` are all read from the same single
+  request — no extra calls, no per-PDP scraping.
+- **Two attributes are deliberately left out** for payload cost, measured on a
+  100-hit `Dog > Food` page (439 KB baseline): `categories` (+163 KB — the
+  merchandising node tree, already covered by `custom_category_names` /
+  `primary_category_*` plus campaign overlays) and `inventory` (+653 KB — ~60
+  numeric store ids per hit; `productAvailabilityLocations` answers
+  "is this in a store?" for a few bytes). The added attributes together cost
+  +43 KB (+9.8%).
 - **Product URLs.** Hits carry no URL, so the canonical PDP route is rebuilt from
   the hit's browse path + name slug + `masterProductID`
   (`/dog/food/dry-food/<name-slug>-36648.html`), the same shape the PLP JSON-LD
@@ -416,8 +430,13 @@ HTTPCACHE_ENABLED=False common-scrapy crawl petsmart_listing -a category=dog/foo
 ```
 
 ```json
-{"category": "dog/food/dry-food", "department": "Dog", "subcategory": "Food", "category_name": "Dog > Food > Dry Food", "category_url": "https://www.petsmart.com/dog/food/dry-food/", "category_item_count": 1794, "sort": "best-sellers", "index": "r-US_products_best-sellers", "item_id": "5252900", "master_product_id": 36648, "title": "Purina Pro Plan Sensitive Skin and Stomach Dry Dog Food Adult Salmon & Rice Formula Digestive Health", "brand": "Purina Pro Plan", "url": "https://www.petsmart.com/dog/food/dry-food/purina-pro-plan-sensitive-skin-and-stomach-dry-dog-food-adult-salmon-and-rice-formula-digestive-health-36648.html", "image_url": "https://s7d2.scene7.com/is/image/PetSmart/5252900?$sclp-prd-main_large$", "price": 77.99, "price_display": "$20.68-$94.99", "price_display_type": "range", "currency": "USD", "rating": 4.5, "reviews_count": 9118, "upc": "038100175526", "available": true, "autoship_eligible": true, "variation_types": "4 Sizes, 1 Flavor", "page": 1, "position": 1, "total_count": 937, "total_pages": 10, "source": "petsmart_first_party_search_api", "raw": {...}}
+{"category": "dog/food/dry-food", "department": "Dog", "subcategory": "Food", "category_name": "Dog > Food > Dry Food", "category_url": "https://www.petsmart.com/dog/food/dry-food/", "category_item_count": 1794, "sort": "best-sellers", "index": "r-US_products_best-sellers", "item_id": "5252900", "master_product_id": 36648, "title": "Purina Pro Plan Sensitive Skin and Stomach Dry Dog Food Adult Salmon & Rice Formula Digestive Health", "brand": "Purina Pro Plan", "url": "https://www.petsmart.com/dog/food/dry-food/purina-pro-plan-sensitive-skin-and-stomach-dry-dog-food-adult-salmon-and-rice-formula-digestive-health-36648.html", "image_url": "https://s7d2.scene7.com/is/image/PetSmart/5252900?$sclp-prd-main_large$", "price": 77.99, "price_display": "$20.68-$94.99", "price_display_type": "range", "currency": "USD", "rating": 4.5, "reviews_count": 9118, "upc": "038100175526", "available": true, "autoship_eligible": true, "variation_types": "4 Sizes, 1 Flavor", "pet_types": "Dog", "life_stages": "Adult", "nutritional_options": "With-Grain", "health_considerations": "Sensitive Skin, Sensitive Stomach", "food_category": "Specialized Nutrition", "food_weight_band": "24 Lb and Over", "total_cups_per_package": 118.3, "carton_weight": 30.4, "carton_length": 5.0, "carton_width": 20.0, "carton_height": 24.0, "conversion_rate": 30, "autoship_interval": 8, "autoship_interval_unit": 2, "has_video": true, "in_store_available": true, "last_updated": "2026-10-04", "page": 1, "position": 1, "total_count": 937, "total_pages": 10, "source": "petsmart_first_party_search_api", "raw": {...}}
 ```
+
+`max_order_quantity` and the food facets are department-dependent, and the spider
+leaves them `null` rather than inventing values — a `Cat > Toys` capture has
+`pet_types`, `max_order_quantity`, `carton_weight` and `conversion_rate` populated
+while every food facet stays null.
 
 ### containerstore_listing
 

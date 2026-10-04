@@ -118,7 +118,34 @@ RETRIEVED_ATTRIBUTES = (
     "onlineTo",
     "conversionRate",
     "lastModifiedMillis",
+    # Merchandising taxonomy the index already carries. The storefront filters
+    # its PLP facet rail on dogLifestages / nutritionalOptions /
+    # customHealthConsideration / foodCategory, so these are the browse facets a
+    # shopper actually navigates by -- they were fetched but never exported.
+    "customPet",
+    "dogLifestages",
+    "nutritionalOptions",
+    "customHealthConsideration",
+    "foodCategory",
+    "foodPoundsSizeDisplays",
+    # Purchase constraints + media the listing card never shows but the PDP does.
+    "maxOrderQty",
+    "recommendedAutoshipFrequency",
+    "recommendedAutoshipFrequencyUnitOfMeasure",
+    "video",
 )
+
+# Two attributes are deliberately NOT requested, both for payload cost measured
+# on a 100-hit Dog > Food page (baseline 439 KB):
+#   `categories`     +163 KB -- the merchandising node tree, every node of which
+#                               is already in custom_category_names /
+#                               primary_category_* or is a campaign overlay
+#                               ("October Event", "Sale", "PA").
+#   `inventory`      +653 KB -- a per-store availability list with ~60 numeric
+#                               store ids per hit. `productAvailabilityLocations`
+#                               already answers "is this in a store?" for a few
+#                               bytes.
+# The attributes below together cost +43 KB (+9.8%).
 
 # An HTML body where the JSON search envelope was expected means a bot wall, a
 # geo-block or an edge error page -- never a product payload.
@@ -182,12 +209,30 @@ class PetsmartListingSpider(BaseListingSpider):
             "variation_types",
             "food_forms",
             "kibble_sizes",
+            "life_stages",
+            "nutritional_options",
+            "health_considerations",
+            "pet_types",
+            "food_category",
+            "food_weight_band",
             "series",
             "package_weight",
+            "carton_weight",
+            "carton_length",
+            "carton_width",
+            "carton_height",
+            "total_cups_per_package",
             "case_quantity",
+            "max_order_quantity",
+            "conversion_rate",
+            "autoship_interval",
+            "autoship_interval_unit",
+            "has_video",
+            "in_store_available",
             "promotions",
             "online_from",
             "online_to",
+            "last_updated",
             "page",
             "position",
             "total_count",
@@ -378,6 +423,17 @@ class PetsmartListingSpider(BaseListingSpider):
         promotions = hit.get("eligiblePromotions") if isinstance(hit.get("eligiblePromotions"), list) else []
         package = hit.get("package") if isinstance(hit.get("package"), dict) else {}
         size = hit.get("size") if isinstance(hit.get("size"), dict) else {}
+        # The index exposes shipping dimensions under both keys: `package` is the
+        # unit shipped and `dimensionsAndWeight.carton*` is the master-carton
+        # footprint used for freight. Prefer the carton, fall back to the unit.
+        carton = hit.get("dimensionsAndWeight") if isinstance(hit.get("dimensionsAndWeight"), dict) else {}
+        if not carton and package:
+            carton = package
+        # `inventory` is deliberately not requested (+653 KB/page); store-level
+        # availability comes from `productAvailabilityLocations` instead.
+        video = hit.get("video") if isinstance(hit.get("video"), dict) else {}
+        locations = hit.get("productAvailabilityLocations")
+        locations = locations if isinstance(locations, list) else []
 
         return {
             "category": entry.get("category"),
@@ -424,12 +480,34 @@ class PetsmartListingSpider(BaseListingSpider):
             "variation_types": ", ".join(str(value) for value in variations if value) or None,
             "food_forms": self._join(hit.get("foodForms")),
             "kibble_sizes": self._join(hit.get("kibbleSizes")),
+            "life_stages": self._join(hit.get("dogLifestages")),
+            "nutritional_options": self._join(hit.get("nutritionalOptions")),
+            "health_considerations": self._join(hit.get("customHealthConsideration")),
+            "pet_types": self._join(hit.get("customPet")),
+            "food_category": hit.get("foodCategory"),
+            "food_weight_band": self._join(hit.get("foodPoundsSizeDisplays")),
             "series": ", ".join(str(value) for value in (hit.get("series") or []) if value) or None,
             "package_weight": size.get("solidSize") or self._package_weight(package),
+            "carton_weight": self._number(carton.get("cartonWeight") or carton.get("weight")),
+            "carton_length": self._number(carton.get("cartonLength") or carton.get("length")),
+            "carton_width": self._number(carton.get("cartonWidth") or carton.get("width")),
+            "carton_height": self._number(carton.get("cartonHeight") or carton.get("height")),
+            "total_cups_per_package": self._number(hit.get("totalCupsPerPackage")),
             "case_quantity": self._integer(hit.get("customCaseQuantity")),
+            "max_order_quantity": self._integer(hit.get("maxOrderQty")),
+            "conversion_rate": self._integer(hit.get("conversionRate")),
+            "autoship_interval": self._integer(hit.get("recommendedAutoshipFrequency")),
+            "autoship_interval_unit": self._integer(hit.get("recommendedAutoshipFrequencyUnitOfMeasure")),
+            "has_video": bool(video) or None,
+            "in_store_available": (
+                any(str(value).strip().lower() == "in store" for value in locations) or None
+                if locations
+                else None
+            ),
             "promotions": self._promotions(promotions),
             "online_from": self._iso_date(hit.get("onlineFrom")),
             "online_to": self._iso_date(hit.get("onlineTo")),
+            "last_updated": self._iso_date(hit.get("lastModifiedMillis")),
             "page": page + 1,
             "position": position,
             "total_count": total_count,
