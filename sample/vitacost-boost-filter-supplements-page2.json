@@ -1,0 +1,1683 @@
+{
+ "total_product": 25399,
+ "total_collection": 0,
+ "total_page": 0,
+ "from_cache": false,
+ "products": [
+  {
+   "body_html": " Description Vitamin K Complex Includes Advanced K2 Complex Everyday Essentials Potency - Purity - Pride High Potency Vitamin K (K1) Dietary Supplement Vitamin K (K1) and Advance K2 Complex helps maintain strong, healthy bones. Promotes cardiovascular health by supporting healthy blood vessels. Also supports healthy clotting of blood. What are the key benefits of Vitacost\u00ae Ultra Vitamin K includes Advanced K2 Complex? Vitamin K\u2019s primary function in the body is to aid in the production of Gla (gamma carboxyglutamic acid) proteins, which play a part in coagulation and anti-coagulation of blood. [trimmed]",
+   "skus": [
+    "158973"
+   ],
+   "available": true,
+   "created_at": "2026-05-18T22:48:00Z",
+   "review_count": 0,
+   "variants": [
+    {
+     "merged_options": [
+      "title:Default Title"
+     ],
+     "inventory_quantity": 2169,
+     "image": null,
+     "original_merged_options": [
+      "title:Default Title"
+     ],
+     "compare_at_price": "17.33",
+     "inventory_management": "shopify",
+     "available": true,
+     "weight": 0.25,
+     "title": "Default Title",
+     "inventory_policy": "deny",
+     "weight_unit": "lb",
+     "price": "13.00",
+     "unit_cost": null,
+     "id": 51263976866107,
+     "sku": "158973",
+     "barcode": "844197025466"
+    }
+   ],
+   "media": [],
+   "title": "Vitacost, Everyday Essentials, Ultra Vitamin K Includes Advanced K2 Complex, 180 Softgels",
+   "price_min": 13,
+   "images_info": [
+    {
+     "src": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/10_360fa3fd-c9dd-40d3-9f90-64d8d86eba74.jpg?v=1785979008",
+     "width": 1600,
+     "alt": "Vitacost, Everyday Essentials, Ultra Vitamin K Includes Advanced K2 Complex, 180 Softgels",
+     "id": 48547446849851,
+     "position": 1,
+     "height": 1600
+    },
+    {
+     "src": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/15_7168bc67-78f1-4dd7-81ac-66990e146702.jpg?v=1785979009",
+     "width": 1600,
+     "alt": null,
+     "id": 48547446882619,
+     "position": 2,
+     "height": 1600
+    }
+   ],
+   "review_ratings": 4.73,
+   "template_suffix": null,
+   "updated_at": "2026-10-04T06:37:06Z",
+   "combined_listing_role": null,
+   "collections": [
+    {
+     "template_suffix": null,
+     "handle": "supplements",
+     "id": 457575104827,
+     "sort_value": "019",
+     "title": "Supplements"
+    },
+    {
+     "template_suffix": null,
+     "handle": "vitamins",
+     "id": 458194583867,
+     "sort_value": "01s",
+     "title": "Vitamins"
+    },
+    {
+     "template_suffix": "",
+     "handle": "all",
+     "id": 499840385339,
+     "sort_value": "011o",
+     "title": "All"
+    },
+    {
+     "template_suffix": null,
+     "handle": "vitamin-k",
+     "id": 458194780475,
+     "sort_value": "07",
+     "title": "Vitamin K"
+    },
+    {
+     "template_suffix": null,
+     "handle": "vitacost",
+     "id": 499767017787,
+     "sort_value": "0v0z",
+     "title": "Vitacost"
+    },
+    {
+     "template_suffix": null,
+     "handle": "globofilter-best-selling-products-index",
+     "id": 457705390395,
+     "sort_value": "014u",
+     "title": "Smart Products Filter Index - Do not delete"
+    },
+    {
+     "template_suffix": null,
+     "handle": "october-supplement-sale",
+     "id": 501609660731,
+     "sort_value": "01f",
+     "title": "October Supplement Sale"
+    },
+    {
+     "template_suffix": null,
+     "handle": "our-brands",
+     "id": 502060712251,
+     "sort_value": "0hz0z",
+     "title": "Our Brands"
+    },
+    {
+     "template_suffix": "",
+     "handle": "30-off-the-weekend-sale",
+     "id": 500557447483,
+     "sort_value": "0p",
+     "title": "The Weekend Sale - 30% Off"
+    },
+    {
+     "template_suffix": null,
+     "handle": "deals",
+     "id": 501592391995,
+     "sort_value": "01f",
+     "title": "Limited Time Offers"
+    },
+    {
+     "template_suffix": null,
+     "handle": "notprops65",
+     "id": 502674358587,
+     "sort_value": "015",
+     "title": "NotProps65"
+    },
+    {
+     "template_suffix": null,
+     "handle": "all-products-with-exclusions",
+     "id": 502729179451,
+     "sort_value": "01c",
+     "title": "All products with exclusions"
+    },
+    {
+     "template_suffix": null,
+     "handle": "iherb-brands",
+     "id": 511719244091,
+     "sort_value": "0h",
+     "title": "iHerb Brands"
+    }
+   ],
+   "vendor": "Vitacost",
+   "percent_sale_min": 25,
+   "best_selling_rank": 65,
+   "html": {
+    "theme_id": 0,
+    "value": ""
+   },
+   "id": 10390207201595,
+   "published_at": "2026-05-18T23:33:13Z",
+   "rio_ratings": [],
+   "images": {
+    "1": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/10_360fa3fd-c9dd-40d3-9f90-64d8d86eba74.jpg?v=1785979008",
+    "2": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/15_7168bc67-78f1-4dd7-81ac-66990e146702.jpg?v=1785979009"
+   },
+   "options_with_values": [
+    {
+     "original_name": "title",
+     "values": [
+      {
+       "image": null,
+       "title": "Default Title"
+      }
+     ],
+     "name": "title",
+     "label": "Title",
+     "position": 1
+    }
+   ],
+   "weight_min": 250,
+   "handle": "vitacost-everyday-essentials-ultra-vitamin-k-includes-advanced-k2-complex-180-softgels-158973",
+   "compare_at_price_min": 17.33,
+   "barcodes": [
+    "844197025466"
+   ],
+   "number_extra_sort1": 455410,
+   "tags": [
+    "Supplements",
+    "Vitamin K",
+    "Vitamin K2 MK7",
+    "Vitamins",
+    "rating_count:63",
+    "top_rated:455410"
+   ],
+   "published_scope": "web",
+   "metafields": [
+    {
+     "namespace": "PackageQuantity",
+     "id": "gid://shopify/Metafield/80691564085563",
+     "type": "single_line_text_field",
+     "value": "180 - 239 count",
+     "key": "PackageQuantity"
+    },
+    {
+     "namespace": "Gender",
+     "id": "gid://shopify/Metafield/80691563888955",
+     "type": "single_line_text_field",
+     "value": "Neutral",
+     "key": "Gender"
+    },
+    {
+     "namespace": "Clearance",
+     "id": "gid://shopify/Metafield/80898207023419",
+     "type": "single_line_text_field",
+     "value": "Clearance",
+     "key": "Clearance"
+    },
+    {
+     "namespace": "OnSale",
+     "id": "gid://shopify/Metafield/80898207088955",
+     "type": "single_line_text_field",
+     "value": "On Sale",
+     "key": "OnSale"
+    },
+    {
+     "namespace": "CertificationAndDiet",
+     "id": "gid://shopify/Metafield/83068849750331",
+     "type": "list.single_line_text_field",
+     "value": "[\"Milk-free\",\"Egg-free\",\"Treenut-free\",\"Fish-free\",\"Shellfish-free\",\"Soy-free\",\"Gluten-free\",\"Certificate of analysis\"]",
+     "key": "CertificationAndDiet"
+    },
+    {
+     "namespace": "reviews",
+     "id": "gid://shopify/Metafield/82576259088699",
+     "type": "rating",
+     "value": "{\"scale_min\":\"1.0\",\"scale_max\":\"5.0\",\"value\":\"4.73\"}",
+     "key": "rating"
+    },
+    {
+     "namespace": "Form",
+     "id": "gid://shopify/Metafield/80691563790651",
+     "type": "single_line_text_field",
+     "value": "Softgel",
+     "key": "Form"
+    },
+    {
+     "namespace": "reviews",
+     "id": "gid://shopify/Metafield/82576259121467",
+     "type": "number_integer",
+     "value": "63",
+     "key": "rating_count"
+    },
+    {
+     "namespace": "judgeme",
+     "id": "gid://shopify/Metafield/81291283693883",
+     "type": "string",
+     "value": "<div style='display:none' class='jdgm-prev-badge' data-average-rating='4.73' data-number-of-reviews='63' data-number-of-questions='0'> <span class='jdgm-prev-badge__stars' data-score='4.73' tabindex='0' aria-label='4.73 stars' role='button'> <span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--half'></span> </span> <span class='jdgm-prev-badge__text'> 63 </span> </div>",
+     "key": "badge"
+    }
+   ],
+   "product_type": "[Vitacost Brands][SuperDeal]",
+   "weight_max": 250,
+   "locations": [],
+   "position": null,
+   "compare_at_price_max": 17.33,
+   "product_category": null,
+   "price_max": 13,
+   "metrics": {
+    "purchase-30-days": 48,
+    "purchase-6-days": 22,
+    "view-14-days": 33,
+    "view-5-days": 21,
+    "purchase-5-days": 23,
+    "purchase-14-days": 39,
+    "purchase-3-days": 26,
+    "view-3-days": 18,
+    "view-4-days": 21,
+    "purchase-1-days": 12,
+    "purchase-7-days": 26,
+    "purchase-4-days": 26,
+    "view-30-days": 42,
+    "purchase-2-days": 21,
+    "view-7-days": 26,
+    "view-2-days": 21,
+    "view-1-days": 19,
+    "view-6-days": 25
+   },
+   "total_skus": 1,
+   "total_tags": 6,
+   "total_metafields": 9,
+   "total_collections": 13,
+   "total_barcodes": 1,
+   "total_images_info": 2,
+   "total_options_with_values": 1,
+   "total_variants": 1,
+   "total_images": 2
+  },
+  {
+   "body_html": " Description Vitamin D3 1,000 IU / Vitamin K2 45 mcg Supports Bone Health Plus Cardiovascular Support Non-GMO A Dietary Supplement Kosher Family Owned Since 1968 GMP Quality Assured Halal NOW combines two nutrients extensively researched for their contribution to the health of bones, teeth and the cardiovascular system. Vitamin D3 promotes calcium transport and absorption. Recent studies indicate that vitamin D3 may play a role in proper insulin action and glucose metabolism and has an important function within the immune system. Vitamin K is critical for the formation of a healthy, strong bon [trimmed]",
+   "skus": [
+    "10056"
+   ],
+   "available": true,
+   "created_at": "2026-05-20T06:28:17Z",
+   "review_count": 0,
+   "variants": [
+    {
+     "merged_options": [
+      "title:Default Title"
+     ],
+     "inventory_quantity": 13998,
+     "image": null,
+     "original_merged_options": [
+      "title:Default Title"
+     ],
+     "compare_at_price": "9.17",
+     "inventory_management": "shopify",
+     "available": true,
+     "weight": 0.18,
+     "title": "Default Title",
+     "inventory_policy": "deny",
+     "weight_unit": "lb",
+     "price": "9.17",
+     "unit_cost": null,
+     "id": 51271057113403,
+     "sku": "10056",
+     "barcode": "733739003690"
+    }
+   ],
+   "media": [],
+   "title": "NOW Foods, Vitamin D3 & K2, 120 Capsules",
+   "price_min": 9.17,
+   "images_info": [
+    {
+     "src": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/132_13802ada-7e01-4c51-be32-282a1f6f58d0.jpg?v=1781993504",
+     "width": 1600,
+     "alt": "NOW Foods, Vitamin D3 & K2, 120 Capsules",
+     "id": 48236853690683,
+     "position": 1,
+     "height": 1600
+    },
+    {
+     "src": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/137_d710e2d0-3e8b-487e-a5fc-d3facb46cc2a.jpg?v=1781993504",
+     "width": 1600,
+     "alt": null,
+     "id": 48236853723451,
+     "position": 2,
+     "height": 1600
+    },
+    {
+     "src": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/141_2edad26e-74b7-442d-add2-4c867667bd95.jpg?v=1781993505",
+     "width": 3000,
+     "alt": null,
+     "id": 48236853756219,
+     "position": 3,
+     "height": 3000
+    }
+   ],
+   "review_ratings": 4.82,
+   "template_suffix": null,
+   "updated_at": "2026-10-04T09:53:46Z",
+   "combined_listing_role": null,
+   "collections": [
+    {
+     "template_suffix": null,
+     "handle": "vitamin-d3-k2",
+     "id": 501198192955,
+     "sort_value": "04",
+     "title": "Vitamin D3 & K2"
+    },
+    {
+     "template_suffix": null,
+     "handle": "supplements",
+     "id": 457575104827,
+     "sort_value": "01b",
+     "title": "Supplements"
+    },
+    {
+     "template_suffix": null,
+     "handle": "vitamins",
+     "id": 458194583867,
+     "sort_value": "02",
+     "title": "Vitamins"
+    },
+    {
+     "template_suffix": "",
+     "handle": "all",
+     "id": 499840385339,
+     "sort_value": "013",
+     "title": "All"
+    },
+    {
+     "template_suffix": null,
+     "handle": "now-foods",
+     "id": 458304618811,
+     "sort_value": "04",
+     "title": "NOW Foods"
+    },
+    {
+     "template_suffix": null,
+     "handle": "globofilter-best-selling-products-index",
+     "id": 457705390395,
+     "sort_value": "018",
+     "title": "Smart Products Filter Index - Do not delete"
+    },
+    {
+     "template_suffix": null,
+     "handle": "october-supplement-sale",
+     "id": 501609660731,
+     "sort_value": "01h",
+     "title": "October Supplement Sale"
+    },
+    {
+     "template_suffix": null,
+     "handle": "notprops65",
+     "id": 502674358587,
+     "sort_value": "018",
+     "title": "NotProps65"
+    },
+    {
+     "template_suffix": null,
+     "handle": "all-products-with-exclusions",
+     "id": 502729179451,
+     "sort_value": "01d",
+     "title": "All products with exclusions"
+    }
+   ],
+   "vendor": "NOW Foods",
+   "percent_sale_min": 0,
+   "best_selling_rank": 66,
+   "html": {
+    "theme_id": 0,
+    "value": ""
+   },
+   "id": 10393944981819,
+   "published_at": "2026-05-20T08:23:31Z",
+   "rio_ratings": [],
+   "images": {
+    "1": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/132_13802ada-7e01-4c51-be32-282a1f6f58d0.jpg?v=1781993504",
+    "2": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/137_d710e2d0-3e8b-487e-a5fc-d3facb46cc2a.jpg?v=1781993504",
+    "3": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/141_2edad26e-74b7-442d-add2-4c867667bd95.jpg?v=1781993505"
+   },
+   "options_with_values": [
+    {
+     "original_name": "title",
+     "values": [
+      {
+       "image": null,
+       "title": "Default Title"
+      }
+     ],
+     "name": "title",
+     "label": "Title",
+     "position": 1
+    }
+   ],
+   "weight_min": 180,
+   "handle": "now-foods-vitamin-d3-k2-120-capsules-10056",
+   "compare_at_price_min": 9.17,
+   "barcodes": [
+    "733739003690"
+   ],
+   "number_extra_sort1": 481780,
+   "tags": [
+    "Supplements",
+    "Vitamin D3 & K2",
+    "Vitamins",
+    "rating_count:7441",
+    "top_rated:481780"
+   ],
+   "published_scope": "web",
+   "metafields": [
+    {
+     "namespace": "PackageQuantity",
+     "id": "gid://shopify/Metafield/80712641380667",
+     "type": "single_line_text_field",
+     "value": "120 - 179 count",
+     "key": "PackageQuantity"
+    },
+    {
+     "namespace": "Gender",
+     "id": "gid://shopify/Metafield/80712641184059",
+     "type": "single_line_text_field",
+     "value": "Neutral",
+     "key": "Gender"
+    },
+    {
+     "namespace": "Clearance",
+     "id": "gid://shopify/Metafield/80899943301435",
+     "type": "single_line_text_field",
+     "value": "Full Price",
+     "key": "Clearance"
+    },
+    {
+     "namespace": "OnSale",
+     "id": "gid://shopify/Metafield/80899943334203",
+     "type": "single_line_text_field",
+     "value": "Full Price",
+     "key": "OnSale"
+    },
+    {
+     "namespace": "CertificationAndDiet",
+     "id": "gid://shopify/Metafield/83047514865979",
+     "type": "list.single_line_text_field",
+     "value": "[\"GMP certified\",\"Kosher\",\"Halal\",\"Certificate of analysis\"]",
+     "key": "CertificationAndDiet"
+    },
+    {
+     "namespace": "reviews",
+     "id": "gid://shopify/Metafield/82584750293307",
+     "type": "rating",
+     "value": "{\"scale_min\":\"1.0\",\"scale_max\":\"5.0\",\"value\":\"4.82\"}",
+     "key": "rating"
+    },
+    {
+     "namespace": "Form",
+     "id": "gid://shopify/Metafield/80712641085755",
+     "type": "single_line_text_field",
+     "value": "Capsule",
+     "key": "Form"
+    },
+    {
+     "namespace": "reviews",
+     "id": "gid://shopify/Metafield/82584750326075",
+     "type": "number_integer",
+     "value": "7441",
+     "key": "rating_count"
+    },
+    {
+     "namespace": "judgeme",
+     "id": "gid://shopify/Metafield/81287750975803",
+     "type": "string",
+     "value": "<div style='display:none' class='jdgm-prev-badge' data-average-rating='4.82' data-number-of-reviews='7441' data-number-of-questions='0'> <span class='jdgm-prev-badge__stars' data-score='4.82' tabindex='0' aria-label='4.82 stars' role='button'> <span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span> </span> <span class='jdgm-prev-badge__text'> 7441 </span> </div>",
+     "key": "badge"
+    }
+   ],
+   "product_type": "[]",
+   "weight_max": 180,
+   "locations": [],
+   "position": null,
+   "compare_at_price_max": 9.17,
+   "product_category": null,
+   "price_max": 9.17,
+   "metrics": {
+    "purchase-30-days": 25,
+    "purchase-6-days": 9,
+    "view-14-days": 10,
+    "view-5-days": 7,
+    "purchase-5-days": 8,
+    "purchase-14-days": 14,
+    "purchase-3-days": 9,
+    "view-3-days": 7,
+    "view-4-days": 7,
+    "purchase-1-days": 20,
+    "purchase-7-days": 13,
+    "purchase-4-days": 9,
+    "view-30-days": 13,
+    "purchase-2-days": 17,
+    "view-7-days": 8,
+    "view-2-days": 6,
+    "view-1-days": 12,
+    "view-6-days": 7
+   },
+   "total_skus": 1,
+   "total_tags": 5,
+   "total_metafields": 9,
+   "total_collections": 9,
+   "total_barcodes": 1,
+   "total_images_info": 3,
+   "total_options_with_values": 1,
+   "total_variants": 1,
+   "total_images": 3
+  },
+  {
+   "body_html": " Description Certified Gluten-Free by The Gluten-Free Certification Organization Non-GMO &amp; Hypoallergenic Dietary Supplement For sensitive individuals; Supports cardiometabolic, neurocognitive and musculoskeletal health. Magnesium (Glycinate): For sensitive individuals This highly bioavailable form of magnesium chelate glycinate is less likely to cause loose stools in sensitive individuals than other forms of magnesium. This vital mineral also helps the body use certain vitamins, including vitamin B6, vitamin C, and vitamin E. Magnesium assists with the metabolism of carbohydrates, amino a [trimmed]",
+   "skus": [
+    "51823"
+   ],
+   "available": true,
+   "created_at": "2026-05-19T13:20:44Z",
+   "review_count": 0,
+   "variants": [
+    {
+     "merged_options": [
+      "title:Default Title"
+     ],
+     "inventory_quantity": 478,
+     "image": null,
+     "original_merged_options": [
+      "title:Default Title"
+     ],
+     "compare_at_price": "46.50",
+     "inventory_management": "shopify",
+     "available": true,
+     "weight": 0.58,
+     "title": "Default Title",
+     "inventory_policy": "deny",
+     "weight_unit": "lb",
+     "price": "46.50",
+     "unit_cost": null,
+     "id": 51267878420795,
+     "sku": "51823",
+     "barcode": "766298001753"
+    }
+   ],
+   "media": [],
+   "title": "Pure Encapsulations, Magnesium (Glycinate), 180 Capsules (120 mg per Capsule)",
+   "price_min": 46.5,
+   "images_info": [
+    {
+     "src": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/11_04508b21-7e1b-4ae1-8da6-fa397f720a9f.jpg?v=1781930003",
+     "width": 1600,
+     "alt": "Pure Encapsulations, Magnesium (Glycinate), 180 Capsules (120 mg per Capsule)",
+     "id": 48233319334203,
+     "position": 1,
+     "height": 1600
+    },
+    {
+     "src": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/19_0907408f-5edc-4d98-aaf7-35652cda75ac.jpg?v=1781930003",
+     "width": 1600,
+     "alt": null,
+     "id": 48233319366971,
+     "position": 2,
+     "height": 1600
+    }
+   ],
+   "review_ratings": 4.83,
+   "template_suffix": null,
+   "updated_at": "2026-10-04T07:34:59Z",
+   "combined_listing_role": null,
+   "collections": [
+    {
+     "template_suffix": null,
+     "handle": "minerals",
+     "id": 457684123963,
+     "sort_value": "03",
+     "title": "Minerals"
+    },
+    {
+     "template_suffix": null,
+     "handle": "gluten_free",
+     "id": 499968016699,
+     "sort_value": "cmk",
+     "title": "Gluten Free"
+    },
+    {
+     "template_suffix": null,
+     "handle": "supplements",
+     "id": 457575104827,
+     "sort_value": "01d",
+     "title": "Supplements"
+    },
+    {
+     "template_suffix": "",
+     "handle": "all",
+     "id": 499840385339,
+     "sort_value": "016w",
+     "title": "All"
+    },
+    {
+     "template_suffix": null,
+     "handle": "magnesium",
+     "id": 457683861819,
+     "sort_value": "080z",
+     "title": "Magnesium"
+    },
+    {
+     "template_suffix": null,
+     "handle": "pure-encapsulations",
+     "id": 499745947963,
+     "sort_value": "03",
+     "title": "Pure Encapsulations"
+    },
+    {
+     "template_suffix": null,
+     "handle": "globofilter-best-selling-products-index",
+     "id": 457705390395,
+     "sort_value": "01a",
+     "title": "Smart Products Filter Index - Do not delete"
+    },
+    {
+     "template_suffix": null,
+     "handle": "exclusions",
+     "id": 501609890107,
+     "sort_value": "009",
+     "title": "Exclusions"
+    },
+    {
+     "template_suffix": null,
+     "handle": "notprops65",
+     "id": 502674358587,
+     "sort_value": "01c",
+     "title": "NotProps65"
+    },
+    {
+     "template_suffix": null,
+     "handle": "probiotics-collagen-magnesium",
+     "id": 502930735419,
+     "sort_value": "05",
+     "title": "Probiotics, Collagen & Magnesium"
+    }
+   ],
+   "vendor": "Pure Encapsulations",
+   "percent_sale_min": 0,
+   "best_selling_rank": 74,
+   "html": {
+    "theme_id": 0,
+    "value": ""
+   },
+   "id": 10392339087675,
+   "published_at": "2026-05-19T14:47:31Z",
+   "rio_ratings": [],
+   "images": {
+    "1": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/11_04508b21-7e1b-4ae1-8da6-fa397f720a9f.jpg?v=1781930003",
+    "2": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/19_0907408f-5edc-4d98-aaf7-35652cda75ac.jpg?v=1781930003"
+   },
+   "options_with_values": [
+    {
+     "original_name": "title",
+     "values": [
+      {
+       "image": null,
+       "title": "Default Title"
+      }
+     ],
+     "name": "title",
+     "label": "Title",
+     "position": 1
+    }
+   ],
+   "weight_min": 580,
+   "handle": "pure-encapsulations-magnesium-glycinate-180-capsules-120-mg-per-capsule-51823",
+   "compare_at_price_min": 46.5,
+   "barcodes": [
+    "766298001753"
+   ],
+   "number_extra_sort1": 474263,
+   "tags": [
+    "Magnesium",
+    "Magnesium Glycinate",
+    "Minerals",
+    "Supplements",
+    "rating_count:170",
+    "top_rated:474263"
+   ],
+   "published_scope": "web",
+   "metafields": [
+    {
+     "namespace": "PackageQuantity",
+     "id": "gid://shopify/Metafield/80704486801723",
+     "type": "single_line_text_field",
+     "value": "180 - 239 count",
+     "key": "PackageQuantity"
+    },
+    {
+     "namespace": "Strength",
+     "id": "gid://shopify/Metafield/80822292349243",
+     "type": "single_line_text_field",
+     "value": "100 - 199 mg",
+     "key": "Strength"
+    },
+    {
+     "namespace": "Gender",
+     "id": "gid://shopify/Metafield/80704486670651",
+     "type": "single_line_text_field",
+     "value": "Neutral",
+     "key": "Gender"
+    },
+    {
+     "namespace": "Clearance",
+     "id": "gid://shopify/Metafield/80897149468987",
+     "type": "single_line_text_field",
+     "value": "Full Price",
+     "key": "Clearance"
+    },
+    {
+     "namespace": "OnSale",
+     "id": "gid://shopify/Metafield/80897149534523",
+     "type": "single_line_text_field",
+     "value": "Full Price",
+     "key": "OnSale"
+    },
+    {
+     "namespace": "CertificationAndDiet",
+     "id": "gid://shopify/Metafield/83104039993659",
+     "type": "list.single_line_text_field",
+     "value": "[\"Gluten-free\",\"Hypoallergenic\",\"Certificate of analysis\"]",
+     "key": "CertificationAndDiet"
+    },
+    {
+     "namespace": "reviews",
+     "id": "gid://shopify/Metafield/82595270590779",
+     "type": "rating",
+     "value": "{\"scale_min\":\"1.0\",\"scale_max\":\"5.0\",\"value\":\"4.83\"}",
+     "key": "rating"
+    },
+    {
+     "namespace": "Form",
+     "id": "gid://shopify/Metafield/80704486572347",
+     "type": "single_line_text_field",
+     "value": "Capsule",
+     "key": "Form"
+    },
+    {
+     "namespace": "reviews",
+     "id": "gid://shopify/Metafield/82595270623547",
+     "type": "number_integer",
+     "value": "170",
+     "key": "rating_count"
+    },
+    {
+     "namespace": "judgeme",
+     "id": "gid://shopify/Metafield/81291457331515",
+     "type": "string",
+     "value": "<div style='display:none' class='jdgm-prev-badge' data-average-rating='4.83' data-number-of-reviews='170' data-number-of-questions='0'> <span class='jdgm-prev-badge__stars' data-score='4.83' tabindex='0' aria-label='4.83 stars' role='button'> <span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span> </span> <span class='jdgm-prev-badge__text'> 170 reviews </span> </div>",
+     "key": "badge"
+    }
+   ],
+   "product_type": "[]",
+   "weight_max": 580,
+   "locations": [],
+   "position": null,
+   "compare_at_price_max": 46.5,
+   "product_category": null,
+   "price_max": 46.5,
+   "metrics": {
+    "purchase-30-days": 42,
+    "purchase-6-days": 23,
+    "view-14-days": 26,
+    "view-5-days": 16,
+    "purchase-5-days": 16,
+    "purchase-14-days": 46,
+    "purchase-3-days": 28,
+    "view-3-days": 22,
+    "view-4-days": 16,
+    "purchase-1-days": 16,
+    "purchase-7-days": 34,
+    "purchase-4-days": 17,
+    "view-30-days": 32,
+    "purchase-2-days": 33,
+    "view-7-days": 18,
+    "view-2-days": 27,
+    "view-1-days": 42,
+    "view-6-days": 19
+   },
+   "total_skus": 1,
+   "total_tags": 6,
+   "total_metafields": 10,
+   "total_collections": 10,
+   "total_barcodes": 1,
+   "total_images_info": 2,
+   "total_options_with_values": 1,
+   "total_variants": 1,
+   "total_images": 2
+  },
+  {
+   "body_html": " Description Gluten Free Magtein\u00ae Non GMO LE Certified Supports Memory and Cognitive Function Dietary Supplement It\u2019s smart to supplement with magnesium\u2014this essential mineral supports healthy memory and cognitive function. Neuro-Mag\u00ae Magnesium L-Threonate is a special form of magnesium well-studied for cognitive health. What Is NeuroMag Magnesium L-Threonate? Magnesium is an essential mineral that plays an important role in the brain: it helps support short-term or \u201cworking\u201d memory as well as healthy cognitive function. If you\u2019re looking to support mind, memory, and encourage quick thinking,  [trimmed]",
+   "skus": [
+    "40244"
+   ],
+   "available": true,
+   "created_at": "2026-05-20T06:25:48Z",
+   "review_count": 0,
+   "variants": [
+    {
+     "merged_options": [
+      "title:Default Title"
+     ],
+     "inventory_quantity": 14590,
+     "image": null,
+     "original_merged_options": [
+      "title:Default Title"
+     ],
+     "compare_at_price": "31.50",
+     "inventory_management": "shopify",
+     "available": true,
+     "weight": 0.27,
+     "title": "Default Title",
+     "inventory_policy": "deny",
+     "weight_unit": "lb",
+     "price": "31.50",
+     "unit_cost": null,
+     "id": 51271047250235,
+     "sku": "40244",
+     "barcode": "737870160397"
+    }
+   ],
+   "media": [],
+   "title": "Life Extension, Neuro-Mag\u00ae, Magnesium L-Threonate, 90 Vegetarian Capsules (48 mg per Capsule)",
+   "price_min": 31.5,
+   "images_info": [
+    {
+     "src": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/276.jpg?v=1781993512",
+     "width": 1600,
+     "alt": "Life Extension, Neuro-Mag\u00ae, Magnesium L-Threonate, 90 Vegetarian Capsules (48 mg per Capsule)",
+     "id": 48236854182203,
+     "position": 1,
+     "height": 1600
+    },
+    {
+     "src": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/281.jpg?v=1781993512",
+     "width": 1600,
+     "alt": null,
+     "id": 48236854214971,
+     "position": 2,
+     "height": 1600
+    },
+    {
+     "src": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/284.jpg?v=1781993512",
+     "width": 1600,
+     "alt": null,
+     "id": 48236854247739,
+     "position": 3,
+     "height": 1600
+    }
+   ],
+   "review_ratings": 4.76,
+   "template_suffix": null,
+   "updated_at": "2026-10-04T09:53:40Z",
+   "combined_listing_role": null,
+   "collections": [
+    {
+     "template_suffix": null,
+     "handle": "minerals",
+     "id": 457684123963,
+     "sort_value": "03l",
+     "title": "Minerals"
+    },
+    {
+     "template_suffix": null,
+     "handle": "life-extension",
+     "id": 458305438011,
+     "sort_value": "02",
+     "title": "Life Extension"
+    },
+    {
+     "template_suffix": null,
+     "handle": "specialty-shops",
+     "id": 500712014139,
+     "sort_value": "0a",
+     "title": "Specialty Shops"
+    },
+    {
+     "template_suffix": null,
+     "handle": "supplements",
+     "id": 457575104827,
+     "sort_value": "01f",
+     "title": "Supplements"
+    },
+    {
+     "template_suffix": "",
+     "handle": "all",
+     "id": 499840385339,
+     "sort_value": "017",
+     "title": "All"
+    },
+    {
+     "template_suffix": null,
+     "handle": "magnesium",
+     "id": 457683861819,
+     "sort_value": "081",
+     "title": "Magnesium"
+    },
+    {
+     "template_suffix": null,
+     "handle": "globofilter-best-selling-products-index",
+     "id": 457705390395,
+     "sort_value": "01b",
+     "title": "Smart Products Filter Index - Do not delete"
+    },
+    {
+     "template_suffix": null,
+     "handle": "october-supplement-sale",
+     "id": 501609660731,
+     "sort_value": "01j",
+     "title": "October Supplement Sale"
+    },
+    {
+     "template_suffix": null,
+     "handle": "select-life-extension",
+     "id": 502057304379,
+     "sort_value": "03",
+     "title": "Select Life Extension"
+    },
+    {
+     "template_suffix": null,
+     "handle": "20-off-select-customer-appreciation-event",
+     "id": 502108193083,
+     "sort_value": "01",
+     "title": "20% off select Customer Appreciation Event"
+    },
+    {
+     "template_suffix": null,
+     "handle": "props65",
+     "id": 502674456891,
+     "sort_value": "012",
+     "title": "Props65"
+    },
+    {
+     "template_suffix": null,
+     "handle": "all-products-with-exclusions",
+     "id": 502729179451,
+     "sort_value": "01j",
+     "title": "All products with exclusions"
+    },
+    {
+     "template_suffix": null,
+     "handle": "probiotics-collagen-magnesium",
+     "id": 502930735419,
+     "sort_value": "05v",
+     "title": "Probiotics, Collagen & Magnesium"
+    }
+   ],
+   "vendor": "Life Extension",
+   "percent_sale_min": 0,
+   "best_selling_rank": 75,
+   "html": {
+    "theme_id": 0,
+    "value": ""
+   },
+   "id": 10393934496059,
+   "published_at": "2026-05-20T16:47:38Z",
+   "rio_ratings": [],
+   "images": {
+    "1": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/276.jpg?v=1781993512",
+    "2": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/281.jpg?v=1781993512",
+    "3": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/284.jpg?v=1781993512"
+   },
+   "options_with_values": [
+    {
+     "original_name": "title",
+     "values": [
+      {
+       "image": null,
+       "title": "Default Title"
+      }
+     ],
+     "name": "title",
+     "label": "Title",
+     "position": 1
+    }
+   ],
+   "weight_min": 270,
+   "handle": "life-extension-neuro-mag-magnesium-l-threonate-90-vegetarian-capsules-48-mg-per-capsule-40244",
+   "compare_at_price_min": 31.5,
+   "barcodes": [
+    "737870160397"
+   ],
+   "number_extra_sort1": 475555.00000000006,
+   "tags": [
+    "Magnesium",
+    "Magnesium L-Threonate",
+    "Minerals",
+    "Supplements",
+    "rating_count:3399",
+    "top_rated:475555.00000000006"
+   ],
+   "published_scope": "web",
+   "metafields": [
+    {
+     "namespace": "PackageQuantity",
+     "id": "gid://shopify/Metafield/80712667791675",
+     "type": "single_line_text_field",
+     "value": "90 - 119 count",
+     "key": "PackageQuantity"
+    },
+    {
+     "namespace": "Gender",
+     "id": "gid://shopify/Metafield/80712667660603",
+     "type": "single_line_text_field",
+     "value": "Neutral",
+     "key": "Gender"
+    },
+    {
+     "namespace": "Clearance",
+     "id": "gid://shopify/Metafield/80899940319547",
+     "type": "single_line_text_field",
+     "value": "Full Price",
+     "key": "Clearance"
+    },
+    {
+     "namespace": "OnSale",
+     "id": "gid://shopify/Metafield/80899940385083",
+     "type": "single_line_text_field",
+     "value": "Full Price",
+     "key": "OnSale"
+    },
+    {
+     "namespace": "CertificationAndDiet",
+     "id": "gid://shopify/Metafield/83047219233083",
+     "type": "list.single_line_text_field",
+     "value": "[\"Gluten-free\",\"Certificate of analysis\"]",
+     "key": "CertificationAndDiet"
+    },
+    {
+     "namespace": "reviews",
+     "id": "gid://shopify/Metafield/82552848646459",
+     "type": "rating",
+     "value": "{\"scale_min\":\"1.0\",\"scale_max\":\"5.0\",\"value\":\"4.76\"}",
+     "key": "rating"
+    },
+    {
+     "namespace": "Form",
+     "id": "gid://shopify/Metafield/80712667595067",
+     "type": "single_line_text_field",
+     "value": "Vegetarian capsule",
+     "key": "Form"
+    },
+    {
+     "namespace": "reviews",
+     "id": "gid://shopify/Metafield/82552848679227",
+     "type": "number_integer",
+     "value": "3399",
+     "key": "rating_count"
+    },
+    {
+     "namespace": "judgeme",
+     "id": "gid://shopify/Metafield/81285191434555",
+     "type": "string",
+     "value": "<div style='display:none' class='jdgm-prev-badge' data-average-rating='4.76' data-number-of-reviews='3399' data-number-of-questions='0'> <span class='jdgm-prev-badge__stars' data-score='4.76' tabindex='0' aria-label='4.76 stars' role='button'> <span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span> </span> <span class='jdgm-prev-badge__text'> 3399 </span> </div>",
+     "key": "badge"
+    }
+   ],
+   "product_type": "[]",
+   "weight_max": 270,
+   "locations": [],
+   "position": null,
+   "compare_at_price_max": 31.5,
+   "product_category": null,
+   "price_max": 31.5,
+   "metrics": {
+    "purchase-30-days": 41,
+    "purchase-6-days": 26,
+    "view-14-days": 16,
+    "view-5-days": 8,
+    "purchase-5-days": 25,
+    "purchase-14-days": 33,
+    "purchase-3-days": 33,
+    "view-3-days": 9,
+    "view-4-days": 9,
+    "purchase-7-days": 32,
+    "purchase-4-days": 32,
+    "view-30-days": 17,
+    "purchase-2-days": 44,
+    "view-7-days": 14,
+    "view-2-days": 15,
+    "view-1-days": 29,
+    "view-6-days": 11
+   },
+   "total_skus": 1,
+   "total_tags": 6,
+   "total_metafields": 9,
+   "total_collections": 13,
+   "total_barcodes": 1,
+   "total_images_info": 3,
+   "total_options_with_values": 1,
+   "total_variants": 1,
+   "total_images": 3
+  },
+  {
+   "body_html": " Description Features L-OptiZinc\u00ae Dietary Supplement Get two trace minerals in one convenient formula! Featuring L-OptiZinc\u00ae\u2014a premium form of zinc that\u2019s better absorbed and retained by the body. What is Zinc &amp; Copper? Zinc &amp; Copper is a convenient way to obtain two important trace minerals in one easy-to-take supplement. It\u2019s formulated with an optimal ratio of zinc (15 mg) to copper (1 mg) in each single-capsule serving. Zinc &amp; Copper also features L-OptiZinc\u00ae, a premium form of zinc. It consists of zinc bound to the \u201cL\u201d form of the amino acid methionine, which promotes better a [trimmed]",
+   "skus": [
+    "158871"
+   ],
+   "available": true,
+   "created_at": "2026-05-18T21:44:19Z",
+   "review_count": 0,
+   "variants": [
+    {
+     "merged_options": [
+      "title:Default Title"
+     ],
+     "inventory_quantity": 581,
+     "image": null,
+     "original_merged_options": [
+      "title:Default Title"
+     ],
+     "compare_at_price": "5.78",
+     "inventory_management": "shopify",
+     "available": true,
+     "weight": 0.11,
+     "title": "Default Title",
+     "inventory_policy": "deny",
+     "weight_unit": "lb",
+     "price": "4.33",
+     "unit_cost": null,
+     "id": 51263770329403,
+     "sku": "158871",
+     "barcode": "844197017621"
+    }
+   ],
+   "media": [],
+   "title": "Vitacost, Everyday, Zinc and Copper, 100 Capsules",
+   "price_min": 4.33,
+   "images_info": [
+    {
+     "src": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/9_70513d0f-246a-4bec-b41e-a82265320e1f.jpg?v=1781833490",
+     "width": 1600,
+     "alt": "Vitacost, Everyday, Zinc and Copper, 100 Capsules",
+     "id": 48228247994683,
+     "position": 1,
+     "height": 1600
+    },
+    {
+     "src": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/15_9717ea94-6549-42d1-862b-14d0378c0013.jpg?v=1781833490",
+     "width": 1600,
+     "alt": null,
+     "id": 48228248027451,
+     "position": 2,
+     "height": 1600
+    }
+   ],
+   "review_ratings": 4.88,
+   "template_suffix": null,
+   "updated_at": "2026-10-04T08:38:36Z",
+   "combined_listing_role": null,
+   "collections": [
+    {
+     "template_suffix": null,
+     "handle": "minerals",
+     "id": 457684123963,
+     "sort_value": "04",
+     "title": "Minerals"
+    },
+    {
+     "template_suffix": null,
+     "handle": "copper",
+     "id": 501176435003,
+     "sort_value": "09",
+     "title": "Copper"
+    },
+    {
+     "template_suffix": null,
+     "handle": "supplements",
+     "id": 457575104827,
+     "sort_value": "01j",
+     "title": "Supplements"
+    },
+    {
+     "template_suffix": null,
+     "handle": "zinc",
+     "id": 457685729595,
+     "sort_value": "08",
+     "title": "Zinc"
+    },
+    {
+     "template_suffix": "",
+     "handle": "all",
+     "id": 499840385339,
+     "sort_value": "019",
+     "title": "All"
+    },
+    {
+     "template_suffix": null,
+     "handle": "deals",
+     "id": 501592391995,
+     "sort_value": "01j",
+     "title": "Limited Time Offers"
+    },
+    {
+     "template_suffix": null,
+     "handle": "globofilter-best-selling-products-index",
+     "id": 457705390395,
+     "sort_value": "01c",
+     "title": "Smart Products Filter Index - Do not delete"
+    },
+    {
+     "template_suffix": null,
+     "handle": "october-supplement-sale",
+     "id": 501609660731,
+     "sort_value": "01l",
+     "title": "October Supplement Sale"
+    },
+    {
+     "template_suffix": null,
+     "handle": "vitacost",
+     "id": 499767017787,
+     "sort_value": "0y3",
+     "title": "Vitacost"
+    },
+    {
+     "template_suffix": null,
+     "handle": "bogo_august",
+     "id": 501888778555,
+     "sort_value": "03bx",
+     "title": "BOGO August"
+    },
+    {
+     "template_suffix": null,
+     "handle": "our-brands",
+     "id": 502060712251,
+     "sort_value": "0k1x",
+     "title": "Our Brands"
+    },
+    {
+     "template_suffix": "",
+     "handle": "30-off-the-weekend-sale",
+     "id": 500557447483,
+     "sort_value": "0s",
+     "title": "The Weekend Sale - 30% Off"
+    },
+    {
+     "template_suffix": null,
+     "handle": "notprops65",
+     "id": 502674358587,
+     "sort_value": "01f",
+     "title": "NotProps65"
+    },
+    {
+     "template_suffix": null,
+     "handle": "all-products-with-exclusions",
+     "id": 502729179451,
+     "sort_value": "01m",
+     "title": "All products with exclusions"
+    },
+    {
+     "template_suffix": null,
+     "handle": "iherb-brands",
+     "id": 511719244091,
+     "sort_value": "0j",
+     "title": "iHerb Brands"
+    }
+   ],
+   "vendor": "Vitacost",
+   "percent_sale_min": 25,
+   "best_selling_rank": 78,
+   "html": {
+    "theme_id": 0,
+    "value": ""
+   },
+   "id": 10390063120699,
+   "published_at": "2026-05-18T22:36:56Z",
+   "rio_ratings": [],
+   "images": {
+    "1": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/9_70513d0f-246a-4bec-b41e-a82265320e1f.jpg?v=1781833490",
+    "2": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/15_9717ea94-6549-42d1-862b-14d0378c0013.jpg?v=1781833490"
+   },
+   "options_with_values": [
+    {
+     "original_name": "title",
+     "values": [
+      {
+       "image": null,
+       "title": "Default Title"
+      }
+     ],
+     "name": "title",
+     "label": "Title",
+     "position": 1
+    }
+   ],
+   "weight_min": 110,
+   "handle": "vitacost-everyday-zinc-and-copper-100-capsules-158871",
+   "compare_at_price_min": 5.78,
+   "barcodes": [
+    "844197017621"
+   ],
+   "number_extra_sort1": 454154.00000000006,
+   "tags": [
+    "Copper",
+    "Minerals",
+    "Supplements",
+    "Zinc",
+    "rating_count:32",
+    "top_rated:454154.00000000006"
+   ],
+   "published_scope": "web",
+   "metafields": [
+    {
+     "namespace": "PackageQuantity",
+     "id": "gid://shopify/Metafield/80692200898875",
+     "type": "single_line_text_field",
+     "value": "90 - 119 count",
+     "key": "PackageQuantity"
+    },
+    {
+     "namespace": "Strength",
+     "id": "gid://shopify/Metafield/80815713354043",
+     "type": "single_line_text_field",
+     "value": "10 - 19 mg",
+     "key": "Strength"
+    },
+    {
+     "namespace": "Gender",
+     "id": "gid://shopify/Metafield/80692200800571",
+     "type": "single_line_text_field",
+     "value": "Neutral",
+     "key": "Gender"
+    },
+    {
+     "namespace": "Clearance",
+     "id": "gid://shopify/Metafield/80898266300731",
+     "type": "single_line_text_field",
+     "value": "Clearance",
+     "key": "Clearance"
+    },
+    {
+     "namespace": "OnSale",
+     "id": "gid://shopify/Metafield/80898266366267",
+     "type": "single_line_text_field",
+     "value": "On Sale",
+     "key": "OnSale"
+    },
+    {
+     "namespace": "CertificationAndDiet",
+     "id": "gid://shopify/Metafield/83065796165947",
+     "type": "list.single_line_text_field",
+     "value": "[\"Certificate of analysis\"]",
+     "key": "CertificationAndDiet"
+    },
+    {
+     "namespace": "reviews",
+     "id": "gid://shopify/Metafield/82552381997371",
+     "type": "rating",
+     "value": "{\"scale_min\":\"1.0\",\"scale_max\":\"5.0\",\"value\":\"4.88\"}",
+     "key": "rating"
+    },
+    {
+     "namespace": "Form",
+     "id": "gid://shopify/Metafield/80692200735035",
+     "type": "single_line_text_field",
+     "value": "Capsule",
+     "key": "Form"
+    },
+    {
+     "namespace": "reviews",
+     "id": "gid://shopify/Metafield/82552382030139",
+     "type": "number_integer",
+     "value": "32",
+     "key": "rating_count"
+    },
+    {
+     "namespace": "judgeme",
+     "id": "gid://shopify/Metafield/81280400654651",
+     "type": "string",
+     "value": "<div style='display:none' class='jdgm-prev-badge' data-average-rating='4.88' data-number-of-reviews='32' data-number-of-questions='0'> <span class='jdgm-prev-badge__stars' data-score='4.88' tabindex='0' aria-label='4.88 stars' role='button'> <span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span> </span> <span class='jdgm-prev-badge__text'> 32 </span> </div>",
+     "key": "badge"
+    }
+   ],
+   "product_type": "[Vitacost Brands][SuperDeal]",
+   "weight_max": 110,
+   "locations": [],
+   "position": null,
+   "compare_at_price_max": 5.78,
+   "product_category": null,
+   "price_max": 4.33,
+   "metrics": {
+    "purchase-6-days": 25,
+    "view-14-days": 35,
+    "view-5-days": 27,
+    "purchase-5-days": 19,
+    "purchase-14-days": 27,
+    "purchase-3-days": 23,
+    "view-3-days": 27,
+    "view-4-days": 26,
+    "purchase-1-days": 14,
+    "purchase-7-days": 28,
+    "purchase-4-days": 18,
+    "purchase-2-days": 9,
+    "view-7-days": 37,
+    "view-2-days": 22,
+    "view-1-days": 20,
+    "view-6-days": 31
+   },
+   "total_skus": 1,
+   "total_tags": 6,
+   "total_metafields": 10,
+   "total_collections": 15,
+   "total_barcodes": 1,
+   "total_images_info": 2,
+   "total_options_with_values": 1,
+   "total_variants": 1,
+   "total_images": 2
+  }
+ ],
+ "event_type": "init",
+ "filter": {
+  "options": [
+   {
+    "label": "Category",
+    "filterOptionId": "pf_mlt_category",
+    "manualValues": [
+     {
+      "tag": "Supplements",
+      "displayName": "Supplements",
+      "subTags": [
+       {
+        "tag": "Omegas & Fish Oils (EPA DHA)",
+        "displayName": "Omegas & Fish Oils (EPA DHA)",
+        "doc_count": 969
+       },
+       {
+        "tag": "Vitamins",
+        "displayName": "Vitamins",
+        "doc_count": 4079
+       },
+       {
+        "tag": "Minerals",
+        "displayName": "Minerals",
+        "doc_count": 27
+       },
+       {
+        "tag": "Gut Health",
+        "displayName": "Gut Health",
+        "doc_count": 2621
+       },
+       {
+        "tag": "Herbs",
+        "displayName": "Herbs",
+        "doc_count": 5077
+       },
+       {
+        "tag": "Phospholipids",
+        "displayName": "Phospholipids",
+        "doc_count": 105
+       },
+       {
+        "tag": "Greens & Superfoods",
+        "displayName": "Greens & Superfoods",
+        "doc_count": 1179
+       },
+       {
+        "tag": "Antioxidants",
+        "displayName": "Antioxidants",
+        "doc_count": 2272
+       },
+       {
+        "tag": "Sleep",
+        "displayName": "Sleep",
+        "doc_count": 689
+       },
+       {
+        "tag": "Women's Health",
+        "displayName": "Women's Health",
+        "doc_count": 1231
+       },
+       {
+        "tag": "Men's Health",
+        "displayName": "Men's Health",
+        "doc_count": 761
+       },
+       {
+        "tag": "Weight Management",
+        "displayName": "Weight Management",
+        "doc_count": 1011
+       },
+       {
+        "tag": "Amino Acids",
+        "displayName": "Amino Acids",
+        "doc_count": 1633
+       },
+       {
+        "tag": "Brain & Cognitive",
+        "displayName": "Brain & Cognitive",
+        "doc_count": 996
+       },
+       {
+        "tag": "Detox & Cleanse Formulas",
+        "displayName": "Detox & Cleanse Formulas",
+        "doc_count": 224
+       },
+       {
+        "tag": "Bee Products",
+        "displayName": "Bee Products",
+        "doc_count": 105
+       },
+       {
+        "tag": "Organ Meats",
+        "displayName": "Organ Meats",
+        "doc_count": 78
+       },
+       {
+        "tag": "Mushrooms",
+        "displayName": "Mushrooms",
+        "doc_count": 580
+       },
+       {
+        "tag": "Bone",
+        "displayName": " Bone, Joint & Cartilage",
+        "doc_count": 1318
+       },
+       {
+        "tag": "Hair",
+        "displayName": "Hair, Skin & Nails",
+        "doc_count": 607
+       },
+       {
+        "tag": "Eye",
+        "displayName": "Eye, Ear & Nose",
+        "doc_count": 192
+       }
+      ],
+      "doc_count": 25382
+     }
+    ]
+   },
+   {
+    "label": "Brand",
+    "filterOptionId": "pf_v_brand",
+    "manualValues": []
+   },
+   {
+    "label": "Specialties",
+    "filterOptionId": "pf_m_::CertificationAndDiet::CertificationAndDiet",
+    "manualValues": []
+   },
+   {
+    "label": "Featured Items",
+    "filterOptionId": "pf_m_::OnSale::OnSale",
+    "manualValues": [
+     "On Sale"
+    ]
+   },
+   {
+    "label": "Price",
+    "filterOptionId": "pf_p_price",
+    "manualValues": []
+   },
+   {
+    "label": "Availability",
+    "filterOptionId": "pf_st_availability",
+    "manualValues": [
+     {
+      "key": "in-stock",
+      "label": "In Stock",
+      "doc_count": 21162
+     }
+    ]
+   },
+   {
+    "label": "Clearance",
+    "filterOptionId": "pf_m_::Clearance::Clearance",
+    "manualValues": [
+     "Clearance"
+    ]
+   },
+   {
+    "label": "Package Quantity",
+    "filterOptionId": "pf_m_::PackageQuantity::PackageQuantity",
+    "manualValues": []
+   },
+   {
+    "label": "Form",
+    "filterOptionId": "pf_m_::Form::Form",
+    "manualValues": []
+   },
+   {
+    "label": "Strength",
+    "filterOptionId": "pf_m_::Strength::Strength",
+    "manualValues": []
+   },
+   {
+    "label": "Gender",
+    "filterOptionId": "pf_m_::Gender::Gender",
+    "manualValues": []
+   },
+   {
+    "label": "Flavor",
+    "filterOptionId": "pf_m_::Flavor::Flavor",
+    "manualValues": []
+   },
+   {
+    "label": "Review Ratings",
+    "filterOptionId": "pf_r_review_ratings",
+    "manualValues": []
+   }
+  ]
+ },
+ "meta": {
+  "rid": "1e4e1aa5-ace4-41ef-88e7-67e869021f3f",
+  "currency": "USD",
+  "money_format_with_currency": "${{amount}} USD",
+  "money_format": "${{amount}}",
+  "affected_by_merchandising": false,
+  "affected_by_performance_ranking": false,
+  "affected_by_search_personalization": false
+ }
+}

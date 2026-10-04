@@ -123,6 +123,7 @@ Spiders below are returning items in recent smoke runs:
 | [`target_search`](#target_search) | Active | api | PerimeterX / HUMAN (cookie signals) | Target RedSky search API spider. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
 | [`victoriassecret_listing`](#victoriassecret_listing) | Active | api | none detected (ScrapeOps proxy, plain datacenter route) | Victoria's Secret / PINK listings from the first-party `stacks` JSON API; page 0 reads `collectionId` from SSR `clientProps`. | 192 (2 pages, live) | 427 targets across `vs` + `pink` brands from `victoriassecret_categories.py` | `{"category":"vs-bras","brand":"vs","item_id":"11295563|7I65","name":"Signature Shine Cotton Lightly Lined Balconette Bra","price":49.95,...}` |
 | [`williams_sonoma_listing`](#williams_sonoma_listing) | Active | api | Akamai (not an issue for API) | Williams-Sonoma category listings via the Constructor.io browse API (taxonomy from the runtime category-tree API). | 100 (1 page, proxy) | ~3500 group_ids from the runtime category-tree API | `{"category":"cookware-sets","item_id":"greenpan-reserve-pro-ceramic-nonstick-10-piece-cookware-set","title":"GreenPan™ Reserve Pro Ceramic Nonstick 10-Piece Cookware Set","price":399.95,"currency":"USD","image_url":"https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202631/0164/img2c.jpg","flags":["freeShip","more_colors"],"source":"williams_sonoma_constructor_browse"...` |
+| [`vitacost_listing`](#vitacost_listing) | Active | api | none detected | Vitacost (Shopify + Boost AI Search) category listings from the first-party `services.mybcapps.com/bc-sf-filter/filter` JSON API; taxonomy from the `Categories` mega-menu. | 96 (2 pages, `category=Supplements`, page size 48) | 92 crawl targets / 90 unique collection URLs across 8 departments from `vitacost_categories.py` | `{"category":"Supplements","handle":"supplements","collection_id":"457575104827","item_id":"10390080782651","title":"Vitacost, Root2®, Turmeric Extract Curcumin C3 Complex®, 120 Capsules","brand":"Vitacost","price":24.74,"original_price":32.99,"discount_percentage":25.0,"source":"vitacost_boost_filter_api"...}` |
 
 #### In-progress spiders
 
@@ -2517,6 +2518,88 @@ fixture tests).
 Verified live (`category=cookware-sets`, `max_pages=1`, ScrapeOps proxy,
 2026-10-02 UTC): **100 items, 100 unique `item_id`s**, with `raw` present on
 100/100.
+### vitacost_listing
+
+`vitacost_listing` uses one authoritative source: the first-party Boost AI Search
+& Discovery filter API that the storefront itself calls for every grid refresh.
+No product HTML is parsed, no JSON-LD.
+
+```http
+GET https://services.mybcapps.com/bc-sf-filter/filter
+    ?_=pf&shop=icost.myshopify.com&collection_scope=457575104827&page=1&limit=48
+    &pg=collection_page&event_type=init&build_filter_tree=true&sort=best-selling
+Referer: https://www.vitacost.com/collections/supplements
+```
+
+The response is a normalized Shopify product feed, which carries much more than the
+rendered cards expose:
+
+| Path | Contents |
+|---|---|
+| `products[]` | full product records: `id`, `handle`, `title`, `vendor`, `price_min`, `compare_at_price_min`, `percent_sale_min`, `variants[]` (SKU, barcode, stock), `images_info[]`, `tags[]`, `collections[]`, `metafields[]` |
+| `total_product` | category size, used as the pagination stop condition |
+| `filter.options[]` | the `multi_level_tag` "Category" facet tree (parent -> child -> `doc_count`) |
+| `meta` | `currency`, `money_format` |
+
+Two request details matter:
+
+* **`collection_scope` must be the numeric Shopify collection id.** Passing a handle
+  silently returns the whole 55,327-product shop, and dropping the parameter does the
+  same. The spider therefore fetches the collection page once per run and reads
+  `generalSettings.collection_id` out of the Boost boot payload
+  (`function readPayload(){return {generalSettings:{page: "collection", collection_id: 458194583867, ...}}}`);
+  every product field still comes from the API. Shopify also stamps the id into its
+  `collection_viewed` analytics payload, which is a usable fallback for the same value.
+* **`limit` is capped server-side.** `limit=48` returns 48 products, `limit=100`
+  returns 20, so the spider defaults to 48 and clamps any `-a limit=` to 50.
+
+The storefront request goes through `settings.PROXY`; the Boost request must **not**,
+because the configured ScrapeOps tunnel refuses to CONNECT to `services.mybcapps.com`
+(`407 Proxy Authentication Required`). `VitacostProxyMiddleware` replaces
+`CommonDownloaderMiddleware` for this spider and proxies only `www.vitacost.com`.
+
+Field notes:
+
+* `original_price` uses `compare_at_price_min`, which Shopify fills with the current
+  price on non-reduced products, so equal prices collapse to `null` with
+  `on_sale=false`. `discount_percentage` prefers the API's `percent_sale_min` and falls
+  back to computing it from the two prices.
+* `rating` / `reviews_count` come from the Judge.me metafields (`rating`,
+  `rating_count`) -- the API's own `review_count` is always `0`. `badges` is the
+  `Clearance` / `OnSale` metafields with the literal `Full Price` values dropped.
+* `package_quantity`, `form` and `strength` are merchant metafields
+  (`PackageQuantity`, `Form`, `Strength`).
+* `options` / `option_count` cover real variants only; single-variant products ship a
+  `Default Title` option that is filtered out.
+* `raw` is the API record minus `body_html`, which is the full page copy and dwarfs
+  every other field. The first 400 characters are exposed as `description`.
+
+Taxonomy lives in `vitacost_categories.py`: the 8-department `Categories` mega-menu
+extracted on 2026-10-04, flattened to **92 category entries** (**90 unique collection
+URLs** -- `Sunscreen` and `Essential Oils & Aromatherapy` each exist under two
+departments, so `category` is qualified as `Department > Label`).
+
+```bash
+HTTPCACHE_ENABLED=False common-scrapy crawl vitacost_listing -a category="Supplements" -a max_pages=2 -O vitacost.jsonl -s HTTPCACHE_ENABLED=False
+```
+
+```json
+{"category": "Supplements", "department": "Supplements", "subcategory": null, "handle": "supplements", "collection_id": "457575104827", "item_id": "10390080782651", "title": "Vitacost, Root2®, Turmeric Extract Curcumin C3 Complex®, 120 Capsules", "url": "https://www.vitacost.com/products/vitacost-root2-turmeric-extract-curcumin-c3-complex-120-capsules-158591/", "brand": "Vitacost", "product_type": "[Vitacost Brands][SuperDeal]", "tags": "Antioxidants, Supplements, Turmeric & Curcumin, ...", "price": 24.74, "original_price": 32.99, "discount_percentage": 25.0, "currency": "USD", "on_sale": true, "out_of_stock": false, "in_stock_quantity": 3508, "image_url": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/10_da6689c1-38d5-4f54-8e85-b694eb0f26d1.jpg?v=1781816097", "image_alt": "Vitacost, Root2®, Turmeric Extract Curcumin C3 Complex®, 120 Capsules", "image_count": 2, "sku": "158591", "barcode": "835003004423", "package_quantity": "120 - 179 count", "form": "Capsule", "strength": "1000 - 4999 mg", "badges": "Clearance, On Sale", "description": "Description 1,160 mg Per Serving Featuring BioPerine® ...", "rating": 4.72, "reviews_count": 484, "published_at": "2026-05-18T23:03:16Z", "page": 1, "position": 1, "total_count": 25399, "scraped_timestamp": "2026-10-04 11:21:40", "source_url": "https://services.mybcapps.com/bc-sf-filter/filter?_=pf&shop=icost.myshopify.com&collection_scope=457575104827&page=1&limit=48", "source": "vitacost_boost_filter_api", "raw": {"skus": ["158591"], "available": true, ...}}
+```
+
+Fixtures: `sample/vitacost-collection-page.html`,
+`sample/vitacost-boost-filter-supplements-page1.json`,
+`sample/vitacost-boost-filter-supplements-page2.json`,
+`sample/vitacost-boost-filter-empty.json`. Tests:
+`python -m unittest tests.test_vitacost_listing_spider` (29 network-free
+fixture tests).
+
+Verified live (`category=Supplements`, `max_pages=2`, page size 48, ScrapeOps proxy
+for the storefront leg, 2026-10-04 UTC): **96 items** (48 + 48), 96 unique
+`item_id`s, `total_count=25399`, 3 requests all HTTP 200. Same for
+`category="Supplements > Vitamins"`: **96 items**, `total_count=4079`,
+`collection_id=458194583867`.
+
 ### dickssportinggoods_listing
 ```json
 {
