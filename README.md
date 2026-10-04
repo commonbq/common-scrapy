@@ -57,6 +57,7 @@ Working spiders running daily in production:
 | [`adorama_listing`](#adorama_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | DataDome | Adorama category listings from server-rendered Next.js hydration state. | 24 (one page; 48 across 2 pages) | 1,079 crawlable categories across 11 departments from `adorama_categories.py` | `{"category":"cameras","item_id":"KKRK0603A","title":"Kodak Charmera Millenium Edition...","price":54.94,"currency":"USD"...}` |
 | [`amazon_listing`](#amazon_listing-category) | Active | html | none detected | Amazon category listing spider (category shortcuts). | 22 (ok) | electronics, fashion, beauty, home-kitchen, toys-games, sports-outdoors, grocery, books | `{"asin":"B0DKDTBBF7","title":"2 Packs Electric Candle Lighters, Windproof Flameless USB Rechargeable Plasma Arc Long Lighter for Grill Fi...` |
 | [`amazon_search`](#amazon_search) | Active | html | none detected | Amazon keyword search spider. | 22 (ok) | - | `{"asin":"B0GHQRV71M","title":"16\" FHD IPS Laptop Computer - 16GB RAM 512GB SSD, Pentium N100(Beat to i3-1115G4, 4 Cores Up to 3.4GHz), B...` |
+| [`basspro_listing`](#basspro_listing) | Active | api | Akamai on the storefront legs (403 direct); the Coveo search leg must stay unproxied | Bass Pro Shops category listings from the storefront Coveo Headless search API (`platform.cloud.coveo.com/rest/search/v2`); taxonomy from the `__NEXT_DATA__.props.megaNavHtmlV2` mega-nav. | 96 (2 pages, rod-reel-combos) | 909 nav entries (11 departments / 116 level-2 / 782 level-3) | `{"category":"Fishing/Rod & Reel Combos","item_id":"3472884","title":"Bass Pro Shops Megacast Baitcast Combo","brand":"Bass Pro Shops","url":"https://www.basspro.com/p/bass-pro-shops-megacast-baitcast-combo","price":69.99,"availability":"InStock","source":"basspro_coveo"...}` |
 | [`bestbuy_listing`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | unknown (timeout/no verdict) | Best Buy listing via direct HTTP + Apollo bootstrap extraction. | 10 (skipped2) | laptops, tvs, headphones, monitors, cell-phones | `{"item_id":"6572184","title":"Samsung - Galaxy Book4 15.6\" FHD Laptop - Intel Core 7- 16GB Memory - 512GB SSD - Silver","url":"https://www.bestbuy.com/product/samsung-galaxy-bo...` |
 | [`bestbuy_search`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | unknown (timeout/no verdict) | Best Buy search via direct HTTP + Apollo bootstrap extraction. | 4 (skipped2) | - | `{"item_id":"6613879","title":"HP - 14\" Laptop - Intel Processor N150 2025 - 4GB Memory - 128GB UFS - Willow Green","url":"https://www.bestbuy.com/product/hp-14-laptop-intel-pro...` |
 | [`macys_listing`](#macys_listing) | Active | api | Akamai | Macy’s listing via xapi endpoint (with fallback routing). | 60 (ok) | laptops, shoes, dresses, fragrance, bedding | `{"item_id":"17595303","title":"5Core AC Power Cord 6Ft 3 Prong US Male to Female Extension Adapter 18AWG 10A 7A 125V","brand":"5 Core","u...` |
@@ -1566,6 +1567,97 @@ Live verification (`-s HTTPCACHE_ENABLED=False`, 2026-10-02 UTC):
 
 ```json
 {"department":"Furniture","sub_category":null,"category":"Furniture","item_id":"9003237","title":"Serta® Smart Layers™ Brinkley Ergonomic Bonded Leather High-Back Executive Office Chair, Black/Silver","brand":"Serta","url":"https://www.officedepot.com/a/products/9003237/Serta-Smart-Layers-Brinkley-Ergonomic-Bonded/","image_url":"https://media.officedepot.com/images/t_large%2Cf_auto/products/9003237/1.jpg","price":299.99,"original_price":299.99,"list_price":586.81,"currency":"USD","availability":"InStock","rating":4.5169,"reviews_count":178,"item_number":"9003237","description":"...","catalog_labels":["ecoConscious","lessHarshChemicals"],"category_id":"593061","page":1,"category_url":"https://www.officedepot.com/b/furniture/N-917?page=1","breadcrumbs":["Home","Furniture"],"source":"officedepot_bootstrap","raw":{...}}
+```
+
+### basspro_listing
+
+Bass Pro Shops (`https://www.basspro.com`) runs on a Next.js App Router storefront
+(`/c/<slug>` for departments, `/l/<slug>` for level-2 categories and subcategories).
+The server HTML deliberately ships **no product records**: `__NEXT_DATA__.props.pageProps.pageValues`
+carries only page metadata (page id, layout, breadcrumbs, facet configuration) and
+`__NEXT_DATA__.props.megaNavHtmlV2` carries only the navigation tree. The product grid is a
+client-side **Coveo Headless** search, so this spider talks to that one endpoint directly —
+there is no HTML-card parser and no JSON-LD fallback.
+
+Flow:
+
+1. `start_requests` fetches the resolved category page through `PROXY` and reads
+   `__NEXT_DATA__.props.pageProps.pageValues` for `pageId`, `pageIdentifier`, `storeId`,
+   `breadcrumbs` and the `facetList` (`srchattridentifier` values arrive as `_cat.<field>`).
+2. `GET /api/v1/coveo/generate-token?refresh=true` returns a short-lived search token
+   (valid ~4 h, per the storefront's own `COVEO_TOKEN_VALID_TIME_HOURS`). The token is used
+   in memory only — it is never written to disk or to a fixture.
+3. `POST https://platform.cloud.coveo.com/rest/search/v2?organizationId=bassproshopsproductionl92epymr`
+   with `Authorization: Bearer <token>`, `searchHub=basspro-searchhub` (the storefront's
+   `ProductionPipeline` query pipeline) and
+   `aq=NOT (@isgun==1 OR @isammo=="1" OR @isgooglerestricted=="1") AND @groupurlkeywords=="<slug>"`.
+   `groupurlkeywords` is the indexed catalog-group slug, which is exactly the last path
+   segment of the browse URL, so the taxonomy slug maps 1:1 onto the search filter.
+   Pagination is offset based (`firstResult` / `numberOfResults`, default 48) and stops on
+   a short page, on `totalCount`, or at `max_pages`. Items are deduplicated by `item_id`.
+
+### Routing: the two legs need opposite routes
+
+| Leg | Host | Route | Why |
+|---|---|---|---|
+| Category page | `www.basspro.com` | **PROXY** | Akamai returns `403 Access Denied` on a direct request |
+| Search token | `www.basspro.com` | **PROXY** | same Akamai edge |
+| Product search | `platform.cloud.coveo.com` | **direct** | a proxied POST comes back `HTTP 200` with the **unfiltered** `totalCount` (541813) because the proxy drops the request body — routing this leg through `PROXY` silently yields the whole index instead of the category |
+
+Because of that the spider sets `DOWNLOADER_MIDDLEWARES` to disable the project-wide
+`CommonDownloaderMiddleware` (which force-proxies every request) and routes each leg
+explicitly: storefront legs get `meta["proxy"] = PROXY`, the Coveo leg gets no proxy at all.
+`PROXY` is therefore required for this spider; there is no unproxied fallback for the
+storefront legs.
+
+Taxonomy (`common/spiders/basspro_categories.py`) is generated from the live `megaNavHtmlV2`
+blob: **11 departments, 155 level-2 categories and 782 level-3 subcategories**. 39 level-2
+tiles are pure marketing links (`Sale`, `New Arrivals`, …) with no browse URL and are skipped,
+leaving **909 crawlable entries**. Every entry keeps its full navigation path
+(`Fishing/Rod & Reel Combos/Baitcast Combos`), so the 119 slugs cross-linked between
+departments (for example `/l/trailer-accessories` under both Boating and Outdoor Rec) stay
+addressable per department; the bare slug is accepted too and resolves to the same browse URL.
+
+Run examples:
+
+- `common-scrapy crawl basspro_listing -a category=rod-reel-combos -a max_pages=2 -O basspro.jsonl`
+- `common-scrapy crawl basspro_listing -a category='Fishing/Rod & Reel Combos/Baitcast Combos' -a max_pages=1 -O basspro.jsonl`
+- `common-scrapy crawl basspro_listing -a url=https://www.basspro.com/c/marine-electronics -a max_pages=1 -O basspro.jsonl`
+- optional args: `-a page_size=24`, `-a include_restricted=1` (drop the storefront's
+  firearm/ammunition/restricted-SKU safety query)
+
+Export contract (56 `FEED_EXPORT_FIELDS`): `category`, `department`, `subcategory`,
+`category_id`, `page_id`, `category_url`, `category_slug`, `category_name`, `breadcrumb`,
+`item_id`, `product_id`, `sku`, `part_number`, `upc`, `mpn`, `title`, `brand`, `url`,
+`image_url`, `price`, `original_price`, `currency`, `discount_percent`, `savings`, `rating`,
+`reviews_count`, `availability`, `quantity`, `retail_quantity`, `is_clearance`, `is_sale`,
+`is_new`, `is_free_shipping`, `is_club_exclusive`, `in_store_inventory`, `collection`,
+`classification`, `class_name`, `category_path`, `color`, `size`, `country_of_origin`,
+`pieces`, `gear_ratio`, `line_weight`, `retrieve`, `action`, `power`, `store_id`, `page`,
+`position`, `total_count`, `items_per_page`, `source_url`, `source`, `raw`.
+
+The `raw` dict keeps the full curated `fieldsToInclude` projection (identifiers, prices,
+availability flags, ratings, media, spec attributes and the composite `thecategories` /
+`groupurlkeywords` catalog-group records). The unfiltered Coveo payload is ~200 fields and
+~30 KB per product; the curated list cuts the page size by ~60% without dropping anything
+the PLP tile renders.
+
+Fixtures: `sample/basspro-plp.html` (reduced `/l/rod-reel-combos` capture with the real
+`__NEXT_DATA__`), `sample/basspro-coveo-page1.json`, `sample/basspro-coveo-page2.json`,
+`sample/basspro-coveo-lastpage.json` (short last page), `sample/basspro-token.json`
+(placeholder token), `sample/basspro-coveo-error.json` and `sample/basspro-challenge.html`.
+
+Tests: `python -m unittest tests.test_basspro_listing_spider` (41 network-free tests).
+
+Verified live runs (`HTTPCACHE_ENABLED=False`):
+
+- `category=rod-reel-combos, max_pages=2` -> **96 items** (96 unique `item_id`, pages 1 and 2,
+  `totalCount=478`), 4 HTTP 200 requests, `finish_reason=finished`.
+- `category=womens-shoes-boots, max_pages=1` -> **48 items** (48 unique `item_id`,
+  `totalCount=820`, 10 of them markdown rows with `original_price` set).
+
+```json
+{"category":"Fishing/Rod & Reel Combos","department":"Fishing","subcategory":"Baitcast","category_id":"3074457345616732396","page_id":"3074457345616732396","category_url":"https://www.basspro.com/l/rod-reel-combos","category_slug":"rod-reel-combos","category_name":"Rod and Reel Combos","breadcrumb":["Fishing","Rod & Reel Combos"],"item_id":"3472884","product_id":"3074457345623307121","sku":"3472884","part_number":"101243021","upc":"900006658840","title":"Bass Pro Shops Megacast Baitcast Combo","brand":"Bass Pro Shops","url":"https://www.basspro.com/p/bass-pro-shops-megacast-baitcast-combo","price":69.99,"original_price":null,"currency":"USD","discount_percent":0.0,"savings":0.0,"rating":3.6241,"reviews_count":133,"availability":"InStock","quantity":624,"gear_ratio":"6.6:1","country_of_origin":"CHINA","page":1,"position":1,"total_count":478,"items_per_page":48,"source_url":"https://www.basspro.com/l/rod-reel-combos","source":"basspro_coveo","raw":{...}}
 ```
 
 ### gamestop_listing
