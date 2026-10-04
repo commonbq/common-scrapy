@@ -42,6 +42,7 @@ Examples:
 - `common-scrapy crawl kohls_listing --category women -a max_pages=1 -O kohls_listing.jsonl`
 - `common-scrapy crawl sephora_listing --category makeup -a max_pages=1 -O sephora_listing.jsonl`
 - `common-scrapy crawl newegg_listing --category desktop-cpu-processors -a max_pages=1 -O newegg.jsonl` (36 items, verified live on 2026-10-02; see [newegg_listing](#newegg_listing))
+- `common-scrapy crawl cvs_listing --category health-medicine -a max_pages=3 -O cvs.jsonl` (60 items, verified live on 2026-10-04; see [cvs_listing](#cvs_listing))
 
 `newegg_listing` parses the server-rendered `window.__initialState__.Products`
 payload. It accepts `category`, `category_url`, or `url`; use
@@ -86,6 +87,7 @@ Spiders below are returning items in recent smoke runs:
 | [`anthropologie_listing`](#anthropologie_listing) | Experimental | Pinia hydration | PerimeterX / HUMAN | Anthropologie listing spider using the server-rendered Pinia product state. | 37 (ok, proxy) | womens-clothing, dresses, shoes, sale and refinements | `{"item_id":"AN-4114086690121-000","title":"By Anthropologie Goldie 100% Cashmere Sweater","price":138.0,...}` |
 | [`asos_listing`](#asos_listing) | Experimental | bootstrap + API | Akamai | ASOS US listings from `window.asos.plp._data`, with pagination through the hydrated search API contract. | 2 (fixture; live unverified) | complete women/men navigation inventory from `asos_categories.py` | `{"item_id":"211160390","title":"ASOS DESIGN stretch chiffon scarf detail plunge draped maxi dress in chocolate","price":69.99,"currency":"USD"...}` |
 | [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | html + nuxt-state | Akamai | Bloomingdale's listing spider via Nuxt SSR state contract parsing (splash->leaf aware). | 8 (ok) | new-now, women, beauty, shoes, handbags, jewelry-accessories, men, kids, home, sale, gifts, designers | `{"item_id":"5973765","title":"Tumbled Woven Verne Pants","url":"https://www.bloomingdales.com/shop/product/cinq-a-sept-tumbled-woven-vern...` |
+| [`cvs_listing`](#cvs_listing) | Active | bootstrap | none detected (ScrapeOps `country=us` route required) | CVS.com category listings from the inline `var productIndexData = {...}` SSR hydration assignment; taxonomy captured from `initialState.allCategories`. | 60 (3 pages, health-medicine) / 39 (2 pages, multivitamins) | 715 categories / 13 departments from `cvs_categories.py` | `{"category":"health-medicine","item_id":"702568","title":"Nature's Truth Melatonin 12mg & Magnesium Gummies, Sour Grape, 60 CT","brand":"Nature's Truth","price":21.99,"currency":"USD","in_stock":true,"stock_quantity":2052,"rating":null,"page":1,"source":"cvs_product_index_hydration"}` |
 | [`costco_listing`](#costco_search--costco_listing) | Active | React Flight + API | Akamai | Costco category listing with React Flight discovery and GRS search pagination. | 24 (ok) | 131 parent groups / 432 subcategory entries from `costco-categories.json` | `{"item_id":"100501081","title":"Starbucks Pike Place Medium Roast K-Cup","url":"https://www.costco.com/starbucks-pike-place-medium-roast-k-cup-72-count.product.100501081.html","price":...` |
 | [`containerstore_listing`](#containerstore_listing) | Active | bootstrap | none detected | Container Store category listings from the server-rendered Next.js `__NEXT_DATA__` hydration. | 120 (2 pages, proxy) | 14 departments / 189 L2 / 159 L3 nodes -> 295 unique catalogue URLs from `containerstore_categories.py` | `{"category":"Kitchen > Pantry Organizers","department":"Kitchen","subcategory":"Pantry Organizers","item_id":"11017102","sku_id":"10087168","title":"Everything Organizer Shelf-Depth Pantry Bin with Divider","price":9.19,"original_price":22.99,...` |
 | [`dickssportinggoods_listing`](#dickssportinggoods_listing) | Active | api | Akamai | DICK'S Sporting Goods category listings from the first-party catalog product-search API. | 48 (ok) | 1287 unique categories from 10 departments | `{"item_id":"13286436","title":"adidas FIFA World Cup Historical Mini Soccer Ball Set","brand":"adidas","price":141.52,"currency":"USD",...}` |
@@ -418,6 +420,109 @@ HTTPCACHE_ENABLED=False common-scrapy crawl petsmart_listing -a category=dog/foo
 ```json
 {"category": "dog/food/dry-food", "department": "Dog", "subcategory": "Food", "category_name": "Dog > Food > Dry Food", "category_url": "https://www.petsmart.com/dog/food/dry-food/", "category_item_count": 1794, "sort": "best-sellers", "index": "r-US_products_best-sellers", "item_id": "5252900", "master_product_id": 36648, "title": "Purina Pro Plan Sensitive Skin and Stomach Dry Dog Food Adult Salmon & Rice Formula Digestive Health", "brand": "Purina Pro Plan", "url": "https://www.petsmart.com/dog/food/dry-food/purina-pro-plan-sensitive-skin-and-stomach-dry-dog-food-adult-salmon-and-rice-formula-digestive-health-36648.html", "image_url": "https://s7d2.scene7.com/is/image/PetSmart/5252900?$sclp-prd-main_large$", "price": 77.99, "price_display": "$20.68-$94.99", "price_display_type": "range", "currency": "USD", "rating": 4.5, "reviews_count": 9118, "upc": "038100175526", "available": true, "autoship_eligible": true, "variation_types": "4 Sizes, 1 Flavor", "page": 1, "position": 1, "total_count": 937, "total_pages": 10, "source": "petsmart_first_party_search_api", "raw": {...}}
 ```
+
+### cvs_listing
+
+`cvs_listing` uses exactly one data direction: the bootstrap hydration state CVS
+already ships with every shop page.
+
+```text
+var initialState = {
+  "allCategories": {...},        # named shop taxonomy (715 PLP URLs)
+  "productIndexData": {
+    "numFound": 3035, "start": 0, "limit": 20, "page": 1,
+    "products": [...],           # 20 product objects
+    "facets": {...}, "refinements": [...], "breadCrumbs": [...]
+  }
+};
+```
+
+The spider parses `var productIndexData = {...}` only. There is **no product
+markup fallback and no JSON-LD fallback**: if the assignment or its expected
+keys disappear, the spider raises rather than silently degrading to card
+scraping. Pagination is ordinary query-string SSR (`?page=N`) and the stop
+condition comes from `start`/`limit`/`numFound` in that same assignment, so the
+spider never has to guess a page count.
+
+Run examples:
+
+```bash
+common-scrapy crawl cvs_listing -a category=health-medicine -a max_pages=3 -O cvs.jsonl -s HTTPCACHE_ENABLED=False
+common-scrapy crawl cvs_listing -a category=multivitamins -a max_pages=2 -O cvs.jsonl
+common-scrapy crawl cvs_listing -a category_url=https://www.cvs.com/shop/vitamins/multivitamins -a max_pages=1 -O cvs.jsonl
+```
+
+Sample item (`category=health-medicine`, page 1 position 1, `raw` omitted):
+
+```json
+{
+  "item_id": "702568",
+  "title": "Nature's Truth Melatonin 12mg & Magnesium Gummies, Sour Grape, 60 CT",
+  "brand": "Nature's Truth",
+  "url": "https://www.cvs.com/shop/nature-s-truth-melatonin-12mg-magnesium-gummies-sour-grape-60-ct-prodid-702568",
+  "image": "https://www.cvs.com/bizcontent/merchandising/productimages/high_res/84009312838.jpg",
+  "price": 21.99,
+  "original_price": null,
+  "sale_price": null,
+  "carepass_price": null,
+  "unit_price": "36.6¢/ea.",
+  "currency": "USD",
+  "in_stock": true,
+  "stock_quantity": 2052,
+  "store_pickup": true,
+  "pickup_in_stock": false,
+  "same_day_in_stock": false,
+  "rating": null,
+  "reviews_count": null,
+  "is_new": true,
+  "is_featured": false,
+  "is_sponsored": false,
+  "hot_deals": false,
+  "fsa_eligible": false,
+  "promo_message": "Buy 1, Get 1 Free",
+  "size": "60.00 Ct",
+  "count": "60 CT",
+  "category": "health-medicine",
+  "category_name": "Health & Medicine",
+  "category_id": "cat1",
+  "department": "Health & Medicine",
+  "breadcrumb": ["Health & Medicine"],
+  "page": 1,
+  "position": 1,
+  "total_count": 3035,
+  "source_url": "https://www.cvs.com/shop/health-medicine",
+  "source": "cvs_product_index_hydration"
+}
+```
+
+Notes:
+
+- Each PLP is a ~3.9 MB SSR document, so `CONCURRENT_REQUESTS_PER_DOMAIN` is 1
+  with a 1 s `DOWNLOAD_DELAY`.
+- `cvs_categories.py` is captured from
+  `initialState.allCategories.allCategories.children` (15 roots / 856 nodes /
+  730 distinct browse URLs before filtering). Each node's first child repeats the
+  parent as an "All &lt;department&gt;" link; those self-links are dropped. The
+  `/shop/brand-directory` tree and content pages such as `/shop/content/fsa` are
+  excluded because they are not product listings. That leaves **13 departments
+  and 715 category URLs**, each carrying its CVS `cat*` id.
+- CVS cross-lists labels (e.g. "Compression Hosiery & Stockings" appears under
+  two Home Health Care branches, and "Bar Soap" under two Personal Care ones),
+  so CLI slugs are department-qualified (`personal-care-bar-soap`) and fall back
+  to a path-qualified slug plus counter when that still collides. All 715 slugs
+  and 715 URLs are unique.
+- CVS emits `"0.0"` for every optional price it does not have, so `carepass_price`
+  treats 0 as absent rather than reporting a free product.
+- `sale_price`/`original_price` are only populated when `salePrice < listPrice`;
+  CVS otherwise mirrors `salePrice` into `listPrice` and reporting that as a
+  markdown would be wrong.
+- `inventoryInfo` separates `shipInv`, `pickInv` and `sddInv`, which is why
+  `in_stock`, `pickup_in_stock` and `same_day_in_stock` are separate fields.
+- `raw` keeps the verbatim product object plus its `variants` list, so
+  variant-level size/price/availability differences that the PLP grid does not
+  surface stay re-derivable downstream.
+- An unknown `-a category=` slug raises at construction time rather than
+  producing an empty crawl.
 
 ### containerstore_listing
 
