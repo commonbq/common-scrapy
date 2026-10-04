@@ -1,0 +1,188 @@
+from __future__ import annotations
+
+import json
+import re
+from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
+
+import scrapy
+
+from common.spiders.anthropologie_categories import flattened_categories
+from common.spiders.base_listing_spider import BaseListingSpider
+
+
+class AnthropologieListingSpider(BaseListingSpider):
+    """Extract product listings from Anthropologie's Pinia SSR hydration state."""
+
+    name = "anthropologie_listing"
+    allowed_domains = ["www.anthropologie.com", "anthropologie.com", "127.0.0.1"]
+    # Direct url=/category_url= runs are supported, so opt out of the base class
+    # category-only gate; resolve_target_url() still rejects a run with no target.
+    require_category_arg = False
+    categories = flattened_categories()
+
+    custom_settings = {
+        "FEED_EXPORT_FIELDS": [
+            "category",
+            "item_id",
+            "style_number",
+            "title",
+            "brand",
+            "url",
+            "image_url",
+            "price",
+            "original_price",
+            "currency",
+            "availability",
+            "rating",
+            "reviews_count",
+            "color",
+            "color_count",
+            "badges",
+            "source",
+            "category_url",
+            "page",
+            "position",
+            "raw",
+        ]
+    }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if not (self.category or self.category_url or self.url):
+            raise ValueError(
+                "Provide -a category=<name>, category_url=<url>, or url=<url>. "
+                f"Available categories: {', '.join(self.available_categories())}"
+            )
+        self.seen_product_ids: set[str] = set()
+
+    def start_requests(self):
+        target = self.resolve_target_url()
+        # Preserve a page encoded in the selected URL. The inventory includes a
+        # dedicated `?page=2` entry; forcing page 1 here made it unreachable.
+        start_page = self._page_of(target) or 1
+        yield scrapy.Request(
+            self._with_page(target, start_page),
+            callback=self.parse,
+            headers=self._headers(),
+            meta={"category": self.category, "page": start_page},
+        )
+
+    def parse(self, response: scrapy.http.Response):
+        raw_state = response.css("script#urbnInitialPiniaState::text").get()
+        if not raw_state:
+            raise RuntimeError(f"No Anthropologie urbnInitialPiniaState found at {response.url}")
+        try:
+            state = json.loads(json.loads(raw_state.strip()))
+        except (TypeError, json.JSONDecodeError) as exc:
+            raise RuntimeError(f"Invalid Anthropologie Pinia state at {response.url}") from exc
+
+        category_state = state.get("category") or {}
+        page = int(category_state.get("currentPage") or response.meta.get("page") or 1)
+        page_state = (category_state.get("pages") or {}).get(str(page)) or {}
+        tiles = (page_state.get("wrapper") or {}).get("tiles") or []
+        product_tiles = [tile for tile in tiles if isinstance(tile, dict) and tile.get("recordType") == "PRODUCT"]
+        if not product_tiles:
+            raise RuntimeError(f"No Anthropologie Pinia product tiles found at {response.url}")
+
+        for position, tile in enumerate(product_tiles, 1):
+            product = tile.get("product") or {}
+            item_id = product.get("productId") or product.get("styleNumber")
+            if not item_id or item_id in self.seen_product_ids:
+                continue
+            self.seen_product_ids.add(item_id)
+            sku = tile.get("skuInfo") or {}
+            reviews = tile.get("reviews") or {}
+            color = tile.get("faceOutColorCode") or product.get("defaultColorCode")
+            image = tile.get("faceOutImage") or product.get("defaultImage")
+            slug = product.get("productSlug")
+            yield {
+                "category": response.meta.get("category"),
+                "item_id": item_id,
+                "style_number": product.get("styleNumber"),
+                "title": product.get("displayName"),
+                "brand": product.get("brand"),
+                "url": self._product_url(response.url, slug, color) if slug else None,
+                "image_url": f"https://images.urbndata.com/is/image/Anthropologie/{image}?$an-category$" if image else None,
+                "price": self._number(sku.get("salePriceLow") or sku.get("listPriceLow")),
+                "original_price": self._number(sku.get("listPriceLow")),
+                "currency": self._currency(response.url, tile, product, sku),
+                "availability": "InStock" if sku.get("hasAvailableSku") else "OutOfStock",
+                "rating": self._number(reviews.get("averageRating")),
+                "reviews_count": reviews.get("count"),
+                "color": color,
+                "color_count": len((product.get("facets") or {}).get("colors") or []),
+                "badges": [badge.get("type") for badge in product.get("badges") or [] if isinstance(badge, dict)],
+                "source": "urbn_pinia_hydration",
+                "category_url": response.url,
+                "page": page,
+                "position": position,
+                "raw": tile,
+            }
+
+        total_pages = int(category_state.get("totalPages") or 1)
+        if page < min(total_pages, self.max_pages):
+            next_page = page + 1
+            yield scrapy.Request(
+                self._with_page(response.url, next_page),
+                callback=self.parse,
+                headers=self._headers(),
+                meta={"category": response.meta.get("category"), "page": next_page},
+            )
+
+    @staticmethod
+    def _number(value):
+        try:
+            return float(value) if value is not None else None
+        except (TypeError, ValueError):
+            return None
+
+    @staticmethod
+    def _locale_prefix(url: str) -> str:
+        """Return the storefront locale path (``/en-ca``) or '' for the US site."""
+        match = re.match(r"^/(en|fr)-[a-z]{2}(?=/|$)", urlparse(url).path.lower())
+        return match.group(0) if match else ""
+
+    @classmethod
+    def _currency(cls, category_url: str, tile: dict, product: dict, sku: dict) -> str:
+        # Prefer the hydrated currency so a localized storefront is not mislabeled.
+        for source in (sku, tile, product):
+            for key in ("currencyCode", "currency", "currencyIsoCode"):
+                value = source.get(key)
+                if isinstance(value, str) and value.strip():
+                    return value.strip().upper()
+        # Fall back to the crawled storefront locale; /en-ca/ is the Canadian site.
+        return "CAD" if cls._locale_prefix(category_url) else "USD"
+
+    @classmethod
+    def _product_url(cls, category_url: str, slug: str, color: str | None) -> str:
+        # Keep the crawled storefront locale so localized listings link back to the
+        # same locale instead of silently switching to the US /shop/ path.
+        return (
+            f"https://www.anthropologie.com{cls._locale_prefix(category_url)}"
+            f"/shop/{slug}?color={color}&type=STANDARD"
+        )
+
+    @staticmethod
+    def _page_of(url: str):
+        values = parse_qs(urlparse(url).query).get("page")
+        if not values:
+            return None
+        try:
+            return int(values[0])
+        except (TypeError, ValueError):
+            return None
+
+    @staticmethod
+    def _headers():
+        return {
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "accept-language": "en-US,en;q=0.9",
+            "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140.0 Safari/537.36",
+        }
+
+    @staticmethod
+    def _with_page(url: str, page: int) -> str:
+        parsed = urlparse(url)
+        query = parse_qs(parsed.query)
+        query["page"] = [str(page)]
+        return urlunparse(parsed._replace(query=urlencode(query, doseq=True)))

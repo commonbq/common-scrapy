@@ -1,0 +1,439 @@
+{
+ "hits": [
+  {
+   "id": 5287520,
+   "objectID": "5287520",
+   "sku": 5287520,
+   "masterProductID": 52839,
+   "name": "Simply Nourish\u00ae Original Small Breed Adult Dry Dog Food - Chicken & Brown Rice",
+   "brand": "Simply Nourish",
+   "price": {
+    "number": 36.99,
+    "strikethrough-number": null,
+    "validUntil": "",
+    "formatted": {
+     "primary": "$14.99-$36.99"
+    },
+    "displayType": "range"
+   },
+   "priceData": {
+    "list": 36.99,
+    "current": 36.99,
+    "listRange": [
+     14.99,
+     36.99
+    ]
+   },
+   "images": {
+    "large": "https://s7d2.scene7.com/is/image/PetSmart/5287520?$sclp-prd-main_large$",
+    "small": "https://s7d2.scene7.com/is/image/PetSmart/5287520?$sclp-prd-main_small$"
+   },
+   "alternateImages": [
+    "5287520_alt1",
+    "5287520_alt2",
+    "5287520_alt3",
+    "5287520_alt4",
+    "5287520_alt5",
+    "5287520_alt6"
+   ],
+   "upc": "737257830066",
+   "upcList": [
+    "737257830066"
+   ],
+   "bvAverageRating": 4.7,
+   "bvReviewCount": 484,
+   "isSKUAvailable": true,
+   "isInStockInStore": true,
+   "isSubscriptionEnabled": true,
+   "customScheduledDeliveryEligible": true,
+   "short_description": "SN D OG SM ADLT CHK & B RICE 15 lb    23",
+   "manufacturerName": "ALPHIA INC....",
+   "manufacturerSku": "50005281",
+   "primary_category_id": "100246",
+   "primary_category_name": "Dry Food",
+   "custom_category_names": [
+    "Dog",
+    "Dog > Food",
+    "Dog > Food > Dry Food",
+    "Featured Brands",
+    "Featured Brands > Simply Nourish",
+    "Featured Brands > Simply Nourish > Dog",
+    "Featured Shops",
+    "Featured Shops > Auto ship",
+    "Featured Shops > Curbside and In Store Pickup",
+    "Featured Shops > Penny Lanes Favorites",
+    "Featured Shops > Same Day Delivery",
+    "Featured Shops > Save 20% and Save 30% and Save 50%",
+    "PA",
+    "PA > Same Day Delivery Sale",
+    "PA > Save on Same Day Delivery",
+    "Sale",
+    "Sale > 25X Select Dog and Cat Food Brands",
+    "Sale > 5 dollars off select dog food 16 lbs. and under",
+    "Sale > 5X Treats Rewards points on select great brands",
+    "Sale > 8 dollars off Select Dry Dog Food",
+    "Sale > October Event",
+    "Sale > Same Day Delivery",
+    "Sale > September Event",
+    "Smart Value",
+    "Smart Value > Dog"
+   ],
+   "assigned_category_paths": [
+    "Dog > Food > Dry Food",
+    "Featured Brands > Simply Nourish",
+    "Featured Brands > Simply Nourish > Dog",
+    "Featured Shops > Auto ship",
+    "Featured Shops > Curbside and In Store Pickup",
+    "Featured Shops > Penny Lanes Favorites",
+    "Featured Shops > Same Day Delivery",
+    "Featured Shops > Save 20% and Save 30% and Save 50%",
+    "PA > Same Day Delivery Sale",
+    "PA > Save on Same Day Delivery",
+    "Sale > 25X Select Dog and Cat Food Brands",
+    "Sale > 5 dollars off select dog food 16 lbs. and under",
+    "Sale > 5X Treats Rewards points on select great brands",
+    "Sale > 8 dollars off Select Dry Dog Food",
+    "Sale > October Event",
+    "Sale > Same Day Delivery",
+    "Sale > September Event",
+    "Smart Value > Dog"
+   ],
+   "variationData": [
+    {
+     "type": "Flavor",
+     "value": "Chicken & Brown Rice",
+     "onlineFrom": 1564963200000
+    },
+    {
+     "type": "Size",
+     "value": "5 Lb",
+     "onlineFrom": 1564963200000
+    },
+    {
+     "type": "Size",
+     "value": "15 Lb",
+     "onlineFrom": 1564963200000
+    }
+   ],
+   "variations": [
+    "2 Sizes",
+    "1 Flavor"
+   ],
+   "flavorList": [
+    "Brown Rice",
+    "Chicken"
+   ],
+   "kibbleSizes": [
+    "Small Breed"
+   ],
+   "eligiblePromotions": [
+    {
+     "promoId": "f08b77b6-b42e-4721-9ede-d4d577a2998b",
+     "promoKey": "1026-US-SIMPLYBB-15OFF-MESSAGE",
+     "promoText": "$15 OFF your next $50+ Simply Nourish dog food purchase when you spend $60+ on Simply Nourish dog food thru 11/1",
+     "promoStart": "2026-09-28T09:30:00.000Z",
+     "promoEnd": "2026-11-02T09:30:00.000Z",
+     "order": 20.1788970430393
+    },
+    {
+     "promoId": "3761cb2c-2451-4487-9a00-37ad9b94489b",
+     "promoText": "Save 35% On Your First Autoship Order!",
+     "promoKey": "US-AUTOSHIP-DEFAULT-35P-DONOTTOUCH",
+     "promoStart": "2025-07-28T12:00:00.000Z",
+     "type": "autoship",
+     "default": true,
+     "discountDisplay": "35%",
+     "order": 21.1753227940048
+    },
+    {
+     "promoId": "aecfe5c6-e1b3-4ea6-8c94-649cc272195a",
+     "promoKey": "EG-Free-Same-Day-Delivery-US",
+     "promoText": "Free Same-Day Delivery, No Order Minimum!",
+     "order": 74.1744726346766
+    },
+    {
+     "promoId": "841ea8be-a613-4244-ac72-e2218fbc12f1",
+     "promoKey": "EG-Free-Ship-Over-49-US-OLD",
+     "promoText": "Sign In & Enjoy Free Shipping Over $49",
+     "promoEnd": "2026-02-03T23:00:00.000Z",
+     "order": 75.1744725984125
+    },
+    {
+     "promoId": "c77b871e-74df-46ea-950b-343c39e86e13",
+     "promoKey": "EG-Free-Ship-Over-49-US",
+     "promoText": "Sign In & Enjoy Free Shipping Over $49",
+     "promoStart": "2026-02-03T23:00:00.000Z",
+     "order": 75.1770059684803
+    },
+    {
+     "promoId": "f0a9e94f-a233-4606-9ff6-9771d3b21ea5",
+     "promoText": "",
+     "promoKey": "US-AUTOSHIP-MAX20-DONOTTOUCH",
+     "type": "autoship",
+     "default": true,
+     "discountDisplay": "$20",
+     "order": 1744911064577
+    },
+    {
+     "promoId": "53a913f6-15e3-4d74-a2a4-b4485db2ed94",
+     "promoText": "",
+     "promoKey": "US-AUTOSHIP-DEFAULT-5P-EXISITINGCUSTOMER-DONOTTOUCH",
+     "promoStart": "2025-07-29T00:00:00.000Z",
+     "type": "autoship",
+     "default": true,
+     "discountDisplay": "5%",
+     "order": 1753284423130
+    }
+   ],
+   "package": {
+    "height": 3.5,
+    "length": 22,
+    "weight": 15,
+    "width": 14
+   },
+   "dimensionsAndWeight": {
+    "cartonHeight": 3.74,
+    "cartonLength": 24.8,
+    "cartonWeight": 15.15,
+    "cartonWidth": 12.99
+   },
+   "size": {
+    "solidSize": "15 Lb"
+   },
+   "customCaseQuantity": 1,
+   "totalCupsPerPackage": 64.6,
+   "series": [
+    "Simply Nourish Original"
+   ],
+   "productAvailabilityLocations": [
+    "In Store"
+   ],
+   "shoppingOptions-isBopisEligible": true,
+   "shoppingOptions-isInStorePickUp": true,
+   "onlineFrom": 1564963200000,
+   "onlineTo": 4102444799000,
+   "conversionRate": 70,
+   "lastModifiedMillis": 1791016155349
+  },
+  {
+   "id": 5277787,
+   "objectID": "5277787",
+   "sku": 5277787,
+   "masterProductID": 48039,
+   "name": "Rachael Ray Nutrish Adult Dog Dry Food - Beef, Pea & Brown Rice",
+   "brand": "Rachael Ray Nutrish",
+   "price": {
+    "number": 54.97,
+    "strikethrough-number": 56.99,
+    "validUntil": "2035-01-01T07:00:00.000Z",
+    "formatted": {
+     "primary": "$8.69-$54.97",
+     "strikethrough": "$12.49-$56.99"
+    },
+    "displayType": "range"
+   },
+   "priceData": {
+    "list": 56.99,
+    "current": 54.97,
+    "sale": 54.97,
+    "listRange": [
+     12.49,
+     56.99
+    ],
+    "saleRange": [
+     8.69,
+     54.97
+    ],
+    "optionsFromList": 12.49
+   },
+   "images": {
+    "large": "https://s7d2.scene7.com/is/image/PetSmart/5277787?$sclp-prd-main_large$",
+    "small": "https://s7d2.scene7.com/is/image/PetSmart/5277787?$sclp-prd-main_small$"
+   },
+   "alternateImages": [
+    "5277787_alt1",
+    "5277787_alt2",
+    "5277787_alt3",
+    "5277787_alt4",
+    "5277787_alt5",
+    "5277787_alt6",
+    "5277787_alt7",
+    "5277787_alt8",
+    "5277787_alt9"
+   ],
+   "upc": "071190000958",
+   "upcList": [
+    "071190000958"
+   ],
+   "bvAverageRating": 4.4,
+   "bvReviewCount": 374,
+   "isSKUAvailable": true,
+   "isInStockInStore": true,
+   "isSubscriptionEnabled": true,
+   "customScheduledDeliveryEligible": true,
+   "short_description": "NUTRISH WHB BEEF & BR 40 lb           23",
+   "manufacturerName": "POST CONSUMER BRANDS LLC",
+   "manufacturerSku": "82719",
+   "primary_category_id": "100246",
+   "primary_category_name": "Dry Food",
+   "custom_category_names": [
+    "Dog",
+    "Dog > Food",
+    "Dog > Food > Dry Food",
+    "Featured Brands",
+    "Featured Brands > Rachael Ray Nutrish",
+    "Featured Shops",
+    "Featured Shops > Auto ship",
+    "Featured Shops > Curbside and In Store Pickup",
+    "Featured Shops > Same Day Delivery",
+    "PA",
+    "PA > Same Day Delivery Sale",
+    "PA > Save on Same Day Delivery",
+    "Sale",
+    "Sale > October Event",
+    "Sale > Same Day Delivery",
+    "Sale > September Event"
+   ],
+   "assigned_category_paths": [
+    "Dog > Food > Dry Food",
+    "Featured Brands > Rachael Ray Nutrish",
+    "Featured Shops > Auto ship",
+    "Featured Shops > Curbside and In Store Pickup",
+    "Featured Shops > Same Day Delivery",
+    "PA > Same Day Delivery Sale",
+    "PA > Save on Same Day Delivery",
+    "Sale > October Event",
+    "Sale > Same Day Delivery",
+    "Sale > September Event"
+   ],
+   "variationData": [
+    {
+     "type": "Flavor",
+     "value": "Beef & Brown Rice",
+     "onlineFrom": 1514764800000
+    },
+    {
+     "type": "Size",
+     "value": "40 Lb",
+     "onlineFrom": 1514764800000
+    },
+    {
+     "type": "Size",
+     "value": "13 Lb",
+     "onlineFrom": 1777161600000
+    },
+    {
+     "type": "Size",
+     "value": "5 Lb",
+     "onlineFrom": 1777161600000
+    },
+    {
+     "type": "Size",
+     "value": "30 Lb",
+     "onlineFrom": 1777161600000
+    }
+   ],
+   "variations": [
+    "4 Sizes",
+    "1 Flavor"
+   ],
+   "flavorList": [
+    "Beef",
+    "Brown Rice"
+   ],
+   "kibbleSizes": [
+    "Medium Breed"
+   ],
+   "foodForms": [
+    "Bags"
+   ],
+   "eligiblePromotions": [
+    {
+     "promoId": "3761cb2c-2451-4487-9a00-37ad9b94489b",
+     "promoText": "Save 35% On Your First Autoship Order!",
+     "promoKey": "US-AUTOSHIP-DEFAULT-35P-DONOTTOUCH",
+     "promoStart": "2025-07-28T12:00:00.000Z",
+     "type": "autoship",
+     "default": true,
+     "discountDisplay": "35%",
+     "order": 21.1753227940048
+    },
+    {
+     "promoId": "aecfe5c6-e1b3-4ea6-8c94-649cc272195a",
+     "promoKey": "EG-Free-Same-Day-Delivery-US",
+     "promoText": "Free Same-Day Delivery, No Order Minimum!",
+     "order": 74.1744726346766
+    },
+    {
+     "promoId": "841ea8be-a613-4244-ac72-e2218fbc12f1",
+     "promoKey": "EG-Free-Ship-Over-49-US-OLD",
+     "promoText": "Sign In & Enjoy Free Shipping Over $49",
+     "promoEnd": "2026-02-03T23:00:00.000Z",
+     "order": 75.1744725984125
+    },
+    {
+     "promoId": "c77b871e-74df-46ea-950b-343c39e86e13",
+     "promoKey": "EG-Free-Ship-Over-49-US",
+     "promoText": "Sign In & Enjoy Free Shipping Over $49",
+     "promoStart": "2026-02-03T23:00:00.000Z",
+     "order": 75.1770059684803
+    },
+    {
+     "promoId": "f0a9e94f-a233-4606-9ff6-9771d3b21ea5",
+     "promoText": "",
+     "promoKey": "US-AUTOSHIP-MAX20-DONOTTOUCH",
+     "type": "autoship",
+     "default": true,
+     "discountDisplay": "$20",
+     "order": 1744911064577
+    },
+    {
+     "promoId": "53a913f6-15e3-4d74-a2a4-b4485db2ed94",
+     "promoText": "",
+     "promoKey": "US-AUTOSHIP-DEFAULT-5P-EXISITINGCUSTOMER-DONOTTOUCH",
+     "promoStart": "2025-07-29T00:00:00.000Z",
+     "type": "autoship",
+     "default": true,
+     "discountDisplay": "5%",
+     "order": 1753284423130
+    }
+   ],
+   "package": {
+    "height": 6.5,
+    "length": 24.5,
+    "weight": 40.38,
+    "width": 19.5
+   },
+   "dimensionsAndWeight": {
+    "cartonHeight": 24.5,
+    "cartonLength": 6.5,
+    "cartonWeight": 40.383,
+    "cartonWidth": 19.5
+   },
+   "size": {
+    "solidSize": "40 Lb"
+   },
+   "customCaseQuantity": 1,
+   "series": [
+    "Whole Health Blend"
+   ],
+   "productAvailabilityLocations": [
+    "In Store"
+   ],
+   "shoppingOptions-isBopisEligible": true,
+   "shoppingOptions-isInStorePickUp": true,
+   "onlineFrom": 1514764800000,
+   "onlineTo": 4102444799000,
+   "conversionRate": 45,
+   "lastModifiedMillis": 1790929363994
+  }
+ ],
+ "nbHits": 937,
+ "nbSortedHits": 937,
+ "page": 1,
+ "nbPages": 10,
+ "hitsPerPage": 100,
+ "query": "",
+ "index": "r-US_products_best-sellers",
+ "params": "query=&hitsPerPage=100&page=1"
+}
