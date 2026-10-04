@@ -1,13 +1,11 @@
-"""Static category map for Tractor Supply Co. (issue #181).
+"""Product sitemap inventory for Tractor Supply Co."""
 
-This module would contain the category taxonomy for tractorsupply_listing.
-However, product extraction is currently BLOCKED, rendering this module
-non-functional.
-"""
-
-# TRACTOR_SUPPLY_CATEGORIES = {
-#     "Example Department": {
-#         "Example Subcategory": "/tsc/catalog/example-subcategory"
-#     }
-# }
-TRACTOR_SUPPLY_CATEGORIES = {}
+TRACTORSUPPLY_CATEGORIES = [
+    {
+        "category": f"products-{number}",
+        "name": f"Product sitemap {number}",
+        "department": "All products",
+        "url": f"https://www.tractorsupply.com/sitemap_product_{number}.xml",
+    }
+    for number in range(1, 5)
+]
