@@ -94,6 +94,7 @@ Spiders below are returning items in recent smoke runs:
 | [`llbean_listing`](#llbean_listing) | Active | api | none detected (ScrapeOps `country=us` route required) | L.L.Bean listing via the UDAL `product-discovery` JSON endpoint (no HTML fallback). | 96 (2 pages, proxy) | 11 departments / 500 targets from `llbean_categories.py` | `{"category":"Gift Shop","item_id":"1000316302","sku_id":"1000316302","title":"Women's The Original Double L® Sweater, Crewneck","brand":"L.L.Bean","price":49.99,"original_price":69.95,"currency":"USD","rating":4.4,"reviews_count":359,"color":"Classic Navy","size":"X-Small","availability":"IN","on_sale":true,"page":1,"position":1,"total_count":626,"source":"llbean_udal_product_discovery"...` |
 | [`maccosmetics_listing`](#maccosmetics_listing) | Experimental | api + bootstrap + html | Akamai | MAC Cosmetics multi-mode listing spider. | 66 (ok) | face, lips, eyes | `{"item_id":"13854","title":"4.8/5 ( 452 ) Lustreglass Sheer-Shine Lipstick Sheer Coverage, Glossy/High-Shine Finish, Infused With Raspberry Seed/Organic Extra Virgin Olive Oils ...` |
 | [`officedepot_listing`](#officedepot_listing) | Active | bootstrap | none detected (ScrapeOps proxy) | Office Depot / OfficeMax category listings from inline `window.ODSEARCHBROWSE_INITIAL_STATE` SSR hydration; taxonomy resolved from the header mega-menu JSON. | 59 (2 pages, furniture) | 388 browse PLPs from `header-menu-excel/products.json` | `{"department":"Furniture","item_id":"9003237","title":"Serta® Smart Layers™ Brinkley Ergonomic Bonded Leather High-Back Executive Office Chair, Black/Silver","price":299.99,"availability":"InStock","source":"officedepot_bootstrap"...}`
+| [`petsmart_listing`](#petsmart_listing) | Active | api | none detected (Akamai sensor served, API open; no proxy needed) | PetSmart category listings from the first-party `/api/search/1/indexes/<replica>/query` endpoint the storefront's Algolia client is pinned to. | 200 (2 pages x 100, ok) | 491 category paths / 7 departments from `petsmart_categories.py` | `{"category":"dog/food/dry-food","item_id":"5252900","title":"Purina Pro Plan Sensitive Skin and Stomach Dry Dog Food Adult Salmon & Rice Formula Digestive Health","brand":"Purina Pro Plan","price":77.99,"currency":"USD","rating":4.5,"reviews_count":9118,"url":"https://www.petsmart.com/dog/food/dry-food/purina-pro-plan-...-36648.html",...}` |
 | [`poshmark_listing`](#poshmark_listing) | Experimental | bootstrap | none detected | Poshmark listing spider via `window.__INITIAL_STATE__` category grid data. | 48 (ok) | women, men, kids, home, electronics, pets | `{"category":"women","item_id":"6989d90ac4e7b4d4de556bac","title":"🔥Stunning  Farm Rio NWT Size Large Tropical Midi Dress with Sleeves – V...` |
 | [`qvc_listing`](#qvc_listing) | Experimental | html + bootstrap | Akamai | QVC listing spider via server-rendered gallery cards and `utag_data` page state. | 96 (Beauty proxy capture) | fashion | `{"category":"beauty","category_id":"NAV6285","item_id":"A740517","title":"Whish 12 Days of Beauty Whishes Advent Calendar","price":59.98,...}` |
 | [`zappos_listing`](#zappos_listing) | Experimental | Redux hydration | none detected through proxy | Zappos listings from `window.__INITIAL_STATE__.products.list`. | 100 (one-page proxy smoke) | 4 departments / 50 targets | `{"item_id":"8910671","title":"Kiruna Padded Parka","brand":"Fjällräven","price":300.0,...}` |
@@ -152,6 +153,59 @@ HTTPCACHE_ENABLED=False common-scrapy crawl adidas_listing -a category=mens-runn
 ```json
 {"category":"mens-running-shoes","department":"MEN'S SHOES","subcategory":"Men's Running Shoes","item_id":"KI8294","style_id":"ONN61","title":"ADIZERO ADIOS PRO 5 Running Shoes","brand":"Men Performance","product_category":"Performance","colorway_count":3,"colorway_ids":"KI8294, KJ7039, KJ7040","price":275.0,"original_price":null,"discount_percentage":null,"currency":"USD","rating":4.8001,"reviews_count":5,"on_sale":false,"sold_out":false,"badges":"New","page":1,"position":1,"total_count":241,"source":"adidas_next_data_page_props_products"}
 ```
+### petsmart_listing
+
+`petsmart_listing` uses one data direction: PetSmart's own Algolia proxy. The
+storefront bundle pins `NEXT_PUBLIC_ALGOLIA_HOST_URL` to
+`www.petsmart.com/api/search` and builds the search client with an **empty**
+application id and api key, so the storefront never touches an Algolia host:
+
+```text
+POST https://www.petsmart.com/api/search/1/indexes/r-US_products_best-sellers/query
+{"params": "query=&hitsPerPage=100&page=0&filters=isSKUAvailable: true AND onlineFrom < <now_ms> AND onlineTo > <now_ms> AND custom_category_names:\"Dog > Food > Dry Food\"&attributesToRetrieve=id,objectID,masterProductID,name,brand,..."}
+headers: content-type: application/json, x-algolia-application-id: "", x-algolia-api-key: "", x-petm-algolia-caller: web_desktop
+```
+
+No authentication, no API key, no browser execution and no HTML/JSON-LD parsing:
+products are the `hits[]` of the search envelope itself. PLPs are Next.js App
+Router pages (RSC flight stream, ~1.8 MB per page, no `__NEXT_DATA__`), so the
+API route is both lighter and more stable.
+
+- **Taxonomy from the API.** `custom_category_names` is the facet the storefront
+  PLPs filter on. `petsmart_categories.py` ships the 2026-10-04 capture: 7
+  departments (Dog, Cat, Fish, Bird, Reptile, Small Pet, Farm Animal), 491
+  category paths, each with its SKU count. Marketing overlays (`Sale`,
+  `Featured Shops`, `Featured Brands`, `PA`, ...) are excluded. All 491 derived
+  PLP URLs were verified; the 15 that redirect are pinned in
+  `CANONICAL_URL_OVERRIDES`.
+- **Three sort replicas.** `-a sort=best-sellers` (default, storefront default),
+  `top-rated`, `new-arrivals`.
+- **`attributesToRetrieve`.** Only the ~46 attributes the item reads are pulled,
+  which keeps a 100-hit page at ~450 KB instead of ~1.9 MB (the full payload
+  repeats an HTML `long_description` per hit).
+- **Product URLs.** Hits carry no URL, so the canonical PDP route is rebuilt from
+  the hit's browse path + name slug + `masterProductID`
+  (`/dog/food/dry-food/<name-slug>-36648.html`), the same shape the PLP JSON-LD
+  `offers.url` uses. Verified live (12/12 sample URLs return HTTP 200).
+- **Range pricing.** `priceData.current`, else the `saleRange` floor when
+  `price.displayType == "range"` (the card advertises "from $x" while
+  `price.number` is the priciest variant).
+- **Fail loud.** A challenge page, a non-200, a non-JSON body or an Algolia error
+  envelope raises instead of yielding empty items. There is no HTML fallback.
+
+Arguments: `-a category=<slug path>` (e.g. `dog/food/dry-food`), or
+`-a category_url=<PLP url>`, `-a max_pages=N`, `-a hits_per_page=N` (default 100),
+`-a sort=<replica>`, `-a available_only=0` (drop the availability window).
+
+```bash
+rm -f petsmart-out.jsonl
+HTTPCACHE_ENABLED=False common-scrapy crawl petsmart_listing -a category=dog/food/dry-food -a max_pages=2 -O petsmart-out.jsonl -s HTTPCACHE_ENABLED=False
+```
+
+```json
+{"category": "dog/food/dry-food", "department": "Dog", "subcategory": "Food", "category_name": "Dog > Food > Dry Food", "category_url": "https://www.petsmart.com/dog/food/dry-food/", "category_item_count": 1794, "sort": "best-sellers", "index": "r-US_products_best-sellers", "item_id": "5252900", "master_product_id": 36648, "title": "Purina Pro Plan Sensitive Skin and Stomach Dry Dog Food Adult Salmon & Rice Formula Digestive Health", "brand": "Purina Pro Plan", "url": "https://www.petsmart.com/dog/food/dry-food/purina-pro-plan-sensitive-skin-and-stomach-dry-dog-food-adult-salmon-and-rice-formula-digestive-health-36648.html", "image_url": "https://s7d2.scene7.com/is/image/PetSmart/5252900?$sclp-prd-main_large$", "price": 77.99, "price_display": "$20.68-$94.99", "price_display_type": "range", "currency": "USD", "rating": 4.5, "reviews_count": 9118, "upc": "038100175526", "available": true, "autoship_eligible": true, "variation_types": "4 Sizes, 1 Flavor", "page": 1, "position": 1, "total_count": 937, "total_pages": 10, "source": "petsmart_first_party_search_api", "raw": {...}}
+```
+
 ### llbean_listing
 
 `llbean_listing` uses one authoritative source: the first-party UDAL JSON
