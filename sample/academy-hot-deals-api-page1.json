@@ -1,0 +1,1934 @@
+{
+ "page": 1,
+ "nbHits": 506,
+ "nbPages": 11,
+ "hitsPerPage": 48,
+ "status": 200,
+ "index": "prodlive-skus-data-inventoryaware",
+ "query": "",
+ "filteredView": false,
+ "hits": [
+  {
+   "catentryId": "27288501",
+   "name": "YETI Camino Carryall 20 Tote Bag",
+   "sellable": "true",
+   "uniqueId": "27288501",
+   "maxProductPrice": 140.0,
+   "minProductPrice": 112.0,
+   "maxEffectivePrice": 140.0,
+   "minEffectivePrice": 112.0,
+   "maxEffectivePriceReg": 140.0,
+   "minEffectivePriceReg": 112.0,
+   "defaultSku": {
+    "salePrice": 140.0,
+    "savings": "",
+    "uniqueId": 90873548,
+    "listPrice": 140.0,
+    "listPriceV2": 140.0,
+    "priceMessage": "hotDealsAvailable,priceInCart",
+    "priceMessageV2": "hotDealsAvailable,priceInCart",
+    "ppuMsg": "",
+    "color": "Green",
+    "skuIdentifier": "pampa-light-green",
+    "defaultSkuIdentifier": "pampa-light-green",
+    "skuId": "166647293",
+    "definingAttributes": {
+     "Color": "Pampa Light Green"
+    },
+    "listPriceV2Reg": 140.0,
+    "priceMessageV2Reg": "hotDealsAvailable,priceInCart"
+   },
+   "seoURL": "yeti-camino-carryall-20-tote-bag",
+   "fullImage": "//academy.scene7.com/is/image/academy/21744293",
+   "promoMessage": "",
+   "promoCode": "",
+   "promoPrice": "",
+   "thumbnail": "//academy.scene7.com/is/image/academy/21744293",
+   "partNumber": "133107944",
+   "primaryCatgroupName": "Tote Bags",
+   "descriptiveAttributes": {
+    "vendorName": "YETI HOLDINGS INC YETI COOLERS LLC",
+    "rating": "4",
+    "reviewcount": "534",
+    "averageRating": "4.9",
+    "udamsrp": "130.00"
+   },
+   "ppuEnabled": "false",
+   "xfullimage": "//academy.scene7.com/is/image/academy/21744293",
+   "skuIdentifier": "pampa-light-green",
+   "objectType": "Product",
+   "orderCount": 25,
+   "giftCardFlag": "N",
+   "ecomCodeDesc": "01 SELL ONLINE",
+   "mapPrice": 140.0,
+   "mapPriceFlag": "Y",
+   "brandColorCount": "15",
+   "flavourCount": "0",
+   "paternCount": "0",
+   "teamCount": "0",
+   "freeShipping": true,
+   "xccStrikethroughPromotion": "true",
+   "promoMessageReg": "",
+   "promoCodeReg": "",
+   "promoPriceReg": "",
+   "xccStrikethroughPromotionReg": "true",
+   "guestMessageText": "",
+   "listPrice": 140.0,
+   "salePrice": 0.0,
+   "catalogId": [
+    "10051"
+   ],
+   "shipToStoreFlag": [
+    "Y"
+   ],
+   "categoryIds": [
+    "3074457345616984107",
+    "3074457345616985615",
+    "3074457345616981115",
+    "3074457345616941639",
+    "239455",
+    "3074457345617141098",
+    "3074457345616992101",
+    "3074457345616915098",
+    "3074457345616952607",
+    "146752",
+    "3074457345616975104",
+    "3074457345616974599",
+    "230953",
+    "3074457345617113098",
+    "181314",
+    "3074457345616912627",
+    "239082",
+    "3074457345616941149",
+    "3074457345616968651",
+    "3074457345617045599",
+    "35202",
+    "197936",
+    "3074457345616999623",
+    "3074457345616951147",
+    "3074457345616974600",
+    "3074457345616951146",
+    "3074457345616957608",
+    "216438",
+    "210952"
+   ],
+   "sameDayDeliveryEligible": [
+    "Y"
+   ],
+   "parentPartNumber": "133107944",
+   "definingAttributes": {
+    "Color": "Pampa Light Green"
+   },
+   "ppuMsg": "",
+   "inventory_pick": [],
+   "inventory_sts": [],
+   "clearanceSuppression": false,
+   "startDate": "2022-02-21T07:30:32.000Z",
+   "embargoDate": "",
+   "pick_oos": "0",
+   "sts_oos": "1",
+   "sth_oos": "0",
+   "lsi_oos": "0",
+   "rollUpPromoPriceMessage": "priceInCart",
+   "rollUpPromoPriceMessageReg": "priceInCart",
+   "Clearance_Status": [
+    "N"
+   ],
+   "maxProductPrice_1": 0.0,
+   "minProductPrice_1": 0.0,
+   "maxProductPrice_2": 0.0,
+   "minProductPrice_2": 0.0,
+   "minMSRP": "130",
+   "maxMSRP": "130",
+   "Color": [
+    "Pampa Light Green"
+   ],
+   "facet_Deals": [
+    "Hot Deal",
+    "New Colors"
+   ],
+   "_rankingInfo": {
+    "forcedTypoFirstInRanking": true,
+    "nbTypos": 0,
+    "firstMatchedWord": 0,
+    "proximityDistance": 0,
+    "userScore": 265,
+    "geoDistance": 0,
+    "geoPrecision": 1,
+    "nbExactWords": 0,
+    "words": 0,
+    "filters": 11
+   },
+   "customBadges": [],
+   "facet_Brand": "YETI",
+   "averageRating": "4.9",
+   "reviewCount": "534",
+   "industrySubGroup_image": {
+    "Red": "//academy.scene7.com/is/image/academy//bags--backpacks/yeti-camino-carryall-20-tote-bag-26010000403/06e38c5c-5f40-489d-8d16-793b1ab190ea",
+    "White": "//academy.scene7.com/is/image/academy/21770205",
+    "Pink": "//academy.scene7.com/is/image/academy//bags--backpacks/yeti-camino-carryall-20-tote-bag-26010000792/f3255ec1-4c9c-4501-b250-50a8f2cea26c",
+    "Purple": "//academy.scene7.com/is/image/academy/21611101",
+    "Blue": "//academy.scene7.com/is/image/academy/20851571",
+    "Beige": "//academy.scene7.com/is/image/academy//bags--backpacks/yeti-camino-carryall-20-tote-bag-26010000294/f8f2ebf8-70c6-4efc-805c-f2c5c38b9ee4",
+    "Black": "//academy.scene7.com/is/image/academy//bags---backpacks/yeti-camino-carryall-20-tote-bag-18060131274-black/ae82c89c9bfd41319071ed23afae3849",
+    "Green": "//academy.scene7.com/is/image/academy//bags--backpacks/yeti-camino-carryall-20-tote-bag-18060131317/43243e8d-776d-4cf7-ae4a-0c81f8d428ea"
+   },
+   "industrySubGroup_ImageSku": [
+    {
+     "weightage": 1,
+     "image": "//academy.scene7.com/is/image/academy/21744293",
+     "color": "Green",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21744294",
+      "//academy.scene7.com/is/image/academy/21744295"
+     ],
+     "skuIdentifier": "pampa-light-green",
+     "skuId": "166647293"
+    },
+    {
+     "weightage": 2,
+     "image": "//academy.scene7.com/is/image/academy/21719927",
+     "color": "Purple",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21719928",
+      "//academy.scene7.com/is/image/academy/21719929"
+     ],
+     "skuIdentifier": "pace-purple",
+     "skuId": "166647277"
+    },
+    {
+     "weightage": 3,
+     "image": "//academy.scene7.com/is/image/academy/21622953",
+     "color": "Blue",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21622954",
+      "//academy.scene7.com/is/image/academy/21622955"
+     ],
+     "skuIdentifier": "classic-navy",
+     "skuId": "165984343"
+    },
+    {
+     "weightage": 5,
+     "image": "//academy.scene7.com/is/image/academy/21770205",
+     "color": "White",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21770206",
+      "//academy.scene7.com/is/image/academy/21770207"
+     ],
+     "skuIdentifier": "aspen-pampa-wild-vine",
+     "skuId": "166647306"
+    },
+    {
+     "weightage": 7,
+     "image": "//academy.scene7.com/is/image/academy/21691210",
+     "color": "Pink",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21691211",
+      "//academy.scene7.com/is/image/academy/21691212"
+     ],
+     "skuIdentifier": "birdie",
+     "skuId": "164547512"
+    },
+    {
+     "weightage": 8,
+     "image": "//academy.scene7.com/is/image/academy//bags--backpacks/yeti-camino-carryall-20-tote-bag-26010000294/f8f2ebf8-70c6-4efc-805c-f2c5c38b9ee4",
+     "color": "Beige",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy//soft-sided-coolers/yeti-camino-carryall-20-tote-bag-26010000294/f8f2ebf8-70c6-4efc-805c-f2c5c38b9ee4",
+      "//academy.scene7.com/is/image/academy//soft-sided-coolers/yeti-camino-carryall-20-tote-bag-26010000294/5f2cd333-499d-47e0-9864-17ffafe05c10"
+     ],
+     "skuIdentifier": "cape",
+     "skuId": "150016382"
+    },
+    {
+     "weightage": 9,
+     "image": "//academy.scene7.com/is/image/academy//bags---backpacks/yeti-camino-carryall-20-tote-bag-18060131274-black/ae82c89c9bfd41319071ed23afae3849",
+     "color": "Black",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy//soft-sided-coolers/yeti-camino-carryall-20-tote-bag-18060131274-black/b9c6b7d9-b8e8-4aaf-a443-ec176142855e",
+      "//academy.scene7.com/is/image/academy//soft-sided-coolers/yeti-camino-carryall-20-tote-bag-18060131274-black/67838618-347e-4016-a26c-e1473260b6a8"
+     ],
+     "skuIdentifier": "black",
+     "skuId": "140657135"
+    },
+    {
+     "weightage": 14,
+     "image": "//academy.scene7.com/is/image/academy//bags--backpacks/yeti-camino-carryall-20-tote-bag-26010000403/06e38c5c-5f40-489d-8d16-793b1ab190ea",
+     "color": "Red",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy//soft-sided-coolers/yeti-camino-carryall-20-tote-bag-26010000403/06e38c5c-5f40-489d-8d16-793b1ab190ea",
+      "//academy.scene7.com/is/image/academy//soft-sided-coolers/yeti-camino-carryall-20-tote-bag-26010000403/89b38704-9c74-4f5d-89a1-e511ef222d7f"
+     ],
+     "skuIdentifier": "rescue-red",
+     "skuId": "155400359"
+    }
+   ],
+   "swatches_nonmapprice": {
+    "priceInfo": {
+     "facet_Deals": [
+      "Hot Deal",
+      "New"
+     ],
+     "maxMSRP": "130.00",
+     "minProductPrice": 112.0,
+     "maxEffectivePrice": 140.0,
+     "maxProductPrice": 140.0,
+     "minMSRP": "130.00",
+     "minEffectivePriceReg": 112.0,
+     "clearanceStatus": [
+      "N"
+     ],
+     "minEffectivePrice": 112.0,
+     "valuedCost": 84.0,
+     "maxEffectivePriceReg": 140.0,
+     "listPrice": 140.0,
+     "salePrice": 140.0,
+     "savings": "",
+     "priceMessage": "",
+     "promoPrice": 0.0,
+     "promoPriceReg": 0.0
+    },
+    "brandColorCount": "13",
+    "flavourCount": "0",
+    "teamCount": "0",
+    "paternCount": "0",
+    "swatches": [
+     {
+      "weightage": 1,
+      "image": "//academy.scene7.com/is/image/academy/21744293",
+      "color": "Green",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21744294",
+       "//academy.scene7.com/is/image/academy/21744295"
+      ],
+      "skuIdentifier": "pampa-light-green",
+      "skuId": "166647293"
+     },
+     {
+      "weightage": 2,
+      "image": "//academy.scene7.com/is/image/academy/21719927",
+      "color": "Purple",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21719928",
+       "//academy.scene7.com/is/image/academy/21719929"
+      ],
+      "skuIdentifier": "pace-purple",
+      "skuId": "166647277"
+     },
+     {
+      "weightage": 3,
+      "image": "//academy.scene7.com/is/image/academy/21622953",
+      "color": "Blue",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21622954",
+       "//academy.scene7.com/is/image/academy/21622955"
+      ],
+      "skuIdentifier": "classic-navy",
+      "skuId": "165984343"
+     },
+     {
+      "weightage": 5,
+      "image": "//academy.scene7.com/is/image/academy/21770205",
+      "color": "White",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21770206",
+       "//academy.scene7.com/is/image/academy/21770207"
+      ],
+      "skuIdentifier": "aspen-pampa-wild-vine",
+      "skuId": "166647306"
+     },
+     {
+      "weightage": 7,
+      "image": "//academy.scene7.com/is/image/academy/21691210",
+      "color": "Pink",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21691211",
+       "//academy.scene7.com/is/image/academy/21691212"
+      ],
+      "skuIdentifier": "birdie",
+      "skuId": "164547512"
+     },
+     {
+      "weightage": 8,
+      "image": "//academy.scene7.com/is/image/academy//bags--backpacks/yeti-camino-carryall-20-tote-bag-26010000294/f8f2ebf8-70c6-4efc-805c-f2c5c38b9ee4",
+      "color": "Beige",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy//soft-sided-coolers/yeti-camino-carryall-20-tote-bag-26010000294/f8f2ebf8-70c6-4efc-805c-f2c5c38b9ee4",
+       "//academy.scene7.com/is/image/academy//soft-sided-coolers/yeti-camino-carryall-20-tote-bag-26010000294/5f2cd333-499d-47e0-9864-17ffafe05c10"
+      ],
+      "skuIdentifier": "cape",
+      "skuId": "150016382"
+     },
+     {
+      "weightage": 9,
+      "image": "//academy.scene7.com/is/image/academy//bags---backpacks/yeti-camino-carryall-20-tote-bag-18060131274-black/ae82c89c9bfd41319071ed23afae3849",
+      "color": "Black",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy//soft-sided-coolers/yeti-camino-carryall-20-tote-bag-18060131274-black/b9c6b7d9-b8e8-4aaf-a443-ec176142855e",
+       "//academy.scene7.com/is/image/academy//soft-sided-coolers/yeti-camino-carryall-20-tote-bag-18060131274-black/67838618-347e-4016-a26c-e1473260b6a8"
+      ],
+      "skuIdentifier": "black",
+      "skuId": "140657135"
+     },
+     {
+      "weightage": 14,
+      "image": "//academy.scene7.com/is/image/academy//bags--backpacks/yeti-camino-carryall-20-tote-bag-26010000403/06e38c5c-5f40-489d-8d16-793b1ab190ea",
+      "color": "Red",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy//soft-sided-coolers/yeti-camino-carryall-20-tote-bag-26010000403/06e38c5c-5f40-489d-8d16-793b1ab190ea",
+       "//academy.scene7.com/is/image/academy//soft-sided-coolers/yeti-camino-carryall-20-tote-bag-26010000403/89b38704-9c74-4f5d-89a1-e511ef222d7f"
+      ],
+      "skuIdentifier": "rescue-red",
+      "skuId": "155400359"
+     }
+    ]
+   },
+   "swatches_mapprice": {},
+   "definingAttribute_SwatchesImage": {},
+   "definingAttribute_SwatchesImageSku": [],
+   "objectID": "166647293",
+   "skuIds": [
+    "91487504",
+    "90873548",
+    "90879006",
+    "90649033",
+    "88428028",
+    "89675563",
+    "87032512",
+    "87042503",
+    "87844007",
+    "89348259",
+    "72172012",
+    "57031128",
+    "56990237",
+    "52851502",
+    "27289002"
+   ],
+   "primaryCatgroupId": "35202",
+   "isQuickViewEligible": false,
+   "SPECIALORDER": "N",
+   "is_assembly_required": "",
+   "facet_IndustrySubGroup": [
+    "Green"
+   ]
+  },
+  {
+   "catentryId": "25182001",
+   "name": "Nike Men's Therma-FIT Pullover Hoodie",
+   "sellable": "true",
+   "uniqueId": "25182001",
+   "maxProductPrice": 70.0,
+   "minProductPrice": 70.0,
+   "maxEffectivePrice": 49.0,
+   "minEffectivePrice": 49.0,
+   "maxEffectivePriceReg": 49.0,
+   "minEffectivePriceReg": 49.0,
+   "defaultSku": {
+    "salePrice": 70.0,
+    "savings": "",
+    "uniqueId": 91744005,
+    "listPrice": 70.0,
+    "listPriceV2": 0.0,
+    "priceMessage": "",
+    "ppuMsg": "",
+    "color": "Green",
+    "skuIdentifier": "dark-green-03-xx-large",
+    "defaultSkuIdentifier": "dark-green-03-xx-large",
+    "skuId": "157855568",
+    "definingAttributes": {
+     "Size": "XX Large",
+     "Color": "Dark Green 03"
+    },
+    "listPriceV2Reg": 0.0
+   },
+   "seoURL": "nike-mens-therma-fit-pullover-hoodie132986043",
+   "fullImage": "//academy.scene7.com/is/image/academy/21776481",
+   "promoMessage": "30% Off Clothes + Shoes",
+   "promoCode": "1003714",
+   "promoPrice": "49.0000",
+   "thumbnail": "//academy.scene7.com/is/image/academy/21776481",
+   "partNumber": "132986043",
+   "primaryCatgroupName": "Men's Hoodies",
+   "descriptiveAttributes": {
+    "vendorName": "NIKE USA INC",
+    "rating": "4",
+    "reviewcount": "216",
+    "averageRating": "4.7",
+    "udamsrp": "65.00"
+   },
+   "ppuEnabled": "false",
+   "xfullimage": "//academy.scene7.com/is/image/academy/21776481",
+   "skuIdentifier": "dark-green-03-xx-large",
+   "objectType": "Product",
+   "orderCount": 24,
+   "giftCardFlag": "N",
+   "ecomCodeDesc": "01 SELL ONLINE",
+   "mapPrice": 48.75,
+   "mapPriceFlag": "N",
+   "brandColorCount": "6",
+   "flavourCount": "0",
+   "paternCount": "0",
+   "teamCount": "0",
+   "freeShipping": true,
+   "xccStrikethroughPromotion": "true",
+   "promoMessageReg": "30% Off Clothes + Shoes",
+   "promoCodeReg": "1003714",
+   "promoPriceReg": "49.0000",
+   "xccStrikethroughPromotionReg": "true",
+   "guestMessageText": "",
+   "listPrice": 70.0,
+   "salePrice": 0.0,
+   "catalogId": [
+    "10051"
+   ],
+   "shipToStoreFlag": [
+    "N"
+   ],
+   "categoryIds": [
+    "3074457345616984107",
+    "3074457345616907268",
+    "3074457345616930120",
+    "3074457345616978103",
+    "3074457345616941614",
+    "15060",
+    "3074457345617285598",
+    "3074457345616939146",
+    "3074457345616907260",
+    "3074457345616932654",
+    "3074457345616916148",
+    "3074457345617056598",
+    "3074457345616912627",
+    "3074457345616981101",
+    "3074457345616973144",
+    "3074457345616998615",
+    "3074457345616972126",
+    "197936",
+    "3074457345616992119",
+    "3074457345616939137",
+    "3074457345617060098",
+    "210952",
+    "3074457345616998619",
+    "3074457345616961604",
+    "3074457345616909620",
+    "239154",
+    "3074457345616907123",
+    "3074457345616941639",
+    "3074457345616998653",
+    "3074457345616998730",
+    "239153",
+    "3074457345616952607",
+    "3074457345616998727",
+    "146752",
+    "3074457345616970111",
+    "3074457345616973146",
+    "3074457345616979602",
+    "15054",
+    "15053",
+    "3074457345616941623",
+    "3074457345616941620",
+    "3074457345616921641",
+    "3074457345616941148",
+    "3074457345616941621",
+    "3074457345616968695",
+    "3074457345616968650",
+    "3074457345616951147",
+    "3074457345616951146",
+    "3074457345616957608",
+    "3074457345617045099",
+    "235932"
+   ],
+   "sameDayDeliveryEligible": [
+    "Y"
+   ],
+   "parentPartNumber": "132986043",
+   "definingAttributes": {
+    "Size": "XX Large",
+    "Color": "Dark Green 03"
+   },
+   "ppuMsg": "",
+   "inventory_pick": [],
+   "inventory_sts": [],
+   "clearanceSuppression": false,
+   "startDate": "2022-01-04T10:30:20.776Z",
+   "embargoDate": "",
+   "pick_oos": "0",
+   "sth_oos": "0",
+   "lsi_oos": "0",
+   "rollUpPromoPriceMessage": "",
+   "rollUpPromoPriceMessageReg": "",
+   "Clearance_Status": [
+    "N"
+   ],
+   "maxProductPrice_1": 0.0,
+   "minProductPrice_1": 0.0,
+   "maxProductPrice_2": 0.0,
+   "minProductPrice_2": 0.0,
+   "minMSRP": "65",
+   "maxMSRP": "65",
+   "Color": [
+    "Dark Green 03"
+   ],
+   "facet_Deals": [
+    "New Colors"
+   ],
+   "_rankingInfo": {
+    "forcedTypoFirstInRanking": true,
+    "nbTypos": 0,
+    "firstMatchedWord": 0,
+    "proximityDistance": 0,
+    "userScore": 264,
+    "geoDistance": 0,
+    "geoPrecision": 1,
+    "nbExactWords": 0,
+    "words": 0,
+    "filters": 11
+   },
+   "customBadges": [],
+   "facet_Brand": "Nike",
+   "averageRating": "4.7",
+   "reviewCount": "216",
+   "industrySubGroup_image": {
+    "Blue": "//academy.scene7.com/is/image/academy/21404328",
+    "Beige": "//academy.scene7.com/is/image/academy/21452338",
+    "Black": "//academy.scene7.com/is/image/academy/20975757",
+    "Green": "//academy.scene7.com/is/image/academy/21776481",
+    "Grey": "//academy.scene7.com/is/image/academy/20975926"
+   },
+   "industrySubGroup_ImageSku": [
+    {
+     "weightage": 1,
+     "image": "//academy.scene7.com/is/image/academy/21776481",
+     "color": "Green",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21776482",
+      "//academy.scene7.com/is/image/academy/21776483"
+     ],
+     "skuIdentifier": "dark-green-03-xx-large",
+     "skuId": "157855568"
+    },
+    {
+     "weightage": 6,
+     "image": "//academy.scene7.com/is/image/academy/21452338",
+     "color": "Beige",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21452339",
+      "//academy.scene7.com/is/image/academy/21452340"
+     ],
+     "skuIdentifier": "desert-khaki-desert-khaki-black-xx-large",
+     "skuId": "157843049"
+    },
+    {
+     "weightage": 11,
+     "image": "//academy.scene7.com/is/image/academy/21404328",
+     "color": "Blue",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21404329",
+      "//academy.scene7.com/is/image/academy/21404330"
+     ],
+     "skuIdentifier": "comet-blue-comet-blue-black-x-large",
+     "skuId": "157897215"
+    },
+    {
+     "weightage": 16,
+     "image": "//academy.scene7.com/is/image/academy/20975925",
+     "color": "Black",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/20976011",
+      "//academy.scene7.com/is/image/academy/20976012"
+     ],
+     "skuIdentifier": "charcoal-heather-dark-smoke-grey-black-x-large",
+     "skuId": "132986220"
+    },
+    {
+     "weightage": 17,
+     "image": "//academy.scene7.com/is/image/academy/20975926",
+     "color": "Grey",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/20975927",
+      "//academy.scene7.com/is/image/academy/20975928"
+     ],
+     "skuIdentifier": "dark-grey-heather-xx-large",
+     "skuId": "132986166"
+    }
+   ],
+   "swatches_nonmapprice": {
+    "priceInfo": {
+     "facet_Deals": [
+      "New"
+     ],
+     "maxMSRP": "65.00",
+     "minProductPrice": 70.0,
+     "maxEffectivePrice": 49.0,
+     "maxProductPrice": 70.0,
+     "minMSRP": "65.00",
+     "minEffectivePriceReg": 49.0,
+     "clearanceStatus": [
+      "N"
+     ],
+     "minEffectivePrice": 49.0,
+     "valuedCost": 32.2,
+     "maxEffectivePriceReg": 49.0,
+     "listPrice": 70.0,
+     "salePrice": 70.0,
+     "savings": "",
+     "priceMessage": "",
+     "promoPrice": 49.0,
+     "promoPriceReg": 49.0,
+     "xccStrikethroughPromotion": "true",
+     "xccStrikethroughPromotionReg": "true"
+    },
+    "brandColorCount": "6",
+    "flavourCount": "0",
+    "teamCount": "0",
+    "paternCount": "0",
+    "swatches": [
+     {
+      "weightage": 1,
+      "image": "//academy.scene7.com/is/image/academy/21776481",
+      "color": "Green",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21776482",
+       "//academy.scene7.com/is/image/academy/21776483"
+      ],
+      "skuIdentifier": "dark-green-03-xx-large",
+      "skuId": "157855568"
+     },
+     {
+      "weightage": 6,
+      "image": "//academy.scene7.com/is/image/academy/21452338",
+      "color": "Beige",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21452339",
+       "//academy.scene7.com/is/image/academy/21452340"
+      ],
+      "skuIdentifier": "desert-khaki-desert-khaki-black-xx-large",
+      "skuId": "157843049"
+     },
+     {
+      "weightage": 11,
+      "image": "//academy.scene7.com/is/image/academy/21404328",
+      "color": "Blue",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21404329",
+       "//academy.scene7.com/is/image/academy/21404330"
+      ],
+      "skuIdentifier": "comet-blue-comet-blue-black-x-large",
+      "skuId": "157897215"
+     },
+     {
+      "weightage": 16,
+      "image": "//academy.scene7.com/is/image/academy/20975925",
+      "color": "Black",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/20976011",
+       "//academy.scene7.com/is/image/academy/20976012"
+      ],
+      "skuIdentifier": "charcoal-heather-dark-smoke-grey-black-x-large",
+      "skuId": "132986220"
+     },
+     {
+      "weightage": 17,
+      "image": "//academy.scene7.com/is/image/academy/20975926",
+      "color": "Grey",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/20975927",
+       "//academy.scene7.com/is/image/academy/20975928"
+      ],
+      "skuIdentifier": "dark-grey-heather-xx-large",
+      "skuId": "132986166"
+     }
+    ]
+   },
+   "swatches_mapprice": {},
+   "definingAttribute_SwatchesImage": {},
+   "definingAttribute_SwatchesImageSku": [],
+   "objectID": "157855568",
+   "skuIds": [
+    "74973012",
+    "74973210",
+    "74973482",
+    "74973467",
+    "74973470",
+    "91744067",
+    "91744005",
+    "91744030",
+    "91744007",
+    "91744050",
+    "75503509",
+    "75503503",
+    "75503502",
+    "75503507",
+    "75503506",
+    "56688508",
+    "56665057",
+    "38613510",
+    "38613517",
+    "38613509",
+    "38613504",
+    "38613502",
+    "38613516",
+    "38613515",
+    "38613508",
+    "38613505",
+    "38613512",
+    "38610524",
+    "38610517",
+    "38610501",
+    "38610523",
+    "38610519"
+   ],
+   "primaryCatgroupId": "3074457345616968695",
+   "isQuickViewEligible": false,
+   "SPECIALORDER": "N",
+   "is_assembly_required": "",
+   "facet_IndustrySubGroup": [
+    "Green"
+   ]
+  },
+  {
+   "catentryId": "51411407",
+   "name": "Nike Men's Dri-FIT Form Unlined Shorts 5 in",
+   "sellable": "true",
+   "uniqueId": "51411407",
+   "maxProductPrice": 47.0,
+   "minProductPrice": 47.0,
+   "maxEffectivePrice": 32.9,
+   "minEffectivePrice": 32.9,
+   "maxEffectivePriceReg": 32.9,
+   "minEffectivePriceReg": 32.9,
+   "defaultSku": {
+    "salePrice": 47.0,
+    "savings": "",
+    "uniqueId": 76672017,
+    "listPrice": 47.0,
+    "listPriceV2": 37.6,
+    "priceMessage": "",
+    "priceMessageV2": "priceInCart",
+    "ppuMsg": "",
+    "color": "Blue",
+    "skuIdentifier": "work-blue-black-xx-large",
+    "defaultSkuIdentifier": "work-blue-black-xx-large",
+    "skuId": "160795949",
+    "definingAttributes": {
+     "Size": "XX Large",
+     "Color": "Work Blue/(Black)"
+    },
+    "listPriceV2Reg": 37.6,
+    "priceMessageV2Reg": "priceInCart"
+   },
+   "seoURL": "nike-mens-dri-fit-form-unlined-shorts-5-in",
+   "fullImage": "//academy.scene7.com/is/image/academy/21476597",
+   "promoMessage": "30% Off Clothes + Shoes",
+   "promoCode": "1003714",
+   "promoPrice": "32.9000",
+   "thumbnail": "//academy.scene7.com/is/image/academy/21476597",
+   "partNumber": "140707817",
+   "primaryCatgroupName": "Men's Athletic Shorts",
+   "descriptiveAttributes": {
+    "vendorName": "NIKE USA INC",
+    "rating": "4",
+    "reviewcount": "98",
+    "averageRating": "4.8",
+    "udamsrp": "45.00"
+   },
+   "ppuEnabled": "false",
+   "xfullimage": "//academy.scene7.com/is/image/academy/21476597",
+   "skuIdentifier": "work-blue-black-xx-large",
+   "objectType": "Product",
+   "orderCount": 23,
+   "giftCardFlag": "N",
+   "ecomCodeDesc": "01 SELL ONLINE",
+   "mapPrice": 37.6,
+   "mapPriceFlag": "N",
+   "brandColorCount": "6",
+   "flavourCount": "0",
+   "paternCount": "0",
+   "teamCount": "0",
+   "freeShipping": true,
+   "xccStrikethroughPromotion": "true",
+   "promoMessageReg": "30% Off Clothes + Shoes",
+   "promoCodeReg": "1003714",
+   "promoPriceReg": "32.9000",
+   "xccStrikethroughPromotionReg": "true",
+   "guestMessageText": "",
+   "listPrice": 0.0,
+   "salePrice": 0.0,
+   "catalogId": [
+    "10051"
+   ],
+   "shipToStoreFlag": [
+    "N"
+   ],
+   "categoryIds": [
+    "3074457345616984107",
+    "3074457345616907268",
+    "3074457345616984108",
+    "3074457345616930120",
+    "3074457345617055098",
+    "3074457345616978103",
+    "15061",
+    "3074457345616924239",
+    "3074457345617285599",
+    "3074457345616907260",
+    "3074457345616916148",
+    "3074457345616984614",
+    "3074457345616912627",
+    "3074457345616981101",
+    "3074457345616978598",
+    "3074457345616973144",
+    "3074457345616941723",
+    "3074457345616998615",
+    "3074457345616972126",
+    "197936",
+    "3074457345616992119",
+    "210952",
+    "3074457345616998619",
+    "239431",
+    "3074457345616909620",
+    "239154",
+    "3074457345616941715",
+    "3074457345616941639",
+    "3074457345617166098",
+    "3074457345616941117",
+    "3074457345616998730",
+    "3074457345616998653",
+    "3074457345616941714",
+    "239153",
+    "3074457345616952607",
+    "146752",
+    "3074457345616973146",
+    "3074457345616950102",
+    "3074457345616979602",
+    "15054",
+    "15053",
+    "3074457345617056098",
+    "3074457345616907119",
+    "3074457345616907117",
+    "3074457345616941148",
+    "3074457345616921641",
+    "3074457345616921599",
+    "3074457345616968650",
+    "3074457345616951147",
+    "3074457345616957608",
+    "3074457345616951146",
+    "3074457345617045099",
+    "235932"
+   ],
+   "sameDayDeliveryEligible": [
+    "Y"
+   ],
+   "parentPartNumber": "140707817",
+   "definingAttributes": {
+    "Size": "XX Large",
+    "Color": "Work Blue/(Black)"
+   },
+   "ppuMsg": "",
+   "inventory_pick": [],
+   "inventory_sts": [],
+   "clearanceSuppression": false,
+   "startDate": "2023-08-16T00:00:00.000Z",
+   "embargoDate": "",
+   "pick_oos": "0",
+   "stsfs_oos": "1",
+   "sth_oos": "0",
+   "lsi_oos": "0",
+   "rollUpPromoPriceMessage": "priceInCart",
+   "rollUpPromoPriceMessageReg": "priceInCart",
+   "Clearance_Status": [
+    "N"
+   ],
+   "maxProductPrice_1": 0.0,
+   "minProductPrice_1": 0.0,
+   "maxProductPrice_2": 0.0,
+   "minProductPrice_2": 0.0,
+   "minMSRP": "45",
+   "maxMSRP": "45",
+   "Color": [
+    "Work Blue/(Black)"
+   ],
+   "facet_Deals": [],
+   "_rankingInfo": {
+    "forcedTypoFirstInRanking": true,
+    "nbTypos": 0,
+    "firstMatchedWord": 0,
+    "proximityDistance": 0,
+    "userScore": 263,
+    "geoDistance": 0,
+    "geoPrecision": 1,
+    "nbExactWords": 0,
+    "words": 0,
+    "filters": 11
+   },
+   "customBadges": [],
+   "facet_Brand": "Nike",
+   "nonPricingAdbugs": [
+    "N"
+   ],
+   "averageRating": "4.8",
+   "reviewCount": "98",
+   "industrySubGroup_image": {
+    "Blue": "//academy.scene7.com/is/image/academy/21261042",
+    "Beige": "//academy.scene7.com/is/image/academy/21326612",
+    "Black": "//academy.scene7.com/is/image/academy/21196997",
+    "Green": "//academy.scene7.com/is/image/academy/21326608",
+    "Grey": "//academy.scene7.com/is/image/academy/21196938"
+   },
+   "industrySubGroup_ImageSku": [
+    {
+     "weightage": 1,
+     "image": "//academy.scene7.com/is/image/academy/21476597",
+     "color": "Blue",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21476598",
+      "//academy.scene7.com/is/image/academy/21476599"
+     ],
+     "skuIdentifier": "work-blue-black-xx-large",
+     "skuId": "160795949"
+    },
+    {
+     "weightage": 2,
+     "image": "//academy.scene7.com/is/image/academy/21326612",
+     "color": "Beige",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21326613",
+      "//academy.scene7.com/is/image/academy/21326614"
+     ],
+     "skuIdentifier": "desert-khaki-black-large",
+     "skuId": "150432175"
+    },
+    {
+     "weightage": 3,
+     "image": "//academy.scene7.com/is/image/academy/21326608",
+     "color": "Green",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21326609",
+      "//academy.scene7.com/is/image/academy/21326610"
+     ],
+     "skuIdentifier": "light-army-black-large",
+     "skuId": "150432221"
+    },
+    {
+     "weightage": 17,
+     "image": "//academy.scene7.com/is/image/academy/21196997",
+     "color": "Black",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21196936",
+      "//academy.scene7.com/is/image/academy/21196937"
+     ],
+     "skuIdentifier": "black-white-x-large",
+     "skuId": "140707850"
+    },
+    {
+     "weightage": 18,
+     "image": "//academy.scene7.com/is/image/academy/21196938",
+     "color": "Grey",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21197003",
+      "//academy.scene7.com/is/image/academy/21197004"
+     ],
+     "skuIdentifier": "smoke-grey-black-large",
+     "skuId": "140707892"
+    }
+   ],
+   "swatches_nonmapprice": {
+    "priceInfo": {
+     "facet_Deals": [],
+     "maxMSRP": "45.00",
+     "minProductPrice": 47.0,
+     "maxEffectivePrice": 32.9,
+     "maxProductPrice": 47.0,
+     "minMSRP": "45.00",
+     "minEffectivePriceReg": 32.9,
+     "clearanceStatus": [
+      "N"
+     ],
+     "minEffectivePrice": 32.9,
+     "valuedCost": 20.7,
+     "maxEffectivePriceReg": 32.9,
+     "listPrice": 47.0,
+     "salePrice": 47.0,
+     "savings": "",
+     "priceMessage": "",
+     "promoPrice": 32.9,
+     "promoPriceReg": 32.9,
+     "xccStrikethroughPromotion": "true",
+     "xccStrikethroughPromotionReg": "true"
+    },
+    "brandColorCount": "2",
+    "flavourCount": "0",
+    "teamCount": "0",
+    "paternCount": "0",
+    "swatches": [
+     {
+      "weightage": 1,
+      "image": "//academy.scene7.com/is/image/academy/21476597",
+      "color": "Blue",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21476598",
+       "//academy.scene7.com/is/image/academy/21476599"
+      ],
+      "skuIdentifier": "work-blue-black-xx-large",
+      "skuId": "160795949"
+     },
+     {
+      "weightage": 2,
+      "image": "//academy.scene7.com/is/image/academy/21326612",
+      "color": "Beige",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21326613",
+       "//academy.scene7.com/is/image/academy/21326614"
+      ],
+      "skuIdentifier": "desert-khaki-black-large",
+      "skuId": "150432175"
+     }
+    ]
+   },
+   "swatches_mapprice": {
+    "priceInfo": {
+     "facet_Deals": [],
+     "maxMSRP": "45.00",
+     "minMapPrice": 35.25,
+     "rollUpPromoPriceMessage": "priceInCart",
+     "maxMapPrice": 37.6,
+     "minProductPrice": 47.0,
+     "maxEffectivePrice": 32.9,
+     "maxProductPrice": 47.0,
+     "rollUpPromoPriceMessageReg": "priceInCart",
+     "minMSRP": "45.00",
+     "minEffectivePriceReg": 32.9,
+     "clearanceStatus": [
+      "N"
+     ],
+     "minEffectivePrice": 32.9,
+     "valuedCost": 21.62,
+     "maxEffectivePriceReg": 32.9,
+     "listPrice": 37.6,
+     "salePrice": 32.9,
+     "savings": "30%",
+     "priceMessage": "priceInCart",
+     "promoPrice": 0.0,
+     "promoPriceReg": 0.0,
+     "mapPrice": 37.6,
+     "dollarSavings": 4.700000000000003,
+     "percentSavings": "30%",
+     "listPriceV2": 37.6,
+     "listPriceV2Reg": 37.6,
+     "priceMessageV2": "priceInCart",
+     "priceMessageV2Reg": "priceInCart",
+     "xccStrikethroughPromotion": "true",
+     "xccStrikethroughPromotionReg": "true"
+    },
+    "brandColorCount": "4",
+    "flavourCount": "0",
+    "teamCount": "0",
+    "paternCount": "0",
+    "swatches": [
+     {
+      "weightage": 3,
+      "image": "//academy.scene7.com/is/image/academy/21326608",
+      "color": "Green",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21326609",
+       "//academy.scene7.com/is/image/academy/21326610"
+      ],
+      "skuIdentifier": "light-army-black-large",
+      "skuId": "150432221"
+     },
+     {
+      "weightage": 17,
+      "image": "//academy.scene7.com/is/image/academy/21196997",
+      "color": "Black",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21196936",
+       "//academy.scene7.com/is/image/academy/21196937"
+      ],
+      "skuIdentifier": "black-white-x-large",
+      "skuId": "140707850"
+     },
+     {
+      "weightage": 18,
+      "image": "//academy.scene7.com/is/image/academy/21196938",
+      "color": "Grey",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21197003",
+       "//academy.scene7.com/is/image/academy/21197004"
+      ],
+      "skuIdentifier": "smoke-grey-black-large",
+      "skuId": "140707892"
+     }
+    ]
+   },
+   "definingAttribute_SwatchesImage": {},
+   "definingAttribute_SwatchesImageSku": [],
+   "objectID": "160795949",
+   "skuIds": [
+    "76672017",
+    "76672010",
+    "76672002",
+    "76672091",
+    "76672058",
+    "57515445",
+    "57515364",
+    "57511858",
+    "57515455",
+    "57525761",
+    "57515095",
+    "57520294",
+    "57511669",
+    "57515441",
+    "57517834",
+    "56774206",
+    "56774252",
+    "56887325",
+    "56780116",
+    "56805147",
+    "51813059",
+    "51813519",
+    "51809181",
+    "51813531",
+    "51813106",
+    "51813124",
+    "51809168",
+    "51813548",
+    "51809385",
+    "51813050"
+   ],
+   "primaryCatgroupId": "3074457345616984614",
+   "isQuickViewEligible": false,
+   "is_assembly_required": "",
+   "facet_IndustrySubGroup": [
+    "Blue"
+   ]
+  },
+  {
+   "catentryId": "53882106",
+   "name": "Nike Boy's Pro Dri-FIT T-shirt",
+   "sellable": "true",
+   "uniqueId": "53882106",
+   "maxProductPrice": 25.0,
+   "minProductPrice": 25.0,
+   "maxEffectivePrice": 17.5,
+   "minEffectivePrice": 17.5,
+   "maxEffectivePriceReg": 17.5,
+   "minEffectivePriceReg": 17.5,
+   "defaultSku": {
+    "salePrice": 25.0,
+    "savings": "",
+    "uniqueId": 57496992,
+    "listPrice": 25.0,
+    "listPriceV2": 0.0,
+    "priceMessage": "",
+    "ppuMsg": "",
+    "color": "White",
+    "skuIdentifier": "white-x-small",
+    "defaultSkuIdentifier": "white-x-small",
+    "skuId": "140606080",
+    "definingAttributes": {
+     "Size": "X Small",
+     "Color": "White"
+    },
+    "listPriceV2Reg": 0.0
+   },
+   "seoURL": "nike-boys-pro-dri-fit-t-shirt",
+   "fullImage": "//academy.scene7.com/is/image/academy/21268195",
+   "promoMessage": "30% Off Clothes + Shoes",
+   "promoCode": "1003714",
+   "promoPrice": "17.5000",
+   "thumbnail": "//academy.scene7.com/is/image/academy/21268195",
+   "partNumber": "140606071",
+   "primaryCatgroupName": "Boys' Clothing",
+   "descriptiveAttributes": {
+    "vendorName": "NIKE USA INC",
+    "rating": "4",
+    "reviewcount": "52",
+    "averageRating": "4.7",
+    "udamsrp": "25.00"
+   },
+   "ppuEnabled": "false",
+   "xfullimage": "//academy.scene7.com/is/image/academy/21268195",
+   "skuIdentifier": "white-x-small",
+   "objectType": "Product",
+   "orderCount": 23,
+   "giftCardFlag": "N",
+   "ecomCodeDesc": "01 SELL ONLINE",
+   "mapPrice": 25.0,
+   "mapPriceFlag": "N",
+   "brandColorCount": "2",
+   "flavourCount": "0",
+   "paternCount": "0",
+   "teamCount": "0",
+   "freeShipping": false,
+   "xccStrikethroughPromotion": "true",
+   "promoMessageReg": "30% Off Clothes + Shoes",
+   "promoCodeReg": "1003714",
+   "promoPriceReg": "17.5000",
+   "xccStrikethroughPromotionReg": "true",
+   "guestMessageText": "",
+   "listPrice": 0.0,
+   "salePrice": 0.0,
+   "catalogId": [
+    "10051"
+   ],
+   "shipToStoreFlag": [
+    "N"
+   ],
+   "categoryIds": [
+    "3074457345616984107",
+    "3074457345616907267",
+    "3074457345616907169",
+    "239431",
+    "3074457345616909620",
+    "3074457345616978104",
+    "3074457345617055098",
+    "3074457345616941639",
+    "3074457345616941117",
+    "3074457345616998730",
+    "3074457345616998653",
+    "239153",
+    "3074457345616924247",
+    "3074457345616941135",
+    "3074457345616968715",
+    "3074457345617055598",
+    "3074457345616952607",
+    "146752",
+    "3074457345616970254",
+    "3074457345616973146",
+    "3074457345616931607",
+    "15053",
+    "3074457345616907130",
+    "3074457345616981101",
+    "3074457345616973144",
+    "15090",
+    "3074457345616941148",
+    "3074457345616921641",
+    "3074457345616907258",
+    "3074457345616924238",
+    "15091",
+    "3074457345616941644",
+    "3074457345616921599",
+    "3074457345616972126",
+    "3074457345616970144",
+    "3074457345616970145",
+    "3074457345616961682",
+    "3074457345616931618",
+    "197936",
+    "3074457345616951147",
+    "3074457345616951146",
+    "3074457345616957608",
+    "210952"
+   ],
+   "sameDayDeliveryEligible": [
+    "Y"
+   ],
+   "parentPartNumber": "140606071",
+   "definingAttributes": {
+    "Size": "X Small",
+    "Color": "White"
+   },
+   "ppuMsg": "",
+   "inventory_pick": [],
+   "inventory_sts": [],
+   "clearanceSuppression": false,
+   "startDate": "2024-05-23T00:00:00.000Z",
+   "embargoDate": "",
+   "pick_oos": "0",
+   "sts_oos": "1",
+   "stsfs_oos": "1",
+   "sth_oos": "0",
+   "lsi_oos": "0",
+   "rollUpPromoPriceMessage": "",
+   "rollUpPromoPriceMessageReg": "",
+   "Clearance_Status": [
+    "N"
+   ],
+   "maxProductPrice_1": 0.0,
+   "minProductPrice_1": 0.0,
+   "maxProductPrice_2": 0.0,
+   "minProductPrice_2": 0.0,
+   "minMSRP": "25",
+   "maxMSRP": "25",
+   "Color": [
+    "White"
+   ],
+   "facet_Deals": [],
+   "_rankingInfo": {
+    "forcedTypoFirstInRanking": true,
+    "nbTypos": 0,
+    "firstMatchedWord": 0,
+    "proximityDistance": 0,
+    "userScore": 262,
+    "geoDistance": 0,
+    "geoPrecision": 1,
+    "nbExactWords": 0,
+    "words": 0,
+    "filters": 11
+   },
+   "customBadges": [],
+   "facet_Brand": "Nike",
+   "nonPricingAdbugs": [],
+   "averageRating": "4.7",
+   "reviewCount": "52",
+   "industrySubGroup_image": {
+    "White": "//academy.scene7.com/is/image/academy/21268195",
+    "Black": "//academy.scene7.com/is/image/academy/21206765"
+   },
+   "industrySubGroup_ImageSku": [
+    {
+     "weightage": 1,
+     "image": "//academy.scene7.com/is/image/academy/21268195",
+     "color": "White",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21268196",
+      "//academy.scene7.com/is/image/academy/21268197"
+     ],
+     "skuIdentifier": "white-x-small",
+     "skuId": "140606080"
+    },
+    {
+     "weightage": 2,
+     "image": "//academy.scene7.com/is/image/academy/21206765",
+     "color": "Black",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21206766",
+      "//academy.scene7.com/is/image/academy/21206767"
+     ],
+     "skuIdentifier": "black-x-small",
+     "skuId": "140606186"
+    }
+   ],
+   "swatches_nonmapprice": {
+    "priceInfo": {
+     "facet_Deals": [],
+     "maxMSRP": "25.00",
+     "minProductPrice": 25.0,
+     "maxEffectivePrice": 17.5,
+     "maxProductPrice": 25.0,
+     "minMSRP": "25.00",
+     "minEffectivePriceReg": 17.5,
+     "clearanceStatus": [
+      "N"
+     ],
+     "minEffectivePrice": 17.5,
+     "valuedCost": 11.5,
+     "maxEffectivePriceReg": 17.5,
+     "listPrice": 25.0,
+     "salePrice": 25.0,
+     "savings": "",
+     "priceMessage": "",
+     "promoPrice": 17.5,
+     "promoPriceReg": 17.5,
+     "xccStrikethroughPromotion": "true",
+     "xccStrikethroughPromotionReg": "true"
+    },
+    "brandColorCount": "2",
+    "flavourCount": "0",
+    "teamCount": "0",
+    "paternCount": "0",
+    "swatches": [
+     {
+      "weightage": 1,
+      "image": "//academy.scene7.com/is/image/academy/21268195",
+      "color": "White",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21268196",
+       "//academy.scene7.com/is/image/academy/21268197"
+      ],
+      "skuIdentifier": "white-x-small",
+      "skuId": "140606080"
+     },
+     {
+      "weightage": 2,
+      "image": "//academy.scene7.com/is/image/academy/21206765",
+      "color": "Black",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21206766",
+       "//academy.scene7.com/is/image/academy/21206767"
+      ],
+      "skuIdentifier": "black-x-small",
+      "skuId": "140606186"
+     }
+    ]
+   },
+   "swatches_mapprice": {},
+   "definingAttribute_SwatchesImage": {},
+   "definingAttribute_SwatchesImageSku": [],
+   "objectID": "140606080",
+   "skuIds": [
+    "57426153",
+    "57421830",
+    "57426498",
+    "56809408",
+    "56809020",
+    "57494555",
+    "56795885",
+    "57541062",
+    "56779612",
+    "57496992"
+   ],
+   "primaryCatgroupId": "15090",
+   "isQuickViewEligible": false,
+   "is_assembly_required": "",
+   "facet_IndustrySubGroup": [
+    "White"
+   ]
+  },
+  {
+   "catentryId": "8061056",
+   "name": "YETI Rambler 18 oz Chug Cap Bottle",
+   "sellable": "true",
+   "uniqueId": "8061056",
+   "maxProductPrice": 37.0,
+   "minProductPrice": 19.97,
+   "maxEffectivePrice": 37.0,
+   "minEffectivePrice": 19.97,
+   "maxEffectivePriceReg": 37.0,
+   "minEffectivePriceReg": 19.97,
+   "defaultSku": {
+    "salePrice": 37.0,
+    "savings": "",
+    "uniqueId": 90648031,
+    "listPrice": 37.0,
+    "listPriceV2": 37.0,
+    "priceMessage": "hotDealsAvailable,priceInCart",
+    "priceMessageV2": "hotDealsAvailable,priceInCart",
+    "ppuMsg": "",
+    "color": "Green",
+    "skuIdentifier": "18-oz-seafoam-pattern",
+    "defaultSkuIdentifier": "18-oz-seafoam-pattern",
+    "skuId": "164716873",
+    "definingAttributes": {
+     "Volume": "18 Oz",
+     "Color": "Seafoam Pattern"
+    },
+    "listPriceV2Reg": 37.0,
+    "priceMessageV2Reg": "hotDealsAvailable,priceInCart"
+   },
+   "seoURL": "yeti-rambler-18-oz-bottle-with-chug-cap",
+   "fullImage": "//academy.scene7.com/is/image/academy/21719853",
+   "promoMessage": "",
+   "promoCode": "",
+   "promoPrice": "",
+   "thumbnail": "//academy.scene7.com/is/image/academy/21719853",
+   "partNumber": "124138950",
+   "primaryCatgroupName": "Water Bottles",
+   "descriptiveAttributes": {
+    "vendorName": "YETI HOLDINGS INC YETI COOLERS LLC",
+    "rating": "4",
+    "reviewcount": "12431",
+    "averageRating": "4.6",
+    "udamsrp": "30.00"
+   },
+   "ppuEnabled": "false",
+   "xfullimage": "//academy.scene7.com/is/image/academy/21719853",
+   "skuIdentifier": "18-oz-seafoam-pattern",
+   "objectType": "Product",
+   "orderCount": 23,
+   "giftCardFlag": "N",
+   "ecomCodeDesc": "01 SELL ONLINE",
+   "mapPrice": 37.0,
+   "mapPriceFlag": "Y",
+   "brandColorCount": "16",
+   "flavourCount": "0",
+   "paternCount": "0",
+   "teamCount": "0",
+   "freeShipping": true,
+   "xccStrikethroughPromotion": "true",
+   "promoMessageReg": "",
+   "promoCodeReg": "",
+   "promoPriceReg": "",
+   "xccStrikethroughPromotionReg": "true",
+   "guestMessageText": "",
+   "listPrice": 37.0,
+   "salePrice": 0.0,
+   "catalogId": [
+    "10051"
+   ],
+   "shipToStoreFlag": [
+    "Y"
+   ],
+   "categoryIds": [
+    "3074457345616908598",
+    "3074457345616941639",
+    "220431",
+    "3074457345616941674",
+    "3074457345616924169",
+    "239096",
+    "16290",
+    "3074457345616974616",
+    "3074457345616952607",
+    "146752",
+    "3074457345616915099",
+    "3074457345616972650",
+    "215931",
+    "3074457345616912146",
+    "3074457345616974614",
+    "181314",
+    "3074457345616924153",
+    "3074457345616914608",
+    "239082",
+    "3074457345617278598",
+    "3074457345617278098",
+    "3074457345616941149",
+    "3074457345617279098",
+    "3074457345616972126",
+    "3074457345617002604",
+    "3074457345616974609",
+    "197936",
+    "3074457345616990612",
+    "3074457345616951147",
+    "3074457345616955606",
+    "3074457345616951146",
+    "3074457345616957608",
+    "198029",
+    "3074457345616972627",
+    "3074457345616990614",
+    "210952",
+    "3074457345616974604"
+   ],
+   "sameDayDeliveryEligible": [
+    "Y"
+   ],
+   "parentPartNumber": "124138950",
+   "definingAttributes": {
+    "Volume": "18 Oz",
+    "Color": "Seafoam Pattern"
+   },
+   "ppuMsg": "",
+   "inventory_pick": [],
+   "inventory_sts": [],
+   "clearanceSuppression": false,
+   "startDate": "2021-05-14T00:00:00.001Z",
+   "embargoDate": "",
+   "pick_oos": "0",
+   "sts_oos": "1",
+   "sth_oos": "0",
+   "lsi_oos": "0",
+   "rollUpPromoPriceMessage": "priceInCart",
+   "rollUpPromoPriceMessageReg": "priceInCart",
+   "Clearance_Status": [
+    "M"
+   ],
+   "maxProductPrice_1": 0.0,
+   "minProductPrice_1": 0.0,
+   "maxProductPrice_2": 0.0,
+   "minProductPrice_2": 0.0,
+   "minMSRP": "30",
+   "maxMSRP": "30",
+   "Color": [
+    "Seafoam Pattern"
+   ],
+   "facet_Deals": [
+    "Hot Deal",
+    "New Colors"
+   ],
+   "_rankingInfo": {
+    "forcedTypoFirstInRanking": true,
+    "nbTypos": 0,
+    "firstMatchedWord": 0,
+    "proximityDistance": 0,
+    "userScore": 261,
+    "geoDistance": 0,
+    "geoPrecision": 1,
+    "nbExactWords": 0,
+    "words": 0,
+    "filters": 11
+   },
+   "customBadges": [],
+   "facet_Brand": "YETI",
+   "averageRating": "4.6",
+   "reviewCount": "12431",
+   "industrySubGroup_image": {
+    "Red": "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071504044-red/0cc5581e-e59f-4c3f-b0f0-dc62e27d3396",
+    "Brown": "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071503521/a626e90a-1f76-4c65-95ea-c73ae2cc8bce",
+    "Pink": "//academy.scene7.com/is/image/academy/21691177",
+    "White": "//academy.scene7.com/is/image/academy/20489691",
+    "Blue": "//academy.scene7.com/is/image/academy/20489690",
+    "Black": "//academy.scene7.com/is/image/academy/20489689",
+    "Green": "//academy.scene7.com/is/image/academy/20493579",
+    "Grey": "//academy.scene7.com/is/image/academy/21584144"
+   },
+   "industrySubGroup_ImageSku": [
+    {
+     "weightage": 1,
+     "image": "//academy.scene7.com/is/image/academy/21719853",
+     "color": "Green",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21719859",
+      "//academy.scene7.com/is/image/academy/21719860"
+     ],
+     "skuIdentifier": "18-oz-seafoam-pattern",
+     "skuId": "164716873"
+    },
+    {
+     "weightage": 2,
+     "image": "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071504044-red/0cc5581e-e59f-4c3f-b0f0-dc62e27d3396",
+     "color": "Red",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071505903/d7478432-79a9-4b27-b31f-64c4cc1b9174",
+      "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071505903/21706e5e-109d-46c4-b65f-dc1171a59e40"
+     ],
+     "skuIdentifier": "18-oz-rescue-red",
+     "skuId": "137420428"
+    },
+    {
+     "weightage": 3,
+     "image": "//academy.scene7.com/is/image/academy/21691177",
+     "color": "Pink",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21691178",
+      "//academy.scene7.com/is/image/academy/21691179"
+     ],
+     "skuIdentifier": "18-oz-birdie",
+     "skuId": "164716945"
+    },
+    {
+     "weightage": 5,
+     "image": "//academy.scene7.com/is/image/academy/21584144",
+     "color": "Grey",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy/21584145",
+      "//academy.scene7.com/is/image/academy/21584146"
+     ],
+     "skuIdentifier": "18-oz-ridgeline",
+     "skuId": "164551087"
+    },
+    {
+     "weightage": 7,
+     "image": "//academy.scene7.com/is/image/academy/20489689",
+     "color": "Black",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071507596/672557ee-eb45-4cd6-8d4f-c2e1b3fd0c69",
+      "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071507596/fc573f66-2f21-484d-8be3-e0498dca9cf8"
+     ],
+     "skuIdentifier": "18-oz-black",
+     "skuId": "124138968"
+    },
+    {
+     "weightage": 8,
+     "image": "//academy.scene7.com/is/image/academy/20489690",
+     "color": "Blue",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071507619/2d21f7fb-4675-4f7a-9611-e2795d67453a",
+      "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071507619/592205ec-a401-4e31-831f-630581d1dae5"
+     ],
+     "skuIdentifier": "18-oz-navy",
+     "skuId": "124139039"
+    },
+    {
+     "weightage": 9,
+     "image": "//academy.scene7.com/is/image/academy/20489691",
+     "color": "White",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071505907/b2fa6e3c-348b-448d-8172-7d764c50d3b3",
+      "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071505907/548f9ecb-ac68-465d-8f2b-ceab3cd79df7"
+     ],
+     "skuIdentifier": "18-oz-white",
+     "skuId": "124139012"
+    },
+    {
+     "weightage": 10,
+     "image": "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071505906/fd5b130b-45a1-407a-80e1-3634d2fe905d",
+     "color": "Brown",
+     "alternateImages": [
+      "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071505906/86fc9765-fd04-4aa8-9b43-f78d27d1ea53",
+      "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071505906/b2d59e62-eac9-4679-95ac-6d118259afa1"
+     ],
+     "skuIdentifier": "18-oz-wetlands-camo",
+     "skuId": "160397545"
+    }
+   ],
+   "swatches_nonmapprice": {
+    "priceInfo": {
+     "facet_Deals": [
+      "Hot Deal",
+      "New"
+     ],
+     "maxMSRP": "30.00",
+     "minProductPrice": 25.6,
+     "maxEffectivePrice": 37.0,
+     "maxProductPrice": 37.0,
+     "minMSRP": "30.00",
+     "minEffectivePriceReg": 25.6,
+     "clearanceStatus": [
+      "N"
+     ],
+     "minEffectivePrice": 25.6,
+     "valuedCost": 19.2,
+     "maxEffectivePriceReg": 37.0,
+     "listPrice": 37.0,
+     "salePrice": 37.0,
+     "savings": "",
+     "priceMessage": "",
+     "promoPrice": 0.0,
+     "promoPriceReg": 0.0
+    },
+    "brandColorCount": "12",
+    "flavourCount": "0",
+    "teamCount": "0",
+    "paternCount": "0",
+    "swatches": [
+     {
+      "weightage": 1,
+      "image": "//academy.scene7.com/is/image/academy/21719853",
+      "color": "Green",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21719859",
+       "//academy.scene7.com/is/image/academy/21719860"
+      ],
+      "skuIdentifier": "18-oz-seafoam-pattern",
+      "skuId": "164716873"
+     },
+     {
+      "weightage": 2,
+      "image": "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071504044-red/0cc5581e-e59f-4c3f-b0f0-dc62e27d3396",
+      "color": "Red",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071505903/d7478432-79a9-4b27-b31f-64c4cc1b9174",
+       "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071505903/21706e5e-109d-46c4-b65f-dc1171a59e40"
+      ],
+      "skuIdentifier": "18-oz-rescue-red",
+      "skuId": "137420428"
+     },
+     {
+      "weightage": 3,
+      "image": "//academy.scene7.com/is/image/academy/21691177",
+      "color": "Pink",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21691178",
+       "//academy.scene7.com/is/image/academy/21691179"
+      ],
+      "skuIdentifier": "18-oz-birdie",
+      "skuId": "164716945"
+     },
+     {
+      "weightage": 7,
+      "image": "//academy.scene7.com/is/image/academy/20489689",
+      "color": "Black",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071507596/672557ee-eb45-4cd6-8d4f-c2e1b3fd0c69",
+       "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071507596/fc573f66-2f21-484d-8be3-e0498dca9cf8"
+      ],
+      "skuIdentifier": "18-oz-black",
+      "skuId": "124138968"
+     },
+     {
+      "weightage": 8,
+      "image": "//academy.scene7.com/is/image/academy/20489690",
+      "color": "Blue",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071507619/2d21f7fb-4675-4f7a-9611-e2795d67453a",
+       "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071507619/592205ec-a401-4e31-831f-630581d1dae5"
+      ],
+      "skuIdentifier": "18-oz-navy",
+      "skuId": "124139039"
+     },
+     {
+      "weightage": 9,
+      "image": "//academy.scene7.com/is/image/academy/20489691",
+      "color": "White",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071505907/b2fa6e3c-348b-448d-8172-7d764c50d3b3",
+       "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071505907/548f9ecb-ac68-465d-8f2b-ceab3cd79df7"
+      ],
+      "skuIdentifier": "18-oz-white",
+      "skuId": "124139012"
+     },
+     {
+      "weightage": 10,
+      "image": "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071505906/fd5b130b-45a1-407a-80e1-3634d2fe905d",
+      "color": "Brown",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071505906/86fc9765-fd04-4aa8-9b43-f78d27d1ea53",
+       "//academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071505906/b2d59e62-eac9-4679-95ac-6d118259afa1"
+      ],
+      "skuIdentifier": "18-oz-wetlands-camo",
+      "skuId": "160397545"
+     }
+    ]
+   },
+   "swatches_mapprice": {
+    "priceInfo": {
+     "facet_Deals": [],
+     "maxMSRP": "30.00",
+     "minMapPrice": 32.0,
+     "rollUpPromoPriceMessage": "priceInCart",
+     "maxMapPrice": 32.0,
+     "minProductPrice": 19.97,
+     "maxEffectivePrice": 25.6,
+     "maxProductPrice": 25.6,
+     "rollUpPromoPriceMessageReg": "priceInCart",
+     "minMSRP": "30.00",
+     "minEffectivePriceReg": 19.97,
+     "clearanceStatus": [
+      "M"
+     ],
+     "minEffectivePrice": 19.97,
+     "valuedCost": 19.2,
+     "maxEffectivePriceReg": 25.6,
+     "listPrice": 37.0,
+     "salePrice": 19.97,
+     "savings": "46%",
+     "priceMessage": "priceInCart",
+     "promoPrice": 0.0,
+     "promoPriceReg": 0.0,
+     "mapPrice": 37.0,
+     "dollarSavings": 17.03,
+     "percentSavings": "46%",
+     "listPriceV2": 37.0,
+     "listPriceV2Reg": 37.0,
+     "priceMessageV2": "priceInCart",
+     "priceMessageV2Reg": "priceInCart",
+     "xccStrikethroughPromotion": "true",
+     "xccStrikethroughPromotionReg": "true"
+    },
+    "brandColorCount": "4",
+    "flavourCount": "0",
+    "teamCount": "0",
+    "paternCount": "0",
+    "swatches": [
+     {
+      "weightage": 5,
+      "image": "//academy.scene7.com/is/image/academy/21584144",
+      "color": "Grey",
+      "alternateImages": [
+       "//academy.scene7.com/is/image/academy/21584145",
+       "//academy.scene7.com/is/image/academy/21584146"
+      ],
+      "skuIdentifier": "18-oz-ridgeline",
+      "skuId": "164551087"
+     }
+    ]
+   },
+   "definingAttribute_SwatchesImage": {},
+   "definingAttribute_SwatchesImageSku": [],
+   "objectID": "164716873",
+   "skuIds": [
+    "89676605",
+    "90648031",
+    "87004509",
+    "87004514",
+    "84173510",
+    "80374502",
+    "76233502",
+    "75829883",
+    "70761172",
+    "70761174",
+    "70761173",
+    "67037015",
+    "56991532",
+    "47063504",
+    "8414008",
+    "8414007",
+    "8416015",
+    "8414009"
+   ],
+   "primaryCatgroupId": "198029",
+   "isQuickViewEligible": false,
+   "SPECIALORDER": "N",
+   "is_assembly_required": "",
+   "facet_IndustrySubGroup": [
+    "Green"
+   ]
+  }
+ ]
+}

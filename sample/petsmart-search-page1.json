@@ -1,0 +1,655 @@
+{
+ "hits": [
+  {
+   "id": 5252900,
+   "objectID": "5252900",
+   "sku": 5252900,
+   "masterProductID": 36648,
+   "name": "Purina Pro Plan Sensitive Skin and Stomach Dry Dog Food Adult Salmon & Rice Formula Digestive Health",
+   "brand": "Purina Pro Plan",
+   "price": {
+    "number": 77.99,
+    "strikethrough-number": null,
+    "validUntil": "",
+    "formatted": {
+     "primary": "$20.68-$94.99",
+     "strikethrough": "$21.99-$94.99"
+    },
+    "displayType": "range"
+   },
+   "priceData": {
+    "list": 77.99,
+    "current": 77.99,
+    "listRange": [
+     21.99,
+     94.99
+    ],
+    "saleRange": [
+     20.68,
+     94.99
+    ],
+    "optionsFromList": 21.99
+   },
+   "images": {
+    "large": "https://s7d2.scene7.com/is/image/PetSmart/5252900?$sclp-prd-main_large$",
+    "small": "https://s7d2.scene7.com/is/image/PetSmart/5252900?$sclp-prd-main_small$"
+   },
+   "alternateImages": [
+    "5252900_alt1",
+    "5252900_alt2",
+    "5252900_alt3",
+    "5252900_alt4",
+    "5252900_alt5",
+    "5252900_alt6"
+   ],
+   "upc": "038100175526",
+   "upcList": [
+    "038100175526"
+   ],
+   "bvAverageRating": 4.5,
+   "bvReviewCount": 9118,
+   "isSKUAvailable": true,
+   "isInStockInStore": true,
+   "isSubscriptionEnabled": true,
+   "customScheduledDeliveryEligible": true,
+   "short_description": "PP D SSS ADLT SLM & RICE 30 LB        23",
+   "manufacturerName": "NESTLE PURINA DRY",
+   "manufacturerSku": "00-38100-17552",
+   "primary_category_id": "100246",
+   "primary_category_name": "Dry Food",
+   "custom_category_names": [
+    "Dog",
+    "Dog > Food",
+    "Dog > Food > Dry Food",
+    "Featured Brands",
+    "Featured Brands > Purina",
+    "Featured Brands > Purina Pro Plan",
+    "Featured Brands > Purina Pro Plan > Dog",
+    "Featured Shops",
+    "Featured Shops > Associate Picks",
+    "Featured Shops > Auto ship",
+    "Featured Shops > Curbside and In Store Pickup",
+    "Featured Shops > Emergency Preparedness",
+    "Featured Shops > Parent Child Test",
+    "Featured Shops > Parent Child Test > Purina Pro Plan",
+    "Featured Shops > Safe Travels",
+    "Featured Shops > Safe Travels > Overnight Stay",
+    "Featured Shops > Same Day Delivery",
+    "Featured Shops > Spend $75+ get $15 off",
+    "Featured Shops > Timezone Test",
+    "mobile app landing page",
+    "Sale",
+    "Sale > 25X Select Dog and Cat Food Brands",
+    "Sale > 5 dollars off select dog food 16 lbs. and under",
+    "Sale > 5X Treats Rewards points on select great brands",
+    "Sale > 8 dollars off Select Dry Dog Food",
+    "Sale > October Event",
+    "Sale > September Event",
+    "Sale > Spend Now Save Later"
+   ],
+   "assigned_category_paths": [
+    "Dog > Food > Dry Food",
+    "Featured Brands > Purina",
+    "Featured Brands > Purina Pro Plan",
+    "Featured Brands > Purina Pro Plan > Dog",
+    "Featured Shops > Associate Picks",
+    "Featured Shops > Auto ship",
+    "Featured Shops > Curbside and In Store Pickup",
+    "Featured Shops > Emergency Preparedness",
+    "Featured Shops > Parent Child Test > Purina Pro Plan",
+    "Featured Shops > Safe Travels",
+    "Featured Shops > Safe Travels > Overnight Stay",
+    "Featured Shops > Same Day Delivery",
+    "Featured Shops > Spend $75+ get $15 off",
+    "Featured Shops > Timezone Test",
+    "mobile app landing page",
+    "Sale > 25X Select Dog and Cat Food Brands",
+    "Sale > 5 dollars off select dog food 16 lbs. and under",
+    "Sale > 5X Treats Rewards points on select great brands",
+    "Sale > 8 dollars off Select Dry Dog Food",
+    "Sale > October Event",
+    "Sale > September Event",
+    "Sale > Spend Now Save Later"
+   ],
+   "variationData": [
+    {
+     "type": "Flavor",
+     "value": "Salmon & Rice",
+     "onlineFrom": 1464998400000
+    },
+    {
+     "type": "Size",
+     "value": "4 Lb",
+     "onlineFrom": 1678665600000
+    },
+    {
+     "type": "Size",
+     "value": "30 Lb",
+     "onlineFrom": 1464998400000
+    },
+    {
+     "type": "Size",
+     "value": "40 Lb",
+     "onlineFrom": 1678665600000
+    },
+    {
+     "type": "Size",
+     "value": "16 Lb",
+     "onlineFrom": 1464998400000
+    }
+   ],
+   "variations": [
+    "4 Sizes",
+    "1 Flavor"
+   ],
+   "flavorList": [
+    "Rice",
+    "Salmon"
+   ],
+   "kibbleSizes": [
+    "Medium Breed"
+   ],
+   "foodForms": [
+    "Bags"
+   ],
+   "eligiblePromotions": [
+    {
+     "promoId": "6ece0d0c-ebd5-44fa-89ca-3a985547f94c",
+     "promoText": "Get 40% OFF your 1st Autoship order, 20% OFF your 2nd & 10% OFF your 3rd Autoship order of Purina Pro Plan dog & cat food",
+     "promoKey": "1026-225647-SAVE40ONPROPLANAUTOSHIP-US",
+     "promoStart": "2026-10-02T09:30:00.000Z",
+     "promoEnd": "2026-11-02T09:30:00.000Z",
+     "type": "autoship",
+     "discountDisplay": "40%",
+     "order": 15.1789597975871
+    },
+    {
+     "promoId": "ff00d4a8-7f5a-4df9-8dc5-c108ce2f9132",
+     "promoKey": "1026-US-PPDOGBB-15OFF-MESSAGE",
+     "promoText": "$15 OFF your next $50+ Purina\u00ae Pro Plan\u00ae dog food purchase when you spend $60+ on Purina\u00ae Pro Plan\u00ae dog food thru (includes vet diets) 11/1",
+     "promoStart": "2026-09-28T09:30:00.000Z",
+     "promoEnd": "2026-11-02T09:30:00.000Z",
+     "order": 20.178899068738
+    },
+    {
+     "promoId": "aecfe5c6-e1b3-4ea6-8c94-649cc272195a",
+     "promoKey": "EG-Free-Same-Day-Delivery-US",
+     "promoText": "Free Same-Day Delivery, No Order Minimum!",
+     "order": 74.1744726346766
+    },
+    {
+     "promoId": "841ea8be-a613-4244-ac72-e2218fbc12f1",
+     "promoKey": "EG-Free-Ship-Over-49-US-OLD",
+     "promoText": "Sign In & Enjoy Free Shipping Over $49",
+     "promoEnd": "2026-02-03T23:00:00.000Z",
+     "order": 75.1744725984125
+    },
+    {
+     "promoId": "c77b871e-74df-46ea-950b-343c39e86e13",
+     "promoKey": "EG-Free-Ship-Over-49-US",
+     "promoText": "Sign In & Enjoy Free Shipping Over $49",
+     "promoStart": "2026-02-03T23:00:00.000Z",
+     "order": 75.1770059684803
+    }
+   ],
+   "package": {
+    "height": 24,
+    "length": 5,
+    "weight": 30.4,
+    "width": 20
+   },
+   "dimensionsAndWeight": {
+    "cartonHeight": 24,
+    "cartonLength": 5,
+    "cartonWeight": 30.4,
+    "cartonWidth": 20
+   },
+   "size": {
+    "solidSize": "30 Lb"
+   },
+   "customCaseQuantity": 1,
+   "totalCupsPerPackage": 118.3,
+   "series": [
+    "Pro Plan Digestion & Skin Health",
+    "Pro Plan Specialized"
+   ],
+   "productAvailabilityLocations": [
+    "In Store"
+   ],
+   "shoppingOptions-isBopisEligible": true,
+   "shoppingOptions-isInStorePickUp": true,
+   "onlineFrom": 1464998400000,
+   "onlineTo": 4102444799000,
+   "conversionRate": 30,
+   "lastModifiedMillis": 1791016034480
+  },
+  {
+   "id": 5338786,
+   "objectID": "5338786",
+   "sku": 5338786,
+   "masterProductID": 78091,
+   "name": "Blue Buffalo Wilderness High Protein, Salmon with Wholesome Grains Adult Dry Dog Food",
+   "brand": "Blue Buffalo",
+   "price": {
+    "number": 85.99,
+    "strikethrough-number": null,
+    "validUntil": "",
+    "formatted": {
+     "primary": "$18.98-$88.98",
+     "strikethrough": "$21.99-$98.99"
+    },
+    "displayType": "range"
+   },
+   "priceData": {
+    "list": 85.99,
+    "current": 85.99,
+    "listRange": [
+     21.99,
+     98.99
+    ],
+    "saleRange": [
+     18.98,
+     88.98
+    ],
+    "optionsFromList": 21.99
+   },
+   "images": {
+    "large": "https://s7d2.scene7.com/is/image/PetSmart/5338786?$sclp-prd-main_large$",
+    "small": "https://s7d2.scene7.com/is/image/PetSmart/5338786?$sclp-prd-main_small$"
+   },
+   "alternateImages": [
+    "5338786_alt1",
+    "5338786_alt2",
+    "5338786_alt3",
+    "5338786_alt4",
+    "5338786_alt5"
+   ],
+   "upc": "840243148691",
+   "upcList": [
+    "840243148691"
+   ],
+   "bvAverageRating": 4.6,
+   "bvReviewCount": 1004,
+   "isSKUAvailable": true,
+   "isInStockInStore": true,
+   "isSubscriptionEnabled": true,
+   "customScheduledDeliveryEligible": true,
+   "short_description": "BLUE WILD ADLT SALM 28 LB             23",
+   "manufacturerName": "THE BLUE BUFFALO COMPANY LTD",
+   "manufacturerSku": "804458",
+   "primary_category_id": "100246",
+   "primary_category_name": "Dry Food",
+   "custom_category_names": [
+    "Dog",
+    "Dog > Food",
+    "Dog > Food > Dry Food",
+    "Featured Brands",
+    "Featured Brands > Blue Buffalo",
+    "Featured Brands > Blue Buffalo > Dog",
+    "Featured Shops",
+    "Featured Shops > Auto ship",
+    "Featured Shops > Curbside and In Store Pickup",
+    "Featured Shops > Parent Child Test",
+    "Featured Shops > Same Day Delivery",
+    "New and Featured",
+    "Sale",
+    "Sale > 25X Select Dog and Cat Food Brands",
+    "Sale > October",
+    "Sale > October > Dog Sale",
+    "Sale > October Event",
+    "Sale > Same Day Delivery",
+    "Sale > September",
+    "Sale > September > Dog Sale",
+    "Sale > September Event"
+   ],
+   "assigned_category_paths": [
+    "Dog > Food > Dry Food",
+    "Featured Brands > Blue Buffalo",
+    "Featured Brands > Blue Buffalo > Dog",
+    "Featured Shops > Auto ship",
+    "Featured Shops > Curbside and In Store Pickup",
+    "Featured Shops > Parent Child Test",
+    "Featured Shops > Same Day Delivery",
+    "New and Featured",
+    "Sale > 25X Select Dog and Cat Food Brands",
+    "Sale > October > Dog Sale",
+    "Sale > October Event",
+    "Sale > Same Day Delivery",
+    "Sale > September > Dog Sale",
+    "Sale > September Event"
+   ],
+   "variationData": [
+    {
+     "type": "Size",
+     "value": "24 Lb",
+     "onlineFrom": 1690675200000
+    },
+    {
+     "type": "Size",
+     "value": "4.5 Lb",
+     "onlineFrom": 1677542400000
+    },
+    {
+     "type": "Size",
+     "value": "28 Lb",
+     "onlineFrom": 1677542400000
+    },
+    {
+     "type": "Size",
+     "value": "13 Lb",
+     "onlineFrom": 1681084800000
+    },
+    {
+     "type": "Size",
+     "value": "34 Lb",
+     "onlineFrom": 1785628800000
+    }
+   ],
+   "variations": [
+    "5 Sizes"
+   ],
+   "flavorList": null,
+   "kibbleSizes": [
+    "All Breeds"
+   ],
+   "eligiblePromotions": [
+    {
+     "promoId": "3761cb2c-2451-4487-9a00-37ad9b94489b",
+     "promoText": "Save 35% On Your First Autoship Order!",
+     "promoKey": "US-AUTOSHIP-DEFAULT-35P-DONOTTOUCH",
+     "promoStart": "2025-07-28T12:00:00.000Z",
+     "type": "autoship",
+     "default": true,
+     "discountDisplay": "35%",
+     "order": 21.1753227940048
+    },
+    {
+     "promoId": "aecfe5c6-e1b3-4ea6-8c94-649cc272195a",
+     "promoKey": "EG-Free-Same-Day-Delivery-US",
+     "promoText": "Free Same-Day Delivery, No Order Minimum!",
+     "order": 74.1744726346766
+    },
+    {
+     "promoId": "841ea8be-a613-4244-ac72-e2218fbc12f1",
+     "promoKey": "EG-Free-Ship-Over-49-US-OLD",
+     "promoText": "Sign In & Enjoy Free Shipping Over $49",
+     "promoEnd": "2026-02-03T23:00:00.000Z",
+     "order": 75.1744725984125
+    },
+    {
+     "promoId": "c77b871e-74df-46ea-950b-343c39e86e13",
+     "promoKey": "EG-Free-Ship-Over-49-US",
+     "promoText": "Sign In & Enjoy Free Shipping Over $49",
+     "promoStart": "2026-02-03T23:00:00.000Z",
+     "order": 75.1770059684803
+    },
+    {
+     "promoId": "f0a9e94f-a233-4606-9ff6-9771d3b21ea5",
+     "promoText": "",
+     "promoKey": "US-AUTOSHIP-MAX20-DONOTTOUCH",
+     "type": "autoship",
+     "default": true,
+     "discountDisplay": "$20",
+     "order": 1744911064577
+    },
+    {
+     "promoId": "53a913f6-15e3-4d74-a2a4-b4485db2ed94",
+     "promoText": "",
+     "promoKey": "US-AUTOSHIP-DEFAULT-5P-EXISITINGCUSTOMER-DONOTTOUCH",
+     "promoStart": "2025-07-29T00:00:00.000Z",
+     "type": "autoship",
+     "default": true,
+     "discountDisplay": "5%",
+     "order": 1753284423130
+    }
+   ],
+   "package": {
+    "height": 4.63,
+    "length": 24,
+    "weight": 28.28,
+    "width": 16
+   },
+   "dimensionsAndWeight": {
+    "cartonHeight": 4.63,
+    "cartonLength": 24,
+    "cartonWeight": 28.28,
+    "cartonWidth": 16
+   },
+   "size": {
+    "solidSize": "28 Lb"
+   },
+   "customCaseQuantity": 1,
+   "series": [
+    "Blue Buffalo Wilderness"
+   ],
+   "productAvailabilityLocations": [
+    "In Store"
+   ],
+   "shoppingOptions-isBopisEligible": true,
+   "shoppingOptions-isInStorePickUp": true,
+   "onlineFrom": 1677542400000,
+   "onlineTo": 4102444799000,
+   "conversionRate": 20,
+   "lastModifiedMillis": 1791018365339
+  },
+  {
+   "id": 5135727,
+   "objectID": "5135727",
+   "sku": 5135727,
+   "masterProductID": 3022,
+   "name": "Purina Pro Plan Complete Essentials Shredded Blend Chicken and Rice Dry Dog Food Formula",
+   "brand": "Purina Pro Plan",
+   "price": {
+    "number": 74.99,
+    "strikethrough-number": null,
+    "validUntil": "",
+    "formatted": {
+     "primary": "$18.99-$96.99",
+     "strikethrough": "$18.99-$96.99"
+    },
+    "displayType": "range"
+   },
+   "priceData": {
+    "list": 74.99,
+    "current": 74.99,
+    "listRange": [
+     18.99,
+     96.99
+    ],
+    "saleRange": [
+     18.99,
+     96.99
+    ]
+   },
+   "images": {
+    "large": "https://s7d2.scene7.com/is/image/PetSmart/5135727?$sclp-prd-main_large$",
+    "small": "https://s7d2.scene7.com/is/image/PetSmart/5135727?$sclp-prd-main_small$"
+   },
+   "alternateImages": [
+    "5135727_alt1",
+    "5135727_alt2",
+    "5135727_alt3",
+    "5135727_alt4",
+    "5135727_alt5",
+    "5135727_alt6"
+   ],
+   "upc": "038100130594",
+   "upcList": [
+    "038100130594"
+   ],
+   "bvAverageRating": 4.6,
+   "bvReviewCount": 3713,
+   "isSKUAvailable": true,
+   "isInStockInStore": true,
+   "isSubscriptionEnabled": true,
+   "customScheduledDeliveryEligible": true,
+   "short_description": "PP D ESS ADLT SHRD BLND CKN 35 LB     23",
+   "manufacturerName": "NESTLE PURINA DRY",
+   "manufacturerSku": "38100-13059",
+   "primary_category_id": "100246",
+   "primary_category_name": "Dry Food",
+   "custom_category_names": [
+    "Dog",
+    "Dog > Food",
+    "Dog > Food > Dry Food",
+    "Featured Brands",
+    "Featured Brands > Purina",
+    "Featured Brands > Purina Pro Plan",
+    "Featured Brands > Purina Pro Plan > Dog",
+    "Featured Shops",
+    "Featured Shops > Auto ship",
+    "Featured Shops > Curbside and In Store Pickup",
+    "Featured Shops > Emergency Preparedness",
+    "Featured Shops > Parent Child Test",
+    "Featured Shops > Parent Child Test > Purina Pro Plan",
+    "Featured Shops > Same Day Delivery",
+    "Featured Shops > Timezone Test",
+    "Sale",
+    "Sale > 25X Select Dog and Cat Food Brands",
+    "Sale > 5 dollars off select dog food 16 lbs. and under",
+    "Sale > 5X Treats Rewards points on select great brands",
+    "Sale > 8 dollars off Select Dry Dog Food",
+    "Sale > October Event",
+    "Sale > September Event",
+    "Sale > Spend Now Save Later"
+   ],
+   "assigned_category_paths": [
+    "Dog > Food > Dry Food",
+    "Featured Brands > Purina",
+    "Featured Brands > Purina Pro Plan",
+    "Featured Brands > Purina Pro Plan > Dog",
+    "Featured Shops > Auto ship",
+    "Featured Shops > Curbside and In Store Pickup",
+    "Featured Shops > Emergency Preparedness",
+    "Featured Shops > Parent Child Test > Purina Pro Plan",
+    "Featured Shops > Same Day Delivery",
+    "Featured Shops > Timezone Test",
+    "Sale > 25X Select Dog and Cat Food Brands",
+    "Sale > 5 dollars off select dog food 16 lbs. and under",
+    "Sale > 5X Treats Rewards points on select great brands",
+    "Sale > 8 dollars off Select Dry Dog Food",
+    "Sale > October Event",
+    "Sale > September Event",
+    "Sale > Spend Now Save Later"
+   ],
+   "variationData": [
+    {
+     "type": "Flavor",
+     "value": "Chicken & Rice",
+     "onlineFrom": 1370995200000
+    },
+    {
+     "type": "Size",
+     "value": "47 Lb",
+     "onlineFrom": 1508976000000
+    },
+    {
+     "type": "Size",
+     "value": "35 Lb",
+     "onlineFrom": 1370995200000
+    },
+    {
+     "type": "Size",
+     "value": "15 Lb",
+     "onlineFrom": 1735516800000
+    },
+    {
+     "type": "Size",
+     "value": "5 Lb",
+     "onlineFrom": 1735516800000
+    }
+   ],
+   "variations": [
+    "4 Sizes",
+    "1 Flavor"
+   ],
+   "flavorList": [
+    "Chicken",
+    "Rice"
+   ],
+   "kibbleSizes": [
+    "Medium Breed"
+   ],
+   "foodForms": [
+    "Bags"
+   ],
+   "eligiblePromotions": [
+    {
+     "promoId": "6ece0d0c-ebd5-44fa-89ca-3a985547f94c",
+     "promoText": "Get 40% OFF your 1st Autoship order, 20% OFF your 2nd & 10% OFF your 3rd Autoship order of Purina Pro Plan dog & cat food",
+     "promoKey": "1026-225647-SAVE40ONPROPLANAUTOSHIP-US",
+     "promoStart": "2026-10-02T09:30:00.000Z",
+     "promoEnd": "2026-11-02T09:30:00.000Z",
+     "type": "autoship",
+     "discountDisplay": "40%",
+     "order": 15.1789597975871
+    },
+    {
+     "promoId": "ff00d4a8-7f5a-4df9-8dc5-c108ce2f9132",
+     "promoKey": "1026-US-PPDOGBB-15OFF-MESSAGE",
+     "promoText": "$15 OFF your next $50+ Purina\u00ae Pro Plan\u00ae dog food purchase when you spend $60+ on Purina\u00ae Pro Plan\u00ae dog food thru (includes vet diets) 11/1",
+     "promoStart": "2026-09-28T09:30:00.000Z",
+     "promoEnd": "2026-11-02T09:30:00.000Z",
+     "order": 20.178899068738
+    },
+    {
+     "promoId": "aecfe5c6-e1b3-4ea6-8c94-649cc272195a",
+     "promoKey": "EG-Free-Same-Day-Delivery-US",
+     "promoText": "Free Same-Day Delivery, No Order Minimum!",
+     "order": 74.1744726346766
+    },
+    {
+     "promoId": "841ea8be-a613-4244-ac72-e2218fbc12f1",
+     "promoKey": "EG-Free-Ship-Over-49-US-OLD",
+     "promoText": "Sign In & Enjoy Free Shipping Over $49",
+     "promoEnd": "2026-02-03T23:00:00.000Z",
+     "order": 75.1744725984125
+    },
+    {
+     "promoId": "c77b871e-74df-46ea-950b-343c39e86e13",
+     "promoKey": "EG-Free-Ship-Over-49-US",
+     "promoText": "Sign In & Enjoy Free Shipping Over $49",
+     "promoStart": "2026-02-03T23:00:00.000Z",
+     "order": 75.1770059684803
+    }
+   ],
+   "package": {
+    "height": 5,
+    "length": 32,
+    "weight": 35.5,
+    "width": 17.6
+   },
+   "dimensionsAndWeight": {
+    "cartonHeight": 32,
+    "cartonLength": 5,
+    "cartonWeight": 35.4,
+    "cartonWidth": 17.5
+   },
+   "size": {
+    "solidSize": "35 Lb"
+   },
+   "customCaseQuantity": 1,
+   "totalCupsPerPackage": 163.1,
+   "series": [
+    "Pro Plan Essentials"
+   ],
+   "productAvailabilityLocations": [
+    "In Store"
+   ],
+   "shoppingOptions-isBopisEligible": true,
+   "shoppingOptions-isInStorePickUp": true,
+   "onlineFrom": 1370995200000,
+   "onlineTo": 4102444799000,
+   "conversionRate": 30,
+   "lastModifiedMillis": 1791015721626
+  }
+ ],
+ "nbHits": 937,
+ "nbSortedHits": 937,
+ "page": 0,
+ "nbPages": 10,
+ "hitsPerPage": 100,
+ "query": "",
+ "index": "r-US_products_best-sellers",
+ "params": "query=&hitsPerPage=100&page=0"
+}
