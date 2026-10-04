@@ -1,0 +1,3378 @@
+{
+  "Gift Shop": [
+    {
+      "name": "Gift Shop",
+      "category_id": 509870,
+      "page_param_value": "gift-shop",
+      "url": "https://www.llbean.com/llb/shop/509870"
+    },
+    {
+      "name": "Gifts for Her",
+      "category_id": 507087,
+      "page_param_value": "gifts-for-her",
+      "url": "https://www.llbean.com/llb/shop/507087"
+    },
+    {
+      "name": "Gifts for Him",
+      "category_id": 507074,
+      "page_param_value": "gifts-for-him",
+      "url": "https://www.llbean.com/llb/shop/507074"
+    },
+    {
+      "name": "Gifts for Kids",
+      "category_id": 507102,
+      "page_param_value": "gifts-for-kids",
+      "url": "https://www.llbean.com/llb/shop/507102"
+    },
+    {
+      "name": "Gifts for Everyone",
+      "category_id": 1000010136,
+      "page_param_value": "gifts-for-everyone",
+      "url": "https://www.llbean.com/llb/shop/1000010136"
+    },
+    {
+      "name": "NYT Wirecutter Picks",
+      "category_id": 1000010392,
+      "page_param_value": "nyt-wirecutter-picks",
+      "url": "https://www.llbean.com/llb/shop/1000010392"
+    },
+    {
+      "name": "Stocking Stuffers",
+      "category_id": 20010550,
+      "page_param_value": "stocking-stuffers",
+      "url": "https://www.llbean.com/llb/shop/20010550"
+    },
+    {
+      "name": "Food Gift Sets",
+      "category_id": 1000010393,
+      "page_param_value": null,
+      "url": "https://www.llbean.com/llb/shop/1000010393"
+    },
+    {
+      "name": "Food Gift Sets",
+      "category_id": 1000010393,
+      "page_param_value": null,
+      "url": "https://www.llbean.com/llb/shop/1000010393"
+    },
+    {
+      "name": "Gifts Under $75",
+      "category_id": 20011144,
+      "page_param_value": "gifts-under-$75",
+      "url": "https://www.llbean.com/llb/shop/20011144"
+    },
+    {
+      "name": "Gifts under $50",
+      "category_id": 20010549,
+      "page_param_value": "gifts-under-$50",
+      "url": "https://www.llbean.com/llb/shop/20010549"
+    },
+    {
+      "name": "Gifts Under $25",
+      "category_id": 20011145,
+      "page_param_value": "gifts-under-25",
+      "url": "https://www.llbean.com/llb/shop/20011145"
+    }
+  ],
+  "NEW": [
+    {
+      "name": "NEW",
+      "category_id": 511742,
+      "page_param_value": "new-arrivals",
+      "url": "https://www.llbean.com/llb/shop/511742"
+    },
+    {
+      "name": "Women's",
+      "category_id": 20010101,
+      "page_param_value": null,
+      "url": "https://www.llbean.com/llb/shop/20010101"
+    },
+    {
+      "name": "Clothing",
+      "category_id": 511744,
+      "page_param_value": "womens-clothing-new-arrivals",
+      "url": "https://www.llbean.com/llb/shop/511744"
+    },
+    {
+      "name": "Outerwear",
+      "category_id": 508877,
+      "page_param_value": "womens-outerwear-new-arrivals",
+      "url": "https://www.llbean.com/llb/shop/508877"
+    },
+    {
+      "name": "Footwear",
+      "category_id": 508896,
+      "page_param_value": "womens-footwear-new-arrivals",
+      "url": "https://www.llbean.com/llb/shop/508896"
+    },
+    {
+      "name": "Men's",
+      "category_id": 20010102,
+      "page_param_value": null,
+      "url": "https://www.llbean.com/llb/shop/20010102"
+    },
+    {
+      "name": "Clothing",
+      "category_id": 511743,
+      "page_param_value": "mens-clothing-new-arrivals",
+      "url": "https://www.llbean.com/llb/shop/511743"
+    },
+    {
+      "name": "Outerwear",
+      "category_id": 508868,
+      "page_param_value": "mens-outerwear-new-arrivals",
+      "url": "https://www.llbean.com/llb/shop/508868"
+    },
+    {
+      "name": "Footwear",
+      "category_id": 508895,
+      "page_param_value": "mens-footwear-new-arrivals",
+      "url": "https://www.llbean.com/llb/shop/508895"
+    },
+    {
+      "name": "Kids'",
+      "category_id": 20010103,
+      "page_param_value": null,
+      "url": "https://www.llbean.com/llb/shop/20010103"
+    },
+    {
+      "name": "Clothing",
+      "category_id": 511786,
+      "page_param_value": "kids-clothing-new-arrivals",
+      "url": "https://www.llbean.com/llb/shop/511786"
+    },
+    {
+      "name": "Outerwear",
+      "category_id": 518580,
+      "page_param_value": "kids-outerwear-new-arrivals",
+      "url": "https://www.llbean.com/llb/shop/518580"
+    },
+    {
+      "name": "Footwear",
+      "category_id": 514692,
+      "page_param_value": "kids-footwear-new-arrivals",
+      "url": "https://www.llbean.com/llb/shop/514692"
+    },
+    {
+      "name": "Outdoor Equipment",
+      "category_id": 511747,
+      "page_param_value": "outdoor-gear-new-arrivals",
+      "url": "https://www.llbean.com/llb/shop/511747"
+    },
+    {
+      "name": "Bags & Travel",
+      "category_id": 511749,
+      "page_param_value": "bags-and-travel-new-arrivals",
+      "url": "https://www.llbean.com/llb/shop/511749"
+    },
+    {
+      "name": "Home Goods",
+      "category_id": 511750,
+      "page_param_value": "home-goods-new-arrivals",
+      "url": "https://www.llbean.com/llb/shop/511750"
+    }
+  ],
+  "Clothing": [
+    {
+      "name": "Clothing",
+      "category_id": 12,
+      "page_param_value": "clothing",
+      "url": "https://www.llbean.com/llb/shop/12"
+    },
+    {
+      "name": "Women's",
+      "category_id": 27,
+      "page_param_value": "womens-clothing",
+      "url": "https://www.llbean.com/llb/shop/27"
+    },
+    {
+      "name": "Shop by Size Range",
+      "category_id": 516869,
+      "page_param_value": "womens-shop-by-size-range",
+      "url": "https://www.llbean.com/llb/shop/516869"
+    },
+    {
+      "name": "Plus Sizes",
+      "category_id": 617,
+      "page_param_value": "womens-plus-size-clothing",
+      "url": "https://www.llbean.com/llb/shop/617"
+    },
+    {
+      "name": "Shirts & Tops",
+      "category_id": 503109,
+      "page_param_value": "womens-plus-size-shirts-and-tops",
+      "url": "https://www.llbean.com/llb/shop/503109"
+    },
+    {
+      "name": "Sweatshirts & Fleece",
+      "category_id": 518642,
+      "page_param_value": "womens-plus-size-sweatshirts-and-fleece",
+      "url": "https://www.llbean.com/llb/shop/518642"
+    },
+    {
+      "name": "Sweaters",
+      "category_id": 503111,
+      "page_param_value": "womens-plus-size-sweaters",
+      "url": "https://www.llbean.com/llb/shop/503111"
+    },
+    {
+      "name": "Shorts & Skorts",
+      "category_id": 518641,
+      "page_param_value": "womens-plus-size-shorts-and-skorts",
+      "url": "https://www.llbean.com/llb/shop/518641"
+    },
+    {
+      "name": "Pants & Jeans",
+      "category_id": 503110,
+      "page_param_value": "womens-plus-size-pants-and-jeans",
+      "url": "https://www.llbean.com/llb/shop/503110"
+    },
+    {
+      "name": "Dresses",
+      "category_id": 503112,
+      "page_param_value": "womens-plus-size-dresses",
+      "url": "https://www.llbean.com/llb/shop/503112"
+    },
+    {
+      "name": "Swimwear",
+      "category_id": 503114,
+      "page_param_value": "womens-plus-size-swimwear",
+      "url": "https://www.llbean.com/llb/shop/503114"
+    },
+    {
+      "name": "Sleepwear",
+      "category_id": 503113,
+      "page_param_value": "womens-plus-size-sleepwear",
+      "url": "https://www.llbean.com/llb/shop/503113"
+    },
+    {
+      "name": "Base Layers",
+      "category_id": 511210,
+      "page_param_value": "womens-plus-size-base-layers",
+      "url": "https://www.llbean.com/llb/shop/511210"
+    },
+    {
+      "name": "Petite Sizes",
+      "category_id": 889,
+      "page_param_value": "womens-petite-size-clothing",
+      "url": "https://www.llbean.com/llb/shop/889"
+    },
+    {
+      "name": "Shirts & Tops",
+      "category_id": 506438,
+      "page_param_value": "womens-petite-shirts",
+      "url": "https://www.llbean.com/llb/shop/506438"
+    },
+    {
+      "name": "Sweaters",
+      "category_id": 510523,
+      "page_param_value": "womens-petite-size-sweaters",
+      "url": "https://www.llbean.com/llb/shop/510523"
+    },
+    {
+      "name": "Sweatshirts & Fleece",
+      "category_id": 518639,
+      "page_param_value": "womens-petite-size-sweatshirts-and-fleece",
+      "url": "https://www.llbean.com/llb/shop/518639"
+    },
+    {
+      "name": "Pants & Jeans",
+      "category_id": 506440,
+      "page_param_value": "womens-petite-size-pants-and-jeans",
+      "url": "https://www.llbean.com/llb/shop/506440"
+    },
+    {
+      "name": "Dresses",
+      "category_id": 506450,
+      "page_param_value": "womens-petite-dresses",
+      "url": "https://www.llbean.com/llb/shop/506450"
+    },
+    {
+      "name": "Sleepwear",
+      "category_id": 506456,
+      "page_param_value": "womens-petite-size-sleepwear",
+      "url": "https://www.llbean.com/llb/shop/506456"
+    },
+    {
+      "name": "Base Layers",
+      "category_id": 513168,
+      "page_param_value": "womens-petite-size-base-layers",
+      "url": "https://www.llbean.com/llb/shop/513168"
+    },
+    {
+      "name": "Tall Sizes",
+      "category_id": 518021,
+      "page_param_value": "womens-tall-sizes",
+      "url": "https://www.llbean.com/llb/shop/518021"
+    },
+    {
+      "name": "New Arrivals",
+      "category_id": 511744,
+      "page_param_value": "womens-clothing-new-arrivals",
+      "url": "https://www.llbean.com/llb/shop/511744"
+    },
+    {
+      "name": "Tees & Tanks",
+      "category_id": 504209,
+      "page_param_value": "womens-t-shirts-and-tanks",
+      "url": "https://www.llbean.com/llb/shop/504209"
+    },
+    {
+      "name": "Shirts & Tops",
+      "category_id": 607,
+      "page_param_value": "womens-shirts-and-tops",
+      "url": "https://www.llbean.com/llb/shop/607"
+    },
+    {
+      "name": "Shirts & Button-Downs",
+      "category_id": 502972,
+      "page_param_value": "womens-shirts-and-button-downs",
+      "url": "https://www.llbean.com/llb/shop/502972"
+    },
+    {
+      "name": "Flannel Shirts",
+      "category_id": 506332,
+      "page_param_value": "womens-flannel-shirts",
+      "url": "https://www.llbean.com/llb/shop/506332"
+    },
+    {
+      "name": "Shirt-Jackets",
+      "category_id": 518515,
+      "page_param_value": "womens-shirt-jackets",
+      "url": "https://www.llbean.com/llb/shop/518515"
+    },
+    {
+      "name": "Sweaters",
+      "category_id": 611,
+      "page_param_value": "womens-sweaters",
+      "url": "https://www.llbean.com/llb/shop/611"
+    },
+    {
+      "name": "Sweatshirts",
+      "category_id": 886,
+      "page_param_value": "womens-sweatshirts",
+      "url": "https://www.llbean.com/llb/shop/886"
+    },
+    {
+      "name": "Fleece",
+      "category_id": 504732,
+      "page_param_value": "womens-fleece-jackets",
+      "url": "https://www.llbean.com/llb/shop/504732"
+    },
+    {
+      "name": "Jeans",
+      "category_id": 513283,
+      "page_param_value": "womens-jeans",
+      "url": "https://www.llbean.com/llb/shop/513283"
+    },
+    {
+      "name": "Pants",
+      "category_id": 622,
+      "page_param_value": "womens-pants-and-jeans",
+      "url": "https://www.llbean.com/llb/shop/622"
+    },
+    {
+      "name": "Pants",
+      "category_id": 504199,
+      "page_param_value": "womens-pants",
+      "url": "https://www.llbean.com/llb/shop/504199"
+    },
+    {
+      "name": "Leggings & Tights",
+      "category_id": 518324,
+      "page_param_value": "womens-leggings-and-tights",
+      "url": "https://www.llbean.com/llb/shop/518324"
+    },
+    {
+      "name": "Cropped & Capri",
+      "category_id": 516133,
+      "page_param_value": "womens-cropped-and-capri-pants-and-jeans",
+      "url": "https://www.llbean.com/llb/shop/516133"
+    },
+    {
+      "name": "Shorts & Skorts",
+      "category_id": 513280,
+      "page_param_value": "womens-shorts-and-skorts",
+      "url": "https://www.llbean.com/llb/shop/513280"
+    },
+    {
+      "name": "Dresses & Skirts",
+      "category_id": 506213,
+      "page_param_value": "womens-dresses-and-skirts",
+      "url": "https://www.llbean.com/llb/shop/506213"
+    },
+    {
+      "name": "Swimwear",
+      "category_id": 624,
+      "page_param_value": "womens-swimwear",
+      "url": "https://www.llbean.com/llb/shop/624"
+    },
+    {
+      "name": "Separates",
+      "category_id": 517610,
+      "page_param_value": "separates",
+      "url": "https://www.llbean.com/llb/shop/517610"
+    },
+    {
+      "name": "Tops",
+      "category_id": 503320,
+      "page_param_value": "womens-swimwear-tops",
+      "url": "https://www.llbean.com/llb/shop/503320"
+    },
+    {
+      "name": "Bottoms",
+      "category_id": 507505,
+      "page_param_value": "womens-swimwear-bottoms",
+      "url": "https://www.llbean.com/llb/shop/507505"
+    },
+    {
+      "name": "One-Piece",
+      "category_id": 503314,
+      "page_param_value": "womens-one-piece-swimsuits",
+      "url": "https://www.llbean.com/llb/shop/503314"
+    },
+    {
+      "name": "Cover-Ups & Rash Guards",
+      "category_id": 516246,
+      "page_param_value": "womens-cover-ups-and-rash-guards",
+      "url": "https://www.llbean.com/llb/shop/516246"
+    },
+    {
+      "name": "Board & Swim Shorts",
+      "category_id": 516247,
+      "page_param_value": "womens-board-shorts-and-swim-shorts",
+      "url": "https://www.llbean.com/llb/shop/516247"
+    },
+    {
+      "name": "Sleepwear",
+      "category_id": 613,
+      "page_param_value": "womens-sleepwear",
+      "url": "https://www.llbean.com/llb/shop/613"
+    },
+    {
+      "name": "Pajamas & Nightgowns",
+      "category_id": 502983,
+      "page_param_value": "womens-pajamas-and-nightgowns",
+      "url": "https://www.llbean.com/llb/shop/502983"
+    },
+    {
+      "name": "Robes",
+      "category_id": 502982,
+      "page_param_value": "womens-robes",
+      "url": "https://www.llbean.com/llb/shop/502982"
+    },
+    {
+      "name": "Base Layers",
+      "category_id": 503056,
+      "page_param_value": "womens-long-underwear-and-base-layers",
+      "url": "https://www.llbean.com/llb/shop/503056"
+    },
+    {
+      "name": "Activewear",
+      "category_id": 509757,
+      "page_param_value": "womens-activewear",
+      "url": "https://www.llbean.com/llb/shop/509757"
+    },
+    {
+      "name": "Shirts",
+      "category_id": 502975,
+      "page_param_value": "womens-activewear-shirts",
+      "url": "https://www.llbean.com/llb/shop/502975"
+    },
+    {
+      "name": "Sweatshirts & Fleece",
+      "category_id": 515996,
+      "page_param_value": "womens-activewear-sweatshirts-and-fleece",
+      "url": "https://www.llbean.com/llb/shop/515996"
+    },
+    {
+      "name": "Pants",
+      "category_id": 505698,
+      "page_param_value": "womens-activewear-pants",
+      "url": "https://www.llbean.com/llb/shop/505698"
+    },
+    {
+      "name": "Leggings & Tights",
+      "category_id": 518324,
+      "page_param_value": "womens-leggings-and-tights",
+      "url": "https://www.llbean.com/llb/shop/518324"
+    },
+    {
+      "name": "Shorts & Skorts",
+      "category_id": 512834,
+      "page_param_value": "womens-activewear-shorts-and-skorts",
+      "url": "https://www.llbean.com/llb/shop/512834"
+    },
+    {
+      "name": "Accessories",
+      "category_id": 614,
+      "page_param_value": "womens-accessories",
+      "url": "https://www.llbean.com/llb/shop/614"
+    },
+    {
+      "name": "Hats & Headwear",
+      "category_id": 502976,
+      "page_param_value": "womens-hats-and-headwear",
+      "url": "https://www.llbean.com/llb/shop/502976"
+    },
+    {
+      "name": "Winter Hats & Beanies",
+      "category_id": 516612,
+      "page_param_value": "womens-winter-hats-and-beanies",
+      "url": "https://www.llbean.com/llb/shop/516612"
+    },
+    {
+      "name": "Rain & Sun Hats",
+      "category_id": 516614,
+      "page_param_value": "womens-rain-and-sun-hats",
+      "url": "https://www.llbean.com/llb/shop/516614"
+    },
+    {
+      "name": "Baseball Caps & Visors",
+      "category_id": 516615,
+      "page_param_value": "womens-baseball-caps-and-visors",
+      "url": "https://www.llbean.com/llb/shop/516615"
+    },
+    {
+      "name": "Gloves & Mittens",
+      "category_id": 502977,
+      "page_param_value": "womens-gloves-and-mittens",
+      "url": "https://www.llbean.com/llb/shop/502977"
+    },
+    {
+      "name": "Scarves & Neck Gaiters",
+      "category_id": 513945,
+      "page_param_value": "womens-masks-scarves-and-neck-gaiters",
+      "url": "https://www.llbean.com/llb/shop/513945"
+    },
+    {
+      "name": "Underwear",
+      "category_id": 512672,
+      "page_param_value": "womens-underwear",
+      "url": "https://www.llbean.com/llb/shop/512672"
+    },
+    {
+      "name": "Socks",
+      "category_id": 502980,
+      "page_param_value": "womens-socks",
+      "url": "https://www.llbean.com/llb/shop/502980"
+    },
+    {
+      "name": "Belts",
+      "category_id": 502979,
+      "page_param_value": "womens-belts",
+      "url": "https://www.llbean.com/llb/shop/502979"
+    },
+    {
+      "name": "Sunglasses",
+      "category_id": 804,
+      "page_param_value": "sunglasses",
+      "url": "https://www.llbean.com/llb/shop/804"
+    },
+    {
+      "name": "Men's",
+      "category_id": 26,
+      "page_param_value": "mens-clothing",
+      "url": "https://www.llbean.com/llb/shop/26"
+    },
+    {
+      "name": "Shop by Size Range",
+      "category_id": 516868,
+      "page_param_value": "mens-shop-by-size-range",
+      "url": "https://www.llbean.com/llb/shop/516868"
+    },
+    {
+      "name": "Tall Sizes",
+      "category_id": 813,
+      "page_param_value": "mens-tall-size-clothing",
+      "url": "https://www.llbean.com/llb/shop/813"
+    },
+    {
+      "name": "Shirts",
+      "category_id": 506186,
+      "page_param_value": "mens-tall-size-shirts",
+      "url": "https://www.llbean.com/llb/shop/506186"
+    },
+    {
+      "name": "Sweaters",
+      "category_id": 506189,
+      "page_param_value": "mens-tall-size-sweaters",
+      "url": "https://www.llbean.com/llb/shop/506189"
+    },
+    {
+      "name": "Sweatshirts & Fleece",
+      "category_id": 518635,
+      "page_param_value": "mens-tall-size-sweatshirts-and-fleece",
+      "url": "https://www.llbean.com/llb/shop/518635"
+    },
+    {
+      "name": "Pants & Jeans",
+      "category_id": 506187,
+      "page_param_value": "mens-tall-size-pants-and-jeans",
+      "url": "https://www.llbean.com/llb/shop/506187"
+    },
+    {
+      "name": "Sleepwear",
+      "category_id": 512110,
+      "page_param_value": "mens-tall-size-sleepwear",
+      "url": "https://www.llbean.com/llb/shop/512110"
+    },
+    {
+      "name": "Base Layers",
+      "category_id": 518636,
+      "page_param_value": "mens-tall-size-base-layers",
+      "url": "https://www.llbean.com/llb/shop/518636"
+    },
+    {
+      "name": "XXXL Sizes",
+      "category_id": 518728,
+      "page_param_value": "mens-xxxl-sizes",
+      "url": "https://www.llbean.com/llb/shop/518728"
+    },
+    {
+      "name": "Men's 28\" and 29\" Inseams",
+      "category_id": 518729,
+      "page_param_value": "mens-shorter-inseams",
+      "url": "https://www.llbean.com/llb/shop/518729"
+    },
+    {
+      "name": "New Arrivals",
+      "category_id": 511743,
+      "page_param_value": "mens-clothing-new-arrivals",
+      "url": "https://www.llbean.com/llb/shop/511743"
+    },
+    {
+      "name": "T-Shirts & Polos",
+      "category_id": 20010166,
+      "page_param_value": null,
+      "url": "https://www.llbean.com/llb/shop/20010166"
+    },
+    {
+      "name": "T-Shirts",
+      "category_id": 504193,
+      "page_param_value": "mens-t-shirts",
+      "url": "https://www.llbean.com/llb/shop/504193"
+    },
+    {
+      "name": "Polo Shirts",
+      "category_id": 506786,
+      "page_param_value": "mens-polos-and-rugby-shirts",
+      "url": "https://www.llbean.com/llb/shop/506786"
+    },
+    {
+      "name": "Shirts",
+      "category_id": 589,
+      "page_param_value": "mens-shirts",
+      "url": "https://www.llbean.com/llb/shop/589"
+    },
+    {
+      "name": "Flannel Shirts",
+      "category_id": 505538,
+      "page_param_value": "mens-flannel-shirts",
+      "url": "https://www.llbean.com/llb/shop/505538"
+    },
+    {
+      "name": "Casual Button-Down Shirts",
+      "category_id": 506874,
+      "page_param_value": "mens-casual-button-down-shirts",
+      "url": "https://www.llbean.com/llb/shop/506874"
+    },
+    {
+      "name": "Shirt-Jackets",
+      "category_id": 518514,
+      "page_param_value": "mens-shirt-jackets",
+      "url": "https://www.llbean.com/llb/shop/518514"
+    },
+    {
+      "name": "Henleys",
+      "category_id": 514115,
+      "page_param_value": "mens-henley-shirts",
+      "url": "https://www.llbean.com/llb/shop/514115"
+    },
+    {
+      "name": "Dress Shirts",
+      "category_id": 504190,
+      "page_param_value": "mens-dress-shirts",
+      "url": "https://www.llbean.com/llb/shop/504190"
+    },
+    {
+      "name": "Sweaters",
+      "category_id": 594,
+      "page_param_value": "mens-sweaters",
+      "url": "https://www.llbean.com/llb/shop/594"
+    },
+    {
+      "name": "Sweatshirts",
+      "category_id": 907,
+      "page_param_value": "mens-sweatshirts",
+      "url": "https://www.llbean.com/llb/shop/907"
+    },
+    {
+      "name": "Fleece",
+      "category_id": 506674,
+      "page_param_value": "mens-fleece",
+      "url": "https://www.llbean.com/llb/shop/506674"
+    },
+    {
+      "name": "Jeans",
+      "category_id": 513284,
+      "page_param_value": "mens-jeans",
+      "url": "https://www.llbean.com/llb/shop/513284"
+    },
+    {
+      "name": "Pants",
+      "category_id": 502921,
+      "page_param_value": "mens-pants",
+      "url": "https://www.llbean.com/llb/shop/502921"
+    },
+    {
+      "name": "Shorts",
+      "category_id": 908,
+      "page_param_value": "mens-shorts",
+      "url": "https://www.llbean.com/llb/shop/908"
+    },
+    {
+      "name": "Swimwear",
+      "category_id": 511548,
+      "page_param_value": "mens-swimwear",
+      "url": "https://www.llbean.com/llb/shop/511548"
+    },
+    {
+      "name": "Swim Trunks",
+      "category_id": 516602,
+      "page_param_value": "mens-swim-trunks",
+      "url": "https://www.llbean.com/llb/shop/516602"
+    },
+    {
+      "name": "Rash Guards",
+      "category_id": 516603,
+      "page_param_value": "mens-rash-guards",
+      "url": "https://www.llbean.com/llb/shop/516603"
+    },
+    {
+      "name": "Sleepwear",
+      "category_id": 595,
+      "page_param_value": "mens-sleepwear",
+      "url": "https://www.llbean.com/llb/shop/595"
+    },
+    {
+      "name": "Pajamas",
+      "category_id": 502849,
+      "page_param_value": "mens-pajamas",
+      "url": "https://www.llbean.com/llb/shop/502849"
+    },
+    {
+      "name": "Robes",
+      "category_id": 502851,
+      "page_param_value": "mens-robes",
+      "url": "https://www.llbean.com/llb/shop/502851"
+    },
+    {
+      "name": "Base Layers",
+      "category_id": 516180,
+      "page_param_value": "mens-long-underwear-and-base-layers",
+      "url": "https://www.llbean.com/llb/shop/516180"
+    },
+    {
+      "name": "Activewear",
+      "category_id": 509723,
+      "page_param_value": "mens-activewear",
+      "url": "https://www.llbean.com/llb/shop/509723"
+    },
+    {
+      "name": "Shirts",
+      "category_id": 512864,
+      "page_param_value": "mens-activewear-shirts",
+      "url": "https://www.llbean.com/llb/shop/512864"
+    },
+    {
+      "name": "Sweatshirts & Fleece",
+      "category_id": 515982,
+      "page_param_value": "mens-activewear-sweatshirts-and-fleece",
+      "url": "https://www.llbean.com/llb/shop/515982"
+    },
+    {
+      "name": "Pants",
+      "category_id": 506778,
+      "page_param_value": "mens-activewear-pants",
+      "url": "https://www.llbean.com/llb/shop/506778"
+    },
+    {
+      "name": "Shorts",
+      "category_id": 512860,
+      "page_param_value": "mens-activewear-shorts",
+      "url": "https://www.llbean.com/llb/shop/512860"
+    },
+    {
+      "name": "Accessories",
+      "category_id": 596,
+      "page_param_value": "mens-accessories",
+      "url": "https://www.llbean.com/llb/shop/596"
+    },
+    {
+      "name": "Hats & Headwear",
+      "category_id": 502857,
+      "page_param_value": "mens-hats-and-headwear",
+      "url": "https://www.llbean.com/llb/shop/502857"
+    },
+    {
+      "name": "Winter Hats & Beanies",
+      "category_id": 502860,
+      "page_param_value": "mens-winter-hats-and-beanies",
+      "url": "https://www.llbean.com/llb/shop/502860"
+    },
+    {
+      "name": "Rain & Sun Hats",
+      "category_id": 502858,
+      "page_param_value": "mens-rain-and-sun-hats",
+      "url": "https://www.llbean.com/llb/shop/502858"
+    },
+    {
+      "name": "Baseball Caps & Visors",
+      "category_id": 502859,
+      "page_param_value": "mens-baseball-caps-and-visors",
+      "url": "https://www.llbean.com/llb/shop/502859"
+    },
+    {
+      "name": "Gloves & Mittens",
+      "category_id": 502856,
+      "page_param_value": "mens-gloves-and-mittens",
+      "url": "https://www.llbean.com/llb/shop/502856"
+    },
+    {
+      "name": "Scarves & Neck Gaiters",
+      "category_id": 502953,
+      "page_param_value": "mens-scarves-and-neck-gaiters",
+      "url": "https://www.llbean.com/llb/shop/502953"
+    },
+    {
+      "name": "Underwear & Boxers",
+      "category_id": 516179,
+      "page_param_value": "mens-underwear-and-boxers",
+      "url": "https://www.llbean.com/llb/shop/516179"
+    },
+    {
+      "name": "Socks",
+      "category_id": 502854,
+      "page_param_value": "mens-socks",
+      "url": "https://www.llbean.com/llb/shop/502854"
+    },
+    {
+      "name": "Belts",
+      "category_id": 502855,
+      "page_param_value": "mens-belts",
+      "url": "https://www.llbean.com/llb/shop/502855"
+    },
+    {
+      "name": "Sunglasses",
+      "category_id": 804,
+      "page_param_value": "sunglasses",
+      "url": "https://www.llbean.com/llb/shop/804"
+    },
+    {
+      "name": "Wallets",
+      "category_id": 506664,
+      "page_param_value": "mens-wallets",
+      "url": "https://www.llbean.com/llb/shop/506664"
+    },
+    {
+      "name": "Kids'",
+      "category_id": 28,
+      "page_param_value": "kids-clothing",
+      "url": "https://www.llbean.com/llb/shop/28"
+    },
+    {
+      "name": "New Arrivals",
+      "category_id": 511786,
+      "page_param_value": "kids-clothing-new-arrivals",
+      "url": "https://www.llbean.com/llb/shop/511786"
+    },
+    {
+      "name": "Tops",
+      "category_id": 503368,
+      "page_param_value": "kids-tops",
+      "url": "https://www.llbean.com/llb/shop/503368"
+    },
+    {
+      "name": "Pants & Shorts",
+      "category_id": 503570,
+      "page_param_value": "kids-bottoms",
+      "url": "https://www.llbean.com/llb/shop/503570"
+    },
+    {
+      "name": "Sleepwear",
+      "category_id": 503560,
+      "page_param_value": "kids-sleepwear",
+      "url": "https://www.llbean.com/llb/shop/503560"
+    },
+    {
+      "name": "Base Layers",
+      "category_id": 513852,
+      "page_param_value": "kids-base-layers",
+      "url": "https://www.llbean.com/llb/shop/513852"
+    },
+    {
+      "name": "Accessories",
+      "category_id": 503563,
+      "page_param_value": "kids-accessories",
+      "url": "https://www.llbean.com/llb/shop/503563"
+    },
+    {
+      "name": "Toddler & Baby",
+      "category_id": 289,
+      "page_param_value": "toddler-and-baby-clothing",
+      "url": "https://www.llbean.com/llb/shop/289"
+    }
+  ],
+  "Outerwear": [
+    {
+      "name": "Outerwear",
+      "category_id": 516567,
+      "page_param_value": "outerwear",
+      "url": "https://www.llbean.com/llb/shop/516567"
+    },
+    {
+      "name": "Women's",
+      "category_id": 610,
+      "page_param_value": "womens-outerwear",
+      "url": "https://www.llbean.com/llb/shop/610"
+    },
+    {
+      "name": "Shop by Size Range",
+      "category_id": 518627,
+      "page_param_value": "shop-by-size-range",
+      "url": "https://www.llbean.com/llb/shop/518627"
+    },
+    {
+      "name": "Plus Sizes",
+      "category_id": 503108,
+      "page_param_value": "womens-plus-size-outerwear",
+      "url": "https://www.llbean.com/llb/shop/503108"
+    },
+    {
+      "name": "Petite Sizes",
+      "category_id": 506446,
+      "page_param_value": "womens-petite-size-outerwear",
+      "url": "https://www.llbean.com/llb/shop/506446"
+    },
+    {
+      "name": "Tall Sizes",
+      "category_id": 518637,
+      "page_param_value": "womens-tall-size-outerwear",
+      "url": "https://www.llbean.com/llb/shop/518637"
+    },
+    {
+      "name": "New Arrivals",
+      "category_id": 508877,
+      "page_param_value": null,
+      "url": "https://www.llbean.com/llb/shop/508877"
+    },
+    {
+      "name": "Insulated Jackets",
+      "category_id": 504735,
+      "page_param_value": "womens-insulated-jackets",
+      "url": "https://www.llbean.com/llb/shop/504735"
+    },
+    {
+      "name": "Casual Jackets",
+      "category_id": 504734,
+      "page_param_value": "womens-casual-jackets",
+      "url": "https://www.llbean.com/llb/shop/504734"
+    },
+    {
+      "name": "Fleece",
+      "category_id": 504732,
+      "page_param_value": "womens-fleece-jackets",
+      "url": "https://www.llbean.com/llb/shop/504732"
+    },
+    {
+      "name": "Rain Jackets & Shells",
+      "category_id": 506593,
+      "page_param_value": "womens-rain-jackets",
+      "url": "https://www.llbean.com/llb/shop/506593"
+    },
+    {
+      "name": "Windbreakers",
+      "category_id": 506594,
+      "page_param_value": "womens-windbreakers",
+      "url": "https://www.llbean.com/llb/shop/506594"
+    },
+    {
+      "name": "Vests",
+      "category_id": 504729,
+      "page_param_value": "womens-outerwear-vests",
+      "url": "https://www.llbean.com/llb/shop/504729"
+    },
+    {
+      "name": "Snow & Rain Pants",
+      "category_id": 516609,
+      "page_param_value": "womens-snow-and-rain-pants",
+      "url": "https://www.llbean.com/llb/shop/516609"
+    },
+    {
+      "name": "Accessories",
+      "category_id": 518844,
+      "page_param_value": "womens-outerwear-accessories",
+      "url": "https://www.llbean.com/llb/shop/518844"
+    },
+    {
+      "name": "Winter Hats & Beanies",
+      "category_id": 516612,
+      "page_param_value": "womens-winter-hats-and-beanies",
+      "url": "https://www.llbean.com/llb/shop/516612"
+    },
+    {
+      "name": "Rain & Sun Hats",
+      "category_id": 516614,
+      "page_param_value": "womens-rain-and-sun-hats",
+      "url": "https://www.llbean.com/llb/shop/516614"
+    },
+    {
+      "name": "Baseball Caps & Visors",
+      "category_id": 516615,
+      "page_param_value": "womens-baseball-caps-and-visors",
+      "url": "https://www.llbean.com/llb/shop/516615"
+    },
+    {
+      "name": "Gloves & Mittens",
+      "category_id": 502977,
+      "page_param_value": "womens-gloves-and-mittens",
+      "url": "https://www.llbean.com/llb/shop/502977"
+    },
+    {
+      "name": "Scarves & Neck Gaiters",
+      "category_id": 513945,
+      "page_param_value": "womens-masks-scarves-and-neck-gaiters",
+      "url": "https://www.llbean.com/llb/shop/513945"
+    },
+    {
+      "name": "Men's",
+      "category_id": 593,
+      "page_param_value": "mens-outerwear",
+      "url": "https://www.llbean.com/llb/shop/593"
+    },
+    {
+      "name": "Shop by Size Range",
+      "category_id": 518626,
+      "page_param_value": "shop-by-size-range",
+      "url": "https://www.llbean.com/llb/shop/518626"
+    },
+    {
+      "name": "Tall Sizes",
+      "category_id": 506188,
+      "page_param_value": "mens-tall-size-outerwear",
+      "url": "https://www.llbean.com/llb/shop/506188"
+    },
+    {
+      "name": "XXXL Sizes",
+      "category_id": 518839,
+      "page_param_value": "mens-xxxl-outerwear",
+      "url": "https://www.llbean.com/llb/shop/518839"
+    },
+    {
+      "name": "New Arrivals",
+      "category_id": 508868,
+      "page_param_value": null,
+      "url": "https://www.llbean.com/llb/shop/508868"
+    },
+    {
+      "name": "Insulated Jackets",
+      "category_id": 506673,
+      "page_param_value": "mens-insulated-jackets",
+      "url": "https://www.llbean.com/llb/shop/506673"
+    },
+    {
+      "name": "Casual Jackets",
+      "category_id": 506677,
+      "page_param_value": "mens-casual-jackets",
+      "url": "https://www.llbean.com/llb/shop/506677"
+    },
+    {
+      "name": "Fleece",
+      "category_id": 506674,
+      "page_param_value": "mens-fleece",
+      "url": "https://www.llbean.com/llb/shop/506674"
+    },
+    {
+      "name": "Rain Jackets & Shells",
+      "category_id": 506675,
+      "page_param_value": "mens-rain-jackets",
+      "url": "https://www.llbean.com/llb/shop/506675"
+    },
+    {
+      "name": "Windbreakers",
+      "category_id": 506676,
+      "page_param_value": "mens-windbreakers",
+      "url": "https://www.llbean.com/llb/shop/506676"
+    },
+    {
+      "name": "Vests",
+      "category_id": 504715,
+      "page_param_value": "mens-outerwear-vests",
+      "url": "https://www.llbean.com/llb/shop/504715"
+    },
+    {
+      "name": "Snow & Rain Pants",
+      "category_id": 516604,
+      "page_param_value": "mens-snow-and-rain-pants",
+      "url": "https://www.llbean.com/llb/shop/516604"
+    },
+    {
+      "name": "Accessories",
+      "category_id": 518845,
+      "page_param_value": "mens-outerwear-accessories",
+      "url": "https://www.llbean.com/llb/shop/518845"
+    },
+    {
+      "name": "Winter Hats & Beanies",
+      "category_id": 502860,
+      "page_param_value": "mens-winter-hats-and-beanies",
+      "url": "https://www.llbean.com/llb/shop/502860"
+    },
+    {
+      "name": "Rain & Sun Hats",
+      "category_id": 502858,
+      "page_param_value": "mens-rain-and-sun-hats",
+      "url": "https://www.llbean.com/llb/shop/502858"
+    },
+    {
+      "name": "Baseball Caps & Visors",
+      "category_id": 502859,
+      "page_param_value": "mens-baseball-caps-and-visors",
+      "url": "https://www.llbean.com/llb/shop/502859"
+    },
+    {
+      "name": "Gloves & Mittens",
+      "category_id": 502856,
+      "page_param_value": "mens-gloves-and-mittens",
+      "url": "https://www.llbean.com/llb/shop/502856"
+    },
+    {
+      "name": "Scarves & Neck Gaiters",
+      "category_id": 502953,
+      "page_param_value": "mens-scarves-and-neck-gaiters",
+      "url": "https://www.llbean.com/llb/shop/502953"
+    },
+    {
+      "name": "Kids'",
+      "category_id": 503369,
+      "page_param_value": "kids-outerwear",
+      "url": "https://www.llbean.com/llb/shop/503369"
+    },
+    {
+      "name": "New Arrivals",
+      "category_id": 518580,
+      "page_param_value": null,
+      "url": "https://www.llbean.com/llb/shop/518580"
+    },
+    {
+      "name": "Insulated Jackets",
+      "category_id": 509976,
+      "page_param_value": "kids-insulated-jackets",
+      "url": "https://www.llbean.com/llb/shop/509976"
+    },
+    {
+      "name": "Fleece & Lightweight Jackets",
+      "category_id": 1000010293,
+      "page_param_value": "kids-fleece-lightweight-jackets",
+      "url": "https://www.llbean.com/llb/shop/1000010293"
+    },
+    {
+      "name": "Rain Jackets",
+      "category_id": 517473,
+      "page_param_value": "kids-rain-jackets",
+      "url": "https://www.llbean.com/llb/shop/517473"
+    },
+    {
+      "name": "Pants & Suits",
+      "category_id": 503565,
+      "page_param_value": "kids-outerwear-pants-and-suits",
+      "url": "https://www.llbean.com/llb/shop/503565"
+    },
+    {
+      "name": "Toddler & Baby",
+      "category_id": 518610,
+      "page_param_value": "toddler-and-baby-outerwear",
+      "url": "https://www.llbean.com/llb/shop/518610"
+    },
+    {
+      "name": "Accessories",
+      "category_id": 503563,
+      "page_param_value": "kids-accessories",
+      "url": "https://www.llbean.com/llb/shop/503563"
+    }
+  ],
+  "Footwear": [
+    {
+      "name": "Footwear",
+      "category_id": 474,
+      "page_param_value": "footwear",
+      "url": "https://www.llbean.com/llb/shop/474"
+    },
+    {
+      "name": "Women's",
+      "category_id": 630,
+      "page_param_value": "womens-footwear",
+      "url": "https://www.llbean.com/llb/shop/630"
+    },
+    {
+      "name": "New Arrivals",
+      "category_id": 508896,
+      "page_param_value": null,
+      "url": "https://www.llbean.com/llb/shop/508896"
+    },
+    {
+      "name": "Boots",
+      "category_id": 506708,
+      "page_param_value": "womens-boots",
+      "url": "https://www.llbean.com/llb/shop/506708"
+    },
+    {
+      "name": "Hiking Boots & Shoes",
+      "category_id": 507000,
+      "page_param_value": "womens-hiking-boots-and-shoes",
+      "url": "https://www.llbean.com/llb/shop/507000"
+    },
+    {
+      "name": "Casual",
+      "category_id": 503070,
+      "page_param_value": "womens-casual-boots",
+      "url": "https://www.llbean.com/llb/shop/503070"
+    },
+    {
+      "name": "Rain",
+      "category_id": 506713,
+      "page_param_value": "womens-rain-boots",
+      "url": "https://www.llbean.com/llb/shop/506713"
+    },
+    {
+      "name": "Bean Boots",
+      "category_id": 513859,
+      "page_param_value": "womens-llbean-boots",
+      "url": "https://www.llbean.com/llb/shop/513859"
+    },
+    {
+      "name": "Snow",
+      "category_id": 506711,
+      "page_param_value": "womens-snow-boots",
+      "url": "https://www.llbean.com/llb/shop/506711"
+    },
+    {
+      "name": "Hunting",
+      "category_id": 507963,
+      "page_param_value": "womens-hunting-boots",
+      "url": "https://www.llbean.com/llb/shop/507963"
+    },
+    {
+      "name": "Sneakers & Shoes",
+      "category_id": 506705,
+      "page_param_value": "womens-sneakers-and-shoes",
+      "url": "https://www.llbean.com/llb/shop/506705"
+    },
+    {
+      "name": "Walking",
+      "category_id": 516630,
+      "page_param_value": "womens-walking-shoes",
+      "url": "https://www.llbean.com/llb/shop/516630"
+    },
+    {
+      "name": "Casual",
+      "category_id": 503077,
+      "page_param_value": "womens-casual-shoes",
+      "url": "https://www.llbean.com/llb/shop/503077"
+    },
+    {
+      "name": "Running",
+      "category_id": 503066,
+      "page_param_value": "womens-running-shoes",
+      "url": "https://www.llbean.com/llb/shop/503066"
+    },
+    {
+      "name": "Hiking",
+      "category_id": 516629,
+      "page_param_value": "womens-hiking-shoes",
+      "url": "https://www.llbean.com/llb/shop/516629"
+    },
+    {
+      "name": "Sandals & Water Shoes",
+      "category_id": 503423,
+      "page_param_value": "sandals-and-water-shoes",
+      "url": "https://www.llbean.com/llb/shop/503423"
+    },
+    {
+      "name": "Sandals",
+      "category_id": 503443,
+      "page_param_value": "womens-sandals",
+      "url": "https://www.llbean.com/llb/shop/503443"
+    },
+    {
+      "name": "Flip-Flops",
+      "category_id": 506589,
+      "page_param_value": "womens-flip-flops",
+      "url": "https://www.llbean.com/llb/shop/506589"
+    },
+    {
+      "name": "Water Shoes",
+      "category_id": 503441,
+      "page_param_value": "womens-water-shoes",
+      "url": "https://www.llbean.com/llb/shop/503441"
+    },
+    {
+      "name": "Slippers",
+      "category_id": 503422,
+      "page_param_value": "womens-slippers",
+      "url": "https://www.llbean.com/llb/shop/503422"
+    },
+    {
+      "name": "Socks",
+      "category_id": 502980,
+      "page_param_value": "womens-socks",
+      "url": "https://www.llbean.com/llb/shop/502980"
+    },
+    {
+      "name": "Accessories",
+      "category_id": 20010704,
+      "page_param_value": null,
+      "url": "https://www.llbean.com/llb/shop/20010704"
+    },
+    {
+      "name": "Men's",
+      "category_id": 629,
+      "page_param_value": "mens-footwear",
+      "url": "https://www.llbean.com/llb/shop/629"
+    },
+    {
+      "name": "New Arrivals",
+      "category_id": 508895,
+      "page_param_value": null,
+      "url": "https://www.llbean.com/llb/shop/508895"
+    },
+    {
+      "name": "Boots",
+      "category_id": 506794,
+      "page_param_value": "mens-boots",
+      "url": "https://www.llbean.com/llb/shop/506794"
+    },
+    {
+      "name": "Hiking Boots & Shoes",
+      "category_id": 506795,
+      "page_param_value": "mens-hiking-boots-and-shoes",
+      "url": "https://www.llbean.com/llb/shop/506795"
+    },
+    {
+      "name": "Casual",
+      "category_id": 506772,
+      "page_param_value": "mens-casual-boots",
+      "url": "https://www.llbean.com/llb/shop/506772"
+    },
+    {
+      "name": "Rain",
+      "category_id": 511065,
+      "page_param_value": "mens-rain-boots",
+      "url": "https://www.llbean.com/llb/shop/511065"
+    },
+    {
+      "name": "Bean Boots",
+      "category_id": 513858,
+      "page_param_value": "mens-llbean-boots",
+      "url": "https://www.llbean.com/llb/shop/513858"
+    },
+    {
+      "name": "Snow",
+      "category_id": 506796,
+      "page_param_value": "mens-rain-and-snow-boots",
+      "url": "https://www.llbean.com/llb/shop/506796"
+    },
+    {
+      "name": "Hunting",
+      "category_id": 508843,
+      "page_param_value": "mens-hunting-footwear",
+      "url": "https://www.llbean.com/llb/shop/508843"
+    },
+    {
+      "name": "Sneakers & Shoes",
+      "category_id": 506791,
+      "page_param_value": "mens-sneakers-and-shoes",
+      "url": "https://www.llbean.com/llb/shop/506791"
+    },
+    {
+      "name": "Casual",
+      "category_id": 506764,
+      "page_param_value": "mens-casual-shoes",
+      "url": "https://www.llbean.com/llb/shop/506764"
+    },
+    {
+      "name": "Walking",
+      "category_id": 516623,
+      "page_param_value": "mens-walking-shoes",
+      "url": "https://www.llbean.com/llb/shop/516623"
+    },
+    {
+      "name": "Hiking",
+      "category_id": 516622,
+      "page_param_value": "mens-hiking-shoes",
+      "url": "https://www.llbean.com/llb/shop/516622"
+    },
+    {
+      "name": "Running",
+      "category_id": 506765,
+      "page_param_value": "mens-running-shoes",
+      "url": "https://www.llbean.com/llb/shop/506765"
+    },
+    {
+      "name": "Sandals & Water Shoes",
+      "category_id": 503381,
+      "page_param_value": "mens-sandals-and-water-shoes",
+      "url": "https://www.llbean.com/llb/shop/503381"
+    },
+    {
+      "name": "Sandals",
+      "category_id": 516626,
+      "page_param_value": "mens-sandals",
+      "url": "https://www.llbean.com/llb/shop/516626"
+    },
+    {
+      "name": "Water Shoes",
+      "category_id": 516624,
+      "page_param_value": "mens-water-shoes",
+      "url": "https://www.llbean.com/llb/shop/516624"
+    },
+    {
+      "name": "Slippers",
+      "category_id": 503380,
+      "page_param_value": "mens-slippers",
+      "url": "https://www.llbean.com/llb/shop/503380"
+    },
+    {
+      "name": "Socks",
+      "category_id": 502854,
+      "page_param_value": "mens-socks",
+      "url": "https://www.llbean.com/llb/shop/502854"
+    },
+    {
+      "name": "Accessories",
+      "category_id": 514536,
+      "page_param_value": "mens-footwear-accessories",
+      "url": "https://www.llbean.com/llb/shop/514536"
+    },
+    {
+      "name": "Kids'",
+      "category_id": 651,
+      "page_param_value": "kids-footwear",
+      "url": "https://www.llbean.com/llb/shop/651"
+    },
+    {
+      "name": "New Arrivals",
+      "category_id": 514692,
+      "page_param_value": null,
+      "url": "https://www.llbean.com/llb/shop/514692"
+    },
+    {
+      "name": "Hiking Boots and Shoes",
+      "category_id": 503723,
+      "page_param_value": "kids-sneakers-and-shoes",
+      "url": "https://www.llbean.com/llb/shop/503723"
+    },
+    {
+      "name": "Rain & Snow Boots",
+      "category_id": 503719,
+      "page_param_value": "kids-rain-and-snow-boots",
+      "url": "https://www.llbean.com/llb/shop/503719"
+    },
+    {
+      "name": "Slippers",
+      "category_id": 503721,
+      "page_param_value": "kids-slippers",
+      "url": "https://www.llbean.com/llb/shop/503721"
+    },
+    {
+      "name": "Sandals & Water Shoes",
+      "category_id": 503575,
+      "page_param_value": "kids-sandals-and-water-shoes",
+      "url": "https://www.llbean.com/llb/shop/503575"
+    },
+    {
+      "name": "Socks",
+      "category_id": 513665,
+      "page_param_value": "kids-socks",
+      "url": "https://www.llbean.com/llb/shop/513665"
+    },
+    {
+      "name": "Toddler & Baby",
+      "category_id": 632,
+      "page_param_value": "toddler-and-baby-footwear",
+      "url": "https://www.llbean.com/llb/shop/632"
+    }
+  ],
+  "Outdoor Equipment": [
+    {
+      "name": "Outdoor Equipment",
+      "category_id": 29,
+      "page_param_value": "outdoor-equipment",
+      "url": "https://www.llbean.com/llb/shop/29"
+    },
+    {
+      "name": "New Arrivals",
+      "category_id": 511747,
+      "page_param_value": null,
+      "url": "https://www.llbean.com/llb/shop/511747"
+    },
+    {
+      "name": "Camping & Hiking",
+      "category_id": 915,
+      "page_param_value": "camping-and-hiking-gear",
+      "url": "https://www.llbean.com/llb/shop/915"
+    },
+    {
+      "name": "Tents & Shelters",
+      "category_id": 1096,
+      "page_param_value": "tents-and-shelters",
+      "url": "https://www.llbean.com/llb/shop/1096"
+    },
+    {
+      "name": "Tents",
+      "category_id": 506832,
+      "page_param_value": "tents",
+      "url": "https://www.llbean.com/llb/shop/506832"
+    },
+    {
+      "name": "Sun & Bug Shelters",
+      "category_id": 512954,
+      "page_param_value": "sun-and-bug-shelters",
+      "url": "https://www.llbean.com/llb/shop/512954"
+    },
+    {
+      "name": "Footprints & Accessories",
+      "category_id": 507851,
+      "page_param_value": "footprints-and-accessories",
+      "url": "https://www.llbean.com/llb/shop/507851"
+    },
+    {
+      "name": "Sleeping Bags, Pads & Blankets",
+      "category_id": 1097,
+      "page_param_value": "sleeping-bags-and-pads",
+      "url": "https://www.llbean.com/llb/shop/1097"
+    },
+    {
+      "name": "Sleeping Bags",
+      "category_id": 506831,
+      "page_param_value": "sleeping-bags",
+      "url": "https://www.llbean.com/llb/shop/506831"
+    },
+    {
+      "name": "Sleeping Bag Accessories",
+      "category_id": 3892,
+      "page_param_value": "sleeping-bag-accessories",
+      "url": "https://www.llbean.com/llb/shop/3892"
+    },
+    {
+      "name": "Sleeping Pads & Cots",
+      "category_id": 512955,
+      "page_param_value": "sleeping-pads-and-cots",
+      "url": "https://www.llbean.com/llb/shop/512955"
+    },
+    {
+      "name": "Hiking Backpacks",
+      "category_id": 916,
+      "page_param_value": "hiking-and-backpacking",
+      "url": "https://www.llbean.com/llb/shop/916"
+    },
+    {
+      "name": "Backpacks",
+      "category_id": 1098,
+      "page_param_value": "hiking-backpacks",
+      "url": "https://www.llbean.com/llb/shop/1098"
+    },
+    {
+      "name": "Hydration Packs & Reservoirs",
+      "category_id": 516632,
+      "page_param_value": "hydration-packs-and-reservoirs",
+      "url": "https://www.llbean.com/llb/shop/516632"
+    },
+    {
+      "name": "Waist Packs",
+      "category_id": 850,
+      "page_param_value": "waist-packs",
+      "url": "https://www.llbean.com/llb/shop/850"
+    },
+    {
+      "name": "Hiking Poles & Gaiters",
+      "category_id": 504412,
+      "page_param_value": "hiking-poles-and-gaiters",
+      "url": "https://www.llbean.com/llb/shop/504412"
+    },
+    {
+      "name": "Hiking Poles",
+      "category_id": 507761,
+      "page_param_value": "hiking-poles",
+      "url": "https://www.llbean.com/llb/shop/507761"
+    },
+    {
+      "name": "Flashlights, Headlamps & Lanterns",
+      "category_id": 918,
+      "page_param_value": "flashlights-headlamps-and-lanterns",
+      "url": "https://www.llbean.com/llb/shop/918"
+    },
+    {
+      "name": "Flashlights",
+      "category_id": 506864,
+      "page_param_value": "flashlights",
+      "url": "https://www.llbean.com/llb/shop/506864"
+    },
+    {
+      "name": "Headlamps",
+      "category_id": 507967,
+      "page_param_value": "headlamps",
+      "url": "https://www.llbean.com/llb/shop/507967"
+    },
+    {
+      "name": "Lanterns",
+      "category_id": 506867,
+      "page_param_value": "lanterns",
+      "url": "https://www.llbean.com/llb/shop/506867"
+    },
+    {
+      "name": "Camping Furniture",
+      "category_id": 9925,
+      "page_param_value": "camping-furniture",
+      "url": "https://www.llbean.com/llb/shop/9925"
+    },
+    {
+      "name": "Hammocks",
+      "category_id": 502034,
+      "page_param_value": "camping-hammocks",
+      "url": "https://www.llbean.com/llb/shop/502034"
+    },
+    {
+      "name": "Chairs",
+      "category_id": 9051,
+      "page_param_value": "camping-chairs",
+      "url": "https://www.llbean.com/llb/shop/9051"
+    },
+    {
+      "name": "Tables",
+      "category_id": 500192,
+      "page_param_value": "camping-tables",
+      "url": "https://www.llbean.com/llb/shop/500192"
+    },
+    {
+      "name": "Camping Kitchen",
+      "category_id": 1099,
+      "page_param_value": "camping-kitchen",
+      "url": "https://www.llbean.com/llb/shop/1099"
+    },
+    {
+      "name": "Coolers",
+      "category_id": 9970,
+      "page_param_value": "coolers",
+      "url": "https://www.llbean.com/llb/shop/9970"
+    },
+    {
+      "name": "Outdoor Accessories",
+      "category_id": 516713,
+      "page_param_value": "outdoor-accessories",
+      "url": "https://www.llbean.com/llb/shop/516713"
+    },
+    {
+      "name": "Sunglasses",
+      "category_id": 804,
+      "page_param_value": "sunglasses",
+      "url": "https://www.llbean.com/llb/shop/804"
+    },
+    {
+      "name": "Sun & Bug Shelters",
+      "category_id": 512954,
+      "page_param_value": "sun-and-bug-shelters",
+      "url": "https://www.llbean.com/llb/shop/512954"
+    },
+    {
+      "name": "Beach Towels & Outdoor Blankets",
+      "category_id": 514485,
+      "page_param_value": "beach-towels-and-outdoor-blankets",
+      "url": "https://www.llbean.com/llb/shop/514485"
+    },
+    {
+      "name": "Flashlights, Headlamps & Lanterns",
+      "category_id": 918,
+      "page_param_value": "flashlights-headlamps-and-lanterns",
+      "url": "https://www.llbean.com/llb/shop/918"
+    },
+    {
+      "name": "Flashlights",
+      "category_id": 506864,
+      "page_param_value": "flashlights",
+      "url": "https://www.llbean.com/llb/shop/506864"
+    },
+    {
+      "name": "Headlamps",
+      "category_id": 507967,
+      "page_param_value": "headlamps",
+      "url": "https://www.llbean.com/llb/shop/507967"
+    },
+    {
+      "name": "Lanterns",
+      "category_id": 506867,
+      "page_param_value": "lanterns",
+      "url": "https://www.llbean.com/llb/shop/506867"
+    },
+    {
+      "name": "Knives & Tools",
+      "category_id": 917,
+      "page_param_value": "knives-and-tools",
+      "url": "https://www.llbean.com/llb/shop/917"
+    },
+    {
+      "name": "Knives",
+      "category_id": 506870,
+      "page_param_value": "knives",
+      "url": "https://www.llbean.com/llb/shop/506870"
+    },
+    {
+      "name": "Knife Sharpeners & Accessories",
+      "category_id": 508820,
+      "page_param_value": "knife-sharpeners-and-accessories",
+      "url": "https://www.llbean.com/llb/shop/508820"
+    },
+    {
+      "name": "Coolers",
+      "category_id": 9970,
+      "page_param_value": "coolers",
+      "url": "https://www.llbean.com/llb/shop/9970"
+    },
+    {
+      "name": "Fishing",
+      "category_id": 507923,
+      "page_param_value": "fishing-gear",
+      "url": "https://www.llbean.com/llb/shop/507923"
+    },
+    {
+      "name": "Waders & Wading Boots",
+      "category_id": 1109,
+      "page_param_value": "waders-and-wading-boots",
+      "url": "https://www.llbean.com/llb/shop/1109"
+    },
+    {
+      "name": "Waders",
+      "category_id": 3934,
+      "page_param_value": "fishing-waders",
+      "url": "https://www.llbean.com/llb/shop/3934"
+    },
+    {
+      "name": "Wading Boots",
+      "category_id": 3937,
+      "page_param_value": "fishing-wading-boots",
+      "url": "https://www.llbean.com/llb/shop/3937"
+    },
+    {
+      "name": "Wading Accessories",
+      "category_id": 4905,
+      "page_param_value": "wading-accessories",
+      "url": "https://www.llbean.com/llb/shop/4905"
+    },
+    {
+      "name": "Vest Packs & Storage",
+      "category_id": 512608,
+      "page_param_value": "fishing-vest-packs-and-storage",
+      "url": "https://www.llbean.com/llb/shop/512608"
+    },
+    {
+      "name": "Vest Packs & Gear Bags",
+      "category_id": 1193,
+      "page_param_value": "fishing-vest-packs-and-gear-bags",
+      "url": "https://www.llbean.com/llb/shop/1193"
+    },
+    {
+      "name": "Rod & Reel Cases",
+      "category_id": 4332,
+      "page_param_value": "rod-and-reel-cases",
+      "url": "https://www.llbean.com/llb/shop/4332"
+    },
+    {
+      "name": "Fly & Tackle Boxes",
+      "category_id": 500145,
+      "page_param_value": "fly-and-tackle-boxes",
+      "url": "https://www.llbean.com/llb/shop/500145"
+    },
+    {
+      "name": "Rods",
+      "category_id": 516648,
+      "page_param_value": "fishing-rods",
+      "url": "https://www.llbean.com/llb/shop/516648"
+    },
+    {
+      "name": "Fly",
+      "category_id": 506543,
+      "page_param_value": "fly-rods",
+      "url": "https://www.llbean.com/llb/shop/506543"
+    },
+    {
+      "name": "Spin",
+      "category_id": 500042,
+      "page_param_value": "spin-fishing-rods",
+      "url": "https://www.llbean.com/llb/shop/500042"
+    },
+    {
+      "name": "Reels",
+      "category_id": 516649,
+      "page_param_value": "fishing-reels",
+      "url": "https://www.llbean.com/llb/shop/516649"
+    },
+    {
+      "name": "Fly",
+      "category_id": 1111,
+      "page_param_value": "fly-reels",
+      "url": "https://www.llbean.com/llb/shop/1111"
+    },
+    {
+      "name": "Spin",
+      "category_id": 500043,
+      "page_param_value": "spin-fishing-reels",
+      "url": "https://www.llbean.com/llb/shop/500043"
+    },
+    {
+      "name": "Rod & Reel Combos",
+      "category_id": 516650,
+      "page_param_value": "fishing-rod-and-reel-combos",
+      "url": "https://www.llbean.com/llb/shop/516650"
+    },
+    {
+      "name": "Fly",
+      "category_id": 2136,
+      "page_param_value": "fly-fishing-outfits",
+      "url": "https://www.llbean.com/llb/shop/2136"
+    },
+    {
+      "name": "Spin",
+      "category_id": 9965,
+      "page_param_value": "spin-fishing-outfits",
+      "url": "https://www.llbean.com/llb/shop/9965"
+    },
+    {
+      "name": "Flies & Lures",
+      "category_id": 500155,
+      "page_param_value": "fishing-flies-and-lures",
+      "url": "https://www.llbean.com/llb/shop/500155"
+    },
+    {
+      "name": "Freshwater Flies",
+      "category_id": 513956,
+      "page_param_value": "freshwater-flies",
+      "url": "https://www.llbean.com/llb/shop/513956"
+    },
+    {
+      "name": "Saltwater Flies",
+      "category_id": 8179,
+      "page_param_value": "saltwater-flies",
+      "url": "https://www.llbean.com/llb/shop/8179"
+    },
+    {
+      "name": "Fly Lines, Leaders & Tippets",
+      "category_id": 1112,
+      "page_param_value": "fly-lines-leaders-and-tippets",
+      "url": "https://www.llbean.com/llb/shop/1112"
+    },
+    {
+      "name": "Fly Line",
+      "category_id": 3943,
+      "page_param_value": "fly-line",
+      "url": "https://www.llbean.com/llb/shop/3943"
+    },
+    {
+      "name": "Leaders & Tippet",
+      "category_id": 3945,
+      "page_param_value": "leaders-and-tippets",
+      "url": "https://www.llbean.com/llb/shop/3945"
+    },
+    {
+      "name": "Fly-Line Accessories",
+      "category_id": 4400,
+      "page_param_value": "fly-line-accessories",
+      "url": "https://www.llbean.com/llb/shop/4400"
+    },
+    {
+      "name": "Tools & Accessories",
+      "category_id": 3948,
+      "page_param_value": "fishing-tools-and-accessories",
+      "url": "https://www.llbean.com/llb/shop/3948"
+    },
+    {
+      "name": "Clothing",
+      "category_id": 507930,
+      "page_param_value": "fishing-clothing",
+      "url": "https://www.llbean.com/llb/shop/507930"
+    },
+    {
+      "name": "Men's",
+      "category_id": 507949,
+      "page_param_value": "mens-fishing-clothing",
+      "url": "https://www.llbean.com/llb/shop/507949"
+    },
+    {
+      "name": "Shirts",
+      "category_id": 8172,
+      "page_param_value": "mens-fishing-shirts",
+      "url": "https://www.llbean.com/llb/shop/8172"
+    },
+    {
+      "name": "Pants & Shorts",
+      "category_id": 500356,
+      "page_param_value": "mens-fishing-pants-and-shorts",
+      "url": "https://www.llbean.com/llb/shop/500356"
+    },
+    {
+      "name": "Jackets & Vests",
+      "category_id": 9963,
+      "page_param_value": "mens-fishing-jackets-and-vests",
+      "url": "https://www.llbean.com/llb/shop/9963"
+    },
+    {
+      "name": "Accessories",
+      "category_id": 500170,
+      "page_param_value": "mens-fishing-clothing-accessories",
+      "url": "https://www.llbean.com/llb/shop/500170"
+    },
+    {
+      "name": "Women's",
+      "category_id": 507950,
+      "page_param_value": "womens-fishing-clothing",
+      "url": "https://www.llbean.com/llb/shop/507950"
+    },
+    {
+      "name": "Shirts",
+      "category_id": 8171,
+      "page_param_value": "womens-fishing-shirts",
+      "url": "https://www.llbean.com/llb/shop/8171"
+    },
+    {
+      "name": "Pants & Shorts",
+      "category_id": 500357,
+      "page_param_value": "womens-fishing-pants-and-shorts",
+      "url": "https://www.llbean.com/llb/shop/500357"
+    },
+    {
+      "name": "Jackets & Vests",
+      "category_id": 510558,
+      "page_param_value": "womens-fishing-jackets-and-vests",
+      "url": "https://www.llbean.com/llb/shop/510558"
+    },
+    {
+      "name": "Accessories",
+      "category_id": 508851,
+      "page_param_value": "womens-fishing-clothing-accessories",
+      "url": "https://www.llbean.com/llb/shop/508851"
+    },
+    {
+      "name": "Kids'",
+      "category_id": 516647,
+      "page_param_value": "kids-fishing-clothing",
+      "url": "https://www.llbean.com/llb/shop/516647"
+    },
+    {
+      "name": "Beach Gear",
+      "category_id": 518885,
+      "page_param_value": "beach-gear",
+      "url": "https://www.llbean.com/llb/shop/518885"
+    },
+    {
+      "name": "Water Bottles & Drinkware",
+      "category_id": 516664,
+      "page_param_value": "hydration",
+      "url": "https://www.llbean.com/llb/shop/516664"
+    },
+    {
+      "name": "Drinkware & Thermoses",
+      "category_id": 516675,
+      "page_param_value": "drinkware-and-thermoses",
+      "url": "https://www.llbean.com/llb/shop/516675"
+    },
+    {
+      "name": "Hydration Packs & Reservoirs",
+      "category_id": 516632,
+      "page_param_value": "hydration-packs-and-reservoirs",
+      "url": "https://www.llbean.com/llb/shop/516632"
+    },
+    {
+      "name": "Water Bottles",
+      "category_id": 506932,
+      "page_param_value": "water-bottles",
+      "url": "https://www.llbean.com/llb/shop/506932"
+    },
+    {
+      "name": "Hunting",
+      "category_id": 507929,
+      "page_param_value": "hunting-gear",
+      "url": "https://www.llbean.com/llb/shop/507929"
+    },
+    {
+      "name": "Packs, Bags & Vest Packs",
+      "category_id": 508805,
+      "page_param_value": "hunting-packs-bags-and-vest-packs",
+      "url": "https://www.llbean.com/llb/shop/508805"
+    },
+    {
+      "name": "Archery Gear",
+      "category_id": 507001,
+      "page_param_value": "archery",
+      "url": "https://www.llbean.com/llb/shop/507001"
+    },
+    {
+      "name": "Shooting Sports & Gun Safety",
+      "category_id": 516640,
+      "page_param_value": "shooting-sports-and-gun-safety",
+      "url": "https://www.llbean.com/llb/shop/516640"
+    },
+    {
+      "name": "Cases",
+      "category_id": 3963,
+      "page_param_value": "hunting-gun-cases",
+      "url": "https://www.llbean.com/llb/shop/3963"
+    },
+    {
+      "name": "Knives & Tools",
+      "category_id": 917,
+      "page_param_value": "knives-and-tools",
+      "url": "https://www.llbean.com/llb/shop/917"
+    },
+    {
+      "name": "Knives",
+      "category_id": 506870,
+      "page_param_value": "knives",
+      "url": "https://www.llbean.com/llb/shop/506870"
+    },
+    {
+      "name": "Knife Sharpeners & Accessories",
+      "category_id": 508820,
+      "page_param_value": "knife-sharpeners-and-accessories",
+      "url": "https://www.llbean.com/llb/shop/508820"
+    },
+    {
+      "name": "Hunting Accessories",
+      "category_id": 516646,
+      "page_param_value": "hunting-accessories",
+      "url": "https://www.llbean.com/llb/shop/516646"
+    },
+    {
+      "name": "Clothing & Footwear",
+      "category_id": 507932,
+      "page_param_value": "hunting-clothing-and-footwear",
+      "url": "https://www.llbean.com/llb/shop/507932"
+    },
+    {
+      "name": "Men's",
+      "category_id": 506557,
+      "page_param_value": "mens-hunting-clothing-and-footwear",
+      "url": "https://www.llbean.com/llb/shop/506557"
+    },
+    {
+      "name": "Shirts",
+      "category_id": 506577,
+      "page_param_value": "mens-hunting-shirts",
+      "url": "https://www.llbean.com/llb/shop/506577"
+    },
+    {
+      "name": "Sweaters & Sweatshirts",
+      "category_id": 506576,
+      "page_param_value": "mens-hunting-sweaters-and-sweatshirts",
+      "url": "https://www.llbean.com/llb/shop/506576"
+    },
+    {
+      "name": "Pants & Bibs",
+      "category_id": 506578,
+      "page_param_value": "mens-hunting-pants-and-bibs",
+      "url": "https://www.llbean.com/llb/shop/506578"
+    },
+    {
+      "name": "Outerwear & Vests",
+      "category_id": 506569,
+      "page_param_value": "mens-hunting-outerwear-and-vests",
+      "url": "https://www.llbean.com/llb/shop/506569"
+    },
+    {
+      "name": "Underwear & Base Layers",
+      "category_id": 506575,
+      "page_param_value": "mens-hunting-underwear-and-base-layers",
+      "url": "https://www.llbean.com/llb/shop/506575"
+    },
+    {
+      "name": "Accessories",
+      "category_id": 514347,
+      "page_param_value": "mens-hunting-accessories",
+      "url": "https://www.llbean.com/llb/shop/514347"
+    },
+    {
+      "name": "Boots",
+      "category_id": 508843,
+      "page_param_value": "mens-hunting-footwear",
+      "url": "https://www.llbean.com/llb/shop/508843"
+    },
+    {
+      "name": "Women's",
+      "category_id": 507965,
+      "page_param_value": "womens-hunting-clothing-and-footwear",
+      "url": "https://www.llbean.com/llb/shop/507965"
+    },
+    {
+      "name": "Sweaters & Sweatshirts",
+      "category_id": 516637,
+      "page_param_value": "womens-hunting-sweaters-and-sweatshirts",
+      "url": "https://www.llbean.com/llb/shop/516637"
+    },
+    {
+      "name": "Pants & Bibs",
+      "category_id": 508853,
+      "page_param_value": "womens-hunting-pants-and-bibs",
+      "url": "https://www.llbean.com/llb/shop/508853"
+    },
+    {
+      "name": "Outerwear & Vests",
+      "category_id": 508852,
+      "page_param_value": "womens-hunting-outerwear-and-vests",
+      "url": "https://www.llbean.com/llb/shop/508852"
+    },
+    {
+      "name": "Underwear & Base Layers",
+      "category_id": 508856,
+      "page_param_value": "womens-hunting-underwear-and-baselayers",
+      "url": "https://www.llbean.com/llb/shop/508856"
+    },
+    {
+      "name": "Accessories",
+      "category_id": 516639,
+      "page_param_value": "womens-hunting-accessories",
+      "url": "https://www.llbean.com/llb/shop/516639"
+    },
+    {
+      "name": "Boots",
+      "category_id": 507963,
+      "page_param_value": "womens-hunting-boots",
+      "url": "https://www.llbean.com/llb/shop/507963"
+    },
+    {
+      "name": "Winter Sports",
+      "category_id": 516714,
+      "page_param_value": "winter-sports",
+      "url": "https://www.llbean.com/llb/shop/516714"
+    },
+    {
+      "name": "Snowshoeing",
+      "category_id": 509573,
+      "page_param_value": "snowshoeing",
+      "url": "https://www.llbean.com/llb/shop/509573"
+    },
+    {
+      "name": "Snowshoes and Sets",
+      "category_id": 509581,
+      "page_param_value": "snowshoes-and-sets",
+      "url": "https://www.llbean.com/llb/shop/509581"
+    },
+    {
+      "name": "Accessories",
+      "category_id": 513506,
+      "page_param_value": "winter-sports-accessories",
+      "url": "https://www.llbean.com/llb/shop/513506"
+    },
+    {
+      "name": "Sleds & Snow Toys",
+      "category_id": 513503,
+      "page_param_value": "sleds-and-snow-toys",
+      "url": "https://www.llbean.com/llb/shop/513503"
+    },
+    {
+      "name": "Sleds & Snow Tubes",
+      "category_id": 513508,
+      "page_param_value": "sleds-and-snow-tubes",
+      "url": "https://www.llbean.com/llb/shop/513508"
+    },
+    {
+      "name": "Sled Accessories",
+      "category_id": 513509,
+      "page_param_value": "sled-accessories",
+      "url": "https://www.llbean.com/llb/shop/513509"
+    }
+  ],
+  "Bags & Travel": [
+    {
+      "name": "Bags & Travel",
+      "category_id": 50,
+      "page_param_value": "bags-and-travel",
+      "url": "https://www.llbean.com/llb/shop/50"
+    },
+    {
+      "name": "New Arrivals",
+      "category_id": 511749,
+      "page_param_value": null,
+      "url": "https://www.llbean.com/llb/shop/511749"
+    },
+    {
+      "name": "Boat and Totes",
+      "category_id": 514029,
+      "page_param_value": "boat-and-tote-bags",
+      "url": "https://www.llbean.com/llb/shop/514029"
+    },
+    {
+      "name": "Everyday Bags & Totes",
+      "category_id": 516672,
+      "page_param_value": "bags-and-totes",
+      "url": "https://www.llbean.com/llb/shop/516672"
+    },
+    {
+      "name": "Tote Bags",
+      "category_id": 677,
+      "page_param_value": "tote-bags",
+      "url": "https://www.llbean.com/llb/shop/677"
+    },
+    {
+      "name": "Everyday Backpacks",
+      "category_id": 518805,
+      "page_param_value": "everyday-backpacks",
+      "url": "https://www.llbean.com/llb/shop/518805"
+    },
+    {
+      "name": "Crossbody Bags",
+      "category_id": 847,
+      "page_param_value": "crossbody-bags",
+      "url": "https://www.llbean.com/llb/shop/847"
+    },
+    {
+      "name": "Waist Packs",
+      "category_id": 850,
+      "page_param_value": "waist-packs",
+      "url": "https://www.llbean.com/llb/shop/850"
+    },
+    {
+      "name": "Hiking Backpacks",
+      "category_id": 916,
+      "page_param_value": "hiking-and-backpacking",
+      "url": "https://www.llbean.com/llb/shop/916"
+    },
+    {
+      "name": "Backpacks",
+      "category_id": 1098,
+      "page_param_value": "hiking-backpacks",
+      "url": "https://www.llbean.com/llb/shop/1098"
+    },
+    {
+      "name": "Hydration Packs & Reservoirs",
+      "category_id": 516632,
+      "page_param_value": "hydration-packs-and-reservoirs",
+      "url": "https://www.llbean.com/llb/shop/516632"
+    },
+    {
+      "name": "Waist Packs",
+      "category_id": 850,
+      "page_param_value": "waist-packs",
+      "url": "https://www.llbean.com/llb/shop/850"
+    },
+    {
+      "name": "School Backpacks & Lunch Boxes",
+      "category_id": 816,
+      "page_param_value": "school-backpacks-and-lunch-boxes",
+      "url": "https://www.llbean.com/llb/shop/816"
+    },
+    {
+      "name": "School Backpacks",
+      "category_id": 818,
+      "page_param_value": "school-backpacks",
+      "url": "https://www.llbean.com/llb/shop/818"
+    },
+    {
+      "name": "Lunch Boxes",
+      "category_id": 514248,
+      "page_param_value": "lunch-boxes",
+      "url": "https://www.llbean.com/llb/shop/514248"
+    },
+    {
+      "name": "Accessories",
+      "category_id": 514250,
+      "page_param_value": "backpack-accessories",
+      "url": "https://www.llbean.com/llb/shop/514250"
+    },
+    {
+      "name": "Luggage & Duffle Bags",
+      "category_id": 516673,
+      "page_param_value": "luggage-and-duffle-bags",
+      "url": "https://www.llbean.com/llb/shop/516673"
+    },
+    {
+      "name": "Travel Backpacks",
+      "category_id": 514260,
+      "page_param_value": "travel-backpacks",
+      "url": "https://www.llbean.com/llb/shop/514260"
+    },
+    {
+      "name": "Luggage",
+      "category_id": 903,
+      "page_param_value": "luggage",
+      "url": "https://www.llbean.com/llb/shop/903"
+    },
+    {
+      "name": "Duffle Bags",
+      "category_id": 904,
+      "page_param_value": "duffle-bags",
+      "url": "https://www.llbean.com/llb/shop/904"
+    },
+    {
+      "name": "Toiletry Bags & Organizers",
+      "category_id": 507361,
+      "page_param_value": "toiletry-bags-and-organizers",
+      "url": "https://www.llbean.com/llb/shop/507361"
+    },
+    {
+      "name": "Bag Charms & Accessories",
+      "category_id": 203,
+      "page_param_value": "bag-charms-and-accessories",
+      "url": "https://www.llbean.com/llb/shop/203"
+    }
+  ],
+  "Home Goods": [
+    {
+      "name": "Home Goods",
+      "category_id": 31,
+      "page_param_value": "home-goods",
+      "url": "https://www.llbean.com/llb/shop/31"
+    },
+    {
+      "name": "New Arrivals",
+      "category_id": 511750,
+      "page_param_value": null,
+      "url": "https://www.llbean.com/llb/shop/511750"
+    },
+    {
+      "name": "Bedding",
+      "category_id": 131,
+      "page_param_value": "bedding",
+      "url": "https://www.llbean.com/llb/shop/131"
+    },
+    {
+      "name": "Sheets",
+      "category_id": 1156,
+      "page_param_value": "sheets",
+      "url": "https://www.llbean.com/llb/shop/1156"
+    },
+    {
+      "name": "Quilts & Bedspreads",
+      "category_id": 504700,
+      "page_param_value": "quilts-and-bedspreads",
+      "url": "https://www.llbean.com/llb/shop/504700"
+    },
+    {
+      "name": "Quilts",
+      "category_id": 1159,
+      "page_param_value": "quilts",
+      "url": "https://www.llbean.com/llb/shop/1159"
+    },
+    {
+      "name": "Bedspreads & Coverlets",
+      "category_id": 4099,
+      "page_param_value": "bedspreads-and-coverlets",
+      "url": "https://www.llbean.com/llb/shop/4099"
+    },
+    {
+      "name": "Comforters & Covers",
+      "category_id": 1158,
+      "page_param_value": "comforters-and-covers",
+      "url": "https://www.llbean.com/llb/shop/1158"
+    },
+    {
+      "name": "Comforters",
+      "category_id": 4096,
+      "page_param_value": "comforters",
+      "url": "https://www.llbean.com/llb/shop/4096"
+    },
+    {
+      "name": "Comforter Covers",
+      "category_id": 4094,
+      "page_param_value": "comforter-covers",
+      "url": "https://www.llbean.com/llb/shop/4094"
+    },
+    {
+      "name": "Blankets & Throws",
+      "category_id": 1157,
+      "page_param_value": "blankets-and-throws",
+      "url": "https://www.llbean.com/llb/shop/1157"
+    },
+    {
+      "name": "Mattress Pads",
+      "category_id": 506595,
+      "page_param_value": "mattress-pads",
+      "url": "https://www.llbean.com/llb/shop/506595"
+    },
+    {
+      "name": "Bed Skirts",
+      "category_id": 504698,
+      "page_param_value": "bed-skirts",
+      "url": "https://www.llbean.com/llb/shop/504698"
+    },
+    {
+      "name": "Pillows",
+      "category_id": 1161,
+      "page_param_value": "pillows",
+      "url": "https://www.llbean.com/llb/shop/1161"
+    },
+    {
+      "name": "Furniture",
+      "category_id": 129,
+      "page_param_value": "furniture",
+      "url": "https://www.llbean.com/llb/shop/129"
+    },
+    {
+      "name": "Outdoor Furniture",
+      "category_id": 515463,
+      "page_param_value": "outdoor-furniture",
+      "url": "https://www.llbean.com/llb/shop/515463"
+    },
+    {
+      "name": "Patio Sofas & Sets",
+      "category_id": 518298,
+      "page_param_value": "patio-sofas-and-sets",
+      "url": "https://www.llbean.com/llb/shop/518298"
+    },
+    {
+      "name": "Patio Chairs",
+      "category_id": 515464,
+      "page_param_value": "patio-chairs",
+      "url": "https://www.llbean.com/llb/shop/515464"
+    },
+    {
+      "name": "Outdoor Tables",
+      "category_id": 508639,
+      "page_param_value": "outdoor-tables",
+      "url": "https://www.llbean.com/llb/shop/508639"
+    },
+    {
+      "name": "Outdoor Cushions & Pillows",
+      "category_id": 506688,
+      "page_param_value": "outdoor-cushions-and-pillows",
+      "url": "https://www.llbean.com/llb/shop/506688"
+    },
+    {
+      "name": "Umbrellas",
+      "category_id": 507714,
+      "page_param_value": "umbrellas",
+      "url": "https://www.llbean.com/llb/shop/507714"
+    },
+    {
+      "name": "Indoor Furniture",
+      "category_id": 516261,
+      "page_param_value": "indoor-furniture",
+      "url": "https://www.llbean.com/llb/shop/516261"
+    },
+    {
+      "name": "Sofas",
+      "category_id": 506638,
+      "page_param_value": "sofas",
+      "url": "https://www.llbean.com/llb/shop/506638"
+    },
+    {
+      "name": "Chairs & Ottomans",
+      "category_id": 8831,
+      "page_param_value": "chairs-and-ottomans",
+      "url": "https://www.llbean.com/llb/shop/8831"
+    },
+    {
+      "name": "Storage",
+      "category_id": 506632,
+      "page_param_value": "storage",
+      "url": "https://www.llbean.com/llb/shop/506632"
+    },
+    {
+      "name": "Beds",
+      "category_id": 1146,
+      "page_param_value": "beds",
+      "url": "https://www.llbean.com/llb/shop/1146"
+    },
+    {
+      "name": "Bath",
+      "category_id": 900,
+      "page_param_value": "bath",
+      "url": "https://www.llbean.com/llb/shop/900"
+    },
+    {
+      "name": "Bath & Beach Towels",
+      "category_id": 514487,
+      "page_param_value": "bath-and-beach-towels",
+      "url": "https://www.llbean.com/llb/shop/514487"
+    },
+    {
+      "name": "Bath Mats",
+      "category_id": 506598,
+      "page_param_value": "bath-mats",
+      "url": "https://www.llbean.com/llb/shop/506598"
+    },
+    {
+      "name": "Fireplace & Hearth",
+      "category_id": 510044,
+      "page_param_value": "fireplace-and-hearth",
+      "url": "https://www.llbean.com/llb/shop/510044"
+    },
+    {
+      "name": "Rugs & Mats",
+      "category_id": 514001,
+      "page_param_value": "rugs-and-mats",
+      "url": "https://www.llbean.com/llb/shop/514001"
+    },
+    {
+      "name": "Indoor",
+      "category_id": 506691,
+      "page_param_value": "indoor-rugs-and-mats",
+      "url": "https://www.llbean.com/llb/shop/506691"
+    },
+    {
+      "name": "Indoor-Outdoor",
+      "category_id": 506690,
+      "page_param_value": "outdoor-rugs-and-mats",
+      "url": "https://www.llbean.com/llb/shop/506690"
+    },
+    {
+      "name": "Waterhog Mats",
+      "category_id": 506645,
+      "page_param_value": "waterhog-mats",
+      "url": "https://www.llbean.com/llb/shop/506645"
+    },
+    {
+      "name": "Home Decor",
+      "category_id": 312,
+      "page_param_value": "home-decor",
+      "url": "https://www.llbean.com/llb/shop/312"
+    },
+    {
+      "name": "Blankets & Throws",
+      "category_id": 1157,
+      "page_param_value": "blankets-and-throws",
+      "url": "https://www.llbean.com/llb/shop/1157"
+    },
+    {
+      "name": "Baskets & Totes",
+      "category_id": 7434,
+      "page_param_value": "baskets-and-totes",
+      "url": "https://www.llbean.com/llb/shop/7434"
+    },
+    {
+      "name": "Home Accessories",
+      "category_id": 516853,
+      "page_param_value": "home-accessories",
+      "url": "https://www.llbean.com/llb/shop/516853"
+    },
+    {
+      "name": "Holiday",
+      "category_id": 509902,
+      "page_param_value": "holiday-decor-and-gift-sets",
+      "url": "https://www.llbean.com/llb/shop/509902"
+    },
+    {
+      "name": "Stockings",
+      "category_id": 513739,
+      "page_param_value": "holiday-stockings",
+      "url": "https://www.llbean.com/llb/shop/513739"
+    },
+    {
+      "name": "Decorations",
+      "category_id": 509903,
+      "page_param_value": "holiday-decorations",
+      "url": "https://www.llbean.com/llb/shop/509903"
+    },
+    {
+      "name": "Food Gift Sets",
+      "category_id": 1000010393,
+      "page_param_value": null,
+      "url": "https://www.llbean.com/llb/shop/1000010393"
+    },
+    {
+      "name": "Throw Pillows",
+      "category_id": 506607,
+      "page_param_value": "throw-pillows",
+      "url": "https://www.llbean.com/llb/shop/506607"
+    },
+    {
+      "name": "Wreaths & Greenery",
+      "category_id": 509909,
+      "page_param_value": "fresh-wreaths-and-greenery",
+      "url": "https://www.llbean.com/llb/shop/509909"
+    },
+    {
+      "name": "Backyard & Patio",
+      "category_id": 132,
+      "page_param_value": "backyard-and-patio",
+      "url": "https://www.llbean.com/llb/shop/132"
+    },
+    {
+      "name": "Outdoor Furniture",
+      "category_id": 515463,
+      "page_param_value": "outdoor-furniture",
+      "url": "https://www.llbean.com/llb/shop/515463"
+    },
+    {
+      "name": "Patio Sofas & Sets",
+      "category_id": 518298,
+      "page_param_value": "patio-sofas-and-sets",
+      "url": "https://www.llbean.com/llb/shop/518298"
+    },
+    {
+      "name": "Patio Chairs",
+      "category_id": 515464,
+      "page_param_value": "patio-chairs",
+      "url": "https://www.llbean.com/llb/shop/515464"
+    },
+    {
+      "name": "Outdoor Tables",
+      "category_id": 508639,
+      "page_param_value": "outdoor-tables",
+      "url": "https://www.llbean.com/llb/shop/508639"
+    },
+    {
+      "name": "Outdoor Cushions & Pillows",
+      "category_id": 506688,
+      "page_param_value": "outdoor-cushions-and-pillows",
+      "url": "https://www.llbean.com/llb/shop/506688"
+    },
+    {
+      "name": "Umbrellas",
+      "category_id": 507714,
+      "page_param_value": "umbrellas",
+      "url": "https://www.llbean.com/llb/shop/507714"
+    },
+    {
+      "name": "Grills & Fire Pits",
+      "category_id": 506840,
+      "page_param_value": "grills-and-fire-pits",
+      "url": "https://www.llbean.com/llb/shop/506840"
+    },
+    {
+      "name": "Indoor-Outdoor Rugs",
+      "category_id": 506690,
+      "page_param_value": "outdoor-rugs-and-mats",
+      "url": "https://www.llbean.com/llb/shop/506690"
+    },
+    {
+      "name": "Hammocks",
+      "category_id": 508647,
+      "page_param_value": "hammocks",
+      "url": "https://www.llbean.com/llb/shop/508647"
+    },
+    {
+      "name": "Games & Outdoor Toys",
+      "category_id": 515482,
+      "page_param_value": "games-and-outdoor-toys",
+      "url": "https://www.llbean.com/llb/shop/515482"
+    },
+    {
+      "name": "Games & Books",
+      "category_id": 506621,
+      "page_param_value": "games-and-books",
+      "url": "https://www.llbean.com/llb/shop/506621"
+    },
+    {
+      "name": "Games & Outdoor Toys",
+      "category_id": 515482,
+      "page_param_value": "games-and-outdoor-toys",
+      "url": "https://www.llbean.com/llb/shop/515482"
+    },
+    {
+      "name": "Books",
+      "category_id": 510164,
+      "page_param_value": "books",
+      "url": "https://www.llbean.com/llb/shop/510164"
+    },
+    {
+      "name": "Dog Supplies",
+      "category_id": 134,
+      "page_param_value": "dog-supplies",
+      "url": "https://www.llbean.com/llb/shop/134"
+    },
+    {
+      "name": "Beds & Blankets",
+      "category_id": 507408,
+      "page_param_value": "dog-beds-and-blankets",
+      "url": "https://www.llbean.com/llb/shop/507408"
+    },
+    {
+      "name": "Collars, Leads & Leashes",
+      "category_id": 507065,
+      "page_param_value": "dog-collars-leads-and-leashes",
+      "url": "https://www.llbean.com/llb/shop/507065"
+    },
+    {
+      "name": "Bowls &  Mats",
+      "category_id": 507031,
+      "page_param_value": "dog-bowls-and-mats",
+      "url": "https://www.llbean.com/llb/shop/507031"
+    },
+    {
+      "name": "Kennels",
+      "category_id": 507067,
+      "page_param_value": "kennels-and-pads",
+      "url": "https://www.llbean.com/llb/shop/507067"
+    },
+    {
+      "name": "Jackets & Vests",
+      "category_id": 507029,
+      "page_param_value": "dog-jackets-and-vests",
+      "url": "https://www.llbean.com/llb/shop/507029"
+    },
+    {
+      "name": "Dog Toys & Accessories",
+      "category_id": 507025,
+      "page_param_value": "dog-toys-and-accessories",
+      "url": "https://www.llbean.com/llb/shop/507025"
+    },
+    {
+      "name": "Dog Training",
+      "category_id": 507026,
+      "page_param_value": "dog-training",
+      "url": "https://www.llbean.com/llb/shop/507026"
+    },
+    {
+      "name": "Electronics",
+      "category_id": 516641,
+      "page_param_value": "dog-training-electronics",
+      "url": "https://www.llbean.com/llb/shop/516641"
+    },
+    {
+      "name": "Accessories",
+      "category_id": 516644,
+      "page_param_value": "hunting-dog-accessories",
+      "url": "https://www.llbean.com/llb/shop/516644"
+    },
+    {
+      "name": "Kennels",
+      "category_id": 507067,
+      "page_param_value": "kennels-and-pads",
+      "url": "https://www.llbean.com/llb/shop/507067"
+    },
+    {
+      "name": "Gourmet Treats",
+      "category_id": 514907,
+      "page_param_value": "gourmet-treats",
+      "url": "https://www.llbean.com/llb/shop/514907"
+    }
+  ],
+  "Sale": [
+    {
+      "name": "Sale",
+      "category_id": 32,
+      "page_param_value": "sale",
+      "url": "https://www.llbean.com/llb/shop/32"
+    },
+    {
+      "name": "Clothing",
+      "category_id": 516686,
+      "page_param_value": "clothing-on-sale",
+      "url": "https://www.llbean.com/llb/shop/516686"
+    },
+    {
+      "name": "Men's",
+      "category_id": 298,
+      "page_param_value": "mens-clothing-on-sale",
+      "url": "https://www.llbean.com/llb/shop/298"
+    },
+    {
+      "name": "T-Shirts & Polos",
+      "category_id": 20010167,
+      "page_param_value": null,
+      "url": "https://www.llbean.com/llb/shop/20010167"
+    },
+    {
+      "name": "Shirts",
+      "category_id": 507223,
+      "page_param_value": "mens-shirts-on-sale",
+      "url": "https://www.llbean.com/llb/shop/507223"
+    },
+    {
+      "name": "Sweatshirts",
+      "category_id": 507224,
+      "page_param_value": "mens-sweatshirts-on-sale",
+      "url": "https://www.llbean.com/llb/shop/507224"
+    },
+    {
+      "name": "Fleece",
+      "category_id": 518873,
+      "page_param_value": "mens-fleece-on-sale",
+      "url": "https://www.llbean.com/llb/shop/518873"
+    },
+    {
+      "name": "Sweaters",
+      "category_id": 518081,
+      "page_param_value": "mens-sweaters-on-sale",
+      "url": "https://www.llbean.com/llb/shop/518081"
+    },
+    {
+      "name": "Pants & Jeans",
+      "category_id": 516419,
+      "page_param_value": "mens-pants-and-jeans-on-sale",
+      "url": "https://www.llbean.com/llb/shop/516419"
+    },
+    {
+      "name": "Shorts",
+      "category_id": 6719,
+      "page_param_value": "mens-shorts-on-sale",
+      "url": "https://www.llbean.com/llb/shop/6719"
+    },
+    {
+      "name": "Swimwear",
+      "category_id": 516420,
+      "page_param_value": "mens-swimwear-on-sale",
+      "url": "https://www.llbean.com/llb/shop/516420"
+    },
+    {
+      "name": "Sleepwear",
+      "category_id": 516421,
+      "page_param_value": "mens-sleepwear-on-sale",
+      "url": "https://www.llbean.com/llb/shop/516421"
+    },
+    {
+      "name": "Base Layers",
+      "category_id": 502575,
+      "page_param_value": "mens-base-layers-on-sale",
+      "url": "https://www.llbean.com/llb/shop/502575"
+    },
+    {
+      "name": "Accessories",
+      "category_id": 502577,
+      "page_param_value": "mens-accessories-on-sale",
+      "url": "https://www.llbean.com/llb/shop/502577"
+    },
+    {
+      "name": "Activewear",
+      "category_id": 503991,
+      "page_param_value": "mens-activewear-on-sale",
+      "url": "https://www.llbean.com/llb/shop/503991"
+    },
+    {
+      "name": "Women's",
+      "category_id": 302,
+      "page_param_value": "womens-clothing-on-sale",
+      "url": "https://www.llbean.com/llb/shop/302"
+    },
+    {
+      "name": "Tees & Tanks",
+      "category_id": 20010165,
+      "page_param_value": null,
+      "url": "https://www.llbean.com/llb/shop/20010165"
+    },
+    {
+      "name": "Shirts & Tops",
+      "category_id": 6705,
+      "page_param_value": "womens-shirts-and-tops-on-sale",
+      "url": "https://www.llbean.com/llb/shop/6705"
+    },
+    {
+      "name": "Sweatshirts",
+      "category_id": 8979,
+      "page_param_value": "womens-sweatshirts-on-sale",
+      "url": "https://www.llbean.com/llb/shop/8979"
+    },
+    {
+      "name": "Fleece",
+      "category_id": 518874,
+      "page_param_value": "womens-fleece-on-sale",
+      "url": "https://www.llbean.com/llb/shop/518874"
+    },
+    {
+      "name": "Sweaters",
+      "category_id": 518078,
+      "page_param_value": "womens-sweaters-on-sale",
+      "url": "https://www.llbean.com/llb/shop/518078"
+    },
+    {
+      "name": "Shorts & Skorts",
+      "category_id": 502180,
+      "page_param_value": "womens-shorts-and-skorts-on-sale",
+      "url": "https://www.llbean.com/llb/shop/502180"
+    },
+    {
+      "name": "Pants & Jeans",
+      "category_id": 6709,
+      "page_param_value": "womens-pants-and-jeans-on-sale",
+      "url": "https://www.llbean.com/llb/shop/6709"
+    },
+    {
+      "name": "Dresses & Skirts",
+      "category_id": 502066,
+      "page_param_value": "womens-dresses-and-skirts-on-sale",
+      "url": "https://www.llbean.com/llb/shop/502066"
+    },
+    {
+      "name": "Swimwear",
+      "category_id": 8356,
+      "page_param_value": "womens-swimwear-on-sale",
+      "url": "https://www.llbean.com/llb/shop/8356"
+    },
+    {
+      "name": "Base Layers",
+      "category_id": 516425,
+      "page_param_value": "womens-base-layers-on-sale",
+      "url": "https://www.llbean.com/llb/shop/516425"
+    },
+    {
+      "name": "Sleepwear",
+      "category_id": 502177,
+      "page_param_value": "womens-sleepwear-on-sale",
+      "url": "https://www.llbean.com/llb/shop/502177"
+    },
+    {
+      "name": "Accessories",
+      "category_id": 506209,
+      "page_param_value": "womens-accessories-on-sale",
+      "url": "https://www.llbean.com/llb/shop/506209"
+    },
+    {
+      "name": "Activewear",
+      "category_id": 8049,
+      "page_param_value": "womens-activewear-on-sale",
+      "url": "https://www.llbean.com/llb/shop/8049"
+    },
+    {
+      "name": "Kids'",
+      "category_id": 503676,
+      "page_param_value": "kids-clothing-on-sale",
+      "url": "https://www.llbean.com/llb/shop/503676"
+    },
+    {
+      "name": "Tops",
+      "category_id": 503753,
+      "page_param_value": "kids-tops-on-sale",
+      "url": "https://www.llbean.com/llb/shop/503753"
+    },
+    {
+      "name": "Bottoms",
+      "category_id": 503754,
+      "page_param_value": "kids-bottoms-on-sale",
+      "url": "https://www.llbean.com/llb/shop/503754"
+    },
+    {
+      "name": "Sleepwear",
+      "category_id": 507478,
+      "page_param_value": "kids-sleepwear-on-sale",
+      "url": "https://www.llbean.com/llb/shop/507478"
+    },
+    {
+      "name": "Long Underwear",
+      "category_id": 513014,
+      "page_param_value": "kids-long-underwear-on-sale",
+      "url": "https://www.llbean.com/llb/shop/513014"
+    },
+    {
+      "name": "Kids' Accessories on Sale",
+      "category_id": 510023,
+      "page_param_value": "kids-accessories-on-sale",
+      "url": "https://www.llbean.com/llb/shop/510023"
+    },
+    {
+      "name": "Toddler & Baby",
+      "category_id": 6731,
+      "page_param_value": "toddler-and-baby-clothing-on-sale",
+      "url": "https://www.llbean.com/llb/shop/6731"
+    },
+    {
+      "name": "Outerwear",
+      "category_id": 518521,
+      "page_param_value": "outerwear-on-sale",
+      "url": "https://www.llbean.com/llb/shop/518521"
+    },
+    {
+      "name": "Men's",
+      "category_id": 6723,
+      "page_param_value": "mens-outerwear-on-sale",
+      "url": "https://www.llbean.com/llb/shop/6723"
+    },
+    {
+      "name": "Women's",
+      "category_id": 6703,
+      "page_param_value": "womens-outerwear-on-sale",
+      "url": "https://www.llbean.com/llb/shop/6703"
+    },
+    {
+      "name": "Kids'",
+      "category_id": 503677,
+      "page_param_value": "kids-outerwear-on-sale",
+      "url": "https://www.llbean.com/llb/shop/503677"
+    },
+    {
+      "name": "Footwear",
+      "category_id": 516689,
+      "page_param_value": "footwear-on-sale",
+      "url": "https://www.llbean.com/llb/shop/516689"
+    },
+    {
+      "name": "Men's",
+      "category_id": 7955,
+      "page_param_value": "mens-footwear-on-sale",
+      "url": "https://www.llbean.com/llb/shop/7955"
+    },
+    {
+      "name": "Boots",
+      "category_id": 516691,
+      "page_param_value": "mens-boots-on-sale",
+      "url": "https://www.llbean.com/llb/shop/516691"
+    },
+    {
+      "name": "Sneakers & Shoes",
+      "category_id": 516690,
+      "page_param_value": "mens-sneakers-and-shoes-on-sale",
+      "url": "https://www.llbean.com/llb/shop/516690"
+    },
+    {
+      "name": "Sandals & Water Shoes",
+      "category_id": 516693,
+      "page_param_value": "mens-sandals-and-water-shoes-on-sale",
+      "url": "https://www.llbean.com/llb/shop/516693"
+    },
+    {
+      "name": "Slippers",
+      "category_id": 516692,
+      "page_param_value": "mens-slippers-on-sale",
+      "url": "https://www.llbean.com/llb/shop/516692"
+    },
+    {
+      "name": "Socks",
+      "category_id": 516694,
+      "page_param_value": "mens-socks-on-sale",
+      "url": "https://www.llbean.com/llb/shop/516694"
+    },
+    {
+      "name": "Accessories",
+      "category_id": 516695,
+      "page_param_value": "mens-shoe-accessories-on-sale",
+      "url": "https://www.llbean.com/llb/shop/516695"
+    },
+    {
+      "name": "Women's",
+      "category_id": 6715,
+      "page_param_value": "womens-footwear-on-sale",
+      "url": "https://www.llbean.com/llb/shop/6715"
+    },
+    {
+      "name": "Boots",
+      "category_id": 502269,
+      "page_param_value": "womens-boots-on-sale",
+      "url": "https://www.llbean.com/llb/shop/502269"
+    },
+    {
+      "name": "Sneakers & Shoes",
+      "category_id": 502050,
+      "page_param_value": "womens-sneakers-and-shoes-on-sale",
+      "url": "https://www.llbean.com/llb/shop/502050"
+    },
+    {
+      "name": "Sandals & Water Shoes",
+      "category_id": 502267,
+      "page_param_value": "womens-sandals-and-water-shoes-on-sale",
+      "url": "https://www.llbean.com/llb/shop/502267"
+    },
+    {
+      "name": "Slippers",
+      "category_id": 502266,
+      "page_param_value": "womens-slippers-on-sale",
+      "url": "https://www.llbean.com/llb/shop/502266"
+    },
+    {
+      "name": "Socks",
+      "category_id": 516696,
+      "page_param_value": "womens-socks-on-sale",
+      "url": "https://www.llbean.com/llb/shop/516696"
+    },
+    {
+      "name": "Accessories",
+      "category_id": 516697,
+      "page_param_value": "womens-shoe-accessories-on-sale",
+      "url": "https://www.llbean.com/llb/shop/516697"
+    },
+    {
+      "name": "Kids'",
+      "category_id": 503755,
+      "page_param_value": "kids-footwear-on-sale",
+      "url": "https://www.llbean.com/llb/shop/503755"
+    },
+    {
+      "name": "Outdoor Equipment",
+      "category_id": 509104,
+      "page_param_value": "outdoor-equipment-on-sale",
+      "url": "https://www.llbean.com/llb/shop/509104"
+    },
+    {
+      "name": "Camping & Hiking",
+      "category_id": 511644,
+      "page_param_value": "camping-and-hiking-gear-on-sale",
+      "url": "https://www.llbean.com/llb/shop/511644"
+    },
+    {
+      "name": "Hunting",
+      "category_id": 9200,
+      "page_param_value": "hunting-gear-on-sale",
+      "url": "https://www.llbean.com/llb/shop/9200"
+    },
+    {
+      "name": "Fishing",
+      "category_id": 502035,
+      "page_param_value": "fishing-gear-on-sale",
+      "url": "https://www.llbean.com/llb/shop/502035"
+    },
+    {
+      "name": "Paddling",
+      "category_id": 510692,
+      "page_param_value": "paddling-gear-on-sale",
+      "url": "https://www.llbean.com/llb/shop/510692"
+    },
+    {
+      "name": "Cycling",
+      "category_id": 508295,
+      "page_param_value": "cycling-gear-on-sale",
+      "url": "https://www.llbean.com/llb/shop/508295"
+    },
+    {
+      "name": "Winter Sports",
+      "category_id": 508294,
+      "page_param_value": "winter-sports-gear-on-sale",
+      "url": "https://www.llbean.com/llb/shop/508294"
+    },
+    {
+      "name": "Games & Recreation",
+      "category_id": 516422,
+      "page_param_value": "games-and-recreation-on-sale",
+      "url": "https://www.llbean.com/llb/shop/516422"
+    },
+    {
+      "name": "Car Racks & Cargo Boxes on Sale",
+      "category_id": 510830,
+      "page_param_value": "car-racks-and-cargo-boxes-on-sale",
+      "url": "https://www.llbean.com/llb/shop/510830"
+    },
+    {
+      "name": "Outdoor Accessories",
+      "category_id": 516423,
+      "page_param_value": "outdoor-accessories-on-sale",
+      "url": "https://www.llbean.com/llb/shop/516423"
+    },
+    {
+      "name": "Bags & Travel",
+      "category_id": 305,
+      "page_param_value": "bags-and-travel-on-sale",
+      "url": "https://www.llbean.com/llb/shop/305"
+    },
+    {
+      "name": "Backpacks",
+      "category_id": 511658,
+      "page_param_value": "backpacks-on-sale",
+      "url": "https://www.llbean.com/llb/shop/511658"
+    },
+    {
+      "name": "Lunch Boxes",
+      "category_id": 513285,
+      "page_param_value": "lunch-boxes-on-sale",
+      "url": "https://www.llbean.com/llb/shop/513285"
+    },
+    {
+      "name": "Bags & Totes",
+      "category_id": 8917,
+      "page_param_value": "bags-and-totes-on-sale",
+      "url": "https://www.llbean.com/llb/shop/8917"
+    },
+    {
+      "name": "Luggage & Duffle Bags",
+      "category_id": 8918,
+      "page_param_value": "luggage-and-duffle-bags-on-sale",
+      "url": "https://www.llbean.com/llb/shop/8918"
+    },
+    {
+      "name": "Travel Accessories",
+      "category_id": 516700,
+      "page_param_value": "keychains-and-tote-accessories-on-sale",
+      "url": "https://www.llbean.com/llb/shop/516700"
+    },
+    {
+      "name": "Toiletry Bags & Organizers",
+      "category_id": 516699,
+      "page_param_value": "toiletry-bags-and-organizers-on-sale",
+      "url": "https://www.llbean.com/llb/shop/516699"
+    },
+    {
+      "name": "Home Goods",
+      "category_id": 307,
+      "page_param_value": "home-goods-on-sale",
+      "url": "https://www.llbean.com/llb/shop/307"
+    },
+    {
+      "name": "New to Sale",
+      "category_id": 508925,
+      "page_param_value": "new-to-sale-on-sale",
+      "url": "https://www.llbean.com/llb/shop/508925"
+    },
+    {
+      "name": "Clothing",
+      "category_id": 516680,
+      "page_param_value": "clothing-new-to-sale",
+      "url": "https://www.llbean.com/llb/shop/516680"
+    },
+    {
+      "name": "Men's",
+      "category_id": 508928,
+      "page_param_value": "mens-clothing-new-to-sale",
+      "url": "https://www.llbean.com/llb/shop/508928"
+    },
+    {
+      "name": "Women's",
+      "category_id": 508929,
+      "page_param_value": "womens-clothing-new-to-sale",
+      "url": "https://www.llbean.com/llb/shop/508929"
+    },
+    {
+      "name": "Kids'",
+      "category_id": 508930,
+      "page_param_value": "kids-clothing-new-to-sale",
+      "url": "https://www.llbean.com/llb/shop/508930"
+    },
+    {
+      "name": "Outerwear",
+      "category_id": 518702,
+      "page_param_value": "outerwear-new-to-sale",
+      "url": "https://www.llbean.com/llb/shop/518702"
+    },
+    {
+      "name": "Footwear",
+      "category_id": 516682,
+      "page_param_value": "footwear-new-to-sale",
+      "url": "https://www.llbean.com/llb/shop/516682"
+    },
+    {
+      "name": "Outdoor Equipment",
+      "category_id": 509138,
+      "page_param_value": "outdoor-equipment-new-to-sale",
+      "url": "https://www.llbean.com/llb/shop/509138"
+    },
+    {
+      "name": "Bags & Travel",
+      "category_id": 508933,
+      "page_param_value": "bags-and-travel-new-to-sale",
+      "url": "https://www.llbean.com/llb/shop/508933"
+    },
+    {
+      "name": "Home Goods",
+      "category_id": 508932,
+      "page_param_value": "home-goods-new-to-sale",
+      "url": "https://www.llbean.com/llb/shop/508932"
+    },
+    {
+      "name": "Two-A-Day Daily Markdown",
+      "category_id": 504987,
+      "page_param_value": "clearance-items",
+      "url": "https://www.llbean.com/llb/shop/504987"
+    },
+    {
+      "name": "Clothing and Home Goods",
+      "category_id": 556,
+      "page_param_value": "clothing-and-home-goods-on-sale",
+      "url": "https://www.llbean.com/llb/shop/556"
+    },
+    {
+      "name": "Clothing and Home Goods",
+      "category_id": 577,
+      "page_param_value": "clothing-and-home-goods-on-sale",
+      "url": "https://www.llbean.com/llb/shop/577"
+    },
+    {
+      "name": "Daily Markdown",
+      "category_id": 510312,
+      "page_param_value": "clearance",
+      "url": "https://www.llbean.com/llb/shop/510312"
+    },
+    {
+      "name": "Daily Markdown",
+      "category_id": 510310,
+      "page_param_value": "travel-and-gear-markdown-on-sale",
+      "url": "https://www.llbean.com/llb/shop/510310"
+    },
+    {
+      "name": "Daily Markdown",
+      "category_id": 510311,
+      "page_param_value": "travel-and-gear-markdown-on-sale",
+      "url": "https://www.llbean.com/llb/shop/510311"
+    }
+  ],
+  "Outdoor Experiences": [
+    {
+      "name": "Outdoor Experiences",
+      "category_id": 518571,
+      "page_param_value": "outdoor-experiences",
+      "url": "https://www.llbean.com/llb/shop/518571"
+    },
+    {
+      "name": "Outdoor Discovery Programs",
+      "category_id": 518707,
+      "page_param_value": "outdoor-discovery-programs",
+      "url": "https://www.llbean.com/llb/shop/518707"
+    },
+    {
+      "name": "Events & Activities",
+      "category_id": 518363,
+      "page_param_value": "events-and-activities",
+      "url": "https://www.llbean.com/llb/shop/518363"
+    },
+    {
+      "name": "Flagship Grand Opening",
+      "category_id": 20011038,
+      "page_param_value": "flagship_grand-opening",
+      "url": "https://www.llbean.com/llb/shop/20011038"
+    },
+    {
+      "name": "Northern Lights",
+      "category_id": 512152,
+      "page_param_value": "northern-lights",
+      "url": "https://www.llbean.com/llb/shop/512152"
+    },
+    {
+      "name": "Winter in New England",
+      "category_id": 513045,
+      "page_param_value": "winter-in-new-england",
+      "url": "https://www.llbean.com/llb/shop/513045"
+    },
+    {
+      "name": "Summer in the Park",
+      "category_id": 518418,
+      "page_param_value": "summer-in-the-park",
+      "url": "https://www.llbean.com/llb/shop/518418"
+    },
+    {
+      "name": "Beach Boxes",
+      "category_id": 518451,
+      "page_param_value": "beach_boxes",
+      "url": "https://www.llbean.com/llb/shop/518451"
+    },
+    {
+      "name": "Be An Outsider at Work",
+      "category_id": 517153,
+      "page_param_value": "be-an-outsider-at-work",
+      "url": "https://www.llbean.com/llb/shop/517153"
+    },
+    {
+      "name": "Bootmobile",
+      "category_id": 518708,
+      "page_param_value": "bootmobile",
+      "url": "https://www.llbean.com/llb/shop/518708"
+    },
+    {
+      "name": "Meet the Fleet",
+      "category_id": 20010251,
+      "page_param_value": "meet-the-fleet",
+      "url": "https://www.llbean.com/llb/shop/20010251"
+    },
+    {
+      "name": "Bootlegger Bios",
+      "category_id": 20010252,
+      "page_param_value": "bootlegger-bios",
+      "url": "https://www.llbean.com/llb/shop/20010252"
+    },
+    {
+      "name": "Bootmobile History",
+      "category_id": 20010253,
+      "page_param_value": "bootmobile-history",
+      "url": "https://www.llbean.com/llb/shop/20010253"
+    }
+  ],
+  "Explore L.L.Bean": [
+    {
+      "name": "Explore L.L.Bean",
+      "category_id": 518342,
+      "page_param_value": "explore-llbean",
+      "url": "https://www.llbean.com/llb/shop/518342"
+    }
+  ]
+}

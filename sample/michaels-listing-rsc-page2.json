@@ -1,0 +1,431 @@
+{
+ "props": {
+  "initialProducts": [
+   {
+    "id": "10809877",
+    "skuNumber": "10809877",
+    "masterSku": "$undefined",
+    "pdpUrl": "/product/12-yellow-dahlia-leaf-bouquet-by-ashland-10809877",
+    "name": "12\" Yellow Dahlia & Leaf Bouquet by Ashland®",
+    "description": "12\" Yellow Dahlia & Leaf Bouquet by Ashland®",
+    "price": 9.99,
+    "priceDisplay": "$$9.99",
+    "originalPrice": "$undefined",
+    "orgPriceDisplay": "$undefined",
+    "rating": 4.8636,
+    "reviewCount": 22,
+    "image": "https://imgs.michaels.com/26af8c49-dff3-4efb-ba7b-423c83d265e0.jpg?fit=inside|540:540",
+    "images": [
+     "https://imgs.michaels.com/26af8c49-dff3-4efb-ba7b-423c83d265e0.jpg?fit=inside|540:540",
+     "https://imgs.michaels.com/3e57457d-c72d-4e0a-b482-676457e0640d.jpg?fit=inside|540:540",
+     "https://imgs.michaels.com/31f492b4-1659-4de6-af5e-49716634cd81.jpg?fit=inside|540:540"
+    ],
+    "category": "Fall Stem Bundles",
+    "brand": "Michaels",
+    "size": "$undefined",
+    "color": "$undefined",
+    "colorSwatches": [],
+    "variantCount": "",
+    "variantCounts": {},
+    "availability": {
+     "storePickup": true,
+     "shipToMe": true,
+     "scheduledDelivery": false,
+     "stockCount": "$undefined",
+     "storeName": "MacArthur Park",
+     "storeCode": "1056"
+    },
+    "badges": {
+     "freeStorePickup": true,
+     "michaelsExclusive": false,
+     "michaelsProPack": false,
+     "onlineOnly": false,
+     "notAvailableToShip": false,
+     "sameDayDeliveryBadge": true,
+     "globalNonDiscountable": false,
+     "couponExclusion": false,
+     "sale": false,
+     "newPdt": false,
+     "clearance": false,
+     "greatBuy": false,
+     "comingSoon": false,
+     "everydayValue": false,
+     "doorbuster": false,
+     "shipsForFree": false
+    },
+    "isProPack": false,
+    "isExclusive": false,
+    "storeOnly": false,
+    "isSponsored": false,
+    "isOnlineOnly": false,
+    "isBundle": false,
+    "badge": "$undefined",
+    "promotionMessage": "30% off every regular price purchase with code GETMY30",
+    "promotionExpiry": "2026-10-03T23:59:59.000Z",
+    "shipping": {
+     "freeShippingEligible": "$undefined",
+     "freeStandardShipping": "$undefined",
+     "overrideShippingRate": "$undefined",
+     "shipMinimumOrderQuantity": 1,
+     "bopisMinimumOrderQuantity": 1
+    },
+    "analyticsProductDetailView": {
+     "channel": "1",
+     "skuNumber": "10809877",
+     "itemName": "12\" Yellow Dahlia & Leaf Bouquet by Ashland®",
+     "averageRating": 4.8636,
+     "commentCount": 22,
+     "fullTaxonomyPath": "Fall Stem Bundles",
+     "itemProperties": "$undefined",
+     "subSkus": "$undefined",
+     "itemPrice": {
+      "price": "$$9.99",
+      "orgPrice": null,
+      "priceRange": null,
+      "orgPriceRange": null,
+      "unitPrice": null,
+      "unitPriceRange": null,
+      "priceFlag": null,
+      "savedAmount": null,
+      "savedPercent": null,
+      "numberPrice": "9.99"
+     },
+     "badges": {
+      "freeStorePickup": true,
+      "sameDayDelivery": true
+     }
+    }
+   },
+   {
+    "id": "10814027",
+    "skuNumber": "10814027",
+    "masterSku": "$undefined",
+    "pdpUrl": "/product/105-dark-red-maple-leaf-mini-bundle-by-ashland-10814027",
+    "name": "10.5\" Dark Red Maple Leaf Mini Bundle by Ashland®",
+    "description": "10.5\" Dark Red Maple Leaf Mini Bundle by Ashland®",
+    "price": 0.99,
+    "priceDisplay": "$$0.99",
+    "originalPrice": 1.99,
+    "orgPriceDisplay": "Reg.$1.99",
+    "rating": 4.6667,
+    "reviewCount": 21,
+    "image": "https://imgs.michaels.com/3934d4d4-09b4-48a1-9aed-c4c9fc69bfe0.jpg?fit=inside|540:540",
+    "images": [
+     "https://imgs.michaels.com/3934d4d4-09b4-48a1-9aed-c4c9fc69bfe0.jpg?fit=inside|540:540",
+     "https://imgs.michaels.com/b249dd23-215b-4389-9fc4-2c1ce8cb6b1f.jpg?fit=inside|540:540"
+    ],
+    "category": "Fall Stem Bundles",
+    "brand": "Michaels",
+    "size": "$undefined",
+    "color": "$undefined",
+    "colorSwatches": [],
+    "variantCount": "",
+    "variantCounts": {},
+    "availability": {
+     "storePickup": true,
+     "shipToMe": false,
+     "scheduledDelivery": false,
+     "stockCount": "$undefined",
+     "storeName": "MacArthur Park",
+     "storeCode": "1056"
+    },
+    "badges": {
+     "freeStorePickup": true,
+     "michaelsExclusive": false,
+     "michaelsProPack": false,
+     "onlineOnly": false,
+     "notAvailableToShip": false,
+     "sameDayDeliveryBadge": true,
+     "globalNonDiscountable": false,
+     "couponExclusion": false,
+     "sale": true,
+     "newPdt": false,
+     "clearance": false,
+     "greatBuy": false,
+     "comingSoon": false,
+     "everydayValue": false,
+     "doorbuster": false,
+     "shipsForFree": false
+    },
+    "isProPack": false,
+    "isExclusive": false,
+    "storeOnly": false,
+    "isSponsored": false,
+    "isOnlineOnly": false,
+    "isBundle": false,
+    "badge": "Sale",
+    "promotionMessage": null,
+    "promotionExpiry": null,
+    "shipping": {
+     "freeShippingEligible": "$undefined",
+     "freeStandardShipping": "$undefined",
+     "overrideShippingRate": "$undefined",
+     "shipMinimumOrderQuantity": 1,
+     "bopisMinimumOrderQuantity": 1
+    },
+    "analyticsProductDetailView": {
+     "channel": "1",
+     "skuNumber": "10814027",
+     "itemName": "10.5\" Dark Red Maple Leaf Mini Bundle by Ashland®",
+     "averageRating": 4.6667,
+     "commentCount": 21,
+     "fullTaxonomyPath": "Fall Stem Bundles",
+     "itemProperties": "$undefined",
+     "subSkus": "$undefined",
+     "itemPrice": {
+      "price": "$$0.99",
+      "orgPrice": "Reg.$1.99",
+      "priceRange": null,
+      "orgPriceRange": null,
+      "unitPrice": null,
+      "unitPriceRange": null,
+      "priceFlag": "0",
+      "savedAmount": "$$1.00",
+      "savedPercent": "50%",
+      "numberPrice": "0.99"
+     },
+     "badges": {
+      "freeStorePickup": true,
+      "sale": true,
+      "sameDayDelivery": true
+     }
+    }
+   },
+   {
+    "id": "10809943",
+    "skuNumber": "10809943",
+    "masterSku": "$undefined",
+    "pdpUrl": "/product/12-cream-ranunculus-sunflower-mix-real-touch-bundle-by-ashland-10809943",
+    "name": "12\" Cream Ranunculus & Sunflower Mix Real Touch Bundle by Ashland®",
+    "description": "12\" Cream Ranunculus & Sunflower Mix Real Touch Bundle by Ashland®",
+    "price": 14.99,
+    "priceDisplay": "$$14.99",
+    "originalPrice": 29.99,
+    "orgPriceDisplay": "Reg.$29.99",
+    "rating": 5,
+    "reviewCount": 1,
+    "image": "https://imgs.michaels.com/098baee7-d41a-4a09-aa45-ec26a304ff12.jpg?fit=inside|540:540",
+    "images": [
+     "https://imgs.michaels.com/098baee7-d41a-4a09-aa45-ec26a304ff12.jpg?fit=inside|540:540",
+     "https://imgs.michaels.com/bd709ea1-9dc5-4725-b722-b1689bc73a0c.jpg?fit=inside|540:540",
+     "https://imgs.michaels.com/46d534d7-3fde-4a41-93f8-9c6999d3f3c4.jpg?fit=inside|540:540"
+    ],
+    "category": "Fall Stem Bundles",
+    "brand": "Michaels",
+    "size": "$undefined",
+    "color": "$undefined",
+    "colorSwatches": [],
+    "variantCount": "",
+    "variantCounts": {},
+    "availability": {
+     "storePickup": false,
+     "shipToMe": true,
+     "scheduledDelivery": false,
+     "stockCount": "$undefined",
+     "storeName": "MacArthur Park",
+     "storeCode": "1056"
+    },
+    "badges": {
+     "freeStorePickup": true,
+     "michaelsExclusive": false,
+     "michaelsProPack": false,
+     "onlineOnly": false,
+     "notAvailableToShip": false,
+     "sameDayDeliveryBadge": true,
+     "globalNonDiscountable": false,
+     "couponExclusion": false,
+     "sale": true,
+     "newPdt": false,
+     "clearance": false,
+     "greatBuy": false,
+     "comingSoon": false,
+     "everydayValue": false,
+     "doorbuster": false,
+     "shipsForFree": false
+    },
+    "isProPack": false,
+    "isExclusive": false,
+    "storeOnly": false,
+    "isSponsored": false,
+    "isOnlineOnly": false,
+    "isBundle": false,
+    "badge": "Sale",
+    "promotionMessage": null,
+    "promotionExpiry": null,
+    "shipping": {
+     "freeShippingEligible": "$undefined",
+     "freeStandardShipping": "$undefined",
+     "overrideShippingRate": "$undefined",
+     "shipMinimumOrderQuantity": 1,
+     "bopisMinimumOrderQuantity": 1
+    },
+    "analyticsProductDetailView": {
+     "channel": "1",
+     "skuNumber": "10809943",
+     "itemName": "12\" Cream Ranunculus & Sunflower Mix Real Touch Bundle by Ashland®",
+     "averageRating": 5,
+     "commentCount": 1,
+     "fullTaxonomyPath": "Fall Stem Bundles",
+     "itemProperties": "$undefined",
+     "subSkus": "$undefined",
+     "itemPrice": {
+      "price": "$$14.99",
+      "orgPrice": "Reg.$29.99",
+      "priceRange": null,
+      "orgPriceRange": null,
+      "unitPrice": null,
+      "unitPriceRange": null,
+      "priceFlag": "0",
+      "savedAmount": "$$15.00",
+      "savedPercent": "50%",
+      "numberPrice": "14.99"
+     },
+     "badges": {
+      "freeStorePickup": true,
+      "sale": true,
+      "sameDayDelivery": true
+     }
+    }
+   },
+   {
+    "id": "10128390",
+    "skuNumber": "10128390",
+    "masterSku": "$undefined",
+    "pdpUrl": "/product/red-rose-bush-by-ashland-10128390",
+    "name": "Red Rose Bush by Ashland®",
+    "description": "Red Rose Bush by Ashland®",
+    "price": 15.49,
+    "priceDisplay": "$$15.49",
+    "originalPrice": "$undefined",
+    "orgPriceDisplay": "$undefined",
+    "rating": 4.6531,
+    "reviewCount": 245,
+    "image": "https://imgs.michaels.com/b2868bd1-e7db-44fe-b504-57a1f96ab44d.jpg?fit=inside|540:540",
+    "images": [
+     "https://imgs.michaels.com/b2868bd1-e7db-44fe-b504-57a1f96ab44d.jpg?fit=inside|540:540",
+     "https://imgs.michaels.com/84d4e892-9a1b-4fb3-afcf-da062459eb0e.jpg?fit=inside|540:540",
+     "https://imgs.michaels.com/ed1d73f2-1eaa-4fbc-a957-52cb45b7ac92.jpg?fit=inside|540:540"
+    ],
+    "category": "Bundles & Bouquets",
+    "brand": "Michaels",
+    "size": "$undefined",
+    "color": "$undefined",
+    "colorSwatches": [],
+    "variantCount": "",
+    "variantCounts": {},
+    "availability": {
+     "storePickup": true,
+     "shipToMe": true,
+     "scheduledDelivery": false,
+     "stockCount": "$undefined",
+     "storeName": "MacArthur Park",
+     "storeCode": "1056"
+    },
+    "badges": {
+     "freeStorePickup": true,
+     "michaelsExclusive": false,
+     "michaelsProPack": false,
+     "onlineOnly": false,
+     "notAvailableToShip": false,
+     "sameDayDeliveryBadge": true,
+     "globalNonDiscountable": false,
+     "couponExclusion": false,
+     "sale": false,
+     "newPdt": false,
+     "clearance": false,
+     "greatBuy": false,
+     "comingSoon": false,
+     "everydayValue": false,
+     "doorbuster": false,
+     "shipsForFree": false
+    },
+    "isProPack": false,
+    "isExclusive": false,
+    "storeOnly": false,
+    "isSponsored": false,
+    "isOnlineOnly": false,
+    "isBundle": false,
+    "badge": "$undefined",
+    "promotionMessage": "30% off every regular price purchase with code GETMY30",
+    "promotionExpiry": "2026-10-03T23:59:59.000Z",
+    "shipping": {
+     "freeShippingEligible": "$undefined",
+     "freeStandardShipping": "$undefined",
+     "overrideShippingRate": "$undefined",
+     "shipMinimumOrderQuantity": 1,
+     "bopisMinimumOrderQuantity": 1
+    },
+    "analyticsProductDetailView": {
+     "channel": "1",
+     "skuNumber": "10128390",
+     "itemName": "Red Rose Bush by Ashland®",
+     "averageRating": 4.6531,
+     "commentCount": 245,
+     "fullTaxonomyPath": "Bundles & Bouquets",
+     "itemProperties": "$undefined",
+     "subSkus": "$undefined",
+     "itemPrice": {
+      "price": "$$15.49",
+      "orgPrice": null,
+      "priceRange": null,
+      "orgPriceRange": null,
+      "unitPrice": null,
+      "unitPriceRange": null,
+      "priceFlag": null,
+      "savedAmount": null,
+      "savedPercent": null,
+      "numberPrice": "15.49"
+     },
+     "badges": {
+      "freeStorePickup": true,
+      "sameDayDelivery": true
+     }
+    }
+   }
+  ],
+  "initialFilters": [
+   {
+    "id": "customfeatures",
+    "name": "Product Features",
+    "facetKey": "CustomFeatures",
+    "type": "checkbox",
+    "options": [
+     {
+      "id": "UV Resistant",
+      "label": "UV Resistant",
+      "count": 15,
+      "checked": false
+     },
+     {
+      "id": "Repositionable",
+      "label": "Repositionable",
+      "count": 64,
+      "checked": false
+     }
+    ]
+   },
+   {
+    "id": "flowerplanttype",
+    "name": "Flower/Plant Type",
+    "facetKey": "FlowerPlantType",
+    "type": "checkbox",
+    "options": [
+     {
+      "id": "Zebra",
+      "label": "Zebra",
+      "count": 1,
+      "checked": false
+     },
+     {
+      "id": "Zamioculcas",
+      "label": "Zamioculcas",
+      "count": 1,
+      "checked": false
+     }
+    ]
+   }
+  ],
+  "initialTotal": 3319
+ },
+ "_note": "Trimmed real capture of the Michaels RSC flight payload, page 2 of /shop/home-decor/floral-arrangements. Product records and facet counts are verbatim; unrelated i18n/config blobs and 36 of the 40 rows are omitted."
+}

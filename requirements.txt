@@ -1,3 +1,4 @@
 click==8.3.1
 scrapy==2.13.4
 python-dotenv==1.2.1
+curl_cffi==0.16.3
