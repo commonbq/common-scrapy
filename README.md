@@ -82,6 +82,7 @@ Spiders below are returning items in recent smoke runs:
 | [`costco_listing`](#costco_search--costco_listing) | Active | React Flight + API | Akamai | Costco category listing with React Flight discovery and GRS search pagination. | 24 (ok) | 131 parent groups / 432 subcategory entries from `costco-categories.json` | `{"item_id":"100501081","title":"Starbucks Pike Place Medium Roast K-Cup","url":"https://www.costco.com/starbucks-pike-place-medium-roast-k-cup-72-count.product.100501081.html","price":...` |
 | [`containerstore_listing`](#containerstore_listing) | Active | bootstrap | none detected | Container Store category listings from the server-rendered Next.js `__NEXT_DATA__` hydration. | 120 (2 pages, proxy) | 14 departments / 189 L2 / 159 L3 nodes -> 295 unique catalogue URLs from `containerstore_categories.py` | `{"category":"Kitchen > Pantry Organizers","department":"Kitchen","subcategory":"Pantry Organizers","item_id":"11017102","sku_id":"10087168","title":"Everything Organizer Shelf-Depth Pantry Bin with Divider","price":9.19,"original_price":22.99,...` |
 | [`dickssportinggoods_listing`](#dickssportinggoods_listing) | Active | api | Akamai | DICK'S Sporting Goods category listings from the first-party catalog product-search API. | 48 (ok) | 1287 unique categories from 10 departments | `{"item_id":"13286436","title":"adidas FIFA World Cup Historical Mini Soccer Ball Set","brand":"adidas","price":141.52,"currency":"USD",...}` |
+| [`tractorsupply_listing`](#tractorsupply_listing) | Experimental | bootstrap | Akamai | Tractor Supply products from official sitemaps and PDP `__NEXT_DATA__`. | 24/page | 4 product sitemap shards | `{"item_id":"867","sku":"100001199","title":"Gorilla-Lift Trailer Tailgate Lift Assist","brand":"Gorilla-Lift",...}` |
 | [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | none detected (CloudFront CDN only) | e.l.f. Cosmetics multi-mode listing spider. | 6 (ok) | face, eyes, lips | `{'item_id':'300261','title':'Soft Glam Satin Concealer','url':'https://www.elfcosmetics.com/soft-glam-satin-concealer/300262.html','price':9.0,'brand':'e.l.f. Cosmetics','source':'elfcosmetics_preloaded_state'...}` |
 | [`fashionnova_listing`](#fashionnova_listing) | Active | api + html | Cloudflare | Fashion Nova listing via Shopify Storefront GraphQL with HTML fallback. | 48 (ok) | women, new, dresses, jeans, sale | `{"item_id":"175898317","title":"Classic High Waist Skinny Jeans - Dark Denim","url":"https://www.fashionnova.com/products/dark-blue-class...` |
 | [`nike_listing`](#nike_listing) | Active | api | none detected (ScrapeOps proxy; keep_headers) | Nike product wall via `__NEXT_DATA__` hydration + `api.nike.com` product-wall API pagination (no HTML fallback). | 239 (page 1, proxy) | 168 unique URLs across 6 departments from `nike_categories.py` | `{"category":"mens-shoes-nik1zy7ok","item_id":"IX3952-600","title":"Nike Moon Shoe OG","price":105,"currency":"USD","source":"nike_next_data"...` |
@@ -2328,6 +2329,29 @@ Notes:
   on all 48. The API reported `totalCount=5577` for the category, so the run was
   bounded by `max_pages`. A first attempt returned a transient ScrapeOps error
   page and no items; the retry succeeded with zero errors.
+
+### tractorsupply_listing
+
+`tractorsupply_listing` uses one data direction: official product sitemaps
+discover PDP URLs, and each PDP's structured Next.js `__NEXT_DATA__` bootstrap
+supplies the product record. There is no HTML-card or JSON-LD fallback. Each
+`max_pages` unit processes 24 product URLs.
+For a small smoke test, `-a max_items=3` caps each selected sitemap explicitly.
+
+```bash
+HTTPCACHE_ENABLED=False common-scrapy crawl tractorsupply_listing \
+  -a category=products-1 -a max_pages=1 -O tractorsupply.jsonl \
+  -s HTTPCACHE_ENABLED=False
+```
+
+The four bundled targets correspond to the official product sitemap shards. The
+ordered export contract is `category`, `department`, `category_name`,
+`item_id`, `sku`, `title`, `brand`, `url`, `image_url`, `price`,
+`list_price`, `currency`, `availability`, `rating`, `reviews_count`,
+`primary_category`, `source_url`, `source`, and `raw`.
+
+Product fields come only from `props.pageProps.pageProps.pdpData.productDetails`
+inside `__NEXT_DATA__`; missing bootstrap state fails visibly.
 
 ## Contributing
 
