@@ -88,6 +88,7 @@ Spiders below are returning items in recent smoke runs:
 | [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | html + nuxt-state | Akamai | Bloomingdale's listing spider via Nuxt SSR state contract parsing (splash->leaf aware). | 8 (ok) | new-now, women, beauty, shoes, handbags, jewelry-accessories, men, kids, home, sale, gifts, designers | `{"item_id":"5973765","title":"Tumbled Woven Verne Pants","url":"https://www.bloomingdales.com/shop/product/cinq-a-sept-tumbled-woven-vern...` |
 | [`costco_listing`](#costco_search--costco_listing) | Active | React Flight + API | Akamai | Costco category listing with React Flight discovery and GRS search pagination. | 24 (ok) | 131 parent groups / 432 subcategory entries from `costco-categories.json` | `{"item_id":"100501081","title":"Starbucks Pike Place Medium Roast K-Cup","url":"https://www.costco.com/starbucks-pike-place-medium-roast-k-cup-72-count.product.100501081.html","price":...` |
 | [`containerstore_listing`](#containerstore_listing) | Active | bootstrap | none detected | Container Store category listings from the server-rendered Next.js `__NEXT_DATA__` hydration. | 120 (2 pages, proxy) | 14 departments / 189 L2 / 159 L3 nodes -> 295 unique catalogue URLs from `containerstore_categories.py` | `{"category":"Kitchen > Pantry Organizers","department":"Kitchen","subcategory":"Pantry Organizers","item_id":"11017102","sku_id":"10087168","title":"Everything Organizer Shelf-Depth Pantry Bin with Divider","price":9.19,"original_price":22.99,...` |
+| [`shopbop_listing`](#shopbop_listing) | Active | bootstrap | none detected (ScrapeOps proxy) | Shopbop category listings from the server-rendered `window.__shopbop_sca_hydrate__` React Query hydration. | 200 (2 pages, proxy) | 3 groups / 20 primary / 335 nav nodes -> 266 unique category URLs from `shopbop_categories.py` | {"category":"Women > What's New","department":"Women","subcategory":"What's New","folder_id":"13198","item_id":"1560892247","sku_id":"AKNVA30171","title":"Kyla Faux Fur Coat","brand":"AKNVAS","price":1495.0,"currency":"USD","page":1,"offset":0,"source":"shopbop_sca_hydrate_products_query",...}` |
 | [`dickssportinggoods_listing`](#dickssportinggoods_listing) | Active | api | Akamai | DICK'S Sporting Goods category listings from the first-party catalog product-search API. | 48 (ok) | 1287 unique categories from 10 departments | `{"item_id":"13286436","title":"adidas FIFA World Cup Historical Mini Soccer Ball Set","brand":"adidas","price":141.52,"currency":"USD",...}` |
 | [`tractorsupply_listing`](#tractorsupply_listing) | Experimental | bootstrap | Akamai | Tractor Supply products from official sitemaps and PDP `__NEXT_DATA__`. | 24/page | 4 product sitemap shards | `{"item_id":"867","sku":"100001199","title":"Gorilla-Lift Trailer Tailgate Lift Assist","brand":"Gorilla-Lift",...}` |
 | [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | none detected (CloudFront CDN only) | e.l.f. Cosmetics multi-mode listing spider. | 6 (ok) | face, eyes, lips | `{'item_id':'300261','title':'Soft Glam Satin Concealer','url':'https://www.elfcosmetics.com/soft-glam-satin-concealer/300262.html','price':9.0,'brand':'e.l.f. Cosmetics','source':'elfcosmetics_preloaded_state'...}` |
@@ -477,6 +478,110 @@ HTTPCACHE_ENABLED=False common-scrapy crawl containerstore_listing -a category="
 ```json
 {"category":"Kitchen > Pantry Organizers","department":"Kitchen","subcategory":"Pantry Organizers","leaf":null,"item_id":"11017102","sku_id":"10087168","title":"Everything Organizer Shelf-Depth Pantry Bin with Divider","url":"https://www.containerstore.com/s/kitchen/pantry-organizers/shelf_depth-pantry-bin-with-divider/12d?productId=11017102","image_url":"https://images.containerstore.com/catalogimages/683293/10087168_15_Inch_Modular_Pantry_Bin_.jpg?width=312&height=312","image_alt":"Shelf-Depth Pantry Bin with Divider","product_type":"single","color_option_count":null,"color_options":null,"price":9.19,"original_price":22.99,"discount_percentage":60.03,"currency":"USD","on_sale":true,"out_of_stock":false,"rating":5.0,"reviews_count":20,"badge":"Clearance","page":1,"position":1,"total_count":325,"last_page":6,"source_url":"https://www.containerstore.com/s/kitchen/pantry-organizers/12","source":"containerstore_next_data_products_entities"}
 ```
+
+### shopbop_listing
+
+`shopbop_listing` uses one authoritative source: the server-rendered hydration blob
+assigned to `window.__shopbop_sca_hydrate__` inside a `DOMContentLoaded` listener. No
+HTML product cards, no JSON-LD, no separate product API, no browser engine. The blob is
+a megabyte of nested JSON, so it is read with a balanced `json.JSONDecoder().raw_decode`
+rather than a regex.
+
+The dehydrated React Query cache sits at a different depth depending on which slots the
+page composes, so the spider searches **every** `queries` list in the tree for the entry
+that hydrates a `products` array:
+
+| Path | Contents |
+|---|---|
+| `...topLevelSlots["plp-main"].content.slotConfiguration.squareState.props.dehydratedState.queries[]` where `queryKey[0] == "products"` | the authoritative grid |
+| `...state.data.data.products[]` | `{"colorSin": ..., "product": {...}}` entries |
+| `...state.data.data.nextOffset` / `totalResults` / `folderId` / `resultsTitle` | pagination + category identity |
+| `...topLevelSlots["top-nav-1"]...props.unfilteredNavigationData.navigationCategoryGroupList` | the full taxonomy (homepage only) |
+
+Two structural traps are worth knowing:
+
+* **`pageType` alone is not enough.** The blob also reports `Designer` (`/designers`),
+  `DesignerIndex`, `MensLandingPage` (`/shop-men`) and `Homepage` -- none of which carry a
+  `products` query at all. The spider looks for the grid first and only enforces
+  `pageType == "PLP"` once one is found, so a non-listing page logs a message and yields
+  0 items instead of raising.
+* **`totalResults` drifts between pages.** `Women > What's New` reported 1097 on page 1 and
+  1046 on page 2 minutes later; `Women > Sale` reported 8078 and then 7820. It is used only
+  as an upper bound, never as a page count -- pagination actually follows `nextOffset`.
+
+Pagination is ordinary `?offset=N` at a **page size of 100**
+(`slotToCardConfig["plp-main"].widgetConfig.pageSize`). The offset is rewritten **in
+place**, so any facet/sort state already on the URL (`?f=...&productSort=...`) survives.
+`nextOffset` is `null` on the natural last page, and products are deduplicated by
+`productSin` across pages.
+
+Taxonomy lives in `shopbop_categories.py` -- **335 navigation link nodes** shipped by the
+homepage (3 groups -> 20 primary categories -> 311 section/item links) reduced to **266
+unique category URLs** (Women 183, Men 70, Beauty 13):
+
+* 20 nodes carry **no `folderId`** and are dropped: 11 editorial `/ci/...` pages, the
+  designer index (`/designers`, `/designers?bu=sbm`), one hand-curated `/vp/` product page,
+  `/giftcard` and the `/shop-men` landing page.
+* 49 nodes repeat a URL already present at a **shallower** level (34 distinct duplicates).
+  The storefront repeats each primary category link as its own section link and again as an
+  `All <Category>` item link, so `/whats-new/br/v=1/13198.htm` appears three times. The
+  shallowest node wins and a category keeps its primary-catalog placement.
+* Titles are whitespace-collapsed (several ship as `"Accessories "`), and the 27 sections
+  with an empty `title` (the storefront's `imageSection` blocks) are omitted from the path
+  rather than emitted as a blank segment.
+
+Pricing needs care. `retailPrice.usdPrice` is the only **numeric** price in the payload;
+`lowPrice` / `highPrice` / `colorPrice` only carry a formatted string (`"$262.50"`) plus
+`onSale` / `salePercentage` flags. The strings are never parsed -- the current price is
+derived as `usdPrice * (1 - salePercentage / 100)`, which matches the storefront string
+exactly on all 100 products of a representative sale grid. A product with `onSale: true`
+but no positive percentage, or a discount that rounds back onto the retail price, is
+reported as a full-price item.
+
+Two smaller notes:
+
+* **Image URLs need a CDN base *and* a transform suffix.** The payload's `/prod/products/...`
+  path is CDN-relative: it resolves against `https://m.media-amazon.com/images/G/01/Shopbop/p`
+  (the `/p` segment is required -- without it the CDN answers `Not Found`) and the raw
+  `.jpg` 404s, so the storefront's own `._QL90_UX564_.jpg` transform is appended to the
+  filename stem.
+* **`reviews.average` hydrates as `0` for every product** on the grids checked, so `rating`
+  is only emitted when `reviews_count` is non-zero rather than reporting a misleading `0.0`.
+
+One item is emitted per `productSin`; the colorways (`colors[]`, each with its own images,
+swatch and `sizeSins`) and the size run (`sizes[]`) are retained in `raw` and summarised in
+`color_options` / `size_options` / `color_option_count` / `size_option_count`. The default
+PLP query sets `allowOutOfStockItems: false`, so the storefront filters sold-out products
+out before hydration and `out_of_stock` is false in practice. 40 export fields.
+
+```bash
+HTTPCACHE_ENABLED=False common-scrapy crawl shopbop_listing -a category="Women > What's New" -a max_pages=2 -O shopbop.jsonl -s HTTPCACHE_ENABLED=False
+```
+
+```json
+{"category":"Women > What's New","department":"Women","subcategory":"What's New","leaf":null,"folder_id":"13198","item_id":"1560892247","sku_id":"AKNVA30171","title":"Kyla Faux Fur Coat","brand":"AKNVAS","brand_url":"https://www.shopbop.com/aknvas/br/v=1/69344.htm","url":"https://www.shopbop.com/kyla-faux-fur-coat-aknvas/vp/v=1/1560892247.htm","image_url":"https://m.media-amazon.com/images/G/01/Shopbop/p/prod/products/aknva/aknva3017128ab5/aknva3017128ab5_1789592901812_2-0._QL90_UX564_.jpg","image_url_count":7,"color":"TAN / WHITE","color_code":"28AB5","color_option_count":1,"color_options":"TAN / WHITE","size_option_count":4,"size_options":"XS, S, M, L","size_scale":"US","price":1495.0,"original_price":null,"discount_percentage":null,"currency":"USD","on_sale":false,"final_sale":false,"out_of_stock":false,"rating":null,"reviews_count":0,"product_type":"Outerwear","product_category":"APPAREL","gender":"WOMENS","attribute_icons":null,"page":1,"position":1,"total_count":1097,"offset":0,"source_url":"https://www.shopbop.com/whats-new/br/v=1/13198.htm","source":"shopbop_sca_hydrate_products_query"}
+```
+
+Fixtures: `sample/shopbop-home-navigation.html` (homepage taxonomy payload),
+`sample/shopbop-listing-page1.html` / `-page2.html` (`?offset=100`), `-sale.html` (the
+discount branch), `-lastpage.html` (`nextOffset: null` on an 81-item category),
+`-empty.html` and `-designer-index.html` (`pageType="Designer"`, no products query).
+
+Tests: `python -m pytest tests/test_shopbop_listing_spider.py` (40 network-free tests,
+including a taxonomy rebuild from the saved homepage that asserts 335 -> 315 -> 266).
+
+Live verification (`-s HTTPCACHE_ENABLED=False`, 2026-10-05 UTC, ScrapeOps US proxy):
+
+| Category | max_pages | requests | HTTP | items | unique `item_id` | pages @ offsets | `total_count` | on_sale | brands |
+|---|---|---|---|---|---|---|---|---|---|
+| `Women > What's New` | 2 | 2 | 200 | **200** | 200 | 1/2 @ 0,100 | 1097 | 0 | 91 |
+| `Women > Sale` | 2 | 2 | 200 | **200** | 200 | 1/2 @ 0,100 | 8078 | 200 | 100 |
+| `Beauty > Beauty > Suncare` | 2 | 1 | 200 | **81** | 81 | 1 @ 0 | 81 | 0 | 25 |
+| `Men > Shoes` | 2 | 2 | 200 | **200** | 200 | 1/2 @ 0,100 | 1200 | 0 | 29 |
+
+A random sample of 6 emitted item URLs and 6 image URLs was re-fetched over the proxy: all
+12 returned HTTP 200, and all 6 images were real JPEGs (32 KB - 164 KB).
+
 ### llbean_listing
 
 `llbean_listing` uses one authoritative source: the first-party UDAL JSON
