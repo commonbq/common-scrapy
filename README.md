@@ -87,6 +87,7 @@ Spiders below are returning items in recent smoke runs:
 | [`asos_listing`](#asos_listing) | Experimental | bootstrap + API | Akamai | ASOS US listings from `window.asos.plp._data`, with pagination through the hydrated search API contract. | 2 (fixture; live unverified) | complete women/men navigation inventory from `asos_categories.py` | `{"item_id":"211160390","title":"ASOS DESIGN stretch chiffon scarf detail plunge draped maxi dress in chocolate","price":69.99,"currency":"USD"...}` |
 | [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | html + nuxt-state | Akamai | Bloomingdale's listing spider via Nuxt SSR state contract parsing (splash->leaf aware). | 8 (ok) | new-now, women, beauty, shoes, handbags, jewelry-accessories, men, kids, home, sale, gifts, designers | `{"item_id":"5973765","title":"Tumbled Woven Verne Pants","url":"https://www.bloomingdales.com/shop/product/cinq-a-sept-tumbled-woven-vern...` |
 | [`costco_listing`](#costco_search--costco_listing) | Active | React Flight + API | Akamai | Costco category listing with React Flight discovery and GRS search pagination. | 24 (ok) | 131 parent groups / 432 subcategory entries from `costco-categories.json` | `{"item_id":"100501081","title":"Starbucks Pike Place Medium Roast K-Cup","url":"https://www.costco.com/starbucks-pike-place-medium-roast-k-cup-72-count.product.100501081.html","price":...` |
+| [`backcountry_listing`](#backcountry_listing) | Active | bootstrap | AWS WAF (datacenter + `bypass=5` both return the challenge; `residential=true` required) | Backcountry.com category/collection/brand listings from the server-rendered Next.js `#__NEXT_DATA__` PLP payload joined to `__APOLLO_STATE__`. | 84 (2 pages, `cat-mens-shirts`); 52 (`rc-mens-parkas`, natural last page) | 398 unique targets across 14 top-level menus / 110 sections from `backcountry_categories.py` | `{"category":"cat-mens-shirts","department":"Men","section":"Clothing","item_id":"FJRZ133","title":"Fjallglim Regular Shirt - Men's","brand":"Fjallraven","price":124.95,"original_price":null,"currency":"USD","in_stock":true,"source":"backcountry_next_data",...}` |
 | [`containerstore_listing`](#containerstore_listing) | Active | bootstrap | none detected | Container Store category listings from the server-rendered Next.js `__NEXT_DATA__` hydration. | 120 (2 pages, proxy) | 14 departments / 189 L2 / 159 L3 nodes -> 295 unique catalogue URLs from `containerstore_categories.py` | `{"category":"Kitchen > Pantry Organizers","department":"Kitchen","subcategory":"Pantry Organizers","item_id":"11017102","sku_id":"10087168","title":"Everything Organizer Shelf-Depth Pantry Bin with Divider","price":9.19,"original_price":22.99,...` |
 | [`dickssportinggoods_listing`](#dickssportinggoods_listing) | Active | api | Akamai | DICK'S Sporting Goods category listings from the first-party catalog product-search API. | 48 (ok) | 1287 unique categories from 10 departments | `{"item_id":"13286436","title":"adidas FIFA World Cup Historical Mini Soccer Ball Set","brand":"adidas","price":141.52,"currency":"USD",...}` |
 | [`tractorsupply_listing`](#tractorsupply_listing) | Experimental | bootstrap | Akamai | Tractor Supply products from official sitemaps and PDP `__NEXT_DATA__`. | 24/page | 4 product sitemap shards | `{"item_id":"867","sku":"100001199","title":"Gorilla-Lift Trailer Tailgate Lift Assist","brand":"Gorilla-Lift",...}` |
@@ -476,6 +477,77 @@ HTTPCACHE_ENABLED=False common-scrapy crawl containerstore_listing -a category="
 
 ```json
 {"category":"Kitchen > Pantry Organizers","department":"Kitchen","subcategory":"Pantry Organizers","leaf":null,"item_id":"11017102","sku_id":"10087168","title":"Everything Organizer Shelf-Depth Pantry Bin with Divider","url":"https://www.containerstore.com/s/kitchen/pantry-organizers/shelf_depth-pantry-bin-with-divider/12d?productId=11017102","image_url":"https://images.containerstore.com/catalogimages/683293/10087168_15_Inch_Modular_Pantry_Bin_.jpg?width=312&height=312","image_alt":"Shelf-Depth Pantry Bin with Divider","product_type":"single","color_option_count":null,"color_options":null,"price":9.19,"original_price":22.99,"discount_percentage":60.03,"currency":"USD","on_sale":true,"out_of_stock":false,"rating":5.0,"reviews_count":20,"badge":"Clearance","page":1,"position":1,"total_count":325,"last_page":6,"source_url":"https://www.containerstore.com/s/kitchen/pantry-organizers/12","source":"containerstore_next_data_products_entities"}
+```
+### backcountry_listing
+
+`backcountry_listing` uses one authoritative source: the server-rendered Next.js
+hydration blob at `script#__NEXT_DATA__` -> `props.pageProps`, joined to the Apollo
+cache the same payload carries. No HTML card scraping, no JSON-LD, no separate
+product API call, no browser engine.
+
+| Path | Contents |
+|---|---|
+| `props.pageProps.plpData.data.<container>.edges[].node` | the **ordered** products for that page (42/page) |
+| `props.pageProps.__APOLLO_STATE__["Product:<id>"]` | the normalized product record for the same ids |
+| `props.pageProps.plpData.data.<container>.pageInfo` | `hasNextPage`, `hasPreviousPage`, page cursors |
+| `props.pageProps.totalCount` / `totalPages` | storefront-wide totals for the target |
+| `props.pageProps.targeters.headerNavigation` | the full taxonomy, present in every SSR response |
+| `props.pageProps.type` | `plp-cat` / `plp-collection` / `plp-brand` |
+
+Pagination is plain SSR: the storefront honours the ordinary `?page=N` query
+(`/cat/mens-shirts?page=2` returns 42 different edges with `hasPreviousPage=true`
+and echoes `query.page` back in `__NEXT_DATA__`). The spider follows it until
+`max_pages`, `totalPages`, or `pageInfo.hasNextPage === false`, and deduplicates by
+product id across pages.
+
+**The container key follows the PLP kind, not `pageProps.type`**, so the spider
+locates it by shape -- the ordered `edges` array -- rather than by name. That keeps
+all three target families working:
+
+| Target family | URL | `type` | container key | Live result |
+|---|---|---|---|---|
+| Category | `/cat/mens-shirts` | `plp-cat` | `category` | 1490 products / 36 pages; 84 items over 2 pages |
+| Collection (filtered) | `/rc/mens-parkas` | `plp-collection` | `collection` | 52 products / 2 pages; 42 + 10 items (natural last page) |
+| Brand | `/brand/patagonia` | `plp-brand` | `brand` | 959 products / 23 pages |
+
+Pricing comes from the numeric aggregates, never from display strings:
+`aggregates.minSalePrice` is `price`, `aggregates.minListPrice` is `original_price`,
+and `aggregates.minDiscount` is `discount_percentage`. A product is only reported as
+on sale when `minDiscount > 0` *and* `minSalePrice < minListPrice`; otherwise the
+item falls back to `price = minSalePrice` with a null `original_price`, so an
+unreduced product never claims a 0% markdown. Availability is the storefront's own
+`stockStatus` enum -- only `IN_STOCK` sets `in_stock = true`.
+
+Color swatches hydrate as storefront-relative paths
+(`/images/items/160/FJR/FJRZ133/DANACHWH.jpg`) and are resolved against
+`https://content.backcountry.com`, the same CDN host the SSR `<img>` tags use.
+
+**Proxy note.** Backcountry sits behind an AWS WAF. The plain datacenter route and
+every `bypass` level return a 2.4 KB `window.awsWafCookieDomainList` interstitial
+instead of the page, and the challenge never resolves server-side. Only the
+residential route returns the real ~1 MB SSR document, so the spider appends
+`residential=true` to the ScrapeOps username on its own requests
+(`scrapeops.country=us.residential=true:<key>@proxy.scrapeops.io:5353`). Existing
+ScrapeOps options are preserved, the flag is applied at most once, non-ScrapeOps
+proxies pass through untouched, and the API key is never logged. Because the
+interstitial contains no `#__NEXT_DATA__` script, a blocked run raises instead of
+reporting a successful zero-item crawl.
+
+The taxonomy in `backcountry_categories.py` is **398 unique crawlable URLs** reduced
+from the 470 link entries the homepage header emits (14 top-level menus, 110
+sections): 71 entries repeat a URL already seen under another menu and the first
+(menu-alphabetical) label wins. Each `category` slug is derived from the storefront
+path itself (`/cat/mens-shirts` -> `cat-mens-shirts`), so slugs are unique by
+construction and survive label changes. The header emits an empty `categoryId` for
+filtered `/rc/` and `/brand/` links; those are kept rather than dropped, and every
+item carries its `department` / `section` from the header.
+
+```bash
+HTTPCACHE_ENABLED=False common-scrapy crawl backcountry_listing -a category=cat-mens-shirts -a max_pages=2 -O backcountry.jsonl -s HTTPCACHE_ENABLED=False
+```
+
+```json
+{"category":"cat-mens-shirts","department":"Men","section":"Clothing","item_id":"FJRZ133","title":"Fjallglim Regular Shirt - Men's","brand":"Fjallraven","product_type":"Product","url":"https://www.backcountry.com/fjallraven-fjallglim-regular-shirt-mens","image":"https://content.backcountry.com/images/items/160/FJR/FJRZ133/DANACHWH.jpg","image_alt":"Fjallglim Regular Shirt - Men's","color":"Dark Navy/Chalk White","colors":["Dark Navy/Chalk White","Dark Navy/Maroon","Wood Brown/Black Oak"],"color_option_count":3,"price":124.95,"original_price":null,"discount_percentage":null,"currency":"USD","in_stock":true,"stock_status":"IN_STOCK","availability":"in stock","rating":null,"reviews_count":0,"is_new_arrival":false,"is_exclusive":false,"is_past_season":true,"is_gearhead_pick":false,"past_season_colors":["DANACHWH","DARNAVMAR","WOBRBLOA"],"category_id":"bc-mens-shirts","page":1,"position":1,"total_count":1490,"last_page":36,"source":"backcountry_next_data","raw":{"node":{...},"apollo":{...},"container":"category","variations_on_sale":0,"total_variations":11}}
 ```
 ### llbean_listing
 
