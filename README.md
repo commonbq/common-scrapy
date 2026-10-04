@@ -54,6 +54,7 @@ Working spiders running daily in production:
 
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
+| [`adorama_listing`](#adorama_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | DataDome | Adorama category listings from server-rendered Next.js hydration state. | 24 (one page; 48 across 2 pages) | 1,079 crawlable categories across 11 departments from `adorama_categories.py` | `{"category":"cameras","item_id":"KKRK0603A","title":"Kodak Charmera Millenium Edition...","price":54.94,"currency":"USD"...}` |
 | [`amazon_listing`](#amazon_listing-category) | Active | html | none detected | Amazon category listing spider (category shortcuts). | 22 (ok) | electronics, fashion, beauty, home-kitchen, toys-games, sports-outdoors, grocery, books | `{"asin":"B0DKDTBBF7","title":"2 Packs Electric Candle Lighters, Windproof Flameless USB Rechargeable Plasma Arc Long Lighter for Grill Fi...` |
 | [`amazon_search`](#amazon_search) | Active | html | none detected | Amazon keyword search spider. | 22 (ok) | - | `{"asin":"B0GHQRV71M","title":"16\" FHD IPS Laptop Computer - 16GB RAM 512GB SSD, Pentium N100(Beat to i3-1115G4, 4 Cores Up to 3.4GHz), B...` |
 | [`bestbuy_listing`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | unknown (timeout/no verdict) | Best Buy listing via direct HTTP + Apollo bootstrap extraction. | 10 (skipped2) | laptops, tvs, headphones, monitors, cell-phones | `{"item_id":"6572184","title":"Samsung - Galaxy Book4 15.6\" FHD Laptop - Intel Core 7- 16GB Memory - 512GB SSD - Silver","url":"https://www.bestbuy.com/product/samsung-galaxy-bo...` |
@@ -739,6 +740,45 @@ The spider reads the authoritative `browse.results` query from StockX's
 `__NEXT_DATA__` state, follows its `pageCount`, and deduplicates products by ID.
 Available categories are `sneakers`, `apparel`, `electronics`, `trading-cards`,
 and `collectibles`.
+
+### adorama_listing
+
+Adorama listing pages are Next.js SSR routes (`/l/[[...param]]`). The spider reads a
+single authoritative data path: the hydration payload in
+`script#__NEXT_DATA__` -> `props.pageProps.products[]` (24 products per page).
+There is no HTML-card or XHR fallback. Pagination is query-based and follows
+`pageProps.nextPageUrl` (`?startAt={n}`, 24 per page); SKUs are deduplicated
+across pages.
+
+`common/spiders/adorama_categories.py` ships the normalized taxonomy
+(11 departments, 1,090 `/l/` URLs), re-derived from Adorama's category sitemap
+(`https://www.adorama.com/UnifySiteMaps/Category.xml`). Depth-1 department
+landings (`pageInfo.pageType == "bcmsSitePage"`, no product grid) are excluded,
+leaving **1,079** crawlable depth-2+ categories exposed as `-a category=<slug>`.
+
+Adorama is DataDome-protected; live requests require the configured US proxy.
+
+```json
+{
+  "category": "cameras",
+  "item_id": "KKRK0603A",
+  "title": "Kodak Charmera Millenium Edition 1.6MP Keychain Digital Camera, w/32GB Card",
+  "brand": "Kodak",
+  "url": "https://www.adorama.com/kodak-charmera-millenium-edition-keychain-camera-1-6-mp/p/kkrk0603a",
+  "image_url": "https://www.adorama.com/images/product/KKRK0603A.JPG",
+  "price": 54.94,
+  "currency": "USD",
+  "stock": "In",
+  "in_stock": true,
+  "is_available_for_purchase": true,
+  "page": 1,
+  "page_type": "listPage",
+  "source": "adorama_next_data"
+}
+```
+
+Run example:
+`HTTPCACHE_ENABLED=False common-scrapy crawl adorama_listing -a category=cameras -a max_pages=2 -O adorama.jsonl  -s HTTPCACHE_ENABLED=False`
 
 ### staples_listing
 
