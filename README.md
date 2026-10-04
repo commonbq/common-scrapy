@@ -41,6 +41,11 @@ Examples:
 - `common-scrapy crawl target_search --category 5xtc0 -a max_pages=2 -O target.jsonl`
 - `common-scrapy crawl kohls_listing --category women -a max_pages=1 -O kohls_listing.jsonl`
 - `common-scrapy crawl sephora_listing --category makeup -a max_pages=1 -O sephora_listing.jsonl`
+- `common-scrapy crawl newegg_listing --category desktop-cpu-processors -a max_pages=1 -O newegg.jsonl` (36 items, verified live on 2026-10-02; see [newegg_listing](#newegg_listing))
+
+`newegg_listing` parses the server-rendered `window.__initialState__.Products`
+payload. It accepts `category`, `category_url`, or `url`; use
+`all-current-categories` to refresh and crawl Newegg's live category inventory.
 
 All extra args are forwarded to `scrapy crawl` unchanged (feeds, settings overrides, etc.).
 
@@ -98,6 +103,7 @@ Spiders below are returning items in recent smoke runs:
 | [`kroger_search`](#kroger_search--kroger_listing) | Active | bootstrap + html | unknown (timeout/no verdict) | Kroger keyword search with state extraction + fallback. | 27 (ok) | - | `{'item_id':'kroger-2-reduced-fat-milk-gallon','url':'https://www.kroger.com/p/kroger-2-reduced-fat-milk-gallon/0001111041700','source':'kroger_html_links_fallback'}` |
 | [`levis_listing`](#levis_listing) | Active | bootstrap | none detected through proxy | Levi's listings from SSR `__LSCO_INITIAL_STATE__.ssrViewStoreProductList`. | 48 (2 pages, live proxy) | 5 sections / 83 PLP targets from `levi_categories.py` | `{"category":"shop-all-men-s-jeans","item_id":"005053473","title":"505™ Regular Dobby Men's Jeans","brand":"Levi's","price":64.99...` |
 | [`lululemon_listing`](#lululemon_listing) | Active | bootstrap | Akamai | lululemon listing spider via Next.js `__NEXT_DATA__`. | 40 (ok) | women-shorts, women-leggings, men-shorts, bags | `{"category":"women-shorts","product_id":"prod11860112","name":"Shake It Out High-Rise Running Short 2.5\"","brand":"lululemon","price":["...` |
+| [`newegg_listing`](#newegg_listing) | Experimental | SSR hydration state | none detected | Newegg listing spider reading server-rendered `window.__initialState__.Products` with `/Page-N` pagination and live RolloverMenu inventory refresh. | 36 (ok) | desktop-cpu-processors, all-current-categories | `{"item_id":"19-113-877","title":"AMD Ryzen 7 9800X3D - Ryzen 7 9000 Series Zen 5 8-Core 5.2 GHz - Socket AM5 120W - AMD Radeon Graphics Desktop Processor - 100-100001084WOF","model":"100-100001084WOF","brand":"AMD","price":469,"currency":"USD","url":"https://www.newegg.com/amd-ryzen-7-9000-series-ryzen-7-9800x3d-granite-ridge-zen-5-socket-am5-desktop-cpu-processor/p/N82E16819113877","image":"https://c1.neweggimages.com/ProductImageOriginal/19-113-877-01.png","rating":4.8,"reviews_count":729,"page":1,"source":"newegg_initial_state"}` |
 | [`llbean_listing`](#llbean_listing) | Active | api | none detected (ScrapeOps `country=us` route required) | L.L.Bean listing via the UDAL `product-discovery` JSON endpoint (no HTML fallback). | 96 (2 pages, proxy) | 11 departments / 500 targets from `llbean_categories.py` | `{"category":"Gift Shop","item_id":"1000316302","sku_id":"1000316302","title":"Women's The Original Double L® Sweater, Crewneck","brand":"L.L.Bean","price":49.99,"original_price":69.95,"currency":"USD","rating":4.4,"reviews_count":359,"color":"Classic Navy","size":"X-Small","availability":"IN","on_sale":true,"page":1,"position":1,"total_count":626,"source":"llbean_udal_product_discovery"...` |
 | [`maccosmetics_listing`](#maccosmetics_listing) | Experimental | api + bootstrap + html | Akamai | MAC Cosmetics multi-mode listing spider. | 66 (ok) | face, lips, eyes | `{"item_id":"13854","title":"4.8/5 ( 452 ) Lustreglass Sheer-Shine Lipstick Sheer Coverage, Glossy/High-Shine Finish, Infused With Raspberry Seed/Organic Extra Virgin Olive Oils ...` |
 | [`officedepot_listing`](#officedepot_listing) | Active | bootstrap | none detected (ScrapeOps proxy) | Office Depot / OfficeMax category listings from inline `window.ODSEARCHBROWSE_INITIAL_STATE` SSR hydration; taxonomy resolved from the header mega-menu JSON. | 59 (2 pages, furniture) | 388 browse PLPs from `header-menu-excel/products.json` | `{"department":"Furniture","item_id":"9003237","title":"Serta® Smart Layers™ Brinkley Ergonomic Bonded Leather High-Back Executive Office Chair, Black/Silver","price":299.99,"availability":"InStock","source":"officedepot_bootstrap"...}`
@@ -2291,6 +2297,42 @@ swatches, pricing, and the raw product object, then follows bootstrap pagination
 
 Run example:
 `common-scrapy crawl elfcosmetics_listing -a category=face -a max_pages=1 -O elfcosmetics_listing.jsonl`
+
+### newegg_listing
+
+Category listing spider backed by Newegg's server-rendered hydration payload
+(`window.__initialState__.Products`), parsed with a balanced JSON decoder so a
+later `<script>` block cannot corrupt the match.
+
+- **Arguments:** `-a category=<name>`, `-a category_url=<url>`, or `-a url=<url>`;
+  plus `-a max_pages=<n>`.
+- **Categories:** `desktop-cpu-processors` (a concrete `/SubCategory/` URL) and
+  `all-current-categories` (the live `api/RolloverMenu` inventory).
+- **Pagination:** follows `/Page-N` up to `max_pages` and the `TotalItemCount`
+  total. The page size is taken from the first page and carried forward through
+  `cb_kwargs`, so a partial final page cannot inflate the computed last page and
+  schedule an out-of-range request.
+- **Output:** normalized product fields plus `raw`, which holds the verbatim
+  hydration entry for each item.
+
+Verification — live crawl on 2026-10-02 with the HTTP cache disabled:
+
+```bash
+python -m common_scrapy.cli crawl newegg_listing \
+  -a category=desktop-cpu-processors -a max_pages=1 \
+  -s HTTPCACHE_ENABLED=False -O newegg.jsonl
+```
+
+Result: 1 request, HTTP 200, `item_scraped_count: 36`. All 36 exported items carry
+a non-empty `raw` object. Sample (trimmed, `raw` elided):
+
+```json
+{"item_id": "19-113-877", "title": "AMD Ryzen 7 9800X3D - Ryzen 7 9000 Series Zen 5 8-Core 5.2 GHz - Socket AM5 120W - AMD Radeon Graphics Desktop Processor - 100-100001084WOF", "model": "100-100001084WOF", "brand": "AMD", "price": 469, "original_price": 497.49, "currency": "USD", "url": "https://www.newegg.com/amd-ryzen-7-9000-series-ryzen-7-9800x3d-granite-ridge-zen-5-socket-am5-desktop-cpu-processor/p/N82E16819113877", "image": "https://c1.neweggimages.com/ProductImageOriginal/19-113-877-01.png", "rating": 4.8, "reviews_count": 729, "seller": "Newegg", "in_stock": true, "shipping_charge": 0.01, "ships_from": "United States", "category": "CPU", "subcategory": "Desktop CPU Processor", "page": 1, "source": "newegg_initial_state", "raw": {"ProductNumber": "19-113-877", "ItemCell": {"FinalPrice": 469, "...": "..."}}}
+```
+
+The `36 (ok)` figure above is a single verified `max_pages=1` run on 2026-10-02.
+Multi-page totals are **not** live-verified in this PR; Newegg's page size and
+inventory vary by location and change over time.
 
 ### ae_listing
 ```json
