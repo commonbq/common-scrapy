@@ -77,6 +77,7 @@ Spiders below are returning items in recent smoke runs:
 | [`asos_listing`](#asos_listing) | Experimental | bootstrap + API | Akamai | ASOS US listings from `window.asos.plp._data`, with pagination through the hydrated search API contract. | 2 (fixture; live unverified) | complete women/men navigation inventory from `asos_categories.py` | `{"item_id":"211160390","title":"ASOS DESIGN stretch chiffon scarf detail plunge draped maxi dress in chocolate","price":69.99,"currency":"USD"...}` |
 | [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | html + nuxt-state | Akamai | Bloomingdale's listing spider via Nuxt SSR state contract parsing (splash->leaf aware). | 8 (ok) | new-now, women, beauty, shoes, handbags, jewelry-accessories, men, kids, home, sale, gifts, designers | `{"item_id":"5973765","title":"Tumbled Woven Verne Pants","url":"https://www.bloomingdales.com/shop/product/cinq-a-sept-tumbled-woven-vern...` |
 | [`costco_listing`](#costco_search--costco_listing) | Active | React Flight + API | Akamai | Costco category listing with React Flight discovery and GRS search pagination. | 24 (ok) | 131 parent groups / 432 subcategory entries from `costco-categories.json` | `{"item_id":"100501081","title":"Starbucks Pike Place Medium Roast K-Cup","url":"https://www.costco.com/starbucks-pike-place-medium-roast-k-cup-72-count.product.100501081.html","price":...` |
+| [`containerstore_listing`](#containerstore_listing) | Active | bootstrap | none detected | Container Store category listings from the server-rendered Next.js `__NEXT_DATA__` hydration. | 120 (2 pages, proxy) | 14 departments / 189 L2 / 159 L3 nodes -> 295 unique catalogue URLs from `containerstore_categories.py` | `{"category":"Kitchen > Pantry Organizers","department":"Kitchen","subcategory":"Pantry Organizers","item_id":"11017102","sku_id":"10087168","title":"Everything Organizer Shelf-Depth Pantry Bin with Divider","price":9.19,"original_price":22.99,...` |
 | [`dickssportinggoods_listing`](#dickssportinggoods_listing) | Active | api | Akamai | DICK'S Sporting Goods category listings from the first-party catalog product-search API. | 48 (ok) | 1287 unique categories from 10 departments | `{"item_id":"13286436","title":"adidas FIFA World Cup Historical Mini Soccer Ball Set","brand":"adidas","price":141.52,"currency":"USD",...}` |
 | [`elfcosmetics_listing`](#elfcosmetics_listing) | Experimental | api + bootstrap + html | none detected (CloudFront CDN only) | e.l.f. Cosmetics multi-mode listing spider. | 6 (ok) | face, eyes, lips | `{'item_id':'300261','title':'Soft Glam Satin Concealer','url':'https://www.elfcosmetics.com/soft-glam-satin-concealer/300262.html','price':9.0,'brand':'e.l.f. Cosmetics','source':'elfcosmetics_preloaded_state'...}` |
 | [`fashionnova_listing`](#fashionnova_listing) | Active | api + html | Cloudflare | Fashion Nova listing via Shopify Storefront GraphQL with HTML fallback. | 48 (ok) | women, new, dresses, jeans, sale | `{"item_id":"175898317","title":"Classic High Waist Skinny Jeans - Dark Denim","url":"https://www.fashionnova.com/products/dark-blue-class...` |
@@ -151,6 +152,64 @@ HTTPCACHE_ENABLED=False common-scrapy crawl adidas_listing -a category=mens-runn
 
 ```json
 {"category":"mens-running-shoes","department":"MEN'S SHOES","subcategory":"Men's Running Shoes","item_id":"KI8294","style_id":"ONN61","title":"ADIZERO ADIOS PRO 5 Running Shoes","brand":"Men Performance","product_category":"Performance","colorway_count":3,"colorway_ids":"KI8294, KJ7039, KJ7040","price":275.0,"original_price":null,"discount_percentage":null,"currency":"USD","rating":4.8001,"reviews_count":5,"on_sale":false,"sold_out":false,"badges":"New","page":1,"position":1,"total_count":241,"source":"adidas_next_data_page_props_products"}
+```
+### containerstore_listing
+
+`containerstore_listing` uses one authoritative source: the server-rendered Next.js
+hydration blob at `script#__NEXT_DATA__` -> `props.pageProps.initialState`. No HTML
+cards, no JSON-LD, no XHR fallback.
+
+The payload is Redux-style normalized state and splits cleanly:
+
+| Path | Contents |
+|---|---|
+| `initialState.products.entities` | normalized product records keyed by product id |
+| `initialState.plp.entities[str(currentPage)].products` | the **ordered** ids for that one page |
+| `initialState.plp.data` | `totalCount`, `currentPage`, `lastPage`, `pageSize`, `nextPageUrl`, `breadcrumbs` |
+| `initialState.categories.data.eCommCategories` | the full taxonomy: `L1Categories`, `L2Categories`, `L3Categories` |
+
+Pagination is plain SSR: the spider follows the `nextPageUrl` the payload hands it
+(`/s/<cat>/<id>?p=60&ps=60`) until `lastPage`, an empty grid, or `max_pages`. Products
+are deduplicated by id across pages.
+
+Taxonomy lives in `containerstore_categories.py` -- **362 hydrated nodes** (14 L1 +
+189 L2 + 159 L3) reduced to **295 unique catalogue URLs** by dropping 21
+design-centre/tooling links (`/custom-spaces/...`, `/design-center/...`) and 52
+duplicate URLs (the storefront repeats each `/s/<dept>/1` href as a
+`Shop All <department>` L2 node; the shallower L1 entry wins). Names are
+HTML-unescaped -- nine Elfa / Desktop Collection nodes ship `Decor&#43; by Elfa`
+style entities.
+
+Two things are worth knowing before picking a category:
+
+* **`pageType` is not a reliable signal.** A leaf that hydrates as `PrismicTemplate`
+  carries a full 60-item grid, while a `/12` page hydrating as `Category` may carry
+  none at all. The spider keys off the presence of an ordered grid in `plp.entities`
+  and ignores `pageType` entirely.
+* **Department pages (`/s/<dept>/1`) have no product grid.** They hydrate as
+  `EnhancedCategoryLanding` with an empty `plp.entities` and render a subcategory
+  *tile* grid instead. Crawling one logs a message and yields 0 items -- that is not
+  an error. Use a `/12` or `/123` leaf to get products.
+
+Pricing needs care. The displayed `salePrice` / `retailPrice` strings are ranges
+(`"$4.49 – $71.91"`) for multisku products, so they are never parsed. The numeric
+`minSalePrice` / `minRetailPrice` are used instead, and `isOnSale` is frequently
+`true` while the two are equal -- when the computed discount is not positive the item
+falls back to `price = minRetailPrice` with a null `original_price` and
+`discount_percentage` rather than reporting a 0% discount.
+
+`color_option_count` / `color_options` come from `colorSwatcheInfo.values` (populated
+for only 6 of 60 products on a representative page); `badge` is the storefront's
+merchandising badge (`25off`, `Clearance`). `department` / `subcategory` / `leaf` are
+taken from the spider's taxonomy, falling back to the page `breadcrumbs` so `-a url=`
+still gets a full path. Every item carries the full `raw` hydrated product record.
+
+```bash
+HTTPCACHE_ENABLED=False common-scrapy crawl containerstore_listing -a category="Kitchen > Pantry Organizers" -a max_pages=2 -O containerstore.jsonl -s HTTPCACHE_ENABLED=False
+```
+
+```json
+{"category":"Kitchen > Pantry Organizers","department":"Kitchen","subcategory":"Pantry Organizers","leaf":null,"item_id":"11017102","sku_id":"10087168","title":"Everything Organizer Shelf-Depth Pantry Bin with Divider","url":"https://www.containerstore.com/s/kitchen/pantry-organizers/shelf_depth-pantry-bin-with-divider/12d?productId=11017102","image_url":"https://images.containerstore.com/catalogimages/683293/10087168_15_Inch_Modular_Pantry_Bin_.jpg?width=312&height=312","image_alt":"Shelf-Depth Pantry Bin with Divider","product_type":"single","color_option_count":null,"color_options":null,"price":9.19,"original_price":22.99,"discount_percentage":60.03,"currency":"USD","on_sale":true,"out_of_stock":false,"rating":5.0,"reviews_count":20,"badge":"Clearance","page":1,"position":1,"total_count":325,"last_page":6,"source_url":"https://www.containerstore.com/s/kitchen/pantry-organizers/12","source":"containerstore_next_data_products_entities"}
 ```
 ### llbean_listing
 
