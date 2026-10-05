@@ -1,0 +1,19 @@
+<html><head><title>Vitamins | Vitacost</title></head><body>
+<script>
+// Trimmed from https://www.vitacost.com/collections/vitamins (captured 2026-10-04).
+// The Boost filter API only accepts a numeric `collection_scope`, and the app boots with
+// `generalSettings.collection_id` holding it.
+(function() {
+  function readPayload(){
+    return {generalSettings:{page: "collection", collection_id: 458194583867, collection_handle: "vitamins", collection_product_count: 25001}};
+  }
+  window.boostWidgetIntegration = {taeAppConfig: readPayload()};
+})();
+</script>
+<!-- Boost server-renders the product grid; the spider reads products from the JSON API
+     (`https://services.mybcapps.com/bc-sf-filter/filter`), never from these cards. -->
+<div class="boost-sd__product-item boost-sd__product-item-grid-view" id="10390080782651" data-product-id="10390080782651">
+  <img id="product-image-10390080782651" alt="Turmeric Extract Curcumin C3 Complex" src="https://cdn.shopify.com/s/files/1/0804/8974/2651/files/10_da6689c1.jpg?v=1781816097&amp;width=800">
+  <div class="boost-sd__product-title" id="product-title-10390080782651">Vitacost Turmeric</div>
+</div>
+</body></html>

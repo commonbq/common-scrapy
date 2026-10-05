@@ -1,0 +1,108 @@
+{
+ "props": {
+  "pageProps": {
+   "contentType": "subCategoriesLandingPages",
+   "entryId": "64h0nGCpZmASYWykoCaM4E",
+   "data": {
+    "azureData": {
+     "isServerSide": true,
+     "totalCount": 168,
+     "products": [
+      {
+       "id": "369APl7qXZbGGqHYo0wZsc",
+       "entryId": "369APl7qXZbGGqHYo0wZsc",
+       "brand": "Blick",
+       "itemId": "00711",
+       "rank": 7,
+       "alternateIds": [],
+       "name": "Blickrylic Student Acrylic Paints and Sets",
+       "url": "/products/blickrylic-student-acrylics/",
+       "recordType": "product",
+       "featuredImageUrl": "https://cld-assets.dick-blick.com/image/upload/f_auto/q_auto/v1748032379/00711-Group-9-4ww.jpg",
+       "skuCount": 123,
+       "rating": 4.6,
+       "ratingCount": 2140,
+       "isNew": false,
+       "isCouponEligible": false,
+       "isOverstock": false,
+       "overstockPercentage": 0,
+       "pricing": {
+        "priceMax": 183.4,
+        "priceMin": 7.45,
+        "priceBreakQuantity1": 0,
+        "priceBreakPrice1": 0,
+        "priceBreakQuantity2": 0,
+        "priceBreakPrice2": 0,
+        "priceBreakQuantity3": 0,
+        "priceBreakPrice3": 0,
+        "priceBreakQuantity4": 0,
+        "priceBreakPrice4": 0,
+        "savingStory": "SAVE up to 43%",
+        "isBestPrice": true,
+        "bestPricePercentage": 100,
+        "isSkuOnSale": true,
+        "skuOnSalePercentage": 2,
+        "skuMsrp": 0,
+        "skuListPrice": 0,
+        "priceBreakMinPrice": 0
+       },
+       "availability": {
+        "isOnClearance": false,
+        "clearancePercentage": 0
+       },
+       "shortDescription": "Blickrylic Student Acrylic Paint is a true acrylic paint, priced for the budget-minded. It's highly versatile for an unlimited range of projects on paper, canvas, wood, and cardboard. Blickrylic is extremely pourable and ideal for classroom settings.",
+       "newSkusPercentage": 0,
+       "labels": []
+      },
+      {
+       "id": "K4xB0gLw3pbTa0cPNwBT7",
+       "entryId": "K4xB0gLw3pbTa0cPNwBT7",
+       "brand": "Golden",
+       "itemId": "00620",
+       "rank": 15,
+       "alternateIds": [],
+       "name": "Golden Artist Acrylic Heavy Body Paints and Sets",
+       "url": "/products/golden-heavy-body-artist-acrylics/",
+       "recordType": "product",
+       "featuredImageUrl": "https://cld-assets.dick-blick.com/image/upload/f_auto/q_auto/v1748013082/00620-acrylics3ww-l.jpg",
+       "skuCount": 596,
+       "rating": 4.9,
+       "ratingCount": 1522,
+       "isNew": false,
+       "isCouponEligible": false,
+       "isOverstock": false,
+       "overstockPercentage": 0,
+       "pricing": {
+        "priceMax": 503.93,
+        "priceMin": 8.74,
+        "priceBreakQuantity1": 0,
+        "priceBreakPrice1": 0,
+        "priceBreakQuantity2": 0,
+        "priceBreakPrice2": 0,
+        "priceBreakQuantity3": 0,
+        "priceBreakPrice3": 0,
+        "priceBreakQuantity4": 0,
+        "priceBreakPrice4": 0,
+        "savingStory": "SAVE 30-41%",
+        "isBestPrice": true,
+        "bestPricePercentage": 100,
+        "isSkuOnSale": false,
+        "skuOnSalePercentage": 0,
+        "skuMsrp": 0,
+        "skuListPrice": 0,
+        "priceBreakMinPrice": 0
+       },
+       "availability": {
+        "isOnClearance": false,
+        "clearancePercentage": 0
+       },
+       "shortDescription": "Golden Heavy Body Artist Acrylics are known for their exceptionally smooth, thick, buttery consistency, and for their excellent permanency and lightfastness. These paints have the ability to \"stand up\" and retain brush strokes or palette knife marks on the canvas.",
+       "newSkusPercentage": 0,
+       "labels": []
+      }
+     ]
+    }
+   }
+  }
+ }
+}
