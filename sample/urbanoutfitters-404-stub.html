@@ -1,0 +1,99 @@
+<html>
+<head>
+<!-- // --><script  type="text/javascript" data-sitespect="true">
+<!--
+	
+			setTimeout(function() {
+				var xhr = new XMLHttpRequest();
+				xhr.open(
+					'GET',
+					'/__ssobj/ard.png?7692722903778901511_1-472-'+(15222*117665+4995)+'&n=1',
+					true
+				);
+				xhr.send();
+			}, 0);
+		
+//-->
+<!-- // --></script>
+<title>404 Not Found</title><style>
+    .ss-cart-alert {
+        /* Layout protections to ensure it stays in its own row */
+        box-sizing: border-box;
+        flex: 0 0 100%; 
+        
+        /* Smooth entry */
+        animation: ss-fade-in 0.4s ease-out;
+
+        background-color: var(--site-background);
+        border: 1px solid var(--alert);
+        padding: 8px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        height: 57px;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    @keyframes ss-fade-in {
+        from { opacity: 0; transform: translateY(-5px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .ss-cart-alert svg {
+        width: 14px;
+        height: 14px;
+        flex-shrink: 0;
+        flex-grow: 0;
+    }
+    .ss-cart-alert span {
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 12px;
+        line-height: 16.8px;
+        letter-spacing: .2px;
+        color: var(--alert);
+        margin-left: 7px;
+    }
+</style>
+
+<script >
+(function () {
+    if (window.__ssCartAlertBooted) return;
+    window.__ssCartAlertBooted = true;
+
+    var itemsObserver = null;
+    var debounceTimer = null;
+    var isUpdating = false;
+
+    function onCartPage() {
+        return window.location?.pathname?.includes("/cart");
+    }
+    function correctLocale() {
+        var lang = window.urbn?.vendor?.customer_language;
+        return lang === "en-US" || lang === "en-CA";
+    }
+    function getCartCount() {
+        return document.querySelectorAll('.c-pwa-cart-transactional__item').length;
+    }
+
+    function updateAlert() {
+        if (!onCartPage()) return;
+        var heading = document.querySelector("div.s-pwa-cart-transactional-heading");
+        if (!heading || !heading.parentNode) return;
+
+        // Look for our alert as the immediate previous sibling of the heading.
+        var existing = heading.previousElementSibling;
+        if (existing && !existing.classList.contains('ss-cart-alert')) existing = null;
+
+        var hasItems = getCartCount() > 0;
+
+        isUpdating = true;
+        try {
+            if (hasItems && !existing) {
+                var cartAlert = document.createElement("div");
+                cartAlert.className = "ss-cart-alert";
+                cartAlert.innerHTML =
+                    '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 16 15" fill="none">' +
+                    '<path fill-rule="evenodd" clip-rule="evenodd" d="M7.25 12L7.25 6H8.75V12H7.25Z" fill="#006ACC"/>' +
+                    '<circle cx="8" cy="3.75" r="0.75" transform="rotate(-180 8 3.75)" fill="#006ACC"/>' +
+     

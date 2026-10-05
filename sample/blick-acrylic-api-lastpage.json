@@ -1,0 +1,129 @@
+{
+ "collectionId": "d298ed17-7841-4797-a573-51ba100fa8a7",
+ "collectionName": "Acrylic Paint",
+ "externalId": "64h0nGCpZmASYWykoCaM4E",
+ "totalCount": 168,
+ "pageNumber": 5,
+ "pageSize": 30,
+ "totalPages": 6,
+ "facets": null,
+ "metadata": {
+  "processingTimeMs": 0,
+  "collectionSearchObservabilityInfo": {
+   "isPromotedSkusFetchedFromCache": true
+  }
+ },
+ "appliedCampaigns": null,
+ "debugProducts": null,
+ "items": [
+  {
+   "id": "og9gimTiEWbF72HCYVy41",
+   "entryId": "og9gimTiEWbF72HCYVy41",
+   "brand": "Rust-Oleum",
+   "itemId": "63993",
+   "rank": 20960,
+   "alternateIds": [],
+   "name": "Rust-Oleum Imagine Intense Glitter Paint",
+   "url": "/products/rust-oleum-imagine-intense-glitter-paint/",
+   "recordType": "product",
+   "featuredImageUrl": "https://cld-assets.dick-blick.com/image/upload/f_auto/q_auto/v1748368359/63993-9505-M-4ww.jpg",
+   "skuCount": 6,
+   "rating": 5,
+   "ratingCount": 1,
+   "isNew": false,
+   "isCouponEligible": false,
+   "isOverstock": false,
+   "overstockPercentage": 0,
+   "pricing": {
+    "priceMax": 25.72,
+    "priceMin": 16.38,
+    "priceBreakQuantity1": 0,
+    "priceBreakPrice1": 0,
+    "priceBreakQuantity2": 0,
+    "priceBreakPrice2": 0,
+    "priceBreakQuantity3": 0,
+    "priceBreakPrice3": 0,
+    "priceBreakQuantity4": 0,
+    "priceBreakPrice4": 0,
+    "savingStory": "SAVE up to 30%",
+    "isBestPrice": true,
+    "bestPricePercentage": 100,
+    "isSkuOnSale": false,
+    "skuOnSalePercentage": 0,
+    "skuMsrp": 0,
+    "skuListPrice": 0,
+    "priceBreakMinPrice": 0
+   },
+   "availability": {
+    "isOnClearance": false,
+    "clearancePercentage": 0
+   },
+   "shortDescription": "Creating sparkling craft and home d\u00e9cor projects with Rust-Oleum Imagine Intense Glitter Paints. These paints are ideal on interior surfaces, including wood, metal, plastic, and glass. Glitter is encapsulated in the paint, resulting in smooth finished projects.",
+   "newSkusPercentage": 0,
+   "labels": []
+  },
+  {
+   "id": "58C35YaTOfyIvBVjBSxaQd",
+   "entryId": "58C35YaTOfyIvBVjBSxaQd",
+   "brand": "Rust-Oleum",
+   "itemId": "00743",
+   "rank": 21408,
+   "alternateIds": [
+    {
+     "name": "skuId",
+     "value": "00743-1007"
+    }
+   ],
+   "name": "Rust-Oleum Glow in the Dark Brush-On Paint",
+   "url": "/products/rust-oleum-glow-in-the-dark-brush-on-paint/",
+   "recordType": "product",
+   "featuredImageUrl": "https://cld-assets.dick-blick.com/image/upload/f_auto/q_auto/v1748361522/00743-1007-M-4ww.jpg",
+   "skuCount": 1,
+   "rating": 3.1,
+   "ratingCount": 7,
+   "isNew": false,
+   "isCouponEligible": true,
+   "isOverstock": false,
+   "overstockPercentage": 0,
+   "pricing": {
+    "priceMax": 18.36,
+    "priceMin": 18.36,
+    "priceBreakQuantity1": 0,
+    "priceBreakPrice1": 0,
+    "priceBreakQuantity2": 0,
+    "priceBreakPrice2": 0,
+    "priceBreakQuantity3": 0,
+    "priceBreakPrice3": 0,
+    "priceBreakQuantity4": 0,
+    "priceBreakPrice4": 0,
+    "savingStory": "SAVE 21%",
+    "isBestPrice": false,
+    "bestPricePercentage": 0,
+    "isSkuOnSale": false,
+    "skuOnSalePercentage": 0,
+    "skuMsrp": 0,
+    "skuListPrice": 0,
+    "priceBreakMinPrice": 0
+   },
+   "availability": {
+    "availabilityType": 0,
+    "isOnClearance": false,
+    "clearancePercentage": 0,
+    "availabilityLabel": "",
+    "shippingDateString": ""
+   },
+   "shortDescription": "Luminous latex paint creates a glow-in-the-dark finish on wood, metal, drywall, and more. It applies easily and dries fast. Use Rust-Oleum Glow in the Dark Brush-On Paint for all kinds of projects.",
+   "newSkusPercentage": 0,
+   "labels": [
+    {
+     "id": "icon-California Proposition 65-14",
+     "name": "California Proposition 65",
+     "description": "WARNING: CANCER AND REPRODUCTIVE HARM -- WWW.P65WARNINGS.CA.GOV",
+     "imageUrl": "https://images.ctfassets.net/f1fikihmjtrp/3BtJkn8KSyVDnxcAEHfrbj/5497250aea16b8dd2da81e9467407ac1/cali-prop-65.svg",
+     "linkUrl": "/customerservice/icons/"
+    }
+   ]
+  }
+ ],
+ "_fixture_note": "Trimmed from the live api.dickblick.com pageNumber=5 response for collection alias 64h0nGCpZmASYWykoCaM4E on 2026-10-05; 18 items reduced to 2. The spider reads totalCount/totalPages from the envelope, so paging behaves as on the untrimmed response."
+}

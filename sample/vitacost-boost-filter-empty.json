@@ -1,0 +1,14 @@
+{
+ "total_product": 0,
+ "total_collection": 0,
+ "total_page": 0,
+ "from_cache": false,
+ "products": [],
+ "event_type": null,
+ "bundles": [],
+ "filter": null,
+ "meta": {
+  "currency": "USD",
+  "rid": "00000000-0000-0000-0000-000000000000"
+ }
+}
