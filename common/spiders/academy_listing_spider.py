@@ -38,7 +38,7 @@ from urllib.parse import quote, urlencode, urlsplit, urlunsplit
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
-from common.spiders.academy_categories import ACADEMY_CATEGORY_INVENTORY
+from common.spiders.academy_categories import load_categories
 
 SITE_BASE = "https://www.academy.com"
 CATEGORY_ENDPOINT = f"{SITE_BASE}/api/category/v3/"
@@ -50,8 +50,6 @@ IMAGE_BASE = "https://academy.scene7.com/is/image/academy/"
 # plain datacenter route returns PerimeterX stub HTML instead of JSON;
 # `bypass=5` was the lightest level that returned product JSON.
 API_BYPASS = 5
-
-_SLUG_RE = re.compile(r"[^a-z0-9]+")
 
 # An HTML/JSON body where a product payload was expected means a bot wall or a
 # geo-block rather than data. Matched case-insensitively: the WAF varies casing.
@@ -67,66 +65,7 @@ CHALLENGE_MARKERS = (
 )
 
 
-def _slugify(value: str) -> str:
-    return _SLUG_RE.sub("-", value.lower()).strip("-")
-
-
-def _iter_nodes(node: dict[str, Any]):
-    yield node
-    for child in node.get("subcategories") or []:
-        if isinstance(child, dict):
-            yield from _iter_nodes(child)
-
-
-def _load_categories() -> list[dict[str, Any]]:
-    """Flatten the header taxonomy into unique ``{category,url,...}`` rows.
-
-    Cross-listed nodes repeat under several departments with an identical
-    ``categoryId`` (e.g. "Shoes + Boots" / "Men's Shoes" both resolve to
-    ``15646``), so dedupe on the categoryId and collect every department that
-    references it. Entries without a canonical browse URL stay addressable by
-    ``-a category=<name>`` but their ``url`` is ``None``.
-    """
-    by_id: dict[str, dict[str, Any]] = {}
-    ordered: list[dict[str, Any]] = []
-    for department in ACADEMY_CATEGORY_INVENTORY:
-        if not isinstance(department, dict):
-            continue
-        department_name = department.get("name") or ""
-        for node in _iter_nodes(department):
-            category_id = str(node.get("categoryId") or "").strip()
-            name = node.get("name") or department_name
-            if not category_id:
-                continue
-            url = node.get("url")
-            slug = _slugify(url.rsplit("/", 1)[-1]) if url else _slugify(name)
-            if department_name and slug and department_name != name:
-                slug = f"{_slugify(department_name)}-{slug}"
-            entry = by_id.get(category_id)
-            if entry is None:
-                entry = {
-                    "category": slug or _slugify(name),
-                    "name": name,
-                    "url": url,
-                    "category_id": category_id,
-                    "seo_url": node.get("seoUrl"),
-                    "departments": [department_name],
-                }
-                by_id[category_id] = entry
-                ordered.append(entry)
-                continue
-            if department_name and department_name not in entry["departments"]:
-                entry["departments"].append(department_name)
-            # A parent department node often reuses a child's id without a browse
-            # URL (e.g. "Deals + Clearance" == "Hot Deals" == 210952). Prefer the
-            # cross-listing that has a canonical URL so `-a url=...` resolves.
-            if url and not entry["url"]:
-                entry["url"] = url
-                entry["seo_url"] = node.get("seoUrl")
-                entry["category"] = slug or entry["category"]
-                if name:
-                    entry["name"] = name
-    return ordered
+_load_categories = load_categories
 
 
 class AcademyListingSpider(BaseListingSpider):
@@ -134,7 +73,7 @@ class AcademyListingSpider(BaseListingSpider):
     allowed_domains = ["academy.com", "www.academy.com", "academy.scene7.com"]
     require_category_arg = False
 
-    categories = _load_categories()
+    categories = load_categories()
 
     PAGE_SIZE = PAGE_SIZE
 

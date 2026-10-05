@@ -25,6 +25,7 @@ every product request from ``categoryId``.
 from __future__ import annotations
 
 import json
+import re
 
 ACADEMY_CATEGORY_INVENTORY = json.loads(
     r"""
@@ -1568,3 +1569,56 @@ ACADEMY_CATEGORY_INVENTORY = json.loads(
 ]
 """
 )
+
+
+def _slugify(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
+
+
+def _iter_nodes(node: dict):
+    yield node
+    for child in node.get("subcategories") or []:
+        if isinstance(child, dict):
+            yield from _iter_nodes(child)
+
+
+def load_categories() -> list[dict]:
+    """Return the canonical, de-duplicated listing categories."""
+    by_id: dict[str, dict] = {}
+    ordered: list[dict] = []
+    for department in ACADEMY_CATEGORY_INVENTORY:
+        if not isinstance(department, dict):
+            continue
+        department_name = department.get("name") or ""
+        for node in _iter_nodes(department):
+            category_id = str(node.get("categoryId") or "").strip()
+            name = node.get("name") or department_name
+            if not category_id:
+                continue
+            url = node.get("url")
+            slug = _slugify(url.rsplit("/", 1)[-1]) if url else _slugify(name)
+            if department_name and slug and department_name != name:
+                slug = f"{_slugify(department_name)}-{slug}"
+            entry = by_id.get(category_id)
+            if entry is None:
+                entry = {
+                    "category": slug or _slugify(name),
+                    "name": name,
+                    "url": url,
+                    "category_id": category_id,
+                    "seo_url": node.get("seoUrl"),
+                    "department": department_name,
+                    "departments": [department_name],
+                }
+                by_id[category_id] = entry
+                ordered.append(entry)
+                continue
+            if department_name and department_name not in entry["departments"]:
+                entry["departments"].append(department_name)
+            if url and not entry["url"]:
+                entry["url"] = url
+                entry["seo_url"] = node.get("seoUrl")
+                entry["category"] = slug or entry["category"]
+                if name:
+                    entry["name"] = name
+    return ordered
