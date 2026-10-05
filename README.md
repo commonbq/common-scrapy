@@ -86,6 +86,7 @@ Spiders below are returning items in recent smoke runs:
 | [`anthropologie_listing`](#anthropologie_listing) | Experimental | Pinia hydration | PerimeterX / HUMAN | Anthropologie listing spider using the server-rendered Pinia product state. | 37 (ok, proxy) | womens-clothing, dresses, shoes, sale and refinements | `{"item_id":"AN-4114086690121-000","title":"By Anthropologie Goldie 100% Cashmere Sweater","price":138.0,...}` |
 | [`asos_listing`](#asos_listing) | Experimental | bootstrap + API | Akamai | ASOS US listings from `window.asos.plp._data`, with pagination through the hydrated search API contract. | 2 (fixture; live unverified) | complete women/men navigation inventory from `asos_categories.py` | `{"item_id":"211160390","title":"ASOS DESIGN stretch chiffon scarf detail plunge draped maxi dress in chocolate","price":69.99,"currency":"USD"...}` |
 | [`bloomingdales_listing`](#bloomingdales_listing) | Experimental | html + nuxt-state | Akamai | Bloomingdale's listing spider via Nuxt SSR state contract parsing (splash->leaf aware). | 8 (ok) | new-now, women, beauty, shoes, handbags, jewelry-accessories, men, kids, home, sale, gifts, designers | `{"item_id":"5973765","title":"Tumbled Woven Verne Pants","url":"https://www.bloomingdales.com/shop/product/cinq-a-sept-tumbled-woven-vern...` |
+| [`blick_listing`](#blick_listing) | Active | api | none detected (ScrapeOps US proxy; API needs `X-blick-portal: blick`) | Blick Art Materials category listings from the first-party `api.dickblick.com` product-search API; taxonomy captured from the `/categories/` Next.js hydration. | 84 (3 pages, acrylic-paint) | 899 crawlable categories across 17 departments from `blick_categories.py` | `{"category":"paint-and-mediums/acrylic-paint","item_id":"00711","title":"Blickrylic Student Acrylic Paints and Sets","brand":"Blick","price":7.45,"currency":"USD","source":"blick_product_search_api",...}` |
 | [`costco_listing`](#costco_search--costco_listing) | Active | React Flight + API | Akamai | Costco category listing with React Flight discovery and GRS search pagination. | 24 (ok) | 131 parent groups / 432 subcategory entries from `costco-categories.json` | `{"item_id":"100501081","title":"Starbucks Pike Place Medium Roast K-Cup","url":"https://www.costco.com/starbucks-pike-place-medium-roast-k-cup-72-count.product.100501081.html","price":...` |
 | [`containerstore_listing`](#containerstore_listing) | Active | bootstrap | none detected | Container Store category listings from the server-rendered Next.js `__NEXT_DATA__` hydration. | 120 (2 pages, proxy) | 14 departments / 189 L2 / 159 L3 nodes -> 295 unique catalogue URLs from `containerstore_categories.py` | `{"category":"Kitchen > Pantry Organizers","department":"Kitchen","subcategory":"Pantry Organizers","item_id":"11017102","sku_id":"10087168","title":"Everything Organizer Shelf-Depth Pantry Bin with Divider","price":9.19,"original_price":22.99,...` |
 | [`dickssportinggoods_listing`](#dickssportinggoods_listing) | Active | api | Akamai | DICK'S Sporting Goods category listings from the first-party catalog product-search API. | 48 (ok) | 1287 unique categories from 10 departments | `{"item_id":"13286436","title":"adidas FIFA World Cup Historical Mini Soccer Ball Set","brand":"adidas","price":141.52,"currency":"USD",...}` |
@@ -418,6 +419,175 @@ HTTPCACHE_ENABLED=False common-scrapy crawl petsmart_listing -a category=dog/foo
 ```json
 {"category": "dog/food/dry-food", "department": "Dog", "subcategory": "Food", "category_name": "Dog > Food > Dry Food", "category_url": "https://www.petsmart.com/dog/food/dry-food/", "category_item_count": 1794, "sort": "best-sellers", "index": "r-US_products_best-sellers", "item_id": "5252900", "master_product_id": 36648, "title": "Purina Pro Plan Sensitive Skin and Stomach Dry Dog Food Adult Salmon & Rice Formula Digestive Health", "brand": "Purina Pro Plan", "url": "https://www.petsmart.com/dog/food/dry-food/purina-pro-plan-sensitive-skin-and-stomach-dry-dog-food-adult-salmon-and-rice-formula-digestive-health-36648.html", "image_url": "https://s7d2.scene7.com/is/image/PetSmart/5252900?$sclp-prd-main_large$", "price": 77.99, "price_display": "$20.68-$94.99", "price_display_type": "range", "currency": "USD", "rating": 4.5, "reviews_count": 9118, "upc": "038100175526", "available": true, "autoship_eligible": true, "variation_types": "4 Sizes, 1 Flavor", "page": 1, "position": 1, "total_count": 937, "total_pages": 10, "source": "petsmart_first_party_search_api", "raw": {...}}
 ```
+
+### blick_listing
+
+`blick_listing` uses exactly one product-data direction: the first-party
+product-search API.
+
+```text
+GET https://api.dickblick.com/product-search/api/v1.0/collections/alias/{entryId}
+    ?pageNumber=N&pageSize=30&includeFacets=false
+Header: X-blick-portal: blick
+```
+
+Blick is a Next.js storefront. The category page server-renders the first 30
+products into `__NEXT_DATA__`, but its pager emits no links -- the page-number
+controls are JavaScript buttons. The category page is therefore still fetched,
+for exactly one value: `props.pageProps.entryId`, the opaque collection id the
+API is keyed by. Products are **never** parsed out of the HTML. API
+`pageNumber=0` returns the same 30 records the HTML embeds (verified by
+comparing `itemId` order), so page 1 is fetched from the API as well and the
+spider has a single item source. There is **no HTML / JSON-LD fallback**: if the
+API stops answering, the spider raises instead of silently yielding fewer items.
+
+API paging is **zero-based**: `pageNumber=0` is the first page and
+`pageNumber=1` is the second. The stop condition is `totalPages`, with
+`pageNumber * pageSize >= totalCount` as a backstop when `totalPages` is
+absent, plus the `max_pages` cap. `includeFacets=false` keeps facet payloads out
+of the response; pagination never needs updated facet counts.
+
+`X-blick-portal: blick` is required -- it is a static literal in the storefront
+bundle, not a credential. Both hosts answer through the plain configured
+ScrapeOps US proxy; no bypass or residential option was needed.
+
+Taxonomy (`blick_categories.py`) is captured from the `/categories/`
+hydration: `props.pageProps.data[]` holds **2,697 records**, which are the same
+**899 nodes** repeated under three `contentType` values (`department`,
+`categoriesLandingPages`, `subCategoriesLandingPages`). Keeping only the records
+that carry both `name` and `url` collapses that to **899 unique
+`/categories/.../` URLs under 17 departments** -- 16 department landing pages,
+204 direct children and 679 grandchildren. Nine further group nodes are
+path-derived containers with no landing page of their own (e.g.
+`/categories/painting/acrylics/` exists only as a segment of its children), so
+`crawlable_categories()` returns 899 rows while `flatten_categories()` returns
+908. The marketing homepage's smaller `browseDepartments` array is deliberately
+not used: it is a curated subset that would miss hundreds of leaf categories.
+
+```json
+{
+  "category": "paint-and-mediums/acrylic-paint",
+  "department": "Paint and Mediums",
+  "category_name": "Acrylic Paint",
+  "category_path": "Paint and Mediums > Acrylic Paint",
+  "category_url": "https://www.dickblick.com/categories/painting/acrylic-paint/",
+  "collection_id": "64h0nGCpZmASYWykoCaM4E",
+  "item_id": "00711",
+  "entry_id": "369APl7qXZbGGqHYo0wZsc",
+  "sku_id": "00711",
+  "title": "Blickrylic Student Acrylic Paints and Sets",
+  "brand": "Blick",
+  "url": "https://www.dickblick.com/products/blickrylic-student-acrylics/",
+  "image_url": "https://cld-assets.dick-blick.com/image/upload/f_auto/q_auto/v1748032379/00711-Group-9-4ww.jpg",
+  "image_alt": "Blickrylic Student Acrylic Paints and Sets",
+  "short_description": "Blickrylic Student Acrylic Paint is a true acrylic paint, priced for the budget-minded...",
+  "price": 7.45,
+  "price_max": 183.4,
+  "list_price": 183.4,
+  "sale_price": 7.45,
+  "currency": "USD",
+  "savings_text": "SAVE up to 43%",
+  "is_sale": true,
+  "is_best_price": true,
+  "rating": 4.6,
+  "reviews_count": 2140,
+  "sku_count": 123,
+  "in_stock": true,
+  "is_new": false,
+  "is_overstock": false,
+  "is_clearance": false,
+  "is_coupon_eligible": false,
+  "page": 0,
+  "position": 1,
+  "total_count": 168,
+  "total_pages": 6,
+  "source_url": "https://api.dickblick.com/product-search/api/v1.0/collections/alias/64h0nGCpZmASYWykoCaM4E?pageNumber=0&pageSize=30&includeFacets=false",
+  "source": "blick_product_search_api",
+  "raw": {
+    "_omitted": "(full product object retained in the feed)"
+  }
+}
+```
+
+Run examples:
+- `common-scrapy crawl blick_listing -a category=paint-and-mediums/acrylic-paint -a max_pages=3 -O blick.jsonl -s HTTPCACHE_ENABLED=False`
+- `common-scrapy crawl blick_listing -a category_url=https://www.dickblick.com/categories/painting/acrylic-paint/ -a max_pages=2 -O blick.jsonl`
+- `common-scrapy crawl blick_listing -O blick.jsonl` (crawls all 899 categories)
+
+Notes:
+- Category slugs are a `department/group/leaf` path of the display names, e.g.
+  `paint-and-mediums/acrylic-paint`. Look them up with
+  `common-spiders.blick_categories.crawlable_categories()`. The homepage
+  `browseDepartments` list is **not** the taxonomy.
+- `entryId` is resolved from the category page's `__NEXT_DATA__`, so every
+  category costs one extra HTML request before its first API page. That request
+  is never mined for products.
+- **Challenge detection scans only the first 8 KB** of the category page. A real
+  PLP is ~370 KB and its feature-flag blob contains strings such as
+  `ff-checkout-captcha-enabled`, so a whole-body substring scan rejects every
+  legitimate category page. The API leg is checked against JSON markers plus
+  `<html`, since that endpoint otherwise always answers with JSON.
+- The API answers HTTP 200 with a bare JSON **string** (`"Collection with
+  external ID '...' not found"`) for an unknown alias -- which happens for
+  department landing pages that have no product collection. A non-object
+  payload raises.
+- Dedupe is on `itemId`, falling back to `entryId`. The API itself repeats
+  items across page boundaries: a 3-page run returns 90 item slots containing
+  **84 unique** `itemId`s (six products appear on two pages each), so the
+  emitted count is lower than `pageSize * pages` by design.
+- `price` is `pricing.priceMin` and `price_max` is `pricing.priceMax`; Blick
+  lists one product record per family with a price range across its SKUs, so
+  `list_price` is `pricing.skuMsrp` when present, otherwise `price_max` for
+  range-priced products. `sale_price` is `priceMin` only when
+  `pricing.isSkuOnSale`, and `savings_text` carries `pricing.savingStory`
+  (e.g. `SAVE up to 43%`).
+- `in_stock` is `true` for every listed product: the search payload has no stock
+  flag, so availability is expressed through the flags it does carry
+  (`is_new`, `is_overstock`, `is_clearance`, `is_coupon_eligible`).
+- `page` is the zero-based API `pageNumber`, matching the endpoint's own
+  numbering, and `position` is the 1-based index within that page's response.
+- The ordered export fields are `category`, `department`, `category_name`,
+  `category_path`, `category_url`, `collection_id`, `item_id`, `entry_id`,
+  `sku_id`, `title`, `brand`, `url`, `image_url`, `image_alt`,
+  `short_description`, `price`, `price_max`, `list_price`, `sale_price`,
+  `currency`, `savings_text`, `is_sale`, `is_best_price`, `rating`,
+  `reviews_count`, `sku_count`, `in_stock`, `is_new`, `is_overstock`,
+  `is_clearance`, `is_coupon_eligible`, `page`, `position`, `total_count`,
+  `total_pages`, `source_url`, `source`, and `raw`.
+
+Verified live (`HTTPCACHE_ENABLED=False`, ScrapeOps US proxy, 2026-10-05 UTC):
+
+| Category | `max_pages` | Items | Unique `item_id` | API pages crawled | `total_count` / `total_pages` | Distinct brands | Requests |
+|---|---|---|---|---|---|---|---|
+| `paint-and-mediums/acrylic-paint` | 3 | 84 | 84 | `pageNumber=0,1,2` | 168 / 6 | 37 | 4 (1 category page + 3 API) |
+| `illustration-and-drawing-supplies/art-markers` | 2 | 56 | 56 | `pageNumber=0,1` | 434 / 15 | 28 | 3 (1 category page + 2 API) |
+
+Both runs returned non-empty `item_id`, `title`, `brand`, `url`, `image_url`,
+`price` and `currency` on 100% of items. The acrylic-paint run requested 90 item
+slots (3 x 30) and emitted 84 after dedupe, matching the six cross-page repeats
+present in the upstream API responses. Sample output items:
+
+| # | Category | `item_id` | `title` | `brand` | `price` | `price_max` | `savings_text` | `rating` | `reviews_count` | `page` | `position` |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | acrylic-paint | `00711` | Blickrylic Student Acrylic Paints and Sets | Blick | 7.45 | 183.4 | SAVE up to 43% | 4.6 | 2140 | 0 | 1 |
+| 2 | acrylic-paint | `00760` | Sennelier Abstract Acrylic Paints and Sets | Sennelier | 3.6 | 33.79 | SAVE 17-53% | 4.5 | 139 | 0 | 30 |
+| 3 | acrylic-paint | `00795` | Liquitex Professional Acrylic Gouache and Sets | Liquitex | 9.79 | 73.91 | SAVE 30-42% | 4.8 | 223 | 1 | 1 |
+| 4 | acrylic-paint | `01633` | Da Vinci Fluid Acrylics | Da Vinci Paints | 10.45 | 49.9 | SAVE 50% | 4.5 | 51 | 1 | 30 |
+| 5 | acrylic-paint | `00799` | Pebeo Mat Pub Paint | Pebeo | 12.15 | 14.42 | SAVE 31-40% | 4.8 | 5 | 2 | 30 |
+| 6 | art-markers | `01660` | Posca Paint Markers and Sets | Posca | 2.37 | 94.99 | SAVE up to 65% | 4.8 | 1007 | 0 | 1 |
+| 7 | art-markers | `21252` | Crayola Super Tips Washable Markers Sets | Crayola | 3.67 | 23.75 | SAVE up to 47% | 4.6 | 14 | 1 | 30 |
+
+Rows 1-5 are the first and last item of each of the three acrylic-paint API
+pages; rows 6-7 are the first and last item of the two art-markers API pages.
+
+Tests: `tests/test_blick_listing_spider.py` (34 tests) covers the taxonomy
+counts and uniqueness, the cross-listed-URL collapse, zero-based paging,
+`totalPages` / empty-page / `max_pages` / `totalCount` stop conditions,
+cross-page and intra-page dedupe, the portal header and endpoint shape, and the
+fail-loud paths (missing `__NEXT_DATA__`, missing `entryId`, challenge bodies,
+non-200, non-JSON, unknown-alias string payload). Fixtures under `sample/` are
+trimmed from the live captures: each API fixture keeps the response envelope
+(so paging behaves as on the untrimmed response) plus two real products.
 
 ### containerstore_listing
 
