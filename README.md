@@ -119,6 +119,7 @@ Spiders below are returning items in recent smoke runs:
 | [`sallybeauty_listing`](#sallybeauty_listing) | Experimental | html + AJAX | PerimeterX / HUMAN (px-captcha signals) | Sally Beauty SFCC product-grid spider with `Search-UpdateGrid` pagination. | 2 (fixture) | hair-color, hair-care, textured-curly-hair, hair-extensions, tools-brushes, nails, cosmetics-skin-care, fragrances, mens-grooming, salon-supplies, new, deals | `{"category":"hair-care","item_id":"SBS-539230","title":"Low Porosity Aloe Vera Gel Shampoo","brand":"Texture ID","price":11.99...` |
 | [`belk_listing`](#belk_listing) | Experimental | api | none detected (first-party JSON) | Belk listings from the `/ecom/cio/v1/web/category/{path}?v2=true` search facade. | 60 (one page, ok) | 13 departments / 427 browse categories from `belk_categories.py` | `{"item_id":"2900965MULANEYW","title":"Mulaney Flats","brand":"DV Dolce Vita","price":45.5,"original_price":65.0,"discount_percent":30.0,"currency":"USD"...}` |
 | [`stockx_listing`](#stockx_listing) | Experimental | bootstrap + html | Cloudflare | StockX listing via `__NEXT_DATA__` bootstrap. | 41 (ok) | sneakers, apparel, electronics, trading-cards, collectibles | `{"item_id":"brands","title":"Brands","url":"https://stockx.com/brands","price":null,"currency":null}` |
+| [`urbanoutfitters_listing`](#urbanoutfitters_listing) | Active | bootstrap | none detected through ScrapeOps proxy | Urban Outfitters listings from double-decoded Vue/Pinia SSR state (`#urbnInitialPiniaState`), with `?page=` pagination and no HTML fallback. | 144 (2 pages, live proxy) | 2,158 sitemap PLPs plus 4 navigation roots absent from the sitemap (2,162 targets total) | `{"category":"new-arrivals","item_id":"UO-106663735-000","title":"Kimchi Blue Ella Flyaway Ruffle Lace Trim Cami","brand":"Kimchi Blue","price":39,"rating":4.7308,"reviews_count":26,"color":"Maroon","source":"urbanoutfitters_pinia_ssr_tiles"...}` |
 | [`staples_listing`](#staples_listing) | Experimental | Next.js hydration | Akamai | Staples category listings from server-rendered `__NEXT_DATA__`. | 40 (one page) | 34 roots / 208 subcategories from `staples_categories.py` | `{"item_id":"82656","title":"Staples 1\" 3-Ring View Binder...","price":10.09,"currency":"USD"...}` |
 | [`petco_listing`](#petco_listing) | Experimental | bootstrap (Next.js `__NEXT_DATA__`) | none detected | Petco category listings from the server-rendered Constructor.io search hydration. | 48 (one page) | 22 roots / 286 nodes / 264 `-a category=` entries from `petco_categories.py` | `{"item_id":"6848523","title":"Purina Cat Chow Indoor Healthy Weight and Hairball with Chicken Dry Cat Food, 15 lbs.","brand":"Purina Cat Chow","price":18.99,"original_price":19.99,"rating":4.8141,"source":"petco_next_data"...}` |
 | [`target_listing`](#target_listing) | Active (alias) | api | PerimeterX / HUMAN (cookie signals) | Deprecated alias of `target_search`. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
@@ -3107,6 +3108,44 @@ Field notes:
 
 Tests: `python -m unittest tests.test_michaels_listing_spider` (22 tests, all
 offline against the fixtures in `sample/`).
+
+### urbanoutfitters_listing
+
+`urbanoutfitters_listing` uses one product-data direction: the Vue/Pinia SSR
+bootstrap state in `#urbnInitialPiniaState`. The script body is a JSON string
+containing JSON, so it is decoded twice; products then come exclusively from
+`category.pages[<currentPage>].wrapper.tiles`. The spider intentionally has no
+rendered-card or JSON-LD fallback.
+
+```bash
+HTTPCACHE_ENABLED=False common-scrapy crawl urbanoutfitters_listing --category new-arrivals -a max_pages=2 -O urbanoutfitters.jsonl -s HTTPCACHE_ENABLED=False
+```
+
+```json
+{"category":"new-arrivals","item_id":"UO-106663735-000","style_id":"106663735","sku_id":"106663735_000","title":"Kimchi Blue Ella Flyaway Ruffle Lace Trim Cami","brand":"Kimchi Blue","url":"https://www.urbanoutfitters.com/shop/kimchi-blue-ella-flyaway-ruffle-lace-trim-cami","image_url":"https://images.urbndata.com/is/image/UrbanOutfitters/106663735_000_b3?wid=640","price":39,"currency":"USD","rating":4.7308,"reviews_count":26,"color":"Maroon","color_code":"000","in_stock":true,"page":1,"position":1,"total_count":1241,"total_pages":18,"source":"urbanoutfitters_pinia_ssr_tiles"}
+```
+
+Pagination requests the same SSR route with `?page=N`; the served bootstrap
+contains only `pages["N"]`. Existing refinement parameters are preserved. The
+live two-page validation on 2026-10-04 returned 144 unique products (72 per
+page), including 18 markdowns, with no overlap between pages.
+
+Categories are parsed at crawl time from `categories_sitemap.xml`, the
+authoritative inventory linked by the site's sitemap index. The captured
+sitemap had 2,158 unique PLP URLs, including 1,380 filtered variants; four of
+the 12 curated navigation roots were absent and are added as stable aliases,
+for 2,162 targets total. Filter aliases include every key/value pair, for
+example `dresses-length-mini-sleeve-long-sleeve`. `-a category_url=` accepts
+absolute or relative URLs and preserves their query string.
+
+Price fields are colour-range aware: `price` / `price_high` reflect the live
+sale range, while `sale_price`, `list_price`, and `discount_percentage` are set
+only when `hasMarkdown` is true and the sale price is genuinely lower. `raw`
+keeps the complete hydrated tile, including `product`, `skuInfo`, reviews, and
+face-out colour context.
+
+Tests: `python3 -m unittest tests.test_urbanoutfitters_listing_spider` (8 tests,
+offline against committed sitemap and Pinia fixtures).
 
 ### Project layout
 
