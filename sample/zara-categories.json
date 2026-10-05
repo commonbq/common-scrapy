@@ -1,0 +1,183 @@
+{
+ "categories": [
+  {
+   "id": 1881757,
+   "key": "I2024-MUJER",
+   "name": "WOMAN",
+   "sectionName": "WOMAN",
+   "menuLevel": 1,
+   "irrelevant": false,
+   "layout": "marketing-content-view",
+   "seo": {
+    "keyword": "woman",
+    "seoCategoryId": 1000,
+    "irrelevant": false
+   },
+   "subcategories": [
+    {
+     "id": 2642765,
+     "key": "I2024-MUJER-DESTACADA_NOVEDADES",
+     "name": "NEW ARRIVALS",
+     "sectionName": "WOMAN",
+     "menuLevel": 2,
+     "irrelevant": true,
+     "layout": "products-category-view",
+     "seo": {
+      "keyword": "woman-highlight-new",
+      "seoCategoryId": 17359,
+      "irrelevant": true
+     },
+     "subcategories": [
+      {
+       "id": 2546081,
+       "key": "I2024-MUJER-ULTIMA_SEMANA",
+       "name": "THE NEW",
+       "sectionName": "WOMAN",
+       "menuLevel": 3,
+       "irrelevant": false,
+       "layout": "products-category-view",
+       "seo": {
+        "keyword": "woman-new-in",
+        "seoCategoryId": 1180,
+        "irrelevant": false
+       },
+       "subcategories": [
+        {
+         "id": 2420895,
+         "key": "I2024-MUJER-VESTIDOS",
+         "name": "DRESSES",
+         "sectionName": "WOMAN",
+         "menuLevel": 3,
+         "irrelevant": false,
+         "layout": "products-category-view",
+         "seo": {
+          "keyword": "woman-dresses",
+          "seoCategoryId": 1066,
+          "irrelevant": false
+         },
+         "subcategories": []
+        },
+        {
+         "id": 1881757,
+         "key": "I2024-MUJER",
+         "name": "WOMAN",
+         "sectionName": "WOMAN",
+         "menuLevel": 1,
+         "irrelevant": false,
+         "layout": "marketing-content-view",
+         "seo": {
+          "keyword": "woman",
+          "seoCategoryId": 1000,
+          "irrelevant": false
+         },
+         "subcategories": []
+        },
+        {
+         "id": 2642765,
+         "key": "I2024-MUJER-DESTACADA_NOVEDADES",
+         "name": "NEW ARRIVALS",
+         "sectionName": "WOMAN",
+         "menuLevel": 2,
+         "irrelevant": true,
+         "layout": "products-category-view",
+         "seo": {
+          "keyword": "woman-highlight-new",
+          "seoCategoryId": 17359,
+          "irrelevant": true
+         },
+         "subcategories": []
+        },
+        {
+         "id": 2585574,
+         "key": "I2024-MUJER-SRPLS_LINEN",
+         "name": "SRPLS FLWRS",
+         "sectionName": "WOMAN",
+         "menuLevel": 3,
+         "irrelevant": false,
+         "layout": "srpls-products-category-view",
+         "seo": {
+          "keyword": "srpls-woman",
+          "seoCategoryId": 1876,
+          "irrelevant": false
+         },
+         "subcategories": []
+        },
+        {
+         "id": 815531,
+         "key": "MUJER-GIFTCARD_MOVIMIENTOS",
+         "name": "View balance",
+         "sectionName": "WOMAN",
+         "menuLevel": 3,
+         "irrelevant": false,
+         "layout": "giftcard-balance-view",
+         "seo": {
+          "keyword": "z-giftcard",
+          "seoCategoryId": 1394,
+          "irrelevant": false
+         },
+         "subcategories": []
+        },
+        {
+         "id": 2764925,
+         "key": "REFORM-DIVIDER-REFORM-10",
+         "name": "DIVIDER-REFORM-10",
+         "sectionName": "REFORM",
+         "menuLevel": 2,
+         "irrelevant": true,
+         "layout": "divider-category-view",
+         "subcategories": []
+        },
+        {
+         "id": 2546081,
+         "key": "I2024-MUJER-ULTIMA_SEMANA",
+         "name": "THE NEW",
+         "sectionName": "WOMAN",
+         "menuLevel": 3,
+         "irrelevant": false,
+         "layout": "products-category-view",
+         "seo": {
+          "keyword": "woman-new-in",
+          "seoCategoryId": 1180,
+          "irrelevant": false
+         },
+         "subcategories": []
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": 2317660,
+   "key": "COMUN-PREOWNED",
+   "name": "PRE-OWNED",
+   "sectionName": "PREOWNED",
+   "menuLevel": 1,
+   "irrelevant": false,
+   "layout": "marketing-content-view",
+   "seo": {
+    "keyword": "preowned",
+    "seoCategoryId": 5794,
+    "irrelevant": false
+   },
+   "subcategories": [
+    {
+     "id": 2645257,
+     "key": "COMUN-PREOWNED-SERVICIOS",
+     "name": "SERVICES",
+     "sectionName": "PREOWNED",
+     "menuLevel": 2,
+     "irrelevant": false,
+     "layout": "products-category-view",
+     "seo": {
+      "keyword": "preowned",
+      "seoCategoryId": 5794,
+      "irrelevant": false
+     },
+     "subcategories": []
+    }
+   ]
+  }
+ ]
+}
