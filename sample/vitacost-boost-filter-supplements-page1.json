@@ -1,0 +1,1784 @@
+{
+ "total_product": 25399,
+ "total_collection": 0,
+ "total_page": 0,
+ "from_cache": true,
+ "products": [
+  {
+   "body_html": " Description 1,160 mg Per Serving Featuring BioPerine\u00ae Rooted in Science, Rooting in Nature Potency - Purity - Pride Clinically Researched Ingredients Standardized Ingredients Enhanced Absorption Herbal Supplement What is Turmeric? Formally known as Curcuma longa , turmeric is a perennial plant from the ginger family. The orange-yellow spice, used most notably in curry dishes, is produced by drying and grinding the rootstock of the plant. The rich hue and potential health benefits are due to the active component known as curcumin. What are the key benefits of ROOT 2 Turmeric Extract Curcumin C [trimmed]",
+   "skus": [
+    "158591"
+   ],
+   "available": true,
+   "created_at": "2026-05-18T21:47:35Z",
+   "review_count": 0,
+   "variants": [
+    {
+     "merged_options": [
+      "title:Default Title"
+     ],
+     "inventory_quantity": 3508,
+     "image": null,
+     "original_merged_options": [
+      "title:Default Title"
+     ],
+     "compare_at_price": "32.99",
+     "inventory_management": "shopify",
+     "available": true,
+     "weight": 0.32,
+     "title": "Default Title",
+     "inventory_policy": "deny",
+     "weight_unit": "lb",
+     "price": "24.74",
+     "unit_cost": null,
+     "id": 51263790809403,
+     "sku": "158591",
+     "barcode": "835003004423"
+    }
+   ],
+   "media": [],
+   "title": "Vitacost, Root2\u00ae, Turmeric Extract Curcumin C3 Complex\u00ae, 120 Capsules",
+   "price_min": 24.74,
+   "images_info": [
+    {
+     "src": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/10_da6689c1-38d5-4f54-8e85-b694eb0f26d1.jpg?v=1781816097",
+     "width": 1600,
+     "alt": "Vitacost, Root2\u00ae, Turmeric Extract Curcumin C3 Complex\u00ae, 120 Capsules",
+     "id": 48226995765563,
+     "position": 1,
+     "height": 1600
+    },
+    {
+     "src": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/16_b50986a6-586b-461c-ad69-932e3f8b59ef.jpg?v=1781816097",
+     "width": 1600,
+     "alt": null,
+     "id": 48226995798331,
+     "position": 2,
+     "height": 1600
+    }
+   ],
+   "review_ratings": 4.72,
+   "template_suffix": null,
+   "updated_at": "2026-10-04T08:39:28Z",
+   "combined_listing_role": null,
+   "collections": [
+    {
+     "template_suffix": null,
+     "handle": "gluten_free",
+     "id": 499968016699,
+     "sort_value": "2j9",
+     "title": "Gluten Free"
+    },
+    {
+     "template_suffix": null,
+     "handle": "specialty-shops",
+     "id": 500712014139,
+     "sort_value": "00u",
+     "title": "Specialty Shops"
+    },
+    {
+     "template_suffix": null,
+     "handle": "supplements",
+     "id": 457575104827,
+     "sort_value": "001",
+     "title": "Supplements"
+    },
+    {
+     "template_suffix": null,
+     "handle": "antioxidants",
+     "id": 457584869691,
+     "sort_value": "00j",
+     "title": "Antioxidants"
+    },
+    {
+     "template_suffix": "",
+     "handle": "all",
+     "id": 499840385339,
+     "sort_value": "000k",
+     "title": "All"
+    },
+    {
+     "template_suffix": null,
+     "handle": "turmeric-curcumin",
+     "id": 501186265403,
+     "sort_value": "02",
+     "title": "Turmeric & Curcumin"
+    },
+    {
+     "template_suffix": "",
+     "handle": "curcumin",
+     "id": 457680748859,
+     "sort_value": "02",
+     "title": "Curcumin"
+    },
+    {
+     "template_suffix": null,
+     "handle": "deals",
+     "id": 501592391995,
+     "sort_value": "003",
+     "title": "Limited Time Offers"
+    },
+    {
+     "template_suffix": null,
+     "handle": "vitacost",
+     "id": 499767017787,
+     "sort_value": "01",
+     "title": "Vitacost"
+    },
+    {
+     "template_suffix": null,
+     "handle": "glp-1-targeted-formulas",
+     "id": 500283310395,
+     "sort_value": "09",
+     "title": "GLP 1 Targeted Formulas"
+    },
+    {
+     "template_suffix": null,
+     "handle": "globofilter-best-selling-products-index",
+     "id": 457705390395,
+     "sort_value": "000l",
+     "title": "Smart Products Filter Index - Do not delete"
+    },
+    {
+     "template_suffix": null,
+     "handle": "october-supplement-sale",
+     "id": 501609660731,
+     "sort_value": "002",
+     "title": "October Supplement Sale"
+    },
+    {
+     "template_suffix": null,
+     "handle": "bogo_august",
+     "id": 501888778555,
+     "sort_value": "005",
+     "title": "BOGO August"
+    },
+    {
+     "template_suffix": null,
+     "handle": "our-brands",
+     "id": 502060712251,
+     "sort_value": "00q",
+     "title": "Our Brands"
+    },
+    {
+     "template_suffix": "",
+     "handle": "30-off-the-weekend-sale",
+     "id": 500557447483,
+     "sort_value": "01",
+     "title": "The Weekend Sale - 30% Off"
+    },
+    {
+     "template_suffix": null,
+     "handle": "notprops65",
+     "id": 502674358587,
+     "sort_value": "001",
+     "title": "NotProps65"
+    },
+    {
+     "template_suffix": null,
+     "handle": "all-products-with-exclusions",
+     "id": 502729179451,
+     "sort_value": "000w",
+     "title": "All products with exclusions"
+    },
+    {
+     "template_suffix": null,
+     "handle": "iherb-brands",
+     "id": 511719244091,
+     "sort_value": "00q",
+     "title": "iHerb Brands"
+    }
+   ],
+   "vendor": "Vitacost",
+   "percent_sale_min": 25,
+   "best_selling_rank": 1,
+   "html": {
+    "theme_id": 0,
+    "value": ""
+   },
+   "id": 10390080782651,
+   "published_at": "2026-05-18T23:03:16Z",
+   "rio_ratings": [],
+   "images": {
+    "1": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/10_da6689c1-38d5-4f54-8e85-b694eb0f26d1.jpg?v=1781816097",
+    "2": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/16_b50986a6-586b-461c-ad69-932e3f8b59ef.jpg?v=1781816097"
+   },
+   "options_with_values": [
+    {
+     "original_name": "title",
+     "values": [
+      {
+       "image": null,
+       "title": "Default Title"
+      }
+     ],
+     "name": "title",
+     "label": "Title",
+     "position": 1
+    }
+   ],
+   "weight_min": 320,
+   "handle": "vitacost-root2-turmeric-extract-curcumin-c3-complex-120-capsules-158591",
+   "compare_at_price_min": 32.99,
+   "barcodes": [
+    "835003004423"
+   ],
+   "number_extra_sort1": 469143.00000000006,
+   "tags": [
+    "Antioxidants",
+    "Supplements",
+    "Turmeric & Curcumin",
+    "rating_count:484",
+    "top_rated:469143.00000000006"
+   ],
+   "published_scope": "web",
+   "metafields": [
+    {
+     "namespace": "PackageQuantity",
+     "id": "gid://shopify/Metafield/80692255752507",
+     "type": "single_line_text_field",
+     "value": "120 - 179 count",
+     "key": "PackageQuantity"
+    },
+    {
+     "namespace": "Strength",
+     "id": "gid://shopify/Metafield/80816042279227",
+     "type": "single_line_text_field",
+     "value": "1000 - 4999 mg",
+     "key": "Strength"
+    },
+    {
+     "namespace": "Gender",
+     "id": "gid://shopify/Metafield/80692255555899",
+     "type": "single_line_text_field",
+     "value": "Neutral",
+     "key": "Gender"
+    },
+    {
+     "namespace": "Clearance",
+     "id": "gid://shopify/Metafield/80898180153659",
+     "type": "single_line_text_field",
+     "value": "Clearance",
+     "key": "Clearance"
+    },
+    {
+     "namespace": "OnSale",
+     "id": "gid://shopify/Metafield/80898180284731",
+     "type": "single_line_text_field",
+     "value": "On Sale",
+     "key": "OnSale"
+    },
+    {
+     "namespace": "CertificationAndDiet",
+     "id": "gid://shopify/Metafield/83063718117691",
+     "type": "list.single_line_text_field",
+     "value": "[\"Milk-free\",\"Egg-free\",\"Peanut-free\",\"Treenut-free\",\"Fish-free\",\"Shellfish-free\",\"Soy-free\",\"Gluten-free\",\"Certificate of analysis\"]",
+     "key": "CertificationAndDiet"
+    },
+    {
+     "namespace": "reviews",
+     "id": "gid://shopify/Metafield/82551024058683",
+     "type": "rating",
+     "value": "{\"scale_min\":\"1.0\",\"scale_max\":\"5.0\",\"value\":\"4.72\"}",
+     "key": "rating"
+    },
+    {
+     "namespace": "Form",
+     "id": "gid://shopify/Metafield/80692255359291",
+     "type": "single_line_text_field",
+     "value": "Capsule",
+     "key": "Form"
+    },
+    {
+     "namespace": "reviews",
+     "id": "gid://shopify/Metafield/82551024091451",
+     "type": "number_integer",
+     "value": "484",
+     "key": "rating_count"
+    },
+    {
+     "namespace": "judgeme",
+     "id": "gid://shopify/Metafield/81237565964603",
+     "type": "string",
+     "value": "<div style='display:none' class='jdgm-prev-badge' data-average-rating='4.72' data-number-of-reviews='484' data-number-of-questions='0'> <span class='jdgm-prev-badge__stars' data-score='4.72' tabindex='0' aria-label='4.72 stars' role='button'> <span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--half'></span> </span> <span class='jdgm-prev-badge__text'> 484 </span> </div>",
+     "key": "badge"
+    }
+   ],
+   "product_type": "[Vitacost Brands][SuperDeal]",
+   "weight_max": 320,
+   "locations": [],
+   "position": null,
+   "compare_at_price_max": 32.99,
+   "product_category": "Uncategorized",
+   "price_max": 24.74,
+   "metrics": {
+    "purchase-30-days": 5,
+    "purchase-6-days": 3,
+    "view-14-days": 2,
+    "view-5-days": 2,
+    "purchase-5-days": 4,
+    "purchase-14-days": 2,
+    "purchase-3-days": 3,
+    "view-3-days": 2,
+    "view-4-days": 3,
+    "purchase-1-days": 5,
+    "purchase-7-days": 2,
+    "purchase-4-days": 4,
+    "view-30-days": 2,
+    "purchase-2-days": 4,
+    "view-7-days": 2,
+    "view-2-days": 3,
+    "view-1-days": 4,
+    "view-6-days": 2
+   },
+   "total_skus": 1,
+   "total_tags": 5,
+   "total_metafields": 10,
+   "total_collections": 18,
+   "total_barcodes": 1,
+   "total_images_info": 2,
+   "total_options_with_values": 1,
+   "total_variants": 1,
+   "total_images": 2
+  },
+  {
+   "body_html": " Description As Cholecalciferol Everyday Essentials Potency \u00b7 Purity \u00b7 Pride High Potency Vitamin Supplement New, smaller softgels! This high-potency vitamin D supplement supplies 125 mcg per single \"mini\" softgel serving. Supports maintenance of healthy bones and teeth, cellular function and proper functioning of the immune and nervous systems. Vitacost\u00ae Vitamin D3 is your everyday essential Mini softgels are the perfect size, providing 125 mcg of the preferred form of vitamin D. Vitamin D as cholecalciferol, the preferred form High-potency formula with 125 mcg per mini softgel Free of gluten [trimmed]",
+   "skus": [
+    "158727"
+   ],
+   "available": true,
+   "created_at": "2026-05-18T21:42:50Z",
+   "review_count": 0,
+   "variants": [
+    {
+     "merged_options": [
+      "title:Default Title"
+     ],
+     "inventory_quantity": 518,
+     "image": null,
+     "original_merged_options": [
+      "title:Default Title"
+     ],
+     "compare_at_price": "12.45",
+     "inventory_management": "shopify",
+     "available": true,
+     "weight": 0.33,
+     "title": "Default Title",
+     "inventory_policy": "deny",
+     "weight_unit": "lb",
+     "price": "12.45",
+     "unit_cost": null,
+     "id": 51263762596155,
+     "sku": "158727",
+     "barcode": "844197013715"
+    }
+   ],
+   "media": [],
+   "title": "Vitacost, Vitamin D3 Mini Gels, 125 mcg (5,000 IU), 365 Softgels",
+   "price_min": 12.45,
+   "images_info": [
+    {
+     "src": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/9_5c22518a-6820-45ab-9a41-aa70a4babae1.jpg?v=1781814140",
+     "width": 1600,
+     "alt": "Vitacost, Vitamin D3 Mini Gels, 125 mcg (5,000 IU), 365 Softgels",
+     "id": 48226914894139,
+     "position": 1,
+     "height": 1600
+    },
+    {
+     "src": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/14_06636154-c4f3-4363-bd4d-a1e9714afbf3.jpg?v=1781814140",
+     "width": 1600,
+     "alt": null,
+     "id": 48226914926907,
+     "position": 2,
+     "height": 1600
+    }
+   ],
+   "review_ratings": 4.84,
+   "template_suffix": null,
+   "updated_at": "2026-10-04T07:48:36Z",
+   "combined_listing_role": null,
+   "collections": [
+    {
+     "template_suffix": null,
+     "handle": "gluten_free",
+     "id": 499968016699,
+     "sort_value": "1us",
+     "title": "Gluten Free"
+    },
+    {
+     "template_suffix": null,
+     "handle": "specialty-shops",
+     "id": 500712014139,
+     "sort_value": "02",
+     "title": "Specialty Shops"
+    },
+    {
+     "template_suffix": null,
+     "handle": "supplements",
+     "id": 457575104827,
+     "sort_value": "003",
+     "title": "Supplements"
+    },
+    {
+     "template_suffix": null,
+     "handle": "vitamins",
+     "id": 458194583867,
+     "sort_value": "00a",
+     "title": "Vitamins"
+    },
+    {
+     "template_suffix": "",
+     "handle": "all",
+     "id": 499840385339,
+     "sort_value": "001",
+     "title": "All"
+    },
+    {
+     "template_suffix": null,
+     "handle": "vitacost",
+     "id": 499767017787,
+     "sort_value": "02",
+     "title": "Vitacost"
+    },
+    {
+     "template_suffix": null,
+     "handle": "vitamin-d",
+     "id": 457685631291,
+     "sort_value": "01",
+     "title": "Vitamin D"
+    },
+    {
+     "template_suffix": null,
+     "handle": "globofilter-best-selling-products-index",
+     "id": 457705390395,
+     "sort_value": "002",
+     "title": "Smart Products Filter Index - Do not delete"
+    },
+    {
+     "template_suffix": null,
+     "handle": "october-supplement-sale",
+     "id": 501609660731,
+     "sort_value": "004",
+     "title": "October Supplement Sale"
+    },
+    {
+     "template_suffix": null,
+     "handle": "bogo_august",
+     "id": 501888778555,
+     "sort_value": "00h",
+     "title": "BOGO August"
+    },
+    {
+     "template_suffix": null,
+     "handle": "our-brands",
+     "id": 502060712251,
+     "sort_value": "01",
+     "title": "Our Brands"
+    },
+    {
+     "template_suffix": "",
+     "handle": "30-off-the-weekend-sale",
+     "id": 500557447483,
+     "sort_value": "02",
+     "title": "The Weekend Sale - 30% Off"
+    },
+    {
+     "template_suffix": null,
+     "handle": "notprops65",
+     "id": 502674358587,
+     "sort_value": "002",
+     "title": "NotProps65"
+    },
+    {
+     "template_suffix": null,
+     "handle": "all-products-with-exclusions",
+     "id": 502729179451,
+     "sort_value": "001",
+     "title": "All products with exclusions"
+    },
+    {
+     "template_suffix": null,
+     "handle": "iherb-brands",
+     "id": 511719244091,
+     "sort_value": "01",
+     "title": "iHerb Brands"
+    }
+   ],
+   "vendor": "Vitacost",
+   "percent_sale_min": 0,
+   "best_selling_rank": 2,
+   "html": {
+    "theme_id": 0,
+    "value": ""
+   },
+   "id": 10390054928699,
+   "published_at": "2026-05-18T22:22:39Z",
+   "rio_ratings": [],
+   "images": {
+    "1": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/9_5c22518a-6820-45ab-9a41-aa70a4babae1.jpg?v=1781814140",
+    "2": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/14_06636154-c4f3-4363-bd4d-a1e9714afbf3.jpg?v=1781814140"
+   },
+   "options_with_values": [
+    {
+     "original_name": "title",
+     "values": [
+      {
+       "image": null,
+       "title": "Default Title"
+      }
+     ],
+     "name": "title",
+     "label": "Title",
+     "position": 1
+    }
+   ],
+   "weight_min": 330,
+   "handle": "vitacost-vitamin-d3-mini-gels-125-mcg-5-000-iu-365-softgels-158727",
+   "compare_at_price_min": 12.45,
+   "barcodes": [
+    "844197013715"
+   ],
+   "number_extra_sort1": 480225,
+   "tags": [
+    "Supplements",
+    "Vitamin D",
+    "Vitamins",
+    "rating_count:425",
+    "top_rated:480225"
+   ],
+   "published_scope": "web",
+   "metafields": [
+    {
+     "namespace": "PackageQuantity",
+     "id": "gid://shopify/Metafield/80692091388219",
+     "type": "single_line_text_field",
+     "value": "360+ count",
+     "key": "PackageQuantity"
+    },
+    {
+     "namespace": "Strength",
+     "id": "gid://shopify/Metafield/80815662235963",
+     "type": "single_line_text_field",
+     "value": "5000 - 9999 IU",
+     "key": "Strength"
+    },
+    {
+     "namespace": "Gender",
+     "id": "gid://shopify/Metafield/80692091289915",
+     "type": "single_line_text_field",
+     "value": "Neutral",
+     "key": "Gender"
+    },
+    {
+     "namespace": "Clearance",
+     "id": "gid://shopify/Metafield/80898200895803",
+     "type": "single_line_text_field",
+     "value": "Clearance",
+     "key": "Clearance"
+    },
+    {
+     "namespace": "OnSale",
+     "id": "gid://shopify/Metafield/80898200961339",
+     "type": "single_line_text_field",
+     "value": "Full Price",
+     "key": "OnSale"
+    },
+    {
+     "namespace": "CertificationAndDiet",
+     "id": "gid://shopify/Metafield/83077228200251",
+     "type": "list.single_line_text_field",
+     "value": "[\"Milk-free\",\"Egg-free\",\"Shellfish-free\",\"Fish-free\",\"Peanut-free\",\"Treenut-free\",\"Soy-free\",\"Gluten-free\",\"Certificate of analysis\"]",
+     "key": "CertificationAndDiet"
+    },
+    {
+     "namespace": "reviews",
+     "id": "gid://shopify/Metafield/82551144743227",
+     "type": "rating",
+     "value": "{\"scale_min\":\"1.0\",\"scale_max\":\"5.0\",\"value\":\"4.84\"}",
+     "key": "rating"
+    },
+    {
+     "namespace": "Form",
+     "id": "gid://shopify/Metafield/80692091191611",
+     "type": "single_line_text_field",
+     "value": "Softgel",
+     "key": "Form"
+    },
+    {
+     "namespace": "reviews",
+     "id": "gid://shopify/Metafield/82551144775995",
+     "type": "number_integer",
+     "value": "425",
+     "key": "rating_count"
+    },
+    {
+     "namespace": "judgeme",
+     "id": "gid://shopify/Metafield/81237569110331",
+     "type": "string",
+     "value": "<div style='display:none' class='jdgm-prev-badge' data-average-rating='4.84' data-number-of-reviews='425' data-number-of-questions='0'> <span class='jdgm-prev-badge__stars' data-score='4.84' tabindex='0' aria-label='4.84 stars' role='button'> <span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span> </span> <span class='jdgm-prev-badge__text'> 425 </span> </div>",
+     "key": "badge"
+    }
+   ],
+   "product_type": "[Vitacost Brands]",
+   "weight_max": 330,
+   "locations": [],
+   "position": null,
+   "compare_at_price_max": 12.45,
+   "product_category": null,
+   "price_max": 12.45,
+   "metrics": {
+    "purchase-30-days": 2,
+    "purchase-6-days": 1,
+    "view-14-days": 1,
+    "view-5-days": 1,
+    "purchase-5-days": 1,
+    "purchase-14-days": 1,
+    "purchase-3-days": 1,
+    "view-3-days": 1,
+    "view-4-days": 1,
+    "purchase-1-days": 2,
+    "purchase-7-days": 1,
+    "purchase-4-days": 1,
+    "view-30-days": 1,
+    "purchase-2-days": 1,
+    "view-7-days": 1,
+    "view-2-days": 2,
+    "view-1-days": 2,
+    "view-6-days": 1
+   },
+   "total_skus": 1,
+   "total_tags": 5,
+   "total_metafields": 10,
+   "total_collections": 15,
+   "total_barcodes": 1,
+   "total_images_info": 2,
+   "total_options_with_values": 1,
+   "total_variants": 1,
+   "total_images": 2
+  },
+  {
+   "body_html": " Description Everyday Essentials Potency \u00b7 Purity \u00b7 Pride Vegetarian Mineral Supplement NEW, patented and clinically studied form of magnesium developed by MIT scientists. What is Magtein\u00ae Magnesium L-Threonate? Magnesium is a mineral found abundantly throughout the body. Besides being necessary for more than 300 biochemical reactions, magnesium is involved in many important functions\u2014from protein production and energy metabolism to cardiovascular and bone health. Foods such as leafy greens and nuts are especially good sources of magnesium, and it\u2019s also found in whole grains, legumes, seeds,  [trimmed]",
+   "skus": [
+    "158833"
+   ],
+   "available": false,
+   "created_at": "2026-05-18T21:03:32Z",
+   "review_count": 0,
+   "variants": [
+    {
+     "merged_options": [
+      "title:Default Title"
+     ],
+     "inventory_quantity": 0,
+     "image": null,
+     "original_merged_options": [
+      "title:Default Title"
+     ],
+     "compare_at_price": "29.99",
+     "inventory_management": "shopify",
+     "available": false,
+     "weight": 0.29,
+     "title": "Default Title",
+     "inventory_policy": "deny",
+     "weight_unit": "lb",
+     "price": "29.99",
+     "unit_cost": null,
+     "id": 51263629656379,
+     "sku": "158833",
+     "barcode": "844197016815"
+    }
+   ],
+   "media": [],
+   "title": "Vitacost, Magtein\u00ae, Magnesium L-Threonate, 90 Capsules (670 mg per Capsule)",
+   "price_min": 29.99,
+   "images_info": [
+    {
+     "src": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/10_dc658aad-5846-4491-9521-ce7ba8478a0f.jpg?v=1784851717",
+     "width": 1600,
+     "alt": "Vitacost, Magtein\u00ae, Magnesium L-Threonate, 90 Capsules (670 mg per Capsule)",
+     "id": 48459855561019,
+     "position": 1,
+     "height": 1600
+    },
+    {
+     "src": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/15_5922687d-3939-4d52-a302-1d3a4d3eb7a6.jpg?v=1784851718",
+     "width": 1600,
+     "alt": null,
+     "id": 48459855593787,
+     "position": 2,
+     "height": 1600
+    }
+   ],
+   "review_ratings": 4.52,
+   "template_suffix": null,
+   "updated_at": "2026-09-28T11:13:00Z",
+   "combined_listing_role": null,
+   "collections": [
+    {
+     "template_suffix": null,
+     "handle": "minerals",
+     "id": 457684123963,
+     "sort_value": "00g",
+     "title": "Minerals"
+    },
+    {
+     "template_suffix": null,
+     "handle": "specialty-shops",
+     "id": 500712014139,
+     "sort_value": "020z",
+     "title": "Specialty Shops"
+    },
+    {
+     "template_suffix": null,
+     "handle": "supplements",
+     "id": 457575104827,
+     "sort_value": "005",
+     "title": "Supplements"
+    },
+    {
+     "template_suffix": "",
+     "handle": "out-of-stock",
+     "id": 499997278523,
+     "sort_value": "002",
+     "title": "Out Of Stock"
+    },
+    {
+     "template_suffix": null,
+     "handle": "brain-cognitive",
+     "id": 458324803899,
+     "sort_value": "01",
+     "title": "Brain & Cognitive"
+    },
+    {
+     "template_suffix": "",
+     "handle": "all",
+     "id": 499840385339,
+     "sort_value": "002w",
+     "title": "All"
+    },
+    {
+     "template_suffix": null,
+     "handle": "stress-relief-formulas",
+     "id": 501196423483,
+     "sort_value": "03",
+     "title": "Stress Relief Formulas"
+    },
+    {
+     "template_suffix": null,
+     "handle": "menopause-healthy-aging",
+     "id": 500258636091,
+     "sort_value": "07",
+     "title": "Menopause Healthy Aging"
+    },
+    {
+     "template_suffix": null,
+     "handle": "magnesium",
+     "id": 457683861819,
+     "sort_value": "01",
+     "title": "Magnesium"
+    },
+    {
+     "template_suffix": null,
+     "handle": "globofilter-best-selling-products-index",
+     "id": 457705390395,
+     "sort_value": "001t",
+     "title": "Smart Products Filter Index - Do not delete"
+    },
+    {
+     "template_suffix": null,
+     "handle": "october-supplement-sale",
+     "id": 501609660731,
+     "sort_value": "006",
+     "title": "October Supplement Sale"
+    },
+    {
+     "template_suffix": null,
+     "handle": "bogo_august",
+     "id": 501888778555,
+     "sort_value": "00h5",
+     "title": "BOGO August"
+    },
+    {
+     "template_suffix": null,
+     "handle": "vitacost",
+     "id": 499767017787,
+     "sort_value": "03",
+     "title": "Vitacost"
+    },
+    {
+     "template_suffix": null,
+     "handle": "our-brands",
+     "id": 502060712251,
+     "sort_value": "02",
+     "title": "Our Brands"
+    },
+    {
+     "template_suffix": "",
+     "handle": "30-off-the-weekend-sale",
+     "id": 500557447483,
+     "sort_value": "03",
+     "title": "The Weekend Sale - 30% Off"
+    },
+    {
+     "template_suffix": null,
+     "handle": "props65",
+     "id": 502674456891,
+     "sort_value": "001",
+     "title": "Props65"
+    },
+    {
+     "template_suffix": null,
+     "handle": "all-products-with-exclusions",
+     "id": 502729179451,
+     "sort_value": "004",
+     "title": "All products with exclusions"
+    },
+    {
+     "template_suffix": null,
+     "handle": "probiotics-collagen-magnesium",
+     "id": 502930735419,
+     "sort_value": "00h",
+     "title": "Probiotics, Collagen & Magnesium"
+    },
+    {
+     "template_suffix": null,
+     "handle": "iherb-brands",
+     "id": 511719244091,
+     "sort_value": "02",
+     "title": "iHerb Brands"
+    }
+   ],
+   "vendor": "Vitacost",
+   "percent_sale_min": 0,
+   "best_selling_rank": 5,
+   "html": {
+    "theme_id": 0,
+    "value": ""
+   },
+   "id": 10389532803387,
+   "published_at": "2026-05-18T22:06:13Z",
+   "rio_ratings": [],
+   "images": {
+    "1": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/10_dc658aad-5846-4491-9521-ce7ba8478a0f.jpg?v=1784851717",
+    "2": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/15_5922687d-3939-4d52-a302-1d3a4d3eb7a6.jpg?v=1784851718"
+   },
+   "options_with_values": [
+    {
+     "original_name": "title",
+     "values": [
+      {
+       "image": null,
+       "title": "Default Title"
+      }
+     ],
+     "name": "title",
+     "label": "Title",
+     "position": 1
+    }
+   ],
+   "weight_min": 290,
+   "handle": "vitacost-magtein-magnesium-l-threonate-90-capsules-670-mg-per-capsule-158833",
+   "compare_at_price_min": 29.99,
+   "barcodes": [
+    "844197016815"
+   ],
+   "number_extra_sort1": 438999.99999999994,
+   "tags": [
+    "Brain & Cognitive",
+    "Magnesium",
+    "Magnesium L-Threonate",
+    "Minerals",
+    "Stress Relief Formulas",
+    "Supplements",
+    "rating_count:60",
+    "top_rated:438999.99999999994"
+   ],
+   "published_scope": "web",
+   "metafields": [
+    {
+     "namespace": "PackageQuantity",
+     "type": "single_line_text_field",
+     "value": "90 - 119 count",
+     "key": "PackageQuantity"
+    },
+    {
+     "namespace": "Strength",
+     "type": "single_line_text_field",
+     "value": "1000 - 4999 mg",
+     "key": "Strength"
+    },
+    {
+     "namespace": "Gender",
+     "type": "single_line_text_field",
+     "value": "Neutral",
+     "key": "Gender"
+    },
+    {
+     "namespace": "Clearance",
+     "type": "single_line_text_field",
+     "value": "Full Price",
+     "key": "Clearance"
+    },
+    {
+     "namespace": "OnSale",
+     "type": "single_line_text_field",
+     "value": "Full Price",
+     "key": "OnSale"
+    },
+    {
+     "namespace": "CertificationAndDiet",
+     "type": "list.single_line_text_field",
+     "value": "[\"Vegetarian\",\"Milk-free\",\"Egg-free\",\"Peanut-free\",\"Treenut-free\",\"Fish-free\",\"Shellfish-free\",\"Soy-free\",\"Gluten-free\",\"Certificate of analysis\"]",
+     "key": "CertificationAndDiet"
+    },
+    {
+     "namespace": "reviews",
+     "type": "rating",
+     "value": "{\"scale_min\":\"1.0\",\"scale_max\":\"5.0\",\"value\":\"4.52\"}",
+     "key": "rating"
+    },
+    {
+     "namespace": "Form",
+     "type": "single_line_text_field",
+     "value": "Capsule",
+     "key": "Form"
+    },
+    {
+     "namespace": "reviews",
+     "type": "number_integer",
+     "value": "60",
+     "key": "rating_count"
+    },
+    {
+     "namespace": "judgeme",
+     "type": "string",
+     "value": "<div style='display:none' class='jdgm-prev-badge' data-average-rating='4.52' data-number-of-reviews='60' data-number-of-questions='0'> <span class='jdgm-prev-badge__stars' data-score='4.52' tabindex='0' aria-label='4.52 stars' role='button'> <span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--half'></span> </span> <span class='jdgm-prev-badge__text'> 60 reviews </span> </div>",
+     "key": "badge"
+    }
+   ],
+   "product_type": "[Vitacost Brands][SuperDeal]",
+   "weight_max": 290,
+   "locations": [],
+   "position": null,
+   "compare_at_price_max": 29.99,
+   "product_category": null,
+   "price_max": 29.99,
+   "metrics": {
+    "clicks-5-days": 29,
+    "clicks-6-days": 30,
+    "clicks-7-days": 29,
+    "clicks-14-days": 34,
+    "clicks-2-days": 42,
+    "clicks-3-days": 42,
+    "clicks-1-days": 25,
+    "clicks-30-days": 17,
+    "clicks-4-days": 25
+   },
+   "total_skus": 1,
+   "total_tags": 8,
+   "total_metafields": 10,
+   "total_collections": 19,
+   "total_barcodes": 1,
+   "total_images_info": 2,
+   "total_options_with_values": 1,
+   "total_variants": 1,
+   "total_images": 2
+  },
+  {
+   "body_html": " Description 15 Strains/356Billion Microorganisms per Serving\u2020 Features ViaBlend\u00ae Gastric Acid Bypass Technology Potency, Purity, Pride Superior Probiotic Technology Dietary Supplement Suitable for Lacto Vegetarians What is Probiotic 15-35? Probiotic 15-35 is a synbiotic, or supplement that contains both probiotics and prebiotics that work together to promote digestion and support the immune system. It features a proprietary blend of 15 different probiotic strains plus NutraFlora\u00ae FOS, a highly concentrated source of prebiotics, or non-digestible carbohydrates, that support healthy levels of b [trimmed]",
+   "skus": [
+    "158747"
+   ],
+   "available": true,
+   "created_at": "2026-06-03T06:07:21Z",
+   "review_count": 0,
+   "variants": [
+    {
+     "merged_options": [
+      "title:Default Title"
+     ],
+     "inventory_quantity": 2556,
+     "image": null,
+     "original_merged_options": [
+      "title:Default Title"
+     ],
+     "compare_at_price": "45.31",
+     "inventory_management": "shopify",
+     "available": true,
+     "weight": 0.48,
+     "title": "Default Title",
+     "inventory_policy": "deny",
+     "weight_unit": "lb",
+     "price": "36.25",
+     "unit_cost": null,
+     "id": 51310702723387,
+     "sku": "158747",
+     "barcode": "844197014569"
+    }
+   ],
+   "media": [],
+   "title": "Vitacost, Everyday Essentials, Probiotic 15-35 With NutraFlora\u00ae FOS, 240 Vegetarian Capsules",
+   "price_min": 36.25,
+   "images_info": [
+    {
+     "src": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/11_0f739339-22d4-4e6a-bed4-136722364b36.jpg?v=1785979027",
+     "width": 1600,
+     "alt": "Vitacost, Everyday Essentials, Probiotic 15-35 With NutraFlora\u00ae FOS, 240 Vegetarian Capsules",
+     "id": 48547447963963,
+     "position": 1,
+     "height": 1600
+    },
+    {
+     "src": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/16_17c862d4-318b-4e1f-b02c-4fda86ac987b.jpg?v=1785979027",
+     "width": 1600,
+     "alt": null,
+     "id": 48547447996731,
+     "position": 2,
+     "height": 1600
+    },
+    {
+     "src": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/19_2bf3c417-cdb2-4cff-9733-fe5352375def.jpg?v=1785979027",
+     "width": 1600,
+     "alt": null,
+     "id": 48547448029499,
+     "position": 3,
+     "height": 1600
+    }
+   ],
+   "review_ratings": 4.82,
+   "template_suffix": null,
+   "updated_at": "2026-10-04T08:38:28Z",
+   "combined_listing_role": null,
+   "collections": [
+    {
+     "template_suffix": null,
+     "handle": "supplements",
+     "id": 457575104827,
+     "sort_value": "007",
+     "title": "Supplements"
+    },
+    {
+     "template_suffix": null,
+     "handle": "gut-health",
+     "id": 499720257851,
+     "sort_value": "00h",
+     "title": "Gut Health"
+    },
+    {
+     "template_suffix": null,
+     "handle": "vitacost",
+     "id": 499767017787,
+     "sort_value": "07",
+     "title": "Vitacost"
+    },
+    {
+     "template_suffix": "",
+     "handle": "all",
+     "id": 499840385339,
+     "sort_value": "004m",
+     "title": "All"
+    },
+    {
+     "template_suffix": null,
+     "handle": "probiotics",
+     "id": 500731183419,
+     "sort_value": "01",
+     "title": "Probiotics"
+    },
+    {
+     "template_suffix": null,
+     "handle": "deals",
+     "id": 501592391995,
+     "sort_value": "007",
+     "title": "Limited Time Offers"
+    },
+    {
+     "template_suffix": null,
+     "handle": "globofilter-best-selling-products-index",
+     "id": 457705390395,
+     "sort_value": "006p",
+     "title": "Smart Products Filter Index - Do not delete"
+    },
+    {
+     "template_suffix": null,
+     "handle": "october-supplement-sale",
+     "id": 501609660731,
+     "sort_value": "008",
+     "title": "October Supplement Sale"
+    },
+    {
+     "template_suffix": null,
+     "handle": "bogo_august",
+     "id": 501888778555,
+     "sort_value": "00n",
+     "title": "BOGO August"
+    },
+    {
+     "template_suffix": null,
+     "handle": "our-brands",
+     "id": 502060712251,
+     "sort_value": "04",
+     "title": "Our Brands"
+    },
+    {
+     "template_suffix": "",
+     "handle": "30-off-the-weekend-sale",
+     "id": 500557447483,
+     "sort_value": "05",
+     "title": "The Weekend Sale - 30% Off"
+    },
+    {
+     "template_suffix": null,
+     "handle": "notprops65",
+     "id": 502674358587,
+     "sort_value": "006",
+     "title": "NotProps65"
+    },
+    {
+     "template_suffix": null,
+     "handle": "all-products-with-exclusions",
+     "id": 502729179451,
+     "sort_value": "006",
+     "title": "All products with exclusions"
+    },
+    {
+     "template_suffix": null,
+     "handle": "probiotics-collagen-magnesium",
+     "id": 502930735419,
+     "sort_value": "00z",
+     "title": "Probiotics, Collagen & Magnesium"
+    },
+    {
+     "template_suffix": null,
+     "handle": "iherb-brands",
+     "id": 511719244091,
+     "sort_value": "02y",
+     "title": "iHerb Brands"
+    }
+   ],
+   "vendor": "Vitacost",
+   "percent_sale_min": 20,
+   "best_selling_rank": 7,
+   "html": {
+    "theme_id": 0,
+    "value": ""
+   },
+   "id": 10404120199483,
+   "published_at": "2026-06-03T07:05:07Z",
+   "rio_ratings": [],
+   "images": {
+    "1": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/11_0f739339-22d4-4e6a-bed4-136722364b36.jpg?v=1785979027",
+    "2": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/16_17c862d4-318b-4e1f-b02c-4fda86ac987b.jpg?v=1785979027",
+    "3": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/19_2bf3c417-cdb2-4cff-9733-fe5352375def.jpg?v=1785979027"
+   },
+   "options_with_values": [
+    {
+     "original_name": "title",
+     "values": [
+      {
+       "image": null,
+       "title": "Default Title"
+      }
+     ],
+     "name": "title",
+     "label": "Title",
+     "position": 1
+    }
+   ],
+   "weight_min": 480,
+   "handle": "vitacost-everyday-essentials-probiotic-15-35-with-nutraflora-fos-240-vegetarian-capsules-158747",
+   "compare_at_price_min": 45.31,
+   "barcodes": [
+    "844197014569"
+   ],
+   "number_extra_sort1": 476184.00000000006,
+   "tags": [
+    "Gut Health",
+    "Probiotics",
+    "Supplements",
+    "rating_count:262",
+    "top_rated:476184.00000000006"
+   ],
+   "published_scope": "web",
+   "metafields": [
+    {
+     "namespace": "PackageQuantity",
+     "id": "gid://shopify/Metafield/80953992053051",
+     "type": "single_line_text_field",
+     "value": "240 - 359 count",
+     "key": "PackageQuantity"
+    },
+    {
+     "namespace": "Gender",
+     "id": "gid://shopify/Metafield/86366934040891",
+     "type": "single_line_text_field",
+     "value": "Neutral",
+     "key": "Gender"
+    },
+    {
+     "namespace": "Clearance",
+     "id": "gid://shopify/Metafield/80953991299387",
+     "type": "single_line_text_field",
+     "value": "Clearance",
+     "key": "Clearance"
+    },
+    {
+     "namespace": "OnSale",
+     "id": "gid://shopify/Metafield/80953991954747",
+     "type": "single_line_text_field",
+     "value": "On Sale",
+     "key": "OnSale"
+    },
+    {
+     "namespace": "CertificationAndDiet",
+     "id": "gid://shopify/Metafield/83351565074747",
+     "type": "list.single_line_text_field",
+     "value": "[\"Certificate of analysis\",\"Egg-free\",\"Peanut-free\",\"Treenut-free\",\"Fish-free\",\"Shellfish-free\",\"Soy-free\",\"Gluten-free\"]",
+     "key": "CertificationAndDiet"
+    },
+    {
+     "namespace": "reviews",
+     "id": "gid://shopify/Metafield/82555218460987",
+     "type": "rating",
+     "value": "{\"scale_min\":\"1.0\",\"scale_max\":\"5.0\",\"value\":\"4.82\"}",
+     "key": "rating"
+    },
+    {
+     "namespace": "Form",
+     "id": "gid://shopify/Metafield/86366934008123",
+     "type": "single_line_text_field",
+     "value": "Vegetarian capsule",
+     "key": "Form"
+    },
+    {
+     "namespace": "reviews",
+     "id": "gid://shopify/Metafield/82555218493755",
+     "type": "number_integer",
+     "value": "262",
+     "key": "rating_count"
+    },
+    {
+     "namespace": "judgeme",
+     "id": "gid://shopify/Metafield/81100888310075",
+     "type": "string",
+     "value": "<div style='display:none' class='jdgm-prev-badge' data-average-rating='4.82' data-number-of-reviews='262' data-number-of-questions='0'> <span class='jdgm-prev-badge__stars' data-score='4.82' tabindex='0' aria-label='4.82 stars' role='button'> <span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span> </span> <span class='jdgm-prev-badge__text'> 262 </span> </div>",
+     "key": "badge"
+    }
+   ],
+   "product_type": "[Vitacost Brands][SuperDeal]",
+   "weight_max": 480,
+   "locations": [],
+   "position": null,
+   "compare_at_price_max": 45.31,
+   "product_category": null,
+   "price_max": 36.25,
+   "metrics": {
+    "purchase-30-days": 6,
+    "purchase-6-days": 4,
+    "view-14-days": 4,
+    "view-5-days": 4,
+    "purchase-5-days": 3,
+    "purchase-14-days": 4,
+    "purchase-3-days": 2,
+    "view-3-days": 4,
+    "view-4-days": 4,
+    "purchase-1-days": 1,
+    "purchase-7-days": 4,
+    "purchase-4-days": 3,
+    "view-30-days": 6,
+    "purchase-2-days": 2,
+    "view-7-days": 4,
+    "view-2-days": 4,
+    "view-1-days": 3,
+    "view-6-days": 4
+   },
+   "total_skus": 1,
+   "total_tags": 5,
+   "total_metafields": 9,
+   "total_collections": 15,
+   "total_barcodes": 1,
+   "total_images_info": 3,
+   "total_options_with_values": 1,
+   "total_variants": 1,
+   "total_images": 3
+  },
+  {
+   "body_html": " Description Optimum Absorption Blend Everyday Essentials Potency- Purity - Pride Dietary Supplement \u200b What is Chelated Zinc - Albion\u00ae Zinc Glycinate Chelate ? Chelated Zinc - Albion\u00ae Zinc Glycinate Chelate is a high quality chelated form of the essential mineral zinc. Chelated minerals are minerals that have been chemically bound to another molecule (typically an amino acid) to form a complex. Chelation naturally occurs during digestion, after stomach acid and enzymes break down protein into amino acids. Amino acids bind to minerals, assisting their transport through the intestinal walls. Unf [trimmed]",
+   "skus": [
+    "158774"
+   ],
+   "available": false,
+   "created_at": "2026-05-19T01:39:08Z",
+   "review_count": 0,
+   "variants": [
+    {
+     "merged_options": [
+      "title:Default Title"
+     ],
+     "inventory_quantity": 0,
+     "image": null,
+     "original_merged_options": [
+      "title:Default Title"
+     ],
+     "compare_at_price": "6.99",
+     "inventory_management": "shopify",
+     "available": false,
+     "weight": 0.19,
+     "title": "Default Title",
+     "inventory_policy": "deny",
+     "weight_unit": "lb",
+     "price": "6.99",
+     "unit_cost": null,
+     "id": 51264722370875,
+     "sku": "158774",
+     "barcode": "844197015566"
+    }
+   ],
+   "media": [],
+   "title": "Vitacost, Chelated Zinc, 180 Capsules",
+   "price_min": 6.99,
+   "images_info": [
+    {
+     "src": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/10_33a18b52-bba8-4c5d-892f-e677f26ab1ff.jpg?v=1781843144",
+     "width": 1600,
+     "alt": "Vitacost, Chelated Zinc, 180 Capsules",
+     "id": 48228803051835,
+     "position": 1,
+     "height": 1600
+    },
+    {
+     "src": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/15_66b7e20a-bcc8-4e46-9be3-2fe2e221f093.jpg?v=1781843144",
+     "width": 1600,
+     "alt": null,
+     "id": 48228803084603,
+     "position": 2,
+     "height": 1600
+    }
+   ],
+   "review_ratings": 4.86,
+   "template_suffix": null,
+   "updated_at": "2026-09-28T11:16:26Z",
+   "combined_listing_role": null,
+   "collections": [
+    {
+     "template_suffix": null,
+     "handle": "minerals",
+     "id": 457684123963,
+     "sort_value": "00w",
+     "title": "Minerals"
+    },
+    {
+     "template_suffix": null,
+     "handle": "supplements",
+     "id": 457575104827,
+     "sort_value": "009",
+     "title": "Supplements"
+    },
+    {
+     "template_suffix": "",
+     "handle": "out-of-stock",
+     "id": 499997278523,
+     "sort_value": "007",
+     "title": "Out Of Stock"
+    },
+    {
+     "template_suffix": null,
+     "handle": "zinc",
+     "id": 457685729595,
+     "sort_value": "02",
+     "title": "Zinc"
+    },
+    {
+     "template_suffix": "",
+     "handle": "all",
+     "id": 499840385339,
+     "sort_value": "006",
+     "title": "All"
+    },
+    {
+     "template_suffix": null,
+     "handle": "globofilter-best-selling-products-index",
+     "id": 457705390395,
+     "sort_value": "005",
+     "title": "Smart Products Filter Index - Do not delete"
+    },
+    {
+     "template_suffix": null,
+     "handle": "october-supplement-sale",
+     "id": 501609660731,
+     "sort_value": "00a",
+     "title": "October Supplement Sale"
+    },
+    {
+     "template_suffix": null,
+     "handle": "vitacost",
+     "id": 499767017787,
+     "sort_value": "071",
+     "title": "Vitacost"
+    },
+    {
+     "template_suffix": null,
+     "handle": "our-brands",
+     "id": 502060712251,
+     "sort_value": "040z",
+     "title": "Our Brands"
+    },
+    {
+     "template_suffix": "",
+     "handle": "30-off-the-weekend-sale",
+     "id": 500557447483,
+     "sort_value": "06",
+     "title": "The Weekend Sale - 30% Off"
+    },
+    {
+     "template_suffix": null,
+     "handle": "props65",
+     "id": 502674456891,
+     "sort_value": "006",
+     "title": "Props65"
+    },
+    {
+     "template_suffix": null,
+     "handle": "all-products-with-exclusions",
+     "id": 502729179451,
+     "sort_value": "008",
+     "title": "All products with exclusions"
+    },
+    {
+     "template_suffix": null,
+     "handle": "iherb-brands",
+     "id": 511719244091,
+     "sort_value": "04",
+     "title": "iHerb Brands"
+    }
+   ],
+   "vendor": "Vitacost",
+   "percent_sale_min": 0,
+   "best_selling_rank": 11,
+   "html": {
+    "theme_id": 0,
+    "value": ""
+   },
+   "id": 10390658548027,
+   "published_at": "2026-05-19T02:44:30Z",
+   "rio_ratings": [],
+   "images": {
+    "1": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/10_33a18b52-bba8-4c5d-892f-e677f26ab1ff.jpg?v=1781843144",
+    "2": "https://cdn.shopify.com/s/files/1/0804/8974/2651/files/15_66b7e20a-bcc8-4e46-9be3-2fe2e221f093.jpg?v=1781843144"
+   },
+   "options_with_values": [
+    {
+     "original_name": "title",
+     "values": [
+      {
+       "image": null,
+       "title": "Default Title"
+      }
+     ],
+     "name": "title",
+     "label": "Title",
+     "position": 1
+    }
+   ],
+   "weight_min": 190,
+   "handle": "vitacost-chelated-zinc-180-capsules-158774",
+   "compare_at_price_min": 6.99,
+   "barcodes": [
+    "844197015566"
+   ],
+   "number_extra_sort1": 470505,
+   "tags": [
+    "Minerals",
+    "Supplements",
+    "Zinc",
+    "rating_count:91",
+    "top_rated:470505"
+   ],
+   "published_scope": "web",
+   "metafields": [
+    {
+     "namespace": "PackageQuantity",
+     "type": "single_line_text_field",
+     "value": "180 - 239 count",
+     "key": "PackageQuantity"
+    },
+    {
+     "namespace": "Gender",
+     "type": "single_line_text_field",
+     "value": "Neutral",
+     "key": "Gender"
+    },
+    {
+     "namespace": "Clearance",
+     "type": "single_line_text_field",
+     "value": "Full Price",
+     "key": "Clearance"
+    },
+    {
+     "namespace": "OnSale",
+     "type": "single_line_text_field",
+     "value": "Full Price",
+     "key": "OnSale"
+    },
+    {
+     "namespace": "CertificationAndDiet",
+     "type": "list.single_line_text_field",
+     "value": "[\"Milk-free\",\"Egg-free\",\"Peanut-free\",\"Treenut-free\",\"Fish-free\",\"Shellfish-free\",\"Soy-free\",\"Gluten-free\",\"Certificate of analysis\"]",
+     "key": "CertificationAndDiet"
+    },
+    {
+     "namespace": "reviews",
+     "type": "rating",
+     "value": "{\"scale_min\":\"1.0\",\"scale_max\":\"5.0\",\"value\":\"4.86\"}",
+     "key": "rating"
+    },
+    {
+     "namespace": "Form",
+     "type": "single_line_text_field",
+     "value": "Capsule",
+     "key": "Form"
+    },
+    {
+     "namespace": "reviews",
+     "type": "number_integer",
+     "value": "91",
+     "key": "rating_count"
+    },
+    {
+     "namespace": "judgeme",
+     "type": "string",
+     "value": "<div style='display:none' class='jdgm-prev-badge' data-average-rating='4.86' data-number-of-reviews='91' data-number-of-questions='0'> <span class='jdgm-prev-badge__stars' data-score='4.86' tabindex='0' aria-label='4.86 stars' role='button'> <span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span> </span> <span class='jdgm-prev-badge__text'> 91 reviews </span> </div>",
+     "key": "badge"
+    }
+   ],
+   "product_type": "[Vitacost Brands]",
+   "weight_max": 190,
+   "locations": [],
+   "position": null,
+   "compare_at_price_max": 6.99,
+   "product_category": null,
+   "price_max": 6.99,
+   "metrics": {
+    "clicks-6-days": 45,
+    "clicks-7-days": 37,
+    "clicks-14-days": 25,
+    "clicks-2-days": 48,
+    "clicks-3-days": 39,
+    "clicks-30-days": 16,
+    "clicks-4-days": 39
+   },
+   "total_skus": 1,
+   "total_tags": 5,
+   "total_metafields": 9,
+   "total_collections": 13,
+   "total_barcodes": 1,
+   "total_images_info": 2,
+   "total_options_with_values": 1,
+   "total_variants": 1,
+   "total_images": 2
+  }
+ ],
+ "event_type": "init",
+ "filter": {
+  "options": [
+   {
+    "label": "Category",
+    "filterOptionId": "pf_mlt_category",
+    "manualValues": [
+     {
+      "tag": "Supplements",
+      "displayName": "Supplements",
+      "subTags": [
+       {
+        "tag": "Omegas & Fish Oils (EPA DHA)",
+        "displayName": "Omegas & Fish Oils (EPA DHA)",
+        "doc_count": 969
+       },
+       {
+        "tag": "Vitamins",
+        "displayName": "Vitamins",
+        "doc_count": 4079
+       },
+       {
+        "tag": "Minerals",
+        "displayName": "Minerals",
+        "doc_count": 27
+       },
+       {
+        "tag": "Gut Health",
+        "displayName": "Gut Health",
+        "doc_count": 2621
+       },
+       {
+        "tag": "Herbs",
+        "displayName": "Herbs",
+        "doc_count": 5077
+       },
+       {
+        "tag": "Phospholipids",
+        "displayName": "Phospholipids",
+        "doc_count": 105
+       },
+       {
+        "tag": "Greens & Superfoods",
+        "displayName": "Greens & Superfoods",
+        "doc_count": 1179
+       },
+       {
+        "tag": "Antioxidants",
+        "displayName": "Antioxidants",
+        "doc_count": 2272
+       },
+       {
+        "tag": "Sleep",
+        "displayName": "Sleep",
+        "doc_count": 689
+       },
+       {
+        "tag": "Women's Health",
+        "displayName": "Women's Health",
+        "doc_count": 1231
+       },
+       {
+        "tag": "Men's Health",
+        "displayName": "Men's Health",
+        "doc_count": 761
+       },
+       {
+        "tag": "Weight Management",
+        "displayName": "Weight Management",
+        "doc_count": 1011
+       },
+       {
+        "tag": "Amino Acids",
+        "displayName": "Amino Acids",
+        "doc_count": 1633
+       },
+       {
+        "tag": "Brain & Cognitive",
+        "displayName": "Brain & Cognitive",
+        "doc_count": 996
+       },
+       {
+        "tag": "Detox & Cleanse Formulas",
+        "displayName": "Detox & Cleanse Formulas",
+        "doc_count": 224
+       },
+       {
+        "tag": "Bee Products",
+        "displayName": "Bee Products",
+        "doc_count": 105
+       },
+       {
+        "tag": "Organ Meats",
+        "displayName": "Organ Meats",
+        "doc_count": 78
+       },
+       {
+        "tag": "Mushrooms",
+        "displayName": "Mushrooms",
+        "doc_count": 580
+       },
+       {
+        "tag": "Bone",
+        "displayName": " Bone, Joint & Cartilage",
+        "doc_count": 1318
+       },
+       {
+        "tag": "Hair",
+        "displayName": "Hair, Skin & Nails",
+        "doc_count": 607
+       },
+       {
+        "tag": "Eye",
+        "displayName": "Eye, Ear & Nose",
+        "doc_count": 192
+       }
+      ],
+      "doc_count": 25382
+     }
+    ]
+   },
+   {
+    "label": "Brand",
+    "filterOptionId": "pf_v_brand",
+    "manualValues": []
+   },
+   {
+    "label": "Specialties",
+    "filterOptionId": "pf_m_::CertificationAndDiet::CertificationAndDiet",
+    "manualValues": []
+   },
+   {
+    "label": "Featured Items",
+    "filterOptionId": "pf_m_::OnSale::OnSale",
+    "manualValues": [
+     "On Sale"
+    ]
+   },
+   {
+    "label": "Price",
+    "filterOptionId": "pf_p_price",
+    "manualValues": []
+   },
+   {
+    "label": "Availability",
+    "filterOptionId": "pf_st_availability",
+    "manualValues": [
+     {
+      "key": "in-stock",
+      "label": "In Stock",
+      "doc_count": 21162
+     }
+    ]
+   },
+   {
+    "label": "Clearance",
+    "filterOptionId": "pf_m_::Clearance::Clearance",
+    "manualValues": [
+     "Clearance"
+    ]
+   },
+   {
+    "label": "Package Quantity",
+    "filterOptionId": "pf_m_::PackageQuantity::PackageQuantity",
+    "manualValues": []
+   },
+   {
+    "label": "Form",
+    "filterOptionId": "pf_m_::Form::Form",
+    "manualValues": []
+   },
+   {
+    "label": "Strength",
+    "filterOptionId": "pf_m_::Strength::Strength",
+    "manualValues": []
+   },
+   {
+    "label": "Gender",
+    "filterOptionId": "pf_m_::Gender::Gender",
+    "manualValues": []
+   },
+   {
+    "label": "Flavor",
+    "filterOptionId": "pf_m_::Flavor::Flavor",
+    "manualValues": []
+   },
+   {
+    "label": "Review Ratings",
+    "filterOptionId": "pf_r_review_ratings",
+    "manualValues": []
+   }
+  ]
+ },
+ "meta": {
+  "rid": "aa8ff4e3-61de-4676-9e01-f87bd4101074",
+  "currency": "USD",
+  "money_format_with_currency": "${{amount}} USD",
+  "money_format": "${{amount}}",
+  "affected_by_merchandising": false,
+  "affected_by_performance_ranking": false,
+  "affected_by_search_personalization": false
+ }
+}
