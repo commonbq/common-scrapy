@@ -99,6 +99,7 @@ Spiders below are returning items in recent smoke runs:
 | [`homedepot_search`](#homedepot_search-keyword-apollo-bootstrap) | Active | bootstrap + html | Akamai | Home Depot keyword search via Apollo state. | 24 (ok) | - | `{"item_id":"336787835","sku":"1014334650","brand":"Lukyamzn","title":"14 in. Dual-Core Celeron N4000 Laptop 6 GB RAM 128 GB SSD IPS Displ...` |
 | [`jcpenney_listing`](#jcpenney_listing) | Active | api | Akamai (+ reCAPTCHA scripts observed) | JCPenney listing spider via search API bootstrap endpoint. | 48 (ok) | womens_tops, mens_shirts | `{"item_id":"ppr5008584232","title":"St. John's Bay Womens Boat Neck Elbow Sleeve T-Shirt","brand":"st. john's bay","url":"https://www.jcp...` |
 | [`ikea_listing`](#ikea_listing) | Active | api + html | none detected | IKEA category listings from the SIK search API, with a server-rendered HTML fallback. | 46 (api, ok) / 24 (html, ok) | 221 unique targets from 23 departments | `{"category":"st004","item_id":"50561244","title":"STORKLINTA","product_type":"6-drawer dresser","price":279.99,"department":"Storage & organization",...}` |
+| [`iherb_listing`](#iherb_listing) | Active | api | PerimeterX on storefront; catalog API works through ScrapeOps US proxy | iHerb category listings from the first-party catalog product API (single API direction; no HTML or JSON-LD fallback). | 100 (2 pages, magnesium) | 380 unique category URLs across 9 departments from `iherb_categories.py` | `{"category":"magnesium","item_id":"103273","title":"California Gold Nutrition, Magnesium Bisglycinate Chelate...","price":12.59,"currency":"USD","source":"iherb_catalog_api",...}` |
 | [`kroger_listing`](#kroger_search--kroger_listing) | Active | Redux bootstrap | unknown (timeout/no verdict) | Kroger category listings from `window.__INITIAL_STATE__` search products. | 2 (fixture) | cereal, milk, eggs, bread, coffee, snacks | `{"category":"cereal","item_id":"0001111012345","title":"Kroger Toasted Oats Cereal","brand":"Kroger","price":3.99,...}` |
 | [`kroger_search`](#kroger_search--kroger_listing) | Active | bootstrap + html | unknown (timeout/no verdict) | Kroger keyword search with state extraction + fallback. | 27 (ok) | - | `{'item_id':'kroger-2-reduced-fat-milk-gallon','url':'https://www.kroger.com/p/kroger-2-reduced-fat-milk-gallon/0001111041700','source':'kroger_html_links_fallback'}` |
 | [`levis_listing`](#levis_listing) | Active | bootstrap | none detected through proxy | Levi's listings from SSR `__LSCO_INITIAL_STATE__.ssrViewStoreProductList`. | 48 (2 pages, live proxy) | 5 sections / 83 PLP targets from `levi_categories.py` | `{"category":"shop-all-men-s-jeans","item_id":"005053473","title":"505™ Regular Dobby Men's Jeans","brand":"Levi's","price":64.99...` |
@@ -2706,6 +2707,41 @@ selection expands to its maintained child listing URLs.
 ```bash
 scrapy crawl gap_listing -a category=women -a max_pages=1 -O gap.jsonl
 ```
+
+### iherb_listing
+
+`iherb_listing` uses one data direction: the first-party iHerb catalog JSON API.
+It sends `POST https://catalog.app.iherb.com/category/<urlName>/products` with
+`page` and `pageSize` (capped at 50). The response supplies richer product data
+than the storefront cards, including part number, brand, current/list price,
+promotions, rating counts, availability flags, product form, package quantity,
+and recent-sales activity. There is no HTML-card, JSON-LD, or browser fallback.
+
+The taxonomy in `common/spiders/iherb_categories.py` contains 380 normalized,
+unique category URLs across nine departments. Category slugs are stable and
+duplicate labels are department-qualified when necessary.
+
+Run examples:
+
+- `scrapy crawl iherb_listing -a category=magnesium -a max_pages=2 -O iherb.jsonl -s HTTPCACHE_ENABLED=False`
+- `scrapy crawl iherb_listing -a category=supplements -a max_pages=1 -O supplements.jsonl -s HTTPCACHE_ENABLED=False`
+- `scrapy crawl iherb_listing -a category_url=https://www.iherb.com/c/probiotics -a max_pages=1 -O probiotics.jsonl -s HTTPCACHE_ENABLED=False`
+
+Pagination stops at `max_pages`, the API's `totalSize`, an empty page, or a
+repeated product page. Non-JSON, empty-body, and missing-contract responses fail
+loudly so bot challenges cannot masquerade as successful empty categories.
+
+The ordered export contract is:
+
+`category`, `department`, `subcategory`, `category_url_name`, `item_id`,
+`part_number`, `title`, `product_name`, `brand`, `brand_code`, `url`,
+`image_url`, `price`, `list_price`, `currency`, `currency_symbol`,
+`discount_percent`, `promo_code`, `promo_message`, `rating`, `reviews_count`,
+`in_stock`, `availability`, `back_in_stock_date`, `recent_activity`, `is_new`,
+`is_shipping_saver`, `is_featured_brand`, `is_iherb_pick`,
+`is_express_delivery`, `is_autoship`, `product_form`, `potency`,
+`package_quantity`, `price_per_serving`, `product_status`, `group_id`, `page`,
+`position`, `total_count`, `items_per_page`, `source_url`, `source`, and `raw`.
 
 ### victoriassecret_listing
 
