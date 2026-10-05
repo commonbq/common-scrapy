@@ -104,6 +104,7 @@ class AceHardwareListingSpider(BaseListingSpider):
             "last_page",
             "source",
             "raw",
+            "timestamp",
         ],
     }
 
@@ -543,6 +544,7 @@ class AceHardwareListingSpider(BaseListingSpider):
                 "days_available_in_catalog": product.get("daysAvailableInCatalog"),
                 "product_type_id": product.get("productTypeId"),
             },
+            "timestamp": self.job_timestamp,
         }
         return item
 

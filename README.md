@@ -237,6 +237,7 @@ Verified live on 2026-10-05: 60 unique items across two HTTP 200 bootstrap pages
 The exported contract includes IDs (SKU, MPN, UPC), product URL and images,
 brand, pricing, availability, fulfillment methods, package measurements,
 category/page metadata, source, and the normalized raw hydration record.
+Every exported item also includes the crawl `timestamp`.
 
 ```json
 {
