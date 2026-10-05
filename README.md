@@ -489,6 +489,11 @@ HTTPCACHE_ENABLED=False common-scrapy crawl petsmart_listing -a category=dog/foo
 {"category": "dog/food/dry-food", "department": "Dog", "subcategory": "Food", "category_name": "Dog > Food > Dry Food", "category_url": "https://www.petsmart.com/dog/food/dry-food/", "category_item_count": 1794, "sort": "best-sellers", "index": "r-US_products_best-sellers", "item_id": "5252900", "master_product_id": 36648, "title": "Purina Pro Plan Sensitive Skin and Stomach Dry Dog Food Adult Salmon & Rice Formula Digestive Health", "brand": "Purina Pro Plan", "url": "https://www.petsmart.com/dog/food/dry-food/purina-pro-plan-sensitive-skin-and-stomach-dry-dog-food-adult-salmon-and-rice-formula-digestive-health-36648.html", "image_url": "https://s7d2.scene7.com/is/image/PetSmart/5252900?$sclp-prd-main_large$", "price": 77.99, "price_display": "$20.68-$94.99", "price_display_type": "range", "currency": "USD", "rating": 4.5, "reviews_count": 9118, "upc": "038100175526", "available": true, "autoship_eligible": true, "variation_types": "4 Sizes, 1 Flavor", "page": 1, "position": 1, "total_count": 937, "total_pages": 10, "source": "petsmart_first_party_search_api", "raw": {...}}
 ```
 
+`max_order_quantity` and the food facets are department-dependent, and the spider
+leaves them `null` rather than inventing values — a `Cat > Toys` capture has
+`pet_types`, `max_order_quantity`, `carton_weight` and `conversion_rate` populated
+while every food facet stays null.
+
 ### blick_listing
 
 `blick_listing` uses exactly one product-data direction: the first-party
