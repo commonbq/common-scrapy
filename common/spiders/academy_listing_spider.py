@@ -148,30 +148,61 @@ class AcademyListingSpider(BaseListingSpider):
             "category_id",
             "category_url",
             "item_id",
+            "object_id",
             "partnumber",
             "parent_partnumber",
             "sku_id",
+            "sku_ids",
             "title",
             "brand",
+            "vendor_name",
             "url",
             "image_url",
             "image_alt",
+            "image_count",
+            "color_images",
+            "colors",
+            "color_count",
             "price",
+            "min_price",
+            "max_price",
             "list_price",
             "map_price",
+            "map_price_flag",
             "sale_price",
+            "promo_price",
+            "msrp",
+            "min_msrp",
+            "max_msrp",
+            "valued_cost",
+            "dollar_savings",
+            "percent_savings",
             "promo_message",
             "promo_code",
-            "promo_price",
+            "rebate_message",
+            "rebate_code",
+            "rebate_end_date",
+            "rebate_url",
+            "deal_badges",
             "currency",
             "rating",
             "reviews_count",
+            "order_count",
             "color",
             "size",
             "in_stock",
+            "fulfillment_mode",
+            "special_order",
+            "clearance_status",
+            "ship_to_store",
+            "same_day_delivery",
+            "store_availability",
             "free_shipping",
             "gift_card",
             "primary_category",
+            "primary_category_id",
+            "industry_sub_group",
+            "catalog_ids",
             "category_ids",
             "page",
             "position",
@@ -319,15 +350,40 @@ class AcademyListingSpider(BaseListingSpider):
         sale_price = self._number(product.get("salePrice"))
         if not sale_price:
             sale_price = self._number(sku.get("salePrice"))
-        min_price = self._number(product.get("minEffectivePrice")) or self._number(
+        effective_min = self._number(product.get("minEffectivePrice")) or self._number(
             product.get("minProductPrice")
         )
-        price = sale_price or min_price
+        price = sale_price or effective_min
         list_price = self._number(sku.get("listPrice")) or self._number(product.get("mapPrice"))
         map_price = self._number(product.get("mapPrice"))
         if list_price and price and list_price < price:
             # Some responses put the struck-through price only in `mapPrice`.
             list_price = map_price or list_price
+
+        # Variant media: `industrySubGroup_image` maps a colour family to its
+        # image, `industrySubGroup_ImageSku` carries the per-swatch primary +
+        # alternate shots. Both are already in the payload, so the colourway
+        # count and gallery cost zero extra requests.
+        swatches = product.get("industrySubGroup_ImageSku")
+        swatches = swatches if isinstance(swatches, list) else []
+        color_images = self._color_images(product.get("industrySubGroup_image"))
+        image_count = sum(
+            1 + len(swatch.get("alternateImages") or [])
+            for swatch in swatches
+            if isinstance(swatch, dict)
+        )
+
+        # Price telemetry lives on the two swatch blocks, not on the hit root:
+        # `swatches_mapprice` is the MAP-price (member) view and
+        # `swatches_nonmapprice` the open price view. Savings only exists on the
+        # MAP block; `valuedCost` is Academy's member valued cost.
+        map_price_info = self._swatch_price_info(product.get("swatches_mapprice"))
+        open_price_info = self._swatch_price_info(product.get("swatches_nonmapprice"))
+        valued_cost = map_price_info.get("valuedCost") or open_price_info.get("valuedCost")
+
+        rebate = product.get("rebatePromotion")
+        rebate = rebate if isinstance(rebate, dict) else {}
+        store_flags = self._store_flags(product)
 
         return {
             "category": entry["category"],
@@ -336,32 +392,63 @@ class AcademyListingSpider(BaseListingSpider):
             "category_id": entry["category_id"],
             "category_url": entry.get("url"),
             "item_id": item_id,
+            "object_id": self._text(product.get("objectID")),
             "partnumber": part_number,
             "parent_partnumber": self._text(product.get("parentPartNumber")),
             "sku_id": self._text(sku.get("skuId")),
+            "sku_ids": product.get("skuIds") if isinstance(product.get("skuIds"), list) else None,
             "title": title,
             "brand": product.get("facet_Brand"),
+            "vendor_name": self._text(descriptive.get("vendorName")),
             "url": url,
             "image_url": image_url,
             "image_alt": title,
+            "image_count": image_count or None,
+            "color_images": color_images or None,
+            "colors": self._join(product.get("Color")),
+            "color_count": self._integer(product.get("brandColorCount")) or len(color_images) or None,
             "price": price,
+            "min_price": self._number(product.get("minProductPrice")),
+            "max_price": self._number(product.get("maxProductPrice")),
             "list_price": list_price,
             "map_price": map_price,
+            "map_price_flag": self._text(product.get("mapPriceFlag")),
             "sale_price": sale_price,
+            "promo_price": self._number(product.get("promoPrice")),
+            "msrp": self._number(descriptive.get("udamsrp")) or self._number(product.get("maxMSRP")),
+            "min_msrp": self._number(product.get("minMSRP")),
+            "max_msrp": self._number(product.get("maxMSRP")),
+            "valued_cost": self._number(valued_cost),
+            "dollar_savings": self._number(map_price_info.get("dollarSavings")),
+            "percent_savings": self._number(map_price_info.get("percentSavings")),
             "promo_message": self._text(product.get("promoMessage")) or None,
             "promo_code": self._text(product.get("promoCode")) or None,
-            "promo_price": self._number(product.get("promoPrice")),
+            "rebate_message": self._text(rebate.get("messageText")),
+            "rebate_code": self._text(rebate.get("promotionCode")),
+            "rebate_end_date": self._text(rebate.get("endDateTime")),
+            "rebate_url": self._text(rebate.get("link")),
+            "deal_badges": self._dedupe_join(product.get("facet_Deals")),
             "currency": "USD",
             "rating": self._number(descriptive.get("averageRating"))
             or self._number(product.get("averageRating")),
             "reviews_count": self._integer(descriptive.get("reviewcount"))
             or self._integer(product.get("reviewCount")),
+            "order_count": self._integer(product.get("orderCount")),
             "color": self._text(sku.get("color")) or self._text(attributes.get("Color")),
             "size": self._text(attributes.get("Size")),
             "in_stock": self._bool(product.get("sellable")),
+            "fulfillment_mode": self._text(product.get("ecomCodeDesc")),
+            "special_order": product.get("SPECIALORDER") == "Y",
+            "clearance_status": self._dedupe_join(product.get("Clearance_Status")),
+            "ship_to_store": self._flag(product.get("shipToStoreFlag")),
+            "same_day_delivery": self._flag(product.get("sameDayDeliveryEligible")),
+            "store_availability": store_flags or None,
             "free_shipping": self._bool(product.get("freeShipping")),
             "gift_card": product.get("giftCardFlag") == "Y",
             "primary_category": product.get("primaryCatgroupName"),
+            "primary_category_id": self._text(product.get("primaryCatgroupId")),
+            "industry_sub_group": self._dedupe_join(product.get("facet_IndustrySubGroup")),
+            "catalog_ids": product.get("catalogId") if isinstance(product.get("catalogId"), list) else None,
             "category_ids": product.get("categoryIds"),
             "page": page,
             "position": position,
@@ -370,6 +457,62 @@ class AcademyListingSpider(BaseListingSpider):
             "source": "academy_category_api",
             "raw": product,
         }
+
+    def _color_images(self, mapping) -> dict[str, str]:
+        """Absolutize the ``{colour: image}`` family-image map, keeping order."""
+        if not isinstance(mapping, dict):
+            return {}
+        out: dict[str, str] = {}
+        for color, image in mapping.items():
+            absolute = self._absolute_image(image)
+            if color and absolute:
+                out[str(color)] = absolute
+        return out
+
+    @staticmethod
+    def _swatch_price_info(block) -> dict[str, Any]:
+        if not isinstance(block, dict):
+            return {}
+        info = block.get("priceInfo")
+        return info if isinstance(info, dict) else {}
+
+    @staticmethod
+    def _flag(value) -> bool | None:
+        """Academy ships single-element flag lists, e.g. ``["Y"]`` / ``["N"]``."""
+        if isinstance(value, list):
+            if not value:
+                return None
+            first = str(value[0]).strip().upper()
+            if first == "Y":
+                return True
+            if first == "N":
+                return False
+            return None
+        if isinstance(value, str):
+            return {"Y": True, "N": False}.get(value.strip().upper())
+        return None
+
+    @staticmethod
+    def _store_flags(product: dict[str, Any]) -> dict[str, str]:
+        """Per-fulfilment out-of-stock flags keyed by the API's own short names.
+
+        ``pick`` / ``sts`` (ship-to-store) / ``sth`` (ship-to-home) / ``lsi``
+        (large-item) / ``stsfs`` (ship-from-store). ``0`` means the channel is
+        available, ``1`` means out of stock; the keys are absent when the API
+        omits the channel entirely.
+        """
+        out: dict[str, str] = {}
+        for key, field in (
+            ("pick", "pick_oos"),
+            ("sts", "sts_oos"),
+            ("sth", "sth_oos"),
+            ("lsi", "lsi_oos"),
+            ("stsfs", "stsfs_oos"),
+        ):
+            value = product.get(field)
+            if value not in (None, ""):
+                out[key] = str(value)
+        return out
 
     @staticmethod
     def _absolute_image(value):
@@ -426,6 +569,23 @@ class AcademyListingSpider(BaseListingSpider):
                 "(KHTML, like Gecko) Chrome/140.0 Safari/537.36"
             ),
         }
+
+    @staticmethod
+    def _join(values) -> str | None:
+        if not isinstance(values, list):
+            return None
+        seen: list[str] = []
+        for value in values:
+            text = str(value).strip() if value is not None else ""
+            if text and text not in seen:
+                seen.append(text)
+        return ", ".join(seen) or None
+
+    @classmethod
+    def _dedupe_join(cls, values) -> str | None:
+        # `facet_Deals` / `Clearance_Status` repeat a value when a hit matches
+        # several merchandising rules (e.g. ["Hot Deal", "Hot Deal"]).
+        return cls._join(values)
 
     @staticmethod
     def _text(value):

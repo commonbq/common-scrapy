@@ -309,6 +309,195 @@ class AcademyListingSpiderTest(unittest.TestCase):
         )
         self.assertIsNone(spider._absolute_image(""))
 
+    # ------------------------------------------------- enriched item fields
+
+    def _fixture_item(self, index=0, payload=None):
+        """Build an item from the committed page-1 fixture hit."""
+        spider = AcademyListingSpider(category="deals-clearance-hot-deals")
+        request = self.first_request(spider)
+        payload = payload or self.page1
+        return spider._item(
+            payload["hits"][index],
+            self.response(request),
+            request.meta["entry"],
+            1,
+            index + 1,
+            payload["nbHits"],
+        )
+
+    def test_variant_media_and_color_fields(self):
+        item = self._fixture_item()
+        hit = self.page1["hits"][0]
+        self.assertEqual(item["sku_ids"], hit["skuIds"])
+        self.assertIsInstance(item["color_images"], dict)
+        self.assertEqual(len(item["color_images"]), len(hit["industrySubGroup_image"]))
+        self.assertTrue(
+            all(v.startswith("https://academy.scene7.com/") for v in item["color_images"].values())
+        )
+        swatches = hit["industrySubGroup_ImageSku"]
+        self.assertEqual(
+            item["image_count"],
+            sum(1 + len(s["alternateImages"]) for s in swatches),
+        )
+        self.assertEqual(item["color_count"], int(hit["brandColorCount"]))
+        self.assertEqual(item["colors"], "Pampa Light Green")
+
+    def test_price_telemetry_from_swatch_blocks(self):
+        item = self._fixture_item()
+        hit = self.page1["hits"][0]
+        self.assertEqual(item["min_price"], hit["minProductPrice"])
+        self.assertEqual(item["max_price"], hit["maxProductPrice"])
+        self.assertEqual(item["msrp"], 130.0)
+        self.assertEqual(item["valued_cost"], 84.0)
+        self.assertEqual(item["map_price_flag"], hit["mapPriceFlag"])
+        self.assertEqual(item["object_id"], hit["objectID"])
+
+    def test_fulfilment_and_merchandising_fields(self):
+        item = self._fixture_item()
+        self.assertEqual(item["fulfillment_mode"], "01 SELL ONLINE")
+        self.assertEqual(item["clearance_status"], "N")
+        self.assertTrue(item["ship_to_store"])
+        self.assertTrue(item["same_day_delivery"])
+        self.assertFalse(item["special_order"])
+        # facet_Deals repeats "Hot Deal" twice in the fixture.
+        self.assertEqual(item["deal_badges"], "Hot Deal, New Colors")
+        self.assertEqual(item["order_count"], 25)
+        self.assertEqual(item["vendor_name"], "YETI HOLDINGS INC YETI COOLERS LLC")
+        self.assertEqual(item["industry_sub_group"], "Green")
+        self.assertEqual(item["primary_category_id"], "35202")
+        self.assertEqual(item["catalog_ids"], ["10051"])
+        self.assertEqual(
+            item["store_availability"],
+            {"pick": "0", "sts": "1", "sth": "0", "lsi": "0"},
+        )
+        # No rebate on this hit: every rebate field stays None.
+        for field in ("rebate_message", "rebate_code", "rebate_end_date", "rebate_url"):
+            self.assertIsNone(item[field], field)
+
+    def test_map_price_savings_fields(self):
+        product = {
+            "uniqueId": "1",
+            "name": "Test",
+            "partNumber": "9",
+            "mapPrice": 50.0,
+            "mapPriceFlag": "Y",
+            "swatches_mapprice": {
+                "priceInfo": {
+                    "minMapPrice": 50.0,
+                    "maxMapPrice": 50.0,
+                    "dollarSavings": 17.03,
+                    "percentSavings": "38%",
+                    "valuedCost": 23.0,
+                }
+            },
+        }
+        spider = AcademyListingSpider(category="deals-clearance-hot-deals")
+        request = self.first_request(spider)
+        item = spider._item(product, self.response(request), request.meta["entry"], 1, 1, 10)
+        self.assertEqual(item["dollar_savings"], 17.03)
+        self.assertEqual(item["percent_savings"], 38.0)
+        self.assertEqual(item["map_price_flag"], "Y")
+        self.assertEqual(item["valued_cost"], 23.0)
+
+    def test_special_order_and_rebate_fields(self):
+        product = {
+            "uniqueId": "1",
+            "name": "Test",
+            "partNumber": "9",
+            "SPECIALORDER": "Y",
+            "Clearance_Status": ["Y"],
+            "rebatePromotion": {
+                "messageText": "$10 Rebate Available",
+                "promotionCode": "1003559",
+                "endDateTime": "Jan 1, 2027, 5:59:59 AM",
+                "link": "https://example.test/rebate.pdf",
+            },
+            "shipToStoreFlag": ["N"],
+            "sameDayDeliveryEligible": [],
+            "store": {"pick_oos": "1", "sth_oos": "0"},
+        }
+        spider = AcademyListingSpider(category="deals-clearance-hot-deals")
+        request = self.first_request(spider)
+        item = spider._item(product, self.response(request), request.meta["entry"], 1, 1, 10)
+        self.assertTrue(item["special_order"])
+        self.assertEqual(item["clearance_status"], "Y")
+        self.assertEqual(item["rebate_message"], "$10 Rebate Available")
+        self.assertEqual(item["rebate_code"], "1003559")
+        self.assertEqual(item["rebate_end_date"], "Jan 1, 2027, 5:59:59 AM")
+        self.assertEqual(item["rebate_url"], "https://example.test/rebate.pdf")
+        self.assertFalse(item["ship_to_store"])
+        # An empty flag list means "not stated", not False.
+        self.assertIsNone(item["same_day_delivery"])
+
+    def test_store_availability_collects_present_channels(self):
+        spider = AcademyListingSpider(category="deals-clearance-hot-deals")
+        request = self.first_request(spider)
+        item = spider._item(
+            {"uniqueId": "1", "name": "T", "partNumber": "9", "pick_oos": "1", "stsfs_oos": "1"},
+            self.response(request),
+            request.meta["entry"],
+            1,
+            1,
+            10,
+        )
+        self.assertEqual(item["store_availability"], {"pick": "1", "stsfs": "1"})
+
+    def test_deal_badges_are_deduped(self):
+        spider = AcademyListingSpider(category="deals-clearance-hot-deals")
+        request = self.first_request(spider)
+        item = spider._item(
+            {"uniqueId": "1", "name": "T", "partNumber": "9", "facet_Deals": ["Hot Deal", "Hot Deal", "New"]},
+            self.response(request),
+            request.meta["entry"],
+            1,
+            1,
+            10,
+        )
+        self.assertEqual(item["deal_badges"], "Hot Deal, New")
+
+    def test_new_fields_are_in_feed_export_fields(self):
+        exported = set(self.spider.custom_settings["FEED_EXPORT_FIELDS"])
+        for field in (
+            "object_id",
+            "sku_ids",
+            "vendor_name",
+            "image_count",
+            "color_images",
+            "colors",
+            "color_count",
+            "min_price",
+            "max_price",
+            "map_price_flag",
+            "msrp",
+            "min_msrp",
+            "max_msrp",
+            "valued_cost",
+            "dollar_savings",
+            "percent_savings",
+            "rebate_message",
+            "rebate_code",
+            "rebate_end_date",
+            "rebate_url",
+            "deal_badges",
+            "order_count",
+            "fulfillment_mode",
+            "special_order",
+            "clearance_status",
+            "ship_to_store",
+            "same_day_delivery",
+            "store_availability",
+            "primary_category_id",
+            "industry_sub_group",
+            "catalog_ids",
+        ):
+            self.assertIn(field, exported)
+
+    def test_every_item_matches_declared_export_fields(self):
+        item = self._fixture_item()
+        exported = set(self.spider.custom_settings["FEED_EXPORT_FIELDS"])
+        self.assertTrue(set(item) <= exported, set(item) - exported)
+        self.assertEqual(exported - set(item), set())
+
     def test_duplicate_item_ids_are_dropped(self):
         spider = AcademyListingSpider(category="deals-clearance-hot-deals")
         request = self.first_request(spider)
