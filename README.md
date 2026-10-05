@@ -80,7 +80,7 @@ Spiders below are returning items in recent smoke runs:
 
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
-| [`academy_listing`](#academy_listing) | Active | api | PerimeterX (`scrapeops.country=us.bypass=5` needed for the API host) | Academy Sports + Outdoors category listings from the first-party `/api/category/v3/{categoryId}` catalog API; taxonomy captured from the global header `window.ASOData` component registry. | 96 (2 pages, hot-deals) | 228 unique categories from 12 departments | `{"category":"deals-clearance-hot-deals","item_id":"27288501","title":"YETI Camino Carryall 20 Tote Bag","brand":"YETI","price":140.0,"currency":"USD","source":"academy_category_api",...}` |
+| [`academy_listing`](#academy_listing) | Active | api | PerimeterX (`scrapeops.country=us.bypass=5` needed for the API host) | Academy Sports + Outdoors category listings from the first-party `/api/category/v3/{categoryId}` catalog API; taxonomy captured from the global header `window.ASOData` component registry. | 96 (2 pages, hot-deals) | 228 unique categories from 12 departments | `{"category":"deals-clearance-hot-deals","item_id":"27288501","title":"YETI Camino Carryall 20 Tote Bag","brand":"YETI","price":140.0,"currency":"USD","vendor_name":"YETI HOLDINGS INC YETI COOLERS LLC","valued_cost":84.0,"color_images":{...},"deal_badges":"Hot Deal, New Colors","fulfillment_mode":"01 SELL ONLINE","source":"academy_category_api",...}` |
 | [`adidas_listing`](#adidas_listing) | Experimental | Next.js hydration | Akamai (ScrapeOps 367 on plain route; `residential=true` worked) | adidas listings from server-rendered `__NEXT_DATA__` `props.pageProps.products`, paginated by `?start=`. | 96 (2 pages, proxy) | 25 sections / 196 categories from `adidas_categories.py` | `{"item_id":"KI8294","title":"ADIZERO ADIOS PRO 5 Running Shoes","brand":"Men Performance","price":275.0,"currency":"USD",...}` |
 | [`ae_listing`](#ae_listing) | Experimental | FastBoot + API | Akamai (signals in headers) | American Eagle listing spider via FastBoot shoebox state and browse API pagination. | 30 (ok) | women, men, aerie | `{"item_id":"1457_2980_808","title":"AE Big Hug V-Neck Sweatshirt","url":"https://www.ae.com/us/en/p/women/hoodies-sweatshirts/crew-neck-sweatshirts/ae-big-hug-v-neck-sweatshirt/1457_2980_808","price":38.97...` |
 | [`anthropologie_listing`](#anthropologie_listing) | Experimental | Pinia hydration | PerimeterX / HUMAN | Anthropologie listing spider using the server-rendered Pinia product state. | 37 (ok, proxy) | womens-clothing, dresses, shoes, sale and refinements | `{"item_id":"AN-4114086690121-000","title":"By Anthropologie Goldie 100% Cashmere Sweater","price":138.0,...}` |
@@ -230,70 +230,88 @@ answering, the spider raises instead of silently yielding an empty grid.
   "category_name": "Hot Deals",
   "category_id": "210952",
   "category_url": "https://www.academy.com/c/hot-deals",
-  "item_id": "27288501",
-  "partnumber": "133107944",
-  "parent_partnumber": "133107944",
-  "sku_id": "166647293",
-  "title": "YETI Camino Carryall 20 Tote Bag",
+  "item_id": "8061056",
+  "object_id": "164716873",
+  "partnumber": "124138950",
+  "parent_partnumber": "124138950",
+  "sku_id": "164716873",
+  "sku_ids": [
+    "89676605",
+    "90648031",
+    "87004509",
+    "…"
+  ],
+  "title": "YETI Rambler 18 oz Chug Cap Bottle",
   "brand": "YETI",
-  "url": "https://www.academy.com/p/yeti-camino-carryall-20-tote-bag/133107944",
-  "image_url": "https://academy.scene7.com/is/image/academy/21744293",
-  "image_alt": "YETI Camino Carryall 20 Tote Bag",
-  "price": 140.0,
-  "list_price": 140.0,
-  "map_price": 140.0,
-  "sale_price": 140.0,
+  "vendor_name": "YETI HOLDINGS INC YETI COOLERS LLC",
+  "url": "https://www.academy.com/p/yeti-rambler-18-oz-bottle-with-chug-cap/124138950",
+  "image_url": "https://academy.scene7.com/is/image/academy/21719853",
+  "image_alt": "YETI Rambler 18 oz Chug Cap Bottle",
+  "image_count": 24,
+  "color_images": {
+    "Red": "https://academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071504044-red/0cc5581e-e59f-4c3f-b0f0-dc62e27d3396",
+    "Brown": "https://academy.scene7.com/is/image/academy//drinkware/yeti-rambler-18-oz-chug-cap-bottle-21071503521/a626e90a-1f76-4c65-95ea-c73ae2cc8bce"
+  },
+  "colors": "Seafoam Pattern",
+  "color_count": 16,
+  "price": 37.0,
+  "min_price": 19.97,
+  "max_price": 37.0,
+  "list_price": 37.0,
+  "map_price": 37.0,
+  "map_price_flag": "Y",
+  "sale_price": 37.0,
+  "promo_price": null,
+  "msrp": 30.0,
+  "min_msrp": 30.0,
+  "max_msrp": 30.0,
+  "valued_cost": 19.2,
+  "dollar_savings": 17.03,
+  "percent_savings": 38.0,
   "promo_message": null,
   "promo_code": null,
-  "promo_price": null,
+  "rebate_message": null,
+  "rebate_code": null,
+  "rebate_end_date": null,
+  "rebate_url": null,
+  "deal_badges": "Hot Deal, New Colors",
   "currency": "USD",
-  "rating": 4.9,
-  "reviews_count": 534,
+  "rating": 4.6,
+  "reviews_count": 12431,
+  "order_count": 25,
   "color": "Green",
   "size": null,
   "in_stock": true,
+  "fulfillment_mode": "01 SELL ONLINE",
+  "special_order": false,
+  "clearance_status": "M",
+  "ship_to_store": true,
+  "same_day_delivery": true,
+  "store_availability": {
+    "pick": "0",
+    "sts": "1",
+    "sth": "0",
+    "lsi": "0"
+  },
   "free_shipping": true,
   "gift_card": false,
-  "primary_category": "Tote Bags",
+  "primary_category": "Water Bottles",
+  "primary_category_id": "198029",
+  "industry_sub_group": "Green",
+  "catalog_ids": [
+    "10051"
+  ],
   "category_ids": [
-    "3074457345616984107",
-    "3074457345616985615",
-    "3074457345616981115",
+    "3074457345616908598",
     "3074457345616941639",
-    "239455",
-    "3074457345617141098",
-    "3074457345616992101",
-    "3074457345616915098",
-    "3074457345616952607",
-    "146752",
-    "3074457345616975104",
-    "3074457345616974599",
-    "230953",
-    "3074457345617113098",
-    "181314",
-    "3074457345616912627",
-    "239082",
-    "3074457345616941149",
-    "3074457345616968651",
-    "3074457345617045599",
-    "35202",
-    "197936",
-    "3074457345616999623",
-    "3074457345616951147",
-    "3074457345616974600",
-    "3074457345616951146",
-    "3074457345616957608",
-    "216438",
-    "210952"
+    "220431",
+    "…"
   ],
   "page": 1,
-  "position": 1,
-  "total_count": 506,
+  "position": 4,
+  "total_count": 504,
   "source_url": "https://www.academy.com/api/category/v3/210952?web=true&displayFacets=true&recordsPerPage=48&pageNumber=1",
-  "source": "academy_category_api",
-  "raw": {
-    "_omitted": "(full product object retained in the feed)"
-  }
+  "source": "academy_category_api"
 }
 ```
 
@@ -333,17 +351,63 @@ Notes:
   `https://www.academy.com/p/<slug>/<partNumber>`, and protocol-relative
   Scene7 images (`//academy.scene7.com/...`) are absolutized to `https://`.
 - The ordered export fields are `category`, `department`, `category_name`,
-  `category_id`, `category_url`, `item_id`, `partnumber`, `parent_partnumber`,
-  `sku_id`, `title`, `brand`, `url`, `image_url`, `image_alt`, `price`,
-  `list_price`, `map_price`, `sale_price`, `promo_message`, `promo_code`,
-  `promo_price`, `currency`, `rating`, `reviews_count`, `color`, `size`,
-  `in_stock`, `free_shipping`, `gift_card`, `primary_category`, `category_ids`,
-  `page`, `position`, `total_count`, `source_url`, `source`, and `raw`.
+  `category_id`, `category_url`, `item_id`, `object_id`, `partnumber`,
+  `parent_partnumber`, `sku_id`, `sku_ids`, `title`, `brand`, `vendor_name`,
+  `url`, `image_url`, `image_alt`, `image_count`, `color_images`, `colors`,
+  `color_count`, `price`, `min_price`, `max_price`, `list_price`, `map_price`,
+  `map_price_flag`, `sale_price`, `promo_price`, `msrp`, `min_msrp`,
+  `max_msrp`, `valued_cost`, `dollar_savings`, `percent_savings`,
+  `promo_message`, `promo_code`, `rebate_message`, `rebate_code`,
+  `rebate_end_date`, `rebate_url`, `deal_badges`, `currency`, `rating`,
+  `reviews_count`, `order_count`, `color`, `size`, `in_stock`,
+  `fulfillment_mode`, `special_order`, `clearance_status`, `ship_to_store`,
+  `same_day_delivery`, `store_availability`, `free_shipping`, `gift_card`,
+  `primary_category`, `primary_category_id`, `industry_sub_group`,
+  `catalog_ids`, `category_ids`, `page`, `position`, `total_count`,
+  `source_url`, `source`, and `raw`.
+- **Variant, price and fulfilment detail come out of the same single API
+  response** — no extra requests, no second direction. Every field below is
+  already present in the `/api/category/v3/` hit and was simply not being read:
+  - `sku_ids` (every SKU in the style), `object_id` (the search-engine object id,
+    distinct from `item_id`), `color_count` / `brandColorCount`, `colors`
+    (`Color` facet) and `color_images` — the `{colour: image}` family map from
+    `industrySubGroup_image`, absolutized. `image_count` is the gallery size
+    derived from `industrySubGroup_ImageSku` (primary shot + `alternateImages`
+    per swatch).
+  - `min_price` / `max_price` are the `minProductPrice` / `maxProductPrice`
+    **range** across the product's variants, which `price` alone cannot express
+    for a multi-colour item. `msrp` / `min_msrp` / `max_msrp` come from
+    `minMSRP`/`maxMSRP` (falling back to `descriptiveAttributes.udamsrp`).
+  - Price telemetry lives on the swatch blocks, not on the hit root:
+    `swatches_mapprice.priceInfo` is the MAP-price (member) view and carries
+    `dollarSavings` / `percentSavings`; `swatches_nonmapprice.priceInfo` is the
+    open price view. `valued_cost` is Academy's member valued cost, read from
+    whichever block is present.
+  - `rebate_*` mirror `rebatePromotion` (message, promotion code, end date, PDF
+    link). `deal_badges` is `facet_Deals`, deduped — the facet repeats a value
+    when several merchandising rules match the same hit
+    (`["Hot Deal", "Hot Deal", "New Colors"]`).
+  - Fulfilment: `fulfillment_mode` is `ecomCodeDesc`
+    (`01 SELL ONLINE` / `04 DROP SHIP` / `07 SELL ONLINE AND DROPSHIP`),
+    `special_order` is `SPECIALORDER == "Y"`, `clearance_status` is
+    `Clearance_Status` (`Y` / `M` / `N`, deduped), and `ship_to_store` /
+    `same_day_delivery` decode the single-element `["Y"]` / `["N"]` flag lists.
+    `store_availability` keeps the API's own per-channel out-of-stock flags
+    verbatim under short names — `pick` (pickup), `sts` (ship-to-store), `sth`
+    (ship-to-home), `lsi` (large item), `stsfs` (ship-from-store) — because a
+    missing key means "channel not stated" rather than "out of stock".
+  - `vendor_name` is `descriptiveAttributes.vendorName` (the legal entity, e.g.
+    `NIKE USA INC`) and is not the same as the `brand` facet.
+- Fields that are genuinely sparse on a hot-deals grid stay `null` rather than
+  being invented: `rebate_*` (~3% of hits), `dollar_savings` / `percent_savings`
+  (only hits on the MAP-price view), `msrp` (~half of hits) and `color_images`
+  (empty for products with no colour family). `special_order` remains a boolean
+  and is true only for products explicitly marked `SPECIALORDER == "Y"`.
 
 Verified live (`category=deals-clearance-hot-deals`, `max_pages=2`, ScrapeOps
-proxy, 2026-10-03 UTC): **96 items, 96 unique `item_id`s**, 22 distinct brands,
-`raw` present on 96/96. `category=sports-soccer`, `max_pages=1`: **48 items**,
-48 unique, `nbHits=845`.
+proxy, 2026-10-04 UTC): **96 items, 96 unique `item_id`s**, 22 distinct brands,
+`raw` present on 96/96, 68 exported fields per item. `category=sports-soccer`,
+`max_pages=1`: **48 items**, 48 unique, `nbHits=845`.
 
 ### adidas_listing
 
