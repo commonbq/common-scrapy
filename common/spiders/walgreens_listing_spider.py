@@ -32,7 +32,7 @@ class WalgreensListingSpider(BaseListingSpider):
             "upc", "title", "brand", "url", "image", "price",
             "regular_price", "sale_price", "currency", "rating",
             "reviews_count", "inventory_status", "page", "position",
-            "total_count", "total_pages", "source_url", "raw",
+            "total_count", "total_pages", "source_url", "raw", "timestamp",
         ],
     }
 
@@ -169,6 +169,7 @@ class WalgreensListingSpider(BaseListingSpider):
             "total_pages": total_pages,
             "source_url": response.url,
             "raw": product,
+            "timestamp": self.get_timestamp(),
         }
 
     @staticmethod
