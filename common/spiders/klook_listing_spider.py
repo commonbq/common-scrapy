@@ -23,7 +23,7 @@ class KlookListingSpider(BaseListingSpider):
             "city", "url", "image_url", "price", "price_text", "currency",
             "market_price", "market_price_text", "rating", "reviews_text",
             "booked_text", "sold_out", "availability", "position", "total_count",
-            "has_more", "more_url", "listing_url", "source", "raw",
+            "has_more", "more_url", "listing_url", "source", "raw", "timestamp",
         ],
     }
 
@@ -98,7 +98,7 @@ class KlookListingSpider(BaseListingSpider):
                 "availability": "sold_out" if sold_out else "available", "position": position,
                 "total_count": total, "has_more": has_more, "more_url": more_url,
                 "listing_url": response.meta.get("listing_url"), "source": "klook_destination_api",
-                "raw": data,
+                "raw": data, "timestamp": self.get_timestamp(),
             }
 
     @staticmethod
