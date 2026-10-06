@@ -3976,3 +3976,22 @@ page totals, the authoritative raw entity, and `source=harborfreight_apollo_boot
 ```bash
 scrapy crawl harborfreight_listing -a category=Automotive -a max_pages=2 -s HTTPCACHE_ENABLED=False -O harborfreight.jsonl
 ```
+
+### rei_listing
+
+`rei_listing` reads products exclusively from REI's server-rendered
+`#initial-props` JSON bootstrap at
+`ProductSearch.products.searchResults.results`. It follows the bootstrap's
+`pagination.nextPage.queryString`, deduplicates by `prodId`, and fails visibly
+when REI returns a challenge, malformed state, or an empty product page. It does
+not parse rendered product cards or JSON-LD.
+
+The spider exposes 20 stable commerce-category shortcuts. Its ordered
+`FEED_EXPORT_FIELDS` contract includes product/style identity, brand and title,
+canonical URL and image, current/range/original prices, sale and availability
+flags, ratings, pagination metadata, the authoritative raw record, and
+`source=rei_initial_props_bootstrap`.
+
+```bash
+scrapy crawl rei_listing -a category=hiking-footwear -a max_pages=1 -s HTTPCACHE_ENABLED=False -O rei.jsonl
+```
