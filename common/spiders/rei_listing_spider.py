@@ -24,7 +24,7 @@ class ReiListingSpider(BaseListingSpider):
             "price", "min_price", "max_price", "original_price", "currency",
             "on_sale", "partial_clearance", "clearance", "available", "rating",
             "reviews_count", "page", "position", "total_count", "source_url",
-            "source", "raw",
+            "source", "raw", "timestamp",
         ],
     }
 
@@ -123,6 +123,7 @@ class ReiListingSpider(BaseListingSpider):
             "source_url": response.url,
             "source": "rei_initial_props_bootstrap",
             "raw": product,
+            "timestamp": self.job_timestamp,
         }
 
     def _initial_props(self, document: str, url: str) -> dict:

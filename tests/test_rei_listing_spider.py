@@ -35,8 +35,10 @@ def test_maps_hydrated_product_and_feed_contract():
     assert len(items) == 1
     item = items[0]
     assert list(item) == spider.custom_settings["FEED_EXPORT_FIELDS"]
+    assert spider.custom_settings["FEED_EXPORT_FIELDS"][-3:] == ["source", "raw", "timestamp"]
     assert (item["item_id"], item["brand"], item["price"], item["reviews_count"]) == ("202126", "Merrell", 71.83, 2296)
     assert item["source"] == "rei_initial_props_bootstrap"
+    assert item["timestamp"] == spider.job_timestamp
 
 
 def test_follows_hydrated_next_page_and_deduplicates():
