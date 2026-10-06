@@ -63,6 +63,7 @@ Working spiders running daily in production:
 | [`adorama_listing`](#adorama_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | DataDome | Adorama category listings from server-rendered Next.js hydration state. | 24 (one page; 48 across 2 pages) | 1,079 crawlable categories across 11 departments from `adorama_categories.py` | `{"category":"cameras","item_id":"KKRK0603A","title":"Kodak Charmera Millenium Edition...","price":54.94,"currency":"USD"...}` |
 | [`amazon_listing`](#amazon_listing-category) | Active | html | none detected | Amazon category listing spider (category shortcuts). | 22 (ok) | electronics, fashion, beauty, home-kitchen, toys-games, sports-outdoors, grocery, books | `{"asin":"B0DKDTBBF7","title":"2 Packs Electric Candle Lighters, Windproof Flameless USB Rechargeable Plasma Arc Long Lighter for Grill Fi...` |
 | [`amazon_search`](#amazon_search) | Active | html | none detected | Amazon keyword search spider. | 22 (ok) | - | `{"asin":"B0GHQRV71M","title":"16\" FHD IPS Laptop Computer - 16GB RAM 512GB SSD, Pentium N100(Beat to i3-1115G4, 4 Cores Up to 3.4GHz), B...` |
+| [`acehardware_listing`](#acehardware_listing) | Active | bootstrap | ScrapeOps residential + `bypass=5` required | Ace Hardware category listings and recursive department discovery from server-rendered Kibo/Mozu hydration. | 60 (2 pages, cordless-drills) | 20 department/category seeds from `acehardware_categories.py`; department pages recursively discover product-bearing leaves | `{"category":"cordless-drills","item_id":"2385458","title":"DeWalt 20V MAX 1/2 in. Brushed Cordless Compact Drill Kit (Battery & Charger)","brand":"DeWalt","price":179.0,"currency":"USD","source":"acehardware_mozu_hydration",...}` |
 | [`backcountry_listing`](#backcountry_listing) | Active | bootstrap | AWS WAF (datacenter + `bypass=5` both return the challenge; `residential=true` required) | Backcountry.com category/collection/brand listings from the server-rendered Next.js `#__NEXT_DATA__` PLP payload joined to `__APOLLO_STATE__`. | 84 (2 pages, `cat-mens-shirts`); 52 (`rc-mens-parkas`, natural last page) | 398 unique targets across 14 top-level menus / 110 sections from `backcountry_categories.py` | `{"category":"cat-mens-shirts","department":"Men","section":"Clothing","item_id":"FJRZ133","title":"Fjallglim Regular Shirt - Men's","brand":"Fjallraven","price":124.95,"original_price":null,"currency":"USD","in_stock":true,"source":"backcountry_next_data",...}` |
 | [`zillow_listing`](#zillow_listing) | Active | bootstrap | PerimeterX | Zillow sale listings from server-rendered Next.js `__NEXT_DATA__`, including path-based SSR pagination. | 82 (2 pages, `houston-tx`) | 20 major US city markets | `{"item_id":"55476612","title":"8323 Gentlewood Ct, Houston, TX 77095","price":375000,"beds":4,"baths":3,"area":2992,"source":"zillow_next_data"}` |
 | [`basspro_listing`](#basspro_listing) | Active | api | Akamai on the storefront legs (403 direct); the Coveo search leg must stay unproxied | Bass Pro Shops category listings from the storefront Coveo Headless search API (`platform.cloud.coveo.com/rest/search/v2`); taxonomy from the `__NEXT_DATA__.props.megaNavHtmlV2` mega-nav. | 96 (2 pages, rod-reel-combos) | 909 nav entries (11 departments / 116 level-2 / 782 level-3) | `{"category":"Fishing/Rod & Reel Combos","item_id":"3472884","title":"Bass Pro Shops Megacast Baitcast Combo","brand":"Bass Pro Shops","url":"https://www.basspro.com/p/bass-pro-shops-megacast-baitcast-combo","price":69.99,"availability":"InStock","source":"basspro_coveo"...}` |
@@ -216,6 +217,52 @@ abbreviated to its key names:
 Note: the committed fixture contains exactly one real product card, so the
 committed sample output is 1 item. The summary table's item count reflects this
 fixture run, not a live crawl.
+
+### acehardware_listing
+
+`acehardware_listing` uses one extraction direction: Ace Hardware's
+server-rendered Kibo/Mozu bootstrap state. Product shelves come from
+`#data-mz-preload-PLPModel`; no HTML-card, JSON-LD, or API fallback is used.
+Pagination requests the same bootstrap payload with `?startIndex=N`. Department
+seeds without products are expanded recursively from the hydrated
+`routeData.-categoryObject.childrenCategories` tree until product-bearing leaves
+are reached.
+
+Ace currently requires the configured ScrapeOps proxy with both
+`residential=true` and `bypass=5`. The spider adds those options without exposing
+credentials.
+
+```bash
+scrapy crawl acehardware_listing -a category=cordless-drills -a max_pages=2 \
+  -s HTTPCACHE_ENABLED=False -O acehardware.jsonl
+```
+
+Verified live on 2026-10-05: 60 unique items across two HTTP 200 bootstrap pages.
+The exported contract includes IDs (SKU, MPN, UPC), product URL and images,
+brand, pricing, availability, fulfillment methods, package measurements,
+category/page metadata, source, and the normalized raw hydration record.
+Every exported item also includes the crawl `timestamp`.
+
+```json
+{
+  "item_id": "2385458",
+  "title": "DeWalt 20V MAX 1/2 in. Brushed Cordless Compact Drill Kit (Battery & Charger)",
+  "brand": "DeWalt",
+  "sku": "2385458",
+  "mpn": "DCD771C2",
+  "upc": "885911325905",
+  "price": 179.0,
+  "currency": "USD",
+  "in_stock": true,
+  "fulfillment_types": ["DirectShip", "InStorePickup", "Delivery"],
+  "category": "cordless-drills",
+  "page": 1,
+  "position": 1,
+  "total_count": 172,
+  "last_page": 6,
+  "source": "acehardware_mozu_hydration"
+}
+```
 
 ### academy_listing
 `academy_listing` uses exactly one data direction: the first-party catalog API.
