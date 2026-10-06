@@ -35,6 +35,10 @@ def test_api_items_deduplicate_and_paginate():
     assert out[0]["item_id"] == "123"
     assert out[0]["price"] == 99.99
     assert out[0]["reviews_count"] == 12
+    assert out[0]["raw"] == product
+    assert out[0]["timestamp"] == spider.job_timestamp
+    assert "timestamp" in MenardsListingSpider.custom_settings["FEED_EXPORT_FIELDS"]
+    assert "raw" in MenardsListingSpider.custom_settings["FEED_EXPORT_FIELDS"]
     assert out[1].meta["page"] == 2
     assert json.loads(out[1].body)["firstRequest"] is False
 

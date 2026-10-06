@@ -23,6 +23,7 @@ class MenardsListingSpider(BaseListingSpider):
             "category", "item_id", "sku", "title", "brand", "url", "image_url",
             "price", "original_price", "currency", "availability", "rating",
             "reviews_count", "page", "position", "total_count", "category_url", "source",
+            "raw", "timestamp",
         ],
         "HTTPERROR_ALLOW_ALL": True,
         "COOKIES_ENABLED": True,
@@ -63,6 +64,7 @@ class MenardsListingSpider(BaseListingSpider):
             if not item["item_id"] or item["item_id"] in self.seen_ids:
                 continue
             self.seen_ids.add(item["item_id"])
+            item["timestamp"] = self.job_timestamp
             emitted += 1
             yield item
         if items and emitted and page < self.max_pages and (total is None or page * len(items) < total):
@@ -134,6 +136,9 @@ class MenardsListingSpider(BaseListingSpider):
             "reviews_count": cls._integer(cls._first(rating, "count", "reviewCount") or cls._first(product, "reviewCount", "reviewsCount")),
             "page": meta["page"], "position": position, "total_count": total,
             "category_url": meta["category_url"], "source": "menards_category_api",
+            # Verbatim API entry so downstream consumers can re-derive fields when
+            # the Menards JSON contract changes.
+            "raw": product,
         }
 
     @staticmethod
