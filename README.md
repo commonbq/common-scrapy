@@ -3976,3 +3976,14 @@ page totals, the authoritative raw entity, and `source=harborfreight_apollo_boot
 ```bash
 scrapy crawl harborfreight_listing -a category=Automotive -a max_pages=2 -s HTTPCACHE_ENABLED=False -O harborfreight.jsonl
 ```
+### lowes_listing
+
+`lowes_listing` reads products exclusively from Lowe's server-rendered
+`window['__PRELOADED_STATE__']` bootstrap payload. It does not fall back to HTML
+cards or JSON-LD. Stable category shortcuts, `category_url`, and `url` are
+supported; `?page=N` pagination is bounded by `max_pages`. Lowe's requires the
+configured ScrapeOps proxy and challenge responses fail loudly.
+
+```bash
+scrapy crawl lowes_listing -a category=beverage-wine-chillers -a max_pages=1 -s HTTPCACHE_ENABLED=False -O lowes.jsonl
+```
