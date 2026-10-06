@@ -70,6 +70,7 @@ Working spiders running daily in production:
 | [`basspro_listing`](#basspro_listing) | Active | api | Akamai on the storefront legs (403 direct); the Coveo search leg must stay unproxied | Bass Pro Shops category listings from the storefront Coveo Headless search API (`platform.cloud.coveo.com/rest/search/v2`); taxonomy from the `__NEXT_DATA__.props.megaNavHtmlV2` mega-nav. | 96 (2 pages, rod-reel-combos) | 909 nav entries (11 departments / 116 level-2 / 782 level-3) | `{"category":"Fishing/Rod & Reel Combos","item_id":"3472884","title":"Bass Pro Shops Megacast Baitcast Combo","brand":"Bass Pro Shops","url":"https://www.basspro.com/p/bass-pro-shops-megacast-baitcast-combo","price":69.99,"availability":"InStock","source":"basspro_coveo"...}` |
 | [`booking_listing`](#booking_listing) | Active | bootstrap | none detected (anonymous SSR cruise) | Booking.com listings for the 20 homepage-exposed US city destinations from the anonymous server-rendered Apollo cache (`ROOT_QUERY.lxAccommodations` -> `ROOT_QUERY.searchQueries.search().results`). | 33 (2 pages, `las-vegas`) | 20 US city destinations from `booking_categories.py` | `{"category":"las-vegas","item_id":"15743439","title":"The Platinum Hotel Las Vegas","price":227.91,"currency":"EUR","rating":9.1,"reviews_count":8,"city":"Las Vegas","source":"booking_apollo_hydration"...}` |
 | [`bestbuy_listing`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | unknown (timeout/no verdict) | Best Buy listing via direct HTTP + Apollo bootstrap extraction. | 10 (skipped2) | laptops, tvs, headphones, monitors, cell-phones | `{"item_id":"6572184","title":"Samsung - Galaxy Book4 15.6\" FHD Laptop - Intel Core 7- 16GB Memory - 512GB SSD - Silver","url":"https://www.bestbuy.com/product/samsung-galaxy-bo...` |
+| [`backcountry_listing`](#backcountry_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | AWS WAF (residential proxy: `scrapeops.country=us.residential=true`) | Backcountry category, `/rc/` collection and brand listings from the server-rendered PLP hydration state; taxonomy from the header `headerNavigation` mega-nav. | 42 (1 page) / 84 (2 pages) / 42 (`/rc/`) / 42 (brand) | 469 links (14 departments / 109 sections; 398 distinct URLs) from `backcountry_categories.py` | `{"item_id":"FJRZ133","title":"Fjallglim Regular Shirt - Men's","brand":"Fjallraven","price":124.95,"original_price":124.95,"currency":"USD","url":"https://www.backcountry.com/fjallraven-fjallglim-regular-shirt-mens","availability":"IN_STOCK","in_stock":true,"page":1,"source":"backcountry_next_data"...}` |
 | [`bestbuy_search`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | unknown (timeout/no verdict) | Best Buy search via direct HTTP + Apollo bootstrap extraction. | 4 (skipped2) | - | `{"item_id":"6613879","title":"HP - 14\" Laptop - Intel Processor N150 2025 - 4GB Memory - 128GB UFS - Willow Green","url":"https://www.bestbuy.com/product/hp-14-laptop-intel-pro...` |
 | [`macys_listing`](#macys_listing) | Active | api | Akamai | Macy’s listing via xapi endpoint (with fallback routing). | 60 (ok) | laptops, shoes, dresses, fragrance, bedding | `{"item_id":"17595303","title":"5Core AC Power Cord 6Ft 3 Prong US Male to Female Extension Adapter 18AWG 10A 7A 125V","brand":"5 Core","u...` |
 | [`nordstrom_listing`](#nordstrom_listing) | Active | bootstrap + html | PerimeterX / HUMAN | Nordstrom listing parser; often blocked/changed. | 0 (timeout2) | women, men, kids, beauty, home, designer, sale | `{}` |
@@ -2805,6 +2806,106 @@ swatches, pricing, and the raw product object, then follows bootstrap pagination
 
 Run example:
 `common-scrapy crawl elfcosmetics_listing -a category=face -a max_pages=1 -O elfcosmetics_listing.jsonl`
+
+### backcountry_listing
+
+Backcountry listing spider backed by the server-rendered Next.js hydration
+payload (`#__NEXT_DATA__`). One data direction only: the bootstrap state. There
+is no HTML/JSON-LD fallback, so if the payload, the PLP data or the product
+edges disappear the spider fails loudly instead of silently degrading.
+
+- **Arguments:** `-a category=<slug>`, `-a category_url=<url>`, or `-a url=<url>`;
+  plus `-a max_pages=<n>`.
+- **Categories:** 469 slugs shaped `<department>/<section>/<name>`, e.g.
+  `men/clothing/shirts`, `women/outerwear/rain-jackets`,
+  `sale/outlet/deals-under-50`. See `backcountry_categories.py` for the full
+  tree.
+- **Pagination:** `?page=N` up to `max_pages` and the payload's `totalPages`.
+  The page parameter is appended to the existing query verbatim, so
+  brand-filtered URLs (`?p=gender_uFilter:"male"`) keep their filter.
+  Products are de-duplicated by `Product.id` across pages.
+- **Output:** 36 normalized fields plus `raw`, which holds the verbatim hydration
+  record.
+
+Hydration paths read:
+
+```text
+props.pageProps.type                              # plp-cat | plp-collection | plp-brand
+props.pageProps.plpData.data.<category|collection|brand>.edges[]
+props.pageProps.plpData.data.<...>.pageInfo       # hasNextPage / hasPreviousPage
+props.pageProps.totalPages                        # e.g. 36 for mens-shirts
+props.pageProps.__APOLLO_STATE__["Product:<id>"]  # normalized product record
+```
+
+The three PLP page types share one block shape, so the spider resolves the
+listing block by shape rather than branching on the page-type string:
+
+| Slug | URL shape | `type` | `plpData.data` key | Listing id field |
+|---|---|---|---|---|
+| `men/clothing/shirts` | `/cat/mens-shirts` | `plp-cat` | `category` | `categoryId` |
+| `men/clothing/sun-protection` | `/rc/mens-upf-apparel` | `plp-collection` | `collection` | `collectionId` |
+| `men/top-brands/patagonia` | `/brand/patagonia?p=...` | `plp-brand` | `brand` | `brandSlug` |
+
+Price uses `aggregates.minSalePrice` (current) and `aggregates.minListPrice`
+(list); `minDiscount` becomes `discount_percent`, and `on_sale` is true when the
+sale price is below list price or any variation is on sale.
+
+#### Proxy: residential is mandatory
+
+Backcountry sits behind an AWS WAF. The datacenter ScrapeOps route returns a
+~2.3 KB `window.awsWafCookieDomainList` challenge with HTTP 200; only the
+residential pool returns the real ~1 MB category HTML. `_residential_proxy()`
+appends `residential=true` to the ScrapeOps username on every request, preserving
+existing username options (e.g. `country=us.bypass=7`) and the credentials. The
+proxy password is never logged.
+
+A challenge response raises an actionable error naming that remedy instead of
+producing zero items. The check matches the specific `awsWaf` token rather than a
+generic "captcha" marker, because the real category page embeds a
+`grecaptcha-badge` style block that a loose marker would reject.
+
+Verification — live crawls on 2026-10-05 with the HTTP cache disabled:
+
+```bash
+scrapy crawl backcountry_listing -a category=men/clothing/shirts -a max_pages=1 \
+  -s HTTPCACHE_ENABLED=False -O backcountry.jsonl
+```
+
+| Run | Result |
+|---|---|
+| `category=men/clothing/shirts max_pages=1` | 1 request, HTTP 200, `item_scraped_count: 42` |
+| `category=men/clothing/shirts max_pages=2` | 2 requests, HTTP 200 x2, `item_scraped_count: 84` (42 + 42, zero overlap) |
+| `category=men/clothing/sun-protection max_pages=1` (`/rc/` collection) | 1 request, HTTP 200, `item_scraped_count: 42` |
+| `category=men/top-brands/patagonia max_pages=1` (brand page) | 1 request, HTTP 200, `item_scraped_count: 42` |
+
+Every one-page run returned 42 products with 42 distinct `item_id`s, a
+non-null `brand`, `price` and `image_url`, and absolute `https://www.backcountry.com/...`
+product URLs. Sample of the `mens-shirts` run (trimmed, `raw` elided):
+
+```json
+{"item_id": "FJRZ133", "title": "Fjallglim Regular Shirt - Men's", "brand": "Fjallraven", "url": "https://www.backcountry.com/fjallraven-fjallglim-regular-shirt-mens", "listing_url": "https://www.backcountry.com/cat/mens-shirts", "price": 124.95, "original_price": 124.95, "currency": "USD", "on_sale": false, "discount_percent": 0.0, "availability": "IN_STOCK", "in_stock": true, "stock_status": "IN_STOCK", "image_url": "https://www.backcountry.com/images/items/large/FJR/FJRZ133/DANACHWH.jpg", "color": "Dark Navy/Chalk White", "colors": ["Dark Navy/Chalk White", "Dark Navy/Maroon", "Wood Brown/Black Oak"], "color_count": 3, "total_variations": 10, "department": "Men", "section": "Clothing", "category_name": "Shirts", "category_slug": "men/clothing/shirts", "category_id": "bc-mens-shirts", "page": 1, "source": "backcountry_next_data"}
+```
+
+A sale-priced example from the same run, showing `aggregates.minSalePrice` /
+`minListPrice` / `minDiscount` mapping:
+
+```json
+{"item_id": "BJOC0B1", "title": "Tempo T-Shirt - Men's", "brand": "Bjorn Daehlie", "price": 20.97, "original_price": 34.95, "currency": "USD", "on_sale": true, "discount_percent": 40.0, "variations_on_sale": 7, "availability": "IN_STOCK", "in_stock": true}
+```
+
+Sample of the `/rc/` collection run (`category_id` comes from the SSR payload's
+`collectionId`, labels from the taxonomy):
+
+```json
+{"item_id": "BCCZ2PL", "department": "Men", "section": "Clothing", "category_name": "Sun Protection", "category_slug": "men/clothing/sun-protection", "category_id": "mens-upf-apparel", "page": 1, "source": "backcountry_next_data"}
+```
+
+Tests: `python -m unittest tests.test_backcountry_listing_spider` (54 network-free
+tests: taxonomy normalization, page-1 parsing, page-2 request creation,
+`max_pages` / `totalPages` / `hasNextPage` stop conditions, dedup across pages,
+Apollo join, all three PLP page types, absolute URLs, prices, sale/discount,
+availability, invalid and missing hydration, WAF challenge detection, and proxy
+routing).
 
 ### newegg_listing
 
