@@ -3818,3 +3818,25 @@ Every exported item also includes the crawl `timestamp`.
 ```bash
 scrapy crawl zillow_listing -a category=houston-tx -a max_pages=2 -s HTTPCACHE_ENABLED=False -O zillow.jsonl
 ```
+
+### autozone_listing
+
+`autozone_listing` exposes 20 stable AutoZone category seeds and accepts
+`-a category=<name>`. It reads products exclusively from the server-rendered
+Next.js/TanStack React Query bootstrap state: `productshelf-results` supplies
+the shelf records and `productSkuDetails` supplies authoritative price and
+stock data. Those records are joined by SKU; missing queries, details, and
+prices fail loudly. Pagination requests the next PLP page and stops at the
+hydrated total or `max_pages`.
+
+All AutoZone requests require the configured ScrapeOps proxy. The spider adds
+`residential=true.country=us` to that proxy username without embedding
+credentials. Its ordered `FEED_EXPORT_FIELDS` include category, identifiers,
+product facts, canonical URL, image, price/availability, sponsorship, page and
+position metadata, source, and the joined raw hydration records.
+An uncached live check on 2026-10-06 exported 24/24 unique oil-filter SKUs;
+sample: `1117175`, “STP Oil Filter S45023”, `$5.99`, in stock.
+
+```bash
+scrapy crawl autozone_listing -a category=oil-filter -a max_pages=1 -s HTTPCACHE_ENABLED=False
+```
