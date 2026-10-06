@@ -29,6 +29,7 @@ class BookingListingSpider(BaseListingSpider):
             "original_price", "currency", "rating", "reviews_count", "stars",
             "district", "city", "country", "latitude", "longitude",
             "property_type", "page", "position", "total_count", "source", "raw",
+            "timestamp",
         ],
     }
     headers = {
@@ -183,6 +184,7 @@ class BookingListingSpider(BaseListingSpider):
             "property_type": basic.get("accommodationTypeId"), "page": page,
             "position": position, "total_count": total,
             "source": "booking_apollo_hydration", "raw": result,
+            "timestamp": self.job_timestamp,
         }
 
     @staticmethod
