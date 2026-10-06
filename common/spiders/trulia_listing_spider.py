@@ -27,7 +27,7 @@ class TruliaListingSpider(BaseListingSpider):
             "category", "item_id", "title", "url", "price", "currency",
             "beds", "baths", "sqft", "property_type", "latitude", "longitude",
             "image_url", "provider", "listing_status", "total_count", "page",
-            "position", "source", "raw",
+            "position", "source", "raw", "timestamp",
         ],
     }
     headers = {
@@ -127,6 +127,7 @@ class TruliaListingSpider(BaseListingSpider):
                 "listing_status": home.get("listingStatus") or home.get("status") or tracking.get("listingStatus"),
                 "total_count": search.get("totalHomes"), "page": page, "position": position,
                 "source": "trulia_next_data", "raw": home,
+                "timestamp": self.job_timestamp,
             }
         if not homes or page >= self.max_pages:
             return

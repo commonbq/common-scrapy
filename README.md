@@ -3289,6 +3289,7 @@ and `bypass=5`; production use should be authorized against current site terms.
 The ordered `FEED_EXPORT_FIELDS` contract includes property ID, address, URL,
 price/currency, beds, baths, floor space, property type, coordinates, image,
 provider/status, result count, page/position, source, and raw hydration record.
+Every exported item also includes the crawl `timestamp`.
 
 ### Gap listing spider
 
