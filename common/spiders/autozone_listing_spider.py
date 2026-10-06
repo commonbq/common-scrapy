@@ -46,6 +46,7 @@ class AutozoneListingSpider(BaseListingSpider):
             "category", "item_id", "title", "brand", "part_number", "url",
             "image", "price", "currency", "availability", "in_stock",
             "sponsored", "page", "position", "total_count", "source", "raw",
+            "timestamp",
         ],
     }
     headers = {
@@ -215,6 +216,7 @@ class AutozoneListingSpider(BaseListingSpider):
                 "sponsored": bool(record.get("sponsoredProductFlag")), "page": page,
                 "position": position, "total_count": results.get("totalNumberOfRecords"),
                 "source": "autozone_next_data", "raw": {"record": record, "detail": detail},
+                "timestamp": self.get_timestamp(),
             }
         last = results.get("lastRecordNumber")
         total = results.get("totalNumberOfRecords")
