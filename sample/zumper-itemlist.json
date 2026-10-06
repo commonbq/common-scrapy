@@ -1,0 +1,2514 @@
+{
+ "@context": "https://schema.org",
+ "@type": "ItemList",
+ "name": "Apartments for Rent in NYC - 10,770 Rentals Updated Daily | Zumper",
+ "numberOfItems": 9108,
+ "itemListOrder": "https://schema.org/ItemListOrderAscending",
+ "itemListElement": [
+  {
+   "@context": "https://schema.org",
+   "@type": "ListItem",
+   "position": 1,
+   "item": {
+    "@type": "RealEstateListing",
+    "@id": "https://www.zumper.com/apartment-buildings/p203911/pearl-pine-financial-district-new-york-ny",
+    "url": "https://www.zumper.com/apartment-buildings/p203911/pearl-pine-financial-district-new-york-ny",
+    "name": "Pearl & Pine",
+    "datePosted": "2026-10-02",
+    "about": {
+     "@type": "ApartmentComplex",
+     "name": "Pearl & Pine",
+     "telephone": "(332) 587-0974",
+     "image": "https://img.zumpercdn.com/918579216/1280x960",
+     "amenityFeature": [
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Air Conditioning",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Hardwood Floor",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Microwave",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Dishwasher",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Garage Parking",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Elevator",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Swimming Pool",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Fitness Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Door Person",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Roof Deck",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Package Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Concierge Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Wheelchair Accessible",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Residents Lounge",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Outdoor Space",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Controlled Access",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Management",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Storage",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Bathrooms per unit",
+       "value": "1 to 2"
+      }
+     ],
+     "numberOfBedrooms": 3,
+     "petsAllowed": "No",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "180 Pearl Street",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "10005",
+      "addressCountry": "USA"
+     }
+    }
+   }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "ListItem",
+   "position": 2,
+   "item": {
+    "@type": "RealEstateListing",
+    "@id": "https://www.zumper.com/apartment-buildings/p1598893/westmark-gowanus-new-york-ny",
+    "url": "https://www.zumper.com/apartment-buildings/p1598893/westmark-gowanus-new-york-ny",
+    "name": "Westmark",
+    "datePosted": "2026-10-01",
+    "about": {
+     "@type": "ApartmentComplex",
+     "name": "Westmark",
+     "telephone": "(646) 572-4571",
+     "image": "https://img.zumpercdn.com/895146878/1280x960",
+     "amenityFeature": [
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Fitness Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Bathrooms per unit",
+       "value": "0 to 2"
+      }
+     ],
+     "numberOfBedrooms": 2,
+     "petsAllowed": "Yes",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "395 Carroll Street",
+      "addressLocality": "Brooklyn",
+      "addressRegion": "NY",
+      "postalCode": "11231",
+      "addressCountry": "USA"
+     }
+    }
+   }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "ListItem",
+   "position": 3,
+   "item": {
+    "@type": "RealEstateListing",
+    "@id": "https://www.zumper.com/apartment-buildings/p456715/parker-towers-rego-park-new-york-ny",
+    "url": "https://www.zumper.com/apartment-buildings/p456715/parker-towers-rego-park-new-york-ny",
+    "name": "Parker Towers",
+    "datePosted": "2026-10-01",
+    "about": {
+     "@type": "ApartmentComplex",
+     "name": "Parker Towers",
+     "telephone": "(516) 219-0597",
+     "image": "https://img.zumpercdn.com/434939807/1280x960",
+     "amenityFeature": [
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Dishwasher",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Hardwood Floor",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Furnished",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Walk-In Closets",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Microwave",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Bathrooms per unit",
+       "value": "1 to 2"
+      }
+     ],
+     "numberOfBedrooms": 4,
+     "petsAllowed": "No",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "10420 Queens Blvd",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "11375",
+      "addressCountry": "USA"
+     }
+    }
+   }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "ListItem",
+   "position": 4,
+   "item": {
+    "@type": "RealEstateListing",
+    "@id": "https://www.zumper.com/apartment-buildings/1818930/blueground-new-york-east-village-new-york-ny",
+    "url": "https://www.zumper.com/apartment-buildings/1818930/blueground-new-york-east-village-new-york-ny",
+    "name": "Blueground New York",
+    "datePosted": "2026-10-06",
+    "about": {
+     "@type": "ApartmentComplex",
+     "name": "Blueground New York",
+     "telephone": "(917) 451-6805",
+     "image": "https://img.zumpercdn.com/803782306/1280x960",
+     "amenityFeature": [
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Outdoor Space",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Air Conditioning",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Fitness Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Assigned Parking",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Fireplace",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Dishwasher",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Balcony",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Garden",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Furnished",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Central Heat",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Walk-In Closets",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "In-Unit Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "EV Charging",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Wi-Fi",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "TV",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Microwave",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Oven",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Storage",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Swimming Pool",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Roof Deck",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Residents Lounge",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Garage Parking",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Business Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Elevator",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Dry Cleaning Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Package Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Concierge Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Bathrooms per unit",
+       "value": "1 to 3"
+      }
+     ],
+     "numberOfBedrooms": 4,
+     "petsAllowed": "Yes",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "200 E 11th St",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "10003",
+      "addressCountry": "USA"
+     }
+    }
+   }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "ListItem",
+   "position": 5,
+   "item": {
+    "@type": "RealEstateListing",
+    "@id": "https://www.zumper.com/apartment-buildings/p1528434/the-highland-east-new-york-new-york-ny",
+    "url": "https://www.zumper.com/apartment-buildings/p1528434/the-highland-east-new-york-new-york-ny",
+    "name": "The Highland",
+    "datePosted": "2026-10-06",
+    "about": {
+     "@type": "ApartmentComplex",
+     "name": "The Highland",
+     "telephone": "(516) 619-3153",
+     "image": "https://img.zumpercdn.com/873992950/1280x960",
+     "amenityFeature": [
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Balcony",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Fitness Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Business Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Bathrooms per unit",
+       "value": "1 to 2"
+      }
+     ],
+     "numberOfBedrooms": 3,
+     "petsAllowed": "No",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "2840 Atlantic Avenue",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "11207",
+      "addressCountry": "USA"
+     }
+    }
+   }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "ListItem",
+   "position": 6,
+   "item": {
+    "@type": "RealEstateListing",
+    "@id": "https://www.zumper.com/apartment-buildings/p13074/300-east-39th-murray-hill-new-york-ny",
+    "url": "https://www.zumper.com/apartment-buildings/p13074/300-east-39th-murray-hill-new-york-ny",
+    "name": "300 East 39th",
+    "datePosted": "2026-10-06",
+    "about": {
+     "@type": "ApartmentComplex",
+     "name": "300 East 39th",
+     "telephone": "(914) 785-6734",
+     "image": "https://img.zumpercdn.com/279266474/1280x960",
+     "amenityFeature": [
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "In-Unit Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Air Conditioning",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Microwave",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Dishwasher",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Package Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Management",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Fitness Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Residents Lounge",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Concierge Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Elevator",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Roof Deck",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Outdoor Space",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Business Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Bathrooms per unit",
+       "value": "1 to 2"
+      }
+     ],
+     "numberOfBedrooms": 2,
+     "petsAllowed": "Yes",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "300 E 39th St",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "10016",
+      "addressCountry": "USA"
+     }
+    }
+   }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "ListItem",
+   "position": 7,
+   "item": {
+    "@type": "RealEstateListing",
+    "@id": "https://www.zumper.com/apartment-buildings/p12942/mantena-hell's-kitchen-new-york-ny",
+    "url": "https://www.zumper.com/apartment-buildings/p12942/mantena-hell's-kitchen-new-york-ny",
+    "name": "Mantena",
+    "datePosted": "2026-10-06",
+    "about": {
+     "@type": "ApartmentComplex",
+     "name": "Mantena",
+     "telephone": "(929) 209-9851",
+     "image": "https://img.zumpercdn.com/238066990/1280x960",
+     "amenityFeature": [
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Air Conditioning",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Dishwasher",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Balcony",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "In-Unit Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Microwave",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Outdoor Space",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Management",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Residents Lounge",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Elevator",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Roof Deck",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Package Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Concierge Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Fitness Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Bathrooms per unit",
+       "value": "1"
+      }
+     ],
+     "numberOfBedrooms": 1,
+     "petsAllowed": "Yes",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "431 W 37th St",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "10018",
+      "addressCountry": "USA"
+     }
+    }
+   }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "ListItem",
+   "position": 8,
+   "item": {
+    "@type": "RealEstateListing",
+    "@id": "https://www.zumper.com/apartment-buildings/p12816/the-brooklyner-downtown-brooklyn-brooklyn-ny",
+    "url": "https://www.zumper.com/apartment-buildings/p12816/the-brooklyner-downtown-brooklyn-brooklyn-ny",
+    "name": "The Brooklyner",
+    "datePosted": "2026-10-06",
+    "about": {
+     "@type": "ApartmentComplex",
+     "name": "The Brooklyner",
+     "telephone": "(516) 447-3788",
+     "image": "https://img.zumpercdn.com/238062546/1280x960",
+     "amenityFeature": [
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Air Conditioning",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Dishwasher",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "In-Unit Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Microwave",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Package Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Management",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Fitness Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Concierge Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Residents Lounge",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Elevator",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Roof Deck",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Storage",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Garage Parking",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Bathrooms per unit",
+       "value": "1 to 2"
+      }
+     ],
+     "numberOfBedrooms": 2,
+     "petsAllowed": "Yes",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "111 Lawrence St",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "11201",
+      "addressCountry": "USA"
+     }
+    }
+   }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "ListItem",
+   "position": 9,
+   "item": {
+    "@type": "RealEstateListing",
+    "@id": "https://www.zumper.com/apartment-buildings/p12685/600-washington-west-village-new-york-ny",
+    "url": "https://www.zumper.com/apartment-buildings/p12685/600-washington-west-village-new-york-ny",
+    "name": "600 Washington",
+    "datePosted": "2026-10-06",
+    "about": {
+     "@type": "ApartmentComplex",
+     "name": "600 Washington",
+     "telephone": "(929) 209-9915",
+     "image": "https://img.zumpercdn.com/256004965/1280x960",
+     "amenityFeature": [
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Air Conditioning",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Dishwasher",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Hardwood Floor",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Walk-In Closets",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Microwave",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Package Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Management",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Fitness Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Residents Lounge",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Concierge Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Elevator",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Business Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Garage Parking",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Bathrooms per unit",
+       "value": "1"
+      }
+     ],
+     "numberOfBedrooms": 1,
+     "petsAllowed": "Yes",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "600 Washington St",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "10014",
+      "addressCountry": "USA"
+     }
+    }
+   }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "ListItem",
+   "position": 10,
+   "item": {
+    "@type": "RealEstateListing",
+    "@id": "https://www.zumper.com/apartment-buildings/p13077/west-54th-hell's-kitchen-new-york-ny",
+    "url": "https://www.zumper.com/apartment-buildings/p13077/west-54th-hell's-kitchen-new-york-ny",
+    "name": "West 54th",
+    "datePosted": "2026-10-06",
+    "about": {
+     "@type": "ApartmentComplex",
+     "name": "West 54th",
+     "telephone": "(914) 313-3276",
+     "image": "https://img.zumpercdn.com/238068349/1280x960",
+     "amenityFeature": [
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Air Conditioning",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Dishwasher",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Hardwood Floor",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Walk-In Closets",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Microwave",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Outdoor Space",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Management",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Residents Lounge",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Garage Parking",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Elevator",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Roof Deck",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Package Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Concierge Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Fitness Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Bathrooms per unit",
+       "value": "1 to 2"
+      }
+     ],
+     "numberOfBedrooms": 2,
+     "petsAllowed": "Yes",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "505 W 54th St",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "10019",
+      "addressCountry": "USA"
+     }
+    }
+   }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "ListItem",
+   "position": 11,
+   "item": {
+    "@type": "RealEstateListing",
+    "@id": "https://www.zumper.com/apartment-buildings/p13070/303-east-83rd-upper-east-side-new-york-ny",
+    "url": "https://www.zumper.com/apartment-buildings/p13070/303-east-83rd-upper-east-side-new-york-ny",
+    "name": "303 East 83rd",
+    "datePosted": "2026-10-06",
+    "about": {
+     "@type": "ApartmentComplex",
+     "name": "303 East 83rd",
+     "telephone": "(646) 350-0691",
+     "image": "https://img.zumpercdn.com/792059396/1280x960",
+     "amenityFeature": [
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Air Conditioning",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Dishwasher",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Balcony",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Hardwood Floor",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Walk-In Closets",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Microwave",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Outdoor Space",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Management",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Residents Lounge",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Garage Parking",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Elevator",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Package Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Concierge Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Fitness Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Bathrooms per unit",
+       "value": "1 to 2"
+      }
+     ],
+     "numberOfBedrooms": 2,
+     "petsAllowed": "Yes",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "303 E 83rd St",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "10028",
+      "addressCountry": "USA"
+     }
+    }
+   }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "ListItem",
+   "position": 12,
+   "item": {
+    "@type": "RealEstateListing",
+    "@id": "https://www.zumper.com/apartment-buildings/p13045/murray-hill-tower-murray-hill-new-york-ny",
+    "url": "https://www.zumper.com/apartment-buildings/p13045/murray-hill-tower-murray-hill-new-york-ny",
+    "name": "Murray Hill Tower",
+    "datePosted": "2026-10-06",
+    "about": {
+     "@type": "ApartmentComplex",
+     "name": "Murray Hill Tower",
+     "telephone": "(516) 400-4358",
+     "image": "https://img.zumpercdn.com/314817954/1280x960",
+     "amenityFeature": [
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Air Conditioning",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Dishwasher",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Balcony",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Walk-In Closets",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Microwave",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Package Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Management",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Fitness Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Concierge Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Residents Lounge",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Elevator",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Roof Deck",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Swimming Pool",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Outdoor Space",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Garage Parking",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Bathrooms per unit",
+       "value": "1 to 2"
+      }
+     ],
+     "numberOfBedrooms": 2,
+     "petsAllowed": "Yes",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "245 E 40th St",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "10016",
+      "addressCountry": "USA"
+     }
+    }
+   }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "ListItem",
+   "position": 13,
+   "item": {
+    "@type": "RealEstateListing",
+    "@id": "https://www.zumper.com/apartment-buildings/p12970/180-montague-brooklyn-heights-brooklyn-ny",
+    "url": "https://www.zumper.com/apartment-buildings/p12970/180-montague-brooklyn-heights-brooklyn-ny",
+    "name": "180 Montague",
+    "datePosted": "2026-10-06",
+    "about": {
+     "@type": "ApartmentComplex",
+     "name": "180 Montague",
+     "telephone": "(914) 996-6019",
+     "image": "https://img.zumpercdn.com/238068307/1280x960",
+     "amenityFeature": [
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Air Conditioning",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Dishwasher",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "In-Unit Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Microwave",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Storage",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Outdoor Space",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Management",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Garage Parking",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Elevator",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Roof Deck",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Package Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Concierge Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Fitness Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Bathrooms per unit",
+       "value": "1"
+      }
+     ],
+     "numberOfBedrooms": 1,
+     "petsAllowed": "Yes",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "180 Montague St",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "11201",
+      "addressCountry": "USA"
+     }
+    }
+   }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "ListItem",
+   "position": 14,
+   "item": {
+    "@type": "RealEstateListing",
+    "@id": "https://www.zumper.com/apartment-buildings/p12902/ten23-chelsea-new-york-ny",
+    "url": "https://www.zumper.com/apartment-buildings/p12902/ten23-chelsea-new-york-ny",
+    "name": "Ten23",
+    "datePosted": "2026-10-06",
+    "about": {
+     "@type": "ApartmentComplex",
+     "name": "Ten23",
+     "telephone": "(929) 205-4766",
+     "image": "https://img.zumpercdn.com/238061529/1280x960",
+     "amenityFeature": [
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Outdoor Space",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Air Conditioning",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Dishwasher",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Balcony",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Walk-In Closets",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "In-Unit Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Microwave",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Package Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Management",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Fitness Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Concierge Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Elevator",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Roof Deck",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Storage",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Bathrooms per unit",
+       "value": "1"
+      }
+     ],
+     "numberOfBedrooms": 1,
+     "petsAllowed": "Yes",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "500 W 23rd St",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "10011",
+      "addressCountry": "USA"
+     }
+    }
+   }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "ListItem",
+   "position": 15,
+   "item": {
+    "@type": "RealEstateListing",
+    "@id": "https://www.zumper.com/apartment-buildings/p12841/longacre-house-hell's-kitchen-new-york-ny",
+    "url": "https://www.zumper.com/apartment-buildings/p12841/longacre-house-hell's-kitchen-new-york-ny",
+    "name": "Longacre House",
+    "datePosted": "2026-10-06",
+    "about": {
+     "@type": "ApartmentComplex",
+     "name": "Longacre House",
+     "telephone": "(516) 699-0333",
+     "image": "https://img.zumpercdn.com/238062284/1280x960",
+     "amenityFeature": [
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Air Conditioning",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Microwave",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Dishwasher",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Package Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Management",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Fitness Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Concierge Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Residents Lounge",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Elevator",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Roof Deck",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Outdoor Space",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Bathrooms per unit",
+       "value": "1"
+      }
+     ],
+     "numberOfBedrooms": 1,
+     "petsAllowed": "Yes",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "305 W 50th St",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "10019",
+      "addressCountry": "USA"
+     }
+    }
+   }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "ListItem",
+   "position": 16,
+   "item": {
+    "@type": "RealEstateListing",
+    "@id": "https://www.zumper.com/apartment-buildings/p12769/parc-77-upper-west-side-new-york-ny",
+    "url": "https://www.zumper.com/apartment-buildings/p12769/parc-77-upper-west-side-new-york-ny",
+    "name": "Parc 77",
+    "datePosted": "2026-10-06",
+    "about": {
+     "@type": "ApartmentComplex",
+     "name": "Parc 77",
+     "telephone": "(929) 205-4222",
+     "image": "https://img.zumpercdn.com/238061560/1280x960",
+     "amenityFeature": [
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Hardwood Floor",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Microwave",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Dishwasher",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Package Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Concierge Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Residents Lounge",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Elevator",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Outdoor Space",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Storage",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Business Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Bathrooms per unit",
+       "value": "1"
+      }
+     ],
+     "numberOfBedrooms": 1,
+     "petsAllowed": "Yes",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "50 W 77th St",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "10024",
+      "addressCountry": "USA"
+     }
+    }
+   }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "ListItem",
+   "position": 17,
+   "item": {
+    "@type": "RealEstateListing",
+    "@id": "https://www.zumper.com/apartment-buildings/p12651/71-broadway-financial-district-new-york-ny",
+    "url": "https://www.zumper.com/apartment-buildings/p12651/71-broadway-financial-district-new-york-ny",
+    "name": "71 Broadway",
+    "datePosted": "2026-10-06",
+    "about": {
+     "@type": "ApartmentComplex",
+     "name": "71 Broadway",
+     "telephone": "(516) 400-4336",
+     "image": "https://img.zumpercdn.com/238061293/1280x960",
+     "amenityFeature": [
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Air Conditioning",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Dishwasher",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Balcony",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Hardwood Floor",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Walk-In Closets",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Microwave",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Package Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Management",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Fitness Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Concierge Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Residents Lounge",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Elevator",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Roof Deck",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Storage",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Business Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Garage Parking",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Bathrooms per unit",
+       "value": "1 to 2"
+      }
+     ],
+     "numberOfBedrooms": 2,
+     "petsAllowed": "Yes",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "71 Broadway",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "10006",
+      "addressCountry": "USA"
+     }
+    }
+   }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "ListItem",
+   "position": 18,
+   "item": {
+    "@type": "RealEstateListing",
+    "@id": "https://www.zumper.com/apartment-buildings/p12643/hudson-crossing-hell's-kitchen-new-york-ny",
+    "url": "https://www.zumper.com/apartment-buildings/p12643/hudson-crossing-hell's-kitchen-new-york-ny",
+    "name": "Hudson Crossing",
+    "datePosted": "2026-10-06",
+    "about": {
+     "@type": "ApartmentComplex",
+     "name": "Hudson Crossing",
+     "telephone": "(914) 996-6704",
+     "image": "https://img.zumpercdn.com/238061218/1280x960",
+     "amenityFeature": [
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Air Conditioning",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Dishwasher",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Balcony",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Microwave",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Outdoor Space",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Management",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Garage Parking",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Elevator",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Roof Deck",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Package Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Concierge Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Fitness Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Bathrooms per unit",
+       "value": "1 to 2"
+      }
+     ],
+     "numberOfBedrooms": 2,
+     "petsAllowed": "Yes",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "400 W 37th St",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "10018",
+      "addressCountry": "USA"
+     }
+    }
+   }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "ListItem",
+   "position": 19,
+   "item": {
+    "@type": "RealEstateListing",
+    "@id": "https://www.zumper.com/apartment-buildings/p12935/beatrice-chelsea-new-york-ny",
+    "url": "https://www.zumper.com/apartment-buildings/p12935/beatrice-chelsea-new-york-ny",
+    "name": "Beatrice",
+    "datePosted": "2026-10-06",
+    "about": {
+     "@type": "ApartmentComplex",
+     "name": "Beatrice",
+     "telephone": "(516) 400-4392",
+     "image": "https://img.zumpercdn.com/238066791/1280x960",
+     "amenityFeature": [
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Outdoor Space",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Air Conditioning",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Dishwasher",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Balcony",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Hardwood Floor",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Walk-In Closets",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "In-Unit Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Microwave",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Package Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Management",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Fitness Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Residents Lounge",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Concierge Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Roof Deck",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Storage",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Bathrooms per unit",
+       "value": "1"
+      }
+     ],
+     "numberOfBedrooms": 1,
+     "petsAllowed": "Yes",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "105 W 29th St",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "10001",
+      "addressCountry": "USA"
+     }
+    }
+   }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "ListItem",
+   "position": 20,
+   "item": {
+    "@type": "RealEstateListing",
+    "@id": "https://www.zumper.com/apartment-buildings/p211593/atelier-williamsburg-new-york-ny",
+    "url": "https://www.zumper.com/apartment-buildings/p211593/atelier-williamsburg-new-york-ny",
+    "name": "Atelier",
+    "datePosted": "2026-10-05",
+    "about": {
+     "@type": "ApartmentComplex",
+     "name": "Atelier",
+     "telephone": "(516) 400-4406",
+     "image": "https://img.zumpercdn.com/238066847/1280x960",
+     "amenityFeature": [
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Air Conditioning",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Dishwasher",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Balcony",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Hardwood Floor",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "In-Unit Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Microwave",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Storage",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Swimming Pool",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Management",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Residents Lounge",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Garage Parking",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Elevator",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Roof Deck",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Package Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Concierge Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Fitness Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Bathrooms per unit",
+       "value": "1"
+      }
+     ],
+     "numberOfBedrooms": 0,
+     "petsAllowed": "Yes",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "239 N 9th St",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "11211",
+      "addressCountry": "USA"
+     }
+    }
+   }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "ListItem",
+   "position": 21,
+   "item": {
+    "@type": "RealEstateListing",
+    "@id": "https://www.zumper.com/apartment-buildings/p13152/170-amsterdam-upper-west-side-new-york-ny",
+    "url": "https://www.zumper.com/apartment-buildings/p13152/170-amsterdam-upper-west-side-new-york-ny",
+    "name": "170 Amsterdam",
+    "datePosted": "2026-10-05",
+    "about": {
+     "@type": "ApartmentComplex",
+     "name": "170 Amsterdam",
+     "telephone": "(914) 359-2979",
+     "image": "https://img.zumpercdn.com/238065805/1280x960",
+     "amenityFeature": [
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Outdoor Space",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Air Conditioning",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Dishwasher",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "In-Unit Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Microwave",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Package Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Management",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Fitness Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Residents Lounge",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Concierge Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Elevator",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Roof Deck",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Storage",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Business Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Bathrooms per unit",
+       "value": "1"
+      }
+     ],
+     "numberOfBedrooms": 1,
+     "petsAllowed": "Yes",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "170 Amsterdam Ave",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "10023",
+      "addressCountry": "USA"
+     }
+    }
+   }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "ListItem",
+   "position": 22,
+   "item": {
+    "@type": "RealEstateListing",
+    "@id": "https://www.zumper.com/apartment-buildings/p13140/prism-at-park-avenue-south-nomad-new-york-ny",
+    "url": "https://www.zumper.com/apartment-buildings/p13140/prism-at-park-avenue-south-nomad-new-york-ny",
+    "name": "Prism at Park Avenue South",
+    "datePosted": "2026-10-05",
+    "about": {
+     "@type": "ApartmentComplex",
+     "name": "Prism at Park Avenue South",
+     "telephone": "(917) 540-2461",
+     "image": "https://img.zumpercdn.com/238065971/1280x960",
+     "amenityFeature": [
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Air Conditioning",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Dishwasher",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Hardwood Floor",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Walk-In Closets",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "In-Unit Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Microwave",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Storage",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Swimming Pool",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Management",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Residents Lounge",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Elevator",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Roof Deck",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Package Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Concierge Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Fitness Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Bathrooms per unit",
+       "value": "1"
+      }
+     ],
+     "numberOfBedrooms": 1,
+     "petsAllowed": "Yes",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "50 E 28th St",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "10016",
+      "addressCountry": "USA"
+     }
+    }
+   }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "ListItem",
+   "position": 23,
+   "item": {
+    "@type": "RealEstateListing",
+    "@id": "https://www.zumper.com/apartment-buildings/p13080/west-96th-upper-west-side-new-york-ny",
+    "url": "https://www.zumper.com/apartment-buildings/p13080/west-96th-upper-west-side-new-york-ny",
+    "name": "West 96th",
+    "datePosted": "2026-10-05",
+    "about": {
+     "@type": "ApartmentComplex",
+     "name": "West 96th",
+     "telephone": "(929) 209-9360",
+     "image": "https://img.zumpercdn.com/238068480/1280x960",
+     "amenityFeature": [
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Air Conditioning",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Microwave",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Dishwasher",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Package Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Management",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Fitness Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Concierge Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Residents Lounge",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Elevator",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Roof Deck",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Outdoor Space",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Storage",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Business Center",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Bathrooms per unit",
+       "value": "1 to 2"
+      }
+     ],
+     "numberOfBedrooms": 2,
+     "petsAllowed": "Yes",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "750 Columbus Ave",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "10025",
+      "addressCountry": "USA"
+     }
+    }
+   }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "ListItem",
+   "position": 24,
+   "item": {
+    "@type": "RealEstateListing",
+    "@id": "https://www.zumper.com/apartment-buildings/p12771/parc-cameron-upper-west-side-new-york-ny",
+    "url": "https://www.zumper.com/apartment-buildings/p12771/parc-cameron-upper-west-side-new-york-ny",
+    "name": "Parc Cameron",
+    "datePosted": "2026-10-05",
+    "about": {
+     "@type": "ApartmentComplex",
+     "name": "Parc Cameron",
+     "telephone": "(914) 359-2937",
+     "image": "https://img.zumpercdn.com/238061577/1280x960",
+     "amenityFeature": [
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Air Conditioning",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Dishwasher",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Balcony",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Microwave",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Outdoor Space",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Elevator",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Package Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Concierge Service",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Bathrooms per unit",
+       "value": "1"
+      }
+     ],
+     "numberOfBedrooms": 1,
+     "petsAllowed": "Yes",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "41 W 86th St",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "10024",
+      "addressCountry": "USA"
+     }
+    }
+   }
+  },
+  {
+   "@context": "https://schema.org",
+   "@type": "ListItem",
+   "position": 25,
+   "item": {
+    "@type": "RealEstateListing",
+    "@id": "https://www.zumper.com/apartment-buildings/p12767/parc-coliseum-upper-west-side-new-york-ny",
+    "url": "https://www.zumper.com/apartment-buildings/p12767/parc-coliseum-upper-west-side-new-york-ny",
+    "name": "Parc Coliseum",
+    "datePosted": "2026-10-05",
+    "about": {
+     "@type": "ApartmentComplex",
+     "name": "Parc Coliseum",
+     "telephone": "(845) 535-4321",
+     "image": "https://img.zumpercdn.com/238061591/1280x960",
+     "amenityFeature": [
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "On-Site Laundry",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Air Conditioning",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Hardwood Floor",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Microwave",
+       "value": true
+      },
+      {
+       "@type": "LocationFeatureSpecification",
+       "name": "Bathrooms per unit",
+       "value": "1"
+      }
+     ],
+     "numberOfBedrooms": 1,
+     "petsAllowed": "Yes",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "228 W 71st St",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "10023",
+      "addressCountry": "USA"
+     }
+    }
+   }
+  }
+ ]
+}
