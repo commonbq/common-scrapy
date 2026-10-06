@@ -64,6 +64,7 @@ Working spiders running daily in production:
 | [`amazon_listing`](#amazon_listing-category) | Active | html | none detected | Amazon category listing spider (category shortcuts). | 22 (ok) | electronics, fashion, beauty, home-kitchen, toys-games, sports-outdoors, grocery, books | `{"asin":"B0DKDTBBF7","title":"2 Packs Electric Candle Lighters, Windproof Flameless USB Rechargeable Plasma Arc Long Lighter for Grill Fi...` |
 | [`amazon_search`](#amazon_search) | Active | html | none detected | Amazon keyword search spider. | 22 (ok) | - | `{"asin":"B0GHQRV71M","title":"16\" FHD IPS Laptop Computer - 16GB RAM 512GB SSD, Pentium N100(Beat to i3-1115G4, 4 Cores Up to 3.4GHz), B...` |
 | [`backcountry_listing`](#backcountry_listing) | Active | bootstrap | AWS WAF (datacenter + `bypass=5` both return the challenge; `residential=true` required) | Backcountry.com category/collection/brand listings from the server-rendered Next.js `#__NEXT_DATA__` PLP payload joined to `__APOLLO_STATE__`. | 84 (2 pages, `cat-mens-shirts`); 52 (`rc-mens-parkas`, natural last page) | 398 unique targets across 14 top-level menus / 110 sections from `backcountry_categories.py` | `{"category":"cat-mens-shirts","department":"Men","section":"Clothing","item_id":"FJRZ133","title":"Fjallglim Regular Shirt - Men's","brand":"Fjallraven","price":124.95,"original_price":null,"currency":"USD","in_stock":true,"source":"backcountry_next_data",...}` |
+| [`realtor_listing`](#realtor_listing) | Active | bootstrap | residential ScrapeOps + `bypass=5` required | Realtor.com sale listings from authoritative React Router streamed SSR loader state. | 42/page | 20 major US city markets from `realtor_categories.py` | `{"item_id":"9573322873","listing_id":"2994590506","title":"11201 Chalon Rd, Los Angeles, CA 90049","price":400000000,"source":"realtor_react_router_stream",...}` |
 | [`basspro_listing`](#basspro_listing) | Active | api | Akamai on the storefront legs (403 direct); the Coveo search leg must stay unproxied | Bass Pro Shops category listings from the storefront Coveo Headless search API (`platform.cloud.coveo.com/rest/search/v2`); taxonomy from the `__NEXT_DATA__.props.megaNavHtmlV2` mega-nav. | 96 (2 pages, rod-reel-combos) | 909 nav entries (11 departments / 116 level-2 / 782 level-3) | `{"category":"Fishing/Rod & Reel Combos","item_id":"3472884","title":"Bass Pro Shops Megacast Baitcast Combo","brand":"Bass Pro Shops","url":"https://www.basspro.com/p/bass-pro-shops-megacast-baitcast-combo","price":69.99,"availability":"InStock","source":"basspro_coveo"...}` |
 | [`bestbuy_listing`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | unknown (timeout/no verdict) | Best Buy listing via direct HTTP + Apollo bootstrap extraction. | 10 (skipped2) | laptops, tvs, headphones, monitors, cell-phones | `{"item_id":"6572184","title":"Samsung - Galaxy Book4 15.6\" FHD Laptop - Intel Core 7- 16GB Memory - 512GB SSD - Silver","url":"https://www.bestbuy.com/product/samsung-galaxy-bo...` |
 | [`bestbuy_search`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | unknown (timeout/no verdict) | Best Buy search via direct HTTP + Apollo bootstrap extraction. | 4 (skipped2) | - | `{"item_id":"6613879","title":"HP - 14\" Laptop - Intel Processor N150 2025 - 4GB Memory - 128GB UFS - Willow Green","url":"https://www.bestbuy.com/product/hp-14-laptop-intel-pro...` |
@@ -3542,4 +3543,29 @@ HTTPCACHE_ENABLED=False common-scrapy crawl backcountry_listing -a category=cat-
 
 ```json
 {"category":"cat-mens-shirts","department":"Men","section":"Clothing","item_id":"FJRZ133","title":"Fjallglim Regular Shirt - Men's","brand":"Fjallraven","product_type":"Product","url":"https://www.backcountry.com/fjallraven-fjallglim-regular-shirt-mens","image":"https://content.backcountry.com/images/items/160/FJR/FJRZ133/DANACHWH.jpg","image_alt":"Fjallglim Regular Shirt - Men's","color":"Dark Navy/Chalk White","colors":["Dark Navy/Chalk White","Dark Navy/Maroon","Wood Brown/Black Oak"],"color_option_count":3,"price":124.95,"original_price":null,"discount_percentage":null,"currency":"USD","in_stock":true,"stock_status":"IN_STOCK","availability":"in stock","rating":null,"reviews_count":0,"is_new_arrival":false,"is_exclusive":false,"is_past_season":true,"is_gearhead_pick":false,"past_season_colors":["DANACHWH","DARNAVMAR","WOBRBLOA"],"category_id":"bc-mens-shirts","page":1,"position":1,"total_count":1490,"last_page":36,"source":"backcountry_next_data","raw":{"node":{...},"apollo":{...},"container":"category","variations_on_sale":0,"total_variations":11}}
+```
+
+### realtor_listing
+
+`realtor_listing` uses one data direction: the server-rendered React Router stream
+in `window.__reactRouterContext.streamController.enqueue(...)`. It JSON-decodes the
+JavaScript strings, applies the `P<n>:` streamed patches to the indexed data table,
+and resolves `loaderData.srp.search.properties`. The tiny `__NEXT_DATA__` geo object,
+HTML property cards, and JSON-LD are not used as fallbacks; missing or malformed SRP
+state raises an explicit error.
+
+The bounded taxonomy contains 20 major US cities. Pagination uses canonical
+`/pg-N` routes, stops at `max_pages` or an empty authoritative result set, and
+deduplicates `property_id` across pages. Items retain listing/property IDs, status,
+address, price/range, beds, baths, floor and lot area, property type, coordinates,
+primary photo, broker/builder, flags, page position, and the raw structured record.
+
+Realtor.com's legal notice says automated scraping requires authorization. Confirm
+permission and applicable terms before production use. The real SSR response also
+requires the ScrapeOps residential route with bypass 5; the spider adds
+`residential=true` and `bypass=5` idempotently while preserving existing proxy
+options.
+
+```bash
+scrapy crawl realtor_listing -a category=los-angeles-ca -a max_pages=2 -s HTTPCACHE_ENABLED=False -O realtor.jsonl
 ```
