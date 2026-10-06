@@ -3976,3 +3976,22 @@ page totals, the authoritative raw entity, and `source=harborfreight_apollo_boot
 ```bash
 scrapy crawl harborfreight_listing -a category=Automotive -a max_pages=2 -s HTTPCACHE_ENABLED=False -O harborfreight.jsonl
 ```
+
+### chewy_listing
+
+`chewy_listing` reads one authoritative source: the product array in Chewy's
+server-rendered Next.js `__NEXT_DATA__` bootstrap state. It does not parse HTML
+product cards or JSON-LD. Its complete verified navigation taxonomy covers dogs,
+cats, and other pets; custom listing URLs are also supported. Pagination uses
+`?page=N` and stops at `recordSetTotal`, `max_pages`, an empty product page, or a
+page with no new product IDs.
+
+The ordered `FEED_EXPORT_FIELDS` include product identity, brand, canonical URL
+(including sponsored-link redirect normalization), image, displayed/current/list
+and Autoship prices, ratings, ad state, pagination metadata, provenance, raw
+hydration record, and timestamp. Missing or malformed hydration and non-200
+responses fail visibly. A working configured ScrapeOps proxy is expected.
+
+```bash
+scrapy crawl chewy_listing -a category=food-332 -a max_pages=1 -s HTTPCACHE_ENABLED=False -O chewy.jsonl
+```
