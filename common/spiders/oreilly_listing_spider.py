@@ -25,7 +25,7 @@ class OreillyListingSpider(BaseListingSpider):
             "category", "category_path", "item_id", "title", "url", "image",
             "price", "original_price", "sale_price", "currency", "availability",
             "brand", "line_code", "page", "position", "total_results",
-            "total_pages", "source", "raw",
+            "total_pages", "timestamp", "source", "raw",
         ],
     }
     headers = {
@@ -121,6 +121,7 @@ class OreillyListingSpider(BaseListingSpider):
             self._seen.add(item["item_id"])
             yield {"category": self.category or "custom", "category_path": response.meta.get("category_path"),
                    **item, "page": page, "position": position, "total_results": total_results,
-                   "total_pages": total_pages, "source": "oreilly_ost_bootstrap"}
+                   "total_pages": total_pages, "timestamp": self.get_timestamp(),
+                   "source": "oreilly_ost_bootstrap"}
         if page < min(total_pages, self.max_pages):
             yield self._request(response.url, page + 1, response.meta.get("category_path"))
