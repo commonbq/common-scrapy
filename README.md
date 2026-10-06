@@ -3818,3 +3818,21 @@ Every exported item also includes the crawl `timestamp`.
 ```bash
 scrapy crawl zillow_listing -a category=houston-tx -a max_pages=2 -s HTTPCACHE_ENABLED=False -O zillow.jsonl
 ```
+
+### harborfreight_listing
+
+`harborfreight_listing` reads products exclusively from the server-rendered
+`window.__APOLLO_STATE__` bootstrap. It resolves each `ROOT_QUERY.products(...)`
+reference to its normalized `SimpleProduct:<id>` entity; it does not parse HTML
+cards or JSON-LD. The 17 deterministic department aliases point to stable,
+product-bearing subcategories from Harbor Freight's public department navigation.
+
+Pagination uses Magento's `?p=N` URL and the hydrated `page_info.total_pages`.
+Items are deduplicated by SKU, and missing hydration, HTTP failures, and bot/proxy
+challenges fail visibly. The ordered `FEED_EXPORT_FIELDS` contract includes
+department context, IDs, title, brand, canonical URL, image, final/regular prices,
+page totals, the authoritative raw entity, and `source=harborfreight_apollo_bootstrap`.
+
+```bash
+scrapy crawl harborfreight_listing -a category=Automotive -a max_pages=2 -s HTTPCACHE_ENABLED=False -O harborfreight.jsonl
+```
