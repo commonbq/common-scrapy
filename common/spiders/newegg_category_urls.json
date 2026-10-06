@@ -1,0 +1,1784 @@
+{
+ "_source": "https://www.newegg.com/api/RolloverMenu?CountryCode=USA",
+ "departments": {
+  "3D Printing": {
+   "3D Printing": {
+    "3D Printer": "https://www.newegg.com/3D-Printer/SubCategory/ID-3266",
+    "3D Printers Accessories": "https://www.newegg.com/3D-Printers-Accessories/SubCategory/ID-3268",
+    "@url": "https://www.newegg.com/3D-Printing/Category/ID-340",
+    "Filaments & Resins": "https://www.newegg.com/Filament/SubCategory/ID-3267",
+    "Scanning & Engraving": {
+     "3D Scanners": "https://www.newegg.com/3D-Scanners/SubCategory/ID-3310",
+     "Laser Engravers": "https://www.newegg.com/Laser-Engraver-Accessories/SubCategory/ID-406"
+    }
+   }
+  },
+  "Appliances": {
+   "Appliances": {
+    "@url": "https://www.newegg.com/Appliances/Store/ID-13",
+    "Heating, Cooling & Air Quality": {
+     "@url": "https://www.newegg.com/Heating-Cooling-Air-Quality/Category/ID-98",
+     "Air Conditioners": "https://www.newegg.com/Air-Conditioners/SubCategory/ID-718",
+     "Air Filters": "https://www.newegg.com/Air-Filters/SubCategory/ID-765",
+     "Air Purifiers": "https://www.newegg.com/Air-Purifiers/SubCategory/ID-767",
+     "Chimenea & Outdoor Fireplaces": "https://www.newegg.com/Chimenea-Outdoor-Fireplaces/SubCategory/ID-2042",
+     "Dehumidifiers": "https://www.newegg.com/Dehumidifiers/SubCategory/ID-2795",
+     "Electric Fireplaces": "https://www.newegg.com/Electric-Fireplaces/SubCategory/ID-2806",
+     "Fans": "https://www.newegg.com/Fans/SubCategory/ID-766",
+     "Heaters": "https://www.newegg.com/Heaters/SubCategory/ID-764",
+     "Humidifiers": "https://www.newegg.com/Humidifiers/SubCategory/ID-569"
+    },
+    "Home Appliances": {
+     "@url": "https://www.newegg.com/Home-Appliances/Category/ID-39",
+     "Coffee Makers": {
+      "@url": "https://www.newegg.com/Coffee-Makers/Category/ID-267",
+      "Automatic Coffee Makers": "https://www.newegg.com/Automatic-Coffee-Makers/SubCategory/ID-659",
+      "Coffee Grinders": "https://www.newegg.com/Coffee-Grinders/SubCategory/ID-658",
+      "Combination Machines": "https://www.newegg.com/Combination-Machines/SubCategory/ID-3145",
+      "Espresso / Cappuccino Machines": "https://www.newegg.com/Espresso-Cappuccino-Machines/SubCategory/ID-662",
+      "Single-Serve Brewers & Pod Machines": "https://www.newegg.com/Single-Serve-Brewers-Pod-Machines/SubCategory/ID-3144"
+     },
+     "Cooking Appliances": {
+      "@url": "https://www.newegg.com/Cooking-Appliances/Category/ID-90",
+      "Built-in Ovens": "https://www.newegg.com/Built-in-Ovens/SubCategory/ID-653",
+      "Cooktops": "https://www.newegg.com/Cooktops/SubCategory/ID-645",
+      "Free Standing Ovens": "https://www.newegg.com/Free-Standing-Ovens/SubCategory/ID-2007",
+      "Range Hoods": "https://www.newegg.com/Range-Hoods/SubCategory/ID-1918",
+      "Stove / Cooktop Hoods": "https://www.newegg.com/Stove-Cooktop-Hoods/SubCategory/ID-2073"
+     },
+     "Induction Cookers": "https://www.newegg.com/Induction-Cookers/SubCategory/ID-713",
+     "Major Appliances": {
+      "@url": "https://www.newegg.com/Major-Appliances/Category/ID-351",
+      "Appliance Parts": "https://www.newegg.com/Appliance-Parts/SubCategory/ID-2071",
+      "Commercial Kitchen Appliances": "https://www.newegg.com/Commercial-Kitchen-Appliances/SubCategory/ID-3455",
+      "Dishwashers": "https://www.newegg.com/Dishwashers/SubCategory/ID-646",
+      "Dryers": "https://www.newegg.com/Dryers/SubCategory/ID-649",
+      "Washer & Dryer Accessories": "https://www.newegg.com/Washer-Dryer-Accessories/SubCategory/ID-2129",
+      "Washer & Dryer Combo": "https://www.newegg.com/Washer-Dryer-Combo/SubCategory/ID-650",
+      "Washers": "https://www.newegg.com/Washers/SubCategory/ID-648"
+     },
+     "Refrigerators": "https://www.newegg.com/Refrigerators/SubCategory/ID-647",
+     "Small Kitchen Appliances": {
+      "@url": "https://www.newegg.com/Small-Kitchen-Appliances/Category/ID-303",
+      "Blenders": "https://www.newegg.com/Blenders/SubCategory/ID-673",
+      "Bread Makers": "https://www.newegg.com/Bread-Makers/SubCategory/ID-674",
+      "Electric Skillets & Woks": "https://www.newegg.com/Electric-Skillets-Woks/SubCategory/ID-715",
+      "Fondue": "https://www.newegg.com/Fondue/SubCategory/ID-712",
+      "Food Mixers": "https://www.newegg.com/Food-Mixers/SubCategory/ID-724",
+      "Food Processors": "https://www.newegg.com/Food-Processors/SubCategory/ID-680",
+      "Fryers": "https://www.newegg.com/Fryers/SubCategory/ID-672",
+      "Ice Cream & Yogurt Makers": "https://www.newegg.com/Ice-Cream-Yogurt-Makers/SubCategory/ID-723",
+      "Ice Makers": "https://www.newegg.com/Ice-Makers/SubCategory/ID-663",
+      "Juicers & Extractors": "https://www.newegg.com/Juicers-Extractors/SubCategory/ID-676",
+      "Microwaves": "https://www.newegg.com/Microwaves/SubCategory/ID-652",
+      "Popcorn Poppers": "https://www.newegg.com/Popcorn-Poppers/SubCategory/ID-716",
+      "Pressure Cookers": "https://www.newegg.com/Pressure-Cookers/SubCategory/ID-714",
+      "Rice Cookers": "https://www.newegg.com/Rice-Cookers/SubCategory/ID-669",
+      "Rotisserie Ovens": "https://www.newegg.com/Rotisserie-Ovens/SubCategory/ID-655",
+      "Slow Cookers & Egg Cookers": "https://www.newegg.com/Slow-Cookers-Egg-Cookers/SubCategory/ID-677",
+      "Specialty Appliance": "https://www.newegg.com/Specialty-Appliance/SubCategory/ID-3160",
+      "Steamers": "https://www.newegg.com/Steamers/SubCategory/ID-679",
+      "Teakettles & Iced Tea Makers": "https://www.newegg.com/Teakettles-Iced-Tea-Makers/SubCategory/ID-660",
+      "Thermo Pots": "https://www.newegg.com/Thermo-Pots/SubCategory/ID-667",
+      "Toaster Ovens": "https://www.newegg.com/Toaster-Ovens/SubCategory/ID-664",
+      "Toasters": "https://www.newegg.com/Toasters/SubCategory/ID-665",
+      "Vacuum Sealers & Canisters": "https://www.newegg.com/Vacuum-Sealers-Canisters/SubCategory/ID-678",
+      "Waffles / Griddles / Pizzelles / Paninis": "https://www.newegg.com/Waffles-Griddles-Pizzelles-Paninis/SubCategory/ID-666",
+      "Warming Trays": "https://www.newegg.com/Warming-Trays/SubCategory/ID-725",
+      "Wine, Beer Coolers & Accessories": "https://www.newegg.com/Wine-Beer-Coolers-Accessories/SubCategory/ID-717"
+     },
+     "Water Filtration & Dispensers": "https://www.newegg.com/Water-Filtration-Dispensers/SubCategory/ID-668"
+    },
+    "Vacuums & Floor Care": {
+     "@url": "https://www.newegg.com/Vacuums-Floor-Care/Category/ID-497",
+     "Broom & Stick Vacuums": "https://www.newegg.com/Broom-Stick-Vacuums/SubCategory/ID-748",
+     "Canister Vacuums": "https://www.newegg.com/Canister-Vacuums/SubCategory/ID-743",
+     "Carpet & Steam Cleaners": "https://www.newegg.com/Carpet-Steam-Cleaners/SubCategory/ID-746",
+     "Hand Held Vacuums": "https://www.newegg.com/Hand-Held-Vacuums/SubCategory/ID-745",
+     "Robotic Vacuums": "https://www.newegg.com/Robotic-Vacuums/SubCategory/ID-747",
+     "Shop Vacs & Accessories": "https://www.newegg.com/Shop-Vacs-Accessories/SubCategory/ID-1867",
+     "Upright Vacuums": "https://www.newegg.com/Upright-Vacuums/SubCategory/ID-744",
+     "Vacuum Accessories": "https://www.newegg.com/Vacuum-Accessories/SubCategory/ID-749"
+    }
+   }
+  },
+  "Automotive & Tools": {
+   "Automotive & Tools": {
+    "@url": "https://www.newegg.com/Automotive-Tools/Store/ID-192",
+    "Automotive": {
+     "Automotive Tools": {
+      "@url": "https://www.newegg.com/Automotive-Tools/Category/ID-732",
+      "Air Conditioning Tools & Equipment": "https://www.newegg.com/Air-Conditioning-Tools-Equipment/SubCategory/ID-2740",
+      "Applicators": "https://www.newegg.com/Applicators/SubCategory/ID-2741",
+      "Brake Repair Tools": "https://www.newegg.com/Brake-Repair-Tools/SubCategory/ID-2743",
+      "Brake Tools": "https://www.newegg.com/Brake-Tools/SubCategory/ID-2744",
+      "Clutch Alignments Tools": "https://www.newegg.com/Clutch-Alignments-Tools/SubCategory/ID-2745",
+      "Cooling & Water Pump Tools": "https://www.newegg.com/Cooling-Water-Pump-Tools/SubCategory/ID-2746",
+      "Drive Train Tools": "https://www.newegg.com/Drive-Train-Tools/SubCategory/ID-2748",
+      "Electrical System Tools": "https://www.newegg.com/Electrical-System-Tools/SubCategory/ID-2749",
+      "Engine Tools": "https://www.newegg.com/Engine-Tools/SubCategory/ID-2750",
+      "Flywheel Locks": "https://www.newegg.com/Flywheel-Locks/SubCategory/ID-2751",
+      "Fuel System Tools": "https://www.newegg.com/Fuel-System-Tools/SubCategory/ID-2752",
+      "Hand Tools, Wrenches & Socket Sets": "https://www.newegg.com/Hand-Tools-Wrenches-Socket-Sets/SubCategory/ID-2607",
+      "Hose Repair Kits": "https://www.newegg.com/Hose-Repair-Kits/SubCategory/ID-2755",
+      "Jump Starters, Battery Chargers & Portable Power": "https://www.newegg.com/Jump-Starters-Battery-Chargers-Portable-Power/SubCategory/ID-2757",
+      "Lockout Kits": "https://www.newegg.com/Lockout-Kits/SubCategory/ID-2758",
+      "Muffler Tools": "https://www.newegg.com/Muffler-Tools/SubCategory/ID-2760",
+      "Oil System Tools": "https://www.newegg.com/Oil-System-Tools/SubCategory/ID-2761",
+      "Oxygen Sensor Removers": "https://www.newegg.com/Oxygen-Sensor-Removers/SubCategory/ID-2762",
+      "Parts Washers": "https://www.newegg.com/Parts-Washers/SubCategory/ID-2763",
+      "Spark Plug & Ignition Tools": "https://www.newegg.com/Spark-Plug-Ignition-Tools/SubCategory/ID-2766",
+      "Steering & Suspension Tools": "https://www.newegg.com/Steering-Suspension-Tools/SubCategory/ID-2767",
+      "Strut Compressors": "https://www.newegg.com/Strut-Compressors/SubCategory/ID-2768",
+      "Thread Repair Kits": "https://www.newegg.com/Thread-Repair-Kits/SubCategory/ID-2769",
+      "Tire & Wheel Tools": "https://www.newegg.com/Tire-Wheel-Tools/SubCategory/ID-2770",
+      "Tire Air Compressors & Inflators": "https://www.newegg.com/Tire-Air-Compressors-Inflators/SubCategory/ID-2771",
+      "Windshield Wiper Tools": "https://www.newegg.com/Windshield-Wiper-Tools/SubCategory/ID-2777"
+     },
+     "Car Care Products": {
+      "@url": "https://www.newegg.com/Car-Care-Products/Category/ID-723",
+      "Cleaning Kits": "https://www.newegg.com/Cleaning-Kits/SubCategory/ID-2600",
+      "Exterior Care": "https://www.newegg.com/Exterior-Care/SubCategory/ID-2601",
+      "Finishing": "https://www.newegg.com/Finishing/SubCategory/ID-2602",
+      "Glass Care": "https://www.newegg.com/Glass-Care/SubCategory/ID-2603",
+      "Interior Care": "https://www.newegg.com/Interior-Care/SubCategory/ID-2604",
+      "Solvents": "https://www.newegg.com/Solvents/SubCategory/ID-2605",
+      "Sun Protection": "https://www.newegg.com/Sun-Protection/SubCategory/ID-2662",
+      "Tire & Wheel Care": "https://www.newegg.com/Tire-Wheel-Care/SubCategory/ID-2606",
+      "Undercoatings": "https://www.newegg.com/Undercoatings/SubCategory/ID-2608"
+     },
+     "Exterior Accessories": {
+      "@url": "https://www.newegg.com/Exterior-Accessories/Category/ID-724",
+      "Antenna Toppers": "https://www.newegg.com/Antenna-Toppers/SubCategory/ID-2614",
+      "Antennas & Accessories": "https://www.newegg.com/Antennas-Accessories/SubCategory/ID-3147",
+      "Bumpers & Bumper Accessories": "https://www.newegg.com/Bumpers-Bumper-Accessories/SubCategory/ID-2615",
+      "Cargo Management": "https://www.newegg.com/Cargo-Management/SubCategory/ID-2616",
+      "Chrome Trim & Accessories": "https://www.newegg.com/Chrome-Trim-Accessories/SubCategory/ID-2617",
+      "Covers - Exterior": "https://www.newegg.com/Covers-Exterior/SubCategory/ID-2618",
+      "Decals & Bumper Stickers": "https://www.newegg.com/Decals-Bumper-Stickers/SubCategory/ID-2619",
+      "Deflectors & Shields": "https://www.newegg.com/Deflectors-Shields/SubCategory/ID-2620",
+      "Fender Flares & Trim": "https://www.newegg.com/Fender-Flares-Trim/SubCategory/ID-2621",
+      "Grilles & Grille Guards": "https://www.newegg.com/Grilles-Grille-Guards/SubCategory/ID-2624",
+      "Horns & Accessories": "https://www.newegg.com/Horns-Accessories/SubCategory/ID-2626",
+      "Mirrors - Exterior": "https://www.newegg.com/Mirrors-Exterior/SubCategory/ID-2629",
+      "Roll Bars & Roll Cages": "https://www.newegg.com/Roll-Bars-Roll-Cages/SubCategory/ID-2630",
+      "Running Boards & Steps": "https://www.newegg.com/Running-Boards-Steps/SubCategory/ID-2631",
+      "Safety - Exterior": "https://www.newegg.com/Safety-Exterior/SubCategory/ID-2632",
+      "Snow & Ice": "https://www.newegg.com/Snow-Ice/SubCategory/ID-2633",
+      "Window Louvers": "https://www.newegg.com/Window-Louvers/SubCategory/ID-2638"
+     },
+     "Fluids and Lubricants": {
+      "@url": "https://www.newegg.com/Fluids-and-Lubricants/Category/ID-727",
+      "Additives": "https://www.newegg.com/Additives/SubCategory/ID-2667",
+      "Antifreezes & Coolants": "https://www.newegg.com/Antifreezes-Coolants/SubCategory/ID-2668",
+      "Body Repair & Restoration Chemicals": "https://www.newegg.com/Body-Repair-Restoration-Chemicals/SubCategory/ID-2669",
+      "Brake Fluids": "https://www.newegg.com/Brake-Fluids/SubCategory/ID-2670",
+      "Cleaners": "https://www.newegg.com/Cleaners/SubCategory/ID-2671",
+      "Flushes": "https://www.newegg.com/Flushes/SubCategory/ID-2672",
+      "Grease & Lubricants": "https://www.newegg.com/Grease-Lubricants/SubCategory/ID-2673",
+      "Oils": "https://www.newegg.com/Oils/SubCategory/ID-2674",
+      "Power Steering Fluids": "https://www.newegg.com/Power-Steering-Fluids/SubCategory/ID-2675",
+      "Radiator Conditioners & Protectants": "https://www.newegg.com/Radiator-Conditioners-Protectants/SubCategory/ID-2676",
+      "Refrigerants": "https://www.newegg.com/Refrigerants/SubCategory/ID-2677",
+      "Sealers": "https://www.newegg.com/Sealers/SubCategory/ID-2678",
+      "Transmission Fluids": "https://www.newegg.com/Transmission-Fluids/SubCategory/ID-2679",
+      "Windshield Washer Fluids": "https://www.newegg.com/Windshield-Washer-Fluids/SubCategory/ID-2680",
+      "Winter Products": "https://www.newegg.com/Winter-Products/SubCategory/ID-2681"
+     },
+     "Interior Accessories": {
+      "@url": "https://www.newegg.com/Interior-Accessories/Category/ID-725",
+      "Air Fresheners": "https://www.newegg.com/Air-Fresheners/SubCategory/ID-2639",
+      "Automobilia": "https://www.newegg.com/Automobilia/SubCategory/ID-2643",
+      "Consoles & Organizers": "https://www.newegg.com/Consoles-Organizers/SubCategory/ID-2645",
+      "Covers - Interior": "https://www.newegg.com/Covers-Interior/SubCategory/ID-2646",
+      "Cup Holders": "https://www.newegg.com/Cup-Holders/SubCategory/ID-2647",
+      "Floor Mats & Cargo Liners": "https://www.newegg.com/Floor-Mats-Cargo-Liners/SubCategory/ID-2649",
+      "Gauges": "https://www.newegg.com/Gauges/SubCategory/ID-2651",
+      "Grab Handles": "https://www.newegg.com/Grab-Handles/SubCategory/ID-2652",
+      "Insulation & Noise Control": "https://www.newegg.com/Insulation-Noise-Control/SubCategory/ID-2653",
+      "Lighting & Electrical": "https://www.newegg.com/Lighting-Electrical/SubCategory/ID-2718",
+      "Pedals & Pedal Accessories": "https://www.newegg.com/Pedals-Pedal-Accessories/SubCategory/ID-2656",
+      "Safety - Interior": "https://www.newegg.com/Safety-Interior/SubCategory/ID-2658",
+      "Seat Covers & Accessories": "https://www.newegg.com/Seat-Covers-Accessories/SubCategory/ID-2659",
+      "Shift Boots & Knobs": "https://www.newegg.com/Shift-Boots-Knobs/SubCategory/ID-2660",
+      "Steering Wheels & Accessories": "https://www.newegg.com/Steering-Wheels-Accessories/SubCategory/ID-2661"
+     },
+     "Paint, Body and Trim Product": {
+      "@url": "https://www.newegg.com/Paint-Body-and-Trim-Product/Category/ID-728",
+      "Body": "https://www.newegg.com/Body/SubCategory/ID-2682",
+      "Body Repair Tools": "https://www.newegg.com/Body-Repair-Tools/SubCategory/ID-2742",
+      "Body-Roof Top, Doors, Trunk & Accessories": "https://www.newegg.com/Body-Roof-Top-Doors-Trunk-Accessories/SubCategory/ID-3012"
+     },
+     "Performance Parts & Accessories": {
+      "@url": "https://www.newegg.com/Performance-Parts-Accessories/Category/ID-729",
+      "Drive Train": "https://www.newegg.com/Drive-Train/SubCategory/ID-2690",
+      "Engines & Engine Parts - Performance": "https://www.newegg.com/Engines-Engine-Parts-Performance/SubCategory/ID-2693",
+      "Exhaust System": "https://www.newegg.com/Exhaust-System/SubCategory/ID-2694",
+      "Fuel System - Performance": "https://www.newegg.com/Fuel-System-Performance/SubCategory/ID-2696",
+      "Gaskets - Performance": "https://www.newegg.com/Gaskets-Performance/SubCategory/ID-2697",
+      "Ignition & Electrical": "https://www.newegg.com/Ignition-Electrical/SubCategory/ID-2698",
+      "Motors - Performance": "https://www.newegg.com/Motors-Performance/SubCategory/ID-2699",
+      "Performance Lighting": "https://www.newegg.com/Performance-Lighting/SubCategory/ID-2700",
+      "Steering System - Performance": "https://www.newegg.com/Steering-System-Performance/SubCategory/ID-2703",
+      "Switches & Relays - Performance": "https://www.newegg.com/Switches-Relays-Performance/SubCategory/ID-2704",
+      "Windshield Wipers & Washers - Performance": "https://www.newegg.com/Windshield-Wipers-Washers-Performance/SubCategory/ID-2705"
+     },
+     "Replacement Parts": {
+      "@url": "https://www.newegg.com/Replacement-Parts/Category/ID-730",
+      "Batteries & Accessories - Replacement": "https://www.newegg.com/Batteries-Accessories-Replacement/SubCategory/ID-2706",
+      "Bearings & Seals - Replacement": "https://www.newegg.com/Bearings-Seals-Replacement/SubCategory/ID-2707",
+      "Brake System - Replacement": "https://www.newegg.com/Brake-System-Replacement/SubCategory/ID-2709",
+      "Cables - Automotive": "https://www.newegg.com/Cables-Automotive/SubCategory/ID-2599",
+      "Engine Cooling & Climate Control": "https://www.newegg.com/Engine-Cooling-Climate-Control/SubCategory/ID-2711",
+      "Engines & Engine Parts  - Replacement": "https://www.newegg.com/Engines-Engine-Parts-Replacement/SubCategory/ID-2712",
+      "Exhaust & Emissions": "https://www.newegg.com/Exhaust-Emissions/SubCategory/ID-2713",
+      "Filters  - Replacement": "https://www.newegg.com/Filters-Replacement/SubCategory/ID-2714",
+      "Fuel System - Replacement": "https://www.newegg.com/Fuel-System-Replacement/SubCategory/ID-2715",
+      "Hoses, Couplers & Fittings": "https://www.newegg.com/Hoses-Couplers-Fittings/SubCategory/ID-3520",
+      "Shocks, Struts & Suspension - Replacement": "https://www.newegg.com/Shocks-Struts-Suspension-Replacement/SubCategory/ID-2721",
+      "Steering System - Replacement": "https://www.newegg.com/Steering-System-Replacement/SubCategory/ID-2723",
+      "Switches & Relays - Replacement": "https://www.newegg.com/Switches-Relays-Replacement/SubCategory/ID-2724",
+      "Transmission & Drive Train": "https://www.newegg.com/Transmission-Drive-Train/SubCategory/ID-2725",
+      "Windshield Wipers & Washers - Replacement": "https://www.newegg.com/Windshield-Wipers-Washers-Replacement/SubCategory/ID-2726"
+     },
+     "Tires and Wheels": {
+      "@url": "https://www.newegg.com/Tires-and-Wheels/Category/ID-733",
+      "Accessories - Wheels": "https://www.newegg.com/Accessories-Wheels/SubCategory/ID-2778",
+      "Hubcaps & Covers": "https://www.newegg.com/Hubcaps-Covers/SubCategory/ID-2779",
+      "Rim Screws": "https://www.newegg.com/Rim-Screws/SubCategory/ID-2780",
+      "Spacers": "https://www.newegg.com/Spacers/SubCategory/ID-2781",
+      "Spare Tire Carriers": "https://www.newegg.com/Spare-Tire-Carriers/SubCategory/ID-2782",
+      "Tire & Wheel Assemblies": "https://www.newegg.com/Tire-Wheel-Assemblies/SubCategory/ID-2783",
+      "Tires": "https://www.newegg.com/Tires/SubCategory/ID-2784",
+      "Wheels": "https://www.newegg.com/Wheels/SubCategory/ID-2786"
+     }
+    },
+    "Car Electronics": {
+     "@url": "https://www.newegg.com/Car-Electronics/Category/ID-283",
+     "Automotive Specialty Lighting": "https://www.newegg.com/Automotive-Specialty-Lighting/SubCategory/ID-2628",
+     "Car Alarms, Security & Remote Start": "https://www.newegg.com/Car-Alarms-Security-Remote-Start/SubCategory/ID-2640",
+     "Car Amplifiers": "https://www.newegg.com/Car-Amplifiers/SubCategory/ID-559",
+     "Car Speakers": "https://www.newegg.com/Car-Speakers/SubCategory/ID-558",
+     "Car Subwoofers": "https://www.newegg.com/Car-Subwoofers/SubCategory/ID-708",
+     "GPS Navigation": "https://www.newegg.com/GPS-Navigation/SubCategory/ID-357",
+     "Head Units & Receivers": "https://www.newegg.com/Head-Units-Receivers/SubCategory/ID-557",
+     "Onboard Camera Systems": "https://www.newegg.com/Onboard-Camera-Systems/SubCategory/ID-768"
+    },
+    "Powersports & RV": {
+     "Aviation": {
+      "@url": "https://www.newegg.com/Aviation/Category/ID-392",
+      "Aviation GPS": "https://www.newegg.com/Aviation-GPS/SubCategory/ID-3654",
+      "Aviation Supplies": "https://www.newegg.com/Aviation-Supplies/SubCategory/ID-3655",
+      "Avionics": "https://www.newegg.com/Avionics/SubCategory/ID-3656",
+      "Headsets / Intercoms": "https://www.newegg.com/Headsets-Intercoms/SubCategory/ID-3657",
+      "Instruments": "https://www.newegg.com/Instruments/SubCategory/ID-3658"
+     },
+     "Marine": {
+      "@url": "https://www.newegg.com/Marine/Category/ID-426",
+      "Distress Radio Beacons": "https://www.newegg.com/Distress-Radio-Beacons/SubCategory/ID-3002",
+      "Dock Equipment & Drums": "https://www.newegg.com/Dock-Equipment-Drums/SubCategory/ID-3479",
+      "Dock Winches": "https://www.newegg.com/Dock-Winches/SubCategory/ID-2987",
+      "Docking & Mooring Accessories": "https://www.newegg.com/Docking-Mooring-Accessories/SubCategory/ID-2985",
+      "Life Jackets": "https://www.newegg.com/Life-Jackets/SubCategory/ID-2979",
+      "Life Rings": "https://www.newegg.com/Life-Rings/SubCategory/ID-2995",
+      "Marine Electronics": "https://www.newegg.com/Marine-Electronics/SubCategory/ID-769",
+      "Marine Plumbing": "https://www.newegg.com/Marine-Plumbing/SubCategory/ID-3502",
+      "Misc Emergency & Rescue": "https://www.newegg.com/Misc-Emergency-Rescue/SubCategory/ID-2996",
+      "Outboard Motor Accessories": "https://www.newegg.com/Outboard-Motor-Accessories/SubCategory/ID-2966"
+     },
+     "Marine Parts": {
+      "@url": "https://www.newegg.com/Marine-Parts/Category/ID-874",
+      "Boating Maintenance": "https://www.newegg.com/Boating-Maintenance/SubCategory/ID-3594",
+      "Complete Motors": "https://www.newegg.com/Complete-Motors/SubCategory/ID-3596",
+      "Electrical Systems": "https://www.newegg.com/Electrical-Systems/SubCategory/ID-3592",
+      "Engine Parts": "https://www.newegg.com/Engine-Parts/SubCategory/ID-3591",
+      "Fuel System & Air Intake": "https://www.newegg.com/Fuel-System-Air-Intake/SubCategory/ID-3588",
+      "Ignition, Starting & Electrical Engine Parts": "https://www.newegg.com/Ignition-Starting-Electrical-Engine-Parts/SubCategory/ID-3589",
+      "Sailboat Equipment": "https://www.newegg.com/Sailboat-Equipment/SubCategory/ID-3595"
+     },
+     "Powersports": {
+      "@url": "https://www.newegg.com/Powersports/Category/ID-270",
+      "Air Intake & Fuel Systems": "https://www.newegg.com/Air-Intake-Fuel-Systems/SubCategory/ID-3126",
+      "Antitheft": "https://www.newegg.com/Antitheft/SubCategory/ID-3139",
+      "Batteries & Accessories": "https://www.newegg.com/Batteries-Accessories/SubCategory/ID-3128",
+      "Batteries and Ignition": "https://www.newegg.com/Batteries-and-Ignition/SubCategory/ID-3129",
+      "Cargo Management, Racks & Extensions": "https://www.newegg.com/Cargo-Management-Racks-Extensions/SubCategory/ID-3134",
+      "Controls": "https://www.newegg.com/Controls/SubCategory/ID-3113",
+      "Decals & Graphics": "https://www.newegg.com/Decals-Graphics/SubCategory/ID-3117",
+      "Engine Parts & Accessories": "https://www.newegg.com/Engine-Parts-Accessories/SubCategory/ID-3132",
+      "Fairings, Fenders & Covers": "https://www.newegg.com/Fairings-Fenders-Covers/SubCategory/ID-3118",
+      "Footrest": "https://www.newegg.com/Footrest/SubCategory/ID-3114",
+      "Gas & Oil Tanks": "https://www.newegg.com/Gas-Oil-Tanks/SubCategory/ID-3115",
+      "Gauges & Dashes": "https://www.newegg.com/Gauges-Dashes/SubCategory/ID-3136",
+      "Handlebar & Grips": "https://www.newegg.com/Handlebar-Grips/SubCategory/ID-3111",
+      "Helmets & Accessories": "https://www.newegg.com/Helmets-Accessories/SubCategory/ID-3153",
+      "Hitching & Towing": "https://www.newegg.com/Hitching-Towing/SubCategory/ID-3135",
+      "License Plate Covers & Frames": "https://www.newegg.com/License-Plate-Covers-Frames/SubCategory/ID-3137",
+      "Lighting & Electrical": "https://www.newegg.com/Lighting-Electrical/SubCategory/ID-3130",
+      "Mini Bikes and Quads": "https://www.newegg.com/Mini-Bikes-and-Quads/SubCategory/ID-2666",
+      "Mirrors": "https://www.newegg.com/Mirrors/SubCategory/ID-3122",
+      "Protective Eyewear": "https://www.newegg.com/Protective-Eyewear/SubCategory/ID-3156",
+      "Seats": "https://www.newegg.com/Seats/SubCategory/ID-3124",
+      "Tires": "https://www.newegg.com/Tires/SubCategory/ID-3727",
+      "Wheels": "https://www.newegg.com/Wheels/SubCategory/ID-3728",
+      "Windshields": "https://www.newegg.com/Windshields/SubCategory/ID-3116"
+     },
+     "RV Parts and Accessories": {
+      "@url": "https://www.newegg.com/RV-Parts-and-Accessories/Category/ID-731",
+      "Awnings, Screens & Accessories": "https://www.newegg.com/Awnings-Screens-Accessories/SubCategory/ID-2728",
+      "Cleaning, Storage & Maintenance": "https://www.newegg.com/Cleaning-Storage-Maintenance/SubCategory/ID-2730",
+      "Electronics": "https://www.newegg.com/Electronics/SubCategory/ID-2737",
+      "Engine & Chassis Parts": "https://www.newegg.com/Engine-Chassis-Parts/SubCategory/ID-2731",
+      "Furnishings & Appliances": "https://www.newegg.com/Furnishings-Appliances/SubCategory/ID-2729",
+      "Heating, Ventilation & Air Conditioning": "https://www.newegg.com/Heating-Ventilation-Air-Conditioning/SubCategory/ID-2727",
+      "Plumbing": "https://www.newegg.com/Plumbing/SubCategory/ID-2739",
+      "Power & Electrical": "https://www.newegg.com/Power-Electrical/SubCategory/ID-2735",
+      "RV & Trailer Covers": "https://www.newegg.com/RV-Trailer-Covers/SubCategory/ID-2736",
+      "RV Lighting": "https://www.newegg.com/RV-Lighting/SubCategory/ID-2738",
+      "RV Plumbing": "https://www.newegg.com/RV-Plumbing/SubCategory/ID-3503",
+      "Repair Manuals": "https://www.newegg.com/Repair-Manuals/SubCategory/ID-3519"
+     },
+     "Riding Gear & Body Armor": {
+      "@url": "https://www.newegg.com/Riding-Gear-Body-Armor/Category/ID-346",
+      "Body Armor & Accessories": "https://www.newegg.com/Body-Armor-Accessories/SubCategory/ID-3155",
+      "Boots": "https://www.newegg.com/Boots/SubCategory/ID-3150"
+     },
+     "Trailer Parts": {
+      "@url": "https://www.newegg.com/Trailer-Parts/Category/ID-439",
+      "Hitching & Towing": "https://www.newegg.com/Hitching-Towing/SubCategory/ID-2732",
+      "Jacks & Leveling": "https://www.newegg.com/Jacks-Leveling/SubCategory/ID-2733",
+      "Towing Products & Winches": "https://www.newegg.com/Towing-Products-Winches/SubCategory/ID-2635",
+      "Trailer Accessories": "https://www.newegg.com/Trailer-Accessories/SubCategory/ID-2636",
+      "Truck Bed & Tailgate Accessories": "https://www.newegg.com/Truck-Bed-Tailgate-Accessories/SubCategory/ID-2637"
+     }
+    },
+    "Tools & Equipment": {
+     "Garage Storage": {
+      "@url": "https://www.newegg.com/Garage-Storage/Category/ID-74",
+      "Closet Organization & Shelving": "https://www.newegg.com/Closet-Organization-Shelving/SubCategory/ID-2099",
+      "Garage & Shop": "https://www.newegg.com/Garage-Shop/SubCategory/ID-2753",
+      "Tool Storage": "https://www.newegg.com/Tool-Storage/SubCategory/ID-3517"
+     },
+     "Generators & Electrical Supplies": {
+      "@url": "https://www.newegg.com/Generators-Electrical-Supplies/Category/ID-419",
+      "Circuit Breakers & Line Protection": "https://www.newegg.com/Circuit-Breakers-Line-Protection/SubCategory/ID-3438",
+      "Electrical Outlet Receptacles": "https://www.newegg.com/Electrical-Outlet-Receptacles/SubCategory/ID-3441",
+      "Electrical Timer Switches": "https://www.newegg.com/Electrical-Timer-Switches/SubCategory/ID-3444",
+      "Fuses": "https://www.newegg.com/Fuses/SubCategory/ID-3436",
+      "Generator Parts & Accessories": "https://www.newegg.com/Generator-Parts-Accessories/SubCategory/ID-2031",
+      "Industrial Generator Accessories": "https://www.newegg.com/Industrial-Generator-Accessories/SubCategory/ID-3443",
+      "Industrial Generators": "https://www.newegg.com/Industrial-Generators/SubCategory/ID-3442",
+      "Industrial Power Supplies": "https://www.newegg.com/Industrial-Power-Supplies/SubCategory/ID-3521",
+      "Relays": "https://www.newegg.com/Relays/SubCategory/ID-3445",
+      "Safety Switches & Disconnects": "https://www.newegg.com/Safety-Switches-Disconnects/SubCategory/ID-3439",
+      "Transformers": "https://www.newegg.com/Transformers/SubCategory/ID-3440"
+     },
+     "HVAC": {
+      "@url": "https://www.newegg.com/HVAC/Category/ID-412",
+      "AC & Refrigeration Parts & Accessories": "https://www.newegg.com/AC-Refrigeration-Parts-Accessories/SubCategory/ID-3453",
+      "Air Distribution, Duct Work & Ventilation": "https://www.newegg.com/Air-Distribution-Duct-Work-Ventilation/SubCategory/ID-3452",
+      "Air Treatment": "https://www.newegg.com/Air-Treatment/SubCategory/ID-3449",
+      "Blowers": "https://www.newegg.com/Blowers/SubCategory/ID-3450",
+      "Commercial Air Conditioning": "https://www.newegg.com/Commercial-Air-Conditioning/SubCategory/ID-3447",
+      "Commercial Heating": "https://www.newegg.com/Commercial-Heating/SubCategory/ID-3446",
+      "HVAC Controls": "https://www.newegg.com/HVAC-Controls/SubCategory/ID-3448",
+      "Industrial Cooling Fans": "https://www.newegg.com/Industrial-Cooling-Fans/SubCategory/ID-3451",
+      "Radiators, Boilers & Accessories": "https://www.newegg.com/Radiators-Boilers-Accessories/SubCategory/ID-3454",
+      "Thermostats": "https://www.newegg.com/Thermostats/SubCategory/ID-3456"
+     },
+     "Hand Tools & Accessories": {
+      "@url": "https://www.newegg.com/Hand-Tools-Accessories/Category/ID-70",
+      "Files": "https://www.newegg.com/Files/SubCategory/ID-1855",
+      "Hand Hammers & Striking Tools": "https://www.newegg.com/Hand-Hammers-Striking-Tools/SubCategory/ID-3512",
+      "Hand Screwdrivers & Nutdrivers": "https://www.newegg.com/Hand-Screwdrivers-Nutdrivers/SubCategory/ID-3514",
+      "Hand Sockets & Ratchets": "https://www.newegg.com/Hand-Sockets-Ratchets/SubCategory/ID-3513",
+      "Hand Wrenches & Pliers": "https://www.newegg.com/Hand-Wrenches-Pliers/SubCategory/ID-3515",
+      "Other Hand Tools": "https://www.newegg.com/Other-Hand-Tools/SubCategory/ID-3516",
+      "Tool Sets": "https://www.newegg.com/Tool-Sets/SubCategory/ID-1848"
+     },
+     "Hardware": {
+      "@url": "https://www.newegg.com/Hardware/Category/ID-122",
+      "Access Barriers & Key Control": "https://www.newegg.com/Access-Barriers-Key-Control/SubCategory/ID-3492",
+      "Chain & Rope": "https://www.newegg.com/Chain-Rope/SubCategory/ID-3480",
+      "Fasteners": "https://www.newegg.com/Fasteners/SubCategory/ID-2094",
+      "Fence Post Caps": "https://www.newegg.com/Fence-Post-Caps/SubCategory/ID-2036",
+      "Garage Door Openers": "https://www.newegg.com/Garage-Door-Openers/SubCategory/ID-2037",
+      "Gauges": "https://www.newegg.com/Gauges/SubCategory/ID-1870",
+      "Laboratory Supplies": "https://www.newegg.com/Laboratory-Supplies/SubCategory/ID-3494",
+      "Ladders": "https://www.newegg.com/Ladders/SubCategory/ID-2033",
+      "Lifting, Pulling & Conveying": "https://www.newegg.com/Lifting-Pulling-Conveying/SubCategory/ID-3478",
+      "Misc Hardware": "https://www.newegg.com/Misc-Hardware/SubCategory/ID-2108",
+      "Safes": "https://www.newegg.com/Safes/SubCategory/ID-2109",
+      "Tape Measures": "https://www.newegg.com/Tape-Measures/SubCategory/ID-1869",
+      "Wood Shelving": "https://www.newegg.com/Wood-Shelving/SubCategory/ID-2040",
+      "Workbenches & Workstations": "https://www.newegg.com/Workbenches-Workstations/SubCategory/ID-1801"
+     },
+     "Paint": {
+      "@url": "https://www.newegg.com/Paint/Category/ID-420",
+      "Caulks, Sealants & Applicators": "https://www.newegg.com/Caulks-Sealants-Applicators/SubCategory/ID-3432",
+      "Paint Brushes, Rollers & Sprayers": "https://www.newegg.com/Paint-Brushes-Rollers-Sprayers/SubCategory/ID-3483",
+      "Paints & Stains": "https://www.newegg.com/Paints-Stains/SubCategory/ID-3484",
+      "Sheeting & Tarps": "https://www.newegg.com/Sheeting-Tarps/SubCategory/ID-2096"
+     },
+     "Power Tool Accessories": {
+      "@url": "https://www.newegg.com/Power-Tool-Accessories/Category/ID-68",
+      "Air Compressor Parts & Pneumatic Components Power": "https://www.newegg.com/Air-Compressor-Parts-Pneumatic-Components-Power/SubCategory/ID-3511",
+      "Batteries": "https://www.newegg.com/Batteries/SubCategory/ID-3509",
+      "Batteries & Battery Chargers": "https://www.newegg.com/Batteries-Battery-Chargers/SubCategory/ID-1826",
+      "Power & Pneumatic Accessories": "https://www.newegg.com/Power-Pneumatic-Accessories/SubCategory/ID-3508",
+      "Wire Wheels": "https://www.newegg.com/Wire-Wheels/SubCategory/ID-1825"
+     },
+     "Power Tools": {
+      "@url": "https://www.newegg.com/Power-Tools/Category/ID-67",
+      "Air Compressors & Accessories": "https://www.newegg.com/Air-Compressors-Accessories/SubCategory/ID-3284",
+      "Air Compressors & Vacuum Pumps": "https://www.newegg.com/Air-Compressors-Vacuum-Pumps/SubCategory/ID-3510",
+      "Drills": "https://www.newegg.com/Drills/SubCategory/ID-1783",
+      "Electrician Tools": "https://www.newegg.com/Electrician-Tools/SubCategory/ID-3518",
+      "Grinders": "https://www.newegg.com/Grinders/SubCategory/ID-1816",
+      "Other Power": "https://www.newegg.com/Other-Power/SubCategory/ID-3506",
+      "Pneumatic & Hydraulic Power": "https://www.newegg.com/Pneumatic-Hydraulic-Power/SubCategory/ID-3507",
+      "Power Drills & Fasteners": "https://www.newegg.com/Power-Drills-Fasteners/SubCategory/ID-3504"
+     },
+     "Specialty Tools": {
+      "@url": "https://www.newegg.com/Specialty-Tools/Category/ID-69",
+      "Soldering": "https://www.newegg.com/Soldering/SubCategory/ID-1789",
+      "Welding": "https://www.newegg.com/Welding/SubCategory/ID-1837"
+     }
+    }
+   }
+  },
+  "Components & Storage": {
+   "Components & Storage": {
+    "@url": "https://www.newegg.com/Components-Storage/Store/ID-1",
+    "Accessories": {
+     "Adapter & Gender Changer": {
+      "@url": "https://www.newegg.com/Adapter-Gender-Changer/Category/ID-256",
+      "Audio Adapters": "https://www.newegg.com/Audio-Adapters/SubCategory/ID-3020",
+      "Audio Video Converters": "https://www.newegg.com/Audio-Video-Converters/SubCategory/ID-3048",
+      "Audio/Video Splitters": "https://www.newegg.com/Audio-Video-Splitters/SubCategory/ID-3050",
+      "Audio/Video Switch": "https://www.newegg.com/Audio-Video-Switch/SubCategory/ID-3049",
+      "Connectors": "https://www.newegg.com/Connectors/SubCategory/ID-3027",
+      "Data Adapters": "https://www.newegg.com/Data-Adapters/SubCategory/ID-3021",
+      "Data Converters": "https://www.newegg.com/Data-Converters/SubCategory/ID-3028",
+      "Extenders & Repeaters": "https://www.newegg.com/Extenders-Repeaters/SubCategory/ID-3029",
+      "Hard Drive Adapters": "https://www.newegg.com/Hard-Drive-Adapters/SubCategory/ID-3022",
+      "Modular Adapters": "https://www.newegg.com/Modular-Adapters/SubCategory/ID-3023",
+      "Mouse/Keyboard (PS2) Adapters": "https://www.newegg.com/Mouse-Keyboard-PS2-Adapters/SubCategory/ID-3024",
+      "Network Connectors/Adapters": "https://www.newegg.com/Network-Connectors-Adapters/SubCategory/ID-3051",
+      "Power Adapters": "https://www.newegg.com/Power-Adapters/SubCategory/ID-3047",
+      "USB Converters": "https://www.newegg.com/USB-Converters/SubCategory/ID-3026",
+      "USB Display Adapters": "https://www.newegg.com/USB-Display-Adapters/SubCategory/ID-3046",
+      "Video Adapters": "https://www.newegg.com/Video-Adapters/SubCategory/ID-3045"
+     },
+     "Cable": {
+      "3.5mm / 2.5mm Stereo Cables": "https://www.newegg.com/3-5mm-2-5mm-Stereo-Cables/SubCategory/ID-2810",
+      "@url": "https://www.newegg.com/Cable/Category/ID-197",
+      "AC Power Cords for Laptop": "https://www.newegg.com/AC-Power-Cords-for-Laptop/SubCategory/ID-2811",
+      "BNC Cables": "https://www.newegg.com/BNC-Cables/SubCategory/ID-2812",
+      "Coaxial RF (F-Type) Cables": "https://www.newegg.com/Coaxial-RF-F-Type-Cables/SubCategory/ID-2817",
+      "Computer Power Adapter Cords": "https://www.newegg.com/Computer-Power-Adapter-Cords/SubCategory/ID-2828",
+      "Computer Power Cords": "https://www.newegg.com/Computer-Power-Cords/SubCategory/ID-2827",
+      "Computer Power Extension Cords": "https://www.newegg.com/Computer-Power-Extension-Cords/SubCategory/ID-2842",
+      "DVI Cables": "https://www.newegg.com/DVI-Cables/SubCategory/ID-2814",
+      "DisplayPort Cables": "https://www.newegg.com/DisplayPort-Cables/SubCategory/ID-2813",
+      "Fiber Optic Cables": "https://www.newegg.com/Fiber-Optic-Cables/SubCategory/ID-2815",
+      "Firewire (IEEE 1394) Cables": "https://www.newegg.com/Firewire-IEEE-1394-Cables/SubCategory/ID-2816",
+      "HDMI Cables": "https://www.newegg.com/HDMI-Cables/SubCategory/ID-2809",
+      "Instrument (Professional) Cables": "https://www.newegg.com/Instrument-Professional-Cables/SubCategory/ID-2819",
+      "International Power Cords": "https://www.newegg.com/International-Power-Cords/SubCategory/ID-2821",
+      "KVM Cables": "https://www.newegg.com/KVM-Cables/SubCategory/ID-451",
+      "Lightning Cables": "https://www.newegg.com/Lightning-Cables/SubCategory/ID-3562",
+      "Mini DisplayPort Cables": "https://www.newegg.com/Mini-DisplayPort-Cables/SubCategory/ID-2823",
+      "Mouse / Keyboard (PS2) Cables": "https://www.newegg.com/Mouse-Keyboard-PS2-Cables/SubCategory/ID-2824",
+      "Phone Cables": "https://www.newegg.com/Phone-Cables/SubCategory/ID-2826",
+      "Power Extension Cords": "https://www.newegg.com/Power-Extension-Cords/SubCategory/ID-2829",
+      "Power Splitter Cords": "https://www.newegg.com/Power-Splitter-Cords/SubCategory/ID-2830",
+      "Printer (Parallel) Cables": "https://www.newegg.com/Printer-Parallel-Cables/SubCategory/ID-2822",
+      "RCA Cables": "https://www.newegg.com/RCA-Cables/SubCategory/ID-2831",
+      "RCA Component Cables": "https://www.newegg.com/RCA-Component-Cables/SubCategory/ID-2832",
+      "RCA Composite Cables": "https://www.newegg.com/RCA-Composite-Cables/SubCategory/ID-2833",
+      "S-Video Cables": "https://www.newegg.com/S-Video-Cables/SubCategory/ID-2838",
+      "SATA / eSATA Cables": "https://www.newegg.com/SATA-eSATA-Cables/SubCategory/ID-2834",
+      "SCSI / SAS / InfiniBand Cables": "https://www.newegg.com/SCSI-SAS-InfiniBand-Cables/SubCategory/ID-2835",
+      "Serial Cables": "https://www.newegg.com/Serial-Cables/SubCategory/ID-2836",
+      "Speaker Wires": "https://www.newegg.com/Speaker-Wires/SubCategory/ID-2837",
+      "Thunderbolt Cables & Adapters": "https://www.newegg.com/Thunderbolt-Cables-Adapters/SubCategory/ID-3011",
+      "Toslink Digital Optical Audio Cables": "https://www.newegg.com/Toslink-Digital-Optical-Audio-Cables/SubCategory/ID-2839",
+      "USB / IEEE-1394 Firewire Adapters": "https://www.newegg.com/USB-IEEE-1394-Firewire-Adapters/SubCategory/ID-3025",
+      "USB Cables": "https://www.newegg.com/USB-Cables/SubCategory/ID-2840",
+      "VGA / SVGA Cables": "https://www.newegg.com/VGA-SVGA-Cables/SubCategory/ID-2841"
+     },
+     "Computer Accessories": {
+      "@url": "https://www.newegg.com/Computer-Accessories/Category/ID-1",
+      "CPU Accessories": "https://www.newegg.com/CPU-Accessories/SubCategory/ID-151",
+      "Cable Management": "https://www.newegg.com/Cable-Management/SubCategory/ID-3705",
+      "Cables": "https://www.newegg.com/Cables/Category/ID-197",
+      "Laptop Add-on Cards": "https://www.newegg.com/Laptop-Add-on-Cards/SubCategory/ID-421",
+      "Laptop Networking": "https://www.newegg.com/Laptop-Networking/SubCategory/ID-34",
+      "Other Computer Accessories": "https://www.newegg.com/Other-Computer-Accessories/SubCategory/ID-95",
+      "PC Tools & Testers": "https://www.newegg.com/PC-Tools-Testers/SubCategory/ID-133",
+      "USB Chargers": "https://www.newegg.com/USB-Chargers/SubCategory/ID-3700",
+      "USB Gadgets": "https://www.newegg.com/USB-Gadgets/SubCategory/ID-59",
+      "Wired Accessories": "https://www.newegg.com/Wired-Accessories/SubCategory/ID-293"
+     },
+     "Hub": "https://www.newegg.com/Hub/SubCategory/ID-26",
+     "KVM Switch": "https://www.newegg.com/KVM-Switch/SubCategory/ID-143",
+     "Power Protection": {
+      "UPS Replacement Battery & Accessories": "https://www.newegg.com/UPS-Replacement-Battery-Accessories/SubCategory/ID-626"
+     },
+     "Sound Card": {
+      "@url": "https://www.newegg.com/Sound-Card/Category/ID-36",
+      "Sound Card Accessories": "https://www.newegg.com/Sound-Card-Accessories/SubCategory/ID-337"
+     }
+    },
+    "Core Component": {
+     "Barebone / Mini Computers": {
+      "@url": "https://www.newegg.com/Barebone-Mini-Computers/Category/ID-3",
+      "Accessories Barebone": "https://www.newegg.com/Accessories-Barebone/SubCategory/ID-428",
+      "Barebone PCs": "https://www.newegg.com/Barebone-PCs/SubCategory/ID-3",
+      "Crypto Mining": "https://www.newegg.com/Crypto-Mining/SubCategory/ID-3924",
+      "Mini-PC Barebone": "https://www.newegg.com/Mini-PC-Barebone/SubCategory/ID-309"
+     },
+     "CPU / Processor": {
+      "@url": "https://www.newegg.com/CPU-Processor/Category/ID-34",
+      "CPU Fans & Heatsinks": "https://www.newegg.com/CPU-Fans-Heatsinks/SubCategory/ID-574",
+      "DIY Cooling": "https://www.newegg.com/DIY-Cooling/SubCategory/ID-3635",
+      "Desktop CPU Processor": "https://www.newegg.com/Desktop-CPU-Processor/SubCategory/ID-343",
+      "Mobile CPU Processor": "https://www.newegg.com/Mobile-CPU-Processor/SubCategory/ID-759",
+      "Thermal Compound / Grease": "https://www.newegg.com/Thermal-Compound-Grease/SubCategory/ID-85",
+      "Water / Liquid Cooling": "https://www.newegg.com/Water-Liquid-Cooling/SubCategory/ID-575"
+     },
+     "Computer Case": {
+      "@url": "https://www.newegg.com/Computer-Case/Category/ID-9",
+      "Case Accessories": "https://www.newegg.com/Case-Accessories/SubCategory/ID-255",
+      "Case Fans": "https://www.newegg.com/Case-Fans/SubCategory/ID-573",
+      "Computer Cases": "https://www.newegg.com/Computer-Cases/SubCategory/ID-7",
+      "Controller Panels": "https://www.newegg.com/Controller-Panels/SubCategory/ID-11"
+     },
+     "Fans & PC Cooling": {
+      "@url": "https://www.newegg.com/Fans-PC-Cooling/Category/ID-11",
+      "CPU Air Coolers": "https://www.newegg.com/CPU-Air-Coolers/SubCategory/ID-574",
+      "Hard Drive & SSD Cooling": "https://www.newegg.com/Hard-Drive-SSD-Cooling/SubCategory/ID-577",
+      "Memory & Chipset Cooling": "https://www.newegg.com/Memory-Chipset-Cooling/SubCategory/ID-572"
+     },
+     "GPU & Video Graphics Device": {
+      "@url": "https://www.newegg.com/GPU-Video-Graphics-Device/Category/ID-38",
+      "AI Accelerators Card": "https://www.newegg.com/AI-Accelerator-Cards/SubCategory/ID-3927",
+      "GPUs / Video Graphics Cards": "https://www.newegg.com/GPUs-Video-Graphics-Cards/SubCategory/ID-48",
+      "Other Adapters & Gender Changers": "https://www.newegg.com/Adapters-Gender-Changers/Category/ID-256",
+      "VGA Cooling": "https://www.newegg.com/VGA-Cooling/SubCategory/ID-576",
+      "Video Card Accessories": "https://www.newegg.com/Video-Card-Accessories/SubCategory/ID-321"
+     },
+     "Memory": {
+      "@url": "https://www.newegg.com/Memory/Category/ID-17",
+      "Desktop Memory": "https://www.newegg.com/Desktop-Memory/SubCategory/ID-147",
+      "Laptop Memory": "https://www.newegg.com/Laptop-Memory/SubCategory/ID-381",
+      "Memory Cards": "https://www.newegg.com/Memory-Cards/SubCategory/ID-68",
+      "System Specific Memory": "https://www.newegg.com/System-Specific-Memory/SubCategory/ID-543",
+      "USB Flash Drives": "https://www.newegg.com/USB-Flash-Drives/SubCategory/ID-522"
+     },
+     "Motherboard": {
+      "@url": "https://www.newegg.com/Motherboard/Category/ID-20",
+      "AMD Motherboards": "https://www.newegg.com/AMD-Motherboards/SubCategory/ID-22",
+      "Add-On Cards": "https://www.newegg.com/Add-On-Cards/SubCategory/ID-73",
+      "Embedded Solutions": "https://www.newegg.com/Embedded-Solutions/SubCategory/ID-446",
+      "Intel Motherboards": "https://www.newegg.com/Intel-Motherboards/SubCategory/ID-280",
+      "Internal Power Cables": "https://www.newegg.com/Internal-Power-Cables/SubCategory/ID-2820",
+      "Motherboard Accessories": "https://www.newegg.com/Motherboard-Accessories/SubCategory/ID-142"
+     },
+     "Power Supply": {
+      "@url": "https://www.newegg.com/Power-Supply/Category/ID-32",
+      "Power Supplies": "https://www.newegg.com/Power-Supplies/SubCategory/ID-58",
+      "Server Power Supplies": "https://www.newegg.com/Server-Power-Supplies/SubCategory/ID-520"
+     }
+    },
+    "Storage Device": {
+     "Backup Devices & Media": {
+      "@url": "https://www.newegg.com/Backup-Devices-Media/Category/ID-2",
+      "Backup Drives": "https://www.newegg.com/Backup-Drives/SubCategory/ID-46",
+      "Backup Media": "https://www.newegg.com/Backup-Media/SubCategory/ID-239",
+      "Floppy Drive Diskette": "https://www.newegg.com/Floppy-Drive-Diskette/SubCategory/ID-131"
+     },
+     "CD / DVD / Blu-Ray Burners & Media": {
+      "@url": "https://www.newegg.com/CD-DVD-Blu-Ray-Burners-Media/Category/ID-10",
+      "Blu-Ray Burners": "https://www.newegg.com/Blu-Ray-Burners/SubCategory/ID-600",
+      "Blu-Ray Drives": "https://www.newegg.com/Blu-Ray-Drives/SubCategory/ID-598",
+      "CD / DVD / Blu-Ray Media": "https://www.newegg.com/CD-DVD-Blu-Ray-Media/SubCategory/ID-71",
+      "CD / DVD Accessories": "https://www.newegg.com/CD-DVD-Accessories/SubCategory/ID-219",
+      "CD / DVD Burners": "https://www.newegg.com/CD-DVD-Burners/SubCategory/ID-5",
+      "CD / DVD Drives": "https://www.newegg.com/CD-DVD-Drives/SubCategory/ID-55",
+      "Duplicators": "https://www.newegg.com/Duplicators/SubCategory/ID-528",
+      "External CD / DVD / Blu-Ray Drives": "https://www.newegg.com/External-CD-DVD-Blu-Ray-Drives/SubCategory/ID-420",
+      "IDE Cables": "https://www.newegg.com/IDE-Cables/SubCategory/ID-2818"
+     },
+     "Hard Drive": {
+      "@url": "https://www.newegg.com/Hard-Drive/Category/ID-15",
+      "Desktop External Hard Drives": "https://www.newegg.com/Desktop-External-Hard-Drives/SubCategory/ID-414",
+      "Desktop Internal Hard Drives": "https://www.newegg.com/Desktop-Internal-Hard-Drives/SubCategory/ID-14",
+      "HDD / SSD Accessories": "https://www.newegg.com/HDD-SSD-Accessories/SubCategory/ID-43",
+      "Laptop Internal Hard Drives": "https://www.newegg.com/Laptop-Internal-Hard-Drives/SubCategory/ID-380",
+      "Other Adapters & Gender Changers": "https://www.newegg.com/Other-Adapters-Gender-Changers/SubCategory/ID-353",
+      "Portable External Hard Drives": "https://www.newegg.com/Portable-External-Hard-Drives/SubCategory/ID-3400"
+     },
+     "Hard Drive / SSD Enclosures": "https://www.newegg.com/Hard-Drive-SSD-Enclosures/SubCategory/ID-92",
+     "Network Attached Storage (NAS)": {
+      "@url": "https://www.newegg.com/Network-Attached-Storage-NAS/Category/ID-241",
+      "Desktop NAS": "https://www.newegg.com/Desktop-NAS/SubCategory/ID-124",
+      "Rackmount NAS": "https://www.newegg.com/Rackmount-NAS/SubCategory/ID-2982"
+     },
+     "SSD": {
+      "@url": "https://www.newegg.com/SSD/Category/ID-119",
+      "External SSDs": "https://www.newegg.com/External-SSDs/SubCategory/ID-2022",
+      "Internal SSDs": "https://www.newegg.com/Internal-SSDs/SubCategory/ID-636"
+     },
+     "USB Flash Drive & Memory Card": {
+      "@url": "https://www.newegg.com/USB-Flash-Drive-Memory-Card/Category/ID-324",
+      "Card Readers": "https://www.newegg.com/Card-Readers/SubCategory/ID-69"
+     }
+    },
+    "Workstation Components": {
+     "@url": "https://www.newegg.com/Workstation-Components/Category/ID-23",
+     "AI GPU": "https://www.newegg.com/Workstation-Graphics-Cards/SubCategory/ID-449",
+     "Enterprise SSDs": "https://www.newegg.com/Enterprise-SSDs/SubCategory/ID-2021",
+     "Prime PSU": "https://www.newegg.com/Workstation-Power-Supply/SubCategory/ID-444",
+     "Workstation CPU": "https://www.newegg.com/Workstation-CPU-Processor/SubCategory/ID-540",
+     "Workstation Case": "https://www.newegg.com/Workstation-Case/SubCategory/ID-442",
+     "Workstation Motherboard": "https://www.newegg.com/Workstation-Motherboards/SubCategory/ID-355"
+    }
+   }
+  },
+  "Computer Peripherals": {
+   "Computer Peripherals": {
+    "@url": "https://www.newegg.com/Computer-Peripherals/Store/ID-380",
+    "Cyber Security Devices": {
+     "@url": "https://www.newegg.com/Cyber-Security-Devices/Category/ID-353",
+     "Crypto Wallet": "https://www.newegg.com/Crypto-Wallet/SubCategory/ID-210",
+     "Multi-Factor Authentication (MFA)": "https://www.newegg.com/Multi-Factor-Authentication-MFA/SubCategory/ID-129"
+    },
+    "Gaming & Streaming Gear": {
+     "@url": "https://www.newegg.com/Gaming-Streaming-Gear/Category/ID-29",
+     "Microphone": "https://www.newegg.com/Microphone/SubCategory/ID-122",
+     "PC Game Controller": "https://www.newegg.com/PC-Game-Controller/SubCategory/ID-123",
+     "Professional Video Devices": "https://www.newegg.com/Professional-Video-Devices/SubCategory/ID-3097",
+     "Video Capturing Devices": "https://www.newegg.com/Video-Capturing-Devices/SubCategory/ID-3242",
+     "Webcam": "https://www.newegg.com/Webcam/SubCategory/ID-152"
+    },
+    "Headset & Speaker": {
+     "@url": "https://www.newegg.com/Headset-Speaker-Soundcard/Category/ID-37",
+     "Gaming Headset": "https://www.newegg.com/Gaming-Headsets/SubCategory/ID-3767",
+     "Headsets & Accessories": "https://www.newegg.com/Headsets-Accessories/SubCategory/ID-707",
+     "Sound Card": "https://www.newegg.com/Sound-Card/SubCategory/ID-57",
+     "Speaker": "https://www.newegg.com/Speaker/SubCategory/ID-60"
+    },
+    "Keyboard & Mouse": {
+     "@url": "https://www.newegg.com/Keyboard-Mouse/Category/ID-234",
+     "Gaming Keyboard": "https://www.newegg.com/Gaming-Keyboard/SubCategory/ID-3523",
+     "Gaming Mouse": "https://www.newegg.com/Gaming-Mouse/SubCategory/ID-3527",
+     "Keyboard": "https://www.newegg.com/Keyboard/SubCategory/ID-63",
+     "Mouse": "https://www.newegg.com/Mouse/SubCategory/ID-65",
+     "Mouse Pad & Keyboard Accessories": "https://www.newegg.com/Mouse-Pad-Keyboard-Accessories/SubCategory/ID-202"
+    },
+    "Monitor": {
+     "@url": "https://www.newegg.com/Monitor/Category/ID-19",
+     "Computer Monitor": "https://www.newegg.com/Computer-Monitor/SubCategory/ID-20",
+     "Gaming Monitor": "https://www.newegg.com/Gaming-Monitor/SubCategory/ID-3743",
+     "Monitor Accessories": "https://www.newegg.com/Monitor-Accessories/SubCategory/ID-233",
+     "Portable Monitor": "https://www.newegg.com/Portable-Monitor/SubCategory/ID-514"
+    },
+    "Printer Ink & Toner": {
+     "@url": "https://www.newegg.com/Printer-Ink-Toner/Category/ID-211",
+     "Ink Cartridges (Aftermarket)": "https://www.newegg.com/Ink-Cartridges-Aftermarket/SubCategory/ID-3254",
+     "Ink Cartridges (Genuine Brands)": "https://www.newegg.com/Ink-Cartridges-Genuine-Brands/SubCategory/ID-1714",
+     "Labels & Labelmakers": "https://www.newegg.com/Labels-Labelmakers/SubCategory/ID-3325",
+     "Printer & Scanner Supplies": "https://www.newegg.com/Printer-Scanner-Supplies/SubCategory/ID-284",
+     "Printer Ribbons": "https://www.newegg.com/Printer-Ribbons/SubCategory/ID-3647",
+     "Toner Cartridges (Aftermarket)": "https://www.newegg.com/Toner-Cartridges-Aftermarket/SubCategory/ID-3253",
+     "Toner Cartridges (Genuine Brands)": "https://www.newegg.com/Toner-Cartridges-Genuine-Brands/SubCategory/ID-97"
+    },
+    "Printers / Scanners & Supplies": {
+     "3D Printers": "https://www.newegg.com/3D-Printers/SubCategory/ID-3266",
+     "@url": "https://www.newegg.com/Printers-Scanners-Supplies/Category/ID-33",
+     "Barcode & Label Printers": "https://www.newegg.com/Barcode-Label-Printers/SubCategory/ID-3031",
+     "Flatbed Scanners": "https://www.newegg.com/Flatbed-Scanners/SubCategory/ID-44",
+     "Inkjet Printers": "https://www.newegg.com/Inkjet-Printers/SubCategory/ID-38",
+     "Laser Printers": "https://www.newegg.com/Laser-Printers/SubCategory/ID-630",
+     "Receipt Printer": "https://www.newegg.com/Receipt-Printer/SubCategory/ID-3032",
+     "Specialized Scanners": "https://www.newegg.com/Specialized-Scanners/SubCategory/ID-761"
+    }
+   }
+  },
+  "Computer Systems": {
+   "Computer Systems": {
+    "@url": "https://www.newegg.com/Computer-Systems/Store/ID-3",
+    "Accessories": {
+     "Computer Glasses": "https://www.newegg.com/Computer-Glasses/SubCategory/ID-774",
+     "Docking Station": "https://www.newegg.com/Docking-Station/SubCategory/ID-537",
+     "Laptop Accessories": "https://www.newegg.com/Laptop-Accessories/Category/ID-26",
+     "Laptop Case & Bag": "https://www.newegg.com/Laptop-Case-Bag/SubCategory/ID-482"
+    },
+    "Desktop": {
+     "All-in-One Computer": "https://www.newegg.com/All-in-One-Computer/SubCategory/ID-3309",
+     "Business Desktop": "https://www.newegg.com/Business-Desktop/SubCategory/ID-3921",
+     "Desktop Computer": {
+      "@url": "https://www.newegg.com/Desktop-Computer/Category/ID-228",
+      "Desktop Computer": "https://www.newegg.com/Desktop-Computer/SubCategory/ID-10"
+     },
+     "Gaming Desktop PC": "https://www.newegg.com/Gaming-Desktop-PC/SubCategory/ID-3742",
+     "Mini PC": "https://www.newegg.com/Mini-PC/SubCategory/ID-407",
+     "Server System": "https://www.newegg.com/Server-System/SubCategory/ID-386",
+     "Workstations": "https://www.newegg.com/Workstations/SubCategory/ID-3934"
+    },
+    "Gaming Laptop": {
+     "Gaming Laptop": {
+      "@url": "https://www.newegg.com/Gaming-Laptop/Category/ID-363",
+      "Gaming Keyboards": "https://www.newegg.com/Gaming-Keyboards/SubCategory/ID-3523",
+      "Gaming Laptops": "https://www.newegg.com/Gaming-Laptops/SubCategory/ID-3365",
+      "Gaming Mouse": "https://www.newegg.com/Gaming-Mice/SubCategory/ID-3527",
+      "Mouse Pads": "https://www.newegg.com/Mouse-Pads-Accessories/SubCategory/ID-202"
+     }
+    },
+    "Laptop / Notebook": {
+     "2-in-1 Laptop": {
+      "2 in 1 Accessories": "https://www.newegg.com/2-in-1-Accessories/SubCategory/ID-3726",
+      "2-in-1 Laptop": "https://www.newegg.com/2-in-1-Laptop/SubCategory/ID-3090",
+      "@url": "https://www.newegg.com/2-in-1-Laptop/Category/ID-259"
+     },
+     "@url": "https://www.newegg.com/Laptop-Notebook/Category/ID-223",
+     "All Laptop": "https://www.newegg.com/All-Laptop/SubCategory/ID-32",
+     "Business Laptop": {
+      "@url": "https://www.newegg.com/Business-Laptop/Category/ID-445",
+      "Business Laptops": "https://www.newegg.com/Business-Laptops/SubCategory/ID-3413"
+     },
+     "Microsoft Surface": "https://www.newegg.com/Microsoft-Surface/Store/ID-2142354"
+    },
+    "Peripherals": {
+     "Headsets, Speakers & Soundcards": "https://www.newegg.com/Headsets-Speakers-Soundcards/Category/ID-37",
+     "Input Device": "https://www.newegg.com/Input-Device/Category/ID-29",
+     "Projector": "https://www.newegg.com/Projector/Category/ID-343"
+    },
+    "Tablets": {
+     "@url": "https://www.newegg.com/Tablets/Category/ID-164",
+     "Genuine Tablet Accessories": "https://www.newegg.com/Genuine-Tablet-Accessories/SubCategory/ID-3660",
+     "Tablets": "https://www.newegg.com/Tablets/SubCategory/ID-2557",
+     "iPad Accessories": "https://www.newegg.com/iPad-Accessories/SubCategory/ID-3107"
+    }
+   }
+  },
+  "Electronics": {
+   "Electronics": {
+    "@url": "https://www.newegg.com/Electronics/Store/ID-10",
+    "Cell Phones": {
+     "@url": "https://www.newegg.com/Cell-Phones/Category/ID-450",
+     "Cases & Covers": "https://www.newegg.com/Cases-Covers/SubCategory/ID-612",
+     "Cell Phone Accessories": {
+      "@url": "https://www.newegg.com/Cell-Phone-Accessories/Category/ID-235",
+      "NFC Headsets & Speakers": "https://www.newegg.com/NFC-Headsets-Speakers/SubCategory/ID-3251",
+      "Phone Parts & Replacement Parts": "https://www.newegg.com/Phone-Parts-Replacement-Parts/SubCategory/ID-168",
+      "Signal Boosters": "https://www.newegg.com/Signal-Boosters/SubCategory/ID-615",
+      "Stylus": "https://www.newegg.com/Stylus/SubCategory/ID-2960",
+      "Wired Headsets & Speakers": "https://www.newegg.com/Wired-Headsets-Speakers/SubCategory/ID-2958"
+     },
+     "Cell Phones - Unlocked": "https://www.newegg.com/Cell-Phones-Unlocked/SubCategory/ID-2961",
+     "Chargers & Cables": "https://www.newegg.com/Chargers-Cables/SubCategory/ID-613",
+     "Phone Mounts, Holders & Grips": "https://www.newegg.com/Phone-Mounts-Holders-Grips/SubCategory/ID-2957",
+     "Power Banks": "https://www.newegg.com/Power-Banks/SubCategory/ID-3724"
+    },
+    "Digital Cameras": {
+     "@url": "https://www.newegg.com/Digital-Cameras/Category/ID-354",
+     "Action Cameras": "https://www.newegg.com/Action-Cameras/SubCategory/ID-3255",
+     "Compact Mirrorless Cameras": "https://www.newegg.com/Compact-Mirrorless-Cameras/SubCategory/ID-3010",
+     "Consumer Camcorders": "https://www.newegg.com/Consumer-Camcorders/SubCategory/ID-3542",
+     "DSLR Cameras": "https://www.newegg.com/DSLR-Cameras/SubCategory/ID-784",
+     "Digital Camera Accessories": {
+      "@url": "https://www.newegg.com/Digital-Camera-Accessories/Category/ID-7",
+      "Camcorder Accessories": "https://www.newegg.com/Camcorder-Accessories/SubCategory/ID-405",
+      "Camcorder Batteries & Chargers": "https://www.newegg.com/Camcorder-Batteries-Chargers/SubCategory/ID-402",
+      "Camcorder Kits": "https://www.newegg.com/Camcorder-Kits/SubCategory/ID-404",
+      "Camcorder Lenses": "https://www.newegg.com/Camcorder-Lenses/SubCategory/ID-400",
+      "Camcorder Media": "https://www.newegg.com/Camcorder-Media/SubCategory/ID-399",
+      "Camera Accessories": "https://www.newegg.com/Camera-Accessories/SubCategory/ID-397",
+      "Camera Batteries & Chargers": "https://www.newegg.com/Camera-Batteries-Chargers/SubCategory/ID-394",
+      "Camera Cables & Remotes": "https://www.newegg.com/Camera-Cables-Remotes/SubCategory/ID-395",
+      "Camera Cases": "https://www.newegg.com/Camera-Cases/SubCategory/ID-390",
+      "Camera Docks": "https://www.newegg.com/Camera-Docks/SubCategory/ID-396",
+      "Camera Filters": "https://www.newegg.com/Camera-Filters/SubCategory/ID-797",
+      "Camera Flashes": "https://www.newegg.com/Camera-Flashes/SubCategory/ID-389",
+      "Camera Kits": "https://www.newegg.com/Camera-Kits/SubCategory/ID-393",
+      "Lighting & Studio": "https://www.newegg.com/Lighting-Studio/SubCategory/ID-847",
+      "Standard Batteries & Chargers": "https://www.newegg.com/Standard-Batteries-Chargers/SubCategory/ID-134"
+     },
+     "Film Cameras": "https://www.newegg.com/Film-Cameras/SubCategory/ID-375",
+     "Professional Camcorders": "https://www.newegg.com/Professional-Camcorders/SubCategory/ID-205"
+    },
+    "Gadgets & Wearables": {
+     "@url": "https://www.newegg.com/Gadgets-Wearables/Category/ID-6",
+     "Activity Trackers": "https://www.newegg.com/Activity-Trackers/SubCategory/ID-739",
+     "Smart Watches": "https://www.newegg.com/Smart-Watches/SubCategory/ID-3768",
+     "Wearable Technology": "https://www.newegg.com/Wearable-Technology/SubCategory/ID-3280",
+     "Wearable Technology Accessories": "https://www.newegg.com/Wearable-Technology-Accessories/SubCategory/ID-3928"
+    },
+    "Portable Electronics": {
+     "Bluetooth Headsets & Accessories": {
+      "@url": "https://www.newegg.com/Bluetooth-Headsets-Accessories/Category/ID-247",
+      "Bluetooth Headsets & Accessories": "https://www.newegg.com/Bluetooth-Headsets-Accessories/SubCategory/ID-565"
+     },
+     "Digital Cameras": {
+      "Action Camera Accessories": "https://www.newegg.com/Action-Camera-Accessories/SubCategory/ID-3287",
+      "Camera Lenses": "https://www.newegg.com/Camera-Lenses/SubCategory/ID-388",
+      "Camera Tripods & Monopods": "https://www.newegg.com/Camera-Tripods-Monopods/SubCategory/ID-392",
+      "Digital Photo Frames": "https://www.newegg.com/Digital-Photo-Frames/SubCategory/ID-548",
+      "Point & Shoot Cameras": "https://www.newegg.com/Point-Shoot-Cameras/SubCategory/ID-12",
+      "Tough Cameras": "https://www.newegg.com/Tough-Cameras/SubCategory/ID-3543"
+     },
+     "Headphones": {
+      "@url": "https://www.newegg.com/Headphones/Category/ID-158",
+      "Headphones & Accessories": "https://www.newegg.com/Headphones-Accessories/SubCategory/ID-70"
+     },
+     "Portable Electronic Devices": {
+      "@url": "https://www.newegg.com/Portable-Electronic-Devices/Category/ID-8",
+      "Boomboxes": "https://www.newegg.com/Boomboxes/SubCategory/ID-779",
+      "CD Players": "https://www.newegg.com/CD-Players/SubCategory/ID-781",
+      "Cassette Players": "https://www.newegg.com/Cassette-Players/SubCategory/ID-780",
+      "E-Book Accessories": "https://www.newegg.com/E-Book-Accessories/SubCategory/ID-852",
+      "E-Book Readers": "https://www.newegg.com/E-Book-Readers/SubCategory/ID-782",
+      "GPS Accessories": "https://www.newegg.com/GPS-Accessories/SubCategory/ID-358",
+      "MP3 / MP4 Accessories": "https://www.newegg.com/MP3-MP4-Accessories/SubCategory/ID-362",
+      "MP3 / MP4 Players": "https://www.newegg.com/MP3-MP4-Players/SubCategory/ID-23",
+      "MiniDisc Players": "https://www.newegg.com/MiniDisc-Players/SubCategory/ID-777",
+      "Mobile Electronics Accessories": "https://www.newegg.com/Mobile-Electronics-Accessories/SubCategory/ID-704",
+      "PDAs, Dictionaries & Translators": "https://www.newegg.com/PDAs-Dictionaries-Translators/SubCategory/ID-35",
+      "Personal Digital Assistant / Handheld PCs Accessories": "https://www.newegg.com/Personal-Digital-Assistant-Handheld-PCs-Accessories/SubCategory/ID-352",
+      "Portable Audio": "https://www.newegg.com/Portable-Audio/SubCategory/ID-499",
+      "Portable DVD Players": "https://www.newegg.com/Portable-DVD-Players/SubCategory/ID-491",
+      "Radios": "https://www.newegg.com/Radios/SubCategory/ID-776",
+      "Satellite Radio": "https://www.newegg.com/Satellite-Radio/SubCategory/ID-486",
+      "Two-Way Radios": "https://www.newegg.com/Two-Way-Radios/SubCategory/ID-278",
+      "Voice Recorders": "https://www.newegg.com/Voice-Recorders/SubCategory/ID-374"
+     },
+     "Portable Speakers": {
+      "@url": "https://www.newegg.com/Portable-Speakers/Category/ID-345",
+      "Portable Speakers": "https://www.newegg.com/Portable-Speakers/SubCategory/ID-3289"
+     }
+    },
+    "Specialty Electronics": {
+     "Alternative Energy": {
+      "@url": "https://www.newegg.com/Alternative-Energy/Category/ID-585",
+      "Eco Gadgets": "https://www.newegg.com/Eco-Gadgets/SubCategory/ID-800",
+      "Solar": "https://www.newegg.com/Solar/SubCategory/ID-799",
+      "Transportation": "https://www.newegg.com/Transportation/SubCategory/ID-801"
+     },
+     "App Enabled Products": "https://www.newegg.com/App-Enabled-Products/SubCategory/ID-3281",
+     "Gadgets": "https://www.newegg.com/Gadgets/SubCategory/ID-3282",
+     "Pro Audio & Musical Instruments": {
+      "@url": "https://www.newegg.com/Pro-Audio-Musical-Instruments/Category/ID-212",
+      "Acoustic Drum Kits": "https://www.newegg.com/Acoustic-Drum-Kits/SubCategory/ID-2911",
+      "Acoustic Guitars": "https://www.newegg.com/Acoustic-Guitars/SubCategory/ID-2897",
+      "Acoustic-Electric Guitars": "https://www.newegg.com/Acoustic-Electric-Guitars/SubCategory/ID-2898",
+      "Audio Mixers": "https://www.newegg.com/Audio-Mixers/SubCategory/ID-2916",
+      "Bass Accessories": "https://www.newegg.com/Bass-Accessories/SubCategory/ID-2905",
+      "Bass Amplifiers": "https://www.newegg.com/Bass-Amplifiers/SubCategory/ID-2904",
+      "Bass Guitars": "https://www.newegg.com/Bass-Guitars/SubCategory/ID-2902",
+      "Bass Pedals and Effects": "https://www.newegg.com/Bass-Pedals-and-Effects/SubCategory/ID-2903",
+      "Brass Accessories": "https://www.newegg.com/Brass-Accessories/SubCategory/ID-2933",
+      "Brass Instruments": "https://www.newegg.com/Brass-Instruments/SubCategory/ID-2932",
+      "Cables, Snakes & Adapters": "https://www.newegg.com/Cables-Snakes-Adapters/SubCategory/ID-2937",
+      "Cymbals": "https://www.newegg.com/Cymbals/SubCategory/ID-2914",
+      "DJ Accessories": "https://www.newegg.com/DJ-Accessories/SubCategory/ID-2928",
+      "DJ CD Players": "https://www.newegg.com/DJ-CD-Players/SubCategory/ID-2922",
+      "DJ Groove Production": "https://www.newegg.com/DJ-Groove-Production/SubCategory/ID-2925",
+      "DJ Lighting": "https://www.newegg.com/DJ-Lighting/SubCategory/ID-2924",
+      "DJ Mixers": "https://www.newegg.com/DJ-Mixers/SubCategory/ID-2923",
+      "DJ Software": "https://www.newegg.com/DJ-Software/SubCategory/ID-2926",
+      "Drum Accessories": "https://www.newegg.com/Drum-Accessories/SubCategory/ID-2915",
+      "Effects": "https://www.newegg.com/Effects/SubCategory/ID-3395",
+      "Electric Guitars": "https://www.newegg.com/Electric-Guitars/SubCategory/ID-2899",
+      "Electronic Drum Kits": "https://www.newegg.com/Electronic-Drum-Kits/SubCategory/ID-2912",
+      "Guitar Amplifiers": "https://www.newegg.com/Guitar-Amplifiers/SubCategory/ID-2900",
+      "Guitar Pedals & Effects": "https://www.newegg.com/Guitar-Pedals-Effects/SubCategory/ID-2901",
+      "Karaoke Accessories": "https://www.newegg.com/Karaoke-Accessories/SubCategory/ID-2930",
+      "Karaoke Systems": "https://www.newegg.com/Karaoke-Systems/SubCategory/ID-2929",
+      "Live Sound Amplifiers": "https://www.newegg.com/Live-Sound-Amplifiers/SubCategory/ID-2920",
+      "Live Sound Wireless Systems": "https://www.newegg.com/Live-Sound-Wireless-Systems/SubCategory/ID-2919",
+      "MIDI": "https://www.newegg.com/MIDI/SubCategory/ID-2907",
+      "Marching Band": "https://www.newegg.com/Marching-Band/SubCategory/ID-2931",
+      "Microphones": "https://www.newegg.com/Microphones/SubCategory/ID-2917",
+      "Musical Keyboard Accessories": "https://www.newegg.com/Musical-Keyboard-Accessories/SubCategory/ID-2910",
+      "Musical Keyboard Amplifiers": "https://www.newegg.com/Musical-Keyboard-Amplifiers/SubCategory/ID-2908",
+      "Musical Keyboard Controllers": "https://www.newegg.com/Musical-Keyboard-Controllers/SubCategory/ID-2909",
+      "Musical Keyboards": "https://www.newegg.com/Musical-Keyboards/SubCategory/ID-2906",
+      "Orchestral Strings": "https://www.newegg.com/Orchestral-Strings/SubCategory/ID-2935",
+      "Other Accessories": "https://www.newegg.com/Other-Accessories/SubCategory/ID-2939",
+      "PA Speakers": "https://www.newegg.com/PA-Speakers/SubCategory/ID-2921",
+      "Percussion": "https://www.newegg.com/Percussion/SubCategory/ID-2936",
+      "Snare Drums": "https://www.newegg.com/Snare-Drums/SubCategory/ID-2913",
+      "Stands/Racks": "https://www.newegg.com/Stands-Racks/SubCategory/ID-2938",
+      "Studio Monitors": "https://www.newegg.com/Studio-Monitors/SubCategory/ID-3396",
+      "Woodwind Instruments": "https://www.newegg.com/Woodwind-Instruments/SubCategory/ID-2934"
+     }
+    },
+    "TV & Home Theater": {
+     "@url": "https://www.newegg.com/TV-Video/Category/ID-59",
+     "Audio / Video Cables": "https://www.newegg.com/Audio-Video-Cables/Category/ID-184",
+     "Home Audio & Home Theater": {
+      "@url": "https://www.newegg.com/Home-Audio-Home-Theater/Category/ID-31",
+      "Audio Components": "https://www.newegg.com/Audio-Components/SubCategory/ID-698",
+      "CD Players": "https://www.newegg.com/CD-Players/SubCategory/ID-493",
+      "Home Audio Speakers": "https://www.newegg.com/Home-Audio-Speakers/SubCategory/ID-494",
+      "Home Theater in a Box": "https://www.newegg.com/Home-Theater-in-a-Box/SubCategory/ID-501",
+      "Pro Sound": "https://www.newegg.com/Pro-Sound/SubCategory/ID-500",
+      "Receivers": "https://www.newegg.com/Receivers/SubCategory/ID-488",
+      "Sound Bars": "https://www.newegg.com/Sound-Bars/SubCategory/ID-3256",
+      "Stands & Mounts": "https://www.newegg.com/Stands-Mounts/SubCategory/ID-496",
+      "Stereo Shelf Systems": "https://www.newegg.com/Stereo-Shelf-Systems/SubCategory/ID-644",
+      "Turntables & Cartridges": "https://www.newegg.com/Turntables-Cartridges/SubCategory/ID-2927",
+      "Wireless & Streaming Audio": "https://www.newegg.com/Wireless-Streaming-Audio/SubCategory/ID-3371"
+     },
+     "Home Theater Accessories": {
+      "@url": "https://www.newegg.com/Home-Theater-Accessories/Category/ID-224",
+      "DLP Replacement Lamps": "https://www.newegg.com/DLP-Replacement-Lamps/SubCategory/ID-785",
+      "Projector Accessories": "https://www.newegg.com/Projector-Accessories/SubCategory/ID-408"
+     },
+     "Home Video Accessories": {
+      "@url": "https://www.newegg.com/Home-Video-Accessories/Category/ID-358",
+      "Set-Top Boxes": "https://www.newegg.com/Set-Top-Boxes/SubCategory/ID-498"
+     },
+     "TV & Video": {
+      "Audio / Video Accessories": "https://www.newegg.com/Audio-Video-Accessories/SubCategory/ID-495",
+      "Audio Video Cables": "https://www.newegg.com/Audio-Video-Cables/SubCategory/ID-697",
+      "Blu-Ray Players": "https://www.newegg.com/Blu-Ray-Players/SubCategory/ID-531",
+      "Home Theater Projectors": "https://www.newegg.com/Home-Theater-Projectors/SubCategory/ID-513",
+      "LED TV": "https://www.newegg.com/LED-TV/SubCategory/ID-798",
+      "Media Players & TV Tuners": "https://www.newegg.com/Media-Players-TV-Tuners/SubCategory/ID-47",
+      "TV Accessories": "https://www.newegg.com/TV-Accessories/SubCategory/ID-1823",
+      "TV Antennas": "https://www.newegg.com/TV-Antennas/SubCategory/ID-497",
+      "TV Combos": "https://www.newegg.com/TV-Combos/SubCategory/ID-512",
+      "TV Stands & AV Furniture": "https://www.newegg.com/TV-Stands-AV-Furniture/SubCategory/ID-695",
+      "Universal Remotes": "https://www.newegg.com/Universal-Remotes/SubCategory/ID-283"
+     },
+     "TV Mounts & Install Accessories": "https://www.newegg.com/TV-Mounts-Install-Accessories/SubCategory/ID-696"
+    }
+   }
+  },
+  "Gaming & VR": {
+   "Gaming & VR": {
+    "@url": "https://www.newegg.com/Gaming-VR/Store/ID-8",
+    "Digital Games": {
+     "@url": "https://www.newegg.com/Digital-Games/Category/ID-377",
+     "Game Membership & Gift Cards": "https://www.newegg.com/Gaming/SubCategory/ID-3190",
+     "In Game Currency & Points": "https://www.newegg.com/In-Game-Currency/Store/ID-2858"
+    },
+    "Gaming Simulators": {
+     "@url": "https://www.newegg.com/Gaming-Simulators/Category/ID-528",
+     "Cockpits & Seats": "https://www.newegg.com/Cockpits-Seats/SubCategory/ID-3933",
+     "Driving Simulators": "https://www.newegg.com/Driving-Simulators/SubCategory/ID-3929",
+     "Flight Simulators": "https://www.newegg.com/Flight-Simulators/SubCategory/ID-3932"
+    },
+    "Handheld Gaming": {
+     "@url": "https://www.newegg.com/Mobile-Gaming/Category/ID-339",
+     "Handheld Gaming Accessories": "https://www.newegg.com/Handheld-Gaming-Accessories/SubCategory/ID-3247",
+     "Handheld Gaming Console": "https://www.newegg.com/Handheld-Gaming-Console/SubCategory/ID-3246"
+    },
+    "Nintendo": "https://www.newegg.com/Nintendo/Category/ID-248",
+    "PC Gaming": {
+     "@url": "https://www.newegg.com/PC-Gaming/Store/ID-2100259",
+     "Gaming Chairs": "https://www.newegg.com/Gaming-Chairs/SubCategory/ID-3628",
+     "Gaming Desks": "https://www.newegg.com/Gaming-Desks/SubCategory/ID-3766"
+    },
+    "PlayStation": {
+     "@url": "https://www.newegg.com/PlayStation/Category/ID-335",
+     "PS5 Accessories": "https://www.newegg.com/PS5-Accessories/SubCategory/ID-3764",
+     "PS5 Video Games": "https://www.newegg.com/PS5-Video-Games/SubCategory/ID-3763"
+    },
+    "Virtual Reality": {
+     "@url": "https://www.newegg.com/Virtual-Reality/Category/ID-132",
+     "Smart Glasses": "https://www.newegg.com/Smart-Glasses/SubCategory/ID-3722",
+     "VR Accessories": "https://www.newegg.com/VR-Accessories/SubCategory/ID-3704",
+     "VR Headsets": "https://www.newegg.com/VR-Headsets/SubCategory/ID-3629"
+    },
+    "Xbox": {
+     "@url": "https://www.newegg.com/Xbox/Category/ID-309",
+     "Xbox Series X & S Accessories": "https://www.newegg.com/Xbox-Series-X-S-Accessories/SubCategory/ID-3761",
+     "Xbox Series X & S Games": "https://www.newegg.com/Xbox-Series-X-S-Games/SubCategory/ID-3760"
+    }
+   }
+  },
+  "Health & Sports": {
+   "Health & Sports": {
+    "@url": "https://www.newegg.com/Health-Sports/Store/ID-78",
+    "Electric Transportation": {
+     "Safety Gear & Accessories": "https://www.newegg.com/Cycling-Protective-Gear/SubCategory/ID-1661"
+    },
+    "Fitness": {
+     "Camping & Hiking": {
+      "@url": "https://www.newegg.com/Camping-Hiking/Category/ID-167",
+      "Camp Furniture": "https://www.newegg.com/Camp-Furniture/SubCategory/ID-2563",
+      "Camping Cookware  & Utensils": "https://www.newegg.com/Camping-Cookware-Utensils/SubCategory/ID-2564",
+      "Food & Water": "https://www.newegg.com/Food-Water/SubCategory/ID-2567",
+      "Lighting, Heating & Power": "https://www.newegg.com/Lighting-Heating-Power/SubCategory/ID-2562",
+      "Personal Care & Sanitation": "https://www.newegg.com/Personal-Care-Sanitation/SubCategory/ID-2566",
+      "Poles, Tools & Gadgets": "https://www.newegg.com/Poles-Tools-Gadgets/SubCategory/ID-2568",
+      "Sleeping Bags & Beds": "https://www.newegg.com/Sleeping-Bags-Beds/SubCategory/ID-2561",
+      "Storage & Packs": "https://www.newegg.com/Storage-Packs/SubCategory/ID-2565",
+      "Tents, Shelters & Canopies": "https://www.newegg.com/Tents-Shelters-Canopies/SubCategory/ID-2560"
+     },
+     "Cardio Equipment": "https://www.newegg.com/Cardio-Equipment/SubCategory/ID-1682",
+     "Fitness & Exercise": {
+      "@url": "https://www.newegg.com/Fitness-Exercise/Category/ID-159",
+      "Fitness Accessories": "https://www.newegg.com/Fitness-Accessories/SubCategory/ID-1685",
+      "Sports Medicine": "https://www.newegg.com/Sports-Medicine/SubCategory/ID-1688",
+      "Swimming & Water Workouts": "https://www.newegg.com/Swimming-Water-Workouts/SubCategory/ID-1689"
+     },
+     "Weight Training & Home Gyms": "https://www.newegg.com/Weight-Training-Home-Gyms/SubCategory/ID-1683",
+     "Yoga, Pilates & Toning": "https://www.newegg.com/Yoga-Pilates-Toning/SubCategory/ID-1687"
+    },
+    "Health": {
+     "Baby": {
+      "@url": "https://www.newegg.com/Baby/Category/ID-75",
+      "Baby Apparel & Accessories": "https://www.newegg.com/Baby-Apparel-Accessories/Category/ID-76",
+      "Baby Care": "https://www.newegg.com/Baby-Care/Category/ID-77",
+      "Baby Carriers": "https://www.newegg.com/Baby-Carriers/SubCategory/ID-1768",
+      "Baby Gift Sets": "https://www.newegg.com/Baby-Gift-Sets/Category/ID-83",
+      "Bathing": "https://www.newegg.com/Bathing/SubCategory/ID-1748",
+      "Boosters & High Chairs": "https://www.newegg.com/Boosters-High-Chairs/SubCategory/ID-1758",
+      "Feeding": "https://www.newegg.com/Feeding/Category/ID-78",
+      "Health & Safety": "https://www.newegg.com/Health-Safety/SubCategory/ID-1751",
+      "Memory Books & Keepsakes": "https://www.newegg.com/Memory-Books-Keepsakes/SubCategory/ID-1765",
+      "Nursery": "https://www.newegg.com/Nursery/Category/ID-79",
+      "Nursery Bedding": "https://www.newegg.com/Nursery-Bedding/SubCategory/ID-1760",
+      "Nursery Furniture": "https://www.newegg.com/Nursery-Furniture/SubCategory/ID-1761",
+      "Play Centers & Walkers": "https://www.newegg.com/Play-Centers-Walkers/SubCategory/ID-1770",
+      "Pregnancy": "https://www.newegg.com/Pregnancy/Category/ID-80",
+      "Strollers": "https://www.newegg.com/Strollers/SubCategory/ID-1767",
+      "Toys & Activity": "https://www.newegg.com/Toys-Activity/Category/ID-82",
+      "Travel Gear": "https://www.newegg.com/Travel-Gear/Category/ID-81"
+     },
+     "Blood Pressure Monitors": "https://www.newegg.com/Blood-Pressure-Monitors/SubCategory/ID-738",
+     "Health & Wellness": {
+      "@url": "https://www.newegg.com/Health-Wellness/Category/ID-659",
+      "Allergy & Sinus": "https://www.newegg.com/Allergy-Sinus/SubCategory/ID-2142",
+      "Alternative Medicine": "https://www.newegg.com/Alternative-Medicine/SubCategory/ID-2154",
+      "Cough, Cold & Flu": "https://www.newegg.com/Cough-Cold-Flu/SubCategory/ID-2143",
+      "Diabetes Management": "https://www.newegg.com/Diabetes-Management/SubCategory/ID-2144",
+      "Digestion & Nausea": "https://www.newegg.com/Digestion-Nausea/SubCategory/ID-2140",
+      "Ear Care": "https://www.newegg.com/Ear-Care/SubCategory/ID-2133",
+      "Eye Care": "https://www.newegg.com/Eye-Care/SubCategory/ID-2134",
+      "Feminine Care": "https://www.newegg.com/Feminine-Care/SubCategory/ID-2135",
+      "First Aid": "https://www.newegg.com/First-Aid/SubCategory/ID-2141",
+      "Foot Care": "https://www.newegg.com/Foot-Care/SubCategory/ID-2136",
+      "Home Tests": "https://www.newegg.com/Home-Tests/SubCategory/ID-2146",
+      "Incontinence": "https://www.newegg.com/Incontinence/SubCategory/ID-2139",
+      "Massage & Relaxation": "https://www.newegg.com/Massage-Relaxation/SubCategory/ID-2137",
+      "Oral Care": "https://www.newegg.com/Oral-Care/SubCategory/ID-730",
+      "Skin Condition Treatments": "https://www.newegg.com/Skin-Condition-Treatments/SubCategory/ID-2147",
+      "Sleep & Snoring Aids": "https://www.newegg.com/Sleep-Snoring-Aids/SubCategory/ID-2148",
+      "Stop Smoking Aids": "https://www.newegg.com/Stop-Smoking-Aids/SubCategory/ID-2149",
+      "Supports & Braces": "https://www.newegg.com/Supports-Braces/SubCategory/ID-2150"
+     },
+     "Home Health Care": "https://www.newegg.com/Home-Health-Care/SubCategory/ID-2145",
+     "Personal Care": {
+      "@url": "https://www.newegg.com/Personal-Care/Category/ID-513",
+      "Bath Scales & Bath Accessories": "https://www.newegg.com/Bath-Scales-Bath-Accessories/SubCategory/ID-740",
+      "Curling Irons": "https://www.newegg.com/Curling-Irons/SubCategory/ID-734",
+      "Epilators": "https://www.newegg.com/Epilators/SubCategory/ID-732",
+      "Hair Dryers": "https://www.newegg.com/Hair-Dryers/SubCategory/ID-736",
+      "Hair Styling Tools": "https://www.newegg.com/Hair-Styling-Tools/SubCategory/ID-733",
+      "Humidifiers & Vaporizers": "https://www.newegg.com/Humidifiers-Vaporizers/SubCategory/ID-742",
+      "Massagers": "https://www.newegg.com/Massagers/SubCategory/ID-737",
+      "Shavers & Trimmers": "https://www.newegg.com/Shavers-Trimmers/Category/ID-265",
+      "Straightening Irons": "https://www.newegg.com/Straightening-Irons/SubCategory/ID-735",
+      "Thermometers": "https://www.newegg.com/Thermometers/SubCategory/ID-741"
+     },
+     "Sports Nutrition": "https://www.newegg.com/Diet-Fitness/SubCategory/ID-2153"
+    },
+    "Sports": {
+     "Airsoft & Paintball": {
+      "@url": "https://www.newegg.com/Airsoft-Paintball/Category/ID-157",
+      "Airsoft Ammunition, Explosives & Weapons": "https://www.newegg.com/Airsoft-Ammunition-Explosives-Weapons/SubCategory/ID-2597",
+      "Airsoft Cases & Storage": "https://www.newegg.com/Airsoft-Cases-Storage/SubCategory/ID-2598",
+      "Airsoft Gun Parts & Accessories": "https://www.newegg.com/Airsoft-Gun-Parts-Accessories/SubCategory/ID-2595",
+      "Airsoft Guns": "https://www.newegg.com/Airsoft-Guns/SubCategory/ID-2594",
+      "Airsoft Tactical Gear, Safety & Accessories": "https://www.newegg.com/Airsoft-Tactical-Gear-Safety-Accessories/SubCategory/ID-2596",
+      "Paintball Accessories": "https://www.newegg.com/Paintball-Accessories/SubCategory/ID-1806",
+      "Paintball Ammo & Accessories": "https://www.newegg.com/Paintball-Ammo-Accessories/SubCategory/ID-1803",
+      "Paintball Guns & Parts": "https://www.newegg.com/Paintball-Guns-Parts/SubCategory/ID-1804",
+      "Paintball Protection": "https://www.newegg.com/Paintball-Protection/SubCategory/ID-1807",
+      "Paintball Weapons": "https://www.newegg.com/Paintball-Weapons/SubCategory/ID-1805"
+     },
+     "Binoculars & Optics": "https://www.newegg.com/Binoculars-Optics/SubCategory/ID-378",
+     "Cycling": {
+      "@url": "https://www.newegg.com/Cycling/Category/ID-54",
+      "Bikes": "https://www.newegg.com/Bikes/SubCategory/ID-1658",
+      "Cycle Parts": "https://www.newegg.com/Cycle-Parts/SubCategory/ID-1659",
+      "Cycling Accessories": "https://www.newegg.com/Cycling-Accessories/SubCategory/ID-1660"
+     },
+     "Firearm Accessories": "https://www.newegg.com/Firearm-Accessories/SubCategory/ID-2577",
+     "Fishing": {
+      "@url": "https://www.newegg.com/Fishing/Category/ID-165",
+      "Fish Attractants & Baits": "https://www.newegg.com/Fish-Attractants-Baits/SubCategory/ID-2572",
+      "Fishing Reels": "https://www.newegg.com/Fishing-Reels/SubCategory/ID-2570",
+      "Fishing Rods & Bows": "https://www.newegg.com/Fishing-Rods-Bows/SubCategory/ID-2569",
+      "Fishing Tackle Boxes": "https://www.newegg.com/Fishing-Tackle-Boxes/SubCategory/ID-2574",
+      "Fishing Terminal": "https://www.newegg.com/Fishing-Terminal/SubCategory/ID-2573",
+      "Fishing Tools  & Accessories": "https://www.newegg.com/Fishing-Tools-Accessories/SubCategory/ID-2575",
+      "Rod & Reel Storage": "https://www.newegg.com/Rod-Reel-Storage/SubCategory/ID-2571"
+     },
+     "Golf": {
+      "@url": "https://www.newegg.com/Golf/Category/ID-44",
+      "Fairway Woods": "https://www.newegg.com/Fairway-Woods/SubCategory/ID-1498",
+      "Golf Accessories": "https://www.newegg.com/Golf-Accessories/SubCategory/ID-1504",
+      "Golf Bags": "https://www.newegg.com/Golf-Bags/SubCategory/ID-1503",
+      "Golf Balls": "https://www.newegg.com/Golf-Balls/SubCategory/ID-3223",
+      "Golf Club Sets": "https://www.newegg.com/Golf-Club-Sets/SubCategory/ID-1502",
+      "Golf Drivers": "https://www.newegg.com/Golf-Drivers/SubCategory/ID-3225",
+      "Golf Irons": "https://www.newegg.com/Golf-Irons/SubCategory/ID-1499",
+      "Golf Shoes": "https://www.newegg.com/Golf-Shoes/SubCategory/ID-3221",
+      "Golf Tech": "https://www.newegg.com/Golf-Tech/SubCategory/ID-3252",
+      "Golf Training Aids": "https://www.newegg.com/Golf-Training-Aids/SubCategory/ID-3224",
+      "Golf Wedges": "https://www.newegg.com/Golf-Wedges/SubCategory/ID-1500",
+      "Hybrid Golf Clubs": "https://www.newegg.com/Hybrid-Golf-Clubs/SubCategory/ID-3222",
+      "Putters": "https://www.newegg.com/Putters/SubCategory/ID-1501"
+     },
+     "Hunting Knives & Tools": "https://www.newegg.com/Hunting-Knives-Tools/SubCategory/ID-2576",
+     "Skateboarding": {
+      "@url": "https://www.newegg.com/Skateboarding/Category/ID-55",
+      "Skateboard Accessories": "https://www.newegg.com/Skateboard-Accessories/SubCategory/ID-1692",
+      "Skateboard Parts": "https://www.newegg.com/Skateboard-Parts/SubCategory/ID-1691",
+      "Skateboard Protective Gear": "https://www.newegg.com/Skateboard-Protective-Gear/SubCategory/ID-1693",
+      "Skateboards & Scooters": "https://www.newegg.com/Skateboards-Scooters/SubCategory/ID-1690"
+     },
+     "Sporting Goods": {
+      "@url": "https://www.newegg.com/Sporting-Goods/Category/ID-665",
+      "Baseball & Softball": "https://www.newegg.com/Baseball-Softball/Category/ID-57",
+      "Basketball": "https://www.newegg.com/Basketball/Category/ID-56",
+      "Bowling": "https://www.newegg.com/Bowling/Category/ID-53",
+      "Football": "https://www.newegg.com/Football/Category/ID-58",
+      "Hockey": "https://www.newegg.com/Hockey/Category/ID-161",
+      "Hunting": "https://www.newegg.com/Hunting/Category/ID-166",
+      "Mixed Martial Arts": "https://www.newegg.com/Mixed-Martial-Arts/Category/ID-349",
+      "Racquet Sports": "https://www.newegg.com/Racquet-Sports/Category/ID-383",
+      "Soccer": "https://www.newegg.com/Soccer/Category/ID-160",
+      "Sports Accessories & Equipment": "https://www.newegg.com/Sports-Accessories-Equipment/Category/ID-163",
+      "Sports Gift Sets": "https://www.newegg.com/Sports-Gift-Sets/SubCategory/ID-1019",
+      "Sports Memorabilia & Collectibles": "https://www.newegg.com/Sports-Memorabilia-Collectibles/SubCategory/ID-1017",
+      "Water Sports": "https://www.newegg.com/Water-Sports/Category/ID-46",
+      "Winter Sports": "https://www.newegg.com/Winter-Sports/Category/ID-162"
+     }
+    }
+   }
+  },
+  "Home & Outdoors": {
+   "Home & Outdoors": {
+    "@url": "https://www.newegg.com/Home-Outdoors/Store/ID-15",
+    "Home Improvement": {
+     "Bath": {
+      "@url": "https://www.newegg.com/Bath/Category/ID-102",
+      "Bath Fans & Accessories": "https://www.newegg.com/Bath-Fans-Accessories/SubCategory/ID-2076",
+      "Bath Faucet Parts": "https://www.newegg.com/Bath-Faucet-Parts/SubCategory/ID-2078",
+      "Bath Faucets": "https://www.newegg.com/Bath-Faucets/SubCategory/ID-1040",
+      "Bath Mirrors": "https://www.newegg.com/Bath-Mirrors/SubCategory/ID-2008",
+      "Bath Storage": "https://www.newegg.com/Bath-Storage/SubCategory/ID-2019",
+      "Bathroom Tubs": "https://www.newegg.com/Bathroom-Tubs/SubCategory/ID-2802",
+      "Bathwares": "https://www.newegg.com/Bathwares/SubCategory/ID-2079",
+      "Drop-In & Self Rimming": "https://www.newegg.com/Drop-In-Self-Rimming/SubCategory/ID-2080",
+      "Laundry Tubs": "https://www.newegg.com/Laundry-Tubs/SubCategory/ID-2803",
+      "Medicine Cabinets": "https://www.newegg.com/Medicine-Cabinets/SubCategory/ID-2081",
+      "Misc Bath Hardware": "https://www.newegg.com/Misc-Bath-Hardware/SubCategory/ID-2082",
+      "Pedestal & Basin": "https://www.newegg.com/Pedestal-Basin/SubCategory/ID-2010",
+      "Shower Bases, Walls & Doors": "https://www.newegg.com/Shower-Bases-Walls-Doors/SubCategory/ID-2016",
+      "Shower Heads": "https://www.newegg.com/Shower-Heads/SubCategory/ID-2084",
+      "Toilet Accessories": "https://www.newegg.com/Toilet-Accessories/SubCategory/ID-2085",
+      "Toilet Paper Holders": "https://www.newegg.com/Toilet-Paper-Holders/SubCategory/ID-2086",
+      "Toilets": "https://www.newegg.com/Toilets/SubCategory/ID-2014",
+      "Towel Rings & Bars": "https://www.newegg.com/Towel-Rings-Bars/SubCategory/ID-2087",
+      "Tub & Shower Faucets": "https://www.newegg.com/Tub-Shower-Faucets/SubCategory/ID-2088",
+      "Tub & Shower Parts": "https://www.newegg.com/Tub-Shower-Parts/SubCategory/ID-2089",
+      "Tub Doors": "https://www.newegg.com/Tub-Doors/SubCategory/ID-2017",
+      "Undermount Bathroom Sinks": "https://www.newegg.com/Undermount-Bathroom-Sinks/SubCategory/ID-2012",
+      "Vanities with Tops": "https://www.newegg.com/Vanities-with-Tops/SubCategory/ID-2020",
+      "Vanities without Tops": "https://www.newegg.com/Vanities-without-Tops/SubCategory/ID-2023",
+      "Vanity Tops": "https://www.newegg.com/Vanity-Tops/SubCategory/ID-2024",
+      "Wall Mounted Sinks": "https://www.newegg.com/Wall-Mounted-Sinks/SubCategory/ID-2013"
+     },
+     "Fans, Ceiling Fans & Accessories": {
+      "@url": "https://www.newegg.com/Fans-Ceiling-Fans-Accessories/Category/ID-89",
+      "Canopy Kits": "https://www.newegg.com/Canopy-Kits/SubCategory/ID-2873",
+      "Ceiling Fans": "https://www.newegg.com/Ceiling-Fans/SubCategory/ID-2886",
+      "Ceiling Medallions": "https://www.newegg.com/Ceiling-Medallions/SubCategory/ID-2874",
+      "Cords / Cord Covers": "https://www.newegg.com/Cords-Cord-Covers/SubCategory/ID-2876",
+      "Down Rods": "https://www.newegg.com/Down-Rods/SubCategory/ID-2889",
+      "Fan Accessories": "https://www.newegg.com/Fan-Accessories/SubCategory/ID-2891",
+      "Fan Blades": "https://www.newegg.com/Fan-Blades/SubCategory/ID-2890",
+      "Fan Controls": "https://www.newegg.com/Fan-Controls/SubCategory/ID-2892",
+      "Outdoor Fans": "https://www.newegg.com/Outdoor-Fans/SubCategory/ID-2887",
+      "Swing Arms": "https://www.newegg.com/Swing-Arms/SubCategory/ID-2851"
+     },
+     "Home Improvement Hardware": {
+      "@url": "https://www.newegg.com/Home-Improvement-Hardware/Category/ID-415",
+      "Cabinet & Drawer Hardware": "https://www.newegg.com/Cabinet-Drawer-Hardware/SubCategory/ID-3435",
+      "Conduit": "https://www.newegg.com/Conduit/SubCategory/ID-1899",
+      "Door & Window Hardware": "https://www.newegg.com/Door-Window-Hardware/SubCategory/ID-3433",
+      "Door Locks": "https://www.newegg.com/Door-Locks/SubCategory/ID-2103",
+      "Doorbell & Chime Systems": "https://www.newegg.com/Doorbell-Chime-Systems/SubCategory/ID-1912",
+      "Doors": "https://www.newegg.com/Doors/SubCategory/ID-3298",
+      "Fan & Dimmer Switches": "https://www.newegg.com/Fan-Dimmer-Switches/SubCategory/ID-1919",
+      "Flooring": "https://www.newegg.com/Flooring/SubCategory/ID-3482",
+      "Flooring Tools & Materials": "https://www.newegg.com/Flooring-Tools-Materials/SubCategory/ID-2029",
+      "Gang Box & Covers": "https://www.newegg.com/Gang-Box-Covers/SubCategory/ID-2877",
+      "Mailboxes & Post": "https://www.newegg.com/Mailboxes-Post/SubCategory/ID-2107",
+      "Numbers, Letters & Signs": "https://www.newegg.com/Numbers-Letters-Signs/SubCategory/ID-2038",
+      "Other Heaters": "https://www.newegg.com/Other-Heaters/SubCategory/ID-2115",
+      "Outdoor Heaters": "https://www.newegg.com/Outdoor-Heaters/SubCategory/ID-721",
+      "Padlocks": "https://www.newegg.com/Padlocks/SubCategory/ID-3434",
+      "Shades": "https://www.newegg.com/Shades/SubCategory/ID-2847",
+      "Specialty Mailboxes": "https://www.newegg.com/Specialty-Mailboxes/SubCategory/ID-2039",
+      "Switch Plates": "https://www.newegg.com/Switch-Plates/SubCategory/ID-2879",
+      "Water Heater Parts & Accessories": "https://www.newegg.com/Water-Heater-Parts-Accessories/SubCategory/ID-2116",
+      "Water Heaters": "https://www.newegg.com/Water-Heaters/SubCategory/ID-3360"
+     },
+     "Interior Lighting": {
+      "@url": "https://www.newegg.com/Interior-Lighting/Category/ID-86",
+      "Accent Lighting": "https://www.newegg.com/Accent-Lighting/SubCategory/ID-2848",
+      "Ballasts": "https://www.newegg.com/Ballasts/SubCategory/ID-2872",
+      "Bathroom Lighting": "https://www.newegg.com/Bathroom-Lighting/SubCategory/ID-2850",
+      "Book Lights": "https://www.newegg.com/Book-Lights/SubCategory/ID-2893",
+      "Chandeliers": "https://www.newegg.com/Chandeliers/SubCategory/ID-2854",
+      "Desk Lamps": "https://www.newegg.com/Desk-Lamps/SubCategory/ID-2846",
+      "Floor Lamps": "https://www.newegg.com/Floor-Lamps/SubCategory/ID-2845",
+      "Flush Mounts": "https://www.newegg.com/Flush-Mounts/SubCategory/ID-2843",
+      "Glass Shades": "https://www.newegg.com/Glass-Shades/SubCategory/ID-2878",
+      "Island Lights": "https://www.newegg.com/Island-Lights/SubCategory/ID-2858",
+      "Light Kits": "https://www.newegg.com/Light-Kits/SubCategory/ID-2888",
+      "Light Sockets & Holders": "https://www.newegg.com/Light-Sockets-Holders/SubCategory/ID-1907",
+      "Night Lights": "https://www.newegg.com/Night-Lights/SubCategory/ID-1910",
+      "Pendants": "https://www.newegg.com/Pendants/SubCategory/ID-2855",
+      "Picture Lights": "https://www.newegg.com/Picture-Lights/SubCategory/ID-2852",
+      "Recessed Lighting": "https://www.newegg.com/Recessed-Lighting/SubCategory/ID-2856",
+      "Semi Flush": "https://www.newegg.com/Semi-Flush/SubCategory/ID-2853",
+      "Table Lamps": "https://www.newegg.com/Table-Lamps/SubCategory/ID-2844",
+      "Track Lighting": "https://www.newegg.com/Track-Lighting/SubCategory/ID-2857",
+      "Under Cabinet": "https://www.newegg.com/Under-Cabinet/SubCategory/ID-2894",
+      "Wall Sconces": "https://www.newegg.com/Wall-Sconces/SubCategory/ID-2849"
+     },
+     "Kitchen": {
+      "@url": "https://www.newegg.com/Kitchen/Category/ID-103",
+      "Disposers": "https://www.newegg.com/Disposers/SubCategory/ID-2117",
+      "Kitchen Accessories": "https://www.newegg.com/Kitchen-Accessories/SubCategory/ID-2118",
+      "Kitchen Faucets": "https://www.newegg.com/Kitchen-Faucets/SubCategory/ID-1041",
+      "Kitchen Sinks": "https://www.newegg.com/Kitchen-Sinks/SubCategory/ID-2120",
+      "Water Filtration & Dispensers": "https://www.newegg.com/Water-Filtration-Dispensers/SubCategory/ID-2074"
+     },
+     "Light Bulbs": {
+      "@url": "https://www.newegg.com/Light-Bulbs/Category/ID-200",
+      "LED Light Bulbs": "https://www.newegg.com/LED-Light-Bulbs/SubCategory/ID-2896",
+      "Standard Bulbs": "https://www.newegg.com/Standard-Bulbs/SubCategory/ID-1802"
+     }
+    },
+    "Home Living": {
+     "Cleaning": "https://www.newegg.com/Cleaning/SubCategory/ID-2181",
+     "Decor": {
+      "@url": "https://www.newegg.com/Decor/Category/ID-178",
+      "Area Rugs": "https://www.newegg.com/Area-Rugs/SubCategory/ID-2792",
+      "Aromatherapy": "https://www.newegg.com/Aromatherapy/SubCategory/ID-893",
+      "Bed Pillows": "https://www.newegg.com/Bed-Pillows/SubCategory/ID-3043",
+      "Clocks": "https://www.newegg.com/Clocks/SubCategory/ID-3305",
+      "Door Mats": "https://www.newegg.com/Door-Mats/SubCategory/ID-2794",
+      "Holiday / String Lights": "https://www.newegg.com/Holiday-String-Lights/SubCategory/ID-2867",
+      "Holiday Decor": "https://www.newegg.com/Holiday-Decor/SubCategory/ID-2180",
+      "Home Accents": "https://www.newegg.com/Home-Accents/SubCategory/ID-3306",
+      "Home Textiles & Bedding": "https://www.newegg.com/Home-Textiles-Bedding/SubCategory/ID-2165",
+      "Hooks & Picture Hangers": "https://www.newegg.com/Hooks-Picture-Hangers/SubCategory/ID-2106",
+      "Mirrors": "https://www.newegg.com/Mirrors/SubCategory/ID-3303",
+      "Window Treatments": "https://www.newegg.com/Window-Treatments/SubCategory/ID-3307"
+     },
+     "Furniture": {
+      "@url": "https://www.newegg.com/Furniture/Category/ID-244",
+      "Bakers Racks": "https://www.newegg.com/Bakers-Racks/SubCategory/ID-3213",
+      "Barstools": "https://www.newegg.com/Barstools/SubCategory/ID-2800",
+      "Bed Replacement Parts & Accessories": "https://www.newegg.com/Bed-Replacement-Parts-Accessories/SubCategory/ID-3234",
+      "Bedroom Accents": "https://www.newegg.com/Bedroom-Accents/SubCategory/ID-3229",
+      "Bedroom Sets": "https://www.newegg.com/Bedroom-Sets/SubCategory/ID-3228",
+      "Beds": "https://www.newegg.com/Beds/SubCategory/ID-3226",
+      "Chairs": "https://www.newegg.com/Chairs/SubCategory/ID-3001",
+      "China Cabinets & Sideboards": "https://www.newegg.com/China-Cabinets-Sideboards/SubCategory/ID-3192",
+      "Decorative Shelving": "https://www.newegg.com/Decorative-Shelving/SubCategory/ID-2101",
+      "Dining Tables, Chairs & Sets": "https://www.newegg.com/Dining-Tables-Chairs-Sets/SubCategory/ID-3233",
+      "Entryway & Halls": "https://www.newegg.com/Entryway-Halls/SubCategory/ID-2591",
+      "Fireplace Accessories": "https://www.newegg.com/Fireplace-Accessories/SubCategory/ID-3231",
+      "Game Tables": "https://www.newegg.com/Game-Tables/SubCategory/ID-3072",
+      "Home Entertainment": "https://www.newegg.com/Home-Entertainment/SubCategory/ID-2940",
+      "Kitchen Islands / Carts": "https://www.newegg.com/Kitchen-Islands-Carts/SubCategory/ID-2880",
+      "Mattresses & Foundations": "https://www.newegg.com/Mattresses-Foundations/SubCategory/ID-3227",
+      "Occasional Tables": "https://www.newegg.com/Occasional-Tables/SubCategory/ID-3232",
+      "Ottomans and Stools": "https://www.newegg.com/Ottomans-and-Stools/SubCategory/ID-3000",
+      "Recliners": "https://www.newegg.com/Recliners/SubCategory/ID-2799",
+      "Sofas & Sectionals": "https://www.newegg.com/Sofas-Sectionals/SubCategory/ID-3230"
+     },
+     "Home Office Furniture": {
+      "@url": "https://www.newegg.com/Home-Office-Furniture/Category/ID-199",
+      "Bookshelves": "https://www.newegg.com/Bookshelves/SubCategory/ID-2884",
+      "Desk & Chair Sets": "https://www.newegg.com/Desk-Chair-Sets/SubCategory/ID-2882",
+      "Desks": "https://www.newegg.com/Desks/SubCategory/ID-2881",
+      "File Cabinets": "https://www.newegg.com/File-Cabinets/SubCategory/ID-2883"
+     },
+     "Kitchen & Dining": {
+      "@url": "https://www.newegg.com/Kitchen-Dining/Category/ID-177",
+      "Bakeware": "https://www.newegg.com/Bakeware/SubCategory/ID-2167",
+      "Baking Tools & Gadgets": "https://www.newegg.com/Baking-Tools-Gadgets/SubCategory/ID-3197",
+      "Bar Tools & Accessories": "https://www.newegg.com/Bar-Tools-Accessories/SubCategory/ID-3212",
+      "Cake Decorating Supplies": "https://www.newegg.com/Cake-Decorating-Supplies/SubCategory/ID-3196",
+      "Can Openers": "https://www.newegg.com/Can-Openers/SubCategory/ID-675",
+      "Candy Making Supplies": "https://www.newegg.com/Candy-Making-Supplies/SubCategory/ID-3195",
+      "Canning & Preserving": "https://www.newegg.com/Canning-Preserving/SubCategory/ID-3205",
+      "Colanders & Strainers": "https://www.newegg.com/Colanders-Strainers/SubCategory/ID-3215",
+      "Cooking Utensils": "https://www.newegg.com/Cooking-Utensils/SubCategory/ID-2175",
+      "Cookware": "https://www.newegg.com/Cookware/SubCategory/ID-2170",
+      "Cup & Saucer Sets": "https://www.newegg.com/Cup-Saucer-Sets/SubCategory/ID-3214",
+      "Cutlery": "https://www.newegg.com/Cutlery/SubCategory/ID-670",
+      "Cutting Boards": "https://www.newegg.com/Cutting-Boards/SubCategory/ID-3203",
+      "Dining Bowls": "https://www.newegg.com/Dining-Bowls/SubCategory/ID-3200",
+      "Dinnerware Sets": "https://www.newegg.com/Dinnerware-Sets/SubCategory/ID-3198",
+      "Drinkware": "https://www.newegg.com/Drinkware/SubCategory/ID-2174",
+      "Flatware": "https://www.newegg.com/Flatware/SubCategory/ID-3201",
+      "Food Mills & Ricers": "https://www.newegg.com/Food-Mills-Ricers/SubCategory/ID-3210",
+      "Food Pantries & Storage Carts": "https://www.newegg.com/Food-Pantries-Storage-Carts/SubCategory/ID-3193",
+      "Food Storage": "https://www.newegg.com/Food-Storage/SubCategory/ID-3191",
+      "Fruit & Vegetable Tools": "https://www.newegg.com/Fruit-Vegetable-Tools/SubCategory/ID-3206",
+      "Graters": "https://www.newegg.com/Graters/SubCategory/ID-3207",
+      "Home Gadgets": "https://www.newegg.com/Home-Gadgets/SubCategory/ID-336",
+      "Kitchen Gadgets": "https://www.newegg.com/Kitchen-Gadgets/SubCategory/ID-657",
+      "Meat, Poultry & Seafood Tools": "https://www.newegg.com/Meat-Poultry-Seafood-Tools/SubCategory/ID-3208",
+      "Mixing Bowls & Measuring Tools": "https://www.newegg.com/Mixing-Bowls-Measuring-Tools/SubCategory/ID-3204",
+      "Open Stock Cookware": "https://www.newegg.com/Open-Stock-Cookware/SubCategory/ID-661",
+      "Plates": "https://www.newegg.com/Plates/SubCategory/ID-3199",
+      "Serveware": "https://www.newegg.com/Serveware/SubCategory/ID-3202",
+      "Stemware & Bar Drinkware": "https://www.newegg.com/Stemware-Bar-Drinkware/SubCategory/ID-3211",
+      "Storage & Organization": "https://www.newegg.com/Storage-Organization/SubCategory/ID-2177",
+      "Table Linens": "https://www.newegg.com/Table-Linens/SubCategory/ID-2171",
+      "Timers, Thermometers & Scales": "https://www.newegg.com/Timers-Thermometers-Scales/SubCategory/ID-3209",
+      "Wine Storage & Bars": "https://www.newegg.com/Wine-Storage-Bars/SubCategory/ID-3194"
+     },
+     "Luggage & Bags": {
+      "@url": "https://www.newegg.com/Luggage-Bags/Category/ID-47",
+      "Bags": "https://www.newegg.com/Bags/SubCategory/ID-1560",
+      "Business Cases": "https://www.newegg.com/Business-Cases/SubCategory/ID-1561",
+      "Carriers & Packs": "https://www.newegg.com/Carriers-Packs/SubCategory/ID-864",
+      "Handbags": "https://www.newegg.com/Handbags/SubCategory/ID-1490",
+      "Luggage": "https://www.newegg.com/Luggage/SubCategory/ID-1559",
+      "Travel Accessories": "https://www.newegg.com/Travel-Accessories/SubCategory/ID-1528"
+     },
+     "Pet Supplies": {
+      "@url": "https://www.newegg.com/Pet-Supplies/Category/ID-50",
+      "Fish & Aquarium": "https://www.newegg.com/Fish-Aquarium/SubCategory/ID-1604",
+      "Pet - Apparel": "https://www.newegg.com/Pet-Apparel/SubCategory/ID-1033",
+      "Pet - Barriers & Carriers": "https://www.newegg.com/Pet-Barriers-Carriers/SubCategory/ID-2657",
+      "Pet - Bowls, Feeders & Waterers": "https://www.newegg.com/Pet-Bowls-Feeders-Waterers/SubCategory/ID-1588",
+      "Pet - Collars, Leashes, & Tags": "https://www.newegg.com/Pet-Collars-Leashes-Tags/SubCategory/ID-1580",
+      "Pet - Food & Treats": "https://www.newegg.com/Pet-Food-Treats/SubCategory/ID-1585",
+      "Pet - Furniture, Cage & Accessories": "https://www.newegg.com/Pet-Furniture-Cage-Accessories/SubCategory/ID-1591",
+      "Pet - Grooming": "https://www.newegg.com/Pet-Grooming/SubCategory/ID-1638",
+      "Pet - Health Care & Clean up": "https://www.newegg.com/Pet-Health-Care-Clean-up/SubCategory/ID-1582",
+      "Pet - Housing, Crates & Containment": "https://www.newegg.com/Pet-Housing-Crates-Containment/SubCategory/ID-1635",
+      "Pet - Litter & Bedding": "https://www.newegg.com/Pet-Litter-Bedding/SubCategory/ID-1578",
+      "Pet - Tech / Training Aids": "https://www.newegg.com/Pet-Tech-Training-Aids/SubCategory/ID-1584",
+      "Pet - Toys": "https://www.newegg.com/Pet-Toys/SubCategory/ID-1583"
+     },
+     "Shelving, Storage & Organization": "https://www.newegg.com/Shelving-Storage-Organization/Category/ID-137"
+    },
+    "Outdoor & Garden": {
+     "BBQ Grills": {
+      "@url": "https://www.newegg.com/BBQ-Grills/Category/ID-112",
+      "BBQ Grills": "https://www.newegg.com/BBQ-Grills/SubCategory/ID-651",
+      "Grill Accessories": "https://www.newegg.com/Grill-Accessories/SubCategory/ID-788"
+     },
+     "Garden Center": {
+      "@url": "https://www.newegg.com/Garden-Center/Category/ID-121",
+      "Arbors & Trellises": "https://www.newegg.com/Arbors-Trellises/SubCategory/ID-1977",
+      "Artificial Foliage & Topiaries": "https://www.newegg.com/Artificial-Foliage-Topiaries/SubCategory/ID-1986",
+      "Bird & Wildlife Products": "https://www.newegg.com/Bird-Wildlife-Products/SubCategory/ID-2951",
+      "Composters": "https://www.newegg.com/Composters/SubCategory/ID-2952",
+      "Fertilizers & Treatments": "https://www.newegg.com/Fertilizers-Treatments/SubCategory/ID-1888",
+      "Flags & Banners": "https://www.newegg.com/Flags-Banners/SubCategory/ID-1978",
+      "Fresh Flowers & Plants": "https://www.newegg.com/Fresh-Flowers-Plants/SubCategory/ID-3348",
+      "Garden Decor & Statues": "https://www.newegg.com/Garden-Decor-Statues/SubCategory/ID-1982",
+      "Garden Stakes & Sheep Hooks": "https://www.newegg.com/Garden-Stakes-Sheep-Hooks/SubCategory/ID-1979",
+      "Grow Lights": "https://www.newegg.com/Grow-Lights/SubCategory/ID-2942",
+      "Outdoor Comfort": "https://www.newegg.com/Outdoor-Comfort/SubCategory/ID-1984",
+      "Pest Contol": "https://www.newegg.com/Pest-Contol/SubCategory/ID-1878",
+      "Plant Stands & Hangers": "https://www.newegg.com/Plant-Stands-Hangers/SubCategory/ID-1896",
+      "Planters & Window Boxes": "https://www.newegg.com/Planters-Window-Boxes/SubCategory/ID-2956",
+      "Ponds & Water Gardens": "https://www.newegg.com/Ponds-Water-Gardens/SubCategory/ID-2949",
+      "Shade Cloths": "https://www.newegg.com/Shade-Cloths/SubCategory/ID-2950"
+     },
+     "Outdoor Lighting": {
+      "@url": "https://www.newegg.com/Outdoor-Lighting/Category/ID-193",
+      "Flashlights & Lanterns": "https://www.newegg.com/Flashlights-Lanterns/SubCategory/ID-359",
+      "Flood & Spot Light": "https://www.newegg.com/Flood-Spot-Light/SubCategory/ID-2866",
+      "Landscape Lighting": "https://www.newegg.com/Landscape-Lighting/SubCategory/ID-2864",
+      "Porch & Patio Light": "https://www.newegg.com/Porch-Patio-Light/SubCategory/ID-3745",
+      "Post Lights": "https://www.newegg.com/Post-Lights/SubCategory/ID-2863",
+      "String & Rope Light": "https://www.newegg.com/String-Rope-Light/SubCategory/ID-3746"
+     },
+     "Outdoor Sheds & Structures": {
+      "@url": "https://www.newegg.com/Outdoor-Sheds-Structures/Category/ID-142",
+      "Greenhouses": "https://www.newegg.com/Greenhouses/SubCategory/ID-2955",
+      "Outdoor Playset Accessories": "https://www.newegg.com/Outdoor-Playset-Accessories/SubCategory/ID-2123",
+      "Outdoor Playsets": "https://www.newegg.com/Outdoor-Playsets/SubCategory/ID-1949",
+      "Outdoor Storage Buildings": "https://www.newegg.com/Outdoor-Storage-Buildings/SubCategory/ID-2058",
+      "Small Patio & Storage": "https://www.newegg.com/Small-Patio-Storage/SubCategory/ID-2059",
+      "Tables & Specialty Structures": "https://www.newegg.com/Tables-Specialty-Structures/SubCategory/ID-2061"
+     },
+     "Patio Furniture": {
+      "@url": "https://www.newegg.com/Patio-Furniture/Category/ID-111",
+      "Gazebos & Canopies": "https://www.newegg.com/Gazebos-Canopies/SubCategory/ID-2062",
+      "Outdoor Rugs": "https://www.newegg.com/Outdoor-Rugs/SubCategory/ID-2793",
+      "Patio Cushions & Accessories": "https://www.newegg.com/Patio-Cushions-Accessories/SubCategory/ID-2063",
+      "Patio Furniture": "https://www.newegg.com/Patio-Furniture/SubCategory/ID-1947",
+      "Patio Umbrellas & Bases": "https://www.newegg.com/Patio-Umbrellas-Bases/SubCategory/ID-1948"
+     },
+     "Watering & Irrigation": {
+      "@url": "https://www.newegg.com/Watering-Irrigation/Category/ID-151",
+      "Drip Irrigation": "https://www.newegg.com/Drip-Irrigation/SubCategory/ID-1894",
+      "Hose Reels": "https://www.newegg.com/Hose-Reels/SubCategory/ID-1892",
+      "Hoses": "https://www.newegg.com/Hoses/SubCategory/ID-1891",
+      "Nozzles & Wands": "https://www.newegg.com/Nozzles-Wands/SubCategory/ID-1893",
+      "Sprinklers": "https://www.newegg.com/Sprinklers/SubCategory/ID-1889",
+      "Timers": "https://www.newegg.com/Timers/SubCategory/ID-1890",
+      "Watering Cans": "https://www.newegg.com/Watering-Cans/SubCategory/ID-1895"
+     },
+     "Yard Tools": {
+      "@url": "https://www.newegg.com/Yard-Tools/Category/ID-152",
+      "Axes, Picks & Sledgehammers": "https://www.newegg.com/Axes-Picks-Sledgehammers/SubCategory/ID-1879",
+      "Cultivators, Hoes & Rakes": "https://www.newegg.com/Cultivators-Hoes-Rakes/SubCategory/ID-1880",
+      "Cutting, Edging & Pruning": "https://www.newegg.com/Cutting-Edging-Pruning/SubCategory/ID-1881",
+      "Diggers & Tampers": "https://www.newegg.com/Diggers-Tampers/SubCategory/ID-1882",
+      "Edging & Fencing": "https://www.newegg.com/Edging-Fencing/SubCategory/ID-2954",
+      "Other Yard Tools": "https://www.newegg.com/Other-Yard-Tools/SubCategory/ID-2128",
+      "Parts & Accessories": "https://www.newegg.com/Parts-Accessories/SubCategory/ID-1884",
+      "Power Saws": "https://www.newegg.com/Power-Saws/SubCategory/ID-3505",
+      "Shovels & Spades": "https://www.newegg.com/Shovels-Spades/SubCategory/ID-1885",
+      "Snow & Ice": "https://www.newegg.com/Snow-Ice/SubCategory/ID-1886",
+      "Specialty Garden Hand Tools": "https://www.newegg.com/Specialty-Garden-Hand-Tools/SubCategory/ID-1887",
+      "Trimmers & Edgers": "https://www.newegg.com/Trimmers-Edgers/SubCategory/ID-1973",
+      "Wheelbarrows": "https://www.newegg.com/Wheelbarrows/SubCategory/ID-2953"
+     }
+    },
+    "Outdoor Power": {
+     "@url": "https://www.newegg.com/Outdoor-Power/Category/ID-113",
+     "Chain Saws": "https://www.newegg.com/Chain-Saws-Accessories/SubCategory/ID-1814",
+     "Generators": "https://www.newegg.com/Generators/SubCategory/ID-2095",
+     "Lawn Mowers & Tractors": "https://www.newegg.com/Lawn-Mowers-Tractors/SubCategory/ID-1970",
+     "Leaf Blowers": "https://www.newegg.com/Leaf-Blowers/SubCategory/ID-1967",
+     "Pressure Washers": "https://www.newegg.com/Pressure-Washers/SubCategory/ID-1968",
+     "Solar Power": "https://www.newegg.com/Solar-Panels-Accessories/SubCategory/ID-3285",
+     "Trimmers": "https://www.newegg.com/Trimmers-Accessories/SubCategory/ID-2127"
+    }
+   }
+  },
+  "Networking": {
+   "Networking": {
+    "@url": "https://www.newegg.com/Networking/Store/ID-889",
+    "Accessories": {
+     "@url": "https://www.newegg.com/Networking-Accessories/Category/ID-461",
+     "Device Server": "https://www.newegg.com/Device-Server/SubCategory/ID-3301",
+     "Network Antennas": "https://www.newegg.com/Network-Antennas/SubCategory/ID-3373",
+     "Network Ethernet Cables": "https://www.newegg.com/Network-Ethernet-Cables/SubCategory/ID-2825",
+     "Network Media Players": "https://www.newegg.com/Network-Media-Players/SubCategory/ID-484",
+     "Network Print Servers": "https://www.newegg.com/Network-Print-Servers/SubCategory/ID-387"
+    },
+    "Commercial Networking": {
+     "@url": "https://www.newegg.com/Wired-Networking/Category/ID-40",
+     "Access Points": "https://www.newegg.com/Wireless-AP/SubCategory/ID-335",
+     "Firewall & Network Security Devices": "https://www.newegg.com/Firewall-Network-Security-Devices/SubCategory/ID-28",
+     "Hardware Licenses": "https://www.newegg.com/Hardware-Licenses/SubCategory/ID-3003",
+     "Network Interface Cards": "https://www.newegg.com/Network-Interface-Cards/SubCategory/ID-27",
+     "Network Transceivers": "https://www.newegg.com/Network-Transceivers/SubCategory/ID-365",
+     "Switches": "https://www.newegg.com/Switches/SubCategory/ID-30",
+     "VoIP": "https://www.newegg.com/VoIP/SubCategory/ID-519"
+    },
+    "Home Networking": {
+     "@url": "https://www.newegg.com/Wireless-Networking/Category/ID-41",
+     "Modems": "https://www.newegg.com/Modems-Gateways/SubCategory/ID-18",
+     "Powerline Networking": "https://www.newegg.com/Powerline-Networking/SubCategory/ID-294",
+     "Range Extender": "https://www.newegg.com/Wireless-Range-Extender-Media-Bridge/SubCategory/ID-2948",
+     "Routers": "https://www.newegg.com/Wireless-Routers/SubCategory/ID-145",
+     "Whole Home / Mesh Wifi": "https://www.newegg.com/Whole-Home-Mesh-Wifi/SubCategory/ID-3723",
+     "WiFi & Bluetooth Adapters": "https://www.newegg.com/Wireless-Adapters/SubCategory/ID-31"
+    }
+   }
+  },
+  "Office Solutions": {
+   "Office Solutions": {
+    "@url": "https://www.newegg.com/Office-Solutions/Store/ID-133",
+    "Display & Printing": {
+     "Digital Signage": {
+      "@url": "https://www.newegg.com/Digital-Signage/Category/ID-260",
+      "Commercial Displays": "https://www.newegg.com/Commercial-Displays/SubCategory/ID-3086",
+      "Commercial TVs": "https://www.newegg.com/Commercial-TVs/SubCategory/ID-3672",
+      "Digital Signage Accessories": "https://www.newegg.com/Digital-Signage-Accessories/SubCategory/ID-3364",
+      "Digital Signage Kiosk": "https://www.newegg.com/Digital-Signage-Kiosk/SubCategory/ID-3420",
+      "Digital Signage Media Players": "https://www.newegg.com/Digital-Signage-Media-Players/SubCategory/ID-3237",
+      "Interactive Digital Signage": "https://www.newegg.com/Interactive-Digital-Signage/SubCategory/ID-3300",
+      "Large Format Displays": "https://www.newegg.com/Large-Format-Displays/SubCategory/ID-633",
+      "Video Walls": "https://www.newegg.com/Video-Walls/SubCategory/ID-3671"
+     },
+     "Point of Sale": {
+      "@url": "https://www.newegg.com/Point-of-Sale/Category/ID-250",
+      "Cash Handling": "https://www.newegg.com/Cash-Handling/SubCategory/ID-3393",
+      "Check Scanner": "https://www.newegg.com/Check-Scanner/SubCategory/ID-3075",
+      "Credit Card Reader": "https://www.newegg.com/Credit-Card-Reader/SubCategory/ID-3034",
+      "Mobile Computing": "https://www.newegg.com/Mobile-Computing/SubCategory/ID-3035",
+      "Mobile Computing Accessories": "https://www.newegg.com/Mobile-Computing-Accessories/SubCategory/ID-3078",
+      "POS Accessories": "https://www.newegg.com/POS-Accessories/SubCategory/ID-3074",
+      "POS Computer": "https://www.newegg.com/POS-Computer/SubCategory/ID-3038",
+      "POS Keyboard": "https://www.newegg.com/POS-Keyboard/SubCategory/ID-3039",
+      "POS Software": "https://www.newegg.com/POS-Software/SubCategory/ID-3040",
+      "POS System": "https://www.newegg.com/POS-System/SubCategory/ID-3041",
+      "POS Terminal": "https://www.newegg.com/POS-Terminal/SubCategory/ID-3036",
+      "Point of Sale Monitors": "https://www.newegg.com/Point-of-Sale-Monitors/SubCategory/ID-3158",
+      "Pole Display": "https://www.newegg.com/Pole-Display/SubCategory/ID-3037",
+      "RFID": "https://www.newegg.com/RFID/SubCategory/ID-3073",
+      "Receipt Paper": "https://www.newegg.com/Receipt-Paper/SubCategory/ID-3076",
+      "Signature Pads": "https://www.newegg.com/Signature-Pads/SubCategory/ID-3042"
+     },
+     "Printers / Scanners & Supplies": {
+      "Barcode Scanner": "https://www.newegg.com/Barcode-Scanner/SubCategory/ID-583",
+      "Card Printers": "https://www.newegg.com/Card-Printers/SubCategory/ID-3033",
+      "Document Scanners": "https://www.newegg.com/Document-Scanners/SubCategory/ID-634",
+      "Dot Matrix Printers": "https://www.newegg.com/Dot-Matrix-Printers/SubCategory/ID-631"
+     },
+     "Projectors": {
+      "@url": "https://www.newegg.com/Projectors/Category/ID-343",
+      "Business Projectors": "https://www.newegg.com/Business-Projectors/SubCategory/ID-42",
+      "Projector Lamps": "https://www.newegg.com/Projector-Lamps/SubCategory/ID-700",
+      "Projector Screens": "https://www.newegg.com/Projector-Screens/SubCategory/ID-699"
+     }
+    },
+    "Furniture": {
+     "Office Furniture": {
+      "@url": "https://www.newegg.com/Office-Furniture/Category/ID-594",
+      "Furniture, Hospitality & Food Service": "https://www.newegg.com/Furniture-Hospitality-Food-Service/SubCategory/ID-3481",
+      "Literature Holders & Sorters": "https://www.newegg.com/Literature-Holders-Sorters/SubCategory/ID-3327",
+      "Office Chairs": "https://www.newegg.com/Office-Chairs/SubCategory/ID-642",
+      "Office Décor": "https://www.newegg.com/Wall-Art-Coverings/SubCategory/ID-3304",
+      "Office Furniture": "https://www.newegg.com/Office-Furniture/SubCategory/ID-3332"
+     }
+    },
+    "Mailing & Inventory Supplies": {
+     "Envelopes": "https://www.newegg.com/Envelopes/SubCategory/ID-3322",
+     "Shipping & Mailroom": {
+      "@url": "https://www.newegg.com/Shipping-Mailroom/Category/ID-681",
+      "Mailroom Equipment": "https://www.newegg.com/Mailroom-Equipment/SubCategory/ID-3328",
+      "Shipping & Mailing Supplies": "https://www.newegg.com/Shipping-Mailing-Supplies/SubCategory/ID-3339"
+     },
+     "Signs": "https://www.newegg.com/Signs/SubCategory/ID-3341",
+     "Warehouse & Inventory Supplies": "https://www.newegg.com/Warehouse-Inventory-Supplies/SubCategory/ID-3347"
+    },
+    "Office Supplies": {
+     "Breakroom & Janitorial Supplies": {
+      "@url": "https://www.newegg.com/Breakroom-Janitorial-Supplies/Category/ID-605",
+      "Breakroom & Cleaning": "https://www.newegg.com/Breakroom-Cleaning/SubCategory/ID-3314",
+      "Industrial Floor Care Machines & Vacuums": "https://www.newegg.com/Industrial-Floor-Care-Machines-Vacuums/SubCategory/ID-3463",
+      "Janitorial & Indoor Maintenance": "https://www.newegg.com/Janitorial-Indoor-Maintenance/SubCategory/ID-3464"
+     },
+     "Desk Supplies": {
+      "@url": "https://www.newegg.com/Desk-Supplies/Category/ID-688",
+      "Clips, Fasteners, & Rubberbands": "https://www.newegg.com/Clips-Fasteners-Rubberbands/SubCategory/ID-3318",
+      "Cutting & Measuring Devices": "https://www.newegg.com/Cutting-Measuring-Devices/Category/ID-387",
+      "Stamps & Supplies": "https://www.newegg.com/Stamps-Supplies/SubCategory/ID-3342",
+      "Staplers & Hole Punchers": "https://www.newegg.com/Staplers-Hole-Punchers/SubCategory/ID-3343",
+      "Sticky Notes & Flags": "https://www.newegg.com/Sticky-Notes-Flags/SubCategory/ID-3344",
+      "Tape, Adhesives & Fasteners": "https://www.newegg.com/Tape-Adhesives-Fasteners/Category/ID-677",
+      "Writing & Correction Supplies": "https://www.newegg.com/Writing-Correction-Supplies/Category/ID-675"
+     },
+     "Educational Supplies": "https://www.newegg.com/Educational-Supplies/SubCategory/ID-3321",
+     "Filing & Organizers": {
+      "@url": "https://www.newegg.com/Filing-Organizers/Category/ID-238",
+      "Binders & Accessories": "https://www.newegg.com/Binders-Accessories/SubCategory/ID-3312",
+      "Calendars & Planners": "https://www.newegg.com/Calendars-Planners/SubCategory/ID-3316",
+      "Cards & Card Filing": "https://www.newegg.com/Cards-Card-Filing/SubCategory/ID-3317",
+      "File Folders & Accessories": "https://www.newegg.com/File-Folders-Accessories/SubCategory/ID-3323",
+      "Storage & Archive Supplies": "https://www.newegg.com/Storage-Archive-Supplies/SubCategory/ID-3345"
+     },
+     "Office & School Supplies": {
+      "@url": "https://www.newegg.com/Office-School-Supplies/Category/ID-243",
+      "Craft & Classroom Supplies": "https://www.newegg.com/Craft-Classroom-Supplies/Category/ID-386",
+      "Facility & Traffic Safety Equipment": "https://www.newegg.com/Facility-Traffic-Safety-Equipment/SubCategory/ID-3489",
+      "First Aid, Medical & Rescue": "https://www.newegg.com/First-Aid-Medical-Rescue/SubCategory/ID-3490",
+      "Personal Protective Equipment": "https://www.newegg.com/Personal-Protective-Equipment/SubCategory/ID-3491"
+     },
+     "Paper & Printable Media": {
+      "@url": "https://www.newegg.com/Paper-Printable-Media/Category/ID-671",
+      "Business & Tax Forms": "https://www.newegg.com/Business-Tax-Forms/SubCategory/ID-3315",
+      "Notebooks & Pads": "https://www.newegg.com/Notebooks-Pads/SubCategory/ID-3330",
+      "Paper": "https://www.newegg.com/Paper/SubCategory/ID-3333"
+     },
+     "Presentation / Display Boards": {
+      "@url": "https://www.newegg.com/Presentation-Display-Boards/Category/ID-684",
+      "Boards": "https://www.newegg.com/Boards/SubCategory/ID-3313",
+      "Easels & Easel Pads": "https://www.newegg.com/Easels-Easel-Pads/SubCategory/ID-3320",
+      "Maps & Accessories": "https://www.newegg.com/Maps-Accessories/SubCategory/ID-3329",
+      "Presentation Equipment & Supplies": "https://www.newegg.com/Presentation-Equipment-Supplies/SubCategory/ID-3335"
+     }
+    },
+    "Office Technology": {
+     "Fax Machines & Copiers": "https://www.newegg.com/Fax-Machines-Copiers/SubCategory/ID-351",
+     "Office Machines & Equipment": {
+      "@url": "https://www.newegg.com/Office-Machines-Equipment/Category/ID-125",
+      "Laminating & Binding": "https://www.newegg.com/Laminating-Binding/SubCategory/ID-3326",
+      "Office Equipment": "https://www.newegg.com/Office-Equipment/SubCategory/ID-3331",
+      "Safety & Security": "https://www.newegg.com/Safety-Security/Category/ID-682"
+     },
+     "Safes": "https://www.newegg.com/Safes/SubCategory/ID-3337",
+     "Scanners": "https://www.newegg.com/Scanners/Category/ID-209",
+     "Shredders & Shredder Supplies": "https://www.newegg.com/Shredders-Shredder-Supplies/SubCategory/ID-3340",
+     "Telephones / VoIP": {
+      "@url": "https://www.newegg.com/Telephones-VoIP/Category/ID-16",
+      "Answering Machines": "https://www.newegg.com/Answering-Machines/SubCategory/ID-361",
+      "Corded Phones": "https://www.newegg.com/Corded-Phones/SubCategory/ID-638",
+      "Cordless Phones": "https://www.newegg.com/Cordless-Phones/SubCategory/ID-639",
+      "Expansion Handsets": "https://www.newegg.com/Expansion-Handsets/SubCategory/ID-640",
+      "Phone & Conferencing Devices": "https://www.newegg.com/Phone-Conferencing-Devices/SubCategory/ID-637",
+      "Telephone Accessories": "https://www.newegg.com/Telephone-Accessories/SubCategory/ID-173",
+      "Telephones": "https://www.newegg.com/Telephones/SubCategory/ID-360"
+     }
+    }
+   }
+  },
+  "Server & Components": {
+   "Server & Components": {
+    "@url": "https://www.newegg.com/Server-Components/Store/ID-5",
+    "Power Protection": {
+     "@url": "https://www.newegg.com/Power-Protection/Category/ID-314",
+     "Battery Backup (UPS)": "https://www.newegg.com/Battery-Backup-UPS/SubCategory/ID-72",
+     "Power Distribution Unit": "https://www.newegg.com/Power-Distribution-Unit/SubCategory/ID-1042",
+     "Power Inverters": "https://www.newegg.com/Power-Inverters/SubCategory/ID-536",
+     "Power Strips": "https://www.newegg.com/Power-Strips/SubCategory/ID-350",
+     "Surge Protectors": "https://www.newegg.com/Surge-Protectors/SubCategory/ID-535",
+     "UPS Accessories": "https://www.newegg.com/UPS-Accessories/SubCategory/ID-626"
+    },
+    "Server Components": {
+     "@url": "https://www.newegg.com/Server-Components/Category/ID-449",
+     "Controllers / RAID Cards": "https://www.newegg.com/Controllers-RAID-Cards/SubCategory/ID-410",
+     "Server CPU Processor": "https://www.newegg.com/Server-CPU-Processor/SubCategory/ID-727",
+     "Server Chassis": "https://www.newegg.com/Server-Chassis/SubCategory/ID-412",
+     "Server Memory": "https://www.newegg.com/Server-Memory/SubCategory/ID-541",
+     "Server Motherboards": "https://www.newegg.com/Server-Motherboards/SubCategory/ID-302",
+     "Server Racks / Cabinets": "https://www.newegg.com/Server-Racks-Cabinets/SubCategory/ID-803"
+    },
+    "Servers & Workstations": {
+     "@url": "https://www.newegg.com/Servers-Workstations/Category/ID-271",
+     "IPC / AI Systems": "https://www.newegg.com/IPC-AI-Systems/SubCategory/ID-3087",
+     "Server Barebones": "https://www.newegg.com/Server-Barebones/SubCategory/ID-8",
+     "Server Software": "https://www.newegg.com/Server-Software/SubCategory/ID-582"
+    }
+   }
+  },
+  "Smart Home & Security": {
+   "Smart Home & Security": {
+    "@url": "https://www.newegg.com/Smart-Home-Security/Store/ID-2",
+    "Security Cameras & Surveillance": {
+     "@url": "https://www.newegg.com/Security-Cameras-Surveillance/Category/ID-288",
+     "CCTV / Analog Cameras": "https://www.newegg.com/CCTV-Analog-Cameras/SubCategory/ID-521",
+     "IP / Network Cameras": "https://www.newegg.com/IP-Network-Cameras/SubCategory/ID-3299",
+     "Surveillance Accessories": "https://www.newegg.com/Surveillance-Accessories/SubCategory/ID-277",
+     "Surveillance Security Systems": "https://www.newegg.com/Surveillance-Security-Systems/SubCategory/ID-693",
+     "Video Recorders": "https://www.newegg.com/Video-Recorders/SubCategory/ID-849"
+    },
+    "Smart Home": {
+     "@url": "https://www.newegg.com/Smart-Home-Automation/Category/ID-404",
+     "Smart Door Locks & Access": "https://www.newegg.com/Smart-Door-Locks-Access/SubCategory/ID-3559",
+     "Smart Hub & Kits": "https://www.newegg.com/Smart-Hub-Kits/SubCategory/ID-3557",
+     "Smart Plug & Lighting": "https://www.newegg.com/Smart-Plug-Lighting/SubCategory/ID-3556",
+     "Smart Sensor & Alarms": "https://www.newegg.com/Smart-Sensor-Alarms/SubCategory/ID-851",
+     "Smart Thermostats": "https://www.newegg.com/Smart-Thermostats/SubCategory/ID-3558"
+    }
+   }
+  },
+  "Software & Services": {
+   "Software & Services": {
+    "@url": "https://www.newegg.com/Software-Services/Store/ID-6",
+    "Business Software": {
+     "Security & Protection License": "https://www.newegg.com/Security-Protection-License/SubCategory/ID-3748",
+     "Software Application License": "https://www.newegg.com/Software-Application-License/SubCategory/ID-3749",
+     "Training & Certifications": "https://www.newegg.com/Training-Certifications/SubCategory/ID-794",
+     "Utility License": "https://www.newegg.com/Utility-License/SubCategory/ID-3750"
+    },
+    "Gift Cards": {
+     "@url": "https://www.newegg.com/Gift-Cards/Category/ID-293",
+     "Apparel & Footwear": "https://www.newegg.com/Apparel-Footwear/SubCategory/ID-3179",
+     "Coffee House & Bakery": "https://www.newegg.com/Coffee-House-Bakery/SubCategory/ID-3177",
+     "Department Store": "https://www.newegg.com/Department-Store/SubCategory/ID-3187",
+     "Home Improvement": "https://www.newegg.com/Home/SubCategory/ID-3181",
+     "Restaurant & Food Delivery": "https://www.newegg.com/Restaurants/SubCategory/ID-3178",
+     "Specialty Retail": "https://www.newegg.com/Specialty-Retail/SubCategory/ID-3184",
+     "Streaming Service & Theatre": "https://www.newegg.com/Online/SubCategory/ID-3183",
+     "Travel": "https://www.newegg.com/Airlines-Travel/SubCategory/ID-3186"
+    },
+    "Services": {
+     "OEM Warranty": "https://www.newegg.com/OEM-Warranty/SubCategory/ID-539"
+    },
+    "Software": {
+     "Antivirus & Internet Security": "https://www.newegg.com/Antivirus-Internet-Security/SubCategory/ID-377",
+     "Audio & Video": "https://www.newegg.com/Audio-Video/SubCategory/ID-1998",
+     "Backup & Utilities": "https://www.newegg.com/Backup-Utilities/SubCategory/ID-1044",
+     "Licenses": "https://www.newegg.com/Licenses/SubCategory/ID-379",
+     "Mac Software": "https://www.newegg.com/Mac-Software/SubCategory/ID-371",
+     "Office & Accounting": "https://www.newegg.com/Office-Accounting/SubCategory/ID-523",
+     "Operating Systems": "https://www.newegg.com/Operating-Systems/SubCategory/ID-368",
+     "Photo & Design": "https://www.newegg.com/Photo-Design/SubCategory/ID-376"
+    }
+   }
+  },
+  "Toys, Drones & Maker": {
+   "Toys, Drones & Maker": {
+    "@url": "https://www.newegg.com/Toys-Drones-Maker/Store/ID-266",
+    "Arts & Crafts": {
+     "@url": "https://www.newegg.com/Arts-Crafts/Category/ID-644",
+     "Die cutting & General Crafts": "https://www.newegg.com/Die-cutting-General-Crafts/SubCategory/ID-1009",
+     "Drawing & Illustration": "https://www.newegg.com/Drawing-Illustration/SubCategory/ID-3352",
+     "Fine Art & Craft Painting": "https://www.newegg.com/Fine-Art-Craft-Painting/SubCategory/ID-3356",
+     "Pottery, Ceramics & Sculpting": "https://www.newegg.com/Pottery-Ceramics-Sculpting/SubCategory/ID-3350",
+     "Printmaking": "https://www.newegg.com/Printmaking/SubCategory/ID-3355",
+     "Sewing Machines": "https://www.newegg.com/Sewing-Machines/SubCategory/ID-757"
+    },
+    "Drones & RC Toys": {
+     "@url": "https://www.newegg.com/Drones-RC-Toys/Category/ID-460",
+     "Batteries & Chargers": "https://www.newegg.com/Batteries-Chargers/SubCategory/ID-3060",
+     "Drone Accessories": "https://www.newegg.com/Drone-Accessories/SubCategory/ID-3709",
+     "Drones": "https://www.newegg.com/Drones/SubCategory/ID-3708",
+     "RC Vehicles, Robots & Toys": "https://www.newegg.com/RC-Vehicles-Robots-Toys/SubCategory/ID-1573",
+     "Radios & Accessories": "https://www.newegg.com/Radios-Accessories/SubCategory/ID-3058",
+     "Toy Parts & Accessories": "https://www.newegg.com/Toy-Parts-Accessories/SubCategory/ID-3057"
+    },
+    "Learning & Building": {
+     "Activity Centers & Play Areas": "https://www.newegg.com/Activity-Centers-Play-Areas/SubCategory/ID-1566",
+     "Electronics for Kids": "https://www.newegg.com/Electronics-for-Kids/SubCategory/ID-1570",
+     "Learning & Educational": "https://www.newegg.com/Learning-Educational/SubCategory/ID-1571",
+     "STEM Toys": "https://www.newegg.com/STEM-Toys/SubCategory/ID-3735"
+    },
+    "Maker": {
+     "@url": "https://www.newegg.com/Maker/Category/ID-464",
+     "IoT Edge Device / Development Board": "https://www.newegg.com/IoT-Edge-Device-Development-Board/SubCategory/ID-3739"
+    },
+    "Outdoors": {
+     "Outdoor Toys": "https://www.newegg.com/Outdoor-Toys/SubCategory/ID-1567",
+     "Science & Nature": "https://www.newegg.com/Science-Nature/SubCategory/ID-1530"
+    },
+    "Plush & Pretend Play": {
+     "Dolls & Accessories": "https://www.newegg.com/Dolls-Accessories/SubCategory/ID-1569",
+     "Plushed & Stuffed": "https://www.newegg.com/Plushed-Stuffed/SubCategory/ID-1572",
+     "Pretend Play & Dress-Up": "https://www.newegg.com/Pretend-Play-Dress-Up/SubCategory/ID-1575",
+     "Toy Storage": "https://www.newegg.com/Toy-Storage/SubCategory/ID-1576"
+    },
+    "Toys & Hobbies": {
+     "@url": "https://www.newegg.com/Toys-Hobbies/Category/ID-462",
+     "Action Figures": "https://www.newegg.com/Action-Figures/SubCategory/ID-1565",
+     "Collectibles": "https://www.newegg.com/Collectibles/SubCategory/ID-1568",
+     "Games": "https://www.newegg.com/Games/SubCategory/ID-1562",
+     "Hobby Collectibles": "https://www.newegg.com/Hobby-Collectibles/SubCategory/ID-1529",
+     "Vehicles": "https://www.newegg.com/Vehicles/SubCategory/ID-1577"
+    }
+   }
+  }
+ }
+}
