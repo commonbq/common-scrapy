@@ -107,6 +107,7 @@ Spiders below are returning items in recent smoke runs:
 | [`getyourguide_listing`](#getyourguide_listing) | Active | bootstrap | none detected through ScrapeOps proxy | GetYourGuide destination activity shelves from server-rendered `window.__INITIAL_STATE__.sdui` hydration (no HTML or JSON-LD fallback). | 24 (one bounded shelf, live proxy) | 20 destination countries from `getyourguide_categories.py` | `{"category":"argentina","item_id":1220349,"title":"El Calafate: Perito Moreno Glacier Boat Tour with Guide","starting_price":50,"currency":"USD","source":"getyourguide_initial_state_sdui"...}` |
 | [`footlocker_listing`](#footlocker_listing) | Active | api | residential proxy (ScrapeOps) | Foot Locker category listings from the ZGW search API (residential proxy required). | 48 (1 page, residential proxy) | Dynamically resolved from `header.public.json` | `{"band":"Men's","sub_category":"Shoes","category":"all-men-s-shoes","item_id":"T8013103","title":"Jordan Retro 12 - Men's","url":"https://www.footlocker.com/product/T8013103.html","image_url":"https://images.footlocker.com/is/image/EBFL2/T8013103","price":215.0,"original_price":215.0,"currency":"USD","availability":"InStock","brand":"Jordan","rating":5.0,"reviews_count":999,"page":1,"category_url":"/category/mens/shoes.html","source":"footlocker_api"...` |
 | [`homedepot_listing`](#homedepot_listing-category-apollo-state) | Flaky | bootstrap | Akamai | Home Depot department listings from embedded Apollo state. | 2 (fixture) | appliances, bath, building-materials, decor-and-furniture, electrical, flooring, hardware, heating-and-cooling, kitchen, lawn-and-garden, lighting, paint, plumbing, storage, tools | `{"category":"tools","item_id":"100000001","sku":"1000000001","title":"16 oz. Fiberglass Claw Hammer","brand":"Husky","price":14.97...` |
+| [`hm_listing`](#hm_listing) | Experimental | bootstrap (Next.js `__NEXT_DATA__`) | Akamai | H&M US product listings from authoritative server-rendered PLP hydration, with hydrated pagination. | 60/page | Women, Men, Kids, Home, Beauty new arrivals | `{"category":"women-new-arrivals","item_id":"1345672001","title":"Scarf-Detail Jacket","price":59.99,"currency":"USD","source":"hm_next_data"}` |
 | [`homedepot_search`](#homedepot_search-keyword-apollo-bootstrap) | Active | bootstrap + html | Akamai | Home Depot keyword search via Apollo state. | 24 (ok) | - | `{"item_id":"336787835","sku":"1014334650","brand":"Lukyamzn","title":"14 in. Dual-Core Celeron N4000 Laptop 6 GB RAM 128 GB SSD IPS Displ...` |
 | [`jcpenney_listing`](#jcpenney_listing) | Active | api | Akamai (+ reCAPTCHA scripts observed) | JCPenney listing spider via search API bootstrap endpoint. | 48 (ok) | womens_tops, mens_shirts | `{"item_id":"ppr5008584232","title":"St. John's Bay Womens Boat Neck Elbow Sleeve T-Shirt","brand":"st. john's bay","url":"https://www.jcp...` |
 | [`ikea_listing`](#ikea_listing) | Active | api + html | none detected | IKEA category listings from the SIK search API, with a server-rendered HTML fallback. | 46 (api, ok) / 24 (html, ok) | 221 unique targets from 23 departments | `{"category":"st004","item_id":"50561244","title":"STORKLINTA","product_type":"6-drawer dresser","price":279.99,"department":"Storage & organization",...}` |
@@ -3757,6 +3758,25 @@ HTTPCACHE_ENABLED=False common-scrapy crawl backcountry_listing -a category=cat-
 ```json
 {"category":"cat-mens-shirts","department":"Men","section":"Clothing","item_id":"FJRZ133","title":"Fjallglim Regular Shirt - Men's","brand":"Fjallraven","product_type":"Product","url":"https://www.backcountry.com/fjallraven-fjallglim-regular-shirt-mens","image":"https://content.backcountry.com/images/items/160/FJR/FJRZ133/DANACHWH.jpg","image_alt":"Fjallglim Regular Shirt - Men's","color":"Dark Navy/Chalk White","colors":["Dark Navy/Chalk White","Dark Navy/Maroon","Wood Brown/Black Oak"],"color_option_count":3,"price":124.95,"original_price":null,"discount_percentage":null,"currency":"USD","in_stock":true,"stock_status":"IN_STOCK","availability":"in stock","rating":null,"reviews_count":0,"is_new_arrival":false,"is_exclusive":false,"is_past_season":true,"is_gearhead_pick":false,"past_season_colors":["DANACHWH","DARNAVMAR","WOBRBLOA"],"category_id":"bc-mens-shirts","page":1,"position":1,"total_count":1490,"last_page":36,"source":"backcountry_next_data","raw":{"node":{...},"apollo":{...},"container":"category","variations_on_sale":0,"total_variations":11}}
 ```
+### hm_listing
+
+`hm_listing` reads H&M US products exclusively from the server-rendered Next.js
+`#__NEXT_DATA__` PLP state. It does not parse HTML product cards or JSON-LD.
+Hydrated `pagination` metadata drives `?page=N` requests, while an article-code
+deduplication guard stops repeated pages. The curated taxonomy contains stable,
+product-bearing new-arrival leaves for Women, Men, Kids, Home, and Beauty; H&M's
+hydrated `siteStructure` is the source to use when refreshing that inventory.
+
+The ordered `FEED_EXPORT_FIELDS` contract covers IDs, department/category,
+canonical product and image URLs, current and regular prices, color, size/stock,
+availability, page/source metadata, and the authoritative raw product record.
+The storefront may require the configured ScrapeOps US proxy when Akamai blocks a
+direct request.
+
+```bash
+scrapy crawl hm_listing -a category=women-new-arrivals -a max_pages=2 -s HTTPCACHE_ENABLED=False -O hm.jsonl
+```
+
 ### getyourguide_listing
 
 `getyourguide_listing` exports the fixed activity shelf on GetYourGuide country
