@@ -67,6 +67,7 @@ Working spiders running daily in production:
 | [`backcountry_listing`](#backcountry_listing) | Active | bootstrap | AWS WAF (datacenter + `bypass=5` both return the challenge; `residential=true` required) | Backcountry.com category/collection/brand listings from the server-rendered Next.js `#__NEXT_DATA__` PLP payload joined to `__APOLLO_STATE__`. | 84 (2 pages, `cat-mens-shirts`); 52 (`rc-mens-parkas`, natural last page) | 398 unique targets across 14 top-level menus / 110 sections from `backcountry_categories.py` | `{"category":"cat-mens-shirts","department":"Men","section":"Clothing","item_id":"FJRZ133","title":"Fjallglim Regular Shirt - Men's","brand":"Fjallraven","price":124.95,"original_price":null,"currency":"USD","in_stock":true,"source":"backcountry_next_data",...}` |
 | [`realtor_listing`](#realtor_listing) | Active | bootstrap | residential ScrapeOps + `bypass=5` required | Realtor.com sale listings from authoritative React Router streamed SSR loader state. | 42/page | 20 major US city markets from `realtor_categories.py` | `{"item_id":"9573322873","listing_id":"2994590506","title":"11201 Chalon Rd, Los Angeles, CA 90049","price":400000000,"source":"realtor_react_router_stream",...}` |
 | [`zillow_listing`](#zillow_listing) | Active | bootstrap | PerimeterX | Zillow sale listings from server-rendered Next.js `__NEXT_DATA__`, including path-based SSR pagination. | 82 (2 pages, `houston-tx`) | 20 major US city markets | `{"item_id":"55476612","title":"8323 Gentlewood Ct, Houston, TX 77095","price":375000,"beds":4,"baths":3,"area":2992,"source":"zillow_next_data"}` |
+| [`rent_listing`](#rent_listing) | Active | bootstrap | ScrapeOps US proxy | Rent.com apartment listings from authoritative server-rendered Next.js `__NEXT_DATA__`, with `/page-N` pagination and no fallback. | 30/page | 20 major US rental markets | `{"category":"los-angeles-ca","item_id":"lc6732384","title":"El Conquistador","price_min":1664,"source":"rent_next_data"...}` |
 | [`basspro_listing`](#basspro_listing) | Active | api | Akamai on the storefront legs (403 direct); the Coveo search leg must stay unproxied | Bass Pro Shops category listings from the storefront Coveo Headless search API (`platform.cloud.coveo.com/rest/search/v2`); taxonomy from the `__NEXT_DATA__.props.megaNavHtmlV2` mega-nav. | 96 (2 pages, rod-reel-combos) | 909 nav entries (11 departments / 116 level-2 / 782 level-3) | `{"category":"Fishing/Rod & Reel Combos","item_id":"3472884","title":"Bass Pro Shops Megacast Baitcast Combo","brand":"Bass Pro Shops","url":"https://www.basspro.com/p/bass-pro-shops-megacast-baitcast-combo","price":69.99,"availability":"InStock","source":"basspro_coveo"...}` |
 | [`booking_listing`](#booking_listing) | Active | bootstrap | none detected (anonymous SSR cruise) | Booking.com listings for the 20 homepage-exposed US city destinations from the anonymous server-rendered Apollo cache (`ROOT_QUERY.lxAccommodations` -> `ROOT_QUERY.searchQueries.search().results`). | 33 (2 pages, `las-vegas`) | 20 US city destinations from `booking_categories.py` | `{"category":"las-vegas","item_id":"15743439","title":"The Platinum Hotel Las Vegas","price":227.91,"currency":"EUR","rating":9.1,"reviews_count":8,"city":"Las Vegas","source":"booking_apollo_hydration"...}` |
 | [`bestbuy_listing`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | unknown (timeout/no verdict) | Best Buy listing via direct HTTP + Apollo bootstrap extraction. | 10 (skipped2) | laptops, tvs, headphones, monitors, cell-phones | `{"item_id":"6572184","title":"Samsung - Galaxy Book4 15.6\" FHD Laptop - Intel Core 7- 16GB Memory - 512GB SSD - Silver","url":"https://www.bestbuy.com/product/samsung-galaxy-bo...` |
@@ -3818,3 +3819,18 @@ Every exported item also includes the crawl `timestamp`.
 ```bash
 scrapy crawl zillow_listing -a category=houston-tx -a max_pages=2 -s HTTPCACHE_ENABLED=False -O zillow.jsonl
 ```
+
+### rent_listing
+
+`rent_listing` extracts the complete property list from Rent.com's server-rendered
+Next.js `props.pageProps.pageData.location.listingSearch` hydration state. It follows
+canonical `/page-N` pages and has no rendered-HTML or JSON-LD fallback.
+
+```bash
+scrapy crawl rent_listing -a category=los-angeles-ca -a max_pages=1 -s HTTPCACHE_ENABLED=False -O rent.jsonl
+```
+
+The spider exposes 20 major US rental markets from `rent_categories.py`. Its ordered
+`FEED_EXPORT_FIELDS` cover property identity, location, price and bed ranges,
+floor-plan bath and square-footage ranges, availability, ratings, amenities, photo
+IDs, contact details, pagination metadata, and the authoritative raw record.
