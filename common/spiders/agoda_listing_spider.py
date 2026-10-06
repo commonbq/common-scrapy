@@ -30,6 +30,7 @@ class AgodaListingSpider(BaseListingSpider):
             "reviews_count", "star_rating", "review_snippet", "reviewer_name",
             "reviewer_country", "price", "currency", "page_type_id",
             "object_id", "accommodation_type_id", "source_url", "source", "raw",
+            "timestamp",
         ],
     }
     headers = {
@@ -149,5 +150,6 @@ class AgodaListingSpider(BaseListingSpider):
             "page_type_id": response.meta["page_type_id"], "object_id": response.meta["object_id"],
             "accommodation_type_id": response.meta["accommodation_type_id"],
             "source_url": response.meta["source_url"], "source": "agoda_cronos_geo_api", "raw": card,
+            "timestamp": self.get_timestamp(),
         }
 

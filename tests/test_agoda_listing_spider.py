@@ -30,6 +30,7 @@ def test_cards_map_normalize_and_deduplicate():
     assert first[0]["url"].startswith("https://www.agoda.com/")
     assert first[0]["image_url"] == "https://pix8.agoda.net/a.jpg"
     assert list(first[0]) == spider.custom_settings["FEED_EXPORT_FIELDS"]
+    assert first[0]["timestamp"] is not None
     assert second == []
 
 

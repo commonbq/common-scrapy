@@ -60,7 +60,7 @@ Working spiders running daily in production:
 
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
-| [`agoda_listing`](#agoda_listing) | Experimental | api | proxy required | Agoda curated destination accommodations from the first-party Cronos geo API. | 30 (Bali, one API response) | 20 popular cities from the homepage destination payload | `{"category":"bali","item_id":"489045","title":"RIMBA by AYANA Bali","review_score":9.1,"star_rating":5.0,"source":"agoda_cronos_geo_api"...}` |
+| [`agoda_listing`](#agoda_listing) | Experimental | api | proxy required | Agoda curated destination accommodations from the first-party Cronos geo API. | 30 (Bali, one API response) | 20 popular cities from the homepage destination payload | `{"category":"bali","item_id":"489045","title":"RIMBA by AYANA Bali","review_score":9.1,"star_rating":5.0,"source":"agoda_cronos_geo_api","timestamp":"2026-10-06 10:30:00"...}` |
 | [`adorama_listing`](#adorama_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | DataDome | Adorama category listings from server-rendered Next.js hydration state. | 24 (one page; 48 across 2 pages) | 1,079 crawlable categories across 11 departments from `adorama_categories.py` | `{"category":"cameras","item_id":"KKRK0603A","title":"Kodak Charmera Millenium Edition...","price":54.94,"currency":"USD"...}` |
 | [`amazon_listing`](#amazon_listing-category) | Active | html | none detected | Amazon category listing spider (category shortcuts). | 22 (ok) | electronics, fashion, beauty, home-kitchen, toys-games, sports-outdoors, grocery, books | `{"asin":"B0DKDTBBF7","title":"2 Packs Electric Candle Lighters, Windproof Flameless USB Rechargeable Plasma Arc Long Lighter for Grill Fi...` |
 | [`amazon_search`](#amazon_search) | Active | html | none detected | Amazon keyword search spider. | 22 (ok) | - | `{"asin":"B0GHQRV71M","title":"16\" FHD IPS Laptop Computer - 16GB RAM 512GB SSD, Pentium N100(Beat to i3-1115G4, 4 Cores Up to 3.4GHz), B...` |
@@ -3834,6 +3834,7 @@ The ordered taxonomy contains 20 homepage destinations, from Bali through Johor
 Bahru. The ordered `FEED_EXPORT_FIELDS` contract includes the stable hotel ID,
 names, normalized hotel and image URLs, ratings and review details, any available
 price fields, discovered geo identifiers, source metadata, and the raw API card.
+Every exported item also includes the crawl `timestamp`.
 A working configured proxy is required for the destination and API requests.
 
 ```bash
