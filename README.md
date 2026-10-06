@@ -3976,3 +3976,12 @@ page totals, the authoritative raw entity, and `source=harborfreight_apollo_boot
 ```bash
 scrapy crawl harborfreight_listing -a category=Automotive -a max_pages=2 -s HTTPCACHE_ENABLED=False -O harborfreight.jsonl
 ```
+### B&H Photo Video listing spider
+
+`bhphotovideo_listing` reads products from B&H's server-rendered
+`bh-preloaded-data` / `ListingStore` bootstrap state. It deliberately has no
+HTML-card or JSON-LD fallback. Choose a leaf with `-a category='Mirrorless Lenses'`
+and bound path-based pagination with `-a max_pages=2`; `url` and `category_url`
+retain the standard listing-spider precedence. Its ordered `FEED_EXPORT_FIELDS`
+cover category context, product and manufacturer identifiers, pricing, rating,
+availability, paging metadata, provenance, and the raw bootstrap record.
