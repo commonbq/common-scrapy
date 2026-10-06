@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import re
+
 VICTORIASSECRET_CATEGORIES: dict[str, dict[str, dict[str, dict[str, str]]]] = {
     "vs": {
         "Pink Color": {
@@ -693,6 +695,62 @@ VICTORIASSECRET_CATEGORIES: dict[str, dict[str, dict[str, dict[str, str]]]] = {
 }
 
 
+def slugify(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
+
+
+def load_categories() -> list[dict[str, str]]:
+    """Flatten the navigation tree into canonical listing categories."""
+    flat: list[dict[str, str]] = []
+    seen: set[str] = set()
+
+    def add(
+        slug: str,
+        brand: str,
+        top: str,
+        sub: str | None,
+        url: str,
+    ) -> None:
+        if not url or not url.startswith("http") or slug in seen:
+            return
+        seen.add(slug)
+        entry = {
+            "category": slug,
+            "brand": brand,
+            "top_category": top,
+            "department": f"{brand}-{slugify(top)}",
+            "url": url,
+        }
+        if sub:
+            entry["sub_category"] = sub
+        flat.append(entry)
+
+    for brand, tops in VICTORIASSECRET_CATEGORIES.items():
+        for top_name, top_data in tops.items():
+            top_url = top_data.get("path") or ""
+            if not top_url:
+                continue
+            top_slug = f"{brand}-{slugify(top_name)}"
+            add(top_slug, brand, top_name, None, top_url)
+            for group_name, group_data in top_data.get(
+                "subcategories", {}
+            ).items():
+                if not isinstance(group_data, dict):
+                    group_data = {group_name: group_data}
+                for sub_name, sub_url in group_data.items():
+                    if not isinstance(sub_url, str) or sub_url == top_url:
+                        continue
+                    add(
+                        f"{top_slug}-{slugify(sub_name)}",
+                        brand,
+                        top_name,
+                        sub_name,
+                        sub_url,
+                    )
+
+    return flat
+
+
 if __name__ == "__main__":
     """Print flattened crawl targets, or resolve a single ``--category``.
 
@@ -702,8 +760,6 @@ if __name__ == "__main__":
     """
     import argparse
     import json as _json
-
-    from common.spiders.victoriassecret_listing_spider import load_categories
 
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--category", help="show the single matching category")

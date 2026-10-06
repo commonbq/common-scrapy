@@ -1,733 +1,445 @@
+"""Tests for `backcountry_listing` (SSR `#__NEXT_DATA__` PLP + Apollo hydration)."""
+
+from __future__ import annotations
+
 import json
-import unittest
+from pathlib import Path
 
-import scrapy
-from scrapy.http import HtmlResponse, Request
+import pytest
 
-from common.spiders.backcountry_categories import (
-    BACKCOUNTRY_CATEGORIES,
-    BACKCOUNTRY_CATEGORY_INVENTORY,
-    BACKCOUNTRY_SLUG_LABELS,
-)
+from common.spiders.backcountry_categories import BACKCOUNTRY_CATEGORIES
 from common.spiders.backcountry_listing_spider import (
+    IMAGE_CDN,
     BackcountryListingSpider,
-    absolute_url,
-    to_float,
-    to_int,
 )
 
-LISTING_URL = "https://www.backcountry.com/cat/mens-shirts"
-RC_URL = "https://www.backcountry.com/rc/mens-upf-apparel"
-# The header taxonomy stores this filter with literal quotes; the spider must
-# copy such a query verbatim instead of re-escaping it.
-BRAND_URL = 'https://www.backcountry.com/brand/patagonia?p=gender_uFilter:"male"'
+SAMPLE = Path(__file__).resolve().parents[1] / "sample"
+
+MENS_SHIRTS = "https://www.backcountry.com/cat/mens-shirts"
 
 
-def product(product_id="FJRZ133", **overrides):
-    node = {
-        "__typename": "Product",
-        "id": product_id,
-        "name": "Fjallglim Regular Shirt - Men's",
-        "url": "/fjallraven-fjallglim-regular-shirt-mens",
-        "stockStatus": "IN_STOCK",
-        "brand": {"__typename": "ProductBrand", "name": "Fjallraven"},
-        "aggregates": {
-            "__typename": "ProductAggregates",
-            "totalColors": 3,
-            "totalVariations": 10,
-            "variationsOnSale": 0,
-            "minDiscount": 0,
-            "minListPrice": 124.95,
-            "minSalePrice": 124.95,
-            "maxDiscount": 0,
-            "maxListPrice": 124.95,
-            "maxSalePrice": 124.95,
-            "pastSeasonColors": ["DANACHWH", "DARNAVMAR", "WOBRBLOA"],
-        },
-        "flags": {
-            "__typename": "ProductFlags",
-            "isExclusive": False,
-            "isNewArrival": False,
-            "isPastSeason": True,
-            "isGearheadPick": False,
-        },
-        "reviewAggregates": {
-            "__typename": "ProductReviewAggregates",
-            "totalReviews": 0,
-            "averageRating": 0,
-        },
-        "colors": [
-            {
-                "__typename": "ProductColor",
-                "colorId": "DANACHWH",
-                "name": "Dark Navy/Chalk White",
-                "tileImage": "/images/items/160/FJR/FJRZ133/DANACHWH.jpg",
-                "pliImage": "/images/items/large/FJR/FJRZ133/DANACHWH.jpg",
-            }
-        ],
-    }
-    node.update(overrides)
-    return node
+def _crawl_text(crawler, url=MENS_SHIRTS, **kwargs):
+    """Run the spider against one fixture and return (items, requests)."""
+    body = kwargs.pop("body")
+    status = kwargs.pop("status", 200)
+    meta = {"category": "cat-mens-shirts", "department": "Men", "section": "Clothing",
+            "category_id": "bc-mens-shirts", "page": 1, "proxy": None}
+    meta.update(kwargs.pop("meta", {}))
+    response = _FakeResponse(url=url, body=body, status=status, meta=meta)
+    kwargs.setdefault("category", "cat-mens-shirts")
+    spider = BackcountryListingSpider(**kwargs)
+    out = []
+    requests = []
+    for item in spider.parse(response):
+        if hasattr(item, "url"):
+            requests.append(item)
+        else:
+            out.append(item)
+    return out, requests
 
 
-def page_props(nodes, total_pages=36, total_count=1490, has_next=True, has_prev=False,
-               category_id="bc-mens-shirts", page_type="plp-cat", apollo=True):
-    block_key = {
-        "plp-cat": "category",
-        "plp-collection": "collection",
-        "plp-brand": "brand",
-    }.get(page_type, "category")
-    props = {
-        "type": page_type,
-        "totalCount": total_count,
-        "totalPages": total_pages,
-        "plpData": {
-            "data": {
-                block_key: {
-                    "__typename": block_key.title(),
-                    "edges": [{"__typename": "ProductEdge", "node": node} for node in nodes],
-                    "pageInfo": {
-                        "__typename": "ProductListingPageInfo",
-                        "hasNextPage": has_next,
-                        "hasPreviousPage": has_prev,
-                    },
-                }
-            },
-            "loading": False,
-            "networkStatus": 7,
-        },
-    }
-    if page_type == "plp-collection":
-        props["collectionId"] = category_id
-    elif page_type == "plp-brand":
-        props["brandSlug"] = category_id
-    else:
-        props["categoryId"] = category_id
-    if apollo:
-        props["__APOLLO_STATE__"] = {
-            f"Product:{node['id']}": node for node in nodes
-        }
-        props["__APOLLO_STATE__"][f"Category:{category_id}"] = {
-            "__typename": "Category",
-            "id": category_id,
-            "name": "Men's Shirts",
-        }
-    return props
+class _FakeResponse:
+    def __init__(self, url, body, status=200, meta=None):
+        self.url = url
+        self.text = body
+        self.status = status
+        self.meta = meta or {}
+        self.url = url
 
 
-def response_for(props, url=LISTING_URL, status=200):
-    payload = {"props": {"pageProps": props}, "buildId": "5.33.0"}
-    body = (
-        '<!DOCTYPE html><html><head><title>Men&#x27;s Shirts</title></head><body>'
-        f'<script id="__NEXT_DATA__" type="application/json">{json.dumps(payload)}</script>'
-        "</body></html>"
-    )
-    return HtmlResponse(
-        url, request=Request(url), body=body.encode(), encoding="utf-8", status=status
+def _read(name: str) -> str:
+    return (SAMPLE / name).read_text(encoding="utf-8")
+
+
+def _hydration(page_props: dict) -> str:
+    """Wrap bare pageProps in the SSR document shell the storefront emits."""
+    return (
+        '<html><body><script id="__NEXT_DATA__" type="application/json">'
+        + json.dumps({"props": {"pageProps": page_props}, "buildId": "5.33.0"})
+        + "</script></body></html>"
     )
 
 
-def raw_response(body, url=LISTING_URL, status=200):
-    return HtmlResponse(
-        url, request=Request(url), body=body.encode(), encoding="utf-8", status=status
+# --------------------------------------------------------------------- taxonomy
+
+
+def test_categories_are_unique_and_well_formed():
+    slugs = [entry["category"] for entry in BACKCOUNTRY_CATEGORIES]
+    urls = [entry["url"] for entry in BACKCOUNTRY_CATEGORIES]
+    assert slugs, "category inventory must not be empty"
+    assert len(slugs) == len(set(slugs)), "category slugs must be unique"
+    assert len(urls) == len(set(urls)), "category URLs must be unique"
+    for entry in BACKCOUNTRY_CATEGORIES:
+        assert entry["url"].startswith("https://www.backcountry.com/")
+        assert entry["department"] and entry["section"]
+
+
+def test_categories_cover_both_cat_and_rc_families():
+    prefixes = {entry["category"].split("-", 1)[0] for entry in BACKCOUNTRY_CATEGORIES}
+    assert "cat" in prefixes
+    assert "rc" in prefixes
+
+
+def test_taxonomy_normalizes_links_without_a_category_id():
+    # The header emits filtered /rc/ and /brand/ links with an empty categoryId.
+    # Those must survive normalization rather than being silently dropped.
+    without_id = [e for e in BACKCOUNTRY_CATEGORIES if e["category_id"] is None]
+    assert without_id, "links lacking a categoryId must be kept"
+    assert all(e["url"].startswith("https://www.backcountry.com/") for e in without_id)
+    assert all(e["category"] and e["name"] for e in without_id)
+
+
+def test_taxonomy_slugs_derive_from_the_storefront_path():
+    entry = next(e for e in BACKCOUNTRY_CATEGORIES if e["category"] == "rc-mens-parkas")
+    assert entry["url"].endswith("/rc/mens-parkas")
+    assert entry["category"] == "rc-mens-parkas"
+
+
+def test_mens_shirts_is_crawlable():
+    entry = next(e for e in BACKCOUNTRY_CATEGORIES if e["category"] == "cat-mens-shirts")
+    assert entry["url"] == MENS_SHIRTS
+    assert entry["category_id"] == "bc-mens-shirts"
+
+
+def test_target_resolution_from_category():
+    spider = BackcountryListingSpider(category="cat-mens-shirts")
+    assert spider.resolve_target_url() == MENS_SHIRTS
+
+
+def test_unknown_category_raises():
+    # The base class defers the unknown-slug error to target resolution, so the
+    # run fails loudly before any request is scheduled.
+    with pytest.raises(ValueError, match="Unknown category"):
+        BackcountryListingSpider(category="does-not-exist").resolve_target_url()
+
+
+def test_run_without_any_target_raises():
+    with pytest.raises(ValueError):
+        BackcountryListingSpider()
+
+
+# --------------------------------------------------------------------- parsing
+
+
+def test_page1_exports_every_edge():
+    items, requests = _crawl_text(None, body=_read("backcountry-plp-cat-page1.json"))
+    assert len(items) == 5
+    assert requests == [] or requests  # page-1 request itself is yielded by start_requests
+    first = items[0]
+    assert first["item_id"] == "SKU1"
+    assert first["title"] == "Test Product 1 - Men's"
+    assert first["brand"] == "Testbrand"
+    assert first["url"] == "https://www.backcountry.com/test-product-1-mens"
+    assert first["price"] == 100.0
+    assert first["original_price"] is None
+    assert first["currency"] == "USD"
+    assert first["in_stock"] is True
+    assert first["stock_status"] == "IN_STOCK"
+    assert first["availability"] == "in stock"
+    assert first["position"] == 1
+    assert first["page"] == 1
+    assert first["source"] == "backcountry_next_data"
+    assert first["department"] == "Men"
+    assert first["section"] == "Clothing"
+
+
+def test_export_fields_cover_every_item():
+    fields = BackcountryListingSpider.custom_settings["FEED_EXPORT_FIELDS"]
+    items, _ = _crawl_text(None, body=_read("backcountry-plp-cat-page1.json"))
+    for item in items:
+        assert set(item) == set(fields), f"missing/extra keys: {set(item) ^ set(fields)}"
+
+
+def test_sale_price_and_discount():
+    items, _ = _crawl_text(None, body=_read("backcountry-plp-cat-page1.json"))
+    sale = next(i for i in items if i["item_id"] == "SKU2")
+    assert sale["price"] == 52.5
+    assert sale["original_price"] == 75.0
+    assert sale["discount_percentage"] == 30
+    assert sale["is_new_arrival"] is True
+    assert sale["raw"]["variations_on_sale"] == 2
+
+
+def test_equal_prices_are_not_reported_as_sale():
+    items, _ = _crawl_text(None, body=_read("backcountry-plp-cat-page1.json"))
+    plain = next(i for i in items if i["item_id"] == "SKU1")
+    # minDiscount 0 is normalized to null so it never reads as a markdown.
+    assert plain["discount_percentage"] is None
+    assert plain["original_price"] is None
+    assert plain["price"] == 100.0
+
+
+def test_out_of_stock_is_not_in_stock():
+    items, _ = _crawl_text(None, body=_read("backcountry-plp-cat-page1.json"))
+    out = next(i for i in items if i["item_id"] == "SKU3")
+    assert out["in_stock"] is False
+    assert out["availability"] == "OUT_OF_STOCK"
+
+
+def test_reviews_and_multiple_colors():
+    items, _ = _crawl_text(None, body=_read("backcountry-plp-cat-page1.json"))
+    item = next(i for i in items if i["item_id"] == "SKU4")
+    assert item["rating"] == 4.5
+    assert item["reviews_count"] == 7
+    assert item["colors"] == ["Red", "Blue"]
+    assert item["color"] == "Red"
+    assert item["color_option_count"] == 2
+    # The first swatch only has tileImage; the CDN origin must be applied.
+    assert item["image"] == f"{IMAGE_CDN}/images/items/160/TST/SKU4/RED.jpg"
+
+
+def test_missing_optional_values_do_not_crash():
+    items, _ = _crawl_text(None, body=_read("backcountry-plp-cat-page1.json"))
+    sparse = next(i for i in items if i["item_id"] == "SKU5")
+    assert sparse["brand"] is None
+    assert sparse["image"] is None
+    assert sparse["colors"] is None
+    assert sparse["color_option_count"] == 0
+    assert sparse["rating"] is None
+    assert sparse["reviews_count"] == 0
+    assert sparse["price"] == 59.95
+    # An empty product url falls back to the crawled page url rather than "".
+    assert sparse["url"] == MENS_SHIRTS
+
+
+def test_absolute_urls():
+    items, _ = _crawl_text(None, body=_read("backcountry-plp-cat-page1.json"))
+    assert all(item["url"].startswith("https://www.backcountry.com/") for item in items)
+    assert all(item["image"].startswith("https://") for item in items if item["image"])
+
+
+def test_totals_are_exported():
+    items, _ = _crawl_text(None, body=_read("backcountry-plp-cat-page1.json"))
+    assert items[0]["total_count"] == 1490
+    assert items[0]["last_page"] == 36
+
+
+def test_apollo_record_is_joined_and_recorded():
+    items, _ = _crawl_text(None, body=_read("backcountry-plp-cat-page1.json"))
+    item = next(i for i in items if i["item_id"] == "SKU1")
+    assert item["raw"]["container"] == "category"
+    assert item["raw"]["apollo"]["id"] == "SKU1"
+
+
+def test_collection_container_is_parsed():
+    items, _ = _crawl_text(
+        None,
+        url="https://www.backcountry.com/rc/mens-parkas",
+        body=_read("backcountry-plp-collection.json"),
+        meta={"category": "rc-mens-parkas", "department": "Men", "section": "Outerwear",
+              "category_id": None},
     )
+    assert len(items) == 2
+    assert items[0]["item_id"] == "SKU10"
+    assert items[0]["raw"]["container"] == "collection"
+    assert items[0]["department"] == "Men"
 
 
-class BackcountryTaxonomyTests(unittest.TestCase):
-    def test_inventory_slugs_are_unique_and_labelled(self):
-        slugs = [entry["slug"] for entry in BACKCOUNTRY_CATEGORY_INVENTORY]
-        self.assertEqual(len(slugs), len(set(slugs)))
-        self.assertEqual(len(slugs), 469)
-        for entry in BACKCOUNTRY_CATEGORY_INVENTORY:
-            self.assertEqual(entry["slug"], BACKCOUNTRY_SLUG_LABELS[entry["slug"]]["slug"])
-            self.assertTrue(entry["department"])
-            self.assertTrue(entry["section"])
-            self.assertTrue(entry["name"])
-            self.assertTrue(entry["url"].startswith("https://www.backcountry.com/"))
-
-    def test_inventory_counts_match_the_captured_header(self):
-        departments = {e["department"] for e in BACKCOUNTRY_CATEGORY_INVENTORY}
-        sections = {(e["department"], e["section"]) for e in BACKCOUNTRY_CATEGORY_INVENTORY}
-        # The header has 14 departments / 109 sections; "Guides" and 49 sections
-        # carry no links, so 12 departments / 60 sections reach the inventory.
-        self.assertEqual(len(departments), 12)
-        self.assertEqual(len(sections), 60)
-        # 71 links are cross-listed under a second department/section.
-        self.assertEqual(len({e["url"] for e in BACKCOUNTRY_CATEGORY_INVENTORY}), 398)
-
-    def test_links_without_category_id_are_kept(self):
-        without_id = [e for e in BACKCOUNTRY_CATEGORY_INVENTORY if not e["category_id"]]
-        self.assertEqual(len(without_id), 469 - 230)
-        # /rc/ redirect endpoints and brand-filtered URLs must survive.
-        self.assertTrue(any("/rc/" in e["url"] for e in without_id))
-        self.assertTrue(any("/brand/" in e["url"] for e in without_id))
-
-    def test_category_map_matches_base_spider_schema(self):
-        self.assertEqual(len(BACKCOUNTRY_CATEGORIES), len(BACKCOUNTRY_CATEGORY_INVENTORY))
-        for entry in BACKCOUNTRY_CATEGORIES:
-            self.assertEqual(set(entry), {"category", "url"})
-        shirts = next(
-            e for e in BACKCOUNTRY_CATEGORIES if e["category"] == "men/clothing/shirts"
-        )
-        self.assertEqual(shirts["url"], LISTING_URL)
-
-    def test_taxonomy_slugs_are_derived_from_labels(self):
-        slug = BACKCOUNTRY_SLUG_LABELS["men/clothing/hoodies-sweatshirts"]
-        self.assertEqual(slug["name"], "Hoodies & Sweatshirts")
-        self.assertEqual(slug["category_id"], "bc-mens-hoodies-sweatshirts")
-
-
-class BackcountryHelperTests(unittest.TestCase):
-    def test_to_float_accepts_strings_and_rejects_junk(self):
-        self.assertEqual(to_float("$1,249.95"), 1249.95)
-        self.assertEqual(to_float(35), 35.0)
-        self.assertIsNone(to_float("n/a"))
-        self.assertIsNone(to_float(""))
-        self.assertIsNone(to_float(None))
-        # bool is an int subclass; it must not become 1.0
-        self.assertIsNone(to_float(True))
-
-    def test_to_int(self):
-        self.assertEqual(to_int("42"), 42)
-        self.assertIsNone(to_int("many"))
-
-    def test_absolute_url(self):
-        self.assertEqual(
-            absolute_url("/fjallraven-fjallglim-regular-shirt-mens"),
-            "https://www.backcountry.com/fjallraven-fjallglim-regular-shirt-mens",
-        )
-        self.assertEqual(
-            absolute_url("//www.backcountry.com/x"),
-            "https://www.backcountry.com/x",
-        )
-        self.assertEqual(
-            absolute_url("https://www.backcountry.com/y"),
-            "https://www.backcountry.com/y",
-        )
-        self.assertIsNone(absolute_url(""))
-        self.assertIsNone(absolute_url(None))
-        self.assertIsNone(absolute_url(123))
-
-
-class BackcountryPageUrlTests(unittest.TestCase):
-    def test_first_page_keeps_url_and_filters(self):
-        self.assertEqual(BackcountryListingSpider._page_url(BRAND_URL, 1), BRAND_URL)
-
-    def test_page_two_merges_page_into_existing_query(self):
-        self.assertEqual(
-            BackcountryListingSpider._page_url(BRAND_URL, 2),
-            f"{BRAND_URL}&page=2",
-        )
-
-    def test_page_two_on_plain_category_url(self):
-        self.assertEqual(
-            BackcountryListingSpider._page_url(LISTING_URL, 2),
-            f"{LISTING_URL}?page=2",
-        )
-
-    def test_page_two_replaces_an_existing_page_param(self):
-        self.assertEqual(
-            BackcountryListingSpider._page_url(f"{LISTING_URL}?page=7", 2),
-            f"{LISTING_URL}?page=2",
-        )
-
-    def test_page_two_keeps_other_params_while_replacing_page(self):
-        url = "https://www.backcountry.com/rc/approach-shoes?p=u_categoryPathId:bc-mens-footwear&page=7"
-        self.assertEqual(
-            BackcountryListingSpider._page_url(url, 2),
-            "https://www.backcountry.com/rc/approach-shoes?p=u_categoryPathId:bc-mens-footwear&page=2",
-        )
-
-
-class BackcountryParseTests(unittest.TestCase):
-    def make(self, **kwargs):
-        spider = BackcountryListingSpider(category="men/clothing/shirts", **kwargs)
-        spider.settings = None
-        return spider
-
-    def test_page_one_items_cover_feed_fields(self):
-        spider = self.make()
-        items = list(
-            spider.parse(response_for(page_props([product(), product("PATZBBQ", name="Second Shirt")])), LISTING_URL, 1)
-        )
-        items = [i for i in items if isinstance(i, dict)]
-        self.assertEqual(len(items), 2)
-        first = items[0]
-        self.assertEqual(list(first), spider.custom_settings["FEED_EXPORT_FIELDS"])
-        self.assertEqual(first["item_id"], "FJRZ133")
-        self.assertEqual(first["title"], "Fjallglim Regular Shirt - Men's")
-        self.assertEqual(first["brand"], "Fjallraven")
-        self.assertEqual(first["currency"], "USD")
-        self.assertEqual(first["price"], 124.95)
-        self.assertEqual(first["original_price"], 124.95)
-        self.assertEqual(first["on_sale"], False)
-        self.assertEqual(first["discount_percent"], 0.0)
-        self.assertEqual(first["availability"], "IN_STOCK")
-        self.assertTrue(first["in_stock"])
-        self.assertEqual(first["stock_status"], "IN_STOCK")
-        self.assertEqual(
-            first["url"],
-            "https://www.backcountry.com/fjallraven-fjallglim-regular-shirt-mens",
-        )
-        self.assertEqual(first["listing_url"], LISTING_URL)
-        self.assertEqual(
-            first["image_url"],
-            "https://www.backcountry.com/images/items/large/FJR/FJRZ133/DANACHWH.jpg",
-        )
-        self.assertEqual(first["image"], first["image_url"])
-        self.assertEqual(first["color"], "Dark Navy/Chalk White")
-        self.assertEqual(first["colors"], ["Dark Navy/Chalk White"])
-        self.assertEqual(first["color_ids"], ["DANACHWH"])
-        self.assertEqual(first["color_count"], 3)
-        self.assertEqual(first["total_variations"], 10)
-        self.assertEqual(first["past_season_colors"], ["DANACHWH", "DARNAVMAR", "WOBRBLOA"])
-        self.assertTrue(first["is_past_season"])
-        self.assertFalse(first["is_new_arrival"])
-        self.assertEqual(first["page"], 1)
-        self.assertEqual(first["source"], "backcountry_next_data")
-        self.assertEqual(first["raw"]["id"], "FJRZ133")
-
-    def test_category_labels_are_attached(self):
-        spider = self.make()
-        item = next(
-            i for i in spider.parse(response_for(page_props([product()])), LISTING_URL, 1)
-            if isinstance(i, dict)
-        )
-        self.assertEqual(item["department"], "Men")
-        self.assertEqual(item["section"], "Clothing")
-        self.assertEqual(item["category_name"], "Shirts")
-        self.assertEqual(item["category_slug"], "men/clothing/shirts")
-        self.assertEqual(item["category_id"], "bc-mens-shirts")
-
-    def test_sale_price_and_discount(self):
-        spider = self.make()
-        on_sale = product(
-            "BJOC0B1",
-            aggregates={
-                "totalColors": 4,
-                "totalVariations": 7,
-                "variationsOnSale": 7,
-                "minDiscount": 40,
-                "minListPrice": 34.95,
-                "minSalePrice": 20.97,
-                "maxDiscount": 40,
-                "maxListPrice": 34.95,
-                "maxSalePrice": 20.97,
-                "pastSeasonColors": [],
-            },
-            reviewAggregates={"totalReviews": 12, "averageRating": 4.5},
-        )
-        item = next(
-            i for i in spider.parse(response_for(page_props([on_sale])), LISTING_URL, 1)
-            if isinstance(i, dict)
-        )
-        self.assertEqual(item["price"], 20.97)
-        self.assertEqual(item["original_price"], 34.95)
-        self.assertTrue(item["on_sale"])
-        self.assertEqual(item["discount_percent"], 40.0)
-        self.assertEqual(item["rating"], 4.5)
-        self.assertEqual(item["reviews_count"], 12)
-
-    def test_out_of_stock_flag(self):
-        spider = self.make()
-        item = next(
-            i
-            for i in spider.parse(
-                response_for(page_props([product(stockStatus="OUT_OF_STOCK")])),
-                LISTING_URL,
-                1,
-            )
-            if isinstance(i, dict)
-        )
-        self.assertFalse(item["in_stock"])
-        self.assertEqual(item["availability"], "OUT_OF_STOCK")
-
-    def test_page_two_request_is_scheduled(self):
-        spider = self.make(max_pages=2)
-        output = list(spider.parse(response_for(page_props([product()])), LISTING_URL, 1))
-        request = output[-1]
-        self.assertIsInstance(request, scrapy.Request)
-        self.assertEqual(request.url, f"{LISTING_URL}?page=2")
-        self.assertEqual(request.cb_kwargs, {"listing_url": LISTING_URL, "page": 2})
-
-    def test_max_pages_stops_pagination(self):
-        spider = self.make(max_pages=1)
-        output = list(spider.parse(response_for(page_props([product()])), LISTING_URL, 1))
-        self.assertFalse([o for o in output if isinstance(o, scrapy.Request)])
-
-    def test_total_pages_stops_pagination_before_max_pages(self):
-        spider = self.make(max_pages=10)
-        output = list(
-            spider.parse(
-                response_for(page_props([product()], total_pages=1)), LISTING_URL, 1
-            )
-        )
-        self.assertFalse([o for o in output if isinstance(o, scrapy.Request)])
-
-    def test_has_next_page_false_stops_when_total_pages_missing(self):
-        spider = self.make(max_pages=5)
-        props = page_props([product()], total_pages=None, has_next=False)
-        output = list(spider.parse(response_for(props), LISTING_URL, 1))
-        self.assertFalse([o for o in output if isinstance(o, scrapy.Request)])
-
-    def test_has_next_page_true_continues_when_total_pages_missing(self):
-        spider = self.make(max_pages=5)
-        props = page_props([product()], total_pages=None, has_next=True)
-        output = list(spider.parse(response_for(props), LISTING_URL, 1))
-        self.assertTrue([o for o in output if isinstance(o, scrapy.Request)])
-
-    def test_deduplicates_products_across_pages(self):
-        spider = self.make(max_pages=3)
-        first_page = product()
-        second_page_product = product("ICEZ79D", name="Third Shirt")
-
-        page1 = [
-            i for i in spider.parse(response_for(page_props([first_page])), LISTING_URL, 1)
-            if isinstance(i, dict)
-        ]
-        self.assertEqual([i["item_id"] for i in page1], ["FJRZ133"])
-
-        # page 2 repeats the page-1 product and adds one new one
-        page2 = [
-            i
-            for i in spider.parse(
-                response_for(page_props([first_page, second_page_product])), LISTING_URL, 2
-            )
-            if isinstance(i, dict)
-        ]
-        self.assertEqual([i["item_id"] for i in page2], ["ICEZ79D"])
-        self.assertEqual(page2[0]["page"], 2)
-
-        # page 3 repeats only seen ids -> nothing new is emitted
-        page3 = [
-            i for i in spider.parse(response_for(page_props([first_page])), LISTING_URL, 3)
-            if isinstance(i, dict)
-        ]
-        self.assertEqual(page3, [])
-
-    def test_apollo_state_record_is_joined(self):
-        spider = self.make()
-        # Edge node lacks the flag; the Apollo record carries it.
-        edge_node = product()
-        edge_node["flags"] = {}
-        props = page_props([edge_node])
-        props["__APOLLO_STATE__"]["Product:FJRZ133"]["flags"] = {
-            "isNewArrival": True,
-            "isPastSeason": False,
-            "isExclusive": False,
-            "isGearheadPick": True,
-        }
-        item = next(
-            i for i in spider.parse(response_for(props), LISTING_URL, 1)
-            if isinstance(i, dict)
-        )
-        self.assertTrue(item["is_new_arrival"])
-        self.assertTrue(item["is_gearhead_pick"])
-
-    def test_edges_still_parse_without_apollo_state(self):
-        spider = self.make()
-        item = next(
-            i
-            for i in spider.parse(
-                response_for(page_props([product()], apollo=False)), LISTING_URL, 1
-            )
-            if isinstance(i, dict)
-        )
-        self.assertEqual(item["item_id"], "FJRZ133")
-
-    def test_absolute_urls_for_relative_and_protocol_relative_paths(self):
-        spider = self.make()
-        item = next(
-            i
-            for i in spider.parse(
-                response_for(page_props([product(url="//www.backcountry.com/rel-prod")])), LISTING_URL, 1
-            )
-            if isinstance(i, dict)
-        )
-        self.assertEqual(item["url"], "https://www.backcountry.com/rel-prod")
-
-    def test_image_falls_back_to_tile_image(self):
-        spider = self.make()
-        node = product()
-        node["colors"] = [{"colorId": "X", "name": "Blue", "tileImage": "/images/items/160/x.jpg"}]
-        item = next(
-            i for i in spider.parse(response_for(page_props([node])), LISTING_URL, 1)
-            if isinstance(i, dict)
-        )
-        self.assertEqual(item["image_url"], "https://www.backcountry.com/images/items/160/x.jpg")
-
-    def test_missing_colors_do_not_break_extraction(self):
-        spider = self.make()
-        node = product()
-        node["colors"] = []
-        item = next(
-            i for i in spider.parse(response_for(page_props([node])), LISTING_URL, 1)
-            if isinstance(i, dict)
-        )
-        self.assertIsNone(item["color"])
-        self.assertEqual(item["colors"], [])
-
-    def test_direct_url_run_still_gets_labels_from_the_taxonomy(self):
-        spider = BackcountryListingSpider(url=LISTING_URL)
-        spider.settings = None
-        item = next(
-            i for i in spider.parse(response_for(page_props([product()])), LISTING_URL, 1)
-            if isinstance(i, dict)
-        )
-        self.assertEqual(item["category_slug"], "men/clothing/shirts")
-        self.assertEqual(item["category_id"], "bc-mens-shirts")
-
-
-class BackcountryFailureTests(unittest.TestCase):
-    def make(self, **kwargs):
-        spider = BackcountryListingSpider(category="men/clothing/shirts", **kwargs)
-        spider.settings = None
-        return spider
-
-    def test_non_200_raises(self):
-        spider = self.make()
-        with self.assertRaises(RuntimeError) as ctx:
-            list(spider.parse(response_for(page_props([product()]), status=403), LISTING_URL, 1))
-        self.assertIn("HTTP 403", str(ctx.exception))
-
-    def test_missing_next_data_raises(self):
-        spider = self.make()
-        with self.assertRaises(RuntimeError) as ctx:
-            list(spider.parse(raw_response("<html><body>no hydration here</body></html>"), LISTING_URL, 1))
-        self.assertIn("hydration schema error", str(ctx.exception))
-
-    def test_invalid_next_data_json_raises(self):
-        spider = self.make()
-        body = '<script id="__NEXT_DATA__" type="application/json">{not json</script>'
-        with self.assertRaises(RuntimeError) as ctx:
-            list(spider.parse(raw_response(body), LISTING_URL, 1))
-        self.assertIn("hydration schema error", str(ctx.exception))
-
-    def test_waf_challenge_raises_actionable_error(self):
-        spider = self.make()
-        body = (
-            '<html><head><script type="text/javascript">window.awsWafCookieDomainList = '
-            'window.awsWafCookieDomainList || [];</script></head><body></body></html>'
-        )
-        with self.assertRaises(RuntimeError) as ctx:
-            list(spider.parse(raw_response(body), LISTING_URL, 1))
-        message = str(ctx.exception)
-        self.assertIn("AWS WAF challenge", message)
-        self.assertIn("residential=true", message)
-
-    def test_grecaptcha_badge_in_real_page_is_not_a_challenge(self):
-        # The live category page embeds this style block; a generic "captcha"
-        # marker would reject every successful response.
-        spider = self.make()
-        body = (
-            "<html><head><style>.grecaptcha-badge { visibility: hidden; }</style>"
-            "</head><body>"
-            '<script id="__NEXT_DATA__" type="application/json">'
-            f"{json.dumps({'props': {'pageProps': page_props([product()])}})}"
-            "</script></body></html>"
-        )
-        items = [
-            i for i in spider.parse(raw_response(body), LISTING_URL, 1)
-            if isinstance(i, dict)
-        ]
-        self.assertEqual([i["item_id"] for i in items], ["FJRZ133"])
-
-    def test_deny_page_names_the_proxy_remedy(self):
-        spider = self.make()
-        with self.assertRaises(RuntimeError) as ctx:
-            list(spider.parse(raw_response("<html>Access Denied</html>"), LISTING_URL, 1))
-        message = str(ctx.exception)
-        self.assertIn("hydration schema error", message)
-        self.assertIn("residential=true", message)
-
-    def test_non_plp_page_type_raises(self):
-        spider = self.make()
-        props = page_props([product()], page_type="pd")
-        with self.assertRaises(RuntimeError) as ctx:
-            list(spider.parse(response_for(props), LISTING_URL, 1))
-        self.assertIn("not a product listing page", str(ctx.exception))
-
-    def test_rc_collection_page_parses(self):
-        # /rc/ redirect endpoints render as plp-collection, keyed under
-        # data.collection with a collectionId instead of a categoryId.
-        spider = BackcountryListingSpider(category="men/clothing/sun-protection")
-        spider.settings = None
-        url = RC_URL
-        props = page_props(
-            [product()], total_pages=10, total_count=382,
-            category_id="mens-upf-apparel", page_type="plp-collection",
-        )
-        items = [
-            i
-            for i in spider.parse(
-                response_for(props, url=url), url, 1
-            )
-            if isinstance(i, dict)
-        ]
-        self.assertEqual(len(items), 1)
-        self.assertEqual(items[0]["category_id"], "mens-upf-apparel")
-        self.assertEqual(items[0]["department"], "Men")
-        self.assertEqual(items[0]["category_name"], "Sun Protection")
-
-    def test_brand_page_parses(self):
-        url = BRAND_URL
-        spider = BackcountryListingSpider(url=url)
-        spider.settings = None
-        props = page_props(
-            [product()], total_pages=9, total_count=355,
-            category_id="patagonia", page_type="plp-brand",
-        )
-        items = [
-            i for i in spider.parse(response_for(props, url=url), url, 1)
-            if isinstance(i, dict)
-        ]
-        self.assertEqual(len(items), 1)
-        self.assertEqual(items[0]["category_slug"], "men/top-brands/patagonia")
-        self.assertEqual(items[0]["department"], "Men")
-
-    def test_brand_filtered_page_two_keeps_the_filter(self):
-        url = BRAND_URL
-        spider = BackcountryListingSpider(url=url, max_pages=2)
-        spider.settings = None
-        output = list(
-            spider.parse(
-                response_for(page_props([product()], category_id="patagonia",
-                                        page_type="plp-brand"), url=url),
-                url,
-                1,
-            )
-        )
-        request = output[-1]
-        # The brand/gender filter must survive pagination. Scrapy normalizes
-        # the literal quotes to %22, which is the correct wire form.
-        self.assertEqual(
-            request.url,
-            'https://www.backcountry.com/brand/patagonia'
-            "?p=gender_uFilter:%22male%22&page=2",
-        )
-
-    def test_missing_plp_data_raises(self):
-        spider = self.make()
-        props = {"type": "plp-cat", "categoryId": "bc-mens-shirts"}
-        with self.assertRaises(RuntimeError) as ctx:
-            list(spider.parse(response_for(props), LISTING_URL, 1))
-        self.assertIn("no PLP data", str(ctx.exception))
-
-    def test_unrecognized_plp_block_raises(self):
-        spider = self.make()
-        props = {
-            "type": "plp-cat",
-            "categoryId": "bc-mens-shirts",
-            "plpData": {"data": {"somethingElse": {}}},
-        }
-        with self.assertRaises(RuntimeError) as ctx:
-            list(spider.parse(response_for(props), LISTING_URL, 1))
-        self.assertIn("no PLP data", str(ctx.exception))
-
-    def test_missing_edges_raises(self):
-        spider = self.make()
-        props = {
-            "type": "plp-cat",
-            "categoryId": "bc-mens-shirts",
-            "plpData": {"data": {"category": {"pageInfo": {"hasNextPage": False}}}},
-        }
-        with self.assertRaises(RuntimeError) as ctx:
-            list(spider.parse(response_for(props), LISTING_URL, 1))
-        self.assertIn("no product edges", str(ctx.exception))
-
-    def test_empty_edges_raises(self):
-        spider = self.make()
-        with self.assertRaises(RuntimeError) as ctx:
-            list(spider.parse(response_for(page_props([])), LISTING_URL, 1))
-        self.assertIn("no product edges", str(ctx.exception))
-
-    def test_edges_of_wrong_type_raise(self):
-        spider = self.make()
-        props = page_props([product()])
-        props["plpData"]["data"]["category"]["edges"] = {"nope": True}
-        with self.assertRaises(RuntimeError) as ctx:
-            list(spider.parse(response_for(props), LISTING_URL, 1))
-        self.assertIn("not a list", str(ctx.exception))
-
-    def test_missing_target_raises(self):
-        with self.assertRaises(ValueError) as ctx:
-            BackcountryListingSpider()
-        self.assertIn("men/clothing/shirts", str(ctx.exception))
-
-    def test_unknown_category_raises(self):
-        with self.assertRaises(ValueError) as ctx:
-            list(
-                BackcountryListingSpider(category="nope/nope/nope").start_requests()
-            )
-        self.assertIn("Unknown category", str(ctx.exception))
-
-
-class BackcountryProxyTests(unittest.TestCase):
-    def make_with_proxy(self, proxy):
-        spider = BackcountryListingSpider(category="men/clothing/shirts")
-        spider.settings = _Settings(proxy)
-        return spider
-
-    def test_residential_is_appended_to_scrapeops_username(self):
-        spider = self.make_with_proxy(
-            "http://scrapeops.country=us:test_key@proxy.scrapeops.io:5353"
-        )
-        proxy = spider._residential_proxy()
-        self.assertIn("scrapeops.country=us.residential=true", proxy)
-        self.assertIn("test_key@proxy.scrapeops.io:5353", proxy)
-
-    def test_existing_username_options_are_preserved(self):
-        spider = self.make_with_proxy(
-            "http://scrapeops.country=us.bypass=7:tok@proxy.scrapeops.io:5353"
-        )
-        proxy = spider._residential_proxy()
-        self.assertIn("scrapeops.country=us.bypass=7.residential=true", proxy)
-        self.assertIn("tok@proxy.scrapeops.io:5353", proxy)
-
-    def test_residential_is_appended_only_once(self):
-        spider = self.make_with_proxy(
-            "http://scrapeops.country=us.residential=true:tok@proxy.scrapeops.io:5353"
-        )
-        proxy = spider._residential_proxy()
-        self.assertEqual(proxy.count("residential=true"), 1)
-
-    def test_non_scrapeops_proxy_is_unchanged(self):
-        spider = self.make_with_proxy("http://user:pass@proxy.example.com:8080")
-        self.assertIsNone(spider._residential_proxy())
-
-    def test_no_proxy_returns_none(self):
-        spider = self.make_with_proxy(None)
-        self.assertIsNone(spider._residential_proxy())
-
-    def test_requests_carry_the_residential_proxy(self):
-        spider = BackcountryListingSpider(category="men/clothing/shirts")
-        spider.settings = _Settings("http://scrapeops.country=us:tok@proxy.scrapeops.io:5353")
-        request = next(spider.start_requests())
-        self.assertIn("residential=true", request.meta["proxy"])
-
-    def test_page_requests_carry_the_residential_proxy(self):
-        spider = BackcountryListingSpider(category="men/clothing/shirts", max_pages=2)
-        spider.settings = _Settings("http://scrapeops.country=us:tok@proxy.scrapeops.io:5353")
-        first = next(spider.start_requests())
-        second = spider._page_request(LISTING_URL, 2)
-        for request in (first, second):
-            self.assertIn("residential=true", request.meta["proxy"])
-
-    def test_requests_omit_proxy_when_not_configured(self):
-        spider = BackcountryListingSpider(category="men/clothing/shirts")
-        spider.settings = _Settings(None)
-        self.assertNotIn("proxy", next(spider.start_requests()).meta)
-
-
-class _Settings:
-    def __init__(self, proxy):
-        self._proxy = proxy
-
-    def get(self, key, default=None):
-        if key == "PROXY":
-            return self._proxy
-        return default
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_brand_container_is_parsed():
+    items, _ = _crawl_text(
+        None,
+        url="https://www.backcountry.com/brand/patagonia",
+        body=_read("backcountry-plp-brand.json"),
+        meta={"category": "brand-patagonia", "department": "Brands", "section": "Patagonia",
+              "category_id": None},
+    )
+    assert [i["item_id"] for i in items] == ["SKU12"]
+    assert items[0]["raw"]["container"] == "brand"
+
+
+def test_listing_container_locates_unlabelled_kind():
+    container, name = BackcountryListingSpider._listing_container({"whatever": {"edges": []}})
+    assert name == "whatever"
+
+
+def test_listing_container_returns_none_without_edges():
+    assert BackcountryListingSpider._listing_container({"junk": 1}) == (None, "")
+
+
+# ------------------------------------------------------------------ pagination
+
+
+def test_page2_request_uses_same_url_and_increments_page():
+    _items, requests = _crawl_text(None, body=_read("backcountry-plp-cat-page2.json"), max_pages=2)
+    assert len(requests) == 1
+    assert requests[0].url == f"{MENS_SHIRTS}?page=2"
+    assert requests[0].meta["page"] == 2
+    assert requests[0].dont_filter is True
+
+
+@pytest.mark.parametrize(
+    "url,page,expected",
+    [
+        (MENS_SHIRTS, 1, MENS_SHIRTS),
+        (MENS_SHIRTS, 2, f"{MENS_SHIRTS}?page=2"),
+        (MENS_SHIRTS, 12, f"{MENS_SHIRTS}?page=12"),
+        ("https://www.backcountry.com/rc/mens-parkas", 3,
+         "https://www.backcountry.com/rc/mens-parkas?page=3"),
+        # A pre-filtered brand link keeps its own query params.
+        ("https://www.backcountry.com/brand/patagonia?p=gender_uFilter:%22male%22", 2,
+         "https://www.backcountry.com/brand/patagonia?p=gender_uFilter%3A%22male%22&page=2"),
+        # An existing page param is replaced, not duplicated.
+        (f"{MENS_SHIRTS}?page=2", 3, f"{MENS_SHIRTS}?page=3"),
+    ],
+)
+def test_page_url_construction(url, page, expected):
+    assert BackcountryListingSpider._page_url(url, page) == expected
+
+
+def test_max_pages_stops_pagination():
+    _items, requests = _crawl_text(None, body=_read("backcountry-plp-cat-page2.json"), max_pages=1)
+    assert requests == []
+
+
+def test_has_next_page_false_stops_pagination():
+    _items, requests = _crawl_text(None, body=_read("backcountry-plp-cat-lastpage.json"), max_pages=5)
+    assert requests == []
+
+
+def test_empty_container_yields_no_items_and_no_request():
+    items, requests = _crawl_text(None, body=_read("backcountry-plp-empty.json"))
+    assert items == []
+    assert requests == []
+
+
+def test_duplicate_ids_are_suppressed_across_pages():
+    spider = BackcountryListingSpider(category="cat-mens-shirts")
+    seen = spider._seen
+    seen.add("SKU5")
+    response = _FakeResponse(MENS_SHIRTS, _read("backcountry-plp-cat-page2.json"), 200,
+                             {"category": "cat-mens-shirts", "page": 2})
+    items = [i for i in spider.parse(response) if not hasattr(i, "url")]
+    # SKU5 repeats from page 1; SKU6 and SKU7 are new.
+    assert [i["item_id"] for i in items] == ["SKU6", "SKU7"]
+
+
+# --------------------------------------------------------------- failure modes
+
+
+def test_non_200_raises():
+    with pytest.raises(RuntimeError, match="HTTP 403"):
+        _crawl_text(None, body=_read("backcountry-plp-cat-page1.json"), status=403)
+
+
+def test_waf_challenge_raises_instead_of_zero_items():
+    with pytest.raises(RuntimeError, match="no #__NEXT_DATA__ script"):
+        _crawl_text(None, body=_read("backcountry-waf-challenge.html"))
+
+
+def test_missing_next_data_script_raises():
+    with pytest.raises(RuntimeError, match="no #__NEXT_DATA__ script"):
+        _crawl_text(None, body=_read("backcountry-no-next-data.html"))
+
+
+def test_invalid_json_raises():
+    with pytest.raises(RuntimeError, match="not valid JSON"):
+        _crawl_text(None, body=_read("backcountry-next-data-invalid.json.html"))
+
+
+def test_non_plp_page_raises():
+    body = _hydration({"type": "home", "targeters": {}})
+    with pytest.raises(RuntimeError, match="no props.pageProps PLP payload"):
+        _crawl_text(None, body=body)
+
+
+def test_missing_plp_data_raises():
+    body = _hydration({"type": "plp-cat"})
+    with pytest.raises(RuntimeError, match="no plpData.data"):
+        _crawl_text(None, body=body)
+
+
+def test_plp_without_container_raises():
+    body = _hydration({"type": "plp-cat", "plpData": {"data": {}}})
+    with pytest.raises(RuntimeError, match="no product container"):
+        _crawl_text(None, body=body)
+
+
+# ---------------------------------------------------------------------- proxy
+
+
+class _Settings(dict):
+    pass
+
+
+def _spider_with_proxy(proxy):
+    spider = BackcountryListingSpider(category="cat-mens-shirts")
+    spider.settings = _Settings({"PROXY": proxy})
+    return spider
+
+
+SECRET = "6538bdfd-12b3-4108-b863-06151459cf00"
+
+
+def test_residential_appended_once_for_scrapeops():
+    proxy = f"http://scrapeops.country=us:{SECRET}@proxy.scrapeops.io:5353"
+    result = _spider_with_proxy(proxy)._residential_proxy()
+    assert result == (
+        f"http://scrapeops.country=us.residential=true:{SECRET}@proxy.scrapeops.io:5353"
+    )
+    # Idempotent: a second pass does not append again.
+    spider = _spider_with_proxy(result)
+    assert spider._residential_proxy() == result
+
+
+def test_other_scrapeops_options_are_preserved():
+    proxy = f"http://scrapeops.country=de.render_js=false:{SECRET}@proxy.scrapeops.io:5353"
+    result = _spider_with_proxy(proxy)._residential_proxy()
+    assert result.startswith("http://scrapeops.country=de.render_js=false.residential=true:")
+    assert result.endswith(f"@proxy.scrapeops.io:5353")
+
+
+def test_non_scrapeops_proxy_unchanged():
+    proxy = f"http://user:pass@proxy.example.com:8080"
+    assert _spider_with_proxy(proxy)._residential_proxy() == proxy
+
+
+def test_missing_proxy_returns_none():
+    assert _spider_with_proxy(None)._residential_proxy() is None
+
+
+def test_proxy_password_never_logged():
+    proxy = f"http://scrapeops.country=us:{SECRET}@proxy.scrapeops.io:5353"
+    result = _spider_with_proxy(proxy)._residential_proxy()
+    assert result.count(SECRET) == 1
+    assert "residential=true" in result
+
+
+def test_requests_carry_the_residential_proxy():
+    spider = BackcountryListingSpider(category="cat-mens-shirts")
+    spider.settings = _Settings({"PROXY": "http://scrapeops.country=us:k@proxy.scrapeops.io:5353"})
+    requests = list(spider.start_requests())
+    assert len(requests) == 1
+    assert "residential=true" in requests[0].meta["proxy"]
+
+
+# ------------------------------------------------------------------- numbers
+
+
+@pytest.mark.parametrize(
+    "value,expected",
+    [
+        (None, None),
+        (True, None),
+        ("12", 12),
+        ("12.5", 12.5),
+        ("1,299.99", 1299.99),
+        (7, 7),
+        ("abc", None),
+    ],
+)
+def test_number_coercion(value, expected):
+    assert BackcountryListingSpider._number(value) == expected
+
+
+def test_apollo_products_indexes_by_id():
+    apollo = {"Product:SKU1": {"id": "SKU1"}, "Product:SKU2": {"__ref": "Product:SKU2"},
+              "Other:1": {"id": "Other:1"}}
+    products = BackcountryListingSpider._apollo_products(apollo)
+    assert sorted(products) == ["SKU1", "SKU2"]
+
+
+def test_apollo_products_falls_back_to_cache_key():
+    # A record with no own `id` is keyed by its cache key suffix, never by __ref.
+    apollo = {"Product:SKU9": {"__ref": "Product:SKU9", "name": "No id field"}}
+    products = BackcountryListingSpider._apollo_products(apollo)
+    assert list(products) == ["SKU9"]

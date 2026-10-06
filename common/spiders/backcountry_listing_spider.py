@@ -1,196 +1,103 @@
 from __future__ import annotations
 
-"""Backcountry listing spider (issue #222).
-
-Backcountry is a Next.js storefront whose product listing pages are fully
-server-rendered.  The whole catalog is present in the ``#__NEXT_DATA__``
-hydration payload of an ordinary category request:
-
-    GET https://www.backcountry.com/cat/mens-shirts[?page=N]
-        -> <script id="__NEXT_DATA__" type="application/json">
-
-Relevant paths:
-
-    props.pageProps.type                              # "plp-cat"
-    props.pageProps.categoryId                        # "bc-mens-shirts"
-    props.pageProps.totalCount                        # 1490 products
-    props.pageProps.totalPages                        # 36 pages
-    props.pageProps.plpData.data.category.edges[]     # 42 products per page
-    props.pageProps.plpData.data.category.pageInfo    # hasNextPage/hasPreviousPage
-    props.pageProps.__APOLLO_STATE__["Product:<id>"]  # normalized product record
-
-This spider uses exactly ONE data direction -- the Next.js bootstrap
-hydration state.  There is **no HTML / JSON-LD fallback**: if
-``#__NEXT_DATA__``, ``plpData`` or the product edges disappear the spider fails
-loudly instead of silently degrading to a different extraction.
-
-Pagination is ordinary HTML pagination (``?page=N``); page 2 returns a fresh
-SSR payload with a disjoint edge set and ``hasPreviousPage=true``.  Products
-are de-duplicated by ``Product.id`` and the crawl stops at ``max_pages``,
-``totalPages`` or ``hasNextPage=false``.
-
-The site sits behind an AWS WAF: a plain ScrapeOps datacenter request returns a
-~2.3 KB challenge page, while the residential route returns the real ~1 MB
-category HTML.  ``_residential_proxy()`` appends ``residential=true`` to the
-ScrapeOps username, preserving any other username options and the credentials.
-
-The full header taxonomy (14 departments / 109 sections / 469 links) is bundled
-in ``backcountry_categories.py``; see that module for how the stable
-``<department>/<section>/<name>`` slugs are derived.
-
-Flow:
-    category (slug, category_url or url)
-        -> /cat/... ?page=N (page=1..max_pages)
-        -> emit one item per plpData edge, joined to __APOLLO_STATE__
-        -> repeat until max_pages, totalPages, or hasNextPage=false
-"""
+"""Backcountry listings parsed from the server-rendered Next.js `__NEXT_DATA__` hydration."""
 
 import json
 import re
-from typing import Any, Iterable, Iterator
-from urllib.parse import quote, urljoin, urlsplit, urlunsplit
+from typing import Any, Iterable
+from urllib.parse import parse_qsl, urlencode, urljoin, urlsplit, urlunsplit
 
 import scrapy
 
-from common.spiders.backcountry_categories import (
-    BACKCOUNTRY_BASE_URL,
-    BACKCOUNTRY_CATEGORIES,
-    BACKCOUNTRY_SLUG_LABELS,
-)
+from common.spiders.backcountry_categories import BACKCOUNTRY_CATEGORIES, BASE_URL
 from common.spiders.base_listing_spider import BaseListingSpider
 
-SITE_BASE = BACKCOUNTRY_BASE_URL
 
-# The hydration payload is a single <script> block, but the JSON body is large
-# (~1 MB HTML) and may contain "</script>" inside a string. Bound the search so
-# a malformed page cannot make the regex walk the whole document repeatedly.
-NEXT_DATA_RE = re.compile(
-    r'<script id="__NEXT_DATA__"[^>]*>(?P<payload>.*?)</script>',
-    re.S,
+# ScrapeOps option appended to the proxy username. Backcountry sits behind an AWS
+# WAF: the plain datacenter route and every `bypass` level return a 2.4 KB
+# `window.awsWafCookieDomainList` interstitial instead of the page, and the
+# challenge never resolves server-side. Only the residential route returns the
+# real 1 MB+ SSR document.
+RESIDENTIAL_PROXY = "residential=true"
+
+# The color swatches hydrate as storefront-relative paths; the CDN host that the
+# same SSR response uses for the <img> tags is the canonical origin for them.
+IMAGE_CDN = "https://content.backcountry.com"
+
+_NEXT_DATA_RE = re.compile(
+    r'<script id="__NEXT_DATA__" type="application/json"[^>]*>(.*?)</script>', re.S
 )
-
-# ScrapeOps username option that routes through the residential pool. Without
-# it the datacenter route only returns the AWS WAF challenge stub.
-RESIDENTIAL_OPTION = "residential=true"
-
-# Backcountry serves three product-listing page types from the same SSR
-# plumbing: canonical category pages, /rc/ collection pages and brand pages.
-PLP_PAGE_TYPES = ("plp-cat", "plp-collection", "plp-brand")
-
-# The AWS WAF challenge stub is ~2.3 KB and identifies itself with
-# `window.awsWafCookieDomainList`. Matching on that specific token (rather than
-# a generic "captcha"/"access denied") matters: the real ~1 MB category page
-# embeds a `grecaptcha-badge` style block, so a loose marker would flag every
-# successful response. The other markers cover generic deny/gateway bodies.
-CHALLENGE_MARKERS = (
-    "awswaf",
-    "aws-waf",
-    "awswafchallenge",
-)
-DENY_MARKERS = (
-    "access denied",
-    "reference #",
-    "request unsuccessful",
-    "we couldn't retrieve a successful response",
-)
-
-
-def to_float(value: Any) -> float | None:
-    """Coerce an aggregates price/discount field; tolerate ints, floats, strings."""
-    if value is None or isinstance(value, bool):
-        return None
-    if isinstance(value, (int, float)):
-        return float(value)
-    text = str(value).strip().replace("$", "").replace(",", "")
-    if not text:
-        return None
-    try:
-        return float(text)
-    except ValueError:
-        return None
-
-
-def to_int(value: Any) -> int | None:
-    number = to_float(value)
-    return int(number) if number is not None else None
-
-
-def absolute_url(url: Any) -> str | None:
-    """Resolve Backcountry's site-relative PDP paths against the storefront."""
-    if not isinstance(url, str):
-        return None
-    url = url.strip()
-    if not url:
-        return None
-    if url.startswith("//"):
-        return f"https:{url}"
-    return urljoin(f"{SITE_BASE}/", url)
 
 
 class BackcountryListingSpider(BaseListingSpider):
+    """backcountry.com listings from the SSR `#__NEXT_DATA__` PLP + Apollo hydration.
+
+    One direction only: every field is read out of the hydration payload that the
+    storefront server-renders into `#__NEXT_DATA__`
+    (`props.pageProps.plpData.data.<container>.edges[].node`), joined to the
+    normalized product record the same payload carries under
+    `props.pageProps.__APOLLO_STATE__["Product:<id>"]`. There is no HTML-card
+    fallback, no JSON-LD, and no separate product API call.
+    """
+
     name = "backcountry_listing"
     allowed_domains = ["backcountry.com", "www.backcountry.com"]
-
-    # Direct url=/category_url= runs are supported, so opt out of the base
-    # class category-only gate; resolve_target_url() still rejects a run with
-    # no target at all.
+    categories = BACKCOUNTRY_CATEGORIES
+    # Direct url=/category_url= runs are supported, so opt out of the base class
+    # category-only gate; resolve_target_url() still rejects a run with no target.
     require_category_arg = False
 
-    categories = BACKCOUNTRY_CATEGORIES
-
     custom_settings = {
-        "CONCURRENT_REQUESTS_PER_DOMAIN": 1,
-        "DOWNLOAD_DELAY": 1.5,
-        # Let the explicit status checks in parse() run so a WAF/challenge body
-        # surfaces the documented actionable error instead of a silent 0.
+        "CONCURRENT_REQUESTS_PER_DOMAIN": 2,
+        "DOWNLOAD_DELAY": 0.5,
+        # Let the explicit status checks in parse() run so a WAF interstitial or
+        # an error status surfaces the documented actionable error instead of a
+        # successful zero-item crawl.
         "HTTPERROR_ALLOW_ALL": True,
         "FEED_EXPORT_FIELDS": [
             "item_id",
             "title",
             "brand",
-            "model",
+            "product_type",
             "url",
-            "listing_url",
-            "price",
-            "original_price",
-            "currency",
-            "on_sale",
-            "discount_percent",
-            "availability",
-            "in_stock",
-            "stock_status",
-            "image_url",
             "image",
+            "image_alt",
             "color",
             "colors",
-            "color_ids",
-            "color_count",
-            "total_variations",
-            "variations_on_sale",
-            "past_season_colors",
+            "color_option_count",
+            "price",
+            "original_price",
+            "discount_percentage",
+            "currency",
+            "in_stock",
+            "stock_status",
+            "availability",
             "rating",
             "reviews_count",
             "is_new_arrival",
-            "is_past_season",
             "is_exclusive",
+            "is_past_season",
             "is_gearhead_pick",
+            "past_season_colors",
+            "category",
             "department",
             "section",
-            "category_name",
             "category_id",
-            "category_slug",
             "page",
+            "position",
+            "total_count",
+            "last_page",
             "source",
             "raw",
         ],
     }
 
     headers = {
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-US,en;q=0.9",
-        "User-Agent": (
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "accept-language": "en-US,en;q=0.9",
+        "user-agent": (
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36"
         ),
     }
 
@@ -198,363 +105,358 @@ class BackcountryListingSpider(BaseListingSpider):
         super().__init__(*args, **kwargs)
         if not (self.category or self.category_url or self.url):
             raise ValueError(
-                "Provide -a category=<slug>, category_url=<url>, or url=<url>. "
-                "Category slugs look like 'men/clothing/shirts'."
+                "Provide -a category=<name>, category_url=<url>, or url=<url>. "
+                f"Available categories: {', '.join(self.available_categories())}"
             )
         self._seen: set[str] = set()
 
-    # ------------------------------------------------------------------ crawl
+    # ---------------------------------------------------------------- requests
 
     def start_requests(self) -> Iterable[scrapy.Request]:
-        yield self._page_request(self.resolve_target_url(), page=1)
+        self._seen.clear()
+        target = self.resolve_target_url()
+        selected = next((entry for entry in self.categories if entry.get("url") == target), {})
+        yield self._page_request(target, page=1, selected=selected)
 
-    def _page_request(self, url: str, page: int) -> scrapy.Request:
-        meta = {"listing_url": url, "page": page}
-        # Resolved per request rather than in __init__: scrapy only attaches
-        # `spider.settings` after the spider is constructed, so a cached value
-        # computed there would always be None and the plain datacenter proxy
-        # would be used instead -- which only returns the WAF challenge stub.
-        proxy = self._residential_proxy()
-        if proxy:
-            meta["proxy"] = proxy
+    def _page_request(self, url: str, *, page: int, selected: dict[str, Any]) -> scrapy.Request:
         return scrapy.Request(
             self._page_url(url, page),
-            headers=self.headers,
             callback=self.parse,
-            cb_kwargs={"listing_url": url, "page": page},
-            meta=meta,
+            headers=self.headers,
+            meta={
+                "proxy": self._residential_proxy(),
+                "page": page,
+                "category": self.category or selected.get("category") or "custom",
+                "department": selected.get("department"),
+                "section": selected.get("section"),
+                "category_id": selected.get("category_id"),
+            },
             dont_filter=True,
         )
 
     @staticmethod
     def _page_url(url: str, page: int) -> str:
-        """Build the ``?page=N`` listing URL, preserving existing filters.
+        """Return ``url`` with the storefront's ordinary ``?page=N`` contract applied.
 
-        Brand-filtered taxonomy URLs carry a ``p=...`` query whose syntax uses
-        literal ``:`` and ``"`` characters. The query is therefore copied
-        verbatim and the page parameter is appended to it, rather than being
-        round-tripped through a query encoder that would re-escape those.
+        The PLP is server-rendered per page number (``/cat/mens-shirts?page=2``), and
+        the number is echoed back as ``query.page`` in ``#__NEXT_DATA__``. Page 1 is
+        left bare so the canonical category URL stays the first request, and any
+        existing query string (e.g. a filtered ``/brand/...`` link) is preserved.
         """
-        parts = urlsplit(url)
         if page <= 1:
             return url
-        # Drop any page parameter already present so repeated calls cannot
-        # accumulate `?page=7&page=2`, while leaving the filter syntax alone.
-        kept = [
-            part
-            for part in parts.query.split("&")
-            if part and not part.startswith("page=")
-        ]
-        kept.append(f"page={page}")
+        parts = urlsplit(url)
+        query = parse_qsl(parts.query, keep_blank_values=True)
+        query = [(k, v) for k, v in query if k != "page"]
+        query.append(("page", str(page)))
+        return urlunsplit((parts.scheme, parts.netloc, parts.path, urlencode(query), parts.fragment))
+
+    def _residential_proxy(self) -> str | None:
+        """Return the configured proxy with the residential option enabled.
+
+        ScrapeOps credentials are carried as ``<options>:<api_key>@host:port``, so
+        the option belongs on the username side and the password is preserved
+        verbatim. A proxy that is already residential, or any non-ScrapeOps proxy,
+        is returned untouched.
+        """
+        proxy = getattr(self, "settings", {}).get("PROXY")
+        if not isinstance(proxy, str) or not proxy:
+            return None
+        if "scrapeops" not in proxy.lower():
+            return proxy
+        parts = urlsplit(proxy)
+        if parts.password is None or not parts.hostname:
+            return proxy
+        if RESIDENTIAL_PROXY.split("=")[-1] in (parts.username or ""):
+            return proxy
+        username = f"{parts.username}.{RESIDENTIAL_PROXY}"
         return urlunsplit(
-            (parts.scheme, parts.netloc, parts.path, "&".join(kept), parts.fragment)
+            (
+                parts.scheme,
+                f"{username}:{parts.password}@{parts.hostname}:{parts.port}",
+                parts.path,
+                parts.query,
+                parts.fragment,
+            )
         )
 
-    def parse(self, response, listing_url: str, page: int) -> Iterator[dict]:
+    # ------------------------------------------------------------------ parse
+
+    def parse(self, response: scrapy.http.Response):
         if response.status != 200:
             raise RuntimeError(
-                f"Backcountry listing returned HTTP {response.status}: {response.url}"
+                f"backcountry listing returned HTTP {response.status}: {response.url}"
+            )
+        page_props = self._page_props(response.text, response.url)
+        if not isinstance(page_props.get("type"), str) or not page_props["type"].startswith("plp-"):
+            # The AWS WAF interstitial and the "no results" landing page both render
+            # a document without a PLP payload. Returning silently here is what turns
+            # a blocked run into a green, zero-item crawl.
+            raise RuntimeError(
+                f"backcountry {response.url} has no props.pageProps PLP payload "
+                f"(type={page_props.get('type')!r}); the response is a challenge or "
+                "an empty landing page, not a product listing"
             )
 
-        body = response.text
-        lowered = body[:20000].lower()
-        if any(marker in lowered for marker in CHALLENGE_MARKERS):
+        plp = page_props.get("plpData")
+        plp_data = plp.get("data") if isinstance(plp, dict) else None
+        if not isinstance(plp_data, dict):
+            raise RuntimeError(f"backcountry hydration has no plpData.data at {response.url}")
+
+        container, container_name = self._listing_container(plp_data)
+        if container is None:
             raise RuntimeError(
-                "Backcountry returned an AWS WAF challenge instead of the "
-                f"category page ({len(body)} bytes): {response.url}. "
-                "The residential ScrapeOps route is required "
-                "(residential=true appended to the proxy username)."
+                f"backcountry hydration at {response.url} has no product container; "
+                f"plpData.data keys: {sorted(plp_data)}"
             )
 
-        try:
-            page_props = self._page_props(body, response.url)
-        except ValueError as exc:
-            # A generic deny page or a ScrapeOps gateway error also lands here;
-            # name the proxy remedy when the body looks like one of those.
-            hint = ""
-            if any(marker in lowered for marker in DENY_MARKERS):
-                hint = (
-                    " The response looks like a bot-protection deny page; the "
-                    "residential ScrapeOps route is required "
-                    "(residential=true appended to the proxy username)."
-                )
-            raise RuntimeError(
-                f"Backcountry hydration schema error at {response.url}: {exc}.{hint}"
-            ) from exc
-        page_type = page_props.get("type")
-        if page_type not in PLP_PAGE_TYPES:
-            raise RuntimeError(
-                f"Backcountry hydration is not a product listing page "
-                f"(type={page_type!r}): {response.url}"
-            )
-
-        edges = self._product_edges(page_props, response.url)
+        edges = container.get("edges")
+        edges = edges if isinstance(edges, list) else []
+        current_page = int(response.meta.get("page") or 1)
         if not edges:
-            raise RuntimeError(
-                f"Backcountry hydration has no product edges: {response.url}"
+            self.logger.warning(
+                "backcountry %s (page %s) returned an ordered container with 0 product edges",
+                response.url, current_page,
             )
+            return
 
-        apollo_state = page_props.get("__APOLLO_STATE__")
-        if not isinstance(apollo_state, dict):
-            apollo_state = {}
-
-        labels = self._category_labels(listing_url)
-        # The SSR payload always states the listing it rendered (categoryId,
-        # collectionId or brand); prefer it over the taxonomy record because it
-        # stays correct for ad-hoc URL runs.
-        listing_id = (
-            page_props.get("categoryId")
-            or page_props.get("collectionId")
-            or labels.get("category_id")
-            or ""
+        apollo = page_props.get("__APOLLO_STATE__")
+        apollo = apollo if isinstance(apollo, dict) else {}
+        # The PLP container carries the same `Product:<id>` records the Apollo cache
+        # holds, so the join is a normalization, not a second source. It is optional:
+        # an edge is still exported when only the edge payload is present.
+        normalized = self._apollo_products(apollo)
+        total_count = self._number(container.get("totalCount")) or self._number(
+            page_props.get("totalCount")
         )
-        labels["category_id"] = listing_id
+        last_page = self._number(page_props.get("totalPages"))
+        category_id = page_props.get("categoryId")
 
-        emitted = 0
-        for edge in edges:
-            node = self._merge_apollo(edge, apollo_state)
-            item = self._product_item(node, listing_url, page, labels)
-            item_id = item.get("item_id")
-            if not item_id or item_id in self._seen:
+        for position, edge in enumerate(edges, start=1):
+            if not isinstance(edge, dict):
+                continue
+            node = edge.get("node")
+            node = node if isinstance(node, dict) else None
+            if not node:
+                continue
+            item_id = str(node.get("id") or "").strip()
+            if not item_id:
+                continue
+            if item_id in self._seen:
                 continue
             self._seen.add(item_id)
-            emitted += 1
-            yield item
-
-        if emitted == 0:
-            self.logger.warning(
-                "Backcountry page %s returned %s edges but no new product IDs",
-                page,
-                len(edges),
+            product = normalized.get(item_id)
+            merged = {**(product or {}), **node}
+            yield self._item(
+                merged,
+                response=response,
+                node=node,
+                page=current_page,
+                position=position,
+                total_count=total_count,
+                last_page=last_page,
+                category_id=category_id,
+                container_name=container_name,
             )
 
-        if page < self.max_pages and self._has_next_page(page_props, page):
-            yield self._page_request(listing_url, page + 1)
+        yield from self._next_page(response, container, current_page, last_page)
 
-    def _has_next_page(self, page_props: dict, page: int) -> bool:
-        """Stop at ``max_pages``, ``totalPages`` or ``hasNextPage=false``."""
-        total_pages = to_int(page_props.get("totalPages"))
-        if total_pages:
-            return page < total_pages
-        page_info = self._listing_block(page_props).get("pageInfo") or {}
-        return bool(page_info.get("hasNextPage"))
+    def _next_page(
+        self,
+        response: scrapy.http.Response,
+        container: dict[str, Any],
+        current_page: int,
+        last_page: int | None,
+    ):
+        if current_page >= self.max_pages:
+            return
+        page_info = container.get("pageInfo")
+        page_info = page_info if isinstance(page_info, dict) else {}
+        has_next = page_info.get("hasNextPage")
+        if has_next is False:
+            return
+        # `totalPages` is the storefront's own page count and is present on both the
+        # category (`plp-cat`) and collection/brand (`plp-collection`/`plp-brand`)
+        # containers, so it is a safe bound when `hasNextPage` is absent.
+        if has_next is None and last_page is not None and current_page >= last_page:
+            return
+
+        selected = next((entry for entry in self.categories if entry.get("url") == response.url), {})
+        yield self._page_request(response.url, page=current_page + 1, selected=selected)
 
     # ------------------------------------------------------------- extraction
 
-    @staticmethod
-    def _page_props(body: str, url: str) -> dict:
-        """Return ``props.pageProps`` from the Next.js hydration payload."""
-        match = NEXT_DATA_RE.search(body)
+    def _page_props(self, html: str, url: str) -> dict[str, Any]:
+        match = _NEXT_DATA_RE.search(html or "")
         if not match:
-            raise ValueError("missing <script id=\"__NEXT_DATA__\"> payload")
+            raise RuntimeError(
+                f"backcountry {url} has no #__NEXT_DATA__ script; the SSR hydration "
+                "route is unavailable (WAF challenge or a client-only page)"
+            )
         try:
-            payload = json.loads(match.group("payload"))
+            payload = json.loads(match.group(1))
         except json.JSONDecodeError as exc:
-            raise ValueError(f"invalid __NEXT_DATA__ JSON: {exc}") from exc
-        if not isinstance(payload, dict):
-            raise ValueError("__NEXT_DATA__ was not an object")
-        page_props = payload.get("props", {}).get("pageProps")
+            raise RuntimeError(f"backcountry __NEXT_DATA__ at {url} is not valid JSON") from exc
+        props = payload.get("props")
+        page_props = props.get("pageProps") if isinstance(props, dict) else None
         if not isinstance(page_props, dict):
-            raise ValueError("__NEXT_DATA__.props.pageProps is missing or not an object")
+            raise RuntimeError(f"backcountry __NEXT_DATA__ at {url} has no props.pageProps")
         return page_props
 
     @staticmethod
-    def _listing_block(page_props: dict) -> dict:
-        """Return the listing block from ``plpData.data``.
+    def _listing_container(plp_data: dict[str, Any]) -> tuple[dict[str, Any] | None, str]:
+        """Return the one product-bearing container in ``plpData.data``.
 
-        Backcountry uses three PLP page types, all sharing the same block
-        shape (``edges[]``, ``pageInfo``, ``totalCount``) but keyed differently:
-
-            plp-cat        -> plpData.data.category     (categoryId)
-            plp-collection -> plpData.data.collection   (collectionId, /rc/ ...)
-            plp-brand      -> plpData.data.brand        (brand pages)
-
-        Resolving by shape rather than by page type keeps one extraction path
-        for all three instead of forking on a string.
+        The storefront ships the same envelope under a different key per PLP kind:
+        ``category`` for ``plp-cat``, ``collection`` for ``plp-collection`` and
+        ``brand`` for ``plp-brand``. Keying off ``pageProps.type`` instead would
+        miss filtered ``/rc/`` and ``/brand/`` targets, so the ordered container is
+        located by its shape.
         """
-        plp_data = page_props.get("plpData")
-        if not isinstance(plp_data, dict):
-            raise KeyError("plpData")
-        data = plp_data.get("data")
-        if not isinstance(data, dict):
-            raise KeyError("plpData.data")
         for key in ("category", "collection", "brand"):
-            block = data.get(key)
-            if isinstance(block, dict):
-                return block
-        raise KeyError(f"plpData.data.{'/'.join(sorted(data))}")
-
-    def _product_edges(self, page_props: dict, url: str) -> list[dict]:
-        try:
-            listing = self._listing_block(page_props)
-        except KeyError as exc:
-            raise RuntimeError(
-                f"Backcountry hydration has no PLP data ({exc}) at {url}"
-            ) from exc
-        edges = listing.get("edges")
-        if edges is None:
-            raise RuntimeError(f"Backcountry hydration has no product edges at {url}")
-        if not isinstance(edges, list):
-            raise RuntimeError(
-                f"Backcountry hydration edges are {type(edges).__name__}, not a list: {url}"
-            )
-        nodes = []
-        for edge in edges:
-            if not isinstance(edge, dict):
-                continue
-            node = edge.get("node") if isinstance(edge.get("node"), dict) else edge
-            if isinstance(node, dict):
-                nodes.append(node)
-        return nodes
+            value = plp_data.get(key)
+            if isinstance(value, dict) and "edges" in value:
+                return value, key
+        # Fall back to shape detection so an unlabelled new PLP kind still works.
+        for key, value in plp_data.items():
+            if isinstance(value, dict) and "edges" in value:
+                return value, key
+        return None, ""
 
     @staticmethod
-    def _merge_apollo(node: dict, apollo_state: dict) -> dict:
-        """Prefer the normalized ``__APOLLO_STATE__`` record for a product id.
+    def _apollo_products(apollo: dict[str, Any]) -> dict[str, dict[str, Any]]:
+        """Index the normalized `Product:<id>` cache records by product id.
 
-        The PLP edge and the Apollo cache entry are usually byte-identical, but
-        Apollo is the normalized store, so use it when present and fall back to
-        the edge node otherwise.
+        The cache key is the authoritative id. A record's own ``id`` is used when it
+        is present; ``__ref`` is deliberately *not* preferred, because it is a cache
+        pointer (``Product:SKU2``) rather than the bare id the edges are keyed by.
         """
-        product_id = node.get("id")
-        if not product_id:
-            return node
-        apollo_node = apollo_state.get(f"Product:{product_id}")
-        if not isinstance(apollo_node, dict):
-            return node
-        merged = dict(node)
-        merged.update(apollo_node)
-        return merged
+        products: dict[str, dict[str, Any]] = {}
+        for key, value in apollo.items():
+            if not key.startswith("Product:") or not isinstance(value, dict):
+                continue
+            cache_id = key.split(":", 1)[1]
+            record_id = value.get("id") or cache_id
+            products[str(record_id)] = value
+        return products
 
-    def _category_labels(self, listing_url: str) -> dict[str, str]:
-        """Resolve department/section/category labels for a listing URL."""
-        slug = self.category or ""
-        entry = BACKCOUNTRY_SLUG_LABELS.get(slug)
-        if entry is not None and entry["url"] == listing_url:
-            return {
-                "department": entry["department"],
-                "section": entry["section"],
-                "category_name": entry["name"],
-                "category_slug": entry["slug"],
-                "category_id": entry["category_id"],
-            }
-        # Direct url=/category_url= runs have no slug; fall back to the first
-        # taxonomy entry pointing at the same URL so labels are still attached.
-        for candidate in BACKCOUNTRY_SLUG_LABELS.values():
-            if candidate["url"] == listing_url:
-                return {
-                    "department": candidate["department"],
-                    "section": candidate["section"],
-                    "category_name": candidate["name"],
-                    "category_slug": candidate["slug"],
-                    "category_id": candidate["category_id"],
-                }
-        return {
-            "department": "",
-            "section": "",
-            "category_name": "",
-            "category_slug": "",
-            "category_id": "",
-        }
+    def _item(
+        self,
+        product: dict[str, Any],
+        *,
+        response: scrapy.http.Response,
+        node: dict[str, Any],
+        page: int,
+        position: int,
+        total_count: int | None,
+        last_page: int | None,
+        category_id: str | None,
+        container_name: str,
+    ) -> dict[str, Any]:
+        aggregates = product.get("aggregates")
+        aggregates = aggregates if isinstance(aggregates, dict) else {}
+        flags = product.get("flags")
+        flags = flags if isinstance(flags, dict) else {}
+        reviews = product.get("reviewAggregates")
+        reviews = reviews if isinstance(reviews, dict) else {}
+        brand = product.get("brand")
+        brand = brand.get("name") if isinstance(brand, dict) else brand
 
-    def _product_item(
-        self, node: dict, listing_url: str, page: int, labels: dict[str, str]
-    ) -> dict:
-        aggregates = node.get("aggregates") or {}
-        review = node.get("reviewAggregates") or {}
-        flags = node.get("flags") or {}
-        colors = [c for c in (node.get("colors") or []) if isinstance(c, dict)]
-
-        price = to_float(aggregates.get("minSalePrice"))
-        original_price = to_float(aggregates.get("minListPrice"))
-        on_sale = (
-            price is not None
-            and original_price is not None
-            and original_price > price
-        ) or bool(aggregates.get("variationsOnSale"))
-
-        image_url = None
-        for color in colors:
-            candidate = absolute_url(color.get("pliImage") or color.get("tileImage"))
-            if candidate:
-                image_url = candidate
-                break
-
-        stock_status = node.get("stockStatus")
+        colors = product.get("colors")
+        colors = colors if isinstance(colors, list) else []
+        color_names = [
+            str(c.get("name")).strip()
+            for c in colors
+            if isinstance(c, dict) and c.get("name")
+        ]
+        image = self._first_image(colors)
+        stock_status = str(product.get("stockStatus") or "").strip() or None
+        # `stockStatus` is the storefront's own enum (IN_STOCK / OUT_OF_STOCK /
+        # PREORDER / ...). Anything other than an explicit in-stock value is
+        # treated as not buyable so downstream filters do not over-claim.
         in_stock = stock_status == "IN_STOCK"
+        min_sale = self._number(aggregates.get("minSalePrice"))
+        min_list = self._number(aggregates.get("minListPrice"))
+        discount = self._number(aggregates.get("minDiscount"))
+        on_sale = bool(discount and discount > 0 and min_sale is not None and min_list is not None
+                       and min_sale < min_list)
+        if on_sale:
+            price, original_price = min_sale, min_list
+        else:
+            price = min_sale if min_sale is not None else min_list
+            original_price = None
 
-        return {
-            "item_id": node.get("id"),
-            "title": node.get("name"),
-            "brand": (node.get("brand") or {}).get("name"),
-            "model": None,
-            "url": absolute_url(node.get("url")),
-            "listing_url": listing_url,
+        url = product.get("url") or ""
+        item: dict[str, Any] = {
+            "item_id": str(product.get("id") or "").strip(),
+            "title": str(product.get("name") or "").strip() or None,
+            "brand": str(brand).strip() if brand else None,
+            "product_type": product.get("__typename"),
+            "url": urljoin(BASE_URL + "/", str(url).lstrip("/")) if url else response.url,
+            "image": image,
+            "image_alt": str(product.get("name") or "").strip() or None,
+            "color": color_names[0] if color_names else None,
+            "colors": color_names or None,
+            "color_option_count": len(color_names),
             "price": price,
             "original_price": original_price,
+            "discount_percentage": discount or None,
             "currency": "USD",
-            "on_sale": on_sale,
-            "discount_percent": to_float(aggregates.get("minDiscount")),
-            "availability": stock_status,
             "in_stock": in_stock,
             "stock_status": stock_status,
-            "image_url": image_url,
-            # ``image`` keeps the project-wide field name usable by existing
-            # consumers that read ``image`` rather than ``image_url``.
-            "image": image_url,
-            "color": colors[0].get("name") if colors else None,
-            "colors": [c.get("name") for c in colors if c.get("name")],
-            "color_ids": [c.get("colorId") for c in colors if c.get("colorId")],
-            "color_count": to_int(aggregates.get("totalColors")) or len(colors),
-            "total_variations": to_int(aggregates.get("totalVariations")),
-            "variations_on_sale": to_int(aggregates.get("variationsOnSale")),
-            "past_season_colors": aggregates.get("pastSeasonColors") or [],
-            "rating": to_float(review.get("averageRating")),
-            "reviews_count": to_int(review.get("totalReviews")),
+            "availability": "in stock" if in_stock else (stock_status or "unknown"),
+            "rating": self._number(reviews.get("averageRating")) or None,
+            "reviews_count": self._number(reviews.get("totalReviews")),
             "is_new_arrival": bool(flags.get("isNewArrival")),
-            "is_past_season": bool(flags.get("isPastSeason")),
             "is_exclusive": bool(flags.get("isExclusive")),
+            "is_past_season": bool(flags.get("isPastSeason")),
             "is_gearhead_pick": bool(flags.get("isGearheadPick")),
-            "department": labels.get("department"),
-            "section": labels.get("section"),
-            "category_name": labels.get("category_name"),
-            "category_id": labels.get("category_id"),
-            "category_slug": labels.get("category_slug"),
+            "past_season_colors": aggregates.get("pastSeasonColors") or None,
+            "category": response.meta.get("category"),
+            "department": response.meta.get("department"),
+            "section": response.meta.get("section"),
+            "category_id": category_id or response.meta.get("category_id"),
             "page": page,
+            "position": position,
+            "total_count": total_count,
+            "last_page": last_page,
             "source": "backcountry_next_data",
-            # Verbatim hydration record so downstream consumers can re-derive
-            # fields when the SSR schema changes.
-            "raw": node,
+            "raw": {
+                "node": node,
+                "apollo": product if product is not node else None,
+                "container": container_name,
+                "variations_on_sale": aggregates.get("variationsOnSale"),
+                "total_variations": aggregates.get("totalVariations"),
+            },
         }
+        return item
 
-    # ------------------------------------------------------------------ proxy
+    @classmethod
+    def _first_image(cls, colors: list[Any]) -> str | None:
+        """Return an absolute URL for the first hydrated color swatch.
 
-    def _residential_proxy(self) -> str | None:
-        """Return the ScrapeOps proxy URL with ``residential=true``.
-
-        Backcountry's AWS WAF answers a datacenter request with a ~2.3 KB
-        challenge page; the residential pool returns the real ~1 MB category
-        HTML. Copy the configured proxy and append the option to the username,
-        preserving any existing options and the credentials. The password is
-        never logged.
+        The PLP edge ships ``tileImage``/``pliImage`` as storefront-relative paths
+        (``/images/items/160/FJR/FJRZ133/DANACHWH.jpg``); the CDN origin is the same
+        host the SSR HTML uses for its <img> tags, so the path is resolved against
+        it rather than against the page URL.
         """
-        settings = getattr(self, "settings", None)
-        if settings is None:
+        for color in colors:
+            if not isinstance(color, dict):
+                continue
+            for key in ("tileImage", "pliImage", "image"):
+                value = color.get(key)
+                if value:
+                    return urljoin(IMAGE_CDN, str(value).lstrip("/"))
+        return None
+
+    @staticmethod
+    def _number(value: Any) -> int | float | None:
+        if isinstance(value, bool) or value is None:
             return None
-        proxy = settings.get("PROXY")
-        if not isinstance(proxy, str) or not proxy:
+        if isinstance(value, (int, float)):
+            return value
+        try:
+            text = str(value).strip().replace(",", "")
+            return float(text) if "." in text else int(text)
+        except (TypeError, ValueError):
             return None
-        parts = urlsplit(proxy)
-        if parts.hostname != "proxy.scrapeops.io" or not parts.username:
-            return None
-        username = parts.username
-        if RESIDENTIAL_OPTION not in username:
-            username = f"{username}.{RESIDENTIAL_OPTION}"
-        credentials = quote(username, safe=".=_-")
-        if parts.password is not None:
-            credentials += f":{quote(parts.password, safe='')}"
-        host = parts.hostname
-        if parts.port is not None:
-            host += f":{parts.port}"
-        return urlunsplit(
-            (parts.scheme, f"{credentials}@{host}", parts.path, parts.query, parts.fragment)
-        )

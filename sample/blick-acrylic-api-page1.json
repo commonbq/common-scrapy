@@ -1,0 +1,113 @@
+{
+ "collectionId": "d298ed17-7841-4797-a573-51ba100fa8a7",
+ "collectionName": "Acrylic Paint",
+ "externalId": "64h0nGCpZmASYWykoCaM4E",
+ "totalCount": 168,
+ "pageNumber": 1,
+ "pageSize": 30,
+ "totalPages": 6,
+ "facets": null,
+ "metadata": {
+  "processingTimeMs": 0,
+  "collectionSearchObservabilityInfo": {
+   "isPromotedSkusFetchedFromCache": true
+  }
+ },
+ "appliedCampaigns": null,
+ "debugProducts": null,
+ "items": [
+  {
+   "id": "43n5pWWzvSrWgJrGGmYCUQ",
+   "entryId": "43n5pWWzvSrWgJrGGmYCUQ",
+   "brand": "Liquitex",
+   "itemId": "00795",
+   "rank": 913,
+   "alternateIds": [],
+   "name": "Liquitex Professional Acrylic Gouache and Sets",
+   "url": "/products/liquitex-professional-acrylic-gouache/",
+   "recordType": "product",
+   "featuredImageUrl": "https://cld-assets.dick-blick.com/image/upload/f_auto/q_auto/v1748457204/00795-3733-1-4ww.jpg",
+   "skuCount": 54,
+   "rating": 4.8,
+   "ratingCount": 223,
+   "isNew": false,
+   "isCouponEligible": false,
+   "isOverstock": false,
+   "overstockPercentage": 0,
+   "pricing": {
+    "priceMax": 73.91,
+    "priceMin": 9.79,
+    "priceBreakQuantity1": 0,
+    "priceBreakPrice1": 0,
+    "priceBreakQuantity2": 0,
+    "priceBreakPrice2": 0,
+    "priceBreakQuantity3": 0,
+    "priceBreakPrice3": 0,
+    "priceBreakQuantity4": 0,
+    "priceBreakPrice4": 0,
+    "savingStory": "SAVE 30-42%",
+    "isBestPrice": true,
+    "bestPricePercentage": 100,
+    "isSkuOnSale": false,
+    "skuOnSalePercentage": 0,
+    "skuMsrp": 0,
+    "skuListPrice": 0,
+    "priceBreakMinPrice": 0
+   },
+   "availability": {
+    "isOnClearance": false,
+    "clearancePercentage": 0
+   },
+   "shortDescription": "Liquitex Professional Acrylic Gouache combines the qualities of traditional gouache with the benefits of acrylic paint. They're perfect for mixed media works and alternate surfaces, as well as for color blocking, layering, illustration, and design.",
+   "newSkusPercentage": 0,
+   "labels": []
+  },
+  {
+   "id": "1COmqjNqy9EKtZzSOksmsZ",
+   "entryId": "1COmqjNqy9EKtZzSOksmsZ",
+   "brand": "Liquitex",
+   "itemId": "00617",
+   "rank": 1004,
+   "alternateIds": [],
+   "name": "Liquitex Cadmium-Free Professional Heavy Body Acrylic Paints",
+   "url": "/products/liquitex-cadmium-free-professional-heavy-body-acrylic-paints/",
+   "recordType": "product",
+   "featuredImageUrl": "https://cld-assets.dick-blick.com/image/upload/f_auto/q_auto/v1748472270/00617-4515-M-4ww.jpg",
+   "skuCount": 22,
+   "rating": 4.8,
+   "ratingCount": 960,
+   "isNew": false,
+   "isCouponEligible": false,
+   "isOverstock": false,
+   "overstockPercentage": 0,
+   "pricing": {
+    "priceMax": 153.99,
+    "priceMin": 11.89,
+    "priceBreakQuantity1": 0,
+    "priceBreakPrice1": 0,
+    "priceBreakQuantity2": 0,
+    "priceBreakPrice2": 0,
+    "priceBreakQuantity3": 0,
+    "priceBreakPrice3": 0,
+    "priceBreakQuantity4": 0,
+    "priceBreakPrice4": 0,
+    "savingStory": "SAVE 30-53%",
+    "isBestPrice": true,
+    "bestPricePercentage": 100,
+    "isSkuOnSale": false,
+    "skuOnSalePercentage": 0,
+    "skuMsrp": 0,
+    "skuListPrice": 0,
+    "priceBreakMinPrice": 0
+   },
+   "availability": {
+    "isOnClearance": false,
+    "clearancePercentage": 0
+   },
+   "shortDescription": "Liquitex Professional Cadmium-Free Heavy Body Acrylics offer artists the best of both worlds: the vibrant beauty and performance of traditional cadmium colors without the associated health and environmental risks.",
+   "newSkusPercentage": 0,
+   "labels": []
+  }
+ ],
+ "_fixture_note": "Trimmed from the live api.dickblick.com pageNumber=1 response for collection alias 64h0nGCpZmASYWykoCaM4E on 2026-10-05; 30 items reduced to 2. The spider reads totalCount/totalPages from the envelope, so paging behaves as on the untrimmed response."
+}
