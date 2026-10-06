@@ -32,7 +32,7 @@ class RedfinListingSpider(BaseListingSpider):
             "price_per_sqft", "city", "state", "zip", "property_type",
             "status", "latitude", "longitude", "year_built", "photo_count",
             "days_on_market", "time_on_redfin", "is_hot", "is_new_construction",
-            "page", "position", "source", "raw",
+            "page", "position", "source", "raw", "timestamp",
         ],
     }
     headers = {
@@ -174,6 +174,7 @@ class RedfinListingSpider(BaseListingSpider):
                 "time_on_redfin": home.get("timeOnRedfin"), "is_hot": home.get("isHot"),
                 "is_new_construction": home.get("isNewConstruction"), "page": meta["page"], "position": position,
                 "source": "redfin_stingray_api", "raw": home,
+                "timestamp": self.job_timestamp,
             }
 
     @staticmethod

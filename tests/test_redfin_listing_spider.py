@@ -13,7 +13,7 @@ def gis(homes):
 def test_categories_and_feed_contract():
     spider = RedfinListingSpider(category="los-angeles-ca")
     assert len(REDFIN_CATEGORIES) == 20
-    assert spider.custom_settings["FEED_EXPORT_FIELDS"][-2:] == ["source", "raw"]
+    assert spider.custom_settings["FEED_EXPORT_FIELDS"][-3:] == ["source", "raw", "timestamp"]
 
 
 def test_hydration_discovers_cached_api_response():
@@ -49,6 +49,7 @@ def test_parse_maps_items_and_builds_second_page_request():
     assert output[0]["item_id"] == "5196541"
     assert output[0]["price"] == 1399000
     assert output[0]["source"] == "redfin_stingray_api"
+    assert "raw" in output[0] and output[0]["timestamp"] == spider.job_timestamp
     assert output[1].url.endswith("page_number=2&start=1")
 
 
