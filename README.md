@@ -3565,4 +3565,4 @@ catalogue. Consequently `max_pages` does not invent pagination. The ordered
 `FEED_EXPORT_FIELDS` contract includes activity/tour IDs, title and description,
 canonical URL, images, activity type, numeric prices and currency, full-precision
 rating and review count, attributes, availability, page metadata, source, and
-the raw authoritative record.
+the crawl timestamp, and the raw authoritative record.

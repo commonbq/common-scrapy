@@ -27,7 +27,7 @@ class GetYourGuideListingSpider(BaseListingSpider):
             "base_price", "currency", "currency_symbol", "price_category",
             "price_category_label", "rating", "reviews_count", "attributes",
             "availability_message", "next_available_at", "page_url", "page",
-            "source", "raw",
+            "timestamp", "source", "raw",
         ],
     }
 
@@ -84,6 +84,7 @@ class GetYourGuideListingSpider(BaseListingSpider):
                 "next_available_at": availability.get("next_available_date_time"),
                 "page_url": response.url,
                 "page": 1,
+                "timestamp": self.get_timestamp(),
                 "source": "getyourguide_initial_state_sdui",
                 "raw": product,
             }
