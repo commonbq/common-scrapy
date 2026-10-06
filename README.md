@@ -3552,6 +3552,7 @@ uses Zillow's server-rendered `/<N>_p/` pages for pagination; there is no HTML-c
 JSON-LD, GraphQL, or browser fallback. Stable IDs come from `zpid`, and the ordered
 `FEED_EXPORT_FIELDS` include price, address, property facts, coordinates, estimates,
 broker, region, pagination metadata, and the authoritative raw record.
+Every exported item also includes the crawl `timestamp`.
 
 ```bash
 scrapy crawl zillow_listing -a category=houston-tx -a max_pages=2 -s HTTPCACHE_ENABLED=False -O zillow.jsonl

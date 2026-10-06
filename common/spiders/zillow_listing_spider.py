@@ -27,7 +27,7 @@ class ZillowListingSpider(BaseListingSpider):
             "latitude", "longitude", "zestimate", "rent_zestimate", "broker",
             "days_on_zillow", "time_on_zillow", "listing_sub_type", "has_3d_model",
             "category", "region_id", "region_name", "page", "position",
-            "total_count", "source", "raw",
+            "total_count", "source", "raw", "timestamp",
         ],
     }
     headers = {
@@ -117,6 +117,7 @@ class ZillowListingSpider(BaseListingSpider):
                 "region_name": region.get("displayName") or region.get("regionName"),
                 "page": page, "position": position, "total_count": total,
                 "source": "zillow_next_data", "raw": product,
+                "timestamp": self.job_timestamp,
             }
         if page < self.max_pages and results and new_count == len(results):
             yield self._request(response.meta["base_url"], page + 1)
