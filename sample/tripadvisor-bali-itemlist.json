@@ -1,0 +1,870 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Hotel",
+        "name": "Prama Sanur Beach Bali",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl Cemara No. 65",
+          "addressLocality": "Sanur",
+          "addressCountry": "Indonesia",
+          "postalCode": "80227"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.707953,
+          "longitude": 115.25685
+        },
+        "telephone": "+62 361 288011",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/49/fc/7b/prama-sanur-beach-bali.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g297700-d545823-Reviews-Prama_Sanur_Beach_Bali-Sanur_Denpasar_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.1,
+          "reviewCount": 3836
+        },
+        "priceRange": "€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Hotel",
+        "name": "Amnaya Resort Kuta",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Gg. Puspa Ayu No. 99 Jalan Kartika Plaza",
+          "addressCountry": "Indonesia",
+          "postalCode": "80361"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.729807,
+          "longitude": 115.17
+        },
+        "telephone": "+62 361 755380",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/e1/70/5b/amnaya-pool-wall-was.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g297697-d7856221-Reviews-Amnaya_Resort_Kuta-Kuta_Kuta_District_Badung_Regency_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.9,
+          "reviewCount": 4146
+        },
+        "priceRange": "€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Hotel",
+        "name": "Legian Beach Hotel",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Melasti, Legian Kelod",
+          "addressLocality": "Legian",
+          "addressCountry": "Indonesia",
+          "postalCode": "80361"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.708591,
+          "longitude": 115.16862
+        },
+        "telephone": "+62 361 751711",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/8c/b9/71/aerial-view.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g608487-d307581-Reviews-Legian_Beach_Hotel-Legian_Kuta_District_Badung_Regency_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.3,
+          "reviewCount": 4124
+        },
+        "priceRange": "€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "@type": "Hotel",
+        "name": "Merusaka Nusa Dua",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Kawasan Wisata Nusa Dua Lot S-3",
+          "addressLocality": "Nusa Dua",
+          "addressCountry": "Indonesia",
+          "postalCode": "80363"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.804957,
+          "longitude": 115.22942
+        },
+        "telephone": "+62 361 2002900",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/3c/5d/0e/inaya-putri-bali-is-awarded.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g297698-d308410-Reviews-Merusaka_Nusa_Dua-Nusa_Dua_Benoa_South_Kuta_Badung_Regency_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.3,
+          "reviewCount": 2627
+        },
+        "priceRange": "€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "item": {
+        "@type": "Hotel",
+        "name": "Maya Sanur Resort & Spa",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Danau Tamblingan No. 89M",
+          "addressLocality": "Sanur",
+          "addressCountry": "Indonesia",
+          "postalCode": "80228"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.697441,
+          "longitude": 115.264
+        },
+        "telephone": "+62 361 8497800",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/d0/47/cd/maya-sanur-resort-and.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g297700-d7248999-Reviews-Maya_Sanur_Resort_Spa-Sanur_Denpasar_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.7,
+          "reviewCount": 1850
+        },
+        "priceRange": "€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "item": {
+        "@type": "Hotel",
+        "name": "Sumitra Luxury Villas & Resort By Pramana",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Tirta Empul",
+          "addressLocality": "Sanur",
+          "addressCountry": "Indonesia",
+          "postalCode": "80228"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.711821,
+          "longitude": 115.25079
+        },
+        "telephone": "+62 361 9581011",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/32/bc/e7/2f/aerial-view.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g297700-d26803974-Reviews-Sumitra_Luxury_Villas_Resort_By_Pramana-Sanur_Denpasar_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 5,
+          "reviewCount": 541
+        },
+        "priceRange": "€€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "item": {
+        "@type": "Hotel",
+        "name": "Segara Village Hotel",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Segara Ayu",
+          "addressLocality": "Sanur",
+          "addressCountry": "Indonesia",
+          "postalCode": "80228"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.682775,
+          "longitude": 115.26317
+        },
+        "telephone": "+62 361 288407",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/09/9a/05/49/jacuzzi-bar-sunset.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g297700-d658058-Reviews-Segara_Village_Hotel-Sanur_Denpasar_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.3,
+          "reviewCount": 2028
+        },
+        "priceRange": "€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 8,
+      "item": {
+        "@type": "Hotel",
+        "name": "Ayodya Resort Bali",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Pantai Mengiat No.4 Nusa Dua Beach",
+          "addressLocality": "Nusa Dua",
+          "addressCountry": "Indonesia",
+          "postalCode": "80363"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.80809,
+          "longitude": 115.22827
+        },
+        "telephone": "+62 361 771102",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/d3/1a/35/caption.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g297698-d303033-Reviews-Ayodya_Resort_Bali-Nusa_Dua_Benoa_South_Kuta_Badung_Regency_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.5,
+          "reviewCount": 8332
+        },
+        "priceRange": "€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 9,
+      "item": {
+        "@type": "Hotel",
+        "name": "Prime Plaza Hotel Sanur - Bali",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Hang Tuah 46",
+          "addressLocality": "Sanur",
+          "addressCountry": "Indonesia",
+          "postalCode": "80228"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.675225,
+          "longitude": 115.2604
+        },
+        "telephone": "+62 361 281781",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/42/fd/a3/swimming-pool.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g297700-d306831-Reviews-Prime_Plaza_Hotel_Sanur_Bali-Sanur_Denpasar_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.4,
+          "reviewCount": 2016
+        },
+        "priceRange": "€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 10,
+      "item": {
+        "@type": "Hotel",
+        "name": "Mulia Resort",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jalan Raya Nusa Dua Selatan Kawasan Sawangan",
+          "addressLocality": "Nusa Dua",
+          "addressCountry": "Indonesia",
+          "postalCode": "80362"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.816229,
+          "longitude": 115.222595
+        },
+        "telephone": "+62 361 3017777",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/6d/98/49/ocean-pool-view.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g297698-d3633245-Reviews-Mulia_Resort-Nusa_Dua_Benoa_South_Kuta_Badung_Regency_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.7,
+          "reviewCount": 5668
+        },
+        "priceRange": "€€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 11,
+      "item": {
+        "@type": "Hotel",
+        "name": "Discovery Kartika Plaza Hotel",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Kartika Plaza",
+          "addressCountry": "Indonesia",
+          "postalCode": "80361"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.729562,
+          "longitude": 115.16584
+        },
+        "telephone": "+62 361 2001300",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/f6/81/ed/amazing-ocean-front-5.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g297697-d307616-Reviews-Discovery_Kartika_Plaza_Hotel-Kuta_Kuta_District_Badung_Regency_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.5,
+          "reviewCount": 3700
+        },
+        "priceRange": "€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 12,
+      "item": {
+        "@type": "Hotel",
+        "name": "Puri Santrian",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Cemara 35",
+          "addressLocality": "Sanur",
+          "addressCountry": "Indonesia",
+          "postalCode": "80228"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.709288,
+          "longitude": 115.25867
+        },
+        "telephone": "+62 361 288009",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-s/02/7d/60/a9/santrian-club-aerial.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g297700-d307577-Reviews-Puri_Santrian-Sanur_Denpasar_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.3,
+          "reviewCount": 3479
+        },
+        "priceRange": "€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 13,
+      "item": {
+        "@type": "Hotel",
+        "name": "Maya Ubud Resort & Spa",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Gunung Sari",
+          "addressLocality": "Peliatan",
+          "addressCountry": "Indonesia",
+          "postalCode": "80571"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.512828,
+          "longitude": 115.27784
+        },
+        "telephone": "+62 361 977888",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/20/76/92/maya-ubud-resort-spa.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g3932211-d307574-Reviews-Maya_Ubud_Resort_Spa-Peliatan_Ubud_Gianyar_Regency_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.7,
+          "reviewCount": 3640
+        },
+        "priceRange": "€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 14,
+      "item": {
+        "@type": "Hotel",
+        "name": "The Seminyak Beach Resort & Spa",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Kayu Aya",
+          "addressLocality": "Seminyak",
+          "addressCountry": "Indonesia",
+          "postalCode": "80361"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.686226,
+          "longitude": 115.1546
+        },
+        "telephone": "+62 361 730814",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/4b/11/f0/the-seminyak-beach-resort.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g469404-d1772090-Reviews-The_Seminyak_Beach_Resort_Spa-Seminyak_Kuta_District_Badung_Regency_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.8,
+          "reviewCount": 7012
+        },
+        "priceRange": "€€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 15,
+      "item": {
+        "@type": "Hotel",
+        "name": "Anathera Resort Kuta",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Kubu Anyar No. 31",
+          "addressCountry": "Indonesia",
+          "postalCode": "80361"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.733184,
+          "longitude": 115.17092
+        },
+        "telephone": "+62 361 4727177",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/34/c6/46/c6/anathera-resort-kuta.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g297697-d7376517-Reviews-Anathera_Resort_Kuta-Kuta_Kuta_District_Badung_Regency_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.6,
+          "reviewCount": 1751
+        },
+        "priceRange": "€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 16,
+      "item": {
+        "@type": "Hotel",
+        "name": "ARTOTEL Sanur",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Kesumasari no. 1",
+          "addressLocality": "Sanur",
+          "addressCountry": "Indonesia",
+          "postalCode": "80227"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.705424,
+          "longitude": 115.260895
+        },
+        "telephone": "+62 361 4721000",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/c6/11/57/caption.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g297700-d10034774-Reviews-ARTOTEL_Sanur-Sanur_Denpasar_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.7,
+          "reviewCount": 4241
+        },
+        "priceRange": "€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 17,
+      "item": {
+        "@type": "Hotel",
+        "name": "Truntum Kuta",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Pantai Kuta No. 1 Br. Pande Mas, Kuta - Badung, Bali",
+          "addressCountry": "Indonesia",
+          "postalCode": "80361"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.723113,
+          "longitude": 115.17054
+        },
+        "telephone": "+62 623 61751361",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/8e/0d/0e/caption.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g297697-d308408-Reviews-Truntum_Kuta-Kuta_Kuta_District_Badung_Regency_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.2,
+          "reviewCount": 4636
+        },
+        "priceRange": "€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 18,
+      "item": {
+        "@type": "Hotel",
+        "name": "The Haven Bali Seminyak",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Raya Seminyak 500",
+          "addressLocality": "Seminyak",
+          "addressCountry": "Indonesia",
+          "postalCode": "80361"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.696693,
+          "longitude": 115.1685
+        },
+        "telephone": "+62 623 61738001",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/09/a4/56/e6/the-haven-seminyak-hotel.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g469404-d1450614-Reviews-The_Haven_Bali_Seminyak-Seminyak_Kuta_District_Badung_Regency_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.2,
+          "reviewCount": 4097
+        },
+        "priceRange": "€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 19,
+      "item": {
+        "@type": "Hotel",
+        "name": "Griya Santrian",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Danau Tamblingan 47",
+          "addressLocality": "Sanur",
+          "addressCountry": "Indonesia",
+          "postalCode": "80228"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.690143,
+          "longitude": 115.26573
+        },
+        "telephone": "+62 818-866-622",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/e8/e9/3d/griya-santrian.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g297700-d325334-Reviews-Griya_Santrian-Sanur_Denpasar_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.4,
+          "reviewCount": 2234
+        },
+        "priceRange": "€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 20,
+      "item": {
+        "@type": "Hotel",
+        "name": "The Stones Hotel - Legian Bali, Autograph Collection",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Raya Pantai Kuta Banjar Legian Kelod",
+          "addressLocality": "Legian",
+          "addressCountry": "Indonesia",
+          "postalCode": "00000"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.711431,
+          "longitude": 115.16778
+        },
+        "telephone": "+62 361 3005888",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/3a/86/aa/pool--v13319720.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g608487-d3528272-Reviews-The_Stones_Hotel_Legian_Bali_Autograph_Collection-Legian_Kuta_District_Badung_Regenc.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.5,
+          "reviewCount": 3655
+        },
+        "priceRange": "€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 21,
+      "item": {
+        "@type": "Hotel",
+        "name": "The Anvaya Beach Resort Bali",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Kartika Plaza",
+          "addressCountry": "Indonesia",
+          "postalCode": "80361"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.732294,
+          "longitude": 115.1659
+        },
+        "telephone": "+62 361 2090477",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/e2/db/fe/entrance-v18676368.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g297697-d10530943-Reviews-The_Anvaya_Beach_Resort_Bali-Kuta_Kuta_District_Badung_Regency_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.8,
+          "reviewCount": 3670
+        },
+        "priceRange": "€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 22,
+      "item": {
+        "@type": "Hotel",
+        "name": "Padma Resort Legian",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Padma No. 1",
+          "addressLocality": "Legian",
+          "addressCountry": "Indonesia",
+          "postalCode": "80361"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.704994,
+          "longitude": 115.1672
+        },
+        "telephone": "+62 361 752111",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/02/67/3c/caption.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g608487-d307610-Reviews-Padma_Resort_Legian-Legian_Kuta_District_Badung_Regency_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.8,
+          "reviewCount": 10797
+        },
+        "priceRange": "€€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 23,
+      "item": {
+        "@type": "Hotel",
+        "name": "The Alantara Sanur",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl Tirta Ening, No. 12",
+          "addressLocality": "Sanur",
+          "addressCountry": "Indonesia",
+          "postalCode": "80228"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.702447,
+          "longitude": 115.256096
+        },
+        "telephone": "+62 361 4491770",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/c3/a8/2c/the-alantara-sanur.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g297700-d12951138-Reviews-The_Alantara_Sanur-Sanur_Denpasar_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.8,
+          "reviewCount": 1301
+        },
+        "priceRange": "€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 24,
+      "item": {
+        "@type": "Hotel",
+        "name": "Sanur Resort Watujimbar",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Danau Tamblingan No. 99A",
+          "addressLocality": "Sanur",
+          "addressCountry": "Indonesia",
+          "postalCode": "80228"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.691462,
+          "longitude": 115.26274
+        },
+        "telephone": "+62 361 8497000",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/06/aa/3d/caption.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g297700-d5292367-Reviews-Sanur_Resort_Watujimbar-Sanur_Denpasar_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.2,
+          "reviewCount": 2897
+        },
+        "priceRange": "€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 25,
+      "item": {
+        "@type": "Hotel",
+        "name": "Hyatt Regency Bali",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jalan Danau Tamblingan No. 89",
+          "addressLocality": "Sanur",
+          "addressCountry": "Indonesia",
+          "postalCode": "80228"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.702166,
+          "longitude": 115.26331
+        },
+        "telephone": "+62 361 281234",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/c5/ef/8b/hyatt-regency-bali.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g297700-d14889591-Reviews-Hyatt_Regency_Bali-Sanur_Denpasar_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.6,
+          "reviewCount": 3382
+        },
+        "priceRange": "€€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 26,
+      "item": {
+        "@type": "Hotel",
+        "name": "Hotel Indigo Bali Seminyak Beach By IHG",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Camplung Tanduk No. 10 Seminyak",
+          "addressLocality": "Seminyak",
+          "addressCountry": "Indonesia",
+          "postalCode": "80361"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.695077,
+          "longitude": 115.16237
+        },
+        "telephone": "+62 361 2099999",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/34/bf/83/21/aerial-view.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g469404-d9595791-Reviews-Hotel_Indigo_Bali_Seminyak_Beach_By_IHG-Seminyak_Kuta_District_Badung_Regency_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.8,
+          "reviewCount": 2494
+        },
+        "priceRange": "€€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 27,
+      "item": {
+        "@type": "Hotel",
+        "name": "Double-Six Luxury Hotel Seminyak",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "No. 66, Double Six Beach",
+          "addressLocality": "Seminyak",
+          "addressCountry": "Indonesia",
+          "postalCode": "80361"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.696453,
+          "longitude": 115.16166
+        },
+        "telephone": "+62 361 730466",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/48/bf/d2/caption.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g469404-d6556373-Reviews-Double_Six_Luxury_Hotel_Seminyak-Seminyak_Kuta_District_Badung_Regency_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.8,
+          "reviewCount": 4502
+        },
+        "priceRange": "€€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 28,
+      "item": {
+        "@type": "Hotel",
+        "name": "Nusa Dua Beach Hotel & Spa - Handwritten Collection",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Lot North 4, Jl. Nusa Dua",
+          "addressLocality": "Nusa Dua",
+          "addressCountry": "Indonesia",
+          "postalCode": "80363"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.793936,
+          "longitude": 115.230255
+        },
+        "telephone": "+62 361 771210",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/3a/5c/65/caption.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g297698-d302385-Reviews-Nusa_Dua_Beach_Hotel_Spa_Handwritten_Collection-Nusa_Dua_Benoa_South_Kuta_Badung_Rege.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.5,
+          "reviewCount": 9494
+        },
+        "priceRange": "€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 29,
+      "item": {
+        "@type": "Hotel",
+        "name": "Grand Mirage Resort & Thalasso Bali",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Pratama No 72-74",
+          "addressLocality": "Tanjung Benoa",
+          "addressCountry": "Indonesia",
+          "postalCode": "80363"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.767078,
+          "longitude": 115.22274
+        },
+        "telephone": "+62 361 771888",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/8d/07/0f/take-it-slow-and-enjoy.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g1465999-d308406-Reviews-Grand_Mirage_Resort_Thalasso_Bali-Tanjung_Benoa_Nusa_Dua_Peninsula_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.3,
+          "reviewCount": 7427
+        },
+        "priceRange": "€"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 30,
+      "item": {
+        "@type": "Hotel",
+        "name": "The Patra Bali Resort & Villas",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Ir. H. Juanda",
+          "addressCountry": "Indonesia",
+          "postalCode": "80361"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -8.739556,
+          "longitude": 115.16173
+        },
+        "telephone": "+62 361 9351161",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/2d/ea/ac/caption.jpg?w=1200&h=-1&s=1",
+        "url": "https://www.tripadvisor.com/HotelHighlight-g297697-d307566-Reviews-The_Patra_Bali_Resort_Villas-Kuta_Kuta_District_Badung_Regency_Bali.html?m=68625",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.1,
+          "reviewCount": 1452
+        },
+        "priceRange": "€"
+      }
+    }
+  ]
+}

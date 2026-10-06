@@ -1,0 +1,151 @@
+{
+  "site": "TripAdvisor",
+  "taxonomy": "Travelers' Choice 'Best of the Best' Destinations (city ranking)",
+  "source_index": "https://www.tripadvisor.com/TravelersChoice-Destinations",
+  "captured": "2026-10-07",
+  "category_count": 20,
+  "categories": {
+    "bali": "https://www.tripadvisor.com/Hotels-g294226-Bali-Hotels.html",
+    "london": "https://www.tripadvisor.com/Hotels-g186338-London_England-Hotels.html",
+    "dubai": "https://www.tripadvisor.com/Hotels-g295424-Dubai_Emirate_of_Dubai-Hotels.html",
+    "hanoi": "https://www.tripadvisor.com/Hotels-g293924-Hanoi-Hotels.html",
+    "paris": "https://www.tripadvisor.com/Hotels-g187147-Paris_Ile_de_France-Hotels.html",
+    "rome": "https://www.tripadvisor.com/Hotels-g187791-Rome_Lazio-Hotels.html",
+    "marrakech": "https://www.tripadvisor.com/Hotels-g293734-Marrakech_Marrakech_Safi-Hotels.html",
+    "bangkok": "https://www.tripadvisor.com/Hotels-g293916-Bangkok-Hotels.html",
+    "crete": "https://www.tripadvisor.com/Hotels-g189413-Crete-Hotels.html",
+    "new-york-city": "https://www.tripadvisor.com/Hotels-g60763-New_York_City_New_York-Hotels.html",
+    "siem-reap": "https://www.tripadvisor.com/Hotels-g297390-Siem_Reap_Siem_Reap_Province-Hotels.html",
+    "istanbul": "https://www.tripadvisor.com/Hotels-g293974-Istanbul-Hotels.html",
+    "cusco": "https://www.tripadvisor.com/Hotels-g294314-Cusco_Cusco_Region-Hotels.html",
+    "barcelona": "https://www.tripadvisor.com/Hotels-g187497-Barcelona_Catalonia-Hotels.html",
+    "lisbon": "https://www.tripadvisor.com/Hotels-g189158-Lisbon_Lisbon_District_Central_Portugal-Hotels.html",
+    "tokyo": "https://www.tripadvisor.com/Hotels-g298184-Tokyo_Tokyo_Prefecture_Kanto-Hotels.html",
+    "kathmandu": "https://www.tripadvisor.com/Hotels-g293890-Kathmandu_Kathmandu_Valley_Bagmati_Zone_Central_Region-Hotels.html",
+    "edinburgh": "https://www.tripadvisor.com/Hotels-g186525-Edinburgh_Scotland-Hotels.html",
+    "hurghada": "https://www.tripadvisor.com/Hotels-g297549-Hurghada_Red_Sea_and_Sinai-Hotels.html",
+    "cabo-san-lucas": "https://www.tripadvisor.com/Hotels-g152515-Cabo_San_Lucas_Los_Cabos_Baja_California-Hotels.html"
+  },
+  "verification": {
+    "bali": {
+      "http": 200,
+      "bytes": 1257231,
+      "itemlist_items": 30,
+      "url": "https://www.tripadvisor.com/Hotels-g294226-Bali-Hotels.html"
+    },
+    "london": {
+      "http": 200,
+      "bytes": 1653556,
+      "itemlist_items": 30,
+      "url": "https://www.tripadvisor.com/Hotels-g186338-London_England-Hotels.html"
+    },
+    "dubai": {
+      "http": 200,
+      "bytes": 1611761,
+      "itemlist_items": 30,
+      "url": "https://www.tripadvisor.com/Hotels-g295424-Dubai_Emirate_of_Dubai-Hotels.html"
+    },
+    "hanoi": {
+      "http": 200,
+      "bytes": 1482054,
+      "itemlist_items": 30,
+      "url": "https://www.tripadvisor.com/Hotels-g293924-Hanoi-Hotels.html"
+    },
+    "paris": {
+      "http": 200,
+      "bytes": 1656750,
+      "itemlist_items": 30,
+      "url": "https://www.tripadvisor.com/Hotels-g187147-Paris_Ile_de_France-Hotels.html"
+    },
+    "rome": {
+      "http": 200,
+      "bytes": 1665445,
+      "itemlist_items": 30,
+      "url": "https://www.tripadvisor.com/Hotels-g187791-Rome_Lazio-Hotels.html"
+    },
+    "marrakech": {
+      "http": 200,
+      "bytes": 1323739,
+      "itemlist_items": 30,
+      "url": "https://www.tripadvisor.com/Hotels-g293734-Marrakech_Marrakech_Safi-Hotels.html"
+    },
+    "bangkok": {
+      "http": 200,
+      "bytes": 1594878,
+      "itemlist_items": 30,
+      "url": "https://www.tripadvisor.com/Hotels-g293916-Bangkok-Hotels.html"
+    },
+    "crete": {
+      "http": 200,
+      "bytes": 1319348,
+      "itemlist_items": 30,
+      "url": "https://www.tripadvisor.com/Hotels-g189413-Crete-Hotels.html"
+    },
+    "new-york-city": {
+      "http": 200,
+      "bytes": 1454601,
+      "itemlist_items": 30,
+      "url": "https://www.tripadvisor.com/Hotels-g60763-New_York_City_New_York-Hotels.html"
+    },
+    "siem-reap": {
+      "http": 200,
+      "bytes": 1408872,
+      "itemlist_items": 30,
+      "url": "https://www.tripadvisor.com/Hotels-g297390-Siem_Reap_Siem_Reap_Province-Hotels.html"
+    },
+    "istanbul": {
+      "http": 200,
+      "bytes": 1448169,
+      "itemlist_items": 30,
+      "url": "https://www.tripadvisor.com/Hotels-g293974-Istanbul-Hotels.html"
+    },
+    "cusco": {
+      "http": 200,
+      "bytes": 1407533,
+      "itemlist_items": 30,
+      "url": "https://www.tripadvisor.com/Hotels-g294314-Cusco_Cusco_Region-Hotels.html"
+    },
+    "barcelona": {
+      "http": 200,
+      "bytes": 1577650,
+      "itemlist_items": 30,
+      "url": "https://www.tripadvisor.com/Hotels-g187497-Barcelona_Catalonia-Hotels.html"
+    },
+    "lisbon": {
+      "http": 200,
+      "bytes": 1503980,
+      "itemlist_items": 30,
+      "url": "https://www.tripadvisor.com/Hotels-g189158-Lisbon_Lisbon_District_Central_Portugal-Hotels.html"
+    },
+    "tokyo": {
+      "http": 200,
+      "bytes": 1312730,
+      "itemlist_items": 30,
+      "url": "https://www.tripadvisor.com/Hotels-g298184-Tokyo_Tokyo_Prefecture_Kanto-Hotels.html"
+    },
+    "kathmandu": {
+      "http": 200,
+      "bytes": 1486661,
+      "itemlist_items": 30,
+      "url": "https://www.tripadvisor.com/Hotels-g293890-Kathmandu_Kathmandu_Valley_Bagmati_Zone_Central_Region-Hotels.html"
+    },
+    "edinburgh": {
+      "http": 200,
+      "bytes": 1566600,
+      "itemlist_items": 30,
+      "url": "https://www.tripadvisor.com/Hotels-g186525-Edinburgh_Scotland-Hotels.html"
+    },
+    "hurghada": {
+      "http": 200,
+      "bytes": 1269734,
+      "itemlist_items": 30,
+      "url": "https://www.tripadvisor.com/Hotels-g297549-Hurghada_Red_Sea_and_Sinai-Hotels.html"
+    },
+    "cabo-san-lucas": {
+      "http": 200,
+      "bytes": 1593061,
+      "itemlist_items": 30,
+      "url": "https://www.tripadvisor.com/Hotels-g152515-Cabo_San_Lucas_Los_Cabos_Baja_California-Hotels.html"
+    }
+  }
+}
