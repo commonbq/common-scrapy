@@ -24,7 +24,7 @@ class HmListingSpider(BaseListingSpider):
             "category", "department", "item_id", "title", "brand", "url",
             "image_url", "price", "regular_price", "currency", "color",
             "color_hex", "sizes", "availability", "product_category", "page",
-            "category_url", "source", "raw",
+            "category_url", "source", "raw", "timestamp",
         ],
     }
 
@@ -115,6 +115,7 @@ class HmListingSpider(BaseListingSpider):
             "category_url": category_url,
             "source": "hm_next_data",
             "raw": product,
+            "timestamp": self.job_timestamp,
         }
 
     @staticmethod

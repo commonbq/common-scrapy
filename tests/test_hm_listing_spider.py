@@ -25,6 +25,7 @@ def test_extracts_hydrated_product_and_export_fields():
     assert item["price"] == 59.99
     assert item["color"] == "Dark taupe"
     assert item["availability"] == "in_stock"
+    assert item["timestamp"] == spider.job_timestamp
     assert set(spider.custom_settings["FEED_EXPORT_FIELDS"]) <= set(item)
 
 
