@@ -23,7 +23,8 @@ class HarborfreightListingSpider(BaseListingSpider):
         "FEED_EXPORT_FIELDS": [
             "category", "department", "subcategory", "item_id", "sku", "title",
             "brand", "url", "image_url", "price", "regular_price", "currency",
-            "page", "position", "total_count", "total_pages", "source", "raw",
+            "page", "position", "total_count", "total_pages", "timestamp",
+            "source", "raw",
         ],
     }
     headers = {
@@ -125,7 +126,8 @@ class HarborfreightListingSpider(BaseListingSpider):
             "price": self._number(final.get("value")), "regular_price": self._number(regular.get("value")),
             "currency": final.get("currency") or regular.get("currency") or "USD",
             "page": int(response.meta["page"]), "position": position, "total_count": total_count,
-            "total_pages": total_pages, "source": "harborfreight_apollo_bootstrap", "raw": entity,
+            "total_pages": total_pages, "timestamp": self.get_timestamp(),
+            "source": "harborfreight_apollo_bootstrap", "raw": entity,
         }
 
     @staticmethod
