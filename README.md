@@ -67,6 +67,7 @@ Working spiders running daily in production:
 | [`backcountry_listing`](#backcountry_listing) | Active | bootstrap | AWS WAF (datacenter + `bypass=5` both return the challenge; `residential=true` required) | Backcountry.com category/collection/brand listings from the server-rendered Next.js `#__NEXT_DATA__` PLP payload joined to `__APOLLO_STATE__`. | 84 (2 pages, `cat-mens-shirts`); 52 (`rc-mens-parkas`, natural last page) | 398 unique targets across 14 top-level menus / 110 sections from `backcountry_categories.py` | `{"category":"cat-mens-shirts","department":"Men","section":"Clothing","item_id":"FJRZ133","title":"Fjallglim Regular Shirt - Men's","brand":"Fjallraven","price":124.95,"original_price":null,"currency":"USD","in_stock":true,"source":"backcountry_next_data",...}` |
 | [`realtor_listing`](#realtor_listing) | Active | bootstrap | residential ScrapeOps + `bypass=5` required | Realtor.com sale listings from authoritative React Router streamed SSR loader state. | 42/page | 20 major US city markets from `realtor_categories.py` | `{"item_id":"9573322873","listing_id":"2994590506","title":"11201 Chalon Rd, Los Angeles, CA 90049","price":400000000,"source":"realtor_react_router_stream",...}` |
 | [`zillow_listing`](#zillow_listing) | Active | bootstrap | PerimeterX | Zillow sale listings from server-rendered Next.js `__NEXT_DATA__`, including path-based SSR pagination. | 82 (2 pages, `houston-tx`) | 20 major US city markets | `{"item_id":"55476612","title":"8323 Gentlewood Ct, Houston, TX 77095","price":375000,"beds":4,"baths":3,"area":2992,"source":"zillow_next_data"}` |
+| [`rent_listing`](#rent_listing) | Active | bootstrap | ScrapeOps US proxy | Rent.com apartment listings from authoritative server-rendered Next.js `__NEXT_DATA__`, with `/page-N` pagination and no fallback. | 30/page | 20 major US rental markets | `{"category":"los-angeles-ca","item_id":"lc6732384","title":"El Conquistador","price_min":1664,"source":"rent_next_data"...}` |
 | [`basspro_listing`](#basspro_listing) | Active | api | Akamai on the storefront legs (403 direct); the Coveo search leg must stay unproxied | Bass Pro Shops category listings from the storefront Coveo Headless search API (`platform.cloud.coveo.com/rest/search/v2`); taxonomy from the `__NEXT_DATA__.props.megaNavHtmlV2` mega-nav. | 96 (2 pages, rod-reel-combos) | 909 nav entries (11 departments / 116 level-2 / 782 level-3) | `{"category":"Fishing/Rod & Reel Combos","item_id":"3472884","title":"Bass Pro Shops Megacast Baitcast Combo","brand":"Bass Pro Shops","url":"https://www.basspro.com/p/bass-pro-shops-megacast-baitcast-combo","price":69.99,"availability":"InStock","source":"basspro_coveo"...}` |
 | [`booking_listing`](#booking_listing) | Active | bootstrap | none detected (anonymous SSR cruise) | Booking.com listings for the 20 homepage-exposed US city destinations from the anonymous server-rendered Apollo cache (`ROOT_QUERY.lxAccommodations` -> `ROOT_QUERY.searchQueries.search().results`). | 33 (2 pages, `las-vegas`) | 20 US city destinations from `booking_categories.py` | `{"category":"las-vegas","item_id":"15743439","title":"The Platinum Hotel Las Vegas","price":227.91,"currency":"EUR","rating":9.1,"reviews_count":8,"city":"Las Vegas","source":"booking_apollo_hydration"...}` |
 | [`bestbuy_listing`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | unknown (timeout/no verdict) | Best Buy listing via direct HTTP + Apollo bootstrap extraction. | 10 (skipped2) | laptops, tvs, headphones, monitors, cell-phones | `{"item_id":"6572184","title":"Samsung - Galaxy Book4 15.6\" FHD Laptop - Intel Core 7- 16GB Memory - 512GB SSD - Silver","url":"https://www.bestbuy.com/product/samsung-galaxy-bo...` |
@@ -106,8 +107,10 @@ Spiders below are returning items in recent smoke runs:
 | [`gamestop_listing`](#gamestop_listing) | Active | api | none detected (ScrapeOps proxy) | GameStop SFCC Demandware listing via the `Tile-GetProductsJSON` controller (no HTML fallback). | 139 (3 pages, proxy) | 119 URLs across 33 category groups from `gamestop_categories.py` | `{"category":"consoles-hardware","item_id":"106429","title":"Nintendo Wii Original Console with Wii Remote - Super Mario Bros. 25th Anniversary Edition Red","price":"139.99","availability":"InStock","source":"gamestop_tile_json"...` |
 | [`getyourguide_listing`](#getyourguide_listing) | Active | bootstrap | none detected through ScrapeOps proxy | GetYourGuide destination activity shelves from server-rendered `window.__INITIAL_STATE__.sdui` hydration (no HTML or JSON-LD fallback). | 24 (one bounded shelf, live proxy) | 20 destination countries from `getyourguide_categories.py` | `{"category":"argentina","item_id":1220349,"title":"El Calafate: Perito Moreno Glacier Boat Tour with Guide","starting_price":50,"currency":"USD","source":"getyourguide_initial_state_sdui"...}` |
 | [`autozone_listing`](#autozone_listing) | Active | bootstrap (Next.js React Query hydration) | ScrapeOps residential proxy required (`residential=true.country=us`) | AutoZone category listings from server-rendered Next.js/TanStack React Query bootstrap state (`productshelf-results` joined to `productSkuDetails` by SKU). | 24 (one page, oil-filter) | 20 stable category seeds | `{"category":"oil-filter","item_id":"1117175","title":"STP Oil Filter S45023","brand":"STP","price":5.99,"currency":"USD","source":"autozone_next_data"...}` |
+| [`viator_listing`](#viator_listing) | Active | bootstrap | none detected through ScrapeOps proxy | Viator destination activity shelves from server-rendered `__PRELOADED_DATA__.pageModel.topActivities` hydration (no HTML or JSON-LD fallback). | 15 (one bounded shelf, live proxy) | 20 Popular Cities from `viator_categories.py` | `{"category":"nashville","item_id":"361513P2","title":"LUXURY 5-Star PRIVATE Nashville Party Tour w/ Panoramic Views","price":395,"currency":"USD","source":"viator_preloaded_top_activities"...}` |
 | [`footlocker_listing`](#footlocker_listing) | Active | api | residential proxy (ScrapeOps) | Foot Locker category listings from the ZGW search API (residential proxy required). | 48 (1 page, residential proxy) | Dynamically resolved from `header.public.json` | `{"band":"Men's","sub_category":"Shoes","category":"all-men-s-shoes","item_id":"T8013103","title":"Jordan Retro 12 - Men's","url":"https://www.footlocker.com/product/T8013103.html","image_url":"https://images.footlocker.com/is/image/EBFL2/T8013103","price":215.0,"original_price":215.0,"currency":"USD","availability":"InStock","brand":"Jordan","rating":5.0,"reviews_count":999,"page":1,"category_url":"/category/mens/shoes.html","source":"footlocker_api"...` |
 | [`homedepot_listing`](#homedepot_listing-category-apollo-state) | Flaky | bootstrap | Akamai | Home Depot department listings from embedded Apollo state. | 2 (fixture) | appliances, bath, building-materials, decor-and-furniture, electrical, flooring, hardware, heating-and-cooling, kitchen, lawn-and-garden, lighting, paint, plumbing, storage, tools | `{"category":"tools","item_id":"100000001","sku":"1000000001","title":"16 oz. Fiberglass Claw Hammer","brand":"Husky","price":14.97...` |
+| [`hm_listing`](#hm_listing) | Experimental | bootstrap (Next.js `__NEXT_DATA__`) | Akamai | H&M US product listings from authoritative server-rendered PLP hydration, with hydrated pagination. | 60/page | Women, Men, Kids, Home, Beauty new arrivals | `{"category":"women-new-arrivals","item_id":"1345672001","title":"Scarf-Detail Jacket","price":59.99,"currency":"USD","source":"hm_next_data"}` |
 | [`homedepot_search`](#homedepot_search-keyword-apollo-bootstrap) | Active | bootstrap + html | Akamai | Home Depot keyword search via Apollo state. | 24 (ok) | - | `{"item_id":"336787835","sku":"1014334650","brand":"Lukyamzn","title":"14 in. Dual-Core Celeron N4000 Laptop 6 GB RAM 128 GB SSD IPS Displ...` |
 | [`jcpenney_listing`](#jcpenney_listing) | Active | api | Akamai (+ reCAPTCHA scripts observed) | JCPenney listing spider via search API bootstrap endpoint. | 48 (ok) | womens_tops, mens_shirts | `{"item_id":"ppr5008584232","title":"St. John's Bay Womens Boat Neck Elbow Sleeve T-Shirt","brand":"st. john's bay","url":"https://www.jcp...` |
 | [`ikea_listing`](#ikea_listing) | Active | api + html | none detected | IKEA category listings from the SIK search API, with a server-rendered HTML fallback. | 46 (api, ok) / 24 (html, ok) | 221 unique targets from 23 departments | `{"category":"st004","item_id":"50561244","title":"STORKLINTA","product_type":"6-drawer dresser","price":279.99,"department":"Storage & organization",...}` |
@@ -118,6 +121,7 @@ Spiders below are returning items in recent smoke runs:
 | [`levis_listing`](#levis_listing) | Active | bootstrap | none detected through proxy | Levi's listings from SSR `__LSCO_INITIAL_STATE__.ssrViewStoreProductList`. | 48 (2 pages, live proxy) | 5 sections / 83 PLP targets from `levi_categories.py` | `{"category":"shop-all-men-s-jeans","item_id":"005053473","title":"505™ Regular Dobby Men's Jeans","brand":"Levi's","price":64.99...` |
 | [`lululemon_listing`](#lululemon_listing) | Active | bootstrap | Akamai | lululemon listing spider via Next.js `__NEXT_DATA__`. | 40 (ok) | women-shorts, women-leggings, men-shorts, bags | `{"category":"women-shorts","product_id":"prod11860112","name":"Shake It Out High-Rise Running Short 2.5\"","brand":"lululemon","price":["...` |
 | [`newegg_listing`](#newegg_listing) | Experimental | SSR hydration state | none detected | Newegg listing spider reading server-rendered `window.__initialState__.Products` with `/Page-N` pagination and live RolloverMenu inventory refresh. | 36 (ok) | desktop-cpu-processors, all-current-categories | `{"item_id":"19-113-877","title":"AMD Ryzen 7 9800X3D - Ryzen 7 9000 Series Zen 5 8-Core 5.2 GHz - Socket AM5 120W - AMD Radeon Graphics Desktop Processor - 100-100001084WOF","model":"100-100001084WOF","brand":"AMD","price":469,"currency":"USD","url":"https://www.newegg.com/amd-ryzen-7-9000-series-ryzen-7-9800x3d-granite-ridge-zen-5-socket-am5-desktop-cpu-processor/p/N82E16819113877","image":"https://c1.neweggimages.com/ProductImageOriginal/19-113-877-01.png","rating":4.8,"reviews_count":729,"page":1,"source":"newegg_initial_state"}` |
+| [`oreilly_listing`](#oreilly_listing) | Active | bootstrap (`window._ost`) | direct 403; ScrapeOps US residential required | O'Reilly Auto Parts category listings from the server-rendered product bootstrap only. | 18 (live brake rotors page) | 34 root departments from `oreilly_categories.py`; direct leaf URLs supported | `{"item_id":"BBR|3512RGS","title":"BrakeBest Select Front Brake Rotor - 3512RGS","price":89.99,"currency":"USD","source":"oreilly_ost_bootstrap"}` |
 | [`trulia_listing`](#trulia_listing) | Experimental | bootstrap | challenge/WAF | Trulia sale listings from server-rendered Next.js `props.searchData.homes`. | 40 (live) | 20 homepage-highlighted US cities | `{"item_id":"465800506","title":"97 Marland Rd, Colorado Springs, CO 80906","price":2500000,"currency":"USD"}` |
 | [`llbean_listing`](#llbean_listing) | Active | api | none detected (ScrapeOps `country=us` route required) | L.L.Bean listing via the UDAL `product-discovery` JSON endpoint (no HTML fallback). | 96 (2 pages, proxy) | 11 departments / 500 targets from `llbean_categories.py` | `{"category":"Gift Shop","item_id":"1000316302","sku_id":"1000316302","title":"Women's The Original Double L® Sweater, Crewneck","brand":"L.L.Bean","price":49.99,"original_price":69.95,"currency":"USD","rating":4.4,"reviews_count":359,"color":"Classic Navy","size":"X-Small","availability":"IN","on_sale":true,"page":1,"position":1,"total_count":626,"source":"llbean_udal_product_discovery"...` |
 | [`maccosmetics_listing`](#maccosmetics_listing) | Experimental | api + bootstrap + html | Akamai | MAC Cosmetics multi-mode listing spider. | 66 (ok) | face, lips, eyes | `{"item_id":"13854","title":"4.8/5 ( 452 ) Lustreglass Sheer-Shine Lipstick Sheer Coverage, Glossy/High-Shine Finish, Infused With Raspberry Seed/Organic Extra Virgin Olive Oils ...` |
@@ -140,6 +144,7 @@ Spiders below are returning items in recent smoke runs:
 | [`target_search`](#target_search) | Active | api | PerimeterX / HUMAN (cookie signals) | Target RedSky search API spider. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
 | [`victoriassecret_listing`](#victoriassecret_listing) | Active | api | none detected (ScrapeOps proxy, plain datacenter route) | Victoria's Secret / PINK listings from the first-party `stacks` JSON API; page 0 reads `collectionId` from SSR `clientProps`. | 192 (2 pages, live) | 427 targets across `vs` + `pink` brands from `victoriassecret_categories.py` | `{"category":"vs-bras","brand":"vs","item_id":"11295563|7I65","name":"Signature Shine Cotton Lightly Lined Balconette Bra","price":49.95,...}` |
 | [`williams_sonoma_listing`](#williams_sonoma_listing) | Active | api | Akamai (not an issue for API) | Williams-Sonoma category listings via the Constructor.io browse API (taxonomy from the runtime category-tree API). | 100 (1 page, proxy) | ~3500 group_ids from the runtime category-tree API | `{"category":"cookware-sets","item_id":"greenpan-reserve-pro-ceramic-nonstick-10-piece-cookware-set","title":"GreenPan™ Reserve Pro Ceramic Nonstick 10-Piece Cookware Set","price":399.95,"currency":"USD","image_url":"https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202631/0164/img2c.jpg","flags":["freeShip","more_colors"],"source":"williams_sonoma_constructor_browse"...` |
+| [`harborfreight_listing`](#harborfreight_listing) | Active | bootstrap (`window.__APOLLO_STATE__`) | none detected | Harbor Freight category listings from the server-rendered Apollo hydration state; 17 deterministic department aliases and Magento `?p=N` pagination. | 36 (1 page, `Automotive`) | 17 department aliases from `harborfreight_categories.py` | `{"category":"Automotive","item_id":"64784","title":"3 Ton Low-Profile Professional Floor Jack with RAPID PUMP, Green","brand":"DAYTONA","price":199.99,"currency":"USD","source":"harborfreight_apollo_bootstrap"...}` |
 | [`vitacost_listing`](#vitacost_listing) | Active | api | none detected | Vitacost (Shopify + Boost AI Search) category listings from the first-party `services.mybcapps.com/bc-sf-filter/filter` JSON API; taxonomy from the `Categories` mega-menu. | 96 (2 pages, `category=Supplements`, page size 48) | 92 crawl targets / 90 unique collection URLs across 8 departments from `vitacost_categories.py` | `{"category":"Supplements","handle":"supplements","collection_id":"457575104827","item_id":"10390080782651","title":"Vitacost, Root2®, Turmeric Extract Curcumin C3 Complex®, 120 Capsules","brand":"Vitacost","price":24.74,"original_price":32.99,"discount_percentage":25.0,"source":"vitacost_boost_filter_api"...}` |
 
 #### In-progress spiders
@@ -2809,6 +2814,20 @@ swatches, pricing, and the raw product object, then follows bootstrap pagination
 Run example:
 `common-scrapy crawl elfcosmetics_listing -a category=face -a max_pages=1 -O elfcosmetics_listing.jsonl`
 
+### oreilly_listing
+
+`oreilly_listing` reads one authoritative source: the server-rendered
+`window._ost` bootstrap assignments. It does not parse product cards or JSON-LD.
+The spider exports the ordered `FEED_EXPORT_FIELDS` contract, validates the
+bootstrap totals, deduplicates item IDs, and supports standard query pagination.
+The 34 stable root departments live in `oreilly_categories.py`; a product-bearing
+leaf can also be supplied with `-a category_url=<url>`. Storefront requests need
+the configured ScrapeOps US residential route and use a Googlebot user agent.
+
+```bash
+scrapy crawl oreilly_listing -a category_url=https://www.oreillyauto.com/shop/b/brakes/brake-drums---rotors/7145c118aa8d -a max_pages=1 -s HTTPCACHE_ENABLED=False -O oreilly.jsonl
+```
+
 ### backcountry_listing
 
 Backcountry listing spider backed by the server-rendered Next.js hydration
@@ -3757,6 +3776,25 @@ HTTPCACHE_ENABLED=False common-scrapy crawl backcountry_listing -a category=cat-
 ```json
 {"category":"cat-mens-shirts","department":"Men","section":"Clothing","item_id":"FJRZ133","title":"Fjallglim Regular Shirt - Men's","brand":"Fjallraven","product_type":"Product","url":"https://www.backcountry.com/fjallraven-fjallglim-regular-shirt-mens","image":"https://content.backcountry.com/images/items/160/FJR/FJRZ133/DANACHWH.jpg","image_alt":"Fjallglim Regular Shirt - Men's","color":"Dark Navy/Chalk White","colors":["Dark Navy/Chalk White","Dark Navy/Maroon","Wood Brown/Black Oak"],"color_option_count":3,"price":124.95,"original_price":null,"discount_percentage":null,"currency":"USD","in_stock":true,"stock_status":"IN_STOCK","availability":"in stock","rating":null,"reviews_count":0,"is_new_arrival":false,"is_exclusive":false,"is_past_season":true,"is_gearhead_pick":false,"past_season_colors":["DANACHWH","DARNAVMAR","WOBRBLOA"],"category_id":"bc-mens-shirts","page":1,"position":1,"total_count":1490,"last_page":36,"source":"backcountry_next_data","raw":{"node":{...},"apollo":{...},"container":"category","variations_on_sale":0,"total_variations":11}}
 ```
+### hm_listing
+
+`hm_listing` reads H&M US products exclusively from the server-rendered Next.js
+`#__NEXT_DATA__` PLP state. It does not parse HTML product cards or JSON-LD.
+Hydrated `pagination` metadata drives `?page=N` requests, while an article-code
+deduplication guard stops repeated pages. The curated taxonomy contains stable,
+product-bearing new-arrival leaves for Women, Men, Kids, Home, and Beauty; H&M's
+hydrated `siteStructure` is the source to use when refreshing that inventory.
+
+The ordered `FEED_EXPORT_FIELDS` contract covers IDs, department/category,
+canonical product and image URLs, current and regular prices, color, size/stock,
+availability, page/source metadata, and the authoritative raw product record.
+The storefront may require the configured ScrapeOps US proxy when Akamai blocks a
+direct request.
+
+```bash
+scrapy crawl hm_listing -a category=women-new-arrivals -a max_pages=2 -s HTTPCACHE_ENABLED=False -O hm.jsonl
+```
+
 ### getyourguide_listing
 
 `getyourguide_listing` exports the fixed activity shelf on GetYourGuide country
@@ -3779,6 +3817,29 @@ catalogue. Consequently `max_pages` does not invent pagination. The ordered
 canonical URL, images, activity type, numeric prices and currency, full-precision
 rating and review count, attributes, availability, page metadata, source, and
 the crawl timestamp, and the raw authoritative record.
+
+### viator_listing
+
+`viator_listing` exports Viator's fixed top-activities shelf for 20 Popular Cities.
+Choose a verified destination slug such as `nashville`:
+
+```bash
+scrapy crawl viator_listing -a category=nashville -s HTTPCACHE_ENABLED=False -O viator.jsonl
+```
+
+The spider uses one product-data direction: the server-rendered
+`script[type="mime/invalid"]` JSON payload at
+`__PRELOADED_DATA__.pageModel.topActivities`. It does not parse HTML cards,
+JSON-LD, or replay GraphQL as a fallback. Missing, malformed, or empty hydration
+raises an explicit error instead of reporting a successful zero-item crawl.
+
+The destination contract is a bounded recommendation shelf (15 Nashville
+activities in the verified live response), not an exhaustive paginated result
+set, so `max_pages` does not invent pagination. The ordered `FEED_EXPORT_FIELDS`
+contract includes destination context, activity ID, title and description,
+canonical URL and images, category and location, exact hydrated prices and
+discount state, rating and review count, language and duration metadata, flags,
+badges, coordinates, provenance, timestamp, and the raw authoritative record.
 
 ### realtor_listing
 
@@ -3841,4 +3902,36 @@ sample: `1117175`, “STP Oil Filter S45023”, `$5.99`, in stock.
 
 ```bash
 scrapy crawl autozone_listing -a category=oil-filter -a max_pages=1 -s HTTPCACHE_ENABLED=False
+```
+
+### rent_listing
+
+`rent_listing` extracts the complete property list from Rent.com's server-rendered
+Next.js `props.pageProps.pageData.location.listingSearch` hydration state. It follows
+canonical `/page-N` pages and has no rendered-HTML or JSON-LD fallback.
+
+```bash
+scrapy crawl rent_listing -a category=los-angeles-ca -a max_pages=1 -s HTTPCACHE_ENABLED=False -O rent.jsonl
+```
+
+The spider exposes 20 major US rental markets from `rent_categories.py`. Its ordered
+`FEED_EXPORT_FIELDS` cover property identity, location, price and bed ranges,
+floor-plan bath and square-footage ranges, availability, ratings, amenities, photo
+IDs, contact details, pagination metadata, and the authoritative raw record.
+### harborfreight_listing
+
+`harborfreight_listing` reads products exclusively from the server-rendered
+`window.__APOLLO_STATE__` bootstrap. It resolves each `ROOT_QUERY.products(...)`
+reference to its normalized `SimpleProduct:<id>` entity; it does not parse HTML
+cards or JSON-LD. The 17 deterministic department aliases point to stable,
+product-bearing subcategories from Harbor Freight's public department navigation.
+
+Pagination uses Magento's `?p=N` URL and the hydrated `page_info.total_pages`.
+Items are deduplicated by SKU, and missing hydration, HTTP failures, and bot/proxy
+challenges fail visibly. The ordered `FEED_EXPORT_FIELDS` contract includes
+department context, IDs, title, brand, canonical URL, image, final/regular prices,
+page totals, the authoritative raw entity, and `source=harborfreight_apollo_bootstrap`.
+
+```bash
+scrapy crawl harborfreight_listing -a category=Automotive -a max_pages=2 -s HTTPCACHE_ENABLED=False -O harborfreight.jsonl
 ```

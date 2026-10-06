@@ -1,0 +1,642 @@
+{
+  "route": "/search",
+  "query": {
+    "state": "california",
+    "location": "los-angeles",
+    "propertyTypes": "apartments"
+  },
+  "total": 7870,
+  "listings_returned": 30,
+  "listings_sample": [
+    {
+      "optimizedPhotos": [
+        {
+          "id": "1d4c974794d8deeec316ac03cd48ec0a"
+        },
+        {
+          "id": "704db7da4c1a7fd66b9787e771a87e26"
+        },
+        {
+          "id": "97041d5edeb209d11860afd81944deb6"
+        },
+        {
+          "id": "3f76c5e00f509d1773b4911dd2cc3c9b"
+        },
+        {
+          "id": "2f0139d1b46cb68ab306e531e7aae907"
+        },
+        {
+          "id": "a0478bcfecd5d44a9be45ef9a0cec2c2"
+        },
+        {
+          "id": "fb78995d2a333fa8b5b8da9a40c209a4"
+        },
+        {
+          "id": "88c98560e11585b0fcd7b8a87baab630"
+        },
+        {
+          "id": "9fa894f3b24d1111cab76ebe08205e1e"
+        },
+        {
+          "id": "650d687ed23753e8b8c9d6a3632bf074"
+        },
+        {
+          "id": "12326fdb849986bd82c466271fa9aea6"
+        },
+        {
+          "id": "e8f6046e5945fe8d7a4b5885259c4820"
+        },
+        {
+          "id": "adb9e08fa081a72f52bc75062c7cee58"
+        },
+        {
+          "id": "1d99aeb1fd8442b43f03d869a78477d4"
+        },
+        {
+          "id": "ce5740d81d945f8af747eedd97a10556"
+        }
+      ],
+      "name": "El Conquistador",
+      "isUnpaid": false,
+      "location": {
+        "lat": 34.201649,
+        "lng": -118.45955,
+        "city": "Van Nuys",
+        "state": "California",
+        "stateAbbr": "CA",
+        "zip": "91405"
+      },
+      "id": "lc6732384",
+      "bedCountData": [
+        {
+          "beds": 1,
+          "prices": {
+            "low": 1664
+          }
+        }
+      ],
+      "phoneMobile": "7472089089",
+      "phoneMobileSem": "7472089091",
+      "phoneDesktop": "7472089089",
+      "phoneDesktopText": "(747) 208-9089",
+      "phoneDesktopSem": "7472089091",
+      "phoneDesktopSemText": "(747) 208-9091",
+      "NV_RPL": 11,
+      "revenue": 11,
+      "requestTourOptOut": true,
+      "zScore": null,
+      "tplsource": "ZILLOW",
+      "urlPathname": "/apartment/el-conquistador-van-nuys-ca-lc6732384",
+      "amenitiesHighlighted": [
+        "Air Conditioning",
+        "Hardwood Flooring",
+        "Controlled Access",
+        "Elevator"
+      ],
+      "categoryBadges": [],
+      "cityIds": [
+        "0644000"
+      ],
+      "offMarket": false,
+      "tourProviderDetails": null,
+      "floorPlans": [
+        {
+          "bedCount": 1,
+          "bathCount": 1,
+          "availableCount": 1,
+          "priceTerm": "/mo",
+          "availableDate": null,
+          "availabilityStatusCode": "AVAILABLE_WITH_COUNT",
+          "priceRange": {
+            "max": 1664,
+            "min": 1664
+          },
+          "sqFtRange": {
+            "min": 546,
+            "max": 546
+          },
+          "units": [
+            {
+              "rent": "$1,664"
+            }
+          ],
+          "photos": []
+        }
+      ],
+      "applicationUrl": null,
+      "availabilityStatus": "TODAY",
+      "leadMoveInDateRequired": false,
+      "leadPhoneRequired": true,
+      "leadQuestions": {
+        "ids": []
+      },
+      "hasPriceDrops": false,
+      "leasingTerms": [],
+      "listingTier": "tier3",
+      "phoneMobileText": "(747) 208-9089",
+      "priceText": "$1,664",
+      "propertyManagementCompany": {
+        "id": null,
+        "name": "Miracle Mile Properties"
+      },
+      "timeZoneId": null,
+      "hasLeadEmails": true,
+      "verified": true,
+      "website": null,
+      "propertyType": "APARTMENTS",
+      "bedRange": {
+        "min": 1,
+        "max": 1
+      },
+      "priceRange": {
+        "min": 1664,
+        "max": 1664
+      },
+      "cplEligible": true,
+      "phoneMobileSemText": "(747) 208-9091",
+      "mitsPhone": {
+        "raw": null,
+        "formatted": null
+      },
+      "officeHours": [
+        {
+          "day": "Sunday",
+          "times": []
+        },
+        {
+          "day": "Monday",
+          "times": [
+            {
+              "open": "09:00 AM",
+              "close": "04:30 PM",
+              "comment": null
+            }
+          ]
+        },
+        {
+          "day": "Tuesday",
+          "times": [
+            {
+              "open": "09:00 AM",
+              "close": "04:30 PM",
+              "comment": null
+            }
+          ]
+        },
+        {
+          "day": "Wednesday",
+          "times": [
+            {
+              "open": "09:00 AM",
+              "close": "04:30 PM",
+              "comment": null
+            }
+          ]
+        },
+        {
+          "day": "Thursday",
+          "times": [
+            {
+              "open": "09:00 AM",
+              "close": "04:30 PM",
+              "comment": null
+            }
+          ]
+        },
+        {
+          "day": "Friday",
+          "times": [
+            {
+              "open": "09:00 AM",
+              "close": "04:30 PM",
+              "comment": null
+            }
+          ]
+        },
+        {
+          "day": "Saturday",
+          "times": []
+        }
+      ],
+      "deals": [
+        {
+          "description": "1st Month Free Special  You won't find a better deal. Approved credit required.",
+          "couponCategory": "Special Offer",
+          "idx": null
+        }
+      ],
+      "dealTypes": [
+        {
+          "text": "1 Month Free"
+        }
+      ],
+      "dealsText": "1st Month Free Special  You won't find a better deal. Approved credit required.",
+      "address": "15005 Sherman Way",
+      "applyNowOptedIn": false,
+      "mlsInfo": {
+        "agentFirstName": null,
+        "agentLastName": null,
+        "agentEmail": "stop@rent.com",
+        "feed": null,
+        "id": null
+      },
+      "addressFull": "15005 Sherman Way, Van Nuys, CA 91405",
+      "incomeRestrictions": [],
+      "specialTerms": null,
+      "priceDrops": {
+        "byFloorplanId": []
+      },
+      "hasTotalCostWithFees": true,
+      "hasTotalCostWithFeesMessaging": false,
+      "bathText": "1 Bath",
+      "bedText": "1 Bed",
+      "squareFeetText": "546 Sqft",
+      "hoodIds": [
+        14728
+      ],
+      "zipCode": "91405",
+      "__typename": "Listing",
+      "unitsAvailableText": "1 Unit Available",
+      "sourceId": "4wpy5smu0urt5",
+      "pdpViews": 161,
+      "hasHdTour": false,
+      "videos": [],
+      "hasVideosOrTours": false,
+      "hdTours": [],
+      "uniqueHighlights": [
+        "Availability 24 Hours",
+        "Elevator",
+        "Laundry",
+        "Pool",
+        "Barbecue Area",
+        "Garden",
+        "Gated Entry",
+        "Intercom system",
+        "On-Site Management",
+        "Online Maintenance Portal"
+      ],
+      "leadVolumeMeta": {
+        "label": "High Demand",
+        "percentile": 0.8945,
+        "leadCount": 45
+      },
+      "ratingPercent": null,
+      "ratingCount": null,
+      "updatedAt": "2026-10-01T00:00:00.000Z",
+      "price": 1664,
+      "mapMarkerPriceText": "$1.7k"
+    },
+    {
+      "optimizedPhotos": [
+        {
+          "id": "8e6d4d016e9874eb379f8d6d564adb31"
+        },
+        {
+          "id": "51f26d9738b06238db0ed564ed182c54"
+        },
+        {
+          "id": "9f9c08342ae8d6ff255d8abaf688e34e"
+        },
+        {
+          "id": "1fdba32af8d84fdce899b288e231ce3b"
+        },
+        {
+          "id": "fc30c56657e4030c3e545821d1cd5543"
+        },
+        {
+          "id": "13c278da6f488de735f4fba8f7a1b799"
+        },
+        {
+          "id": "8d4c7b77d88a48263d94f501a4a963ad"
+        },
+        {
+          "id": "2e4394dc6f1e3428ac3712152ceb6431"
+        },
+        {
+          "id": "2aa5985448b76985af015c67bd175bf8"
+        },
+        {
+          "id": "bd0e457918d10bbe4531271307b1c452"
+        },
+        {
+          "id": "9581753367a4fedd56b2b95f672a76f0"
+        },
+        {
+          "id": "b7ff1ac3ba5fc37cc3ed4e0bf6c879a0"
+        },
+        {
+          "id": "e146e65d104042e9d2c619ab1acf9180"
+        },
+        {
+          "id": "b4b7426ae9ebd6b5df80b1d4ad7494d5"
+        },
+        {
+          "id": "6b28c8805f811eb369b834ac2871124d"
+        },
+        {
+          "id": "a8486bf8b925864e2130115ba6ce8698"
+        },
+        {
+          "id": "47dfe3e995a4ea9bfda5c19fdf6f3afd"
+        },
+        {
+          "id": "f9dfb9e17753302dab264da3719e429a"
+        },
+        {
+          "id": "29bb470837adec760f80c577766ed3e3"
+        },
+        {
+          "id": "7266388cef820ea83de75255c073ac73"
+        },
+        {
+          "id": "406bc58d0afa11a410b2f91cff06b03f"
+        },
+        {
+          "id": "d325c383f37dd248b71eb0a990515d6a"
+        }
+      ],
+      "name": "Glade Apartments",
+      "isUnpaid": false,
+      "location": {
+        "lat": 34.192132,
+        "lng": -118.60793,
+        "city": "Woodland Hills",
+        "state": "California",
+        "stateAbbr": "CA",
+        "zip": "91303"
+      },
+      "id": "lc5915399",
+      "bedCountData": [
+        {
+          "beds": 1,
+          "prices": {
+            "low": 1750
+          }
+        }
+      ],
+      "phoneMobile": "7477277485",
+      "phoneMobileSem": "7478778473",
+      "phoneDesktop": "7477277485",
+      "phoneDesktopText": "(747) 727-7485",
+      "phoneDesktopSem": "7478778473",
+      "phoneDesktopSemText": "(747) 877-8473",
+      "NV_RPL": 11,
+      "revenue": 11,
+      "requestTourOptOut": true,
+      "zScore": null,
+      "tplsource": "ZILLOW",
+      "urlPathname": "/apartment/glade-apartments-woodland-hills-ca-lc5915399",
+      "amenitiesHighlighted": [
+        "Pet Friendly",
+        "Controlled Access",
+        "Elevator"
+      ],
+      "categoryBadges": [],
+      "cityIds": [
+        "0644000"
+      ],
+      "offMarket": false,
+      "tourProviderDetails": null,
+      "floorPlans": [
+        {
+          "bedCount": 1,
+          "bathCount": 1,
+          "availableCount": 3,
+          "priceTerm": "/mo",
+          "availableDate": null,
+          "availabilityStatusCode": "AVAILABLE_WITH_COUNT",
+          "priceRange": {
+            "max": 1850,
+            "min": 1750
+          },
+          "sqFtRange": {
+            "min": 760,
+            "max": 760
+          },
+          "units": [
+            {
+              "rent": "$1,850"
+            },
+            {
+              "rent": "$1,750"
+            },
+            {
+              "rent": "$1,750"
+            }
+          ],
+          "photos": []
+        },
+        {
+          "bedCount": 1,
+          "bathCount": 1,
+          "availableCount": 1,
+          "priceTerm": "/mo",
+          "availableDate": null,
+          "availabilityStatusCode": "AVAILABLE_WITH_COUNT",
+          "priceRange": {
+            "max": 1800,
+            "min": 1800
+          },
+          "sqFtRange": {
+            "min": 760,
+            "max": 760
+          },
+          "units": [
+            {
+              "rent": "$1,800"
+            }
+          ],
+          "photos": []
+        }
+      ],
+      "applicationUrl": null,
+      "availabilityStatus": "TODAY",
+      "leadMoveInDateRequired": false,
+      "leadPhoneRequired": true,
+      "leadQuestions": {
+        "ids": []
+      },
+      "hasPriceDrops": false,
+      "leasingTerms": [],
+      "listingTier": "tier3",
+      "phoneMobileText": "(747) 727-7485",
+      "priceText": "$1,750+",
+      "propertyManagementCompany": {
+        "id": null,
+        "name": "BAG Investments Inc. & Abra Management Inc."
+      },
+      "timeZoneId": null,
+      "hasLeadEmails": true,
+      "verified": true,
+      "website": null,
+      "propertyType": "APARTMENTS",
+      "bedRange": {
+        "min": 1,
+        "max": 1
+      },
+      "priceRange": {
+        "min": 1750,
+        "max": 1850
+      },
+      "cplEligible": true,
+      "phoneMobileSemText": "(747) 877-8473",
+      "mitsPhone": {
+        "raw": null,
+        "formatted": null
+      },
+      "officeHours": [
+        {
+          "day": "Sunday",
+          "times": []
+        },
+        {
+          "day": "Monday",
+          "times": [
+            {
+              "open": "09:00 AM",
+              "close": "06:00 PM",
+              "comment": null
+            }
+          ]
+        },
+        {
+          "day": "Tuesday",
+          "times": [
+            {
+              "open": "09:00 AM",
+              "close": "06:00 PM",
+              "comment": null
+            }
+          ]
+        },
+        {
+          "day": "Wednesday",
+          "times": [
+            {
+              "open": "09:00 AM",
+              "close": "06:00 PM",
+              "comment": null
+            }
+          ]
+        },
+        {
+          "day": "Thursday",
+          "times": [
+            {
+              "open": "09:00 AM",
+              "close": "06:00 PM",
+              "comment": null
+            }
+          ]
+        },
+        {
+          "day": "Friday",
+          "times": [
+            {
+              "open": "09:00 AM",
+              "close": "06:00 PM",
+              "comment": null
+            }
+          ]
+        },
+        {
+          "day": "Saturday",
+          "times": []
+        }
+      ],
+      "deals": [
+        {
+          "description": "$1,000 Off on Selected Units.",
+          "couponCategory": "Special Offer",
+          "idx": null
+        }
+      ],
+      "dealTypes": [
+        {
+          "text": "$1,000 Off"
+        }
+      ],
+      "dealsText": "$1,000 Off on Selected Units.",
+      "address": "6670 Glade Ave",
+      "applyNowOptedIn": false,
+      "mlsInfo": {
+        "agentFirstName": null,
+        "agentLastName": null,
+        "agentEmail": "stop@rent.com",
+        "feed": null,
+        "id": null
+      },
+      "addressFull": "6670 Glade Ave, Woodland Hills, CA 91303",
+      "incomeRestrictions": [],
+      "specialTerms": null,
+      "priceDrops": {
+        "byFloorplanId": []
+      },
+      "hasTotalCostWithFees": false,
+      "hasTotalCostWithFeesMessaging": false,
+      "bathText": "1 Bath",
+      "bedText": "1 Bed",
+      "squareFeetText": "760 Sqft",
+      "hoodIds": [
+        2123,
+        14728
+      ],
+      "zipCode": "91303",
+      "__typename": "Listing",
+      "unitsAvailableText": "4 Units Available",
+      "sourceId": "2q032hv404dp3",
+      "pdpViews": 322,
+      "hasHdTour": true,
+      "videos": [],
+      "hasVideosOrTours": true,
+      "hdTours": [
+        {
+          "name": null,
+          "url": "https://www.zillow.com/view-imx/4f77b4cc-cd2a-4bce-96c1-daf0d259e402/?hidePhotos=true&initialViewType=pano",
+          "imageToken": null,
+          "vendorThumbnailUrl": null
+        },
+        {
+          "name": null,
+          "url": "https://www.zillow.com/view-imx/a145a6e8-29f2-4990-9f25-ee363085637b/?hidePhotos=true&initialViewType=pano",
+          "imageToken": null,
+          "vendorThumbnailUrl": null
+        },
+        {
+          "name": null,
+          "url": "https://www.zillow.com/view-imx/2d4dc732-a1d4-4165-81fe-11cd3317861b/?hidePhotos=true&initialViewType=pano",
+          "imageToken": null,
+          "vendorThumbnailUrl": null
+        },
+        {
+          "name": null,
+          "url": "https://www.youtube.com/embed/LhiAAxEYHOg?loop=1&modestbranding=1&rel=0",
+          "imageToken": null,
+          "vendorThumbnailUrl": null
+        }
+      ],
+      "uniqueHighlights": [
+        "Availability 24 Hours",
+        "Laundry",
+        "Pool",
+        "Barbecue Area",
+        "Gated Entry",
+        "Intercom system",
+        "On-Site Management",
+        "Online Rent Payment",
+        "Picnic Area",
+        "Pet Friendly"
+      ],
+      "leadVolumeMeta": {
+        "label": null,
+        "percentile": null,
+        "leadCount": null
+      },
+      "ratingPercent": null,
+      "ratingCount": null,
+      "updatedAt": "2026-10-04T00:00:00.000Z",
+      "price": 1750,
+      "mapMarkerPriceText": "$1.8k"
+    }
+  ]
+}
