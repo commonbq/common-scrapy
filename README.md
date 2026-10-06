@@ -3976,3 +3976,21 @@ page totals, the authoritative raw entity, and `source=harborfreight_apollo_boot
 ```bash
 scrapy crawl harborfreight_listing -a category=Automotive -a max_pages=2 -s HTTPCACHE_ENABLED=False -O harborfreight.jsonl
 ```
+
+### walgreens_listing
+
+`walgreens_listing` reads products exclusively from Walgreens' rendered Redux
+bootstrap (`window.getInitialState()` → `searchResult.productList[*].productInfo`).
+It does not parse product cards or JSON-LD. The ScrapeOps request enables US JS
+rendering so the hydrated state is present, while pagination follows Walgreens'
+`/productlist/N={id}/{page}/ShopAll={id}` route and stops on hydrated totals,
+empty output, repeated product IDs, or `max_pages`.
+
+The ordered `FEED_EXPORT_FIELDS` contract covers category context, Walgreens
+product/SKU/article/UPC identifiers, title and brand, normalized URLs, prices,
+ratings, inventory, pagination metadata, and the authoritative raw bootstrap
+record.
+
+```bash
+scrapy crawl walgreens_listing -a category='Allergy & Sinus' -a max_pages=1 -s HTTPCACHE_ENABLED=False -O walgreens.jsonl
+```
