@@ -8,7 +8,7 @@ from urllib.parse import urlencode, urljoin
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
-from common.spiders.victoriassecret_categories import VICTORIASSECRET_CATEGORIES
+from common.spiders.victoriassecret_categories import load_categories, slugify
 
 SITE_BASE = "https://www.victoriassecret.com"
 # Page 0 is served from the bare ``/stacks/v46/`` (trailing slash); the load
@@ -29,11 +29,6 @@ _CLIENT_PROPS_RE = re.compile(
 _PRICE_RE = re.compile(r"-?\d+(?:\.\d+)?")
 
 
-def slugify(value: str) -> str:
-    """Lowercase ASCII slug, matching the sibling listing spiders."""
-    return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
-
-
 def parse_money(value: Any) -> float | None:
     """Turn ``"$49.95"`` / ``49.95`` into a float, ``None`` when absent."""
     if value is None:
@@ -42,52 +37,6 @@ def parse_money(value: Any) -> float | None:
         return float(value)
     match = _PRICE_RE.search(str(value))
     return float(match.group(0)) if match else None
-
-
-def load_categories() -> list[dict[str, str]]:
-    """Flatten the ``{brand: {top: {path, subcategories: {group: {label: url}}}}}`` tree.
-
-    Slugs are brand-prefixed (``vs-bras``, ``vs-bras-push-up``) because leaf
-    labels collide heavily across departments -- "Bestsellers" alone appears
-    under BRAS, PANTIES and NEW! for the ``vs`` brand.
-    """
-    flat: list[dict[str, str]] = []
-    seen: set[str] = set()
-
-    def add(slug: str, brand: str, top: str, sub: str | None, url: str) -> None:
-        if not url or not url.startswith("http") or slug in seen:
-            return
-        seen.add(slug)
-        entry = {
-            "category": slug,
-            "brand": brand,
-            "top_category": top,
-            "url": url,
-        }
-        if sub:
-            entry["sub_category"] = sub
-        flat.append(entry)
-
-    for brand, tops in VICTORIASSECRET_CATEGORIES.items():
-        for top_name, top_data in tops.items():
-            top_url = top_data.get("path") or ""
-            if not top_url:
-                continue
-            top_slug = f"{brand}-{slugify(top_name)}"
-            add(top_slug, brand, top_name, None, top_url)
-            # ``subcategories`` is a *group* level (``Group 1`` .. ``Group 5``);
-            # its values are the real ``{label: url}`` leaves. Group headings
-            # are not reachable pages, so descend one more level.
-            for group_name, group_data in top_data.get("subcategories", {}).items():
-                if not isinstance(group_data, dict):
-                    # Tolerate taxonomies that skip the grouping level.
-                    group_data = {group_name: group_data}
-                for sub_name, sub_url in group_data.items():
-                    if not isinstance(sub_url, str) or sub_url == top_url:
-                        continue
-                    add(f"{top_slug}-{slugify(sub_name)}", brand, top_name, sub_name, sub_url)
-
-    return flat
 
 
 class VictoriassecretListingSpider(BaseListingSpider):

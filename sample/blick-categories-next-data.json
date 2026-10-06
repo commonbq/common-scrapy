@@ -1,0 +1,133 @@
+{
+ "_fixture_note": "Shape sample from the live /categories/ __NEXT_DATA__ on 2026-10-05: 2697 hydration records reduce to 899 unique named category URLs. The bundled taxonomy holds all of them.",
+ "contentTypes": [
+  "categoriesLandingPages",
+  "department",
+  "subCategoriesLandingPages"
+ ],
+ "recordCount": 2697,
+ "namedRecordCount": 899,
+ "uniqueNamedUrls": 899,
+ "records": [
+  {
+   "id": "5Q4Qwf6rZuwiYkQyGqikqm",
+   "contentType": "department",
+   "name": "Illustration and Drawing Supplies",
+   "url": "/categories/drawing/"
+  },
+  {
+   "id": "67fy75q9vGm2m4K2egGIeS",
+   "contentType": "department",
+   "name": "Printmaking Supplies",
+   "url": "/categories/printmaking/"
+  },
+  {
+   "id": "3dJf0hhBBmmoMymkqeqS68",
+   "contentType": "department",
+   "name": "Books for Artists",
+   "url": "/categories/books/"
+  },
+  {
+   "id": "4zEG3kAmqSwC75WI2hCV52",
+   "contentType": "department",
+   "name": "Tattoo Supplies",
+   "url": "/categories/tattoo/"
+  },
+  {
+   "id": "19mfl9nXIGLP0yUinRrpq7",
+   "contentType": "department",
+   "name": "Gifts for Artists",
+   "url": "/categories/gifts/"
+  },
+  {
+   "id": "3uVDsfuMVyCWGGSkc4Q4C0",
+   "contentType": "department",
+   "name": "Brushes and Painting Tools",
+   "url": "/categories/brushes/"
+  },
+  {
+   "id": "JJpH8WLJAIYwAAAY622m4",
+   "contentType": "department",
+   "name": "Art Canvases and Painting Surfaces",
+   "url": "/categories/canvas/"
+  },
+  {
+   "id": "4XRsIdnnuwIyKkqaOc02Si",
+   "contentType": "department",
+   "name": "Crafts & Textiles",
+   "url": "/categories/crafts/"
+  },
+  {
+   "id": "2pCxUVDQVe4qqQO4Cm6GIw",
+   "contentType": "department",
+   "name": "Frames and Framing Supplies",
+   "url": "/categories/framing/"
+  },
+  {
+   "id": "6DbdFr9GJkTQt5HRFyjgqy",
+   "contentType": "department",
+   "name": "Kids\u2019 Art Supplies and More",
+   "url": "/categories/kids/"
+  },
+  {
+   "id": "1TSfF8Hln6Go2CUwaq4QES",
+   "contentType": "department",
+   "name": "Easels and Art Furniture",
+   "url": "/categories/furniture/"
+  },
+  {
+   "id": "1MbcNzLCkkUAiS2yoAYg4i",
+   "contentType": "department",
+   "name": "Studio and Office Supplies",
+   "url": "/categories/studio/"
+  },
+  {
+   "id": "41ZT2oVTRKEgi2MigcOoWo",
+   "contentType": "department",
+   "name": "Ceramics and Sculpture",
+   "url": "/categories/ceramics-sculpture/"
+  },
+  {
+   "id": "TclBetAjKu0sYmOcQQYIC",
+   "contentType": "department",
+   "name": "Paint and Mediums",
+   "url": "/categories/painting/"
+  },
+  {
+   "id": "2Ynmi8xZFC4062Euieq4C6",
+   "contentType": "department",
+   "name": "Art Paper and Boards",
+   "url": "/categories/paper/"
+  },
+  {
+   "id": "6RDt2a0OjY88gmsmG8cUU6",
+   "contentType": "categoriesLandingPages",
+   "name": "Cleaning Supplies and Materials",
+   "url": "/categories/studio/cleaning/"
+  },
+  {
+   "id": "1RpJydXUKMq4eGmWuWUC2e",
+   "contentType": "categoriesLandingPages",
+   "name": "Watercolor Brushes",
+   "url": "/categories/brushes/watercolor/"
+  },
+  {
+   "id": "33VpTWDzbGage4cuugOEUk",
+   "contentType": "categoriesLandingPages",
+   "name": "Modeling and Pottery Tools",
+   "url": "/categories/ceramics-sculpture/tools/"
+  },
+  {
+   "id": "wloOdqHNkWqaMeUkMCySQ",
+   "contentType": "categoriesLandingPages",
+   "name": "Paint Sets",
+   "url": "/categories/painting/sets/"
+  },
+  {
+   "id": "3Gx1FCwYhyyESyu8IUaa8e",
+   "contentType": "categoriesLandingPages",
+   "name": "Paint Mediums and Varnishes",
+   "url": "/categories/painting/mediums/"
+  }
+ ]
+}
