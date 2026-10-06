@@ -3472,6 +3472,33 @@ changed API contracts raise explicit errors instead of returning a silent empty
 feed.
 
 
+### booking_listing
+
+`booking_listing` crawls the first 20 US city destinations exposed by the
+Booking.com homepage. It uses one extraction direction only: the anonymous
+server-rendered Apollo cache in `<script type="application/json">`. The city
+payload's `ROOT_QUERY.lxAccommodations(...)` supplies the destination ID and
+`seeAllUrl`; each exhaustive search page then comes from
+`ROOT_QUERY.searchQueries.search(...).results`. No HTML-card or JSON-LD parser
+is used, and missing or ambiguous Apollo state raises an error.
+
+Search pagination uses Booking's SSR `rows=25&offset=N` contract. Items are
+deduplicated by property ID and include numeric price, ratings, review count,
+coordinates, location, property type, canonical hotel URL, and image URL. The
+ordered `FEED_EXPORT_FIELDS` contract is defined on the spider.
+
+```bash
+common-scrapy crawl booking_listing -a category=las-vegas -a max_pages=2 \
+  -O booking.jsonl -s HTTPCACHE_ENABLED=False
+```
+
+Live verification on 2026-10-06 with the HTTP cache disabled returned three
+HTTP 200 responses (one city handoff plus two search pages) and 33 unique
+properties: 25 on page one and 8 on page two. Every exported item had a title,
+canonical URL, image, numeric price/currency, rating, and review count. Booking's
+live advertised total varied between the two undated SSR requests, so the spider
+uses each response's own pagination metadata and property-ID deduplication.
+
 ### backcountry_listing
 
 `backcountry_listing` uses one authoritative source: the server-rendered Next.js
