@@ -25,7 +25,8 @@ class LowesListingSpider(BaseListingSpider):
         "FEED_EXPORT_FIELDS": [
             "item_id", "title", "brand", "url", "image_url", "price",
             "original_price", "currency", "rating", "reviews_count",
-            "availability", "category", "page", "position", "source", "raw",
+            "availability", "category", "page", "position", "timestamp",
+            "source", "raw",
         ],
     }
     headers = {
@@ -98,6 +99,7 @@ class LowesListingSpider(BaseListingSpider):
                 category=self.category or "custom",
                 page=page,
                 position=position,
+                timestamp=self.get_timestamp(),
                 source="lowes_preloaded_state",
             )
             emitted += 1
