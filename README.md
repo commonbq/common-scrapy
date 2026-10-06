@@ -66,6 +66,7 @@ Working spiders running daily in production:
 | [`backcountry_listing`](#backcountry_listing) | Active | bootstrap | AWS WAF (datacenter + `bypass=5` both return the challenge; `residential=true` required) | Backcountry.com category/collection/brand listings from the server-rendered Next.js `#__NEXT_DATA__` PLP payload joined to `__APOLLO_STATE__`. | 84 (2 pages, `cat-mens-shirts`); 52 (`rc-mens-parkas`, natural last page) | 398 unique targets across 14 top-level menus / 110 sections from `backcountry_categories.py` | `{"category":"cat-mens-shirts","department":"Men","section":"Clothing","item_id":"FJRZ133","title":"Fjallglim Regular Shirt - Men's","brand":"Fjallraven","price":124.95,"original_price":null,"currency":"USD","in_stock":true,"source":"backcountry_next_data",...}` |
 | [`zillow_listing`](#zillow_listing) | Active | bootstrap | PerimeterX | Zillow sale listings from server-rendered Next.js `__NEXT_DATA__`, including path-based SSR pagination. | 82 (2 pages, `houston-tx`) | 20 major US city markets | `{"item_id":"55476612","title":"8323 Gentlewood Ct, Houston, TX 77095","price":375000,"beds":4,"baths":3,"area":2992,"source":"zillow_next_data"}` |
 | [`basspro_listing`](#basspro_listing) | Active | api | Akamai on the storefront legs (403 direct); the Coveo search leg must stay unproxied | Bass Pro Shops category listings from the storefront Coveo Headless search API (`platform.cloud.coveo.com/rest/search/v2`); taxonomy from the `__NEXT_DATA__.props.megaNavHtmlV2` mega-nav. | 96 (2 pages, rod-reel-combos) | 909 nav entries (11 departments / 116 level-2 / 782 level-3) | `{"category":"Fishing/Rod & Reel Combos","item_id":"3472884","title":"Bass Pro Shops Megacast Baitcast Combo","brand":"Bass Pro Shops","url":"https://www.basspro.com/p/bass-pro-shops-megacast-baitcast-combo","price":69.99,"availability":"InStock","source":"basspro_coveo"...}` |
+| [`booking_listing`](#booking_listing) | Active | bootstrap | none detected (anonymous SSR cruise) | Booking.com listings for the 20 homepage-exposed US city destinations from the anonymous server-rendered Apollo cache (`ROOT_QUERY.lxAccommodations` -> `ROOT_QUERY.searchQueries.search().results`). | 33 (2 pages, `las-vegas`) | 20 US city destinations from `booking_categories.py` | `{"category":"las-vegas","item_id":"15743439","title":"The Platinum Hotel Las Vegas","price":227.91,"currency":"EUR","rating":9.1,"reviews_count":8,"city":"Las Vegas","source":"booking_apollo_hydration"...}` |
 | [`bestbuy_listing`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | unknown (timeout/no verdict) | Best Buy listing via direct HTTP + Apollo bootstrap extraction. | 10 (skipped2) | laptops, tvs, headphones, monitors, cell-phones | `{"item_id":"6572184","title":"Samsung - Galaxy Book4 15.6\" FHD Laptop - Intel Core 7- 16GB Memory - 512GB SSD - Silver","url":"https://www.bestbuy.com/product/samsung-galaxy-bo...` |
 | [`bestbuy_search`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | unknown (timeout/no verdict) | Best Buy search via direct HTTP + Apollo bootstrap extraction. | 4 (skipped2) | - | `{"item_id":"6613879","title":"HP - 14\" Laptop - Intel Processor N150 2025 - 4GB Memory - 128GB UFS - Willow Green","url":"https://www.bestbuy.com/product/hp-14-laptop-intel-pro...` |
 | [`macys_listing`](#macys_listing) | Active | api | Akamai | Macy’s listing via xapi endpoint (with fallback routing). | 60 (ok) | laptops, shoes, dresses, fragrance, bedding | `{"item_id":"17595303","title":"5Core AC Power Cord 6Ft 3 Prong US Male to Female Extension Adapter 18AWG 10A 7A 125V","brand":"5 Core","u...` |
@@ -3472,6 +3473,34 @@ JSON response. There is no HTML-card, browser, bootstrap, or JSON-LD fallback;
 changed API contracts raise explicit errors instead of returning a silent empty
 feed.
 
+
+### booking_listing
+
+`booking_listing` crawls the first 20 US city destinations exposed by the
+Booking.com homepage. It uses one extraction direction only: the anonymous
+server-rendered Apollo cache in `<script type="application/json">`. The city
+payload's `ROOT_QUERY.lxAccommodations(...)` supplies the destination ID and
+`seeAllUrl`; each exhaustive search page then comes from
+`ROOT_QUERY.searchQueries.search(...).results`. No HTML-card or JSON-LD parser
+is used, and missing or ambiguous Apollo state raises an error.
+
+Search pagination uses Booking's SSR `rows=25&offset=N` contract. Items are
+deduplicated by property ID and include numeric price, ratings, review count,
+coordinates, location, property type, canonical hotel URL, image URL. The
+ordered `FEED_EXPORT_FIELDS` contract is defined on the spider and every exported
+item also carries the crawl `timestamp` alongside the normalized `raw` record.
+
+```bash
+common-scrapy crawl booking_listing -a category=las-vegas -a max_pages=2 \
+  -O booking.jsonl -s HTTPCACHE_ENABLED=False
+```
+
+Live verification on 2026-10-06 with the HTTP cache disabled returned three
+HTTP 200 responses (one city handoff plus two search pages) and 33 unique
+properties: 25 on page one and 8 on page two. Every exported item had a title,
+canonical URL, image, numeric price/currency, rating, and review count. Booking's
+live advertised total varied between the two undated SSR requests, so the spider
+uses each response's own pagination metadata and property-ID deduplication.
 
 ### backcountry_listing
 
