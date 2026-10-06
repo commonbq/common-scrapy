@@ -33,7 +33,7 @@ class RealtorListingSpider(BaseListingSpider):
             "property_type", "latitude", "longitude", "image", "photo_count",
             "broker", "builder", "flags", "has_3d_tour", "has_video_tour",
             "has_virtual_tour", "list_date", "category", "listing_url", "page",
-            "position", "total_count", "source", "raw",
+            "position", "total_count", "source", "timestamp", "raw",
         ],
     }
 
@@ -226,5 +226,6 @@ class RealtorListingSpider(BaseListingSpider):
             "has_video_tour": record.get("hasVideoTour"), "has_virtual_tour": record.get("hasVirtualTour"),
             "list_date": record.get("list_date"), "category": self.category,
             "listing_url": response.url, "page": page, "position": position,
-            "total_count": total, "source": "realtor_react_router_stream", "raw": record,
+            "total_count": total, "source": "realtor_react_router_stream",
+            "timestamp": self.get_timestamp(), "raw": record,
         }

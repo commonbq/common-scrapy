@@ -3559,6 +3559,7 @@ The bounded taxonomy contains 20 major US cities. Pagination uses canonical
 deduplicates `property_id` across pages. Items retain listing/property IDs, status,
 address, price/range, beds, baths, floor and lot area, property type, coordinates,
 primary photo, broker/builder, flags, page position, and the raw structured record.
+The ordered export contract also includes the crawl `timestamp` and `raw` payload.
 
 Realtor.com's legal notice says automated scraping requires authorization. Confirm
 permission and applicable terms before production use. The real SSR response also

@@ -66,6 +66,9 @@ class RealtorListingSpiderTests(unittest.TestCase):
         self.assertEqual(item["price"], 400000000)
         self.assertEqual(item["beds"], 39)
         self.assertEqual(item["source"], "realtor_react_router_stream")
+        self.assertIn("timestamp", item)
+        self.assertIn("raw", item)
+        self.assertEqual(list(item), spider.custom_settings["FEED_EXPORT_FIELDS"])
 
     def test_deduplicates_and_paginates(self):
         spider = RealtorListingSpider(category="los-angeles-ca", max_pages=2)
