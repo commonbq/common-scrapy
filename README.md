@@ -4389,3 +4389,20 @@ The taxonomy contains 20 major US city destinations. Run one with
 landing pages at 20 hotels; the session-backed `/search/` inventory is out of
 scope. Requests use the configured US proxy, and missing/challenge bootstrap
 responses fail visibly. There is no direct-HTML or JSON-LD extraction path.
+### ssense_listing
+
+`ssense_listing` extracts products exclusively from SSENSE's server-rendered
+Next.js React Server Component (`self.__next_f`) bootstrap. It reads the
+authoritative product-list analytics state and associated card component state;
+it does not parse rendered product HTML or JSON-LD and has no fallback data
+direction. Twenty stable men/women category shortcuts are included, and
+`?page=N` pagination follows hydrated `paginationInfo.totalPages` while respecting
+`max_pages` and deduplicating product IDs.
+
+The ordered 22-field `FEED_EXPORT_FIELDS` contract includes category context,
+product/SKU and brand identifiers, canonical URL and image, current/original
+prices, availability, pagination metadata, raw bootstrap data, and timestamp.
+
+```bash
+scrapy crawl ssense_listing -a category=men-clothing -a max_pages=1 -s HTTPCACHE_ENABLED=False -O ssense.jsonl
+```
