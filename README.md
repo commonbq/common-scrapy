@@ -4087,3 +4087,14 @@ responses fail visibly. A working configured ScrapeOps proxy is expected.
 ```bash
 scrapy crawl chewy_listing -a category=food-332 -a max_pages=1 -s HTTPCACHE_ENABLED=False -O chewy.jsonl
 ```
+### patagonia_listing
+
+`patagonia_listing` extracts products through one authoritative data direction:
+Patagonia's first-party Salesforce Commerce Cloud `AsyncComponents-ProductList`
+API. It exposes 20 stable shopping categories, supports custom listing URLs, and
+uses the API's offset parameters for bounded pagination. It does not parse the
+listing page's direct HTML or JSON-LD as a product-data fallback.
+
+```bash
+scrapy crawl patagonia_listing -a category=new-arrivals -a max_pages=1 -s HTTPCACHE_ENABLED=False -O patagonia.jsonl
+```
