@@ -143,6 +143,7 @@ Spiders below are returning items in recent smoke runs:
 | [`stockx_listing`](#stockx_listing) | Experimental | bootstrap + html | Cloudflare | StockX listing via `__NEXT_DATA__` bootstrap. | 41 (ok) | sneakers, apparel, electronics, trading-cards, collectibles | `{"item_id":"brands","title":"Brands","url":"https://stockx.com/brands","price":null,"currency":null}` |
 | [`urbanoutfitters_listing`](#urbanoutfitters_listing) | Active | bootstrap | none detected through ScrapeOps proxy | Urban Outfitters listings from double-decoded Vue/Pinia SSR state (`#urbnInitialPiniaState`), with `?page=` pagination and no HTML fallback. | 144 (2 pages, live proxy) | 2,158 sitemap PLPs plus 4 navigation roots absent from the sitemap (2,162 targets total) | `{"category":"new-arrivals","item_id":"UO-106663735-000","title":"Kimchi Blue Ella Flyaway Ruffle Lace Trim Cami","brand":"Kimchi Blue","price":39,"rating":4.7308,"reviews_count":26,"color":"Maroon","source":"urbanoutfitters_pinia_ssr_tiles"...}` |
 | [`staples_listing`](#staples_listing) | Experimental | Next.js hydration | Akamai | Staples category listings from server-rendered `__NEXT_DATA__`. | 40 (one page) | 34 roots / 208 subcategories from `staples_categories.py` | `{"item_id":"82656","title":"Staples 1\" 3-Ring View Binder...","price":10.09,"currency":"USD"...}` |
+| [`rightmove_listing`](#rightmove_listing) | Experimental | bootstrap | none detected through ScrapeOps proxy | Rightmove properties for sale from server-rendered Next.js Pages Router `__NEXT_DATA__` hydration (no HTML or JSON-LD fallback). | 25 (one page, live proxy) | 20 high-inventory UK cities | `{"category":"london","item_id":"89825950","title":"Tottenham Street, Fitzrovia, W1","price":680000,"price_currency":"GBP","source":"rightmove_next_data"...}` |
 | [`petco_listing`](#petco_listing) | Experimental | bootstrap (Next.js `__NEXT_DATA__`) | none detected | Petco category listings from the server-rendered Constructor.io search hydration. | 48 (one page) | 22 roots / 286 nodes / 264 `-a category=` entries from `petco_categories.py` | `{"item_id":"6848523","title":"Purina Cat Chow Indoor Healthy Weight and Hairball with Chicken Dry Cat Food, 15 lbs.","brand":"Purina Cat Chow","price":18.99,"original_price":19.99,"rating":4.8141,"source":"petco_next_data"...}` |
 | [`target_listing`](#target_listing) | Active (alias) | api | PerimeterX / HUMAN (cookie signals) | Deprecated alias of `target_search`. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
 | [`uniqlo_listing`](#uniqlo_listing) | Experimental | api | none detected (plain ScrapeOps datacenter route) | UNIQLO US category listings from the first-party commerce BFF products API. | 36 (one page, ok) | 2741 taxonomy URLs (4 genders / 46 classes / 212 categories / 2479 subcategories) from `uniqlo-categories.json` | `{"item_id":"E424873-000-00","title":"Crew Neck T-Shirt","color":"White","price":19.9,"currency":"USD"...}` |
@@ -1705,6 +1706,32 @@ product-bearing leaf. Direct Staples requests may require the configured US prox
 
 Run example:
 `HTTPCACHE_ENABLED=False common-scrapy crawl staples_listing -a category=binders -a max_pages=2 -O staples.jsonl -s HTTPCACHE_ENABLED=False`
+
+### rightmove_listing
+
+Rightmove listings use one product-data path: `props.pageProps.searchResults.properties`
+inside the server-rendered Next.js Pages Router `script#__NEXT_DATA__`. The spider maps
+property, price, location, media, agent and search-context fields directly from that
+hydration; it does not use HTML cards or JSON-LD as a fallback. The deterministic taxonomy
+contains 20 high-inventory UK cities. Pagination follows the hydrated `pagination.next`
+offset as `?index=N`, bounded by `pagination.total`, Rightmove's 42-page cap and `max_pages`.
+
+```json
+{
+  "category": "london",
+  "item_id": "89825950",
+  "title": "Tottenham Street, Fitzrovia, W1",
+  "price": 680000,
+  "price_display": "£680,000",
+  "price_currency": "GBP",
+  "bedrooms": 1,
+  "property_type": "1 bedroom flat for sale",
+  "source": "rightmove_next_data"
+}
+```
+
+Run example:
+`scrapy crawl rightmove_listing -a category=london -a max_pages=1 -O rightmove.jsonl -s HTTPCACHE_ENABLED=False`
 
 ### petco_listing
 
