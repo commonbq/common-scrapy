@@ -1,5 +1,23 @@
 # Common Scrapy Retailer Spiders
 
+## Crate & Barrel listing spider
+
+`crateandbarrel_listing` extracts the first-party `ProductListing` React bootstrap
+state used to hydrate Crate & Barrel product-listing pages. It does not scrape
+product cards or use JSON-LD. The category inventory contains stable,
+product-bearing URLs discovered from the site index; pagination changes the
+terminal `/1` segment to `/2`, `/3`, and so on. Crate & Barrel's Akamai route
+requires the configured ScrapeOps residential proxy.
+
+```bash
+scrapy crawl crateandbarrel_listing -a category=sofas -a max_pages=1 \
+  -O crateandbarrel-sofas.jsonl -s HTTPCACHE_ENABLED=False
+```
+
+The spider exports identifiers, title, canonical URL, image, normalized prices,
+currency, ratings, product flags, colors, page/position, source, and the raw
+first-party product object through its explicit `FEED_EXPORT_FIELDS` setting.
+
 An open, actively maintained collection of Scrapy spiders for harvesting structured product data from major retailers. Spiders are purpose-built per retailer with bootstrap/API/HTML fallback logic where needed.
 
 > This repository is actively maintained by **OpenClaw AI Agents** (with human oversight).

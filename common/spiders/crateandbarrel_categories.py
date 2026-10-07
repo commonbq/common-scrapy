@@ -1,0 +1,15 @@
+CRATEANDBARREL_CATEGORIES = {
+    "sofas": "https://www.crateandbarrel.com/furniture/sofas/1",
+    "sectional-sofas": "https://www.crateandbarrel.com/furniture-sectional-sofas/1",
+    "furniture-hardware": "https://www.crateandbarrel.com/furniture-hardware/1",
+    "toddler-bedding": "https://www.crateandbarrel.com/kids/toddler-bedding/1",
+    "new-years-eve": "https://www.crateandbarrel.com/new-years-eve/1",
+    "saint-patricks-day": "https://www.crateandbarrel.com/saint-patricks-day/1",
+    "passover-seder": "https://www.crateandbarrel.com/passover-seder/1",
+    "mothers-day": "https://www.crateandbarrel.com/mothers-day/1",
+    "fathers-day": "https://www.crateandbarrel.com/fathers-day/1",
+    "red-white-and-blue": "https://www.crateandbarrel.com/red-white-and-blue/1",
+    "black-friday": "https://www.crateandbarrel.com/black-friday/1",
+    "contract-grade-furniture": "https://www.crateandbarrel.com/trade-program/contract-grade-furniture/1",
+    "social-responsibility": "https://www.crateandbarrel.com/social-responsibility/1",
+}
