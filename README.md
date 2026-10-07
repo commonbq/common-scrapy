@@ -4026,6 +4026,21 @@ configured ScrapeOps proxy and challenge responses fail loudly.
 
 ```bash
 scrapy crawl lowes_listing -a category=beverage-wine-chillers -a max_pages=1 -s HTTPCACHE_ENABLED=False -O lowes.jsonl
+```
+
+### zumper_listing
+
+`zumper_listing` extracts rentals exclusively from the server-rendered
+`window.__PRELOADED_STATE__` bootstrap at `currentSearch.listables`; it has no
+HTML-card or JSON-LD fallback. Twenty major US rental-market categories are
+provided, and `?page=N` pagination follows hydrated `hasMoreListables` while
+respecting `max_pages`. The ordered `FEED_EXPORT_FIELDS` contract covers stable
+listing/building IDs, location, price and property ranges, amenities, photos,
+contact details, market totals, pagination context, provenance, and raw records.
+
+```bash
+scrapy crawl zumper_listing -a category=new-york-ny -a max_pages=1 -s HTTPCACHE_ENABLED=False -O zumper.jsonl
+```
 ### B&H Photo Video listing spider
 
 `bhphotovideo_listing` reads products from B&H's server-rendered
