@@ -147,6 +147,7 @@ Spiders below are returning items in recent smoke runs:
 | [`victoriassecret_listing`](#victoriassecret_listing) | Active | api | none detected (ScrapeOps proxy, plain datacenter route) | Victoria's Secret / PINK listings from the first-party `stacks` JSON API; page 0 reads `collectionId` from SSR `clientProps`. | 192 (2 pages, live) | 427 targets across `vs` + `pink` brands from `victoriassecret_categories.py` | `{"category":"vs-bras","brand":"vs","item_id":"11295563|7I65","name":"Signature Shine Cotton Lightly Lined Balconette Bra","price":49.95,...}` |
 | [`williams_sonoma_listing`](#williams_sonoma_listing) | Active | api | Akamai (not an issue for API) | Williams-Sonoma category listings via the Constructor.io browse API (taxonomy from the runtime category-tree API). | 100 (1 page, proxy) | ~3500 group_ids from the runtime category-tree API | `{"category":"cookware-sets","item_id":"greenpan-reserve-pro-ceramic-nonstick-10-piece-cookware-set","title":"GreenPan™ Reserve Pro Ceramic Nonstick 10-Piece Cookware Set","price":399.95,"currency":"USD","image_url":"https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202631/0164/img2c.jpg","flags":["freeShip","more_colors"],"source":"williams_sonoma_constructor_browse"...` |
 | [`harborfreight_listing`](#harborfreight_listing) | Active | bootstrap (`window.__APOLLO_STATE__`) | none detected | Harbor Freight category listings from the server-rendered Apollo hydration state; 17 deterministic department aliases and Magento `?p=N` pagination. | 36 (1 page, `Automotive`) | 17 department aliases from `harborfreight_categories.py` | `{"category":"Automotive","item_id":"64784","title":"3 Ton Low-Profile Professional Floor Jack with RAPID PUMP, Green","brand":"DAYTONA","price":199.99,"currency":"USD","source":"harborfreight_apollo_bootstrap"...}` |
+| [`bhphotovideo_listing`](#bh-photo-video-listing-spider) | Active | bootstrap (`bh-preloaded-data` / `ListingStore`) | ScrapeOps proxy | B&H Photo Video category listings from the server-rendered MobX `ListingStore` hydration; no HTML-card or JSON-LD fallback. | 28 (1 page, `Mirrorless Lenses`) | 13 listing leaves from `bhphotovideo_categories.py` | `{"category":"Mirrorless Lenses","product_id":2000025,"sku":"SO60063GM","title":"Sony FE 600mm f/6.3 GM OSS Lens (Sony E)","price":3698,"currency":"USD","source":"bootstrap","timestamp":"2026-10-07 00:38:12"...}` |
 | [`vitacost_listing`](#vitacost_listing) | Active | api | none detected | Vitacost (Shopify + Boost AI Search) category listings from the first-party `services.mybcapps.com/bc-sf-filter/filter` JSON API; taxonomy from the `Categories` mega-menu. | 96 (2 pages, `category=Supplements`, page size 48) | 92 crawl targets / 90 unique collection URLs across 8 departments from `vitacost_categories.py` | `{"category":"Supplements","handle":"supplements","collection_id":"457575104827","item_id":"10390080782651","title":"Vitacost, Root2®, Turmeric Extract Curcumin C3 Complex®, 120 Capsules","brand":"Vitacost","price":24.74,"original_price":32.99,"discount_percentage":25.0,"source":"vitacost_boost_filter_api"...}` |
 
 #### In-progress spiders
@@ -3976,6 +3977,7 @@ page totals, the authoritative raw entity, and `source=harborfreight_apollo_boot
 ```bash
 scrapy crawl harborfreight_listing -a category=Automotive -a max_pages=2 -s HTTPCACHE_ENABLED=False -O harborfreight.jsonl
 ```
+
 ### B&H Photo Video listing spider
 
 `bhphotovideo_listing` reads products from B&H's server-rendered
@@ -3984,4 +3986,5 @@ HTML-card or JSON-LD fallback. Choose a leaf with `-a category='Mirrorless Lense
 and bound path-based pagination with `-a max_pages=2`; `url` and `category_url`
 retain the standard listing-spider precedence. Its ordered `FEED_EXPORT_FIELDS`
 cover category context, product and manufacturer identifiers, pricing, rating,
-availability, paging metadata, provenance, and the raw bootstrap record.
+availability, paging metadata, provenance, the raw bootstrap record, and the
+crawl `timestamp`.

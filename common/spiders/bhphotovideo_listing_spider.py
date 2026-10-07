@@ -26,7 +26,7 @@ class BhphotovideoListingSpider(BaseListingSpider):
             "product_id", "sku", "manufacturer_sku", "title", "brand", "url",
             "image_url", "price", "original_price", "currency", "rating",
             "reviews_count", "stock", "in_stock", "page", "position", "total_count",
-            "items_per_page", "source_url", "source", "raw",
+            "items_per_page", "source_url", "source", "raw", "timestamp",
         ],
     }
 
@@ -124,6 +124,7 @@ class BhphotovideoListingSpider(BaseListingSpider):
             "stock": stock, "in_stock": price.get("addToCartButton") not in {None, "NOT_AVAILABLE", "SOLD_OUT"},
             "page": page, "position": position, "total_count": total, "items_per_page": per_page,
             "source_url": response.url, "source": "bootstrap", "raw": product,
+            "timestamp": self.job_timestamp,
         }
 
     @staticmethod

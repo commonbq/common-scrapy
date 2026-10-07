@@ -31,6 +31,9 @@ def test_hydration_item_and_pagination():
     assert output[0]["product_id"] == 123
     assert output[0]["price"] == 99.5
     assert output[0]["category_path"] == "Photography > Lenses"
+    assert output[0]["raw"]["itemKey"]["skuNo"] == 123
+    assert "timestamp" in output[0]
+    assert list(output[0].keys()) == BhphotovideoListingSpider.custom_settings["FEED_EXPORT_FIELDS"]
     assert output[1].url.endswith("/pn/2")
 
 
