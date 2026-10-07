@@ -91,6 +91,7 @@ Working spiders running daily in production:
 | [`hilton_listing`](#hilton_listing) | Active | bootstrap | ScrapeOps US proxy | Hilton destination hotels from authoritative server-rendered Next.js `__NEXT_DATA__`; no HTML or JSON-LD fallback. | Up to 20 | 20 major US city markets | `{"category":"new-york-ny","item_id":"NYCTEPO","title":"Tempo by Hilton New York Times Square","source":"hilton_next_data"...}` |
 | [`basspro_listing`](#basspro_listing) | Active | api | Akamai on the storefront legs (403 direct); the Coveo search leg must stay unproxied | Bass Pro Shops category listings from the storefront Coveo Headless search API (`platform.cloud.coveo.com/rest/search/v2`); taxonomy from the `__NEXT_DATA__.props.megaNavHtmlV2` mega-nav. | 96 (2 pages, rod-reel-combos) | 909 nav entries (11 departments / 116 level-2 / 782 level-3) | `{"category":"Fishing/Rod & Reel Combos","item_id":"3472884","title":"Bass Pro Shops Megacast Baitcast Combo","brand":"Bass Pro Shops","url":"https://www.basspro.com/p/bass-pro-shops-megacast-baitcast-combo","price":69.99,"availability":"InStock","source":"basspro_coveo"...}` |
 | [`booking_listing`](#booking_listing) | Active | bootstrap | none detected (anonymous SSR cruise) | Booking.com listings for the 20 homepage-exposed US city destinations from the anonymous server-rendered Apollo cache (`ROOT_QUERY.lxAccommodations` -> `ROOT_QUERY.searchQueries.search().results`). | 33 (2 pages, `las-vegas`) | 20 US city destinations from `booking_categories.py` | `{"category":"las-vegas","item_id":"15743439","title":"The Platinum Hotel Las Vegas","price":227.91,"currency":"EUR","rating":9.1,"reviews_count":8,"city":"Las Vegas","source":"booking_apollo_hydration"...}` |
+| [`marriott_listing`](#marriott_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | ScrapeOps US residential proxy required | Marriott destination properties from the server-rendered `processedData.hotels` hydration collection, with `?pg=N` pagination and no fallback. | 12/page (`miami`) | 20 featured city destinations from `marriott_categories.py` | `{"category":"miami","item_id":"MIAJW","title":"JW Marriott Miami","rating":3.7,"reviews_count":1715,"source":"marriott_next_data_hydration"...}` |
 | [`bestbuy_listing`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | unknown (timeout/no verdict) | Best Buy listing via direct HTTP + Apollo bootstrap extraction. | 10 (skipped2) | laptops, tvs, headphones, monitors, cell-phones | `{"item_id":"6572184","title":"Samsung - Galaxy Book4 15.6\" FHD Laptop - Intel Core 7- 16GB Memory - 512GB SSD - Silver","url":"https://www.bestbuy.com/product/samsung-galaxy-bo...` |
 | [`backcountry_listing`](#backcountry_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | AWS WAF (residential proxy: `scrapeops.country=us.residential=true`) | Backcountry category, `/rc/` collection and brand listings from the server-rendered PLP hydration state; taxonomy from the header `headerNavigation` mega-nav. | 42 (1 page) / 84 (2 pages) / 42 (`/rc/`) / 42 (brand) | 469 links (14 departments / 109 sections; 398 distinct URLs) from `backcountry_categories.py` | `{"item_id":"FJRZ133","title":"Fjallglim Regular Shirt - Men's","brand":"Fjallraven","price":124.95,"original_price":124.95,"currency":"USD","url":"https://www.backcountry.com/fjallraven-fjallglim-regular-shirt-mens","availability":"IN_STOCK","in_stock":true,"page":1,"source":"backcountry_next_data"...}` |
 | [`bestbuy_search`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | unknown (timeout/no verdict) | Best Buy search via direct HTTP + Apollo bootstrap extraction. | 4 (skipped2) | - | `{"item_id":"6613879","title":"HP - 14\" Laptop - Intel Processor N150 2025 - 4GB Memory - 128GB UFS - Willow Green","url":"https://www.bestbuy.com/product/hp-14-laptop-intel-pro...` |
@@ -3807,6 +3808,30 @@ JSON response. There is no HTML-card, browser, bootstrap, or JSON-LD fallback;
 changed API contracts raise explicit errors instead of returning a silent empty
 feed.
 
+
+### marriott_listing
+
+`marriott_listing` crawls 20 featured Marriott city destinations and extracts
+properties through one data direction only: the server-rendered Next.js
+`__NEXT_DATA__` payload. The spider locates the page model's unique
+`processedData.hotels` collection and emits stable property and brand IDs,
+canonical property and review URLs, descriptions, all hydrated images, ratings,
+review counts, distance, live rate/availability details, pagination context,
+the raw bootstrap record, and a crawl timestamp.
+
+Pagination follows Marriott's SSR `?pg=N` contract and stops on an empty page,
+the advertised `totalProperties`, the configured `max_pages`, or a page with no
+new property IDs. Every request uses the configured `PROXY`, amended
+idempotently with `residential=true.country=us` for ScrapeOps. Missing or
+ambiguous hydration fails explicitly; direct property-card HTML and JSON-LD are
+not parsed as fallbacks.
+
+```bash
+scrapy crawl marriott_listing -a category=miami -a max_pages=2 \
+  -O marriott.jsonl -s HTTPCACHE_ENABLED=False
+```
+
+The ordered output contract is defined in the spider's `FEED_EXPORT_FIELDS`.
 
 ### booking_listing
 
