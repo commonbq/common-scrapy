@@ -49,6 +49,7 @@ class WorldmarketListingSpider(BaseListingSpider):
             "url", "image_url", "price", "original_price", "currency", "availability",
             "rating", "reviews_count", "is_sale", "is_clearance", "is_new", "page",
             "position", "total_count", "source_url", "source", "raw",
+            "timestamp",
         ],
     }
 
@@ -135,7 +136,7 @@ class WorldmarketListingSpider(BaseListingSpider):
                 "is_new": _flag(tile.attrib.get("data-new-tag")), "page": page,
                 "position": meta["start"] + offset, "total_count": total_count,
                 "source_url": response.url, "source": "worldmarket_sfcc_search_update_grid_api",
-                "raw": raw,
+                "raw": raw, "timestamp": self.job_timestamp,
             }
 
         next_start = meta["start"] + self.page_size
