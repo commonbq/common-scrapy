@@ -151,6 +151,7 @@ Spiders below are returning items in recent smoke runs:
 | [`llbean_listing`](#llbean_listing) | Active | api | none detected (ScrapeOps `country=us` route required) | L.L.Bean listing via the UDAL `product-discovery` JSON endpoint (no HTML fallback). | 96 (2 pages, proxy) | 11 departments / 500 targets from `llbean_categories.py` | `{"category":"Gift Shop","item_id":"1000316302","sku_id":"1000316302","title":"Women's The Original Double L® Sweater, Crewneck","brand":"L.L.Bean","price":49.99,"original_price":69.95,"currency":"USD","rating":4.4,"reviews_count":359,"color":"Classic Navy","size":"X-Small","availability":"IN","on_sale":true,"page":1,"position":1,"total_count":626,"source":"llbean_udal_product_discovery"...` |
 | [`maccosmetics_listing`](#maccosmetics_listing) | Experimental | api + bootstrap + html | Akamai | MAC Cosmetics multi-mode listing spider. | 66 (ok) | face, lips, eyes | `{"item_id":"13854","title":"4.8/5 ( 452 ) Lustreglass Sheer-Shine Lipstick Sheer Coverage, Glossy/High-Shine Finish, Infused With Raspberry Seed/Organic Extra Virgin Olive Oils ...` |
 | [`officedepot_listing`](#officedepot_listing) | Active | bootstrap | none detected (ScrapeOps proxy) | Office Depot / OfficeMax category listings from inline `window.ODSEARCHBROWSE_INITIAL_STATE` SSR hydration; taxonomy resolved from the header mega-menu JSON. | 59 (2 pages, furniture) | 388 browse PLPs from `header-menu-excel/products.json` | `{"department":"Furniture","item_id":"9003237","title":"Serta® Smart Layers™ Brinkley Ergonomic Bonded Leather High-Back Executive Office Chair, Black/Silver","price":299.99,"availability":"InStock","source":"officedepot_bootstrap"...}`
+| [`orientaltrading_listing`](#orientaltrading_listing) | Active | API | none detected (ScrapeOps US proxy) | Oriental Trading category products from the first-party `/web/browse/productQuickView` endpoint only; listing HTML is used solely to discover API URLs and pagination. | 5 (bounded live smoke run) | 20 stable top-level shopping categories | `{"item_id":"13913005","title":"Bulk Value Candy Assortment - 30 lb, 3000 pc","price":169.98,"currency":"USD","source":"orientaltrading_quick_view_api"...}` |
 | [`petsmart_listing`](#petsmart_listing) | Active | api | none detected (Akamai sensor served, API open; no proxy needed) | PetSmart category listings from the first-party `/api/search/1/indexes/<replica>/query` endpoint the storefront's Algolia client is pinned to. | 200 (2 pages x 100, ok) | 491 category paths / 7 departments from `petsmart_categories.py` | `{"category":"dog/food/dry-food","item_id":"5252900","title":"Purina Pro Plan Sensitive Skin and Stomach Dry Dog Food Adult Salmon & Rice Formula Digestive Health","brand":"Purina Pro Plan","price":77.99,"currency":"USD","rating":4.5,"reviews_count":9118,"url":"https://www.petsmart.com/dog/food/dry-food/purina-pro-plan-...-36648.html",...}` |
 | [`michaels_listing`](#michaels_listing) | Experimental | Next.js RSC hydration | none detected (Akamai fronted; no challenge observed) | Michaels listings from the server-rendered React Server Component payload (`self.__next_f` -> `initialProducts`), paginated by `?page=`. | 40 (1 page, live proxy; page 2 blocked by a local 407 on CONNECT) | 3,611 categories under 33 departments from `sitemap_MIK_category.xml` | `{"category":"home-decor-floral-arrangements","item_id":"10809872","title":"11\" Pink Peony & Cream Rose Mix Bouquet by Ashland®","brand":"Michaels","price":9.99,"rating":4.5...` |
 | [`poshmark_listing`](#poshmark_listing) | Experimental | bootstrap | none detected | Poshmark listing spider via `window.__INITIAL_STATE__` category grid data. | 48 (ok) | women, men, kids, home, electronics, pets | `{"category":"women","item_id":"6989d90ac4e7b4d4de556bac","title":"🔥Stunning  Farm Rio NWT Size Large Tropical Midi Dress with Sleeves – V...` |
@@ -2643,6 +2644,33 @@ Live verification (`-s HTTPCACHE_ENABLED=False`, 2026-10-02 UTC):
 ```json
 {"department":"Furniture","sub_category":null,"category":"Furniture","item_id":"9003237","title":"Serta® Smart Layers™ Brinkley Ergonomic Bonded Leather High-Back Executive Office Chair, Black/Silver","brand":"Serta","url":"https://www.officedepot.com/a/products/9003237/Serta-Smart-Layers-Brinkley-Ergonomic-Bonded/","image_url":"https://media.officedepot.com/images/t_large%2Cf_auto/products/9003237/1.jpg","price":299.99,"original_price":299.99,"list_price":586.81,"currency":"USD","availability":"InStock","rating":4.5169,"reviews_count":178,"item_number":"9003237","description":"...","catalog_labels":["ecoConscious","lessHarshChemicals"],"category_id":"593061","page":1,"category_url":"https://www.officedepot.com/b/furniture/N-917?page=1","breadcrumbs":["Home","Furniture"],"source":"officedepot_bootstrap","raw":{...}}
 ```
+
+### orientaltrading_listing
+
+`orientaltrading_listing` covers 20 stable shopping categories from Oriental
+Trading's main navigation. It uses one item-data direction: each category page
+supplies first-party `/web/browse/productQuickView` endpoint URLs, and every
+exported product is parsed exclusively from that API response. There is no
+direct product-card or JSON-LD extraction fallback.
+
+The quick-view response supplies more detail than a listing tile, including all
+product images, description, rating and review count, stock status, internal
+category metadata, badge, quantity/unit data, current price, and original price.
+Pages follow the server-advertised `rel=next` URL and stable SKUs are deduplicated.
+`max_pages` bounds pagination; `api_limit` can bound product calls per page for a
+short live smoke run.
+
+```bash
+scrapy crawl orientaltrading_listing -a category=sale -a max_pages=1 -s HTTPCACHE_ENABLED=False -O orientaltrading.jsonl
+```
+
+The ordered `FEED_EXPORT_FIELDS` contract contains 27 fields: category context,
+SKU identity, title and canonical URL, all images, current/original price,
+quantity, availability, rating/reviews, brand and internal category details,
+badge, description, page/position, discovery and API URLs, source, raw API form
+values, and timestamp.
+
+Tests: `python3 -m unittest tests.test_orientaltrading_listing_spider -v`.
 
 ### basspro_listing
 
