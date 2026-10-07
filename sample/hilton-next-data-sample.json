@@ -1,0 +1,678 @@
+{
+  "page": "/locations/[...slug]",
+  "query": {
+    "slug": [
+      "usa",
+      "new-york",
+      "new-york"
+    ]
+  },
+  "props.pageProps.pageData.location": {
+    "title": "Hotels in New York, [NY](New York)",
+    "name": "New York, NY",
+    "uri": "locations/usa/new-york/new-york/",
+    "category": null,
+    "brandCode": null,
+    "breadcrumbs": [
+      {
+        "uri": "/locations/",
+        "name": "Locations"
+      },
+      {
+        "uri": "/locations/usa/",
+        "name": "USA"
+      },
+      {
+        "uri": "/locations/usa/new-york/",
+        "name": "New York"
+      },
+      {
+        "uri": "/locations/usa/new-york/new-york/",
+        "name": "New York Hotels"
+      }
+    ],
+    "pageInterlinks": [
+      {
+        "title": "New York Hotels by Amenities and Features",
+        "links": [
+          {
+            "name": "Boutique",
+            "uri": "locations/usa/new-york/new-york/boutique/"
+          },
+          {
+            "name": "EV Charging",
+            "uri": "locations/usa/new-york/new-york/ev-charging/"
+          },
+          {
+            "name": "Extended Stay",
+            "uri": "locations/usa/new-york/new-york/extended-stay/"
+          },
+          {
+            "name": "Hotel Residences",
+            "uri": "locations/usa/new-york/new-york/hotel-residences/"
+          },
+          {
+            "name": "In-Room Kitchen",
+            "uri": "locations/usa/new-york/new-york/in-room-kitchen/"
+          },
+          {
+            "name": "Luxury",
+            "uri": "locations/usa/new-york/new-york/luxury/"
+          },
+          {
+            "name": "Pet-Friendly",
+            "uri": "locations/usa/new-york/new-york/pet-friendly/"
+          },
+          {
+            "name": "Spa",
+            "uri": "locations/usa/new-york/new-york/spa/"
+          }
+        ]
+      },
+      {
+        "title": "New York Hotels by Brand",
+        "links": [
+          {
+            "name": "Canopy",
+            "uri": "locations/usa/new-york/new-york/canopy-by-hilton/"
+          },
+          {
+            "name": "Conrad",
+            "uri": "locations/usa/new-york/new-york/conrad-hotels/"
+          },
+          {
+            "name": "DoubleTree by Hilton",
+            "uri": "locations/usa/new-york/new-york/doubletree-by-hilton/"
+          },
+          {
+            "name": "Graduate by Hilton",
+            "uri": "locations/usa/new-york/new-york/graduate-hotels/"
+          },
+          {
+            "name": "Hampton by Hilton",
+            "uri": "locations/usa/new-york/new-york/hampton-by-hilton/"
+          },
+          {
+            "name": "Hilton",
+            "uri": "locations/usa/new-york/new-york/hilton-hotels/"
+          },
+          {
+            "name": "Hilton Garden Inn",
+            "uri": "locations/usa/new-york/new-york/hilton-garden-inn/"
+          },
+          {
+            "name": "Hilton Grand Vacations",
+            "uri": "locations/usa/new-york/new-york/hilton-grand-vacations/"
+          },
+          {
+            "name": "Home2 Suites",
+            "uri": "locations/usa/new-york/new-york/home2-suites/"
+          },
+          {
+            "name": "Homewood Suites",
+            "uri": "locations/usa/new-york/new-york/homewood-suites/"
+          },
+          {
+            "name": "Motto",
+            "uri": "locations/usa/new-york/new-york/motto-by-hilton/"
+          },
+          {
+            "name": "SLH",
+            "uri": "locations/usa/new-york/new-york/small-luxury-hotels-slh/"
+          },
+          {
+            "name": "Select by Hilton",
+            "uri": "locations/usa/new-york/new-york/select-by-hilton/"
+          },
+          {
+            "name": "Tapestry",
+            "uri": "locations/usa/new-york/new-york/tapestry-collection/"
+          },
+          {
+            "name": "Waldorf Astoria",
+            "uri": "locations/usa/new-york/new-york/waldorf-astoria/"
+          }
+        ]
+      },
+      {
+        "title": "New York Hotels near Attractions",
+        "links": [
+          {
+            "name": "Bronx",
+            "uri": "locations/usa/new-york/new-york/bronx/"
+          },
+          {
+            "name": "Bryant Park",
+            "uri": "locations/usa/new-york/new-york/bryant-park/"
+          },
+          {
+            "name": "Central Park",
+            "uri": "locations/usa/new-york/new-york/central-park/"
+          },
+          {
+            "name": "Cornell Tech",
+            "uri": "locations/usa/new-york/new-york/cornell-tech/"
+          },
+          {
+            "name": "Grand Central Terminal",
+            "uri": "locations/usa/new-york/new-york/grand-central-terminal/"
+          },
+          {
+            "name": "Madison Square Garden",
+            "uri": "locations/usa/new-york/new-york/madison-square-garden/"
+          },
+          {
+            "name": "Manhattan NYC",
+            "uri": "locations/usa/new-york/new-york/manhattan-nyc/"
+          },
+          {
+            "name": "Radio City Music Hall",
+            "uri": "locations/usa/new-york/new-york/radio-city-music-hall/"
+          },
+          {
+            "name": "Rockefeller Center",
+            "uri": "locations/usa/new-york/new-york/rockefeller-center/"
+          },
+          {
+            "name": "Times Square",
+            "uri": "locations/usa/new-york/new-york/times-square/"
+          }
+        ]
+      },
+      {
+        "title": "New York Hotels near Airports",
+        "links": [
+          {
+            "name": "John F. Kennedy International Airport",
+            "uri": "locations/usa/new-york/new-york/jfk-john-f-kennedy-international-airport/"
+          },
+          {
+            "name": "LaGuardia Airport",
+            "uri": "locations/usa/new-york/new-york/lga-laguardia-airport/"
+          }
+        ]
+      }
+    ]
+  },
+  "props.pageProps.pageData.match": {
+    "address": {
+      "city": "New York",
+      "country": "US",
+      "countryName": "USA",
+      "state": "NY",
+      "stateName": "New York"
+    },
+    "geometry": {
+      "location": {
+        "latitude": 40.757995,
+        "longitude": -73.985626
+      },
+      "bounds": {
+        "northeast": {
+          "latitude": 40.8127263848518,
+          "longitude": -73.91334108436969
+        },
+        "southwest": {
+          "latitude": 40.703218516456595,
+          "longitude": -74.0579109156303
+        }
+      }
+    },
+    "id": "dx-location::locality::us::ny::new-york-city",
+    "name": "New York, New York, USA",
+    "type": "locality"
+  },
+  "props.pageProps.pageData.hotelSummaryOptions._hotels": {
+    "totalSize": 20
+  },
+  "props.pageProps.pageData.hotelSummaryOptions.hotels[0:2]": [
+    {
+      "amenityIds": [
+        "adjoiningRooms",
+        "boutique",
+        "digitalKey",
+        "dining",
+        "fitnessCenter",
+        "freeWifi",
+        "nonSmoking",
+        "petsAllowed",
+        "streamingTv",
+        "cribs"
+      ],
+      "brandCode": "PO",
+      "ctyhocn": "NYCTEPO",
+      "distance": 0.09341917551302985,
+      "distanceFmt": "0.09",
+      "facilityOverview": {
+        "allowAdultsOnly": false,
+        "homeUrlTemplate": "https://www.hilton.com/en/hotels/nyctepo-tempo-new-york-times-square/",
+        "newHotelAcquisition": false
+      },
+      "name": "Tempo by Hilton New York Times Square",
+      "contactInfo": {
+        "phoneNumber": "+1 212-262-8100"
+      },
+      "display": {
+        "open": true,
+        "openDate": "2023-08-08",
+        "preOpenMsg": null,
+        "resEnabled": true,
+        "resEnabledDate": null,
+        "seasonallyClosed": false,
+        "seasonalReopenDate": null,
+        "treatments": []
+      },
+      "disclaimers": [],
+      "address": {
+        "addressFmt": "1568 Broadway, New York City, New York, 10036, USA",
+        "addressLine1": "1568 Broadway",
+        "city": "New York City",
+        "country": "US",
+        "countryName": "USA",
+        "postalCode": "10036",
+        "state": "NY",
+        "stateName": "New York"
+      },
+      "localization": {
+        "currencyCode": "USD",
+        "coordinate": {
+          "latitude": 40.758998,
+          "longitude": -73.984429
+        }
+      },
+      "images": {
+        "master": {
+          "altText": "Comfortable seating area with city view",
+          "ratios": [
+            {
+              "size": "threeByTwo",
+              "url": "https://www.hilton.com/im/en/NYCTEPO/19192826/hilton-tempo-tsx-1623-hdr.jpg?impolicy=crop&cw=5000&ch=3333&gravity=NorthWest&xposition=0&yposition=-1"
+            }
+          ]
+        },
+        "carousel": [
+          {
+            "altText": "Comfortable seating area with city view",
+            "ratios": [
+              {
+                "url": "https://www.hilton.com/im/en/NYCTEPO/19192826/hilton-tempo-tsx-1623-hdr.jpg?impolicy=crop&cw=5000&ch=3333&gravity=NorthWest&xposition=0&yposition=-1",
+                "size": "threeByTwo"
+              }
+            ]
+          },
+          {
+            "altText": "King Guestroom with City View",
+            "ratios": [
+              {
+                "url": "https://www.hilton.com/im/en/NYCTEPO/19192754/hilton-tempo-tsx-1938-with-lights-on-ceiling.jpg?impolicy=crop&cw=5000&ch=3333&gravity=NorthWest&xposition=0&yposition=-1",
+                "size": "threeByTwo"
+              }
+            ]
+          },
+          {
+            "altText": "Two beds in room with work desk",
+            "ratios": [
+              {
+                "url": "https://www.hilton.com/im/en/NYCTEPO/19192708/hilton-tempo-tsx-2092-hdr.jpg?impolicy=crop&cw=5000&ch=3333&gravity=NorthWest&xposition=0&yposition=-1",
+                "size": "threeByTwo"
+              }
+            ]
+          },
+          {
+            "altText": "Suite Living Area",
+            "ratios": [
+              {
+                "url": "https://www.hilton.com/im/en/NYCTEPO/19709394/tempo-tsx-8330-hdr.jpg?impolicy=crop&cw=4819&ch=3213&gravity=NorthWest&xposition=90&yposition=0",
+                "size": "threeByTwo"
+              }
+            ]
+          },
+          {
+            "altText": "Presidential Suite with King Bed",
+            "ratios": [
+              {
+                "url": "https://www.hilton.com/im/en/NYCTEPO/19709503/tempo-tsx-8254-hdr-2.jpg?impolicy=crop&cw=4660&ch=3107&gravity=NorthWest&xposition=169&yposition=0",
+                "size": "threeByTwo"
+              }
+            ]
+          },
+          {
+            "altText": "king bedroom with peloton bike",
+            "ratios": [
+              {
+                "url": "https://www.hilton.com/im/en/NYCTEPO/19276801/hilton-tempo-tsx-1697-hdr.jpg?impolicy=crop&cw=5000&ch=3333&gravity=NorthWest&xposition=0&yposition=-1",
+                "size": "threeByTwo"
+              }
+            ]
+          },
+          {
+            "altText": "Highball Times Square Entrance",
+            "ratios": [
+              {
+                "url": "https://www.hilton.com/im/en/NYCTEPO/20164098/hilton-tempo-9688-pano.jpg?impolicy=crop&cw=5000&ch=3333&gravity=NorthWest&xposition=0&yposition=288",
+                "size": "threeByTwo"
+              }
+            ]
+          },
+          {
+            "altText": "Highball Times Square Dining Area",
+            "ratios": [
+              {
+                "url": "https://www.hilton.com/im/en/NYCTEPO/20164105/hilton-tempo-9651.jpg?impolicy=crop&cw=5000&ch=3333&gravity=NorthWest&xposition=0&yposition=-1",
+                "size": "threeByTwo"
+              }
+            ]
+          },
+          {
+            "altText": "People at a Bar Having Drinks and Conversing",
+            "ratios": [
+              {
+                "url": "https://www.hilton.com/im/en/NYCTEPO/19986666/nyctepo-bar-social-d.jpg?impolicy=crop&cw=9600&ch=6400&gravity=NorthWest&xposition=0&yposition=399",
+                "size": "threeByTwo"
+              }
+            ]
+          },
+          {
+            "altText": "A woman stretches on a yoga mat in the exercise room",
+            "ratios": [
+              {
+                "url": "https://www.hilton.com/im/en/NYCTEPO/19986687/nyctepo-gym-stretch-a.jpg?impolicy=crop&cw=9600&ch=6400&gravity=NorthWest&xposition=0&yposition=399",
+                "size": "threeByTwo"
+              }
+            ]
+          },
+          {
+            "altText": "Reception area with desk and seating",
+            "ratios": [
+              {
+                "url": "https://www.hilton.com/im/en/NYCTEPO/19192820/hilton-tempo-tsx-1598-pano.jpg?impolicy=crop&cw=5000&ch=3333&gravity=NorthWest&xposition=0&yposition=396",
+                "size": "threeByTwo"
+              }
+            ]
+          },
+          {
+            "altText": "Front of hotel entrance",
+            "ratios": [
+              {
+                "url": "https://www.hilton.com/im/en/NYCTEPO/17775246/l-l-tsxhotel-01-entrance-030722.jpg?impolicy=crop&cw=5000&ch=3333&gravity=NorthWest&xposition=0&yposition=111",
+                "size": "threeByTwo"
+              }
+            ]
+          }
+        ]
+      },
+      "leadRate": {
+        "lowest": {
+          "cmaTotalPriceIndicator": false,
+          "feeTransparencyIndicator": true,
+          "rateAmount": 369.09,
+          "rateAmountFmt": "$370",
+          "ratePlanCode": "H3F",
+          "ratePlan": {
+            "ratePlanName": "Honors Discount Semi-flex",
+            "ratePlanDesc": "Change or cancel up to 7 days before arrival. Hilton Honors Membership Required."
+          }
+        }
+      }
+    },
+    {
+      "amenityIds": [
+        "digitalKey",
+        "extendedStay",
+        "freeBreakfast",
+        "freeWifi",
+        "inRoomKitchen",
+        "nonSmoking",
+        "petsAllowed",
+        "streamingTv",
+        "cribs"
+      ],
+      "brandCode": "HT",
+      "ctyhocn": "NYCSEHT",
+      "distance": 0.16686373838933202,
+      "distanceFmt": "0.17",
+      "facilityOverview": {
+        "allowAdultsOnly": false,
+        "homeUrlTemplate": "https://www.hilton.com/en/hotels/nycseht-home2-suites-new-york-times-square/",
+        "newHotelAcquisition": false
+      },
+      "name": "Home2 Suites by Hilton New York Times Square",
+      "contactInfo": {
+        "phoneNumber": "+1 212-329-3010"
+      },
+      "display": {
+        "open": true,
+        "openDate": "2023-10-12",
+        "preOpenMsg": null,
+        "resEnabled": true,
+        "resEnabledDate": null,
+        "seasonallyClosed": false,
+        "seasonalReopenDate": null,
+        "treatments": []
+      },
+      "disclaimers": [],
+      "address": {
+        "addressFmt": "150 W 48th Street, New York, New York, 10017, USA",
+        "addressLine1": "150 W 48th Street",
+        "city": "New York",
+        "country": "US",
+        "countryName": "USA",
+        "postalCode": "10017",
+        "state": "NY",
+        "stateName": "New York"
+      },
+      "localization": {
+        "currencyCode": "USD",
+        "coordinate": {
+          "latitude": 40.759535,
+          "longitude": -73.98317
+        }
+      },
+      "images": {
+        "master": {
+          "altText": "Breakfast Area",
+          "ratios": [
+            {
+              "size": "threeByTwo",
+              "url": "https://www.hilton.com/im/en/MultiHotel/20930222/nycyc-hampton-new-york-times-square-continental-breakfast-area.jpg?impolicy=crop&cw=5000&ch=3333&gravity=NorthWest&xposition=0&yposition=-1"
+            }
+          ]
+        },
+        "carousel": [
+          {
+            "altText": "Breakfast Area",
+            "ratios": [
+              {
+                "url": "https://www.hilton.com/im/en/MultiHotel/20930222/nycyc-hampton-new-york-times-square-continental-breakfast-area.jpg?impolicy=crop&cw=5000&ch=3333&gravity=NorthWest&xposition=0&yposition=-1",
+                "size": "threeByTwo"
+              }
+            ]
+          },
+          {
+            "altText": "Studio king room with desk and wall mounted TV",
+            "ratios": [
+              {
+                "url": "https://www.hilton.com/im/en/NYCSEHT/18020055/nycse-guestroom-1.jpg?impolicy=crop&cw=4000&ch=2666&gravity=NorthWest&xposition=0&yposition=166",
+                "size": "threeByTwo"
+              }
+            ]
+          },
+          {
+            "altText": "King studio bedroom with seat",
+            "ratios": [
+              {
+                "url": "https://www.hilton.com/im/en/NYCSEHT/18020050/nycse-guestroom-2.jpg?impolicy=crop&cw=4000&ch=2666&gravity=NorthWest&xposition=0&yposition=166",
+                "size": "threeByTwo"
+              }
+            ]
+          },
+          {
+            "altText": "Interlude Rooftop Lounge",
+            "ratios": [
+              {
+                "url": "https://www.hilton.com/im/en/MultiHotel/20930246/nycyc-hampton-new-york-times-square-interlude-rooftop-terrace.jpg?impolicy=crop&cw=5000&ch=3333&gravity=NorthWest&xposition=0&yposition=-1",
+                "size": "threeByTwo"
+              }
+            ]
+          },
+          {
+            "altText": "Bar counter with seating",
+            "ratios": [
+              {
+                "url": "https://www.hilton.com/im/en/MultiHotel/18019664/nycyc-nycse-bar.png?impolicy=crop&cw=4258&ch=2838&gravity=NorthWest&xposition=0&yposition=80",
+                "size": "threeByTwo"
+              }
+            ]
+          },
+          {
+            "altText": "Lobby Bar",
+            "ratios": [
+              {
+                "url": "https://www.hilton.com/im/en/MultiHotel/20930240/nycyc-hampton-new-york-times-square-lobby-bar.jpg?impolicy=crop&cw=5000&ch=3333&gravity=NorthWest&xposition=0&yposition=-1",
+                "size": "threeByTwo"
+              }
+            ]
+          },
+          {
+            "altText": "Breakfast dining area with tables and chairs",
+            "ratios": [
+              {
+                "url": "https://www.hilton.com/im/en/MultiHotel/18019629/nycyc-nycse-public2.png?impolicy=crop&cw=4238&ch=2825&gravity=NorthWest&xposition=0&yposition=87",
+                "size": "threeByTwo"
+              }
+            ]
+          },
+          {
+            "altText": "Breakfast buffet area and seating space",
+            "ratios": [
+              {
+                "url": "https://www.hilton.com/im/en/MultiHotel/18019638/nycyc-nycse-public3.png?impolicy=crop&cw=4336&ch=2890&gravity=NorthWest&xposition=0&yposition=54",
+                "size": "threeByTwo"
+              }
+            ]
+          },
+          {
+            "altText": "Public seating speace with chairs and tables",
+            "ratios": [
+              {
+                "url": "https://www.hilton.com/im/en/MultiHotel/18019644/nycyc-nycse-public1.png?impolicy=crop&cw=4264&ch=2842&gravity=NorthWest&xposition=0&yposition=78",
+                "size": "threeByTwo"
+              }
+            ]
+          },
+          {
+            "altText": "Lobby and front desk area",
+            "ratios": [
+              {
+                "url": "https://www.hilton.com/im/en/MultiHotel/18019633/nycyc-nycse-lobby2.png?impolicy=crop&cw=4500&ch=3000&gravity=NorthWest&xposition=123&yposition=0",
+                "size": "threeByTwo"
+              }
+            ]
+          },
+          {
+            "altText": "Front entrance to lobby",
+            "ratios": [
+              {
+                "url": "https://www.hilton.com/im/en/NYCYCHX/20930216/nycyc-hampton-new-york-times-square-entrance.jpg?impolicy=crop&cw=5000&ch=3333&gravity=NorthWest&xposition=0&yposition=-1",
+                "size": "threeByTwo"
+              }
+            ]
+          },
+          {
+            "altText": "Lobby seating area with sofas",
+            "ratios": [
+              {
+                "url": "https://www.hilton.com/im/en/MultiHotel/18019626/nycyc-nycse-public4.png?impolicy=crop&cw=3568&ch=2378&gravity=NorthWest&xposition=0&yposition=310",
+                "size": "threeByTwo"
+              }
+            ]
+          },
+          {
+            "altText": "Lobby seating space",
+            "ratios": [
+              {
+                "url": "https://www.hilton.com/im/en/MultiHotel/18019652/nycyc-nycse-lobby1.png?impolicy=crop&cw=4441&ch=2960&gravity=NorthWest&xposition=0&yposition=19",
+                "size": "threeByTwo"
+              }
+            ]
+          }
+        ]
+      },
+      "leadRate": {
+        "lowest": {
+          "cmaTotalPriceIndicator": false,
+          "feeTransparencyIndicator": false,
+          "rateAmount": 352.4,
+          "rateAmountFmt": "$353",
+          "ratePlanCode": "SHTH2A",
+          "ratePlan": {
+            "ratePlanName": "Honors Discount Non-refundable",
+            "ratePlanDesc": "Free breakfast. No cancellations. Pay now. Hilton Honors Membership Required."
+          }
+        }
+      }
+    }
+  ],
+  "props.pageProps.pageData.ctyhocnList.hotelList": [
+    {
+      "ctyhocn": "NYCTEPO"
+    },
+    {
+      "ctyhocn": "NYCSEHT"
+    },
+    {
+      "ctyhocn": "NYCMOUA"
+    },
+    {
+      "ctyhocn": "NYCYCHX"
+    },
+    {
+      "ctyhocn": "NYCSSGI"
+    },
+    {
+      "ctyhocn": "NYCTSHH"
+    },
+    {
+      "ctyhocn": "NYCFFHX"
+    },
+    {
+      "ctyhocn": "NYCARGI"
+    },
+    {
+      "ctyhocn": "NYCDSUP"
+    },
+    {
+      "ctyhocn": "NYCSWDT"
+    },
+    {
+      "ctyhocn": "NYCWHUP"
+    },
+    {
+      "ctyhocn": "NYCFADT"
+    },
+    {
+      "ctyhocn": "NYCMAHX"
+    },
+    {
+      "ctyhocn": "NYCNHHH"
+    },
+    {
+      "ctyhocn": "NYCRCGV"
+    },
+    {
+      "ctyhocn": "NYCKPGV"
+    },
+    {
+      "ctyhocn": "NYCRYUP"
+    },
+    {
+      "ctyhocn": "NYCMIES"
+    },
+    {
+      "ctyhocn": "NYCWFGI"
+    },
+    {
+      "ctyhocn": "NYCMMHW"
+    }
+  ]
+}

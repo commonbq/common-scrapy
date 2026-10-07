@@ -1,0 +1,189 @@
+{
+  "amenityIds": [
+    "adjoiningRooms",
+    "boutique",
+    "digitalKey",
+    "dining",
+    "fitnessCenter",
+    "freeWifi",
+    "nonSmoking",
+    "petsAllowed",
+    "streamingTv",
+    "cribs"
+  ],
+  "brandCode": "PO",
+  "ctyhocn": "NYCTEPO",
+  "distance": 0.09341917551302985,
+  "distanceFmt": "0.09",
+  "facilityOverview": {
+    "allowAdultsOnly": false,
+    "homeUrlTemplate": "https://www.hilton.com/en/hotels/nyctepo-tempo-new-york-times-square/",
+    "newHotelAcquisition": false
+  },
+  "name": "Tempo by Hilton New York Times Square",
+  "contactInfo": {
+    "phoneNumber": "+1 212-262-8100"
+  },
+  "display": {
+    "open": true,
+    "openDate": "2023-08-08",
+    "preOpenMsg": null,
+    "resEnabled": true,
+    "resEnabledDate": null,
+    "seasonallyClosed": false,
+    "seasonalReopenDate": null,
+    "treatments": []
+  },
+  "disclaimers": [],
+  "address": {
+    "addressFmt": "1568 Broadway, New York City, New York, 10036, USA",
+    "addressLine1": "1568 Broadway",
+    "city": "New York City",
+    "country": "US",
+    "countryName": "USA",
+    "postalCode": "10036",
+    "state": "NY",
+    "stateName": "New York"
+  },
+  "localization": {
+    "currencyCode": "USD",
+    "coordinate": {
+      "latitude": 40.758998,
+      "longitude": -73.984429
+    }
+  },
+  "images": {
+    "master": {
+      "altText": "Comfortable seating area with city view",
+      "ratios": [
+        {
+          "size": "threeByTwo",
+          "url": "https://www.hilton.com/im/en/NYCTEPO/19192826/hilton-tempo-tsx-1623-hdr.jpg?impolicy=crop&cw=5000&ch=3333&gravity=NorthWest&xposition=0&yposition=-1"
+        }
+      ]
+    },
+    "carousel": [
+      {
+        "altText": "Comfortable seating area with city view",
+        "ratios": [
+          {
+            "url": "https://www.hilton.com/im/en/NYCTEPO/19192826/hilton-tempo-tsx-1623-hdr.jpg?impolicy=crop&cw=5000&ch=3333&gravity=NorthWest&xposition=0&yposition=-1",
+            "size": "threeByTwo"
+          }
+        ]
+      },
+      {
+        "altText": "King Guestroom with City View",
+        "ratios": [
+          {
+            "url": "https://www.hilton.com/im/en/NYCTEPO/19192754/hilton-tempo-tsx-1938-with-lights-on-ceiling.jpg?impolicy=crop&cw=5000&ch=3333&gravity=NorthWest&xposition=0&yposition=-1",
+            "size": "threeByTwo"
+          }
+        ]
+      },
+      {
+        "altText": "Two beds in room with work desk",
+        "ratios": [
+          {
+            "url": "https://www.hilton.com/im/en/NYCTEPO/19192708/hilton-tempo-tsx-2092-hdr.jpg?impolicy=crop&cw=5000&ch=3333&gravity=NorthWest&xposition=0&yposition=-1",
+            "size": "threeByTwo"
+          }
+        ]
+      },
+      {
+        "altText": "Suite Living Area",
+        "ratios": [
+          {
+            "url": "https://www.hilton.com/im/en/NYCTEPO/19709394/tempo-tsx-8330-hdr.jpg?impolicy=crop&cw=4819&ch=3213&gravity=NorthWest&xposition=90&yposition=0",
+            "size": "threeByTwo"
+          }
+        ]
+      },
+      {
+        "altText": "Presidential Suite with King Bed",
+        "ratios": [
+          {
+            "url": "https://www.hilton.com/im/en/NYCTEPO/19709503/tempo-tsx-8254-hdr-2.jpg?impolicy=crop&cw=4660&ch=3107&gravity=NorthWest&xposition=169&yposition=0",
+            "size": "threeByTwo"
+          }
+        ]
+      },
+      {
+        "altText": "king bedroom with peloton bike",
+        "ratios": [
+          {
+            "url": "https://www.hilton.com/im/en/NYCTEPO/19276801/hilton-tempo-tsx-1697-hdr.jpg?impolicy=crop&cw=5000&ch=3333&gravity=NorthWest&xposition=0&yposition=-1",
+            "size": "threeByTwo"
+          }
+        ]
+      },
+      {
+        "altText": "Highball Times Square Entrance",
+        "ratios": [
+          {
+            "url": "https://www.hilton.com/im/en/NYCTEPO/20164098/hilton-tempo-9688-pano.jpg?impolicy=crop&cw=5000&ch=3333&gravity=NorthWest&xposition=0&yposition=288",
+            "size": "threeByTwo"
+          }
+        ]
+      },
+      {
+        "altText": "Highball Times Square Dining Area",
+        "ratios": [
+          {
+            "url": "https://www.hilton.com/im/en/NYCTEPO/20164105/hilton-tempo-9651.jpg?impolicy=crop&cw=5000&ch=3333&gravity=NorthWest&xposition=0&yposition=-1",
+            "size": "threeByTwo"
+          }
+        ]
+      },
+      {
+        "altText": "People at a Bar Having Drinks and Conversing",
+        "ratios": [
+          {
+            "url": "https://www.hilton.com/im/en/NYCTEPO/19986666/nyctepo-bar-social-d.jpg?impolicy=crop&cw=9600&ch=6400&gravity=NorthWest&xposition=0&yposition=399",
+            "size": "threeByTwo"
+          }
+        ]
+      },
+      {
+        "altText": "A woman stretches on a yoga mat in the exercise room",
+        "ratios": [
+          {
+            "url": "https://www.hilton.com/im/en/NYCTEPO/19986687/nyctepo-gym-stretch-a.jpg?impolicy=crop&cw=9600&ch=6400&gravity=NorthWest&xposition=0&yposition=399",
+            "size": "threeByTwo"
+          }
+        ]
+      },
+      {
+        "altText": "Reception area with desk and seating",
+        "ratios": [
+          {
+            "url": "https://www.hilton.com/im/en/NYCTEPO/19192820/hilton-tempo-tsx-1598-pano.jpg?impolicy=crop&cw=5000&ch=3333&gravity=NorthWest&xposition=0&yposition=396",
+            "size": "threeByTwo"
+          }
+        ]
+      },
+      {
+        "altText": "Front of hotel entrance",
+        "ratios": [
+          {
+            "url": "https://www.hilton.com/im/en/NYCTEPO/17775246/l-l-tsxhotel-01-entrance-030722.jpg?impolicy=crop&cw=5000&ch=3333&gravity=NorthWest&xposition=0&yposition=111",
+            "size": "threeByTwo"
+          }
+        ]
+      }
+    ]
+  },
+  "leadRate": {
+    "lowest": {
+      "cmaTotalPriceIndicator": false,
+      "feeTransparencyIndicator": true,
+      "rateAmount": 369.09,
+      "rateAmountFmt": "$370",
+      "ratePlanCode": "H3F",
+      "ratePlan": {
+        "ratePlanName": "Honors Discount Semi-flex",
+        "ratePlanDesc": "Change or cancel up to 7 days before arrival. Hilton Honors Membership Required."
+      }
+    }
+  }
+}

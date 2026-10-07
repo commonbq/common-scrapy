@@ -1,0 +1,24 @@
+"""Hilton top-20 US city destination pages (server-rendered hotel listings)."""
+
+HILTON_CATEGORIES = {
+    "new-york-ny": "https://www.hilton.com/en/locations/usa/new-york/new-york/",
+    "los-angeles-ca": "https://www.hilton.com/en/locations/usa/california/los-angeles/",
+    "chicago-il": "https://www.hilton.com/en/locations/usa/illinois/chicago/",
+    "miami-fl": "https://www.hilton.com/en/locations/usa/florida/miami/",
+    "las-vegas-nv": "https://www.hilton.com/en/locations/usa/nevada/las-vegas/",
+    "orlando-fl": "https://www.hilton.com/en/locations/usa/florida/orlando/",
+    "san-francisco-ca": "https://www.hilton.com/en/locations/usa/california/san-francisco/",
+    "washington-dc": "https://www.hilton.com/en/locations/usa/district-of-columbia/washington/",
+    "boston-ma": "https://www.hilton.com/en/locations/usa/massachusetts/boston/",
+    "seattle-wa": "https://www.hilton.com/en/locations/usa/washington/seattle/",
+    "houston-tx": "https://www.hilton.com/en/locations/usa/texas/houston/",
+    "dallas-tx": "https://www.hilton.com/en/locations/usa/texas/dallas/",
+    "atlanta-ga": "https://www.hilton.com/en/locations/usa/georgia/atlanta/",
+    "phoenix-az": "https://www.hilton.com/en/locations/usa/arizona/phoenix/",
+    "san-diego-ca": "https://www.hilton.com/en/locations/usa/california/san-diego/",
+    "denver-co": "https://www.hilton.com/en/locations/usa/colorado/denver/",
+    "new-orleans-la": "https://www.hilton.com/en/locations/usa/louisiana/new-orleans/",
+    "nashville-tn": "https://www.hilton.com/en/locations/usa/tennessee/nashville/",
+    "austin-tx": "https://www.hilton.com/en/locations/usa/texas/austin/",
+    "honolulu-hi": "https://www.hilton.com/en/locations/usa/hawaii/honolulu/",
+}

@@ -1,0 +1,142 @@
+{
+  "new-york-ny": {
+    "url": "https://www.hilton.com/en/locations/usa/new-york/new-york/",
+    "http": "200 1141895",
+    "location": "New York, NY",
+    "hotels_on_page": 20,
+    "first_ctyhocn": "NYCTEPO"
+  },
+  "los-angeles-ca": {
+    "url": "https://www.hilton.com/en/locations/usa/california/los-angeles/",
+    "http": "200 1144529",
+    "location": "Los Angeles, CA",
+    "hotels_on_page": 20,
+    "first_ctyhocn": "LAXDTDT"
+  },
+  "chicago-il": {
+    "url": "https://www.hilton.com/en/locations/usa/illinois/chicago/",
+    "http": "200 1196827",
+    "location": "Chicago, IL",
+    "hotels_on_page": 20,
+    "first_ctyhocn": "CHITDHX"
+  },
+  "miami-fl": {
+    "url": "https://www.hilton.com/en/locations/usa/florida/miami/",
+    "http": "200 1129075",
+    "location": "Miami, FL",
+    "hotels_on_page": 20,
+    "first_ctyhocn": "MIAYOYH"
+  },
+  "las-vegas-nv": {
+    "url": "https://www.hilton.com/en/locations/usa/nevada/las-vegas/",
+    "http": "200 1168064",
+    "location": "Las Vegas, NV",
+    "hotels_on_page": 20,
+    "first_ctyhocn": "LASFLGV"
+  },
+  "orlando-fl": {
+    "url": "https://www.hilton.com/en/locations/usa/florida/orlando/",
+    "http": "200 1205655",
+    "location": "Orlando, FL",
+    "hotels_on_page": 20,
+    "first_ctyhocn": "MCODTES"
+  },
+  "san-francisco-ca": {
+    "url": "https://www.hilton.com/en/locations/usa/california/san-francisco/",
+    "http": "200 1151377",
+    "location": "San Francisco, CA",
+    "hotels_on_page": 20,
+    "first_ctyhocn": "SFOYOYH"
+  },
+  "washington-dc": {
+    "url": "https://www.hilton.com/en/locations/usa/district-of-columbia/washington/",
+    "http": "200 1155484",
+    "location": "Washington, DC",
+    "hotels_on_page": 20,
+    "first_ctyhocn": "WASHSHX"
+  },
+  "boston-ma": {
+    "url": "https://www.hilton.com/en/locations/usa/massachusetts/boston/",
+    "http": "200 1149016",
+    "location": "Boston, MA",
+    "hotels_on_page": 20,
+    "first_ctyhocn": "BOSTNPY"
+  },
+  "seattle-wa": {
+    "url": "https://www.hilton.com/en/locations/usa/washington/seattle/",
+    "http": "200 1157593",
+    "location": "Seattle, WA",
+    "hotels_on_page": 18,
+    "first_ctyhocn": "SEAMFHH"
+  },
+  "houston-tx": {
+    "url": "https://www.hilton.com/en/locations/usa/texas/houston/",
+    "http": "200 1175002",
+    "location": "Houston, TX",
+    "hotels_on_page": 20,
+    "first_ctyhocn": "HOUTSUP"
+  },
+  "dallas-tx": {
+    "url": "https://www.hilton.com/en/locations/usa/texas/dallas/",
+    "http": "200 1201203",
+    "location": "Dallas, TX",
+    "hotels_on_page": 20,
+    "first_ctyhocn": "DALPAGI"
+  },
+  "atlanta-ga": {
+    "url": "https://www.hilton.com/en/locations/usa/georgia/atlanta/",
+    "http": "200 1175095",
+    "location": "Atlanta, GA",
+    "hotels_on_page": 20,
+    "first_ctyhocn": "ATLDWHT"
+  },
+  "phoenix-az": {
+    "url": "https://www.hilton.com/en/locations/usa/arizona/phoenix/",
+    "http": "200 1168074",
+    "location": "Phoenix, AZ",
+    "hotels_on_page": 20,
+    "first_ctyhocn": "PHXDOGI"
+  },
+  "san-diego-ca": {
+    "url": "https://www.hilton.com/en/locations/usa/california/san-diego/",
+    "http": "200 1126396",
+    "location": "San Diego, CA",
+    "hotels_on_page": 20,
+    "first_ctyhocn": "SANSDHT"
+  },
+  "denver-co": {
+    "url": "https://www.hilton.com/en/locations/usa/colorado/denver/",
+    "http": "200 1147345",
+    "location": "Denver, CO",
+    "hotels_on_page": 20,
+    "first_ctyhocn": "DENRTQQ"
+  },
+  "new-orleans-la": {
+    "url": "https://www.hilton.com/en/locations/usa/louisiana/new-orleans/",
+    "http": "200 1145077",
+    "location": "New Orleans, LA",
+    "hotels_on_page": 20,
+    "first_ctyhocn": "MSYPYPY"
+  },
+  "nashville-tn": {
+    "url": "https://www.hilton.com/en/locations/usa/tennessee/nashville/",
+    "http": "200 1164100",
+    "location": "Nashville, TN",
+    "hotels_on_page": 20,
+    "first_ctyhocn": "BNADUDT"
+  },
+  "austin-tx": {
+    "url": "https://www.hilton.com/en/locations/usa/texas/austin/",
+    "http": "200 1139589",
+    "location": "Austin, TX",
+    "hotels_on_page": 20,
+    "first_ctyhocn": "AUSDTHX"
+  },
+  "honolulu-hi": {
+    "url": "https://www.hilton.com/en/locations/usa/hawaii/honolulu/",
+    "http": "200 1018577",
+    "location": "Honolulu, HI",
+    "hotels_on_page": 15,
+    "first_ctyhocn": "HNLMOGV"
+  }
+}
