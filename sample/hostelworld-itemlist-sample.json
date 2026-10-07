@@ -1,0 +1,1088 @@
+{
+ "@id": "https://www.hostelworld.com/hostels/north-america/usa/new-york/#/schema/item-list/1",
+ "@type": "ItemList",
+ "name": "List of Properties",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "HI New York City Hostel",
+    "description": "HostelWorld users voted HI USA the best hostel network in North America in 2024! Located in a historic castle-like building minutes from Central Park and Times Square and only 2 blocks from the nearest subway station, Hostelling International New York City...",
+    "url": "https://www.hostelworld.com/hostels/p/1850/hi-new-york-city-hostel/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/1/1850/5011.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/1/1850/cpaknqc5bf5tk1w8jdtm.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/1/1850/xwhq4ofk2vn6vqkrme06.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/1/1850/hohriy0e6seiyhzl31pj.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "891 Amsterdam Avenue",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.798684,
+     "longitude": -73.966653
+    },
+    "aggregateRating": {
+     "name": "HI New York City Hostel",
+     "@type": "AggregateRating",
+     "ratingValue": 9.2,
+     "reviewCount": 11434,
+     "bestRating": 10
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "Chelsea International Hostel",
+    "description": "IMPORTANT UPDATE: Please check our house rules for more details on how we are operating during the pandemic. **** The Chelsea International Hostel is one of the largest independent Hostels in New York City, operating since 1992. We are located in Chelsea,...",
+    "url": "https://www.hostelworld.com/hostels/p/801/chelsea-international-hostel/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/8/801/rdk8jkriuegulhkb6wqw.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/8/801/q09v3u0slgzwl8uvdtbz.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/8/801/c23cr6theqlb0ryuphtv.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/8/801/unt5ctrtiry6gazik3ao.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "251 West 20th Street",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.743192,
+     "longitude": -73.999046
+    },
+    "aggregateRating": {
+     "name": "Chelsea International Hostel",
+     "@type": "AggregateRating",
+     "ratingValue": 8.54,
+     "reviewCount": 12785,
+     "bestRating": 10
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "The BED Stuy Hotel",
+    "description": "Welcome to The BED Stuy Hotel, a lively and stylish boutique stay set between the historic districts of B",
+    "url": "https://www.hostelworld.com/hostels/p/338036/the-bed-stuy-hotel/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/338036/qg5yfxclj58kjpurw9ti.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/338036/m70tqokqq1cdjzrd8fit.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/338036/splkuge1gafuom3iywzv.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/338036/ptxtcvnpbztw1edg3zid.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "35 Herkimer Place, Brooklyn NY",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.6791254,
+     "longitude": -73.9508854
+    },
+    "aggregateRating": {
+     "name": "The BED Stuy Hotel",
+     "@type": "AggregateRating",
+     "ratingValue": 9.14,
+     "reviewCount": 125,
+     "bestRating": 10
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 4,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "The Local NYC",
+    "description": "The Local has great guest rooms - all of the rooms have en suite bathrooms, linens and towels, reading lights, bed dividers, large windows and locked storage space. Even better is the common space- a roof terrace to relax and take in the sunset over NYC's...",
+    "url": "https://www.hostelworld.com/hostels/p/76281/the-local-nyc/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/7/76281/19.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/7/76281/21.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/7/76281/20.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/7/76281/15.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "13-02 44th Avenue",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.749595,
+     "longitude": -73.947825
+    },
+    "aggregateRating": {
+     "name": "The Local NYC",
+     "@type": "AggregateRating",
+     "ratingValue": 9,
+     "reviewCount": 5158,
+     "bestRating": 10
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 5,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "NY Moore Hostel",
+    "description": "New York Moore Hostel offers a comfortable and affordable accommodation option located in the heart of Brooklyn, New York. Our property is one of the largest hostels in NYC and has been fully renovated with a vibrant decor and spacious amenities. We striv",
+    "url": "https://www.hostelworld.com/hostels/p/57176/ny-moore-hostel/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/5/57176/iz2uusqpnfdjg48wsiow.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/5/57176/bzqkvtq1rrkppjimb8yn.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/5/57176/prtfawnkqrlymtyttxff.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/5/57176/phz8x2pqlndfnjq9yoz3.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "179 Moore Street",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.7042931,
+     "longitude": -73.93764
+    },
+    "aggregateRating": {
+     "name": "NY Moore Hostel",
+     "@type": "AggregateRating",
+     "ratingValue": 8.62,
+     "reviewCount": 3642,
+     "bestRating": 10
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 6,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "Q4 Hotel",
+    "description": "Q4 Hotel is a brand new fully renovated hostel of pure comfort, convenience and unbelievable affordability located in Long Island City!",
+    "url": "https://www.hostelworld.com/hostels/p/58186/q4-hotel/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/5/58186/7.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/5/58186/6.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/5/58186/10.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/5/58186/12.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "2909 Queens Plaza North",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.7499046,
+     "longitude": -73.9374619
+    },
+    "aggregateRating": {
+     "name": "Q4 Hotel",
+     "@type": "AggregateRating",
+     "ratingValue": 7.44,
+     "reviewCount": 7667,
+     "bestRating": 10
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 7,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "Kama Central Park",
+    "description": "Kama Central Park is an affordable option for backpackers and nomads. Whether you are staying for business or pleasure our Capsules offer a unique experience with comfort and privacy in mind. Each pod is equipped with its air filtration system as well as...",
+    "url": "https://www.hostelworld.com/hostels/p/317612/kama-central-park/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/317612/abi0jmkxgvhlmrkvtjvl.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/317612/q3psbmtxd53pefug3jzx.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/317612/bzwabzlyuisxicvjjplt.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/317612/ujlbr9yxzn5b2wutk5lh.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "36 West 106th Street",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.7980478,
+     "longitude": -73.9609075
+    },
+    "aggregateRating": {
+     "name": "Kama Central Park",
+     "@type": "AggregateRating",
+     "ratingValue": 8.54,
+     "reviewCount": 318,
+     "bestRating": 10
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 8,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "International Student Center",
+    "description": "\ud83d\udd52 Key Policies Check-in: Between 3 PM and 10 PM (no late check-ins past 10 PM). Check-out:10 am Age Policy: Travelers of all ages are welcome here. Guests under 18 must stay in a private room with an adult. Taxes: None applied \u2014 as a non-profit, we do not...",
+    "url": "https://www.hostelworld.com/hostels/p/4547/international-student-center/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/4/4547/o1xwc9dirr4cdipcrdqm.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/4/4547/nxze7qvvx40rgzq3xn2b.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/4/4547/kdvj3gx7a0aa3ik9w6sy.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/4/4547/zuknrkgyphvmn6hm5xkl.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "38 West 88th Street",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.7870572,
+     "longitude": -73.9700071
+    },
+    "aggregateRating": {
+     "name": "International Student Center",
+     "@type": "AggregateRating",
+     "ratingValue": 9.42,
+     "reviewCount": 3869,
+     "bestRating": 10
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 9,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "The Nolita Express Hostel",
+    "description": "The Nolita Express is a historic social hostel designed and inspired by the roaring 20's and the surrounding neighborhood of Nolita. Built in 1927, and preserved since the 1940s when the building served as a home for soldiers returning home from World War...",
+    "url": "https://www.hostelworld.com/hostels/p/326124/the-nolita-express-hostel/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/326124/tmjtwlprd58bkvnz5ydo.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/326124/etqawv0uw5emeb5rvmdx.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/326124/dwzs4dbsjk8oxqjvbl8n.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/326124/ljfj1wd5lknunzopsyu8.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "220 Bowery",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.7223273,
+     "longitude": -73.9936956
+    },
+    "aggregateRating": {
+     "name": "The Nolita Express Hostel",
+     "@type": "AggregateRating",
+     "ratingValue": 7.82,
+     "reviewCount": 275,
+     "bestRating": 10
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 10,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "The Kingdom Cove",
+    "description": "Welcome to your private, spacious king-size bedroom located in a charming two-family house in the heart of a quiet suburban neighborhood in Queens, New York.",
+    "url": "https://www.hostelworld.com/hostels/p/328311/the-kingdom-cove/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/328311/mf9qbqmgq0fmrsdtg4bq.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/328311/vf06bhzzk840qlhb3ygz.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/328311/ccmegdvuqb7ta9c0rl13.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/328311/ty3ahmdgswpkxqy9tyl8.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "133-21 Francis Lewis Blvd., Laurelton",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.67641,
+     "longitude": -73.738846
+    },
+    "aggregateRating": {
+     "name": "The Kingdom Cove",
+     "@type": "AggregateRating",
+     "ratingValue": 9.3,
+     "reviewCount": 49,
+     "bestRating": 10
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 11,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "West Side YMCA",
+    "description": "The West Side YMCA Hostel offers a great location near Central Park and Lincoln Center, as well as a 32,500 square-foot fitness center with free group exercise classes",
+    "url": "https://www.hostelworld.com/hostels/p/831/west-side-ymca/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/8/831/501.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/8/831/1.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/8/831/2.JPG",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/8/831/26.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "5 West 63rd St.",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.7709272,
+     "longitude": -73.9805759
+    },
+    "aggregateRating": {
+     "name": "West Side YMCA",
+     "@type": "AggregateRating",
+     "ratingValue": 6.74,
+     "reviewCount": 3527,
+     "bestRating": 10
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 12,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "American Dream Hostel",
+    "description": "American Dream Bed and Breakfast is a family owned business that has been home for travellers here in New York for the past 15 years. Conveniently located in Manhattan\u2019s historical Gramercy Park and Flatiron District neighborhood, American Dream is a stone\u2019s...",
+    "url": "https://www.hostelworld.com/hostels/p/809/american-dream-hostel/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/8/809/5074.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/8/809/5036.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/8/809/5037.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/8/809/5038.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "168 East 24th Street",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.7395922,
+     "longitude": -73.9831147
+    },
+    "aggregateRating": {
+     "name": "American Dream Hostel",
+     "@type": "AggregateRating",
+     "ratingValue": 9.34,
+     "reviewCount": 3148,
+     "bestRating": 10
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 13,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "Nap York Central Park Sleep Station",
+    "description": "Nap York Central Park is New York's premier sleep station for the busiest travelers seeking a clean and quiet place to sleep, shower, and go. Whether it\u2019s hourly or nightly, our mission is to recharge the people who power the world. Nap York offers WiFi,...",
+    "url": "https://www.hostelworld.com/hostels/p/310166/nap-york-central-park-sleep-station/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/310166/tqvord8swuelvql3od6q.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/310166/bo8ykjt3uuishskvqofi.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/310166/v3gptr5vaqebtq3ljfjk.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/310166/yeidxpxoqxfquj1ebsrc.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "940 8th Ave",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.7656652,
+     "longitude": -73.9832325
+    },
+    "aggregateRating": {
+     "name": "Nap York Central Park Sleep Station",
+     "@type": "AggregateRating",
+     "ratingValue": 8.08,
+     "reviewCount": 574,
+     "bestRating": 10
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 14,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "Now Now NoHo",
+    "description": "Small footprint. High design. Big adventures. Now Now is a new, courageous, and transformative experience for travelers seeking a deeper connection to the world around them. It\u2019s a portal to possibility. Featuring small, but sumptuous single-occupancy sleeper...",
+    "url": "https://www.hostelworld.com/hostels/p/328836/now-now-noho/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/328836/mvfgxt3lwpxggzc7nv8z.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/328836/pevoset55uhwqnxnxomt.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/328836/w6pzf3m6xc3x5jekcnps.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/328836/zpeqj3inrtkeewbyx4xz.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "338-340 Bowery",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.7261,
+     "longitude": -73.99214
+    },
+    "aggregateRating": {
+     "name": "Now Now NoHo",
+     "@type": "AggregateRating",
+     "ratingValue": 9.06,
+     "reviewCount": 38,
+     "bestRating": 10
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 15,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "Interfaith Retreats",
+    "description": "Individual retreat cubicle rooms here are clean, peaceful and safe \u200b Walking distance of Times Square, Penn Station, Madison Square Garden, Port Authority Bus Terminal, Javits Center, Fashion Institute of Technology, High Line Park, Hudson Yards, Theater...",
+    "url": "https://www.hostelworld.com/hostels/p/101378/interfaith-retreats/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/1/101378/elhm2z6pnt4byj7fp0by.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/1/101378/kkkhmjitx26erhc8kjaz.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/1/101378/pzxnxgccquahyfzt39ob.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/1/101378/a7juzdrn5n6mipekryjl.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "370 8th Avenue",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.7487024,
+     "longitude": -73.9957845
+    },
+    "aggregateRating": {
+     "name": "Interfaith Retreats",
+     "@type": "AggregateRating",
+     "ratingValue": 8.98,
+     "reviewCount": 347,
+     "bestRating": 10
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 16,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "West Village EuroHostel",
+    "description": "Welcome to West Village EuroHostel, a modern and welcoming retreat in the heart of New York City's famous",
+    "url": "https://www.hostelworld.com/hostels/p/340065/west-village-eurohostel/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/340065/bjnn0v7qq1bppw27rjpb.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/340065/mq2ucm8zbl6plabto2pj.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/340065/xb5arbzgr1yp8qur7qt1.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/340065/uj4qzdmifcxpj9gvkdgr.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "113 Jane Street",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.738268,
+     "longitude": -74.00935
+    },
+    "aggregateRating": {
+     "name": "West Village EuroHostel",
+     "@type": "AggregateRating",
+     "ratingValue": 8.64,
+     "reviewCount": 4,
+     "bestRating": 10
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 17,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "New York Spirit Retreats",
+    "description": "Indulge in your personal retreat cubicle -lockable, air-conditioned, with communal facilities. Immerse in comfort with clean sheet and private shower cabins.",
+    "url": "https://www.hostelworld.com/hostels/p/320959/new-york-spirit-retreats/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/320959/ybtp5s9fslhq55nolcyb.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/320959/m5offm1tptmfhoiarmfo.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/320959/l4iazi59fwbbajap1yql.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/320959/yvjgz5fwrt9lv5abuu2w.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "370 8th Avenue",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.748675,
+     "longitude": -73.995705
+    },
+    "aggregateRating": {
+     "name": "New York Spirit Retreats",
+     "@type": "AggregateRating",
+     "ratingValue": 8.1,
+     "reviewCount": 51,
+     "bestRating": 10
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 18,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "Lamartine Chelsea",
+    "description": "Lamartine Chelsea is located in the Chelsea neighborhood in New York City near the Fashion Institute of Technology, Madison Square Garden and the new Facebook offices. It is the ideal location if you are starting your new job, school or just relocating to...",
+    "url": "https://www.hostelworld.com/hostels/p/309273/lamartine-chelsea/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/309273/vcega5zx86geinchaz1e.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/309273/jw6gvcglv6ltfscmyvex.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/309273/zl1yx9acafo70cftvrll.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/309273/m8w8no5cz2s9kbv8yufc.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "305 W 29 St",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.749476,
+     "longitude": -73.99616
+    },
+    "aggregateRating": {
+     "name": "Lamartine Chelsea",
+     "@type": "AggregateRating",
+     "ratingValue": 9.72,
+     "reviewCount": 107,
+     "bestRating": 10
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 19,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "East Harlem Hostel",
+    "description": "Situated in the vibrant neighborhood of East Harlem, New York, East Harlem Hostel offers a comfortable and convenient stay with free WiFi throughout the property. We are a staff-less and contactless property, but we are always available to assist you as needed....",
+    "url": "https://www.hostelworld.com/hostels/p/323639/east-harlem-hostel/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/323639/hzbomxdeejsmq6blj6m9.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/323639/jejmuesafza5tljvqdpt.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/323639/pibob7ozwijxiavfycag.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/323639/rzdh6muqepj6chrh2dxa.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "157 E 115 St",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.79798,
+     "longitude": -73.941693
+    },
+    "aggregateRating": {
+     "name": "East Harlem Hostel",
+     "@type": "AggregateRating",
+     "ratingValue": 5.72,
+     "reviewCount": 8,
+     "bestRating": 10
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 20,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "POD Times Square",
+    "description": "Experience the pulse of New York City at POD Times Square! Perfectly situated in the heart of Manhattan at 400 West 42nd Street, our modern hotel puts you steps away from the iconic Times Square and the vibrant Theater District. POD Times Square is designed...",
+    "url": "https://www.hostelworld.com/hostels/p/338574/pod-times-square/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/338574/rae0q6ayyndazxectvkl.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/338574/lhfalscbobrwtqk242fp.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/338574/fd5vzt277c5bwdq6a97r.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/338574/pfo8nchddw3jnvc0b185.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "400 West 42nd Street",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.7583995,
+     "longitude": -73.9930806
+    },
+    "aggregateRating": {
+     "name": "POD Times Square",
+     "@type": "AggregateRating",
+     "ratingValue": 9.72,
+     "reviewCount": 6,
+     "bestRating": 10
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 21,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "Hotel 31",
+    "description": "Please note: The room for 4 people is not a room with 4 separate beds, it is a room with 2 double beds which sleeps 4 people. The newly renovated Hotel 31 is extended stay hotel located in midtown Manhattan on 31 Street between Lexington Avenue and Park Avenue....",
+    "url": "https://www.hostelworld.com/hostels/p/8429/hotel-31/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/8/8429/4.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/8/8429/10.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/8/8429/2.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/8/8429/3.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "120 East 31st Street",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.74457,
+     "longitude": -73.9818134
+    },
+    "aggregateRating": {
+     "name": "Hotel 31",
+     "@type": "AggregateRating",
+     "ratingValue": 8.74,
+     "reviewCount": 665,
+     "bestRating": 10
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 22,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "La Sienna",
+    "description": "La Sienna provides a cozy and home-like atmosphere with private rooms, free Wifi, linens, towels, 24 hour security and TVs in all rooms. No smoking, no personal mail, and no pork are allowed, ensuring a quiet and serene setting.",
+    "url": "https://www.hostelworld.com/hostels/p/33822/la-sienna/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/33822/f7qiy4ef5sr0w2vvilbp.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/33822/cxjy2uj1zxh4gwr3pqca.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/33822/kp1mfbyti8gjgltyjydi.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/33822/nswi446ayx8ghlzg3nsv.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "241 West 123rd Street",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.808505,
+     "longitude": -73.950835
+    },
+    "aggregateRating": {
+     "name": "La Sienna",
+     "@type": "AggregateRating",
+     "ratingValue": 9.52,
+     "reviewCount": 1194,
+     "bestRating": 10
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 23,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "POD 51",
+    "description": "Located just under 1 km from the iconic Rockefeller Center, Pod 51 Hotel in Manhattan offers a stylish and modern stay with flat-screen TVs.",
+    "url": "https://www.hostelworld.com/hostels/p/331436/pod-51/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/331436/ovyxyealonzy8g61jrm8.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/331436/fyjf4t6z4k61zeeivzsd.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/331436/bp0hptjg1xvhvlstx451.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/331436/dzizeamedqx5fkrhaw7i.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "230 E 51st St",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.755805,
+     "longitude": -73.969066
+    },
+    "aggregateRating": {
+     "name": "POD 51",
+     "@type": "AggregateRating",
+     "ratingValue": 9.78,
+     "reviewCount": 5,
+     "bestRating": 10
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 24,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "Americana Inn",
+    "description": "Escape to the Americana Inn, a vibrant hotel nestled in the heart of New York City at 69 West 38th Street. The Americana Inn offers rooms that accommodate 1-4 people with shared bathrooms. Immerse yourself in the city's energy while enjoying our cozy and...",
+    "url": "https://www.hostelworld.com/hostels/p/334411/americana-inn/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/334411/wactka3eovjodp8dcdg1.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/334411/sst31qvlviq25z4mhm4d.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/334411/hcgtjh3tsgrqxgcs98uf.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/334411/yxtpqo7mkaraskydjf6h.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "69 West 38th Street",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.752245,
+     "longitude": -73.985518
+    },
+    "aggregateRating": {
+     "name": "Americana Inn",
+     "@type": "AggregateRating",
+     "ratingValue": 9.3,
+     "reviewCount": 10,
+     "bestRating": 10
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 25,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "POD 39",
+    "description": "Experience New York City in style at POD 39, a modern hotel located in the heart of Midtown Manhattan! Situated at 145 East 39th Street, our hotel is the perfect base for exploring all the iconic sights and vibrant neighborhoods the city has to offer. Step...",
+    "url": "https://www.hostelworld.com/hostels/p/338573/pod-39/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/338573/mcsnm1nvtlomzufflvfg.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/338573/ndfcbgvhayk59y8gz8rt.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/338573/yyujlk2d39gtsjvssf1a.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/338573/ufekef22rvscd0zpaene.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "145 East 39th Street",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.7493602,
+     "longitude": -73.9765358
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 26,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "JGSTAY - Times Square",
+    "description": "Step into the vibrant heart of New York City at JG Time Hotel by JGSTAY, Times Square(Walk-up; No elevator)! Our stylish hotel is your cozy urban oasis, perfectly situated on 8th Avenue for easy access to all the iconic sights and sounds. Imagine stepping...",
+    "url": "https://www.hostelworld.com/hostels/p/335188/jgstay-times-square/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/335188/tvkhmm4v4jpceo8axixk.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/335188/nncrbrrrbwgul2lozanm.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/335188/vjbyhth9ec2nehacddzq.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/335188/h8nni5ffutyho6iao7ux.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "765 8th Avenue",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.760346,
+     "longitude": -73.987797
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 27,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "Nesva Hotel",
+    "description": "The Nesva Hotel features modern espresso walnut wood furniture, flat screen HDTV's, eco-friendly bath amenities, two-line telephone with data port, and complimentary newspaper, wifi and continental breakfast",
+    "url": "https://www.hostelworld.com/hostels/p/68167/nesva-hotel/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/6/68167/1.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/6/68167/2.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/6/68167/3.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/6/68167/4.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "39-12 29th, Long Island City",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.7533333,
+     "longitude": -73.935
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 28,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "Interfaith 21",
+    "description": "Interfaith 21st Street is located in New York City, less than 1 km from The High Line and just an 11-minute walk from Penn Station.",
+    "url": "https://www.hostelworld.com/hostels/p/333108/interfaith-21/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/333108/ss3wykh8uwafkibloigv.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/333108/psy0kwhj0llyuuflxajj.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/333108/ylrgbxkffo0f8qyldzxc.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/333108/ykinekucflqttkhzhize.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "246 West 21st Street",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.7434299,
+     "longitude": -73.998623
+    },
+    "aggregateRating": {
+     "name": "Interfaith 21",
+     "@type": "AggregateRating",
+     "ratingValue": 9.86,
+     "reviewCount": 3,
+     "bestRating": 10
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 29,
+   "item": {
+    "@type": "LodgingBusiness",
+    "additionalType": "Hostel",
+    "name": "JGSTAY - Soho",
+    "description": "JG Sohotel offers unbeatable prices, a cozy atmosphere, and an unparalleled location. Whether you\u2019re visiting with family, a partner, or friends, JG Sohotel is the ideal choice for a memorable stay in New York City. You reservation will include: - Lounge...",
+    "url": "https://www.hostelworld.com/hostels/p/330266/jgstay-soho/",
+    "image": [
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/330266/iqwgl73bpwmckniivgsk.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/330266/bjkcx615xfyo8o5swbis.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/330266/jcwu5s2r1fyiak9xcqnh.jpg",
+     "https://a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/3/330266/xl8efky2sucidrz1zyjo.jpg"
+    ],
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "120 Lafayette St",
+     "addressLocality": "New York",
+     "addressCountry": "USA",
+     "addressRegion": "USA",
+     "postalCode": "N/A"
+    },
+    "telephone": "N/A",
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 40.71871,
+     "longitude": -74.000469
+    },
+    "aggregateRating": {
+     "name": "JGSTAY - Soho",
+     "@type": "AggregateRating",
+     "ratingValue": 10,
+     "reviewCount": 1,
+     "bestRating": 10
+    }
+   }
+  }
+ ]
+}

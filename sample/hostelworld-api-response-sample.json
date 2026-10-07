@@ -1,0 +1,208 @@
+{
+ "success": true,
+ "data": {
+  "id": 3,
+  "name": "London",
+  "urlFriendlyName": "london",
+  "countryId": 237,
+  "country": "England",
+  "continentId": 3,
+  "continent": "Europe",
+  "urlFriendlyCountry": "england",
+  "urlFriendlyContinent": "europe",
+  "tracking": {
+   "name": "London",
+   "country": "England",
+   "continent": "Europe"
+  },
+  "geoCoordinates": {
+   "latitude": 51.5,
+   "longitude": -0.117
+  },
+  "image": {
+   "mobile": "a.hwstatic.com/image/upload/f_auto,q_auto/hw/location-images/city/london_s.jpg",
+   "tablet": "a.hwstatic.com/image/upload/f_auto,q_auto/hw/location-images/city/london_m.jpg",
+   "desktop": "a.hwstatic.com/image/upload/f_auto,q_auto/hw/location-images/city/london_l.jpg",
+   "heroImage": "a.hwstatic.com/image/upload/f_auto,q_auto/hw/location-images/static-city/london.jpg",
+   "ugcHandle": "stefa.ninchen",
+   "type": "city"
+  },
+  "numberOfProperties": 92,
+  "propertyCount": 30,
+  "totalPropertiesCount": 92,
+  "numberOfPages": 4,
+  "page": 2,
+  "hasAvailability": true,
+  "properties": [
+   {
+    "id": 510,
+    "name": "Generator London",
+    "type": "HOSTEL",
+    "urlFriendlyName": "generator-london",
+    "address": "Compton Place",
+    "city": "London",
+    "urlFriendlyCity": "london",
+    "country": "England",
+    "urlFriendlyCountry": "england",
+    "continent": "Europe",
+    "urlFriendlyContinent": "europe",
+    "avgRating": 7,
+    "numberReviews": 9468,
+    "cityCenterDistance": 2.97,
+    "hasAvailability": true,
+    "isNew": false,
+    "image": {
+     "small": "a.hwstatic.com/image/upload/f_auto,q_auto,t_20/propertyimages/5/510/x1zidcufgquooi3pkmnj.jpg",
+     "medium": "a.hwstatic.com/image/upload/f_auto,q_auto,t_30/propertyimages/5/510/x1zidcufgquooi3pkmnj.jpg",
+     "large": "a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/5/510/x1zidcufgquooi3pkmnj.jpg"
+    },
+    "badges": [
+     {
+      "id": "90",
+      "badgeName": "Free WiFi",
+      "transCode": "FREEWIFI",
+      "displayMessage": false
+     }
+    ],
+    "intro": "Generator London is a design hotel-hostel located in Russell Square in the heart of central London, a short stroll to Covent Garden, Regents Park and trendy King's Cross. Guests can choose from shared dorms to private rooms, offering something for everyone....",
+    "shortIntro": "Generator London is a design hotel-hostel located in Russell Square in the heart of central London, a sho",
+    "tracking": {
+     "name": "Generator London",
+     "city": "London",
+     "country": "England",
+     "continent": "Europe"
+    },
+    "sustainability": [],
+    "geoCoordinates": {
+     "latitude": 51.5263103,
+     "longitude": -0.1245209
+    },
+    "averageRatings": {
+     "security": 7.86,
+     "location": 8.5,
+     "staff": 7.34,
+     "atmosphere": 6.69,
+     "cleanliness": 6,
+     "valueForMoney": 6.6,
+     "facilities": 5.96
+    },
+    "sharedMinPrice": {
+     "value": 23.2,
+     "currency": "USD"
+    },
+    "privateMinPrice": {
+     "value": 27.77,
+     "currency": "USD"
+    },
+    "images": [
+     {
+      "small": "a.hwstatic.com/image/upload/f_auto,q_auto,t_20/propertyimages/5/510/x1zidcufgquooi3pkmnj.jpg",
+      "medium": "a.hwstatic.com/image/upload/f_auto,q_auto,t_30/propertyimages/5/510/x1zidcufgquooi3pkmnj.jpg",
+      "large": "a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/5/510/x1zidcufgquooi3pkmnj.jpg"
+     },
+     {
+      "small": "a.hwstatic.com/image/upload/f_auto,q_auto,t_20/propertyimages/5/510/ijjx2dzp2bqedaiitwyl.jpg",
+      "medium": "a.hwstatic.com/image/upload/f_auto,q_auto,t_30/propertyimages/5/510/ijjx2dzp2bqedaiitwyl.jpg",
+      "large": "a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/5/510/ijjx2dzp2bqedaiitwyl.jpg"
+     },
+     {
+      "small": "a.hwstatic.com/image/upload/f_auto,q_auto,t_20/propertyimages/5/510/xgppxhtz4xi1707touze.jpg",
+      "medium": "a.hwstatic.com/image/upload/f_auto,q_auto,t_30/propertyimages/5/510/xgppxhtz4xi1707touze.jpg",
+      "large": "a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/5/510/xgppxhtz4xi1707touze.jpg"
+     },
+     {
+      "small": "a.hwstatic.com/image/upload/f_auto,q_auto,t_20/propertyimages/5/510/i4dydxsufayac7zcmlex.jpg",
+      "medium": "a.hwstatic.com/image/upload/f_auto,q_auto,t_30/propertyimages/5/510/i4dydxsufayac7zcmlex.jpg",
+      "large": "a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/5/510/i4dydxsufayac7zcmlex.jpg"
+     }
+    ],
+    "totalImagesCount": 26
+   },
+   {
+    "id": 55551,
+    "name": "Safestay London Elephant & Castle",
+    "type": "HOSTEL",
+    "urlFriendlyName": "safestay-london-elephant-and-castle",
+    "address": "144-152 Walworth Road",
+    "city": "London",
+    "urlFriendlyCity": "london",
+    "country": "England",
+    "urlFriendlyCountry": "england",
+    "continent": "Europe",
+    "urlFriendlyContinent": "europe",
+    "avgRating": 7.1,
+    "numberReviews": 5822,
+    "cityCenterDistance": 1.7,
+    "hasAvailability": true,
+    "isNew": false,
+    "image": {
+     "small": "a.hwstatic.com/image/upload/f_auto,q_auto,t_20/propertyimages/5/55551/qfnj2hgtgb7nb3gui3mc.jpg",
+     "medium": "a.hwstatic.com/image/upload/f_auto,q_auto,t_30/propertyimages/5/55551/qfnj2hgtgb7nb3gui3mc.jpg",
+     "large": "a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/5/55551/qfnj2hgtgb7nb3gui3mc.jpg"
+    },
+    "badges": [
+     {
+      "id": "90",
+      "badgeName": "Free WiFi",
+      "transCode": "FREEWIFI",
+      "displayMessage": false
+     }
+    ],
+    "intro": "Safestay at Elephant & Castle is ideal if you are looking for budget accommodation in London, whether you",
+    "shortIntro": null,
+    "tracking": {
+     "name": "Safestay London Elephant & Castle",
+     "city": "London",
+     "country": "England",
+     "continent": "Europe"
+    },
+    "sustainability": [],
+    "geoCoordinates": {
+     "latitude": 51.4906659,
+     "longitude": -0.0975158
+    },
+    "averageRatings": {
+     "security": 7.45,
+     "location": 8.05,
+     "staff": 7.38,
+     "atmosphere": 6.4,
+     "cleanliness": 6.52,
+     "valueForMoney": 7.26,
+     "facilities": 6.64
+    },
+    "sharedMinPrice": {
+     "value": 26.37,
+     "currency": "USD"
+    },
+    "privateMinPrice": {
+     "value": 26.37,
+     "currency": "USD"
+    },
+    "images": [
+     {
+      "small": "a.hwstatic.com/image/upload/f_auto,q_auto,t_20/propertyimages/5/55551/qfnj2hgtgb7nb3gui3mc.jpg",
+      "medium": "a.hwstatic.com/image/upload/f_auto,q_auto,t_30/propertyimages/5/55551/qfnj2hgtgb7nb3gui3mc.jpg",
+      "large": "a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/5/55551/qfnj2hgtgb7nb3gui3mc.jpg"
+     },
+     {
+      "small": "a.hwstatic.com/image/upload/f_auto,q_auto,t_20/propertyimages/5/55551/ul9tp7ossb5dd3fgk5i5.jpg",
+      "medium": "a.hwstatic.com/image/upload/f_auto,q_auto,t_30/propertyimages/5/55551/ul9tp7ossb5dd3fgk5i5.jpg",
+      "large": "a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/5/55551/ul9tp7ossb5dd3fgk5i5.jpg"
+     },
+     {
+      "small": "a.hwstatic.com/image/upload/f_auto,q_auto,t_20/propertyimages/5/55551/aovfstlkpjgsjgndm0q7.jpg",
+      "medium": "a.hwstatic.com/image/upload/f_auto,q_auto,t_30/propertyimages/5/55551/aovfstlkpjgsjgndm0q7.jpg",
+      "large": "a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/5/55551/aovfstlkpjgsjgndm0q7.jpg"
+     },
+     {
+      "small": "a.hwstatic.com/image/upload/f_auto,q_auto,t_20/propertyimages/5/55551/strwyd5de08ufetvlv5r.jpg",
+      "medium": "a.hwstatic.com/image/upload/f_auto,q_auto,t_30/propertyimages/5/55551/strwyd5de08ufetvlv5r.jpg",
+      "large": "a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/5/55551/strwyd5de08ufetvlv5r.jpg"
+     }
+    ],
+    "totalImagesCount": 29
+   }
+  ]
+ },
+ "message": null
+}

@@ -1,0 +1,162 @@
+{
+ "london": {
+  "url": "https://www.hostelworld.com/hostels/europe/england/london/",
+  "city_id": 3,
+  "hostels_total": 92,
+  "ssr_first_page_items": 30,
+  "location_label": "London, England",
+  "http_status": 200
+ },
+ "paris": {
+  "url": "https://www.hostelworld.com/hostels/europe/france/paris/",
+  "city_id": 14,
+  "hostels_total": 102,
+  "ssr_first_page_items": 30,
+  "location_label": "Paris, France",
+  "http_status": 200
+ },
+ "barcelona": {
+  "url": "https://www.hostelworld.com/hostels/europe/spain/barcelona/",
+  "city_id": 83,
+  "hostels_total": 113,
+  "ssr_first_page_items": 30,
+  "location_label": "Barcelona, Spain",
+  "http_status": 200
+ },
+ "rome": {
+  "url": "https://www.hostelworld.com/hostels/europe/italy/rome/",
+  "city_id": 36,
+  "hostels_total": 112,
+  "ssr_first_page_items": 30,
+  "location_label": "Rome, Italy",
+  "http_status": 200
+ },
+ "amsterdam": {
+  "url": "https://www.hostelworld.com/hostels/europe/netherlands/amsterdam/",
+  "city_id": 15,
+  "hostels_total": 80,
+  "ssr_first_page_items": 30,
+  "location_label": "Amsterdam, Netherlands",
+  "http_status": 200
+ },
+ "berlin": {
+  "url": "https://www.hostelworld.com/hostels/europe/germany/berlin/",
+  "city_id": 26,
+  "hostels_total": 54,
+  "ssr_first_page_items": 30,
+  "location_label": "Berlin, Germany",
+  "http_status": 200
+ },
+ "madrid": {
+  "url": "https://www.hostelworld.com/hostels/europe/spain/madrid/",
+  "city_id": 117,
+  "hostels_total": 89,
+  "ssr_first_page_items": 30,
+  "location_label": "Madrid, Spain",
+  "http_status": 200
+ },
+ "prague": {
+  "url": "https://www.hostelworld.com/hostels/europe/czech-republic/prague/",
+  "city_id": 19,
+  "hostels_total": 61,
+  "ssr_first_page_items": 30,
+  "location_label": "Prague, Czech Republic",
+  "http_status": 200
+ },
+ "lisbon": {
+  "url": "https://www.hostelworld.com/hostels/europe/portugal/lisbon/",
+  "city_id": 725,
+  "hostels_total": 81,
+  "ssr_first_page_items": 30,
+  "location_label": "Lisbon, Portugal",
+  "http_status": 200
+ },
+ "dublin": {
+  "url": "https://www.hostelworld.com/hostels/europe/ireland/dublin/",
+  "city_id": 5,
+  "hostels_total": 18,
+  "ssr_first_page_items": 18,
+  "location_label": "Dublin, Ireland",
+  "http_status": 200
+ },
+ "vienna": {
+  "url": "https://www.hostelworld.com/hostels/europe/austria/vienna/",
+  "city_id": 38,
+  "hostels_total": 25,
+  "ssr_first_page_items": 25,
+  "location_label": "Vienna, Austria",
+  "http_status": 200
+ },
+ "budapest": {
+  "url": "https://www.hostelworld.com/hostels/europe/hungary/budapest/",
+  "city_id": 50,
+  "hostels_total": 51,
+  "ssr_first_page_items": 30,
+  "location_label": "Budapest, Hungary",
+  "http_status": 200
+ },
+ "milan": {
+  "url": "https://www.hostelworld.com/hostels/europe/italy/milan/",
+  "city_id": 649,
+  "hostels_total": 56,
+  "ssr_first_page_items": 30,
+  "location_label": "Milan, Italy",
+  "http_status": 200
+ },
+ "venice": {
+  "url": "https://www.hostelworld.com/hostels/europe/italy/venice/",
+  "city_id": 68,
+  "hostels_total": 30,
+  "ssr_first_page_items": 30,
+  "location_label": "Venice, Italy",
+  "http_status": 200
+ },
+ "edinburgh": {
+  "url": "https://www.hostelworld.com/hostels/europe/scotland/edinburgh/",
+  "city_id": 22,
+  "hostels_total": 27,
+  "ssr_first_page_items": 27,
+  "location_label": "Edinburgh, Scotland",
+  "http_status": 200
+ },
+ "copenhagen": {
+  "url": "https://www.hostelworld.com/hostels/europe/denmark/copenhagen/",
+  "city_id": 48,
+  "hostels_total": 17,
+  "ssr_first_page_items": 17,
+  "location_label": "Copenhagen, Denmark",
+  "http_status": 200
+ },
+ "krakow": {
+  "url": "https://www.hostelworld.com/hostels/europe/poland/krakow/",
+  "city_id": 285,
+  "hostels_total": 47,
+  "ssr_first_page_items": 30,
+  "location_label": "Krakow, Poland",
+  "http_status": 200
+ },
+ "athens": {
+  "url": "https://www.hostelworld.com/hostels/europe/greece/athens/",
+  "city_id": 588,
+  "hostels_total": 50,
+  "ssr_first_page_items": 30,
+  "location_label": "Athens, Greece",
+  "http_status": 200
+ },
+ "new-york": {
+  "url": "https://www.hostelworld.com/hostels/north-america/usa/new-york/",
+  "city_id": 13,
+  "hostels_total": 29,
+  "ssr_first_page_items": 29,
+  "location_label": "New York, USA",
+  "http_status": 200
+ },
+ "bangkok": {
+  "url": "https://www.hostelworld.com/hostels/asia/thailand/bangkok/",
+  "city_id": 149,
+  "hostels_total": 320,
+  "ssr_first_page_items": 30,
+  "location_label": "Bangkok, Thailand",
+  "http_status": 200
+ }
+}

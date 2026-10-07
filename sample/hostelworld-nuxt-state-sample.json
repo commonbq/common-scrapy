@@ -1,0 +1,362 @@
+{
+ "note": "Trimmed window.__NUXT__ state from GET https://www.hostelworld.com/hostels/north-america/usa/new-york/ (2026-10-07). City + first 2 of 29 hostels.",
+ "getCityByCityNameAndCountryName": {
+  "success": true,
+  "data": {
+   "id": 13,
+   "name": "New York",
+   "urlFriendlyName": "new-york",
+   "countryId": 222,
+   "country": "USA",
+   "continentId": 1,
+   "continent": "North America",
+   "urlFriendlyCountry": "usa",
+   "urlFriendlyContinent": "north-america",
+   "tracking": {
+    "name": "New York",
+    "country": "USA",
+    "continent": "North America"
+   },
+   "geoCoordinates": {
+    "latitude": 40.71417,
+    "longitude": -74.00639
+   },
+   "image": {
+    "mobile": "a.hwstatic.com/image/upload/f_auto,q_auto/hw/location-images/city/new-york_s.jpg",
+    "tablet": "a.hwstatic.com/image/upload/f_auto,q_auto/hw/location-images/city/new-york_m.jpg",
+    "desktop": "a.hwstatic.com/image/upload/f_auto,q_auto/hw/location-images/city/new-york_l.jpg",
+    "heroImage": "a.hwstatic.com/image/upload/f_auto,q_auto/hw/location-images/static-city/new-york.jpg",
+    "ugcHandle": "elmonalama",
+    "type": "city"
+   },
+   "numberOfProperties": 29,
+   "hasAvailability": true,
+   "totalPropertiesAvailable": 29,
+   "numberOfReviews": 75333,
+   "avgRating": 8.781538,
+   "freeCancellation": {
+    "isAvailable": true,
+    "daysInAdvance": 2
+   },
+   "totalPropertiesCount": 29,
+   "ratingBreakdown": {
+    "activities": 9.38,
+    "eatingOut": 8.8,
+    "shopping": 9.08,
+    "relaxing": 7.7,
+    "transport": 9.08,
+    "sightSeeing": 9.5,
+    "culture": 9.2,
+    "nightlife": 8.8,
+    "value": 7.32,
+    "averageRating": 8.76,
+    "numberOfReviews": 3207
+   }
+  }
+ },
+ "getCityProperties (page1, limit30, trimmed to 2)": {
+  "success": true,
+  "data": {
+   "id": 13,
+   "name": "New York",
+   "urlFriendlyName": "new-york",
+   "countryId": 222,
+   "country": "USA",
+   "continentId": 1,
+   "continent": "North America",
+   "urlFriendlyCountry": "usa",
+   "urlFriendlyContinent": "north-america",
+   "tracking": {
+    "name": "New York",
+    "country": "USA",
+    "continent": "North America"
+   },
+   "geoCoordinates": {
+    "latitude": 40.71417,
+    "longitude": -74.00639
+   },
+   "image": {
+    "mobile": "a.hwstatic.com/image/upload/f_auto,q_auto/hw/location-images/city/new-york_s.jpg",
+    "tablet": "a.hwstatic.com/image/upload/f_auto,q_auto/hw/location-images/city/new-york_m.jpg",
+    "desktop": "a.hwstatic.com/image/upload/f_auto,q_auto/hw/location-images/city/new-york_l.jpg",
+    "heroImage": "a.hwstatic.com/image/upload/f_auto,q_auto/hw/location-images/static-city/new-york.jpg",
+    "ugcHandle": "elmonalama",
+    "type": "city"
+   },
+   "numberOfProperties": 29,
+   "propertyCount": 29,
+   "totalPropertiesCount": 29,
+   "numberOfPages": 1,
+   "page": 1,
+   "hasAvailability": true,
+   "properties": [
+    {
+     "id": 1850,
+     "name": "HI New York City Hostel",
+     "type": "HOSTEL",
+     "urlFriendlyName": "hi-new-york-city-hostel",
+     "address": "891 Amsterdam Avenue",
+     "city": "New York",
+     "urlFriendlyCity": "new-york",
+     "country": "USA",
+     "urlFriendlyCountry": "usa",
+     "continent": "North America",
+     "urlFriendlyContinent": "north-america",
+     "avgRating": 9.2,
+     "numberReviews": 11434,
+     "cityCenterDistance": 9.98,
+     "hasAvailability": true,
+     "isNew": false,
+     "image": {
+      "small": "a.hwstatic.com/image/upload/f_auto,q_auto,t_20/propertyimages/1/1850/5011.jpg",
+      "medium": "a.hwstatic.com/image/upload/f_auto,q_auto,t_30/propertyimages/1/1850/5011.jpg",
+      "large": "a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/1/1850/5011.jpg"
+     },
+     "badges": [
+      {
+       "id": "90",
+       "badgeName": "Free WiFi",
+       "transCode": "FREEWIFI",
+       "displayMessage": false,
+       "name": "Free WiFi",
+       "icon": "wi-fi",
+       "showLabel": false
+      }
+     ],
+     "intro": "HostelWorld users voted HI USA the best hostel network in North America in 2024! Located in a historic castle-like building minutes from Central Park and Times Square and only 2 blocks from the nearest subway station, Hostelling International New York City...",
+     "shortIntro": "Hi NYC Hostel offers a unique experience with its castle-like building, free Wi-Fi, a 36-burner kitchen, and renovated bathrooms. It also provides a common kitchen, lockers, a laundry facility, and 24/7 snacks and drinks.",
+     "tracking": {
+      "name": "HI New York City Hostel",
+      "city": "New York",
+      "country": "USA",
+      "continent": "North America"
+     },
+     "sustainability": null,
+     "geoCoordinates": {
+      "latitude": 40.798684,
+      "longitude": -73.966653
+     },
+     "averageRatings": {
+      "security": 9.53,
+      "location": 9.28,
+      "staff": 9.45,
+      "atmosphere": 9.01,
+      "cleanliness": 9.08,
+      "valueForMoney": 9.01,
+      "facilities": 9.12
+     },
+     "sharedMinPrice": {
+      "value": 39.6,
+      "currency": "USD"
+     },
+     "privateMinPrice": {
+      "value": 76.28,
+      "currency": "USD"
+     },
+     "images": [
+      {
+       "small": "a.hwstatic.com/image/upload/f_auto,q_auto,t_20/propertyimages/1/1850/5011.jpg",
+       "medium": "a.hwstatic.com/image/upload/f_auto,q_auto,t_30/propertyimages/1/1850/5011.jpg",
+       "large": "a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/1/1850/5011.jpg"
+      },
+      {
+       "small": "a.hwstatic.com/image/upload/f_auto,q_auto,t_20/propertyimages/1/1850/cpaknqc5bf5tk1w8jdtm.jpg",
+       "medium": "a.hwstatic.com/image/upload/f_auto,q_auto,t_30/propertyimages/1/1850/cpaknqc5bf5tk1w8jdtm.jpg",
+       "large": "a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/1/1850/cpaknqc5bf5tk1w8jdtm.jpg"
+      },
+      {
+       "small": "a.hwstatic.com/image/upload/f_auto,q_auto,t_20/propertyimages/1/1850/xwhq4ofk2vn6vqkrme06.jpg",
+       "medium": "a.hwstatic.com/image/upload/f_auto,q_auto,t_30/propertyimages/1/1850/xwhq4ofk2vn6vqkrme06.jpg",
+       "large": "a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/1/1850/xwhq4ofk2vn6vqkrme06.jpg"
+      },
+      {
+       "small": "a.hwstatic.com/image/upload/f_auto,q_auto,t_20/propertyimages/1/1850/hohriy0e6seiyhzl31pj.jpg",
+       "medium": "a.hwstatic.com/image/upload/f_auto,q_auto,t_30/propertyimages/1/1850/hohriy0e6seiyhzl31pj.jpg",
+       "large": "a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/1/1850/hohriy0e6seiyhzl31pj.jpg"
+      }
+     ],
+     "totalImagesCount": 29,
+     "whosGoing": {
+      "users": [
+       {
+        "picture": "https://a.hwstatic.com/image/upload/f_auto,q_auto,w_32,h_32,c_limit/hw/avatar-blur/female-user-avatar-12.jpg",
+        "flag": "https://a.hwstatic.com/hw/flags/CZ.svg",
+        "name": ""
+       },
+       {
+        "picture": "https://a.hwstatic.com/image/upload/f_auto,q_auto,w_32,h_32,c_limit/hw/avatar-blur/male-user-avatar-10.jpg",
+        "flag": "https://a.hwstatic.com/hw/flags/AU.svg",
+        "name": ""
+       },
+       {
+        "picture": "https://a.hwstatic.com/image/upload/f_auto,q_auto,w_32,h_32,c_limit/hw/avatar-blur/female-user-avatar-23.jpg",
+        "flag": "https://a.hwstatic.com/hw/flags/AU.svg",
+        "name": ""
+       }
+      ],
+      "total": 117
+     },
+     "linkups": {},
+     "description": "HostelWorld users voted HI USA the best hostel network in North America in 2024! Located in a historic castle-like building minutes from Central Park and Times Square and only 2 blocks from the nearest subway station, Hostelling International New York City...",
+     "rating": 9.2,
+     "numReviews": 11434,
+     "distance": 9.98,
+     "minDormPrice": {
+      "value": 39.6,
+      "currency": "USD"
+     },
+     "minPrivatePrice": {
+      "value": 76.28,
+      "currency": "USD"
+     },
+     "urlPath": "hosteldetails.php/hi-new-york-city-hostel/new-york/1850",
+     "latitude": 40.798684,
+     "longitude": -73.966653
+    },
+    {
+     "id": 801,
+     "name": "Chelsea International Hostel",
+     "type": "HOSTEL",
+     "urlFriendlyName": "chelsea-international-hostel",
+     "address": "251 West 20th Street",
+     "city": "New York",
+     "urlFriendlyCity": "new-york",
+     "country": "USA",
+     "urlFriendlyCountry": "usa",
+     "continent": "North America",
+     "urlFriendlyContinent": "north-america",
+     "avgRating": 8.54,
+     "numberReviews": 12785,
+     "cityCenterDistance": 3.29,
+     "hasAvailability": true,
+     "isNew": false,
+     "image": {
+      "small": "a.hwstatic.com/image/upload/f_auto,q_auto,t_20/propertyimages/8/801/rdk8jkriuegulhkb6wqw.jpg",
+      "medium": "a.hwstatic.com/image/upload/f_auto,q_auto,t_30/propertyimages/8/801/rdk8jkriuegulhkb6wqw.jpg",
+      "large": "a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/8/801/rdk8jkriuegulhkb6wqw.jpg"
+     },
+     "badges": [
+      {
+       "id": "90",
+       "badgeName": "Free WiFi",
+       "transCode": "FREEWIFI",
+       "displayMessage": false,
+       "name": "Free WiFi",
+       "icon": "wi-fi",
+       "showLabel": false
+      },
+      {
+       "other": "New York",
+       "otherLabel": "City",
+       "year": 2025,
+       "place": 1,
+       "priority": 10,
+       "id": "hoscar",
+       "badgeName": "hoscar",
+       "transCode": "HOSCARMOSTPOPULAR",
+       "displayMessage": false,
+       "name": "hoscar",
+       "icon": "trophy",
+       "illustration": "trophy",
+       "showLabel": false
+      }
+     ],
+     "intro": "IMPORTANT UPDATE: Please check our house rules for more details on how we are operating during the pandemic. **** The Chelsea International Hostel is one of the largest independent Hostels in New York City, operating since 1992. We are located in Chelsea,...",
+     "shortIntro": null,
+     "tracking": {
+      "name": "Chelsea International Hostel",
+      "city": "New York",
+      "country": "USA",
+      "continent": "North America"
+     },
+     "sustainability": null,
+     "geoCoordinates": {
+      "latitude": 40.743192,
+      "longitude": -73.999046
+     },
+     "averageRatings": {
+      "security": 9.05,
+      "location": 9.62,
+      "staff": 8.42,
+      "atmosphere": 7.84,
+      "cleanliness": 8.57,
+      "valueForMoney": 8.48,
+      "facilities": 7.82
+     },
+     "sharedMinPrice": {
+      "value": 36,
+      "currency": "USD"
+     },
+     "privateMinPrice": {
+      "value": 54,
+      "currency": "USD"
+     },
+     "images": [
+      {
+       "small": "a.hwstatic.com/image/upload/f_auto,q_auto,t_20/propertyimages/8/801/rdk8jkriuegulhkb6wqw.jpg",
+       "medium": "a.hwstatic.com/image/upload/f_auto,q_auto,t_30/propertyimages/8/801/rdk8jkriuegulhkb6wqw.jpg",
+       "large": "a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/8/801/rdk8jkriuegulhkb6wqw.jpg"
+      },
+      {
+       "small": "a.hwstatic.com/image/upload/f_auto,q_auto,t_20/propertyimages/8/801/q09v3u0slgzwl8uvdtbz.jpg",
+       "medium": "a.hwstatic.com/image/upload/f_auto,q_auto,t_30/propertyimages/8/801/q09v3u0slgzwl8uvdtbz.jpg",
+       "large": "a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/8/801/q09v3u0slgzwl8uvdtbz.jpg"
+      },
+      {
+       "small": "a.hwstatic.com/image/upload/f_auto,q_auto,t_20/propertyimages/8/801/c23cr6theqlb0ryuphtv.jpg",
+       "medium": "a.hwstatic.com/image/upload/f_auto,q_auto,t_30/propertyimages/8/801/c23cr6theqlb0ryuphtv.jpg",
+       "large": "a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/8/801/c23cr6theqlb0ryuphtv.jpg"
+      },
+      {
+       "small": "a.hwstatic.com/image/upload/f_auto,q_auto,t_20/propertyimages/8/801/unt5ctrtiry6gazik3ao.jpg",
+       "medium": "a.hwstatic.com/image/upload/f_auto,q_auto,t_30/propertyimages/8/801/unt5ctrtiry6gazik3ao.jpg",
+       "large": "a.hwstatic.com/image/upload/f_auto,q_auto,t_40/propertyimages/8/801/unt5ctrtiry6gazik3ao.jpg"
+      }
+     ],
+     "totalImagesCount": 27,
+     "whosGoing": {
+      "users": [
+       {
+        "picture": "https://a.hwstatic.com/image/upload/f_auto,q_auto,w_32,h_32,c_limit/hw/avatar-blur/female-user-avatar-15.jpg",
+        "flag": "https://a.hwstatic.com/hw/flags/MX.svg",
+        "name": ""
+       },
+       {
+        "picture": "https://a.hwstatic.com/image/upload/f_auto,q_auto,w_32,h_32,c_limit/hw/avatar-blur/male-user-avatar-29.jpg",
+        "flag": "https://a.hwstatic.com/hw/flags/US.svg",
+        "name": ""
+       },
+       {
+        "picture": "https://a.hwstatic.com/image/upload/f_auto,q_auto,w_32,h_32,c_limit/hw/avatar-blur/female-user-avatar-17.jpg",
+        "flag": "https://a.hwstatic.com/hw/flags/US.svg",
+        "name": ""
+       }
+      ],
+      "total": 221
+     },
+     "linkups": {},
+     "description": "IMPORTANT UPDATE: Please check our house rules for more details on how we are operating during the pandemic. **** The Chelsea International Hostel is one of the largest independent Hostels in New York City, operating since 1992. We are located in Chelsea,...",
+     "rating": 8.54,
+     "numReviews": 12785,
+     "distance": 3.29,
+     "minDormPrice": {
+      "value": 36,
+      "currency": "USD"
+     },
+     "minPrivatePrice": {
+      "value": 54,
+      "currency": "USD"
+     },
+     "urlPath": "hosteldetails.php/chelsea-international-hostel/new-york/801",
+     "latitude": 40.743192,
+     "longitude": -73.999046
+    }
+   ]
+  }
+ },
+ "config_subset": {
+  "HOSTELWORLD_API_URL": "https://prod.apigee.hostelworld.com/legacy-hwapi-service/2.2",
+  "APIGEE_STATIC_PAGES_API_URL": "https://prod.apigee.hostelworld.com/legacy-staticpages-service",
+  "APIGEE_KEY": "(present in config.public.APIGEE_KEY)"
+ }
+}
