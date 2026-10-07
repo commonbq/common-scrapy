@@ -43,6 +43,7 @@ Examples:
 - `common-scrapy crawl sephora_listing --category makeup -a max_pages=1 -O sephora_listing.jsonl`
 - `common-scrapy crawl newegg_listing --category desktop-cpu-processors -a max_pages=1 -O newegg.jsonl` (36 items, verified live on 2026-10-02; see [newegg_listing](#newegg_listing))
 - `common-scrapy crawl cvs_listing --category health-medicine -a max_pages=3 -O cvs.jsonl` (60 items, verified live on 2026-10-04; see [cvs_listing](#cvs_listing))
+- `common-scrapy crawl menards_listing --category halloween-animated-decorations -a max_pages=1 -O menards.jsonl`
 
 `newegg_listing` parses the server-rendered `window.__initialState__.Products`
 payload. It accepts `category`, `category_url`, or `url`; use
@@ -149,6 +150,22 @@ Spiders below are returning items in recent smoke runs:
 | [`harborfreight_listing`](#harborfreight_listing) | Active | bootstrap (`window.__APOLLO_STATE__`) | none detected | Harbor Freight category listings from the server-rendered Apollo hydration state; 17 deterministic department aliases and Magento `?p=N` pagination. | 36 (1 page, `Automotive`) | 17 department aliases from `harborfreight_categories.py` | `{"category":"Automotive","item_id":"64784","title":"3 Ton Low-Profile Professional Floor Jack with RAPID PUMP, Green","brand":"DAYTONA","price":199.99,"currency":"USD","source":"harborfreight_apollo_bootstrap"...}` |
 | [`vitacost_listing`](#vitacost_listing) | Active | api | none detected | Vitacost (Shopify + Boost AI Search) category listings from the first-party `services.mybcapps.com/bc-sf-filter/filter` JSON API; taxonomy from the `Categories` mega-menu. | 96 (2 pages, `category=Supplements`, page size 48) | 92 crawl targets / 90 unique collection URLs across 8 departments from `vitacost_categories.py` | `{"category":"Supplements","handle":"supplements","collection_id":"457575104827","item_id":"10390080782651","title":"Vitacost, Root2®, Turmeric Extract Curcumin C3 Complex®, 120 Capsules","brand":"Vitacost","price":24.74,"original_price":32.99,"discount_percentage":25.0,"source":"vitacost_boost_filter_api"...}` |
 
+### menards_listing
+
+`menards_listing` extracts products through one data path: Menards' first-party
+`POST /main/search/category.ajx` JSON API. It first visits the selected category
+to establish the proxy-backed cookie session, derives `categoryId` from the
+canonical `c-<id>.htm` URL, and then paginates the API's `searchResult.items`
+contract. It does not parse product cards or JSON-LD.
+
+The spider includes 20 stable department/category seeds from Menards' Shop >
+Departments navigation. Both the category page and API request use the configured
+US proxy because direct API requests receive an Incapsula challenge.
+
+```bash
+scrapy crawl menards_listing -a category=halloween-animated-decorations -a max_pages=1 -s HTTPCACHE_ENABLED=False -O menards.jsonl
+```
+
 #### In-progress spiders
 
 These are still being worked on and currently returned `0` items in recent smoke runs:
@@ -162,6 +179,7 @@ These are still being worked on and currently returned `0` items in recent smoke
 | [`dillards_listing`](#dillards_listing) | Experimental | bootstrap | Akamai | Dillard's listing spider via `window.__INITIAL_STATE__`. | 0 (ok) | women, men, shoes, handbags, beauty, juniors, home | `n/a` |
 | [`kohls_listing`](#kohls_listing) | Experimental | api | Akamai (Cloudflare challenge assets also observed) | Kohl’s listing via `/web/catalog/...` API. | 0 (ok) | women, men, sale | `n/a` |
 | [`nordstromrack_listing`](#nordstromrack_listing) | Experimental | JSON-LD | Fastly (`x-jungle`) | Nordstrom Rack category listings from server-rendered Schema.org `ItemList` data. | 2 (fixture; live 403) | women, men, kids, shoes, bags-and-accessories, beauty, home, clearance | `{"item_id":"7788991","title":"Pleated Midi Dress","brand":"Donna Ricco","price":34.97,"currency":"USD",...}` |
+| [`menards_listing`](#menards_listing) | Active | api | Incapsula (ScrapeOps US residential route required; API leg still returns a proxy/Incapsula failure envelope) | Menards category listings from the first-party `POST /main/search/category.ajx` JSON API; session is seeded from the category page and taxonomy comes from the homepage `mcom-header` menu JSON. | 0 (live proxy unverified; fixture smoke emits items) | 20 department/category seeds from `menards_categories.py` | `{"category":"halloween-animated-decorations","item_id":"123","title":"Animated Dragon","brand":"Enchanted Forest","price":99.99,"currency":"USD","source":"menards_category_api",...}` |
 
 *`Number of items output` reflects recent local smoke runs (typically `max_pages=1`) and can vary by location, anti-bot behavior, and site changes.*
 Many listing spiders accept `-a category=<name>` shortcuts (in addition to `-a category_url=<url>`), including Amazon, Walmart, eBay, Home Depot, Best Buy, and Kroger. Costco listing uses category-only selection.
