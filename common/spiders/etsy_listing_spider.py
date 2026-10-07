@@ -37,7 +37,7 @@ class EtsyListingSpider(BaseListingSpider):
             "item_id", "shop_id", "title", "shop", "url", "image",
             "price", "original_price", "currency", "rating", "reviews_count",
             "is_ad", "free_shipping", "category", "page", "position",
-            "source", "raw",
+            "source", "raw", "timestamp",
         ],
     }
 
