@@ -26,7 +26,7 @@ class MovotoListingSpider(BaseListingSpider):
             "status", "mls_number", "mls_db", "listing_agent", "office", "office_phone",
             "open_houses", "latitude", "longitude", "city", "state", "county", "zip",
             "neighborhood", "photo", "photo_count", "days_on_movoto", "list_date",
-            "total_count", "category", "page", "position", "source", "timestamp",
+            "total_count", "category", "page", "position", "source", "raw", "timestamp",
         ],
     }
 
@@ -118,7 +118,8 @@ class MovotoListingSpider(BaseListingSpider):
             "photo": listing.get("tnImgPath"), "photo_count": self._integer(listing.get("photoCount")),
             "days_on_movoto": self._integer(listing.get("daysOnMovoto")), "list_date": listing.get("listDate"),
             "total_count": total, "category": response.meta.get("category"), "page": page,
-            "position": position, "source": "movoto_initial_state", "timestamp": self.job_timestamp.isoformat(),
+            "position": position, "source": "movoto_initial_state", "raw": listing,
+            "timestamp": self.job_timestamp.isoformat(),
         }
 
     @staticmethod

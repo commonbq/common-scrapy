@@ -4012,6 +4012,11 @@ The spider provides 20 deterministic major-city categories sourced from Movoto's
 and repeated IDs. Movoto is PerimeterX-protected, so use the configured ScrapeOps US
 proxy.
 
+The ordered `FEED_EXPORT_FIELDS` contract covers stable property identity, price and
+property facts, MLS and broker metadata, location, media, pagination and search-context
+metadata, the provenance `source=movoto_initial_state`, the authoritative raw listing
+record (`raw`), and a per-item `timestamp`.
+
 ```bash
 scrapy crawl movoto_listing -a category=new-york-ny -a max_pages=1 -O movoto.jsonl -s HTTPCACHE_ENABLED=False
 ```
