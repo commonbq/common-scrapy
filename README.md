@@ -61,6 +61,7 @@ Working spiders running daily in production:
 
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
+| [`hostelworld_listing`](#hostelworld_listing) | Active | api | none detected; API must be direct so proxy does not rewrite `Accept` | Hostelworld properties from the first-party Apigee city-properties API only; no HTML or JSON-LD fallback. | 29 (New York, one page) | 20 popular global cities; 2,838 city URLs available from the sitemap index | `{"category":"new-york","item_id":"1850","name":"HI New York City Hostel","source":"hostelworld_city_properties_api"...}` |
 | [`dell_listing`](#dell_listing) | Experimental | bootstrap | ScrapeOps proxy | Dell US listings from the authoritative `data-product-detail-info` Product Stack bootstrap; no product-card or JSON-LD fallback. | Live smoke tested below | 18 stable product/deal categories | `{"item_id":"dellplus16laptopdb16250","title":"Dell 16 Plus Laptop","price":1559.99,"currency":"USD","source":"dell_product_stack_bootstrap"...}` |
 | [`agoda_listing`](#agoda_listing) | Experimental | api | proxy required | Agoda curated destination accommodations from the first-party Cronos geo API. | 30 (Bali, one API response) | 20 popular cities from the homepage destination payload | `{"category":"bali","item_id":"489045","title":"RIMBA by AYANA Bali","review_score":9.1,"star_rating":5.0,"source":"agoda_cronos_geo_api","timestamp":"2026-10-06 10:30:00"...}` |
 | [`adorama_listing`](#adorama_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | DataDome | Adorama category listings from server-rendered Next.js hydration state. | 24 (one page; 48 across 2 pages) | 1,079 crawlable categories across 11 departments from `adorama_categories.py` | `{"category":"cameras","item_id":"KKRK0603A","title":"Kodak Charmera Millenium Edition...","price":54.94,"currency":"USD"...}` |
@@ -155,6 +156,23 @@ Spiders below are returning items in recent smoke runs:
 | [`vitacost_listing`](#vitacost_listing) | Active | api | none detected | Vitacost (Shopify + Boost AI Search) category listings from the first-party `services.mybcapps.com/bc-sf-filter/filter` JSON API; taxonomy from the `Categories` mega-menu. | 96 (2 pages, `category=Supplements`, page size 48) | 92 crawl targets / 90 unique collection URLs across 8 departments from `vitacost_categories.py` | `{"category":"Supplements","handle":"supplements","collection_id":"457575104827","item_id":"10390080782651","title":"Vitacost, Root2®, Turmeric Extract Curcumin C3 Complex®, 120 Capsules","brand":"Vitacost","price":24.74,"original_price":32.99,"discount_percentage":25.0,"source":"vitacost_boost_filter_api"...}` |
 | [`walgreens_listing`](#walgreens_listing) | Active | bootstrap (Redux `window.getInitialState()`) | Akamai (ScrapeOps US JS rendering required) | Walgreens category listings from the server-rendered Redux `window.getInitialState()` bootstrap (`searchResult.productList[*].productInfo`); no HTML-card or JSON-LD fallback. | 24 (1 page, `Allergy & Sinus`) | 19 departments / 170 child categories from `walgreens_categories.py` | `{"category":"Allergy & Sinus","category_id":"360545","product_id":"prod6335256","title":"Walgreens Neti Pot Kit","brand":"Walgreens","price":11.99,"currency":"USD","source_url":"https://www.walgreens.com/store/c/productlist/N=360545/1/ShopAll=360545","raw":{...},"timestamp":"2026-10-07 05:40:00"...}` |
 | [`chewy_listing`](#chewy_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | ScrapeOps US residential route required | Chewy category listings from the server-rendered Next.js `__NEXT_DATA__` bootstrap (`props.pageProps.initialState.searchSlice.plpData.products`); no HTML-card or JSON-LD fallback. | 44 (1 page, `food-332`) | 172-category pet taxonomy (dogs, cats, other pets) from `chewy_categories.py` | `{"category":"food-332","item_id":"147999","title":"Instinct Original Adult Grain-Free Real Beef Recipe Wet Dog Food, 13.2-oz can, case of 6","brand":"Instinct","price":28.14,"currency":"USD","source":"chewy_next_data_bootstrap","timestamp":"2026-10-06 21:40:56"...}` |
+
+### hostelworld_listing
+
+`hostelworld_listing` uses one data direction: Hostelworld's first-party Apigee
+`city/hostel/{city_id}/properties` JSON API for every page, including page 1.
+The API yields stable property IDs, prices, ratings, coordinates, photos,
+facilities and paging totals. Requests go directly to Apigee because a proxy
+that rewrites `Accept` or `Accept-Language` causes the gateway to reject them;
+there is no direct-HTML or JSON-LD fallback.
+
+The spider includes 20 deterministic popular-city seeds. Hostelworld's full
+continent/country/city taxonomy is published by `sitemap-index.xml` across 32
+gzipped sitemap files (about 2,838 city listing URLs).
+
+```bash
+scrapy crawl hostelworld_listing -a category=new-york -a max_pages=1 -s HTTPCACHE_ENABLED=False -O hostelworld.jsonl
+```
 
 ### menards_listing
 
