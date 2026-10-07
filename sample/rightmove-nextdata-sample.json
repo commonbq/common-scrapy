@@ -1,0 +1,1992 @@
+{
+  "location": {
+    "id": 87490,
+    "displayName": "London",
+    "shortDisplayName": "London",
+    "locationType": "REGION",
+    "listingCurrency": "GBP",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -0.14673,
+            51.64055
+          ],
+          [
+            -0.14645,
+            51.63668
+          ],
+          [
+            -0.1517,
+            51.63201
+          ],
+          [
+            -0.16378,
+            51.63346
+          ],
+          [
+            -0.16598,
+            51.63619
+          ],
+          [
+            -0.16654,
+            51.63656
+          ],
+          [
+            -0.16878,
+            51.63838
+          ],
+          [
+            -0.17009,
+            51.63831
+          ],
+          [
+            -0.17283,
+            51.63844
+          ],
+          [
+            -0.17858,
+            51.63916
+          ],
+          [
+            -0.17973,
+            51.63936
+          ],
+          [
+            -0.18045,
+            51.63928
+          ],
+          [
+            -0.18234,
+            51.63895
+          ],
+          [
+            -0.19844,
+            51.63749
+          ],
+          [
+            -0.20042,
+            51.63878
+          ],
+          [
+            -0.20846,
+            51.63622
+          ],
+          [
+            -0.21388,
+            51.6345
+          ],
+          [
+            -0.21988,
+            51.6326
+          ],
+          [
+            -0.22613,
+            51.63163
+          ],
+          [
+            -0.23653,
+            51.63537
+          ],
+          [
+            -0.24027,
+            51.63957
+          ],
+          [
+            -0.24081,
+            51.64047
+          ],
+          [
+            -0.25332,
+            51.63859
+          ],
+          [
+            -0.26711,
+            51.63296
+          ],
+          [
+            -0.26655,
+            51.63267
+          ],
+          [
+            -0.26014,
+            51.62637
+          ],
+          [
+            -0.25948,
+            51.62474
+          ],
+          [
+            -0.25855,
+            51.61898
+          ],
+          [
+            -0.26005,
+            51.61748
+          ],
+          [
+            -0.26383,
+            51.61313
+          ],
+          [
+            -0.26427,
+            51.61291
+          ],
+          [
+            -0.26358,
+            51.61214
+          ],
+          [
+            -0.2614,
+            51.60491
+          ],
+          [
+            -0.26328,
+            51.59728
+          ],
+          [
+            -0.2674,
+            51.5952
+          ],
+          [
+            -0.27016,
+            51.5947
+          ],
+          [
+            -0.27248,
+            51.59436
+          ],
+          [
+            -0.2758,
+            51.59432
+          ],
+          [
+            -0.27768,
+            51.59427
+          ],
+          [
+            -0.28233,
+            51.59362
+          ],
+          [
+            -0.28753,
+            51.59341
+          ],
+          [
+            -0.28478,
+            51.58979
+          ],
+          [
+            -0.28332,
+            51.58644
+          ],
+          [
+            -0.28267,
+            51.58453
+          ],
+          [
+            -0.28017,
+            51.5819
+          ],
+          [
+            -0.27954,
+            51.57964
+          ],
+          [
+            -0.27193,
+            51.5708
+          ],
+          [
+            -0.27129,
+            51.56864
+          ],
+          [
+            -0.26733,
+            51.5665
+          ],
+          [
+            -0.26396,
+            51.56044
+          ],
+          [
+            -0.2651,
+            51.55703
+          ],
+          [
+            -0.26532,
+            51.55505
+          ],
+          [
+            -0.2675,
+            51.55087
+          ],
+          [
+            -0.26905,
+            51.54791
+          ],
+          [
+            -0.28168,
+            51.54568
+          ],
+          [
+            -0.28518,
+            51.5371
+          ],
+          [
+            -0.28738,
+            51.53613
+          ],
+          [
+            -0.28782,
+            51.53597
+          ],
+          [
+            -0.29044,
+            51.53529
+          ],
+          [
+            -0.2958,
+            51.53455
+          ],
+          [
+            -0.29948,
+            51.53253
+          ],
+          [
+            -0.30841,
+            51.52879
+          ],
+          [
+            -0.31145,
+            51.52858
+          ],
+          [
+            -0.31348,
+            51.52825
+          ],
+          [
+            -0.31536,
+            51.52799
+          ],
+          [
+            -0.31882,
+            51.52795
+          ],
+          [
+            -0.32771,
+            51.52926
+          ],
+          [
+            -0.33249,
+            51.52861
+          ],
+          [
+            -0.33715,
+            51.52732
+          ],
+          [
+            -0.33889,
+            51.52707
+          ],
+          [
+            -0.34178,
+            51.52711
+          ],
+          [
+            -0.34443,
+            51.52536
+          ],
+          [
+            -0.3459,
+            51.52456
+          ],
+          [
+            -0.34636,
+            51.52386
+          ],
+          [
+            -0.34807,
+            51.52055
+          ],
+          [
+            -0.34715,
+            51.51398
+          ],
+          [
+            -0.34277,
+            51.50779
+          ],
+          [
+            -0.34464,
+            51.50386
+          ],
+          [
+            -0.34056,
+            51.50094
+          ],
+          [
+            -0.33829,
+            51.5
+          ],
+          [
+            -0.32774,
+            51.49698
+          ],
+          [
+            -0.32636,
+            51.49543
+          ],
+          [
+            -0.31876,
+            51.49441
+          ],
+          [
+            -0.31279,
+            51.49236
+          ],
+          [
+            -0.31221,
+            51.49244
+          ],
+          [
+            -0.34349,
+            51.47417
+          ],
+          [
+            -0.35864,
+            51.46858
+          ],
+          [
+            -0.37142,
+            51.45749
+          ],
+          [
+            -0.3884,
+            51.4403
+          ],
+          [
+            -0.32215,
+            51.41804
+          ],
+          [
+            -0.27846,
+            51.42228
+          ],
+          [
+            -0.27058,
+            51.42796
+          ],
+          [
+            -0.26043,
+            51.42777
+          ],
+          [
+            -0.25371,
+            51.42107
+          ],
+          [
+            -0.25191,
+            51.41548
+          ],
+          [
+            -0.25043,
+            51.41294
+          ],
+          [
+            -0.2471,
+            51.40973
+          ],
+          [
+            -0.24485,
+            51.40827
+          ],
+          [
+            -0.24039,
+            51.40452
+          ],
+          [
+            -0.24205,
+            51.4011
+          ],
+          [
+            -0.25196,
+            51.3949
+          ],
+          [
+            -0.2685,
+            51.38975
+          ],
+          [
+            -0.28016,
+            51.37867
+          ],
+          [
+            -0.2458,
+            51.35414
+          ],
+          [
+            -0.24438,
+            51.3465
+          ],
+          [
+            -0.22843,
+            51.34458
+          ],
+          [
+            -0.22568,
+            51.34736
+          ],
+          [
+            -0.22271,
+            51.34949
+          ],
+          [
+            -0.21032,
+            51.32894
+          ],
+          [
+            -0.20713,
+            51.32817
+          ],
+          [
+            -0.19203,
+            51.32763
+          ],
+          [
+            -0.17996,
+            51.33322
+          ],
+          [
+            -0.16932,
+            51.33525
+          ],
+          [
+            -0.16538,
+            51.3353
+          ],
+          [
+            -0.12557,
+            51.34281
+          ],
+          [
+            -0.11417,
+            51.34588
+          ],
+          [
+            -0.11832,
+            51.36232
+          ],
+          [
+            -0.11909,
+            51.3677
+          ],
+          [
+            -0.11711,
+            51.37035
+          ],
+          [
+            -0.11687,
+            51.37221
+          ],
+          [
+            -0.12152,
+            51.38021
+          ],
+          [
+            -0.121,
+            51.39048
+          ],
+          [
+            -0.11457,
+            51.39374
+          ],
+          [
+            -0.11219,
+            51.40351
+          ],
+          [
+            -0.11124,
+            51.40558
+          ],
+          [
+            -0.0948,
+            51.41014
+          ],
+          [
+            -0.09131,
+            51.40425
+          ],
+          [
+            -0.0921,
+            51.40255
+          ],
+          [
+            -0.0926,
+            51.40075
+          ],
+          [
+            -0.09239,
+            51.39904
+          ],
+          [
+            -0.09227,
+            51.3985
+          ],
+          [
+            -0.09263,
+            51.39311
+          ],
+          [
+            -0.09252,
+            51.39231
+          ],
+          [
+            -0.09065,
+            51.38903
+          ],
+          [
+            -0.09037,
+            51.38877
+          ],
+          [
+            -0.08798,
+            51.38747
+          ],
+          [
+            -0.07237,
+            51.38613
+          ],
+          [
+            -0.07125,
+            51.38549
+          ],
+          [
+            -0.0701,
+            51.38547
+          ],
+          [
+            -0.06331,
+            51.38634
+          ],
+          [
+            -0.06129,
+            51.39
+          ],
+          [
+            -0.05996,
+            51.39088
+          ],
+          [
+            -0.06022,
+            51.39142
+          ],
+          [
+            -0.06049,
+            51.39186
+          ],
+          [
+            -0.0615,
+            51.39845
+          ],
+          [
+            -0.06104,
+            51.39917
+          ],
+          [
+            -0.0583,
+            51.4029
+          ],
+          [
+            -0.05696,
+            51.40387
+          ],
+          [
+            -0.05569,
+            51.4068
+          ],
+          [
+            -0.0517,
+            51.40916
+          ],
+          [
+            -0.04979,
+            51.41012
+          ],
+          [
+            -0.04861,
+            51.41082
+          ],
+          [
+            -0.04787,
+            51.41136
+          ],
+          [
+            -0.04673,
+            51.41458
+          ],
+          [
+            -0.04609,
+            51.41618
+          ],
+          [
+            -0.039,
+            51.42037
+          ],
+          [
+            -0.03595,
+            51.42113
+          ],
+          [
+            -0.02308,
+            51.42266
+          ],
+          [
+            -0.01879,
+            51.4221
+          ],
+          [
+            -0.0112,
+            51.42458
+          ],
+          [
+            -0.00783,
+            51.42614
+          ],
+          [
+            -0.00052,
+            51.43204
+          ],
+          [
+            0.00144,
+            51.43256
+          ],
+          [
+            0.00419,
+            51.43286
+          ],
+          [
+            0.00899,
+            51.43396
+          ],
+          [
+            0.02002,
+            51.42962
+          ],
+          [
+            0.02064,
+            51.42754
+          ],
+          [
+            0.0215,
+            51.42745
+          ],
+          [
+            0.03178,
+            51.42574
+          ],
+          [
+            0.03482,
+            51.42614
+          ],
+          [
+            0.03712,
+            51.4261
+          ],
+          [
+            0.04323,
+            51.42427
+          ],
+          [
+            0.04734,
+            51.42303
+          ],
+          [
+            0.04958,
+            51.41518
+          ],
+          [
+            0.05753,
+            51.42564
+          ],
+          [
+            0.05881,
+            51.42545
+          ],
+          [
+            0.06126,
+            51.42541
+          ],
+          [
+            0.06387,
+            51.42599
+          ],
+          [
+            0.06696,
+            51.42701
+          ],
+          [
+            0.06858,
+            51.42806
+          ],
+          [
+            0.07153,
+            51.4298
+          ],
+          [
+            0.07982,
+            51.43154
+          ],
+          [
+            0.08077,
+            51.43378
+          ],
+          [
+            0.08084,
+            51.43539
+          ],
+          [
+            0.08195,
+            51.43735
+          ],
+          [
+            0.08062,
+            51.44007
+          ],
+          [
+            0.08667,
+            51.44645
+          ],
+          [
+            0.08756,
+            51.44705
+          ],
+          [
+            0.08745,
+            51.44769
+          ],
+          [
+            0.08719,
+            51.44842
+          ],
+          [
+            0.08708,
+            51.44904
+          ],
+          [
+            0.08609,
+            51.45275
+          ],
+          [
+            0.08574,
+            51.4541
+          ],
+          [
+            0.0849,
+            51.45502
+          ],
+          [
+            0.08402,
+            51.45783
+          ],
+          [
+            0.08291,
+            51.45866
+          ],
+          [
+            0.08106,
+            51.45905
+          ],
+          [
+            0.0782,
+            51.45964
+          ],
+          [
+            0.07041,
+            51.46867
+          ],
+          [
+            0.07315,
+            51.47169
+          ],
+          [
+            0.08412,
+            51.47266
+          ],
+          [
+            0.08788,
+            51.47305
+          ],
+          [
+            0.09091,
+            51.47298
+          ],
+          [
+            0.09571,
+            51.47381
+          ],
+          [
+            0.10528,
+            51.4756
+          ],
+          [
+            0.10658,
+            51.47558
+          ],
+          [
+            0.10938,
+            51.47698
+          ],
+          [
+            0.11589,
+            51.47775
+          ],
+          [
+            0.11677,
+            51.47801
+          ],
+          [
+            0.12333,
+            51.47951
+          ],
+          [
+            0.12562,
+            51.47946
+          ],
+          [
+            0.1272,
+            51.47926
+          ],
+          [
+            0.13022,
+            51.4793
+          ],
+          [
+            0.13577,
+            51.48082
+          ],
+          [
+            0.13644,
+            51.48286
+          ],
+          [
+            0.13563,
+            51.48415
+          ],
+          [
+            0.12692,
+            51.49177
+          ],
+          [
+            0.12743,
+            51.49347
+          ],
+          [
+            0.12711,
+            51.49589
+          ],
+          [
+            0.12722,
+            51.49824
+          ],
+          [
+            0.12712,
+            51.49932
+          ],
+          [
+            0.13344,
+            51.50504
+          ],
+          [
+            0.13334,
+            51.50603
+          ],
+          [
+            0.13326,
+            51.51036
+          ],
+          [
+            0.13215,
+            51.51137
+          ],
+          [
+            0.1306,
+            51.51203
+          ],
+          [
+            0.12831,
+            51.51243
+          ],
+          [
+            0.12586,
+            51.51246
+          ],
+          [
+            0.12338,
+            51.51189
+          ],
+          [
+            0.12134,
+            51.51138
+          ],
+          [
+            0.11828,
+            51.51063
+          ],
+          [
+            0.11667,
+            51.51011
+          ],
+          [
+            0.11493,
+            51.50978
+          ],
+          [
+            0.11318,
+            51.50946
+          ],
+          [
+            0.11202,
+            51.5093
+          ],
+          [
+            0.10907,
+            51.50774
+          ],
+          [
+            0.10687,
+            51.50697
+          ],
+          [
+            0.10294,
+            51.50605
+          ],
+          [
+            0.0883,
+            51.50415
+          ],
+          [
+            0.08474,
+            51.51465
+          ],
+          [
+            0.08052,
+            51.51687
+          ],
+          [
+            0.0755,
+            51.51751
+          ],
+          [
+            0.07013,
+            51.52299
+          ],
+          [
+            0.06838,
+            51.52563
+          ],
+          [
+            0.06782,
+            51.52934
+          ],
+          [
+            0.0729,
+            51.53357
+          ],
+          [
+            0.06453,
+            51.53947
+          ],
+          [
+            0.06671,
+            51.54616
+          ],
+          [
+            0.06674,
+            51.54688
+          ],
+          [
+            0.06559,
+            51.55005
+          ],
+          [
+            0.06548,
+            51.55059
+          ],
+          [
+            0.06537,
+            51.55158
+          ],
+          [
+            0.0654,
+            51.55221
+          ],
+          [
+            0.06542,
+            51.55275
+          ],
+          [
+            0.06512,
+            51.55528
+          ],
+          [
+            0.06184,
+            51.55641
+          ],
+          [
+            0.04792,
+            51.56124
+          ],
+          [
+            0.04385,
+            51.56393
+          ],
+          [
+            0.0423,
+            51.5679
+          ],
+          [
+            0.0377,
+            51.5714
+          ],
+          [
+            0.0372,
+            51.57322
+          ],
+          [
+            0.0372,
+            51.57645
+          ],
+          [
+            0.03585,
+            51.57864
+          ],
+          [
+            0.03596,
+            51.58105
+          ],
+          [
+            0.03663,
+            51.58303
+          ],
+          [
+            0.03549,
+            51.58665
+          ],
+          [
+            0.03514,
+            51.59106
+          ],
+          [
+            0.03838,
+            51.59604
+          ],
+          [
+            0.03782,
+            51.59686
+          ],
+          [
+            0.03726,
+            51.59723
+          ],
+          [
+            0.03613,
+            51.5977
+          ],
+          [
+            0.03087,
+            51.59959
+          ],
+          [
+            0.03043,
+            51.5995
+          ],
+          [
+            0.02319,
+            51.599
+          ],
+          [
+            0.02118,
+            51.5993
+          ],
+          [
+            0.01619,
+            51.60065
+          ],
+          [
+            0.00729,
+            51.60844
+          ],
+          [
+            0.00762,
+            51.60943
+          ],
+          [
+            0.00841,
+            51.61076
+          ],
+          [
+            0.00782,
+            51.61364
+          ],
+          [
+            0.00879,
+            51.61587
+          ],
+          [
+            0.0114,
+            51.6198
+          ],
+          [
+            0.01188,
+            51.62068
+          ],
+          [
+            0.0128,
+            51.62184
+          ],
+          [
+            0.01342,
+            51.62282
+          ],
+          [
+            0.01704,
+            51.62634
+          ],
+          [
+            0.01808,
+            51.62678
+          ],
+          [
+            0.01813,
+            51.62822
+          ],
+          [
+            0.01773,
+            51.62895
+          ],
+          [
+            0.01735,
+            51.63003
+          ],
+          [
+            0.01739,
+            51.63434
+          ],
+          [
+            0.01184,
+            51.63938
+          ],
+          [
+            0.01187,
+            51.64168
+          ],
+          [
+            0.00661,
+            51.64202
+          ],
+          [
+            -0.00049,
+            51.64331
+          ],
+          [
+            -0.00571,
+            51.64795
+          ],
+          [
+            -0.01081,
+            51.64819
+          ],
+          [
+            -0.01213,
+            51.64654
+          ],
+          [
+            -0.0122,
+            51.64363
+          ],
+          [
+            -0.014,
+            51.63909
+          ],
+          [
+            -0.01804,
+            51.63821
+          ],
+          [
+            -0.01816,
+            51.6363
+          ],
+          [
+            -0.01826,
+            51.63381
+          ],
+          [
+            -0.0209,
+            51.63078
+          ],
+          [
+            -0.0379,
+            51.63413
+          ],
+          [
+            -0.03694,
+            51.63797
+          ],
+          [
+            -0.0423,
+            51.63898
+          ],
+          [
+            -0.04623,
+            51.64523
+          ],
+          [
+            -0.05487,
+            51.64257
+          ],
+          [
+            -0.0574,
+            51.64083
+          ],
+          [
+            -0.0617,
+            51.63837
+          ],
+          [
+            -0.06778,
+            51.63452
+          ],
+          [
+            -0.06175,
+            51.64192
+          ],
+          [
+            -0.05983,
+            51.65947
+          ],
+          [
+            -0.06815,
+            51.6632
+          ],
+          [
+            -0.07318,
+            51.6667
+          ],
+          [
+            -0.08478,
+            51.67059
+          ],
+          [
+            -0.12872,
+            51.64972
+          ],
+          [
+            -0.1312,
+            51.64913
+          ],
+          [
+            -0.13473,
+            51.64757
+          ],
+          [
+            -0.13679,
+            51.64669
+          ],
+          [
+            -0.13855,
+            51.64619
+          ],
+          [
+            -0.14103,
+            51.64569
+          ],
+          [
+            -0.14407,
+            51.64556
+          ],
+          [
+            -0.14608,
+            51.64568
+          ],
+          [
+            -0.14605,
+            51.64297
+          ],
+          [
+            -0.14673,
+            51.64055
+          ]
+        ]
+      ]
+    },
+    "encodedGeometry": {
+      "encodedPolygon": "m`ezH`t[dWw@d\\x_@aHnjAaPvLiAnBkJ~LLdGYbPoC|b@g@dFNnC`AxJbHrcBaGjK~Nfq@vIz`@zJnd@`E`f@kV~_AgYjVsDjBvJdmAdb@duAx@oBjf@ag@dIcC~b@yDjHjHdZrVj@vAxCiCdl@sLtn@vJ~KvXbBfPbAnMFvSHvJ`C`\\h@n_@rUeP|ScH|JaClOsNbM}Bfv@qn@nL_CjLwWzd@aThTbFjKj@bYrLnQtH|L|mArt@zT`EvL^vAfCjOrCn`@rK~UjVxv@h@~Q`AtKr@vJFrTeGpv@`Cz\\`Gb\\p@zIG`Q|IpO~CdHjCzAtStI`h@wDte@kZpWtJfQoXzDeMzQ}`AtHsGjEon@xKid@OsBdqBnbE|a@t}AhdAznAljBbiBbjCa}KoYapGob@gp@d@m~@zh@_i@|a@gJzNgH`SySbHaMlV{ZjTjIve@||@d_@jfBfdAzgAhxCwuEvn@{G~JubBkPePiLqQl_CmlAxC}RjBk}A}a@mjAuKoaAIsW}m@ywFeRgfAweB|Xs`@xCqOkKsJo@_q@`\\e_AgBkSeg@a|@{M}K}Do[weBxc@yTrI|CfJbBtIi@jBWt`@fA~CUnSuJr@w@bG}MjGq`B~B_FBeFmDmi@{UsKoDiGkBr@wAt@eh@hEoC{AiVcPaEkGiQ}FwM}W_E}JkCkFkBsCcScF_I_CeYik@wCaRqHmoAnByYoNmn@wHaT{c@ul@gBgK{@eP{E_]bZ}cA~K{BPkDtIg_AoA_RFkMlJee@vFuX`p@_Mk`Aup@d@_GFiNsBiOkEiRqEcI{ImQ{Iyr@_M}DaIMgK}E_PhG{f@yd@wBqD_CTqCr@{BTeVdEmGdAwDfDqPnDeD|EmApJuBzPmw@to@{QcPaEqcAmAoVL}QeD_]eJyz@BcGwGoPyCug@s@oDkH_h@HiMf@{HG{QoHua@wKeCaG`Dsn@lu@sIeBcN~@uMUwERwb@of@eERaZNiE|EcCtHoAhMEhNpBnNdBvKtCbRfB`I`AzI~@|I^fFvHlQxCvLvDpWzJnzAs`AfU{LjY_Cj^ga@p`@oO|IeVnBmYw^{c@hs@yh@sLoCEyRdFkBTeET}BEkBCyNz@aFnSe]~uAyOlXyWtH{Tv[kJbBeS?uLlGaNUkKeCsUbFqZdAc^gScDnBiAnB}A`FyJz_@PvAbBfl@{@pKmGd^uo@rv@eEaAiG}C_QtB}LaEqWiOoD_BgFwDcE{B_UsUwAoE_HIqCnAwEjA}YGo^ta@kMEcAz_@aGjk@_\\r_@o@z^hIfGdQLj[fJnDfX|JVpNR|QnO}SfiB_W_EiEn`@af@pWrO~t@zIxNjNzY`W~d@gm@ud@ulB_KiV~r@{Tl^iWngAlaCrqGtBnNvH`UnDzKbB~IbBnNX~QWpK|OEbNfC"
+    }
+  },
+  "pagination": {
+    "total": 42,
+    "options": [
+      {
+        "value": "0",
+        "description": "1"
+      },
+      {
+        "value": "24",
+        "description": "2"
+      },
+      {
+        "value": "48",
+        "description": "3"
+      },
+      {
+        "value": "72",
+        "description": "4"
+      },
+      {
+        "value": "96",
+        "description": "5"
+      },
+      {
+        "value": "120",
+        "description": "6"
+      },
+      {
+        "value": "144",
+        "description": "7"
+      },
+      {
+        "value": "168",
+        "description": "8"
+      },
+      {
+        "value": "192",
+        "description": "9"
+      },
+      {
+        "value": "216",
+        "description": "10"
+      },
+      {
+        "value": "240",
+        "description": "11"
+      },
+      {
+        "value": "264",
+        "description": "12"
+      },
+      {
+        "value": "288",
+        "description": "13"
+      },
+      {
+        "value": "312",
+        "description": "14"
+      },
+      {
+        "value": "336",
+        "description": "15"
+      },
+      {
+        "value": "360",
+        "description": "16"
+      },
+      {
+        "value": "384",
+        "description": "17"
+      },
+      {
+        "value": "408",
+        "description": "18"
+      },
+      {
+        "value": "432",
+        "description": "19"
+      },
+      {
+        "value": "456",
+        "description": "20"
+      },
+      {
+        "value": "480",
+        "description": "21"
+      },
+      {
+        "value": "504",
+        "description": "22"
+      },
+      {
+        "value": "528",
+        "description": "23"
+      },
+      {
+        "value": "552",
+        "description": "24"
+      },
+      {
+        "value": "576",
+        "description": "25"
+      },
+      {
+        "value": "600",
+        "description": "26"
+      },
+      {
+        "value": "624",
+        "description": "27"
+      },
+      {
+        "value": "648",
+        "description": "28"
+      },
+      {
+        "value": "672",
+        "description": "29"
+      },
+      {
+        "value": "696",
+        "description": "30"
+      },
+      {
+        "value": "720",
+        "description": "31"
+      },
+      {
+        "value": "744",
+        "description": "32"
+      },
+      {
+        "value": "768",
+        "description": "33"
+      },
+      {
+        "value": "792",
+        "description": "34"
+      },
+      {
+        "value": "816",
+        "description": "35"
+      },
+      {
+        "value": "840",
+        "description": "36"
+      },
+      {
+        "value": "864",
+        "description": "37"
+      },
+      {
+        "value": "888",
+        "description": "38"
+      },
+      {
+        "value": "912",
+        "description": "39"
+      },
+      {
+        "value": "936",
+        "description": "40"
+      },
+      {
+        "value": "960",
+        "description": "41"
+      },
+      {
+        "value": "984",
+        "description": "42"
+      }
+    ],
+    "first": "0",
+    "last": "984",
+    "next": "24",
+    "page": "1"
+  },
+  "resultCount": "60,714",
+  "searchParameters": {
+    "locationIdentifier": "REGION^87490",
+    "numberOfPropertiesPerPage": "24",
+    "radius": "0.0",
+    "sortType": "2",
+    "index": "0",
+    "propertyTypes": [],
+    "tenureTypes": [],
+    "viewType": "LIST",
+    "mustHave": [],
+    "dontShow": [],
+    "furnishTypes": [],
+    "channel": "BUY",
+    "areaSizeUnit": "sqft",
+    "currencyCode": "GBP",
+    "keywords": [],
+    "tags": []
+  },
+  "searchParametersDescription": "Properties For Sale in London",
+  "keywordCount": 0,
+  "pageTitle": "Properties For Sale in London | Rightmove",
+  "metaDescription": "Flats & Houses For Sale in London - Find properties with Rightmove - the UK's largest selection of properties.",
+  "urlPath": null,
+  "properties": [
+    {
+      "id": 89825950,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "numberOfImages": 12,
+      "numberOfFloorplans": 1,
+      "numberOfVirtualTours": 1,
+      "summary": "This is a first floor one bedroom flat at Maxclif House set above popular local cafes in Tottenham Street, Fitzrovia. Reception room, separate fitted kitchen and family bathroom. Moments from Charlotte Street, Goodge Street and transport links. Walking distance to Oxford Street, Covent Garden, Soho.",
+      "displayAddress": "Tottenham Street, Fitzrovia, W1",
+      "countryCode": "GB",
+      "location": {
+        "latitude": 51.52055,
+        "longitude": -0.13503
+      },
+      "images": [
+        {
+          "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/f0498295c/89825950/f0498295cee4e318966bbd55afbf7a7d_max_476x317.jpeg",
+          "url": "property-photo/f0498295c/89825950/f0498295cee4e318966bbd55afbf7a7d.jpeg",
+          "caption": null
+        },
+        {
+          "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/7cfcc8442/89825950/7cfcc8442c38feb949fb31a8f675c23e_max_476x317.jpeg",
+          "url": "property-photo/7cfcc8442/89825950/7cfcc8442c38feb949fb31a8f675c23e.jpeg",
+          "caption": null
+        },
+        {
+          "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/882ab3808/89825950/882ab38088c186cb238f39ba8e5754ba_max_476x317.jpeg",
+          "url": "property-photo/882ab3808/89825950/882ab38088c186cb238f39ba8e5754ba.jpeg",
+          "caption": null
+        },
+        {
+          "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/36b440236/89825950/36b4402368d39c9fb15659a81d953305_max_476x317.jpeg",
+          "url": "property-photo/36b440236/89825950/36b4402368d39c9fb15659a81d953305.jpeg",
+          "caption": null
+        },
+        {
+          "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/2141750aa/89825950/2141750aa5432ded0b35d977297c9081_max_476x317.jpeg",
+          "url": "property-photo/2141750aa/89825950/2141750aa5432ded0b35d977297c9081.jpeg",
+          "caption": null
+        },
+        {
+          "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/64374a41e/89825950/64374a41e5978f885e71ff859ece84d7_max_476x317.jpeg",
+          "url": "property-photo/64374a41e/89825950/64374a41e5978f885e71ff859ece84d7.jpeg",
+          "caption": null
+        },
+        {
+          "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/0edce078d/89825950/0edce078d7dd23407945936c296cf89d_max_476x317.jpeg",
+          "url": "property-photo/0edce078d/89825950/0edce078d7dd23407945936c296cf89d.jpeg",
+          "caption": null
+        },
+        {
+          "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/a9fdacbdf/89825950/a9fdacbdf865e98570b3f2ce900f00e3_max_476x317.jpeg",
+          "url": "property-photo/a9fdacbdf/89825950/a9fdacbdf865e98570b3f2ce900f00e3.jpeg",
+          "caption": null
+        },
+        {
+          "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/9cf0554cb/89825950/9cf0554cba68b25586a03851478e3da5_max_476x317.jpeg",
+          "url": "property-photo/9cf0554cb/89825950/9cf0554cba68b25586a03851478e3da5.jpeg",
+          "caption": null
+        },
+        {
+          "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/1ef7e38f0/89825950/1ef7e38f01e18a3d9b46b9146841b514_max_476x317.jpeg",
+          "url": "property-photo/1ef7e38f0/89825950/1ef7e38f01e18a3d9b46b9146841b514.jpeg",
+          "caption": null
+        },
+        {
+          "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/36cc4558b/89825950/36cc4558bf41531588f8e1b24220b9a3_max_476x317.jpeg",
+          "url": "property-photo/36cc4558b/89825950/36cc4558bf41531588f8e1b24220b9a3.jpeg",
+          "caption": null
+        },
+        {
+          "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/a7b3b3c81/89825950/a7b3b3c81ebb1b67d5a6f1915bb8e0e6_max_476x317.jpeg",
+          "url": "property-photo/a7b3b3c81/89825950/a7b3b3c81ebb1b67d5a6f1915bb8e0e6.jpeg",
+          "caption": null
+        }
+      ],
+      "propertySubType": "Flat",
+      "tenure": {
+        "tenureType": "LEASEHOLD"
+      },
+      "letAvailableDate": null,
+      "listingUpdate": {
+        "listingUpdateReason": "new",
+        "listingUpdateDate": "2021-03-15T13:06:01Z"
+      },
+      "price": {
+        "amount": 680000,
+        "frequency": "not specified",
+        "currencyCode": "GBP",
+        "displayPrices": [
+          {
+            "displayPrice": "\u00a3680,000",
+            "displayPriceQualifier": ""
+          }
+        ]
+      },
+      "premiumListing": true,
+      "featuredProperty": true,
+      "commercialSearchProminenceSelected": false,
+      "customer": {
+        "branchId": 129667,
+        "brandPlusLogoURI": "/partner-logo/16157653-PRODUCTS_LOGO-1766055476.jpeg",
+        "contactTelephone": "020 3910 0880",
+        "branchDisplayName": "Leo Newman, London Sales",
+        "branchName": "London Sales",
+        "brandTradingName": "Leo Newman",
+        "branchLandingPageUrl": "/estate-agents/agent/Leo-Newman/London-Sales-129667.html",
+        "development": false,
+        "mediaServerUrl": "https://media.rightmove.co.uk:443",
+        "showReducedProperties": true,
+        "hasBrandPlus": true,
+        "commercial": false,
+        "showOnMap": true,
+        "enhancedListing": false,
+        "buildToRentListing": false,
+        "developmentContent": null,
+        "buildToRent": false,
+        "buildToRentBenefits": [],
+        "updateDate": "2026-04-01T06:15:30Z",
+        "brandPlusLogoUrl": "https://media.rightmove.co.uk:443/partner-logo/16157653-PRODUCTS_LOGO-1766055476.jpeg",
+        "primaryBrandColour": null,
+        "premiumListingFeatures": [
+          "KEY_FEATURES",
+          "VIDEO",
+          "LARGER_LISTING",
+          "MAP"
+        ]
+      },
+      "distance": null,
+      "transactionType": "buy",
+      "productLabel": {
+        "productLabelText": "Close to Station",
+        "spotlightLabel": false
+      },
+      "commercial": false,
+      "development": false,
+      "residential": true,
+      "students": false,
+      "auction": false,
+      "feesApply": false,
+      "feesApplyText": null,
+      "displaySize": "526 sq. ft.",
+      "showOnMap": true,
+      "propertyUrl": "/properties/89825950#/?channel=RES_BUY",
+      "contactUrl": "/property-for-sale/contactBranch.html?propertyId=89825950",
+      "staticMapUrl": null,
+      "channel": "BUY",
+      "firstVisibleDate": "2021-03-15T13:00:06Z",
+      "keywords": [],
+      "tags": [],
+      "keywordMatchType": "no_keyword",
+      "saved": false,
+      "hidden": false,
+      "onlineViewingsAvailable": false,
+      "lozengeModel": {
+        "matchingLozenges": []
+      },
+      "streetView": {
+        "showStreetView": true
+      },
+      "enquiredTimestamp": null,
+      "updateDate": "2026-10-06T04:33:36Z",
+      "enquiryAddedTimestamp": null,
+      "enquiryCalledTimestamp": null,
+      "reviews": null,
+      "keyFeatures": [
+        {
+          "order": 1,
+          "description": "1st Floor 1 Bedroom Flat",
+          "htmlDescription": "1st Floor 1 Bedroom Flat"
+        },
+        {
+          "order": 2,
+          "description": "Central Fitzrovia Location",
+          "htmlDescription": "Central Fitzrovia Location"
+        },
+        {
+          "order": 3,
+          "description": "Close to Charlotte Street, Goodge Street",
+          "htmlDescription": "Close to Charlotte Street, Goodge Street"
+        },
+        {
+          "order": 4,
+          "description": "Moments from Transport Links",
+          "htmlDescription": "Moments from Transport Links"
+        },
+        {
+          "order": 5,
+          "description": "Short Walk to Oxford Street, Covent Garden",
+          "htmlDescription": "Short Walk to Oxford Street, Covent Garden"
+        }
+      ],
+      "virtualTours": [
+        {
+          "url": "https://youtu.be/VzFtWRKSn8k",
+          "provider": "YOUTUBE"
+        }
+      ],
+      "enhancedListing": false,
+      "propertyImages": {
+        "images": [
+          {
+            "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/f0498295c/89825950/f0498295cee4e318966bbd55afbf7a7d_max_476x317.jpeg",
+            "url": "property-photo/f0498295c/89825950/f0498295cee4e318966bbd55afbf7a7d.jpeg",
+            "caption": null
+          },
+          {
+            "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/7cfcc8442/89825950/7cfcc8442c38feb949fb31a8f675c23e_max_476x317.jpeg",
+            "url": "property-photo/7cfcc8442/89825950/7cfcc8442c38feb949fb31a8f675c23e.jpeg",
+            "caption": null
+          },
+          {
+            "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/882ab3808/89825950/882ab38088c186cb238f39ba8e5754ba_max_476x317.jpeg",
+            "url": "property-photo/882ab3808/89825950/882ab38088c186cb238f39ba8e5754ba.jpeg",
+            "caption": null
+          },
+          {
+            "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/36b440236/89825950/36b4402368d39c9fb15659a81d953305_max_476x317.jpeg",
+            "url": "property-photo/36b440236/89825950/36b4402368d39c9fb15659a81d953305.jpeg",
+            "caption": null
+          },
+          {
+            "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/2141750aa/89825950/2141750aa5432ded0b35d977297c9081_max_476x317.jpeg",
+            "url": "property-photo/2141750aa/89825950/2141750aa5432ded0b35d977297c9081.jpeg",
+            "caption": null
+          },
+          {
+            "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/64374a41e/89825950/64374a41e5978f885e71ff859ece84d7_max_476x317.jpeg",
+            "url": "property-photo/64374a41e/89825950/64374a41e5978f885e71ff859ece84d7.jpeg",
+            "caption": null
+          },
+          {
+            "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/0edce078d/89825950/0edce078d7dd23407945936c296cf89d_max_476x317.jpeg",
+            "url": "property-photo/0edce078d/89825950/0edce078d7dd23407945936c296cf89d.jpeg",
+            "caption": null
+          },
+          {
+            "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/a9fdacbdf/89825950/a9fdacbdf865e98570b3f2ce900f00e3_max_476x317.jpeg",
+            "url": "property-photo/a9fdacbdf/89825950/a9fdacbdf865e98570b3f2ce900f00e3.jpeg",
+            "caption": null
+          },
+          {
+            "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/9cf0554cb/89825950/9cf0554cba68b25586a03851478e3da5_max_476x317.jpeg",
+            "url": "property-photo/9cf0554cb/89825950/9cf0554cba68b25586a03851478e3da5.jpeg",
+            "caption": null
+          },
+          {
+            "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/1ef7e38f0/89825950/1ef7e38f01e18a3d9b46b9146841b514_max_476x317.jpeg",
+            "url": "property-photo/1ef7e38f0/89825950/1ef7e38f01e18a3d9b46b9146841b514.jpeg",
+            "caption": null
+          },
+          {
+            "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/36cc4558b/89825950/36cc4558bf41531588f8e1b24220b9a3_max_476x317.jpeg",
+            "url": "property-photo/36cc4558b/89825950/36cc4558bf41531588f8e1b24220b9a3.jpeg",
+            "caption": null
+          },
+          {
+            "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/a7b3b3c81/89825950/a7b3b3c81ebb1b67d5a6f1915bb8e0e6_max_476x317.jpeg",
+            "url": "property-photo/a7b3b3c81/89825950/a7b3b3c81ebb1b67d5a6f1915bb8e0e6.jpeg",
+            "caption": null
+          }
+        ],
+        "mainImageSrc": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/f0498295c/89825950/f0498295cee4e318966bbd55afbf7a7d_max_476x317.jpeg",
+        "mainMapImageSrc": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/f0498295c/89825950/f0498295cee4e318966bbd55afbf7a7d_max_296x197.jpeg"
+      },
+      "formattedBranchName": " by Leo Newman, London Sales",
+      "addedOrReduced": "Added on 15/03/2021",
+      "formattedDistance": "",
+      "heading": "Featured Property",
+      "propertyTypeFullDescription": "1 bedroom flat for sale",
+      "displayStatus": "",
+      "isRecent": false,
+      "hasBrandPlus": true
+    },
+    {
+      "id": 760770556763601,
+      "bedrooms": 0,
+      "bathrooms": null,
+      "numberOfImages": 3,
+      "numberOfFloorplans": 0,
+      "numberOfVirtualTours": 0,
+      "summary": "An exceptional prime office to residential opportunity in the heart of Westminster",
+      "displayAddress": "One Page Street, London, SW1P 4PQ",
+      "countryCode": "GB",
+      "location": {
+        "latitude": 51.493786,
+        "longitude": -0.12729
+      },
+      "images": [
+        {
+          "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/26213ed6b/760770556763601/26213ed6b802f47cedac6c6a184d2e96_max_476x317.jpeg",
+          "url": "property-photo/26213ed6b/760770556763601/26213ed6b802f47cedac6c6a184d2e96.jpeg",
+          "caption": null
+        },
+        {
+          "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/644d6165a/760770556763601/644d6165a64631d1df9a0f5e6430a0c5_max_476x317.jpeg",
+          "url": "property-photo/644d6165a/760770556763601/644d6165a64631d1df9a0f5e6430a0c5.jpeg",
+          "caption": null
+        },
+        {
+          "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/6231f9713/760770556763601/6231f971326a209abece4ee0e932522d_max_476x317.jpeg",
+          "url": "property-photo/6231f9713/760770556763601/6231f971326a209abece4ee0e932522d.jpeg",
+          "caption": null
+        }
+      ],
+      "propertySubType": "Land",
+      "tenure": {
+        "tenureType": "FREEHOLD"
+      },
+      "letAvailableDate": null,
+      "listingUpdate": {
+        "listingUpdateReason": "new",
+        "listingUpdateDate": "2026-06-30T16:47:05Z"
+      },
+      "price": {
+        "amount": 65000000,
+        "frequency": "not specified",
+        "currencyCode": "GBP",
+        "displayPrices": [
+          {
+            "displayPrice": "POA",
+            "displayPriceQualifier": ""
+          }
+        ]
+      },
+      "premiumListing": false,
+      "featuredProperty": false,
+      "commercialSearchProminenceSelected": false,
+      "customer": {
+        "branchId": 208037,
+        "brandPlusLogoURI": "/partner-logo/11692847-PRODUCTS_LOGO-1766058716.jpeg",
+        "contactTelephone": "020 3909 7811",
+        "branchDisplayName": "Savills, Margaret Street- Development",
+        "branchName": "Margaret Street- Development",
+        "brandTradingName": "Savills",
+        "branchLandingPageUrl": "/estate-agents/agent/Savills/Margaret-Street--Development-208037.html",
+        "development": false,
+        "mediaServerUrl": "https://media.rightmove.co.uk:443",
+        "showReducedProperties": true,
+        "hasBrandPlus": false,
+        "commercial": true,
+        "showOnMap": true,
+        "enhancedListing": false,
+        "buildToRentListing": false,
+        "developmentContent": null,
+        "buildToRent": false,
+        "buildToRentBenefits": [],
+        "updateDate": "2026-06-30T17:28:43Z",
+        "brandPlusLogoUrl": "https://media.rightmove.co.uk:443/partner-logo/11692847-PRODUCTS_LOGO-1766058716.jpeg",
+        "primaryBrandColour": null,
+        "premiumListingFeatures": []
+      },
+      "distance": null,
+      "transactionType": "buy",
+      "productLabel": {
+        "productLabelText": null,
+        "spotlightLabel": false
+      },
+      "commercial": true,
+      "development": false,
+      "residential": true,
+      "students": false,
+      "auction": false,
+      "feesApply": false,
+      "feesApplyText": null,
+      "displaySize": "",
+      "showOnMap": true,
+      "propertyUrl": "/properties/760770556763601#/?channel=COM_BUY",
+      "contactUrl": "/commercial-property-for-sale/contactBranch.html?propertyId=760770556763601",
+      "staticMapUrl": null,
+      "channel": "COMMERCIAL_BUY",
+      "firstVisibleDate": "2026-06-30T16:41:29Z",
+      "keywords": [],
+      "tags": [],
+      "keywordMatchType": "no_keyword",
+      "saved": false,
+      "hidden": false,
+      "onlineViewingsAvailable": false,
+      "lozengeModel": {
+        "matchingLozenges": []
+      },
+      "streetView": {
+        "showStreetView": true
+      },
+      "enquiredTimestamp": null,
+      "updateDate": "2026-10-06T06:39:26Z",
+      "enquiryAddedTimestamp": null,
+      "enquiryCalledTimestamp": null,
+      "reviews": null,
+      "keyFeatures": [
+        {
+          "order": 1,
+          "description": "Freehold office building in Westminster formerly single-let to Burberry Limited.",
+          "htmlDescription": "Freehold office building in Westminster formerly single-let to Burberry Limited."
+        },
+        {
+          "order": 2,
+          "description": "Refurbishment and recladding of the fa\u00e7ade undertaken by Derwent London in 2012.",
+          "htmlDescription": "Refurbishment and recladding of the fa\u00e7ade undertaken by Derwent London in 2012."
+        },
+        {
+          "order": 3,
+          "description": "Approximately 125,272 sq ft (11,638 sqm) NIA, 165,982 sqft GIA (15,420 sqm).",
+          "htmlDescription": "Approximately 125,272 sq ft (11,638 sqm) NIA, 165,982 sqft GIA (15,420 sqm)."
+        },
+        {
+          "order": 4,
+          "description": "Opportunity for value enhancement through a range of alternative uses.",
+          "htmlDescription": "Opportunity for value enhancement through a range of alternative uses."
+        },
+        {
+          "order": 5,
+          "description": "Arranged over basement, lower ground, ground and nine upper floors.",
+          "htmlDescription": "Arranged over basement, lower ground, ground and nine upper floors."
+        },
+        {
+          "order": 6,
+          "description": "The property is neither listed nor situated within a conservation area.",
+          "htmlDescription": "The property is neither listed nor situated within a conservation area."
+        },
+        {
+          "order": 7,
+          "description": "Offers are invited for 100% of the UK SPV owning the asset.",
+          "htmlDescription": "Offers are invited for 100% of the UK SPV owning the asset."
+        },
+        {
+          "order": 8,
+          "description": "Subject to contract only",
+          "htmlDescription": "Subject to contract only "
+        }
+      ],
+      "enhancedListing": false,
+      "propertyImages": {
+        "images": [
+          {
+            "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/26213ed6b/760770556763601/26213ed6b802f47cedac6c6a184d2e96_max_476x317.jpeg",
+            "url": "property-photo/26213ed6b/760770556763601/26213ed6b802f47cedac6c6a184d2e96.jpeg",
+            "caption": null
+          },
+          {
+            "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/644d6165a/760770556763601/644d6165a64631d1df9a0f5e6430a0c5_max_476x317.jpeg",
+            "url": "property-photo/644d6165a/760770556763601/644d6165a64631d1df9a0f5e6430a0c5.jpeg",
+            "caption": null
+          },
+          {
+            "srcUrl": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/6231f9713/760770556763601/6231f971326a209abece4ee0e932522d_max_476x317.jpeg",
+            "url": "property-photo/6231f9713/760770556763601/6231f971326a209abece4ee0e932522d.jpeg",
+            "caption": null
+          }
+        ],
+        "mainImageSrc": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/26213ed6b/760770556763601/26213ed6b802f47cedac6c6a184d2e96_max_476x317.jpeg",
+        "mainMapImageSrc": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/property-photo/26213ed6b/760770556763601/26213ed6b802f47cedac6c6a184d2e96_max_296x197.jpeg"
+      },
+      "formattedBranchName": "Marketed by Savills, Margaret Street- Development",
+      "addedOrReduced": "",
+      "formattedDistance": "",
+      "heading": "",
+      "propertyTypeFullDescription": "Land for sale",
+      "displayStatus": "",
+      "isRecent": false,
+      "hasBrandPlus": false
+    }
+  ]
+}
