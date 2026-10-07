@@ -172,6 +172,7 @@ Spiders below are returning items in recent smoke runs:
 | [`lowes_listing`](#lowes_listing) | Active | bootstrap (`window['__PRELOADED_STATE__']`) | Akamai (ScrapeOps residential + `bypass=5` required) | Lowe's category listings from the server-rendered `__PRELOADED_STATE__` bootstrap payload only; 16 stable category shortcuts with `?page=N` pagination. | 24 (1 page, `beverage-wine-chillers`) | 16 stable category shortcuts from `lowes_categories.py` | `{"category":"beverage-wine-chillers","item_id":"5017343139","title":"23.4-in W 20-Bottles Stainless Steel Dual Zone Cooling Built-in Indoor Wine Cooler","price":...,"source":"lowes_preloaded_state"...}` |
 | [`bhphotovideo_listing`](#bh-photo-video-listing-spider) | Active | bootstrap (`bh-preloaded-data` / `ListingStore`) | ScrapeOps proxy | B&H Photo Video category listings from the server-rendered MobX `ListingStore` hydration; no HTML-card or JSON-LD fallback. | 28 (1 page, `Mirrorless Lenses`) | 13 listing leaves from `bhphotovideo_categories.py` | `{"category":"Mirrorless Lenses","product_id":2000025,"sku":"SO60063GM","title":"Sony FE 600mm f/6.3 GM OSS Lens (Sony E)","price":3698,"currency":"USD","source":"bootstrap","timestamp":"2026-10-07 00:38:12"...}` |
 | [`vitacost_listing`](#vitacost_listing) | Active | api | none detected | Vitacost (Shopify + Boost AI Search) category listings from the first-party `services.mybcapps.com/bc-sf-filter/filter` JSON API; taxonomy from the `Categories` mega-menu. | 96 (2 pages, `category=Supplements`, page size 48) | 92 crawl targets / 90 unique collection URLs across 8 departments from `vitacost_categories.py` | `{"category":"Supplements","handle":"supplements","collection_id":"457575104827","item_id":"10390080782651","title":"Vitacost, Root2®, Turmeric Extract Curcumin C3 Complex®, 120 Capsules","brand":"Vitacost","price":24.74,"original_price":32.99,"discount_percentage":25.0,"source":"vitacost_boost_filter_api"...}` |
+| [`hotpads_listing`](#hotpads_listing) | Active | bootstrap (Next.js RSC `initialListingsData`) | ScrapeOps proxy | HotPads rental-building listings from the server-rendered Next.js App Router RSC bootstrap; no rendered-card or JSON-LD fallback. | 40 (1 page, `new-york-ny`) | 20 major US rental markets from `hotpads_categories.py` | `{"category":"new-york-ny","item_id":"24cjp0b","title":"Sky Three","price_low":3675,"price_high":5575,"city":"Brooklyn","state":"NY","source":"hotpads_rsc_bootstrap","timestamp":"2026-10-07 02:36:00"...}` |
 | [`worldmarket_listing`](#worldmarket_listing) | Active | api | none detected (ScrapeOps proxy) | World Market products from the first-party SFCC `Search-UpdateGrid` grid API (no direct product-card or JSON-LD fallback). | 60 (1 page, live proxy) | 13 department seeds from `worldmarket_categories.py` | `{"category":"furniture-shop-all-furniture","item_id":"SET135122","title":"Isaiah Tufted Mid Century Seating Collection","price":299.99,"currency":"USD","source":"worldmarket_sfcc_search_update_grid_api"...}` |
 | [`walgreens_listing`](#walgreens_listing) | Active | bootstrap (Redux `window.getInitialState()`) | Akamai (ScrapeOps US JS rendering required) | Walgreens category listings from the server-rendered Redux `window.getInitialState()` bootstrap (`searchResult.productList[*].productInfo`); no HTML-card or JSON-LD fallback. | 24 (1 page, `Allergy & Sinus`) | 19 departments / 170 child categories from `walgreens_categories.py` | `{"category":"Allergy & Sinus","category_id":"360545","product_id":"prod6335256","title":"Walgreens Neti Pot Kit","brand":"Walgreens","price":11.99,"currency":"USD","source_url":"https://www.walgreens.com/store/c/productlist/N=360545/1/ShopAll=360545","raw":{...},"timestamp":"2026-10-07 05:40:00"...}` |
 | [`chewy_listing`](#chewy_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | ScrapeOps US residential route required | Chewy category listings from the server-rendered Next.js `__NEXT_DATA__` bootstrap (`props.pageProps.initialState.searchSlice.plpData.products`); no HTML-card or JSON-LD fallback. | 44 (1 page, `food-332`) | 172-category pet taxonomy (dogs, cats, other pets) from `chewy_categories.py` | `{"category":"food-332","item_id":"147999","title":"Instinct Original Adult Grain-Free Real Beef Recipe Wet Dog Food, 13.2-oz can, case of 6","brand":"Instinct","price":28.14,"currency":"USD","source":"chewy_next_data_bootstrap","timestamp":"2026-10-06 21:40:56"...}` |
@@ -4068,6 +4069,22 @@ The spider exposes 20 major US rental markets from `rent_categories.py`. Its ord
 floor-plan bath and square-footage ranges, availability, ratings, amenities, photo
 IDs, contact details, pagination metadata, and the authoritative raw record.
 
+### hotpads_listing
+
+`hotpads_listing` extracts rental buildings exclusively from HotPads' server-rendered
+Next.js App Router RSC `initialListingsData` bootstrap. It does not use rendered
+cards or JSON-LD as product-data fallbacks. Run one of 20 major US city categories,
+a custom `category_url`, or omit all targets to crawl every configured city.
+
+```bash
+scrapy crawl hotpads_listing -a category=new-york-ny -a max_pages=1 -s HTTPCACHE_ENABLED=False -O hotpads.jsonl
+```
+
+Pagination follows the server-rendered `/page/N` path and hydrated `totalPages`.
+The ordered `FEED_EXPORT_FIELDS` contract covers stable lot/marker identity,
+location, bed/bath/square-foot ranges, pricing, availability, photos, contact and
+tag metadata, coordinates, city/page totals, the authoritative raw record, and
+`source=hotpads_rsc_bootstrap`.
 ### worldmarket_listing
 
 `worldmarket_listing` uses one product-data direction: World Market's first-party

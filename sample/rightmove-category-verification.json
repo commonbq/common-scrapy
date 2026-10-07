@@ -1,0 +1,263 @@
+[
+  {
+    "slug": "London",
+    "resultCount": 60714,
+    "url": "https://www.rightmove.co.uk/property-for-sale/London.html",
+    "loc": "London",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1248568
+  },
+  {
+    "slug": "Manchester",
+    "resultCount": 6839,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Manchester.html",
+    "loc": "Manchester, Greater Manchester",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1417916
+  },
+  {
+    "slug": "Birmingham",
+    "resultCount": 6346,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Birmingham.html",
+    "loc": "Birmingham",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1385300
+  },
+  {
+    "slug": "Leeds",
+    "resultCount": 4887,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Leeds.html",
+    "loc": "Leeds, West Yorkshire",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1375246
+  },
+  {
+    "slug": "Liverpool",
+    "resultCount": 4874,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Liverpool.html",
+    "loc": "Liverpool, Merseyside",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1450323
+  },
+  {
+    "slug": "Bristol",
+    "resultCount": 3822,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Bristol.html",
+    "loc": "Bristol",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1250748
+  },
+  {
+    "slug": "Leicester",
+    "resultCount": 3725,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Leicester.html",
+    "loc": "Leicester, Leicestershire",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1375329
+  },
+  {
+    "slug": "Sheffield",
+    "resultCount": 2782,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Sheffield.html",
+    "loc": "Sheffield",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1514967
+  },
+  {
+    "slug": "Cardiff",
+    "resultCount": 2445,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Cardiff.html",
+    "loc": "Cardiff(City)",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1405976
+  },
+  {
+    "slug": "Coventry",
+    "resultCount": 2312,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Coventry.html",
+    "loc": "Coventry, West Midlands",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1490398
+  },
+  {
+    "slug": "Milton-Keynes",
+    "resultCount": 2271,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Milton-Keynes.html",
+    "loc": "Milton Keynes, Buckinghamshire",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1481086
+  },
+  {
+    "slug": "Southampton",
+    "resultCount": 2189,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Southampton.html",
+    "loc": "Southampton, Hampshire",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1349217
+  },
+  {
+    "slug": "Nottingham",
+    "resultCount": 2110,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Nottingham.html",
+    "loc": "Nottingham, Nottinghamshire",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1283748
+  },
+  {
+    "slug": "Brighton",
+    "resultCount": 2106,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Brighton.html",
+    "loc": "Brighton, East Sussex",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1448436
+  },
+  {
+    "slug": "Glasgow",
+    "resultCount": 2062,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Glasgow.html",
+    "loc": "Glasgow",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1454347
+  },
+  {
+    "slug": "Norwich",
+    "resultCount": 1972,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Norwich.html",
+    "loc": "Norwich, Norfolk",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1379728
+  },
+  {
+    "slug": "Edinburgh",
+    "resultCount": 1944,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Edinburgh.html",
+    "loc": "Edinburgh",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1350115
+  },
+  {
+    "slug": "Portsmouth",
+    "resultCount": 1857,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Portsmouth.html",
+    "loc": "Portsmouth, Hampshire",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1335192
+  },
+  {
+    "slug": "Derby",
+    "resultCount": 1836,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Derby.html",
+    "loc": "Derby, Derbyshire",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1485899
+  },
+  {
+    "slug": "Plymouth",
+    "resultCount": 1704,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Plymouth.html",
+    "loc": "Plymouth, Devon",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1440890
+  },
+  {
+    "slug": "Reading",
+    "resultCount": 1677,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Reading.html",
+    "loc": "Reading, Berkshire",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1364859
+  },
+  {
+    "slug": "Newcastle-Upon-Tyne",
+    "resultCount": 1619,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Newcastle-Upon-Tyne.html",
+    "loc": "Newcastle Upon Tyne",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1353271
+  },
+  {
+    "slug": "York",
+    "resultCount": 1571,
+    "url": "https://www.rightmove.co.uk/property-for-sale/York.html",
+    "loc": "York, North Yorkshire",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1299011
+  },
+  {
+    "slug": "Luton",
+    "resultCount": 1559,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Luton.html",
+    "loc": "Luton, Bedfordshire",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1316071
+  },
+  {
+    "slug": "Exeter",
+    "resultCount": 1399,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Exeter.html",
+    "loc": "Exeter, Devon",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1280469
+  },
+  {
+    "slug": "Cambridge",
+    "resultCount": 1292,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Cambridge.html",
+    "loc": "Cambridge, Cambridgeshire",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1339959
+  },
+  {
+    "slug": "Wolverhampton",
+    "resultCount": 1212,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Wolverhampton.html",
+    "loc": "Wolverhampton, West Midlands",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1310103
+  },
+  {
+    "slug": "Oxford",
+    "resultCount": 1181,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Oxford.html",
+    "loc": "Oxford, Oxfordshire",
+    "props": 25,
+    "pages": 42,
+    "bytes": 1278131
+  },
+  {
+    "slug": "Belfast",
+    "resultCount": 7,
+    "url": "https://www.rightmove.co.uk/property-for-sale/Belfast.html",
+    "loc": "Belfast, County Antrim, Northern Ireland",
+    "props": 8,
+    "pages": 1,
+    "bytes": 652488
+  }
+]
