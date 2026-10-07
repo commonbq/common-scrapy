@@ -3959,6 +3959,23 @@ The spider exposes 20 major US rental markets from `rent_categories.py`. Its ord
 `FEED_EXPORT_FIELDS` cover property identity, location, price and bed ranges,
 floor-plan bath and square-footage ranges, availability, ratings, amenities, photo
 IDs, contact details, pagination metadata, and the authoritative raw record.
+
+### hotpads_listing
+
+`hotpads_listing` extracts rental buildings exclusively from HotPads' server-rendered
+Next.js App Router RSC `initialListingsData` bootstrap. It does not use rendered
+cards or JSON-LD as product-data fallbacks. Run one of 20 major US city categories,
+a custom `category_url`, or omit all targets to crawl every configured city.
+
+```bash
+scrapy crawl hotpads_listing -a category=new-york-ny -a max_pages=1 -s HTTPCACHE_ENABLED=False -O hotpads.jsonl
+```
+
+Pagination follows the server-rendered `/page/N` path and hydrated `totalPages`.
+The ordered `FEED_EXPORT_FIELDS` contract covers stable lot/marker identity,
+location, bed/bath/square-foot ranges, pricing, availability, photos, contact and
+tag metadata, coordinates, city/page totals, the authoritative raw record, and
+`source=hotpads_rsc_bootstrap`.
 ### harborfreight_listing
 
 `harborfreight_listing` reads products exclusively from the server-rendered
