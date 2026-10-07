@@ -1,0 +1,49 @@
+{
+  "note": "Evidence that the interactive Trip.com hotel search page is a client-hydrated React/NFES app whose product list is fetched over XHR from robots-DISALLOWED endpoints. The recommended spider source is the server-rendered SEO city page instead (see trip-com-ticket-body.md).",
+  "captured": "2026-10-07",
+  "through": "ScrapeOps US proxy (SCRAPEOPS_PROXY, country=us)",
+  "interactive_page": {
+    "url": "https://us.trip.com/hotels/list?city=359",
+    "http": 200,
+    "bytes": 755178,
+    "title": "Bangkok Hotels",
+    "hydration": {
+      "window.__NFES_DATA__": {
+        "present": true,
+        "top_keys": ["assetPrefix", "runtimeConfig", "sharkAresUrl", "__nfesGlobalDatas", "fullUrl", "props", "isRTL", "version", "webcore", "query"],
+        "props_keys": ["pageProps"],
+        "props_pageProps": {"pathname": "/list", "asPath": "/hotels/search/list?city=359"},
+        "comment": "No hotel rows in the hydration payload; pageProps is a near-empty shell -> the list is fetched after load via XHR."
+      },
+      "window.__CARGO_DATA__": {"present": true},
+      "window.__CORE_SW__": {"present": true}
+    },
+    "query_context": {"city": "359", "seo": 1, "routerParams": ["search", "list"]},
+    "xhr_endpoints_referenced_in_markup": [
+      "/restapi/soa2/34951/fetchHotelList",
+      "/restapi/soa2/34951/fetchHotelListInit",
+      "/restapi/soa2/34951/fetchHotelListSeo",
+      "/restapi/soa2/34951/getHotelCommonFilter",
+      "/restapi/soa2/34951/getEmergencyInfo",
+      "/restapi/soa2/34951/sdsdk",
+      "/restapi/soa2/34401/getBenefitBanner",
+      "/htls/restapi/*"
+    ],
+    "ssr_call_log_excerpt": [
+      {"runningType": "nfes-server", "url": "/restapi/soa2/34951/fetchHotelListSeo", "serviceCode": "34951", "operation": "fetchHotelListSeo", "success": true},
+      {"runningType": "nfes-server", "url": "/restapi/soa2/34951/fetchHotelListInit", "serviceCode": "34951", "operation": "fetchHotelListInit", "success": true},
+      {"runningType": "nfes-server", "url": "/restapi/soa2/34951/fetchHotelList", "serviceCode": "34951", "operation": "fetchHotelList", "success": true}
+    ],
+    "spider_defence": {
+      "antiSpiderSrc": "https://ak-s.tripcdn.com/modules/hotel/hotel-spider-defence-new/sdt.1002-common.min.ebbcda904e84236294d67d992c86a0f1.js",
+      "comment": "Trip.com ships an anti-spider script for the interactive list; another reason to prefer the static SEO page."
+    }
+  },
+  "robots_txt_excerpt": [
+    "Disallow: /restapi/soa2/*",
+    "Disallow: /htls/restapi/*",
+    "Disallow: /htls/getHotDestination",
+    "Disallow: /webapp/",
+    "Disallow: /m/"
+  ]
+}

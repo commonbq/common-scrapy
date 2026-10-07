@@ -1,0 +1,195 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Hotel",
+        "name": "NASA BANGKOK - Airport Rail Link Ramkhamhang",
+        "url": "https://us.trip.com/hotels/bangkok-hotel-detail-996749/nasa-bangkok-airport-rail-link-ramkhamhang/",
+        "image": "https://ak-d.tripcdn.com/images/1mc0t12000btgb5fd35A4.jpg?proc=resize/m_r,w_700,h_448,8688",
+        "starRating": {
+          "@type": "Rating",
+          "ratingValue": 4
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "8.0",
+          "bestRating": 10,
+          "worstRating": 1,
+          "reviewCount": 16689
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Hotel",
+        "name": "Baiyoke Sky Hotel Bangkok",
+        "url": "https://us.trip.com/hotels/bangkok-hotel-detail-700948/baiyoke-sky-hotel/",
+        "image": "https://ak-d.tripcdn.com/images/2001170000013748g5C51.jpg?proc=resize/m_r,w_700,h_448,8688",
+        "starRating": {
+          "@type": "Rating",
+          "ratingValue": 4
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "9.0",
+          "bestRating": 10,
+          "worstRating": 1,
+          "reviewCount": 3182
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Hotel",
+        "name": "Yen Hostel & Smoothies Silom",
+        "url": "https://us.trip.com/hotels/bangkok-hotel-detail-135841304/yen-hostel-smoothies-silom/",
+        "image": "https://ak-d.tripcdn.com/images/1z65f12000tr5eymj879F.jpg?proc=resize/m_r,w_700,h_448,8688",
+        "starRating": {
+          "@type": "Rating",
+          "ratingValue": 3
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "9.9",
+          "bestRating": 10,
+          "worstRating": 1,
+          "reviewCount": 13
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "@type": "Hotel",
+        "name": "Twin Towers Hotel",
+        "url": "https://us.trip.com/hotels/bangkok-hotel-detail-703132/twin-towers-hotel/",
+        "image": "https://ak-d.tripcdn.com/images/1mc1i12000dgvc7c2CC2C.jpg?proc=resize/m_r,w_700,h_448,8688",
+        "starRating": {
+          "@type": "Rating",
+          "ratingValue": 5
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "8.5",
+          "bestRating": 10,
+          "worstRating": 1,
+          "reviewCount": 5091
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "item": {
+        "@type": "Hotel",
+        "name": "LEE Hotel Lat Phrao",
+        "url": "https://us.trip.com/hotels/bangkok-hotel-detail-132204093/lee-hotel-lat-phrao/",
+        "image": "https://ak-d.tripcdn.com/images/1mc5312000swo3uko8D32.jpg?proc=resize/m_r,w_700,h_448,8688",
+        "starRating": {
+          "@type": "Rating",
+          "ratingValue": 4
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "8.2",
+          "bestRating": 10,
+          "worstRating": 1,
+          "reviewCount": 477
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "item": {
+        "@type": "Hotel",
+        "name": "Ibis Styles Bangkok Sukhumvit Phra Khanong",
+        "url": "https://us.trip.com/hotels/bangkok-hotel-detail-12617337/ibis-styles-bangkok-sukhumvit-phra-khanong/",
+        "image": "https://ak-d.tripcdn.com/images/22041800000145rfkAE0A.jpg?proc=resize/m_r,w_700,h_448,8688",
+        "starRating": {
+          "@type": "Rating",
+          "ratingValue": 4
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "8.6",
+          "bestRating": 10,
+          "worstRating": 1,
+          "reviewCount": 3059
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "item": {
+        "@type": "Hotel",
+        "name": "Livotel Express Hotel Ramkhamhaeng 50 Bangkok - No Parking",
+        "url": "https://us.trip.com/hotels/bangkok-hotel-detail-46114693/livotel-express-hotel-ramkhamhaeng-50-bangkok-no-parking/",
+        "image": "https://ak-d.tripcdn.com/images/0201j12000a9j2vspE23A.jpg?proc=resize/m_r,w_700,h_448,8688",
+        "starRating": {
+          "@type": "Rating",
+          "ratingValue": 3
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "8.0",
+          "bestRating": 10,
+          "worstRating": 1,
+          "reviewCount": 1685
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 8,
+      "item": {
+        "@type": "Hotel",
+        "name": "GLINT Siam Bangkok Hotel",
+        "url": "https://us.trip.com/hotels/bangkok-hotel-detail-132929757/glint-siam-bangkok-hotel/",
+        "image": "https://ak-d.tripcdn.com/images/1mc1o12000qwlvbvgF7FB.png?proc=resize/m_r,w_700,h_448,8688",
+        "starRating": {
+          "@type": "Rating",
+          "ratingValue": 4
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "8.6",
+          "bestRating": 10,
+          "worstRating": 1,
+          "reviewCount": 615
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 9,
+      "item": {
+        "@type": "Hotel",
+        "name": "Holiday Inn Express BANGKOK SUKHUMVIT 11 by IHG",
+        "url": "https://us.trip.com/hotels/bangkok-hotel-detail-1520088/holiday-inn-express-bangkok-sukhumvit-11-by-ihg/",
+        "image": "https://ak-d.tripcdn.com/images/220610000000onyavE4C8.jpg?proc=resize/m_r,w_700,h_448,8688",
+        "starRating": {
+          "@type": "Rating",
+          "ratingValue": 4
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "8.6",
+          "bestRating": 10,
+          "worstRating": 1,
+          "reviewCount": 507
+        }
+      }
+    }
+  ]
+}
