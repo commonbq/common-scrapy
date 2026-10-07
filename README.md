@@ -125,6 +125,7 @@ Spiders below are returning items in recent smoke runs:
 | [`lululemon_listing`](#lululemon_listing) | Active | bootstrap | Akamai | lululemon listing spider via Next.js `__NEXT_DATA__`. | 40 (ok) | women-shorts, women-leggings, men-shorts, bags | `{"category":"women-shorts","product_id":"prod11860112","name":"Shake It Out High-Rise Running Short 2.5\"","brand":"lululemon","price":["...` |
 | [`newegg_listing`](#newegg_listing) | Experimental | SSR hydration state | none detected | Newegg listing spider reading server-rendered `window.__initialState__.Products` with `/Page-N` pagination and live RolloverMenu inventory refresh. | 36 (ok) | desktop-cpu-processors, all-current-categories | `{"item_id":"19-113-877","title":"AMD Ryzen 7 9800X3D - Ryzen 7 9000 Series Zen 5 8-Core 5.2 GHz - Socket AM5 120W - AMD Radeon Graphics Desktop Processor - 100-100001084WOF","model":"100-100001084WOF","brand":"AMD","price":469,"currency":"USD","url":"https://www.newegg.com/amd-ryzen-7-9000-series-ryzen-7-9800x3d-granite-ridge-zen-5-socket-am5-desktop-cpu-processor/p/N82E16819113877","image":"https://c1.neweggimages.com/ProductImageOriginal/19-113-877-01.png","rating":4.8,"reviews_count":729,"page":1,"source":"newegg_initial_state"}` |
 | [`redfin_listing`](#redfin_listing) | Active | api | ScrapeOps US proxy | Redfin city listings from the first-party Stingray GIS JSON API discovered in React server hydration. | 350 (one page) | 20 major US city markets | `{"category":"los-angeles-ca","item_id":"5196541","price":1399000,"source":"redfin_stingray_api"...}` |
+| [`movoto_listing`](#movoto_listing) | Experimental | bootstrap | PerimeterX (ScrapeOps US proxy required) | Movoto sale listings from server-rendered Nuxt `__INITIAL_STATE__.pageData.listings` only; no HTML or JSON-LD fallback. | 50 (one page, live proxy) | 20 major US city markets | `{"category":"new-york-ny","item_id":"aca725fa-4f79-41bc-a458-6de558312a3b","title":"50 W 66th St #10C New York, NY 10023","price":10950000,"source":"movoto_initial_state"...}` |
 | [`oreilly_listing`](#oreilly_listing) | Active | bootstrap (`window._ost`) | direct 403; ScrapeOps US residential required | O'Reilly Auto Parts category listings from the server-rendered product bootstrap only. | 18 (live brake rotors page) | 34 root departments from `oreilly_categories.py`; direct leaf URLs supported | `{"item_id":"BBR|3512RGS","title":"BrakeBest Select Front Brake Rotor - 3512RGS","price":89.99,"currency":"USD","source":"oreilly_ost_bootstrap"}` |
 | [`rei_listing`](#rei_listing) | Active | bootstrap (`#initial-props`) | none detected | REI category listings from the server-rendered `#initial-props` bootstrap (`ProductSearch.products.searchResults.results`); follows hydration pagination and dedupes by `prodId`. | 30 (1 page, hiking-footwear) | 20 stable commerce-category shortcuts from `rei_categories.py` | `{"category":"hiking-footwear","item_id":"202126","title":"Moab 3 Hiking Shoes - Women's","brand":"Merrell","price":71.83,"currency":"USD","source":"rei_initial_props_bootstrap","timestamp":"2026-10-06 20:34:00"}` |
 | [`trulia_listing`](#trulia_listing) | Experimental | bootstrap | challenge/WAF | Trulia sale listings from server-rendered Next.js `props.searchData.homes`. | 40 (live) | 20 homepage-highlighted US cities | `{"item_id":"465800506","title":"97 Marland Rd, Colorado Springs, CO 80906","price":2500000,"currency":"USD"}` |
@@ -3998,6 +3999,23 @@ The spider exposes 20 major US rental markets from `rent_categories.py`. Its ord
 `FEED_EXPORT_FIELDS` cover property identity, location, price and bed ranges,
 floor-plan bath and square-footage ranges, availability, ratings, amenities, photo
 IDs, contact details, pagination metadata, and the authoritative raw record.
+### movoto_listing
+
+Movoto sale listings use one data path: the server-rendered Nuxt JSON in
+`script#__INITIAL_STATE__`, specifically `pageData.listings`. Each item includes the
+stable `propertyId`, price, property facts, MLS and broker metadata, location, and image.
+There is deliberately no direct card-HTML or JSON-LD extraction fallback.
+
+The spider provides 20 deterministic major-city categories sourced from Movoto's
+`/sitemap/` city inventory. Pagination uses `/<city>/p-<N>/` (not the search route
+`/<city>/<N>/`) and is bounded by `pageData.totalCount`, `max_pages`, short/empty pages,
+and repeated IDs. Movoto is PerimeterX-protected, so use the configured ScrapeOps US
+proxy.
+
+```bash
+scrapy crawl movoto_listing -a category=new-york-ny -a max_pages=1 -O movoto.jsonl -s HTTPCACHE_ENABLED=False
+```
+
 ### harborfreight_listing
 
 `harborfreight_listing` reads products exclusively from the server-rendered
