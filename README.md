@@ -94,6 +94,7 @@ Working spiders running daily in production:
 
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
+| [`etsy_listing`](#etsy_listing) | Experimental | API | ScrapeOps US residential route with preserved headers | Etsy product listings from the first-party asynchronous Neu Spec search API only; no direct HTML or JSON-LD product path. | 48/page | 20 primary Etsy categories | `{"category":"jewelry","item_id":"123","title":"Handmade Example","price":29.4,"currency":"USD","source":"etsy_neu_search_api"}` |
 | [`hobbylobby_listing`](#hobbylobby_listing) | Experimental | bootstrap | ScrapeOps US proxy | Hobby Lobby products from the server-rendered Algolia InstantSearch state only; no direct HTML-card or JSON-LD extraction. | 12/page | 20 product-bearing level-2 categories | `{"category":"art-supplies-painting-supplies","item_id":"80968391","title":"Master's Touch Oil Paint - 12 Piece Set","price":6.99,"source":"hobbylobby_instantsearch_bootstrap"...}` |
 | [`tripcom_listing`](#tripcom_listing) | Experimental | bootstrap | ScrapeOps proxy | Trip.com hotels from the server-provided `City` template-component state; no direct HTML-card or JSON-LD extraction. | 9 (one city page) | 20 popular hotel destinations | `{"category":"bangkok","title":"NASA BANGKOK - Airport Rail Link Ramkhamhang","price":15,"currency":"USD","source":"tripcom_city_component_bootstrap"...}` |
 | [`hostelworld_listing`](#hostelworld_listing) | Active | api | none detected; API must be direct so proxy does not rewrite `Accept` | Hostelworld properties from the first-party Apigee city-properties API only; no HTML or JSON-LD fallback. | 29 (New York, one page) | 20 popular global cities; 2,838 city URLs available from the sitemap index | `{"category":"new-york","item_id":"1850","name":"HI New York City Hostel","source":"hostelworld_city_properties_api"...}` |
@@ -4389,3 +4390,20 @@ The taxonomy contains 20 major US city destinations. Run one with
 landing pages at 20 hotels; the session-backed `/search/` inventory is out of
 scope. Requests use the configured US proxy, and missing/challenge bootstrap
 responses fail visibly. There is no direct-HTML or JSON-LD extraction path.
+### etsy_listing
+
+`etsy_listing` reads product cards exclusively from Etsy's first-party
+`async_search_results` Neu Spec API. The 20 stable category seeds mirror the
+marketplace's primary departments, and pagination is requested directly from
+the API with Etsy's `Search2_ApiSpecs_WebSearch` contract. The category page,
+direct HTML cards, and JSON-LD are not product-data fallbacks.
+
+The ordered `FEED_EXPORT_FIELDS` contract covers listing and shop IDs, title,
+shop, canonical URL, image, current/original prices, currency, rating/reviews,
+ad and shipping flags, category/page/position, source, and the raw identity
+record. Etsy requires the configured ScrapeOps US residential route with
+headers preserved.
+
+```bash
+scrapy crawl etsy_listing -a category=jewelry -a max_pages=1 -s HTTPCACHE_ENABLED=False -O etsy.jsonl
+```
