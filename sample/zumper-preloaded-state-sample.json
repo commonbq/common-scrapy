@@ -1,0 +1,288 @@
+{
+ "currentSearch": {
+  "firstPageCount": 25,
+  "firstPageOffset": null,
+  "firstPageAdditionalCount": 0,
+  "hasMoreListables": true,
+  "countsBy": {
+   "bedrooms": {},
+   "minPrice": {}
+  },
+  "isCategoriesLoading": false
+ },
+ "searchUI": {
+  "isCountsByFetching": false,
+  "isFiltersView": false,
+  "isNavbarSearchFocused": false,
+  "isClustersFetching": false,
+  "limit": 20,
+  "loadMoreCount": 0,
+  "offset": 0,
+  "pageOffset": 0,
+  "searchView": "main",
+  "isListablesFetching": false,
+  "moreResult": true
+ },
+ "geo": {
+  "cities": [
+   {
+    "city_id": 2185,
+    "name": "New York",
+    "state": "NY",
+    "url": "new-york-ny",
+    "parent_id": null,
+    "lat": 40.7080245655,
+    "lng": -73.9478207986,
+    "listing_count": 10400,
+    "type": 1,
+    "box": [
+     -74.2557,
+     40.496,
+     -73.7002,
+     40.9176
+    ],
+    "country": "USA",
+    "index": true,
+    "index_attrs": "{\"beds\": {\"houses\": [], \"apartments\": [0, 1, 2, 3]}}",
+    "listing_counts": {
+     "0": 26,
+     "1": 798,
+     "2": 103,
+     "3": 19,
+     "4": 8841,
+     "9": 103,
+     "13": 510,
+     "long_term": 9026,
+     "short_term": 305
+    },
+    "inventory_counts": {
+     "0": {
+      "bedrooms": {
+       "0": 5,
+       "1": 6,
+       "2": 9,
+       "3": 4,
+       "4": 2
+      },
+      "amenities": {
+       "cheap": 9,
+       "luxury": 11,
+       "furnished": 2,
+       "utilities": 2,
+       "low_income": 0,
+       "pet_friendly": 17,
+       "move_in_specials": 1,
+       "short_term_lease": 0,
+       "no_security_deposit": 0
+      }
+     },
+     "1": {
+      "bedrooms": {
+       "0": 104,
+       "1": 273,
+       "2": 273,
+       "3": 127,
+       "4": 20
+      },
+      "amenities": {
+       "cheap": 115,
+       "luxury": 538,
+       "furnished": 127,
+       "utilities": 9,
+       "low_income": 0,
+       "pet_friendly": 243,
+       "move_in_specials": 1,
+       "short_term_lease": 4,
+       "no_security_deposit": 0
+      }
+     },
+     "2": {
+      "bedrooms": {
+       "0": 1,
+       "1": 20,
+       "2": 16,
+       "3": 43,
+       "4": 24
+      },
+      "amenities": {
+       "cheap": 37,
+       "luxury": 40,
+       "furnished": 14,
+       "utilities": 4,
+       "low_income": 0,
+       "pet_friendly": 15,
+       "move_in_specials": 0,
+       "short_term_lease": 3,
+       "no_security_deposit": 0
+      }
+     },
+     "3": {
+      "bedrooms": {
+       "0": 1,
+       "1": 8,
+       "2": 3,
+       "3": 6,
+       "4": 1
+      },
+      "amenities": {
+       "cheap": 8,
+       "luxury": 6,
+       "furnished": 1,
+       "utilities": 0,
+       "low_income": 0,
+       "pet_friendly": 12,
+       "move_in_specials": 0,
+       "short_term_lease": 0,
+       "no_security_deposit": 0
+      }
+     },
+     "4": {
+      "bedrooms": {
+       "0": 1384,
+       "1": 2799,
+       "2": 2170,
+       "3": 1112,
+       "4": 316
+      },
+      "amenities": {
+       "cheap": 1553,
+       "luxury": 4311,
+       "furnished": 682,
+       "utilities": 104,
+       "low_income": 5,
+       "pet_friendly": 5168,
+       "move_in_specials": 105,
+       "short_term_lease": 292,
+       "no_security_deposit": 9
+      }
+     },
+     "9": {
+      "bedrooms": {
+       "0": 2,
+       "1": 7,
+       "2": 34,
+       "3": 44,
+       "4": 16
+      },
+      "amenities": {
+       "cheap": 78,
+       "luxury": 12,
+       "furnished": 0,
+       "utilities": 4,
+       "low_income": 0,
+       "pet_friendly": 2,
+       "move_in_specials": 0,
+       "short_term_lease": 2,
+       "no_security_deposit": 0
+      }
+     },
+     "13": {
+      "bedrooms": {
+       "0": 160,
+       "1": 114,
+       "2": 101,
+       "3": 94,
+       "4": 41
+      },
+      "amenities": {
+       "cheap": 147,
+       "luxury": 283,
+       "furnished": 19,
+       "utilities": 10,
+       "low_income": 0,
+       "pet_friendly": 8,
+       "move_in_specials": 0,
+       "short_term_lease": 3,
+       "no_security_deposit": 0
+      }
+     },
+     "16": {
+      "bedrooms": {
+       "0": 4,
+       "1": 9,
+       "2": 15,
+       "3": 71,
+       "4": 292
+      },
+      "amenities": {
+       "cheap": 387,
+       "luxury": 3,
+       "furnished": 375,
+       "utilities": 4,
+       "low_income": 0,
+       "pet_friendly": 5,
+       "move_in_specials": 0,
+       "short_term_lease": 325,
+       "no_security_deposit": 0
+      }
+     }
+    },
+    "list_url": "/apartments-for-rent/new-york-ny",
+    "path": "new-york-ny",
+    "main_image_url": "https://d2t1047w253zzm.cloudfront.net/cities/new-york-ny-apartments-for-rent.jpg",
+    "index_attrs_json": {
+     "beds": {
+      "houses": [],
+      "apartments": [
+       0,
+       1,
+       2,
+       3
+      ]
+     }
+    },
+    "__typename": "MCity"
+   }
+  ],
+  "hood": {
+   "neighborhood_id": 115,
+   "name": "Williamsburg",
+   "city_state_name": "new-york-ny/williamsburg",
+   "city": "New York",
+   "state": "NY",
+   "city_id": 2185,
+   "lat": 40.7132985755001,
+   "lng": -73.9429293819999,
+   "listing_count": 224,
+   "type": 1,
+   "country": "USA",
+   "box": [
+    -73.9702137639999,
+    40.6981080000001,
+    -73.9156449999999,
+    40.7284891510001
+   ],
+   "parent_id": null,
+   "index": true,
+   "latest_ppb_json": {
+    "0": 4043,
+    "1": 4800,
+    "2": 6190,
+    "3": 6200,
+    "4": 16500
+   },
+   "index_attrs": null,
+   "url": "/apartments-for-rent/new-york-ny/williamsburg",
+   "list_url": "/apartments-for-rent/new-york-ny/williamsburg",
+   "path": "new-york-ny/williamsburg",
+   "main_image_url": "https://d2t1047w253zzm.cloudfront.net/neighborhoods/nyc/_generic/ny-generic.jpg",
+   "index_attrs_json": null
+  }
+ },
+ "priceData": {
+  "recentAverages": [],
+  "yoyChange": null
+ },
+ "filters": {
+  "listablesCount": {
+   "data": null,
+   "meta": {
+    "fetching": false,
+    "fetchingKey": null,
+    "error": null
+   }
+  },
+  "matchingCount": null,
+  "propertyTypeCounts": {}
+ }
+}

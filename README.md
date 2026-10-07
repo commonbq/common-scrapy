@@ -43,6 +43,7 @@ Examples:
 - `common-scrapy crawl sephora_listing --category makeup -a max_pages=1 -O sephora_listing.jsonl`
 - `common-scrapy crawl newegg_listing --category desktop-cpu-processors -a max_pages=1 -O newegg.jsonl` (36 items, verified live on 2026-10-02; see [newegg_listing](#newegg_listing))
 - `common-scrapy crawl cvs_listing --category health-medicine -a max_pages=3 -O cvs.jsonl` (60 items, verified live on 2026-10-04; see [cvs_listing](#cvs_listing))
+- `common-scrapy crawl menards_listing --category halloween-animated-decorations -a max_pages=1 -O menards.jsonl`
 
 `newegg_listing` parses the server-rendered `window.__initialState__.Products`
 payload. It accepts `category`, `category_url`, or `url`; use
@@ -60,6 +61,7 @@ Working spiders running daily in production:
 
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
+| [`dell_listing`](#dell_listing) | Experimental | bootstrap | ScrapeOps proxy | Dell US listings from the authoritative `data-product-detail-info` Product Stack bootstrap; no product-card or JSON-LD fallback. | Live smoke tested below | 18 stable product/deal categories | `{"item_id":"dellplus16laptopdb16250","title":"Dell 16 Plus Laptop","price":1559.99,"currency":"USD","source":"dell_product_stack_bootstrap"...}` |
 | [`agoda_listing`](#agoda_listing) | Experimental | api | proxy required | Agoda curated destination accommodations from the first-party Cronos geo API. | 30 (Bali, one API response) | 20 popular cities from the homepage destination payload | `{"category":"bali","item_id":"489045","title":"RIMBA by AYANA Bali","review_score":9.1,"star_rating":5.0,"source":"agoda_cronos_geo_api","timestamp":"2026-10-06 10:30:00"...}` |
 | [`adorama_listing`](#adorama_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | DataDome | Adorama category listings from server-rendered Next.js hydration state. | 24 (one page; 48 across 2 pages) | 1,079 crawlable categories across 11 departments from `adorama_categories.py` | `{"category":"cameras","item_id":"KKRK0603A","title":"Kodak Charmera Millenium Edition...","price":54.94,"currency":"USD"...}` |
 | [`amazon_listing`](#amazon_listing-category) | Active | html | none detected | Amazon category listing spider (category shortcuts). | 22 (ok) | electronics, fashion, beauty, home-kitchen, toys-games, sports-outdoors, grocery, books | `{"asin":"B0DKDTBBF7","title":"2 Packs Electric Candle Lighters, Windproof Flameless USB Rechargeable Plasma Arc Long Lighter for Grill Fi...` |
@@ -149,6 +151,24 @@ Spiders below are returning items in recent smoke runs:
 | [`williams_sonoma_listing`](#williams_sonoma_listing) | Active | api | Akamai (not an issue for API) | Williams-Sonoma category listings via the Constructor.io browse API (taxonomy from the runtime category-tree API). | 100 (1 page, proxy) | ~3500 group_ids from the runtime category-tree API | `{"category":"cookware-sets","item_id":"greenpan-reserve-pro-ceramic-nonstick-10-piece-cookware-set","title":"GreenPan™ Reserve Pro Ceramic Nonstick 10-Piece Cookware Set","price":399.95,"currency":"USD","image_url":"https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202631/0164/img2c.jpg","flags":["freeShip","more_colors"],"source":"williams_sonoma_constructor_browse"...` |
 | [`harborfreight_listing`](#harborfreight_listing) | Active | bootstrap (`window.__APOLLO_STATE__`) | none detected | Harbor Freight category listings from the server-rendered Apollo hydration state; 17 deterministic department aliases and Magento `?p=N` pagination. | 36 (1 page, `Automotive`) | 17 department aliases from `harborfreight_categories.py` | `{"category":"Automotive","item_id":"64784","title":"3 Ton Low-Profile Professional Floor Jack with RAPID PUMP, Green","brand":"DAYTONA","price":199.99,"currency":"USD","source":"harborfreight_apollo_bootstrap"...}` |
 | [`vitacost_listing`](#vitacost_listing) | Active | api | none detected | Vitacost (Shopify + Boost AI Search) category listings from the first-party `services.mybcapps.com/bc-sf-filter/filter` JSON API; taxonomy from the `Categories` mega-menu. | 96 (2 pages, `category=Supplements`, page size 48) | 92 crawl targets / 90 unique collection URLs across 8 departments from `vitacost_categories.py` | `{"category":"Supplements","handle":"supplements","collection_id":"457575104827","item_id":"10390080782651","title":"Vitacost, Root2®, Turmeric Extract Curcumin C3 Complex®, 120 Capsules","brand":"Vitacost","price":24.74,"original_price":32.99,"discount_percentage":25.0,"source":"vitacost_boost_filter_api"...}` |
+| [`walgreens_listing`](#walgreens_listing) | Active | bootstrap (Redux `window.getInitialState()`) | Akamai (ScrapeOps US JS rendering required) | Walgreens category listings from the server-rendered Redux `window.getInitialState()` bootstrap (`searchResult.productList[*].productInfo`); no HTML-card or JSON-LD fallback. | 24 (1 page, `Allergy & Sinus`) | 19 departments / 170 child categories from `walgreens_categories.py` | `{"category":"Allergy & Sinus","category_id":"360545","product_id":"prod6335256","title":"Walgreens Neti Pot Kit","brand":"Walgreens","price":11.99,"currency":"USD","source_url":"https://www.walgreens.com/store/c/productlist/N=360545/1/ShopAll=360545","raw":{...},"timestamp":"2026-10-07 05:40:00"...}` |
+| [`chewy_listing`](#chewy_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | ScrapeOps US residential route required | Chewy category listings from the server-rendered Next.js `__NEXT_DATA__` bootstrap (`props.pageProps.initialState.searchSlice.plpData.products`); no HTML-card or JSON-LD fallback. | 44 (1 page, `food-332`) | 172-category pet taxonomy (dogs, cats, other pets) from `chewy_categories.py` | `{"category":"food-332","item_id":"147999","title":"Instinct Original Adult Grain-Free Real Beef Recipe Wet Dog Food, 13.2-oz can, case of 6","brand":"Instinct","price":28.14,"currency":"USD","source":"chewy_next_data_bootstrap","timestamp":"2026-10-06 21:40:56"...}` |
+
+### menards_listing
+
+`menards_listing` extracts products through one data path: Menards' first-party
+`POST /main/search/category.ajx` JSON API. It first visits the selected category
+to establish the proxy-backed cookie session, derives `categoryId` from the
+canonical `c-<id>.htm` URL, and then paginates the API's `searchResult.items`
+contract. It does not parse product cards or JSON-LD.
+
+The spider includes 20 stable department/category seeds from Menards' Shop >
+Departments navigation. Both the category page and API request use the configured
+US proxy because direct API requests receive an Incapsula challenge.
+
+```bash
+scrapy crawl menards_listing -a category=halloween-animated-decorations -a max_pages=1 -s HTTPCACHE_ENABLED=False -O menards.jsonl
+```
 
 #### In-progress spiders
 
@@ -163,9 +183,25 @@ These are still being worked on and currently returned `0` items in recent smoke
 | [`dillards_listing`](#dillards_listing) | Experimental | bootstrap | Akamai | Dillard's listing spider via `window.__INITIAL_STATE__`. | 0 (ok) | women, men, shoes, handbags, beauty, juniors, home | `n/a` |
 | [`kohls_listing`](#kohls_listing) | Experimental | api | Akamai (Cloudflare challenge assets also observed) | Kohl’s listing via `/web/catalog/...` API. | 0 (ok) | women, men, sale | `n/a` |
 | [`nordstromrack_listing`](#nordstromrack_listing) | Experimental | JSON-LD | Fastly (`x-jungle`) | Nordstrom Rack category listings from server-rendered Schema.org `ItemList` data. | 2 (fixture; live 403) | women, men, kids, shoes, bags-and-accessories, beauty, home, clearance | `{"item_id":"7788991","title":"Pleated Midi Dress","brand":"Donna Ricco","price":34.97,"currency":"USD",...}` |
+| [`menards_listing`](#menards_listing) | Active | api | Incapsula (ScrapeOps US residential route required; API leg still returns a proxy/Incapsula failure envelope) | Menards category listings from the first-party `POST /main/search/category.ajx` JSON API; session is seeded from the category page and taxonomy comes from the homepage `mcom-header` menu JSON. | 0 (live proxy unverified; fixture smoke emits items) | 20 department/category seeds from `menards_categories.py` | `{"category":"halloween-animated-decorations","item_id":"123","title":"Animated Dragon","brand":"Enchanted Forest","price":99.99,"currency":"USD","source":"menards_category_api",...}` |
 
 *`Number of items output` reflects recent local smoke runs (typically `max_pages=1`) and can vary by location, anti-bot behavior, and site changes.*
 Many listing spiders accept `-a category=<name>` shortcuts (in addition to `-a category_url=<url>`), including Amazon, Walmart, eBay, Home Depot, Best Buy, and Kroger. Costco listing uses category-only selection.
+
+### dell_listing
+
+`dell_listing` reads Dell's authoritative Product Stack bootstrap map from
+`data-product-detail-info`. Product cards and JSON-LD are intentionally not used
+as fallback data sources.
+
+```bash
+scrapy crawl dell_listing -a category=view-all-laptops -a max_pages=2 \
+  -s HTTPCACHE_ENABLED=False -O dell.jsonl
+```
+
+The ordered `FEED_EXPORT_FIELDS` contract covers identifiers, title, URLs,
+pricing, ratings, badges, pagination context, source metadata, the raw API
+record, and timestamp.
 
 ### redfin_listing
 
@@ -3995,4 +4031,37 @@ flags, ratings, pagination metadata, the authoritative raw record, the crawl
 
 ```bash
 scrapy crawl rei_listing -a category=hiking-footwear -a max_pages=1 -s HTTPCACHE_ENABLED=False -O rei.jsonl
+### walgreens_listing
+
+`walgreens_listing` reads products exclusively from Walgreens' rendered Redux
+bootstrap (`window.getInitialState()` → `searchResult.productList[*].productInfo`).
+It does not parse product cards or JSON-LD. The ScrapeOps request enables US JS
+rendering so the hydrated state is present, while pagination follows Walgreens'
+`/productlist/N={id}/{page}/ShopAll={id}` route and stops on hydrated totals,
+empty output, repeated product IDs, or `max_pages`.
+
+The ordered `FEED_EXPORT_FIELDS` contract covers category context, Walgreens
+product/SKU/article/UPC identifiers, title and brand, normalized URLs, prices,
+ratings, inventory, pagination metadata, the authoritative raw bootstrap record,
+and a crawl `timestamp`.
+
+```bash
+scrapy crawl walgreens_listing -a category='Allergy & Sinus' -a max_pages=1 -s HTTPCACHE_ENABLED=False -O walgreens.jsonl
+### chewy_listing
+
+`chewy_listing` reads one authoritative source: the product array in Chewy's
+server-rendered Next.js `__NEXT_DATA__` bootstrap state. It does not parse HTML
+product cards or JSON-LD. Its complete verified navigation taxonomy covers dogs,
+cats, and other pets; custom listing URLs are also supported. Pagination uses
+`?page=N` and stops at `recordSetTotal`, `max_pages`, an empty product page, or a
+page with no new product IDs.
+
+The ordered `FEED_EXPORT_FIELDS` include product identity, brand, canonical URL
+(including sponsored-link redirect normalization), image, displayed/current/list
+and Autoship prices, ratings, ad state, pagination metadata, provenance, raw
+hydration record, and timestamp. Missing or malformed hydration and non-200
+responses fail visibly. A working configured ScrapeOps proxy is expected.
+
+```bash
+scrapy crawl chewy_listing -a category=food-332 -a max_pages=1 -s HTTPCACHE_ENABLED=False -O chewy.jsonl
 ```
