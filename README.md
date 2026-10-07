@@ -84,6 +84,22 @@ per-run `timestamp`; the ordered `FEED_EXPORT_FIELDS` contract contains 60 field
 scrapy crawl hobbylobby_listing -a category=art-supplies-painting-supplies -a max_pages=2 -s HTTPCACHE_ENABLED=False -O hobbylobby.jsonl
 ```
 
+### barnesandnoble_listing
+
+`barnesandnoble_listing` reads Barnes & Noble's rotating Shopify domain, API
+version, and public Storefront token from the selected collection shell, then
+uses the first-party Storefront GraphQL API exclusively for products and cursor
+pagination. It exports product, price-range, image, option, and variant data in
+the spider's ordered 32-field `FEED_EXPORT_FIELDS` contract. Direct connections
+are used because both storefront hosts are reachable without anti-bot handling.
+
+```bash
+scrapy crawl barnesandnoble_listing -a category=fiction -a max_pages=2 -s HTTPCACHE_ENABLED=False -O barnesandnoble.jsonl
+```
+
+Verified live on 2026-10-08: 100 unique products across two API pages (50 per
+page), with all three responses returning HTTP 200.
+
 ## Available spiders
 
 ### Standalone spiders (via `scrapy crawl <spider>`)
@@ -94,6 +110,7 @@ Working spiders running daily in production:
 
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
+| [`barnesandnoble_listing`](#barnesandnoble_listing) | Active | API | none detected | Barnes & Noble products from the first-party Shopify Storefront GraphQL API. The collection page only supplies rotating API configuration; there is no HTML-card or JSON-LD product fallback. | 50/page | 20 stable collection seeds | `{"category":"fiction","item_id":"8827283734769","ean":"9780765635969","title":"Projecting Politics: Political Messages in American Films","format":"Hardcover","price":237.61,"currency":"USD","source":"barnesandnoble_storefront_graphql_api"...}` |
 | [`hobbylobby_listing`](#hobbylobby_listing) | Experimental | bootstrap | ScrapeOps US proxy | Hobby Lobby products from the server-rendered Algolia InstantSearch state only; no direct HTML-card or JSON-LD extraction. | 12/page | 20 product-bearing level-2 categories | `{"category":"art-supplies-painting-supplies","item_id":"80968391","title":"Master's Touch Oil Paint - 12 Piece Set","price":6.99,"source":"hobbylobby_instantsearch_bootstrap"...}` |
 | [`tripcom_listing`](#tripcom_listing) | Experimental | bootstrap | ScrapeOps proxy | Trip.com hotels from the server-provided `City` template-component state; no direct HTML-card or JSON-LD extraction. | 9 (one city page) | 20 popular hotel destinations | `{"category":"bangkok","title":"NASA BANGKOK - Airport Rail Link Ramkhamhang","price":15,"currency":"USD","source":"tripcom_city_component_bootstrap"...}` |
 | [`hostelworld_listing`](#hostelworld_listing) | Active | api | none detected; API must be direct so proxy does not rewrite `Accept` | Hostelworld properties from the first-party Apigee city-properties API only; no HTML or JSON-LD fallback. | 29 (New York, one page) | 20 popular global cities; 2,838 city URLs available from the sitemap index | `{"category":"new-york","item_id":"1850","name":"HI New York City Hostel","source":"hostelworld_city_properties_api"...}` |
