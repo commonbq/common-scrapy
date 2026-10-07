@@ -1,0 +1,1806 @@
+{
+  "_note": "trimmed __INITIAL_STATE__ from https://www.movoto.com/new-york-ny/ (Nuxt SSR hydration)",
+  "pageType": "vmapsearch",
+  "url": "/new-york-ny/",
+  "seo": {
+    "title": "New York, NY Homes for Sale & Real Estate - Movoto",
+    "vanillaCase": true,
+    "description": "Browse 21,716 homes for sale in New York, NY. Median price $1.3M ($1,481/sqft, -6% YoY). Find your next home on Movoto, listings updated every 5 min from MLS.",
+    "h1": "New York, NY Homes for Sale & Real Estate"
+  },
+  "pageData_keys": [
+    "viewUrl",
+    "attributes",
+    "listings",
+    "mlsIds",
+    "compliance",
+    "localHighlightGeo",
+    "boundaryIndexId",
+    "totalCount",
+    "searchType",
+    "marketSummary",
+    "snapshotData",
+    "listingCountObj",
+    "topZipCodeList",
+    "topNearbyCityList",
+    "topNeighborhoodList",
+    "topNearbyCountyList",
+    "mspGeoContent",
+    "marketTrendsSummary",
+    "refinedInventoryCounts",
+    "shortcutFilters",
+    "geoInfo",
+    "searchText",
+    "schoolData",
+    "mspSchoolDistricts",
+    "contentVariant",
+    "seotitle",
+    "filterType",
+    "relatedLinks",
+    "hasFilter",
+    "isUnfilteredUrl",
+    "attrSSRLinks",
+    "splitsPrefetched",
+    "geo",
+    "currentViewStatus"
+  ],
+  "pageData_meta": {
+    "viewUrl": "new-york-ny/",
+    "attributes": [
+      "pool",
+      "single_level",
+      "office",
+      "clubhouse",
+      "deck",
+      "hardwood_floors",
+      "water_view",
+      "waterfront",
+      "walk_in_closet",
+      "backyard"
+    ],
+    "mlsIds": [
+      482,
+      484
+    ],
+    "compliance": {
+      "482": {
+        "name": "OneKey\u00ae MLS",
+        "rule": [
+          "ShowUnNormalDisclaimerOnDpp",
+          "onlyFirstPicture",
+          "onlyFirstPictureSOLD"
+        ],
+        "desc": "OneKey\u00ae MLS system<br/> The data relating to real estate for sale on this web site comes in part from the OneKey\u00ae MLS. All information deemed reliable but not guaranteed and should be independently verified. All properties are subject to prior sale, change or withdrawal. Neither listing broker(s) nor the website owner shall be responsible for any typographical errors, misinformation, misprints and shall be held totally harmless. Property locations as displayed on any map are best approximations only and exact locations should be independently verified. IDX information is provided exclusively for consumers personal non-commercial use and it may not be used for any purpose other than to identify prospective properties consumers may be interested in purchasing.\u00a92026 OneKey\u00ae MLS. All rights reserved. <a href=\"https://www.dos.ny.gov/licensing/docs/FairHousingNotice_new.pdf\" target=\"_blank\" rel=\"nofollow\">Fair Housing Notice</a> <br> <b><u>Standardized Operating Procedures for the Prerequisites Prospective Homebuyers:</u></b> (1) Perspective clients will not be required to verify their identity during the home purchase process by providing government issued identification. (2) An exclusive broker agreement will not be required on an individual property basis. Or, a specific period of time in order to assist perspective home buyers. (3) In the event a home buyer will be using a mortgage loan to facilitate the purchase of a property. The home buyer will be required to provide proof of pre-approval. (4) In the event the perspective home buyer will be purchasing in all cash. The buyer will be required to provide proof of funds before the submission of an offer. "
+      },
+      "484": {
+        "name": "The RLS at REBNY Listing Service (RLS)",
+        "rule": [
+          "showBroker",
+          "showMLSLogo"
+        ],
+        "desc": "The real estate listing data marked with this icon comes from the IDX program of the RLS at REBNY Listing Service (RLS).<br/>This information is not verified for authenticity or accuracy and is not guaranteed and may not reflect all real estate activity in the market. \u00a92026 RLS at REBNY Listing Service, Inc. All rights reserved.<br/>Furthermore, The IDX information is provided exclusively for consumers\u2019 personal, non-commercial use and that it may not be used for any purpose other than to identify prospective properties consumers may be interested in purchasing. <a href=\"https://www.dos.ny.gov/licensing/docs/FairHousingNotice_new.pdf\" target=\"_blank\" rel=\"nofollow\">Fair Housing Notice</a><br> <b><u>Standardized Operating Procedures for the Prerequisites Prospective Homebuyers:</u></b> (1) Perspective clients will not be required to verify their identity during the home purchase process by providing government issued identification. (2) An exclusive broker agreement will not be required on an individual property basis. Or, a specific period of time in order to assist perspective home buyers. (3) In the event a home buyer will be using a mortgage loan to facilitate the purchase of a property. The home buyer will be required to provide proof of pre-approval. (4) In the event the perspective home buyer will be purchasing in all cash. The buyer will be required to provide proof of funds before the submission of an offer."
+      }
+    },
+    "localHighlightGeo": [
+      {
+        "sectionTitle": "Demographics",
+        "list": [
+          {
+            "title": "People",
+            "image": "poi-people.jpg",
+            "description": "50% Female/Male<br/>Avg Age is 40 Years Old"
+          },
+          {
+            "title": "School",
+            "image": "poi-graduation.jpg",
+            "description": "34% with College Degree<br/>83% with High School Diploma"
+          },
+          {
+            "title": "Earnings",
+            "image": "poi-earnings.jpg",
+            "description": "Avg Household Earnings $91K<br/>14% in Poverty"
+          }
+        ]
+      },
+      {
+        "sectionTitle": "Climate",
+        "list": [
+          {
+            "title": "Elevation",
+            "value": "32.37 Feet",
+            "image": "poi-elevation.jpg"
+          },
+          {
+            "title": "Tree Coverage",
+            "value": "7.86%",
+            "image": "poi-canopy.jpg",
+            "description": "Average Tree Covering"
+          },
+          {
+            "title": "October Temperature",
+            "value": "60\u00b0 Fahrenheit",
+            "image": "poi-temp.jpg",
+            "description": "H: 68\u00b0F &nbsp L: 52\u00b0F",
+            "monthlyAverage": {
+              "low": [
+                26,
+                29,
+                33,
+                43,
+                55,
+                63,
+                69,
+                69,
+                64,
+                52,
+                39,
+                33
+              ],
+              "high": [
+                41,
+                46,
+                49,
+                62,
+                72,
+                81,
+                87,
+                86,
+                80,
+                68,
+                55,
+                46
+              ],
+              "months": [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Dec"
+              ],
+              "warmestText": "On average, the warmest month is July with a high of 87\u00b0F.",
+              "coolestText": "On average, the coolest month is January with a low of 26\u00b0F.",
+              "summerHigh": 87,
+              "winterHigh": 69,
+              "currentMonth": "October",
+              "currentMonthLow": 52,
+              "currentMonthHigh": 68,
+              "currentMonthMean": 60
+            }
+          },
+          {
+            "title": "Days of Sunshine",
+            "value": "Low",
+            "image": "poi-sunshine.jpg",
+            "description": "Compared with the National Average"
+          },
+          {
+            "title": "Rainfall",
+            "value": "48 Inches",
+            "image": "poi-rainfall.jpg"
+          },
+          {
+            "title": "Snowfall",
+            "value": "36 Inches",
+            "image": "poi-snowfall.jpg"
+          },
+          {
+            "title": "Continental - no dry season / hot summer",
+            "image": "poi-koppen.jpg",
+            "description": "Humid Continental climate typified by four distinct seasons and large seasonal temperature differences having no dry season and hot summers.",
+            "type": "longtext"
+          }
+        ]
+      },
+      {
+        "sectionTitle": "Environment",
+        "list": [
+          {
+            "title": "Wildfires",
+            "value": 635,
+            "image": "poi-wildfire.jpg"
+          },
+          {
+            "title": "Tornadoes",
+            "value": 6,
+            "image": "poi-tornado.jpg",
+            "description": "In the last 20 yrs, \u22642 (EF-Scale)"
+          },
+          {
+            "title": "Storms",
+            "value": 8,
+            "image": "poi-hurricane.jpg"
+          }
+        ]
+      },
+      {
+        "sectionTitle": "Health",
+        "list": [
+          {
+            "title": "Environmental Health",
+            "value": "Poor",
+            "image": "poi-evnhealth.jpg"
+          },
+          {
+            "title": "Air Quality",
+            "value": "Good",
+            "image": "poi-airquality.jpg"
+          }
+        ]
+      },
+      {
+        "sectionTitle": "Parks & Rec",
+        "list": [
+          {
+            "title": "351 Parks",
+            "image": "poi-parks.jpg",
+            "description": "Covering 21068.8 Acres"
+          },
+          {
+            "title": "Trails",
+            "value": "0.18 Mi",
+            "image": "poi-trails.jpg",
+            "description": "9 trails,<br/> 0 Mi in length"
+          },
+          {
+            "title": "Body of Water",
+            "value": "4",
+            "image": "poi-lake.jpg",
+            "description": "Covering 1.9 Acres"
+          },
+          {
+            "title": "Shoreline Total Length",
+            "value": "403.61 Mi",
+            "image": "poi-coastline.jpg"
+          }
+        ]
+      },
+      {
+        "sectionTitle": "Economy & Market",
+        "list": [
+          {
+            "title": "Economy",
+            "image": "poi-economics.jpg",
+            "description": "Jobs Availability: Average<br/>Avg Wages: $32,263<br/>Main Industries: Wholesale Trade, Retail Trade, Manufacturing",
+            "type": "longtext"
+          },
+          {
+            "title": "Market",
+            "image": "poi-market.jpg",
+            "description": "State: Hot<br/>National: Hot"
+          }
+        ]
+      }
+    ],
+    "boundaryIndexId": "city-new-york-new-york-county-ny",
+    "totalCount": 21716,
+    "searchType": "CITY",
+    "marketSummary": {
+      "averageListingPrice": 2509875,
+      "cityId": 5593,
+      "condoCount": 15247,
+      "homeForSaleCount": 22000,
+      "homeNewCount": 1063,
+      "homeOpenCount": 2659,
+      "maxListingPrice": 89500000,
+      "medianPricePerSqft": 1481,
+      "minListingPrice": 630,
+      "newConstructionHomesCount": 613,
+      "poolCount": 1505,
+      "priceReducedCount": 2015,
+      "schoolCount": 626,
+      "singleFamilyCount": 3097,
+      "stateCode": "NY",
+      "stateListingCount": 83719
+    },
+    "snapshotData": {
+      "today": {
+        "allTypeDistressedPercent": "100%",
+        "allTypeMedianDom": 108,
+        "allTypeMedianDomPercentageCompareWith1MonthAgo": "-3%",
+        "allTypeMedianDomPercentageCompareWith1YearAgo": "-10%",
+        "allTypeMedianHouseSize": 969,
+        "allTypeMedianHouseSizePercentageCompareWith1MonthAgo": "0%",
+        "allTypeMedianHouseSizePercentageCompareWith1YearAgo": "-5%",
+        "allTypeMedianListPrice": 1299000,
+        "allTypeMedianListPricePercentageCompareWith1MonthAgo": "0%",
+        "allTypeMedianListPricePercentageCompareWith1YearAgo": "-6%",
+        "allTypeMedianPricePerSqftHouse": 1481,
+        "allTypeMedianPricePerSqftHousePercentageCompareWith1MonthAgo": "0%",
+        "allTypeMedianPricePerSqftHousePercentageCompareWith1YearAgo": "0%",
+        "allTypeTotalInventory": 10063,
+        "allTypeTotalInventoryPercentageCompareWith1MonthAgo": "2%",
+        "allTypeTotalInventoryPercentageCompareWith1YearAgo": "-11%",
+        "condoTypeDistressedPercent": "100%",
+        "condoTypeMedianDom": 107,
+        "condoTypeMedianDomPercentageCompareWith1MonthAgo": "-2%",
+        "condoTypeMedianDomPercentageCompareWith1YearAgo": "-10%",
+        "condoTypeMedianHouseSize": 927,
+        "condoTypeMedianHouseSizePercentageCompareWith1MonthAgo": "0%",
+        "condoTypeMedianHouseSizePercentageCompareWith1YearAgo": "-6%",
+        "condoTypeMedianListPrice": 1295000,
+        "condoTypeMedianListPricePercentageCompareWith1MonthAgo": "0%",
+        "condoTypeMedianListPricePercentageCompareWith1YearAgo": "-4%",
+        "condoTypeMedianPricePerSqftHouse": 1492,
+        "condoTypeMedianPricePerSqftHousePercentageCompareWith1MonthAgo": "0%",
+        "condoTypeMedianPricePerSqftHousePercentageCompareWith1YearAgo": "0%",
+        "condoTypeTotalInventory": 9842,
+        "condoTypeTotalInventoryPercentageCompareWith1MonthAgo": "2%",
+        "condoTypeTotalInventoryPercentageCompareWith1YearAgo": "-11%",
+        "formatedDate": "2026-10-07",
+        "highestSqftHouse": 36366,
+        "leastExpensiveHouse": 1,
+        "lowestSqftHouse": 0,
+        "mostExpensiveHouse": 128000000,
+        "secondExpensiveHouse": 9800,
+        "singleTypeDistressedPercent": "100%",
+        "singleTypeMedianDom": 154,
+        "singleTypeMedianDomPercentageCompareWith1MonthAgo": "0%",
+        "singleTypeMedianDomPercentageCompareWith1YearAgo": "0%",
+        "singleTypeMedianHouseSize": 5074,
+        "singleTypeMedianHouseSizePercentageCompareWith1MonthAgo": "0%",
+        "singleTypeMedianHouseSizePercentageCompareWith1YearAgo": "-7%",
+        "singleTypeMedianListPrice": 8750000,
+        "singleTypeMedianListPricePercentageCompareWith1MonthAgo": "1%",
+        "singleTypeMedianListPricePercentageCompareWith1YearAgo": "-2%",
+        "singleTypeMedianPricePerSqftHouse": 1617,
+        "singleTypeMedianPricePerSqftHousePercentageCompareWith1MonthAgo": "0%",
+        "singleTypeMedianPricePerSqftHousePercentageCompareWith1YearAgo": "-9%",
+        "singleTypeTotalInventory": 223,
+        "singleTypeTotalInventoryPercentageCompareWith1MonthAgo": "3%",
+        "singleTypeTotalInventoryPercentageCompareWith1YearAgo": "-12%",
+        "allTypeMedianListPriceFormatted": "$1.3M"
+      },
+      "one_month_ago": {
+        "allTypeDistressedPercent": "100%",
+        "allTypeMedianDom": 112,
+        "allTypeMedianHouseSize": 973,
+        "allTypeMedianListPrice": 1299000,
+        "allTypeMedianPricePerSqftHouse": 1482,
+        "allTypeTotalInventory": 9805,
+        "condoTypeDistressedPercent": "100%",
+        "condoTypeMedianDom": 110,
+        "condoTypeMedianHouseSize": 930,
+        "condoTypeMedianListPrice": 1295000,
+        "condoTypeMedianPricePerSqftHouse": 1494,
+        "condoTypeTotalInventory": 9591,
+        "formatedDate": "2026-09-30",
+        "highestSqftHouse": 36366,
+        "leastExpensiveHouse": 1,
+        "lowestSqftHouse": 0,
+        "mostExpensiveHouse": 128000000,
+        "secondExpensiveHouse": 9800,
+        "singleTypeDistressedPercent": "100%",
+        "singleTypeMedianDom": 154,
+        "singleTypeMedianHouseSize": 5042,
+        "singleTypeMedianListPrice": 8625000,
+        "singleTypeMedianPricePerSqftHouse": 1609,
+        "singleTypeTotalInventory": 216
+      },
+      "one_year_ago": {
+        "allTypeDistressedPercent": "100%",
+        "allTypeMedianDom": 120,
+        "allTypeMedianHouseSize": 1026,
+        "allTypeMedianListPrice": 1395000,
+        "allTypeMedianPricePerSqftHouse": 1482,
+        "allTypeTotalInventory": 11424,
+        "condoTypeDistressedPercent": "100%",
+        "condoTypeMedianDom": 119,
+        "condoTypeMedianHouseSize": 994,
+        "condoTypeMedianListPrice": 1350000,
+        "condoTypeMedianPricePerSqftHouse": 1491,
+        "condoTypeTotalInventory": 11168,
+        "formatedDate": "2025-09-30",
+        "highestSqftHouse": 142836,
+        "leastExpensiveHouse": 1,
+        "lowestSqftHouse": 0,
+        "mostExpensiveHouse": 110000000,
+        "secondExpensiveHouse": 3950,
+        "singleTypeDistressedPercent": "100%",
+        "singleTypeMedianDom": 155,
+        "singleTypeMedianHouseSize": 5500,
+        "singleTypeMedianListPrice": 8975000,
+        "singleTypeMedianPricePerSqftHouse": 1788,
+        "singleTypeTotalInventory": 256
+      },
+      "hasOneMonthData": true,
+      "hasOneYearData": true
+    },
+    "listingCountObj": {
+      "city": {
+        "condoCount": 15247,
+        "homeForSaleCount": 22000,
+        "homeNewCount": 1063,
+        "homeOpenCount": 2659,
+        "newConstructionHomesCount": 613,
+        "poolCount": 1505,
+        "priceReducedCount": 2015,
+        "schoolCount": 626,
+        "singleFamilyCount": 3097,
+        "stateListingCount": 83719
+      }
+    },
+    "topZipCodeList": [
+      {
+        "id": 5595,
+        "cityDisplayName": "New York",
+        "displayName": "10002",
+        "type": "POSTAL_CODE",
+        "stateCode": "NY",
+        "sitemapZipCodePageUrl": "ny/10002/",
+        "medianListPrice": 1350000,
+        "location": {
+          "lng": -73.9859414,
+          "lat": 40.7135097
+        }
+      },
+      {
+        "id": 5606,
+        "cityDisplayName": "New York",
+        "displayName": "10013",
+        "type": "POSTAL_CODE",
+        "stateCode": "NY",
+        "sitemapZipCodePageUrl": "ny/10013/",
+        "medianListPrice": 4047500,
+        "location": {
+          "lng": -74.0094471,
+          "lat": 40.7217861
+        }
+      },
+      {
+        "id": 6091,
+        "cityDisplayName": "Great Neck",
+        "displayName": "11020",
+        "type": "POSTAL_CODE",
+        "stateCode": "NY",
+        "sitemapZipCodePageUrl": "ny/11020/",
+        "medianListPrice": 1709000,
+        "location": {
+          "lng": -73.7183639,
+          "lat": 40.7715091
+        }
+      },
+      {
+        "id": 6101,
+        "cityDisplayName": "New Hyde Park",
+        "displayName": "11040",
+        "type": "POSTAL_CODE",
+        "stateCode": "NY",
+        "sitemapZipCodePageUrl": "ny/11040/",
+        "medianListPrice": 870000,
+        "location": {
+          "lng": -73.6830521,
+          "lat": 40.7466623
+        }
+      },
+      {
+        "id": 5739,
+        "cityDisplayName": "New York",
+        "displayName": "10282",
+        "type": "POSTAL_CODE",
+        "stateCode": "NY",
+        "sitemapZipCodePageUrl": "ny/10282/",
+        "medianListPrice": 1577500,
+        "location": {
+          "lng": -74.01973,
+          "lat": 40.7170632
+        }
+      },
+      {
+        "id": 5600,
+        "cityDisplayName": "New York",
+        "displayName": "10007",
+        "type": "POSTAL_CODE",
+        "stateCode": "NY",
+        "sitemapZipCodePageUrl": "ny/10007/",
+        "medianListPrice": 3360000,
+        "location": {
+          "lng": -74.0087126,
+          "lat": 40.7136487
+        }
+      },
+      {
+        "id": 5630,
+        "cityDisplayName": "New York",
+        "displayName": "10038",
+        "type": "POSTAL_CODE",
+        "stateCode": "NY",
+        "sitemapZipCodePageUrl": "ny/10038/",
+        "medianListPrice": 1262500,
+        "location": {
+          "lng": -74.0021019,
+          "lat": 40.7071498
+        }
+      },
+      {
+        "id": 6227,
+        "cityDisplayName": "Springfield Gardens",
+        "displayName": "11413",
+        "type": "POSTAL_CODE",
+        "stateCode": "NY",
+        "sitemapZipCodePageUrl": "ny/11413/",
+        "medianListPrice": 700000,
+        "location": {
+          "lng": -73.7536695,
+          "lat": 40.6679426
+        }
+      },
+      {
+        "id": 6240,
+        "cityDisplayName": "South Ozone Park",
+        "displayName": "11420",
+        "type": "POSTAL_CODE",
+        "stateCode": "NY",
+        "sitemapZipCodePageUrl": "ny/11420/",
+        "medianListPrice": 798000,
+        "location": {
+          "lng": -73.8124984,
+          "lat": 40.6764003
+        }
+      },
+      {
+        "id": 6132,
+        "cityDisplayName": "Brooklyn",
+        "displayName": "11208",
+        "type": "POSTAL_CODE",
+        "stateCode": "NY",
+        "sitemapZipCodePageUrl": "ny/11208/",
+        "medianListPrice": 850000,
+        "location": {
+          "lng": -73.8713099,
+          "lat": 40.6749343
+        }
+      },
+      {
+        "id": 6092,
+        "cityDisplayName": "Great Neck",
+        "displayName": "11021",
+        "type": "POSTAL_CODE",
+        "stateCode": "NY",
+        "sitemapZipCodePageUrl": "ny/11021/",
+        "medianListPrice": 507500,
+        "location": {
+          "lng": -73.7271909,
+          "lat": 40.7851185
+        }
+      },
+      {
+        "id": 6159,
+        "cityDisplayName": "Brooklyn",
+        "displayName": "11236",
+        "type": "POSTAL_CODE",
+        "stateCode": "NY",
+        "sitemapZipCodePageUrl": "ny/11236/",
+        "medianListPrice": 844500,
+        "location": {
+          "lng": -73.8948295,
+          "lat": 40.6387196
+        }
+      },
+      {
+        "id": 5895,
+        "cityDisplayName": "Scarsdale",
+        "displayName": "10583",
+        "type": "POSTAL_CODE",
+        "stateCode": "NY",
+        "sitemapZipCodePageUrl": "ny/10583/",
+        "medianListPrice": 1550000,
+        "location": {
+          "lng": -73.7830861,
+          "lat": 40.9926382
+        }
+      },
+      {
+        "id": 6157,
+        "cityDisplayName": "Brooklyn",
+        "displayName": "11234",
+        "type": "POSTAL_CODE",
+        "stateCode": "NY",
+        "sitemapZipCodePageUrl": "ny/11234/",
+        "medianListPrice": 700000,
+        "location": {
+          "lng": -73.9065883,
+          "lat": 40.6007956
+        }
+      },
+      {
+        "id": 5597,
+        "cityDisplayName": "New York",
+        "displayName": "10004",
+        "type": "POSTAL_CODE",
+        "stateCode": "NY",
+        "sitemapZipCodePageUrl": "ny/10004/",
+        "medianListPrice": 881500,
+        "location": {
+          "lng": -74.0138541,
+          "lat": 40.7038704
+        }
+      },
+      {
+        "id": 6082,
+        "cityDisplayName": "Elmont",
+        "displayName": "11003",
+        "type": "POSTAL_CODE",
+        "stateCode": "NY",
+        "sitemapZipCodePageUrl": "ny/11003/",
+        "medianListPrice": 664500,
+        "location": {
+          "lng": -73.706594,
+          "lat": 40.7006866
+        }
+      },
+      {
+        "id": 6259,
+        "cityDisplayName": "Jamaica",
+        "displayName": "11434",
+        "type": "POSTAL_CODE",
+        "stateCode": "NY",
+        "sitemapZipCodePageUrl": "ny/11434/",
+        "medianListPrice": 708999,
+        "location": {
+          "lng": -73.7772032,
+          "lat": 40.6812166
+        }
+      },
+      {
+        "id": 6332,
+        "cityDisplayName": "Roslyn",
+        "displayName": "11576",
+        "type": "POSTAL_CODE",
+        "stateCode": "NY",
+        "sitemapZipCodePageUrl": "ny/11576/",
+        "medianListPrice": 1689000,
+        "location": {
+          "lng": -73.6506776,
+          "lat": 40.7987048
+        }
+      },
+      {
+        "id": 6218,
+        "cityDisplayName": "Ridgewood",
+        "displayName": "11385",
+        "type": "POSTAL_CODE",
+        "stateCode": "NY",
+        "sitemapZipCodePageUrl": "ny/11385/",
+        "medianListPrice": 1199000,
+        "location": {
+          "lng": -73.8948295,
+          "lat": 40.6980708
+        }
+      },
+      {
+        "id": 6125,
+        "cityDisplayName": "Brooklyn",
+        "displayName": "11201",
+        "type": "POSTAL_CODE",
+        "stateCode": "NY",
+        "sitemapZipCodePageUrl": "ny/11201/",
+        "medianListPrice": 1900000,
+        "location": {
+          "lng": -73.9859414,
+          "lat": 40.6986772
+        }
+      }
+    ],
+    "topNearbyCityList": [
+      {
+        "id": 6124,
+        "displayName": "Brooklyn",
+        "type": "CITY",
+        "stateCode": "NY",
+        "sitemapCityPropertyPageUrl": "brooklyn-ny/",
+        "medianListPrice": 1100000,
+        "location": {
+          "lng": -73.95,
+          "lat": 40.65
+        }
+      },
+      {
+        "id": 4431,
+        "displayName": "Jersey City",
+        "type": "CITY",
+        "stateCode": "NJ",
+        "sitemapCityPropertyPageUrl": "jersey-city-nj/",
+        "medianListPrice": 749000,
+        "location": {
+          "lng": -74.0776417,
+          "lat": 40.7281575
+        }
+      },
+      {
+        "id": 5760,
+        "displayName": "Bronx",
+        "type": "CITY",
+        "stateCode": "NY",
+        "sitemapCityPropertyPageUrl": "bronx-ny/",
+        "medianListPrice": 580000,
+        "location": {
+          "lng": -73.8648268,
+          "lat": 40.8447819
+        }
+      },
+      {
+        "id": 4434,
+        "displayName": "Newark",
+        "type": "CITY",
+        "stateCode": "NJ",
+        "sitemapCityPropertyPageUrl": "newark-nj/",
+        "medianListPrice": 499999,
+        "location": {
+          "lng": -74.1723667,
+          "lat": 40.735657
+        }
+      },
+      {
+        "id": 5926,
+        "displayName": "Yonkers",
+        "type": "CITY",
+        "stateCode": "NY",
+        "sitemapCityPropertyPageUrl": "yonkers-ny/",
+        "medianListPrice": 299000,
+        "location": {
+          "lng": -73.8987469,
+          "lat": 40.9312099
+        }
+      },
+      {
+        "id": 4461,
+        "displayName": "Elizabeth",
+        "type": "CITY",
+        "stateCode": "NJ",
+        "sitemapCityPropertyPageUrl": "elizabeth-nj/",
+        "medianListPrice": 560000,
+        "location": {
+          "lng": -74.2107006,
+          "lat": 40.6639916
+        }
+      },
+      {
+        "id": 4290,
+        "displayName": "Clifton",
+        "type": "CITY",
+        "stateCode": "NJ",
+        "sitemapCityPropertyPageUrl": "clifton-nj/",
+        "medianListPrice": 540000,
+        "location": {
+          "lng": -74.1637553,
+          "lat": 40.8584328
+        }
+      },
+      {
+        "id": 4411,
+        "displayName": "Union",
+        "type": "CITY",
+        "stateCode": "NJ",
+        "sitemapCityPropertyPageUrl": "union-nj/",
+        "medianListPrice": 800000,
+        "location": {
+          "lng": -74.2631635,
+          "lat": 40.6975898
+        }
+      },
+      {
+        "id": 5744,
+        "displayName": "Staten Island",
+        "type": "CITY",
+        "stateCode": "NY",
+        "sitemapCityPropertyPageUrl": "staten-island-ny/",
+        "medianListPrice": 698000,
+        "location": {
+          "lng": -74.1502007,
+          "lat": 40.5795317
+        }
+      },
+      {
+        "id": 4269,
+        "displayName": "Bayonne",
+        "type": "CITY",
+        "stateCode": "NJ",
+        "sitemapCityPropertyPageUrl": "bayonne-nj/",
+        "medianListPrice": 644500,
+        "location": {
+          "lng": -74.1143091,
+          "lat": 40.6687141
+        }
+      },
+      {
+        "id": 4321,
+        "displayName": "Hoboken",
+        "type": "CITY",
+        "stateCode": "NJ",
+        "sitemapCityPropertyPageUrl": "hoboken-nj/",
+        "medianListPrice": 1050000,
+        "location": {
+          "lng": -74.0323626,
+          "lat": 40.7439905
+        }
+      },
+      {
+        "id": 4443,
+        "displayName": "Belleville",
+        "type": "CITY",
+        "stateCode": "NJ",
+        "sitemapCityPropertyPageUrl": "belleville-nj/",
+        "medianListPrice": 475000,
+        "location": {
+          "lng": -74.1500469,
+          "lat": 40.7936744
+        }
+      },
+      {
+        "id": 6251,
+        "displayName": "Queens Village",
+        "type": "CITY",
+        "stateCode": "NY",
+        "sitemapCityPropertyPageUrl": "queens-village-ny/",
+        "medianListPrice": 789500,
+        "location": {
+          "lng": -73.7948516,
+          "lat": 40.7282239
+        }
+      },
+      {
+        "id": 6337,
+        "displayName": "Valley Stream",
+        "type": "CITY",
+        "stateCode": "NY",
+        "sitemapCityPropertyPageUrl": "valley-stream-ny/",
+        "medianListPrice": 699000,
+        "location": {
+          "lng": -73.7084645,
+          "lat": 40.6642699
+        }
+      },
+      {
+        "id": 4426,
+        "displayName": "Secaucus",
+        "type": "CITY",
+        "stateCode": "NJ",
+        "sitemapCityPropertyPageUrl": "secaucus-nj/",
+        "medianListPrice": 649700,
+        "location": {
+          "lng": -74.0565298,
+          "lat": 40.7895453
+        }
+      },
+      {
+        "id": 4299,
+        "displayName": "East Orange",
+        "type": "CITY",
+        "stateCode": "NJ",
+        "sitemapCityPropertyPageUrl": "east-orange-nj/",
+        "medianListPrice": 450000,
+        "location": {
+          "lng": -74.2048677,
+          "lat": 40.767323
+        }
+      },
+      {
+        "id": 4565,
+        "displayName": "Paterson",
+        "type": "CITY",
+        "stateCode": "NJ",
+        "sitemapCityPropertyPageUrl": "paterson-nj/",
+        "medianListPrice": 459900,
+        "location": {
+          "lng": -74.171811,
+          "lat": 40.9167654
+        }
+      },
+      {
+        "id": 4325,
+        "displayName": "Kearny",
+        "type": "CITY",
+        "stateCode": "NJ",
+        "sitemapCityPropertyPageUrl": "kearny-nj/",
+        "medianListPrice": 529000,
+        "location": {
+          "lng": -74.1454214,
+          "lat": 40.7684342
+        }
+      },
+      {
+        "id": 4350,
+        "displayName": "North Bergen",
+        "type": "CITY",
+        "stateCode": "NJ",
+        "sitemapCityPropertyPageUrl": "north-bergen-nj/",
+        "medianListPrice": 599000,
+        "location": {
+          "lng": -74.012084,
+          "lat": 40.8042674
+        }
+      },
+      {
+        "id": 4272,
+        "displayName": "Bloomfield",
+        "type": "CITY",
+        "stateCode": "NJ",
+        "sitemapCityPropertyPageUrl": "bloomfield-nj/",
+        "medianListPrice": 579000,
+        "location": {
+          "lng": -74.1854209,
+          "lat": 40.8067546
+        }
+      }
+    ],
+    "topNeighborhoodList": [
+      {
+        "id": 88436,
+        "cityDisplayName": "New York",
+        "displayName": "Tribeca",
+        "type": "NEIGHBORHOOD",
+        "stateCode": "NY",
+        "sitemapNeighborhoodPageUrl": "new-york-ny/tribeca/",
+        "medianListPrice": 3790000,
+        "location": {
+          "lng": -74.009067,
+          "lat": 40.71848
+        }
+      },
+      {
+        "id": 75370,
+        "cityDisplayName": "Jersey City",
+        "displayName": "The Heights",
+        "type": "NEIGHBORHOOD",
+        "stateCode": "NJ",
+        "sitemapNeighborhoodPageUrl": "jersey-city-nj/the-heights/",
+        "medianListPrice": 799000,
+        "location": {
+          "lng": -74.050736,
+          "lat": 40.745838
+        }
+      },
+      {
+        "id": 88426,
+        "cityDisplayName": "New York",
+        "displayName": "West Village",
+        "type": "NEIGHBORHOOD",
+        "stateCode": "NY",
+        "sitemapNeighborhoodPageUrl": "new-york-ny/west-village/",
+        "medianListPrice": 1799000,
+        "location": {
+          "lng": -74.006138,
+          "lat": 40.735015
+        }
+      },
+      {
+        "id": 88019,
+        "cityDisplayName": "Newark",
+        "displayName": "North Ironbound",
+        "type": "NEIGHBORHOOD",
+        "stateCode": "NJ",
+        "sitemapNeighborhoodPageUrl": "newark-nj/north-ironbound/",
+        "medianListPrice": 549900,
+        "location": {
+          "lng": -74.15403,
+          "lat": 40.727885
+        }
+      },
+      {
+        "id": 88402,
+        "cityDisplayName": "New York",
+        "displayName": "Upper East Side",
+        "type": "NEIGHBORHOOD",
+        "stateCode": "NY",
+        "sitemapNeighborhoodPageUrl": "new-york-ny/upper-east-side/",
+        "medianListPrice": 1795000,
+        "location": {
+          "lng": -73.956522,
+          "lat": 40.772791
+        }
+      },
+      {
+        "id": 90226,
+        "cityDisplayName": "New York",
+        "displayName": "Battery Park City",
+        "type": "NEIGHBORHOOD",
+        "stateCode": "NY",
+        "sitemapNeighborhoodPageUrl": "new-york-ny/battery-park-city/",
+        "medianListPrice": 1200000,
+        "location": {
+          "lng": -74.016237,
+          "lat": 40.711974
+        }
+      },
+      {
+        "id": 140485,
+        "cityDisplayName": "New York",
+        "displayName": "Tudor City",
+        "type": "NEIGHBORHOOD",
+        "stateCode": "NY",
+        "sitemapNeighborhoodPageUrl": "new-york-ny/tudor-city/",
+        "medianListPrice": 434000,
+        "location": {
+          "lng": -73.971231,
+          "lat": 40.749005
+        }
+      },
+      {
+        "id": 90178,
+        "cityDisplayName": "Jersey City",
+        "displayName": "Historic Downtown",
+        "type": "NEIGHBORHOOD",
+        "stateCode": "NJ",
+        "sitemapNeighborhoodPageUrl": "jersey-city-nj/historic-downtown/",
+        "medianListPrice": 887000,
+        "location": {
+          "lng": -74.048766,
+          "lat": 40.723829
+        }
+      },
+      {
+        "id": 88425,
+        "cityDisplayName": "New York",
+        "displayName": "Greenwich Village",
+        "type": "NEIGHBORHOOD",
+        "stateCode": "NY",
+        "sitemapNeighborhoodPageUrl": "new-york-ny/greenwich-village/",
+        "medianListPrice": 1712500,
+        "location": {
+          "lng": -73.995633,
+          "lat": 40.731503
+        }
+      },
+      {
+        "id": 90223,
+        "cityDisplayName": "Jersey City",
+        "displayName": "The Waterfront",
+        "type": "NEIGHBORHOOD",
+        "stateCode": "NJ",
+        "sitemapNeighborhoodPageUrl": "jersey-city-nj/the-waterfront/",
+        "medianListPrice": 936500,
+        "location": {
+          "lng": -74.036874,
+          "lat": 40.723437
+        }
+      },
+      {
+        "id": 88422,
+        "cityDisplayName": "New York",
+        "displayName": "Gramercy Park",
+        "type": "NEIGHBORHOOD",
+        "stateCode": "NY",
+        "sitemapNeighborhoodPageUrl": "new-york-ny/gramercy-park/",
+        "medianListPrice": 1495000,
+        "location": {
+          "lng": -73.984042,
+          "lat": 40.735775
+        }
+      },
+      {
+        "id": 88431,
+        "cityDisplayName": "New York",
+        "displayName": "Little Italy",
+        "type": "NEIGHBORHOOD",
+        "stateCode": "NY",
+        "sitemapNeighborhoodPageUrl": "new-york-ny/little-italy/",
+        "medianListPrice": 1999000,
+        "location": {
+          "lng": -73.997415,
+          "lat": 40.718876
+        }
+      },
+      {
+        "id": 88095,
+        "cityDisplayName": "Newark",
+        "displayName": "Forest Hill",
+        "type": "NEIGHBORHOOD",
+        "stateCode": "NJ",
+        "sitemapNeighborhoodPageUrl": "newark-nj/forest-hill/",
+        "medianListPrice": 702450,
+        "location": {
+          "lng": -74.170514,
+          "lat": 40.774849
+        }
+      },
+      {
+        "id": 88250,
+        "cityDisplayName": "New York",
+        "displayName": "Upper West Side",
+        "type": "NEIGHBORHOOD",
+        "stateCode": "NY",
+        "sitemapNeighborhoodPageUrl": "new-york-ny/upper-west-side/",
+        "medianListPrice": 1750000,
+        "location": {
+          "lng": -73.976179,
+          "lat": 40.787181
+        }
+      },
+      {
+        "id": 99981,
+        "cityDisplayName": "Jersey City",
+        "displayName": "Hamilton Park",
+        "type": "NEIGHBORHOOD",
+        "stateCode": "NJ",
+        "sitemapNeighborhoodPageUrl": "jersey-city-nj/hamilton-park/",
+        "medianListPrice": 1274500,
+        "location": {
+          "lng": -74.046626,
+          "lat": 40.727375
+        }
+      },
+      {
+        "id": 88440,
+        "cityDisplayName": "Jersey City",
+        "displayName": "Journal Square",
+        "type": "NEIGHBORHOOD",
+        "stateCode": "NJ",
+        "sitemapNeighborhoodPageUrl": "jersey-city-nj/journal-square/",
+        "medianListPrice": 599000,
+        "location": {
+          "lng": -74.061456,
+          "lat": 40.73267
+        }
+      },
+      {
+        "id": 88251,
+        "cityDisplayName": "New York",
+        "displayName": "Central Park",
+        "type": "NEIGHBORHOOD",
+        "stateCode": "NY",
+        "sitemapNeighborhoodPageUrl": "new-york-ny/central-park/",
+        "medianListPrice": 2985000,
+        "location": {
+          "lng": -73.965568,
+          "lat": 40.782477
+        }
+      },
+      {
+        "id": 94858,
+        "cityDisplayName": "New York",
+        "displayName": "Lower East Side",
+        "type": "NEIGHBORHOOD",
+        "stateCode": "NY",
+        "sitemapNeighborhoodPageUrl": "new-york-ny/lower-east-side/",
+        "medianListPrice": 995000,
+        "location": {
+          "lng": -73.982481,
+          "lat": 40.716319
+        }
+      },
+      {
+        "id": 99976,
+        "cityDisplayName": "Jersey City",
+        "displayName": "Exchange Place North",
+        "type": "NEIGHBORHOOD",
+        "stateCode": "NJ",
+        "sitemapNeighborhoodPageUrl": "jersey-city-nj/exchange-place-north/",
+        "medianListPrice": 852500,
+        "location": {
+          "lng": -74.033502,
+          "lat": 40.719073
+        }
+      },
+      {
+        "id": 99978,
+        "cityDisplayName": "Jersey City",
+        "displayName": "Paulus Hook",
+        "type": "NEIGHBORHOOD",
+        "stateCode": "NJ",
+        "sitemapNeighborhoodPageUrl": "jersey-city-nj/paulus-hook/",
+        "medianListPrice": 1475000,
+        "location": {
+          "lng": -74.038726,
+          "lat": 40.715854
+        }
+      }
+    ],
+    "topNearbyCountyList": [
+      {
+        "id": 4286,
+        "displayName": "Bergen County",
+        "type": "COUNTY",
+        "stateCode": "NJ",
+        "sitemapCountyPageUrl": "bergen-county-nj/",
+        "medianListPrice": 719000,
+        "location": {
+          "lng": -74.0745218,
+          "lat": 40.9590904
+        }
+      },
+      {
+        "id": 6077,
+        "displayName": "Nassau County",
+        "type": "COUNTY",
+        "stateCode": "NY",
+        "sitemapCountyPageUrl": "nassau-county-ny/",
+        "medianListPrice": 799000,
+        "location": {
+          "lng": -73.5893844,
+          "lat": 40.729687
+        }
+      },
+      {
+        "id": 5786,
+        "displayName": "Westchester County",
+        "type": "COUNTY",
+        "stateCode": "NY",
+        "sitemapCountyPageUrl": "westchester-county-ny/",
+        "medianListPrice": 699000,
+        "location": {
+          "lng": -73.745912,
+          "lat": 41.1527698
+        }
+      },
+      {
+        "id": 5948,
+        "displayName": "Rockland County",
+        "type": "COUNTY",
+        "stateCode": "NY",
+        "sitemapCountyPageUrl": "rockland-county-ny/",
+        "medianListPrice": 749000,
+        "location": {
+          "lng": -74.0247721,
+          "lat": 41.1547851
+        }
+      },
+      {
+        "id": 4670,
+        "displayName": "Monmouth County",
+        "type": "COUNTY",
+        "stateCode": "NJ",
+        "sitemapCountyPageUrl": "monmouth-county-nj/",
+        "medianListPrice": 750000,
+        "location": {
+          "lng": -74.1524457,
+          "lat": 40.2870559
+        }
+      },
+      {
+        "id": 4276,
+        "displayName": "Morris County",
+        "type": "COUNTY",
+        "stateCode": "NJ",
+        "sitemapCountyPageUrl": "morris-county-nj/",
+        "medianListPrice": 650000,
+        "location": {
+          "lng": -74.5474268,
+          "lat": 40.8585805
+        }
+      },
+      {
+        "id": 4296,
+        "displayName": "Union County",
+        "type": "COUNTY",
+        "stateCode": "NJ",
+        "sitemapCountyPageUrl": "union-county-nj/",
+        "medianListPrice": 599000,
+        "location": {
+          "lng": -74.3086957,
+          "lat": 40.6598707
+        }
+      },
+      {
+        "id": 4271,
+        "displayName": "Essex County",
+        "type": "COUNTY",
+        "stateCode": "NJ",
+        "sitemapCountyPageUrl": "essex-county-nj/",
+        "medianListPrice": 599000,
+        "location": {
+          "lng": -74.2461361,
+          "lat": 40.7872164
+        }
+      },
+      {
+        "id": 4265,
+        "displayName": "Middlesex County",
+        "type": "COUNTY",
+        "stateCode": "NJ",
+        "sitemapCountyPageUrl": "middlesex-county-nj/",
+        "medianListPrice": 525000,
+        "location": {
+          "lng": -74.4075851,
+          "lat": 40.4395925
+        }
+      },
+      {
+        "id": 6083,
+        "displayName": "Queens County",
+        "type": "COUNTY",
+        "stateCode": "NY",
+        "sitemapCountyPageUrl": "queens-county-ny/",
+        "medianListPrice": 705000,
+        "location": {
+          "lng": -73.8379293,
+          "lat": 40.6585571
+        }
+      },
+      {
+        "id": 4268,
+        "displayName": "Hudson County",
+        "type": "COUNTY",
+        "stateCode": "NJ",
+        "sitemapCountyPageUrl": "hudson-county-nj/",
+        "medianListPrice": 699000,
+        "location": {
+          "lng": -74.0786266,
+          "lat": 40.7313836
+        }
+      },
+      {
+        "id": 4289,
+        "displayName": "Passaic County",
+        "type": "COUNTY",
+        "stateCode": "NJ",
+        "sitemapCountyPageUrl": "passaic-county-nj/",
+        "medianListPrice": 500000,
+        "location": {
+          "lng": -74.3003074,
+          "lat": 41.0337634
+        }
+      },
+      {
+        "id": 4365,
+        "displayName": "Somerset County",
+        "type": "COUNTY",
+        "stateCode": "NJ",
+        "sitemapCountyPageUrl": "somerset-county-nj/",
+        "medianListPrice": 639950,
+        "location": {
+          "lng": -74.6199299,
+          "lat": 40.5655217
+        }
+      },
+      {
+        "id": 5592,
+        "displayName": "New York County",
+        "type": "COUNTY",
+        "stateCode": "NY",
+        "sitemapCountyPageUrl": "new-york-county-ny/",
+        "medianListPrice": 1500000,
+        "location": {
+          "lng": -73.9701736,
+          "lat": 40.7765574
+        }
+      },
+      {
+        "id": 5759,
+        "displayName": "Bronx County",
+        "type": "COUNTY",
+        "stateCode": "NY",
+        "sitemapCountyPageUrl": "bronx-county-ny/",
+        "medianListPrice": 549000,
+        "location": {
+          "lng": -73.852939,
+          "lat": 40.8487111
+        }
+      },
+      {
+        "id": 6123,
+        "displayName": "Kings County",
+        "type": "COUNTY",
+        "stateCode": "NY",
+        "sitemapCountyPageUrl": "kings-county-ny/",
+        "medianListPrice": 1100000,
+        "location": {
+          "lng": -73.9507774,
+          "lat": 40.6351332
+        }
+      },
+      {
+        "id": 5743,
+        "displayName": "Richmond County",
+        "type": "COUNTY",
+        "stateCode": "NY",
+        "sitemapCountyPageUrl": "richmond-county-ny/",
+        "medianListPrice": 698000,
+        "location": {
+          "lng": -74.1370633,
+          "lat": 40.5638553
+        }
+      }
+    ],
+    "mspGeoContent": null,
+    "marketTrendsSummary": [
+      {
+        "type": "all",
+        "title": "",
+        "marketSnapShot": [
+          {
+            "metric_title": "Median List Price",
+            "rawValue": 1299000,
+            "value": "$1,299,000",
+            "id": "medianlistprice",
+            "monthly_value": "",
+            "yearly_value": "",
+            "paragraphics": "The median list price in undefined was <b>$1,299,000</b>  in September 2026 , compared to $1,395,000 in 2025.",
+            "sub_paragraphics": "In September 2026, undefined was a seller's market, which indicates that there were more people looking to buy than available homes."
+          },
+          {
+            "metric_title": "Median $/Sqft",
+            "rawValue": 1482,
+            "value": "$1,482/Sqft",
+            "id": "medianpricepersqft",
+            "monthly_value": "",
+            "yearly_value": "",
+            "paragraphics": "The median price per square foot in undefined was <b>1,482</b>  in September 2026 , compared to 1,482 in 2025."
+          },
+          {
+            "metric_title": "Homes For Sale",
+            "rawValue": 9805,
+            "value": "9,805",
+            "id": "inventory",
+            "monthly_value": "",
+            "yearly_value": "",
+            "paragraphics": "The number of homes for sale in undefined was <b>9,805</b>  in September 2026 , compared to 11,424 in 2025."
+          },
+          {
+            "metric_title": "Median Home Size Sqft",
+            "rawValue": 973,
+            "value": "973",
+            "id": "mediansize",
+            "monthly_value": "",
+            "yearly_value": "",
+            "paragraphics": "The median home size in undefined was <b>973 Sqft</b>   in September 2026 , compared to 1,026 Sqft in 2025."
+          },
+          {
+            "metric_title": "Median Days on Market",
+            "rawValue": 112,
+            "value": "112",
+            "id": "mediandom",
+            "monthly_value": "",
+            "yearly_value": "",
+            "paragraphics": "The median days on market in undefined was <b>112</b>  in September 2026 , compared to 120 in 2025."
+          }
+        ]
+      },
+      {
+        "type": "single",
+        "title": "",
+        "marketSnapShot": [
+          {
+            "metric_title": "Median List Price",
+            "rawValue": 8625000,
+            "value": "$8,625,000",
+            "id": "medianlistprice",
+            "monthly_value": "",
+            "yearly_value": "",
+            "paragraphics": "The median list price in undefined was <b>$8,625,000</b>  in September 2026 , compared to $8,975,000 in 2025.",
+            "sub_paragraphics": ""
+          },
+          {
+            "metric_title": "Median $/Sqft",
+            "rawValue": 1609,
+            "value": "$1,609/Sqft",
+            "id": "medianpricepersqft",
+            "monthly_value": "",
+            "yearly_value": "",
+            "paragraphics": "The median price per square foot in undefined was <b>1,609</b>  in September 2026 , compared to 1,788 in 2025."
+          },
+          {
+            "metric_title": "Homes For Sale",
+            "rawValue": 216,
+            "value": "216",
+            "id": "inventory",
+            "monthly_value": "",
+            "yearly_value": "",
+            "paragraphics": "The number of homes for sale in undefined was <b>216</b>  in September 2026 , compared to 256 in 2025."
+          },
+          {
+            "metric_title": "Median Home Size Sqft",
+            "rawValue": 5042,
+            "value": "5,042",
+            "id": "mediansize",
+            "monthly_value": "",
+            "yearly_value": "",
+            "paragraphics": "The median home size in undefined was <b>5,042 Sqft</b>   in September 2026 , compared to 5,500 Sqft in 2025."
+          },
+          {
+            "metric_title": "Median Days on Market",
+            "rawValue": 154,
+            "value": "154",
+            "id": "mediandom",
+            "monthly_value": "",
+            "yearly_value": "",
+            "paragraphics": "The median days on market in undefined was <b>154</b>  in September 2026 , compared to 155 in 2025."
+          }
+        ]
+      },
+      {
+        "type": "condo",
+        "title": "",
+        "marketSnapShot": [
+          {
+            "metric_title": "Median List Price",
+            "rawValue": 1295000,
+            "value": "$1,295,000",
+            "id": "medianlistprice",
+            "monthly_value": "",
+            "yearly_value": "",
+            "paragraphics": "The median list price in undefined was <b>$1,295,000</b>  in September 2026 , compared to $1,350,000 in 2025.",
+            "sub_paragraphics": ""
+          },
+          {
+            "metric_title": "Median $/Sqft",
+            "rawValue": 1494,
+            "value": "$1,494/Sqft",
+            "id": "medianpricepersqft",
+            "monthly_value": "",
+            "yearly_value": "",
+            "paragraphics": "The median price per square foot in undefined was <b>1,494</b>  in September 2026 , compared to 1,491 in 2025."
+          },
+          {
+            "metric_title": "Homes For Sale",
+            "rawValue": 9591,
+            "value": "9,591",
+            "id": "inventory",
+            "monthly_value": "",
+            "yearly_value": "",
+            "paragraphics": "The number of homes for sale in undefined was <b>9,591</b>  in September 2026 , compared to 11,168 in 2025."
+          },
+          {
+            "metric_title": "Median Home Size Sqft",
+            "rawValue": 930,
+            "value": "930",
+            "id": "mediansize",
+            "monthly_value": "",
+            "yearly_value": "",
+            "paragraphics": "The median home size in undefined was <b>930 Sqft</b>   in September 2026 , compared to 994 Sqft in 2025."
+          },
+          {
+            "metric_title": "Median Days on Market",
+            "rawValue": 110,
+            "value": "110",
+            "id": "mediandom",
+            "monthly_value": "",
+            "yearly_value": "",
+            "paragraphics": "The median days on market in undefined was <b>110</b>  in September 2026 , compared to 119 in 2025."
+          }
+        ]
+      }
+    ],
+    "refinedInventoryCounts": {
+      "geoId": 5593,
+      "geoName": "New York",
+      "state": "NY",
+      "url": "new-york-ny/",
+      "geoType": "CITY",
+      "bedroomFilters": [
+        {
+          "attribute_id": "bed-1-1",
+          "display_name": "",
+          "count": 2690
+        },
+        {
+          "attribute_id": "bed-2-2",
+          "display_name": "",
+          "count": 2294
+        },
+        {
+          "attribute_id": "bed-3-3",
+          "display_name": "",
+          "count": 1482
+        },
+        {
+          "attribute_id": "bed-4-4",
+          "display_name": "",
+          "count": 884
+        }
+      ],
+      "bathroomFilters": [
+        {
+          "attribute_id": "bath-1-1",
+          "display_name": "",
+          "count": 3907
+        },
+        {
+          "attribute_id": "bath-2-2",
+          "display_name": "",
+          "count": 2427
+        },
+        {
+          "attribute_id": "bath-3-3",
+          "display_name": "",
+          "count": 1498
+        },
+        {
+          "attribute_id": "bath-4-4",
+          "display_name": "",
+          "count": 717
+        }
+      ],
+      "priceRangeFilters": [
+        {
+          "attribute_id": "price-0-800000",
+          "display_name": "",
+          "count": 3656
+        },
+        {
+          "attribute_id": "price-0-1200000",
+          "display_name": "",
+          "count": 5442
+        },
+        {
+          "attribute_id": "price-0-2200000",
+          "display_name": "",
+          "count": 7431
+        },
+        {
+          "attribute_id": "price-0-5500000",
+          "display_name": "",
+          "count": 8812
+        }
+      ],
+      "amenitiesFilters": [
+        {
+          "attribute_id": "att-wide_open_spaces",
+          "display_name": "Wide open spaces",
+          "count": 4425
+        },
+        {
+          "attribute_id": "att-room_with_a_view",
+          "display_name": "Room with a view",
+          "count": 4285
+        },
+        {
+          "attribute_id": "att-view",
+          "display_name": "View",
+          "count": 4284
+        },
+        {
+          "attribute_id": "att-lower_effort",
+          "display_name": "Lower effort",
+          "count": 4021
+        }
+      ]
+    },
+    "shortcutFilters": [
+      {
+        "displayName": "New York",
+        "stateCode": "NY",
+        "filterAnnotation": "condos",
+        "filterTitle": "Condos & Townhouses",
+        "inventoryCount": 14941,
+        "displayRank": 1,
+        "mspUrl": "new-york-ny/condos/"
+      },
+      {
+        "displayName": "New York",
+        "stateCode": "NY",
+        "filterAnnotation": "single-family",
+        "filterTitle": "Single Family",
+        "inventoryCount": 919,
+        "displayRank": 2,
+        "mspUrl": "new-york-ny/single-family/"
+      },
+      {
+        "displayName": "New York",
+        "stateCode": "NY",
+        "filterAnnotation": "bed-2-0",
+        "filterTitle": "2+ Beds",
+        "inventoryCount": 11488,
+        "displayRank": 3,
+        "mspUrl": "new-york-ny/bed-2-0/"
+      }
+    ],
+    "geoInfo": {
+      "searchTerm": "New York, NY",
+      "city": "New York",
+      "cityId": 5593,
+      "county": "New York County",
+      "state": "NY",
+      "lat": 40.6627117,
+      "lng": -73.9386769,
+      "geoAreaId": 5593
+    },
+    "searchText": "New York, NY",
+    "schoolData": null,
+    "mspSchoolDistricts": null,
+    "contentVariant": {
+      "isUnfilteredUnpaginated": true,
+      "isUnfilteredUnpaginatedCity": true
+    },
+    "seotitle": {
+      "title": "New York, NY Homes for Sale & Real Estate - Movoto",
+      "vanillaCase": true,
+      "description": "Browse 21,716 homes for sale in New York, NY. Median price $1.3M ($1,481/sqft, -6% YoY). Find your next home on Movoto, listings updated every 5 min from MLS.",
+      "h1": "New York, NY Homes for Sale & Real Estate"
+    },
+    "filterType": {
+      "url": ""
+    },
+    "relatedLinks": {
+      "show": false
+    },
+    "hasFilter": false,
+    "isUnfilteredUrl": true,
+    "attrSSRLinks": {
+      "waterfront": "new-york-ny/kw-waterfront",
+      "foreclosed": "new-york-ny/foreclosed"
+    },
+    "splitsPrefetched": {
+      "movoto-msp-h1-change-CW-4241": "default",
+      "movoto-seo-optimisation-CW-4623": "on",
+      "movoto-msp-exp106-metadata-CW-4537": "on"
+    },
+    "geo": {
+      "searchTerm": "New York, NY",
+      "city": "New York",
+      "cityId": 5593,
+      "county": "New York County",
+      "state": "NY",
+      "lat": 40.6627117,
+      "lng": -73.9386769,
+      "geoAreaId": 5593
+    },
+    "currentViewStatus": "grid-view"
+  },
+  "pageData_listings_len": 50,
+  "pageData_listings_first": {
+    "closePrice": null,
+    "daysOnMovoto": 0,
+    "id": "c0154783-a14c-437c-9aaa-dbe2afd00ba4",
+    "tnImgPath": "https://pi.movoto.com/p/484/RLS20119645_0_63ZRy2_p.webp",
+    "listDate": "2026-10-07 00:00:00",
+    "listingAgent": "Timothy Hsu",
+    "listPrice": 10950000,
+    "lotSize": null,
+    "sqftTotal": 3223,
+    "mlsDbNumber": 484,
+    "mls": {
+      "dateHidden": null,
+      "id": 484
+    },
+    "mlsNumber": "RLS20119645",
+    "bath": 5,
+    "bed": 4,
+    "openHouses": [],
+    "officeListName": "Douglas Elliman Real Estate",
+    "officeListPhone": "(212) 891-7000",
+    "photoCount": 1,
+    "propertyType": "CONDO",
+    "propertyTypeDisplayName": "Condominium",
+    "yearBuilt": 2024,
+    "zipCode": "10023",
+    "path": "new-york-ny/50-w-66th-st-apt-10c-new-york-ny-10023-484_rls20020182/",
+    "status": "Active",
+    "houseRealStatus": "ACTIVE",
+    "hoafee": 4279,
+    "priceChangedDate": "2026-10-07 00:00:00",
+    "priceChange": null,
+    "propertyId": "aca725fa-4f79-41bc-a458-6de558312a3b",
+    "visibility": "NO_RESTRICTION",
+    "permitAvm": false,
+    "soldDate": null,
+    "createdAt": "2026-10-07 04:52:15",
+    "imageDownloaderStatus": 7,
+    "imageFormat": "webp",
+    "garage": 0,
+    "virtualTourLink": null,
+    "nhsDetails": null,
+    "rentalPotential": false,
+    "brokerageDetails": null,
+    "showOnMarketTime": true,
+    "geo": {
+      "state": "NY",
+      "city": "New York",
+      "county": "New York County",
+      "lat": 40.772776,
+      "lng": -73.980501,
+      "zipcode": "10023",
+      "zipcodeId": "5615",
+      "subPremise": "APT 10C",
+      "address": "50 W 66th St #10C",
+      "neighborhoodName": "Upper West Side",
+      "neighborhoodS": "Lincoln Square",
+      "neighborhoodM": "Upper Manhattan",
+      "neighborhoodN": "Upper West Side",
+      "formatAddress": "50 W 66th St #10C New York, NY 10023"
+    },
+    "isRDC": false,
+    "isRentals": false,
+    "isSold": false,
+    "listingByMovoto": false,
+    "isVideoTour": false,
+    "is3DTour": false,
+    "videoTourLink": ""
+  }
+}
