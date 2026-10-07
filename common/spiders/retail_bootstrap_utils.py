@@ -66,6 +66,8 @@ def extract_preloaded_state(html: str) -> dict[str, Any] | None:
     if not m:
         m = re.search(r'(?:window\.)?__PRELOADED_STATE__\s*=\s*\{', html or "")
     if not m:
+        m = re.search(r"window\[['\"]__PRELOADED_STATE__['\"]\]\s*=\s*\{", html or "")
+    if not m:
         return None
 
     start = m.end() - 1
