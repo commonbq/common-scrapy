@@ -1,0 +1,162 @@
+[
+  {
+    "slug": "new-york-ny",
+    "url": "https://hotpads.com/new-york-ny/apartments-for-rent",
+    "http": 200,
+    "bytes": 1082294,
+    "items": 40,
+    "total_rentals": "17,672"
+  },
+  {
+    "slug": "los-angeles-ca",
+    "url": "https://hotpads.com/los-angeles-ca/apartments-for-rent",
+    "http": 200,
+    "bytes": 1171708,
+    "items": 40,
+    "total_rentals": "40,015"
+  },
+  {
+    "slug": "chicago-il",
+    "url": "https://hotpads.com/chicago-il/apartments-for-rent",
+    "http": 200,
+    "bytes": 1106004,
+    "items": 40,
+    "total_rentals": "20,630"
+  },
+  {
+    "slug": "houston-tx",
+    "url": "https://hotpads.com/houston-tx/apartments-for-rent",
+    "http": 200,
+    "bytes": 1142946,
+    "items": 40,
+    "total_rentals": "43,266"
+  },
+  {
+    "slug": "phoenix-az",
+    "url": "https://hotpads.com/phoenix-az/apartments-for-rent",
+    "http": 200,
+    "bytes": 1148058,
+    "items": 40,
+    "total_rentals": "18,492"
+  },
+  {
+    "slug": "philadelphia-pa",
+    "url": "https://hotpads.com/philadelphia-pa/apartments-for-rent",
+    "http": 200,
+    "bytes": 1110775,
+    "items": 40,
+    "total_rentals": "17,099"
+  },
+  {
+    "slug": "san-antonio-tx",
+    "url": "https://hotpads.com/san-antonio-tx/apartments-for-rent",
+    "http": 200,
+    "bytes": 1102171,
+    "items": 40,
+    "total_rentals": "22,029"
+  },
+  {
+    "slug": "san-diego-ca",
+    "url": "https://hotpads.com/san-diego-ca/apartments-for-rent",
+    "http": 200,
+    "bytes": 1188615,
+    "items": 40,
+    "total_rentals": "14,605"
+  },
+  {
+    "slug": "dallas-tx",
+    "url": "https://hotpads.com/dallas-tx/apartments-for-rent",
+    "http": 200,
+    "bytes": 1147857,
+    "items": 40,
+    "total_rentals": "24,691"
+  },
+  {
+    "slug": "san-jose-ca",
+    "url": "https://hotpads.com/san-jose-ca/apartments-for-rent",
+    "http": 200,
+    "bytes": 1092076,
+    "items": 40,
+    "total_rentals": "3,842"
+  },
+  {
+    "slug": "austin-tx",
+    "url": "https://hotpads.com/austin-tx/apartments-for-rent",
+    "http": 200,
+    "bytes": 1167895,
+    "items": 40,
+    "total_rentals": "32,336"
+  },
+  {
+    "slug": "jacksonville-fl",
+    "url": "https://hotpads.com/jacksonville-fl/apartments-for-rent",
+    "http": 200,
+    "bytes": 1118407,
+    "items": 40,
+    "total_rentals": "11,669"
+  },
+  {
+    "slug": "fort-worth-tx",
+    "url": "https://hotpads.com/fort-worth-tx/apartments-for-rent",
+    "http": 200,
+    "bytes": 1111654,
+    "items": 40,
+    "total_rentals": "10,963"
+  },
+  {
+    "slug": "columbus-oh",
+    "url": "https://hotpads.com/columbus-oh/apartments-for-rent",
+    "http": 200,
+    "bytes": 1078989,
+    "items": 40,
+    "total_rentals": "12,777"
+  },
+  {
+    "slug": "charlotte-nc",
+    "url": "https://hotpads.com/charlotte-nc/apartments-for-rent",
+    "http": 200,
+    "bytes": 1172613,
+    "items": 40,
+    "total_rentals": "24,338"
+  },
+  {
+    "slug": "indianapolis-in",
+    "url": "https://hotpads.com/indianapolis-in/apartments-for-rent",
+    "http": 200,
+    "bytes": 1062317,
+    "items": 40,
+    "total_rentals": "9,964"
+  },
+  {
+    "slug": "san-francisco-ca",
+    "url": "https://hotpads.com/san-francisco-ca/apartments-for-rent",
+    "http": 200,
+    "bytes": 1099669,
+    "items": 40,
+    "total_rentals": "4,790"
+  },
+  {
+    "slug": "seattle-wa",
+    "url": "https://hotpads.com/seattle-wa/apartments-for-rent",
+    "http": 200,
+    "bytes": 1159637,
+    "items": 40,
+    "total_rentals": "19,399"
+  },
+  {
+    "slug": "denver-co",
+    "url": "https://hotpads.com/denver-co/apartments-for-rent",
+    "http": 200,
+    "bytes": 1158836,
+    "items": 40,
+    "total_rentals": "20,492"
+  },
+  {
+    "slug": "boston-ma",
+    "url": "https://hotpads.com/boston-ma/apartments-for-rent",
+    "http": 200,
+    "bytes": 1146698,
+    "items": 40,
+    "total_rentals": "14,890"
+  }
+]
