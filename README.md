@@ -51,6 +51,21 @@ payload. It accepts `category`, `category_url`, or `url`; use
 
 All extra args are forwarded to `scrapy crawl` unchanged (feeds, settings overrides, etc.).
 
+### tripcom_listing
+
+`tripcom_listing` reads the server-provided `data-jsondata` state for Trip.com's
+`City` template component. This is a single bootstrap direction: it does not parse
+rendered hotel cards or JSON-LD. The 20 deterministic city categories come from
+Trip.com's popular-hotel destination links. Each city SEO page is fetched once;
+the component supplies hotel names, prices, price units, and city metadata.
+
+Every exported item includes the verbatim `raw` City-bootstrap hotel record and a
+per-run crawl `timestamp`.
+
+```bash
+scrapy crawl tripcom_listing -a category=bangkok -s HTTPCACHE_ENABLED=False -O tripcom.jsonl
+```
+
 ## Available spiders
 
 ### Standalone spiders (via `scrapy crawl <spider>`)
@@ -61,6 +76,8 @@ Working spiders running daily in production:
 
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
+| [`tripcom_listing`](#tripcom_listing) | Experimental | bootstrap | ScrapeOps proxy | Trip.com hotels from the server-provided `City` template-component state; no direct HTML-card or JSON-LD extraction. | 9 (one city page) | 20 popular hotel destinations | `{"category":"bangkok","title":"NASA BANGKOK - Airport Rail Link Ramkhamhang","price":15,"currency":"USD","source":"tripcom_city_component_bootstrap"...}` |
+| [`hostelworld_listing`](#hostelworld_listing) | Active | api | none detected; API must be direct so proxy does not rewrite `Accept` | Hostelworld properties from the first-party Apigee city-properties API only; no HTML or JSON-LD fallback. | 29 (New York, one page) | 20 popular global cities; 2,838 city URLs available from the sitemap index | `{"category":"new-york","item_id":"1850","name":"HI New York City Hostel","source":"hostelworld_city_properties_api"...}` |
 | [`dell_listing`](#dell_listing) | Experimental | bootstrap | ScrapeOps proxy | Dell US listings from the authoritative `data-product-detail-info` Product Stack bootstrap; no product-card or JSON-LD fallback. | Live smoke tested below | 18 stable product/deal categories | `{"item_id":"dellplus16laptopdb16250","title":"Dell 16 Plus Laptop","price":1559.99,"currency":"USD","source":"dell_product_stack_bootstrap"...}` |
 | [`agoda_listing`](#agoda_listing) | Experimental | api | proxy required | Agoda curated destination accommodations from the first-party Cronos geo API. | 30 (Bali, one API response) | 20 popular cities from the homepage destination payload | `{"category":"bali","item_id":"489045","title":"RIMBA by AYANA Bali","review_score":9.1,"star_rating":5.0,"source":"agoda_cronos_geo_api","timestamp":"2026-10-06 10:30:00"...}` |
 | [`adorama_listing`](#adorama_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | DataDome | Adorama category listings from server-rendered Next.js hydration state. | 24 (one page; 48 across 2 pages) | 1,079 crawlable categories across 11 departments from `adorama_categories.py` | `{"category":"cameras","item_id":"KKRK0603A","title":"Kodak Charmera Millenium Edition...","price":54.94,"currency":"USD"...}` |
@@ -125,6 +142,7 @@ Spiders below are returning items in recent smoke runs:
 | [`lululemon_listing`](#lululemon_listing) | Active | bootstrap | Akamai | lululemon listing spider via Next.js `__NEXT_DATA__`. | 40 (ok) | women-shorts, women-leggings, men-shorts, bags | `{"category":"women-shorts","product_id":"prod11860112","name":"Shake It Out High-Rise Running Short 2.5\"","brand":"lululemon","price":["...` |
 | [`newegg_listing`](#newegg_listing) | Experimental | SSR hydration state | none detected | Newegg listing spider reading server-rendered `window.__initialState__.Products` with `/Page-N` pagination and live RolloverMenu inventory refresh. | 36 (ok) | desktop-cpu-processors, all-current-categories | `{"item_id":"19-113-877","title":"AMD Ryzen 7 9800X3D - Ryzen 7 9000 Series Zen 5 8-Core 5.2 GHz - Socket AM5 120W - AMD Radeon Graphics Desktop Processor - 100-100001084WOF","model":"100-100001084WOF","brand":"AMD","price":469,"currency":"USD","url":"https://www.newegg.com/amd-ryzen-7-9000-series-ryzen-7-9800x3d-granite-ridge-zen-5-socket-am5-desktop-cpu-processor/p/N82E16819113877","image":"https://c1.neweggimages.com/ProductImageOriginal/19-113-877-01.png","rating":4.8,"reviews_count":729,"page":1,"source":"newegg_initial_state"}` |
 | [`redfin_listing`](#redfin_listing) | Active | api | ScrapeOps US proxy | Redfin city listings from the first-party Stingray GIS JSON API discovered in React server hydration. | 350 (one page) | 20 major US city markets | `{"category":"los-angeles-ca","item_id":"5196541","price":1399000,"source":"redfin_stingray_api"...}` |
+| [`movoto_listing`](#movoto_listing) | Experimental | bootstrap | PerimeterX (ScrapeOps US proxy required) | Movoto sale listings from server-rendered Nuxt `__INITIAL_STATE__.pageData.listings` only; no HTML or JSON-LD fallback. | 50 (one page, live proxy) | 20 major US city markets | `{"category":"new-york-ny","item_id":"aca725fa-4f79-41bc-a458-6de558312a3b","title":"50 W 66th St #10C New York, NY 10023","price":10950000,"source":"movoto_initial_state"...}` |
 | [`oreilly_listing`](#oreilly_listing) | Active | bootstrap (`window._ost`) | direct 403; ScrapeOps US residential required | O'Reilly Auto Parts category listings from the server-rendered product bootstrap only. | 18 (live brake rotors page) | 34 root departments from `oreilly_categories.py`; direct leaf URLs supported | `{"item_id":"BBR|3512RGS","title":"BrakeBest Select Front Brake Rotor - 3512RGS","price":89.99,"currency":"USD","source":"oreilly_ost_bootstrap"}` |
 | [`rei_listing`](#rei_listing) | Active | bootstrap (`#initial-props`) | none detected | REI category listings from the server-rendered `#initial-props` bootstrap (`ProductSearch.products.searchResults.results`); follows hydration pagination and dedupes by `prodId`. | 30 (1 page, hiking-footwear) | 20 stable commerce-category shortcuts from `rei_categories.py` | `{"category":"hiking-footwear","item_id":"202126","title":"Moab 3 Hiking Shoes - Women's","brand":"Merrell","price":71.83,"currency":"USD","source":"rei_initial_props_bootstrap","timestamp":"2026-10-06 20:34:00"}` |
 | [`trulia_listing`](#trulia_listing) | Experimental | bootstrap | challenge/WAF | Trulia sale listings from server-rendered Next.js `props.searchData.homes`. | 40 (live) | 20 homepage-highlighted US cities | `{"item_id":"465800506","title":"97 Marland Rd, Colorado Springs, CO 80906","price":2500000,"currency":"USD"}` |
@@ -143,6 +161,7 @@ Spiders below are returning items in recent smoke runs:
 | [`stockx_listing`](#stockx_listing) | Experimental | bootstrap + html | Cloudflare | StockX listing via `__NEXT_DATA__` bootstrap. | 41 (ok) | sneakers, apparel, electronics, trading-cards, collectibles | `{"item_id":"brands","title":"Brands","url":"https://stockx.com/brands","price":null,"currency":null}` |
 | [`urbanoutfitters_listing`](#urbanoutfitters_listing) | Active | bootstrap | none detected through ScrapeOps proxy | Urban Outfitters listings from double-decoded Vue/Pinia SSR state (`#urbnInitialPiniaState`), with `?page=` pagination and no HTML fallback. | 144 (2 pages, live proxy) | 2,158 sitemap PLPs plus 4 navigation roots absent from the sitemap (2,162 targets total) | `{"category":"new-arrivals","item_id":"UO-106663735-000","title":"Kimchi Blue Ella Flyaway Ruffle Lace Trim Cami","brand":"Kimchi Blue","price":39,"rating":4.7308,"reviews_count":26,"color":"Maroon","source":"urbanoutfitters_pinia_ssr_tiles"...}` |
 | [`staples_listing`](#staples_listing) | Experimental | Next.js hydration | Akamai | Staples category listings from server-rendered `__NEXT_DATA__`. | 40 (one page) | 34 roots / 208 subcategories from `staples_categories.py` | `{"item_id":"82656","title":"Staples 1\" 3-Ring View Binder...","price":10.09,"currency":"USD"...}` |
+| [`rightmove_listing`](#rightmove_listing) | Experimental | bootstrap | none detected through ScrapeOps proxy | Rightmove properties for sale from server-rendered Next.js Pages Router `__NEXT_DATA__` hydration (no HTML or JSON-LD fallback). | 25 (one page, live proxy) | 20 high-inventory UK cities | `{"category":"london","item_id":"89825950","title":"Tottenham Street, Fitzrovia, W1","price":680000,"price_currency":"GBP","source":"rightmove_next_data"...}` |
 | [`petco_listing`](#petco_listing) | Experimental | bootstrap (Next.js `__NEXT_DATA__`) | none detected | Petco category listings from the server-rendered Constructor.io search hydration. | 48 (one page) | 22 roots / 286 nodes / 264 `-a category=` entries from `petco_categories.py` | `{"item_id":"6848523","title":"Purina Cat Chow Indoor Healthy Weight and Hairball with Chicken Dry Cat Food, 15 lbs.","brand":"Purina Cat Chow","price":18.99,"original_price":19.99,"rating":4.8141,"source":"petco_next_data"...}` |
 | [`target_listing`](#target_listing) | Active (alias) | api | PerimeterX / HUMAN (cookie signals) | Deprecated alias of `target_search`. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
 | [`uniqlo_listing`](#uniqlo_listing) | Experimental | api | none detected (plain ScrapeOps datacenter route) | UNIQLO US category listings from the first-party commerce BFF products API. | 36 (one page, ok) | 2741 taxonomy URLs (4 genders / 46 classes / 212 categories / 2479 subcategories) from `uniqlo-categories.json` | `{"item_id":"E424873-000-00","title":"Crew Neck T-Shirt","color":"White","price":19.9,"currency":"USD"...}` |
@@ -156,6 +175,24 @@ Spiders below are returning items in recent smoke runs:
 | [`walgreens_listing`](#walgreens_listing) | Active | bootstrap (Redux `window.getInitialState()`) | Akamai (ScrapeOps US JS rendering required) | Walgreens category listings from the server-rendered Redux `window.getInitialState()` bootstrap (`searchResult.productList[*].productInfo`); no HTML-card or JSON-LD fallback. | 24 (1 page, `Allergy & Sinus`) | 19 departments / 170 child categories from `walgreens_categories.py` | `{"category":"Allergy & Sinus","category_id":"360545","product_id":"prod6335256","title":"Walgreens Neti Pot Kit","brand":"Walgreens","price":11.99,"currency":"USD","source_url":"https://www.walgreens.com/store/c/productlist/N=360545/1/ShopAll=360545","raw":{...},"timestamp":"2026-10-07 05:40:00"...}` |
 | [`chewy_listing`](#chewy_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | ScrapeOps US residential route required | Chewy category listings from the server-rendered Next.js `__NEXT_DATA__` bootstrap (`props.pageProps.initialState.searchSlice.plpData.products`); no HTML-card or JSON-LD fallback. | 44 (1 page, `food-332`) | 172-category pet taxonomy (dogs, cats, other pets) from `chewy_categories.py` | `{"category":"food-332","item_id":"147999","title":"Instinct Original Adult Grain-Free Real Beef Recipe Wet Dog Food, 13.2-oz can, case of 6","brand":"Instinct","price":28.14,"currency":"USD","source":"chewy_next_data_bootstrap","timestamp":"2026-10-06 21:40:56"...}` |
 | [`zumper_listing`](#zumper_listing) | Active | bootstrap (`window.__PRELOADED_STATE__`) | ScrapeOps US proxy | Zumper rental listings from the server-rendered `window.__PRELOADED_STATE__` bootstrap (`currentSearch.listables`) with hydrated `?page=N` pagination; no HTML-card or JSON-LD fallback. | 25 (1 page, `new-york-ny`) | 20 major US rental markets from `zumper_categories.py` | `{"category":"new-york-ny","item_id":"456715","title":"Parker Towers","min_price":2829,"max_price":6489,"currency":"USD","city":"New York","state":"NY","source":"zumper_preloaded_state","timestamp":"2026-10-07 05:36:58"...}` |
+| [`crateandbarrel_listing`](#crateandbarrel_listing) | Active | bootstrap (React `ProductListing` hydration) | Akamai (ScrapeOps residential proxy required) | Crate & Barrel category listings from the first-party React `ProductListing` hydration payload only; 13 product-bearing category URLs with numeric-path pagination. | 100 (1 page, `sofas`) | 13 category URLs from `crateandbarrel_categories.py` | `{"category":"sofas","item_id":"322117","title":"Lounge Sofa (62\"-105\")","brand":"Crate & Barrel","price":1529.0,"currency":"USD","source":"crateandbarrel_productlisting_bootstrap","timestamp":"2026-10-07 09:46:17"...}` |
+
+### hostelworld_listing
+
+`hostelworld_listing` uses one data direction: Hostelworld's first-party Apigee
+`city/hostel/{city_id}/properties` JSON API for every page, including page 1.
+The API yields stable property IDs, prices, ratings, coordinates, photos,
+facilities and paging totals. Requests go directly to Apigee because a proxy
+that rewrites `Accept` or `Accept-Language` causes the gateway to reject them;
+there is no direct-HTML or JSON-LD fallback.
+
+The spider includes 20 deterministic popular-city seeds. Hostelworld's full
+continent/country/city taxonomy is published by `sitemap-index.xml` across 32
+gzipped sitemap files (about 2,838 city listing URLs).
+
+```bash
+scrapy crawl hostelworld_listing -a category=new-york -a max_pages=1 -s HTTPCACHE_ENABLED=False -O hostelworld.jsonl
+```
 
 ### menards_listing
 
@@ -1706,6 +1743,36 @@ product-bearing leaf. Direct Staples requests may require the configured US prox
 
 Run example:
 `HTTPCACHE_ENABLED=False common-scrapy crawl staples_listing -a category=binders -a max_pages=2 -O staples.jsonl -s HTTPCACHE_ENABLED=False`
+
+### rightmove_listing
+
+Rightmove listings use one product-data path: `props.pageProps.searchResults.properties`
+inside the server-rendered Next.js Pages Router `script#__NEXT_DATA__`. The spider maps
+property, price, location, media, agent and search-context fields directly from that
+hydration; it does not use HTML cards or JSON-LD as a fallback. The deterministic taxonomy
+contains 20 high-inventory UK cities. Pagination follows the hydrated `pagination.next`
+offset as `?index=N`, bounded by `pagination.total`, Rightmove's 42-page cap and `max_pages`.
+The ordered `FEED_EXPORT_FIELDS` contract covers stable property identity, price,
+location, property details, media, agent and search-context metadata, the provenance
+`source=rightmove_next_data`, the authoritative raw property record (`raw`), and a
+per-item `timestamp`.
+
+```json
+{
+  "category": "london",
+  "item_id": "89825950",
+  "title": "Tottenham Street, Fitzrovia, W1",
+  "price": 680000,
+  "price_display": "£680,000",
+  "price_currency": "GBP",
+  "bedrooms": 1,
+  "property_type": "1 bedroom flat for sale",
+  "source": "rightmove_next_data"
+}
+```
+
+Run example:
+`scrapy crawl rightmove_listing -a category=london -a max_pages=1 -O rightmove.jsonl -s HTTPCACHE_ENABLED=False`
 
 ### petco_listing
 
@@ -3999,6 +4066,28 @@ The spider exposes 20 major US rental markets from `rent_categories.py`. Its ord
 `FEED_EXPORT_FIELDS` cover property identity, location, price and bed ranges,
 floor-plan bath and square-footage ranges, availability, ratings, amenities, photo
 IDs, contact details, pagination metadata, and the authoritative raw record.
+### movoto_listing
+
+Movoto sale listings use one data path: the server-rendered Nuxt JSON in
+`script#__INITIAL_STATE__`, specifically `pageData.listings`. Each item includes the
+stable `propertyId`, price, property facts, MLS and broker metadata, location, and image.
+There is deliberately no direct card-HTML or JSON-LD extraction fallback.
+
+The spider provides 20 deterministic major-city categories sourced from Movoto's
+`/sitemap/` city inventory. Pagination uses `/<city>/p-<N>/` (not the search route
+`/<city>/<N>/`) and is bounded by `pageData.totalCount`, `max_pages`, short/empty pages,
+and repeated IDs. Movoto is PerimeterX-protected, so use the configured ScrapeOps US
+proxy.
+
+The ordered `FEED_EXPORT_FIELDS` contract covers stable property identity, price and
+property facts, MLS and broker metadata, location, media, pagination and search-context
+metadata, the provenance `source=movoto_initial_state`, the authoritative raw listing
+record (`raw`), and a per-item `timestamp`.
+
+```bash
+scrapy crawl movoto_listing -a category=new-york-ny -a max_pages=1 -O movoto.jsonl -s HTTPCACHE_ENABLED=False
+```
+
 ### harborfreight_listing
 
 `harborfreight_listing` reads products exclusively from the server-rendered
@@ -4104,3 +4193,22 @@ responses fail visibly. A working configured ScrapeOps proxy is expected.
 ```bash
 scrapy crawl chewy_listing -a category=food-332 -a max_pages=1 -s HTTPCACHE_ENABLED=False -O chewy.jsonl
 ```
+
+### crateandbarrel_listing
+
+`crateandbarrel_listing` extracts the first-party `ProductListing` React bootstrap
+state used to hydrate Crate & Barrel product-listing pages. It does not scrape
+product cards or use JSON-LD. The category inventory contains 13 stable,
+product-bearing URLs discovered from the site index; pagination changes the
+terminal `/1` segment to `/2`, `/3`, and so on. Crate & Barrel's Akamai route
+requires the configured ScrapeOps residential proxy.
+
+```bash
+scrapy crawl crateandbarrel_listing -a category=sofas -a max_pages=1 \
+  -O crateandbarrel-sofas.jsonl -s HTTPCACHE_ENABLED=False
+```
+
+The ordered `FEED_EXPORT_FIELDS` cover category context, identifiers, title,
+canonical URL, image, normalized prices, currency, ratings, product flags,
+colors, page/position metadata, provenance, the raw first-party product object,
+and the crawl timestamp.
