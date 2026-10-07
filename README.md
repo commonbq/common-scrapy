@@ -197,6 +197,7 @@ Spiders below are returning items in recent smoke runs:
 | [`hotpads_listing`](#hotpads_listing) | Active | bootstrap (Next.js RSC `initialListingsData`) | ScrapeOps proxy | HotPads rental-building listings from the server-rendered Next.js App Router RSC bootstrap; no rendered-card or JSON-LD fallback. | 40 (1 page, `new-york-ny`) | 20 major US rental markets from `hotpads_categories.py` | `{"category":"new-york-ny","item_id":"24cjp0b","title":"Sky Three","price_low":3675,"price_high":5575,"city":"Brooklyn","state":"NY","source":"hotpads_rsc_bootstrap","timestamp":"2026-10-07 02:36:00"...}` |
 | [`tripadvisor_listing`](#tripadvisor_listing) | Active | bootstrap (URQL SSR cache) | ScrapeOps residential proxy | Tripadvisor hotels extracted only from the server-rendered URQL GraphQL cache; no card or JSON-LD fallback. | 37 (1 page, `bali`) | 20 Travelers' Choice destinations | `{"category":"bali","item_id":"24976303","title":"Kappa Senses Ubud","price":160.0,"currency":"USD","source":"tripadvisor_urql_bootstrap"...}` |
 | [`homes_listing`](#homes_listing) | Active | bootstrap (`window.gState` map data) | ScrapeOps US proxy | Homes.com property markers from its printable-ASCII encoded search bootstrap; no placard HTML or JSON-LD fallback. | 638 (`new-york-ny`, live one-response crawl) | 20 major US city markets from `homes_categories.py` | `{"category":"new-york-ny","item_id":"4b215f8nkz79f","listing_key":"lfbykfb6tllzk","price":785000.0,"latitude":40.84279,"longitude":-73.82926,"source":"homes_gstate_map_bootstrap"...}` |
+| [`remax_listing`](#remax_listing) | Active | bootstrap (Next.js App Router RSC) | ScrapeOps US proxy | RE/MAX homes for sale from the server-rendered `listingResultsUnfiltered` RSC bootstrap; no rendered-card or JSON-LD fallback. | 24/page | 20 populous US states from `remax_categories.py` | `{"category":"california","item_id":"M00000079-20262083","title":"7610 N LAKE BLVD # 29, TAHOE VISTA, CA 96148","price":299000,"beds":null,"baths":1,"source":"remax_nextjs_rsc_bootstrap"...}` |
 | [`worldmarket_listing`](#worldmarket_listing) | Active | api | none detected (ScrapeOps proxy) | World Market products from the first-party SFCC `Search-UpdateGrid` grid API (no direct product-card or JSON-LD fallback). | 60 (1 page, live proxy) | 13 department seeds from `worldmarket_categories.py` | `{"category":"furniture-shop-all-furniture","item_id":"SET135122","title":"Isaiah Tufted Mid Century Seating Collection","price":299.99,"currency":"USD","source":"worldmarket_sfcc_search_update_grid_api"...}` |
 | [`walgreens_listing`](#walgreens_listing) | Active | bootstrap (Redux `window.getInitialState()`) | Akamai (ScrapeOps US JS rendering required) | Walgreens category listings from the server-rendered Redux `window.getInitialState()` bootstrap (`searchResult.productList[*].productInfo`); no HTML-card or JSON-LD fallback. | 24 (1 page, `Allergy & Sinus`) | 19 departments / 170 child categories from `walgreens_categories.py` | `{"category":"Allergy & Sinus","category_id":"360545","product_id":"prod6335256","title":"Walgreens Neti Pot Kit","brand":"Walgreens","price":11.99,"currency":"USD","source_url":"https://www.walgreens.com/store/c/productlist/N=360545/1/ShopAll=360545","raw":{...},"timestamp":"2026-10-07 05:40:00"...}` |
 | [`chewy_listing`](#chewy_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | ScrapeOps US residential route required | Chewy category listings from the server-rendered Next.js `__NEXT_DATA__` bootstrap (`props.pageProps.initialState.searchSlice.plpData.products`); no HTML-card or JSON-LD fallback. | 44 (1 page, `food-332`) | 172-category pet taxonomy (dogs, cats, other pets) from `chewy_categories.py` | `{"category":"food-332","item_id":"147999","title":"Instinct Original Adult Grain-Free Real Beef Recipe Wet Dog Food, 13.2-oz can, case of 6","brand":"Instinct","price":28.14,"currency":"USD","source":"chewy_next_data_bootstrap","timestamp":"2026-10-06 21:40:56"...}` |
@@ -4192,6 +4193,25 @@ marker record, and a per-run timestamp. Choose one of 20 major-city seeds:
 
 ```bash
 scrapy crawl homes_listing -a category=new-york-ny -s HTTPCACHE_ENABLED=False -O homes.jsonl
+```
+
+### remax_listing
+
+`remax_listing` uses one listing-data direction: the authoritative
+`listingResultsUnfiltered` object embedded in RE/MAX's server-rendered Next.js App
+Router RSC (`self.__next_f`) stream. It does not parse rendered listing cards or
+JSON-LD. The hydrated records include stable property, listing, and MLS identifiers;
+address and property facts; price; photos; agent and office contacts; badges; and
+open-house data. The ordered `FEED_EXPORT_FIELDS` contract also includes page and
+position metadata, the raw structured record, and a crawl timestamp.
+
+The spider provides 20 populous US state categories. Pagination updates the site's
+JSON-encoded `searchQuery` parameter with `pageNumber`, stops at `max_pages`, and
+deduplicates the hydrated `uniqueListingId` values across pages. RE/MAX requires the
+configured ScrapeOps US proxy; direct requests can return an empty challenge response.
+
+```bash
+scrapy crawl remax_listing -a category=california -a max_pages=2 -s HTTPCACHE_ENABLED=False -O remax.jsonl
 ```
 ### worldmarket_listing
 
