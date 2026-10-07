@@ -3959,6 +3959,26 @@ The spider exposes 20 major US rental markets from `rent_categories.py`. Its ord
 `FEED_EXPORT_FIELDS` cover property identity, location, price and bed ranges,
 floor-plan bath and square-footage ranges, availability, ratings, amenities, photo
 IDs, contact details, pagination metadata, and the authoritative raw record.
+
+### worldmarket_listing
+
+`worldmarket_listing` uses one product-data direction: World Market's first-party
+Salesforce Commerce Cloud `Search-UpdateGrid` endpoint. The category landing page
+is used only to resolve its `cgid`; products are requested from the endpoint from
+offset zero onward, without product-card or JSON-LD fallbacks. Pagination follows
+the API-provided result count in 60-item offsets and deduplicates stable product or
+collection IDs.
+
+The ordered `FEED_EXPORT_FIELDS` contract includes category context, product and
+SKU identifiers, title, canonical URL, image, current/original USD prices,
+availability, ratings, sale flags, position, total count, source URL, and the raw
+SFCC data attributes. Thirteen stable department seeds are defined in
+`worldmarket_categories.py`; custom category URLs remain supported.
+
+```bash
+scrapy crawl worldmarket_listing -a category=furniture-shop-all-furniture -a max_pages=2 -s HTTPCACHE_ENABLED=False -O worldmarket.jsonl
+```
+
 ### harborfreight_listing
 
 `harborfreight_listing` reads products exclusively from the server-rendered
