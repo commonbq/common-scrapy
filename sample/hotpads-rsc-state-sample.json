@@ -1,0 +1,61 @@
+{
+  "_note": "Trimmed excerpt of the Next.js App Router RSC flight payload (self.__next_f.push) found in sample/hotpads-new-york-ny.html. Server-rendered; no separate listing XHR/GraphQL is required.",
+  "page": {
+    "number": 1,
+    "limit": 40
+  },
+  "search": {
+    "numUnits": 17672,
+    "numBuildingsAvailable": 9879,
+    "minPrice": 1580,
+    "totalPages": 247
+  },
+  "initialParams": {
+    "includeBreadcrumbs": true,
+    "searchSlug": "apartments-for-rent",
+    "area": {
+      "resourceId": "new-york-ny",
+      "areaId": "117776782",
+      "name": "New York",
+      "type": "city",
+      "city": "New York",
+      "state": "NY"
+    },
+    "filters": {
+      "boundingBox": {
+        "minLat": 40.4774,
+        "maxLat": 40.91758,
+        "minLon": -74.25909,
+        "maxLon": -73.70027
+      },
+      "areaId": "117776782",
+      "scope": {
+        "type": "zillowRegion",
+        "id": 6181
+      }
+    },
+    "page": {
+      "number": 1,
+      "limit": 40
+    }
+  },
+  "listing_sample": {
+    "title": "Marquis West Side",
+    "tags": [
+      "active",
+      "allowedToRetain",
+      "paidAndNotDemoted",
+      "paidMultifamily",
+      "rental",
+      "trusted"
+    ],
+    "unitCount": 1,
+    "newUnitCount": 0,
+    "priceDropCount": 0,
+    "contact": {
+      "displayContactBox": true,
+      "requiresPhone": true
+    },
+    "contactPhone": "1-516-689-9759"
+  }
+}

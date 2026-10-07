@@ -1,0 +1,1578 @@
+{
+  "@type": "ItemList",
+  "name": "New York, NY Apartments for Rent",
+  "numberOfItems": 40,
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/riverbank-new-york-ny-10036-skefej/pad#residence",
+        "url": "https://hotpads.com/riverbank-new-york-ny-10036-skefej/pad",
+        "name": "Riverbank",
+        "image": "https://photos.zillowstatic.com/fp/927467905003e2527a1c738c39ab9845-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "560 W 43rd St",
+          "addressLocality": "New York",
+          "addressRegion": "NY",
+          "postalCode": "10036",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 3888,
+          "highPrice": 11151,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/riverbank-new-york-ny-10036-skefej/pad"
+        },
+        "subjectOf": [
+          {
+            "@type": "3DModel",
+            "name": "Riverbank",
+            "contentUrl": "https://viewer.tourbuilder.com/?themeId=631a1e44d8f0fe1df521d8db&tour=62a7dc3d40f8424b84ed03b7"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/sky-three-brooklyn-ny-11224-24cjp0b/pad#residence",
+        "url": "https://hotpads.com/sky-three-brooklyn-ny-11224-24cjp0b/pad",
+        "name": "Sky Three",
+        "image": "https://photos.zillowstatic.com/fp/79f704ccae2354c4ab88a3da5e33cd31-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "532 Neptune Ave",
+          "addressLocality": "Brooklyn",
+          "addressRegion": "NY",
+          "postalCode": "11224",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 1,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 3675,
+          "highPrice": 5575,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/sky-three-brooklyn-ny-11224-24cjp0b/pad"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/columbus-square-new-york-ny-10025-sj8sty/pad#residence",
+        "url": "https://hotpads.com/columbus-square-new-york-ny-10025-sj8sty/pad",
+        "name": "Columbus Square",
+        "image": "https://photos.zillowstatic.com/fp/aa746dc90e99d357287cfeea545dbe8b-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "808 Columbus Ave",
+          "addressLocality": "New York",
+          "addressRegion": "NY",
+          "postalCode": "10025",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 3992,
+          "highPrice": 9225,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/columbus-square-new-york-ny-10025-sj8sty/pad"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/215-e-124th-st-new-york-ny-10035-23vmnj6/pad#residence",
+        "url": "https://hotpads.com/215-e-124th-st-new-york-ny-10035-23vmnj6/pad",
+        "name": "The Reserve",
+        "image": "https://photos.zillowstatic.com/fp/d219e4bcb75815ad246f5925717d7878-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "215 E 124th St",
+          "addressLocality": "New York",
+          "addressRegion": "NY",
+          "postalCode": "10035",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 2,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 1580,
+          "highPrice": 5775,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/215-e-124th-st-new-york-ny-10035-23vmnj6/pad"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/waterline-square-new-york-ny-10023-23vddtj/pad#residence",
+        "url": "https://hotpads.com/waterline-square-new-york-ny-10023-23vddtj/pad",
+        "name": "Waterline Square",
+        "image": "https://photos.zillowstatic.com/fp/1753c70bcbcc7f3dbed5ce06bcae0c0c-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "400 W 61st St",
+          "addressLocality": "New York",
+          "addressRegion": "NY",
+          "postalCode": "10023",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 6412,
+          "highPrice": 40000,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/waterline-square-new-york-ny-10023-23vddtj/pad"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/lincoln-at-bankside-bronx-ny-10454-23y7mk6/pad#residence",
+        "url": "https://hotpads.com/lincoln-at-bankside-bronx-ny-10454-23y7mk6/pad",
+        "name": "Lincoln at Bankside",
+        "image": "https://photos.zillowstatic.com/fp/4dda522b31688f9777da867e1076e036-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "5 Lincoln Ave",
+          "addressLocality": "Bronx",
+          "addressRegion": "NY",
+          "postalCode": "10454",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 1,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 2857,
+          "highPrice": 5575,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/lincoln-at-bankside-bronx-ny-10454-23y7mk6/pad"
+        },
+        "subjectOf": [
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=sy-U-g8-y6&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=q8y2v7qScG&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=0mM9w1ps6v&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=d0KP1ipfGq&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=iM2h4nzT5x&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=PqznVTM2vT&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=8Jt03sTZ1A&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=GTKITBaDnl&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=azqiPJgf0v&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=47-ZxeitRd&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=NAaxO60kj3&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=3PW50_nOla&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=wKAxrXGp8t&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=M2C-HL74lS&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=QKSi-IovXh&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=Ix40ccJDI8&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=R-yt6YJuoY&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=RZFgwEWqqn&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=OFEoNzsn6T&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=2KB4VfNg5B&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=yUiyVsGh7W&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=FrCPdlJpat&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=NVn2sqv8xL&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=gFPdhp7QRq&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=Nm5WJiu8kk&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=ijLJQIKV3o&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=OWCdYBLnfc&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=IdkrevhNuO&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=ybBt9n_Ff3&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=jXOL2wxwxs&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=aFPSCh64-t&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=ztwstUNOOa&platformMode=true"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/inkwell-bronx-ny-10451-253km95/pad#residence",
+        "url": "https://hotpads.com/inkwell-bronx-ny-10451-253km95/pad",
+        "name": "Inkwell",
+        "image": "https://photos.zillowstatic.com/fp/e6944b5a3f0a45add4957424d2ae1025-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "586 Gerard Ave",
+          "addressLocality": "Bronx",
+          "addressRegion": "NY",
+          "postalCode": "10451",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 2,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 3685,
+          "highPrice": 4355,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/inkwell-bronx-ny-10451-253km95/pad"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 8,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/111-worth-new-york-ny-10013-skg1ra/pad#residence",
+        "url": "https://hotpads.com/111-worth-new-york-ny-10013-skg1ra/pad",
+        "name": "111 Worth",
+        "image": "https://photos.zillowstatic.com/fp/be6935703b401d14987b02ae5fba7ea0-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "111 Worth St",
+          "addressLocality": "New York",
+          "addressRegion": "NY",
+          "postalCode": "10013",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 5205,
+          "highPrice": 9966,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/111-worth-new-york-ny-10013-skg1ra/pad"
+        },
+        "subjectOf": [
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=bBNlsq4n7_&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=vKCmSDoPJj&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=ijk7v0Bhmp&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=Jg3P-f5YwZ&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=MrSB5FRF_F&platformMode=true"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 9,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/third-at-bankside-bronx-ny-10451-240bgpf/pad#residence",
+        "url": "https://hotpads.com/third-at-bankside-bronx-ny-10451-240bgpf/pad",
+        "name": "Third at Bankside",
+        "image": "https://photos.zillowstatic.com/fp/47f0afcbbd89604f6bd2edc61aab55c6-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "2385 3rd Ave",
+          "addressLocality": "Bronx",
+          "addressRegion": "NY",
+          "postalCode": "10451",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 2608,
+          "highPrice": 4997,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/third-at-bankside-bronx-ny-10451-240bgpf/pad"
+        },
+        "subjectOf": [
+          {
+            "@type": "3DModel",
+            "name": "Third at Bankside",
+            "contentUrl": "https://viewer.tourbuilder.com/?themeId=631a1e44d8f0fe1df521d8db&tour=61291b1efb58ee75469ecb7b"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 10,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/eagle-and-west-brooklyn-ny-11222-23zdahc/pad#residence",
+        "url": "https://hotpads.com/eagle-and-west-brooklyn-ny-11222-23zdahc/pad",
+        "name": "Eagle and West",
+        "image": "https://photos.zillowstatic.com/fp/4acff29fc98682e9a66401fcd9ff2b38-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "1 Eagle St",
+          "addressLocality": "Brooklyn",
+          "addressRegion": "NY",
+          "postalCode": "11222",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 3886,
+          "highPrice": 12081,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/eagle-and-west-brooklyn-ny-11222-23zdahc/pad"
+        },
+        "subjectOf": [
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=MIe0foyC&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=UGsCQ43t&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=R8tO5ovJ&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=r8p9OzOs&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=My6ITHSCku&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=xmsko5fYcH&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=FHEElVGU&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=3EIxMSII&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=hqtvaJ5u&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=c3dVEjfW&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=ezRyv_Yz&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=NYdF3yJr&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=k6prbr90&platformMode=true"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 11,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/shorecrest-towers-brooklyn-ny-11235-9xf0/pad#residence",
+        "url": "https://hotpads.com/shorecrest-towers-brooklyn-ny-11235-9xf0/pad",
+        "name": "Shorecrest Towers",
+        "image": "https://photos.zillowstatic.com/fp/26bb1ddbfdcf9c9564877559c9f57686-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "3000 Ocean Pkwy",
+          "addressLocality": "Brooklyn",
+          "addressRegion": "NY",
+          "postalCode": "11235",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 2,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 3800,
+          "highPrice": 4250,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/shorecrest-towers-brooklyn-ny-11235-9xf0/pad"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 12,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/staten-island-urby-staten-island-ny-10304-249p6r7/pad#residence",
+        "url": "https://hotpads.com/staten-island-urby-staten-island-ny-10304-249p6r7/pad",
+        "name": "Staten Island Urby",
+        "image": "https://photos.zillowstatic.com/fp/9c46d74580372688bd6421efe95c4ac6-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "7 Navy Pier Ct",
+          "addressLocality": "Staten Island",
+          "addressRegion": "NY",
+          "postalCode": "10304",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 2,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 3968,
+          "highPrice": 3976,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/staten-island-urby-staten-island-ny-10304-249p6r7/pad"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 13,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/20-halletts-point-astoria-ny-11102-24793qb/pad#residence",
+        "url": "https://hotpads.com/20-halletts-point-astoria-ny-11102-24793qb/pad",
+        "name": "20 Halletts Point",
+        "image": "https://photos.zillowstatic.com/fp/af9a780b2ecec0ed90bb712a50412edd-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "20 Halletts Point",
+          "addressLocality": "Astoria",
+          "addressRegion": "NY",
+          "postalCode": "11102",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 1,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 3748,
+          "highPrice": 3979,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/20-halletts-point-astoria-ny-11102-24793qb/pad"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 14,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/1515-surf-brooklyn-ny-11224-249jsmm/pad#residence",
+        "url": "https://hotpads.com/1515-surf-brooklyn-ny-11224-249jsmm/pad",
+        "name": "1515 Surf",
+        "image": "https://photos.zillowstatic.com/fp/1cc7fa4b3086a22461aad0fdc4562b82-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "1515 Surf Ave",
+          "addressLocality": "Brooklyn",
+          "addressRegion": "NY",
+          "postalCode": "11224",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 1,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 3135,
+          "highPrice": 5549,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/1515-surf-brooklyn-ny-11224-249jsmm/pad"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 15,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/maven-bronx-ny-10451-249hrmg/pad#residence",
+        "url": "https://hotpads.com/maven-bronx-ny-10451-249hrmg/pad",
+        "name": "Maven",
+        "image": "https://photos.zillowstatic.com/fp/627cbc6f6419882f778738f681fbe35a-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "2413 3rd Ave",
+          "addressLocality": "Bronx",
+          "addressRegion": "NY",
+          "postalCode": "10451",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 1,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 3000,
+          "highPrice": 10632,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/maven-bronx-ny-10451-249hrmg/pad"
+        },
+        "subjectOf": [
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://www.zillow.com/view-imx/aac4bdba-0c20-4cd5-85b6-1d0fe9b32a87/?hidePhotos=true&initialViewType=pano"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://www.zillow.com/view-imx/b580a7e2-4b8a-4096-93e4-4d85ede661d0/?hidePhotos=true&initialViewType=pano"
+          },
+          {
+            "@type": "3DModel",
+            "name": "Maven Mott Haven",
+            "contentUrl": "https://viewer.tourbuilder.com/?themeId=631a1e44d8f0fe1df521d8db&tour=6788442f0e0740bf25784b4d"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 16,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/the-bellslip-brooklyn-ny-11222-24wk0bw/pad#residence",
+        "url": "https://hotpads.com/the-bellslip-brooklyn-ny-11222-24wk0bw/pad",
+        "name": "The Bellslip",
+        "image": "https://photos.zillowstatic.com/fp/5524bf78ae498d6dd04e2a49961cd902-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "1 Bell Slip",
+          "addressLocality": "Brooklyn",
+          "addressRegion": "NY",
+          "postalCode": "11222",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 3425,
+          "highPrice": 8732,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/the-bellslip-brooklyn-ny-11222-24wk0bw/pad"
+        },
+        "subjectOf": [
+          {
+            "@type": "3DModel",
+            "name": "The Bell Slip - Greenpoint Landing",
+            "contentUrl": "https://viewer.tourbuilder.com/?themeId=631a1e44d8f0fe1df521d8db&tour=61c2147ead51fc5bca2e2541"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 17,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/15-cliff-new-york-ny-10038-cg/pad#residence",
+        "url": "https://hotpads.com/15-cliff-new-york-ny-10038-cg/pad",
+        "name": "15 Cliff",
+        "image": "https://photos.zillowstatic.com/fp/512fa3e70ce9a128f7a5d0b280ed39c7-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "15 Cliff St",
+          "addressLocality": "New York",
+          "addressRegion": "NY",
+          "postalCode": "10038",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 3712,
+          "highPrice": 14299,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/15-cliff-new-york-ny-10038-cg/pad"
+        },
+        "subjectOf": [
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://www.zillow.com/view-imx/d8cabc94-beb7-4f0e-a01a-9e41930d9d11/?hidePhotos=true&initialViewType=pano"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://www.zillow.com/view-imx/9d00e264-77d5-404a-83cd-6c8eae66efdb/?hidePhotos=true&initialViewType=pano"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://www.zillow.com/view-imx/4db3d2dc-2f14-4c30-bccc-c81ad1ad7564/?hidePhotos=true&initialViewType=pano"
+          },
+          {
+            "@type": "3DModel",
+            "name": "15 Cliff Apartments",
+            "contentUrl": "https://viewer.tourbuilder.com/?themeId=631a1e44d8f0fe1df521d8db&tour=62d6b93399ab5a6542f50341"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=10a0ks23oo&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=TgALVNKy&platformMode=true"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 18,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/trylon-tower-rego-park-ny-11374-24dsr0b/pad#residence",
+        "url": "https://hotpads.com/trylon-tower-rego-park-ny-11374-24dsr0b/pad",
+        "name": "Trylon Tower",
+        "image": "https://photos.zillowstatic.com/fp/876cafdf129ee769edec51eaaf683a3a-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "98-81 Queens Blvd",
+          "addressLocality": "Rego Park",
+          "addressRegion": "NY",
+          "postalCode": "11374",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 1,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 3295,
+          "highPrice": 5245,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/trylon-tower-rego-park-ny-11374-24dsr0b/pad"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 19,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/10-hanover-square-new-york-ny-10005-tprra3/pad#residence",
+        "url": "https://hotpads.com/10-hanover-square-new-york-ny-10005-tprra3/pad",
+        "name": "10 Hanover Square",
+        "image": "https://photos.zillowstatic.com/fp/2af3de4b25cce04aa83771e5fee1273e-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "10 Hanover Sq",
+          "addressLocality": "New York",
+          "addressRegion": "NY",
+          "postalCode": "10005",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 3999,
+          "highPrice": 6297,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/10-hanover-square-new-york-ny-10005-tprra3/pad"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 20,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/95-wall-new-york-ny-10005-sj7g4u/pad#residence",
+        "url": "https://hotpads.com/95-wall-new-york-ny-10005-sj7g4u/pad",
+        "name": "95 Wall",
+        "image": "https://photos.zillowstatic.com/fp/361b781705c8c0eac97a5439135b5c52-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "95 Wall St",
+          "addressLocality": "New York",
+          "addressRegion": "NY",
+          "postalCode": "10005",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 4050,
+          "highPrice": 5791,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/95-wall-new-york-ny-10005-sj7g4u/pad"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 21,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/21-chelsea-new-york-ny-10011-skf8zf/pad#residence",
+        "url": "https://hotpads.com/21-chelsea-new-york-ny-10011-skf8zf/pad",
+        "name": "21 Chelsea",
+        "image": "https://photos.zillowstatic.com/fp/ea67ea367aac1b3c344825aaf3f1ae84-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "120 W 21st St",
+          "addressLocality": "New York",
+          "addressRegion": "NY",
+          "postalCode": "10011",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 5240,
+          "highPrice": 8937,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/21-chelsea-new-york-ny-10011-skf8zf/pad"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 22,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/the-eugene-new-york-ny-10001-240an70/pad#residence",
+        "url": "https://hotpads.com/the-eugene-new-york-ny-10001-240an70/pad",
+        "name": "The Eugene",
+        "image": "https://photos.zillowstatic.com/fp/f3e53514142c2ff00ebaa0f1efa71b74-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "435 W 31st St",
+          "addressLocality": "New York",
+          "addressRegion": "NY",
+          "postalCode": "10001",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 4455,
+          "highPrice": 16502,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/the-eugene-new-york-ny-10001-240an70/pad"
+        },
+        "subjectOf": [
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=vimcmvQg&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=ULBnTz_D1O&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=ju8MTr2bAZ&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=PlMRHedMKs&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=RV1Kn9BiMo&platformMode=true"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 23,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/the-brooklyner-brooklyn-ny-11201-sm2df0/pad#residence",
+        "url": "https://hotpads.com/the-brooklyner-brooklyn-ny-11201-sm2df0/pad",
+        "name": "The Brooklyner",
+        "image": "https://photos.zillowstatic.com/fp/a42cc03fc9a6255c06660d6101e72042-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "111 Lawrence St",
+          "addressLocality": "Brooklyn",
+          "addressRegion": "NY",
+          "postalCode": "11201",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 3507,
+          "highPrice": 6735,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/the-brooklyner-brooklyn-ny-11201-sm2df0/pad"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 24,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/waterside-new-york-ny-10010-23vegfb/pad#residence",
+        "url": "https://hotpads.com/waterside-new-york-ny-10010-23vegfb/pad",
+        "name": "Waterside",
+        "image": "https://photos.zillowstatic.com/fp/da99e6929806f97f1440b5abf9059263-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "30 Waterside Plz",
+          "addressLocality": "New York",
+          "addressRegion": "NY",
+          "postalCode": "10010",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 3277,
+          "highPrice": 9174,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/waterside-new-york-ny-10010-23vegfb/pad"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 25,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/the-tides-at-arverne-by-the-sea-arverne-ny-11692-241ge65/pad#residence",
+        "url": "https://hotpads.com/the-tides-at-arverne-by-the-sea-arverne-ny-11692-241ge65/pad",
+        "name": "The Tides At Arverne By The Sea",
+        "image": "https://photos.zillowstatic.com/fp/19f9bd280420e8a5ee29e35ce1238460-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "190 Beach 69th St",
+          "addressLocality": "Arverne",
+          "addressRegion": "NY",
+          "postalCode": "11692",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 2850,
+          "highPrice": 4000,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/the-tides-at-arverne-by-the-sea-arverne-ny-11692-241ge65/pad"
+        },
+        "subjectOf": [
+          {
+            "@type": "3DModel",
+            "name": "Apartment Tour 2U",
+            "contentUrl": "https://www.zillow.com/view-3d-home/4b64ea1f-e8f5-43a5-aa64-107c6fdbe1a8?setAttribution=mls&wl=true&utm_source=dashboard"
+          },
+          {
+            "@type": "3DModel",
+            "name": "Apartment Tour 5A",
+            "contentUrl": "https://www.zillow.com/view-3d-home/a9175769-b627-4141-bf46-497cd80bc499?setAttribution=mls&wl=true&utm_source=dashboard"
+          },
+          {
+            "@type": "3DModel",
+            "name": "Apartment Tour 7G",
+            "contentUrl": "https://www.zillow.com/view-3d-home/945e2c6c-7169-44aa-b22e-251f7d88524e?setAttribution=mls&wl=true&utm_source=dashboard"
+          },
+          {
+            "@type": "3DModel",
+            "name": "Apartment Tour 6R",
+            "contentUrl": "https://www.zillow.com/view-3d-home/e5eb3137-cb75-428a-bab5-dbb70e4f9767?setAttribution=mls&wl=true&utm_source=dashboard"
+          },
+          {
+            "@type": "3DModel",
+            "name": "Apartment Tour 2R",
+            "contentUrl": "https://www.zillow.com/view-3d-home/9b5e8529-c34c-4ced-b154-8938178ad840?setAttribution=mls&wl=true&utm_source=dashboard"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 26,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/475-clermont-brooklyn-ny-11238-249p3gw/pad#residence",
+        "url": "https://hotpads.com/475-clermont-brooklyn-ny-11238-249p3gw/pad",
+        "name": "475 Clermont",
+        "image": "https://photos.zillowstatic.com/fp/2e95fb71bf8a7c0a68d8ad270a84fbcb-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "475 Clermont Ave",
+          "addressLocality": "Brooklyn",
+          "addressRegion": "NY",
+          "postalCode": "11238",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 3539,
+          "highPrice": 7342,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/475-clermont-brooklyn-ny-11238-249p3gw/pad"
+        },
+        "subjectOf": [
+          {
+            "@type": "3DModel",
+            "name": "475 Clermont",
+            "contentUrl": "https://viewer.tourbuilder.com/?themeId=631a1e44d8f0fe1df521d8db&tour=6a34790bbd35c16a164099bb"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=tqonhp_L&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=DLKypxxl&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=WNt-gpXm&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=xwLuy0i-&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=an0sISMA&platformMode=true"
+          },
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://a.peek.us/viewer?token=H7hMLo-x&platformMode=true"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 27,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/ruby-square-jamaica-ny-11432-24bju45/pad#residence",
+        "url": "https://hotpads.com/ruby-square-jamaica-ny-11432-24bju45/pad",
+        "name": "Ruby Square",
+        "image": "https://photos.zillowstatic.com/fp/4be51972354be27ea0e68a090724d77e-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "166-20 90th Ave",
+          "addressLocality": "Jamaica",
+          "addressRegion": "NY",
+          "postalCode": "11432",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 1,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 2857,
+          "highPrice": 3775,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/ruby-square-jamaica-ny-11432-24bju45/pad"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 28,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/gateway-new-york-ny-10280-skg111/pad#residence",
+        "url": "https://hotpads.com/gateway-new-york-ny-10280-skg111/pad",
+        "name": "Gateway",
+        "image": "https://photos.zillowstatic.com/fp/db20d1dad64cda649bbd91d70c21125d-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "389 S End Ave",
+          "addressLocality": "New York",
+          "addressRegion": "NY",
+          "postalCode": "10280",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 3764,
+          "highPrice": 7920,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/gateway-new-york-ny-10280-skg111/pad"
+        },
+        "subjectOf": [
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://viewer.tourbuilder.com/?themeId=631a1e44d8f0fe1df521d8db&tour=689279a96695e7c4f66b9476"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 29,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/two-blue-slip-brooklyn-ny-11222-23yuxsj/pad#residence",
+        "url": "https://hotpads.com/two-blue-slip-brooklyn-ny-11222-23yuxsj/pad",
+        "name": "Two Blue Slip",
+        "image": "https://photos.zillowstatic.com/fp/65df7d9041f3a6e1ad6faeca35cecf4d-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "2 Blue Slip",
+          "addressLocality": "Brooklyn",
+          "addressRegion": "NY",
+          "postalCode": "11222",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 3666,
+          "highPrice": 18636,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/two-blue-slip-brooklyn-ny-11222-23yuxsj/pad"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 30,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/461-dean-brooklyn-ny-11217-249njfe/pad#residence",
+        "url": "https://hotpads.com/461-dean-brooklyn-ny-11217-249njfe/pad",
+        "name": "461 Dean",
+        "image": "https://photos.zillowstatic.com/fp/a3bbeac3771c65c7a0ce9221b18e20e9-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "461 Dean St",
+          "addressLocality": "Brooklyn",
+          "addressRegion": "NY",
+          "postalCode": "11217",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 3720,
+          "highPrice": 5320,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/461-dean-brooklyn-ny-11217-249njfe/pad"
+        },
+        "subjectOf": [
+          {
+            "@type": "3DModel",
+            "name": "3D tour",
+            "contentUrl": "https://www.zillow.com/view-imx/9dc9dff6-3c3b-465f-a6f8-8412d57acee0/?hidePhotos=true&initialViewType=pano"
+          },
+          {
+            "@type": "3DModel",
+            "name": "Tour 1",
+            "contentUrl": "https://viewer.tourbuilder.com/?themeId=631a1e44d8f0fe1df521d8db&tour=5ea8549637eeae3a7740ecf1"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 31,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/the-sagamore-new-york-ny-10024-hyaq/pad#residence",
+        "url": "https://hotpads.com/the-sagamore-new-york-ny-10024-hyaq/pad",
+        "name": "The Sagamore",
+        "image": "https://photos.zillowstatic.com/fp/52be98d6f623c369099c346aaf4e1ed9-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "189 W 89th St",
+          "addressLocality": "New York",
+          "addressRegion": "NY",
+          "postalCode": "10024",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 4198,
+          "highPrice": 9154,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/the-sagamore-new-york-ny-10024-hyaq/pad"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 32,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/aalto57-new-york-ny-10022-23vugn7/pad#residence",
+        "url": "https://hotpads.com/aalto57-new-york-ny-10022-23vugn7/pad",
+        "name": "Aalto57",
+        "image": "https://photos.zillowstatic.com/fp/0c1099a1882a904acc8cedcd83ebd9dc-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "1065 2nd Ave",
+          "addressLocality": "New York",
+          "addressRegion": "NY",
+          "postalCode": "10022",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 1,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 6550,
+          "highPrice": 8850,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/aalto57-new-york-ny-10022-23vugn7/pad"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 33,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/willoughby-brooklyn-ny-11201-249p3ez/pad#residence",
+        "url": "https://hotpads.com/willoughby-brooklyn-ny-11201-249p3ez/pad",
+        "name": "Willoughby",
+        "image": "https://photos.zillowstatic.com/fp/8755de08065ab762d92ef61eb1e8f61e-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "196 Willoughby St",
+          "addressLocality": "Brooklyn",
+          "addressRegion": "NY",
+          "postalCode": "11201",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 3402,
+          "highPrice": 8185,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/willoughby-brooklyn-ny-11201-249p3ez/pad"
+        },
+        "subjectOf": [
+          {
+            "@type": "3DModel",
+            "name": "Virtual Tour",
+            "contentUrl": "https://viewer.tourbuilder.com/?themeId=631a1e44d8f0fe1df521d8db&tour=67869db583a86071d2cb4234"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 34,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/ava-dobro-brooklyn-ny-11201-3rx3/pad#residence",
+        "url": "https://hotpads.com/ava-dobro-brooklyn-ny-11201-3rx3/pad",
+        "name": "AVA DoBro",
+        "image": "https://photos.zillowstatic.com/fp/9e52d11eddb1b5f6e9e879b3fdaff775-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "100 Willoughby St",
+          "addressLocality": "Brooklyn",
+          "addressRegion": "NY",
+          "postalCode": "11201",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 3670,
+          "highPrice": 7615,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/ava-dobro-brooklyn-ny-11201-3rx3/pad"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 35,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/ava-fort-greene-brooklyn-ny-11201-skzk4z/pad#residence",
+        "url": "https://hotpads.com/ava-fort-greene-brooklyn-ny-11201-skzk4z/pad",
+        "name": "AVA Fort Greene",
+        "image": "https://photos.zillowstatic.com/fp/f5fb60e7f7fa66fa16d03dae174767c4-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "343 Gold St",
+          "addressLocality": "Brooklyn",
+          "addressRegion": "NY",
+          "postalCode": "11201",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 3575,
+          "highPrice": 6536,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/ava-fort-greene-brooklyn-ny-11201-skzk4z/pad"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 36,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/avalon-willoughby-square-brooklyn-ny-11201-247b9q2/pad#residence",
+        "url": "https://hotpads.com/avalon-willoughby-square-brooklyn-ny-11201-247b9q2/pad",
+        "name": "Avalon Willoughby Square",
+        "image": "https://photos.zillowstatic.com/fp/4599b12369b5d89295aa614f26c8589d-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "214 Duffield St",
+          "addressLocality": "Brooklyn",
+          "addressRegion": "NY",
+          "postalCode": "11201",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 3737,
+          "highPrice": 7806,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/avalon-willoughby-square-brooklyn-ny-11201-247b9q2/pad"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 37,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/the-capitol-new-york-ny-10001-24ack5c/pad#residence",
+        "url": "https://hotpads.com/the-capitol-new-york-ny-10001-24ack5c/pad",
+        "name": "The Capitol",
+        "image": "https://photos.zillowstatic.com/fp/fa50a499a99023e81d5e6988b2824b7e-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "776 6th Ave",
+          "addressLocality": "New York",
+          "addressRegion": "NY",
+          "postalCode": "10001",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 4463,
+          "highPrice": 17477,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/the-capitol-new-york-ny-10001-24ack5c/pad"
+        },
+        "subjectOf": [
+          {
+            "@type": "3DModel",
+            "name": "CAPITOL at Chelsea",
+            "contentUrl": "https://viewer.tourbuilder.com/?themeId=631a1e44d8f0fe1df521d8db&tour=62a8e59dd7ec2c79c386f125"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 38,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/murray-hill-marquis-new-york-ny-10016-241yds3/pad#residence",
+        "url": "https://hotpads.com/murray-hill-marquis-new-york-ny-10016-241yds3/pad",
+        "name": "Murray Hill Marquis",
+        "image": "https://photos.zillowstatic.com/fp/bf2e2246ceac4f2ed9236d0d7ce9b5d7-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "150 E 34th St",
+          "addressLocality": "New York",
+          "addressRegion": "NY",
+          "postalCode": "10016",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 3870,
+          "highPrice": 5435,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/murray-hill-marquis-new-york-ny-10016-241yds3/pad"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 39,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/new-york-city-laguardia-airport-whitestone-ny-11357-24eddut/pad#residence",
+        "url": "https://hotpads.com/new-york-city-laguardia-airport-whitestone-ny-11357-24eddut/pad",
+        "name": "New York City - LaGuardia Airport",
+        "image": "https://photos.zillowstatic.com/fp/27c6cfa047f4025f82c454fce77f4022-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "18-30 Whitestone Expy",
+          "addressLocality": "Whitestone",
+          "addressRegion": "NY",
+          "postalCode": "11357",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 0,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 4489,
+          "highPrice": 4489,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/new-york-city-laguardia-airport-whitestone-ny-11357-24eddut/pad"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 40,
+      "item": {
+        "@type": "ApartmentComplex",
+        "@id": "https://hotpads.com/marquis-west-side-new-york-ny-10025-skfd1a/pad#residence",
+        "url": "https://hotpads.com/marquis-west-side-new-york-ny-10025-skfd1a/pad",
+        "name": "Marquis West Side",
+        "image": "https://photos.zillowstatic.com/fp/01929766b5d831d1cc5601c07c3993a4-rentals_medium_500_500.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "70 W 95th St",
+          "addressLocality": "New York",
+          "addressRegion": "NY",
+          "postalCode": "10025",
+          "addressCountry": "US"
+        },
+        "numberOfBedrooms": 2,
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": 6595,
+          "highPrice": 6595,
+          "availability": "https://schema.org/InStock",
+          "url": "https://hotpads.com/marquis-west-side-new-york-ny-10025-skfd1a/pad"
+        }
+      }
+    }
+  ],
+  "@id": "https://hotpads.com/new-york-ny/apartments-for-rent#listings"
+}

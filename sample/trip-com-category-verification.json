@@ -1,0 +1,202 @@
+[
+  {
+    "slug": "shanghai",
+    "url": "https://us.trip.com/hotels/shanghai-hotels-list-2/",
+    "http": 200,
+    "bytes": 3772406,
+    "cards": 9,
+    "unique_hotel_ids": 61,
+    "jsonld_items": 9,
+    "title": "10 Best Shanghai Hotels, China (from $33) | Trip.com"
+  },
+  {
+    "slug": "hong-kong",
+    "url": "https://us.trip.com/hotels/hong-kong-hotels-list-58/",
+    "http": 200,
+    "bytes": 3299210,
+    "cards": 9,
+    "unique_hotel_ids": 58,
+    "jsonld_items": 9,
+    "title": "10 Best Hong Kong Hotels, China (from $31) | Trip.com"
+  },
+  {
+    "slug": "las-vegas",
+    "url": "https://us.trip.com/hotels/las-vegas-hotels-list-26282/",
+    "http": 200,
+    "bytes": 3092157,
+    "cards": 9,
+    "unique_hotel_ids": 54,
+    "jsonld_items": 9,
+    "title": "10 Best Las Vegas Hotels, United States (from $15) | Trip.com"
+  },
+  {
+    "slug": "bangkok",
+    "url": "https://us.trip.com/hotels/bangkok-hotels-list-359/",
+    "http": 200,
+    "bytes": 3380755,
+    "cards": 9,
+    "unique_hotel_ids": 65,
+    "jsonld_items": 9,
+    "title": "10 Best Bangkok Hotels, Thailand (from $20) | Trip.com"
+  },
+  {
+    "slug": "beijing",
+    "url": "https://us.trip.com/hotels/beijing-hotels-list-1/",
+    "http": 200,
+    "bytes": 3488518,
+    "cards": 9,
+    "unique_hotel_ids": 57,
+    "jsonld_items": 9,
+    "title": "10 Best Beijing Hotels, China (from $42) | Trip.com"
+  },
+  {
+    "slug": "guangzhou",
+    "url": "https://us.trip.com/hotels/guangzhou-hotels-list-32/",
+    "http": 200,
+    "bytes": 3906106,
+    "cards": 9,
+    "unique_hotel_ids": 69,
+    "jsonld_items": 9,
+    "title": "10 Best Guangzhou Hotels, China (from $34) | Trip.com"
+  },
+  {
+    "slug": "new-york",
+    "url": "https://us.trip.com/hotels/new-york-hotels-list-633/",
+    "http": 200,
+    "bytes": 3184017,
+    "cards": 9,
+    "unique_hotel_ids": 63,
+    "jsonld_items": 9,
+    "title": "10 Best New York Hotels, United States (from $163) | Trip.com"
+  },
+  {
+    "slug": "singapore",
+    "url": "https://us.trip.com/hotels/singapore-hotels-list-73/",
+    "http": 200,
+    "bytes": 3503654,
+    "cards": 9,
+    "unique_hotel_ids": 53,
+    "jsonld_items": 9,
+    "title": "10 Best Singapore Hotels, Singapore (from $56) | Trip.com"
+  },
+  {
+    "slug": "kuala-lumpur",
+    "url": "https://us.trip.com/hotels/kuala-lumpur-hotels-list-315/",
+    "http": 200,
+    "bytes": 3276768,
+    "cards": 9,
+    "unique_hotel_ids": 58,
+    "jsonld_items": 9,
+    "title": "10 Best Kuala Lumpur Hotels, Malaysia (from $22) | Trip.com"
+  },
+  {
+    "slug": "dubai",
+    "url": "https://us.trip.com/hotels/dubai-hotels-list-220/",
+    "http": 200,
+    "bytes": 3286767,
+    "cards": 9,
+    "unique_hotel_ids": 68,
+    "jsonld_items": 9,
+    "title": "10 Best Dubai Hotels, United Arab Emirates (from $32) | Trip.com"
+  },
+  {
+    "slug": "chicago",
+    "url": "https://us.trip.com/hotels/chicago-hotels-list-549/",
+    "http": 200,
+    "bytes": 3086896,
+    "cards": 9,
+    "unique_hotel_ids": 47,
+    "jsonld_items": 9,
+    "title": "10 Best Chicago Hotels, United States (from $223) | Trip.com"
+  },
+  {
+    "slug": "san-diego",
+    "url": "https://us.trip.com/hotels/san-diego-hotels-list-698/",
+    "http": 200,
+    "bytes": 3049076,
+    "cards": 9,
+    "unique_hotel_ids": 56,
+    "jsonld_items": 9,
+    "title": "10 Best San Diego Hotels, United States (from $126) | Trip.com"
+  },
+  {
+    "slug": "miami",
+    "url": "https://us.trip.com/hotels/miami-hotels-list-25773/",
+    "http": 200,
+    "bytes": 2794780,
+    "cards": 9,
+    "unique_hotel_ids": 50,
+    "jsonld_items": 9,
+    "title": "10 Best Miami Hotels, United States (from $104) | Trip.com"
+  },
+  {
+    "slug": "new-orleans",
+    "url": "https://us.trip.com/hotels/new-orleans-hotels-list-1186/",
+    "http": 200,
+    "bytes": 3003512,
+    "cards": 9,
+    "unique_hotel_ids": 54,
+    "jsonld_items": 9,
+    "title": "10 Best New Orleans Hotels, United States (from $82) | Trip.com"
+  },
+  {
+    "slug": "nashville",
+    "url": "https://us.trip.com/hotels/nashville-hotels-list-3228/",
+    "http": 200,
+    "bytes": 3263001,
+    "cards": 9,
+    "unique_hotel_ids": 47,
+    "jsonld_items": 9,
+    "title": "10 Best Nashville Hotels, United States (from $100) | Trip.com"
+  },
+  {
+    "slug": "boston",
+    "url": "https://us.trip.com/hotels/boston-hotels-list-26848/",
+    "http": 200,
+    "bytes": 3694828,
+    "cards": 9,
+    "unique_hotel_ids": 57,
+    "jsonld_items": 9,
+    "title": "10 Best Boston Hotels, United States (from $178) | Trip.com"
+  },
+  {
+    "slug": "orlando",
+    "url": "https://us.trip.com/hotels/orlando-hotels-list-1187/",
+    "http": 200,
+    "bytes": 3168727,
+    "cards": 9,
+    "unique_hotel_ids": 60,
+    "jsonld_items": 9,
+    "title": "10 Best Orlando Hotels, United States (from $82) | Trip.com"
+  },
+  {
+    "slug": "savannah",
+    "url": "https://us.trip.com/hotels/savannah-hotels-list-26631/",
+    "http": 200,
+    "bytes": 2688603,
+    "cards": 9,
+    "unique_hotel_ids": 37,
+    "jsonld_items": 9,
+    "title": "10 Best Savannah Hotels, United States (from $113) | Trip.com"
+  },
+  {
+    "slug": "charleston",
+    "url": "https://us.trip.com/hotels/charleston-hotels-list-4188/",
+    "http": 200,
+    "bytes": 2424820,
+    "cards": 9,
+    "unique_hotel_ids": 50,
+    "jsonld_items": 9,
+    "title": "10 Best Charleston Hotels, United States (from $172) | Trip.com"
+  },
+  {
+    "slug": "los-angeles",
+    "url": "https://us.trip.com/hotels/los-angeles-hotels-list-347/",
+    "http": 200,
+    "bytes": 3294386,
+    "cards": 9,
+    "unique_hotel_ids": 58,
+    "jsonld_items": 9,
+    "title": "10 Best Los Angeles Hotels, United States (from $129) | Trip.com"
+  }
+]
