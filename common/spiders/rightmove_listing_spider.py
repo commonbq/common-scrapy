@@ -26,7 +26,7 @@ class RightmoveListingSpider(BaseListingSpider):
             "photos", "image_count", "floorplan_count", "virtual_tour_count", "agent",
             "agent_phone", "branch_id", "first_visible_date", "added_or_reduced",
             "transaction_type", "tags", "product_label", "result_count", "total_pages",
-            "location_id", "category", "page", "position", "source", "timestamp",
+            "location_id", "category", "page", "position", "source", "raw", "timestamp",
         ],
     }
 
@@ -143,6 +143,7 @@ class RightmoveListingSpider(BaseListingSpider):
             "page": page,
             "position": position,
             "source": "rightmove_next_data",
+            "raw": prop,
             "timestamp": self.job_timestamp.isoformat(),
         }
 

@@ -1715,6 +1715,10 @@ property, price, location, media, agent and search-context fields directly from 
 hydration; it does not use HTML cards or JSON-LD as a fallback. The deterministic taxonomy
 contains 20 high-inventory UK cities. Pagination follows the hydrated `pagination.next`
 offset as `?index=N`, bounded by `pagination.total`, Rightmove's 42-page cap and `max_pages`.
+The ordered `FEED_EXPORT_FIELDS` contract covers stable property identity, price,
+location, property details, media, agent and search-context metadata, the provenance
+`source=rightmove_next_data`, the authoritative raw property record (`raw`), and a
+per-item `timestamp`.
 
 ```json
 {
