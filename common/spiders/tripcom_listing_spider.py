@@ -21,7 +21,8 @@ class TripcomListingSpider(BaseListingSpider):
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
         "FEED_EXPORT_FIELDS": ["category", "item_id", "hotel_id", "title", "price", "currency",
-                               "price_unit", "city", "city_id", "position", "source_url", "source", "timestamp"],
+                               "price_unit", "city", "city_id", "position", "source_url", "source",
+                               "raw", "timestamp"],
     }
     headers = {"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
                "accept-language": "en-US,en;q=0.9",
@@ -58,7 +59,7 @@ class TripcomListingSpider(BaseListingSpider):
                    "price": price, "currency": currency, "price_unit": hotel.get("priceUnit") or None,
                    "city": state.get("cityName"), "city_id": city_id, "position": position,
                    "source_url": response.url, "source": "tripcom_city_component_bootstrap",
-                   "timestamp": self.job_timestamp}
+                   "raw": hotel, "timestamp": self.job_timestamp}
 
     @staticmethod
     def _price(value):

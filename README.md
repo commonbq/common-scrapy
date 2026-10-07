@@ -59,6 +59,9 @@ rendered hotel cards or JSON-LD. The 20 deterministic city categories come from
 Trip.com's popular-hotel destination links. Each city SEO page is fetched once;
 the component supplies hotel names, prices, price units, and city metadata.
 
+Every exported item includes the verbatim `raw` City-bootstrap hotel record and a
+per-run crawl `timestamp`.
+
 ```bash
 scrapy crawl tripcom_listing -a category=bangkok -s HTTPCACHE_ENABLED=False -O tripcom.jsonl
 ```
