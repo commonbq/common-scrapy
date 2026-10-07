@@ -155,6 +155,7 @@ Spiders below are returning items in recent smoke runs:
 | [`vitacost_listing`](#vitacost_listing) | Active | api | none detected | Vitacost (Shopify + Boost AI Search) category listings from the first-party `services.mybcapps.com/bc-sf-filter/filter` JSON API; taxonomy from the `Categories` mega-menu. | 96 (2 pages, `category=Supplements`, page size 48) | 92 crawl targets / 90 unique collection URLs across 8 departments from `vitacost_categories.py` | `{"category":"Supplements","handle":"supplements","collection_id":"457575104827","item_id":"10390080782651","title":"Vitacost, Root2®, Turmeric Extract Curcumin C3 Complex®, 120 Capsules","brand":"Vitacost","price":24.74,"original_price":32.99,"discount_percentage":25.0,"source":"vitacost_boost_filter_api"...}` |
 | [`walgreens_listing`](#walgreens_listing) | Active | bootstrap (Redux `window.getInitialState()`) | Akamai (ScrapeOps US JS rendering required) | Walgreens category listings from the server-rendered Redux `window.getInitialState()` bootstrap (`searchResult.productList[*].productInfo`); no HTML-card or JSON-LD fallback. | 24 (1 page, `Allergy & Sinus`) | 19 departments / 170 child categories from `walgreens_categories.py` | `{"category":"Allergy & Sinus","category_id":"360545","product_id":"prod6335256","title":"Walgreens Neti Pot Kit","brand":"Walgreens","price":11.99,"currency":"USD","source_url":"https://www.walgreens.com/store/c/productlist/N=360545/1/ShopAll=360545","raw":{...},"timestamp":"2026-10-07 05:40:00"...}` |
 | [`chewy_listing`](#chewy_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | ScrapeOps US residential route required | Chewy category listings from the server-rendered Next.js `__NEXT_DATA__` bootstrap (`props.pageProps.initialState.searchSlice.plpData.products`); no HTML-card or JSON-LD fallback. | 44 (1 page, `food-332`) | 172-category pet taxonomy (dogs, cats, other pets) from `chewy_categories.py` | `{"category":"food-332","item_id":"147999","title":"Instinct Original Adult Grain-Free Real Beef Recipe Wet Dog Food, 13.2-oz can, case of 6","brand":"Instinct","price":28.14,"currency":"USD","source":"chewy_next_data_bootstrap","timestamp":"2026-10-06 21:40:56"...}` |
+| [`crateandbarrel_listing`](#crateandbarrel_listing) | Active | bootstrap (React `ProductListing` hydration) | Akamai (ScrapeOps residential proxy required) | Crate & Barrel category listings from the first-party React `ProductListing` hydration payload only; 13 product-bearing category URLs with numeric-path pagination. | 100 (1 page, `sofas`) | 13 category URLs from `crateandbarrel_categories.py` | `{"category":"sofas","item_id":"322117","title":"Lounge Sofa (62\"-105\")","brand":"Crate & Barrel","price":1529.0,"currency":"USD","source":"crateandbarrel_productlisting_bootstrap","timestamp":"2026-10-07 09:46:17"...}` |
 
 ### menards_listing
 
@@ -4087,3 +4088,22 @@ responses fail visibly. A working configured ScrapeOps proxy is expected.
 ```bash
 scrapy crawl chewy_listing -a category=food-332 -a max_pages=1 -s HTTPCACHE_ENABLED=False -O chewy.jsonl
 ```
+
+### crateandbarrel_listing
+
+`crateandbarrel_listing` extracts the first-party `ProductListing` React bootstrap
+state used to hydrate Crate & Barrel product-listing pages. It does not scrape
+product cards or use JSON-LD. The category inventory contains 13 stable,
+product-bearing URLs discovered from the site index; pagination changes the
+terminal `/1` segment to `/2`, `/3`, and so on. Crate & Barrel's Akamai route
+requires the configured ScrapeOps residential proxy.
+
+```bash
+scrapy crawl crateandbarrel_listing -a category=sofas -a max_pages=1 \
+  -O crateandbarrel-sofas.jsonl -s HTTPCACHE_ENABLED=False
+```
+
+The ordered `FEED_EXPORT_FIELDS` cover category context, identifiers, title,
+canonical URL, image, normalized prices, currency, ratings, product flags,
+colors, page/position metadata, provenance, the raw first-party product object,
+and the crawl timestamp.
