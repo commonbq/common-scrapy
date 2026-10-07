@@ -1,0 +1,142 @@
+{
+  "new-york-ny": {
+    "url": "https://www.movoto.com/new-york-ny/",
+    "http": "200",
+    "bytes": 317886,
+    "cards": 50,
+    "total_listings": "21,716"
+  },
+  "los-angeles-ca": {
+    "url": "https://www.movoto.com/los-angeles-ca/",
+    "http": "200",
+    "bytes": 302426,
+    "cards": 50,
+    "total_listings": "13,416"
+  },
+  "chicago-il": {
+    "url": "https://www.movoto.com/chicago-il/",
+    "http": "200",
+    "bytes": 306238,
+    "cards": 50,
+    "total_listings": "8,710"
+  },
+  "houston-tx": {
+    "url": "https://www.movoto.com/houston-tx/",
+    "http": "200",
+    "bytes": 289611,
+    "cards": 50,
+    "total_listings": "17,419"
+  },
+  "phoenix-az": {
+    "url": "https://www.movoto.com/phoenix-az/",
+    "http": "200",
+    "bytes": 303799,
+    "cards": 50,
+    "total_listings": "6,064"
+  },
+  "philadelphia-pa": {
+    "url": "https://www.movoto.com/philadelphia-pa/",
+    "http": "200",
+    "bytes": 302178,
+    "cards": 50,
+    "total_listings": "9,882"
+  },
+  "san-antonio-tx": {
+    "url": "https://www.movoto.com/san-antonio-tx/",
+    "http": "200",
+    "bytes": 303044,
+    "cards": 50,
+    "total_listings": "14,347"
+  },
+  "san-diego-ca": {
+    "url": "https://www.movoto.com/san-diego-ca/",
+    "http": "200",
+    "bytes": 306766,
+    "cards": 50,
+    "total_listings": "3,701"
+  },
+  "dallas-tx": {
+    "url": "https://www.movoto.com/dallas-tx/",
+    "http": "200",
+    "bytes": 312979,
+    "cards": 50,
+    "total_listings": "5,736"
+  },
+  "san-jose-ca": {
+    "url": "https://www.movoto.com/san-jose-ca/",
+    "http": "200",
+    "bytes": 313367,
+    "cards": 50,
+    "total_listings": "1,630"
+  },
+  "austin-tx": {
+    "url": "https://www.movoto.com/austin-tx/",
+    "http": "200",
+    "bytes": 306111,
+    "cards": 50,
+    "total_listings": "6,417"
+  },
+  "jacksonville-fl": {
+    "url": "https://www.movoto.com/jacksonville-fl/",
+    "http": "200",
+    "bytes": 309898,
+    "cards": 50,
+    "total_listings": "6,423"
+  },
+  "fort-worth-tx": {
+    "url": "https://www.movoto.com/fort-worth-tx/",
+    "http": "200",
+    "bytes": 316627,
+    "cards": 50,
+    "total_listings": "4,886"
+  },
+  "columbus-oh": {
+    "url": "https://www.movoto.com/columbus-oh/",
+    "http": "200",
+    "bytes": 295957,
+    "cards": 50,
+    "total_listings": "3,888"
+  },
+  "charlotte-nc": {
+    "url": "https://www.movoto.com/charlotte-nc/",
+    "http": "200",
+    "bytes": 307983,
+    "cards": 50,
+    "total_listings": "5,914"
+  },
+  "indianapolis-in": {
+    "url": "https://www.movoto.com/indianapolis-in/",
+    "http": "200",
+    "bytes": 300060,
+    "cards": 50,
+    "total_listings": "5,502"
+  },
+  "seattle-wa": {
+    "url": "https://www.movoto.com/seattle-wa/",
+    "http": "200",
+    "bytes": 314786,
+    "cards": 50,
+    "total_listings": "3,782"
+  },
+  "denver-co": {
+    "url": "https://www.movoto.com/denver-co/",
+    "http": "200",
+    "bytes": 307557,
+    "cards": 50,
+    "total_listings": "5,104"
+  },
+  "boston-ma": {
+    "url": "https://www.movoto.com/boston-ma/",
+    "http": "200",
+    "bytes": 310670,
+    "cards": 50,
+    "total_listings": "1,817"
+  },
+  "las-vegas-nv": {
+    "url": "https://www.movoto.com/las-vegas-nv/",
+    "http": "200",
+    "bytes": 307800,
+    "cards": 50,
+    "total_listings": "10,735"
+  }
+}
