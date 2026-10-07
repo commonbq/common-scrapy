@@ -104,6 +104,7 @@ Working spiders running daily in production:
 | [`amazon_search`](#amazon_search) | Active | html | none detected | Amazon keyword search spider. | 22 (ok) | - | `{"asin":"B0GHQRV71M","title":"16\" FHD IPS Laptop Computer - 16GB RAM 512GB SSD, Pentium N100(Beat to i3-1115G4, 4 Cores Up to 3.4GHz), B...` |
 | [`acehardware_listing`](#acehardware_listing) | Active | bootstrap | ScrapeOps residential + `bypass=5` required | Ace Hardware category listings and recursive department discovery from server-rendered Kibo/Mozu hydration. | 60 (2 pages, cordless-drills) | 20 department/category seeds from `acehardware_categories.py`; department pages recursively discover product-bearing leaves | `{"category":"cordless-drills","item_id":"2385458","title":"DeWalt 20V MAX 1/2 in. Brushed Cordless Compact Drill Kit (Battery & Charger)","brand":"DeWalt","price":179.0,"currency":"USD","source":"acehardware_mozu_hydration",...}` |
 | [`backcountry_listing`](#backcountry_listing) | Active | bootstrap | AWS WAF (datacenter + `bypass=5` both return the challenge; `residential=true` required) | Backcountry.com category/collection/brand listings from the server-rendered Next.js `#__NEXT_DATA__` PLP payload joined to `__APOLLO_STATE__`. | 84 (2 pages, `cat-mens-shirts`); 52 (`rc-mens-parkas`, natural last page) | 398 unique targets across 14 top-level menus / 110 sections from `backcountry_categories.py` | `{"category":"cat-mens-shirts","department":"Men","section":"Clothing","item_id":"FJRZ133","title":"Fjallglim Regular Shirt - Men's","brand":"Fjallraven","price":124.95,"original_price":null,"currency":"USD","in_stock":true,"source":"backcountry_next_data",...}` |
+| [`landwatch_listing`](#landwatch_listing) | Active | bootstrap | Akamai; ScrapeOps US residential required | LandWatch property listings from the authoritative server-rendered `#__SERVER_STATE__.searchPage.searchResults.propertyResults` payload only; no HTML-card or JSON-LD fallback. | 25/page | 20 high-inventory US state markets | `{"category":"texas","item_id":"427783557","title":"Superior Views, Better Hunting","price":769950,"acres":108.1,"source":"landwatch_server_state_bootstrap",...}` |
 | [`realtor_listing`](#realtor_listing) | Active | bootstrap | residential ScrapeOps + `bypass=5` required | Realtor.com sale listings from authoritative React Router streamed SSR loader state. | 42/page | 20 major US city markets from `realtor_categories.py` | `{"item_id":"9573322873","listing_id":"2994590506","title":"11201 Chalon Rd, Los Angeles, CA 90049","price":400000000,"source":"realtor_react_router_stream",...}` |
 | [`zillow_listing`](#zillow_listing) | Active | bootstrap | PerimeterX | Zillow sale listings from server-rendered Next.js `__NEXT_DATA__`, including path-based SSR pagination. | 82 (2 pages, `houston-tx`) | 20 major US city markets | `{"item_id":"55476612","title":"8323 Gentlewood Ct, Houston, TX 77095","price":375000,"beds":4,"baths":3,"area":2992,"source":"zillow_next_data"}` |
 | [`rent_listing`](#rent_listing) | Active | bootstrap | ScrapeOps US proxy | Rent.com apartment listings from authoritative server-rendered Next.js `__NEXT_DATA__`, with `/page-N` pagination and no fallback. | 30/page | 20 major US rental markets | `{"category":"los-angeles-ca","item_id":"lc6732384","title":"El Conquistador","price_min":1664,"source":"rent_next_data"...}` |
@@ -124,6 +125,26 @@ Working spiders running daily in production:
 | [`wayfair_listing`](#wayfair_listing) | Experimental | server-rendered HTML cards | none detected | Wayfair listing cards with semantic selectors and tracking metadata. | 1 (committed sofas fixture; no live crawl run) | 15 departments / 668 menu links; 577 verified listing targets | `{"item_id":"W117645758","title":"Boneless 96\" Sectional Couches...","price":399.99,...}` |
 | [`ebay_listing`](#ebay_listing-category-marko-hydration-state) | Active | Marko + html | Akamai | Stable eBay category listing extraction from Marko hydration state, with HTML subcategory discovery. | 18 (Antiques fixture browse tiles) | 18 top-level groups / 209 subcategories from `ebay_categories.py` | `{"productId":"234346994063","title":"MacBook Pro 15 Inch 256GB SSD 16 GB i7 3.40Ghz Apple Retina Big Sur 3yr Warranty","price":439.0,"currency":"USD",...}` |
 | [`ebay_search`](#ebay_search-keyword-marko-hydration-state) | Active | Marko | Akamai | Stable eBay keyword search extraction from Marko `ListingItemCard` hydration data. | 60 (ok) | - | `{"productId":"234346994063","title":"MacBook Pro 15 Inch 256GB SSD 16 GB i7 3.40Ghz Apple Retina Big Sur 3yr Warranty","price":439.0,"currency":"USD",...}` |
+
+### landwatch_listing
+
+LandWatch state-market pages expose complete property records in the authoritative
+server-rendered `#__SERVER_STATE__` search bootstrap. The spider reads only
+`searchPage.searchResults.propertyResults`, follows the bootstrap's `paginationData.nextLink`,
+and does not fall back to placard HTML or JSON-LD. It exports stable listing/inventory IDs,
+prices, acreage, property types, address and coordinates, house attributes, seller details,
+media flags, pagination metadata, and the raw bootstrap record. The 20 state seeds are in
+`common/spiders/landwatch_categories.py`.
+
+LandWatch's Akamai edge requires the configured ScrapeOps US residential route. The spider
+adds `residential=true` to a configured ScrapeOps proxy automatically:
+
+```bash
+scrapy crawl landwatch_listing -a category=texas -a max_pages=1 \
+  -s HTTPCACHE_ENABLED=False -O landwatch-texas.jsonl
+```
+
+Verified 2026-10-08: HTTP 200, 25 unique properties from one uncached Texas page.
 
 Spiders below are returning items in recent smoke runs:
 
