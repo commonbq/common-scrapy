@@ -1,0 +1,22 @@
+{
+  "new-york-city": "https://www.marriott.com/en-us/destinations/united-states/new-york/new-york-city.mi",
+  "las-vegas": "https://www.marriott.com/en-us/destinations/united-states/nevada/las-vegas.mi",
+  "miami": "https://www.marriott.com/en-us/destinations/united-states/florida/miami.mi",
+  "orlando": "https://www.marriott.com/en-us/destinations/united-states/florida/orlando.mi",
+  "chicago": "https://www.marriott.com/en-us/destinations/united-states/illinois/chicago.mi",
+  "san-francisco": "https://www.marriott.com/en-us/destinations/united-states/california/san-francisco.mi",
+  "san-diego": "https://www.marriott.com/en-us/destinations/united-states/california/san-diego.mi",
+  "washington-dc": "https://www.marriott.com/en-us/destinations/united-states/district-of-columbia/washington-dc.mi",
+  "boston": "https://www.marriott.com/en-us/destinations/united-states/massachusetts/boston.mi",
+  "seattle": "https://www.marriott.com/en-us/destinations/united-states/washington/seattle.mi",
+  "denver": "https://www.marriott.com/en-us/destinations/united-states/colorado/denver.mi",
+  "maui": "https://www.marriott.com/en-us/destinations/united-states/hawaii/maui.mi",
+  "nashville": "https://www.marriott.com/en-us/destinations/united-states/tennessee/nashville.mi",
+  "charleston": "https://www.marriott.com/en-us/destinations/united-states/south-carolina/charleston.mi",
+  "london": "https://www.marriott.com/en-us/destinations/united-kingdom/london.mi",
+  "paris": "https://www.marriott.com/en-us/destinations/france/paris.mi",
+  "rome": "https://www.marriott.com/en-us/destinations/italy/rome.mi",
+  "barcelona": "https://www.marriott.com/en-us/destinations/spain/barcelona.mi",
+  "tokyo": "https://www.marriott.com/en-us/destinations/japan/tokyo.mi",
+  "toronto": "https://www.marriott.com/en-us/destinations/canada/toronto.mi"
+}
