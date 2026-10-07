@@ -66,6 +66,24 @@ per-run crawl `timestamp`.
 scrapy crawl tripcom_listing -a category=bangkok -s HTTPCACHE_ENABLED=False -O tripcom.jsonl
 ```
 
+### hobbylobby_listing
+
+`hobbylobby_listing` reads the server-rendered Algolia InstantSearch bootstrap
+embedded in Hobby Lobby category pages. This is the spider's only product-data
+direction: there is no product-card HTML or JSON-LD fallback. The bootstrap
+supplies full product records plus `nbHits`, `nbPages`, and `hitsPerPage`, so the
+same state drives `?page=N` pagination and its stop condition.
+
+The 20 stable level-2 category seeds in `hobbylobby_categories.py` cover art,
+beads, seasonal, crafts, fabric, floral, home decor, kitchen, party, scrapbook,
+and yarn departments. Custom `category_url` and `url` targets are also supported.
+Every item includes the verbatim Algolia hit as `raw`, the source page, and a
+per-run `timestamp`; the ordered `FEED_EXPORT_FIELDS` contract contains 60 fields.
+
+```bash
+scrapy crawl hobbylobby_listing -a category=art-supplies-painting-supplies -a max_pages=2 -s HTTPCACHE_ENABLED=False -O hobbylobby.jsonl
+```
+
 ## Available spiders
 
 ### Standalone spiders (via `scrapy crawl <spider>`)
@@ -76,6 +94,7 @@ Working spiders running daily in production:
 
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
+| [`hobbylobby_listing`](#hobbylobby_listing) | Experimental | bootstrap | ScrapeOps US proxy | Hobby Lobby products from the server-rendered Algolia InstantSearch state only; no direct HTML-card or JSON-LD extraction. | 12/page | 20 product-bearing level-2 categories | `{"category":"art-supplies-painting-supplies","item_id":"80968391","title":"Master's Touch Oil Paint - 12 Piece Set","price":6.99,"source":"hobbylobby_instantsearch_bootstrap"...}` |
 | [`tripcom_listing`](#tripcom_listing) | Experimental | bootstrap | ScrapeOps proxy | Trip.com hotels from the server-provided `City` template-component state; no direct HTML-card or JSON-LD extraction. | 9 (one city page) | 20 popular hotel destinations | `{"category":"bangkok","title":"NASA BANGKOK - Airport Rail Link Ramkhamhang","price":15,"currency":"USD","source":"tripcom_city_component_bootstrap"...}` |
 | [`hostelworld_listing`](#hostelworld_listing) | Active | api | none detected; API must be direct so proxy does not rewrite `Accept` | Hostelworld properties from the first-party Apigee city-properties API only; no HTML or JSON-LD fallback. | 29 (New York, one page) | 20 popular global cities; 2,838 city URLs available from the sitemap index | `{"category":"new-york","item_id":"1850","name":"HI New York City Hostel","source":"hostelworld_city_properties_api"...}` |
 | [`dell_listing`](#dell_listing) | Experimental | bootstrap | ScrapeOps proxy | Dell US listings from the authoritative `data-product-detail-info` Product Stack bootstrap; no product-card or JSON-LD fallback. | Live smoke tested below | 18 stable product/deal categories | `{"item_id":"dellplus16laptopdb16250","title":"Dell 16 Plus Laptop","price":1559.99,"currency":"USD","source":"dell_product_stack_bootstrap"...}` |
