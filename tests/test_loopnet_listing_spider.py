@@ -34,6 +34,29 @@ class LoopnetListingSpiderTests(unittest.TestCase):
         self.assertEqual(row["Price"], 1250000.0)
         self.assertEqual(row["Latitude"], 2)
 
+    def test_live_searchplacards_shape_maps(self):
+        """Real API payload: SearchPlacards.Html + SearchPlacards.PlacardsEventModel."""
+        html = """<article class='placard' data-id='42148644' gtm-listing-city='Plano'
+        gtm-listing-state='TX' gtm-listing-property-id='777'>
+        <a class='left-h4' href='/Listing/x/42148644/'>W Spring Creek Pkwy</a>
+        <a class='left-h6'>THE GARAGE Luxury Condos</a>
+        <ul class='data-points-a'><li name='Price'>$765,050</li></ul></article>"""
+        event = json.dumps({"ListingSearchResultItems": [
+            {"ListingID": 42148644, "Latitude": 33.065662, "Longitude": -96.838581},
+        ]})
+        records = LoopnetListingSpider._records(
+            {"SearchPlacards": {"Html": html, "PlacardsEventModel": event,
+                                "ContainsLockedPlacardInPage": False}}
+        )
+        self.assertEqual(len(records), 1)
+        row = records[0]
+        self.assertEqual(row["ListingId"], "42148644")
+        self.assertEqual(row["PropertyId"], "777")
+        self.assertEqual(row["Title"], "THE GARAGE Luxury Condos")
+        self.assertEqual(row["Price"], 765050.0)
+        self.assertEqual(row["Latitude"], 33.065662)
+        self.assertEqual(row["Longitude"], -96.838581)
+
     def test_challenge_fails_loudly(self):
         with self.assertRaisesRegex(RuntimeError, "challenge"):
             LoopnetListingSpider._bootstrap('{"Concurrency":"This request exceeded your accounts concurrency limit."}')

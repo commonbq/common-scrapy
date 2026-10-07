@@ -111,9 +111,10 @@ class LoopnetListingSpider(BaseListingSpider):
             if isinstance(candidate, list) and candidate and all(isinstance(x, dict) for x in candidate):
                 return candidate
         placards = data.get("Placards") or data.get("SearchPlacards") or {}
-        html = placards.get("HTML") if isinstance(placards, dict) else None
-        if isinstance(html, str):
-            return cls._placard_records(html)
+        if isinstance(placards, dict):
+            html = placards.get("HTML") or placards.get("Html")
+            if isinstance(html, str):
+                return cls._placard_records(html, placards)
         return []
 
     @staticmethod
@@ -123,11 +124,15 @@ class LoopnetListingSpider(BaseListingSpider):
         return value or None
 
     @classmethod
-    def _placard_records(cls, html: str) -> list[dict[str, Any]]:
+    def _placard_records(cls, html: str, placards: dict[str, Any] | None = None) -> list[dict[str, Any]]:
         selector = scrapy.Selector(text=html)
         coordinates: dict[str, dict[str, Any]] = {}
-        event_raw = selector.css("[placard-event-model]::attr(placard-event-model)").get()
-        if event_raw:
+        event_raw = None
+        if isinstance(placards, dict):
+            event_raw = placards.get("PlacardsEventModel") or placards.get("placardsEventModel")
+        if not event_raw:
+            event_raw = selector.css("[placard-event-model]::attr(placard-event-model)").get()
+        if isinstance(event_raw, str):
             try:
                 event = json.loads(event_raw)
                 coordinates = {
@@ -135,7 +140,7 @@ class LoopnetListingSpider(BaseListingSpider):
                     for row in event.get("ListingSearchResultItems", [])
                     if isinstance(row, dict) and row.get("ListingID") is not None
                 }
-            except json.JSONDecodeError:
+            except (json.JSONDecodeError, TypeError):
                 pass
         records = []
         for card in selector.css("article.placard[data-id]"):
