@@ -22,6 +22,17 @@ class EbaySearchSpider(BaseSearchSpider):
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
+        "FEED_EXPORT_FIELDS": [
+            "productId", "title", "url", "price", "currency",
+            "originalPrice", "originalCurrency", "discountPercentage",
+            "imageUrl", "imageUrls", "condition", "brand",
+            "quantityAvailable", "quantityText", "shippingCost",
+            "shippingCurrency", "shippingText", "deliveryText",
+            "purchaseOptions", "acceptsBestOffer", "soldCount", "hotnessText",
+            "watchCount", "watchText", "isSponsored", "isNewListing",
+            "ratingValue", "reviewCount", "position", "mode", "query", "page",
+            "sourceUrl", "raw", "timestamp",
+        ],
     }
 
     def start_requests(self):

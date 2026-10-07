@@ -36,6 +36,7 @@ class NordstromrackListingSpider(BaseListingSpider):
             "item_id", "title", "brand", "price", "price_max", "currency",
             "availability", "url", "image_url", "category", "page", "position",
             "source", "raw",
+            "timestamp",
         ],
     }
 

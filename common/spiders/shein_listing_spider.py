@@ -43,6 +43,7 @@ class SheinListingSpider(BaseListingSpider):
             "category_url",
             "page",
             "raw",
+            "timestamp",
         ]
     }
 

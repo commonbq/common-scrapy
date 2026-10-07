@@ -92,6 +92,7 @@ class TargetListingSpider(BaseListingSpider):
             "page",
             "source",
             "raw",
+            "timestamp",
         ],
     }
 

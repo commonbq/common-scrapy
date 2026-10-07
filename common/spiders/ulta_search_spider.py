@@ -34,6 +34,11 @@ class UltaSearchSpider(BaseSearchSpider):
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
+        "FEED_EXPORT_FIELDS": [
+            "item_id", "sku_id", "brand", "title", "url", "image_url",
+            "list_price", "sale_price", "rating", "reviews_count",
+            "is_sponsored", "source", "mode", "query", "page", "timestamp",
+        ],
     }
 
     def __init__(self, *args, **kwargs):

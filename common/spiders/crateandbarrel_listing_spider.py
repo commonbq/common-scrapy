@@ -24,6 +24,7 @@ class CrateandbarrelListingSpider(BaseListingSpider):
             "image_url", "price", "price_min", "price_max", "regular_price",
             "currency", "rating", "reviews_count", "is_new", "is_free_shipping",
             "colors", "department", "page", "position", "source", "raw",
+            "timestamp",
         ],
     }
     _marker = "ReactDOM.hydrate(React.createElement(ProductListing, JSON.parse('"

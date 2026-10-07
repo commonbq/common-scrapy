@@ -40,6 +40,7 @@ class BelkListingSpider(BaseListingSpider):
             "coupon_code", "coupon_discount_percent", "coupon_price", "coupon_end_date",
             "promotions", "color", "swatches", "marketplace", "breadcrumb", "page",
             "position", "total_count", "items_per_page", "source_url", "source", "raw",
+            "timestamp",
         ],
     }
 

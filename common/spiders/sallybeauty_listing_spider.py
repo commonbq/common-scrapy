@@ -34,6 +34,7 @@ class SallybeautyListingSpider(BaseListingSpider):
             "category", "item_id", "title", "brand", "url", "image_url",
             "price", "price_max", "currency", "rating", "reviews_count",
             "page", "source", "category_url",
+            "timestamp",
         ],
     }
 

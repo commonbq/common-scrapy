@@ -172,6 +172,7 @@ class ZaraListingSpider(BaseListingSpider):
             "source_url",
             "source",
             "raw",
+            "timestamp",
         ],
     }
 

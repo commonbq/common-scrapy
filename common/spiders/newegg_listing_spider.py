@@ -63,6 +63,7 @@ class NeweggListingSpider(BaseListingSpider):
             "page",
             "source",
             "raw",
+            "timestamp",
         ],
     }
 

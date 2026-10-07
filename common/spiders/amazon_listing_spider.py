@@ -30,6 +30,7 @@ class AmazonListingSpider(BaseListingSpider):
             "category",
             "subCategory",
             "page",
+            "timestamp",
         ],
     }
 

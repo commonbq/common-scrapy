@@ -38,6 +38,7 @@ class LevisListingSpider(BaseListingSpider):
             "merchant_badge", "promotional_badge", "color_count", "coming_soon",
             "sold_out", "category_code", "page", "position", "total_count",
             "source_url", "source", "raw",
+            "timestamp",
         ],
     }
 

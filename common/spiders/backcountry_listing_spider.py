@@ -89,6 +89,7 @@ class BackcountryListingSpider(BaseListingSpider):
             "last_page",
             "source",
             "raw",
+            "timestamp",
         ],
     }
 

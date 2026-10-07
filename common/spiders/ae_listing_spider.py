@@ -57,7 +57,16 @@ class AeListingSpider(BaseListingSpider):
 
     categories = AE_CATEGORIES
 
-    custom_settings = {"HTTPERROR_ALLOW_ALL": True, "DOWNLOAD_DELAY": 1}
+    custom_settings = {
+        "HTTPERROR_ALLOW_ALL": True,
+        "DOWNLOAD_DELAY": 1,
+        "FEED_EXPORT_FIELDS": [
+            "item_id", "title", "url", "price", "original_price", "currency",
+            "brand", "rating", "reviews_count", "image_url", "category",
+            "subcategory", "listing_url", "page", "source", "mode", "raw",
+            "timestamp",
+        ],
+    }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -69,6 +69,7 @@ class FashionnovaListingSpider(BaseListingSpider):
             "page",
             "source",
             "raw",
+            "timestamp",
         ],
     }
 

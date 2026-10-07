@@ -36,6 +36,7 @@ class HomeDepotListingSpider(BaseListingSpider):
             "category", "item_id", "sku", "title", "brand", "model", "url",
             "image_url", "price", "original_price", "currency", "rating",
             "reviews_count", "availability", "source", "category_url", "page",
+            "timestamp",
         ],
         "HTTPERROR_ALLOW_ALL": True,
     }

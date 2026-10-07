@@ -26,6 +26,7 @@ class BathAndBodyWorksListingSpider(BaseListingSpider):
             "price", "regular_price", "currency", "availability", "rating",
             "reviews_count", "product_type", "fragrance", "size", "color",
             "position", "source", "category_url", "page", "raw",
+            "timestamp",
         ]
     }
 

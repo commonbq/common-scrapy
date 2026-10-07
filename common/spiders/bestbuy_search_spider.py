@@ -21,6 +21,13 @@ class BestbuySearchSpider(BaseSearchSpider):
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
         "DOWNLOAD_DELAY": 0.5,
+        "FEED_EXPORT_FIELDS": [
+            "skuId", "title", "url", "brand", "price", "originalPrice",
+            "discountAmount", "discountPercent", "priceBadge", "isMAP",
+            "rating", "reviewCount", "imageUrl", "openBoxCondition",
+            "isSponsored", "position", "primaryCategoryId", "campaignId",
+            "mode", "query", "page", "source_url", "raw", "timestamp",
+        ],
     }
 
     def start_requests(self):

@@ -42,6 +42,11 @@ class CostcoSearchSpider(BaseSearchSpider):
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
         "DOWNLOAD_DELAY": 1,
+        "FEED_EXPORT_FIELDS": [
+            "item_id", "title", "url", "price", "currency", "brand",
+            "rating", "reviews_count", "image_url", "source", "raw",
+            "mode", "query", "page", "source_url", "timestamp",
+        ],
     }
 
     def __init__(self, *args, **kwargs):

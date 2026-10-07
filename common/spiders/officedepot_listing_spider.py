@@ -111,6 +111,7 @@ class OfficedepotListingSpider(BaseListingSpider):
             "breadcrumbs",
             "source",
             "raw",
+            "timestamp",
         ],
     }
 

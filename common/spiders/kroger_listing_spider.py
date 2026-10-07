@@ -30,6 +30,7 @@ class KrogerListingSpider(BaseListingSpider):
             "category", "item_id", "title", "brand", "url", "image_url",
             "price", "regular_price", "currency", "availability", "size",
             "source", "category_url", "page", "raw",
+            "timestamp",
         ]
     }
 

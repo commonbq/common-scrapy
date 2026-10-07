@@ -81,6 +81,7 @@ class VictoriassecretListingSpider(BaseListingSpider):
             "category_url",
             "source",
             "raw",
+            "timestamp",
         ],
     }
 

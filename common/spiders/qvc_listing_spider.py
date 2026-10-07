@@ -30,6 +30,7 @@ class QvcListingSpider(BaseListingSpider):
             "image_url", "price", "original_price", "currency", "rating",
             "reviews_count", "badge", "shipping_promo", "special_price_code",
             "installment_count", "colors_count", "total_products", "page", "source",
+            "timestamp",
         ],
     }
 

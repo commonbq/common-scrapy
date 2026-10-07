@@ -13,6 +13,7 @@ from common.settings import PROXY
 
 class CommonSpider(scrapy.Spider):
     name = "common"
+    custom_settings = {"FEED_EXPORT_FIELDS": ["timestamp"]}
 
     def __init__(self, name, **kwargs) -> None:
         super().__init__(**kwargs)

@@ -111,6 +111,7 @@ class WilliamsSonomaListingSpider(BaseListingSpider):
             "category_url",
             "source",
             "raw",
+            "timestamp",
         ],
     }
 

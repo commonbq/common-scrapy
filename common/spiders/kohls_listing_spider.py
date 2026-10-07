@@ -34,6 +34,7 @@ class KohlsListingSpider(BaseListingSpider):
             "category", "item_id", "title", "brand", "url", "image_url",
             "price", "regular_price", "sale_price", "currency", "rating",
             "reviews_count", "source", "category_url", "page", "raw",
+            "timestamp",
         ]
     }
 

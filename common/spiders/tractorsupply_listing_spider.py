@@ -32,6 +32,7 @@ class TractorsupplyListingSpider(BaseListingSpider):
             "title", "brand", "url", "image_url", "price", "list_price",
             "currency", "availability", "rating", "reviews_count",
             "primary_category", "source_url", "source", "raw",
+            "timestamp",
         ],
     }
 

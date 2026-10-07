@@ -72,7 +72,16 @@ class CostcoListingSpider(BaseListingSpider):
     name = "costco_listing"
     allowed_domains = ["costco.com", "www.costco.com", "gdx-api.costco.com"]
 
-    custom_settings = {"HTTPERROR_ALLOW_ALL": True, "DOWNLOAD_DELAY": 1}
+    custom_settings = {
+        "HTTPERROR_ALLOW_ALL": True,
+        "DOWNLOAD_DELAY": 1,
+        "FEED_EXPORT_FIELDS": [
+            "item_id", "title", "url", "price", "original_price", "currency",
+            "brand", "image_url", "rating", "reviews_count", "source", "raw",
+            "mode", "category", "subcategory", "category_name", "listing_url",
+            "page", "source_url", "timestamp",
+        ],
+    }
 
     categories = COSTCO_CATEGORIES
 

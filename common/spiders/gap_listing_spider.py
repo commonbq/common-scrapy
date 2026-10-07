@@ -54,6 +54,7 @@ class GapListingSpider(BaseListingSpider):
             "page",
             "source",
             "raw",
+            "timestamp",
         ],
     }
 

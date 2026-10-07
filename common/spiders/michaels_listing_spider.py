@@ -106,6 +106,7 @@ class MichaelsListingSpider(BaseListingSpider):
             "ships_for_free", "available_to_ship", "in_stock", "is_sponsored",
             "is_exclusive", "is_online_only", "is_pro_pack", "is_bundle",
             "page", "position", "total_count", "source_url", "source", "raw",
+            "timestamp",
         ],
     }
 

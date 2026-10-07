@@ -54,6 +54,7 @@ class UltaListingSpider(BaseListingSpider):
             "productCardTags",
             "badgeTags",
             "dataCapture",
+            "timestamp",
         ],
     }
 

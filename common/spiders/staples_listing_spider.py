@@ -28,6 +28,7 @@ class StaplesListingSpider(BaseListingSpider):
             "supercategory_name", "category_id", "category_name", "department_id",
             "department_name", "class_id", "class_name", "page", "position",
             "total_count", "items_per_page", "search_engine", "source_url", "source", "raw",
+            "timestamp",
         ],
     }
 

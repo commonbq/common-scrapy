@@ -66,6 +66,7 @@ class LlbeanListingSpider(BaseListingSpider):
             "rating", "reviews_count", "color", "size", "availability",
             "on_sale", "page", "position", "total_count", "source_url",
             "source", "raw",
+            "timestamp",
         ],
     }
 
