@@ -35,6 +35,8 @@ def test_categories_and_feed_contract():
     spider = HostelworldListingSpider(category="london")
     assert len(HOSTELWORLD_CATEGORIES) == len(HOSTELWORLD_CITY_IDS) == 20
     assert spider.custom_settings["FEED_EXPORT_FIELDS"][0:3] == ["item_id", "url", "name"]
+    assert "raw" in spider.custom_settings["FEED_EXPORT_FIELDS"]
+    assert "timestamp" in spider.custom_settings["FEED_EXPORT_FIELDS"]
 
 
 def test_api_only_start_request_has_required_headers_and_no_proxy():
@@ -54,6 +56,8 @@ def test_mapping_dedup_and_paging():
     assert items[0]["item_id"] == "510"
     assert items[0]["price_shared"] == 23.2 and items[0]["badges"] == ["Free WiFi"]
     assert items[0]["source"] == "hostelworld_city_properties_api"
+    assert items[0]["raw"]["id"] == 510
+    assert "timestamp" in items[0]
     assert len(requests) == 1 and "page=2" in requests[0].url
 
 

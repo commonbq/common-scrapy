@@ -32,7 +32,7 @@ class HostelworldListingSpider(BaseListingSpider):
             "rating", "reviews", "min_price", "price_shared", "price_private",
             "currency", "lat", "lng", "photo", "distance_km", "badges",
             "property_type", "has_availability", "category", "page", "position",
-            "total_count", "source", "timestamp",
+            "total_count", "source", "raw", "timestamp",
         ],
     }
 
@@ -146,7 +146,8 @@ class HostelworldListingSpider(BaseListingSpider):
             "property_type": prop.get("type"), "has_availability": prop.get("hasAvailability"),
             "category": response.meta["category"], "page": response.meta["page"], "position": position,
             "total_count": self._integer(data.get("totalPropertiesCount")),
-            "source": "hostelworld_city_properties_api", "timestamp": self.job_timestamp.isoformat(),
+            "source": "hostelworld_city_properties_api", "raw": prop,
+            "timestamp": self.job_timestamp.isoformat(),
         }
 
     @staticmethod
