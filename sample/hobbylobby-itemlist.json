@@ -1,0 +1,397 @@
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Painting Supplies",
+  "description": "Find the painting supplies you\u2019ll need to express your creativity at Hobby Lobby. Shop for acrylic, watercolor, and oil paints before the next project!",
+  "image": [],
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@type": "Product",
+          "url": "https://www.hobbylobby.com/art-supplies/painting-supplies/oil-painting/master-s-touch-oil-paint---12-piece-set/p/rs52220-80968391",
+          "name": "Master's Touch Oil Paint - 12 Piece Set",
+          "image": [
+            "https://cdn.media.amplience.net/s/hobbylobby/636449-80968391-07102025-IMGSET?w=1000&h=1000",
+            "https://cdn.media.amplience.net/s/hobbylobby/636449-80968391-07102025-IMGSET?w=1200&h=900",
+            "https://cdn.media.amplience.net/s/hobbylobby/636449-80968391-07102025-IMGSET?w=1600&h=900",
+            "https://cdn.media.amplience.net/s/hobbylobby/636449-80968391-07102025-IMGSET?w=900&h=1200",
+            "https://cdn.media.amplience.net/s/hobbylobby/636449-80968391-07102025-IMGSET?w=900&h=1600"
+          ],
+          "description": "<p>Unleash your creativity with these vibrant paints! Master's Touch Oil Paint features student-grade paints in tubes that offer clean and excellent coverage as well as great luminosity. This slow-drying, heavy-bodied medium is perfect for a variety of classical techniques and is designed to help you create art that lasts.</p>\n<p>&nbsp;</p>\n<p>*No discounts may be applied to \"your price\" or \"reduced\" items.</p>",
+          "sku": "636449",
+          "brand": "",
+          "aggregateRating": {
+            "ratingValue": 3.8571,
+            "reviewCount": 7
+          },
+          "offers": {
+            "price": 6.99,
+            "priceCurrency": "USD",
+            "itemCondition": "https://schema.org/NewCondition",
+            "url": "https://www.hobbylobby.com/art-supplies/painting-supplies/oil-painting/master-s-touch-oil-paint---12-piece-set/p/rs52220-80968391",
+            "seller": {
+              "name": "Hobby Lobby"
+            }
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@type": "Product",
+          "url": "https://www.hobbylobby.com/art-supplies/painting-supplies/acrylic-painting/master-s-touch-pearlized-acrylic-paint---10-piece-set/p/va4912-81076981",
+          "name": "Master's Touch Pearlized Acrylic Paint - 10 Piece Set",
+          "image": [
+            "https://cdn.media.amplience.net/s/hobbylobby/2198315-81076981-IMGSET?w=1000&h=1000",
+            "https://cdn.media.amplience.net/s/hobbylobby/2198315-81076981-IMGSET?w=1200&h=900",
+            "https://cdn.media.amplience.net/s/hobbylobby/2198315-81076981-IMGSET?w=1600&h=900",
+            "https://cdn.media.amplience.net/s/hobbylobby/2198315-81076981-IMGSET?w=900&h=1200",
+            "https://cdn.media.amplience.net/s/hobbylobby/2198315-81076981-IMGSET?w=900&h=1600"
+          ],
+          "description": "<p>Add a splash of pearlized color to your world by creating art with this Master's Touch Pearlized Acrylic Paint Set! This set of shimmering paints provides intense color and excellent coverage for a variety of surfaces. Use this water-soluble paint along with brushes and sponges to create unique designs on wood, canvas, paper, and more!</p>\n<p>&nbsp;</p>\n<p>*No discounts may be applied to \"your price\" or \"reduced\" items.</p>",
+          "sku": "2198315",
+          "brand": "",
+          "aggregateRating": {
+            "ratingValue": 4.3333,
+            "reviewCount": 9
+          },
+          "offers": {
+            "price": 11.99,
+            "priceCurrency": "USD",
+            "itemCondition": "https://schema.org/NewCondition",
+            "url": "https://www.hobbylobby.com/art-supplies/painting-supplies/acrylic-painting/master-s-touch-pearlized-acrylic-paint---10-piece-set/p/va4912-81076981",
+            "seller": {
+              "name": "Hobby Lobby"
+            }
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@type": "Product",
+          "url": "https://www.hobbylobby.com/art-supplies/painting-supplies/acrylic-painting/master-s-touch-acrylic-paint/p/pm10001",
+          "name": "Titanium White - MT Acrylic Paint - 8.5 ounces",
+          "image": [
+            "https://cdn.media.amplience.net/s/hobbylobby/338871-8451-IMGSET?w=1000&h=1000",
+            "https://cdn.media.amplience.net/s/hobbylobby/338871-8451-IMGSET?w=1200&h=900",
+            "https://cdn.media.amplience.net/s/hobbylobby/338871-8451-IMGSET?w=1600&h=900",
+            "https://cdn.media.amplience.net/s/hobbylobby/338871-8451-IMGSET?w=900&h=1200",
+            "https://cdn.media.amplience.net/s/hobbylobby/338871-8451-IMGSET?w=900&h=1600"
+          ],
+          "description": "<p>Expand your painting supplies with Master's Touch Acrylic Paint. This premium paint boasts intense color and excellent coverage. It is water-soluble, making it a great option for a variety of painting surfaces. Use it on wood, canvas, paper, and more. Create a brilliant masterpiece full of color as you experiment with this high-quality paint.</p>",
+          "sku": "338871",
+          "brand": "",
+          "aggregateRating": {
+            "ratingValue": 4.6,
+            "reviewCount": 75
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": 3.59,
+            "highPrice": 7.19,
+            "priceCurrency": "USD",
+            "itemCondition": "https://schema.org/NewCondition",
+            "url": "https://www.hobbylobby.com/art-supplies/painting-supplies/acrylic-painting/master-s-touch-acrylic-paint/p/pm10001",
+            "seller": {
+              "name": "Hobby Lobby"
+            }
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "item": {
+          "@type": "Product",
+          "url": "https://www.hobbylobby.com/art-supplies/painting-supplies/acrylic-painting/metallic-acrylic-paint---4-piece-set/p/27857-to0512",
+          "name": "Metallic Acrylic Paint - 4 Piece Set",
+          "image": [
+            "https://cdn.media.amplience.net/s/hobbylobby/887331-27857-08202025-IMGSET?w=1000&h=1000",
+            "https://cdn.media.amplience.net/s/hobbylobby/887331-27857-08202025-IMGSET?w=1200&h=900",
+            "https://cdn.media.amplience.net/s/hobbylobby/887331-27857-08202025-IMGSET?w=1600&h=900",
+            "https://cdn.media.amplience.net/s/hobbylobby/887331-27857-08202025-IMGSET?w=900&h=1200",
+            "https://cdn.media.amplience.net/s/hobbylobby/887331-27857-08202025-IMGSET?w=900&h=1600"
+          ],
+          "description": "<p>Give your painting project a vibrant look when you use these Metallic Acrylic Paints! These high-quality acrylics retain brush strokes for creating motion and volume. They're perfect for texture and impasto techniques, fast-drying, exceptionally permanent, and will feature strong colors on both traditional and non-traditional surfaces. Bring your design to life with this paint set!</p>\n<p>&nbsp;</p>\n<p>*No discounts may be applied to \"your price\" or \"reduced\" items.</p>",
+          "sku": "887331",
+          "brand": "",
+          "aggregateRating": {
+            "ratingValue": 4.6,
+            "reviewCount": 10
+          },
+          "offers": {
+            "price": 6.49,
+            "priceCurrency": "USD",
+            "itemCondition": "https://schema.org/NewCondition",
+            "url": "https://www.hobbylobby.com/art-supplies/painting-supplies/acrylic-painting/metallic-acrylic-paint---4-piece-set/p/27857-to0512",
+            "seller": {
+              "name": "Hobby Lobby"
+            }
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "item": {
+          "@type": "Product",
+          "url": "https://www.hobbylobby.com/art-supplies/painting-supplies/acrylic-painting/slow-dri-acrylic-medium/p/6979-pu0903",
+          "name": "Slow-Dri Acrylic Medium",
+          "image": [
+            "https://cdn.media.amplience.net/s/hobbylobby/824623-6979-06182025-IMGSET?w=1000&h=1000",
+            "https://cdn.media.amplience.net/s/hobbylobby/824623-6979-06182025-IMGSET?w=1200&h=900",
+            "https://cdn.media.amplience.net/s/hobbylobby/824623-6979-06182025-IMGSET?w=1600&h=900",
+            "https://cdn.media.amplience.net/s/hobbylobby/824623-6979-06182025-IMGSET?w=900&h=1200",
+            "https://cdn.media.amplience.net/s/hobbylobby/824623-6979-06182025-IMGSET?w=900&h=1600"
+          ],
+          "description": "<p>Get a fantastic finish on your next painting with Slow-Dri Acrylic Medium! Mix this fluid medium with acrylics to slow down the drying time and extend your color. It dries clear and glossy, which will enhance the surface, color depth, and transparency of your painted masterpieces. You can even use it as collaging adhesive for lightweight materials!</p>",
+          "sku": "824623",
+          "brand": "",
+          "aggregateRating": {
+            "ratingValue": 3.5,
+            "reviewCount": 4
+          },
+          "offers": {
+            "price": 10.99,
+            "priceCurrency": "USD",
+            "itemCondition": "https://schema.org/NewCondition",
+            "url": "https://www.hobbylobby.com/art-supplies/painting-supplies/acrylic-painting/slow-dri-acrylic-medium/p/6979-pu0903",
+            "seller": {
+              "name": "Hobby Lobby"
+            }
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "item": {
+          "@type": "Product",
+          "url": "https://www.hobbylobby.com/art-supplies/painting-supplies/acrylic-painting/master-s-touch-modeling-paste/p/kz4955",
+          "name": "Master's Touch Modeling Paste - 16 ounces",
+          "image": [
+            "https://cdn.media.amplience.net/s/hobbylobby/2242030-81105410-IMGSET?w=1000&h=1000",
+            "https://cdn.media.amplience.net/s/hobbylobby/2242030-81105410-IMGSET?w=1200&h=900",
+            "https://cdn.media.amplience.net/s/hobbylobby/2242030-81105410-IMGSET?w=1600&h=900",
+            "https://cdn.media.amplience.net/s/hobbylobby/2242030-81105410-IMGSET?w=900&h=1200",
+            "https://cdn.media.amplience.net/s/hobbylobby/2242030-81105410-IMGSET?w=900&h=1600"
+          ],
+          "description": "<p>Create dimensional designs on your paintings by incorporating Master's Touch Modeling Paste. This paste is designed to be mixed with acrylic paint to thicken and brighten colors while retaining tinting strength and extension. You can also apply the paste directly to your work in thin layers to build dimension. Use it to give your artwork texture and life!</p>",
+          "sku": "2242030",
+          "brand": "",
+          "aggregateRating": {
+            "ratingValue": 4.5556,
+            "reviewCount": 9
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": 5.39,
+            "highPrice": 7.79,
+            "priceCurrency": "USD",
+            "itemCondition": "https://schema.org/NewCondition",
+            "url": "https://www.hobbylobby.com/art-supplies/painting-supplies/acrylic-painting/master-s-touch-modeling-paste/p/kz4955",
+            "seller": {
+              "name": "Hobby Lobby"
+            }
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 7,
+        "item": {
+          "@type": "Product",
+          "url": "https://www.hobbylobby.com/art-supplies/painting-supplies/palettes-tools/artist-apron/p/aa93491",
+          "name": "Tan - Artist Apron",
+          "image": [
+            "https://cdn.media.amplience.net/s/hobbylobby/1635556-80882370-IMGSET?w=1000&h=1000",
+            "https://cdn.media.amplience.net/s/hobbylobby/1635556-80882370-IMGSET?w=1200&h=900",
+            "https://cdn.media.amplience.net/s/hobbylobby/1635556-80882370-IMGSET?w=1600&h=900",
+            "https://cdn.media.amplience.net/s/hobbylobby/1635556-80882370-IMGSET?w=900&h=1200",
+            "https://cdn.media.amplience.net/s/hobbylobby/1635556-80882370-IMGSET?w=900&h=1600"
+          ],
+          "description": "<p>Don't be afraid to get dirty while creating when you wear this Artist Apron! This canvas apron comes with ties in the back to easily secure it around your waist. Use its large front pocket to store brushes or other art supplies while you create. See what your creativity can spark when you wear this apron!</p>",
+          "sku": "1635556",
+          "brand": "",
+          "aggregateRating": {
+            "ratingValue": 3.3333,
+            "reviewCount": 3
+          },
+          "offers": {
+            "price": 5.49,
+            "priceCurrency": "USD",
+            "itemCondition": "https://schema.org/NewCondition",
+            "url": "https://www.hobbylobby.com/art-supplies/painting-supplies/palettes-tools/artist-apron/p/aa93491",
+            "seller": {
+              "name": "Hobby Lobby"
+            }
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 8,
+        "item": {
+          "@type": "Product",
+          "url": "https://www.hobbylobby.com/art-supplies/painting-supplies/acrylic-painting/liquitex-basics-acrylic-gesso/p/pa10010",
+          "name": "Liquitex Basics Acrylic Gesso",
+          "image": [
+            "https://cdn.media.amplience.net/s/hobbylobby/137422-2539-06242025-IMGSET?w=1000&h=1000",
+            "https://cdn.media.amplience.net/s/hobbylobby/137422-2539-06242025-IMGSET?w=1200&h=900",
+            "https://cdn.media.amplience.net/s/hobbylobby/137422-2539-06242025-IMGSET?w=1600&h=900",
+            "https://cdn.media.amplience.net/s/hobbylobby/137422-2539-06242025-IMGSET?w=900&h=1200",
+            "https://cdn.media.amplience.net/s/hobbylobby/137422-2539-06242025-IMGSET?w=900&h=1600"
+          ],
+          "description": "<p>Liquitex Basics Acrylic Gesso is formulated to create the ideal absorbency, stiffness, and adhesion for paint. The gesso establishes a good ground for acrylics, oils, charcoal, pastels, and colored pencils. It features an opaque matte white finish that will be great for sealing and preparing surfaces before applying color.</p>",
+          "sku": "137422",
+          "brand": "",
+          "aggregateRating": {
+            "ratingValue": 5,
+            "reviewCount": 2
+          },
+          "offers": {
+            "price": 10.99,
+            "priceCurrency": "USD",
+            "itemCondition": "https://schema.org/NewCondition",
+            "url": "https://www.hobbylobby.com/art-supplies/painting-supplies/acrylic-painting/liquitex-basics-acrylic-gesso/p/pa10010",
+            "seller": {
+              "name": "Hobby Lobby"
+            }
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 9,
+        "item": {
+          "@type": "Product",
+          "url": "https://www.hobbylobby.com/art-supplies/painting-supplies/palettes-tools/paint-rollers---3-piece-set/p/ud9336-63943",
+          "name": "Paint Rollers - 3 Piece Set",
+          "image": [
+            "https://cdn.media.amplience.net/s/hobbylobby/774166-63943-IMGSET?w=1000&h=1000",
+            "https://cdn.media.amplience.net/s/hobbylobby/774166-63943-IMGSET?w=1200&h=900",
+            "https://cdn.media.amplience.net/s/hobbylobby/774166-63943-IMGSET?w=1600&h=900",
+            "https://cdn.media.amplience.net/s/hobbylobby/774166-63943-IMGSET?w=900&h=1200",
+            "https://cdn.media.amplience.net/s/hobbylobby/774166-63943-IMGSET?w=900&h=1600"
+          ],
+          "description": "<p>Paint Rollers are perfect for a host of arts and crafts applications including painting, applying glues and varnishes, antiquing and more. This set includes a small roller, a medium roller and a large roller to cover areas quickly with even application and no brush strokes. Roll them in any of your favorite acrylic paints to apply color anywhere you wish!</p>",
+          "sku": "774166",
+          "brand": "",
+          "aggregateRating": {
+            "ratingValue": 3,
+            "reviewCount": 2
+          },
+          "offers": {
+            "price": 2.49,
+            "priceCurrency": "USD",
+            "itemCondition": "https://schema.org/NewCondition",
+            "url": "https://www.hobbylobby.com/art-supplies/painting-supplies/palettes-tools/paint-rollers---3-piece-set/p/ud9336-63943",
+            "seller": {
+              "name": "Hobby Lobby"
+            }
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 10,
+        "item": {
+          "@type": "Product",
+          "url": "https://www.hobbylobby.com/art-supplies/painting-supplies/palettes-tools/needle-tip-applicator-bottles/p/pa4912-80984645",
+          "name": "Needle Tip Applicator Bottles",
+          "image": [
+            "https://cdn.media.amplience.net/s/hobbylobby/1933340-80984645-IMGSET?w=1000&h=1000",
+            "https://cdn.media.amplience.net/s/hobbylobby/1933340-80984645-IMGSET?w=1200&h=900",
+            "https://cdn.media.amplience.net/s/hobbylobby/1933340-80984645-IMGSET?w=1600&h=900",
+            "https://cdn.media.amplience.net/s/hobbylobby/1933340-80984645-IMGSET?w=900&h=1200",
+            "https://cdn.media.amplience.net/s/hobbylobby/1933340-80984645-IMGSET?w=900&h=1600"
+          ],
+          "description": "<p>Add fine details with paint, stains, or glue using Needle Tip Applicator Bottles. These tiny bottles are made of plastic and feature frosted surfaces, screw-lids, skinny metal needles, and needle caps. They are great for precision and placement in your art projects!</p>",
+          "sku": "1933340",
+          "brand": "",
+          "aggregateRating": {
+            "ratingValue": 2.5,
+            "reviewCount": 4
+          },
+          "offers": {
+            "price": 2.49,
+            "priceCurrency": "USD",
+            "itemCondition": "https://schema.org/NewCondition",
+            "url": "https://www.hobbylobby.com/art-supplies/painting-supplies/palettes-tools/needle-tip-applicator-bottles/p/pa4912-80984645",
+            "seller": {
+              "name": "Hobby Lobby"
+            }
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 11,
+        "item": {
+          "@type": "Product",
+          "url": "https://www.hobbylobby.com/art-supplies/painting-supplies/acrylic-painting/master-s-touch-acrylic-paint---6-piece-set/p/10614-tu0830",
+          "name": "Master's Touch Acrylic Paint - 6 Piece Set",
+          "image": [
+            "https://cdn.media.amplience.net/s/hobbylobby/408724-10614-05202026-IMGSET?w=1000&h=1000",
+            "https://cdn.media.amplience.net/s/hobbylobby/408724-10614-05202026-IMGSET?w=1200&h=900",
+            "https://cdn.media.amplience.net/s/hobbylobby/408724-10614-05202026-IMGSET?w=1600&h=900",
+            "https://cdn.media.amplience.net/s/hobbylobby/408724-10614-05202026-IMGSET?w=900&h=1200",
+            "https://cdn.media.amplience.net/s/hobbylobby/408724-10614-05202026-IMGSET?w=900&h=1600"
+          ],
+          "description": "<p>Set your latest creation up for success by using this Master's Touch Acrylic Paint! This high-quality primary color paint set comes with six tubes of acrylics that are perfect for adding motion and volume to your project. The paints offer a great permanence that works well on traditional and non-traditional surfaces. Make your creative ideas come to life using this paint!</p>\n<p>&nbsp;</p>\n<p>*No discounts may be applied to \"your price\" or \"reduced\" items.</p>",
+          "sku": "408724",
+          "brand": "",
+          "aggregateRating": null,
+          "offers": {
+            "price": 17.99,
+            "priceCurrency": "USD",
+            "itemCondition": "https://schema.org/NewCondition",
+            "url": "https://www.hobbylobby.com/art-supplies/painting-supplies/acrylic-painting/master-s-touch-acrylic-paint---6-piece-set/p/10614-tu0830",
+            "seller": {
+              "name": "Hobby Lobby"
+            }
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 12,
+        "item": {
+          "@type": "Product",
+          "url": "https://www.hobbylobby.com/art-supplies/painting-supplies/acrylic-painting/master-s-touch-acrylic-flow-medium/p/cj4912-81105411",
+          "name": "Master's Touch Acrylic Flow Medium",
+          "image": [
+            "https://cdn.media.amplience.net/s/hobbylobby/2242048-81105411-IMGSET?w=1000&h=1000",
+            "https://cdn.media.amplience.net/s/hobbylobby/2242048-81105411-IMGSET?w=1200&h=900",
+            "https://cdn.media.amplience.net/s/hobbylobby/2242048-81105411-IMGSET?w=1600&h=900",
+            "https://cdn.media.amplience.net/s/hobbylobby/2242048-81105411-IMGSET?w=900&h=1200",
+            "https://cdn.media.amplience.net/s/hobbylobby/2242048-81105411-IMGSET?w=900&h=1600"
+          ],
+          "description": "<p>Give your acrylic paints a new consistency by adding this Master's Touch Acrylic Flow Medium. This medium is designed to thin acrylic paint to a more transparent consistency that's suitable for detail work, staining, and dry-brush work. Plus, this medium will help give your paint a glossy finish, so you'll have a shining piece of artwork to show off to family and friends!</p>",
+          "sku": "2242048",
+          "brand": "",
+          "aggregateRating": {
+            "ratingValue": 5,
+            "reviewCount": 3
+          },
+          "offers": {
+            "price": 4.49,
+            "priceCurrency": "USD",
+            "itemCondition": "https://schema.org/NewCondition",
+            "url": "https://www.hobbylobby.com/art-supplies/painting-supplies/acrylic-painting/master-s-touch-acrylic-flow-medium/p/cj4912-81105411",
+            "seller": {
+              "name": "Hobby Lobby"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

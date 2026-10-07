@@ -1,0 +1,2172 @@
+{
+  "HLNextGenEcommIndex_prd": {
+    "state": {
+      "facets": [
+        "*"
+      ],
+      "disjunctiveFacets": [],
+      "hierarchicalFacets": [],
+      "facetsRefinements": {},
+      "facetsExcludes": {},
+      "disjunctiveFacetsRefinements": {},
+      "numericRefinements": {},
+      "tagRefinements": [],
+      "hierarchicalFacetsRefinements": {},
+      "index": "HLNextGenEcommIndex_prd",
+      "hitsPerPage": 12,
+      "filters": "categoryNames:\"Art Supplies\" AND categoryNames:\"Painting Supplies\"",
+      "distinct": true,
+      "clickAnalytics": true,
+      "userToken": ""
+    },
+    "results": [
+      {
+        "hits": [
+          {
+            "sku": "636449",
+            "images": [
+              {
+                "url": "https://cdn.media.amplience.net/s/hobbylobby/636449-80968391-07102025-IMGSET"
+              }
+            ],
+            "variantUrl": "/art-supplies/painting-supplies/oil-painting/master-s-touch-oil-paint---12-piece-set/p/80968391",
+            "daysOnline": 2311,
+            "variant.price": 6.99,
+            "isNew": false,
+            "isInStock": true,
+            "assorted": false,
+            "product-unit": "each",
+            "onlineStatus": "ACTIVE",
+            "name": "Master's Touch Oil Paint - 12 Piece Set",
+            "ormd": false,
+            "quantity": "12 Count",
+            "details": "<ul style=\"list-style-type: circle;\">\n<li>Medium: Oil</li>\n<li>Volume: 0.4 Ounces Each (12mm)</li>\n<li>Quantity: 12</li>\n</ul>\n<p>&nbsp;</p>\n<p>Set Includes:</p>\n<ul style=\"list-style-type: circle;\">\n<li>Titanium White</li>\n<li>Lemon Yellow</li>\n<li>Yellow Medium</li>\n<li>Yellow Ochre</li>\n<li>Scarlet</li>\n<li>Crimson</li>\n<li>Ultramarine Blue</li>\n<li>Phthalo Blue</li>\n<li>Phthalo Green</li>\n<li>Plant Green</li>\n<li>Burnt Umber</li>\n<li>Ivory Black</li>\n</ul>",
+            "excludeFreeShipping": false,
+            "product-online-date": "2020-06-05T13:42:01.188Z",
+            "availability": "BOTH",
+            "color": "Assorted Colors",
+            "medium": [
+              "Oil"
+            ],
+            "brand": "Master's Touch",
+            "color-family": "multi",
+            "onlineDate": "2025-07-10",
+            "backInStockEligible": true,
+            "approvalStatus": true,
+            "yourPrice": true,
+            "productID": "e687b042-8e2b-453c-8101-41395691eb01",
+            "productKey": "RS52220-80968391",
+            "lastModifiedAt": "2025-08-29T17:14:10.098Z",
+            "productName": "Master's Touch Oil Paint - 12 Piece Set",
+            "pdpUrl": "/art-supplies/painting-supplies/oil-painting/master-s-touch-oil-paint---12-piece-set/p/rs52220-80968391",
+            "activeVariantCount": 1,
+            "product.isNew": false,
+            "product.isInStock": true,
+            "product.description": "<p>Unleash your creativity with these vibrant paints! Master's Touch Oil Paint features student-grade paints in tubes that offer clean and excellent coverage as well as great luminosity. This slow-drying, heavy-bodied medium is perfect for a variety of classical techniques and is designed to help you create art that lasts.</p>\n<p>&nbsp;</p>\n<p>*No discounts may be applied to \"your price\" or \"reduced\" items.</p>",
+            "product.daysOnline": 2311,
+            "categories": {
+              "lvl0": [
+                "Art Supplies"
+              ],
+              "lvl1": [
+                "Art Supplies > Painting Supplies"
+              ],
+              "lvl2": [
+                "Art Supplies > Painting Supplies > Oil Painting"
+              ]
+            },
+            "department": "Art Supplies",
+            "category": "Painting Supplies",
+            "subcategory": "Oil Painting",
+            "categoryKeys": [
+              "8",
+              "8-168",
+              "8-168-1310"
+            ],
+            "categoryNames": [
+              "Art Supplies",
+              "Painting Supplies",
+              "Oil Painting"
+            ],
+            "product.lowestOriginalPrice": 6.99,
+            "product.highestOriginalPrice": 6.99,
+            "product.lowestPrice": 6.99,
+            "product.highestPrice": 6.99,
+            "ratings.count": 7,
+            "ratings.average": 3.8571,
+            "objectID": "80968391"
+          },
+          {
+            "sku": "2198315",
+            "images": [
+              {
+                "url": "https://cdn.media.amplience.net/s/hobbylobby/2198315-81076981-IMGSET"
+              }
+            ],
+            "variantUrl": "/art-supplies/painting-supplies/acrylic-painting/master-s-touch-pearlized-acrylic-paint---10-piece-set/p/81076981",
+            "daysOnline": 1375,
+            "variant.price": 11.99,
+            "isNew": false,
+            "isInStock": true,
+            "assorted": false,
+            "medium": [
+              "Acrylic"
+            ],
+            "product-unit": "each",
+            "volume": ".7 ounce",
+            "onlineStatus": "ACTIVE",
+            "name": "Master's Touch Pearlized Acrylic Paint - 10 Piece Set",
+            "ormd": false,
+            "quantity": "1 Set",
+            "details": "<ul style=\"list-style-type: circle;\">\n<li>Medium: Acrylic</li>\n<li>Finish: Pearl</li>\n<li>Volume: 0.7 Fluid Ounces (22mL) Each</li>\n<li>Quantity: 10</li>\n</ul>\n<p>&nbsp;</p>\n<p>Set Includes:</p>\n<ul style=\"list-style-type: circle;\">\n<li>Pearl White</li>\n<li>Bright Gold</li>\n<li>Vermilion</li>\n<li>Wine Red</li>\n<li>Violet</li>\n<li>Dark Blue</li>\n<li>Crystal Blue</li>\n<li>Golden Green</li>\n<li>Dark Green</li>\n<li>Carbon Black</li>\n</ul>",
+            "excludeFreeShipping": false,
+            "product-online-date": "2022-12-28T08:38:54.280Z",
+            "availability": "BOTH",
+            "brand": "Master's Touch",
+            "color-family": "multi",
+            "vendor-sku": "A1022P",
+            "onlineDate": "2024-12-02",
+            "backInStockEligible": true,
+            "material": [
+              "Acrylic"
+            ],
+            "approvalStatus": true,
+            "yourPrice": true,
+            "productID": "4847d224-0dce-4d43-b4bc-77d3ac9a75d1",
+            "productKey": "VA4912-81076981",
+            "lastModifiedAt": "2026-07-29T21:29:15.057Z",
+            "productName": "Master's Touch Pearlized Acrylic Paint - 10 Piece Set",
+            "pdpUrl": "/art-supplies/painting-supplies/acrylic-painting/master-s-touch-pearlized-acrylic-paint---10-piece-set/p/va4912-81076981",
+            "activeVariantCount": 1,
+            "product.isNew": false,
+            "product.isInStock": true,
+            "product.description": "<p>Add a splash of pearlized color to your world by creating art with this Master's Touch Pearlized Acrylic Paint Set! This set of shimmering paints provides intense color and excellent coverage for a variety of surfaces. Use this water-soluble paint along with brushes and sponges to create unique designs on wood, canvas, paper, and more!</p>\n<p>&nbsp;</p>\n<p>*No discounts may be applied to \"your price\" or \"reduced\" items.</p>",
+            "product.daysOnline": 1375,
+            "categories": {
+              "lvl0": [
+                "Art Supplies"
+              ],
+              "lvl1": [
+                "Art Supplies > Painting Supplies"
+              ],
+              "lvl2": [
+                "Art Supplies > Painting Supplies > Acrylic Painting"
+              ]
+            },
+            "department": "Art Supplies",
+            "category": "Painting Supplies",
+            "subcategory": "Acrylic Painting",
+            "categoryKeys": [
+              "8",
+              "8-168",
+              "8-168-1309"
+            ],
+            "categoryNames": [
+              "Art Supplies",
+              "Painting Supplies",
+              "Acrylic Painting"
+            ],
+            "product.lowestOriginalPrice": 11.99,
+            "product.highestOriginalPrice": 11.99,
+            "product.lowestPrice": 11.99,
+            "product.highestPrice": 11.99,
+            "ratings.count": 9,
+            "ratings.average": 4.3333,
+            "objectID": "81076981"
+          },
+          {
+            "sku": "338871",
+            "images": [
+              {
+                "url": "https://cdn.media.amplience.net/s/hobbylobby/338871-8451-IMGSET"
+              }
+            ],
+            "variantUrl": "/art-supplies/painting-supplies/acrylic-painting/titanium-white---mt-acrylic-paint---8-5-ounces/p/8451",
+            "daysOnline": 4082,
+            "variant.price": 11.99,
+            "sku.discountedPrice": 7.19,
+            "sku.discountName": "40% Off Master's Touch & Fine Touch",
+            "on_sale": true,
+            "isNew": false,
+            "isInStock": true,
+            "variantPicker": [
+              "Color",
+              "Volume"
+            ],
+            "assorted": false,
+            "backInStockEligible": true,
+            "product-unit": "each",
+            "volume": "8.5 ounces",
+            "onlineStatus": "ACTIVE",
+            "name": "Titanium White - MT Acrylic Paint - 8.5 ounces",
+            "ormd": false,
+            "quantity": "1 Piece",
+            "details": "<ul style=\"list-style-type: circle;\">\n<li>Opacity: Opaque</li>\n<li>Lightfastness: *** = Good Lightfastness</li>\n<li>Vehicle: Acrylic Polymer Emulsion</li>\n<li>Pigments: White PW6</li>\n<li>Medium: Acrylic</li>\n<li>Color: White</li>\n<li>Color Code: PA05710 Titanium White</li>\n<li>Volume: 8.5 Fluid Ounces (250mL)</li>\n<li>Quantity: 1</li>\n</ul>",
+            "excludeFreeShipping": false,
+            "product-online-date": "2015-07-31T18:00:03.000Z",
+            "availability": "BOTH",
+            "color": "Titanium White",
+            "medium": [
+              "Acrylic"
+            ],
+            "brand": "Master's Touch",
+            "color-family": "white",
+            "vendor-sku": "SA710",
+            "approvalStatus": true,
+            "yourPrice": false,
+            "productID": "bfde60f8-09a3-4c52-8553-b342aaa2676b",
+            "productKey": "PM10001",
+            "lastModifiedAt": "2026-10-04T05:01:42.440Z",
+            "productName": "Master's Touch Acrylic Paint",
+            "picker": [
+              {
+                "volume": "8.5 ounces",
+                "color": "Phthalocyanine Blue",
+                "variantKey": "80821630"
+              },
+              {
+                "volume": "8.5 ounces",
+                "color": "Ocean Green",
+                "variantKey": "80821631"
+              },
+              {
+                "volume": "8.5 ounces",
+                "color": "Raw Umber",
+                "variantKey": "80821632"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Light Coral",
+                "variantKey": "80906378"
+              },
+              {
+                "volume": "8.5 ounces",
+                "color": "Lake Blue",
+                "variantKey": "80954459"
+              },
+              {
+                "volume": "8.5 ounces",
+                "color": "Sky Blue",
+                "variantKey": "80954461"
+              },
+              {
+                "volume": "8.5 ounces",
+                "color": "Viridian",
+                "variantKey": "80954462"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Cashew",
+                "variantKey": "81016268"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Lemon Yellow",
+                "variantKey": "8355"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Yellow Med",
+                "variantKey": "8356"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Yellow Deep",
+                "variantKey": "8357"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Orange",
+                "variantKey": "8359"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Scarlet",
+                "variantKey": "8363"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Primary Red",
+                "variantKey": "8364"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Magenta",
+                "variantKey": "8365"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Crimson",
+                "variantKey": "8368"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Persian Red",
+                "variantKey": "8369"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Pink",
+                "variantKey": "8370"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Purple Red",
+                "variantKey": "8371"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Light Magenta",
+                "variantKey": "8372"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Purple",
+                "variantKey": "8374"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Rouge",
+                "variantKey": "8375"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Violet",
+                "variantKey": "8377"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Pale Blue",
+                "variantKey": "8378"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Sky Blue",
+                "variantKey": "8379"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Lake Blue",
+                "variantKey": "8380"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Cobalt Blue",
+                "variantKey": "8381"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Ultramarine",
+                "variantKey": "8382"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Phthalocyanine Blue",
+                "variantKey": "8383"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Ocean Green",
+                "variantKey": "8384"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Viridian",
+                "variantKey": "8385"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Phthalocyanine Green",
+                "variantKey": "8388"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Light Olive Green",
+                "variantKey": "8389"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Light Green",
+                "variantKey": "8391"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Grass Green",
+                "variantKey": "8392"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Chrome Oxide Green",
+                "variantKey": "8393"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Yellow Ochre",
+                "variantKey": "8394"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Burnt Sienna",
+                "variantKey": "8396"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Burnt Umber",
+                "variantKey": "8397"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Raw Umber",
+                "variantKey": "8398"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Warm Grey",
+                "variantKey": "8399"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Neutral Grey",
+                "variantKey": "8400"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Payne's Grey",
+                "variantKey": "8401"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Permanent Black",
+                "variantKey": "8403"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Milky White",
+                "variantKey": "8404"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Dark Titanium White",
+                "variantKey": "8405"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Titanium White",
+                "variantKey": "8406"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Gold",
+                "variantKey": "8411"
+              },
+              {
+                "volume": "4.1 ounces",
+                "color": "Silver",
+                "variantKey": "8412"
+              },
+              {
+                "volume": "8.5 ounces",
+                "color": "Yellow Med",
+                "variantKey": "8415"
+              },
+              {
+                "volume": "8.5 ounces",
+                "color": "Permanent Red",
+                "variantKey": "8442"
+              },
+              {
+                "volume": "8.5 ounces",
+                "color": "Violet",
+                "variantKey": "8443"
+              },
+              {
+                "volume": "8.5 ounces",
+                "color": "Grass Green",
+                "variantKey": "8446"
+              },
+              {
+                "volume": "8.5 ounces",
+                "color": "Yellow Ochre",
+                "variantKey": "8447"
+              },
+              {
+                "volume": "8.5 ounces",
+                "color": "Permanent Black",
+                "variantKey": "8450"
+              },
+              {
+                "volume": "8.5 ounces",
+                "color": "Titanium White",
+                "variantKey": "8451"
+              },
+              {
+                "volume": "8.5 ounces",
+                "color": "Crimson",
+                "variantKey": "8452"
+              },
+              {
+                "volume": "8.5 ounces",
+                "color": "Ultramarine",
+                "variantKey": "8453"
+              }
+            ],
+            "pdpUrl": "/art-supplies/painting-supplies/acrylic-painting/master-s-touch-acrylic-paint/p/pm10001",
+            "activeVariantCount": 58,
+            "product.isNew": false,
+            "product.isInStock": true,
+            "product.discountNames": [
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch"
+            ],
+            "product.description": "<p>Expand your painting supplies with Master's Touch Acrylic Paint. This premium paint boasts intense color and excellent coverage. It is water-soluble, making it a great option for a variety of painting surfaces. Use it on wood, canvas, paper, and more. Create a brilliant masterpiece full of color as you experiment with this high-quality paint.</p>",
+            "product.daysOnline": 4082,
+            "categories": {
+              "lvl0": [
+                "Art Supplies"
+              ],
+              "lvl1": [
+                "Art Supplies > Painting Supplies"
+              ],
+              "lvl2": [
+                "Art Supplies > Painting Supplies > Acrylic Painting"
+              ]
+            },
+            "department": "Art Supplies",
+            "category": "Painting Supplies",
+            "subcategory": "Acrylic Painting",
+            "categoryKeys": [
+              "8",
+              "8-168",
+              "8-168-1309"
+            ],
+            "categoryNames": [
+              "Art Supplies",
+              "Painting Supplies",
+              "Acrylic Painting"
+            ],
+            "product.lowestOriginalPrice": 5.99,
+            "product.highestOriginalPrice": 11.99,
+            "product.lowestPrice": 3.59,
+            "product.highestPrice": 11.99,
+            "product.lowestDiscountedPrice": 3.59,
+            "product.highestDiscountedPrice": 7.19,
+            "ratings.count": 75,
+            "ratings.average": 4.6,
+            "objectID": "8451"
+          },
+          {
+            "sku": "887331",
+            "images": [
+              {
+                "url": "https://cdn.media.amplience.net/s/hobbylobby/887331-27857-08202025-IMGSET"
+              }
+            ],
+            "variantUrl": "/art-supplies/painting-supplies/acrylic-painting/metallic-acrylic-paint---4-piece-set/p/27857",
+            "daysOnline": 4082,
+            "variant.price": 6.49,
+            "isNew": false,
+            "isInStock": true,
+            "assorted": false,
+            "backInStockEligible": true,
+            "product-unit": "each",
+            "onlineStatus": "ACTIVE",
+            "name": "Metallic Acrylic Paint - 4 Piece Set",
+            "ormd": false,
+            "quantity": "4 Count",
+            "details": "<ul style=\"list-style-type: circle;\">\n<li class=\"MsoNormal\">Medium:&nbsp;Acrylic&nbsp;</li>\n<li class=\"MsoNormal\">Finish: Metallic&nbsp;</li>\n<li class=\"MsoNormal\">Color:&nbsp;Metallic Copper,&nbsp;Metallic Bronze,&nbsp;Metallic Silver &amp;&nbsp;Metallic Gold</li>\n<li class=\"MsoNormal\">Volume: 0.74 Fluid Ounces (22mL) Total</li>\n<li class=\"MsoNormal\">Quantity: 4</li>\n</ul>",
+            "excludeFreeShipping": false,
+            "product-online-date": "2015-07-31T17:58:31.000Z",
+            "availability": "BOTH",
+            "color": "Metallic Multi",
+            "medium": [
+              "Acrylic"
+            ],
+            "brand": "Master's Touch",
+            "color-family": "bronze",
+            "vendor-sku": "XP08331",
+            "approvalStatus": true,
+            "yourPrice": true,
+            "productID": "4cc968a9-41b8-4315-ba8f-215cbda0d33a",
+            "productKey": "27857-TO0512",
+            "lastModifiedAt": "2025-08-20T21:40:50.791Z",
+            "productName": "Metallic Acrylic Paint - 4 Piece Set",
+            "pdpUrl": "/art-supplies/painting-supplies/acrylic-painting/metallic-acrylic-paint---4-piece-set/p/27857-to0512",
+            "activeVariantCount": 1,
+            "product.isNew": false,
+            "product.isInStock": true,
+            "product.description": "<p>Give your painting project a vibrant look when you use these Metallic Acrylic Paints! These high-quality acrylics retain brush strokes for creating motion and volume. They're perfect for texture and impasto techniques, fast-drying, exceptionally permanent, and will feature strong colors on both traditional and non-traditional surfaces. Bring your design to life with this paint set!</p>\n<p>&nbsp;</p>\n<p>*No discounts may be applied to \"your price\" or \"reduced\" items.</p>",
+            "product.daysOnline": 4082,
+            "categories": {
+              "lvl0": [
+                "Art Supplies"
+              ],
+              "lvl1": [
+                "Art Supplies > Painting Supplies"
+              ],
+              "lvl2": [
+                "Art Supplies > Painting Supplies > Acrylic Painting"
+              ]
+            },
+            "department": "Art Supplies",
+            "category": "Painting Supplies",
+            "subcategory": "Acrylic Painting",
+            "categoryKeys": [
+              "8",
+              "8-168",
+              "8-168-1309"
+            ],
+            "categoryNames": [
+              "Art Supplies",
+              "Painting Supplies",
+              "Acrylic Painting"
+            ],
+            "product.lowestOriginalPrice": 6.49,
+            "product.highestOriginalPrice": 6.49,
+            "product.lowestPrice": 6.49,
+            "product.highestPrice": 6.49,
+            "ratings.count": 10,
+            "ratings.average": 4.6,
+            "objectID": "27857"
+          },
+          {
+            "sku": "824623",
+            "images": [
+              {
+                "url": "https://cdn.media.amplience.net/s/hobbylobby/824623-6979-06182025-IMGSET"
+              }
+            ],
+            "variantUrl": "/art-supplies/painting-supplies/acrylic-painting/slow-dri-acrylic-medium/p/6979",
+            "daysOnline": 4082,
+            "variant.price": 10.99,
+            "isNew": false,
+            "isInStock": true,
+            "assorted": false,
+            "gtin": "094376931457",
+            "medium": [
+              "Acrylic"
+            ],
+            "product-unit": "each",
+            "volume": "4 Ounces",
+            "onlineStatus": "ACTIVE",
+            "name": "Slow-Dri Acrylic Medium",
+            "ormd": false,
+            "quantity": "1 Piece",
+            "details": "<ul style=\"list-style-type: circle;\">\n<li>Medium: Acrylic</li>\n<li>Finish: Gloss</li>\n<li>Color: White</li>\n<li>Net Weight: 4 Fluid Ounces (118mL)</li>\n<li>UPC: 094376931457</li>\n<li>Quantity: 1</li>\n</ul>",
+            "excludeFreeShipping": false,
+            "product-online-date": "2015-07-31T18:00:00.000Z",
+            "availability": "BOTH",
+            "brand": "Liquitex",
+            "color-family": "white",
+            "vendor-sku": "6304",
+            "onlineDate": "2025-06-18",
+            "backInStockEligible": true,
+            "material": [
+              "Acrylic"
+            ],
+            "approvalStatus": true,
+            "yourPrice": false,
+            "productID": "f8537e4b-d9d9-4eae-b8b7-ad3460e2ff43",
+            "productKey": "6979-PU0903",
+            "lastModifiedAt": "2026-08-27T05:48:24.155Z",
+            "productName": "Slow-Dri Acrylic Medium",
+            "pdpUrl": "/art-supplies/painting-supplies/acrylic-painting/slow-dri-acrylic-medium/p/6979-pu0903",
+            "activeVariantCount": 1,
+            "product.isNew": false,
+            "product.isInStock": true,
+            "product.description": "<p>Get a fantastic finish on your next painting with Slow-Dri Acrylic Medium! Mix this fluid medium with acrylics to slow down the drying time and extend your color. It dries clear and glossy, which will enhance the surface, color depth, and transparency of your painted masterpieces. You can even use it as collaging adhesive for lightweight materials!</p>",
+            "product.daysOnline": 4082,
+            "categories": {
+              "lvl0": [
+                "Art Supplies"
+              ],
+              "lvl1": [
+                "Art Supplies > Painting Supplies"
+              ],
+              "lvl2": [
+                "Art Supplies > Painting Supplies > Acrylic Painting"
+              ]
+            },
+            "department": "Art Supplies",
+            "category": "Painting Supplies",
+            "subcategory": "Acrylic Painting",
+            "categoryKeys": [
+              "8",
+              "8-168",
+              "8-168-1309"
+            ],
+            "categoryNames": [
+              "Art Supplies",
+              "Painting Supplies",
+              "Acrylic Painting"
+            ],
+            "product.lowestOriginalPrice": 10.99,
+            "product.highestOriginalPrice": 10.99,
+            "product.lowestPrice": 10.99,
+            "product.highestPrice": 10.99,
+            "ratings.count": 4,
+            "ratings.average": 3.5,
+            "objectID": "6979"
+          },
+          {
+            "sku": "2242030",
+            "images": [
+              {
+                "url": "https://cdn.media.amplience.net/s/hobbylobby/2242030-81105410-IMGSET"
+              }
+            ],
+            "variantUrl": "/art-supplies/painting-supplies/acrylic-painting/master-s-touch-modeling-paste---16-ounces/p/81105410",
+            "daysOnline": 1383,
+            "variant.price": 12.99,
+            "sku.discountedPrice": 7.79,
+            "sku.discountName": "40% Off Master's Touch & Fine Touch",
+            "on_sale": true,
+            "isNew": false,
+            "isInStock": true,
+            "variantPicker": [
+              "Volume"
+            ],
+            "assorted": false,
+            "backInStockEligible": true,
+            "product-unit": "each",
+            "volume": "16 ounces",
+            "onlineStatus": "ACTIVE",
+            "name": "Master's Touch Modeling Paste - 16 ounces",
+            "ormd": false,
+            "quantity": "1 Piece",
+            "details": "<ul style=\"list-style-type: circle;\">\n<li>Color: White</li>\n<li>Volume: 16 Fluid Ounces (473.2 mL)</li>\n<li>Care &amp; Safety: Non-Toxic</li>\n<li>Quantity: 1</li>\n</ul>",
+            "excludeFreeShipping": false,
+            "product-online-date": "2022-12-20T14:43:15.754Z",
+            "availability": "BOTH",
+            "brand": "Master's Touch",
+            "color-family": "white",
+            "vendor-sku": "HL131-985",
+            "approvalStatus": true,
+            "yourPrice": false,
+            "productID": "721858d2-514f-4a62-8467-37959d9f170c",
+            "productKey": "KZ4955",
+            "lastModifiedAt": "2026-10-04T05:01:59.390Z",
+            "productName": "Master's Touch Modeling Paste",
+            "picker": [
+              {
+                "volume": "8 ounces",
+                "variantKey": "81105409"
+              },
+              {
+                "volume": "16 ounces",
+                "variantKey": "81105410"
+              }
+            ],
+            "pdpUrl": "/art-supplies/painting-supplies/acrylic-painting/master-s-touch-modeling-paste/p/kz4955",
+            "activeVariantCount": 2,
+            "product.isNew": false,
+            "product.isInStock": true,
+            "product.discountNames": [
+              "40% Off Master's Touch & Fine Touch",
+              "40% Off Master's Touch & Fine Touch"
+            ],
+            "product.description": "<p>Create dimensional designs on your paintings by incorporating Master's Touch Modeling Paste. This paste is designed to be mixed with acrylic paint to thicken and brighten colors while retaining tinting strength and extension. You can also apply the paste directly to your work in thin layers to build dimension. Use it to give your artwork texture and life!</p>",
+            "product.daysOnline": 1383,
+            "categories": {
+              "lvl0": [
+                "Art Supplies"
+              ],
+              "lvl1": [
+                "Art Supplies > Painting Supplies"
+              ],
+              "lvl2": [
+                "Art Supplies > Painting Supplies > Acrylic Painting"
+              ]
+            },
+            "department": "Art Supplies",
+            "category": "Painting Supplies",
+            "subcategory": "Acrylic Painting",
+            "categoryKeys": [
+              "8",
+              "8-168",
+              "8-168-1309"
+            ],
+            "categoryNames": [
+              "Art Supplies",
+              "Painting Supplies",
+              "Acrylic Painting"
+            ],
+            "product.lowestOriginalPrice": 8.99,
+            "product.highestOriginalPrice": 12.99,
+            "product.lowestPrice": 5.39,
+            "product.highestPrice": 12.99,
+            "product.lowestDiscountedPrice": 5.39,
+            "product.highestDiscountedPrice": 7.79,
+            "ratings.count": 9,
+            "ratings.average": 4.5556,
+            "objectID": "81105410"
+          },
+          {
+            "sku": "1635556",
+            "images": [
+              {
+                "url": "https://cdn.media.amplience.net/s/hobbylobby/1635556-80882370-IMGSET"
+              }
+            ],
+            "variantUrl": "/art-supplies/painting-supplies/palettes-tools/tan---artist-apron/p/80882370",
+            "daysOnline": 2927,
+            "variant.price": 5.49,
+            "isNew": false,
+            "isInStock": true,
+            "variantPicker": [
+              "Color"
+            ],
+            "assorted": false,
+            "gtin": "090672062543",
+            "color": "Tan",
+            "product-unit": "each",
+            "onlineStatus": "ACTIVE",
+            "name": "Tan - Artist Apron",
+            "ormd": false,
+            "quantity": "1 Piece",
+            "details": "<ul style=\"list-style-type: circle;\">\n<li>Dimensions: 30\" x 23\"</li>\n<li>Material: Canvas</li>\n<li>Color: Tan</li>\n<li>UPC: 090672062543</li>\n<li>Quantity: 1</li>\n</ul>",
+            "excludeFreeShipping": false,
+            "product-online-date": "2018-10-01T06:25:33.698Z",
+            "availability": "BOTH",
+            "brand": "Royal & Langnickel",
+            "color-family": "beige",
+            "vendor-sku": "APRON CANVAS",
+            "onlineDate": "2024-10-31",
+            "backInStockEligible": true,
+            "material": [
+              "Fabric"
+            ],
+            "approvalStatus": true,
+            "yourPrice": false,
+            "productID": "de31612d-47f2-479d-af80-1554b42bfc3c",
+            "productKey": "AA93491",
+            "lastModifiedAt": "2026-10-06T16:31:43.996Z",
+            "productName": "Artist Apron",
+            "pdpUrl": "/art-supplies/painting-supplies/palettes-tools/artist-apron/p/aa93491",
+            "activeVariantCount": 1,
+            "product.isNew": false,
+            "product.isInStock": true,
+            "product.description": "<p>Don't be afraid to get dirty while creating when you wear this Artist Apron! This canvas apron comes with ties in the back to easily secure it around your waist. Use its large front pocket to store brushes or other art supplies while you create. See what your creativity can spark when you wear this apron!</p>",
+            "product.daysOnline": 2927,
+            "categories": {
+              "lvl0": [
+                "Art Supplies"
+              ],
+              "lvl1": [
+                "Art Supplies > Painting Supplies"
+              ],
+              "lvl2": [
+                "Art Supplies > Painting Supplies > Palettes & Tools"
+              ]
+            },
+            "department": "Art Supplies",
+            "category": "Painting Supplies",
+            "subcategory": "Palettes & Tools",
+            "categoryKeys": [
+              "8",
+              "8-168",
+              "8-168-1308"
+            ],
+            "categoryNames": [
+              "Art Supplies",
+              "Painting Supplies",
+              "Palettes & Tools"
+            ],
+            "product.lowestOriginalPrice": 5.49,
+            "product.highestOriginalPrice": 5.49,
+            "product.lowestPrice": 5.49,
+            "product.highestPrice": 5.49,
+            "ratings.count": 3,
+            "ratings.average": 3.3333,
+            "objectID": "80882370"
+          },
+          {
+            "sku": "137422",
+            "images": [
+              {
+                "url": "https://cdn.media.amplience.net/s/hobbylobby/137422-2539-06242025-IMGSET"
+              }
+            ],
+            "variantUrl": "/art-supplies/painting-supplies/acrylic-painting/liquitex-basics-acrylic-gesso/p/2539",
+            "daysOnline": 4294,
+            "variant.price": 10.99,
+            "isNew": false,
+            "isInStock": true,
+            "variantPicker": [
+              "Volume"
+            ],
+            "assorted": false,
+            "gtin": "094376922943",
+            "medium": [
+              "Acrylic"
+            ],
+            "product-unit": "each",
+            "volume": "16 ounces",
+            "onlineStatus": "ACTIVE",
+            "name": "Liquitex Basics Acrylic Gesso",
+            "ormd": false,
+            "details": "<ul style=\"list-style-type: circle;\">\n<li>Opacity: Opaque</li>\n<li>Medium: Acrylic</li>\n<li>Finish: Matte</li>\n<li>Volume: 16 Fluid Ounces</li>\n<li>UPC: 094376922943</li>\n<li>Quantity: 1</li>\n</ul>",
+            "excludeFreeShipping": false,
+            "product-online-date": "2015-01-01T00:00:01.000Z",
+            "availability": "BOTH",
+            "brand": "Liquitex",
+            "color-family": "white",
+            "vendor-sku": "104016",
+            "onlineDate": "2025-06-24",
+            "backInStockEligible": true,
+            "approvalStatus": true,
+            "yourPrice": false,
+            "productID": "60b06e98-062a-4c2b-88bd-d922895e08d6",
+            "productKey": "PA10010",
+            "lastModifiedAt": "2026-08-28T05:45:07.461Z",
+            "productName": "Liquitex Basics Acrylic Gesso",
+            "pdpUrl": "/art-supplies/painting-supplies/acrylic-painting/liquitex-basics-acrylic-gesso/p/pa10010",
+            "activeVariantCount": 1,
+            "product.isNew": false,
+            "product.isInStock": true,
+            "product.description": "<p>Liquitex Basics Acrylic Gesso is formulated to create the ideal absorbency, stiffness, and adhesion for paint. The gesso establishes a good ground for acrylics, oils, charcoal, pastels, and colored pencils. It features an opaque matte white finish that will be great for sealing and preparing surfaces before applying color.</p>",
+            "product.daysOnline": 4294,
+            "categories": {
+              "lvl0": [
+                "Art Supplies"
+              ],
+              "lvl1": [
+                "Art Supplies > Painting Supplies"
+              ],
+              "lvl2": [
+                "Art Supplies > Painting Supplies > Acrylic Painting"
+              ]
+            },
+            "department": "Art Supplies",
+            "category": "Painting Supplies",
+            "subcategory": "Acrylic Painting",
+            "categoryKeys": [
+              "8",
+              "8-168",
+              "8-168-1309"
+            ],
+            "categoryNames": [
+              "Art Supplies",
+              "Painting Supplies",
+              "Acrylic Painting"
+            ],
+            "product.lowestOriginalPrice": 10.99,
+            "product.highestOriginalPrice": 10.99,
+            "product.lowestPrice": 10.99,
+            "product.highestPrice": 10.99,
+            "ratings.count": 2,
+            "ratings.average": 5,
+            "objectID": "2539"
+          },
+          {
+            "sku": "774166",
+            "images": [
+              {
+                "url": "https://cdn.media.amplience.net/s/hobbylobby/774166-63943-IMGSET"
+              }
+            ],
+            "variantUrl": "/art-supplies/painting-supplies/palettes-tools/paint-rollers---3-piece-set/p/63943",
+            "daysOnline": 4084,
+            "variant.price": 2.49,
+            "isNew": false,
+            "isInStock": true,
+            "assorted": false,
+            "color": "Black & White",
+            "product-unit": "each",
+            "type": "Sponges & Foam",
+            "onlineStatus": "ACTIVE",
+            "name": "Paint Rollers - 3 Piece Set",
+            "ormd": false,
+            "quantity": "3 Count",
+            "details": "<ul style=\"list-style-type: circle;\">\n<li>Smallest Size: 5.75\" x 1.5\"</li>\n<li>Largest Size: 7\" x 2.75\"</li>\n<li>Material: Foam &amp; Plastic</li>\n<li>Color: White &amp; Black</li>\n<li>Quantity: 3</li>\n</ul>",
+            "excludeFreeShipping": false,
+            "product-online-date": "2015-07-31T18:00:52.000Z",
+            "availability": "BOTH",
+            "brand": "Curate + Colour",
+            "color-family": "white",
+            "vendor-sku": "HL902",
+            "onlineDate": "2024-10-31",
+            "backInStockEligible": true,
+            "material": [
+              "Foam"
+            ],
+            "approvalStatus": true,
+            "yourPrice": false,
+            "productID": "8ad8506c-68ba-4d4b-b08f-520944685348",
+            "productKey": "UD9336-63943",
+            "lastModifiedAt": "2026-10-06T05:45:11.128Z",
+            "productName": "Paint Rollers - 3 Piece Set",
+            "pdpUrl": "/art-supplies/painting-supplies/palettes-tools/paint-rollers---3-piece-set/p/ud9336-63943",
+            "activeVariantCount": 1,
+            "product.isNew": false,
+            "product.isInStock": true,
+            "product.description": "<p>Paint Rollers are perfect for a host of arts and crafts applications including painting, applying glues and varnishes, antiquing and more. This set includes a small roller, a medium roller and a large roller to cover areas quickly with even application and no brush strokes. Roll them in any of your favorite acrylic paints to apply color anywhere you wish!</p>",
+            "product.daysOnline": 4084,
+            "categories": {
+              "lvl0": [
+                "Art Supplies"
+              ],
+              "lvl1": [
+                "Art Supplies > Painting Supplies"
+              ],
+              "lvl2": [
+                "Art Supplies > Painting Supplies > Palettes & Tools"
+              ]
+            },
+            "department": "Art Supplies",
+            "category": "Painting Supplies",
+            "subcategory": "Palettes & Tools",
+            "categoryKeys": [
+              "8",
+              "8-168",
+              "8-168-1308"
+            ],
+            "categoryNames": [
+              "Art Supplies",
+              "Painting Supplies",
+              "Palettes & Tools"
+            ],
+            "product.lowestOriginalPrice": 2.49,
+            "product.highestOriginalPrice": 2.49,
+            "product.lowestPrice": 2.49,
+            "product.highestPrice": 2.49,
+            "ratings.count": 2,
+            "ratings.average": 3,
+            "objectID": "63943"
+          },
+          {
+            "sku": "1933340",
+            "images": [
+              {
+                "url": "https://cdn.media.amplience.net/s/hobbylobby/1933340-80984645-IMGSET"
+              }
+            ],
+            "variantUrl": "/art-supplies/painting-supplies/palettes-tools/needle-tip-applicator-bottles/p/80984645",
+            "daysOnline": 2242,
+            "variant.price": 2.49,
+            "isNew": false,
+            "isInStock": true,
+            "assorted": false,
+            "product-unit": "each",
+            "type": "Bottles & Droppers",
+            "volume": "1 ounce",
+            "product-warnings": "<strong>Warning:</strong> CHOKING HAZARD : Small Parts. Not for children under 3 yrs.",
+            "onlineStatus": "ACTIVE",
+            "name": "Needle Tip Applicator Bottles",
+            "ormd": false,
+            "quantity": "2 Count",
+            "details": "<ul style=\"list-style-type: circle;\">\n<li>Dimensions: 4.88\" x 1.13\"</li>\n<li>Volume: 1 Fluid Ounce (30mL)</li>\n<li>Material: Plastic &amp; Metal</li>\n<li>Color: Clear &amp; Silver</li>\n<li>Care &amp; Safety: Adult Use Only</li>\n<li>Quantity: 2</li>\n</ul>",
+            "excludeFreeShipping": false,
+            "product-online-date": "2020-08-13T10:32:10.791Z",
+            "availability": "BOTH",
+            "brand": "Art-I-San",
+            "color-family": "clear",
+            "vendor-sku": "21181",
+            "onlineDate": "2024-12-03",
+            "backInStockEligible": true,
+            "material": [
+              "Plastic"
+            ],
+            "approvalStatus": true,
+            "yourPrice": false,
+            "productID": "28c07bfd-7759-43ba-8a71-0efd1efdf198",
+            "productKey": "PA4912-80984645",
+            "lastModifiedAt": "2026-07-29T21:28:13.098Z",
+            "productName": "Needle Tip Applicator Bottles",
+            "pdpUrl": "/art-supplies/painting-supplies/palettes-tools/needle-tip-applicator-bottles/p/pa4912-80984645",
+            "activeVariantCount": 1,
+            "product.isNew": false,
+            "product.isInStock": true,
+            "product.description": "<p>Add fine details with paint, stains, or glue using Needle Tip Applicator Bottles. These tiny bottles are made of plastic and feature frosted surfaces, screw-lids, skinny metal needles, and needle caps. They are great for precision and placement in your art projects!</p>",
+            "product.daysOnline": 2242,
+            "categories": {
+              "lvl0": [
+                "Art Supplies"
+              ],
+              "lvl1": [
+                "Art Supplies > Painting Supplies"
+              ],
+              "lvl2": [
+                "Art Supplies > Painting Supplies > Palettes & Tools"
+              ]
+            },
+            "department": "Art Supplies",
+            "category": "Painting Supplies",
+            "subcategory": "Palettes & Tools",
+            "categoryKeys": [
+              "8",
+              "8-168",
+              "8-168-1308"
+            ],
+            "categoryNames": [
+              "Art Supplies",
+              "Painting Supplies",
+              "Palettes & Tools"
+            ],
+            "product.lowestOriginalPrice": 2.49,
+            "product.highestOriginalPrice": 2.49,
+            "product.lowestPrice": 2.49,
+            "product.highestPrice": 2.49,
+            "ratings.count": 4,
+            "ratings.average": 2.5,
+            "objectID": "80984645"
+          },
+          {
+            "sku": "408724",
+            "images": [
+              {
+                "url": "https://cdn.media.amplience.net/s/hobbylobby/408724-10614-05202026-IMGSET"
+              }
+            ],
+            "variantUrl": "/art-supplies/painting-supplies/acrylic-painting/master-s-touch-acrylic-paint---6-piece-set/p/10614",
+            "daysOnline": 4294,
+            "variant.price": 17.99,
+            "isNew": false,
+            "isInStock": true,
+            "assorted": false,
+            "backInStockEligible": true,
+            "product-unit": "each",
+            "onlineStatus": "ACTIVE",
+            "name": "Master's Touch Acrylic Paint - 6 Piece Set",
+            "ormd": false,
+            "quantity": "6 Count",
+            "details": "<ul style=\"list-style-type: circle;\">\n<li>Opacity: Semi-Opaque &amp; Opaque</li>\n<li>Lightfastness: Fair &amp; Good Lightfastness</li>\n<li>Medium: Acrylic</li>\n<li>Volume: 4.1 Fluid Ounces (120mL)</li>\n<li>Quantity: 6</li>\n</ul>\n<p>&nbsp;</p>\n<p>Set Includes:</p>\n<ul style=\"list-style-type: circle;\">\n<li>PA05710 Titanium White</li>\n<li>PA05120 Yellow Medium</li>\n<li>PA05250 Crimson</li>\n<li>PA05340 Ultramarine</li>\n<li>PA05480 Phthalo Green</li>\n<li>PA05640 Permanent Black</li>\n</ul>",
+            "excludeFreeShipping": false,
+            "product-online-date": "2015-01-01T00:00:01.000Z",
+            "availability": "BOTH",
+            "color": "Assorted",
+            "medium": [
+              "Acrylic"
+            ],
+            "brand": "Master's Touch",
+            "color-family": "multi",
+            "vendor-sku": "A06120",
+            "approvalStatus": true,
+            "yourPrice": true,
+            "productID": "7f0b2a04-f8e0-433d-9c57-70ff405b13fb",
+            "productKey": "10614-TU0830",
+            "lastModifiedAt": "2026-07-30T16:02:20.738Z",
+            "productName": "Master's Touch Acrylic Paint - 6 Piece Set",
+            "pdpUrl": "/art-supplies/painting-supplies/acrylic-painting/master-s-touch-acrylic-paint---6-piece-set/p/10614-tu0830",
+            "activeVariantCount": 1,
+            "product.isNew": false,
+            "product.isInStock": true,
+            "product.description": "<p>Set your latest creation up for success by using this Master's Touch Acrylic Paint! This high-quality primary color paint set comes with six tubes of acrylics that are perfect for adding motion and volume to your project. The paints offer a great permanence that works well on traditional and non-traditional surfaces. Make your creative ideas come to life using this paint!</p>\n<p>&nbsp;</p>\n<p>*No discounts may be applied to \"your price\" or \"reduced\" items.</p>",
+            "product.daysOnline": 4294,
+            "categories": {
+              "lvl0": [
+                "Art Supplies"
+              ],
+              "lvl1": [
+                "Art Supplies > Painting Supplies"
+              ],
+              "lvl2": [
+                "Art Supplies > Painting Supplies > Acrylic Painting"
+              ]
+            },
+            "department": "Art Supplies",
+            "category": "Painting Supplies",
+            "subcategory": "Acrylic Painting",
+            "categoryKeys": [
+              "8",
+              "8-168",
+              "8-168-1309"
+            ],
+            "categoryNames": [
+              "Art Supplies",
+              "Painting Supplies",
+              "Acrylic Painting"
+            ],
+            "product.lowestOriginalPrice": 17.99,
+            "product.highestOriginalPrice": 17.99,
+            "product.lowestPrice": 17.99,
+            "product.highestPrice": 17.99,
+            "ratings.count": 0,
+            "ratings.average": 0,
+            "objectID": "10614"
+          },
+          {
+            "sku": "2242048",
+            "images": [
+              {
+                "url": "https://cdn.media.amplience.net/s/hobbylobby/2242048-81105411-IMGSET"
+              }
+            ],
+            "variantUrl": "/art-supplies/painting-supplies/acrylic-painting/master-s-touch-acrylic-flow-medium/p/81105411",
+            "daysOnline": 1383,
+            "variant.price": 7.49,
+            "sku.discountedPrice": 4.49,
+            "sku.discountName": "40% Off Master's Touch & Fine Touch",
+            "on_sale": true,
+            "isNew": false,
+            "isInStock": true,
+            "assorted": false,
+            "product-unit": "each",
+            "volume": "8 ounces",
+            "onlineStatus": "ACTIVE",
+            "name": "Master's Touch Acrylic Flow Medium",
+            "ormd": false,
+            "quantity": "1 Piece",
+            "details": "<ul style=\"list-style-type: circle;\">\n<li>Finish: Glossy</li>\n<li>Color: Clear</li>\n<li>Volume: 8 Fluid Ounces (236.6 mL)</li>\n<li>Care &amp; Safety: Non-Toxic</li>\n<li>Quantity: 1</li>\n</ul>",
+            "excludeFreeShipping": false,
+            "product-online-date": "2022-12-20T14:43:15.743Z",
+            "availability": "BOTH",
+            "brand": "Master's Touch",
+            "color-family": "clear",
+            "vendor-sku": "HL106-984",
+            "onlineDate": "2024-12-02",
+            "backInStockEligible": true,
+            "approvalStatus": true,
+            "yourPrice": false,
+            "productID": "0747f959-cfb6-4c84-9a33-c62c40953987",
+            "productKey": "CJ4912-81105411",
+            "lastModifiedAt": "2026-10-04T05:02:35.393Z",
+            "productName": "Master's Touch Acrylic Flow Medium",
+            "pdpUrl": "/art-supplies/painting-supplies/acrylic-painting/master-s-touch-acrylic-flow-medium/p/cj4912-81105411",
+            "activeVariantCount": 1,
+            "product.isNew": false,
+            "product.isInStock": true,
+            "product.discountNames": [
+              "40% Off Master's Touch & Fine Touch"
+            ],
+            "product.description": "<p>Give your acrylic paints a new consistency by adding this Master's Touch Acrylic Flow Medium. This medium is designed to thin acrylic paint to a more transparent consistency that's suitable for detail work, staining, and dry-brush work. Plus, this medium will help give your paint a glossy finish, so you'll have a shining piece of artwork to show off to family and friends!</p>",
+            "product.daysOnline": 1383,
+            "categories": {
+              "lvl0": [
+                "Art Supplies"
+              ],
+              "lvl1": [
+                "Art Supplies > Painting Supplies"
+              ],
+              "lvl2": [
+                "Art Supplies > Painting Supplies > Acrylic Painting"
+              ]
+            },
+            "department": "Art Supplies",
+            "category": "Painting Supplies",
+            "subcategory": "Acrylic Painting",
+            "categoryKeys": [
+              "8",
+              "8-168",
+              "8-168-1309"
+            ],
+            "categoryNames": [
+              "Art Supplies",
+              "Painting Supplies",
+              "Acrylic Painting"
+            ],
+            "product.lowestOriginalPrice": 7.49,
+            "product.highestOriginalPrice": 7.49,
+            "product.lowestPrice": 4.49,
+            "product.highestPrice": 7.49,
+            "product.lowestDiscountedPrice": 4.49,
+            "product.highestDiscountedPrice": 4.49,
+            "ratings.count": 3,
+            "ratings.average": 5,
+            "objectID": "81105411"
+          }
+        ],
+        "nbHits": 254,
+        "page": 0,
+        "nbPages": 22,
+        "hitsPerPage": 12,
+        "facets": {
+          "sku": {
+            "103515": 1,
+            "103747": 1,
+            "114504": 1,
+            "117010": 1,
+            "121020": 1,
+            "123174": 1,
+            "124099": 1,
+            "127134": 1,
+            "127209": 1,
+            "132001": 1,
+            "132019": 1,
+            "134569": 1,
+            "134585": 1,
+            "134593": 1,
+            "137422": 1,
+            "137596": 1,
+            "137612": 1,
+            "142513": 1,
+            "142521": 1,
+            "151290": 1,
+            "151639": 1,
+            "160200": 1,
+            "165340": 1,
+            "1002019": 1,
+            "1003755": 1,
+            "1003771": 1,
+            "1023274": 1,
+            "1023308": 1,
+            "1067628": 1,
+            "1067636": 1,
+            "1144088": 1,
+            "1260769": 1,
+            "1383538": 1,
+            "1386143": 1,
+            "1386150": 1,
+            "1395870": 1,
+            "1395888": 1,
+            "1395896": 1,
+            "1395904": 1,
+            "1395920": 1,
+            "1395938": 1,
+            "1395946": 1,
+            "1395961": 1,
+            "1395979": 1,
+            "1395987": 1,
+            "1395995": 1,
+            "1396001": 1,
+            "1396019": 1,
+            "1396027": 1,
+            "1396035": 1,
+            "1396480": 1,
+            "1396498": 1,
+            "1396506": 1,
+            "1396514": 1,
+            "1396522": 1,
+            "1396530": 1,
+            "1442854": 1,
+            "1442862": 1,
+            "1442870": 1,
+            "1458488": 1,
+            "1458504": 1,
+            "1494590": 1,
+            "1552793": 1,
+            "1552801": 1,
+            "1552819": 1,
+            "1552827": 1,
+            "1576321": 1,
+            "1603059": 1,
+            "1603067": 1,
+            "1603075": 1,
+            "1603083": 1,
+            "1603091": 1,
+            "1603109": 1,
+            "1603117": 1,
+            "1603125": 1,
+            "1603133": 1,
+            "1603141": 1,
+            "1603158": 1,
+            "1603166": 1,
+            "1603174": 1,
+            "1603182": 1,
+            "1603190": 1,
+            "1603208": 1,
+            "1603216": 1,
+            "1603224": 1,
+            "1603240": 1,
+            "1603257": 1,
+            "1603265": 1,
+            "1603273": 1,
+            "1603281": 1,
+            "1603299": 1,
+            "1621358": 1,
+            "1621366": 1,
+            "1621374": 1,
+            "1621382": 1,
+            "1621390": 1,
+            "1635556": 1,
+            "1635630": 1,
+            "1655794": 1,
+            "1655810": 1
+          },
+          "size": {
+            "Large": 3,
+            "4\"": 2,
+            "Medium": 2,
+            "1\"": 1,
+            "11\" x 14\"": 1,
+            "Small": 1
+          },
+          "type": {
+            "Palettes": 31,
+            "Palette Knives": 21,
+            "Sponges & Foam": 21,
+            "Bottles & Droppers": 17,
+            "Varnish": 9
+          },
+          "brand": {
+            "Master's Touch": 336,
+            "Curate + Colour": 55,
+            "Ironlak": 50,
+            "Brea Reese": 27,
+            "Liquitex": 17,
+            "Krylon": 11,
+            "Jacquard": 10,
+            "Winsor & Newton": 10,
+            "Speedball": 9,
+            "Royal & Langnickel": 8,
+            "The Fine Touch": 8,
+            "Gamblin Artists Colors Co.": 6,
+            "Hobby Lobby": 6,
+            "Art-I-San": 5,
+            "Mona Lisa": 5,
+            "General Pencil": 3,
+            "Jack Richeson": 3,
+            "Pebeo": 2,
+            "Sakura": 2,
+            "Weber": 2,
+            "Amodex": 1,
+            "Bristle Magic": 1,
+            "DecoArt": 1,
+            "Fineline Applicators": 1,
+            "Gemini Industries, Inc.": 1,
+            "Grafix": 1,
+            "Grumbacher": 1,
+            "Magic Cover": 1,
+            "Royal": 1,
+            "Yasutomo": 1
+          },
+          "color": {
+            "White": 19,
+            "Clear": 11,
+            "Gloss": 7,
+            "Gold": 7,
+            "Violet": 7,
+            "Crimson": 6,
+            "Pink": 6,
+            "Raw Umber": 6,
+            "Silver": 6,
+            "Black": 5,
+            "Grass Green": 5,
+            "Lake Blue": 5,
+            "Matte": 5,
+            "Multi Colors": 5,
+            "Ocean Green": 5,
+            "Orange": 5,
+            "Raw Sienna": 5,
+            "Red": 5,
+            "Titanium White": 5,
+            "Blue": 4,
+            "Burnt Sienna": 4,
+            "Phthalo Blue": 4,
+            "Prussian Blue": 4,
+            "Turquoise": 4,
+            "Ultramarine": 4,
+            "Viridian": 4,
+            "Warm Grey": 4,
+            "Yellow Ochre": 4,
+            "Assorted": 3,
+            "Assorted Colors": 3,
+            "Burnt Umber": 3,
+            "Cadmium Red Deep Hue": 3,
+            "Cadmium Yellow Deep Hue": 3,
+            "Cerulean Blue Hue": 3,
+            "Gray": 3,
+            "Green Grey": 3,
+            "Hooker's Green": 3,
+            "Lemon Yellow": 3,
+            "Magenta": 3,
+            "Mars Black": 3,
+            "Medium Magenta": 3,
+            "Milky White": 3,
+            "Neutral Grey": 3,
+            "Payne's Grey": 3,
+            "Permanent Black": 3,
+            "Primary": 3,
+            "Primary Red": 3,
+            "Primary Yellow": 3,
+            "Sap Green": 3,
+            "Satin": 3,
+            "Sennelier Orange": 3,
+            "Silver & Brown": 3,
+            "Yellow": 3,
+            "Yellow & Black": 3,
+            "Yellow Medium": 3,
+            "Blue Grey": 2,
+            "Brown": 2,
+            "Cadmium Red Hue": 2,
+            "Carbon Black": 2,
+            "Cashew": 2,
+            "Chrome Oxide Green": 2,
+            "Clear & Black": 2,
+            "Cobalt Blue": 2,
+            "Cobalt Blue Hue": 2,
+            "Emerald Green": 2,
+            "Fluorescent Orange": 2,
+            "Fluorescent Pink": 2,
+            "Honey": 2,
+            "Iridescent Bright Gold": 2,
+            "Ivory Black": 2,
+            "Lamp Black": 2,
+            "Light Magenta": 2,
+            "Light Purple": 2,
+            "Metallic": 2,
+            "Mixing White": 2,
+            "Naples Yellow": 2,
+            "Natural": 2,
+            "Opal": 2,
+            "Pearlized White": 2,
+            "Permanent Red": 2,
+            "Phthalocyanine Blue": 2,
+            "Primary Blue": 2,
+            "Purple": 2,
+            "Red & Silver": 2,
+            "Sennelier Red": 2,
+            "Sky Blue": 2,
+            "Turquoise Light": 2,
+            "Ultramarine Blue": 2,
+            "Unbleached Titanium": 2,
+            "Vermilion": 2,
+            "Yellow Deep": 2,
+            "Yellow Green": 2,
+            "Yellow Med": 2,
+            "552 Bright Gold": 1,
+            "556 Halo Blue Gold": 1,
+            "563 Metallic Silver": 1,
+            "568 Pearlescent White": 1,
+            "Alizarin Crimson Hue": 1,
+            "Almond Cream": 1,
+            "Aspen": 1
+          },
+          "theme": {
+            "Arts & Crafts": 1,
+            "Flowers": 1
+          },
+          "length": {
+            "8\"": 2,
+            "6 1/2\"": 1,
+            "7 1/2\"": 1
+          },
+          "medium": {
+            "Acrylic": 240,
+            "Watercolor": 57,
+            "Tempera": 33,
+            "Painting": 4,
+            "Oil": 3,
+            "Ink & Pen": 2,
+            "Mixed Media": 1
+          },
+          "volume": {
+            "4.1 ounces": 98,
+            "11 ounces": 56,
+            "2.02 Ounces": 56,
+            "16 ounces": 36,
+            "16.9 Ounces": 25,
+            ".68 ounces": 24,
+            "8 ounces": 22,
+            "8.45 Ounces": 18,
+            "8.5 ounces": 18,
+            "4 Ounces": 11,
+            "3.38 Ounces": 10,
+            "2.5 ounces": 9,
+            "32 Ounces": 5,
+            ".5 ounce": 4,
+            "4.2 ounces": 3,
+            "1 ounce": 2,
+            "33.8 Ounces": 2,
+            "4.5 ounces": 2,
+            ".57 ounces": 1,
+            ".7 ounce": 1,
+            ".75 ounce": 1,
+            "1.69 Ounces": 1,
+            "14 Ounces": 1,
+            "2 Ounces": 1,
+            "2.7 ounces": 1,
+            "400 mL": 1,
+            "45mL": 1,
+            "5.07 Ounces": 1,
+            "6.76 Ounces": 1,
+            "8.12 Ounces": 1,
+            "8.4 Ounces": 1
+          },
+          "bristle": {
+            "Foam": 5
+          },
+          "on_sale": {
+            "true": 311
+          },
+          "category": {
+            "Painting Supplies": 667
+          },
+          "keywords": {
+            "DIY Gifts - Mugs & Tumblers": 2
+          },
+          "material": {
+            "Plastic": 112,
+            "Acrylic": 48,
+            "Foam": 11,
+            "Metal": 8,
+            "Natural": 6,
+            "Paper": 5,
+            "Wood & Manufactured Wood": 4,
+            "Resin": 3,
+            "Fabric": 2,
+            "Glass": 1,
+            "Porcelain": 1,
+            "Silicone": 1
+          },
+          "isInStock": {
+            "true": 665,
+            "false": 2
+          },
+          "sale-type": {
+            "Clearance 40%": 1
+          },
+          "yourPrice": {
+            "false": 576,
+            "true": 91
+          },
+          "department": {
+            "Art Supplies": 667
+          },
+          "dimensions": {
+            "12\" x 16\"": 2,
+            "8\" x 10\"": 2,
+            "9\" x 12\"": 2,
+            "11\" x 14\"": 1,
+            "4\" x 6\"": 1,
+            "5\" x 7\"": 1
+          },
+          "brush-shape": {
+            "Assorted": 1,
+            "Flat": 1
+          },
+          "productName": {
+            "Master's Touch Thick Body Acrylic Paint": 66,
+            "Master's Touch Acrylic Paint": 58,
+            "Master's Touch By Sennelier Satin Acrylic Paint": 57,
+            "Master's Touch By Sennelier Watercolor Paint": 50,
+            "IronLak Gloss Acrylic Spray Paint": 43,
+            "Master's Touch Liquid Acrylic Paint": 22,
+            "Curate + Colour Tempera Paint": 19,
+            "Alcohol Ink": 17,
+            "Master's Touch Pearlized Acrylic Paint": 10,
+            "Master's Touch Pearlized Pre-Mixed Pouring Acrylic Paint": 8,
+            "Master's Touch Pre-Mixed Pouring Acrylic Paint": 6,
+            "Pinata Color Alcohol Ink": 5,
+            "Sparkle Tempera Paint": 5,
+            "Curate + Colour Fluorescent Tempera Paint": 4,
+            "Curate + Colour Metallic Tempera Paint": 4,
+            "Curate + Colour Tempera Paints": 4,
+            "Jacquard Lumiere Acrylic Paint": 4,
+            "Lak Acrylic Spray Paint": 4,
+            "Master's Touch Iridescent Pre-Mixed Pouring Acrylic Paint": 4,
+            "Speedball Block Printing Ink": 4,
+            "Squeeze Bottles": 4,
+            "Krylon Spray Finish": 3,
+            "Master's Touch By Sennelier Acrylic Gesso": 3,
+            "Master's Touch Pre-Mixed Pouring Acrylic Set": 3,
+            "Metallic Alcohol Ink": 3,
+            "Needle Tip Applicator Bottles": 3,
+            "Oval Acrylic Paint Palette": 3,
+            "Shimmer Alcohol Ink": 3,
+            "Unmounted Linoleum": 3,
+            "Artist Natural & Synthetic Sponges": 2,
+            "Coarse Sponge Dabber": 2,
+            "Curate + Colour Disposable Black Gloves": 2,
+            "Dropper Bottles": 2,
+            "Epoxy Resin": 2,
+            "Fine Sponge Dabber": 2,
+            "Foam Brushes - 1\"": 2,
+            "Foil Flakes": 2,
+            "Gamblin Gamsol": 2,
+            "Gamblin Gamvar Picture Varnish": 2,
+            "Ironlak Fluid Acrylic Paint - 6 Piece Set": 2,
+            "Koi Watercolor Field Sketch Box - 24 Piece Set": 2,
+            "Krylon Low-Odor Clear Finish": 2,
+            "Krylon UV-Resistant Acrylic Coating": 2,
+            "Liquitex Basics Acrylic Fluid Medium": 2,
+            "Liquitex Basics Varnish": 2,
+            "Liquitex Professional Glazing Medium": 2,
+            "Liquitex Varnish": 2,
+            "Master's Touch Acrylic Paint - 24 Piece Set": 2,
+            "Master's Touch By Sennelier Watercolor Paints - 5 Piece Set": 2,
+            "Master's Touch Glitter Medium": 2,
+            "Master's Touch Gloss Gel Acrylic Medium": 2,
+            "Master's Touch Matte Gel Acrylic Medium": 2,
+            "Master's Touch Metallic Pre-Mixed Pouring Acrylic Paint": 2,
+            "Master's Touch Modeling Paste": 2,
+            "Master's Touch Palette Paper Pad": 2,
+            "Mona Lisa Odorless Paint Thinner": 2,
+            "Odorless Turpenoid": 2,
+            "Paint Palettes": 2,
+            "Paint Pipettes": 2,
+            "Pink Soap Brush Cleaner": 2,
+            "Printmaking Paper Pad": 2,
+            "Rectangular Paint Palettes": 2,
+            "Watercolor Palette": 2,
+            "Winsor & Newton Liquin Original Medium": 2,
+            "Wood Paint Palette": 2,
+            "Acrylic Paint - 12 Piece Set": 1,
+            "Acrylic Paint - 48 Piece Set": 1,
+            "Acrylic Pouring Strainers": 1,
+            "Acrylic Pouring Top Coat": 1,
+            "Airtight Brush Washer": 1,
+            "Alcohol Ink Blending Solution": 1,
+            "Amodex Ink & Stain Remover": 1,
+            "Angled Palette Knife - 2.75\"": 1,
+            "Angled Palette Knife - 3.88\"": 1,
+            "Artist Apron": 1,
+            "Artist Caribbean Sponges": 1,
+            "Artist Cups": 1,
+            "Artist Natural & Silk Sponges": 1,
+            "Artist Paint Palette With Lid": 1,
+            "Artist Sea Silk Sponges": 1,
+            "Assorted Colors Acrylic Paint Pots - 25 Piece Set": 1,
+            "Assorted Nozzles": 1,
+            "Basics Modeling Paste": 1,
+            "Block Printing Starter Kit": 1,
+            "Bristle Magic Paint Brush Cleaner & Reconditioner": 1,
+            "Brush Cleaning Tank": 1,
+            "Brush Shaper": 1,
+            "Brush Washer": 1,
+            "Coarse Texture Medium": 1,
+            "Cotman Sketchers' Watercolor Pocket Box - 14 Piece Set": 1,
+            "Cups": 1,
+            "Curate + Colour Acrylic Paint Pots - 13 Piece Set": 1,
+            "Curate + Colour Art Squeegee": 1,
+            "Curate + Colour Brush Washer": 1,
+            "Curate + Colour Color Lift Sponges": 1,
+            "Curate + Colour Deluxe Brush Cleaner": 1,
+            "Curate + Colour Lino Cutter & Tips": 1,
+            "Curate + Colour Paint-Saver Keys": 1,
+            "Curate + Colour Palette & Removeable Cup": 1,
+            "Curate + Colour Pouring Medium": 1
+          },
+          "subcategory": {
+            "Acrylic Painting": 339,
+            "Palettes & Tools": 122,
+            "Watercolor Painting": 83,
+            "Tempera Paints": 38,
+            "Specialty Paints": 33,
+            "Cleaners": 25,
+            "Block Printing": 15,
+            "Oil Painting": 12
+          },
+          "availability": {
+            "BOTH": 667
+          },
+          "color-family": {
+            "white": 77,
+            "clear": 68,
+            "blue": 67,
+            "green": 51,
+            "brown": 50,
+            "red": 45,
+            "yellow": 44,
+            "multi": 39,
+            "black": 30,
+            "pink": 29,
+            "purple": 23,
+            "bluegreen": 20,
+            "orange": 20,
+            "gold": 18,
+            "silver": 17,
+            "gray": 16,
+            "beige": 12,
+            "bronze": 2,
+            "copper": 1
+          },
+          "attribute-tag": {
+            "DIY Gifts - Mugs & Tumblers": 8,
+            "Gifts for Kids": 1
+          },
+          "categoryNames": {
+            "Art Supplies": 667,
+            "Painting Supplies": 667,
+            "Acrylic Painting": 339,
+            "Palettes & Tools": 122,
+            "Watercolor Painting": 83,
+            "Tempera Paints": 38,
+            "Specialty Paints": 33,
+            "Cleaners": 25,
+            "Block Printing": 15,
+            "Oil Painting": 12
+          },
+          "categories.lvl0": {
+            "Art Supplies": 667
+          },
+          "categories.lvl1": {
+            "Art Supplies > Painting Supplies": 667
+          },
+          "categories.lvl2": {
+            "Art Supplies > Painting Supplies > Acrylic Painting": 339,
+            "Art Supplies > Painting Supplies > Palettes & Tools": 122,
+            "Art Supplies > Painting Supplies > Watercolor Painting": 83,
+            "Art Supplies > Painting Supplies > Tempera Paints": 38,
+            "Art Supplies > Painting Supplies > Specialty Paints": 33,
+            "Art Supplies > Painting Supplies > Cleaners": 25,
+            "Art Supplies > Painting Supplies > Block Printing": 15,
+            "Art Supplies > Painting Supplies > Oil Painting": 12
+          },
+          "ratings.average": {
+            "0": 11,
+            "1": 4,
+            "2": 3,
+            "3": 11,
+            "4": 86,
+            "5": 87,
+            "-1": 141,
+            "4.6": 62,
+            "4.375": 51,
+            "4.1034": 43,
+            "4.3333": 24,
+            "4.16": 22,
+            "4.4286": 17,
+            "4.7143": 9,
+            "4.3846": 6,
+            "4.5": 6,
+            "4.5556": 6,
+            "4.6667": 6,
+            "2.5": 5,
+            "3.5": 5,
+            "3.6667": 5,
+            "3.75": 5,
+            "3.3333": 4,
+            "4.75": 4,
+            "4.8": 4,
+            "4.2667": 3,
+            "1.5": 2,
+            "2.6667": 2,
+            "2.9167": 2,
+            "3.8": 2,
+            "4.1579": 2,
+            "4.4": 2,
+            "4.5161": 2,
+            "1.8": 1,
+            "2.8333": 1,
+            "2.8889": 1,
+            "2.9615": 1,
+            "3.0435": 1,
+            "3.2": 1,
+            "3.4286": 1,
+            "3.5556": 1,
+            "3.5833": 1,
+            "3.6": 1,
+            "3.8571": 1,
+            "3.9": 1,
+            "4.0455": 1,
+            "4.1667": 1,
+            "4.2": 1,
+            "4.25": 1,
+            "4.2857": 1,
+            "4.4444": 1,
+            "4.625": 1,
+            "4.6842": 1,
+            "4.7692": 1,
+            "4.8333": 1,
+            "4.9091": 1
+          },
+          "product.isInStock": {
+            "true": 665,
+            "false": 2
+          },
+          "excludeFreeShipping": {
+            "false": 667
+          }
+        },
+        "facets_stats": {
+          "sku": {
+            "min": 87445,
+            "max": 2714335,
+            "avg": 1656516,
+            "sum": 1104896812
+          },
+          "ratings.average": {
+            "min": -1,
+            "max": 5,
+            "avg": 3.07963,
+            "sum": 2054.11
+          }
+        },
+        "exhaustiveFacetsCount": false,
+        "exhaustiveNbHits": true,
+        "exhaustiveTypo": true,
+        "exhaustive": {
+          "facetsCount": false,
+          "nbHits": true,
+          "typo": true
+        },
+        "query": "",
+        "params": "clickAnalytics=true&distinct=true&facets=%5B%22*%22%5D&filters=categoryNames%3A%22Art%20Supplies%22%20AND%20categoryNames%3A%22Painting%20Supplies%22&hitsPerPage=12&userToken=&analyticsTags=%5B%22ext-alg%23auto-filter%3Aenabled%22%5D&optionalFilters=%5B%22availability%3A-OUT_OF_SEASON%3Cscore%3D100%3E%22%5D",
+        "index": "HLNextGenEcommIndex_prd",
+        "queryID": "06af793690c05e72362ad577784e649b",
+        "renderingContent": {
+          "facetOrdering": {
+            "facets": {
+              "order": [
+                "product.isInStock",
+                "on_sale",
+                "categoryNames",
+                "department",
+                "category",
+                "subcategory",
+                "color-family",
+                "brand",
+                "color",
+                "material",
+                "dimensions",
+                "size",
+                "ribbon-type",
+                "yarn-weight",
+                "fiber",
+                "collection",
+                "mirror-shape",
+                "mirror-type",
+                "lamp-height",
+                "lamp-type",
+                "party-themes",
+                "candle-type",
+                "candle-holder-type",
+                "pattern",
+                "scentFamily",
+                "scent",
+                "tree-height",
+                "tree-shape",
+                "tree-usage",
+                "tree-type",
+                "light-type",
+                "light-color",
+                "light-setting",
+                "ornament-set-size",
+                "ornament-pattern",
+                "ornament-size",
+                "stand-type",
+                "ribbon-width",
+                "subject",
+                "style",
+                "room",
+                "fibercontent"
+              ]
+            },
+            "values": {
+              "brand": {
+                "sortRemainingBy": "count"
+              },
+              "candle-holder-type": {
+                "sortRemainingBy": "count"
+              },
+              "candle-type": {
+                "order": [
+                  "Container",
+                  "Floating",
+                  "Pillar",
+                  "Shaped",
+                  "Taper",
+                  "Tea Light",
+                  "Votive"
+                ],
+                "sortRemainingBy": "count"
+              },
+              "category": {
+                "sortRemainingBy": "count"
+              },
+              "categoryNames": {
+                "sortRemainingBy": "count"
+              },
+              "collection": {
+                "sortRemainingBy": "count"
+              },
+              "color": {
+                "sortRemainingBy": "count"
+              },
+              "color-family": {
+                "sortRemainingBy": "count"
+              },
+              "department": {
+                "sortRemainingBy": "count"
+              },
+              "dimensions": {
+                "sortRemainingBy": "alpha"
+              },
+              "fiber": {
+                "sortRemainingBy": "alpha"
+              },
+              "fibercontent": {
+                "sortRemainingBy": "count"
+              },
+              "lamp-height": {
+                "sortRemainingBy": "count"
+              },
+              "lamp-type": {
+                "sortRemainingBy": "count"
+              },
+              "light-color": {
+                "sortRemainingBy": "count"
+              },
+              "light-setting": {
+                "sortRemainingBy": "count"
+              },
+              "light-type": {
+                "sortRemainingBy": "count"
+              },
+              "material": {
+                "sortRemainingBy": "count"
+              },
+              "mirror-shape": {
+                "sortRemainingBy": "count"
+              },
+              "mirror-type": {
+                "sortRemainingBy": "count"
+              },
+              "on_sale": {
+                "sortRemainingBy": "count"
+              },
+              "ornament-pattern": {
+                "sortRemainingBy": "count"
+              },
+              "ornament-set-size": {
+                "sortRemainingBy": "count"
+              },
+              "ornament-size": {
+                "sortRemainingBy": "count"
+              },
+              "party-themes": {
+                "sortRemainingBy": "count"
+              },
+              "pattern": {
+                "sortRemainingBy": "count"
+              },
+              "product.isInStock": {
+                "sortRemainingBy": "count"
+              },
+              "ribbon-type": {
+                "sortRemainingBy": "count"
+              },
+              "ribbon-width": {
+                "sortRemainingBy": "count"
+              },
+              "room": {
+                "sortRemainingBy": "count"
+              },
+              "scent": {
+                "sortRemainingBy": "count"
+              },
+              "scentFamily": {
+                "sortRemainingBy": "count"
+              },
+              "size": {
+                "sortRemainingBy": "alpha"
+              },
+              "stand-type": {
+                "sortRemainingBy": "count"
+              },
+              "style": {
+                "sortRemainingBy": "count"
+              },
+              "subcategory": {
+                "sortRemainingBy": "count"
+              },
+              "subject": {
+                "sortRemainingBy": "count"
+              },
+              "tree-height": {
+                "sortRemainingBy": "alpha"
+              },
+              "tree-shape": {
+                "sortRemainingBy": "count"
+              },
+              "tree-type": {
+                "sortRemainingBy": "count"
+              },
+              "tree-usage": {
+                "sortRemainingBy": "count"
+              },
+              "yarn-weight": {
+                "order": [
+                  "3 - Light",
+                  "4 - Medium",
+                  "5 - Bulky",
+                  "6 - Super Bulky",
+                  "7 - Jumbo"
+                ],
+                "sortRemainingBy": "count"
+              }
+            }
+          }
+        },
+        "extensions": {
+          "queryCategorization": {}
+        },
+        "processingTimeMS": 10,
+        "processingTimingsMS": {
+          "_request": {
+            "roundTrip": 59
+          },
+          "afterFetch": {
+            "total": 1
+          },
+          "extensions": 1,
+          "rulesProcessing": {
+            "drr": 3,
+            "indexRules": 3,
+            "total": 6
+          },
+          "total": 10
+        },
+        "serverTimeMS": 10
+      }
+    ],
+    "requestParams": [
+      {
+        "clickAnalytics": true,
+        "distinct": true,
+        "facets": [
+          "*"
+        ],
+        "filters": "categoryNames:\"Art Supplies\" AND categoryNames:\"Painting Supplies\"",
+        "hitsPerPage": 12,
+        "userToken": ""
+      }
+    ]
+  }
+}
