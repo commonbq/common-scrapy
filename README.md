@@ -115,6 +115,7 @@ Working spiders running daily in production:
 | [`tripcom_listing`](#tripcom_listing) | Experimental | bootstrap | ScrapeOps proxy | Trip.com hotels from the server-provided `City` template-component state; no direct HTML-card or JSON-LD extraction. | 9 (one city page) | 20 popular hotel destinations | `{"category":"bangkok","title":"NASA BANGKOK - Airport Rail Link Ramkhamhang","price":15,"currency":"USD","source":"tripcom_city_component_bootstrap"...}` |
 | [`hostelworld_listing`](#hostelworld_listing) | Active | api | none detected; API must be direct so proxy does not rewrite `Accept` | Hostelworld properties from the first-party Apigee city-properties API only; no HTML or JSON-LD fallback. | 29 (New York, one page) | 20 popular global cities; 2,838 city URLs available from the sitemap index | `{"category":"new-york","item_id":"1850","name":"HI New York City Hostel","source":"hostelworld_city_properties_api"...}` |
 | [`dell_listing`](#dell_listing) | Experimental | bootstrap | ScrapeOps proxy | Dell US listings from the authoritative `data-product-detail-info` Product Stack bootstrap; no product-card or JSON-LD fallback. | Live smoke tested below | 18 stable product/deal categories | `{"item_id":"dellplus16laptopdb16250","title":"Dell 16 Plus Laptop","price":1559.99,"currency":"USD","source":"dell_product_stack_bootstrap"...}` |
+| [`dollargeneral_listing`](#dollargeneral_listing) | Active | api | ScrapeOps proxy (`keep_headers=true`) | Dollar General category listings from the first-party Omni v5 product-search API; no HTML-card or JSON-LD fallback. | 24 per API page | 20 high-coverage departments | `{"item_id":"37000853794","title":"Crest Plus Scope Whitening Toothpaste...","price":8.25,"currency":"USD","source":"dollargeneral_omni_search_api"...}` |
 | [`agoda_listing`](#agoda_listing) | Experimental | api | proxy required | Agoda curated destination accommodations from the first-party Cronos geo API. | 30 (Bali, one API response) | 20 popular cities from the homepage destination payload | `{"category":"bali","item_id":"489045","title":"RIMBA by AYANA Bali","review_score":9.1,"star_rating":5.0,"source":"agoda_cronos_geo_api","timestamp":"2026-10-06 10:30:00"...}` |
 | [`adorama_listing`](#adorama_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | DataDome | Adorama category listings from server-rendered Next.js hydration state. | 24 (one page; 48 across 2 pages) | 1,079 crawlable categories across 11 departments from `adorama_categories.py` | `{"category":"cameras","item_id":"KKRK0603A","title":"Kodak Charmera Millenium Edition...","price":54.94,"currency":"USD"...}` |
 | [`amazon_listing`](#amazon_listing-category) | Active | html | none detected | Amazon category listing spider (category shortcuts). | 22 (ok) | electronics, fashion, beauty, home-kitchen, toys-games, sports-outdoors, grocery, books | `{"asin":"B0DKDTBBF7","title":"2 Packs Electric Candle Lighters, Windproof Flameless USB Rechargeable Plasma Arc Long Lighter for Grill Fi...` |
@@ -330,6 +331,26 @@ scrapy crawl dell_listing -a category=view-all-laptops -a max_pages=2 \
 The ordered `FEED_EXPORT_FIELDS` contract covers identifiers, title, URLs,
 pricing, ratings, badges, pagination context, source metadata, the raw API
 record, and timestamp.
+
+### dollargeneral_listing
+
+`dollargeneral_listing` covers 20 broad Dollar General departments. It obtains
+the storefront's anonymous guest tokens from `/bin/dg/user`, then uses the
+first-party Omni v5 product-search API as its only product-data direction. The
+API supplies identifiers, prices, inventory, fulfilment flags, ratings, facets,
+and pagination metadata; rendered product cards and JSON-LD are not parsed.
+
+```bash
+scrapy crawl dollargeneral_listing -a category=on-sale -a max_pages=2 \
+  -s HTTPCACHE_ENABLED=False -O dollargeneral.jsonl
+```
+
+The API is store-aware and uses the guest session's automatically selected US
+store. Its ordered `FEED_EXPORT_FIELDS` contract includes 36 fields covering
+category context, product identity, media, pricing, inventory, fulfilment,
+reviews, pagination, provenance, the raw API record, and timestamp. The API
+request enables ScrapeOps `keep_headers=true` so DG's anonymous session headers
+reach the Omni host unchanged.
 
 ### redfin_listing
 
