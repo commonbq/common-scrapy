@@ -1,0 +1,24 @@
+{
+ "id": "528",
+ "repositoryId": "528",
+ "displayName": "Dinnerware",
+ "route": "/kitchen-dining/dinnerware",
+ "dimensionId": "4080624943",
+ "active": true,
+ "categoryPaths": [
+  "/Storefront Navigation/Category/Department/Kitchen & Dining/Dinnerware",
+  "/Storefront Navigation/Category/Department/Kitchen & Dining/Dinnerware"
+ ],
+ "categoryIdPaths": [
+  "rootCategory>category>department>526>528",
+  "cat300001>category>department>526>528"
+ ],
+ "childCategories": [
+  "1530",
+  "2515",
+  "1531",
+  "1218",
+  "531",
+  "916"
+ ]
+}

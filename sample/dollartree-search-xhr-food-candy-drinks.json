@@ -1,0 +1,197 @@
+{
+ "_comment": "Sample of the OCC guided-search XHR response for the first top category (Food, Candy & Drinks).",
+ "request": "GET https://www.dollartree.com/ccstoreui/v1/search?N=477714525&Nrpp=6&No=0",
+ "requestHeaders": {
+  "X-CCProfileType": "storefrontUI",
+  "Accept": "application/json"
+ },
+ "response": {
+  "@type": "GuidedSearchService",
+  "resultsList": {
+   "totalNumRecs": 2146,
+   "firstRecNum": 1,
+   "lastRecNum": 6,
+   "recsPerPage": 6,
+   "pagingActionTemplate": {
+    "contentPath": "/guidedsearch",
+    "@class": "com.endeca.infront.cartridge.model.NavigationAction",
+    "navigationState": "?N=477714525&No=%7Boffset%7D&Nrpp=%7BrecordsPerPage%7D",
+    "siteRootPath": "/pages/Default/services",
+    "siteState": {
+     "validSite": false,
+     "contentPath": null,
+     "@class": "com.endeca.infront.site.model.SiteState",
+     "siteDisplayName": null,
+     "matchedUrlPattern": null,
+     "siteDefinition": null,
+     "siteId": "@error:siteNotFound",
+     "properties": {}
+    },
+    "link": "?N=477714525&No=%7Boffset%7D&Nrpp=%7BrecordsPerPage%7D",
+    "label": null
+   },
+   "records": [
+    {
+     "product.id": "354662",
+     "product.displayName": "Lil' Dutch Maid Duplex Cr\u00e8me Cookies.",
+     "product.route": "/lil-dutch-maid-duplex-crme-cookies/354662",
+     "sku.activePrice": "1.250000",
+     "product.primaryImageAltText": "Lil Dutch Maid Duplex Cr\u00e8me Cookies, 16-oz.",
+     "product.primaryFullImageURL": "/ccstore/v1/images/?source=/file/v4476752558428568044/products/354662.jpg",
+     "product.category": "Cookies & Snack Cakes"
+    },
+    {
+     "product.id": "137826",
+     "product.displayName": "M&M's Milk Chocolates",
+     "product.route": "/mms-milk-chocolate-candies-48-pc-pack/137826",
+     "sku.activePrice": "1.500000",
+     "product.primaryImageAltText": "M&M's Milk Chocolates",
+     "product.primaryFullImageURL": "/ccstore/v1/images/?source=/file/v3329572858227088294/products/137826.jpg",
+     "product.category": "Chocolate Candy"
+    },
+    {
+     "product.id": "132981",
+     "product.displayName": "Nissin Top Ramen Beef-Flavored Noodle Soup, 5-ct. Packs",
+     "product.route": "/nissin-top-ramen-beef-flavored-oodles-of-noodles-5ct-packs/132981",
+     "sku.activePrice": "1.500000",
+     "product.primaryImageAltText": "Nissin Top Ramen Beef-Flavored Noodle Soup, 5-ct. Packs",
+     "product.primaryFullImageURL": "/ccstore/v1/images/?source=/file/v4684791016124932913/products/132981.jpg",
+     "product.category": "Food & Snacks"
+    }
+   ]
+  },
+  "breadcrumbs": {
+   "_auditInfo": {
+    "resourcePath": "/pages/Default/services/guidedsearch",
+    "innerPath": "breadcrumbs"
+   },
+   "rangeFilterCrumbs": [],
+   "searchCrumbs": [],
+   "geoFilterCrumb": null,
+   "@type": "Breadcrumbs",
+   "removeAllAction": {
+    "contentPath": "/guidedsearch",
+    "@class": "com.endeca.infront.cartridge.model.NavigationAction",
+    "navigationState": "",
+    "siteRootPath": "/pages/Default/services",
+    "siteState": {
+     "validSite": false,
+     "contentPath": null,
+     "@class": "com.endeca.infront.site.model.SiteState",
+     "siteDisplayName": null,
+     "matchedUrlPattern": null,
+     "siteDefinition": null,
+     "siteId": "@error:siteNotFound",
+     "properties": {}
+    },
+    "link": "",
+    "label": null
+   },
+   "refinementCrumbs": [
+    {
+     "removeAction": {
+      "contentPath": "/guidedsearch",
+      "@class": "com.endeca.infront.cartridge.model.NavigationAction",
+      "navigationState": "?Nrpp=6",
+      "siteRootPath": "/pages/Default/services",
+      "siteState": {
+       "validSite": false,
+       "contentPath": null,
+       "@class": "com.endeca.infront.site.model.SiteState",
+       "siteDisplayName": null,
+       "matchedUrlPattern": null,
+       "siteDefinition": null,
+       "siteId": "@error:siteNotFound",
+       "properties": {}
+      },
+      "link": "?Nrpp=6",
+      "label": null
+     },
+     "@class": "com.endeca.infront.cartridge.model.RefinementBreadcrumb",
+     "displayName": "Category",
+     "count": 2146,
+     "label": "Food, Candy & Drinks",
+     "ancestors": [
+      {
+       "contentPath": "/guidedsearch",
+       "@class": "com.endeca.infront.cartridge.model.Ancestor",
+       "navigationState": "?N=78784723&Nrpp=6",
+       "siteRootPath": "/pages/Default/services",
+       "siteState": {
+        "validSite": false,
+        "contentPath": null,
+        "@class": "com.endeca.infront.site.model.SiteState",
+        "siteDisplayName": null,
+        "matchedUrlPattern": null,
+        "siteDefinition": null,
+        "siteId": "@error:siteNotFound",
+        "properties": {}
+       },
+       "link": "?N=78784723&Nrpp=6",
+       "label": "Category",
+       "properties": {
+        "dimval.prop.category.repositoryId": "category",
+        "DGraph.Spec": "cat300001.category",
+        "dimval.prop.category.ancestorCatalogIds": "dollar-tree-2",
+        "record.urn": "urn:/cloud/dimvals/product.category/product.category:cat300001.category",
+        "dimval.prop.displayName_en": "Category",
+        "record.collection": "product.category",
+        "record.id": "atgrep:/ProductCatalog_production/category/category?categoryPath=/cat300001/category"
+       }
+      },
+      {
+       "contentPath": "/guidedsearch",
+       "@class": "com.endeca.infront.cartridge.model.Ancestor",
+       "navigationState": "?N=204341833&Nrpp=6",
+       "siteRootPath": "/pages/Default/services",
+       "siteState": {
+        "validSite": false,
+        "contentPath": null,
+        "@class": "com.endeca.infront.site.model.SiteState",
+        "siteDisplayName": null,
+        "matchedUrlPattern": null,
+        "siteDefinition": null,
+        "siteId": "@error:siteNotFound",
+        "properties": {}
+       },
+       "link": "?N=204341833&Nrpp=6",
+       "label": "Department",
+       "properties": {
+        "dimval.prop.category.repositoryId": "department",
+        "DGraph.Spec": "cat300001.category.department",
+        "dimval.prop.category.ancestorCatalogIds": "dollar-tree-2",
+        "record.urn": "urn:/cloud/dimvals/product.category/product.category:cat300001.category.department",
+        "dimval.prop.displayName_en": "Department",
+        "record.collection": "product.category",
+        "record.id": "atgrep:/ProductCatalog_production/category/department?categoryPath=/cat300001/category/department"
+       }
+      }
+     ],
+     "dimensionName": "product.category",
+     "properties": {
+      "DGraph.More": "0",
+      "dimval.prop.category.repositoryId": "1149",
+      "DGraph.Spec": "cat300001.category.department.1149",
+      "dimval.prop.category.ancestorCatalogIds": "dollar-tree-2",
+      "record.urn": "urn:/cloud/dimvals/product.category/product.category:cat300001.category.department.1149",
+      "dimval.prop.displayName_en": "Food, Candy & Drinks",
+      "record.collection": "product.category",
+      "record.id": "atgrep:/ProductCatalog_production/category/1149?categoryPath=/cat300001/category/department/1149"
+     },
+     "multiSelect": false
+    }
+   ]
+  },
+  "navigationSample": [
+   {
+    "@type": "RefinementMenu"
+   },
+   {
+    "@type": "RefinementMenu"
+   },
+   {
+    "@type": "RefinementMenu"
+   }
+  ]
+ }
+}

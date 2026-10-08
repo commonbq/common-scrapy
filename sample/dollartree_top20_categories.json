@@ -1,0 +1,162 @@
+[
+ {
+  "rank": 1,
+  "name": "Food, Candy & Drinks",
+  "url": "https://www.dollartree.com/department/food-candy-drinks",
+  "dimensionId": "477714525",
+  "productCount": 2146,
+  "level": "department"
+ },
+ {
+  "rank": 2,
+  "name": "Holidays",
+  "url": "https://www.dollartree.com/department/holidays",
+  "dimensionId": "2264625405",
+  "productCount": 1541,
+  "level": "department"
+ },
+ {
+  "rank": 3,
+  "name": "Health & Beauty Supplies",
+  "url": "https://www.dollartree.com/department/health-beauty-supplies",
+  "dimensionId": "890155376",
+  "productCount": 1300,
+  "level": "department"
+ },
+ {
+  "rank": 4,
+  "name": "Christmas",
+  "url": "https://www.dollartree.com/holidays/christmas",
+  "dimensionId": "2506507028",
+  "productCount": 851,
+  "level": "subcategory"
+ },
+ {
+  "rank": 5,
+  "name": "Party Supplies",
+  "url": "https://www.dollartree.com/department/party-supplies",
+  "dimensionId": "4070223595",
+  "productCount": 838,
+  "level": "department"
+ },
+ {
+  "rank": 6,
+  "name": "Office & School Supplies",
+  "url": "https://www.dollartree.com/department/office-school-supplies",
+  "dimensionId": "1697834676",
+  "productCount": 825,
+  "level": "department"
+ },
+ {
+  "rank": 7,
+  "name": "Seasons & Occasions",
+  "url": "https://www.dollartree.com/department/seasons-occasions",
+  "dimensionId": "3856293076",
+  "productCount": 805,
+  "level": "department"
+ },
+ {
+  "rank": 8,
+  "name": "Kitchen & Dining",
+  "url": "https://www.dollartree.com/department/kitchen-dining",
+  "dimensionId": "2026343247",
+  "productCount": 773,
+  "level": "department"
+ },
+ {
+  "rank": 9,
+  "name": "Toys, Books, Puzzles & Games",
+  "url": "https://www.dollartree.com/department/toys-books-crafts",
+  "dimensionId": "256284133",
+  "productCount": 765,
+  "level": "department"
+ },
+ {
+  "rank": 10,
+  "name": "Cleaning & Storage",
+  "url": "https://www.dollartree.com/department/cleaning-storage",
+  "dimensionId": "2636629494",
+  "productCount": 680,
+  "level": "department"
+ },
+ {
+  "rank": 11,
+  "name": "Floral & Home Decor",
+  "url": "https://www.dollartree.com/department/floral-home-decor",
+  "dimensionId": "3380301068",
+  "productCount": 615,
+  "level": "department"
+ },
+ {
+  "rank": 12,
+  "name": "Toys",
+  "url": "https://www.dollartree.com/toys-books-puzzles-games/toys",
+  "dimensionId": "222478146",
+  "productCount": 593,
+  "level": "subcategory"
+ },
+ {
+  "rank": 13,
+  "name": "Household & Pet Supplies",
+  "url": "https://www.dollartree.com/department/household-pet-supplies",
+  "dimensionId": "1422104691",
+  "productCount": 579,
+  "level": "department"
+ },
+ {
+  "rank": 14,
+  "name": "Snacks",
+  "url": "https://www.dollartree.com/food-candy-drinks/snacks",
+  "dimensionId": "922829371",
+  "productCount": 549,
+  "level": "subcategory"
+ },
+ {
+  "rank": 15,
+  "name": "Food",
+  "url": "https://www.dollartree.com/food-candy-drinks/food",
+  "dimensionId": "1675155572",
+  "productCount": 516,
+  "level": "subcategory"
+ },
+ {
+  "rank": 16,
+  "name": "Drinks",
+  "url": "https://www.dollartree.com/food-candy-drinks/drinks",
+  "dimensionId": "617538265",
+  "productCount": 482,
+  "level": "subcategory"
+ },
+ {
+  "rank": 17,
+  "name": "Candy & Gum",
+  "url": "https://www.dollartree.com/food-candy-drinks/candy-gum",
+  "dimensionId": "1669243216",
+  "productCount": 477,
+  "level": "subcategory"
+ },
+ {
+  "rank": 18,
+  "name": "Halloween Shop",
+  "url": "https://www.dollartree.com/holidays/halloween",
+  "dimensionId": "1585155482",
+  "productCount": 448,
+  "level": "subcategory"
+ },
+ {
+  "rank": 19,
+  "name": "New Arrivals",
+  "url": "https://www.dollartree.com/department/new-arrivals",
+  "dimensionId": "3856621262",
+  "productCount": 390,
+  "level": "department"
+ },
+ {
+  "rank": 20,
+  "name": "Arts & Crafts Supplies",
+  "url": "https://www.dollartree.com/department/arts-crafts-supplies",
+  "dimensionId": "577154638",
+  "productCount": 376,
+  "level": "department"
+ }
+]

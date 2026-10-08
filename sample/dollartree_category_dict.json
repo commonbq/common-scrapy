@@ -1,0 +1,1538 @@
+{
+ "Food, Candy & Drinks": {
+  "url": "https://www.dollartree.com/department/food-candy-drinks",
+  "dimensionId": "477714525",
+  "productCount": 2146,
+  "subcategoryCount": 7,
+  "subcategories": [
+   {
+    "name": "Snacks",
+    "url": "https://www.dollartree.com/food-candy-drinks/snacks",
+    "dimensionId": "922829371",
+    "productCount": 549
+   },
+   {
+    "name": "Food",
+    "url": "https://www.dollartree.com/food-candy-drinks/food",
+    "dimensionId": "1675155572",
+    "productCount": 516
+   },
+   {
+    "name": "Drinks",
+    "url": "https://www.dollartree.com/food-candy-drinks/drinks",
+    "dimensionId": "617538265",
+    "productCount": 482
+   },
+   {
+    "name": "Candy & Gum",
+    "url": "https://www.dollartree.com/food-candy-drinks/candy-gum",
+    "dimensionId": "1669243216",
+    "productCount": 477
+   },
+   {
+    "name": "Frozen Foods",
+    "url": "https://www.dollartree.com/food-candy-drinks/frozen-foods",
+    "dimensionId": "1721395461",
+    "productCount": 151
+   },
+   {
+    "name": "Care Package Ideas",
+    "url": "https://www.dollartree.com/food-candy-drinks/food-care-package-ideas",
+    "dimensionId": "126792605",
+    "productCount": 28
+   },
+   {
+    "name": "Refrigerated Foods",
+    "url": "https://www.dollartree.com/food-candy-drinks/refrigerated-foods",
+    "dimensionId": "772068379",
+    "productCount": 21
+   }
+  ]
+ },
+ "Holidays": {
+  "url": "https://www.dollartree.com/department/holidays",
+  "dimensionId": "2264625405",
+  "productCount": 1541,
+  "subcategoryCount": 9,
+  "subcategories": [
+   {
+    "name": "Christmas",
+    "url": "https://www.dollartree.com/holidays/christmas",
+    "dimensionId": "2506507028",
+    "productCount": 851
+   },
+   {
+    "name": "Halloween Shop",
+    "url": "https://www.dollartree.com/holidays/halloween",
+    "dimensionId": "1585155482",
+    "productCount": 448
+   },
+   {
+    "name": "Valentine's Day",
+    "url": "https://www.dollartree.com/holidays/valentines-day",
+    "dimensionId": "4176138290",
+    "productCount": 115
+   },
+   {
+    "name": "Patriotic Party Supplies",
+    "url": "https://www.dollartree.com/holidays/patriotic-party-supplies",
+    "dimensionId": "1311143815",
+    "productCount": 94
+   },
+   {
+    "name": "St. Patrick's Day",
+    "url": "https://www.dollartree.com/holidays/st-patricks-day",
+    "dimensionId": "822419898",
+    "productCount": 17
+   },
+   {
+    "name": "New Year's Eve Party Supplies",
+    "url": "https://www.dollartree.com/holidays/new-years-eve-party-supplies",
+    "dimensionId": "2022764434",
+    "productCount": 14
+   },
+   {
+    "name": "Easter Shop",
+    "url": "https://www.dollartree.com/holidays/easter-shop",
+    "dimensionId": "1353984942",
+    "productCount": 6
+   },
+   {
+    "name": "Mardi Gras",
+    "url": "https://www.dollartree.com/holidays/mardi-gras",
+    "dimensionId": "335360623",
+    "productCount": 2
+   },
+   {
+    "name": "Day of the Dead",
+    "url": "https://www.dollartree.com/holidays/day-of-the-dead",
+    "dimensionId": "1585837235",
+    "productCount": 0
+   }
+  ]
+ },
+ "Health & Beauty Supplies": {
+  "url": "https://www.dollartree.com/department/health-beauty-supplies",
+  "dimensionId": "890155376",
+  "productCount": 1300,
+  "subcategoryCount": 20,
+  "subcategories": [
+   {
+    "name": "Makeup & Cosmetics",
+    "url": "https://www.dollartree.com/health-beauty-supplies/makeup-and-cosmetics",
+    "dimensionId": "2200655287",
+    "productCount": 276
+   },
+   {
+    "name": "Hair Care",
+    "url": "https://www.dollartree.com/health-beauty-supplies/hair-care",
+    "dimensionId": "2799890679",
+    "productCount": 238
+   },
+   {
+    "name": "Oral Care",
+    "url": "https://www.dollartree.com/health-beauty-supplies/oral-care",
+    "dimensionId": "180051794",
+    "productCount": 150
+   },
+   {
+    "name": "Bath & Body",
+    "url": "https://www.dollartree.com/health-beauty-supplies/bath-and-body",
+    "dimensionId": "1838208255",
+    "productCount": 124
+   },
+   {
+    "name": "b-pure",
+    "url": "https://www.dollartree.com/health-beauty-supplies/b-pure",
+    "dimensionId": "2186961984",
+    "productCount": 121
+   },
+   {
+    "name": "Skincare",
+    "url": "https://www.dollartree.com/health-beauty-supplies/skincare",
+    "dimensionId": "148090855",
+    "productCount": 117
+   },
+   {
+    "name": "Medicine & Treatments",
+    "url": "https://www.dollartree.com/health-beauty-supplies/medicine-treatments",
+    "dimensionId": "1847495450",
+    "productCount": 78
+   },
+   {
+    "name": "Baby & Toddlers",
+    "url": "https://www.dollartree.com/health-beauty-supplies/baby-toddlers",
+    "dimensionId": "3009011917",
+    "productCount": 62
+   },
+   {
+    "name": "First Aid",
+    "url": "https://www.dollartree.com/health-beauty-supplies/first-aid",
+    "dimensionId": "779081256",
+    "productCount": 60
+   },
+   {
+    "name": "Eyewear & Eye Care",
+    "url": "https://www.dollartree.com/health-beauty-supplies/eyewear-eye-care",
+    "dimensionId": "619800857",
+    "productCount": 36
+   },
+   {
+    "name": "Deodorants",
+    "url": "https://www.dollartree.com/health-beauty-supplies/deodorants",
+    "dimensionId": "3212254258",
+    "productCount": 34
+   },
+   {
+    "name": "Razors & Shaving Cream",
+    "url": "https://www.dollartree.com/health-beauty-supplies/razors-shaving-cream",
+    "dimensionId": "3573548385",
+    "productCount": 28
+   },
+   {
+    "name": "Feminine Care",
+    "url": "https://www.dollartree.com/health-beauty-supplies/feminine-care-products",
+    "dimensionId": "2885627013",
+    "productCount": 28
+   },
+   {
+    "name": "Vitamins & Supplements",
+    "url": "https://www.dollartree.com/health-beauty-supplies/vitamins-supplements",
+    "dimensionId": "2700951913",
+    "productCount": 24
+   },
+   {
+    "name": "Facial Tissues",
+    "url": "https://www.dollartree.com/health-beauty-supplies/facial-tissues",
+    "dimensionId": "2710943481",
+    "productCount": 18
+   },
+   {
+    "name": "Health Accessories",
+    "url": "https://www.dollartree.com/health-beauty-supplies/health-accessories",
+    "dimensionId": "1744210634",
+    "productCount": 16
+   },
+   {
+    "name": "Care Package Ideas",
+    "url": "https://www.dollartree.com/health-beauty-supplies/health-care-package-ideas",
+    "dimensionId": "1594260197",
+    "productCount": 10
+   },
+   {
+    "name": "Cotton Balls & Swabs",
+    "url": "https://www.dollartree.com/health-beauty-supplies/cotton-balls-swabs",
+    "dimensionId": "2260235848",
+    "productCount": 6
+   },
+   {
+    "name": "Pregnancy & Ovulation Tests",
+    "url": "https://www.dollartree.com/health-beauty-supplies/pregnancy-ovulation-tests",
+    "dimensionId": "3903447104",
+    "productCount": 4
+   },
+   {
+    "name": "Adult Incontinence",
+    "url": "https://www.dollartree.com/health-beauty-supplies/adult-incontinence",
+    "dimensionId": "1985299387",
+    "productCount": 4
+   }
+  ]
+ },
+ "Party Supplies": {
+  "url": "https://www.dollartree.com/department/party-supplies",
+  "dimensionId": "4070223595",
+  "productCount": 838,
+  "subcategoryCount": 11,
+  "subcategories": [
+   {
+    "name": "Gift Wrap, Bags & Accessories",
+    "url": "https://www.dollartree.com/party-supplies/gift-wrap-bags-accessories",
+    "dimensionId": "3482074240",
+    "productCount": 232
+   },
+   {
+    "name": "Catering Supplies & Serveware",
+    "url": "https://www.dollartree.com/party-supplies/catering-supplies-serveware",
+    "dimensionId": "1608404838",
+    "productCount": 150
+   },
+   {
+    "name": "Solid Color Party Supplies",
+    "url": "https://www.dollartree.com/party-supplies/solid-color-party-supplies",
+    "dimensionId": "2401920979",
+    "productCount": 138
+   },
+   {
+    "name": "Disposable Tableware",
+    "url": "https://www.dollartree.com/party-supplies/disposable-tableware",
+    "dimensionId": "334265920",
+    "productCount": 132
+   },
+   {
+    "name": "Balloons & Accessories",
+    "url": "https://www.dollartree.com/party-supplies/balloons-accessories",
+    "dimensionId": "2262504335",
+    "productCount": 113
+   },
+   {
+    "name": "Birthday & Party Themes",
+    "url": "https://www.dollartree.com/party-supplies/birthday-party-themes",
+    "dimensionId": "3489831814",
+    "productCount": 56
+   },
+   {
+    "name": "Streamers & Party Decorations",
+    "url": "https://www.dollartree.com/party-supplies/streamers-party-decorations",
+    "dimensionId": "3495999662",
+    "productCount": 43
+   },
+   {
+    "name": "Birthday Candles",
+    "url": "https://www.dollartree.com/party-supplies/birthday-candles",
+    "dimensionId": "286644186",
+    "productCount": 20
+   },
+   {
+    "name": "Party Favors & Games",
+    "url": "https://www.dollartree.com/party-supplies/party-favors-games",
+    "dimensionId": "3093025405",
+    "productCount": 19
+   },
+   {
+    "name": "Baby Showers",
+    "url": "https://www.dollartree.com/party-supplies/baby-showers",
+    "dimensionId": "4040153372",
+    "productCount": 6
+   },
+   {
+    "name": "Wedding & Bridal Showers",
+    "url": "https://www.dollartree.com/party-supplies/wedding-bridal-showers",
+    "dimensionId": "3050693526",
+    "productCount": 5
+   }
+  ]
+ },
+ "Office & School Supplies": {
+  "url": "https://www.dollartree.com/department/office-school-supplies",
+  "dimensionId": "1697834676",
+  "productCount": 825,
+  "subcategoryCount": 12,
+  "subcategories": [
+   {
+    "name": "Writing Supplies",
+    "url": "https://www.dollartree.com/office-school-supplies/writing-supplies",
+    "dimensionId": "1693915243",
+    "productCount": 247
+   },
+   {
+    "name": "Office Basics",
+    "url": "https://www.dollartree.com/office-school-supplies/office-basics",
+    "dimensionId": "3041339991",
+    "productCount": 205
+   },
+   {
+    "name": "Notebooks & Notepads",
+    "url": "https://www.dollartree.com/office-school-supplies/notebooks-notepads",
+    "dimensionId": "3401023166",
+    "productCount": 100
+   },
+   {
+    "name": "Learning & Educational Supplies",
+    "url": "https://www.dollartree.com/office-school-supplies/learning-educational-supplies",
+    "dimensionId": "2974795275",
+    "productCount": 87
+   },
+   {
+    "name": "Cell Phone Accessories & Headphones",
+    "url": "https://www.dollartree.com/office-school-supplies/cell-phone-accessories-headphones",
+    "dimensionId": "2663261064",
+    "productCount": 36
+   },
+   {
+    "name": "Poster Supplies",
+    "url": "https://www.dollartree.com/office-school-supplies/poster-foam-board",
+    "dimensionId": "1708193127",
+    "productCount": 29
+   },
+   {
+    "name": "Packing & Mailing Supplies",
+    "url": "https://www.dollartree.com/office-school-supplies/packing-mailing-supplies",
+    "dimensionId": "2250996262",
+    "productCount": 27
+   },
+   {
+    "name": "Filing & Folders",
+    "url": "https://www.dollartree.com/office-school-supplies/filing-folders",
+    "dimensionId": "3624660159",
+    "productCount": 26
+   },
+   {
+    "name": "Calendars & Planners",
+    "url": "https://www.dollartree.com/office-school-supplies/calendars-planners",
+    "dimensionId": "855771157",
+    "productCount": 22
+   },
+   {
+    "name": "Paper",
+    "url": "https://www.dollartree.com/office-school-supplies/paper",
+    "dimensionId": "1756614036",
+    "productCount": 21
+   },
+   {
+    "name": "Dry-Erase Boards & Accessories",
+    "url": "https://www.dollartree.com/office-school-supplies/dry-erase-boards-accessories",
+    "dimensionId": "3423328425",
+    "productCount": 20
+   },
+   {
+    "name": "Binders & Accessories",
+    "url": "https://www.dollartree.com/office-school-supplies/binders-accessories",
+    "dimensionId": "3621670794",
+    "productCount": 19
+   }
+  ]
+ },
+ "Seasons & Occasions": {
+  "url": "https://www.dollartree.com/department/seasons-occasions",
+  "dimensionId": "3856293076",
+  "productCount": 805,
+  "subcategoryCount": 13,
+  "subcategories": [
+   {
+    "name": "Fall & Harvest",
+    "url": "https://www.dollartree.com/seasons-occasions/fall-harvest",
+    "dimensionId": "3584330567",
+    "productCount": 244
+   },
+   {
+    "name": "Summer Fun",
+    "url": "https://www.dollartree.com/seasons-occasions/summer-fun",
+    "dimensionId": "3360850047",
+    "productCount": 206
+   },
+   {
+    "name": "Garden Supplies",
+    "url": "https://www.dollartree.com/seasons-occasions/garden-supplies",
+    "dimensionId": "74625406",
+    "productCount": 136
+   },
+   {
+    "name": "Emergency Essentials",
+    "url": "https://www.dollartree.com/seasons-occasions/emergency-essentials",
+    "dimensionId": "2425990189",
+    "productCount": 79
+   },
+   {
+    "name": "Graduation Headquarters",
+    "url": "https://www.dollartree.com/seasons-occasions/graduation-headquarters",
+    "dimensionId": "1610600514",
+    "productCount": 51
+   },
+   {
+    "name": "Back to School",
+    "url": "https://www.dollartree.com/seasons-occasions/back-to-school",
+    "dimensionId": "993507499",
+    "productCount": 33
+   },
+   {
+    "name": "Travel-Size Items",
+    "url": "https://www.dollartree.com/seasons-occasions/travel-size-items",
+    "dimensionId": "2472922743",
+    "productCount": 30
+   },
+   {
+    "name": "Spring Floral",
+    "url": "https://www.dollartree.com/seasons-occasions/spring-floral",
+    "dimensionId": "559082206",
+    "productCount": 20
+   },
+   {
+    "name": "Game Day Headquarters",
+    "url": "https://www.dollartree.com/seasons-occasions/game-day-headquarters",
+    "dimensionId": "1927836487",
+    "productCount": 9
+   },
+   {
+    "name": "Back to Campus",
+    "url": "https://www.dollartree.com/seasons-occasions/back-to-campus",
+    "dimensionId": "1125402245",
+    "productCount": 7
+   },
+   {
+    "name": "Spring Toys",
+    "url": "https://www.dollartree.com/seasons-occasions/occasions-spring-toys",
+    "dimensionId": "1698409443",
+    "productCount": 3
+   },
+   {
+    "name": "Breast Cancer Awareness",
+    "url": "https://www.dollartree.com/seasons-occasions/breast-cancer-awareness",
+    "dimensionId": "1206988826",
+    "productCount": 0
+   },
+   {
+    "name": "Shore Living",
+    "url": "https://www.dollartree.com/seasons-occasions/shore-living",
+    "dimensionId": "3406443375",
+    "productCount": 0
+   }
+  ]
+ },
+ "Kitchen & Dining": {
+  "url": "https://www.dollartree.com/department/kitchen-dining",
+  "dimensionId": "2026343247",
+  "productCount": 773,
+  "subcategoryCount": 8,
+  "subcategories": [
+   {
+    "name": "Food Storage",
+    "url": "https://www.dollartree.com/kitchen-dining/food-storage",
+    "dimensionId": "2465384073",
+    "productCount": 168
+   },
+   {
+    "name": "Dinnerware",
+    "url": "https://www.dollartree.com/kitchen-dining/dinnerware",
+    "dimensionId": "4080624943",
+    "productCount": 166
+   },
+   {
+    "name": "Kitchen Tools & Gadgets",
+    "url": "https://www.dollartree.com/kitchen-dining/kitchen-tools-gadgets",
+    "dimensionId": "2276792145",
+    "productCount": 124
+   },
+   {
+    "name": "Glasses & Drinkware",
+    "url": "https://www.dollartree.com/kitchen-dining/glasses-drinkware",
+    "dimensionId": "2451704921",
+    "productCount": 122
+   },
+   {
+    "name": "Kitchen & Table Linens",
+    "url": "https://www.dollartree.com/kitchen-dining/kitchen-table-linens",
+    "dimensionId": "572144796",
+    "productCount": 118
+   },
+   {
+    "name": "BBQ Tools & Picnic Supplies",
+    "url": "https://www.dollartree.com/kitchen-dining/bbq-tools-picnic-supplies",
+    "dimensionId": "1160325113",
+    "productCount": 56
+   },
+   {
+    "name": "Cookware & Bakeware",
+    "url": "https://www.dollartree.com/kitchen-dining/cookware-bakeware",
+    "dimensionId": "3777959597",
+    "productCount": 33
+   },
+   {
+    "name": "Catering Supplies & Serveware",
+    "url": "https://www.dollartree.com/kitchen-dining/kitchen-catering-supplies-serveware",
+    "dimensionId": "2537763388",
+    "productCount": 20
+   }
+  ]
+ },
+ "Toys, Books, Puzzles & Games": {
+  "url": "https://www.dollartree.com/department/toys-books-crafts",
+  "dimensionId": "256284133",
+  "productCount": 765,
+  "subcategoryCount": 0,
+  "subcategories": []
+ },
+ "Cleaning & Storage": {
+  "url": "https://www.dollartree.com/department/cleaning-storage",
+  "dimensionId": "2636629494",
+  "productCount": 680,
+  "subcategoryCount": 4,
+  "subcategories": [
+   {
+    "name": "Cleaners",
+    "url": "https://www.dollartree.com/cleaning-storage/cleaners",
+    "dimensionId": "2625676822",
+    "productCount": 267
+   },
+   {
+    "name": "Storage & Organization",
+    "url": "https://www.dollartree.com/cleaning-storage/storage-organization",
+    "dimensionId": "2223515601",
+    "productCount": 205
+   },
+   {
+    "name": "Cleaning Tools",
+    "url": "https://www.dollartree.com/cleaning-storage/cleaning-tools",
+    "dimensionId": "386690545",
+    "productCount": 115
+   },
+   {
+    "name": "Laundry Care",
+    "url": "https://www.dollartree.com/cleaning-storage/laundry-care",
+    "dimensionId": "1504496761",
+    "productCount": 95
+   }
+  ]
+ },
+ "Floral & Home Decor": {
+  "url": "https://www.dollartree.com/department/floral-home-decor",
+  "dimensionId": "3380301068",
+  "productCount": 615,
+  "subcategoryCount": 5,
+  "subcategories": [
+   {
+    "name": "Candles",
+    "url": "https://www.dollartree.com/floral-home-decor/candles",
+    "dimensionId": "1692245860",
+    "productCount": 179
+   },
+   {
+    "name": "Floral Supplies",
+    "url": "https://www.dollartree.com/floral-home-decor/floral-supplies",
+    "dimensionId": "2161990169",
+    "productCount": 176
+   },
+   {
+    "name": "Home Decor",
+    "url": "https://www.dollartree.com/floral-home-decor/home-decor",
+    "dimensionId": "2313786198",
+    "productCount": 108
+   },
+   {
+    "name": "Picture Frames",
+    "url": "https://www.dollartree.com/floral-home-decor/picture-frames",
+    "dimensionId": "2549204831",
+    "productCount": 104
+   },
+   {
+    "name": "Candleholders",
+    "url": "https://www.dollartree.com/floral-home-decor/candleholders",
+    "dimensionId": "2494185401",
+    "productCount": 48
+   }
+  ]
+ },
+ "Household & Pet Supplies": {
+  "url": "https://www.dollartree.com/department/household-pet-supplies",
+  "dimensionId": "1422104691",
+  "productCount": 579,
+  "subcategoryCount": 9,
+  "subcategories": [
+   {
+    "name": "Home Improvement",
+    "url": "https://www.dollartree.com/household-pet-supplies/home-improvement",
+    "dimensionId": "2342316120",
+    "productCount": 215
+   },
+   {
+    "name": "Pet Supplies",
+    "url": "https://www.dollartree.com/household-pet-supplies/pet-supplies",
+    "dimensionId": "3529056937",
+    "productCount": 139
+   },
+   {
+    "name": "Bed & Bath",
+    "url": "https://www.dollartree.com/household-pet-supplies/bed-bath",
+    "dimensionId": "3057709819",
+    "productCount": 86
+   },
+   {
+    "name": "Auto Care & Maintenance",
+    "url": "https://www.dollartree.com/household-pet-supplies/auto-care-maintenance",
+    "dimensionId": "1894286504",
+    "productCount": 83
+   },
+   {
+    "name": "Trash Bags",
+    "url": "https://www.dollartree.com/household-pet-supplies/trash-bags",
+    "dimensionId": "1605107820",
+    "productCount": 22
+   },
+   {
+    "name": "Paper Towels & Napkins",
+    "url": "https://www.dollartree.com/household-pet-supplies/paper-towels-napkins",
+    "dimensionId": "2119033054",
+    "productCount": 17
+   },
+   {
+    "name": "Lighters & Matches",
+    "url": "https://www.dollartree.com/household-pet-supplies/lighters-matches",
+    "dimensionId": "1548422068",
+    "productCount": 12
+   },
+   {
+    "name": "Pest Control",
+    "url": "https://www.dollartree.com/household-pet-supplies/pest-control",
+    "dimensionId": "1388310318",
+    "productCount": 6
+   },
+   {
+    "name": "Disposable Tableware",
+    "url": "https://www.dollartree.com/household-pet-supplies/household-disposable-tableware",
+    "dimensionId": "1831845350",
+    "productCount": 0
+   }
+  ]
+ },
+ "New Arrivals": {
+  "url": "https://www.dollartree.com/department/new-arrivals",
+  "dimensionId": "3856621262",
+  "productCount": 390,
+  "subcategoryCount": 9,
+  "subcategories": [
+   {
+    "name": "New Toys, Games & Books",
+    "url": "https://www.dollartree.com/new-arrivals/new-toys-games-books",
+    "dimensionId": "894632325",
+    "productCount": 73
+   },
+   {
+    "name": "New Craft Supplies",
+    "url": "https://www.dollartree.com/new-arrivals/new-craft-supplies",
+    "dimensionId": "1919167790",
+    "productCount": 58
+   },
+   {
+    "name": "New Holidays & Seasons",
+    "url": "https://www.dollartree.com/new-arrivals/new-holidays-seasons",
+    "dimensionId": "300075688",
+    "productCount": 54
+   },
+   {
+    "name": "New Food & Drink",
+    "url": "https://www.dollartree.com/new-arrivals/new-food-drink",
+    "dimensionId": "2347512181",
+    "productCount": 43
+   },
+   {
+    "name": "New Office, School & Classroom Supplies",
+    "url": "https://www.dollartree.com/new-arrivals/new-office-school-classroom-supplies",
+    "dimensionId": "411334277",
+    "productCount": 43
+   },
+   {
+    "name": "New Dinnerware & Household Essentials",
+    "url": "https://www.dollartree.com/new-arrivals/new-dinnerware-household-essentials",
+    "dimensionId": "788385086",
+    "productCount": 39
+   },
+   {
+    "name": "New Home D\u00e9cor & Accents",
+    "url": "https://www.dollartree.com/new-arrivals/new-home-d%C3%A9cor-accents",
+    "dimensionId": "1586287760",
+    "productCount": 19
+   },
+   {
+    "name": "New Personal Care, Beauty & Medical",
+    "url": "https://www.dollartree.com/new-arrivals/new-personal-care-beauty-medical",
+    "dimensionId": "1388562459",
+    "productCount": 19
+   },
+   {
+    "name": "New Party, Celebrations & Catering",
+    "url": "https://www.dollartree.com/new-arrivals/new-party-celebrations-catering",
+    "dimensionId": "2912084210",
+    "productCount": 15
+   }
+  ]
+ },
+ "Arts & Crafts Supplies": {
+  "url": "https://www.dollartree.com/department/arts-crafts-supplies",
+  "dimensionId": "577154638",
+  "productCount": 376,
+  "subcategoryCount": 17,
+  "subcategories": [
+   {
+    "name": "Paint Supplies",
+    "url": "https://www.dollartree.com/arts-crafts-supplies/painting",
+    "dimensionId": "2616269932",
+    "productCount": 96
+   },
+   {
+    "name": "Crafting Basics & Embellishments",
+    "url": "https://www.dollartree.com/arts-crafts-supplies/craft-supplies",
+    "dimensionId": "406916333",
+    "productCount": 80
+   },
+   {
+    "name": "Stickers & Washi Tape",
+    "url": "https://www.dollartree.com/arts-crafts-supplies/stickers",
+    "dimensionId": "638855451",
+    "productCount": 51
+   },
+   {
+    "name": "Wood and Metal Crafts",
+    "url": "https://www.dollartree.com/arts-crafts-supplies/wood-and-metal-crafts",
+    "dimensionId": "1813327773",
+    "productCount": 45
+   },
+   {
+    "name": "Yarn and Fabric Crafts",
+    "url": "https://www.dollartree.com/arts-crafts-supplies/yarn-and-fabric-crafts",
+    "dimensionId": "2328233352",
+    "productCount": 43
+   },
+   {
+    "name": "Paper Crafts & Vinyl",
+    "url": "https://www.dollartree.com/arts-crafts-supplies/paper-crafts-vinyl",
+    "dimensionId": "3630340702",
+    "productCount": 15
+   },
+   {
+    "name": "Craft Containers",
+    "url": "https://www.dollartree.com/arts-crafts-supplies/craft-containers",
+    "dimensionId": "564419175",
+    "productCount": 12
+   },
+   {
+    "name": "Jewels and Beads",
+    "url": "https://www.dollartree.com/arts-crafts-supplies/jewels-and-beads",
+    "dimensionId": "2519277567",
+    "productCount": 12
+   },
+   {
+    "name": "Tapes, Glues, & Adhesives",
+    "url": "https://www.dollartree.com/arts-crafts-supplies/tapes-glues-adhesives-x",
+    "dimensionId": "644749407",
+    "productCount": 10
+   },
+   {
+    "name": "Ribbon, Raffia, Cord & Mesh",
+    "url": "https://www.dollartree.com/arts-crafts-supplies/ribbon-raffia-cord-mesh",
+    "dimensionId": "831435694",
+    "productCount": 8
+   },
+   {
+    "name": "Blank Crafting Surfaces",
+    "url": "https://www.dollartree.com/arts-crafts-supplies/blank-crafting-surfaces",
+    "dimensionId": "2931583838",
+    "productCount": 4
+   },
+   {
+    "name": "Floral Crafts",
+    "url": "https://www.dollartree.com/arts-crafts-supplies/floral-crafts-x",
+    "dimensionId": "942422755",
+    "productCount": 3
+   },
+   {
+    "name": "Scissors & Cutting Tools",
+    "url": "https://www.dollartree.com/arts-crafts-supplies/scissors-cutting-tools",
+    "dimensionId": "1231003160",
+    "productCount": 2
+   },
+   {
+    "name": "Craft Kits",
+    "url": "https://www.dollartree.com/arts-crafts-supplies/craft-kits-x",
+    "dimensionId": "1316071317",
+    "productCount": 1
+   },
+   {
+    "name": "Craft Ideas",
+    "url": "https://www.dollartree.com/arts-crafts-supplies/craft-project-ideas",
+    "dimensionId": "1042490981",
+    "productCount": 0
+   },
+   {
+    "name": "Holiday Craft Supplies",
+    "url": "https://www.dollartree.com/arts-crafts-supplies/holiday-craft-supplies",
+    "dimensionId": null,
+    "productCount": null
+   },
+   {
+    "name": "Markers & Highlighters",
+    "url": "https://www.dollartree.com/arts-crafts-supplies/markers-highlighters-x",
+    "dimensionId": "3224470828",
+    "productCount": 0
+   }
+  ]
+ },
+ "MORE CHOICES": {
+  "url": "https://www.dollartree.com/department/more-choices",
+  "dimensionId": "703144065",
+  "productCount": 255,
+  "subcategoryCount": 13,
+  "subcategories": [
+   {
+    "name": "MORE Food, Candy & Drinks",
+    "url": "https://www.dollartree.com/more-choices/more-food-candy-drinks",
+    "dimensionId": "131034299",
+    "productCount": 107
+   },
+   {
+    "name": "MORE Electronics & Hardware",
+    "url": "https://www.dollartree.com/more-choices/more-electronics-hardware",
+    "dimensionId": "4140795569",
+    "productCount": 58
+   },
+   {
+    "name": "MORE Household, Cleaning & Storage",
+    "url": "https://www.dollartree.com/more-choices/more-household-cleaning-storage",
+    "dimensionId": "1375043352",
+    "productCount": 44
+   },
+   {
+    "name": "MORE Toys & Games",
+    "url": "https://www.dollartree.com/more-choices/more-toys-games",
+    "dimensionId": "2794289847",
+    "productCount": 16
+   },
+   {
+    "name": "MORE Home Decor",
+    "url": "https://www.dollartree.com/more-choices/more-home-decor",
+    "dimensionId": "1321958905",
+    "productCount": 11
+   },
+   {
+    "name": "MORE Party Supplies",
+    "url": "https://www.dollartree.com/more-choices/more-party-supplies",
+    "dimensionId": "3483765592",
+    "productCount": 9
+   },
+   {
+    "name": "MORE Health & Beauty",
+    "url": "https://www.dollartree.com/more-choices/more-health-beauty",
+    "dimensionId": "3192009991",
+    "productCount": 4
+   },
+   {
+    "name": "MORE Craft Supplies",
+    "url": "https://www.dollartree.com/more-choices/more-craft-supplies",
+    "dimensionId": "1927954308",
+    "productCount": 3
+   },
+   {
+    "name": "MORE Office & School Supplies",
+    "url": "https://www.dollartree.com/more-choices/more-office-school-supplies",
+    "dimensionId": "3242302932",
+    "productCount": 3
+   },
+   {
+    "name": "MORE Apparel",
+    "url": "https://www.dollartree.com/more-choices/more-apparel",
+    "dimensionId": "3013393357",
+    "productCount": 1
+   },
+   {
+    "name": "MORE Kitchen & Dining",
+    "url": "https://www.dollartree.com/more-choices/more-kitchen-dining",
+    "dimensionId": "3256402760",
+    "productCount": 1
+   },
+   {
+    "name": "MORE Pet Supplies",
+    "url": "https://www.dollartree.com/more-choices/more-pet-supplies",
+    "dimensionId": null,
+    "productCount": null
+   },
+   {
+    "name": "MORE Seasons & Holidays",
+    "url": "https://www.dollartree.com/more-choices/more-seasons-holidays",
+    "dimensionId": "1883834462",
+    "productCount": 0
+   }
+  ]
+ },
+ "Care Packages": {
+  "url": "https://www.dollartree.com/department/care-packages",
+  "dimensionId": "1540722965",
+  "productCount": 110,
+  "subcategoryCount": 16,
+  "subcategories": [
+   {
+    "name": "Food & Snacks",
+    "url": "https://www.dollartree.com/care-packages/food-snacks",
+    "dimensionId": "3510170670",
+    "productCount": 47
+   },
+   {
+    "name": "Hardware & Auto Care",
+    "url": "https://www.dollartree.com/care-packages/hardware-auto-care",
+    "dimensionId": "659223400",
+    "productCount": 12
+   },
+   {
+    "name": "Toys & Activities",
+    "url": "https://www.dollartree.com/care-packages/toys-activities",
+    "dimensionId": "2438839608",
+    "productCount": 10
+   },
+   {
+    "name": "Personal Care",
+    "url": "https://www.dollartree.com/care-packages/personal-care",
+    "dimensionId": "287165328",
+    "productCount": 9
+   },
+   {
+    "name": "Electronics",
+    "url": "https://www.dollartree.com/care-packages/electronics",
+    "dimensionId": "3899589719",
+    "productCount": 9
+   },
+   {
+    "name": "Cleaning Supplies",
+    "url": "https://www.dollartree.com/care-packages/cleaning-supplies",
+    "dimensionId": "2186021729",
+    "productCount": 8
+   },
+   {
+    "name": "Boxes, Baskets & Bins",
+    "url": "https://www.dollartree.com/care-packages/boxes-baskets-bins",
+    "dimensionId": "2238213133",
+    "productCount": 4
+   },
+   {
+    "name": "School Supplies",
+    "url": "https://www.dollartree.com/care-packages/school-supplies",
+    "dimensionId": "1181744368",
+    "productCount": 3
+   },
+   {
+    "name": "Books, Games & Puzzles",
+    "url": "https://www.dollartree.com/care-packages/books-puzzles-games",
+    "dimensionId": "1489922035",
+    "productCount": 2
+   },
+   {
+    "name": "Containers & Bags",
+    "url": "https://www.dollartree.com/care-packages/containers-bags",
+    "dimensionId": "736252444",
+    "productCount": 2
+   },
+   {
+    "name": "Apparel",
+    "url": "https://www.dollartree.com/care-packages/apparel",
+    "dimensionId": "2516003785",
+    "productCount": 1
+   },
+   {
+    "name": "Craft Supplies",
+    "url": "https://www.dollartree.com/care-packages/care-craft-supplies",
+    "dimensionId": "2918937518",
+    "productCount": 1
+   },
+   {
+    "name": "Devotional Supplies",
+    "url": "https://www.dollartree.com/care-packages/devotional-supplies",
+    "dimensionId": "781000579",
+    "productCount": 1
+   },
+   {
+    "name": "Package Fillers & Shreds",
+    "url": "https://www.dollartree.com/care-packages/package-fillers-shreds",
+    "dimensionId": "2494248231",
+    "productCount": 1
+   },
+   {
+    "name": "Storage & Organization",
+    "url": "https://www.dollartree.com/care-packages/care-storage-organization",
+    "dimensionId": null,
+    "productCount": null
+   },
+   {
+    "name": "Care Package Ideas",
+    "url": "https://www.dollartree.com/care-packages/care-package-ideas",
+    "dimensionId": null,
+    "productCount": null
+   }
+  ]
+ },
+ "Clothing & Accessories": {
+  "url": "https://www.dollartree.com/department/clothing-accessories",
+  "dimensionId": "1778773514",
+  "productCount": 107,
+  "subcategoryCount": 7,
+  "subcategories": [
+   {
+    "name": "Womens Hosiery & Socks",
+    "url": "https://www.dollartree.com/clothing-accessories/womens-hosiery-socks",
+    "dimensionId": "746185366",
+    "productCount": 25
+   },
+   {
+    "name": "Accessories",
+    "url": "https://www.dollartree.com/clothing-accessories/accessories",
+    "dimensionId": "1184965617",
+    "productCount": 24
+   },
+   {
+    "name": "Winter Apparel",
+    "url": "https://www.dollartree.com/clothing-accessories/winter-apparel",
+    "dimensionId": "3968263190",
+    "productCount": 24
+   },
+   {
+    "name": "Totes and Bags",
+    "url": "https://www.dollartree.com/clothing-accessories/totes-bags",
+    "dimensionId": "2789405252",
+    "productCount": 20
+   },
+   {
+    "name": "Mens Socks",
+    "url": "https://www.dollartree.com/clothing-accessories/mens-socks",
+    "dimensionId": "4282235747",
+    "productCount": 14
+   },
+   {
+    "name": "Hats and Scarves",
+    "url": "https://www.dollartree.com/clothing-accessories/hats-scarves",
+    "dimensionId": "1433387137",
+    "productCount": 4
+   },
+   {
+    "name": "Kids Socks",
+    "url": "https://www.dollartree.com/clothing-accessories/kids-socks",
+    "dimensionId": "1345652612",
+    "productCount": 2
+   }
+  ]
+ },
+ "_sitemap_only_categories": [
+  "https://www.dollartree.com/b-pure/bath-body",
+  "https://www.dollartree.com/b-pure/feminine-care",
+  "https://www.dollartree.com/b-pure/hair-care-products",
+  "https://www.dollartree.com/b-pure/makeup-cosmetics",
+  "https://www.dollartree.com/baby-toddlers/baby-bath-health",
+  "https://www.dollartree.com/baby-toddlers/baby-bottles-feeding",
+  "https://www.dollartree.com/baby-toddlers/clothing-bedding",
+  "https://www.dollartree.com/baby-toddlers/diapers-wipes",
+  "https://www.dollartree.com/back-to-campus/campus-health-beauty-supplies",
+  "https://www.dollartree.com/back-to-campus/campus-office-school-supplies",
+  "https://www.dollartree.com/back-to-campus/campus-snacks",
+  "https://www.dollartree.com/back-to-school/school-binders-accessories",
+  "https://www.dollartree.com/back-to-school/school-classroom-decorations",
+  "https://www.dollartree.com/back-to-school/school-crayons-colored-pencils",
+  "https://www.dollartree.com/back-to-school/school-desktop-accessories",
+  "https://www.dollartree.com/back-to-school/school-dry-erase-boards-accessories",
+  "https://www.dollartree.com/back-to-school/school-notebooks-notepads",
+  "https://www.dollartree.com/back-to-school/school-pencils-sharpeners-erasers",
+  "https://www.dollartree.com/back-to-school/school-pens",
+  "https://www.dollartree.com/balloons-accessories/balloon-weights",
+  "https://www.dollartree.com/balloons-accessories/birthday-balloons",
+  "https://www.dollartree.com/balloons-accessories/everyday-balloon-designs",
+  "https://www.dollartree.com/balloons-accessories/latex-balloons",
+  "https://www.dollartree.com/balloons-accessories/number-balloons",
+  "https://www.dollartree.com/balloons-accessories/pre-inflated-stick-balloons",
+  "https://www.dollartree.com/balloons-accessories/stars-hearts-balloons",
+  "https://www.dollartree.com/bath-body/bar-soap",
+  "https://www.dollartree.com/bath-body/bath-sponges",
+  "https://www.dollartree.com/bath-body/body-wash-scrubs-salts",
+  "https://www.dollartree.com/bath-body/hand-soaps-sanitizers",
+  "https://www.dollartree.com/bed-bath/bath-accessories",
+  "https://www.dollartree.com/bed-bath/bath-tissue",
+  "https://www.dollartree.com/bed-bath/bath-towels",
+  "https://www.dollartree.com/bed-bath/bedding",
+  "https://www.dollartree.com/birthday-party-themes/balloon-party",
+  "https://www.dollartree.com/birthday-party-themes/candles-party",
+  "https://www.dollartree.com/birthday-party-themes/confetti-party",
+  "https://www.dollartree.com/birthday-party-themes/dessert-party",
+  "https://www.dollartree.com/birthday-party-themes/iridescent-metallic-rainbow-party",
+  "https://www.dollartree.com/birthday-party-themes/princess-party",
+  "https://www.dollartree.com/birthday-party-themes/unicorn-party",
+  "https://www.dollartree.com/bonus-buys/cleaning",
+  "https://www.dollartree.com/books/childrens-books",
+  "https://www.dollartree.com/books/coloring-activity-books",
+  "https://www.dollartree.com/books/puzzle-books",
+  "https://www.dollartree.com/books/reading-books-novels",
+  "https://www.dollartree.com/books/religious-books",
+  "https://www.dollartree.com/candles/flameless-led-candles",
+  "https://www.dollartree.com/candles/jar-candles",
+  "https://www.dollartree.com/candles/pillars-taper-candles",
+  "https://www.dollartree.com/candles/potpourri-incense-wax-melts",
+  "https://www.dollartree.com/candles/religious-candles",
+  "https://www.dollartree.com/candles/tealights-votive-candles",
+  "https://www.dollartree.com/candy-gum/chocolate-candy",
+  "https://www.dollartree.com/candy-gum/gum-mints",
+  "https://www.dollartree.com/candy-gum/gummy-chewy-candy",
+  "https://www.dollartree.com/candy-gum/hard-candy-lollipops",
+  "https://www.dollartree.com/candy-gum/mr-beast-feastables",
+  "https://www.dollartree.com/candy-gum/sugar-free-candy",
+  "https://www.dollartree.com/candy-gum/theater-box-candy",
+  "https://www.dollartree.com/category/department",
+  "https://www.dollartree.com/category/value-seekers-blog",
+  "https://www.dollartree.com/catering-supplies-serveware/catering-bowls",
+  "https://www.dollartree.com/catering-supplies-serveware/catering-drinkware",
+  "https://www.dollartree.com/catering-supplies-serveware/catering-serving-utensils",
+  "https://www.dollartree.com/catering-supplies-serveware/catering-tableware",
+  "https://www.dollartree.com/catering-supplies-serveware/catering-trays-platters",
+  "https://www.dollartree.com/catering-supplies-serveware/foil-pans",
+  "https://www.dollartree.com/catering-supplies-serveware/kitchen-catering-serving-utensils",
+  "https://www.dollartree.com/catering-supplies-serveware/kitchen-catering-tableware",
+  "https://www.dollartree.com/catering-supplies-serveware/kitchen-foil-pans",
+  "https://www.dollartree.com/catering-supplies-serveware/kitchen-pitchers",
+  "https://www.dollartree.com/catering-supplies-serveware/pitchers",
+  "https://www.dollartree.com/cell-phone-accessories-headphones/headphones-earbuds",
+  "https://www.dollartree.com/cell-phone-accessories-headphones/phone-cases-accessories",
+  "https://www.dollartree.com/cell-phone-accessories-headphones/phone-chargers-cables",
+  "https://www.dollartree.com/cell-phone-accessories-headphones/stylus-pens",
+  "https://www.dollartree.com/christmas/christmas-candles-candleholders",
+  "https://www.dollartree.com/christmas/christmas-candy",
+  "https://www.dollartree.com/christmas/christmas-decor",
+  "https://www.dollartree.com/christmas/christmas-floral",
+  "https://www.dollartree.com/christmas/christmas-floral-craft-supplies",
+  "https://www.dollartree.com/christmas/christmas-garland-tinsel",
+  "https://www.dollartree.com/christmas/christmas-kitchen-dining",
+  "https://www.dollartree.com/christmas/christmas-ornaments",
+  "https://www.dollartree.com/christmas/christmas-plush",
+  "https://www.dollartree.com/christmas/christmas-stockings",
+  "https://www.dollartree.com/christmas/christmas-tissue-tags-bows",
+  "https://www.dollartree.com/christmas/christmas-trees-accessories",
+  "https://www.dollartree.com/christmas/cookie-tins-goodie-bags",
+  "https://www.dollartree.com/christmas/gift-bags-boxes-wrapping-paper",
+  "https://www.dollartree.com/christmas/gifts-stocking-stuffers",
+  "https://www.dollartree.com/christmas/santa-hats-accessories",
+  "https://www.dollartree.com/cleaners/air-fresheners-deodorizers",
+  "https://www.dollartree.com/cleaners/all-purpose-cleaners",
+  "https://www.dollartree.com/cleaners/bathroom-cleaners",
+  "https://www.dollartree.com/cleaners/floor-care",
+  "https://www.dollartree.com/cleaners/kitchen-cleaners",
+  "https://www.dollartree.com/cleaning-tools/gloves-spray-bottles",
+  "https://www.dollartree.com/cleaning-tools/mops-brooms-dusters",
+  "https://www.dollartree.com/cleaning-tools/scrubbers-sponges-cloths",
+  "https://www.dollartree.com/cookware-bakeware/baking-decorating-tools",
+  "https://www.dollartree.com/cookware-bakeware/baking-pans",
+  "https://www.dollartree.com/cookware-bakeware/mixing-prep-bowls",
+  "https://www.dollartree.com/crafts-decor/everyday-diys-blog",
+  "https://www.dollartree.com/crafts-decor/holiday-ideas-blog",
+  "https://www.dollartree.com/crafts-decor/home-decor-diy-blog",
+  "https://www.dollartree.com/crafts-decor/seasonal-ideas-blog",
+  "https://www.dollartree.com/crafts-decor/wreaths-floral-arrangements-blog",
+  "https://www.dollartree.com/dinnerware/charger-plates",
+  "https://www.dollartree.com/dinnerware/childrens-dinnerware",
+  "https://www.dollartree.com/dinnerware/coffee-mugs",
+  "https://www.dollartree.com/dinnerware/dinner-bowls-soup-mugs",
+  "https://www.dollartree.com/dinnerware/dinner-plates",
+  "https://www.dollartree.com/dinnerware/flatware-steak-knives",
+  "https://www.dollartree.com/drinks/coffee",
+  "https://www.dollartree.com/drinks/drink-mixes",
+  "https://www.dollartree.com/drinks/freezer-pops",
+  "https://www.dollartree.com/drinks/juice-juice-boxes",
+  "https://www.dollartree.com/drinks/milk",
+  "https://www.dollartree.com/drinks/soft-drinks",
+  "https://www.dollartree.com/drinks/sport-energy-drinks",
+  "https://www.dollartree.com/drinks/tea",
+  "https://www.dollartree.com/drinks/water",
+  "https://www.dollartree.com/easter-shop/easter-baskets-buckets-pails",
+  "https://www.dollartree.com/easter-shop/easter-candy",
+  "https://www.dollartree.com/easter-shop/easter-craft-supplies",
+  "https://www.dollartree.com/easter-shop/easter-eggs-grass",
+  "https://www.dollartree.com/easter-shop/easter-party-decor",
+  "https://www.dollartree.com/easter-shop/easter-plush-toys",
+  "https://www.dollartree.com/easter-shop/more-easter-choices",
+  "https://www.dollartree.com/emergency-essentials/cleaning-laundry-supplies",
+  "https://www.dollartree.com/emergency-essentials/emergency-phone-chargers-cables",
+  "https://www.dollartree.com/emergency-essentials/food-drinks",
+  "https://www.dollartree.com/emergency-essentials/health-first-aid",
+  "https://www.dollartree.com/emergency-essentials/housewares",
+  "https://www.dollartree.com/emergency-essentials/tools-batteries-tape",
+  "https://www.dollartree.com/fall-harvest/fall-candles-scents",
+  "https://www.dollartree.com/fall-harvest/fall-craft-supplies",
+  "https://www.dollartree.com/fall-harvest/fall-decor",
+  "https://www.dollartree.com/fall-harvest/fall-floral",
+  "https://www.dollartree.com/fall-harvest/fall-kitchen-dinnerware",
+  "https://www.dollartree.com/first-aid/bandages-wraps-gauze",
+  "https://www.dollartree.com/first-aid/itch-skin-treatments",
+  "https://www.dollartree.com/first-aid/wound-care",
+  "https://www.dollartree.com/floral-crafts/vases-and-containers",
+  "https://www.dollartree.com/floral-crafts/wreath-forms-wire-tape-tools",
+  "https://www.dollartree.com/floral-supplies/accent-gems-rocks-marbles",
+  "https://www.dollartree.com/floral-supplies/embellishments-accents",
+  "https://www.dollartree.com/floral-supplies/floral-balloon-weights",
+  "https://www.dollartree.com/floral-supplies/floral-foam",
+  "https://www.dollartree.com/floral-supplies/floral-latex-balloons",
+  "https://www.dollartree.com/floral-supplies/floral-stars-hearts-balloons",
+  "https://www.dollartree.com/floral-supplies/flowers-bushes-greenery",
+  "https://www.dollartree.com/floral-supplies/ribbon-raffia-cord",
+  "https://www.dollartree.com/floral-supplies/vases-containers",
+  "https://www.dollartree.com/floral-supplies/wire-forms-tape-tools",
+  "https://www.dollartree.com/food-storage/canisters",
+  "https://www.dollartree.com/food-storage/food-carriers",
+  "https://www.dollartree.com/food-storage/food-savers-storage-containers",
+  "https://www.dollartree.com/food-storage/food-storage-bags",
+  "https://www.dollartree.com/food-storage/glass-containers",
+  "https://www.dollartree.com/food-storage/plastic-wrap-foil",
+  "https://www.dollartree.com/food/baking-mixes-supplies",
+  "https://www.dollartree.com/food/breakfast-cereal",
+  "https://www.dollartree.com/food/canned-goods",
+  "https://www.dollartree.com/food/condiments",
+  "https://www.dollartree.com/food/international-foods",
+  "https://www.dollartree.com/food/packaged-dinners-grains-pasta",
+  "https://www.dollartree.com/food/spices",
+  "https://www.dollartree.com/frozen-foods/frozen-appetizers-baked-goods",
+  "https://www.dollartree.com/frozen-foods/frozen-breakfast",
+  "https://www.dollartree.com/frozen-foods/frozen-desserts",
+  "https://www.dollartree.com/frozen-foods/frozen-dinners",
+  "https://www.dollartree.com/frozen-foods/frozen-fruits-vegetables",
+  "https://www.dollartree.com/frozen-foods/frozen-international-foods",
+  "https://www.dollartree.com/frozen-foods/frozen-meats-seafood",
+  "https://www.dollartree.com/frozen-foods/frozen-pizza",
+  "https://www.dollartree.com/frozen-foods/frozen-sandwiches",
+  "https://www.dollartree.com/garden-supplies/fairy-garden",
+  "https://www.dollartree.com/garden-supplies/gardening-decor",
+  "https://www.dollartree.com/garden-supplies/gardening-gloves-tools",
+  "https://www.dollartree.com/garden-supplies/gardening-planters-pots",
+  "https://www.dollartree.com/gift-ideas/birthday-gifts-blog",
+  "https://www.dollartree.com/gift-ideas/gifts-for-mom-dad-blog",
+  "https://www.dollartree.com/gift-ideas/holiday-gifts-blog",
+  "https://www.dollartree.com/gift-ideas/just-because-gifts-blog",
+  "https://www.dollartree.com/gift-ideas/wedding-baby-shower-gifts-blog",
+  "https://www.dollartree.com/gift-wrap-bags-accessories/gift-bags",
+  "https://www.dollartree.com/gift-wrap-bags-accessories/gift-boxes",
+  "https://www.dollartree.com/gift-wrap-bags-accessories/gift-wrap-ribbon-bows",
+  "https://www.dollartree.com/gift-wrap-bags-accessories/tissue-shreds",
+  "https://www.dollartree.com/glasses-drinkware/barware-cocktail-glasses",
+  "https://www.dollartree.com/glasses-drinkware/beer-mugs-pilsners",
+  "https://www.dollartree.com/glasses-drinkware/coolers-tumblers",
+  "https://www.dollartree.com/glasses-drinkware/plastic-drinkware",
+  "https://www.dollartree.com/glasses-drinkware/travel-mugs-water-bottles",
+  "https://www.dollartree.com/glasses-drinkware/wine-champagne-glasses",
+  "https://www.dollartree.com/graduation-headquarters/grad-solid-color-party-supplies",
+  "https://www.dollartree.com/graduation-headquarters/graduation-balloons-accessories",
+  "https://www.dollartree.com/graduation-headquarters/graduation-catering-supplies-serveware",
+  "https://www.dollartree.com/graduation-headquarters/graduation-gifts-party-supplies",
+  "https://www.dollartree.com/graduation-headquarters/graduation-picture-frames",
+  "https://www.dollartree.com/hair-care/brushes-combs-picks",
+  "https://www.dollartree.com/hair-care/hair-coloring",
+  "https://www.dollartree.com/hair-care/hair-scalp-treatment",
+  "https://www.dollartree.com/hair-care/shampoos-conditioners",
+  "https://www.dollartree.com/hair-care/styling-gels-sprays",
+  "https://www.dollartree.com/hair-care/styling-tools-accessories",
+  "https://www.dollartree.com/halloween-shop/halloween-candy-snacks",
+  "https://www.dollartree.com/halloween-shop/halloween-costume-accessories",
+  "https://www.dollartree.com/halloween-shop/halloween-craft-supplies",
+  "https://www.dollartree.com/halloween-shop/halloween-decorations",
+  "https://www.dollartree.com/halloween-shop/halloween-floral",
+  "https://www.dollartree.com/halloween-shop/halloween-party-supplies",
+  "https://www.dollartree.com/halloween-shop/trick-or-treat-bags-accessories",
+  "https://www.dollartree.com/holiday-ideas/christmas-crafts-blog",
+  "https://www.dollartree.com/holiday-ideas/easter-crafts-blog",
+  "https://www.dollartree.com/holiday-ideas/halloween-crafts-blog",
+  "https://www.dollartree.com/holiday-ideas/new-years-crafts-blog",
+  "https://www.dollartree.com/holiday-ideas/patriotic-crafts-blog",
+  "https://www.dollartree.com/holiday-ideas/st-patricks-day-crafts-blog",
+  "https://www.dollartree.com/holiday-ideas/thanksgiving-crafts-blog",
+  "https://www.dollartree.com/holiday-ideas/valentines-day-crafts-blog",
+  "https://www.dollartree.com/home-decor/decorative-accents",
+  "https://www.dollartree.com/home-decor/decorative-cube-storage",
+  "https://www.dollartree.com/home-decor/religious-decor",
+  "https://www.dollartree.com/home-decor/rugs",
+  "https://www.dollartree.com/home-improvement/batteries",
+  "https://www.dollartree.com/home-improvement/lightbulbs-flashlights",
+  "https://www.dollartree.com/home-improvement/painting-supplies",
+  "https://www.dollartree.com/home-improvement/tape-glue",
+  "https://www.dollartree.com/home-improvement/tools-hardware",
+  "https://www.dollartree.com/kids-birthday-party/milestone-birthday-party",
+  "https://www.dollartree.com/kitchen-table-linens/aprons",
+  "https://www.dollartree.com/kitchen-table-linens/coasters",
+  "https://www.dollartree.com/kitchen-table-linens/dish-drying-mats",
+  "https://www.dollartree.com/kitchen-table-linens/dishcloths",
+  "https://www.dollartree.com/kitchen-table-linens/doilies-tablecloths-runners",
+  "https://www.dollartree.com/kitchen-table-linens/kitchen-towels",
+  "https://www.dollartree.com/kitchen-table-linens/oven-mitts-pot-holders",
+  "https://www.dollartree.com/kitchen-table-linens/placemats",
+  "https://www.dollartree.com/kitchen-tools-gadgets/bag-clips",
+  "https://www.dollartree.com/kitchen-tools-gadgets/colanders-cutting-boards",
+  "https://www.dollartree.com/kitchen-tools-gadgets/graters-peelers-slicers",
+  "https://www.dollartree.com/kitchen-tools-gadgets/kitchen-knives-cutlery",
+  "https://www.dollartree.com/kitchen-tools-gadgets/measuring-cups-spoons",
+  "https://www.dollartree.com/kitchen-tools-gadgets/spatulas-spoons-turners",
+  "https://www.dollartree.com/kitchen-tools-gadgets/specialty-kitchen-tools",
+  "https://www.dollartree.com/kitchen-tools-gadgets/tongs-whisks",
+  "https://www.dollartree.com/laundry-care/detergent",
+  "https://www.dollartree.com/laundry-care/fabric-softener-dryer-sheets",
+  "https://www.dollartree.com/laundry-care/hampers-baskets-clothespins",
+  "https://www.dollartree.com/laundry-care/hangers-lint-rollers",
+  "https://www.dollartree.com/laundry-care/stain-remover-bleach",
+  "https://www.dollartree.com/learning-educational-supplies/classroom-decorations",
+  "https://www.dollartree.com/learning-educational-supplies/flash-cards",
+  "https://www.dollartree.com/learning-educational-supplies/learning-educational-coloring-activity-books",
+  "https://www.dollartree.com/learning-educational-supplies/prizes-rewards",
+  "https://www.dollartree.com/learning-educational-supplies/puzzles-games",
+  "https://www.dollartree.com/learning-educational-supplies/teacher-craft-ideas",
+  "https://www.dollartree.com/learning-educational-supplies/workbooks",
+  "https://www.dollartree.com/makeup-cosmetics/beauty-tips",
+  "https://www.dollartree.com/makeup-cosmetics/cheeks",
+  "https://www.dollartree.com/makeup-cosmetics/cosmetic-brushes-tools",
+  "https://www.dollartree.com/makeup-cosmetics/eyes",
+  "https://www.dollartree.com/makeup-cosmetics/face",
+  "https://www.dollartree.com/makeup-cosmetics/lips",
+  "https://www.dollartree.com/makeup-cosmetics/nail-tools",
+  "https://www.dollartree.com/makeup-cosmetics/nails",
+  "https://www.dollartree.com/marketing/balloon-wall",
+  "https://www.dollartree.com/marketing/bath-towels",
+  "https://www.dollartree.com/marketing/bee-themed-decor",
+  "https://www.dollartree.com/marketing/christmas-wreath-forms",
+  "https://www.dollartree.com/marketing/decorative-planters",
+  "https://www.dollartree.com/marketing/dt-plus-ornaments",
+  "https://www.dollartree.com/marketing/easter-dollar-tree-more-choices",
+  "https://www.dollartree.com/marketing/easter-toys",
+  "https://www.dollartree.com/marketing/easter-wearables",
+  "https://www.dollartree.com/marketing/fall-harvest-baking",
+  "https://www.dollartree.com/marketing/felts-fabric",
+  "https://www.dollartree.com/marketing/garden-craft-supplies",
+  "https://www.dollartree.com/marketing/garden-tools",
+  "https://www.dollartree.com/marketing/gifts-for-her",
+  "https://www.dollartree.com/marketing/gifts-for-him",
+  "https://www.dollartree.com/marketing/gifts-for-kids",
+  "https://www.dollartree.com/marketing/gifts-for-pets",
+  "https://www.dollartree.com/marketing/grades-6-8",
+  "https://www.dollartree.com/marketing/grades-9-12",
+  "https://www.dollartree.com/marketing/grades-k-5",
+  "https://www.dollartree.com/marketing/holiday-candy-canes",
+  "https://www.dollartree.com/marketing/holiday-kitchen-table-linens",
+  "https://www.dollartree.com/marketing/hot-chocolate-milk",
+  "https://www.dollartree.com/marketing/household-staples",
+  "https://www.dollartree.com/marketing/indoor-easter-decorations",
+  "https://www.dollartree.com/marketing/kids-birthday-party",
+  "https://www.dollartree.com/marketing/mini-ornaments",
+  "https://www.dollartree.com/marketing/outdoor-easter-decorations",
+  "https://www.dollartree.com/marketing/plant-food-seeds-soil",
+  "https://www.dollartree.com/marketing/summer-food-snacks",
+  "https://www.dollartree.com/marketing/summer-health-beauty",
+  "https://www.dollartree.com/marketing/surprise-toys",
+  "https://www.dollartree.com/marketing/thanksgiving-treats",
+  "https://www.dollartree.com/marketing/valentines-day-gnomes",
+  "https://www.dollartree.com/marketing/valentines-day-lollipops",
+  "https://www.dollartree.com/marketing/valentines-day-tabletop-decor",
+  "https://www.dollartree.com/marketing/vases-floral-and-dinnerware",
+  "https://www.dollartree.com/medicine-treatments/allergy-sinus",
+  "https://www.dollartree.com/medicine-treatments/cough-cold-flu",
+  "https://www.dollartree.com/medicine-treatments/digestion-nausea",
+  "https://www.dollartree.com/medicine-treatments/lip-balm",
+  "https://www.dollartree.com/medicine-treatments/muscle-care-supports",
+  "https://www.dollartree.com/medicine-treatments/pain-fever",
+  "https://www.dollartree.com/medicine-treatments/sleep-aids",
+  "https://www.dollartree.com/office-basics/calculators",
+  "https://www.dollartree.com/office-basics/desktop-accessories",
+  "https://www.dollartree.com/office-basics/labels-tags",
+  "https://www.dollartree.com/office-basics/magnets-clips",
+  "https://www.dollartree.com/office-basics/scissors",
+  "https://www.dollartree.com/office-basics/staplers-staples",
+  "https://www.dollartree.com/office-basics/sticky-notes",
+  "https://www.dollartree.com/office-basics/tapes-glues-adhesives",
+  "https://www.dollartree.com/office-basics/thumb-tacks-push-pins",
+  "https://www.dollartree.com/oral-care/dental-floss",
+  "https://www.dollartree.com/oral-care/denture-care",
+  "https://www.dollartree.com/oral-care/mouthwash",
+  "https://www.dollartree.com/oral-care/teeth-whiteners",
+  "https://www.dollartree.com/oral-care/toothbrushes",
+  "https://www.dollartree.com/oral-care/toothpaste",
+  "https://www.dollartree.com/paint-supplies/brushes-stencils-tools",
+  "https://www.dollartree.com/paint-supplies/canvases",
+  "https://www.dollartree.com/paint-supplies/paints",
+  "https://www.dollartree.com/paper-crafts-vinyl/drawing-paper",
+  "https://www.dollartree.com/paper-crafts-vinyl/poster-supplies",
+  "https://www.dollartree.com/paper-crafts-vinyl/specialty-paper-cardstock",
+  "https://www.dollartree.com/parties-events/baby-shower-ideas-blog",
+  "https://www.dollartree.com/parties-events/birthdays-blog",
+  "https://www.dollartree.com/parties-events/entertaining-blog",
+  "https://www.dollartree.com/parties-events/graduation-blog",
+  "https://www.dollartree.com/parties-events/wedding-ideas-blog",
+  "https://www.dollartree.com/pet-supplies/collars-harnesses",
+  "https://www.dollartree.com/pet-supplies/grooming-cleanup",
+  "https://www.dollartree.com/pet-supplies/pet-food",
+  "https://www.dollartree.com/pet-supplies/pet-toys",
+  "https://www.dollartree.com/pet-supplies/treats-rawhide",
+  "https://www.dollartree.com/picture-frames/11x14-picture-frames",
+  "https://www.dollartree.com/picture-frames/3x2-picture-frames",
+  "https://www.dollartree.com/picture-frames/4x6-picture-frames",
+  "https://www.dollartree.com/picture-frames/5x7-picture-frames",
+  "https://www.dollartree.com/picture-frames/8x10-picture-frames",
+  "https://www.dollartree.com/picture-frames/collage-specialty-frames",
+  "https://www.dollartree.com/picture-frames/document-frames",
+  "https://www.dollartree.com/picture-frames/frame-display-easels",
+  "https://www.dollartree.com/picture-frames/photo-albums",
+  "https://www.dollartree.com/recipes/appetizers-dips-blog",
+  "https://www.dollartree.com/recipes/beverages-blog",
+  "https://www.dollartree.com/recipes/breakfast-blog",
+  "https://www.dollartree.com/recipes/desserts-blog",
+  "https://www.dollartree.com/recipes/main-dishes-blog",
+  "https://www.dollartree.com/recipes/side-dishes-blog",
+  "https://www.dollartree.com/refrigerated-foods/dairy-goods",
+  "https://www.dollartree.com/refrigerated-foods/refrigerated-meats",
+  "https://www.dollartree.com/refrigerated-foods/refrigerated-quick-meals-snacks",
+  "https://www.dollartree.com/seasonal-ideas/fall-blog",
+  "https://www.dollartree.com/seasonal-ideas/spring-blog",
+  "https://www.dollartree.com/seasonal-ideas/summer-blog",
+  "https://www.dollartree.com/seasonal-ideas/winter-blog",
+  "https://www.dollartree.com/skincare/face-cleaners-scrubs-masks",
+  "https://www.dollartree.com/skincare/lotions-moisturizers",
+  "https://www.dollartree.com/snacks/chips-pretzels",
+  "https://www.dollartree.com/snacks/cookies-snack-cakes",
+  "https://www.dollartree.com/snacks/crackers",
+  "https://www.dollartree.com/snacks/dips-salsa",
+  "https://www.dollartree.com/snacks/granola-cereal-bars",
+  "https://www.dollartree.com/snacks/jerky-beef-sticks",
+  "https://www.dollartree.com/snacks/nuts-seeds",
+  "https://www.dollartree.com/snacks/popcorn",
+  "https://www.dollartree.com/snacks/pudding-applesauce",
+  "https://www.dollartree.com/snacks/trail-mix-fruit",
+  "https://www.dollartree.com/solid-color-party-supplies/black-party-supplies",
+  "https://www.dollartree.com/solid-color-party-supplies/blue-party-supplies",
+  "https://www.dollartree.com/solid-color-party-supplies/candy-pink-party-supplies",
+  "https://www.dollartree.com/solid-color-party-supplies/dark-gold-party-supplies",
+  "https://www.dollartree.com/solid-color-party-supplies/green-party-supplies",
+  "https://www.dollartree.com/solid-color-party-supplies/light-blue-party-supplies",
+  "https://www.dollartree.com/solid-color-party-supplies/lime-green-party-supplies",
+  "https://www.dollartree.com/solid-color-party-supplies/navy-blue-party-supplies",
+  "https://www.dollartree.com/solid-color-party-supplies/orange-party-supplies",
+  "https://www.dollartree.com/solid-color-party-supplies/pink-party-supplies",
+  "https://www.dollartree.com/solid-color-party-supplies/purple-party-supplies",
+  "https://www.dollartree.com/solid-color-party-supplies/red-party-supplies",
+  "https://www.dollartree.com/solid-color-party-supplies/silver-party-supplies",
+  "https://www.dollartree.com/solid-color-party-supplies/white-party-supplies",
+  "https://www.dollartree.com/solid-color-party-supplies/yellow-party-supplies",
+  "https://www.dollartree.com/storage-organization/drawer-organizers",
+  "https://www.dollartree.com/storage-organization/shelf-liners",
+  "https://www.dollartree.com/storage-organization/storage-bags",
+  "https://www.dollartree.com/storage-organization/storage-baskets-caddies",
+  "https://www.dollartree.com/storage-organization/storage-bins-boxes-containers",
+  "https://www.dollartree.com/storage-organization/storage-decorative-cube-storage",
+  "https://www.dollartree.com/storage-organization/storage-hooks-racks-shelves",
+  "https://www.dollartree.com/storage-organization/wastebaskets",
+  "https://www.dollartree.com/storefront-navigation/category",
+  "https://www.dollartree.com/storefront-navigation/non-navigable-sub-collection",
+  "https://www.dollartree.com/summer-fun/beach-wear",
+  "https://www.dollartree.com/summer-fun/occasions-beach-pool-toys",
+  "https://www.dollartree.com/summer-fun/outdoor-toys-games",
+  "https://www.dollartree.com/summer-fun/summer-flowers",
+  "https://www.dollartree.com/summer-fun/summer-party",
+  "https://www.dollartree.com/teacher-ideas/classroom-tips-decor-blog",
+  "https://www.dollartree.com/teacher-ideas/learning-blog",
+  "https://www.dollartree.com/teacher-ideas/student-crafts-blog",
+  "https://www.dollartree.com/tips-hacks/beauty-tips-blog",
+  "https://www.dollartree.com/tips-hacks/frugal-fun-blog",
+  "https://www.dollartree.com/tips-hacks/life-hacks-blog",
+  "https://www.dollartree.com/tips-hacks/organizing-ideas-blog",
+  "https://www.dollartree.com/toys/action-figures-cars",
+  "https://www.dollartree.com/toys/active-play",
+  "https://www.dollartree.com/toys/activity-dough-putty",
+  "https://www.dollartree.com/toys/beach-pool-toys",
+  "https://www.dollartree.com/toys/bubbles-balls-chalk",
+  "https://www.dollartree.com/toys/building-blocks-sets",
+  "https://www.dollartree.com/toys/craft-kits",
+  "https://www.dollartree.com/toys/dress-up-pretend-play",
+  "https://www.dollartree.com/toys/glow-in-the-dark-toys",
+  "https://www.dollartree.com/toys/kids-stickers",
+  "https://www.dollartree.com/toys/novelties",
+  "https://www.dollartree.com/toys/stuffed-animals-dolls",
+  "https://www.dollartree.com/valentines-day/valentines-day-candy",
+  "https://www.dollartree.com/valentines-day/valentines-day-craft-supplies",
+  "https://www.dollartree.com/valentines-day/valentines-day-floral",
+  "https://www.dollartree.com/valentines-day/valentines-day-party-decor",
+  "https://www.dollartree.com/valentines-day/valentines-day-plush",
+  "https://www.dollartree.com/value-seekers-blog/crafts-decor-blog",
+  "https://www.dollartree.com/value-seekers-blog/customer-ideas-archives-blog",
+  "https://www.dollartree.com/value-seekers-blog/gift-ideas-blog",
+  "https://www.dollartree.com/value-seekers-blog/parties-events-blog",
+  "https://www.dollartree.com/value-seekers-blog/recipes-blog",
+  "https://www.dollartree.com/value-seekers-blog/teacher-ideas-blog",
+  "https://www.dollartree.com/value-seekers-blog/tips-hacks-blog",
+  "https://www.dollartree.com/winter-apparel/gloves-mittens",
+  "https://www.dollartree.com/winter-apparel/warm-socks",
+  "https://www.dollartree.com/winter-apparel/winter-hats-scarves",
+  "https://www.dollartree.com/writing-supplies/crayons-colored-pencils",
+  "https://www.dollartree.com/writing-supplies/markers-highlighters",
+  "https://www.dollartree.com/writing-supplies/pencils-sharpeners-erasers",
+  "https://www.dollartree.com/writing-supplies/pens"
+ ]
+}

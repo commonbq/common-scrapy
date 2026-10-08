@@ -1,0 +1,420 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en" id="oracle-cc" data-bind="setContextVariable:{name:'masterViewModel', value:$data}" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta charset="utf-8">
+
+  
+  <script type="text/javascript" src="https://www.dollartree.com/resources/ce927238680a94aca8840649ee71a43e9fe3eea046099" fsp="true"  ></script><script type="text/javascript" nonce="">
+    window.isPreviewMode = false ;
+    if (window.isPreviewMode === false ){
+      var bActiveX;
+      try {
+        new ActiveXObject('Microsoft.XMLHTTP');
+        bActiveX = true;
+      }
+      catch(e) { bActiveX = false; }
+      if (window.XMLHttpRequest || bActiveX) {
+        var xhttp = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            window.endpointRegistry = xhttp.response ;
+          }
+        };
+        xhttp.open("GET", "/ccstoreui/v1/registry", true);
+        xhttp.responseType = 'json';
+        xhttp.setRequestHeader("X-CCProfileType", "storefrontUI");
+        xhttp.send();
+      }
+    }
+  </script>
+
+  
+  
+  <link rel="icon" href="/file/v8569639453284500459/general/Dollar-Tree-Icon-RGB-SM.png">
+  
+
+  
+  
+  
+  
+  
+  <style id="antiClickjack">body{display:none !important;}</style>
+  <script type="text/javascript" nonce="">
+    if (self === top) {
+      var antiClickjack = document.getElementById("antiClickjack");
+      antiClickjack.parentNode.removeChild(antiClickjack);
+    } else {
+      top.location = self.location;
+    }
+  </script>
+  
+  
+  
+  <script type="text/javascript" nonce="">
+    window.urlLocale = '';
+  </script>
+
+  
+
+  <script type="text/javascript" nonce="">
+    window.siteBaseURLPath = '/';
+    window.applicationContextPath =  '';
+    window.siteId = 'siteUS';
+    window.siteIdOnURL = '';
+    window.clientConfigData = {
+                                'loadOjDependentBindings': 'true' ,
+                               
+                                'delayBeforeLoadingOutOfFocusImages': '60' ,
+                               
+                                'includeOrderDetailsInShippingMethodsPayload': 'false' ,
+                               
+                                'loadImagesLazily': 'true' ,
+                               
+                                'skipLoadingProductTypes': 'false' ,
+                               
+                                'createOrderForLoggedInAtCheckout': 'false' ,
+                               
+                                'allowVirtualShippingGroup': 'false' ,
+                               
+                                'prioritizedLoading': 'true' ,
+                               
+                                'useEnhancedSearch': 'false' 
+                                };
+  </script>
+
+  
+  <script type="text/javascript" nonce="">
+    window.externalServiceData = { social: { scheme: 'https', host: 'social-prod-us.occa.ocs.oraclecloud.com', port: '0' } };
+  </script>
+
+  <script type="text/javascript" nonce="">
+    window.visitorId = '1047p0qwSIQffmt-dI1cpz3nbQ0cR2G0u363rsMO54Lxlbw7E41';
+    window.visitId = '24d03fb6:1a1196bae4d:-58f1-4094306059';
+  </script>
+
+  
+  
+  
+
+
+<title data-bind="text: $data.title"></title>
+  <!-- ko noIndexMeta: noindex() --><!-- /ko -->
+  <!-- ko if: $data.description -->
+  <meta name="description" data-bind="attr: { content: $data.description }" content="">
+  <!-- /ko -->
+  <!-- ko if: ((typeof($data.keywords) === "function") && ($data.keywords() && $data.keywords().length > 0)) -->
+  <meta name="keywords" data-bind="attr: { content: $data.keywords }" content="">
+  <!-- /ko -->
+  <!-- ko foreach: $data.metaTags -->
+  <meta data-bind="attr: $data">
+  <!-- /ko -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    
+    <link href="/css/style.css?bust=26.09" rel="stylesheet" type="text/css"/>
+
+    
+
+    <link href="https://www.dollartree.com/file/v389544931160011278/css/base.css?occsite=siteUS" rel="stylesheet" type="text/css" /><link href="https://www.dollartree.com/file/v3136209199042347445/css/common.css?occsite=siteUS" rel="stylesheet" type="text/css" />
+
+    <!--[if lte IE 9]>
+    <link href="/css/storefront-ie.css?bust=26.09" rel="stylesheet" type="text/css"/>
+
+    <![endif]-->
+
+  
+
+  
+  
+    
+      <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet" type="text/css" />
+    
+      <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@400;600&display=swap" rel="stylesheet" type="text/css" />
+    
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" rel="stylesheet" type="text/css" />
+    
+  
+
+  <link href="https://www.dollartree.com/department/food-candy-drinks" rel="canonical"/>
+
+
+  <!-- ko if: $data.prevPageNo -->
+  <link rel="prev" data-bind="attr: { href: $data.canonicalRoute() + $data.prevPageNo() }">
+  <!-- /ko -->
+  <!-- ko if: $data.nextPageNo -->
+  <link rel="next" data-bind="attr: { href: $data.canonicalRoute() + $data.nextPageNo() }">
+  <!-- /ko -->
+
+  <!-- ko foreach: $data.alternates -->
+    <link rel="alternate" data-bind="attr: { href: $data.href + $parent.currPageNo(), hreflang: $parent.formatHreflang($data.hrefLang) }" />
+  <!-- /ko -->
+
+  
+  
+
+  <script type="text/javascript" nonce="">
+      function getSamlResponse() {
+        return "";
+      }
+  </script>
+  <script type="text/javascript" nonce="">
+      function getAgentAuthToken() {
+        return "";
+     }
+  </script>
+  <script type="text/javascript" nonce="">
+      function getAgentRedirectUrl() {
+        return "";
+     }
+     function getAgentOrganizationIdValue() {
+             return "";
+     }
+     function getAgentPriceListGroupValue() {
+       return "";
+     }
+  </script>
+
+  <script type="text/javascript" nonce="">
+        function getRelayState() {
+          return "";
+        }
+  </script>
+  <script type="text/javascript" nonce="">
+      function getOAuthToken() {
+        return "";
+     }
+      function getAdditionalFormData() {
+        var additionalFormDataJson = {
+          
+        };
+        return additionalFormDataJson;
+     }
+  </script>
+  <script type="text/javascript" nonce="">
+    function getOpenIdCode() {
+      return "";
+    }
+  </script>
+
+  
+
+
+<script>(window.BOOMR_mq=window.BOOMR_mq||[]).push(["addVar",{"rua.upush":"false","rua.cpush":"false","rua.upre":"false","rua.cpre":"false","rua.uprl":"false","rua.cprl":"false","rua.cprf":"false","rua.trans":"","rua.cook":"false","rua.ims":"false","rua.ufprl":"false","rua.cfprl":"false","rua.isuxp":"false","rua.texp":"norulematch","rua.ceh":"false","rua.ueh":"false","rua.ieh.st":"0"}]);</script>
+                                <script>!function(a){var e="https://s.go-mpulse.net/boomerang/",t="addEventListener";if("False"=="True")a.BOOMR_config=a.BOOMR_config||{},a.BOOMR_config.PageParams=a.BOOMR_config.PageParams||{},a.BOOMR_config.PageParams.pci=!0,e="https://s2.go-mpulse.net/boomerang/";if(window.BOOMR_API_key="LKEKX-VARSG-K3RYN-HVMZJ-PPULL",function(){function n(e){a.BOOMR_onload=e&&e.timeStamp||(new Date).getTime()}if(!a.BOOMR||!a.BOOMR.version&&!a.BOOMR.snippetExecuted){a.BOOMR=a.BOOMR||{},a.BOOMR.snippetExecuted=!0;var i,_,o,r=document.createElement("iframe");if(a[t])a[t]("load",n,!1);else if(a.attachEvent)a.attachEvent("onload",n);r.src="javascript:void(0)",r.title="",r.role="presentation",(r.frameElement||r).style.cssText="width:0;height:0;border:0;display:none;",o=document.getElementsByTagName("script")[0],o.parentNode.insertBefore(r,o);try{_=r.contentWindow.document}catch(O){i=document.domain,r.src="javascript:var d=document.open();d.domain='"+i+"';void(0);",_=r.contentWindow.document}_.open()._l=function(){var a=this.createElement("script");if(i)this.domain=i;a.id="boomr-if-as",a.src=e+"LKEKX-VARSG-K3RYN-HVMZJ-PPULL",BOOMR_lstart=(new Date).getTime(),this.body.appendChild(a)},_.write("<bo"+'dy onload="document._l();">'),_.close()}}(),"".length>0)if(a&&"performance"in a&&a.performance&&"function"==typeof a.performance.setResourceTimingBufferSize)a.performance.setResourceTimingBufferSize();!function(){if(BOOMR=a.BOOMR||{},BOOMR.plugins=BOOMR.plugins||{},!BOOMR.plugins.AK){var e=""=="true"?1:0,t="",n="vpq7ruixgiofc2whb7ea-f-9a5f60f70-clientnsv4-s.akamaihd.net",i="false"=="true"?2:1,_={"ak.v":"41","ak.cp":"104227","ak.ai":parseInt("451545",10),"ak.ol":"0","ak.cr":51,"ak.ipv":4,"ak.proto":"h2","ak.rid":"93c5177b","ak.r":48799,"ak.a2":e,"ak.m":"a","ak.n":"essl","ak.cport":7688,"ak.gh":"23.40.189.208","ak.quicv":"","ak.tlsv":"tls1.3","ak.0rtt":"","ak.0rtt.ed":"","ak.csrc":"-","ak.acc":"","ak.t":"1791430600","ak.ak":"hOBiQwZUYzCg5VSAfCLimQ==1dL4F+j0GVEUqhEVkEf0JGWCsWos8WzowWf5YN55IaXiHPo+/hn4UFkDnhKhJsvL4Y922zUvDGHhmdu0W42LWX4SjETyg9Ew53k0SUAnBCVYvvqmWOw+hKhR31YssCvxbO9fRvxeF0HEFrxrNT+oxMkZeLpr2Othozkhx/n25mZyfFo8Ptjuhu2URi+G8KV4o4X10D78Y9cCJv3/zaH2cfsKWnSjs5Kc5z+Y7/9dv5jbn3ab4O6ly9wn+2TO2AdKjyrt4mBhVWyMEZjQcjHPYIPTr6NSvFTAeoeM+g5WjgGYu0P98+zvAnTWxqldgNa28bTp9cJaQ9hb8IdGEO3ZwS7g5w9Dzd+MJWxUtAzhQZH7DzSWxX6qYk4BPkw77o9qWOFDx7rMlqW3JVLE5hjfAjSin2b5+C6x8LmjxjAE0VE=","ak.pv":"351","ak.dpoabenc":"","ak.tf":i};if(""!==t)_["ak.ruds"]=t;var o={i:!1,av:function(e){var t="http.initiator";if(e&&(!e[t]||"spa_hard"===e[t]))_["ak.feo"]=void 0!==a.aFeoApplied?1:0,BOOMR.addVar(_)},rv:function(){var a=["ak.cport","ak.cr","ak.csrc","ak.gh","ak.ipv","ak.m","ak.n","ak.ol","ak.proto","ak.quicv","ak.tlsv","ak.0rtt","ak.0rtt.ed","ak.r","ak.acc","ak.t","ak.tf"];BOOMR.removeVar(a)}};BOOMR.plugins.AK={akVars:_,akDNSPreFetchDomain:n,init:function(){if(!o.i){var a=BOOMR.subscribe;a("before_beacon",o.av,null,null),a("onbeacon",o.rv,null,null),o.i=!0}return this},is_complete:function(){return!0}}}}()}(window);</script></head>
+<noscript>
+</noscript>
+<body>
+
+  <script type="text/javascript">
+var utag_data = {};
+(function(a,b,c,d){
+a='//tags.tiqcdn.com/utag/dollartree/main/prod/utag.js';
+b=document;c='script';d=b.createElement(c);d.src=a;
+d.type='text/java'+c;d.async=true;
+a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);
+})();
+window.utag_cfg_ovrd = {noview : true};
+</script>
+
+
+<!-- ko agentBar: isObo() --><!-- /ko -->
+<div id="alert-page-change" class="sr-only" role="alert" aria-atomic="true" aria-live="polite" data-bind="text: pageChangeMessage"></div>
+<div id="alert-modal-change" class="sr-only" role="alert" aria-atomic="true" aria-live="polite" ></div>
+<div id="page" data-bind="css:{'container': containPage}">
+  <header id="headerBar" class="page-row">
+
+    <div data-bind="css:{'container': containHeader}">
+      <!-- ko foreach: headerRows -->
+      <div class="row">
+        <div data-bind="template: { name: 'region-template', foreach: regions }" class="redBox"></div>
+      </div>
+      <!-- /ko -->
+    </div>
+  </header>
+
+  <main class="page-row page-row-expanded">
+    <div id='main' data-bind="css:{'container': containMain}">
+      <!-- ko foreach: bodyRows -->
+      <div class="row">
+        <div data-bind="template: { name: 'region-template', foreach: regions }" class="redBox"></div>
+      </div>
+      <!-- /ko -->
+    </div>
+
+    <div id='loadingModal' class="hide loadingIndicator"></div>
+  </main>
+
+  <footer id="footerBar" class="page-row">
+    <div data-bind="css:{'container': containFooter}">
+      <!-- ko foreach: footerRows -->
+      <div class="row">
+        <div data-bind="template: { name: 'region-template', foreach: regions }" class="redBox"></div>
+      </div>
+      <!-- /ko -->
+    </div>
+  </footer>
+</div>
+
+<script type='text/html' id='region-template'>
+  <!-- ko if: $data.hasOwnProperty('structure') && $data.structure() == 101 -->
+  <div  data-bind="css: widthClass, attr: {id: 'region-'+name()}">
+    <div data-bind="template: { name: 'stack-template' }"></div>
+  </div>
+  <!-- /ko -->
+  <!-- ko ifnot: $data.hasOwnProperty('structure') && $data.structure() == 101 -->
+  <!-- ko if: $data.widgets() && $data.widgets().length && !$data.globalWidgetsOnly() -->
+  <div  data-bind="css: widthClass, attr: {id: 'region-'+name()}">
+    <!-- ko foreach: $data.widgets  -->
+    <!-- ko ifnot: global  -->
+    <!-- ko if: initialized  -->
+    <!-- ko if: $data.elementsSrc -->
+    <!-- ko addTemplate: elementsSrc() --><!-- /ko -->
+    <!-- /ko -->
+    <!-- ko if: isPreview -->
+    <div class="sf-display-error">
+      <span class="sf-error-title" data-bind="text: $root.displayErrorMessage"></span>:
+      <span class="sf-error-msg"></span>
+    </div>
+    <!-- /ko -->
+    <!-- ko ifnot: $data.templateSrc -->
+    <!-- ko if: templateUrl() -->
+    <div data-bind='template: {name: templateUrl(), templateUrl: ""}, attr: {id: typeId()+"-"+id()}, visible:($masterViewModel.storeConfiguration.enablePrioritizedLoading) ? (occPrioritizedDisplay ? occPrioritizedDisplay : true):true' ></div>
+    <!-- /ko -->
+    <!-- /ko -->
+    <!-- ko if: $data.templateSrc -->
+    <div data-bind='template: {name: templateUrl(),templateSrc: templateSrc()}, attr: {id: typeId()+"-"+id()}, visible:($masterViewModel.storeConfiguration.enablePrioritizedLoading) ? (occPrioritizedDisplay ? occPrioritizedDisplay : true):true' ></div>
+    <!-- /ko -->
+    <!-- /ko -->
+    <!-- /ko -->
+    <!-- /ko -->
+  </div>
+  <!-- /ko -->
+  <!-- /ko -->
+</script>
+
+<script type='text/html' id='stack-template'>
+  <!-- ko if: $masterViewModel.isPreview -->
+  <div class="sf-display-error">
+    <span class="sf-error-title" data-bind="text: $root.displayErrorMessage"></span>:
+    <span class="sf-error-msg"></span>
+  </div>
+  <!-- /ko -->
+  <!-- ko ifnot: templateSrc -->
+  <!-- ko if: templatePath() -->
+  <div data-bind='template: {name: templatePath(), templateUrl: ""}, attr: {id: stackType()+"-"+id()}'
+       class="stack-template "></div>
+  <!-- /ko -->
+  <!-- /ko -->
+  <!-- ko if: templateSrc -->
+  <div data-bind='template: {name: name(), templateSrc: templateSrc()}, attr: {id: stackType()+"-"+id()}'
+       class="stack-template "></div>
+  <!-- /ko -->
+</script>
+
+<!-- this template is loaded on site load and is available then onwards even if internet connection has some issue -->
+<script type='text/html' id='notificationsNetworkError'>
+  <span data-bind="text: networkErrorMessage"></span>
+  <u><a data-bind="text: networkErrorReloadText" href="javascript:location.reload(true);"></a></u>
+</script>
+
+
+
+
+  <script type="text/javascript" nonce="">
+    window.storeLibsPath= 'https://www.dollartree.com/file/v319442250316353675/storeJS/26.09/store-libs.js';
+    window.ccKoOjExtensionsPath= 'https://www.dollartree.com/file/v5139055893192541751/storeJS/26.09/cc-ko-oj-extensions.js';
+  </script>
+  <script type="text/javascript">var require = {
+ "config": {
+  "ccNavState": {
+   "pageContext": "1149",
+   "pageNumber": "0",
+   "pageid": "category",
+   "referrer": "/",
+   "slug": null,
+   "statusCode": "200"
+  },
+  "ccResourceLoader": {"jsUrls": [
+   "/file/v310733763802265853/global/edq.min.js?bust=MzEwNzMzNzYzODAyMjY1ODUz",
+   "/file/v7236217797184882520/global/addressValidation.min.js?bust=NzIzNjIxNzc5NzE4NDg4MjUyMA==",
+   "/file/v7088823040146305083/global/siteData.min.js?bust=NzA4ODgyMzA0MDE0NjMwNTA4Mw==",
+   "/file/v3593708279347359620/global/iscroll-zoom.min.js?bust=MzU5MzcwODI3OTM0NzM1OTYyMA==",
+   "/file/v2965669449990074467/global/helpers.min.js?bust=Mjk2NTY2OTQ0OTk5MDA3NDQ2Nw==",
+   "/file/v2260504050890677683/global/backToTop.min.js?bust=MjI2MDUwNDA1MDg5MDY3NzY4Mw==",
+   "/file/v3905006584775512285/global/ko-components.min.js?bust=LTM5MDUwMDY1ODQ3NzU1MTIyODU=",
+   "/file/v2201110152326979217/global/trackOrder.min.js?bust=LTIyMDExMTAxNTIzMjY5NzkyMTc=",
+   "/file/v2366506041715511459/global/sophisticatedSearch.min.js?bust=LTIzNjY1MDYwNDE3MTU1MTE0NTk=",
+   "/file/v2240104733733866399/global/config.min.js?bust=MjI0MDEwNDczMzczMzg2NjM5OQ==",
+   "/file/v2287410144638201050/global/inputmask.min.js?bust=LTIyODc0MTAxNDQ2MzgyMDEwNTA="
+  ]},
+  "pageLayout/css-loader": {"optimizingCSS": true}
+ },
+ "urlArgs": "bust=26.09",
+ "waitSeconds": 45
+};</script><script src="https://www.dollartree.com/file/v4847802116576099056/storeJS/26.09/require.js?bust=26.09"></script>
+
+  <script src="https://www.dollartree.com/file/v8464339993746713764/storeJS/26.09/main.js?bust=26.09"></script>
+
+  <script src="https://www.dollartree.com/file/v319442250316353675/storeJS/26.09/store-libs.js?bust=26.09"></script>
+
+  
+    <script src="https://www.dollartree.com/file/v5139055893192541751/storeJS/26.09/cc-ko-oj-extensions.js?bust=26.09"></script>
+
+  
+
+
+
+
+
+  
+
+
+<script type="text/javascript"  src="/j8g-2-/s/H/OMTyaCNqxQ/SODSLQJfLJDXcX/Zj0JAg/fnh/BI2sSQxs"></script></body>
+</html>
+
