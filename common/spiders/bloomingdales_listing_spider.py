@@ -32,6 +32,15 @@ class BloomingdalesListingSpider(BaseListingSpider):
     name = "bloomingdales_listing"
     allowed_domains = ["bloomingdales.com", "www.bloomingdales.com"]
 
+    custom_settings = {
+        "FEED_EXPORT_FIELDS": [
+            "item_id", "title", "url", "price", "price_text",
+            "original_price", "original_price_text", "image", "brand",
+            "rating", "review_count", "source", "category",
+            "category_root_url", "subcategory_urls", "facet_urls", "timestamp",
+        ],
+    }
+
     categories = [
         {"category": category, "url": url}
         for category, url in BLOOMINGDALES_CATEGORIES.items()

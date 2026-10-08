@@ -71,6 +71,7 @@ class PoshmarkListingSpider(BaseListingSpider):
             "category_url",
             "page",
             "raw",
+            "timestamp",
         ]
     }
 

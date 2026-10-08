@@ -45,6 +45,7 @@ class StockxListingSpider(BaseListingSpider):
             "page",
             "source",
             "raw",
+            "timestamp",
         ],
     }
 

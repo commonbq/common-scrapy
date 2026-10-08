@@ -97,6 +97,7 @@ class VitacostListingSpider(BaseListingSpider):
             "option_count", "options", "package_quantity", "form", "strength", "badges",
             "description", "rating", "reviews_count", "published_at", "page", "position",
             "total_count", "scraped_timestamp", "source_url", "source", "raw",
+            "timestamp",
         ],
     }
 

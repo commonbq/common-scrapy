@@ -47,6 +47,7 @@ class MaccosmeticsListingSpider(BaseListingSpider):
         "FEED_EXPORT_FIELDS": [
             "category", "item_id", "sku", "title", "brand", "product_type",
             "url", "image_url", "price", "currency", "page", "source", "raw",
+            "timestamp",
         ],
     }
 

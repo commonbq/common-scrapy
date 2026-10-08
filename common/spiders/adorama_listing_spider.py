@@ -41,6 +41,7 @@ class AdoramaListingSpider(BaseListingSpider):
             "rating", "reviews_count", "highlights", "free_shipping",
             "category_id", "category_path_hierarchy", "page", "position", "total_count",
             "items_per_page", "page_type", "source_url", "source", "raw",
+            "timestamp",
         ],
     }
 

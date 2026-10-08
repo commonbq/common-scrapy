@@ -59,6 +59,7 @@ class IherbListingSpider(BaseListingSpider):
             "is_autoship", "product_form", "potency", "package_quantity",
             "price_per_serving", "product_status", "group_id", "page", "position",
             "total_count", "items_per_page", "source_url", "source", "raw",
+            "timestamp",
         ],
     }
 

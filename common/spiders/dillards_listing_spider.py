@@ -38,6 +38,7 @@ class DillardsListingSpider(BaseListingSpider):
             "category", "subcategory", "item_id", "part_number", "title", "brand",
             "url", "image_url", "price", "price_max", "currency", "rating",
             "reviews_count", "page", "source", "raw",
+            "timestamp",
         ],
     }
 

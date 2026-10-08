@@ -133,6 +133,7 @@ class GamestopListingSpider(BaseListingSpider):
             "category_url",
             "source",
             "raw",
+            "timestamp",
         ],
     }
 

@@ -36,6 +36,11 @@ class HomeDepotSearchSpider(BaseSearchSpider):
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
         "DOWNLOAD_DELAY": 1,
+        "FEED_EXPORT_FIELDS": [
+            "item_id", "sku", "brand", "title", "model", "url", "image_url",
+            "price", "original_price", "rating", "reviews_count", "source",
+            "mode", "query", "category_url", "page", "timestamp",
+        ],
     }
 
     def start_requests(self):

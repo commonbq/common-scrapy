@@ -46,6 +46,7 @@ class LululemonListingSpider(BaseListingSpider):
             "category_url",
             "page",
             "raw",
+            "timestamp",
         ]
     }
 

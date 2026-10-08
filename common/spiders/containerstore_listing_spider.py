@@ -28,6 +28,7 @@ class ContainerStoreListingSpider(BaseListingSpider):
             "color_options", "price", "original_price", "discount_percentage", "currency",
             "on_sale", "out_of_stock", "rating", "reviews_count", "badge", "page", "position",
             "total_count", "last_page", "source_url", "source", "raw",
+            "timestamp",
         ],
     }
 

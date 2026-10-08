@@ -140,6 +140,7 @@ class BassproListingSpider(BaseListingSpider):
             "pieces", "gear_ratio", "line_weight", "retrieve", "action", "power",
             "store_id", "page", "position", "total_count", "items_per_page",
             "source_url", "source", "raw",
+            "timestamp",
         ],
     }
 

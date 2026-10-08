@@ -51,6 +51,7 @@ class UniqloListingSpider(BaseListingSpider):
             "promotion_text", "rating", "reviews_count", "available_sizes",
             "page", "position", "total_count", "items_per_page", "taxonomy_path",
             "source_url", "source", "raw",
+            "timestamp",
         ],
     }
 

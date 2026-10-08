@@ -43,6 +43,7 @@ class AnthropologieListingSpider(BaseListingSpider):
             "page",
             "position",
             "raw",
+            "timestamp",
         ]
     }
 

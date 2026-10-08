@@ -120,6 +120,7 @@ class NikeListingSpider(BaseListingSpider):
             "category_url",
             "source",
             "raw",
+            "timestamp",
         ],
     }
 

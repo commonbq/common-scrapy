@@ -48,6 +48,7 @@ class ShopbopListingSpider(BaseListingSpider):
             "currency", "on_sale", "final_sale", "out_of_stock", "rating", "reviews_count",
             "product_type", "product_category", "gender", "attribute_icons",
             "page", "position", "total_count", "offset", "source_url", "source", "raw",
+            "timestamp",
         ],
     }
 
@@ -441,5 +442,4 @@ class ShopbopListingSpider(BaseListingSpider):
             return int(value)
         except (TypeError, ValueError):
             return None
-
 

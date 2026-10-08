@@ -31,6 +31,7 @@ class AdidasListingSpider(BaseListingSpider):
             "discount_percentage", "currency", "rating", "reviews_count", "on_sale",
             "sold_out", "badges", "page", "position", "total_count", "source_url",
             "source", "raw",
+            "timestamp",
         ],
     }
 

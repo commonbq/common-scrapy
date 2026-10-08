@@ -3,6 +3,8 @@
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+from datetime import datetime
+
 from scrapy import signals
 
 from common.settings import PROXY
@@ -35,8 +37,12 @@ class CommonSpiderMiddleware:
         # it has processed the response.
 
         # Must return an iterable of Request, or item objects.
-        for i in result:
-            yield i
+        for item_or_request in result:
+            yield self._ensure_timestamp(item_or_request, spider)
+
+    async def process_spider_output_async(self, response, result, spider):
+        async for item_or_request in result:
+            yield self._ensure_timestamp(item_or_request, spider)
 
     def process_spider_exception(self, response, exception, spider):
         # Called when a spider or process_spider_input() method
@@ -49,7 +55,22 @@ class CommonSpiderMiddleware:
         # Called with an async iterator over the spider start() method or the
         # maching method of an earlier spider middleware.
         async for item_or_request in start:
-            yield item_or_request
+            yield self._ensure_timestamp(item_or_request, None)
+
+    @staticmethod
+    def _ensure_timestamp(item_or_request, spider):
+        if not ItemAdapter.is_item(item_or_request):
+            return item_or_request
+
+        adapter = ItemAdapter(item_or_request)
+        if "timestamp" in adapter:
+            return item_or_request
+
+        get_timestamp = getattr(spider, "get_timestamp", None)
+        adapter["timestamp"] = (
+            get_timestamp() if callable(get_timestamp) else datetime.utcnow()
+        )
+        return item_or_request
 
     def spider_opened(self, spider):
         spider.logger.info("Spider opened: %s" % spider.name)

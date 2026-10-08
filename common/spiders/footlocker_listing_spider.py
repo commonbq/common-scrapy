@@ -120,6 +120,7 @@ class FootlockerListingSpider(BaseListingSpider):
             "category_url", # The URL of the category page
             "source", # API for this spider
             "raw", # Unmodified product dict from API
+            "timestamp",
         ],
     }
 

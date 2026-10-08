@@ -157,6 +157,7 @@ class UrbanOutfittersListingSpider(BaseListingSpider):
             "source_url",
             "source",
             "raw",
+            "timestamp",
         ],
     }
 

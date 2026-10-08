@@ -26,6 +26,7 @@ class AsosListingSpider(BaseListingSpider):
             "url", "image_url", "color", "price", "original_price", "currency",
             "is_marked_down", "is_outlet_price", "is_selling_fast", "page",
             "position", "total_count", "source_url", "source", "raw",
+            "timestamp",
         ],
     }
 

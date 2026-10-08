@@ -32,6 +32,7 @@ class JCPenneyListingSpider(BaseListingSpider):
             "price", "price_max", "original_price", "original_price_max",
             "currency", "rating", "reviews_count", "source", "category_url",
             "page", "raw",
+            "timestamp",
         ]
     }
 

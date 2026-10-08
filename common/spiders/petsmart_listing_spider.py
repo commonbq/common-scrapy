@@ -240,6 +240,7 @@ class PetsmartListingSpider(BaseListingSpider):
             "source_url",
             "source",
             "raw",
+            "timestamp",
         ],
     }
 

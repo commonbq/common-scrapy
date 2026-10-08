@@ -26,6 +26,7 @@ class ZapposListingSpider(BaseListingSpider):
             "color", "url", "image_url", "price", "original_price", "currency",
             "rating", "reviews_count", "on_sale", "page", "position",
             "total_count", "source_url", "source", "raw",
+            "timestamp",
         ],
     }
 

@@ -41,6 +41,7 @@ class PetcoListingSpider(BaseListingSpider):
             "taxonomy_path", "variants_count", "variant_ids", "facets", "page", "position",
             "total_count", "items_per_page", "sort_by", "sort_order", "search_engine",
             "source_url", "source", "raw",
+            "timestamp",
         ],
     }
 

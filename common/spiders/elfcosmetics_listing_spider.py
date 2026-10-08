@@ -38,6 +38,7 @@ class ElfcosmeticsListingSpider(BaseListingSpider):
             "source",
             "source_url",
             "raw",
+            "timestamp",
         ],
     }
 

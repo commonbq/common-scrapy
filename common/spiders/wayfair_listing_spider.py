@@ -28,6 +28,7 @@ class WayfairListingSpider(BaseListingSpider):
             "reviews_count", "promotion", "promotion_type", "availability",
             "delivery", "is_sponsored", "page", "position", "source_url",
             "source", "raw",
+            "timestamp",
         ],
     }
 

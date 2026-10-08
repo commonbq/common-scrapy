@@ -33,6 +33,7 @@ class SaksfifthavenueListingSpider(BaseListingSpider):
             "category", "subcategory", "item_id", "title", "brand", "url",
             "image_url", "price", "original_price", "currency", "availability",
             "badge", "page", "source_url", "source",
+            "timestamp",
         ],
     }
 

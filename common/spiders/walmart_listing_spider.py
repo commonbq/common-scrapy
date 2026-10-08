@@ -101,6 +101,7 @@ class WalmartListingSpider(BaseListingSpider):
             "variantCount",
             "variants",
             "raw",
+            "timestamp",
         ]
     }
 
