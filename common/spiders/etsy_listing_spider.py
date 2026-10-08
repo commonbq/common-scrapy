@@ -54,6 +54,13 @@ class EtsyListingSpider(BaseListingSpider):
         # (specs[<key>][0]=<spec_name>&specs[<key>][1]=<json>); the exploded
         # bracket form is rejected with 400 "Missing input parameter:
         # [search_request_params]".
+        #
+        # Proxy composition note: the render/JS engine strips non-standard
+        # headers, so any composition containing render_js=true loses the
+        # required ``x-etsy-protection`` header and the API answers
+        # 400 "Missing required header x-etsy-protection". keep_headers=true
+        # alone is the only observed route that preserves the header and
+        # reaches Etsy without a captcha interstitial.
         facet = urlparse(category_url).path.removeprefix("/c/").strip("/")
         args = {
             "search_request_params": {
@@ -103,8 +110,7 @@ class EtsyListingSpider(BaseListingSpider):
         parsed = urlparse(proxy)
         username = parsed.username or ""
         for option in (
-            "residential=true", "country=us", "keep_headers=true", "bypass=5",
-            "render_js=true",
+            "keep_headers=true",
         ):
             if option not in username:
                 username += f".{option}"
