@@ -1,0 +1,122 @@
+[
+  {
+    "rank": 1,
+    "name": "new-and-now",
+    "url": "https://fivebelow.com/categories/new-and-now",
+    "subcategories": 23
+  },
+  {
+    "rank": 2,
+    "name": "fan-shop",
+    "url": "https://fivebelow.com/categories/fan-shop",
+    "subcategories": 21
+  },
+  {
+    "rank": 3,
+    "name": "room",
+    "url": "https://fivebelow.com/categories/room",
+    "subcategories": 20
+  },
+  {
+    "rank": 4,
+    "name": "beauty",
+    "url": "https://fivebelow.com/categories/beauty",
+    "subcategories": 19
+  },
+  {
+    "rank": 5,
+    "name": "toys-and-games",
+    "url": "https://fivebelow.com/categories/toys-and-games",
+    "subcategories": 18
+  },
+  {
+    "rank": 6,
+    "name": "candy",
+    "url": "https://fivebelow.com/categories/candy",
+    "subcategories": 18
+  },
+  {
+    "rank": 7,
+    "name": "style",
+    "url": "https://fivebelow.com/categories/style",
+    "subcategories": 16
+  },
+  {
+    "rank": 8,
+    "name": "holiday",
+    "url": "https://fivebelow.com/categories/holiday",
+    "subcategories": 16
+  },
+  {
+    "rank": 9,
+    "name": "tech",
+    "url": "https://fivebelow.com/categories/tech",
+    "subcategories": 14
+  },
+  {
+    "rank": 10,
+    "name": "clearance",
+    "url": "https://fivebelow.com/categories/clearance",
+    "subcategories": 14
+  },
+  {
+    "rank": 11,
+    "name": "party",
+    "url": "https://fivebelow.com/categories/party",
+    "subcategories": 13
+  },
+  {
+    "rank": 12,
+    "name": "arts-crafts",
+    "url": "https://fivebelow.com/categories/arts-crafts",
+    "subcategories": 13
+  },
+  {
+    "rank": 13,
+    "name": "books",
+    "url": "https://fivebelow.com/categories/books",
+    "subcategories": 13
+  },
+  {
+    "rank": 14,
+    "name": "gift-guide",
+    "url": "https://fivebelow.com/categories/gift-guide",
+    "subcategories": 12
+  },
+  {
+    "rank": 15,
+    "name": "pet",
+    "url": "https://fivebelow.com/categories/pet",
+    "subcategories": 11
+  },
+  {
+    "rank": 16,
+    "name": "easter",
+    "url": "https://fivebelow.com/categories/easter",
+    "subcategories": 10
+  },
+  {
+    "rank": 17,
+    "name": "halloween",
+    "url": "https://fivebelow.com/categories/halloween",
+    "subcategories": 10
+  },
+  {
+    "rank": 18,
+    "name": "back-to-school",
+    "url": "https://fivebelow.com/categories/back-to-school",
+    "subcategories": 8
+  },
+  {
+    "rank": 19,
+    "name": "summer",
+    "url": "https://fivebelow.com/categories/summer",
+    "subcategories": 7
+  },
+  {
+    "rank": 20,
+    "name": "sports",
+    "url": "https://fivebelow.com/categories/sports",
+    "subcategories": 7
+  }
+]
