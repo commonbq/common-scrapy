@@ -1,0 +1,2766 @@
+{
+  "site": "https://www.dunelm.com",
+  "source": "https://www.dunelm.com/sitemap/category-sitemap.xml",
+  "total_paths": 670,
+  "categories": {
+    "25-pounds-and-under": {
+      "url": "https://www.dunelm.com/category/25-pounds-and-under",
+      "subcategories": {}
+    },
+    "50-pounds-and-under": {
+      "url": "https://www.dunelm.com/category/50-pounds-and-under",
+      "subcategories": {}
+    },
+    "back-in-stock": {
+      "url": "https://www.dunelm.com/category/back-in-stock",
+      "subcategories": {}
+    },
+    "beat-the-heat": {
+      "url": "https://www.dunelm.com/category/beat-the-heat",
+      "subcategories": {}
+    },
+    "best-buys": {
+      "url": "https://www.dunelm.com/category/best-buys",
+      "subcategories": {
+        "all-best-buys": {
+          "url": "https://www.dunelm.com/category/best-buys/all-best-buys",
+          "subcategories": {}
+        }
+      }
+    },
+    "best-value-deals": {
+      "url": "https://www.dunelm.com/category/best-value-deals",
+      "subcategories": {}
+    },
+    "brands": {
+      "url": "https://www.dunelm.com/category/brands",
+      "subcategories": {
+        "addis": {
+          "url": "https://www.dunelm.com/category/brands/addis",
+          "subcategories": {}
+        },
+        "all-brands": {
+          "url": "https://www.dunelm.com/category/brands/all-brands",
+          "subcategories": {}
+        },
+        "all-natural-history-museum-collaboration": {
+          "url": "https://www.dunelm.com/category/brands/all-natural-history-museum-collaboration",
+          "subcategories": {}
+        },
+        "beards-and-daisies": {
+          "url": "https://www.dunelm.com/category/brands/beards-and-daisies",
+          "subcategories": {}
+        },
+        "beldray": {
+          "url": "https://www.dunelm.com/category/brands/beldray",
+          "subcategories": {}
+        },
+        "black-and-decker": {
+          "url": "https://www.dunelm.com/category/brands/black-and-decker",
+          "subcategories": {}
+        },
+        "bodum": {
+          "url": "https://www.dunelm.com/category/brands/bodum",
+          "subcategories": {}
+        },
+        "brabantia": {
+          "url": "https://www.dunelm.com/category/brands/brabantia",
+          "subcategories": {
+            "all-brabantia": {
+              "url": "https://www.dunelm.com/category/brands/brabantia/all-brabantia",
+              "subcategories": {}
+            }
+          }
+        },
+        "catherine-lansfield": {
+          "url": "https://www.dunelm.com/category/brands/catherine-lansfield",
+          "subcategories": {}
+        },
+        "character-world": {
+          "url": "https://www.dunelm.com/category/brands/character-world",
+          "subcategories": {}
+        },
+        "churchgate": {
+          "url": "https://www.dunelm.com/category/brands/churchgate",
+          "subcategories": {
+            "all-churchgate": {
+              "url": "https://www.dunelm.com/category/brands/churchgate/all-churchgate",
+              "subcategories": {}
+            }
+          }
+        },
+        "circulon": {
+          "url": "https://www.dunelm.com/category/brands/circulon",
+          "subcategories": {}
+        },
+        "cole-and-mason": {
+          "url": "https://www.dunelm.com/category/brands/cole-and-mason",
+          "subcategories": {}
+        },
+        "command": {
+          "url": "https://www.dunelm.com/category/brands/command",
+          "subcategories": {}
+        },
+        "curver": {
+          "url": "https://www.dunelm.com/category/brands/curver",
+          "subcategories": {}
+        },
+        "denby": {
+          "url": "https://www.dunelm.com/category/brands/denby",
+          "subcategories": {}
+        },
+        "disney": {
+          "url": "https://www.dunelm.com/category/brands/disney",
+          "subcategories": {
+            "all-disney": {
+              "url": "https://www.dunelm.com/category/brands/disney/all-disney",
+              "subcategories": {}
+            },
+            "disney-princess": {
+              "url": "https://www.dunelm.com/category/brands/disney/disney-princess",
+              "subcategories": {}
+            },
+            "dumbo": {
+              "url": "https://www.dunelm.com/category/brands/disney/dumbo",
+              "subcategories": {}
+            },
+            "frozen": {
+              "url": "https://www.dunelm.com/category/brands/disney/frozen",
+              "subcategories": {}
+            },
+            "marvel": {
+              "url": "https://www.dunelm.com/category/brands/disney/marvel",
+              "subcategories": {}
+            },
+            "mickey-and-minnie-mouse": {
+              "url": "https://www.dunelm.com/category/brands/disney/mickey-and-minnie-mouse",
+              "subcategories": {}
+            },
+            "moana": {
+              "url": "https://www.dunelm.com/category/brands/disney/moana",
+              "subcategories": {}
+            },
+            "spiderman": {
+              "url": "https://www.dunelm.com/category/brands/disney/spiderman",
+              "subcategories": {}
+            },
+            "star-wars": {
+              "url": "https://www.dunelm.com/category/brands/disney/star-wars",
+              "subcategories": {}
+            },
+            "toy-story": {
+              "url": "https://www.dunelm.com/category/brands/disney/toy-story",
+              "subcategories": {}
+            },
+            "winnie-the-pooh": {
+              "url": "https://www.dunelm.com/category/brands/disney/winnie-the-pooh",
+              "subcategories": {}
+            }
+          }
+        },
+        "dorma": {
+          "url": "https://www.dunelm.com/category/brands/dorma",
+          "subcategories": {
+            "all-dorma": {
+              "url": "https://www.dunelm.com/category/brands/dorma/all-dorma",
+              "subcategories": {}
+            },
+            "dorma-bedding": {
+              "url": "https://www.dunelm.com/category/brands/dorma/dorma-bedding",
+              "subcategories": {
+                "adelina-grey-and-fenton": {
+                  "url": "https://www.dunelm.com/category/brands/dorma/dorma-bedding/adelina-grey-and-fenton",
+                  "subcategories": {}
+                },
+                "berkley-and-pure-cotton-white": {
+                  "url": "https://www.dunelm.com/category/brands/dorma/dorma-bedding/berkley-and-pure-cotton-white",
+                  "subcategories": {}
+                },
+                "birdsong-and-natural-rovello": {
+                  "url": "https://www.dunelm.com/category/brands/dorma/dorma-bedding/birdsong-and-natural-rovello",
+                  "subcategories": {}
+                },
+                "charleton-blue-and-archive-romeo-blue": {
+                  "url": "https://www.dunelm.com/category/brands/dorma/dorma-bedding/charleton-blue-and-archive-romeo-blue",
+                  "subcategories": {}
+                },
+                "durham-and-quinn-stripe": {
+                  "url": "https://www.dunelm.com/category/brands/dorma/dorma-bedding/durham-and-quinn-stripe",
+                  "subcategories": {}
+                },
+                "glenmore-and-woodland-robin": {
+                  "url": "https://www.dunelm.com/category/brands/dorma/dorma-bedding/glenmore-and-woodland-robin",
+                  "subcategories": {}
+                },
+                "hampton-and-winter-stag": {
+                  "url": "https://www.dunelm.com/category/brands/dorma/dorma-bedding/hampton-and-winter-stag",
+                  "subcategories": {}
+                },
+                "hani-and-cranes-floral": {
+                  "url": "https://www.dunelm.com/category/brands/dorma/dorma-bedding/hani-and-cranes-floral",
+                  "subcategories": {}
+                },
+                "moonlight-blossom-and-rhaine-jacquard": {
+                  "url": "https://www.dunelm.com/category/brands/dorma/dorma-bedding/moonlight-blossom-and-rhaine-jacquard",
+                  "subcategories": {}
+                },
+                "summer-meadow-and-elmley-mineral": {
+                  "url": "https://www.dunelm.com/category/brands/dorma/dorma-bedding/summer-meadow-and-elmley-mineral",
+                  "subcategories": {}
+                },
+                "sydney-and-newston-natural": {
+                  "url": "https://www.dunelm.com/category/brands/dorma/dorma-bedding/sydney-and-newston-natural",
+                  "subcategories": {}
+                },
+                "toile-ashley-blue-and-izara": {
+                  "url": "https://www.dunelm.com/category/brands/dorma/dorma-bedding/toile-ashley-blue-and-izara",
+                  "subcategories": {}
+                },
+                "winchester-navy-and-percale-white": {
+                  "url": "https://www.dunelm.com/category/brands/dorma/dorma-bedding/winchester-navy-and-percale-white",
+                  "subcategories": {}
+                }
+              }
+            }
+          }
+        },
+        "dualit": {
+          "url": "https://www.dunelm.com/category/brands/dualit",
+          "subcategories": {}
+        },
+        "elements": {
+          "url": "https://www.dunelm.com/category/brands/elements",
+          "subcategories": {}
+        },
+        "fogarty": {
+          "url": "https://www.dunelm.com/category/brands/fogarty",
+          "subcategories": {
+            "all-fogarty": {
+              "url": "https://www.dunelm.com/category/brands/fogarty/all-fogarty",
+              "subcategories": {}
+            }
+          }
+        },
+        "furn": {
+          "url": "https://www.dunelm.com/category/brands/furn",
+          "subcategories": {}
+        },
+        "fusion": {
+          "url": "https://www.dunelm.com/category/brands/fusion",
+          "subcategories": {}
+        },
+        "george-foreman": {
+          "url": "https://www.dunelm.com/category/brands/george-foreman",
+          "subcategories": {}
+        },
+        "gorilla-glue": {
+          "url": "https://www.dunelm.com/category/brands/gorilla-glue",
+          "subcategories": {}
+        },
+        "harry-potter": {
+          "url": "https://www.dunelm.com/category/brands/harry-potter",
+          "subcategories": {}
+        },
+        "holly-willoughby": {
+          "url": "https://www.dunelm.com/category/brands/holly-willoughby",
+          "subcategories": {}
+        },
+        "hotel": {
+          "url": "https://www.dunelm.com/category/brands/hotel",
+          "subcategories": {}
+        },
+        "jml": {
+          "url": "https://www.dunelm.com/category/brands/jml",
+          "subcategories": {}
+        },
+        "joseph-joseph": {
+          "url": "https://www.dunelm.com/category/brands/joseph-joseph",
+          "subcategories": {}
+        },
+        "julian-bowen": {
+          "url": "https://www.dunelm.com/category/brands/julian-bowen",
+          "subcategories": {}
+        },
+        "just-sheepskin": {
+          "url": "https://www.dunelm.com/category/brands/just-sheepskin",
+          "subcategories": {}
+        },
+        "kilner": {
+          "url": "https://www.dunelm.com/category/brands/kilner",
+          "subcategories": {}
+        },
+        "kitchenaid": {
+          "url": "https://www.dunelm.com/category/brands/kitchenaid",
+          "subcategories": {}
+        },
+        "kitchencraft": {
+          "url": "https://www.dunelm.com/category/brands/kitchencraft",
+          "subcategories": {}
+        },
+        "la-cafetiere": {
+          "url": "https://www.dunelm.com/category/brands/la-cafetiere",
+          "subcategories": {}
+        },
+        "laurence-llewelyn-bowen": {
+          "url": "https://www.dunelm.com/category/brands/laurence-llewelyn-bowen",
+          "subcategories": {}
+        },
+        "loctite": {
+          "url": "https://www.dunelm.com/category/brands/loctite",
+          "subcategories": {}
+        },
+        "lumie": {
+          "url": "https://www.dunelm.com/category/brands/lumie",
+          "subcategories": {}
+        },
+        "marvel-mat": {
+          "url": "https://www.dunelm.com/category/brands/marvel-mat",
+          "subcategories": {}
+        },
+        "mason-cash": {
+          "url": "https://www.dunelm.com/category/brands/mason-cash",
+          "subcategories": {}
+        },
+        "masterclass": {
+          "url": "https://www.dunelm.com/category/brands/masterclass",
+          "subcategories": {}
+        },
+        "method": {
+          "url": "https://www.dunelm.com/category/brands/method",
+          "subcategories": {}
+        },
+        "minky": {
+          "url": "https://www.dunelm.com/category/brands/minky",
+          "subcategories": {}
+        },
+        "ninja": {
+          "url": "https://www.dunelm.com/category/brands/ninja",
+          "subcategories": {}
+        },
+        "oxo": {
+          "url": "https://www.dunelm.com/category/brands/oxo",
+          "subcategories": {
+            "all-oxo": {
+              "url": "https://www.dunelm.com/category/brands/oxo/all-oxo",
+              "subcategories": {}
+            }
+          }
+        },
+        "panda": {
+          "url": "https://www.dunelm.com/category/brands/panda",
+          "subcategories": {}
+        },
+        "paoletti": {
+          "url": "https://www.dunelm.com/category/brands/paoletti",
+          "subcategories": {}
+        },
+        "philips": {
+          "url": "https://www.dunelm.com/category/brands/philips",
+          "subcategories": {}
+        },
+        "portmeirion": {
+          "url": "https://www.dunelm.com/category/brands/portmeirion",
+          "subcategories": {}
+        },
+        "prestige": {
+          "url": "https://www.dunelm.com/category/brands/prestige",
+          "subcategories": {}
+        },
+        "pyrex": {
+          "url": "https://www.dunelm.com/category/brands/pyrex",
+          "subcategories": {}
+        },
+        "royal-doulton": {
+          "url": "https://www.dunelm.com/category/brands/royal-doulton",
+          "subcategories": {}
+        },
+        "russell-hobbs": {
+          "url": "https://www.dunelm.com/category/brands/russell-hobbs",
+          "subcategories": {}
+        },
+        "salter": {
+          "url": "https://www.dunelm.com/category/brands/salter",
+          "subcategories": {}
+        },
+        "scoville": {
+          "url": "https://www.dunelm.com/category/brands/scoville",
+          "subcategories": {}
+        },
+        "seconique": {
+          "url": "https://www.dunelm.com/category/brands/seconique",
+          "subcategories": {}
+        },
+        "simplehuman": {
+          "url": "https://www.dunelm.com/category/brands/simplehuman",
+          "subcategories": {}
+        },
+        "sirdar": {
+          "url": "https://www.dunelm.com/category/brands/sirdar",
+          "subcategories": {}
+        },
+        "smeg": {
+          "url": "https://www.dunelm.com/category/brands/smeg",
+          "subcategories": {}
+        },
+        "sophie-robinson": {
+          "url": "https://www.dunelm.com/category/brands/sophie-robinson",
+          "subcategories": {}
+        },
+        "spectrum": {
+          "url": "https://www.dunelm.com/category/brands/spectrum",
+          "subcategories": {}
+        },
+        "tala": {
+          "url": "https://www.dunelm.com/category/brands/tala",
+          "subcategories": {}
+        },
+        "teddy-bear": {
+          "url": "https://www.dunelm.com/category/brands/teddy-bear",
+          "subcategories": {}
+        },
+        "tefal": {
+          "url": "https://www.dunelm.com/category/brands/tefal",
+          "subcategories": {
+            "all-tefal": {
+              "url": "https://www.dunelm.com/category/brands/tefal/all-tefal",
+              "subcategories": {}
+            }
+          }
+        },
+        "tempur": {
+          "url": "https://www.dunelm.com/category/brands/tempur",
+          "subcategories": {}
+        },
+        "the-edited-life": {
+          "url": "https://www.dunelm.com/category/brands/the-edited-life",
+          "subcategories": {
+            "the-edited-life-collection": {
+              "url": "https://www.dunelm.com/category/brands/the-edited-life/the-edited-life-collection",
+              "subcategories": {}
+            }
+          }
+        },
+        "totes": {
+          "url": "https://www.dunelm.com/category/brands/totes",
+          "subcategories": {}
+        },
+        "tower": {
+          "url": "https://www.dunelm.com/category/brands/tower",
+          "subcategories": {}
+        },
+        "ulster-weavers": {
+          "url": "https://www.dunelm.com/category/brands/ulster-weavers",
+          "subcategories": {}
+        },
+        "unibond": {
+          "url": "https://www.dunelm.com/category/brands/unibond",
+          "subcategories": {}
+        },
+        "vileda": {
+          "url": "https://www.dunelm.com/category/brands/vileda",
+          "subcategories": {}
+        },
+        "viners": {
+          "url": "https://www.dunelm.com/category/brands/viners",
+          "subcategories": {}
+        },
+        "wax-lyrical": {
+          "url": "https://www.dunelm.com/category/brands/wax-lyrical",
+          "subcategories": {}
+        },
+        "wham": {
+          "url": "https://www.dunelm.com/category/brands/wham",
+          "subcategories": {}
+        },
+        "william-morris": {
+          "url": "https://www.dunelm.com/category/brands/william-morris",
+          "subcategories": {}
+        },
+        "x-rocker": {
+          "url": "https://www.dunelm.com/category/brands/x-rocker",
+          "subcategories": {}
+        },
+        "yinka-ilori": {
+          "url": "https://www.dunelm.com/category/brands/yinka-ilori",
+          "subcategories": {}
+        },
+        "zyliss": {
+          "url": "https://www.dunelm.com/category/brands/zyliss",
+          "subcategories": {}
+        }
+      }
+    },
+    "campaigns": {
+      "url": "https://www.dunelm.com/category/campaigns",
+      "subcategories": {
+        "shop-the-advert": {
+          "url": "https://www.dunelm.com/category/campaigns/shop-the-advert",
+          "subcategories": {
+            "bedroom-glow-up": {
+              "url": "https://www.dunelm.com/category/campaigns/shop-the-advert/bedroom-glow-up",
+              "subcategories": {}
+            },
+            "dining-room-glow-up": {
+              "url": "https://www.dunelm.com/category/campaigns/shop-the-advert/dining-room-glow-up",
+              "subcategories": {}
+            },
+            "living-room-glow-up": {
+              "url": "https://www.dunelm.com/category/campaigns/shop-the-advert/living-room-glow-up",
+              "subcategories": {}
+            }
+          }
+        },
+        "student-essentials": {
+          "url": "https://www.dunelm.com/category/campaigns/student-essentials",
+          "subcategories": {
+            "all-student-essentials": {
+              "url": "https://www.dunelm.com/category/campaigns/student-essentials/all-student-essentials",
+              "subcategories": {}
+            },
+            "student-starter-packs": {
+              "url": "https://www.dunelm.com/category/campaigns/student-essentials/student-starter-packs",
+              "subcategories": {}
+            }
+          }
+        },
+        "the-influencer-edit": {
+          "url": "https://www.dunelm.com/category/campaigns/the-influencer-edit",
+          "subcategories": {}
+        },
+        "time-at-home": {
+          "url": "https://www.dunelm.com/category/campaigns/time-at-home",
+          "subcategories": {
+            "all-time-at-home": {
+              "url": "https://www.dunelm.com/category/campaigns/time-at-home/all-time-at-home",
+              "subcategories": {}
+            }
+          }
+        }
+      }
+    },
+    "christmas": {
+      "url": "https://www.dunelm.com/category/christmas",
+      "subcategories": {
+        "alpine-cabin": {
+          "url": "https://www.dunelm.com/category/christmas/alpine-cabin",
+          "subcategories": {}
+        },
+        "christmas-bedding-and-throws": {
+          "url": "https://www.dunelm.com/category/christmas/christmas-bedding-and-throws",
+          "subcategories": {}
+        },
+        "christmas-decorations": {
+          "url": "https://www.dunelm.com/category/christmas/christmas-decorations",
+          "subcategories": {
+            "christmas-baubles-and-tree-decorations": {
+              "url": "https://www.dunelm.com/category/christmas/christmas-decorations/christmas-baubles-and-tree-decorations",
+              "subcategories": {}
+            },
+            "christmas-candles-and-home-fragrance": {
+              "url": "https://www.dunelm.com/category/christmas/christmas-decorations/christmas-candles-and-home-fragrance",
+              "subcategories": {}
+            },
+            "christmas-crackers": {
+              "url": "https://www.dunelm.com/category/christmas/christmas-decorations/christmas-crackers",
+              "subcategories": {}
+            },
+            "christmas-cushions": {
+              "url": "https://www.dunelm.com/category/christmas/christmas-decorations/christmas-cushions",
+              "subcategories": {}
+            },
+            "christmas-garlands-and-wreaths": {
+              "url": "https://www.dunelm.com/category/christmas/christmas-decorations/christmas-garlands-and-wreaths",
+              "subcategories": {}
+            },
+            "christmas-lights": {
+              "url": "https://www.dunelm.com/category/christmas/christmas-decorations/christmas-lights",
+              "subcategories": {}
+            },
+            "christmas-tree-skirts": {
+              "url": "https://www.dunelm.com/category/christmas/christmas-decorations/christmas-tree-skirts",
+              "subcategories": {}
+            },
+            "christmas-wrapping-paper-and-bags": {
+              "url": "https://www.dunelm.com/category/christmas/christmas-decorations/christmas-wrapping-paper-and-bags",
+              "subcategories": {}
+            }
+          }
+        },
+        "christmas-trees": {
+          "url": "https://www.dunelm.com/category/christmas/christmas-trees",
+          "subcategories": {}
+        },
+        "colourpop-kitsch": {
+          "url": "https://www.dunelm.com/category/christmas/colourpop-kitsch",
+          "subcategories": {}
+        },
+        "modern-rustic": {
+          "url": "https://www.dunelm.com/category/christmas/modern-rustic",
+          "subcategories": {}
+        },
+        "shop-all-christmas": {
+          "url": "https://www.dunelm.com/category/christmas/shop-all-christmas",
+          "subcategories": {}
+        },
+        "vintage-christmas": {
+          "url": "https://www.dunelm.com/category/christmas/vintage-christmas",
+          "subcategories": {}
+        },
+        "winter-woodland": {
+          "url": "https://www.dunelm.com/category/christmas/winter-woodland",
+          "subcategories": {}
+        }
+      }
+    },
+    "cleaning-and-laundry": {
+      "url": "https://www.dunelm.com/category/cleaning-and-laundry",
+      "subcategories": {
+        "bin-bags": {
+          "url": "https://www.dunelm.com/category/cleaning-and-laundry/bin-bags",
+          "subcategories": {}
+        },
+        "bins": {
+          "url": "https://www.dunelm.com/category/cleaning-and-laundry/bins",
+          "subcategories": {}
+        },
+        "dustpans-and-brooms": {
+          "url": "https://www.dunelm.com/category/cleaning-and-laundry/dustpans-and-brooms",
+          "subcategories": {}
+        },
+        "home-cleaning-products": {
+          "url": "https://www.dunelm.com/category/cleaning-and-laundry/home-cleaning-products",
+          "subcategories": {}
+        },
+        "laundry": {
+          "url": "https://www.dunelm.com/category/cleaning-and-laundry/laundry",
+          "subcategories": {
+            "clothes-airers": {
+              "url": "https://www.dunelm.com/category/cleaning-and-laundry/laundry/clothes-airers",
+              "subcategories": {}
+            },
+            "ironing": {
+              "url": "https://www.dunelm.com/category/cleaning-and-laundry/laundry/ironing",
+              "subcategories": {}
+            },
+            "laundry-baskets-and-bins": {
+              "url": "https://www.dunelm.com/category/cleaning-and-laundry/laundry/laundry-baskets-and-bins",
+              "subcategories": {}
+            },
+            "washing-lines": {
+              "url": "https://www.dunelm.com/category/cleaning-and-laundry/laundry/washing-lines",
+              "subcategories": {}
+            }
+          }
+        },
+        "mops-and-buckets": {
+          "url": "https://www.dunelm.com/category/cleaning-and-laundry/mops-and-buckets",
+          "subcategories": {}
+        },
+        "sinkware": {
+          "url": "https://www.dunelm.com/category/cleaning-and-laundry/sinkware",
+          "subcategories": {}
+        },
+        "step-stools": {
+          "url": "https://www.dunelm.com/category/cleaning-and-laundry/step-stools",
+          "subcategories": {}
+        }
+      }
+    },
+    "clearance": {
+      "url": "https://www.dunelm.com/category/clearance",
+      "subcategories": {}
+    },
+    "commercial-home-furnishings": {
+      "url": "https://www.dunelm.com/category/commercial-home-furnishings",
+      "subcategories": {}
+    },
+    "diy-and-decorating": {
+      "url": "https://www.dunelm.com/category/diy-and-decorating",
+      "subcategories": {
+        "adhesives-and-tapes": {
+          "url": "https://www.dunelm.com/category/diy-and-decorating/adhesives-and-tapes",
+          "subcategories": {}
+        },
+        "all-diy-and-decorating": {
+          "url": "https://www.dunelm.com/category/diy-and-decorating/all-diy-and-decorating",
+          "subcategories": {}
+        },
+        "all-kids-decorating": {
+          "url": "https://www.dunelm.com/category/diy-and-decorating/all-kids-decorating",
+          "subcategories": {}
+        },
+        "diy-accessories-and-safety": {
+          "url": "https://www.dunelm.com/category/diy-and-decorating/diy-accessories-and-safety",
+          "subcategories": {}
+        },
+        "insulation": {
+          "url": "https://www.dunelm.com/category/diy-and-decorating/insulation",
+          "subcategories": {}
+        },
+        "paint": {
+          "url": "https://www.dunelm.com/category/diy-and-decorating/paint",
+          "subcategories": {}
+        },
+        "self-adhesive-wallpaper-and-tiles": {
+          "url": "https://www.dunelm.com/category/diy-and-decorating/self-adhesive-wallpaper-and-tiles",
+          "subcategories": {}
+        },
+        "sticky-back-plastic": {
+          "url": "https://www.dunelm.com/category/diy-and-decorating/sticky-back-plastic",
+          "subcategories": {}
+        },
+        "tools-and-supplies": {
+          "url": "https://www.dunelm.com/category/diy-and-decorating/tools-and-supplies",
+          "subcategories": {}
+        },
+        "upcycling": {
+          "url": "https://www.dunelm.com/category/diy-and-decorating/upcycling",
+          "subcategories": {}
+        },
+        "wall-murals": {
+          "url": "https://www.dunelm.com/category/diy-and-decorating/wall-murals",
+          "subcategories": {}
+        },
+        "wall-stickers": {
+          "url": "https://www.dunelm.com/category/diy-and-decorating/wall-stickers",
+          "subcategories": {}
+        },
+        "wallpaper": {
+          "url": "https://www.dunelm.com/category/diy-and-decorating/wallpaper",
+          "subcategories": {}
+        }
+      }
+    },
+    "easter": {
+      "url": "https://www.dunelm.com/category/easter",
+      "subcategories": {}
+    },
+    "electricals": {
+      "url": "https://www.dunelm.com/category/electricals",
+      "subcategories": {
+        "accessories": {
+          "url": "https://www.dunelm.com/category/electricals/accessories",
+          "subcategories": {}
+        },
+        "air-purifiers": {
+          "url": "https://www.dunelm.com/category/electricals/air-purifiers",
+          "subcategories": {}
+        },
+        "all-electricals": {
+          "url": "https://www.dunelm.com/category/electricals/all-electricals",
+          "subcategories": {}
+        },
+        "batteries": {
+          "url": "https://www.dunelm.com/category/electricals/batteries",
+          "subcategories": {}
+        },
+        "coffee-machines": {
+          "url": "https://www.dunelm.com/category/electricals/coffee-machines",
+          "subcategories": {}
+        },
+        "dehumidifiers": {
+          "url": "https://www.dunelm.com/category/electricals/dehumidifiers",
+          "subcategories": {}
+        },
+        "fans": {
+          "url": "https://www.dunelm.com/category/electricals/fans",
+          "subcategories": {}
+        },
+        "fireplaces": {
+          "url": "https://www.dunelm.com/category/electricals/fireplaces",
+          "subcategories": {}
+        },
+        "food-processors-mixers-and-blenders": {
+          "url": "https://www.dunelm.com/category/electricals/food-processors-mixers-and-blenders",
+          "subcategories": {}
+        },
+        "fryers-and-air-fryers": {
+          "url": "https://www.dunelm.com/category/electricals/fryers-and-air-fryers",
+          "subcategories": {}
+        },
+        "heaters": {
+          "url": "https://www.dunelm.com/category/electricals/heaters",
+          "subcategories": {}
+        },
+        "irons": {
+          "url": "https://www.dunelm.com/category/electricals/irons",
+          "subcategories": {}
+        },
+        "kettle-and-toaster-sets": {
+          "url": "https://www.dunelm.com/category/electricals/kettle-and-toaster-sets",
+          "subcategories": {}
+        },
+        "kettles": {
+          "url": "https://www.dunelm.com/category/electricals/kettles",
+          "subcategories": {}
+        },
+        "kitchen-scales": {
+          "url": "https://www.dunelm.com/category/electricals/kitchen-scales",
+          "subcategories": {}
+        },
+        "microwaves": {
+          "url": "https://www.dunelm.com/category/electricals/microwaves",
+          "subcategories": {}
+        },
+        "slow-cookers": {
+          "url": "https://www.dunelm.com/category/electricals/slow-cookers",
+          "subcategories": {}
+        },
+        "toasters": {
+          "url": "https://www.dunelm.com/category/electricals/toasters",
+          "subcategories": {}
+        },
+        "vacuum-cleaners": {
+          "url": "https://www.dunelm.com/category/electricals/vacuum-cleaners",
+          "subcategories": {}
+        }
+      }
+    },
+    "fabric-and-haberdashery": {
+      "url": "https://www.dunelm.com/category/fabric-and-haberdashery",
+      "subcategories": {
+        "all-fabric-and-haberdashery": {
+          "url": "https://www.dunelm.com/category/fabric-and-haberdashery/all-fabric-and-haberdashery",
+          "subcategories": {}
+        },
+        "crafting": {
+          "url": "https://www.dunelm.com/category/fabric-and-haberdashery/crafting",
+          "subcategories": {}
+        },
+        "fabrics": {
+          "url": "https://www.dunelm.com/category/fabric-and-haberdashery/fabrics",
+          "subcategories": {}
+        },
+        "foam-and-fillings": {
+          "url": "https://www.dunelm.com/category/fabric-and-haberdashery/foam-and-fillings",
+          "subcategories": {}
+        },
+        "knitting-and-crocheting": {
+          "url": "https://www.dunelm.com/category/fabric-and-haberdashery/knitting-and-crocheting",
+          "subcategories": {}
+        },
+        "sewing-accessories": {
+          "url": "https://www.dunelm.com/category/fabric-and-haberdashery/sewing-accessories",
+          "subcategories": {}
+        },
+        "sewing-machines": {
+          "url": "https://www.dunelm.com/category/fabric-and-haberdashery/sewing-machines",
+          "subcategories": {}
+        },
+        "yarn": {
+          "url": "https://www.dunelm.com/category/fabric-and-haberdashery/yarn",
+          "subcategories": {}
+        }
+      }
+    },
+    "garden": {
+      "url": "https://www.dunelm.com/category/garden",
+      "subcategories": {
+        "all-garden": {
+          "url": "https://www.dunelm.com/category/garden/all-garden",
+          "subcategories": {}
+        },
+        "all-garden-furniture": {
+          "url": "https://www.dunelm.com/category/garden/all-garden-furniture",
+          "subcategories": {}
+        },
+        "bbq-grills": {
+          "url": "https://www.dunelm.com/category/garden/bbq-grills",
+          "subcategories": {}
+        },
+        "chimineas-and-fire-pits": {
+          "url": "https://www.dunelm.com/category/garden/chimineas-and-fire-pits",
+          "subcategories": {}
+        },
+        "garden-benches": {
+          "url": "https://www.dunelm.com/category/garden/garden-benches",
+          "subcategories": {}
+        },
+        "garden-chairs-and-loungers": {
+          "url": "https://www.dunelm.com/category/garden/garden-chairs-and-loungers",
+          "subcategories": {}
+        },
+        "garden-decoration": {
+          "url": "https://www.dunelm.com/category/garden/garden-decoration",
+          "subcategories": {}
+        },
+        "garden-furniture-covers": {
+          "url": "https://www.dunelm.com/category/garden/garden-furniture-covers",
+          "subcategories": {}
+        },
+        "garden-furniture-sets": {
+          "url": "https://www.dunelm.com/category/garden/garden-furniture-sets",
+          "subcategories": {}
+        },
+        "garden-storage": {
+          "url": "https://www.dunelm.com/category/garden/garden-storage",
+          "subcategories": {}
+        },
+        "garden-tables": {
+          "url": "https://www.dunelm.com/category/garden/garden-tables",
+          "subcategories": {}
+        },
+        "gardening-and-garden-tools": {
+          "url": "https://www.dunelm.com/category/garden/gardening-and-garden-tools",
+          "subcategories": {}
+        },
+        "gazebos": {
+          "url": "https://www.dunelm.com/category/garden/gazebos",
+          "subcategories": {}
+        },
+        "outdoor-dining-and-picnicware": {
+          "url": "https://www.dunelm.com/category/garden/outdoor-dining-and-picnicware",
+          "subcategories": {}
+        },
+        "outdoor-play": {
+          "url": "https://www.dunelm.com/category/garden/outdoor-play",
+          "subcategories": {}
+        },
+        "outdoor-seat-pads-and-cushions": {
+          "url": "https://www.dunelm.com/category/garden/outdoor-seat-pads-and-cushions",
+          "subcategories": {}
+        },
+        "parasols-and-bases": {
+          "url": "https://www.dunelm.com/category/garden/parasols-and-bases",
+          "subcategories": {}
+        },
+        "plant-pots-and-planters": {
+          "url": "https://www.dunelm.com/category/garden/plant-pots-and-planters",
+          "subcategories": {}
+        }
+      }
+    },
+    "gifts": {
+      "url": "https://www.dunelm.com/category/gifts",
+      "subcategories": {
+        "all-gifts": {
+          "url": "https://www.dunelm.com/category/gifts/all-gifts",
+          "subcategories": {}
+        },
+        "anniversary-gifts": {
+          "url": "https://www.dunelm.com/category/gifts/anniversary-gifts",
+          "subcategories": {}
+        },
+        "baby-shower-gifts": {
+          "url": "https://www.dunelm.com/category/gifts/baby-shower-gifts",
+          "subcategories": {}
+        },
+        "books": {
+          "url": "https://www.dunelm.com/category/gifts/books",
+          "subcategories": {}
+        },
+        "engagement-and-wedding-gifts": {
+          "url": "https://www.dunelm.com/category/gifts/engagement-and-wedding-gifts",
+          "subcategories": {}
+        },
+        "food-and-drink-gifts": {
+          "url": "https://www.dunelm.com/category/gifts/food-and-drink-gifts",
+          "subcategories": {}
+        },
+        "gifts-for-her": {
+          "url": "https://www.dunelm.com/category/gifts/gifts-for-her",
+          "subcategories": {}
+        },
+        "gifts-for-him": {
+          "url": "https://www.dunelm.com/category/gifts/gifts-for-him",
+          "subcategories": {}
+        },
+        "gifts-for-kids": {
+          "url": "https://www.dunelm.com/category/gifts/gifts-for-kids",
+          "subcategories": {}
+        },
+        "gifts-under-10-pounds": {
+          "url": "https://www.dunelm.com/category/gifts/gifts-under-10-pounds",
+          "subcategories": {}
+        },
+        "greeting-cards-and-gift-wrap": {
+          "url": "https://www.dunelm.com/category/gifts/greeting-cards-and-gift-wrap",
+          "subcategories": {}
+        },
+        "hampers": {
+          "url": "https://www.dunelm.com/category/gifts/hampers",
+          "subcategories": {}
+        },
+        "housewarming-gifts": {
+          "url": "https://www.dunelm.com/category/gifts/housewarming-gifts",
+          "subcategories": {}
+        },
+        "puzzles-and-games": {
+          "url": "https://www.dunelm.com/category/gifts/puzzles-and-games",
+          "subcategories": {}
+        },
+        "stocking-fillers": {
+          "url": "https://www.dunelm.com/category/gifts/stocking-fillers",
+          "subcategories": {}
+        }
+      }
+    },
+    "health-and-wellbeing": {
+      "url": "https://www.dunelm.com/category/health-and-wellbeing",
+      "subcategories": {
+        "all-wellbeing-products": {
+          "url": "https://www.dunelm.com/category/health-and-wellbeing/all-wellbeing-products",
+          "subcategories": {}
+        },
+        "body-care-essentials": {
+          "url": "https://www.dunelm.com/category/health-and-wellbeing/body-care-essentials",
+          "subcategories": {}
+        }
+      }
+    },
+    "holiday": {
+      "url": "https://www.dunelm.com/category/holiday",
+      "subcategories": {
+        "all-holiday": {
+          "url": "https://www.dunelm.com/category/holiday/all-holiday",
+          "subcategories": {}
+        },
+        "beach-towels": {
+          "url": "https://www.dunelm.com/category/holiday/beach-towels",
+          "subcategories": {}
+        },
+        "luggage": {
+          "url": "https://www.dunelm.com/category/holiday/luggage",
+          "subcategories": {}
+        },
+        "travel-accessories": {
+          "url": "https://www.dunelm.com/category/holiday/travel-accessories",
+          "subcategories": {}
+        }
+      }
+    },
+    "home-and-furniture": {
+      "url": "https://www.dunelm.com/category/home-and-furniture",
+      "subcategories": {
+        "app-exclusive-early-access": {
+          "url": "https://www.dunelm.com/category/home-and-furniture/app-exclusive-early-access",
+          "subcategories": {}
+        },
+        "bathroom": {
+          "url": "https://www.dunelm.com/category/home-and-furniture/bathroom",
+          "subcategories": {
+            "all-bathroom": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bathroom/all-bathroom",
+              "subcategories": {}
+            },
+            "bath-mats": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bathroom/bath-mats",
+              "subcategories": {}
+            },
+            "bathroom-accessories": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bathroom/bathroom-accessories",
+              "subcategories": {
+                "all-bathroom-accessories": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/bathroom/bathroom-accessories/all-bathroom-accessories",
+                  "subcategories": {}
+                },
+                "bathroom-bins": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/bathroom/bathroom-accessories/bathroom-bins",
+                  "subcategories": {}
+                },
+                "bathroom-decor": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/bathroom/bathroom-accessories/bathroom-decor",
+                  "subcategories": {}
+                },
+                "hooks-and-organisers": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/bathroom/bathroom-accessories/hooks-and-organisers",
+                  "subcategories": {}
+                },
+                "soap-dishes": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/bathroom/bathroom-accessories/soap-dishes",
+                  "subcategories": {}
+                },
+                "toilet-brushes-and-holders": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/bathroom/bathroom-accessories/toilet-brushes-and-holders",
+                  "subcategories": {}
+                },
+                "toothbrush-holders": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/bathroom/bathroom-accessories/toothbrush-holders",
+                  "subcategories": {}
+                },
+                "towel-rails": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/bathroom/bathroom-accessories/towel-rails",
+                  "subcategories": {}
+                }
+              }
+            },
+            "bathroom-mirrors": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bathroom/bathroom-mirrors",
+              "subcategories": {}
+            },
+            "bathroom-scales": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bathroom/bathroom-scales",
+              "subcategories": {}
+            },
+            "shower-curtains": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bathroom/shower-curtains",
+              "subcategories": {}
+            },
+            "toilet-seats": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bathroom/toilet-seats",
+              "subcategories": {}
+            },
+            "towels": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bathroom/towels",
+              "subcategories": {}
+            },
+            "towels-and-bathmats": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bathroom/towels-and-bathmats",
+              "subcategories": {}
+            }
+          }
+        },
+        "bedding": {
+          "url": "https://www.dunelm.com/category/home-and-furniture/bedding",
+          "subcategories": {
+            "100-cotton-bedding": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bedding/100-cotton-bedding",
+              "subcategories": {}
+            },
+            "all-bedding": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bedding/all-bedding",
+              "subcategories": {}
+            },
+            "bed-linen": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bedding/bed-linen",
+              "subcategories": {}
+            },
+            "bed-sheets": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bedding/bed-sheets",
+              "subcategories": {}
+            },
+            "bedding-protectors": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bedding/bedding-protectors",
+              "subcategories": {}
+            },
+            "bedding-sets": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bedding/bedding-sets",
+              "subcategories": {}
+            },
+            "bedspreads": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bedding/bedspreads",
+              "subcategories": {}
+            },
+            "brushed-cotton-bedding": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bedding/brushed-cotton-bedding",
+              "subcategories": {}
+            },
+            "duvet-covers": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bedding/duvet-covers",
+              "subcategories": {}
+            },
+            "duvets": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bedding/duvets",
+              "subcategories": {}
+            },
+            "duvets-pillows-and-protectors": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bedding/duvets-pillows-and-protectors",
+              "subcategories": {
+                "pregnancy-pillows": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/bedding/duvets-pillows-and-protectors/pregnancy-pillows",
+                  "subcategories": {}
+                }
+              }
+            },
+            "electric-blankets": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bedding/electric-blankets",
+              "subcategories": {}
+            },
+            "hot-water-bottles": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bedding/hot-water-bottles",
+              "subcategories": {}
+            },
+            "mattress-toppers": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bedding/mattress-toppers",
+              "subcategories": {}
+            },
+            "pillowcases": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bedding/pillowcases",
+              "subcategories": {}
+            },
+            "pillows": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bedding/pillows",
+              "subcategories": {}
+            },
+            "summer-bedding": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bedding/summer-bedding",
+              "subcategories": {}
+            },
+            "throws-and-blankets": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bedding/throws-and-blankets",
+              "subcategories": {}
+            },
+            "valance-sheets": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bedding/valance-sheets",
+              "subcategories": {}
+            },
+            "winter-bedding": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/bedding/winter-bedding",
+              "subcategories": {}
+            }
+          }
+        },
+        "cook-and-dine": {
+          "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine",
+          "subcategories": {
+            "all-kitchen": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/all-kitchen",
+              "subcategories": {}
+            },
+            "baking": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/baking",
+              "subcategories": {
+                "bakeware": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/baking/bakeware",
+                  "subcategories": {}
+                },
+                "mixing-bowls": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/baking/mixing-bowls",
+                  "subcategories": {}
+                }
+              }
+            },
+            "cooking": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/cooking",
+              "subcategories": {
+                "all-kitchen-utensils": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/cooking/all-kitchen-utensils",
+                  "subcategories": {}
+                },
+                "aprons": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/cooking/aprons",
+                  "subcategories": {}
+                },
+                "chopping-boards": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/cooking/chopping-boards",
+                  "subcategories": {}
+                },
+                "colanders-and-sieves": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/cooking/colanders-and-sieves",
+                  "subcategories": {}
+                },
+                "cookware": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/cooking/cookware",
+                  "subcategories": {}
+                },
+                "kitchen-knives": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/cooking/kitchen-knives",
+                  "subcategories": {}
+                },
+                "oven-gloves": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/cooking/oven-gloves",
+                  "subcategories": {}
+                },
+                "pots-and-pans": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/cooking/pots-and-pans",
+                  "subcategories": {
+                    "frying-pans": {
+                      "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/cooking/pots-and-pans/frying-pans",
+                      "subcategories": {}
+                    },
+                    "pan-sets": {
+                      "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/cooking/pots-and-pans/pan-sets",
+                      "subcategories": {}
+                    },
+                    "saucepans": {
+                      "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/cooking/pots-and-pans/saucepans",
+                      "subcategories": {}
+                    },
+                    "woks-and-stir-frys": {
+                      "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/cooking/pots-and-pans/woks-and-stir-frys",
+                      "subcategories": {}
+                    }
+                  }
+                },
+                "tea-towels": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/cooking/tea-towels",
+                  "subcategories": {}
+                },
+                "weighing-and-measuring": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/cooking/weighing-and-measuring",
+                  "subcategories": {}
+                },
+                "worktop-protectors-and-trivets": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/cooking/worktop-protectors-and-trivets",
+                  "subcategories": {}
+                }
+              }
+            },
+            "dining-and-tableware": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/dining-and-tableware",
+              "subcategories": {
+                "all-dining": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/dining-and-tableware/all-dining",
+                  "subcategories": {}
+                },
+                "barware": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/dining-and-tableware/barware",
+                  "subcategories": {}
+                },
+                "bowls": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/dining-and-tableware/bowls",
+                  "subcategories": {}
+                },
+                "cafetieres": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/dining-and-tableware/cafetieres",
+                  "subcategories": {}
+                },
+                "cake-stands": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/dining-and-tableware/cake-stands",
+                  "subcategories": {}
+                },
+                "cutlery": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/dining-and-tableware/cutlery",
+                  "subcategories": {}
+                },
+                "dinner-sets": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/dining-and-tableware/dinner-sets",
+                  "subcategories": {}
+                },
+                "glassware": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/dining-and-tableware/glassware",
+                  "subcategories": {}
+                },
+                "gravy-boats": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/dining-and-tableware/gravy-boats",
+                  "subcategories": {}
+                },
+                "jugs-and-water-filters": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/dining-and-tableware/jugs-and-water-filters",
+                  "subcategories": {}
+                },
+                "mugs-and-teacups": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/dining-and-tableware/mugs-and-teacups",
+                  "subcategories": {}
+                },
+                "napkins-and-napkin-rings": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/dining-and-tableware/napkins-and-napkin-rings",
+                  "subcategories": {}
+                },
+                "placemats-and-coasters": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/dining-and-tableware/placemats-and-coasters",
+                  "subcategories": {}
+                },
+                "plates": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/dining-and-tableware/plates",
+                  "subcategories": {}
+                },
+                "serving-dishes": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/dining-and-tableware/serving-dishes",
+                  "subcategories": {}
+                },
+                "table-runners": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/dining-and-tableware/table-runners",
+                  "subcategories": {}
+                },
+                "tablecloths": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/dining-and-tableware/tablecloths",
+                  "subcategories": {}
+                },
+                "teapots": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/dining-and-tableware/teapots",
+                  "subcategories": {}
+                },
+                "trays": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/dining-and-tableware/trays",
+                  "subcategories": {}
+                },
+                "wine-racks": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/dining-and-tableware/wine-racks",
+                  "subcategories": {}
+                }
+              }
+            },
+            "disposables": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/disposables",
+              "subcategories": {}
+            },
+            "food-storage": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/food-storage",
+              "subcategories": {
+                "bread-bins": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/food-storage/bread-bins",
+                  "subcategories": {}
+                },
+                "food-containers": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/food-storage/food-containers",
+                  "subcategories": {}
+                },
+                "fruit-bowls-and-salad-bowls": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/food-storage/fruit-bowls-and-salad-bowls",
+                  "subcategories": {}
+                },
+                "jars": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/food-storage/jars",
+                  "subcategories": {}
+                },
+                "kitchen-canisters": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/food-storage/kitchen-canisters",
+                  "subcategories": {}
+                },
+                "lunch-bags-and-boxes": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/food-storage/lunch-bags-and-boxes",
+                  "subcategories": {}
+                },
+                "spice-racks": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/food-storage/spice-racks",
+                  "subcategories": {}
+                },
+                "water-bottles-and-flasks": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/cook-and-dine/food-storage/water-bottles-and-flasks",
+                  "subcategories": {}
+                }
+              }
+            }
+          }
+        },
+        "curtains-and-blinds": {
+          "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds",
+          "subcategories": {
+            "all-curtains-and-blinds": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/all-curtains-and-blinds",
+              "subcategories": {}
+            },
+            "blinds": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/blinds",
+              "subcategories": {
+                "all-blinds": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/blinds/all-blinds",
+                  "subcategories": {}
+                },
+                "bathroom-blinds": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/blinds/bathroom-blinds",
+                  "subcategories": {}
+                },
+                "blackout-blinds": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/blinds/blackout-blinds",
+                  "subcategories": {}
+                },
+                "blind-accessories": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/blinds/blind-accessories",
+                  "subcategories": {}
+                },
+                "cordless-blinds": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/blinds/cordless-blinds",
+                  "subcategories": {}
+                },
+                "day-and-night-blinds": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/blinds/day-and-night-blinds",
+                  "subcategories": {}
+                },
+                "door-blinds": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/blinds/door-blinds",
+                  "subcategories": {}
+                },
+                "roller-blinds": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/blinds/roller-blinds",
+                  "subcategories": {}
+                },
+                "roman-blinds": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/blinds/roman-blinds",
+                  "subcategories": {}
+                },
+                "thermal-blinds": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/blinds/thermal-blinds",
+                  "subcategories": {}
+                },
+                "venetian-blinds": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/blinds/venetian-blinds",
+                  "subcategories": {}
+                },
+                "vertical-blinds": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/blinds/vertical-blinds",
+                  "subcategories": {}
+                }
+              }
+            },
+            "curtains": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/curtains",
+              "subcategories": {
+                "all-curtains": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/curtains/all-curtains",
+                  "subcategories": {}
+                },
+                "all-ready-made-curtains": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/curtains/all-ready-made-curtains",
+                  "subcategories": {}
+                },
+                "blackout-curtains": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/curtains/blackout-curtains",
+                  "subcategories": {}
+                },
+                "coordinating-curtains": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/curtains/coordinating-curtains",
+                  "subcategories": {}
+                },
+                "curtain-linings": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/curtains/curtain-linings",
+                  "subcategories": {}
+                },
+                "curtain-tiebacks-and-holdbacks": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/curtains/curtain-tiebacks-and-holdbacks",
+                  "subcategories": {}
+                },
+                "door-curtains": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/curtains/door-curtains",
+                  "subcategories": {}
+                },
+                "eyelet-curtains": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/curtains/eyelet-curtains",
+                  "subcategories": {}
+                },
+                "pencil-pleat-curtains": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/curtains/pencil-pleat-curtains",
+                  "subcategories": {}
+                },
+                "thermal-curtains": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/curtains/thermal-curtains",
+                  "subcategories": {}
+                },
+                "voile-and-net-curtains": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/curtains/voile-and-net-curtains",
+                  "subcategories": {}
+                }
+              }
+            },
+            "tracks-poles-and-fixtures": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/tracks-poles-and-fixtures",
+              "subcategories": {
+                "all-tracks-and-poles": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/tracks-poles-and-fixtures/all-tracks-and-poles",
+                  "subcategories": {}
+                },
+                "curtain-poles": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/tracks-poles-and-fixtures/curtain-poles",
+                  "subcategories": {}
+                },
+                "curtain-rings-and-fixtures": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/tracks-poles-and-fixtures/curtain-rings-and-fixtures",
+                  "subcategories": {}
+                },
+                "curtain-tracks": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/curtains-and-blinds/tracks-poles-and-fixtures/curtain-tracks",
+                  "subcategories": {}
+                }
+              }
+            }
+          }
+        },
+        "furniture": {
+          "url": "https://www.dunelm.com/category/home-and-furniture/furniture",
+          "subcategories": {
+            "all-furniture": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/furniture/all-furniture",
+              "subcategories": {}
+            },
+            "bathroom-furniture": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/furniture/bathroom-furniture",
+              "subcategories": {
+                "bathroom-furniture-and-storage": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/bathroom-furniture/bathroom-furniture-and-storage",
+                  "subcategories": {}
+                }
+              }
+            },
+            "bedroom-furniture": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/furniture/bedroom-furniture",
+              "subcategories": {
+                "all-beds": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/bedroom-furniture/all-beds",
+                  "subcategories": {
+                    "bunk-beds": {
+                      "url": "https://www.dunelm.com/category/home-and-furniture/furniture/bedroom-furniture/all-beds/bunk-beds",
+                      "subcategories": {}
+                    },
+                    "childrens-beds": {
+                      "url": "https://www.dunelm.com/category/home-and-furniture/furniture/bedroom-furniture/all-beds/childrens-beds",
+                      "subcategories": {}
+                    },
+                    "day-beds": {
+                      "url": "https://www.dunelm.com/category/home-and-furniture/furniture/bedroom-furniture/all-beds/day-beds",
+                      "subcategories": {}
+                    },
+                    "divan-beds-and-bases": {
+                      "url": "https://www.dunelm.com/category/home-and-furniture/furniture/bedroom-furniture/all-beds/divan-beds-and-bases",
+                      "subcategories": {}
+                    },
+                    "fabric-beds": {
+                      "url": "https://www.dunelm.com/category/home-and-furniture/furniture/bedroom-furniture/all-beds/fabric-beds",
+                      "subcategories": {}
+                    },
+                    "guest-beds": {
+                      "url": "https://www.dunelm.com/category/home-and-furniture/furniture/bedroom-furniture/all-beds/guest-beds",
+                      "subcategories": {}
+                    },
+                    "leather-beds": {
+                      "url": "https://www.dunelm.com/category/home-and-furniture/furniture/bedroom-furniture/all-beds/leather-beds",
+                      "subcategories": {}
+                    },
+                    "metal-beds": {
+                      "url": "https://www.dunelm.com/category/home-and-furniture/furniture/bedroom-furniture/all-beds/metal-beds",
+                      "subcategories": {}
+                    },
+                    "storage-bed-frames": {
+                      "url": "https://www.dunelm.com/category/home-and-furniture/furniture/bedroom-furniture/all-beds/storage-bed-frames",
+                      "subcategories": {}
+                    },
+                    "wooden-beds": {
+                      "url": "https://www.dunelm.com/category/home-and-furniture/furniture/bedroom-furniture/all-beds/wooden-beds",
+                      "subcategories": {}
+                    }
+                  }
+                },
+                "beds-and-mattresses": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/bedroom-furniture/beds-and-mattresses",
+                  "subcategories": {}
+                },
+                "beds-and-mattresses-code-promotion": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/bedroom-furniture/beds-and-mattresses-code-promotion",
+                  "subcategories": {}
+                },
+                "bedside-tables": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/bedroom-furniture/bedside-tables",
+                  "subcategories": {}
+                },
+                "chest-of-drawers": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/bedroom-furniture/chest-of-drawers",
+                  "subcategories": {}
+                },
+                "dressing-tables": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/bedroom-furniture/dressing-tables",
+                  "subcategories": {}
+                },
+                "headboards": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/bedroom-furniture/headboards",
+                  "subcategories": {}
+                },
+                "mattresses": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/bedroom-furniture/mattresses",
+                  "subcategories": {}
+                },
+                "silentnight": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/bedroom-furniture/silentnight",
+                  "subcategories": {}
+                },
+                "wardrobes": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/bedroom-furniture/wardrobes",
+                  "subcategories": {}
+                }
+              }
+            },
+            "buyers-top-picks": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/furniture/buyers-top-picks",
+              "subcategories": {}
+            },
+            "dining-room-furniture": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/furniture/dining-room-furniture",
+              "subcategories": {
+                "bar-stools": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/dining-room-furniture/bar-stools",
+                  "subcategories": {}
+                },
+                "dining-benches": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/dining-room-furniture/dining-benches",
+                  "subcategories": {}
+                },
+                "dining-chairs": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/dining-room-furniture/dining-chairs",
+                  "subcategories": {}
+                },
+                "dining-sets": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/dining-room-furniture/dining-sets",
+                  "subcategories": {}
+                },
+                "dining-tables": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/dining-room-furniture/dining-tables",
+                  "subcategories": {}
+                },
+                "display-cabinets": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/dining-room-furniture/display-cabinets",
+                  "subcategories": {}
+                },
+                "drinks-trolleys": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/dining-room-furniture/drinks-trolleys",
+                  "subcategories": {}
+                },
+                "kitchen-islands": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/dining-room-furniture/kitchen-islands",
+                  "subcategories": {}
+                }
+              }
+            },
+            "five-star-furniture-favourites": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/furniture/five-star-furniture-favourites",
+              "subcategories": {}
+            },
+            "furniture-deals": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/furniture/furniture-deals",
+              "subcategories": {}
+            },
+            "gaming-furniture": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/furniture/gaming-furniture",
+              "subcategories": {}
+            },
+            "hallway-furniture-and-storage": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/furniture/hallway-furniture-and-storage",
+              "subcategories": {}
+            },
+            "kitchen-furniture": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/furniture/kitchen-furniture",
+              "subcategories": {}
+            },
+            "living-room-furniture": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/furniture/living-room-furniture",
+              "subcategories": {
+                "coffee-tables": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/living-room-furniture/coffee-tables",
+                  "subcategories": {}
+                },
+                "console-tables": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/living-room-furniture/console-tables",
+                  "subcategories": {}
+                },
+                "nest-of-tables": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/living-room-furniture/nest-of-tables",
+                  "subcategories": {}
+                },
+                "side-tables": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/living-room-furniture/side-tables",
+                  "subcategories": {}
+                },
+                "sideboards": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/living-room-furniture/sideboards",
+                  "subcategories": {}
+                },
+                "tv-stands": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/living-room-furniture/tv-stands",
+                  "subcategories": {}
+                }
+              }
+            },
+            "modular-storage-furniture": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/furniture/modular-storage-furniture",
+              "subcategories": {
+                "all-modular-furniture": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/modular-storage-furniture/all-modular-furniture",
+                  "subcategories": {}
+                }
+              }
+            },
+            "new-furniture": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/furniture/new-furniture",
+              "subcategories": {}
+            },
+            "office-furniture": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/furniture/office-furniture",
+              "subcategories": {
+                "bookcases": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/office-furniture/bookcases",
+                  "subcategories": {}
+                },
+                "desks": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/office-furniture/desks",
+                  "subcategories": {}
+                },
+                "gaming-desks-and-chairs": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/office-furniture/gaming-desks-and-chairs",
+                  "subcategories": {}
+                },
+                "office-chairs": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/office-furniture/office-chairs",
+                  "subcategories": {}
+                }
+              }
+            },
+            "selected-furniture": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/furniture/selected-furniture",
+              "subcategories": {}
+            },
+            "shop-by-collection": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/furniture/shop-by-collection",
+              "subcategories": {
+                "bromley-furniture-collection": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/shop-by-collection/bromley-furniture-collection",
+                  "subcategories": {}
+                },
+                "cameo-furniture-collection": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/shop-by-collection/cameo-furniture-collection",
+                  "subcategories": {}
+                },
+                "compton-furniture-collection": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/shop-by-collection/compton-furniture-collection",
+                  "subcategories": {}
+                },
+                "corona-furniture-collection": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/shop-by-collection/corona-furniture-collection",
+                  "subcategories": {}
+                },
+                "delphi-furniture-collection": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/shop-by-collection/delphi-furniture-collection",
+                  "subcategories": {}
+                },
+                "fulton-furniture-collection": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/shop-by-collection/fulton-furniture-collection",
+                  "subcategories": {}
+                },
+                "legato-furniture-collection": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/shop-by-collection/legato-furniture-collection",
+                  "subcategories": {}
+                },
+                "lynton-compact-furniture-collection": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/shop-by-collection/lynton-compact-furniture-collection",
+                  "subcategories": {}
+                },
+                "lynton-furniture-collection": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/shop-by-collection/lynton-furniture-collection",
+                  "subcategories": {}
+                },
+                "manhattan-furniture-collection": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/shop-by-collection/manhattan-furniture-collection",
+                  "subcategories": {}
+                },
+                "nevada-furniture-collection": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/shop-by-collection/nevada-furniture-collection",
+                  "subcategories": {}
+                },
+                "panama-furniture-collection": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/shop-by-collection/panama-furniture-collection",
+                  "subcategories": {}
+                },
+                "seville-furniture-collection": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/shop-by-collection/seville-furniture-collection",
+                  "subcategories": {}
+                }
+              }
+            },
+            "shop-by-finish": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/furniture/shop-by-finish",
+              "subcategories": {
+                "mirrored-furniture": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/shop-by-finish/mirrored-furniture",
+                  "subcategories": {}
+                },
+                "oak-furniture": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/shop-by-finish/oak-furniture",
+                  "subcategories": {}
+                },
+                "pine-furniture": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/shop-by-finish/pine-furniture",
+                  "subcategories": {}
+                },
+                "white-furniture": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/shop-by-finish/white-furniture",
+                  "subcategories": {}
+                }
+              }
+            },
+            "sofas-and-chairs": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/furniture/sofas-and-chairs",
+              "subcategories": {
+                "all-chairs": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/sofas-and-chairs/all-chairs",
+                  "subcategories": {}
+                },
+                "all-sofas-and-chairs": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/sofas-and-chairs/all-sofas-and-chairs",
+                  "subcategories": {}
+                },
+                "armchairs": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/sofas-and-chairs/armchairs",
+                  "subcategories": {}
+                },
+                "corner-sofas": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/sofas-and-chairs/corner-sofas",
+                  "subcategories": {}
+                },
+                "footstools-and-pouffes": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/sofas-and-chairs/footstools-and-pouffes",
+                  "subcategories": {}
+                },
+                "made-to-order-sofa-and-chairs": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/sofas-and-chairs/made-to-order-sofa-and-chairs",
+                  "subcategories": {
+                    "all-made-to-order": {
+                      "url": "https://www.dunelm.com/category/home-and-furniture/furniture/sofas-and-chairs/made-to-order-sofa-and-chairs/all-made-to-order",
+                      "subcategories": {}
+                    }
+                  }
+                },
+                "modular-sofas": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/sofas-and-chairs/modular-sofas",
+                  "subcategories": {
+                    "all-modular-sofas": {
+                      "url": "https://www.dunelm.com/category/home-and-furniture/furniture/sofas-and-chairs/modular-sofas/all-modular-sofas",
+                      "subcategories": {}
+                    }
+                  }
+                },
+                "occasional-chairs": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/sofas-and-chairs/occasional-chairs",
+                  "subcategories": {}
+                },
+                "recliners": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/sofas-and-chairs/recliners",
+                  "subcategories": {}
+                },
+                "snuggle-chairs": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/sofas-and-chairs/snuggle-chairs",
+                  "subcategories": {}
+                },
+                "sofa-and-armchair-covers": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/sofas-and-chairs/sofa-and-armchair-covers",
+                  "subcategories": {}
+                },
+                "sofa-beds": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/sofas-and-chairs/sofa-beds",
+                  "subcategories": {}
+                },
+                "sofas": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/sofas-and-chairs/sofas",
+                  "subcategories": {}
+                },
+                "swivel-chairs": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/sofas-and-chairs/swivel-chairs",
+                  "subcategories": {}
+                },
+                "tub-chairs": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/sofas-and-chairs/tub-chairs",
+                  "subcategories": {}
+                },
+                "upholstery-fabric-swatch-samples": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/sofas-and-chairs/upholstery-fabric-swatch-samples",
+                  "subcategories": {}
+                },
+                "upholstery-swatch-products": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/sofas-and-chairs/upholstery-swatch-products",
+                  "subcategories": {}
+                }
+              }
+            },
+            "space-saving-furniture": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/furniture/space-saving-furniture",
+              "subcategories": {}
+            },
+            "storage-benches-and-ottomans": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/furniture/storage-benches-and-ottomans",
+              "subcategories": {}
+            },
+            "storage-furniture": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/furniture/storage-furniture",
+              "subcategories": {
+                "ottomans-and-storage-trunks": {
+                  "url": "https://www.dunelm.com/category/home-and-furniture/furniture/storage-furniture/ottomans-and-storage-trunks",
+                  "subcategories": {}
+                }
+              }
+            }
+          }
+        },
+        "great-value-everyday": {
+          "url": "https://www.dunelm.com/category/home-and-furniture/great-value-everyday",
+          "subcategories": {}
+        },
+        "returns-outlet": {
+          "url": "https://www.dunelm.com/category/home-and-furniture/returns-outlet",
+          "subcategories": {}
+        },
+        "storage": {
+          "url": "https://www.dunelm.com/category/home-and-furniture/storage",
+          "subcategories": {
+            "all-storage": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/storage/all-storage",
+              "subcategories": {}
+            },
+            "bedroom-storage": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/storage/bedroom-storage",
+              "subcategories": {}
+            },
+            "clothes-storage": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/storage/clothes-storage",
+              "subcategories": {}
+            },
+            "cube-storage": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/storage/cube-storage",
+              "subcategories": {}
+            },
+            "indoor-storage": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/storage/indoor-storage",
+              "subcategories": {}
+            },
+            "kitchen-organisers": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/storage/kitchen-organisers",
+              "subcategories": {}
+            },
+            "office-storage": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/storage/office-storage",
+              "subcategories": {}
+            },
+            "ottomans": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/storage/ottomans",
+              "subcategories": {}
+            },
+            "shelves": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/storage/shelves",
+              "subcategories": {}
+            },
+            "shoe-storage": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/storage/shoe-storage",
+              "subcategories": {}
+            },
+            "storage-boxes": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/storage/storage-boxes",
+              "subcategories": {}
+            },
+            "storage-boxes-and-baskets": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/storage/storage-boxes-and-baskets",
+              "subcategories": {}
+            },
+            "wall-and-door-hooks": {
+              "url": "https://www.dunelm.com/category/home-and-furniture/storage/wall-and-door-hooks",
+              "subcategories": {}
+            }
+          }
+        }
+      }
+    },
+    "home-decor": {
+      "url": "https://www.dunelm.com/category/home-decor",
+      "subcategories": {
+        "all-gallery": {
+          "url": "https://www.dunelm.com/category/home-decor/all-gallery",
+          "subcategories": {}
+        },
+        "all-home-decor": {
+          "url": "https://www.dunelm.com/category/home-decor/all-home-decor",
+          "subcategories": {}
+        },
+        "bean-bags": {
+          "url": "https://www.dunelm.com/category/home-decor/bean-bags",
+          "subcategories": {}
+        },
+        "clocks": {
+          "url": "https://www.dunelm.com/category/home-decor/clocks",
+          "subcategories": {}
+        },
+        "cushions": {
+          "url": "https://www.dunelm.com/category/home-decor/cushions",
+          "subcategories": {
+            "all-cushions": {
+              "url": "https://www.dunelm.com/category/home-decor/cushions/all-cushions",
+              "subcategories": {}
+            },
+            "cushion-covers": {
+              "url": "https://www.dunelm.com/category/home-decor/cushions/cushion-covers",
+              "subcategories": {}
+            },
+            "cushion-pads": {
+              "url": "https://www.dunelm.com/category/home-decor/cushions/cushion-pads",
+              "subcategories": {}
+            },
+            "filled-cushions": {
+              "url": "https://www.dunelm.com/category/home-decor/cushions/filled-cushions",
+              "subcategories": {}
+            },
+            "floor-cushions": {
+              "url": "https://www.dunelm.com/category/home-decor/cushions/floor-cushions",
+              "subcategories": {}
+            },
+            "large-cushions": {
+              "url": "https://www.dunelm.com/category/home-decor/cushions/large-cushions",
+              "subcategories": {}
+            },
+            "seat-pads": {
+              "url": "https://www.dunelm.com/category/home-decor/cushions/seat-pads",
+              "subcategories": {}
+            }
+          }
+        },
+        "decorative-trays-and-bowls": {
+          "url": "https://www.dunelm.com/category/home-decor/decorative-trays-and-bowls",
+          "subcategories": {}
+        },
+        "door-handles-and-knobs": {
+          "url": "https://www.dunelm.com/category/home-decor/door-handles-and-knobs",
+          "subcategories": {}
+        },
+        "door-knockers": {
+          "url": "https://www.dunelm.com/category/home-decor/door-knockers",
+          "subcategories": {}
+        },
+        "doorstops": {
+          "url": "https://www.dunelm.com/category/home-decor/doorstops",
+          "subcategories": {}
+        },
+        "draught-excluders": {
+          "url": "https://www.dunelm.com/category/home-decor/draught-excluders",
+          "subcategories": {}
+        },
+        "fireplace-accessories": {
+          "url": "https://www.dunelm.com/category/home-decor/fireplace-accessories",
+          "subcategories": {}
+        },
+        "flowers-and-plants": {
+          "url": "https://www.dunelm.com/category/home-decor/flowers-and-plants",
+          "subcategories": {
+            "artificial-flowers-and-plants": {
+              "url": "https://www.dunelm.com/category/home-decor/flowers-and-plants/artificial-flowers-and-plants",
+              "subcategories": {}
+            },
+            "dried-flowers": {
+              "url": "https://www.dunelm.com/category/home-decor/flowers-and-plants/dried-flowers",
+              "subcategories": {}
+            },
+            "real-plants": {
+              "url": "https://www.dunelm.com/category/home-decor/flowers-and-plants/real-plants",
+              "subcategories": {}
+            }
+          }
+        },
+        "home-fragrance": {
+          "url": "https://www.dunelm.com/category/home-decor/home-fragrance",
+          "subcategories": {
+            "all-home-fragrance": {
+              "url": "https://www.dunelm.com/category/home-decor/home-fragrance/all-home-fragrance",
+              "subcategories": {}
+            },
+            "candle-holders": {
+              "url": "https://www.dunelm.com/category/home-decor/home-fragrance/candle-holders",
+              "subcategories": {}
+            },
+            "candles": {
+              "url": "https://www.dunelm.com/category/home-decor/home-fragrance/candles",
+              "subcategories": {}
+            },
+            "diffusers": {
+              "url": "https://www.dunelm.com/category/home-decor/home-fragrance/diffusers",
+              "subcategories": {}
+            }
+          }
+        },
+        "mirrors": {
+          "url": "https://www.dunelm.com/category/home-decor/mirrors",
+          "subcategories": {}
+        },
+        "ornaments": {
+          "url": "https://www.dunelm.com/category/home-decor/ornaments",
+          "subcategories": {}
+        },
+        "vases": {
+          "url": "https://www.dunelm.com/category/home-decor/vases",
+          "subcategories": {}
+        },
+        "wall-art-and-decor": {
+          "url": "https://www.dunelm.com/category/home-decor/wall-art-and-decor",
+          "subcategories": {
+            "all-wall-art": {
+              "url": "https://www.dunelm.com/category/home-decor/wall-art-and-decor/all-wall-art",
+              "subcategories": {}
+            },
+            "notice-boards": {
+              "url": "https://www.dunelm.com/category/home-decor/wall-art-and-decor/notice-boards",
+              "subcategories": {}
+            },
+            "photo-frames": {
+              "url": "https://www.dunelm.com/category/home-decor/wall-art-and-decor/photo-frames",
+              "subcategories": {}
+            }
+          }
+        }
+      }
+    },
+    "home-delivery": {
+      "url": "https://www.dunelm.com/category/home-delivery",
+      "subcategories": {}
+    },
+    "inspiration": {
+      "url": "https://www.dunelm.com/category/inspiration",
+      "subcategories": {
+        "art-deco-style": {
+          "url": "https://www.dunelm.com/category/inspiration/art-deco-style",
+          "subcategories": {}
+        },
+        "boho-style": {
+          "url": "https://www.dunelm.com/category/inspiration/boho-style",
+          "subcategories": {}
+        },
+        "coastal-style": {
+          "url": "https://www.dunelm.com/category/inspiration/coastal-style",
+          "subcategories": {}
+        },
+        "farmhouse-style": {
+          "url": "https://www.dunelm.com/category/inspiration/farmhouse-style",
+          "subcategories": {}
+        },
+        "industrial-style": {
+          "url": "https://www.dunelm.com/category/inspiration/industrial-style",
+          "subcategories": {}
+        },
+        "maximalist": {
+          "url": "https://www.dunelm.com/category/inspiration/maximalist",
+          "subcategories": {}
+        },
+        "minimalist": {
+          "url": "https://www.dunelm.com/category/inspiration/minimalist",
+          "subcategories": {}
+        },
+        "modern-style": {
+          "url": "https://www.dunelm.com/category/inspiration/modern-style",
+          "subcategories": {}
+        },
+        "moroccan-style": {
+          "url": "https://www.dunelm.com/category/inspiration/moroccan-style",
+          "subcategories": {}
+        },
+        "retro-style": {
+          "url": "https://www.dunelm.com/category/inspiration/retro-style",
+          "subcategories": {}
+        },
+        "scandi-style": {
+          "url": "https://www.dunelm.com/category/inspiration/scandi-style",
+          "subcategories": {}
+        },
+        "shabby-chic-style": {
+          "url": "https://www.dunelm.com/category/inspiration/shabby-chic-style",
+          "subcategories": {}
+        }
+      }
+    },
+    "kids": {
+      "url": "https://www.dunelm.com/category/kids",
+      "subcategories": {
+        "all-kids": {
+          "url": "https://www.dunelm.com/category/kids/all-kids",
+          "subcategories": {}
+        },
+        "kids-and-toddler-tableware": {
+          "url": "https://www.dunelm.com/category/kids/kids-and-toddler-tableware",
+          "subcategories": {}
+        },
+        "kids-bean-bags": {
+          "url": "https://www.dunelm.com/category/kids/kids-bean-bags",
+          "subcategories": {}
+        },
+        "kids-bed-sheets": {
+          "url": "https://www.dunelm.com/category/kids/kids-bed-sheets",
+          "subcategories": {}
+        },
+        "kids-bedding": {
+          "url": "https://www.dunelm.com/category/kids/kids-bedding",
+          "subcategories": {}
+        },
+        "kids-curtains-and-blinds": {
+          "url": "https://www.dunelm.com/category/kids/kids-curtains-and-blinds",
+          "subcategories": {}
+        },
+        "kids-cushions": {
+          "url": "https://www.dunelm.com/category/kids/kids-cushions",
+          "subcategories": {}
+        },
+        "kids-decor": {
+          "url": "https://www.dunelm.com/category/kids/kids-decor",
+          "subcategories": {}
+        },
+        "kids-duvets-pillows-and-bedding-protection": {
+          "url": "https://www.dunelm.com/category/kids/kids-duvets-pillows-and-bedding-protection",
+          "subcategories": {}
+        },
+        "kids-furniture": {
+          "url": "https://www.dunelm.com/category/kids/kids-furniture",
+          "subcategories": {}
+        },
+        "kids-lighting": {
+          "url": "https://www.dunelm.com/category/kids/kids-lighting",
+          "subcategories": {}
+        },
+        "kids-luggage": {
+          "url": "https://www.dunelm.com/category/kids/kids-luggage",
+          "subcategories": {}
+        },
+        "kids-mattresses": {
+          "url": "https://www.dunelm.com/category/kids/kids-mattresses",
+          "subcategories": {}
+        },
+        "kids-rugs": {
+          "url": "https://www.dunelm.com/category/kids/kids-rugs",
+          "subcategories": {}
+        },
+        "kids-toys": {
+          "url": "https://www.dunelm.com/category/kids/kids-toys",
+          "subcategories": {}
+        },
+        "kids-wall-stickers-and-wallpaper": {
+          "url": "https://www.dunelm.com/category/kids/kids-wall-stickers-and-wallpaper",
+          "subcategories": {}
+        },
+        "superheroes": {
+          "url": "https://www.dunelm.com/category/kids/superheroes",
+          "subcategories": {}
+        },
+        "toy-boxes-and-kids-storage": {
+          "url": "https://www.dunelm.com/category/kids/toy-boxes-and-kids-storage",
+          "subcategories": {}
+        }
+      }
+    },
+    "last-chance-to-buy": {
+      "url": "https://www.dunelm.com/category/last-chance-to-buy",
+      "subcategories": {}
+    },
+    "lighting": {
+      "url": "https://www.dunelm.com/category/lighting",
+      "subcategories": {
+        "all-lighting": {
+          "url": "https://www.dunelm.com/category/lighting/all-lighting",
+          "subcategories": {}
+        },
+        "bathroom-lights": {
+          "url": "https://www.dunelm.com/category/lighting/bathroom-lights",
+          "subcategories": {}
+        },
+        "ceiling-lights": {
+          "url": "https://www.dunelm.com/category/lighting/ceiling-lights",
+          "subcategories": {}
+        },
+        "chandeliers": {
+          "url": "https://www.dunelm.com/category/lighting/chandeliers",
+          "subcategories": {}
+        },
+        "floor-lamps": {
+          "url": "https://www.dunelm.com/category/lighting/floor-lamps",
+          "subcategories": {}
+        },
+        "lamp-bases": {
+          "url": "https://www.dunelm.com/category/lighting/lamp-bases",
+          "subcategories": {}
+        },
+        "lamp-shades": {
+          "url": "https://www.dunelm.com/category/lighting/lamp-shades",
+          "subcategories": {}
+        },
+        "led-lights": {
+          "url": "https://www.dunelm.com/category/lighting/led-lights",
+          "subcategories": {}
+        },
+        "light-bulbs": {
+          "url": "https://www.dunelm.com/category/lighting/light-bulbs",
+          "subcategories": {}
+        },
+        "outdoor-lighting": {
+          "url": "https://www.dunelm.com/category/lighting/outdoor-lighting",
+          "subcategories": {}
+        },
+        "quirky-lighting": {
+          "url": "https://www.dunelm.com/category/lighting/quirky-lighting",
+          "subcategories": {}
+        },
+        "string-lights": {
+          "url": "https://www.dunelm.com/category/lighting/string-lights",
+          "subcategories": {}
+        },
+        "table-and-desk-lamps": {
+          "url": "https://www.dunelm.com/category/lighting/table-and-desk-lamps",
+          "subcategories": {}
+        },
+        "tripod-lights": {
+          "url": "https://www.dunelm.com/category/lighting/tripod-lights",
+          "subcategories": {}
+        },
+        "wall-lights": {
+          "url": "https://www.dunelm.com/category/lighting/wall-lights",
+          "subcategories": {}
+        }
+      }
+    },
+    "loungewear": {
+      "url": "https://www.dunelm.com/category/loungewear",
+      "subcategories": {}
+    },
+    "lower-impact-products": {
+      "url": "https://www.dunelm.com/category/lower-impact-products",
+      "subcategories": {}
+    },
+    "made-to-measure": {
+      "url": "https://www.dunelm.com/category/made-to-measure",
+      "subcategories": {
+        "blinds": {
+          "url": "https://www.dunelm.com/category/made-to-measure/blinds",
+          "subcategories": {
+            "no-drill-blinds": {
+              "url": "https://www.dunelm.com/category/made-to-measure/blinds/no-drill-blinds",
+              "subcategories": {}
+            },
+            "perfect-fit-blinds": {
+              "url": "https://www.dunelm.com/category/made-to-measure/blinds/perfect-fit-blinds",
+              "subcategories": {}
+            },
+            "roller-blinds": {
+              "url": "https://www.dunelm.com/category/made-to-measure/blinds/roller-blinds",
+              "subcategories": {}
+            },
+            "roman-blinds": {
+              "url": "https://www.dunelm.com/category/made-to-measure/blinds/roman-blinds",
+              "subcategories": {}
+            },
+            "venetian-blinds": {
+              "url": "https://www.dunelm.com/category/made-to-measure/blinds/venetian-blinds",
+              "subcategories": {}
+            },
+            "vertical-blinds": {
+              "url": "https://www.dunelm.com/category/made-to-measure/blinds/vertical-blinds",
+              "subcategories": {}
+            }
+          }
+        },
+        "curtains": {
+          "url": "https://www.dunelm.com/category/made-to-measure/curtains",
+          "subcategories": {}
+        },
+        "cushion-covers": {
+          "url": "https://www.dunelm.com/category/made-to-measure/cushion-covers",
+          "subcategories": {}
+        },
+        "fabric-samples": {
+          "url": "https://www.dunelm.com/category/made-to-measure/fabric-samples",
+          "subcategories": {
+            "blinds": {
+              "url": "https://www.dunelm.com/category/made-to-measure/fabric-samples/blinds",
+              "subcategories": {}
+            },
+            "curtains": {
+              "url": "https://www.dunelm.com/category/made-to-measure/fabric-samples/curtains",
+              "subcategories": {}
+            },
+            "roller-blinds": {
+              "url": "https://www.dunelm.com/category/made-to-measure/fabric-samples/roller-blinds",
+              "subcategories": {}
+            },
+            "roman-blinds": {
+              "url": "https://www.dunelm.com/category/made-to-measure/fabric-samples/roman-blinds",
+              "subcategories": {}
+            },
+            "vertical-blinds": {
+              "url": "https://www.dunelm.com/category/made-to-measure/fabric-samples/vertical-blinds",
+              "subcategories": {}
+            }
+          }
+        },
+        "made-to-measure-curtains": {
+          "url": "https://www.dunelm.com/category/made-to-measure/made-to-measure-curtains",
+          "subcategories": {}
+        },
+        "quick-delivery": {
+          "url": "https://www.dunelm.com/category/made-to-measure/quick-delivery",
+          "subcategories": {}
+        },
+        "shutters": {
+          "url": "https://www.dunelm.com/category/made-to-measure/shutters",
+          "subcategories": {}
+        },
+        "tiebacks": {
+          "url": "https://www.dunelm.com/category/made-to-measure/tiebacks",
+          "subcategories": {}
+        }
+      }
+    },
+    "mothers-day": {
+      "url": "https://www.dunelm.com/category/mothers-day",
+      "subcategories": {}
+    },
+    "new": {
+      "url": "https://www.dunelm.com/category/new",
+      "subcategories": {}
+    },
+    "nursery": {
+      "url": "https://www.dunelm.com/category/nursery",
+      "subcategories": {
+        "all-nursery": {
+          "url": "https://www.dunelm.com/category/nursery/all-nursery",
+          "subcategories": {}
+        },
+        "baby-blankets": {
+          "url": "https://www.dunelm.com/category/nursery/baby-blankets",
+          "subcategories": {}
+        },
+        "bathing": {
+          "url": "https://www.dunelm.com/category/nursery/bathing",
+          "subcategories": {}
+        },
+        "cot-and-cot-bed-mattresses": {
+          "url": "https://www.dunelm.com/category/nursery/cot-and-cot-bed-mattresses",
+          "subcategories": {}
+        },
+        "cot-bedding": {
+          "url": "https://www.dunelm.com/category/nursery/cot-bedding",
+          "subcategories": {}
+        },
+        "nursery-curtains-and-blinds": {
+          "url": "https://www.dunelm.com/category/nursery/nursery-curtains-and-blinds",
+          "subcategories": {}
+        },
+        "nursery-decor": {
+          "url": "https://www.dunelm.com/category/nursery/nursery-decor",
+          "subcategories": {}
+        },
+        "nursery-furniture": {
+          "url": "https://www.dunelm.com/category/nursery/nursery-furniture",
+          "subcategories": {}
+        },
+        "nursery-wall-stickers-and-wallpaper": {
+          "url": "https://www.dunelm.com/category/nursery/nursery-wall-stickers-and-wallpaper",
+          "subcategories": {}
+        }
+      }
+    },
+    "offers": {
+      "url": "https://www.dunelm.com/category/offers",
+      "subcategories": {
+        "all-offers": {
+          "url": "https://www.dunelm.com/category/offers/all-offers",
+          "subcategories": {}
+        }
+      }
+    },
+    "offers-and-special-buys": {
+      "url": "https://www.dunelm.com/category/offers-and-special-buys",
+      "subcategories": {}
+    },
+    "pets": {
+      "url": "https://www.dunelm.com/category/pets",
+      "subcategories": {
+        "all-pet-supplies": {
+          "url": "https://www.dunelm.com/category/pets/all-pet-supplies",
+          "subcategories": {}
+        },
+        "cat-supplies": {
+          "url": "https://www.dunelm.com/category/pets/cat-supplies",
+          "subcategories": {
+            "cat-beds": {
+              "url": "https://www.dunelm.com/category/pets/cat-supplies/cat-beds",
+              "subcategories": {}
+            }
+          }
+        },
+        "dog-supplies": {
+          "url": "https://www.dunelm.com/category/pets/dog-supplies",
+          "subcategories": {
+            "dog-beds": {
+              "url": "https://www.dunelm.com/category/pets/dog-supplies/dog-beds",
+              "subcategories": {}
+            }
+          }
+        },
+        "pets-bowls-and-feeders": {
+          "url": "https://www.dunelm.com/category/pets/pets-bowls-and-feeders",
+          "subcategories": {}
+        }
+      }
+    },
+    "press-show": {
+      "url": "https://www.dunelm.com/category/press-show",
+      "subcategories": {
+        "amalfi-christmas": {
+          "url": "https://www.dunelm.com/category/press-show/amalfi-christmas",
+          "subcategories": {}
+        },
+        "hosting-and-toasting": {
+          "url": "https://www.dunelm.com/category/press-show/hosting-and-toasting",
+          "subcategories": {}
+        },
+        "salvage-yard": {
+          "url": "https://www.dunelm.com/category/press-show/salvage-yard",
+          "subcategories": {}
+        },
+        "the-cosy-cafe": {
+          "url": "https://www.dunelm.com/category/press-show/the-cosy-cafe",
+          "subcategories": {}
+        },
+        "the-harmonious-home": {
+          "url": "https://www.dunelm.com/category/press-show/the-harmonious-home",
+          "subcategories": {}
+        },
+        "the-scent-studio": {
+          "url": "https://www.dunelm.com/category/press-show/the-scent-studio",
+          "subcategories": {}
+        },
+        "vintage-emporium": {
+          "url": "https://www.dunelm.com/category/press-show/vintage-emporium",
+          "subcategories": {}
+        },
+        "wild-harvest": {
+          "url": "https://www.dunelm.com/category/press-show/wild-harvest",
+          "subcategories": {}
+        },
+        "winter-luxe": {
+          "url": "https://www.dunelm.com/category/press-show/winter-luxe",
+          "subcategories": {}
+        }
+      }
+    },
+    "price-guarantee": {
+      "url": "https://www.dunelm.com/category/price-guarantee",
+      "subcategories": {}
+    },
+    "rugs": {
+      "url": "https://www.dunelm.com/category/rugs",
+      "subcategories": {
+        "all-rugs": {
+          "url": "https://www.dunelm.com/category/rugs/all-rugs",
+          "subcategories": {}
+        },
+        "all-rugs-and-runners": {
+          "url": "https://www.dunelm.com/category/rugs/all-rugs-and-runners",
+          "subcategories": {}
+        },
+        "bedroom-rugs": {
+          "url": "https://www.dunelm.com/category/rugs/bedroom-rugs",
+          "subcategories": {}
+        },
+        "blue-rugs": {
+          "url": "https://www.dunelm.com/category/rugs/blue-rugs",
+          "subcategories": {}
+        },
+        "doormats": {
+          "url": "https://www.dunelm.com/category/rugs/doormats",
+          "subcategories": {}
+        },
+        "kitchen-rugs": {
+          "url": "https://www.dunelm.com/category/rugs/kitchen-rugs",
+          "subcategories": {}
+        },
+        "large-rugs": {
+          "url": "https://www.dunelm.com/category/rugs/large-rugs",
+          "subcategories": {}
+        },
+        "living-room-rugs": {
+          "url": "https://www.dunelm.com/category/rugs/living-room-rugs",
+          "subcategories": {}
+        },
+        "modern-rugs": {
+          "url": "https://www.dunelm.com/category/rugs/modern-rugs",
+          "subcategories": {}
+        },
+        "outdoor-rugs": {
+          "url": "https://www.dunelm.com/category/rugs/outdoor-rugs",
+          "subcategories": {
+            "bank-holiday-offer": {
+              "url": "https://www.dunelm.com/category/rugs/outdoor-rugs/bank-holiday-offer",
+              "subcategories": {}
+            }
+          }
+        },
+        "round-rugs": {
+          "url": "https://www.dunelm.com/category/rugs/round-rugs",
+          "subcategories": {}
+        },
+        "runners": {
+          "url": "https://www.dunelm.com/category/rugs/runners",
+          "subcategories": {}
+        },
+        "shaggy-rugs": {
+          "url": "https://www.dunelm.com/category/rugs/shaggy-rugs",
+          "subcategories": {}
+        },
+        "small-rugs": {
+          "url": "https://www.dunelm.com/category/rugs/small-rugs",
+          "subcategories": {}
+        },
+        "stair-runners": {
+          "url": "https://www.dunelm.com/category/rugs/stair-runners",
+          "subcategories": {}
+        },
+        "yellow-rugs": {
+          "url": "https://www.dunelm.com/category/rugs/yellow-rugs",
+          "subcategories": {}
+        }
+      }
+    },
+    "sale": {
+      "url": "https://www.dunelm.com/category/sale",
+      "subcategories": {
+        "all-sale": {
+          "url": "https://www.dunelm.com/category/sale/all-sale",
+          "subcategories": {}
+        }
+      }
+    },
+    "seasonal": {
+      "url": "https://www.dunelm.com/category/seasonal",
+      "subcategories": {
+        "autumn": {
+          "url": "https://www.dunelm.com/category/seasonal/autumn",
+          "subcategories": {}
+        },
+        "characters": {
+          "url": "https://www.dunelm.com/category/seasonal/characters",
+          "subcategories": {}
+        },
+        "cold-weather-essentials": {
+          "url": "https://www.dunelm.com/category/seasonal/cold-weather-essentials",
+          "subcategories": {}
+        },
+        "cool-sleep": {
+          "url": "https://www.dunelm.com/category/seasonal/cool-sleep",
+          "subcategories": {}
+        },
+        "fathers-day": {
+          "url": "https://www.dunelm.com/category/seasonal/fathers-day",
+          "subcategories": {}
+        },
+        "halloween": {
+          "url": "https://www.dunelm.com/category/seasonal/halloween",
+          "subcategories": {}
+        },
+        "heat-the-person": {
+          "url": "https://www.dunelm.com/category/seasonal/heat-the-person",
+          "subcategories": {}
+        },
+        "snowy-day-essentials": {
+          "url": "https://www.dunelm.com/category/seasonal/snowy-day-essentials",
+          "subcategories": {}
+        },
+        "spring-fresh": {
+          "url": "https://www.dunelm.com/category/seasonal/spring-fresh",
+          "subcategories": {
+            "all-spring-fresh": {
+              "url": "https://www.dunelm.com/category/seasonal/spring-fresh/all-spring-fresh",
+              "subcategories": {}
+            }
+          }
+        },
+        "the-cosy-zone": {
+          "url": "https://www.dunelm.com/category/seasonal/the-cosy-zone",
+          "subcategories": {
+            "all-cosy-zone": {
+              "url": "https://www.dunelm.com/category/seasonal/the-cosy-zone/all-cosy-zone",
+              "subcategories": {}
+            }
+          }
+        },
+        "wet-weather-essentials": {
+          "url": "https://www.dunelm.com/category/seasonal/wet-weather-essentials",
+          "subcategories": {}
+        }
+      }
+    },
+    "special-buys": {
+      "url": "https://www.dunelm.com/category/special-buys",
+      "subcategories": {}
+    },
+    "stationery": {
+      "url": "https://www.dunelm.com/category/stationery",
+      "subcategories": {}
+    },
+    "trending-products": {
+      "url": "https://www.dunelm.com/category/trending-products",
+      "subcategories": {}
+    },
+    "wedding": {
+      "url": "https://www.dunelm.com/category/wedding",
+      "subcategories": {}
+    },
+    "wellness": {
+      "url": "https://www.dunelm.com/category/wellness",
+      "subcategories": {}
+    }
+  }
+}

@@ -1,0 +1,122 @@
+[
+  {
+    "rank": 1,
+    "name": "home-and-furniture",
+    "url": "https://www.dunelm.com/category/home-and-furniture",
+    "subcategories": 239
+  },
+  {
+    "rank": 2,
+    "name": "brands",
+    "url": "https://www.dunelm.com/category/brands",
+    "subcategories": 110
+  },
+  {
+    "rank": 3,
+    "name": "home-decor",
+    "url": "https://www.dunelm.com/category/home-decor",
+    "subcategories": 33
+  },
+  {
+    "rank": 4,
+    "name": "made-to-measure",
+    "url": "https://www.dunelm.com/category/made-to-measure",
+    "subcategories": 18
+  },
+  {
+    "rank": 5,
+    "name": "electricals",
+    "url": "https://www.dunelm.com/category/electricals",
+    "subcategories": 18
+  },
+  {
+    "rank": 6,
+    "name": "kids",
+    "url": "https://www.dunelm.com/category/kids",
+    "subcategories": 17
+  },
+  {
+    "rank": 7,
+    "name": "garden",
+    "url": "https://www.dunelm.com/category/garden",
+    "subcategories": 17
+  },
+  {
+    "rank": 8,
+    "name": "rugs",
+    "url": "https://www.dunelm.com/category/rugs",
+    "subcategories": 16
+  },
+  {
+    "rank": 9,
+    "name": "christmas",
+    "url": "https://www.dunelm.com/category/christmas",
+    "subcategories": 16
+  },
+  {
+    "rank": 10,
+    "name": "lighting",
+    "url": "https://www.dunelm.com/category/lighting",
+    "subcategories": 14
+  },
+  {
+    "rank": 11,
+    "name": "gifts",
+    "url": "https://www.dunelm.com/category/gifts",
+    "subcategories": 14
+  },
+  {
+    "rank": 12,
+    "name": "seasonal",
+    "url": "https://www.dunelm.com/category/seasonal",
+    "subcategories": 12
+  },
+  {
+    "rank": 13,
+    "name": "diy-and-decorating",
+    "url": "https://www.dunelm.com/category/diy-and-decorating",
+    "subcategories": 12
+  },
+  {
+    "rank": 14,
+    "name": "cleaning-and-laundry",
+    "url": "https://www.dunelm.com/category/cleaning-and-laundry",
+    "subcategories": 11
+  },
+  {
+    "rank": 15,
+    "name": "nursery",
+    "url": "https://www.dunelm.com/category/nursery",
+    "subcategories": 8
+  },
+  {
+    "rank": 16,
+    "name": "fabric-and-haberdashery",
+    "url": "https://www.dunelm.com/category/fabric-and-haberdashery",
+    "subcategories": 7
+  },
+  {
+    "rank": 17,
+    "name": "pets",
+    "url": "https://www.dunelm.com/category/pets",
+    "subcategories": 5
+  },
+  {
+    "rank": 18,
+    "name": "holiday",
+    "url": "https://www.dunelm.com/category/holiday",
+    "subcategories": 3
+  },
+  {
+    "rank": 19,
+    "name": "health-and-wellbeing",
+    "url": "https://www.dunelm.com/category/health-and-wellbeing",
+    "subcategories": 1
+  },
+  {
+    "rank": 20,
+    "name": "sale",
+    "url": "https://www.dunelm.com/category/sale",
+    "subcategories": 0
+  }
+]

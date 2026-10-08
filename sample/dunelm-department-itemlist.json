@@ -1,0 +1,1183 @@
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Home And Furniture",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@type": "Product",
+          "name": "Pure Cotton Fitted Sheet",
+          "url": "https://www.dunelm.com/product/pure-cotton-fitted-sheet-1000194189?defaultSkuId=30750006",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.5",
+            "reviewCount": 5195
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "9",
+            "highPrice": "37",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@type": "Product",
+          "name": "Olney 2 Drawer Bedside Table",
+          "url": "https://www.dunelm.com/product/olney-2-drawer-bedside-stone-1000214672?defaultSkuId=30824751",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.6",
+            "reviewCount": 633
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "55.30",
+            "highPrice": "79",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@type": "Product",
+          "name": "Charnwood Check Occasional Armchair",
+          "url": "https://www.dunelm.com/product/charnwood-check-occasional-armchair-1000265845?defaultSkuId=31004770",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.7",
+            "reviewCount": 86
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "265",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "item": {
+          "@type": "Product",
+          "name": "Blake Soft Texture Chenille Corner Chaise Sofa",
+          "url": "https://www.dunelm.com/product/blake-soft-texture-chenille-corner-chaise-sofa-1000267425?defaultSkuId=30984188",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.3",
+            "reviewCount": 10
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "899",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "item": {
+          "@type": "Product",
+          "name": "Isabelle Cotton Tablecloth",
+          "url": "https://www.dunelm.com/product/isabelle-tablecloth-1000181628?defaultSkuId=31003660",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.3",
+            "reviewCount": 445
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "8",
+            "highPrice": "30",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "item": {
+          "@type": "Product",
+          "name": "Cosy Soft Shaggy Rug",
+          "url": "https://www.dunelm.com/product/cosy-teddy-rug-1000169274?defaultSkuId=30705571",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.7",
+            "reviewCount": 2321
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "29",
+            "highPrice": "309",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 7,
+        "item": {
+          "@type": "Product",
+          "name": "Camille Stripe 100% Brushed Cotton Duvet Cover & Pillowcase Set",
+          "url": "https://www.dunelm.com/product/camille-stripe-100-brushed-cotton-duvet-cover-pillowcase-set-1000271173?defaultSkuId=31040485",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.6",
+            "reviewCount": 60
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "14",
+            "highPrice": "22",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 8,
+        "item": {
+          "@type": "Product",
+          "name": "Olney Wide 8 Drawer Chest",
+          "url": "https://www.dunelm.com/product/olney-wide-8-drawer-chest-1000227332?defaultSkuId=30856996",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.3",
+            "reviewCount": 126
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "223.20",
+            "highPrice": "279",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 9,
+        "item": {
+          "@type": "Product",
+          "name": "Walker Duvet Cover & Pillowcase Set",
+          "url": "https://www.dunelm.com/product/walker-duvet-cover-pillowcase-set-1000289366?defaultSkuId=31032780",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "2.5",
+            "reviewCount": 2
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "32",
+            "highPrice": "52",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 10,
+        "item": {
+          "@type": "Product",
+          "name": "Ria Rotating Bookcase",
+          "url": "https://www.dunelm.com/product/ria-rotating-bookcase-1000280141?defaultSkuId=31002180",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.6",
+            "reviewCount": 36
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "149",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 11,
+        "item": {
+          "@type": "Product",
+          "name": "Lancaster 4 Piece Bedroom Furniture Set",
+          "url": "https://www.dunelm.com/product/lancaster-4-piece-bedroom-furniture-set-1000275698?defaultSkuId=31012796",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "3.9",
+            "reviewCount": 55
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "389",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 12,
+        "item": {
+          "@type": "Product",
+          "name": "Stoneware 12 Piece Dinner Set",
+          "url": "https://www.dunelm.com/product/stoneware-charcoal-12-piece-dinner-set-1000168145?defaultSkuId=30836784",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.7",
+            "reviewCount": 616
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "20",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 13,
+        "item": {
+          "@type": "Product",
+          "name": "Olney 5 Drawer Chest",
+          "url": "https://www.dunelm.com/product/olney-5-drawer-chest-1000214678?defaultSkuId=30824753",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.3",
+            "reviewCount": 165
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "159.20",
+            "highPrice": "199",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 14,
+        "item": {
+          "@type": "Product",
+          "name": "Bryant 3 Drawer & 2 Door Sideboard",
+          "url": "https://www.dunelm.com/product/bryant-sideboard-1000214655?defaultSkuId=30876565",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": 144
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "299",
+            "highPrice": "380",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 15,
+        "item": {
+          "@type": "Product",
+          "name": "Yard Hebden Reversible 100% Cotton Duvet Cover & Pillowcase Set",
+          "url": "https://www.dunelm.com/product/yard-hebden-reversible-100-cotton-duvet-cover-pillowcase-set-1000212570?defaultSkuId=30991334",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.6",
+            "reviewCount": 507
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "24",
+            "highPrice": "44",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 16,
+        "item": {
+          "@type": "Product",
+          "name": "Bryant 2 Door Small Sideboard",
+          "url": "https://www.dunelm.com/product/bryant-compact-sideboard-1000214654?defaultSkuId=30876551",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.7",
+            "reviewCount": 162
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "116",
+            "highPrice": "199",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 17,
+        "item": {
+          "@type": "Product",
+          "name": "Luna Brushed Eyelet Curtains (Blackout Thermal Available)",
+          "url": "https://www.dunelm.com/product/luna-brushed-blackout-eyelet-curtains-1000083340?defaultSkuId=30668953",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.6",
+            "reviewCount": 6126
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "23.75",
+            "highPrice": "130",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 18,
+        "item": {
+          "@type": "Product",
+          "name": "Claude Tonal Chenille Corner Chaise Sofa",
+          "url": "https://www.dunelm.com/product/claude-soft-chenille-corner-chaise-sofa-1000231739?defaultSkuId=30865722",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.3",
+            "reviewCount": 43
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "499.50",
+            "highPrice": "799.20",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 19,
+        "item": {
+          "@type": "Product",
+          "name": "Montreal Counter Height Bar Stool, Faux Leather",
+          "url": "https://www.dunelm.com/product/montreal-pu-leather-bar-stool-grey-1000147465?defaultSkuId=30724473",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": 1376
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "79.20",
+            "highPrice": "99",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 20,
+        "item": {
+          "@type": "Product",
+          "name": "Curved Edge Floating Shelf",
+          "url": "https://www.dunelm.com/product/curved-edge-floating-shelf-1000287216?defaultSkuId=31033406",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "1.5",
+            "reviewCount": 2
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "16",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 21,
+        "item": {
+          "@type": "Product",
+          "name": "Floating Shelf",
+          "url": "https://www.dunelm.com/product/oak-floating-shelf-1000187492?defaultSkuId=30733548",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.0",
+            "reviewCount": 647
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "12",
+            "highPrice": "22",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 22,
+        "item": {
+          "@type": "Product",
+          "name": "Luxe Velour Eyelet Curtains (Blackout Thermal Available)",
+          "url": "https://www.dunelm.com/product/recycled-velour-eyelet-curtains-1000187431?defaultSkuId=31027665",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.7",
+            "reviewCount": 2106
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "24.50",
+            "highPrice": "125",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 23,
+        "item": {
+          "@type": "Product",
+          "name": "Esme Washed Cotton Tablecloth",
+          "url": "https://www.dunelm.com/product/esme-washed-cotton-tablecloth-1000279430?defaultSkuId=31003518",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": 17
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "18",
+            "highPrice": "36",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 24,
+        "item": {
+          "@type": "Product",
+          "name": "Olney 4 Drawer Dressing Table",
+          "url": "https://www.dunelm.com/product/olney-dressing-table-1000249011?defaultSkuId=30909600",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.6",
+            "reviewCount": 51
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "159.20",
+            "highPrice": "199",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 25,
+        "item": {
+          "@type": "Product",
+          "name": "Pumpkin Velvet Footstool",
+          "url": "https://www.dunelm.com/product/pumpkin-velvet-footstool-1000239125?defaultSkuId=30891422",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": 95
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "39",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 26,
+        "item": {
+          "@type": "Product",
+          "name": "Helsinki Set of 2 Reclining Sun Lounger Chairs",
+          "url": "https://www.dunelm.com/product/helsinki-set-of-2-loungers-1000281791?defaultSkuId=31011980",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.5",
+            "reviewCount": 29
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "32.50",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 27,
+        "item": {
+          "@type": "Product",
+          "name": "Billie Duvet Cover and Pillowcase Set",
+          "url": "https://www.dunelm.com/product/billie-white-duvet-cover-and-pillowcase-set-1000194338?defaultSkuId=30749578",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.7",
+            "reviewCount": 2685
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "32",
+            "highPrice": "52",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 28,
+        "item": {
+          "@type": "Product",
+          "name": "Lynton 7 Drawer Chest",
+          "url": "https://www.dunelm.com/product/lynton-7-drawer-chest-1000157910?defaultSkuId=31010126",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.1",
+            "reviewCount": 288
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "269",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 29,
+        "item": {
+          "@type": "Product",
+          "name": "Olney Corner Storage Ladder",
+          "url": "https://www.dunelm.com/product/olney-corner-storage-ladder-1000277296?defaultSkuId=30999074",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": 32
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "179",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 30,
+        "item": {
+          "@type": "Product",
+          "name": "Frankie Compact Dressing Table Set with Mirror and Stool",
+          "url": "https://www.dunelm.com/product/frankie-boucle-compact-dressing-table-set-with-mirror-and-stool-1000283323?defaultSkuId=31033515",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.7",
+            "reviewCount": 27
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "279.20",
+            "highPrice": "349",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 31,
+        "item": {
+          "@type": "Product",
+          "name": "Harbour Housewares Large Floating Shelf",
+          "url": "https://www.dunelm.com/product/harbour-housewares-large-floating-shelf-1000250754?defaultSkuId=30962336",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.0",
+            "reviewCount": 1
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "32",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 32,
+        "item": {
+          "@type": "Product",
+          "name": "Olney 2 Door Small Sideboard",
+          "url": "https://www.dunelm.com/product/olney-small-sideboard-stone-1000231953?defaultSkuId=30918568",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.7",
+            "reviewCount": 273
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "103.20",
+            "highPrice": "129",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 33,
+        "item": {
+          "@type": "Product",
+          "name": "Fogarty Soft Touch Duvet Cover and Pillowcase Set",
+          "url": "https://www.dunelm.com/product/fogarty-soft-touch-duvet-cover-and-pillowcase-set-1000075957?defaultSkuId=30969225",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.7",
+            "reviewCount": 1870
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "15",
+            "highPrice": "30",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 34,
+        "item": {
+          "@type": "Product",
+          "name": "Catherine Lansfield Stripe 100% Brushed Cotton Reversible Duvet Cover & Pillowcase Set",
+          "url": "https://www.dunelm.com/product/catherine-lansfield-stripe-100-brushed-cotton-reversible-duvet-cover-pillowcase-set-1000225017?defaultSkuId=31056817",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.7",
+            "reviewCount": 286
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "20",
+            "highPrice": "42",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 35,
+        "item": {
+          "@type": "Product",
+          "name": "Olney Console Table",
+          "url": "https://www.dunelm.com/product/olney-console-table-stone-1000235774?defaultSkuId=30918569",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.6",
+            "reviewCount": 214
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "119.20",
+            "highPrice": "149",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 36,
+        "item": {
+          "@type": "Product",
+          "name": "Kensington Made to Measure Curtains",
+          "url": "https://www.dunelm.com/product/kensington-made-to-measure-curtains-1000180973?defaultSkuId=50034465",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.5",
+            "reviewCount": 585
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "69",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 37,
+        "item": {
+          "@type": "Product",
+          "name": "Emery Squish Soft Chenille Clic Clac Storage Sofa Bed",
+          "url": "https://www.dunelm.com/product/emery-squish-soft-chenille-clic-clac-storage-sofa-bed-1000246008?defaultSkuId=31032656",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.3",
+            "reviewCount": 116
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "335.20",
+            "highPrice": "419",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 38,
+        "item": {
+          "@type": "Product",
+          "name": "Olney Triple Wardrobe",
+          "url": "https://www.dunelm.com/product/olney-triple-wardrobe-1000221966?defaultSkuId=30831944",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.1",
+            "reviewCount": 139
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "449",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 39,
+        "item": {
+          "@type": "Product",
+          "name": "Catherine Lansfield Meadow Sweet Floral Reversible Duvet Cover and Pillowcase Set",
+          "url": "https://www.dunelm.com/product/catherine-lansfield-meadow-sweet-floral-reversible-duvet-cover-and-pillowcase-set-1000184227?defaultSkuId=30724633",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.6",
+            "reviewCount": 918
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "16",
+            "highPrice": "34",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 40,
+        "item": {
+          "@type": "Product",
+          "name": "Olney Flip Top 4-6 Seater Dining Table",
+          "url": "https://www.dunelm.com/product/olney-flip-top-4-6-seater-dining-table-1000258004?defaultSkuId=30925305",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.4",
+            "reviewCount": 49
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "199",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 41,
+        "item": {
+          "@type": "Product",
+          "name": "Mandalay Duvet Cover and Pillowcase Set",
+          "url": "https://www.dunelm.com/product/mandalay-duvet-cover-and-pillowcase-set-1000226504?defaultSkuId=30858847",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.7",
+            "reviewCount": 2414
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "32",
+            "highPrice": "52",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 42,
+        "item": {
+          "@type": "Product",
+          "name": "Olney Extra Wide TV Unit for TVs up to 80\"",
+          "url": "https://www.dunelm.com/product/olney-extra-wide-tv-unit-stone-1000231952?defaultSkuId=30918567",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.3",
+            "reviewCount": 68
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "175.20",
+            "highPrice": "219",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 43,
+        "item": {
+          "@type": "Product",
+          "name": "Beatrice II Striped Boucle Snuggle Chair",
+          "url": "https://www.dunelm.com/product/beatrice-ii-striped-boucle-snuggle-chair-1000266121?defaultSkuId=31007542",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": 72
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "399",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 44,
+        "item": {
+          "@type": "Product",
+          "name": "Olney Nest of Tables with Storage",
+          "url": "https://www.dunelm.com/product/olney-nest-of-tables-with-storage-1000214637?defaultSkuId=30884412",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": 332
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "89",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 45,
+        "item": {
+          "@type": "Product",
+          "name": "Fogarty Soft Touch Fitted Sheet",
+          "url": "https://www.dunelm.com/product/fogarty-soft-touch-fitted-sheet-1000074899?defaultSkuId=30214618",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": 3911
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "7",
+            "highPrice": "22",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 46,
+        "item": {
+          "@type": "Product",
+          "name": "Max Velvet Swivel Chair",
+          "url": "https://www.dunelm.com/product/max-velvet-swivel-chair-1000292083?defaultSkuId=31031115",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5.0",
+            "reviewCount": 1
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "244.30",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 47,
+        "item": {
+          "@type": "Product",
+          "name": "Lynton 5 Drawer Chest",
+          "url": "https://www.dunelm.com/product/lynton-5-drawer-chest-1000197760?defaultSkuId=30605417",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "3.9",
+            "reviewCount": 274
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "179",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 48,
+        "item": {
+          "@type": "Product",
+          "name": "Elsie 3 Door Large Sideboard",
+          "url": "https://www.dunelm.com/product/elsie-large-sideboard-1000268161?defaultSkuId=30971819",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.1",
+            "reviewCount": 18
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "174.30",
+            "highPrice": "249",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 49,
+        "item": {
+          "@type": "Product",
+          "name": "Hayes 5 Drawer Chest",
+          "url": "https://www.dunelm.com/product/hayes-5-drawer-chest-1000291014?defaultSkuId=31053684",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.1",
+            "reviewCount": 37
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "65",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 50,
+        "item": {
+          "@type": "Product",
+          "name": "Olney Wide Sideboard",
+          "url": "https://www.dunelm.com/product/olney-wide-sideboard-1000214656?defaultSkuId=30884373",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.5",
+            "reviewCount": 187
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "199.20",
+            "highPrice": "249",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 51,
+        "item": {
+          "@type": "Product",
+          "name": "Salerno Wooden Bed Frame",
+          "url": "https://www.dunelm.com/product/salerno-two-tone-ivory-wooden-bed-frame-1000115025?defaultSkuId=30303230",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.4",
+            "reviewCount": 89
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "183.20",
+            "highPrice": "343.20",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 52,
+        "item": {
+          "@type": "Product",
+          "name": "Scoville Neverstick Non-stick Aluminium 5 Piece Pan Set",
+          "url": "https://www.dunelm.com/product/scoville-neverstick-non-stick-aluminum-5-piece-pan-set-1000188481?defaultSkuId=30737927",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.7",
+            "reviewCount": 200
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "45.50",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 53,
+        "item": {
+          "@type": "Product",
+          "name": "Jenson Herringbone Throw",
+          "url": "https://www.dunelm.com/product/jenson-herringbone-throw-1000164788?defaultSkuId=30834216",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.6",
+            "reviewCount": 1679
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "14",
+            "highPrice": "28",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 54,
+        "item": {
+          "@type": "Product",
+          "name": "Fulton 4-6 Seater Rectangular Flip Top Dining Table",
+          "url": "https://www.dunelm.com/product/fulton-oak-effect-flip-top-dining-table-1000157789?defaultSkuId=30666581",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.4",
+            "reviewCount": 219
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "199",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 55,
+        "item": {
+          "@type": "Product",
+          "name": "Lynton Mirrored 4 Door Wardrobe",
+          "url": "https://www.dunelm.com/product/lynton-mirrored-4-door-wardrobe-1000225641?defaultSkuId=31010120",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.0",
+            "reviewCount": 60
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "469",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 56,
+        "item": {
+          "@type": "Product",
+          "name": "Lancaster 2 Door Shoe Drop",
+          "url": "https://www.dunelm.com/product/lancaster-grey-shoe-drop-1000166041?defaultSkuId=30694021",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "3.4",
+            "reviewCount": 177
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "99",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 57,
+        "item": {
+          "@type": "Product",
+          "name": "Walker 6 Door 2 Drawer Wardrobe",
+          "url": "https://www.dunelm.com/product/walker-6-door-2-drawer-wardrobe-1000291330?defaultSkuId=31055135",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "3.2",
+            "reviewCount": 5
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "349",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 58,
+        "item": {
+          "@type": "Product",
+          "name": "Inga 5 Drawer Chest",
+          "url": "https://www.dunelm.com/product/inga-5-drawer-chest-1000254316?defaultSkuId=30928707",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "3.0",
+            "reviewCount": 5
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "99.75",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 59,
+        "item": {
+          "@type": "Product",
+          "name": "Supersize Bubble Family Fleece Throw 240cm x 280cm",
+          "url": "https://www.dunelm.com/product/supersize-bubble-fleece-throw-240cm-x-280cm-1000270447?defaultSkuId=30982642",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": 79
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "24",
+            "priceCurrency": "GBP"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 60,
+        "item": {
+          "@type": "Product",
+          "name": "Mateo Extra Wide TV Unit For TVs Up To 75\"",
+          "url": "https://www.dunelm.com/product/mateo-extra-wide-tv-unit-for-tvs-up-to-75-1000260832?defaultSkuId=30927345",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "3.4",
+            "reviewCount": 32
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "329",
+            "priceCurrency": "GBP"
+          }
+        }
+      }
+    ]
+  }
+}
