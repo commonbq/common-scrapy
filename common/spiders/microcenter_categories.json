@@ -1,0 +1,2590 @@
+{
+  "Top Deals": {
+    "PC Parts": [
+      {
+        "name": "Processors/CPUs",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Processors%2FCPUs|123,Micro+Center+Deals:Top+Deals"
+      },
+      {
+        "name": "SSD (Solid State Drives)",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:SSD+(Solid+State+Drives)|512,Micro+Center+Deals:Top+Deals"
+      },
+      {
+        "name": "Desktop Memory",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Desktop+Memory%2FRAM|491,Micro+Center+Deals:Top+Deals"
+      },
+      {
+        "name": "Desktop Cases",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Computer+Cases|128,Micro+Center+Deals:Top+Deals"
+      },
+      {
+        "name": "Power Supplies",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Power+Supplies|129,Micro+Center+Deals:Top+Deals"
+      },
+      {
+        "name": "Air & Water Cooling",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Air+%26+Water+Cooling|144,Micro+Center+Deals:Top+Deals"
+      },
+      {
+        "name": "View All Computer Parts",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Computer+Parts|94,Micro+Center+Deals:Top+Deals"
+      }
+    ],
+    "Computers": [
+      {
+        "name": "All Laptops",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Laptops%2FNotebooks|618,Micro+Center+Deals:Top+Deals"
+      },
+      {
+        "name": "Gaming Laptops",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Laptops%2FNotebooks|618,Subcategory:Gaming+Laptops,Micro+Center+Deals:Top+Deals"
+      },
+      {
+        "name": "All Desktops",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Desktop+Computers|106,Micro+Center+Deals:Top+Deals"
+      },
+      {
+        "name": "Gaming Desktops",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Desktop+Computers|106,Subcategory:Gaming+PCs,Micro+Center+Deals:Top+Deals"
+      },
+      {
+        "name": "Apple Laptops",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Laptops%2FNotebooks|618,Subcategory:Apple+Laptops,Micro+Center+Deals:Top+Deals"
+      },
+      {
+        "name": "iPads",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:iPads|668,Micro+Center+Deals:Top+Deals"
+      },
+      {
+        "name": "View All Computers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Computers|92,Micro+Center+Deals:Top+Deals"
+      }
+    ],
+    "Peripherals": [
+      {
+        "name": "Printers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Printers|165,Micro+Center+Deals:Top+Deals"
+      }
+    ],
+    "Electronics": [
+      {
+        "name": "Monitors",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Computer+Monitors|575,Micro+Center+Deals:Top+Deals"
+      },
+      {
+        "name": "Televisions",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Televisions|576,Micro+Center+Deals:Top+Deals"
+      }
+    ],
+    "Explore All Categories": [
+      {
+        "name": "View All Top Deals",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=Micro+Center+Deals:Top+Deals"
+      }
+    ]
+  },
+  "PC Parts": {
+    "PC Part Bundles": [
+      {
+        "name": "AMD Motherboard Bundles",
+        "url": "https://www.microcenter.com/site/content/bundle-and-save.aspx"
+      },
+      {
+        "name": "Intel Motherboard Bundles",
+        "url": "https://www.microcenter.com/site/content/intel-bundle-and-save.aspx"
+      },
+      {
+        "name": "All PC Part Bundles",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Computer+Parts+Bundles|773"
+      },
+      {
+        "name": "Combo Builder",
+        "url": "https://www.microcenter.com/site/content/combo-builder.aspx"
+      }
+    ],
+    "Processors/CPUs": [
+      {
+        "name": "All Processors",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Processors%2FCPUs|123"
+      },
+      {
+        "name": "AMD Processors",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Processors%2FCPUs|123,brand:AMD"
+      },
+      {
+        "name": "Intel Processors",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Processors%2FCPUs|123,brand:Intel"
+      }
+    ],
+    "Motherboards": [
+      {
+        "name": "All Motherboards",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Motherboards|122"
+      },
+      {
+        "name": "AMD Motherboards",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Motherboards|122,CPU%20Brand%20Support:AMD"
+      },
+      {
+        "name": "Intel Motherboards",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Motherboards|122,CPU%20Brand%20Support:Intel"
+      },
+      {
+        "name": "Barebone PCs",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Barebone+PCs|125"
+      }
+    ],
+    "Computer Memory": [
+      {
+        "name": "All Computer Memory",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Computer+Memory|130"
+      },
+      {
+        "name": "Desktop Memory",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Desktop+Memory%2FRAM|491"
+      },
+      {
+        "name": "Laptop Memory",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Laptop+Memory%2FRAM|423"
+      }
+    ],
+    "Graphics Cards & Accessories": [
+      {
+        "name": "Graphics Cards",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Graphics+Cards|518"
+      },
+      {
+        "name": "Graphics Card Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Graphics+Card+Accessories|687"
+      },
+      {
+        "name": "TV Tuners, Scan Converters",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:TV+Tuners+Scan+Converters|519"
+      },
+      {
+        "name": "GPU Trade-in Program",
+        "url": "https://www.microcenter.com/site/content/trade-in-landing.aspx"
+      },
+      {
+        "name": "NVIDIA 50 Series",
+        "url": "https://www.microcenter.com/site/brands/nvidia-geforce-rtx5000_series.aspx"
+      },
+      {
+        "name": "AMD 9000 Series",
+        "url": "https://www.microcenter.com/site/content/amd-radeon-9000-series.aspx"
+      }
+    ],
+    "Drives & Storage": [
+      {
+        "name": "All Storage",
+        "url": "https://www.microcenter.com/site/products/drives-and-storage.aspx"
+      },
+      {
+        "name": "Internal SSDs",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:SSD+(Solid+State+Drives)|512,Subcategory:Internal"
+      },
+      {
+        "name": "External SSDs",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:SSD+(Solid+State+Drives)|512,Subcategory:External"
+      },
+      {
+        "name": "Internal Hard Drives",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Internal+Hard+Drives|511"
+      },
+      {
+        "name": "External Hard Drives",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:External+Hard+Drives|514"
+      },
+      {
+        "name": "Network Attached Storage",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:NAS+(Network+Attached+Storage)|203"
+      },
+      {
+        "name": "CD/DVD/Blu-ray Drives",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:CD%2FDVD%2FBlu-ray+Burners|132"
+      }
+    ],
+    "Cases & Accessories": [
+      {
+        "name": "Desktop Cases",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Computer+Cases|128"
+      },
+      {
+        "name": "Power Supplies",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Power+Supplies|129"
+      },
+      {
+        "name": "Drive Enclosures/Trays",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Enclosures%2FTrays|156"
+      },
+      {
+        "name": "Case Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Case+Accessories|155"
+      },
+      {
+        "name": "System Cables",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:System+Cables|528"
+      }
+    ],
+    "Air & Water Cooling": [
+      {
+        "name": "All Air & Water Cooling",
+        "url": "https://www.microcenter.com/site/products/cpu-coolers.aspx"
+      },
+      {
+        "name": "Case Fans & Coolers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Case+Fans+%26+Coolers|146"
+      },
+      {
+        "name": "CPU Fans & Heatsinks",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:CPU%2FGPU`+Chipset+Heatsinks|145"
+      },
+      {
+        "name": "Thermal Compound, Paste",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Thermal+Compound`+Paste|151"
+      },
+      {
+        "name": "Water Cooling Kits",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Water+Cooling+Kits|152"
+      },
+      {
+        "name": "Water Cooling Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Water+Cooling+Accessories|153"
+      }
+    ],
+    "Expansion Cards": [
+      {
+        "name": "Sound Cards",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Sound+Cards|138"
+      },
+      {
+        "name": "IDE/SATA Controllers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Drive+Controllers+(IDE%60+SATA%60+SCSI)|141"
+      },
+      {
+        "name": "USB & FireWire Controllers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:USB%60+FireWire+Controllers|142"
+      },
+      {
+        "name": "Parallel & Serial Cards",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Parallel+%26+Serial+Cards|140"
+      },
+      {
+        "name": "I/O Adapters",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Miscellaneous+I%2FO+Boards+%26+Adapters|143"
+      }
+    ],
+    "Laptop Parts": [
+      {
+        "name": "Replacement Screens",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Laptop+Replacement+Screens|727"
+      },
+      {
+        "name": "Laptop Batteries",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Laptop+Batteries|466"
+      }
+    ],
+    "Explore More": [
+      {
+        "name": "View Processors/CPUs",
+        "url": "https://www.microcenter.com/site/products/computer-processors.aspx"
+      },
+      {
+        "name": "View Motherboards",
+        "url": "https://www.microcenter.com/site/products/motherboards.aspx"
+      },
+      {
+        "name": "View Graphics Cards/GPUs",
+        "url": "https://www.microcenter.com/site/products/graphics-cards.aspx"
+      },
+      {
+        "name": "View Computer Memory",
+        "url": "https://www.microcenter.com/site/products/computer-memory.aspx"
+      },
+      {
+        "name": "View Power Supplies",
+        "url": "https://www.microcenter.com/site/products/power-supplies.aspx"
+      },
+      {
+        "name": "View Computer Cases",
+        "url": "https://www.microcenter.com/site/products/computer-cases.aspx"
+      },
+      {
+        "name": "View All PC Parts",
+        "url": "https://www.microcenter.com/site/products/computer-parts.aspx"
+      }
+    ]
+  },
+  "PC Builders": {
+    "Build a Custom PC": [
+      {
+        "name": "Custom PC Builder",
+        "url": "https://www.microcenter.com/site/content/custom-pc-builder.aspx"
+      },
+      {
+        "name": "Custom PC with Intel",
+        "url": "https://www.microcenter.com/site/content/custom-pc-builder-intel.aspx"
+      },
+      {
+        "name": "Custom PC with AMD",
+        "url": "https://www.microcenter.com/site/content/custom-pc-builder-amd.aspx"
+      },
+      {
+        "name": "Workstation Builder",
+        "url": "https://www.microcenter.com/site/content/server-workstation-builder.aspx"
+      }
+    ],
+    "PC Showcase": [
+      {
+        "name": "See Completed Builds",
+        "url": "https://www.microcenter.com/search/builds.aspx"
+      },
+      {
+        "name": "Add Your Completed Build",
+        "url": "https://www.microcenter.com/site/content/create-build.aspx"
+      },
+      {
+        "name": "My Build Dashboard",
+        "url": "https://www.microcenter.com/site/content/build-dashboard.aspx"
+      }
+    ],
+    "Streaming & Gaming": [
+      {
+        "name": "Creator Studio Builder",
+        "url": "https://www.microcenter.com/site/content/creator-studio-landing.aspx"
+      },
+      {
+        "name": "Racing Sim Builder",
+        "url": "https://www.microcenter.com/site/content/racing-sim-builder.aspx"
+      },
+      {
+        "name": "Racing Sim Bundles",
+        "url": "https://www.microcenter.com/site/products/racing-simulators.aspx"
+      },
+      {
+        "name": "NAS Builder",
+        "url": "https://www.microcenter.com/site/content/nas-builder.aspx"
+      }
+    ]
+  },
+  "Computers": {
+    "Laptops & Tablets": [
+      {
+        "name": "All Laptops",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Laptops%2FNotebooks|618"
+      },
+      {
+        "name": "Gaming Laptops",
+        "url": "https://www.microcenter.com/site/products/gaming-laptops.aspx"
+      },
+      {
+        "name": "Apple Laptops",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Laptops%2FNotebooks|618,Subcategory:Apple+Laptops"
+      },
+      {
+        "name": "2-in-1 Laptops",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Laptops%2FNotebooks|618,Subcategory:2-in-1+Laptops"
+      },
+      {
+        "name": "iPads / Tablets",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:iPads+%26+Tablets|672"
+      },
+      {
+        "name": "Refurbished Laptops",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Laptops%2FNotebooks|107,Valuable%20Links:Refurbished"
+      },
+      {
+        "name": "Microsoft Surface",
+        "url": "https://www.microcenter.com/site/brands/microsoft-surface.aspx"
+      },
+      {
+        "name": "Microsoft 365 Bundles",
+        "url": "https://www.microcenter.com/site/brands/365-bundles.aspx"
+      },
+      {
+        "name": "Windows 11 Laptop Finder",
+        "url": "https://www.microcenter.com/site/content/windows-11-help-me-choose-laptop.aspx"
+      },
+      {
+        "name": "50 Series Laptops",
+        "url": "https://www.microcenter.com/site/brands/nvidia-geforce-rtx50series-laptops.aspx"
+      }
+    ],
+    "Desktops": [
+      {
+        "name": "All Desktops",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Desktop+Computers|106"
+      },
+      {
+        "name": "PowerSpec",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Desktop+Computers|106,brand:PowerSpec"
+      },
+      {
+        "name": "PC Desktops",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Desktop+Computers|106,Subcategory:PC+Desktops"
+      },
+      {
+        "name": "Gaming PCs",
+        "url": "https://www.microcenter.com/site/products/gaming_desktops.aspx"
+      },
+      {
+        "name": "Apple Desktops",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Desktop+Computers|106,Subcategory:Apple+Desktops"
+      },
+      {
+        "name": "All-in-One Desktops",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Desktop+Computers|106,Subcategory:All-In-One+Desktops"
+      },
+      {
+        "name": "Refurbished Desktops",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Desktop+Computers|106,Valuable%20Links:Refurbished"
+      },
+      {
+        "name": "Microsoft 365 Bundles",
+        "url": "https://www.microcenter.com/site/brands/365-bundles.aspx"
+      }
+    ],
+    "Computer Monitors": [
+      {
+        "name": "All Monitors",
+        "url": "https://www.microcenter.com/site/products/computer_monitors.aspx"
+      },
+      {
+        "name": "Gaming Monitors",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Computer+Monitors|575,Subcategory:Gaming"
+      },
+      {
+        "name": "2K Monitors",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Computer+Monitors|575,Subcategory:2K+QHD"
+      },
+      {
+        "name": "4K Monitors",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Computer+Monitors|575,Subcategory:4K+UHD"
+      },
+      {
+        "name": "Curved Screen Monitors",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Computer+Monitors|575,Subcategory:Curved+Screen"
+      },
+      {
+        "name": "OLED Monitors",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Computer+Monitors|575,Panel%20Type:OLED+OR+QD-OLED"
+      },
+      {
+        "name": "LED Monitors",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Computer+Monitors|575"
+      },
+      {
+        "name": "Monitor Mounts & Stands",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Wall+Mounts+%26+Stands|577,Subcategory:Monitor+Mounts+OR+Monitor+Stands"
+      }
+    ],
+    "Peripherals": [
+      {
+        "name": "Keyboards",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Wired+%26+Wireless+Keyboards|651"
+      },
+      {
+        "name": "Mice",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Wired+%26+Wireless+Mice|652"
+      },
+      {
+        "name": "3D Printing",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:3D+Printing|748"
+      },
+      {
+        "name": "Printers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Printers|165"
+      },
+      {
+        "name": "Scanners",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Scanners|166"
+      },
+      {
+        "name": "Projectors",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Projectors|162"
+      },
+      {
+        "name": "Computer Monitors",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Computer+Monitors|575"
+      }
+    ],
+    "Laptop & Tablet Accessories": [
+      {
+        "name": "PC Laptop Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Laptop+Accessories|108"
+      },
+      {
+        "name": "Mac Laptop Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Laptop+Accessories|112"
+      },
+      {
+        "name": "iPad & Tablet Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:iPad+%26+Tablet+Accessories|697"
+      },
+      {
+        "name": "Laptop Batteries",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Laptop+Batteries|466"
+      }
+    ],
+    "Business Solutions": [
+      {
+        "name": "All Business Products",
+        "url": "https://www.microcenter.com/site/products/smb-technology.aspx"
+      },
+      {
+        "name": "All Workstations",
+        "url": "https://www.microcenter.com/site/products/workstation-computers.aspx"
+      },
+      {
+        "name": "Desktop Workstations",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Desktop+Computers|106,Subcategory:Workstations"
+      },
+      {
+        "name": "Laptop Workstations",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Laptops%2FNotebooks|618,Subcategory:Workstations"
+      },
+      {
+        "name": "Networking",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Networking|199"
+      },
+      {
+        "name": "Servers",
+        "url": "https://www.microcenter.com/site/products/servers.aspx"
+      }
+    ],
+    "Explore All Categories": [
+      {
+        "name": "View Desktops",
+        "url": "https://www.microcenter.com/site/products/desktop-computers.aspx"
+      },
+      {
+        "name": "View Laptops",
+        "url": "https://www.microcenter.com/site/products/laptops-notebooks.aspx"
+      },
+      {
+        "name": "View Computer Monitors",
+        "url": "https://www.microcenter.com/site/products/computer_monitors.aspx"
+      },
+      {
+        "name": "Pro AI Solutions",
+        "url": "https://www.microcenter.com/site/content/ai_destination.aspx"
+      },
+      {
+        "name": "Windows 10 End of Life",
+        "url": "https://www.microcenter.com/site/content/windows10-eol.aspx"
+      },
+      {
+        "name": "View All Computers",
+        "url": "https://www.microcenter.com/site/products/computers.aspx"
+      }
+    ]
+  },
+  "PowerSpec": {
+    "PowerSpec Computers": [
+      {
+        "name": "G Series",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Desktop+Computers|106,brand:PowerSpec,Subcategory:Gaming+PCs"
+      },
+      {
+        "name": "B Series",
+        "url": "https://www.microcenter.com/search/search_results.aspx?N=&cat=&Ntt=PowerSpec+B+Series"
+      },
+      {
+        "name": "PRO AI Series",
+        "url": "https://www.microcenter.com/search/search_results.aspx?N=&cat=&Ntt=PowerSpec+PRO+AI+Series"
+      },
+      {
+        "name": "Shop All PowerSpec",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Desktop+Computers|106,brand:PowerSpec"
+      },
+      {
+        "name": "Explore PowerSpec",
+        "url": "https://www.microcenter.com/site/powerspec/default.aspx"
+      }
+    ]
+  },
+  "Apple": {
+    "Mac": [
+      {
+        "name": "MacBook Air",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Laptops%2FNotebooks|618,Subcategory:Apple+Laptops,Series:MacBook+Air"
+      },
+      {
+        "name": "MacBook Pro",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Laptops%2FNotebooks|618,Subcategory:Apple+Laptops,Series:MacBook+Pro"
+      },
+      {
+        "name": "Mac Mini",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Desktop+Computers|106,Subcategory:Apple+Desktops,Series:Mac+mini"
+      },
+      {
+        "name": "iMac",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Desktop+Computers|106,Subcategory:Apple+Desktops,Series:iMac+OR+iMac+Pro"
+      }
+    ],
+    "iPad": [
+      {
+        "name": "iPad",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:iPads|668,Subcategory:iPad"
+      },
+      {
+        "name": "iPad Air",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:iPads|668,Subcategory:iPad+Air"
+      },
+      {
+        "name": "iPad Pro",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:iPads|668,Subcategory:iPad+Pro"
+      },
+      {
+        "name": "iPad Mini",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:iPads|668,Subcategory:iPad+mini"
+      }
+    ],
+    "Hardware & Accessories": [
+      {
+        "name": "Mac Hardware",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Hardware|119"
+      },
+      {
+        "name": "Mac Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Accessories|120"
+      },
+      {
+        "name": "iPad Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=brand:Apple,Valuable%20Links:New,category:iPad+%26+Tablet+Accessories|697"
+      },
+      {
+        "name": "AirPod Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Peripheral+Cases|626,Type:AirPod+Case"
+      }
+    ],
+    "Audio": [
+      {
+        "name": "AirPods",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Headphones+%26+Earbuds|599,Series:AirPods+OR+AirPods+Max+OR+AirPods+Pro"
+      },
+      {
+        "name": "Beats Audio",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Headphones+%26+Earbuds|599,Series:Beats+OR+Beats+Flex+OR+Beats+Solo+OR+Beats+Studio"
+      },
+      {
+        "name": "HomePod",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Home+Automation|194,brand:Apple"
+      }
+    ],
+    "Apple Watch": [
+      {
+        "name": "Apple Watch",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Wearable+Technology|561,Subcategory:Apple+Watch"
+      },
+      {
+        "name": "Apple Watch Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Wearable+Technology|561,Subcategory:Apple+Watch+Accessory"
+      }
+    ],
+    "Apple iPhones": [
+      {
+        "name": "iPhone",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Cell+Phones|713,Subcategory:Apple+iPhones"
+      },
+      {
+        "name": "iPhone Cases",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:iPhone+Cases|671"
+      },
+      {
+        "name": "iPhone Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:iPhone+Accessories|574"
+      }
+    ],
+    "Explore All Categories": [
+      {
+        "name": "View All Apple Products",
+        "url": "https://www.microcenter.com/site/brands/apple-showcase.aspx"
+      }
+    ]
+  },
+  "Electronics": {
+    "Televisions": [
+      {
+        "name": "59\" and Smaller TVs",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Televisions|576,Screen+Size_Televisions:30%22+to+39%22+OR+50%22+to+59%22+OR+40%22+to+49%22+OR+20%22+to+29%22"
+      },
+      {
+        "name": "60\" and Larger TVs",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Televisions|576,Screen+Size_Televisions:60%22+and+greater"
+      },
+      {
+        "name": "OLED TVs",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Televisions|576,Subcategory:OLED+TVs"
+      },
+      {
+        "name": "QLED TVs",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Televisions|576,Subcategory:QLED+TVs"
+      },
+      {
+        "name": "Refurbished TVs",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Televisions|576,Valuable%20Links:Refurbished"
+      },
+      {
+        "name": "All Televisions",
+        "url": "https://www.microcenter.com/site/products/tvs.aspx"
+      },
+      {
+        "name": "TV Mounts & Stands",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Wall+Mounts+%26+Stands|577,Subcategory:Television+Mounts+OR+Television+Stands"
+      }
+    ],
+    "Monitors": [
+      {
+        "name": "Gaming Monitors",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Computer+Monitors|575,Subcategory:Gaming"
+      },
+      {
+        "name": "2K Monitors",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Computer+Monitors|575,Subcategory:2K+QHD"
+      },
+      {
+        "name": "4K Monitors",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Computer+Monitors|575,Subcategory:4K+UHD"
+      },
+      {
+        "name": "Curved Screen Monitors",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Computer+Monitors|575,Subcategory:Curved+Screen"
+      },
+      {
+        "name": "All Monitors",
+        "url": "https://www.microcenter.com/site/products/computer_monitors.aspx"
+      },
+      {
+        "name": "Monitor Mounts & Stands",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Wall+Mounts+%26+Stands|577,Subcategory:Monitor+Mounts+OR+Monitor+Stands"
+      }
+    ],
+    "Photography & Imaging": [
+      {
+        "name": "Mirrorless Cameras",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Cameras|169,Subcategory:DSLR+Camera"
+      },
+      {
+        "name": "Video Cameras",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Cameras|169,Subcategory:Video+Camera"
+      },
+      {
+        "name": "Digital Cameras",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Cameras|169,Subcategory:Digital+Camera"
+      },
+      {
+        "name": "Camera Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Camera+Accessories|171"
+      },
+      {
+        "name": "Digital Picture Frames",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category_flat:Digital+Picture+Frames|172"
+      }
+    ],
+    "Printers & Scanners": [
+      {
+        "name": "Inkjet Printers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Inkjet+Printers%60+All-in-Ones|481"
+      },
+      {
+        "name": "Laser Printers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Laser+Printers%60+All-in-Ones|482"
+      },
+      {
+        "name": "3D Printers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:3D+Printers|701"
+      },
+      {
+        "name": "Scanners",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Scanners|166"
+      },
+      {
+        "name": "Ink & Toner Finder",
+        "url": "https://www.microcenter.com/site/products/ink-toner.aspx"
+      },
+      {
+        "name": "Inkjet Cartridges",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Inkjet+Printer+Cartridges|488"
+      },
+      {
+        "name": "Laser Toner",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Laser+Toner+Cartridges|486"
+      },
+      {
+        "name": "Filaments & Resins",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Filaments+%26+Resins|754"
+      }
+    ],
+    "Cell Phones & Accessories": [
+      {
+        "name": "Cell Phones",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Cell+Phones|713"
+      },
+      {
+        "name": "Cell Phone Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Phone+Accessories|573"
+      },
+      {
+        "name": "iPhones",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Cell+Phones|713,Subcategory:Apple+iPhones"
+      },
+      {
+        "name": "iPhone Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:iPhone+Accessories|574"
+      }
+    ],
+    "Portable Electronics": [
+      {
+        "name": "MP3/MP4 Players",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:MP3%2FMP4+Players|176"
+      },
+      {
+        "name": "iPod/MP3 Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:iPod%2FMP3+Accessories|178"
+      },
+      {
+        "name": "Voice Recorders",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Voice+Recorders|177"
+      },
+      {
+        "name": "eBook Readers & Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:eBook+Readers|324"
+      },
+      {
+        "name": "GPS & Radios",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:GPS+%26+Satellite+Radio|180"
+      },
+      {
+        "name": "Cordless/Conference Phones",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Cordless%60+Conference+Phones|456"
+      },
+      {
+        "name": "Wearable Technology",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Wearable+Technology|561"
+      }
+    ],
+    "Home Theater": [
+      {
+        "name": "Home Theater Systems",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Home+Theater+Systems|580"
+      },
+      {
+        "name": "DVD & Blu-ray Players",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:DVD+%26+Blu-ray+Players|581"
+      },
+      {
+        "name": "Streaming Media Players",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Streaming+Media+Players|654"
+      },
+      {
+        "name": "Projectors",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Projectors|163"
+      },
+      {
+        "name": "Projector Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Projector+Accessories|164"
+      },
+      {
+        "name": "TV Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:TV+Accessories|578"
+      },
+      {
+        "name": "Universal Remote Controls",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Universal+Remote+Controls|579"
+      },
+      {
+        "name": "Wireless Speakers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Wireless+Speakers|583"
+      },
+      {
+        "name": "Speaker Mounts & Stands",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Wall+Mounts+%26+Stands|577,Subcategory:Speaker+Mounts+OR+Speaker+Stands"
+      }
+    ],
+    "Flash Memory & Card Readers": [
+      {
+        "name": "USB Flash Drives",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:USB+Flash+Drives|586"
+      },
+      {
+        "name": "Flash Memory",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Flash+Memory|585"
+      },
+      {
+        "name": "Memory Card Readers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Memory+Card+Readers|587"
+      }
+    ],
+    "Security & Home Automation": [
+      {
+        "name": "All Security/Home Automation",
+        "url": "https://www.microcenter.com/site/products/home_automation.aspx"
+      },
+      {
+        "name": "Home Automation",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Home+Automation|194"
+      },
+      {
+        "name": "Security Cameras",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Security+Cameras|189"
+      },
+      {
+        "name": "Security Monitors & Recorders",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Security+Monitors%60+Recorders|190"
+      },
+      {
+        "name": "Security Kits",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Security+Kits|191"
+      },
+      {
+        "name": "Security Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Security+Accessories|193"
+      },
+      {
+        "name": "Personal Security Products",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Personal+Security+Products|192"
+      }
+    ],
+    "Headphones, Speakers & Microphones": [
+      {
+        "name": "Computer Speakers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Computer+Speakers|598"
+      },
+      {
+        "name": "Portable Speakers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Portable+Speakers|472"
+      },
+      {
+        "name": "Headphones & Earbuds",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Headphones+%26+Earbuds|599"
+      },
+      {
+        "name": "Microphones & Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Microphones+%26+Accessories|600"
+      },
+      {
+        "name": "Music & Recording Devices",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Music+%26+Recording+Devices|601"
+      }
+    ],
+    "Maker/STEM": [
+      {
+        "name": "Boards/Projects",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Boards%2FProjects|734"
+      },
+      {
+        "name": "Quadcopters & Drones",
+        "url": "https://www.microcenter.com/site/products/drones.aspx"
+      },
+      {
+        "name": "Electronic Kits",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Electronic+Kits|709"
+      },
+      {
+        "name": "Robotic Kits",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Robotic+Kits|358"
+      },
+      {
+        "name": "Electronic Components",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Electronic+Components|735"
+      },
+      {
+        "name": "Electronic Parts",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Electronic+Parts|689"
+      },
+      {
+        "name": "Tools & Supplies",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Tools+%26+Supplies|730"
+      },
+      {
+        "name": "DIY Arcade Cabinets & Retro Gaming",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:DIY+Arcade+Cabinets+%26+Retro+Gaming|785"
+      }
+    ],
+    "Webcams & Video Capture": [
+      {
+        "name": "Webcams",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Webcams|507"
+      },
+      {
+        "name": "Video Capture",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Video+Capture|558"
+      }
+    ],
+    "Explore All Categories": [
+      {
+        "name": "Creator Studio Builder",
+        "url": "https://www.microcenter.com/site/content/creator-studio-landing.aspx"
+      },
+      {
+        "name": "All Cameras & Accessories",
+        "url": "https://www.microcenter.com/site/products/cameras-camcorders.aspx"
+      },
+      {
+        "name": "View All Electronics",
+        "url": "https://www.microcenter.com/site/products/electronics.aspx"
+      }
+    ]
+  },
+  "Maker/STEM": {
+    "3D Printing": [
+      {
+        "name": "All 3D Printing",
+        "url": "https://www.microcenter.com/site/products/3d-printing.aspx"
+      },
+      {
+        "name": "3D Printers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:3D+Printers|701"
+      },
+      {
+        "name": "Inland Filaments & Resins",
+        "url": "https://www.microcenter.com/site/content/inland%20filament.aspx"
+      },
+      {
+        "name": "Filaments & Resins",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Filaments+%26+Resins|754"
+      },
+      {
+        "name": "3D Printer Tools",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:3D+Printer+Accessories|749,Subcategory:Tools"
+      },
+      {
+        "name": "Parts & Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:3D+Printer+Accessories|749"
+      }
+    ],
+    "Boards & Projects": [
+      {
+        "name": "Raspberry Pi",
+        "url": "https://www.microcenter.com/site/products/raspberry-pi.aspx"
+      },
+      {
+        "name": "Starter Kits",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Boards%2FProjects|734,Components:Starter+Kits"
+      },
+      {
+        "name": "Maker Boards",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Boards%2FProjects|734,Subcategory:Arduino+OR+Arduino+Compatible"
+      },
+      {
+        "name": "Hats & Add-Ons",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Boards%2FProjects|734,Components:Shields%2FModules+OR+Project+Kits"
+      }
+    ],
+    "Electronics": [
+      {
+        "name": "Electronic Components",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Electronic+Components|735"
+      },
+      {
+        "name": "Electronic Parts",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Electronic+Parts|689"
+      },
+      {
+        "name": "Tools & Supplies",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Tools+%26+Supplies|730"
+      }
+    ],
+    "DIY Arcade Cabinets & Retro Gaming": [
+      {
+        "name": "Full Arcade Kits",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:DIY+Arcade+Cabinets+%26+Retro+Gaming|785,Subcategory:Full+Arcade+Kits"
+      },
+      {
+        "name": "Cabinet Parts",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:DIY+Arcade+Cabinets+%26+Retro+Gaming|785,Subcategory:Cabinet+Parts"
+      },
+      {
+        "name": "Controllers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:DIY+Arcade+Cabinets+%26+Retro+Gaming|785,Subcategory:Controls"
+      }
+    ],
+    "Quadcopters & Drones": [
+      {
+        "name": "Aerial Imaging Platform",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Quadcopters%2FDrones|711,Price:1250-1500+OR+750-1000+OR+500-750+OR+2000-50000+OR+1000-1250"
+      },
+      {
+        "name": "Recreational Drones",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Quadcopters%2FDrones|711,Subcategory:Recreational"
+      },
+      {
+        "name": "Parts & Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Quadcopters%2FDrones|711,Subcategory:Parts%2FAccessories"
+      }
+    ]
+  },
+  "3D Printing": {
+    "3D Printers": [
+      {
+        "name": "3D Filament Printers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:3D+Printers|701,Subcategory:FDM+3D+Printers+OR+FFM+3D+Printers+OR+3D+Printers+OR+3D+Filament+Printers"
+      },
+      {
+        "name": "3D Resin Printers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:3D+Printers|701,Subcategory:Resin+3D+Printers+OR+3D+Resin+Printers"
+      },
+      {
+        "name": "UV Printers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:3D+Printers|701,Subcategory:UV+Printers&myStore=true"
+      },
+      {
+        "name": "Shop All 3D Printers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:3D+Printers|701"
+      }
+    ],
+    "Filaments & Resins": [
+      {
+        "name": "Inland Filaments & Resins",
+        "url": "https://www.microcenter.com/site/content/inland%20filament.aspx"
+      },
+      {
+        "name": "Shop All Filaments & Resins",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Filaments+%26+Resins|754"
+      }
+    ],
+    "3D Printer Tools & Parts": [
+      {
+        "name": "3D Printer Tools",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:3D+Printer+Accessories|749,Subcategory:Tools"
+      },
+      {
+        "name": "Extruders & Nozzles",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:3D+Printer+Accessories|749,Type:Hotend+OR+Extruder+OR+Nozzle"
+      },
+      {
+        "name": "Build Plates",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:3D+Printer+Accessories|749,Subcategory:Build+Surface"
+      },
+      {
+        "name": "Filament Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:3D+Printer+Accessories|749,Subcategory:Filament+Accessories"
+      },
+      {
+        "name": "Shop All Parts & Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:3D+Printer+Accessories|749"
+      }
+    ],
+    "Shop More Categories": [
+      {
+        "name": "3D Scanners",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:3D+Printer+Accessories|749,Type:3D+Scanner"
+      },
+      {
+        "name": "3D Pens",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:3D+Printers|701,Subcategory:3D+Pen+OR+3D+Pens"
+      },
+      {
+        "name": "Engravers & Cutters",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:3D+Printers|701,Subcategory:Laser+Engraver+OR+CNC+Machine"
+      }
+    ],
+    "Shop By Brand": [
+      {
+        "name": "3Doodler",
+        "url": "https://www.microcenter.com/search/search_results.aspx?N=&cat=&Ntt=3doodler"
+      },
+      {
+        "name": "AnyCubic",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=brand:AnyCubic"
+      },
+      {
+        "name": "Bambu Lab",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=brand:Bambu+Lab"
+      },
+      {
+        "name": "Creality",
+        "url": "https://www.microcenter.com/search/search_results.aspx?N=&cat=&Ntt=creality"
+      },
+      {
+        "name": "Elegoo",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=brand:Elegoo"
+      },
+      {
+        "name": "Flashforge",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=brand:Flashforge"
+      },
+      {
+        "name": "Snapmaker",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=brand:Snapmaker"
+      },
+      {
+        "name": "Sovol",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=brand:Sovol"
+      }
+    ]
+  },
+  "Ubiquiti": {
+    "Cloud Gateways": [
+      {
+        "name": "Compact",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=Type:Cloud+Gateways,Series:Compact"
+      },
+      {
+        "name": "Large Scale",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=Type:Cloud+Gateways,Series:Large+Scale"
+      },
+      {
+        "name": "WiFi Integrated",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=Type:Cloud+Gateways,Series:WiFi+Integrated"
+      },
+      {
+        "name": "View All Gateways",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=brand:Ubiquiti,Type:Cloud+Gateways"
+      }
+    ],
+    "Switching": [
+      {
+        "name": "Utility",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category_flat:Network+Switches|496,Type:Switching,Series:Utility"
+      },
+      {
+        "name": "Standard",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category_flat:Network+Switches|496,Type:Switching,Series:Standard"
+      },
+      {
+        "name": "Professional",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category_flat:Network+Switches|496,Type:Switching,Series:Professional"
+      },
+      {
+        "name": "Professional Max",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category_flat:Network+Switches|496,Type:Switching,Series:Professional+Max+%26amp;+XG"
+      },
+      {
+        "name": "View All Switching",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=brand:Ubiquiti,category_flat:Network+Switches|496"
+      }
+    ],
+    "WiFi": [
+      {
+        "name": "Wall",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=Type:WiFi,Series:Wall"
+      },
+      {
+        "name": "Outdoor",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=Type:WiFi,Series:Outdoor"
+      },
+      {
+        "name": "Flagship",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=Type:WiFi,Series:Flagship"
+      },
+      {
+        "name": "Bridging",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=Type:WiFi,Series:Bridging"
+      },
+      {
+        "name": "View All WiFi",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=brand:Ubiquiti,Type:WiFi"
+      }
+    ],
+    "Camera Security": [
+      {
+        "name": "NVRs & Viewport",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=Type:Camera+Security,Series:NVRs+%26amp;+Viewport"
+      },
+      {
+        "name": "Dome & Turret",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=Type:Camera+Security,Series:Dome+%26amp;+Turret"
+      },
+      {
+        "name": "Bullet",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=Type:Camera+Security,Series:Bullet"
+      },
+      {
+        "name": "Compact",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=Type:Camera+Security,Series:Compact"
+      },
+      {
+        "name": "Theta",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=Type:Camera+Security,Series:Theta"
+      },
+      {
+        "name": "PTZ",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=Type:Camera+Security,Series:PTZ"
+      },
+      {
+        "name": "Doorbells",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=Type:Camera+Security,Series:Doorbells"
+      },
+      {
+        "name": "Special Devices",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=Type:Camera+Security,Series:Special+Devices"
+      },
+      {
+        "name": "View All Camera Security",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=brand:Ubiquiti,Type:Camera+Security"
+      }
+    ],
+    "Integrations": [
+      {
+        "name": "Network Storage",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=brand:Ubiquiti,category:NAS+(Network+Attached+Storage)|203"
+      },
+      {
+        "name": "Internet Solutions",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=Type:Integrations,Series:Internet+Solutions"
+      }
+    ],
+    "Accessories": [
+      {
+        "name": "Rack Mount",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=Type:Accessories,Series:Rack+Mount"
+      },
+      {
+        "name": "PoE & Power",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=Type:Accessories,Series:PoE+%26amp;+Power"
+      },
+      {
+        "name": "View All Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=brand:Ubiquiti,Type:Repeater+OR+Accessories+OR+Accessories,Series:Rack+Mount+OR+PoE+%26amp;+Power"
+      }
+    ],
+    "Explore All Categories": [
+      {
+        "name": "Bundle & Save with Ubiquiti",
+        "url": "https://www.microcenter.com/site/brands/ubiquiti-bundles.aspx"
+      },
+      {
+        "name": "Shop All Ubiquiti",
+        "url": "https://www.microcenter.com/site/brands/ubiquiti.aspx"
+      },
+      {
+        "name": "UI Care",
+        "url": "https://www.microcenter.com/site/brands/ui_care.aspx"
+      }
+    ]
+  },
+  "AI Development": {
+    "AI Systems": [
+      {
+        "name": "AI Desktops",
+        "url": "https://www.microcenter.com/search/search_results.aspx?sku_list=029140+029132+032284+919282+933283+032284+049650+049643+831065+851030+904870+919282+931931+901157"
+      },
+      {
+        "name": "AI Laptops",
+        "url": "https://www.microcenter.com/search/search_results.aspx?sku_list=782003+933754+782003"
+      }
+    ],
+    "AI Parts": [
+      {
+        "name": "CPUs",
+        "url": "https://www.microcenter.com/search/search_results.aspx?sku_list=900050+900043+900035+900027+898452+898445+898437"
+      },
+      {
+        "name": "GPUs",
+        "url": "https://www.microcenter.com/search/search_results.aspx?sku_list=044594+009308+967562+919241+957779+967570+919951+919936+883330+883322+883348+900399+883314+907139+919241+942201+907139+940031+938654"
+      },
+      {
+        "name": "Motherboards",
+        "url": "https://www.microcenter.com/search/search_results.aspx?sku_list=656595+895797+676635+650168+825448+900936"
+      },
+      {
+        "name": "Memory",
+        "url": "https://www.microcenter.com/search/search_results.aspx?sku_list=925800+873000+899542+899567+899534+926709"
+      },
+      {
+        "name": "Storage",
+        "url": "https://www.microcenter.com/search/search_results.aspx?sku_list=815241+815258+815266+903674"
+      },
+      {
+        "name": "Power Supplies",
+        "url": "https://www.microcenter.com/search/search_results.aspx?sku_list=006932+006908+976787+903872+903070+848499+807057+903800"
+      },
+      {
+        "name": "Computer Cases",
+        "url": "https://www.microcenter.com/search/search_results.aspx?sku_list=985259+567180+893990+912279+671388"
+      },
+      {
+        "name": "Cooling",
+        "url": "https://www.microcenter.com/search/search_results.aspx?sku_list=959213+959221+959247+959239+798819+918334+894022+915231+921551+921544+891671"
+      }
+    ],
+    "Shop All AI": [
+      {
+        "name": "Pro AI Solutions",
+        "url": "https://www.microcenter.com/site/content/ai_destination.aspx"
+      }
+    ]
+  },
+  "Networking": {
+    "Wireless Networking": [
+      {
+        "name": "All Wireless Networking",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Wireless+Networking|201"
+      },
+      {
+        "name": "Wireless Routers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Wireless+Routers|478"
+      },
+      {
+        "name": "Wireless Mesh",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Wireless+Routers|478,Subcategory:Whole+Home%2FMesh+Routers"
+      },
+      {
+        "name": "Wireless Network Adapters",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Wireless+Network+Adapters|475"
+      },
+      {
+        "name": "Wireless Access Points",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Wireless+Access+Points|473"
+      },
+      {
+        "name": "Antennas & Signal Boosters",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Antennas%60+Signal+Boosters|426"
+      },
+      {
+        "name": "Bluetooth Adapters",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Bluetooth+Adapters|445"
+      },
+      {
+        "name": "Bridges & Print Servers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Bridges%60+Print+Servers|446"
+      }
+    ],
+    "Wired Networking": [
+      {
+        "name": "Wired Routers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Wired+Routers|497"
+      },
+      {
+        "name": "Wired Network Adapters",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Wired+Network+Adapters|495"
+      },
+      {
+        "name": "Network Switches",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Network+Switches|496"
+      },
+      {
+        "name": "Powerline Networking",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Powerline+Networking|500"
+      },
+      {
+        "name": "Power Over Ethernet",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Power+Over+Ethernet|501"
+      }
+    ],
+    "Servers & NAS": [
+      {
+        "name": "Servers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Desktop+Computers|106,Subcategory:Servers"
+      },
+      {
+        "name": "Network Attached Storage",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:NAS+(Network+Attached+Storage)|203"
+      },
+      {
+        "name": "NAS Builder",
+        "url": "https://www.microcenter.com/site/content/nas-builder.aspx"
+      }
+    ],
+    "Networking Accessories": [
+      {
+        "name": "Ethernet Cables",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Networking%2FEthernet+Cables|204"
+      },
+      {
+        "name": "Keystones",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Keystones|207"
+      },
+      {
+        "name": "Patch Panels",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Patch+Panels|209"
+      },
+      {
+        "name": "Wall Plates",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Wall+Plates|206"
+      },
+      {
+        "name": "Cable Management",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Cable+Management|208"
+      },
+      {
+        "name": "Networking Tools",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Network+Tools|547"
+      },
+      {
+        "name": "Network Test Equipment",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Network+Test+Equipment|548"
+      },
+      {
+        "name": "Other Network Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Misc+Network+Accessories|502"
+      }
+    ],
+    "Modems": [
+      {
+        "name": "Broadband Modems",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Cable%2FDSL+Modems|198"
+      }
+    ],
+    "Explore More": [
+      {
+        "name": "View All Networking Products",
+        "url": "https://www.microcenter.com/site/products/all_networking.aspx"
+      },
+      {
+        "name": "ASUS Router Finder",
+        "url": "https://www.microcenter.com/site/content/ASUS_Router_Finder.aspx"
+      }
+    ]
+  },
+  "Accessories": {
+    "Cables & Switchboxes": [
+      {
+        "name": "Audio/Video Cables",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Audio%2FVideo+Cables|442"
+      },
+      {
+        "name": "Ethernet Cables",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Networking%2FEthernet+Cables|204"
+      },
+      {
+        "name": "Peripheral Cables",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Peripheral+Cables|531"
+      },
+      {
+        "name": "System Cables",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:System+Cables|528"
+      },
+      {
+        "name": "Cable Adapters",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Gender+Changers%60+Adapters|532"
+      },
+      {
+        "name": "KVM Switches & Cables",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:KVM|391"
+      },
+      {
+        "name": "USB Hubs & Switchboxes",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:USB%2FFireWire+Hubs+%26+Switch+Boxes|392"
+      }
+    ],
+    "Keyboards, Mice & Tablets": [
+      {
+        "name": "Keyboards",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Wired+%26+Wireless+Keyboards|651"
+      },
+      {
+        "name": "Mice",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Wired+%26+Wireless+Mice|652"
+      },
+      {
+        "name": "Graphics Tablets",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Graphics+Tablets|607"
+      },
+      {
+        "name": "Presentation & Laser Pointers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Presentation%60+Laser+Pointers|608"
+      },
+      {
+        "name": "Mouse Pads & Wrist Rests",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Wrist+Rests%60+Mouse+Pads|387"
+      }
+    ],
+    "Carrying Cases": [
+      {
+        "name": "Laptop Cases",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Laptop+Cases|465"
+      },
+      {
+        "name": "Mac Laptop Cases",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Mac+Laptop+Cases|439"
+      },
+      {
+        "name": "iPad Cases",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:iPad+Cases|665"
+      },
+      {
+        "name": "iPhone Cases",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:iPhone+Cases|671"
+      },
+      {
+        "name": "Camera Cases",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Camera+Cases|449"
+      },
+      {
+        "name": "Peripheral Cases",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Peripheral+Cases|626"
+      }
+    ],
+    "Power & Protection": [
+      {
+        "name": "AC Adapters & Power Inverters",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Power+Adapters%60+Power+Inverters|389"
+      },
+      {
+        "name": "Surge Protectors",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Surge+Protectors|564"
+      },
+      {
+        "name": "UPS Systems",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:UPS+Systems|566"
+      },
+      {
+        "name": "Outlet Strips",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Outlet+Strips|565"
+      },
+      {
+        "name": "UPS Replacement Batteries",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:UPS+Replacement+Batteries|556"
+      },
+      {
+        "name": "Batteries & Chargers",
+        "url": "https://www.microcenter.com/site/products/batteries.aspx"
+      }
+    ],
+    "CD/DVD/Blu-ray Media": [
+      {
+        "name": "Blu-ray Media",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:CD%2FDVD%2FBlu-Ray+Media|329,Subcategory:Blu-Ray+Media"
+      },
+      {
+        "name": "DVD Media",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:CD%2FDVD%2FBlu-Ray+Media|329,Subcategory:DVD+Media"
+      },
+      {
+        "name": "CD Media",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:CD%2FDVD%2FBlu-Ray+Media|329,Subcategory:CD+Media"
+      },
+      {
+        "name": "Media Storage & Cases",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:CD%2FDVD+Storage+%26+Cases|332"
+      }
+    ],
+    "Ink & Toner": [
+      {
+        "name": "Ink & Toner Finder",
+        "url": "https://www.microcenter.com/site/products/ink-toner.aspx"
+      },
+      {
+        "name": "Inkjet Cartridges",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Inkjet+Printer+Cartridges|488"
+      },
+      {
+        "name": "Laser Toners",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Laser+Toner+Cartridges|486"
+      },
+      {
+        "name": "Laser Printer Drum Kits",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Laser+Printer+Drum+Kits|487"
+      },
+      {
+        "name": "Printer Ribbons",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Printer+Ribbons|338"
+      }
+    ],
+    "Office & Home": [
+      {
+        "name": "Office Supplies",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Office+Supplies|377"
+      },
+      {
+        "name": "Paper & Card Stock",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Paper|340"
+      },
+      {
+        "name": "Office & Printer Labels",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Labels|349"
+      },
+      {
+        "name": "Tools & Multimeters",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Tools+%26+MultiMeters|394"
+      },
+      {
+        "name": "Flashlights",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Flashlights+%26+Accessories|395"
+      },
+      {
+        "name": "Cleaning Products",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Cleaning%60+Maintenance+Products|369"
+      },
+      {
+        "name": "Ergonomic Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Ergonomic+Accessories|393"
+      },
+      {
+        "name": "Shredders",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Shredders|367"
+      },
+      {
+        "name": "Weather Stations & Clocks",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Weather+Stations%60+Clocks|385"
+      }
+    ],
+    "Cable Management": [
+      {
+        "name": "Cable Management",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Cable+Management|208"
+      },
+      {
+        "name": "Keystones",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Keystones|207"
+      },
+      {
+        "name": "Wall Plates",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Wall+Plates|206"
+      },
+      {
+        "name": "Patch Panels",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Patch+Panels|209"
+      }
+    ],
+    "Refreshments & Gadgets": [
+      {
+        "name": "Refreshments",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Refreshments|359"
+      },
+      {
+        "name": "Gadgets & Toys",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Gadgets%60+Toys|105"
+      }
+    ],
+    "Explore All Categories": [
+      {
+        "name": "View All Accessories",
+        "url": "https://www.microcenter.com/site/products/accessories.aspx"
+      }
+    ]
+  },
+  "Gaming & Software": {
+    "Tabletop & Card Games": [
+      {
+        "name": "Magic the Gathering",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Tabletop+Games|646,brand:Wizards+of+the+Coast,Subcategory:Trading+Card+Game"
+      },
+      {
+        "name": "Pokémon",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Tabletop+Games|646,brand:Nintendo,Subcategory:Trading+Card+Game"
+      },
+      {
+        "name": "Tabletop Games",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Tabletop+Games|646,Subcategory:Roleplaying+Game"
+      },
+      {
+        "name": "Board Games",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Tabletop+Games|646,Subcategory:Board+Game"
+      },
+      {
+        "name": "Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Tabletop+Games|646,Subcategory:Accessories"
+      },
+      {
+        "name": "All Cards & Collectibles",
+        "url": "https://www.microcenter.com/site/products/cardsandcollectibles.aspx"
+      }
+    ],
+    "PC & Mac Gaming": [
+      {
+        "name": "Gaming Keyboards",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Gaming+Keyboards|603"
+      },
+      {
+        "name": "Gaming Mice",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Gaming+Mice|606"
+      },
+      {
+        "name": "Gaming Headsets",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Gaming+Headsets|770"
+      },
+      {
+        "name": "Game Controllers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Gaming+Controllers|612"
+      },
+      {
+        "name": "Miscellaneous Gaming",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Miscellaneous+Gaming|251"
+      },
+      {
+        "name": "Gaming Mouse Pads",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Gaming+Mouse+Pads|610"
+      },
+      {
+        "name": "Game Cards",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Game+Cards|637"
+      }
+    ],
+    "Racing Simulators": [
+      {
+        "name": "All Sim Racing",
+        "url": "https://www.microcenter.com/site/products/racing-simulators.aspx"
+      },
+      {
+        "name": "Racing Sim Builder",
+        "url": "https://www.microcenter.com/site/content/racing-sim-builder.aspx"
+      },
+      {
+        "name": "Sim Racing Rigs",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Gaming+Accessories|253"
+      },
+      {
+        "name": "Racing Wheels",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Gaming+Controllers|612,Type:Racing+Wheel"
+      },
+      {
+        "name": "Racing Pedals",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Gaming+Controllers|612,Subcategory:Racing+Pedals"
+      },
+      {
+        "name": "Racing Sim Bundles",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Home+Entertainment+Bundles|780"
+      }
+    ],
+    "Gaming Computers": [
+      {
+        "name": "Gaming PCs",
+        "url": "https://www.microcenter.com/site/products/gaming_desktops.aspx"
+      },
+      {
+        "name": "Gaming Laptops",
+        "url": "https://www.microcenter.com/site/products/gaming-laptops.aspx"
+      }
+    ],
+    "Console & Arcade Gaming": [
+      {
+        "name": "Xbox Gaming",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Xbox+Gaming|237"
+      },
+      {
+        "name": "PlayStation Gaming",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:PlayStation+Gaming|211"
+      },
+      {
+        "name": "Nintendo Gaming",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Nintendo+Gaming|221"
+      },
+      {
+        "name": "DIY Arcade Gaming",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:DIY+Arcade+Cabinets+%26+Retro+Gaming|785"
+      },
+      {
+        "name": "NVIDIA Shield",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Streaming+Media+Players|654,Brand:NVIDIA"
+      }
+    ],
+    "VR Gaming": [
+      {
+        "name": "Get VR Ready",
+        "url": "https://www.microcenter.com/site/content/vrready.aspx"
+      },
+      {
+        "name": "VR Ready Video Cards",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Graphics+Cards|518,VR%20Ready:Yes"
+      },
+      {
+        "name": "VR Ready Systems",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Computers|92,VR%20Ready:Yes"
+      },
+      {
+        "name": "VR Headsets",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:VR+Headsets|769"
+      }
+    ],
+    "Gaming Furniture": [
+      {
+        "name": "Gaming Chairs & Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Gaming+Chairs|364"
+      },
+      {
+        "name": "Gaming Desks & Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Computer+Furniture|363"
+      }
+    ],
+    "Software & Applications": [
+      {
+        "name": "Microsoft 365 Bundles",
+        "url": "https://www.microcenter.com/site/brands/365-bundles.aspx"
+      },
+      {
+        "name": "ESET Cybersecurity",
+        "url": "https://www.microcenter.com/site/content/eset-cyber-security-digital-downloads.aspx"
+      },
+      {
+        "name": "Operating Systems",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Operating+Systems|403"
+      },
+      {
+        "name": "Office Applications",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Office+Applications|399"
+      },
+      {
+        "name": "Utilities, Anti-virus, Security",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Antivirus%60+Utilities+%26+Security|401"
+      },
+      {
+        "name": "Business & Legal",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Business%60+Financial%60+Legal|398"
+      },
+      {
+        "name": "Graphics & Publishing",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Graphics%60+Imaging%60+Publishing|400+OR+Video+Editing%60+Publishing|645"
+      },
+      {
+        "name": "Video Editing",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Video+Editing%60+Publishing|645"
+      }
+    ],
+    "Explore All Categories": [
+      {
+        "name": "View All Software & Books",
+        "url": "https://www.microcenter.com/site/products/software.aspx"
+      }
+    ]
+  },
+  "Laptop Batteries": {
+    "Replacement Services": [
+      {
+        "name": "Laptop Battery Finder",
+        "url": "https://www.microcenter.com/site/products/laptop-batteries.aspx"
+      },
+      {
+        "name": "Battery Installation Service",
+        "url": "https://www.microcenter.com/product/609479/laptop-battery-installation-service"
+      },
+      {
+        "name": "Free Consultation Service",
+        "url": "https://www.microcenter.com/product/653864/free-consultation"
+      }
+    ],
+    "Replacement Batteries": [
+      {
+        "name": "All Laptop Batteries",
+        "url": "https://www.microcenter.com/site/products/all-laptop-batteries.aspx"
+      },
+      {
+        "name": "Dell Laptop Batteries",
+        "url": "https://www.microcenter.com/site/products/dell-laptop-battery.aspx"
+      },
+      {
+        "name": "HP Laptop Batteries",
+        "url": "https://www.microcenter.com/site/products/hp-laptop-battery.aspx"
+      },
+      {
+        "name": "Apple Laptop Batteries",
+        "url": "https://www.microcenter.com/site/products/macbook-batteries.aspx"
+      },
+      {
+        "name": "Lenovo Laptop Batteries",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Laptop+Batteries|466,Laptop Compatibility:Lenovo"
+      },
+      {
+        "name": "ASUS Laptop Batteries",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Laptop+Batteries|466,Laptop Compatibility:Asus"
+      }
+    ]
+  },
+  "Clearance & Refurb": {
+    "Closeouts": [
+      {
+        "name": "Computers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Computers|92,Valuable%20Links:Closeout"
+      },
+      {
+        "name": "Apple",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=brand:Apple,Valuable%20Links:Closeout"
+      },
+      {
+        "name": "Computer Parts",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Computer+Parts|94,Valuable%20Links:Closeout"
+      },
+      {
+        "name": "Electronics",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Electronics|95,Valuable%20Links:Closeout"
+      },
+      {
+        "name": "Networking",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Networking%60+Modems|96,Valuable%20Links:Closeout"
+      },
+      {
+        "name": "Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Accessories|103,Valuable%20Links:Closeout"
+      },
+      {
+        "name": "Gaming",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Gaming|98,Valuable%20Links:Closeout"
+      },
+      {
+        "name": "Software",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Software|100,Valuable%20Links:Closeout"
+      },
+      {
+        "name": "Books",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Books|101,Valuable%20Links:Closeout"
+      },
+      {
+        "name": "View All Closeouts",
+        "url": "https://www.microcenter.com/site/content/closeout-products.aspx"
+      }
+    ],
+    "Open Box": [
+      {
+        "name": "Computers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Computers|92,Valuable+Links:Open+Box"
+      },
+      {
+        "name": "Apple",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Apple|93,Valuable+Links:Open+Box"
+      },
+      {
+        "name": "Computer Parts",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Computer+Parts|94,Valuable+Links:Open+Box"
+      },
+      {
+        "name": "Electronics",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Electronics|95,Valuable+Links:Open+Box"
+      },
+      {
+        "name": "Networking",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Networking%60+Modems|96,Valuable+Links:Open+Box"
+      },
+      {
+        "name": "Accessories",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Accessories|103,Valuable+Links:Open+Box"
+      },
+      {
+        "name": "Gaming",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Gaming|98,Valuable+Links:Open+Box"
+      },
+      {
+        "name": "View All Open Box",
+        "url": "https://www.microcenter.com/site/products/open-box.aspx"
+      }
+    ],
+    "Refurbished": [
+      {
+        "name": "Desktops",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Desktop+Computers|106,Valuable%20Links:Refurbished"
+      },
+      {
+        "name": "Laptops",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Laptops%2FNotebooks|107,Valuable%20Links:Refurbished"
+      },
+      {
+        "name": "Apple",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=brand:Apple,Valuable%20Links:Refurbished"
+      },
+      {
+        "name": "iPads",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:iPads|668,Valuable%20Links:Refurbished"
+      },
+      {
+        "name": "Printers",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Printers|165,Valuable%20Links:Refurbished"
+      },
+      {
+        "name": "Networking",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Networking%60+Modems|96,Valuable%20Links:Refurbished"
+      },
+      {
+        "name": "Televisions",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Televisions|576,Valuable%20Links:Refurbished"
+      },
+      {
+        "name": "Monitors",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Computer+Monitors|575,Valuable%20Links:Refurbished"
+      },
+      {
+        "name": "Keyboards",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Wired+%26+Wireless+Keyboards|651,Valuable%20Links:Refurbished"
+      },
+      {
+        "name": "Mice",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=category:Wired+%26+Wireless+Mice|652,Valuable%20Links:Refurbished"
+      },
+      {
+        "name": "View All Refurbished",
+        "url": "https://www.microcenter.com/site/content/refurbished-products.aspx"
+      }
+    ]
+  },
+  "Brands": {
+    "A - M": [
+      {
+        "name": "Acer",
+        "url": "https://www.microcenter.com/site/brands/acer.aspx"
+      },
+      {
+        "name": "AMD",
+        "url": "https://www.microcenter.com/site/brands/amd-showcase.aspx"
+      },
+      {
+        "name": "APC",
+        "url": "https://www.microcenter.com/site/brands/apc.aspx"
+      },
+      {
+        "name": "Apple",
+        "url": "https://www.microcenter.com/site/brands/apple-showcase.aspx"
+      },
+      {
+        "name": "ASUS",
+        "url": "https://www.microcenter.com/site/brands/asus.aspx"
+      },
+      {
+        "name": "Brother",
+        "url": "https://www.microcenter.com/site/brands/brother_storefront.aspx"
+      },
+      {
+        "name": "Corsair",
+        "url": "https://www.microcenter.com/site/brands/corsair.aspx"
+      },
+      {
+        "name": "Creative Labs",
+        "url": "https://www.microcenter.com/site/content/creative-labs-audio-line.aspx"
+      },
+      {
+        "name": "Crucial",
+        "url": "https://www.microcenter.com/site/brands/crucial.aspx"
+      },
+      {
+        "name": "Dell",
+        "url": "https://www.microcenter.com/site/brands/dell.aspx"
+      },
+      {
+        "name": "Epson",
+        "url": "https://www.microcenter.com/site/brands/epson.aspx"
+      },
+      {
+        "name": "ESET",
+        "url": "https://www.microcenter.com/site/brands/eset.aspx"
+      },
+      {
+        "name": "HP",
+        "url": "https://www.microcenter.com/site/brands/hp.aspx"
+      },
+      {
+        "name": "iFixit",
+        "url": "https://www.microcenter.com/site/brands/ifixit.aspx"
+      },
+      {
+        "name": "Intel",
+        "url": "https://www.microcenter.com/site/brands/intel.aspx"
+      },
+      {
+        "name": "Lenovo",
+        "url": "https://www.microcenter.com/site/brands/lenovo.aspx"
+      },
+      {
+        "name": "LG",
+        "url": "https://www.microcenter.com/site/brands/lg-showcase.aspx"
+      },
+      {
+        "name": "LianLi",
+        "url": "https://www.microcenter.com/site/brands/lian-li.aspx"
+      },
+      {
+        "name": "Logitech",
+        "url": "https://www.microcenter.com/site/brands/logitech.aspx"
+      },
+      {
+        "name": "MSI",
+        "url": "https://www.microcenter.com/site/brands/msi.aspx"
+      }
+    ],
+    "N - Z": [
+      {
+        "name": "NETGEAR",
+        "url": "https://www.microcenter.com/site/brands/netgear.aspx"
+      },
+      {
+        "name": "NVIDIA",
+        "url": "https://www.microcenter.com/site/brands/nvidia-geforce-rtx5000_series.aspx"
+      },
+      {
+        "name": "PowerSpec",
+        "url": "https://www.microcenter.com/site/powerspec/default.aspx"
+      },
+      {
+        "name": "Razer",
+        "url": "https://www.microcenter.com/search/search_results.aspx?fq=brand:Razer"
+      },
+      {
+        "name": "Samsung",
+        "url": "https://www.microcenter.com/site/brands/samsung.aspx"
+      },
+      {
+        "name": "Sandisk",
+        "url": "https://www.microcenter.com/site/brands/sandisk.aspx"
+      },
+      {
+        "name": "Shure",
+        "url": "https://www.microcenter.com/site/brands/shure-showcase.aspx"
+      },
+      {
+        "name": "Snapdragon",
+        "url": "https://www.microcenter.com/site/brands/snapdragon.aspx"
+      },
+      {
+        "name": "Steelseries",
+        "url": "https://www.microcenter.com/site/brands/steel-series.aspx"
+      },
+      {
+        "name": "Toshiba",
+        "url": "https://www.microcenter.com/site/brands/2022toshiba.aspx"
+      },
+      {
+        "name": "TP-LINK",
+        "url": "https://www.microcenter.com/site/brands/tp-link.aspx"
+      },
+      {
+        "name": "Ubiquiti",
+        "url": "https://www.microcenter.com/site/brands/ubiquiti.aspx"
+      },
+      {
+        "name": "WD",
+        "url": "https://www.microcenter.com/site/brands/western-digital.aspx"
+      }
+    ]
+  },
+  "Services": {
+    "PC Repair & Upgrades": [
+      {
+        "name": "Computer Repair",
+        "url": "https://www.microcenter.com/site/service/computer-diagnostics.aspx"
+      },
+      {
+        "name": "Computer Cleaning",
+        "url": "https://www.microcenter.com/site/content/instore-service-computer-cleaning.aspx"
+      },
+      {
+        "name": "Mac Repair",
+        "url": "https://www.microcenter.com/site/service/apple-repair.aspx"
+      },
+      {
+        "name": "Computer Hardware Upgrade",
+        "url": "https://www.microcenter.com/site/service/instore-service-diagnostics.aspx"
+      },
+      {
+        "name": "PC Virus Scan & Removal",
+        "url": "https://www.microcenter.com/site/service/instore-service-virus-removal.aspx"
+      }
+    ],
+    "PC Builds & Rebuilds": [
+      {
+        "name": "Custom Build PCs",
+        "url": "https://www.microcenter.com/site/service/instore-service-complete-build.aspx"
+      },
+      {
+        "name": "PC Build & Learn Service",
+        "url": "https://www.microcenter.com/site/service/pc-build-and-learn-service.aspx"
+      },
+      {
+        "name": "PC Build Maintenance",
+        "url": "https://www.microcenter.com/site/service/pc-build-maintenance.aspx"
+      },
+      {
+        "name": "PC Rebuild & Repair",
+        "url": "https://www.microcenter.com/site/service/pc-rebuild-repair-service.aspx"
+      }
+    ],
+    "Mobile·Tablets·Wearables": [
+      {
+        "name": "Apple Wearables",
+        "url": "https://www.microcenter.com/site/service/apple-wearable-repair-service.aspx"
+      },
+      {
+        "name": "iPad Repair",
+        "url": "https://www.microcenter.com/site/service/ipad-repair-service.aspx"
+      },
+      {
+        "name": "iPhone Repair",
+        "url": "https://www.microcenter.com/site/service/iphone-repair-service.aspx"
+      },
+      {
+        "name": "Other",
+        "url": "https://www.microcenter.com/site/service/post-purchase-tech-support.aspx"
+      }
+    ],
+    "Data Services": [
+      {
+        "name": "Data Backup & Recovery Services",
+        "url": "https://www.microcenter.com/site/service/instore-service-hdd-data-recovery.aspx"
+      },
+      {
+        "name": "Data Destruction",
+        "url": "https://www.microcenter.com/site/service/data-destruction-service.aspx"
+      },
+      {
+        "name": "Data Migration",
+        "url": "https://www.microcenter.com/site/service/data-migration-service.aspx"
+      },
+      {
+        "name": "NAS Troubleshooting",
+        "url": "https://www.microcenter.com/site/service/post-purchase-tech-support.aspx"
+      }
+    ],
+    "Tech Support & Software": [
+      {
+        "name": "Free Consultation",
+        "url": "https://www.microcenter.com/product/653864/free-consultation"
+      },
+      {
+        "name": "Software Install",
+        "url": "https://www.microcenter.com/site/service/software-installation-service.aspx"
+      },
+      {
+        "name": "System Setup",
+        "url": "https://www.microcenter.com/site/service/new-pc-setup-service.aspx"
+      },
+      {
+        "name": "PriorityCare+ Membership",
+        "url": "https://www.microcenter.com/site/service/priority-care.aspx"
+      }
+    ],
+    "Gaming & Smart Home": [
+      {
+        "name": "Smart Home, TVs & Networking",
+        "url": "https://www.microcenter.com/site/service/post-purchase-tech-support.aspx"
+      },
+      {
+        "name": "Console Repair & Cleaning",
+        "url": "https://www.microcenter.com/site/service/instore-service-console-repair-cleaning.aspx"
+      }
+    ],
+    "Accessories & Peripherals": [
+      {
+        "name": "Computer Accessories Support",
+        "url": "https://www.microcenter.com/site/service/post-purchase-tech-support.aspx"
+      }
+    ],
+    "Trade-In & Recycling": [
+      {
+        "name": "GPU Trade-In",
+        "url": "https://www.microcenter.com/site/content/trade-in-landing.aspx"
+      },
+      {
+        "name": "Data Destruction",
+        "url": "https://www.microcenter.com/site/service/data-destruction-service.aspx"
+      },
+      {
+        "name": "Recycling & Donations",
+        "url": "https://www.microcenter.com/site/content/recycling-program.aspx"
+      }
+    ],
+    "In-Warranty Support": [
+      {
+        "name": "Apple",
+        "url": "https://www.microcenter.com/site/service/apple-repair.aspx"
+      },
+      {
+        "name": "Asus",
+        "url": "https://www.microcenter.com/site/content/asp-asus.aspx"
+      },
+      {
+        "name": "Dell",
+        "url": "https://www.microcenter.com/site/content/asp-dell.aspx"
+      },
+      {
+        "name": "iBuyPower",
+        "url": "https://www.microcenter.com/site/content/asp-ibuypower.aspx"
+      },
+      {
+        "name": "HP",
+        "url": "https://www.microcenter.com/site/content/asp-hp.aspx"
+      },
+      {
+        "name": "Lenovo",
+        "url": "https://www.microcenter.com/site/content/asp-lenovo.aspx"
+      },
+      {
+        "name": "Microsoft",
+        "url": "https://www.microcenter.com/site/content/asp-microsoft.aspx"
+      },
+      {
+        "name": "Skytech",
+        "url": "https://www.microcenter.com/site/content/asp-skytech-gaming.aspx"
+      }
+    ],
+    "Service Status": [
+      {
+        "name": "Check Repair Status",
+        "url": "https://www.microcenter.com/site/service/repair-order.aspx"
+      }
+    ]
+  },
+  "Micro Center News": {
+    "Micro Center News": [
+      {
+        "name": "MC News Home",
+        "url": "https://www.microcenter.com/site/mc-news/default.aspx"
+      },
+      {
+        "name": "News",
+        "url": "https://www.microcenter.com/site/mc-news/category/news.aspx"
+      },
+      {
+        "name": "Reviews",
+        "url": "https://www.microcenter.com/site/mc-news/category/reviews.aspx"
+      },
+      {
+        "name": "Best Lists",
+        "url": "https://www.microcenter.com/site/mc-news/category/best-lists.aspx"
+      },
+      {
+        "name": "How To",
+        "url": "https://www.microcenter.com/site/mc-news/category/how-to.aspx"
+      },
+      {
+        "name": "Buying Guides",
+        "url": "https://www.microcenter.com/site/mc-news/category/buying-guides.aspx"
+      },
+      {
+        "name": "Maker Projects",
+        "url": "https://www.microcenter.com/site/mc-news/category/maker-projects.aspx"
+      },
+      {
+        "name": "PC Build Guides",
+        "url": "https://www.microcenter.com/site/mc-news/category/pc-build-guides.aspx"
+      },
+      {
+        "name": "PC Build Showcase",
+        "url": "https://www.microcenter.com/site/mc-news/category/pc-build-showcase.aspx"
+      }
+    ],
+    "Community Forums": [
+      {
+        "name": "Community Home",
+        "url": "https://community.microcenter.com/"
+      },
+      {
+        "name": "Join our Community",
+        "url": "https://account.microcenter.com/auth/access?RedirectURL=https%3A%2F%2Fcommunity.microcenter.com%2Fsso%3Ftarget%3Dhttps%253A%252F%252Fcommunity.microcenter.com%252F"
+      },
+      {
+        "name": "General Discussion",
+        "url": "https://community.microcenter.com/categories/general-discussion"
+      },
+      {
+        "name": "Help Choosing Parts",
+        "url": "https://community.microcenter.com/categories/help-choosing-parts"
+      },
+      {
+        "name": "Graphics Cards",
+        "url": "https://community.microcenter.com/categories/graphics-cards"
+      },
+      {
+        "name": "CPUs, Memory, and Motherboards",
+        "url": "https://community.microcenter.com/categories/cpu-s-memory-and-motherboards"
+      },
+      {
+        "name": "Consumer Tech",
+        "url": "https://community.microcenter.com/categories/consumer-tech"
+      },
+      {
+        "name": "PowerSpec",
+        "url": "https://community.microcenter.com/categories/powerspec"
+      }
+    ],
+    "Resources and Support": [
+      {
+        "name": "Customer Support Articles",
+        "url": "https://community.microcenter.com/kb"
+      },
+      {
+        "name": "Store Information Articles",
+        "url": "https://community.microcenter.com/kb/categories/2-store-information"
+      },
+      {
+        "name": "Product Support Articles",
+        "url": "https://community.microcenter.com/kb/categories/5-product-information"
+      },
+      {
+        "name": "Service and Support Articles",
+        "url": "https://community.microcenter.com/kb/categories/3-service-and-support"
+      },
+      {
+        "name": "Store Policy Questions",
+        "url": "https://community.microcenter.com/categories/store-information-and-policy"
+      }
+    ],
+    "PC Build Showcase": [
+      {
+        "name": "See Completed Builds",
+        "url": "https://www.microcenter.com/search/builds.aspx"
+      },
+      {
+        "name": "Add Your Completed Build",
+        "url": "https://www.microcenter.com/site/content/create-build.aspx"
+      },
+      {
+        "name": "My Build Dashboard",
+        "url": "https://www.microcenter.com/site/content/build-dashboard.aspx"
+      }
+    ]
+  },
+  "Support": {
+    "Store Information": [
+      {
+        "name": "Checking Items in Stock",
+        "url": "https://community.microcenter.com/kb/articles/21-is-an-item-in-stock"
+      },
+      {
+        "name": "Check Order Status",
+        "url": "https://community.microcenter.com/kb/articles/23-whats-my-order-status"
+      },
+      {
+        "name": "Cancel a Reservation",
+        "url": "https://community.microcenter.com/kb/articles/18-can-i-cancel-my-in-store-pickup-reservation"
+      }
+    ],
+    "Your Account": [
+      {
+        "name": "Account",
+        "url": "https://account.microcenter.com/account/dashboard"
+      },
+      {
+        "name": "Favorites & Lists",
+        "url": "https://account.microcenter.com/account/favorites"
+      },
+      {
+        "name": "Settings",
+        "url": "https://account.microcenter.com/account/settings"
+      },
+      {
+        "name": "Orders",
+        "url": "https://account.microcenter.com/account/orders"
+      }
+    ],
+    "Product Information": [
+      {
+        "name": "Return Policy",
+        "url": "https://community.microcenter.com/kb/articles/28-what-is-the-return-policy"
+      },
+      {
+        "name": "Rebate Center",
+        "url": "https://www.microcenter.com/site/rebate-center/default.aspx"
+      }
+    ],
+    "Service & Repairs": [
+      {
+        "name": "Schedule an Appointment",
+        "url": "https://service.microcenter.com/ServiceRepairSignUp/Reservation/Create"
+      },
+      {
+        "name": "List of Services",
+        "url": "https://www.microcenter.com/site/service/service.aspx"
+      }
+    ],
+    "Help": [
+      {
+        "name": "Remote Tech Support",
+        "url": "https://www.microcenter.com/site/content/tech-support.aspx"
+      },
+      {
+        "name": "Store Information & Policy Questions",
+        "url": "https://community.microcenter.com/categories/store-information-and-policy"
+      },
+      {
+        "name": "Community Forum",
+        "url": "https://community.microcenter.com/"
+      },
+      {
+        "name": "Knowledge Base",
+        "url": "https://community.microcenter.com/kb/help"
+      },
+      {
+        "name": "Help Center",
+        "url": "https://www.microcenter.com/site/customer-support/help-center.aspx"
+      }
+    ]
+  }
+}
