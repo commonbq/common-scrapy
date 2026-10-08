@@ -4,6 +4,25 @@ An open, actively maintained collection of Scrapy spiders for harvesting structu
 
 > This repository is actively maintained by **OpenClaw AI Agents** (with human oversight).
 
+### fivebelow_listing
+
+`fivebelow_listing` discovers Five Below's current public Algolia search contract
+from the category page hydration and then gets all product data exclusively from
+the first-party product-search API. It expands every returned product into its
+SKU variants, retains prices, images, taxonomy, merchandising attributes and
+store-inventory coverage, and follows the API's zero-based pages used by the
+storefront's **Load More** control. It does not parse rendered product cards,
+RSC product objects, or JSON-LD. The 20 broadest sitemap categories are defined
+in `common/spiders/fivebelow_categories.py`.
+
+Five Below's Cloudflare-protected discovery page needs the configured proxy;
+the Algolia POST requests are sent directly:
+
+```bash
+scrapy crawl fivebelow_listing -a category=new-and-now -a max_pages=2 \
+  -s HTTPCACHE_ENABLED=False -O fivebelow.jsonl
+```
+
 ## Installation
 
 ```bash
@@ -125,6 +144,7 @@ Working spiders running daily in production:
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
 | [`dollartree_listing`](#dollartree_listing) | Active | API | none detected direct | Dollar Tree products from the first-party Oracle Commerce Cloud guided-search API only; no HTML or JSON-LD fallback. | 24/page | Top 20 categories ranked by live product count | `{"category":"food-candy-drinks","item_id":"354662","title":"Lil' Dutch Maid Duplex Crème Cookies.","price":1.25,"currency":"USD","source":"dollartree_occ_guided_search_api"...}` |
+| [`fivebelow_listing`](#fivebelow_listing) | Active | API | Cloudflare on discovery page; configured proxy required | Five Below variants from the first-party Algolia product-search API. The category page only supplies current API configuration; no HTML-card, RSC-product, or JSON-LD fallback. | 39 variants from 24 products/page | Top 20 categories ranked by sitemap breadth | `{"category":"new-and-now","item_id":"9252012","title":"Littlest Pet Shop® x Like Nastya DIY Bestie Bag Charm","price":5.0,"currency":"USD","source":"fivebelow_algolia_product_search_api"...}` |
 | [`barnesandnoble_listing`](#barnesandnoble_listing) | Active | API | none detected | Barnes & Noble products from the first-party Shopify Storefront GraphQL API. The collection page only supplies rotating API configuration; there is no HTML-card or JSON-LD product fallback. | 50/page | 20 stable collection seeds | `{"category":"fiction","item_id":"8827283734769","ean":"9780765635969","title":"Projecting Politics: Political Messages in American Films","format":"Hardcover","price":237.61,"currency":"USD","source":"barnesandnoble_storefront_graphql_api"...}` |
 | [`hobbylobby_listing`](#hobbylobby_listing) | Experimental | bootstrap | ScrapeOps US proxy | Hobby Lobby products from the server-rendered Algolia InstantSearch state only; no direct HTML-card or JSON-LD extraction. | 12/page | 20 product-bearing level-2 categories | `{"category":"art-supplies-painting-supplies","item_id":"80968391","title":"Master's Touch Oil Paint - 12 Piece Set","price":6.99,"source":"hobbylobby_instantsearch_bootstrap"...}` |
 | [`tripcom_listing`](#tripcom_listing) | Experimental | bootstrap | ScrapeOps proxy | Trip.com hotels from the server-provided `City` template-component state; no direct HTML-card or JSON-LD extraction. | 9 (one city page) | 20 popular hotel destinations | `{"category":"bangkok","title":"NASA BANGKOK - Airport Rail Link Ramkhamhang","price":15,"currency":"USD","source":"tripcom_city_component_bootstrap"...}` |
