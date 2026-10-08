@@ -50,23 +50,32 @@ class EtsyListingSpider(BaseListingSpider):
         yield self._api_request(category_url, 1)
 
     def _api_request(self, category_url: str, page: int) -> scrapy.Request:
+        # The Neu Spec client passes each spec's args as a single JSON string
+        # (specs[<key>][0]=<spec_name>&specs[<key>][1]=<json>); the exploded
+        # bracket form is rejected with 400 "Missing input parameter:
+        # [search_request_params]".
         facet = urlparse(category_url).path.removeprefix("/c/").strip("/")
-        params = {
-            "specs[async_search_results][0]": "Search2_ApiSpecs_WebSearch",
-            "specs[async_search_results][1][search_request_params][detected_locale][language]": "en-US",
-            "specs[async_search_results][1][search_request_params][detected_locale][currency_code]": "USD",
-            "specs[async_search_results][1][search_request_params][detected_locale][region]": "US",
-            "specs[async_search_results][1][search_request_params][name_map][results_per_page]": "result_count",
-            "specs[async_search_results][1][search_request_params][parameters][page]": str(page),
-            "specs[async_search_results][1][search_request_params][parameters][ref]": "pagination",
-            "specs[async_search_results][1][search_request_params][parameters][facet]": facet,
-            "specs[async_search_results][1][search_request_params][parameters][page_type]": "category",
-            "specs[async_search_results][1][search_request_params][parameters][result_count]": str(self.page_size),
-            "specs[async_search_results][1][search_request_params][parameters][referrer]": category_url,
-            "specs[async_search_results][1][request_type]": "pagination_preact",
-            "specs[async_search_results][1][is_eligible_for_spa_reformulations]": "false",
-            "view_data_event_name": "search_async_pagination_specview_rendered",
+        args = {
+            "search_request_params": {
+                "detected_locale": {"language": "en-US", "currency_code": "USD", "region": "US"},
+                "name_map": {"results_per_page": "result_count"},
+                "parameters": {
+                    "page": page,
+                    "ref": "pagination",
+                    "facet": facet,
+                    "page_type": "category",
+                    "result_count": self.page_size,
+                    "referrer": category_url,
+                },
+            },
+            "request_type": "pagination_preact",
+            "is_eligible_for_spa_reformulations": "false",
         }
+        params = [
+            ("specs[async_search_results][0]", "Search2_ApiSpecs_WebSearch"),
+            ("specs[async_search_results][1]", json.dumps(args, separators=(",", ":"))),
+            ("view_data_event_name", "search_async_pagination_specview_rendered"),
+        ]
         return scrapy.Request(
             f"{API_URL}?{urlencode(params)}",
             headers={
@@ -114,6 +123,20 @@ class EtsyListingSpider(BaseListingSpider):
             raise CloseSpider(f"Etsy Neu Spec API proxy error: {payload['status']}")
 
         output = payload.get("output") or {}
+        if isinstance(output, list):
+            # The endpoint returns `output` as a list of spec payloads rather
+            # than a single dict; merge dicts or use the first HTML fragment.
+            dict_entries = [entry for entry in output if isinstance(entry, dict)]
+            str_entries = [entry for entry in output if isinstance(entry, str) and entry.strip()]
+            if dict_entries:
+                merged: dict = {}
+                for entry in dict_entries:
+                    merged.update(entry)
+                output = merged
+            elif str_entries:
+                output = {"async_search_results": str_entries[0]}
+            else:
+                output = {}
         fragment = output.get("async_search_results") or output.get("results")
         if not isinstance(fragment, str) or not fragment.strip():
             raise CloseSpider("Etsy Neu Spec API returned no async_search_results fragment")

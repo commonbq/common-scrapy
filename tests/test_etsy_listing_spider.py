@@ -38,6 +38,28 @@ class EtsyListingSpiderTest(unittest.TestCase):
         rows = list(spider.parse_api(response))
         self.assertEqual(rows[0]["title"], "Handmade Example")
 
+    def test_parses_api_envelope_list_output(self):
+        spider = self.spider()
+        request = Request("https://www.etsy.com/api", meta={"page": 1, "category": "jewelry", "category_url": "https://www.etsy.com/c/jewelry"})
+        response = TextResponse(request=request, url=request.url, body=json.dumps({"output": [{"async_search_results": CARD}]}), encoding="utf-8")
+        rows = list(spider.parse_api(response))
+        self.assertEqual(rows[0]["title"], "Handmade Example")
+
+    def test_request_passes_spec_args_as_json_string(self):
+        from urllib.parse import parse_qs, urlparse
+
+        from scrapy.settings import Settings
+
+        spider = self.spider()
+        spider.settings = Settings()
+        request = spider._api_request("https://www.etsy.com/c/jewelry", 2)
+        qs = parse_qs(urlparse(request.url).query, keep_blank_values=True)
+        self.assertEqual(qs["specs[async_search_results][0]"], ["Search2_ApiSpecs_WebSearch"])
+        args = json.loads(qs["specs[async_search_results][1]"][0])
+        self.assertEqual(args["search_request_params"]["parameters"]["page"], 2)
+        self.assertEqual(args["search_request_params"]["parameters"]["facet"], "jewelry")
+        self.assertEqual(args["request_type"], "pagination_preact")
+
 
 if __name__ == "__main__":
     unittest.main()
