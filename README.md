@@ -4623,3 +4623,23 @@ record. Requests go through the configured ScrapeOps US proxy.
 ```bash
 scrapy crawl etsy_listing -a category=jewelry -a max_pages=1 -s HTTPCACHE_ENABLED=False -O etsy.jsonl
 ```
+
+### wickes_listing
+
+`wickes_listing` reads one product-data source: the server-rendered analytics
+bootstrap that Wickes uses to initialise its product-impression state. Both the
+initial category page and each `/c/<id>/results/view` load-more response contain
+the same `var product = {...}` records. The spider does not parse rendered
+product cards or JSON-LD, and it has no fallback data direction.
+
+The inventory exposes the 20 largest verified product-bearing Wickes categories.
+Pagination follows the storefront's load-more endpoint sequentially, deduplicates
+stable product IDs, and stops on `max_pages` or the first empty bootstrap page.
+The ordered `FEED_EXPORT_FIELDS` contract covers category context, product ID,
+title, brand, taxonomy, variant, canonical resolving URL, price/currency,
+pagination, provenance, the authoritative raw bootstrap record, and timestamp.
+
+```bash
+scrapy crawl wickes_listing -a category=wall-ceiling-emulsion-paint -a max_pages=2 \
+  -s HTTPCACHE_ENABLED=False -O wickes.jsonl
+```
