@@ -100,6 +100,25 @@ scrapy crawl barnesandnoble_listing -a category=fiction -a max_pages=2 -s HTTPCA
 Verified live on 2026-10-08: 100 unique products across two API pages (50 per
 page), with all three responses returning HTTP 200.
 
+### etsy_listing
+
+`etsy_listing` uses one product-data direction: Etsy's first-party asynchronous
+Neu Spec search API. It does not extract products from rendered category HTML or
+JSON-LD. The static taxonomy contains all 17 marketplace departments and their
+175 immediate subcategories (192 crawl targets total), preserving Etsy's display
+names and canonical category URLs. API pagination is bounded by `max_pages` and
+listing IDs are deduplicated across pages.
+
+The ordered 20-field `FEED_EXPORT_FIELDS` contract covers listing/shop identity,
+title and seller, canonical URL, image, current/original prices, currency,
+rating/review and ad/shipping signals, category/page context, provenance, raw API
+identity, and timestamp.
+
+```bash
+scrapy crawl etsy_listing -a category=jewelry -a max_pages=1 \
+  -s HTTPCACHE_ENABLED=False -O etsy.jsonl
+```
+
 ## Available spiders
 
 ### Standalone spiders (via `scrapy crawl <spider>`)
@@ -111,6 +130,7 @@ Working spiders running daily in production:
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
 | [`barnesandnoble_listing`](#barnesandnoble_listing) | Active | API | none detected | Barnes & Noble products from the first-party Shopify Storefront GraphQL API. The collection page only supplies rotating API configuration; there is no HTML-card or JSON-LD product fallback. | 50/page | 20 stable collection seeds | `{"category":"fiction","item_id":"8827283734769","ean":"9780765635969","title":"Projecting Politics: Political Messages in American Films","format":"Hardcover","price":237.61,"currency":"USD","source":"barnesandnoble_storefront_graphql_api"...}` |
+| [`etsy_listing`](#etsy_listing) | Experimental | API | DataDome; configured ScrapeOps residential route expected | Etsy listings from the first-party asynchronous Neu Spec search API only; no rendered-card or JSON-LD product fallback. | 48/page | 17 departments plus 175 immediate subcategories | `{"category":"jewelry","item_id":"123","title":"Handmade Example","price":29.4,"currency":"USD","source":"etsy_neu_search_api"...}` |
 | [`hobbylobby_listing`](#hobbylobby_listing) | Experimental | bootstrap | ScrapeOps US proxy | Hobby Lobby products from the server-rendered Algolia InstantSearch state only; no direct HTML-card or JSON-LD extraction. | 12/page | 20 product-bearing level-2 categories | `{"category":"art-supplies-painting-supplies","item_id":"80968391","title":"Master's Touch Oil Paint - 12 Piece Set","price":6.99,"source":"hobbylobby_instantsearch_bootstrap"...}` |
 | [`tripcom_listing`](#tripcom_listing) | Experimental | bootstrap | ScrapeOps proxy | Trip.com hotels from the server-provided `City` template-component state; no direct HTML-card or JSON-LD extraction. | 9 (one city page) | 20 popular hotel destinations | `{"category":"bangkok","title":"NASA BANGKOK - Airport Rail Link Ramkhamhang","price":15,"currency":"USD","source":"tripcom_city_component_bootstrap"...}` |
 | [`hostelworld_listing`](#hostelworld_listing) | Active | api | none detected; API must be direct so proxy does not rewrite `Accept` | Hostelworld properties from the first-party Apigee city-properties API only; no HTML or JSON-LD fallback. | 29 (New York, one page) | 20 popular global cities; 2,838 city URLs available from the sitemap index | `{"category":"new-york","item_id":"1850","name":"HI New York City Hostel","source":"hostelworld_city_properties_api"...}` |

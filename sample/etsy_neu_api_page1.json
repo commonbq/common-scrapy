@@ -1,0 +1,5 @@
+{
+  "output": {
+    "async_search_results": "<div data-listing-id=\"1001\" data-shop-id=\"501\"><a href=\"https://www.etsy.com/listing/1001/linen-tote?ref=cat\" title=\"Linen Tote\"><img src=\"https://i.etsystatic.com/501/linen.jpg\"></a><h3>Linen Tote</h3><span class=\"currency-value\">24.50</span><p data-seller-name-container>Thread Shop</p><span>FREE shipping</span></div><div data-listing-id=\"1002\" data-shop-id=\"502\"><a href=\"https://www.etsy.com/listing/1002/silver-ring?ref=cat\" title=\"Silver Ring\"><img src=\"https://i.etsystatic.com/502/ring.jpg\"></a><h3>Silver Ring</h3><input name=\"rating\" value=\"4.9\"><span class=\"reviews\">(320)</span><span class=\"currency-value\">38.00</span><span class=\"wt-text-strikethrough\"><span class=\"currency-value\">45.00</span></span><p data-seller-name-container>Metal Shop</p></div>"
+  }
+}
