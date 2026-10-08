@@ -1,34 +1,41 @@
 from __future__ import annotations
 
-"""Etsy category listings from the first-party asynchronous Neu Spec API."""
+"""Etsy category listings from the server-rendered category document.
 
+Each category page embeds an ``application/ld+json`` ``ItemList`` with the
+organic products for that page (name, image, canonical listing URL, brand,
+offers), and the accompanying ``[data-listing-id]`` listing-card markup
+carries shop IDs, ratings, review counts, ad and free-shipping flags.
+Pagination follows the server-rendered ``?ref=pagination&page=N`` links.
+
+Etsy's asynchronous Neu Spec search API (``/api/v3/ajax/bespoke/.../neu/specs/async_search_results``)
+cannot replace this path: the anonymous ``public`` endpoint answers every
+request shape with an empty ``output`` list, and the client's real results
+path is an authenticated ``member`` POST gated by CSRF nonce + login session
+(verified live against Etsy's own ``chunk-b-etsylibs`` client contract).
+"""
+
+import html
 import json
 import re
-from urllib.parse import urlencode, urlparse, urlunparse
 
 import scrapy
-from parsel import Selector
 from scrapy.exceptions import CloseSpider
 
 from common.spiders.base_listing_spider import BaseListingSpider
 from common.spiders.etsy_categories import ETSY_CATEGORIES
 
 
-API_URL = "https://www.etsy.com/api/v3/ajax/bespoke/public/neu/specs/async_search_results"
+SOURCE = "etsy_itemlist_jsonld"
 
 
 class EtsyListingSpider(BaseListingSpider):
-    """Read Etsy search cards returned by its own pagination API.
-
-    The category document, JSON-LD, and directly rendered category cards are not
-    product-data fallbacks. Every exported record comes from the JSON Neu Spec
-    response's ``async_search_results`` fragment.
-    """
+    """Read Etsy category products from the server-rendered ItemList JSON-LD."""
 
     name = "etsy_listing"
     allowed_domains = ["etsy.com", "www.etsy.com"]
     categories = ETSY_CATEGORIES
-    page_size = 48
+    page_size = 60
 
     custom_settings = {
         "CONCURRENT_REQUESTS_PER_DOMAIN": 1,
@@ -47,167 +54,162 @@ class EtsyListingSpider(BaseListingSpider):
 
     def start_requests(self):
         category_url = self.resolve_target_url()
-        yield self._api_request(category_url, 1)
-
-    def _api_request(self, category_url: str, page: int) -> scrapy.Request:
-        # The Neu Spec client passes each spec's args as a single JSON string
-        # (specs[<key>][0]=<spec_name>&specs[<key>][1]=<json>); the exploded
-        # bracket form is rejected with 400 "Missing input parameter:
-        # [search_request_params]".
-        #
-        # Proxy composition note: the render/JS engine strips non-standard
-        # headers, so any composition containing render_js=true loses the
-        # required ``x-etsy-protection`` header and the API answers
-        # 400 "Missing required header x-etsy-protection". keep_headers=true
-        # alone is the only observed route that preserves the header and
-        # reaches Etsy without a captcha interstitial.
-        facet = urlparse(category_url).path.removeprefix("/c/").strip("/")
-        args = {
-            "search_request_params": {
-                "detected_locale": {"language": "en-US", "currency_code": "USD", "region": "US"},
-                "name_map": {"results_per_page": "result_count"},
-                "parameters": {
-                    "page": page,
-                    "ref": "pagination",
-                    "facet": facet,
-                    "page_type": "category",
-                    "result_count": self.page_size,
-                    "referrer": category_url,
-                },
-            },
-            "request_type": "pagination_preact",
-            "is_eligible_for_spa_reformulations": "false",
-        }
-        params = [
-            ("specs[async_search_results][0]", "Search2_ApiSpecs_WebSearch"),
-            ("specs[async_search_results][1]", json.dumps(args, separators=(",", ":"))),
-            ("view_data_event_name", "search_async_pagination_specview_rendered"),
-        ]
-        return scrapy.Request(
-            f"{API_URL}?{urlencode(params)}",
-            headers={
-                "Accept": "application/json",
-                "Referer": category_url,
-                "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/126 Safari/537.36",
-                "x-detected-locale": "USD|en-US|US",
-                "x-etsy-protection": "1",
-            },
-            callback=self.parse_api,
-            meta={
-                "category": self.category,
-                "category_url": category_url,
-                "page": page,
-                "proxy": self._api_proxy(),
-                "handle_httpstatus_all": True,
-            },
-            dont_filter=True,
+        yield scrapy.Request(
+            category_url,
+            callback=self.parse,
+            meta={"category": self.category, "category_url": category_url, "page": 1},
+            headers=self._headers(),
         )
 
-    def _api_proxy(self) -> str | None:
-        proxy = self.settings.get("PROXY")
-        if not proxy or "scrapeops.io" not in proxy:
-            return proxy
-        parsed = urlparse(proxy)
-        username = parsed.username or ""
-        for option in (
-            "keep_headers=true",
-        ):
-            if option not in username:
-                username += f".{option}"
-        netloc = f"{username}:{parsed.password or ''}@{parsed.hostname}:{parsed.port}"
-        return urlunparse((parsed.scheme, netloc, parsed.path, parsed.params, parsed.query, parsed.fragment))
+    def parse(self, response: scrapy.http.Response):
+        page = int(response.meta.get("page", 1))
+        entries = self._item_list_entries(response)
+        if not entries:
+            raise CloseSpider(f"Etsy category document contained no ItemList products at {response.url}")
 
-    def parse_api(self, response):
-        page = response.meta["page"]
-        if response.status != 200:
-            raise CloseSpider(f"Etsy Neu Spec API returned HTTP {response.status}")
-        try:
-            payload = json.loads(response.text)
-        except json.JSONDecodeError as exc:
-            raise CloseSpider("Etsy Neu Spec API returned non-JSON") from exc
-        if payload.get("status") and not payload.get("output"):
-            raise CloseSpider(f"Etsy Neu Spec API proxy error: {payload['status']}")
+        cards: dict[str, scrapy.Selector] = {}
+        for card in response.css("[data-listing-id]"):
+            listing_id = card.attrib.get("data-listing-id")
+            if not listing_id:
+                continue
+            # The same listing can render several card instances (organic and
+            # ad variants); prefer the one that carries the shop id.
+            current = cards.get(listing_id)
+            if current is None or (not current.attrib.get("data-shop-id") and card.attrib.get("data-shop-id")):
+                cards[listing_id] = card
 
-        output = payload.get("output") or {}
-        if isinstance(output, list):
-            # The endpoint returns `output` as a list of spec payloads rather
-            # than a single dict; merge dicts or use the first HTML fragment.
-            dict_entries = [entry for entry in output if isinstance(entry, dict)]
-            str_entries = [entry for entry in output if isinstance(entry, str) and entry.strip()]
-            if dict_entries:
-                merged: dict = {}
-                for entry in dict_entries:
-                    merged.update(entry)
-                output = merged
-            elif str_entries:
-                output = {"async_search_results": str_entries[0]}
-            else:
-                output = {}
-        fragment = output.get("async_search_results") or output.get("results")
-        if not isinstance(fragment, str) or not fragment.strip():
-            raise CloseSpider("Etsy Neu Spec API returned no async_search_results fragment")
-
-        items = list(self._parse_cards(fragment, response.meta["category"], page))
-        if not items:
-            raise CloseSpider("Etsy Neu Spec API fragment contained no product cards")
-        yield from items
-
-        if page < self.max_pages and len(items) >= self.page_size:
-            yield self._api_request(response.meta["category_url"], page + 1)
-
-    def _parse_cards(self, fragment: str, category: str, page: int):
-        selector = Selector(text=fragment)
-        cards = selector.css("[data-listing-id]")
-        unique_cards = []
-        seen_here = set()
-        for card in cards:
-            item_id = card.attrib.get("data-listing-id")
-            if item_id and item_id not in seen_here:
-                seen_here.add(item_id)
-                unique_cards.append(card)
-
-        for offset, card in enumerate(unique_cards, 1):
-            item_id = card.attrib["data-listing-id"]
-            if item_id in self._seen:
+        emitted = 0
+        for entry in entries:
+            product = entry.get("item") if isinstance(entry.get("item"), dict) else entry
+            url = self._clean_url(str(product.get("url") or entry.get("url") or ""))
+            if not url:
+                continue
+            item_id = self._listing_id(url)
+            if not item_id or item_id in self._seen:
                 continue
             self._seen.add(item_id)
-            link = card.css("a[href*='/listing/']::attr(href)").get()
-            price = self._number(card.css(".currency-value::text").get())
-            original = self._number(card.css(".wt-text-strikethrough .currency-value::text").get())
-            review_text = " ".join(card.css("[class*='rating'] ::text, [class*='review'] ::text").getall())
-            rating = self._number(card.css("input[name='rating']::attr(value)").get())
-            reviews = self._integer(review_text)
-            text = " ".join(card.css("::text").getall())
-            yield {
-                "item_id": item_id,
-                "shop_id": card.attrib.get("data-shop-id"),
-                "title": self._clean(card.css("h3::text").get() or card.css("a[title]::attr(title)").get()),
-                "shop": self._clean(card.css("[data-seller-name-container]::text").get()),
-                "url": link.split("?")[0] if link else None,
-                "image": card.css("img::attr(src)").get(),
-                "price": price,
-                "original_price": original,
-                "currency": "USD",
-                "rating": rating,
-                "reviews_count": reviews,
-                "is_ad": "Ad by" in text,
-                "free_shipping": "FREE shipping" in text,
-                "category": category,
-                "page": page,
-                "position": (page - 1) * self.page_size + offset,
-                "source": "etsy_neu_search_api",
-                "raw": {"listing_id": item_id, "shop_id": card.attrib.get("data-shop-id")},
-            }
+            card = cards.get(item_id)
+            emitted += 1
+            yield self._build_item(
+                product,
+                card,
+                category=response.meta["category"],
+                page=page,
+                position=entry.get("position") or emitted,
+            )
+
+        if page < self.max_pages:
+            next_url = self._next_page_url(response, page)
+            if next_url:
+                yield response.follow(
+                    next_url,
+                    callback=self.parse,
+                    meta={
+                        "category": response.meta["category"],
+                        "category_url": response.meta["category_url"],
+                        "page": page + 1,
+                    },
+                    headers=self._headers(),
+                )
+
+    def _build_item(self, product: dict, card, category: str, page: int, position) -> dict:
+        item_id = self._listing_id(str(product.get("url") or ""))
+        shop_id = card.attrib.get("data-shop-id") if card is not None else None
+        offers = product.get("offers")
+        if isinstance(offers, list):
+            offers = offers[0] if offers else {}
+        if not isinstance(offers, dict):
+            offers = {}
+        price_spec = offers.get("priceSpecification")
+        if isinstance(price_spec, list):
+            price_spec = price_spec[0] if price_spec else None
+        brand = product.get("brand")
+        if isinstance(brand, dict):
+            brand = brand.get("name")
+        image = product.get("image")
+        if isinstance(image, list):
+            image = image[0] if image else None
+        text = " ".join(card.css("::text").getall()) if card is not None else ""
+        return {
+            "item_id": item_id,
+            "shop_id": shop_id,
+            "title": self._clean(product.get("name")),
+            "shop": self._shop_name(card),
+            "url": self._clean_url(str(product.get("url") or "")),
+            "image": image,
+            "price": self._number(offers.get("price")),
+            "original_price": self._number(price_spec.get("price")) if isinstance(price_spec, dict) else None,
+            "currency": offers.get("priceCurrency") or "USD",
+            "rating": self._number(card.css('input[name="rating"]::attr(value)').get()) if card is not None else None,
+            "reviews_count": self._integer(text) if card is not None else None,
+            "is_ad": "Ad by" in text,
+            "free_shipping": "FREE shipping" in text,
+            "category": category,
+            "page": page,
+            "position": position,
+            "source": SOURCE,
+            "raw": {"listing_id": item_id, "shop_id": shop_id, "brand": brand},
+        }
 
     @staticmethod
-    def _clean(value):
-        return " ".join((value or "").split()) or None
+    def _item_list_entries(response: scrapy.http.Response) -> list[dict]:
+        entries: list[dict] = []
+        for text in response.css('script[type="application/ld+json"]::text').getall():
+            try:
+                value = json.loads(text)
+            except (TypeError, json.JSONDecodeError):
+                continue
+            nodes = value if isinstance(value, list) else [value]
+            for node in nodes:
+                if not isinstance(node, dict):
+                    continue
+                graph = node.get("@graph") if isinstance(node.get("@graph"), list) else [node]
+                for candidate in graph:
+                    if isinstance(candidate, dict) and candidate.get("@type") == "ItemList":
+                        entries.extend(
+                            entry for entry in candidate.get("itemListElement") or [] if isinstance(entry, dict)
+                        )
+        return entries
+
+    @staticmethod
+    def _next_page_url(response: scrapy.http.Response, page: int) -> str | None:
+        for anchor in response.css("a[data-page]"):
+            try:
+                target = int(anchor.attrib.get("data-page", 0))
+            except (TypeError, ValueError):
+                continue
+            if target == page + 1 and anchor.attrib.get("href"):
+                return anchor.attrib["href"]
+        return None
+
+    @staticmethod
+    def _listing_id(url: str) -> str | None:
+        match = re.search(r"/listing/(\d+)", url)
+        return match.group(1) if match else None
+
+    @staticmethod
+    def _clean_url(url: str) -> str:
+        return url.split("?")[0] if url else ""
+
+    @staticmethod
+    def _shop_name(card) -> str | None:
+        if card is None:
+            return None
+        texts = [t.strip() for t in card.css("[data-seller-name-container] ::text").getall() if t.strip()]
+        if not texts:
+            return None
+        first = texts[0]
+        return None if first.startswith(("Ad by", "Ad from")) else first
+
+    @staticmethod
+    def _clean(value) -> str | None:
+        return " ".join(html.unescape(str(value or "")).split()) or None
 
     @staticmethod
     def _number(value):
         if value is None:
             return None
-        match = re.search(r"[\d,.]+", value)
+        match = re.search(r"[\d,.]+", str(value))
         return float(match.group().replace(",", "")) if match else None
 
     @staticmethod
@@ -218,3 +220,14 @@ class EtsyListingSpider(BaseListingSpider):
         number = float(match.group(1).replace(",", ""))
         multiplier = {"k": 1_000, "m": 1_000_000}.get(match.group(2).lower(), 1)
         return int(number * multiplier)
+
+    @staticmethod
+    def _headers() -> dict[str, str]:
+        return {
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "accept-language": "en-US,en;q=0.9",
+            "user-agent": (
+                "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+                "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+            ),
+        }
