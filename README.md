@@ -217,6 +217,7 @@ Spiders below are returning items in recent smoke runs:
 | [`qvc_listing`](#qvc_listing) | Experimental | html + bootstrap | Akamai | QVC listing spider via server-rendered gallery cards and `utag_data` page state. | 96 (Beauty proxy capture) | fashion | `{"category":"beauty","category_id":"NAV6285","item_id":"A740517","title":"Whish 12 Days of Beauty Whishes Advent Calendar","price":59.98,...}` |
 | [`zappos_listing`](#zappos_listing) | Experimental | Redux hydration | none detected through proxy | Zappos listings from `window.__INITIAL_STATE__.products.list`. | 100 (one-page proxy smoke) | 4 departments / 50 targets | `{"item_id":"8910671","title":"Kiruna Padded Parka","brand":"Fjällräven","price":300.0,...}` |
 | [`zara_listing`](#zara_listing) | Active | api | Akamai (ScrapeOps `country=us,bypass=5`) | Zara US listings from the first-party category and product JSON APIs; no HTML or JSON-LD fallback. | 637 (Dresses; one API response) | 912 live product categories across 8 menu sections | `{"category":"WOMAN > COLLECTION > DRESSES","item_id":"560058525","title":"STRIPED PUFF SLEEVE MINI DRESS","price":69.9,"currency":"USD","source":"zara_api"...}` |
+| [`zoro_listing`](#zoro_listing) | Experimental | bootstrap | intermittent direct 403; configured proxy requires active credits | Zoro category listings from server-rendered Vuex `window.INITIAL_STATE.search.response.records` only. | 36/page | 20 top-level departments; hydrated taxonomy resolves leaf PLPs | `{"category":"custom","department":"Raw Materials","leaf_category":"Aluminum Angles","item_id":"G3109732","title":"Angle, Al, 6061, 1/8 In T, 2 In Leg, 4 Ft L","price":17.39,"currency":"USD","source":"zoro_initial_state_search_records"...}` |
 | [`saksfifthavenue_listing`](#saksfifthavenue_listing-category) | Experimental | html | DataDome | Saks Fifth Avenue listing spider via direct category HTML cards. | 24 (ok) | women, men, shoes, beauty, handbags | `{"item_id":"0400026449047","title":"Prada Washed Re Nylon Rain Jacket","url":"https://www.saksfifthavenue.com/product/prada-washed-re-nyl...` |
 | [`sallybeauty_listing`](#sallybeauty_listing) | Experimental | html + AJAX | PerimeterX / HUMAN (px-captcha signals) | Sally Beauty SFCC product-grid spider with `Search-UpdateGrid` pagination. | 2 (fixture) | hair-color, hair-care, textured-curly-hair, hair-extensions, tools-brushes, nails, cosmetics-skin-care, fragrances, mens-grooming, salon-supplies, new, deals | `{"category":"hair-care","item_id":"SBS-539230","title":"Low Porosity Aloe Vera Gel Shampoo","brand":"Texture ID","price":11.99...` |
 | [`belk_listing`](#belk_listing) | Experimental | api | none detected (first-party JSON) | Belk listings from the `/ecom/cio/v1/web/category/{path}?v2=true` search facade. | 60 (one page, ok) | 13 departments / 427 browse categories from `belk_categories.py` | `{"item_id":"2900965MULANEYW","title":"Mulaney Flats","brand":"DV Dolce Vita","price":45.5,"original_price":65.0,"discount_percent":30.0,"currency":"USD"...}` |
@@ -3586,6 +3587,44 @@ includes SKU, prices, availability, canonical URL, image, category context,
 page, extraction source, and the original JSON-LD product object.
 
 Issues and pull requests that add or improve retailer spiders, pagination logic, or extraction helpers are welcome.
+
+### zoro_listing
+
+`zoro_listing` uses one product-data direction: the server-rendered Vuex
+bootstrap assigned to `window.INITIAL_STATE`. Product rows come only from
+`search.response.records`; rendered product cards and JSON-LD are not parsed.
+The same hydration payload contains Zoro's category tree, so a selected
+top-level department is resolved to leaf PLPs without scraping navigation HTML.
+
+```bash
+scrapy crawl zoro_listing -a category=raw-materials -a max_pages=1 \
+  -O zoro.jsonl -s HTTPCACHE_ENABLED=False
+```
+
+For a bounded leaf-category run, pass its PLP directly:
+
+```bash
+scrapy crawl zoro_listing \
+  -a url=https://www.zoro.com/aluminum-angles/c/7577/ \
+  -a max_pages=2 -O zoro-aluminum-angles.jsonl \
+  -s HTTPCACHE_ENABLED=False
+```
+
+The 20 bundled category names are Zoro's highest-coverage top-level
+departments: `raw-materials`, `office-business-supplies`, `electronics`,
+`fasteners`, `building-materials-hardware`, `lighting`, `automotive-vehicle`,
+`plumbing`, `grounds-outdoor`, `heating-cooling`, `storage-workspace`,
+`electrical-supplies`, `test-instruments-gauges`, `pumps`,
+`furniture-linens-decor`, `medical-personal-care`, `food-service`,
+`janitorial-cleaning`, `tools-machining`, and `abrasives-polishers`.
+
+Pagination is ordinary SSR `?page=N`. Each response hydrates 36 records and a
+`pagination` object containing `totalSize` and `pageSize`; the spider follows
+pages up to both the hydrated total and `max_pages`, deduplicating `zoroNo`.
+The ordered `FEED_EXPORT_FIELDS` contract includes category context, stable
+Zoro/ERP/manufacturer IDs, canonical product or group URL, image URLs, pricing,
+packaging, availability, group metadata, taxonomy, attributes, pagination,
+the raw hydrated record, and timestamp.
 
 ### michaels_listing
 
