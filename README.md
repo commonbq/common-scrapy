@@ -4586,6 +4586,25 @@ prices, availability, pagination metadata, raw bootstrap data, and timestamp.
 scrapy crawl ssense_listing -a category=men-clothing -a max_pages=1 -s HTTPCACHE_ENABLED=False -O ssense.jsonl
 ```
 
+### gymshark_listing
+
+`gymshark_listing` extracts products through one structured data direction:
+Gymshark's Algolia-style `props.pageProps.ssrQuery` in the server-rendered
+Next.js `#__NEXT_DATA__` bootstrap. It does not parse rendered product cards or
+JSON-LD. The spider includes the 20 highest-inventory non-promotional collection
+seeds, follows the storefront's zero-based `?page=N` URLs, and derives the real
+page count from `nbHits` because the hydrated `nbPages` value is capped.
+
+The ordered 34-field `FEED_EXPORT_FIELDS` contract covers product and SKU
+identity, canonical URLs, images, prices, color and fit attributes, stock and
+per-size inventory, ratings, category/pagination context, provenance, the raw
+hydrated hit, and timestamp. With no category argument the spider crawls the
+`all-products` seed.
+
+```bash
+scrapy crawl gymshark_listing -s HTTPCACHE_ENABLED=False -O gymshark.jsonl
+```
+
 ### patagonia_listing
 
 `patagonia_listing` extracts products through one authoritative data direction:
