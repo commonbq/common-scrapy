@@ -51,6 +51,20 @@ payload. It accepts `category`, `category_url`, or `url`; use
 
 All extra args are forwarded to `scrapy crawl` unchanged (feeds, settings overrides, etc.).
 
+### dollartree_listing
+
+`dollartree_listing` reads product records exclusively from Dollar Tree's
+first-party Oracle Commerce Cloud guided-search API. It sends each category's
+stable Endeca `dimension_id` to `/ccstoreui/v1/search` and paginates with the
+API's `No` offset; there is no direct-HTML or JSON-LD fallback. The 20 category
+seeds are ranked by the API's live product totals in
+`dollartree_categories.py`. Each product includes the source attributes in
+`raw`; the ordered `FEED_EXPORT_FIELDS` contract contains 27 fields.
+
+```bash
+scrapy crawl dollartree_listing -a category=food-candy-drinks -a max_pages=2 -s HTTPCACHE_ENABLED=False -O dollartree.jsonl
+```
+
 ### tripcom_listing
 
 `tripcom_listing` reads the server-provided `data-jsondata` state for Trip.com's
@@ -110,12 +124,14 @@ Working spiders running daily in production:
 
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
+| [`dollartree_listing`](#dollartree_listing) | Active | API | none detected direct | Dollar Tree products from the first-party Oracle Commerce Cloud guided-search API only; no HTML or JSON-LD fallback. | 24/page | Top 20 categories ranked by live product count | `{"category":"food-candy-drinks","item_id":"354662","title":"Lil' Dutch Maid Duplex Crème Cookies.","price":1.25,"currency":"USD","source":"dollartree_occ_guided_search_api"...}` |
 | [`etsy_listing`](#etsy_listing) | Experimental | API | ScrapeOps US residential route with preserved headers | Etsy product listings from the first-party asynchronous Neu Spec search API only; no direct HTML or JSON-LD product path. | 48/page | 20 primary Etsy categories | `{"category":"jewelry","item_id":"123","title":"Handmade Example","price":29.4,"currency":"USD","source":"etsy_neu_search_api"}` |
 | [`barnesandnoble_listing`](#barnesandnoble_listing) | Active | API | none detected | Barnes & Noble products from the first-party Shopify Storefront GraphQL API. The collection page only supplies rotating API configuration; there is no HTML-card or JSON-LD product fallback. | 50/page | 20 stable collection seeds | `{"category":"fiction","item_id":"8827283734769","ean":"9780765635969","title":"Projecting Politics: Political Messages in American Films","format":"Hardcover","price":237.61,"currency":"USD","source":"barnesandnoble_storefront_graphql_api"...}` |
 | [`hobbylobby_listing`](#hobbylobby_listing) | Experimental | bootstrap | ScrapeOps US proxy | Hobby Lobby products from the server-rendered Algolia InstantSearch state only; no direct HTML-card or JSON-LD extraction. | 12/page | 20 product-bearing level-2 categories | `{"category":"art-supplies-painting-supplies","item_id":"80968391","title":"Master's Touch Oil Paint - 12 Piece Set","price":6.99,"source":"hobbylobby_instantsearch_bootstrap"...}` |
 | [`tripcom_listing`](#tripcom_listing) | Experimental | bootstrap | ScrapeOps proxy | Trip.com hotels from the server-provided `City` template-component state; no direct HTML-card or JSON-LD extraction. | 9 (one city page) | 20 popular hotel destinations | `{"category":"bangkok","title":"NASA BANGKOK - Airport Rail Link Ramkhamhang","price":15,"currency":"USD","source":"tripcom_city_component_bootstrap"...}` |
 | [`hostelworld_listing`](#hostelworld_listing) | Active | api | none detected; API must be direct so proxy does not rewrite `Accept` | Hostelworld properties from the first-party Apigee city-properties API only; no HTML or JSON-LD fallback. | 29 (New York, one page) | 20 popular global cities; 2,838 city URLs available from the sitemap index | `{"category":"new-york","item_id":"1850","name":"HI New York City Hostel","source":"hostelworld_city_properties_api"...}` |
 | [`dell_listing`](#dell_listing) | Experimental | bootstrap | ScrapeOps proxy | Dell US listings from the authoritative `data-product-detail-info` Product Stack bootstrap; no product-card or JSON-LD fallback. | Live smoke tested below | 18 stable product/deal categories | `{"item_id":"dellplus16laptopdb16250","title":"Dell 16 Plus Laptop","price":1559.99,"currency":"USD","source":"dell_product_stack_bootstrap"...}` |
+| [`dollargeneral_listing`](#dollargeneral_listing) | Active | api | ScrapeOps proxy (`keep_headers=true`) | Dollar General category listings from the first-party Omni v5 product-search API; no HTML-card or JSON-LD fallback. | 24 per API page | 20 high-coverage departments | `{"item_id":"37000853794","title":"Crest Plus Scope Whitening Toothpaste...","price":8.25,"currency":"USD","source":"dollargeneral_omni_search_api"...}` |
 | [`agoda_listing`](#agoda_listing) | Experimental | api | proxy required | Agoda curated destination accommodations from the first-party Cronos geo API. | 30 (Bali, one API response) | 20 popular cities from the homepage destination payload | `{"category":"bali","item_id":"489045","title":"RIMBA by AYANA Bali","review_score":9.1,"star_rating":5.0,"source":"agoda_cronos_geo_api","timestamp":"2026-10-06 10:30:00"...}` |
 | [`adorama_listing`](#adorama_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | DataDome | Adorama category listings from server-rendered Next.js hydration state. | 24 (one page; 48 across 2 pages) | 1,079 crawlable categories across 11 departments from `adorama_categories.py` | `{"category":"cameras","item_id":"KKRK0603A","title":"Kodak Charmera Millenium Edition...","price":54.94,"currency":"USD"...}` |
 | [`amazon_listing`](#amazon_listing-category) | Active | html | none detected | Amazon category listing spider (category shortcuts). | 22 (ok) | electronics, fashion, beauty, home-kitchen, toys-games, sports-outdoors, grocery, books | `{"asin":"B0DKDTBBF7","title":"2 Packs Electric Candle Lighters, Windproof Flameless USB Rechargeable Plasma Arc Long Lighter for Grill Fi...` |
@@ -331,6 +347,26 @@ scrapy crawl dell_listing -a category=view-all-laptops -a max_pages=2 \
 The ordered `FEED_EXPORT_FIELDS` contract covers identifiers, title, URLs,
 pricing, ratings, badges, pagination context, source metadata, the raw API
 record, and timestamp.
+
+### dollargeneral_listing
+
+`dollargeneral_listing` covers 20 broad Dollar General departments. It obtains
+the storefront's anonymous guest tokens from `/bin/dg/user`, then uses the
+first-party Omni v5 product-search API as its only product-data direction. The
+API supplies identifiers, prices, inventory, fulfilment flags, ratings, facets,
+and pagination metadata; rendered product cards and JSON-LD are not parsed.
+
+```bash
+scrapy crawl dollargeneral_listing -a category=on-sale -a max_pages=2 \
+  -s HTTPCACHE_ENABLED=False -O dollargeneral.jsonl
+```
+
+The API is store-aware and uses the guest session's automatically selected US
+store. Its ordered `FEED_EXPORT_FIELDS` contract includes 36 fields covering
+category context, product identity, media, pricing, inventory, fulfilment,
+reviews, pagination, provenance, the raw API record, and timestamp. The API
+request enables ScrapeOps `keep_headers=true` so DG's anonymous session headers
+reach the Omni host unchanged.
 
 ### redfin_listing
 
