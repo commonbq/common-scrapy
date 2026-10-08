@@ -51,6 +51,37 @@ payload. It accepts `category`, `category_url`, or `url`; use
 
 All extra args are forwarded to `scrapy crawl` unchanged (feeds, settings overrides, etc.).
 
+### decathlon_listing
+
+`decathlon_listing` reads products exclusively from Shopify's first-party
+`/collections/<handle>/products.json` API. It requests up to 250 product records
+per page and follows the API's numbered pages; there is no HTML-card, embedded
+metadata, or JSON-LD fallback. The 20 category seeds in
+`decathlon_categories.py` are the highest-inventory primary-nav collections.
+Each item includes the complete API product object in `raw`, and the ordered
+`FEED_EXPORT_FIELDS` contract contains 24 fields.
+
+```bash
+scrapy crawl decathlon_listing -a category=camp-hike -a max_pages=2 -s HTTPCACHE_ENABLED=False -O decathlon.jsonl
+```
+
+Verified live on 2026-10-08: the default `shop-all` crawl returned HTTP 200
+and emitted 250 unique products from one API page in 6.9 seconds.
+
+### dollartree_listing
+
+`dollartree_listing` reads product records exclusively from Dollar Tree's
+first-party Oracle Commerce Cloud guided-search API. It sends each category's
+stable Endeca `dimension_id` to `/ccstoreui/v1/search` and paginates with the
+API's `No` offset; there is no direct-HTML or JSON-LD fallback. The 20 category
+seeds are ranked by the API's live product totals in
+`dollartree_categories.py`. Each product includes the source attributes in
+`raw`; the ordered `FEED_EXPORT_FIELDS` contract contains 27 fields.
+
+```bash
+scrapy crawl dollartree_listing -a category=food-candy-drinks -a max_pages=2 -s HTTPCACHE_ENABLED=False -O dollartree.jsonl
+```
+
 ### tripcom_listing
 
 `tripcom_listing` reads the server-provided `data-jsondata` state for Trip.com's
@@ -84,6 +115,22 @@ per-run `timestamp`; the ordered `FEED_EXPORT_FIELDS` contract contains 60 field
 scrapy crawl hobbylobby_listing -a category=art-supplies-painting-supplies -a max_pages=2 -s HTTPCACHE_ENABLED=False -O hobbylobby.jsonl
 ```
 
+### barnesandnoble_listing
+
+`barnesandnoble_listing` reads Barnes & Noble's rotating Shopify domain, API
+version, and public Storefront token from the selected collection shell, then
+uses the first-party Storefront GraphQL API exclusively for products and cursor
+pagination. It exports product, price-range, image, option, and variant data in
+the spider's ordered 32-field `FEED_EXPORT_FIELDS` contract. Direct connections
+are used because both storefront hosts are reachable without anti-bot handling.
+
+```bash
+scrapy crawl barnesandnoble_listing -a category=fiction -a max_pages=2 -s HTTPCACHE_ENABLED=False -O barnesandnoble.jsonl
+```
+
+Verified live on 2026-10-08: 100 unique products across two API pages (50 per
+page), with all three responses returning HTTP 200.
+
 ## Available spiders
 
 ### Standalone spiders (via `scrapy crawl <spider>`)
@@ -94,23 +141,32 @@ Working spiders running daily in production:
 
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
+| [`decathlon_listing`](#decathlon_listing) | Active | API | none detected direct; compatible with plain ScrapeOps US proxy | Decathlon products from Shopify's first-party collection JSON API only; no HTML, embedded-metadata, or JSON-LD fallback. | Up to 250/API page | Top 20 primary-nav collections ranked by product count | `{"category":"camp-hike","item_id":"8209731190846","title":"Simond Men’s Xplore Hooded Down Jacket","price":119.0,"currency":"USD","source":"decathlon_shopify_collection_api"...}` |
+| [`dollartree_listing`](#dollartree_listing) | Active | API | none detected direct | Dollar Tree products from the first-party Oracle Commerce Cloud guided-search API only; no HTML or JSON-LD fallback. | 24/page | Top 20 categories ranked by live product count | `{"category":"food-candy-drinks","item_id":"354662","title":"Lil' Dutch Maid Duplex Crème Cookies.","price":1.25,"currency":"USD","source":"dollartree_occ_guided_search_api"...}` |
+| [`etsy_listing`](#etsy_listing) | Active | html | ScrapeOps US proxy | Etsy products from the server-rendered category document: the `ld+json` `ItemList` plus listing-card markup; the async Neu Spec API is not extractable anonymously (its `public` route returns an empty `output` and the client's results path is an authenticated `member` POST). | 60/page | 20 primary Etsy categories | `{"category":"jewelry","item_id":"1806011672","title":"Baguette Birthstone Necklace, Family Birthstone Necklace, Personalized Gift","price":32.8,"currency":"USD","source":"etsy_itemlist_jsonld"...}` |
+| [`barnesandnoble_listing`](#barnesandnoble_listing) | Active | API | none detected | Barnes & Noble products from the first-party Shopify Storefront GraphQL API. The collection page only supplies rotating API configuration; there is no HTML-card or JSON-LD product fallback. | 50/page | 20 stable collection seeds | `{"category":"fiction","item_id":"8827283734769","ean":"9780765635969","title":"Projecting Politics: Political Messages in American Films","format":"Hardcover","price":237.61,"currency":"USD","source":"barnesandnoble_storefront_graphql_api"...}` |
 | [`hobbylobby_listing`](#hobbylobby_listing) | Experimental | bootstrap | ScrapeOps US proxy | Hobby Lobby products from the server-rendered Algolia InstantSearch state only; no direct HTML-card or JSON-LD extraction. | 12/page | 20 product-bearing level-2 categories | `{"category":"art-supplies-painting-supplies","item_id":"80968391","title":"Master's Touch Oil Paint - 12 Piece Set","price":6.99,"source":"hobbylobby_instantsearch_bootstrap"...}` |
 | [`tripcom_listing`](#tripcom_listing) | Experimental | bootstrap | ScrapeOps proxy | Trip.com hotels from the server-provided `City` template-component state; no direct HTML-card or JSON-LD extraction. | 9 (one city page) | 20 popular hotel destinations | `{"category":"bangkok","title":"NASA BANGKOK - Airport Rail Link Ramkhamhang","price":15,"currency":"USD","source":"tripcom_city_component_bootstrap"...}` |
 | [`hostelworld_listing`](#hostelworld_listing) | Active | api | none detected; API must be direct so proxy does not rewrite `Accept` | Hostelworld properties from the first-party Apigee city-properties API only; no HTML or JSON-LD fallback. | 29 (New York, one page) | 20 popular global cities; 2,838 city URLs available from the sitemap index | `{"category":"new-york","item_id":"1850","name":"HI New York City Hostel","source":"hostelworld_city_properties_api"...}` |
 | [`dell_listing`](#dell_listing) | Experimental | bootstrap | ScrapeOps proxy | Dell US listings from the authoritative `data-product-detail-info` Product Stack bootstrap; no product-card or JSON-LD fallback. | Live smoke tested below | 18 stable product/deal categories | `{"item_id":"dellplus16laptopdb16250","title":"Dell 16 Plus Laptop","price":1559.99,"currency":"USD","source":"dell_product_stack_bootstrap"...}` |
+| [`dollargeneral_listing`](#dollargeneral_listing) | Active | api | ScrapeOps proxy (`keep_headers=true`) | Dollar General category listings from the first-party Omni v5 product-search API; no HTML-card or JSON-LD fallback. | 24 per API page | 20 high-coverage departments | `{"item_id":"37000853794","title":"Crest Plus Scope Whitening Toothpaste...","price":8.25,"currency":"USD","source":"dollargeneral_omni_search_api"...}` |
 | [`agoda_listing`](#agoda_listing) | Experimental | api | proxy required | Agoda curated destination accommodations from the first-party Cronos geo API. | 30 (Bali, one API response) | 20 popular cities from the homepage destination payload | `{"category":"bali","item_id":"489045","title":"RIMBA by AYANA Bali","review_score":9.1,"star_rating":5.0,"source":"agoda_cronos_geo_api","timestamp":"2026-10-06 10:30:00"...}` |
 | [`adorama_listing`](#adorama_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | DataDome | Adorama category listings from server-rendered Next.js hydration state. | 24 (one page; 48 across 2 pages) | 1,079 crawlable categories across 11 departments from `adorama_categories.py` | `{"category":"cameras","item_id":"KKRK0603A","title":"Kodak Charmera Millenium Edition...","price":54.94,"currency":"USD"...}` |
 | [`amazon_listing`](#amazon_listing-category) | Active | html | none detected | Amazon category listing spider (category shortcuts). | 22 (ok) | electronics, fashion, beauty, home-kitchen, toys-games, sports-outdoors, grocery, books | `{"asin":"B0DKDTBBF7","title":"2 Packs Electric Candle Lighters, Windproof Flameless USB Rechargeable Plasma Arc Long Lighter for Grill Fi...` |
 | [`amazon_search`](#amazon_search) | Active | html | none detected | Amazon keyword search spider. | 22 (ok) | - | `{"asin":"B0GHQRV71M","title":"16\" FHD IPS Laptop Computer - 16GB RAM 512GB SSD, Pentium N100(Beat to i3-1115G4, 4 Cores Up to 3.4GHz), B...` |
 | [`acehardware_listing`](#acehardware_listing) | Active | bootstrap | ScrapeOps residential + `bypass=5` required | Ace Hardware category listings and recursive department discovery from server-rendered Kibo/Mozu hydration. | 60 (2 pages, cordless-drills) | 20 department/category seeds from `acehardware_categories.py`; department pages recursively discover product-bearing leaves | `{"category":"cordless-drills","item_id":"2385458","title":"DeWalt 20V MAX 1/2 in. Brushed Cordless Compact Drill Kit (Battery & Charger)","brand":"DeWalt","price":179.0,"currency":"USD","source":"acehardware_mozu_hydration",...}` |
 | [`backcountry_listing`](#backcountry_listing) | Active | bootstrap | AWS WAF (datacenter + `bypass=5` both return the challenge; `residential=true` required) | Backcountry.com category/collection/brand listings from the server-rendered Next.js `#__NEXT_DATA__` PLP payload joined to `__APOLLO_STATE__`. | 84 (2 pages, `cat-mens-shirts`); 52 (`rc-mens-parkas`, natural last page) | 398 unique targets across 14 top-level menus / 110 sections from `backcountry_categories.py` | `{"category":"cat-mens-shirts","department":"Men","section":"Clothing","item_id":"FJRZ133","title":"Fjallglim Regular Shirt - Men's","brand":"Fjallraven","price":124.95,"original_price":null,"currency":"USD","in_stock":true,"source":"backcountry_next_data",...}` |
+| [`landwatch_listing`](#landwatch_listing) | Active | bootstrap | Akamai; ScrapeOps US residential required | LandWatch property listings from the authoritative server-rendered `#__SERVER_STATE__.searchPage.searchResults.propertyResults` payload only; no HTML-card or JSON-LD fallback. | 25/page | 20 high-inventory US state markets | `{"category":"texas","item_id":"427783557","title":"Superior Views, Better Hunting","price":769950,"acres":108.1,"source":"landwatch_server_state_bootstrap",...}` |
 | [`realtor_listing`](#realtor_listing) | Active | bootstrap | residential ScrapeOps + `bypass=5` required | Realtor.com sale listings from authoritative React Router streamed SSR loader state. | 42/page | 20 major US city markets from `realtor_categories.py` | `{"item_id":"9573322873","listing_id":"2994590506","title":"11201 Chalon Rd, Los Angeles, CA 90049","price":400000000,"source":"realtor_react_router_stream",...}` |
 | [`zillow_listing`](#zillow_listing) | Active | bootstrap | PerimeterX | Zillow sale listings from server-rendered Next.js `__NEXT_DATA__`, including path-based SSR pagination. | 82 (2 pages, `houston-tx`) | 20 major US city markets | `{"item_id":"55476612","title":"8323 Gentlewood Ct, Houston, TX 77095","price":375000,"beds":4,"baths":3,"area":2992,"source":"zillow_next_data"}` |
+| [`loopnet_listing`](#loopnet_listing) | Experimental | api | ScrapeOps US proxy | Commercial-property records from LoopNet's first-party `/services/search` JSON service and its API-delivered placard payload, initialized from the page's search-criteria bootstrap; no listing-page or JSON-LD fallback. | Live smoke tested below | 20 sale/lease property-type searches | `{"item_id":"42148644","title":"THE GARAGE Luxury Condos","source":"loopnet_search_api"...}` |
 | [`rent_listing`](#rent_listing) | Active | bootstrap | ScrapeOps US proxy | Rent.com apartment listings from authoritative server-rendered Next.js `__NEXT_DATA__`, with `/page-N` pagination and no fallback. | 30/page | 20 major US rental markets | `{"category":"los-angeles-ca","item_id":"lc6732384","title":"El Conquistador","price_min":1664,"source":"rent_next_data"...}` |
+| [`apartments_listing`](#apartments_listing) | Experimental | bootstrap | ScrapeOps US proxy | Apartments.com rental map inventory from authoritative server-rendered `window.aptsState`; no HTML-card or JSON-LD fallback. | 567 unique listings in captured New York page 1 state | 20 major US rental markets | `{"category":"new-york-ny","item_id":"1j2c5h6","rent_min":5075,"latitude":40.7766,"source":"apartments_apts_state_bootstrap"...}` |
 | [`hilton_listing`](#hilton_listing) | Active | bootstrap | ScrapeOps US proxy | Hilton destination hotels from authoritative server-rendered Next.js `__NEXT_DATA__`; no HTML or JSON-LD fallback. | Up to 20 | 20 major US city markets | `{"category":"new-york-ny","item_id":"NYCTEPO","title":"Tempo by Hilton New York Times Square","source":"hilton_next_data"...}` |
 | [`basspro_listing`](#basspro_listing) | Active | api | Akamai on the storefront legs (403 direct); the Coveo search leg must stay unproxied | Bass Pro Shops category listings from the storefront Coveo Headless search API (`platform.cloud.coveo.com/rest/search/v2`); taxonomy from the `__NEXT_DATA__.props.megaNavHtmlV2` mega-nav. | 96 (2 pages, rod-reel-combos) | 909 nav entries (11 departments / 116 level-2 / 782 level-3) | `{"category":"Fishing/Rod & Reel Combos","item_id":"3472884","title":"Bass Pro Shops Megacast Baitcast Combo","brand":"Bass Pro Shops","url":"https://www.basspro.com/p/bass-pro-shops-megacast-baitcast-combo","price":69.99,"availability":"InStock","source":"basspro_coveo"...}` |
 | [`booking_listing`](#booking_listing) | Active | bootstrap | none detected (anonymous SSR cruise) | Booking.com listings for the 20 homepage-exposed US city destinations from the anonymous server-rendered Apollo cache (`ROOT_QUERY.lxAccommodations` -> `ROOT_QUERY.searchQueries.search().results`). | 33 (2 pages, `las-vegas`) | 20 US city destinations from `booking_categories.py` | `{"category":"las-vegas","item_id":"15743439","title":"The Platinum Hotel Las Vegas","price":227.91,"currency":"EUR","rating":9.1,"reviews_count":8,"city":"Las Vegas","source":"booking_apollo_hydration"...}` |
 | [`marriott_listing`](#marriott_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | ScrapeOps US residential proxy required | Marriott destination properties from the server-rendered `processedData.hotels` hydration collection, with `?pg=N` pagination and no fallback. | 12/page (`miami`) | 20 featured city destinations from `marriott_categories.py` | `{"category":"miami","item_id":"MIAJW","title":"JW Marriott Miami","rating":3.7,"reviews_count":1715,"source":"marriott_next_data_hydration"...}` |
+| [`microcenter_listing`](#microcenter_listing) | Experimental | bootstrap | Cloudflare; configured US proxy required | Store-scoped Micro Center listings from structured server-rendered product-card state. | 24/page | 513 unique targets preserving 20 departments / 118 groups / 578 navigation contexts | `{"category":"processors-cpus","item_id":"706001","sku":"974659","title":"Ryzen 7 9850X3D...","brand":"AMD","price":459.99,"source":"microcenter_card_state_bootstrap"...}` |
 | [`bestbuy_listing`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | unknown (timeout/no verdict) | Best Buy listing via direct HTTP + Apollo bootstrap extraction. | 10 (skipped2) | laptops, tvs, headphones, monitors, cell-phones | `{"item_id":"6572184","title":"Samsung - Galaxy Book4 15.6\" FHD Laptop - Intel Core 7- 16GB Memory - 512GB SSD - Silver","url":"https://www.bestbuy.com/product/samsung-galaxy-bo...` |
 | [`backcountry_listing`](#backcountry_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | AWS WAF (residential proxy: `scrapeops.country=us.residential=true`) | Backcountry category, `/rc/` collection and brand listings from the server-rendered PLP hydration state; taxonomy from the header `headerNavigation` mega-nav. | 42 (1 page) / 84 (2 pages) / 42 (`/rc/`) / 42 (brand) | 469 links (14 departments / 109 sections; 398 distinct URLs) from `backcountry_categories.py` | `{"item_id":"FJRZ133","title":"Fjallglim Regular Shirt - Men's","brand":"Fjallraven","price":124.95,"original_price":124.95,"currency":"USD","url":"https://www.backcountry.com/fjallraven-fjallglim-regular-shirt-mens","availability":"IN_STOCK","in_stock":true,"page":1,"source":"backcountry_next_data"...}` |
 | [`bestbuy_search`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | unknown (timeout/no verdict) | Best Buy search via direct HTTP + Apollo bootstrap extraction. | 4 (skipped2) | - | `{"item_id":"6613879","title":"HP - 14\" Laptop - Intel Processor N150 2025 - 4GB Memory - 128GB UFS - Willow Green","url":"https://www.bestbuy.com/product/hp-14-laptop-intel-pro...` |
@@ -124,6 +180,26 @@ Working spiders running daily in production:
 | [`wayfair_listing`](#wayfair_listing) | Experimental | server-rendered HTML cards | none detected | Wayfair listing cards with semantic selectors and tracking metadata. | 1 (committed sofas fixture; no live crawl run) | 15 departments / 668 menu links; 577 verified listing targets | `{"item_id":"W117645758","title":"Boneless 96\" Sectional Couches...","price":399.99,...}` |
 | [`ebay_listing`](#ebay_listing-category-marko-hydration-state) | Active | Marko + html | Akamai | Stable eBay category listing extraction from Marko hydration state, with HTML subcategory discovery. | 18 (Antiques fixture browse tiles) | 18 top-level groups / 209 subcategories from `ebay_categories.py` | `{"productId":"234346994063","title":"MacBook Pro 15 Inch 256GB SSD 16 GB i7 3.40Ghz Apple Retina Big Sur 3yr Warranty","price":439.0,"currency":"USD",...}` |
 | [`ebay_search`](#ebay_search-keyword-marko-hydration-state) | Active | Marko | Akamai | Stable eBay keyword search extraction from Marko `ListingItemCard` hydration data. | 60 (ok) | - | `{"productId":"234346994063","title":"MacBook Pro 15 Inch 256GB SSD 16 GB i7 3.40Ghz Apple Retina Big Sur 3yr Warranty","price":439.0,"currency":"USD",...}` |
+
+### landwatch_listing
+
+LandWatch state-market pages expose complete property records in the authoritative
+server-rendered `#__SERVER_STATE__` search bootstrap. The spider reads only
+`searchPage.searchResults.propertyResults`, follows the bootstrap's `paginationData.nextLink`,
+and does not fall back to placard HTML or JSON-LD. It exports stable listing/inventory IDs,
+prices, acreage, property types, address and coordinates, house attributes, seller details,
+media flags, pagination metadata, and the raw bootstrap record. The 20 state seeds are in
+`common/spiders/landwatch_categories.py`.
+
+LandWatch's Akamai edge requires the configured ScrapeOps US residential route. The spider
+adds `residential=true` to a configured ScrapeOps proxy automatically:
+
+```bash
+scrapy crawl landwatch_listing -a category=texas -a max_pages=1 \
+  -s HTTPCACHE_ENABLED=False -O landwatch-texas.jsonl
+```
+
+Verified 2026-10-08: HTTP 200, 25 unique properties from one uncached Texas page.
 
 Spiders below are returning items in recent smoke runs:
 
@@ -202,8 +278,10 @@ Spiders below are returning items in recent smoke runs:
 | [`worldmarket_listing`](#worldmarket_listing) | Active | api | none detected (ScrapeOps proxy) | World Market products from the first-party SFCC `Search-UpdateGrid` grid API (no direct product-card or JSON-LD fallback). | 60 (1 page, live proxy) | 13 department seeds from `worldmarket_categories.py` | `{"category":"furniture-shop-all-furniture","item_id":"SET135122","title":"Isaiah Tufted Mid Century Seating Collection","price":299.99,"currency":"USD","source":"worldmarket_sfcc_search_update_grid_api"...}` |
 | [`walgreens_listing`](#walgreens_listing) | Active | bootstrap (Redux `window.getInitialState()`) | Akamai (ScrapeOps US JS rendering required) | Walgreens category listings from the server-rendered Redux `window.getInitialState()` bootstrap (`searchResult.productList[*].productInfo`); no HTML-card or JSON-LD fallback. | 24 (1 page, `Allergy & Sinus`) | 19 departments / 170 child categories from `walgreens_categories.py` | `{"category":"Allergy & Sinus","category_id":"360545","product_id":"prod6335256","title":"Walgreens Neti Pot Kit","brand":"Walgreens","price":11.99,"currency":"USD","source_url":"https://www.walgreens.com/store/c/productlist/N=360545/1/ShopAll=360545","raw":{...},"timestamp":"2026-10-07 05:40:00"...}` |
 | [`chewy_listing`](#chewy_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | ScrapeOps US residential route required | Chewy category listings from the server-rendered Next.js `__NEXT_DATA__` bootstrap (`props.pageProps.initialState.searchSlice.plpData.products`); no HTML-card or JSON-LD fallback. | 44 (1 page, `food-332`) | 172-category pet taxonomy (dogs, cats, other pets) from `chewy_categories.py` | `{"category":"food-332","item_id":"147999","title":"Instinct Original Adult Grain-Free Real Beef Recipe Wet Dog Food, 13.2-oz can, case of 6","brand":"Instinct","price":28.14,"currency":"USD","source":"chewy_next_data_bootstrap","timestamp":"2026-10-06 21:40:56"...}` |
+| [`patagonia_listing`](#patagonia_listing) | Active | api | ScrapeOps residential route required | Patagonia product listings from the first-party SFCC `AsyncComponents-ProductList` API, driven by the page's `cgid` category contract; no HTML-card or JSON-LD fallback. | Live smoke tested below; 0 items on current failover shell, parser verified against documented payload | 20 stable shopping categories from `patagonia_categories.py` | `{"category":"new-arrivals","item_id":"...","title":"...","price":...,"currency":"USD","source":"patagonia_sfcc_async_components_api",...}` |
 | [`zumper_listing`](#zumper_listing) | Active | bootstrap (`window.__PRELOADED_STATE__`) | ScrapeOps US proxy | Zumper rental listings from the server-rendered `window.__PRELOADED_STATE__` bootstrap (`currentSearch.listables`) with hydrated `?page=N` pagination; no HTML-card or JSON-LD fallback. | 25 (1 page, `new-york-ny`) | 20 major US rental markets from `zumper_categories.py` | `{"category":"new-york-ny","item_id":"456715","title":"Parker Towers","min_price":2829,"max_price":6489,"currency":"USD","city":"New York","state":"NY","source":"zumper_preloaded_state","timestamp":"2026-10-07 05:36:58"...}` |
 | [`crateandbarrel_listing`](#crateandbarrel_listing) | Active | bootstrap (React `ProductListing` hydration) | Akamai (ScrapeOps residential proxy required) | Crate & Barrel category listings from the first-party React `ProductListing` hydration payload only; 13 product-bearing category URLs with numeric-path pagination. | 100 (1 page, `sofas`) | 13 category URLs from `crateandbarrel_categories.py` | `{"category":"sofas","item_id":"322117","title":"Lounge Sofa (62\"-105\")","brand":"Crate & Barrel","price":1529.0,"currency":"USD","source":"crateandbarrel_productlisting_bootstrap","timestamp":"2026-10-07 09:46:17"...}` |
+| [`ssense_listing`](#ssense_listing) | Experimental | bootstrap | Cloudflare; configured US proxy required | SSENSE men/women category products from the server-rendered Next.js RSC (`self.__next_f`) bootstrap only; no rendered HTML-card or JSON-LD extraction. | 120/page | 20 stable men/women category shortcuts from `ssense_categories.py` | `{"category":"men-clothing","department":"men","item_id":"15856491","sku":"242232M188005","title":"Gray Porterville Stefan Cargo Pants","brand":"Rick Owens","price":1400,"currency":"USD","total_pages":97,"source":"ssense_next_rsc_bootstrap",...}` |
 
 ### hostelworld_listing
 
@@ -238,6 +316,25 @@ US proxy because direct API requests receive an Incapsula challenge.
 scrapy crawl menards_listing -a category=halloween-animated-decorations -a max_pages=1 -s HTTPCACHE_ENABLED=False -O menards.jsonl
 ```
 
+### microcenter_listing
+
+`microcenter_listing` uses one data direction: the structured state serialized
+on each server-rendered Micro Center product card. It does not use JSON-LD or
+request product detail pages. The card contract provides stable product/SKU
+IDs, name, brand, price, image, position, promotion, inventory text, store ID,
+and product URL. Pagination follows the listing's reported total at 24 products
+per page and always preserves `storeid`.
+
+The packaged mega-menu inventory preserves 20 departments, 118 groups, and all
+578 navigation contexts, deduplicated to 513 crawl targets. Inventory and
+availability are store-specific. Cambridge (`121`) is the default and can be
+overridden with `-a store_id=<id>`.
+
+```bash
+scrapy crawl microcenter_listing -a category=processors-cpus -a store_id=121 \
+  -a max_pages=2 -s HTTPCACHE_ENABLED=False -O microcenter.jsonl
+```
+
 #### In-progress spiders
 
 These are still being worked on and currently returned `0` items in recent smoke runs:
@@ -270,6 +367,26 @@ scrapy crawl dell_listing -a category=view-all-laptops -a max_pages=2 \
 The ordered `FEED_EXPORT_FIELDS` contract covers identifiers, title, URLs,
 pricing, ratings, badges, pagination context, source metadata, the raw API
 record, and timestamp.
+
+### dollargeneral_listing
+
+`dollargeneral_listing` covers 20 broad Dollar General departments. It obtains
+the storefront's anonymous guest tokens from `/bin/dg/user`, then uses the
+first-party Omni v5 product-search API as its only product-data direction. The
+API supplies identifiers, prices, inventory, fulfilment flags, ratings, facets,
+and pagination metadata; rendered product cards and JSON-LD are not parsed.
+
+```bash
+scrapy crawl dollargeneral_listing -a category=on-sale -a max_pages=2 \
+  -s HTTPCACHE_ENABLED=False -O dollargeneral.jsonl
+```
+
+The API is store-aware and uses the guest session's automatically selected US
+store. Its ordered `FEED_EXPORT_FIELDS` contract includes 36 fields covering
+category context, product identity, media, pricing, inventory, fulfilment,
+reviews, pagination, provenance, the raw API record, and timestamp. The API
+request enables ScrapeOps `keep_headers=true` so DG's anonymous session headers
+reach the Omni host unchanged.
 
 ### redfin_listing
 
@@ -4073,6 +4190,26 @@ options.
 scrapy crawl realtor_listing -a category=los-angeles-ca -a max_pages=2 -s HTTPCACHE_ENABLED=False -O realtor.jsonl
 ```
 
+### apartments_listing
+
+`apartments_listing` reads one product-data source only: Apartments.com's
+server-rendered `window.aptsState` bootstrap. Its `as.p` collection is the map
+inventory for the selected market and is substantially larger than the 40
+rendered placards (567 unique records in the captured New York page-one state).
+The spider never parses product cards or JSON-LD and has no fallback direction.
+
+The 20 deterministic city seeds come from Apartments.com's city-search sitemap.
+Every item includes the stable listing key, coordinates, rent range, opaque
+listing-type and feature codes, related listing IDs, market/geography metadata,
+hydrated inventory totals, pagination state, the raw bootstrap record, and the
+crawl timestamp. `window.aptsState.as.pg.nextUrl` drives path pagination up to
+`max_pages`, while listing keys are deduplicated across pages. A configured
+ScrapeOps US proxy is required; proxy-account and bot-wall payloads fail loudly.
+
+```bash
+scrapy crawl apartments_listing -a category=new-york-ny -a max_pages=1 -s HTTPCACHE_ENABLED=False -O apartments.jsonl
+```
+
 ### zillow_listing
 
 `zillow_listing` exports homes from one source only: Zillow's server-rendered
@@ -4297,6 +4434,26 @@ contact details, market totals, pagination context, provenance, and raw records.
 scrapy crawl zumper_listing -a category=new-york-ny -a max_pages=1 -s HTTPCACHE_ENABLED=False -O zumper.jsonl
 ```
 
+### loopnet_listing
+
+`loopnet_listing` uses one product-data direction: LoopNet's first-party
+`POST /services/search` JSON service. The initial category response is used only
+to hydrate the service's exact `viewdata.criteria` request contract. Items are
+read from the service's structured listing arrays or its `Placards.HTML` response
+field, with coordinates joined from the accompanying event model. There is no
+listing-page or JSON-LD fallback.
+
+Twenty deterministic sale and lease category searches mirror LoopNet's primary
+property-type navigation. API pagination updates `criteria.PageNumber`, respects
+`max_pages`, and deduplicates stable listing IDs. The ordered
+`FEED_EXPORT_FIELDS` contract covers property identity, title and URL, address,
+type, transaction, price, size, coordinates, image, paging context, raw API data,
+provenance, and a crawl timestamp.
+
+```bash
+scrapy crawl loopnet_listing -a category=commercial-real-estate-for-sale -a max_pages=1 -s HTTPCACHE_ENABLED=False -O loopnet.jsonl
+```
+
 ### B&H Photo Video listing spider
 
 `bhphotovideo_listing` reads products from B&H's server-rendered
@@ -4411,4 +4568,58 @@ user agent.
 ```bash
 scrapy crawl vinted_listing -a category=home -a max_pages=1 \
   -s HTTPCACHE_ENABLED=False -O vinted-home.jsonl
+### ssense_listing
+
+`ssense_listing` extracts products exclusively from SSENSE's server-rendered
+Next.js React Server Component (`self.__next_f`) bootstrap. It reads the
+authoritative product-list analytics state and associated card component state;
+it does not parse rendered product HTML or JSON-LD and has no fallback data
+direction. Twenty stable men/women category shortcuts are included, and
+`?page=N` pagination follows hydrated `paginationInfo.totalPages` while respecting
+`max_pages` and deduplicating product IDs.
+
+The ordered 22-field `FEED_EXPORT_FIELDS` contract includes category context,
+product/SKU and brand identifiers, canonical URL and image, current/original
+prices, availability, pagination metadata, raw bootstrap data, and timestamp.
+
+```bash
+scrapy crawl ssense_listing -a category=men-clothing -a max_pages=1 -s HTTPCACHE_ENABLED=False -O ssense.jsonl
+```
+
+### patagonia_listing
+
+`patagonia_listing` extracts products through one authoritative data direction:
+Patagonia's first-party Salesforce Commerce Cloud `AsyncComponents-ProductList`
+API. It exposes 20 stable shopping categories, supports custom listing URLs, and
+uses the API's offset parameters for bounded pagination. It does not parse the
+listing page's direct HTML or JSON-LD as a product-data fallback.
+
+```bash
+scrapy crawl patagonia_listing -a category=new-arrivals -a max_pages=1 -s HTTPCACHE_ENABLED=False -O patagonia.jsonl
+```
+
+### etsy_listing
+
+`etsy_listing` reads the 20 stable category seeds that mirror the marketplace's
+primary departments from the server-rendered category document. Each page
+embeds an `application/ld+json` `ItemList` with the organic products (name,
+image, canonical listing URL, brand, offers), and the accompanying
+`[data-listing-id]` listing-card markup supplies shop IDs, ratings, review
+counts, ad and free-shipping flags. Pagination follows the server-rendered
+`?ref=pagination&page=N` links.
+
+Etsy's asynchronous Neu Spec search API is not an extractable alternative:
+the anonymous `/bespoke/public/` endpoint answers every request shape
+(SSR-exact args, page 2, `initial`, `search_results` route, `log_performance_metrics`)
+with an empty `output` list, and the client's real results path is an
+authenticated `/bespoke/member/` POST gated by a CSRF nonce and login session
+(verified live against Etsy's own `chunk-b-etsylibs` client contract).
+
+The ordered `FEED_EXPORT_FIELDS` contract covers listing and shop IDs, title,
+shop, canonical URL, image, current/original prices, currency, rating/reviews,
+ad and shipping flags, category/page/position, source, and the raw identity
+record. Requests go through the configured ScrapeOps US proxy.
+
+```bash
+scrapy crawl etsy_listing -a category=jewelry -a max_pages=1 -s HTTPCACHE_ENABLED=False -O etsy.jsonl
 ```
