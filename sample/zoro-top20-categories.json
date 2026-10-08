@@ -1,0 +1,142 @@
+[
+  {
+    "rank": 1,
+    "category": "Raw Materials & Raw Supplies",
+    "id": "37",
+    "url": "https://www.zoro.com/raw-materials/c/37/",
+    "subcategories": 23
+  },
+  {
+    "rank": 2,
+    "category": "Office & Business Supplies",
+    "id": "z9",
+    "url": "https://www.zoro.com/shipping-packaging-office-supplies/c/z9/",
+    "subcategories": 21
+  },
+  {
+    "rank": 3,
+    "category": "Electronics",
+    "id": "15050",
+    "url": "https://www.zoro.com/electronics/c/15050/",
+    "subcategories": 17
+  },
+  {
+    "rank": 4,
+    "category": "Fasteners",
+    "id": "9",
+    "url": "https://www.zoro.com/fasteners/c/9/",
+    "subcategories": 17
+  },
+  {
+    "rank": 5,
+    "category": "Building Materials Supplies & Hardware",
+    "id": "27",
+    "url": "https://www.zoro.com/hardware-building-materials/c/27/",
+    "subcategories": 17
+  },
+  {
+    "rank": 6,
+    "category": "Industrial & Commercial Lighting",
+    "id": "22",
+    "url": "https://www.zoro.com/lighting/c/22/",
+    "subcategories": 16
+  },
+  {
+    "rank": 7,
+    "category": "Automotive Parts and Equipment & Vehicle Fleet Supply",
+    "id": "z10",
+    "url": "https://www.zoro.com/vehicle-maintenance/c/z10/",
+    "subcategories": 15
+  },
+  {
+    "rank": 8,
+    "category": "Plumbing - Tools, Supplies & More",
+    "id": "z3",
+    "url": "https://www.zoro.com/plumbing/c/z3/",
+    "subcategories": 14
+  },
+  {
+    "rank": 9,
+    "category": "Grounds Maintenance Supply & Outdoor Equipment",
+    "id": "21",
+    "url": "https://www.zoro.com/grounds-outdoor/c/21/",
+    "subcategories": 14
+  },
+  {
+    "rank": 10,
+    "category": "Heating & Cooling - HVAC Equipment & Supplies",
+    "id": "30",
+    "url": "https://www.zoro.com/heating-cooling/c/30/",
+    "subcategories": 14
+  },
+  {
+    "rank": 11,
+    "category": "Storage Equipment & Industrial Storage Systems",
+    "id": "15",
+    "url": "https://www.zoro.com/storage-workspace/c/15/",
+    "subcategories": 13
+  },
+  {
+    "rank": 12,
+    "category": "Electrical Supplies, Equipment & Parts",
+    "id": "23",
+    "url": "https://www.zoro.com/electrical-supplies/c/23/",
+    "subcategories": 12
+  },
+  {
+    "rank": 13,
+    "category": "Test Instruments & Gauges - Measuring Tools & Inspection Equipment",
+    "id": "24",
+    "url": "https://www.zoro.com/test-instruments-gauges/c/24/",
+    "subcategories": 12
+  },
+  {
+    "rank": 14,
+    "category": "Pumps - Industrial Water Pump Parts & Supplies",
+    "id": "39",
+    "url": "https://www.zoro.com/pumps/c/39/",
+    "subcategories": 11
+  },
+  {
+    "rank": 15,
+    "category": "Home Decor, Furniture, Linens & Accessories",
+    "id": "530",
+    "url": "https://www.zoro.com/furniture-linens-decor/c/530/",
+    "subcategories": 10
+  },
+  {
+    "rank": 16,
+    "category": "Medical Supplies & Equipment",
+    "id": "76",
+    "url": "https://www.zoro.com/medical-personal-care/c/76/",
+    "subcategories": 10
+  },
+  {
+    "rank": 17,
+    "category": "Food Service & Restaurant Supplies",
+    "id": "67",
+    "url": "https://www.zoro.com/food-service-restaurant-supplies/c/67/",
+    "subcategories": 9
+  },
+  {
+    "rank": 18,
+    "category": "Janitorial & Commercial Cleaning Supplies",
+    "id": "25",
+    "url": "https://www.zoro.com/janitorial-cleaning-supplies/c/25/",
+    "subcategories": 9
+  },
+  {
+    "rank": 19,
+    "category": "Tools & Machining Equipment.com",
+    "id": "z2",
+    "url": "https://www.zoro.com/tools-machining/c/z2/",
+    "subcategories": 8
+  },
+  {
+    "rank": 20,
+    "category": "Abrasives & Polishers Supplies",
+    "id": "1",
+    "url": "https://www.zoro.com/abrasives-polishers/c/1/",
+    "subcategories": 8
+  }
+]
