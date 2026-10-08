@@ -45,6 +45,23 @@ Examples:
 - `common-scrapy crawl cvs_listing --category health-medicine -a max_pages=3 -O cvs.jsonl` (60 items, verified live on 2026-10-04; see [cvs_listing](#cvs_listing))
 - `common-scrapy crawl menards_listing --category halloween-animated-decorations -a max_pages=1 -O menards.jsonl`
 
+### toolstation_listing
+
+`toolstation_listing` reads products exclusively from Toolstation UK's
+first-party Bloomreach CRS search API. It sends the stable `c<id>` taxonomy ID
+from each category seed to `/api/search/crs` and paginates with the API's
+zero-based `start` offset. It does not parse rendered HTML cards, Nuxt state, or
+JSON-LD. The 20 category seeds are the highest-inventory non-promotional
+listings measured from Toolstation's department sitemap. The spider's ordered
+`FEED_EXPORT_FIELDS` contract contains 34 fields, including API pricing,
+ratings, fulfilment channel, variation, pagination, provenance, and raw data.
+The default category is `kitchen-cabinets`; pass `-a category=<name>` to select
+one of the other seeds.
+
+```bash
+scrapy crawl toolstation_listing -a category=kitchen-cabinets -a max_pages=2 -s HTTPCACHE_ENABLED=False -O toolstation.jsonl
+```
+
 `newegg_listing` parses the server-rendered `window.__initialState__.Products`
 payload. It accepts `category`, `category_url`, or `url`; use
 `all-current-categories` to refresh and crawl Newegg's live category inventory.
