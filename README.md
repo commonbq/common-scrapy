@@ -44,6 +44,7 @@ Examples:
 - `common-scrapy crawl newegg_listing --category desktop-cpu-processors -a max_pages=1 -O newegg.jsonl` (36 items, verified live on 2026-10-02; see [newegg_listing](#newegg_listing))
 - `common-scrapy crawl cvs_listing --category health-medicine -a max_pages=3 -O cvs.jsonl` (60 items, verified live on 2026-10-04; see [cvs_listing](#cvs_listing))
 - `common-scrapy crawl menards_listing --category halloween-animated-decorations -a max_pages=1 -O menards.jsonl`
+- `common-scrapy crawl dunelm_listing --category home-and-furniture -a max_pages=1 -O dunelm.jsonl`
 
 `newegg_listing` parses the server-rendered `window.__initialState__.Products`
 payload. It accepts `category`, `category_url`, or `url`; use
@@ -100,6 +101,21 @@ scrapy crawl barnesandnoble_listing -a category=fiction -a max_pages=2 -s HTTPCA
 Verified live on 2026-10-08: 100 unique products across two API pages (50 per
 page), with all three responses returning HTTP 200.
 
+### dunelm_listing
+
+`dunelm_listing` extracts products exclusively from Dunelm's server-rendered
+`#ssr-state-data` Redux bootstrap. Department landing pages without that product
+state are used only to select a child PLP; product-card HTML and JSON-LD are not
+parsed. The spider exports the ordered 29-field `FEED_EXPORT_FIELDS` contract,
+including product/SKU identity, price range, reviews, taxonomy, inventory and
+pagination metadata, plus the raw bootstrap record. Its 20 category seeds are
+the broadest catalogue departments from Dunelm's category sitemap.
+
+```bash
+scrapy crawl dunelm_listing -a category=home-and-furniture -a max_pages=1 \
+  -s HTTPCACHE_ENABLED=False -O dunelm.jsonl
+```
+
 ## Available spiders
 
 ### Standalone spiders (via `scrapy crawl <spider>`)
@@ -110,6 +126,7 @@ Working spiders running daily in production:
 
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
+| [`dunelm_listing`](#dunelm_listing) | Active | bootstrap | none detected | Dunelm products from server-rendered Redux `#ssr-state-data`; department HTML is used only for leaf discovery, never as product data. | 60/page | 20 broad catalogue departments | `{"category":"home-and-furniture","item_id":"1000194189","title":"Pure Cotton Fitted Sheet","price":14,"currency":"GBP","source":"dunelm_redux_ssr_bootstrap"...}` |
 | [`barnesandnoble_listing`](#barnesandnoble_listing) | Active | API | none detected | Barnes & Noble products from the first-party Shopify Storefront GraphQL API. The collection page only supplies rotating API configuration; there is no HTML-card or JSON-LD product fallback. | 50/page | 20 stable collection seeds | `{"category":"fiction","item_id":"8827283734769","ean":"9780765635969","title":"Projecting Politics: Political Messages in American Films","format":"Hardcover","price":237.61,"currency":"USD","source":"barnesandnoble_storefront_graphql_api"...}` |
 | [`hobbylobby_listing`](#hobbylobby_listing) | Experimental | bootstrap | ScrapeOps US proxy | Hobby Lobby products from the server-rendered Algolia InstantSearch state only; no direct HTML-card or JSON-LD extraction. | 12/page | 20 product-bearing level-2 categories | `{"category":"art-supplies-painting-supplies","item_id":"80968391","title":"Master's Touch Oil Paint - 12 Piece Set","price":6.99,"source":"hobbylobby_instantsearch_bootstrap"...}` |
 | [`tripcom_listing`](#tripcom_listing) | Experimental | bootstrap | ScrapeOps proxy | Trip.com hotels from the server-provided `City` template-component state; no direct HTML-card or JSON-LD extraction. | 9 (one city page) | 20 popular hotel destinations | `{"category":"bangkok","title":"NASA BANGKOK - Airport Rail Link Ramkhamhang","price":15,"currency":"USD","source":"tripcom_city_component_bootstrap"...}` |
