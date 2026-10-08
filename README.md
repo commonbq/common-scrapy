@@ -143,6 +143,7 @@ Working spiders running daily in production:
 |---|---|---|---|---|---|---|---|
 | [`decathlon_listing`](#decathlon_listing) | Active | API | none detected direct; compatible with plain ScrapeOps US proxy | Decathlon products from Shopify's first-party collection JSON API only; no HTML, embedded-metadata, or JSON-LD fallback. | Up to 250/API page | Top 20 primary-nav collections ranked by product count | `{"category":"camp-hike","item_id":"8209731190846","title":"Simond Men’s Xplore Hooded Down Jacket","price":119.0,"currency":"USD","source":"decathlon_shopify_collection_api"...}` |
 | [`dollartree_listing`](#dollartree_listing) | Active | API | none detected direct | Dollar Tree products from the first-party Oracle Commerce Cloud guided-search API only; no HTML or JSON-LD fallback. | 24/page | Top 20 categories ranked by live product count | `{"category":"food-candy-drinks","item_id":"354662","title":"Lil' Dutch Maid Duplex Crème Cookies.","price":1.25,"currency":"USD","source":"dollartree_occ_guided_search_api"...}` |
+| [`etsy_listing`](#etsy_listing) | Active | html | ScrapeOps US proxy | Etsy products from the server-rendered category document: the `ld+json` `ItemList` plus listing-card markup; the async Neu Spec API is not extractable anonymously (its `public` route returns an empty `output` and the client's results path is an authenticated `member` POST). | 60/page | 20 primary Etsy categories | `{"category":"jewelry","item_id":"1806011672","title":"Baguette Birthstone Necklace, Family Birthstone Necklace, Personalized Gift","price":32.8,"currency":"USD","source":"etsy_itemlist_jsonld"...}` |
 | [`barnesandnoble_listing`](#barnesandnoble_listing) | Active | API | none detected | Barnes & Noble products from the first-party Shopify Storefront GraphQL API. The collection page only supplies rotating API configuration; there is no HTML-card or JSON-LD product fallback. | 50/page | 20 stable collection seeds | `{"category":"fiction","item_id":"8827283734769","ean":"9780765635969","title":"Projecting Politics: Political Messages in American Films","format":"Hardcover","price":237.61,"currency":"USD","source":"barnesandnoble_storefront_graphql_api"...}` |
 | [`hobbylobby_listing`](#hobbylobby_listing) | Experimental | bootstrap | ScrapeOps US proxy | Hobby Lobby products from the server-rendered Algolia InstantSearch state only; no direct HTML-card or JSON-LD extraction. | 12/page | 20 product-bearing level-2 categories | `{"category":"art-supplies-painting-supplies","item_id":"80968391","title":"Master's Touch Oil Paint - 12 Piece Set","price":6.99,"source":"hobbylobby_instantsearch_bootstrap"...}` |
 | [`tripcom_listing`](#tripcom_listing) | Experimental | bootstrap | ScrapeOps proxy | Trip.com hotels from the server-provided `City` template-component state; no direct HTML-card or JSON-LD extraction. | 9 (one city page) | 20 popular hotel destinations | `{"category":"bangkok","title":"NASA BANGKOK - Airport Rail Link Ramkhamhang","price":15,"currency":"USD","source":"tripcom_city_component_bootstrap"...}` |
@@ -4573,4 +4574,30 @@ listing page's direct HTML or JSON-LD as a product-data fallback.
 
 ```bash
 scrapy crawl patagonia_listing -a category=new-arrivals -a max_pages=1 -s HTTPCACHE_ENABLED=False -O patagonia.jsonl
+```
+
+### etsy_listing
+
+`etsy_listing` reads the 20 stable category seeds that mirror the marketplace's
+primary departments from the server-rendered category document. Each page
+embeds an `application/ld+json` `ItemList` with the organic products (name,
+image, canonical listing URL, brand, offers), and the accompanying
+`[data-listing-id]` listing-card markup supplies shop IDs, ratings, review
+counts, ad and free-shipping flags. Pagination follows the server-rendered
+`?ref=pagination&page=N` links.
+
+Etsy's asynchronous Neu Spec search API is not an extractable alternative:
+the anonymous `/bespoke/public/` endpoint answers every request shape
+(SSR-exact args, page 2, `initial`, `search_results` route, `log_performance_metrics`)
+with an empty `output` list, and the client's real results path is an
+authenticated `/bespoke/member/` POST gated by a CSRF nonce and login session
+(verified live against Etsy's own `chunk-b-etsylibs` client contract).
+
+The ordered `FEED_EXPORT_FIELDS` contract covers listing and shop IDs, title,
+shop, canonical URL, image, current/original prices, currency, rating/reviews,
+ad and shipping flags, category/page/position, source, and the raw identity
+record. Requests go through the configured ScrapeOps US proxy.
+
+```bash
+scrapy crawl etsy_listing -a category=jewelry -a max_pages=1 -s HTTPCACHE_ENABLED=False -O etsy.jsonl
 ```
