@@ -51,6 +51,20 @@ payload. It accepts `category`, `category_url`, or `url`; use
 
 All extra args are forwarded to `scrapy crawl` unchanged (feeds, settings overrides, etc.).
 
+### dollartree_listing
+
+`dollartree_listing` reads product records exclusively from Dollar Tree's
+first-party Oracle Commerce Cloud guided-search API. It sends each category's
+stable Endeca `dimension_id` to `/ccstoreui/v1/search` and paginates with the
+API's `No` offset; there is no direct-HTML or JSON-LD fallback. The 20 category
+seeds are ranked by the API's live product totals in
+`dollartree_categories.py`. Each product includes the source attributes in
+`raw`; the ordered `FEED_EXPORT_FIELDS` contract contains 27 fields.
+
+```bash
+scrapy crawl dollartree_listing -a category=food-candy-drinks -a max_pages=2 -s HTTPCACHE_ENABLED=False -O dollartree.jsonl
+```
+
 ### tripcom_listing
 
 `tripcom_listing` reads the server-provided `data-jsondata` state for Trip.com's
@@ -110,6 +124,7 @@ Working spiders running daily in production:
 
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
+| [`dollartree_listing`](#dollartree_listing) | Active | API | none detected direct | Dollar Tree products from the first-party Oracle Commerce Cloud guided-search API only; no HTML or JSON-LD fallback. | 24/page | Top 20 categories ranked by live product count | `{"category":"food-candy-drinks","item_id":"354662","title":"Lil' Dutch Maid Duplex Crème Cookies.","price":1.25,"currency":"USD","source":"dollartree_occ_guided_search_api"...}` |
 | [`barnesandnoble_listing`](#barnesandnoble_listing) | Active | API | none detected | Barnes & Noble products from the first-party Shopify Storefront GraphQL API. The collection page only supplies rotating API configuration; there is no HTML-card or JSON-LD product fallback. | 50/page | 20 stable collection seeds | `{"category":"fiction","item_id":"8827283734769","ean":"9780765635969","title":"Projecting Politics: Political Messages in American Films","format":"Hardcover","price":237.61,"currency":"USD","source":"barnesandnoble_storefront_graphql_api"...}` |
 | [`hobbylobby_listing`](#hobbylobby_listing) | Experimental | bootstrap | ScrapeOps US proxy | Hobby Lobby products from the server-rendered Algolia InstantSearch state only; no direct HTML-card or JSON-LD extraction. | 12/page | 20 product-bearing level-2 categories | `{"category":"art-supplies-painting-supplies","item_id":"80968391","title":"Master's Touch Oil Paint - 12 Piece Set","price":6.99,"source":"hobbylobby_instantsearch_bootstrap"...}` |
 | [`tripcom_listing`](#tripcom_listing) | Experimental | bootstrap | ScrapeOps proxy | Trip.com hotels from the server-provided `City` template-component state; no direct HTML-card or JSON-LD extraction. | 9 (one city page) | 20 popular hotel destinations | `{"category":"bangkok","title":"NASA BANGKOK - Airport Rail Link Ramkhamhang","price":15,"currency":"USD","source":"tripcom_city_component_bootstrap"...}` |
