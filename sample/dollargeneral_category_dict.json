@@ -1,0 +1,4403 @@
+{
+ "https://www.dollargeneral.com/c": {
+  "url": "https://www.dollargeneral.com/c",
+  "subcategories": {
+   "apparel": {
+    "url": "https://www.dollargeneral.com/c/apparel",
+    "subcategories": {
+     "apparel-on-sale": {
+      "url": "https://www.dollargeneral.com/c/apparel/apparel-on-sale"
+     },
+     "beverly-hills-polo-club-accessories": {
+      "url": "https://www.dollargeneral.com/c/apparel/beverly-hills-polo-club-accessories"
+     },
+     "boys-apparel": {
+      "url": "https://www.dollargeneral.com/c/apparel/boys-apparel",
+      "subcategories": {
+       "boys--socks": {
+        "url": "https://www.dollargeneral.com/c/apparel/boys-apparel/boys--socks"
+       },
+       "boys--underwear": {
+        "url": "https://www.dollargeneral.com/c/apparel/boys-apparel/boys--underwear"
+       }
+      }
+     },
+     "cloud-test-2": {
+      "url": "https://www.dollargeneral.com/c/apparel/cloud-test-2"
+     },
+     "foster-grant": {
+      "url": "https://www.dollargeneral.com/c/apparel/foster-grant"
+     },
+     "girls-apparel": {
+      "url": "https://www.dollargeneral.com/c/apparel/girls-apparel",
+      "subcategories": {
+       "girls--underwear": {
+        "url": "https://www.dollargeneral.com/c/apparel/girls-apparel/girls--underwear"
+       }
+      }
+     },
+     "hanes": {
+      "url": "https://www.dollargeneral.com/c/apparel/hanes"
+     },
+     "infants-toddlers": {
+      "url": "https://www.dollargeneral.com/c/apparel/infants-toddlers"
+     },
+     "men-s-apparel": {
+      "url": "https://www.dollargeneral.com/c/apparel/men-s-apparel",
+      "subcategories": {
+       "caps": {
+        "url": "https://www.dollargeneral.com/c/apparel/men-s-apparel/caps"
+       },
+       "men-s-accessories": {
+        "url": "https://www.dollargeneral.com/c/apparel/men-s-apparel/men-s-accessories"
+       },
+       "men-s-bottoms": {
+        "url": "https://www.dollargeneral.com/c/apparel/men-s-apparel/men-s-bottoms"
+       },
+       "men-s-socks": {
+        "url": "https://www.dollargeneral.com/c/apparel/men-s-apparel/men-s-socks"
+       },
+       "men-s-tops": {
+        "url": "https://www.dollargeneral.com/c/apparel/men-s-apparel/men-s-tops"
+       },
+       "men-s-underwear": {
+        "url": "https://www.dollargeneral.com/c/apparel/men-s-apparel/men-s-underwear"
+       }
+      }
+     },
+     "rain-gear": {
+      "url": "https://www.dollargeneral.com/c/apparel/rain-gear"
+     },
+     "seasonal-clothes-accessories": {
+      "url": "https://www.dollargeneral.com/c/apparel/seasonal-clothes-accessories",
+      "subcategories": {
+       "cold-weather-accessories": {
+        "url": "https://www.dollargeneral.com/c/apparel/seasonal-clothes-accessories/cold-weather-accessories"
+       },
+       "holiday-socks": {
+        "url": "https://www.dollargeneral.com/c/apparel/seasonal-clothes-accessories/holiday-socks"
+       }
+      }
+     },
+     "shoe-care": {
+      "url": "https://www.dollargeneral.com/c/apparel/shoe-care"
+     },
+     "slippers-shoes": {
+      "url": "https://www.dollargeneral.com/c/apparel/slippers-shoes"
+     },
+     "socks-for-the-family": {
+      "url": "https://www.dollargeneral.com/c/apparel/socks-for-the-family"
+     },
+     "women-s-apparel": {
+      "url": "https://www.dollargeneral.com/c/apparel/women-s-apparel",
+      "subcategories": {
+       "women-s-accessories": {
+        "url": "https://www.dollargeneral.com/c/apparel/women-s-apparel/women-s-accessories"
+       },
+       "women-s-activewear": {
+        "url": "https://www.dollargeneral.com/c/apparel/women-s-apparel/women-s-activewear"
+       },
+       "women-s-bottoms": {
+        "url": "https://www.dollargeneral.com/c/apparel/women-s-apparel/women-s-bottoms"
+       },
+       "women-s-socks": {
+        "url": "https://www.dollargeneral.com/c/apparel/women-s-apparel/women-s-socks"
+       },
+       "women-s-tops": {
+        "url": "https://www.dollargeneral.com/c/apparel/women-s-apparel/women-s-tops"
+       },
+       "women-s-underwear": {
+        "url": "https://www.dollargeneral.com/c/apparel/women-s-apparel/women-s-underwear"
+       }
+      }
+     },
+     "zone-pro": {
+      "url": "https://www.dollargeneral.com/c/apparel/zone-pro"
+     }
+    }
+   },
+   "auto-hardware": {
+    "url": "https://www.dollargeneral.com/c/auto-hardware",
+    "subcategories": {
+     "armor-all": {
+      "url": "https://www.dollargeneral.com/c/auto-hardware/armor-all"
+     },
+     "auto-accessories": {
+      "url": "https://www.dollargeneral.com/c/auto-hardware/auto-accessories"
+     },
+     "auto-cleaning": {
+      "url": "https://www.dollargeneral.com/c/auto-hardware/auto-cleaning"
+     },
+     "auto-hardware-on-sale": {
+      "url": "https://www.dollargeneral.com/c/auto-hardware/auto-hardware-on-sale"
+     },
+     "castrol": {
+      "url": "https://www.dollargeneral.com/c/auto-hardware/castrol"
+     },
+     "electrical-lighting": {
+      "url": "https://www.dollargeneral.com/c/auto-hardware/electrical-lighting"
+     },
+     "ge-lighting": {
+      "url": "https://www.dollargeneral.com/c/auto-hardware/ge-lighting"
+     },
+     "home-improvement-supplies": {
+      "url": "https://www.dollargeneral.com/c/auto-hardware/home-improvement-supplies"
+     },
+     "mobil-1": {
+      "url": "https://www.dollargeneral.com/c/auto-hardware/mobil-1"
+     },
+     "oils-fluids": {
+      "url": "https://www.dollargeneral.com/c/auto-hardware/oils-fluids"
+     },
+     "pennzoil": {
+      "url": "https://www.dollargeneral.com/c/auto-hardware/pennzoil"
+     },
+     "stp": {
+      "url": "https://www.dollargeneral.com/c/auto-hardware/stp"
+     },
+     "tools": {
+      "url": "https://www.dollargeneral.com/c/auto-hardware/tools"
+     },
+     "valvoline": {
+      "url": "https://www.dollargeneral.com/c/auto-hardware/valvoline"
+     }
+    }
+   },
+   "baby": {
+    "url": "https://www.dollargeneral.com/c/baby",
+    "subcategories": {
+     "baby-apparel-accessories": {
+      "url": "https://www.dollargeneral.com/c/baby/baby-apparel-accessories"
+     },
+     "baby-bath-skincare": {
+      "url": "https://www.dollargeneral.com/c/baby/baby-bath-skincare"
+     },
+     "baby-finds-5-or-less": {
+      "url": "https://www.dollargeneral.com/c/baby/baby-finds-5-or-less"
+     },
+     "baby-food-formula": {
+      "url": "https://www.dollargeneral.com/c/baby/baby-food-formula"
+     },
+     "baby-on-sale": {
+      "url": "https://www.dollargeneral.com/c/baby/baby-on-sale"
+     },
+     "diapers-wipes": {
+      "url": "https://www.dollargeneral.com/c/baby/diapers-wipes",
+      "subcategories": {
+       "huggies": {
+        "url": "https://www.dollargeneral.com/c/baby/diapers-wipes/huggies"
+       },
+       "luvs": {
+        "url": "https://www.dollargeneral.com/c/baby/diapers-wipes/luvs"
+       },
+       "pampers": {
+        "url": "https://www.dollargeneral.com/c/baby/diapers-wipes/pampers"
+       }
+      }
+     },
+     "health-safety": {
+      "url": "https://www.dollargeneral.com/c/baby/health-safety"
+     }
+    }
+   },
+   "beauty": {
+    "url": "https://www.dollargeneral.com/c/beauty",
+    "subcategories": {
+     "beauty-on-sale": {
+      "url": "https://www.dollargeneral.com/c/beauty/beauty-on-sale"
+     },
+     "cosmetics": {
+      "url": "https://www.dollargeneral.com/c/beauty/cosmetics",
+      "subcategories": {
+       "cosmetics-accessories": {
+        "url": "https://www.dollargeneral.com/c/beauty/cosmetics/cosmetics-accessories"
+       },
+       "eye-cosmetics": {
+        "url": "https://www.dollargeneral.com/c/beauty/cosmetics/eye-cosmetics"
+       },
+       "face-cosmetics": {
+        "url": "https://www.dollargeneral.com/c/beauty/cosmetics/face-cosmetics"
+       },
+       "lip-makeup": {
+        "url": "https://www.dollargeneral.com/c/beauty/cosmetics/lip-makeup"
+       },
+       "shop-by-brand": {
+        "url": "https://www.dollargeneral.com/c/beauty/cosmetics/shop-by-brand",
+        "subcategories": {
+         "covergirl": {
+          "url": "https://www.dollargeneral.com/c/beauty/cosmetics/shop-by-brand/covergirl"
+         },
+         "kiss": {
+          "url": "https://www.dollargeneral.com/c/beauty/cosmetics/shop-by-brand/kiss"
+         },
+         "l-a--colors": {
+          "url": "https://www.dollargeneral.com/c/beauty/cosmetics/shop-by-brand/l-a--colors"
+         },
+         "maybelline-new-york": {
+          "url": "https://www.dollargeneral.com/c/beauty/cosmetics/shop-by-brand/maybelline-new-york"
+         },
+         "studio-selection-cosmetics": {
+          "url": "https://www.dollargeneral.com/c/beauty/cosmetics/shop-by-brand/studio-selection-cosmetics"
+         },
+         "yumzee": {
+          "url": "https://www.dollargeneral.com/c/beauty/cosmetics/shop-by-brand/yumzee"
+         }
+        }
+       }
+      }
+     },
+     "curl-rhythm": {
+      "url": "https://www.dollargeneral.com/c/beauty/curl-rhythm"
+     },
+     "elf-cosmetics": {
+      "url": "https://www.dollargeneral.com/c/beauty/elf-cosmetics"
+     },
+     "expanded-beauty": {
+      "url": "https://www.dollargeneral.com/c/beauty/expanded-beauty"
+     },
+     "fragrances": {
+      "url": "https://www.dollargeneral.com/c/beauty/fragrances"
+     },
+     "hair-care": {
+      "url": "https://www.dollargeneral.com/c/beauty/hair-care",
+      "subcategories": {
+       "conditioner": {
+        "url": "https://www.dollargeneral.com/c/beauty/hair-care/conditioner"
+       },
+       "hair-color": {
+        "url": "https://www.dollargeneral.com/c/beauty/hair-care/hair-color"
+       },
+       "multicultural-hair-care": {
+        "url": "https://www.dollargeneral.com/c/beauty/hair-care/multicultural-hair-care"
+       },
+       "shampoo": {
+        "url": "https://www.dollargeneral.com/c/beauty/hair-care/shampoo"
+       },
+       "styling-products": {
+        "url": "https://www.dollargeneral.com/c/beauty/hair-care/styling-products"
+       },
+       "styling-tools-accessories": {
+        "url": "https://www.dollargeneral.com/c/beauty/hair-care/styling-tools-accessories"
+       }
+      }
+     },
+     "hair-care--5-and-under": {
+      "url": "https://www.dollargeneral.com/c/beauty/hair-care--5-and-under"
+     },
+     "kiss": {
+      "url": "https://www.dollargeneral.com/c/beauty/kiss"
+     },
+     "loreal": {
+      "url": "https://www.dollargeneral.com/c/beauty/loreal"
+     },
+     "multicultural-beauty": {
+      "url": "https://www.dollargeneral.com/c/beauty/multicultural-beauty"
+     },
+     "nail-care": {
+      "url": "https://www.dollargeneral.com/c/beauty/nail-care"
+     },
+     "skin-care": {
+      "url": "https://www.dollargeneral.com/c/beauty/skin-care",
+      "subcategories": {
+       "facial-cleansers": {
+        "url": "https://www.dollargeneral.com/c/beauty/skin-care/facial-cleansers"
+       },
+       "facial-moisturizers": {
+        "url": "https://www.dollargeneral.com/c/beauty/skin-care/facial-moisturizers"
+       },
+       "hand-body-lotion": {
+        "url": "https://www.dollargeneral.com/c/beauty/skin-care/hand-body-lotion"
+       },
+       "lip-care": {
+        "url": "https://www.dollargeneral.com/c/beauty/skin-care/lip-care"
+       },
+       "sunscreen": {
+        "url": "https://www.dollargeneral.com/c/beauty/skin-care/sunscreen"
+       },
+       "treatments-scrubs-masks": {
+        "url": "https://www.dollargeneral.com/c/beauty/skin-care/treatments-scrubs-masks"
+       }
+      }
+     }
+    }
+   },
+   "christmas": {
+    "url": "https://www.dollargeneral.com/c/christmas",
+    "subcategories": {
+     "christmas-crafts": {
+      "url": "https://www.dollargeneral.com/c/christmas/christmas-crafts"
+     },
+     "christmas-decorations": {
+      "url": "https://www.dollargeneral.com/c/christmas/christmas-decorations",
+      "subcategories": {
+       "1-christmas-decorations": {
+        "url": "https://www.dollargeneral.com/c/christmas/christmas-decorations/1-christmas-decorations"
+       },
+       "christmas-candles-fragrance": {
+        "url": "https://www.dollargeneral.com/c/christmas/christmas-decorations/christmas-candles-fragrance"
+       },
+       "christmas-crafts": {
+        "url": "https://www.dollargeneral.com/c/christmas/christmas-decorations/christmas-crafts"
+       },
+       "christmas-floral-garland": {
+        "url": "https://www.dollargeneral.com/c/christmas/christmas-decorations/christmas-floral-garland"
+       },
+       "christmas-stockings": {
+        "url": "https://www.dollargeneral.com/c/christmas/christmas-decorations/christmas-stockings"
+       },
+       "indoor-christmas-decorations": {
+        "url": "https://www.dollargeneral.com/c/christmas/christmas-decorations/indoor-christmas-decorations",
+        "subcategories": {
+         "holiday-kitchen-decor": {
+          "url": "https://www.dollargeneral.com/c/christmas/christmas-decorations/indoor-christmas-decorations/holiday-kitchen-decor"
+         },
+         "holiday-throw-pillows-blankets": {
+          "url": "https://www.dollargeneral.com/c/christmas/christmas-decorations/indoor-christmas-decorations/holiday-throw-pillows-blankets"
+         }
+        }
+       },
+       "outdoor-christmas-decorations": {
+        "url": "https://www.dollargeneral.com/c/christmas/christmas-decorations/outdoor-christmas-decorations"
+       }
+      }
+     },
+     "christmas-magic": {
+      "url": "https://www.dollargeneral.com/c/christmas/christmas-magic"
+     },
+     "christmas-on-sale": {
+      "url": "https://www.dollargeneral.com/c/christmas/christmas-on-sale"
+     },
+     "christmas-trees-tree-decor": {
+      "url": "https://www.dollargeneral.com/c/christmas/christmas-trees-tree-decor",
+      "subcategories": {
+       "all-is-calm": {
+        "url": "https://www.dollargeneral.com/c/christmas/christmas-trees-tree-decor/all-is-calm"
+       },
+       "christmas-lights-string-lights": {
+        "url": "https://www.dollargeneral.com/c/christmas/christmas-trees-tree-decor/christmas-lights-string-lights"
+       },
+       "christmas-trees": {
+        "url": "https://www.dollargeneral.com/c/christmas/christmas-trees-tree-decor/christmas-trees",
+        "subcategories": {
+         "2ft-under-trees": {
+          "url": "https://www.dollargeneral.com/c/christmas/christmas-trees-tree-decor/christmas-trees/2ft-under-trees"
+         },
+         "4ft-trees": {
+          "url": "https://www.dollargeneral.com/c/christmas/christmas-trees-tree-decor/christmas-trees/4ft-trees"
+         },
+         "6ft-trees": {
+          "url": "https://www.dollargeneral.com/c/christmas/christmas-trees-tree-decor/christmas-trees/6ft-trees"
+         },
+         "novelty-trees": {
+          "url": "https://www.dollargeneral.com/c/christmas/christmas-trees-tree-decor/christmas-trees/novelty-trees"
+         }
+        }
+       },
+       "modern-classic": {
+        "url": "https://www.dollargeneral.com/c/christmas/christmas-trees-tree-decor/modern-classic"
+       },
+       "ornaments": {
+        "url": "https://www.dollargeneral.com/c/christmas/christmas-trees-tree-decor/ornaments"
+       },
+       "retro-nostalgia": {
+        "url": "https://www.dollargeneral.com/c/christmas/christmas-trees-tree-decor/retro-nostalgia"
+       },
+       "tree-decorations": {
+        "url": "https://www.dollargeneral.com/c/christmas/christmas-trees-tree-decor/tree-decorations"
+       },
+       "tree-skirts": {
+        "url": "https://www.dollargeneral.com/c/christmas/christmas-trees-tree-decor/tree-skirts"
+       }
+      }
+     },
+     "gifts-gift-supplies": {
+      "url": "https://www.dollargeneral.com/c/christmas/gifts-gift-supplies",
+      "subcategories": {
+       "-10-gifts": {
+        "url": "https://www.dollargeneral.com/c/christmas/gifts-gift-supplies/-10-gifts"
+       },
+       "-20-gifts": {
+        "url": "https://www.dollargeneral.com/c/christmas/gifts-gift-supplies/-20-gifts"
+       },
+       "-5-gifts": {
+        "url": "https://www.dollargeneral.com/c/christmas/gifts-gift-supplies/-5-gifts"
+       },
+       "10-gifts": {
+        "url": "https://www.dollargeneral.com/c/christmas/gifts-gift-supplies/10-gifts"
+       },
+       "20-gifts": {
+        "url": "https://www.dollargeneral.com/c/christmas/gifts-gift-supplies/20-gifts"
+       },
+       "5-gifts": {
+        "url": "https://www.dollargeneral.com/c/christmas/gifts-gift-supplies/5-gifts"
+       },
+       "boy-gifts": {
+        "url": "https://www.dollargeneral.com/c/christmas/gifts-gift-supplies/boy-gifts"
+       },
+       "gift-wrapping-supplies": {
+        "url": "https://www.dollargeneral.com/c/christmas/gifts-gift-supplies/gift-wrapping-supplies",
+        "subcategories": {
+         "holiday-bows-ribbons-tags": {
+          "url": "https://www.dollargeneral.com/c/christmas/gifts-gift-supplies/gift-wrapping-supplies/holiday-bows-ribbons-tags"
+         },
+         "holiday-gift-bags-boxes": {
+          "url": "https://www.dollargeneral.com/c/christmas/gifts-gift-supplies/gift-wrapping-supplies/holiday-gift-bags-boxes"
+         },
+         "holiday-gift-wrapping-paper": {
+          "url": "https://www.dollargeneral.com/c/christmas/gifts-gift-supplies/gift-wrapping-supplies/holiday-gift-wrapping-paper"
+         }
+        }
+       },
+       "gifts-for-her": {
+        "url": "https://www.dollargeneral.com/c/christmas/gifts-gift-supplies/gifts-for-her"
+       },
+       "gifts-for-him": {
+        "url": "https://www.dollargeneral.com/c/christmas/gifts-gift-supplies/gifts-for-him"
+       },
+       "gifts-for-teens": {
+        "url": "https://www.dollargeneral.com/c/christmas/gifts-gift-supplies/gifts-for-teens"
+       },
+       "gifts-for-the-family": {
+        "url": "https://www.dollargeneral.com/c/christmas/gifts-gift-supplies/gifts-for-the-family"
+       },
+       "girl-boys": {
+        "url": "https://www.dollargeneral.com/c/christmas/gifts-gift-supplies/girl-boys"
+       },
+       "girl-gifts": {
+        "url": "https://www.dollargeneral.com/c/christmas/gifts-gift-supplies/girl-gifts"
+       },
+       "home-essentials-gifts": {
+        "url": "https://www.dollargeneral.com/c/christmas/gifts-gift-supplies/home-essentials-gifts"
+       },
+       "pet-gifts": {
+        "url": "https://www.dollargeneral.com/c/christmas/gifts-gift-supplies/pet-gifts"
+       },
+       "practical-gifts": {
+        "url": "https://www.dollargeneral.com/c/christmas/gifts-gift-supplies/practical-gifts"
+       },
+       "stocking-stuffers": {
+        "url": "https://www.dollargeneral.com/c/christmas/gifts-gift-supplies/stocking-stuffers"
+       },
+       "top-gifts-of-the-season": {
+        "url": "https://www.dollargeneral.com/c/christmas/gifts-gift-supplies/top-gifts-of-the-season"
+       }
+      }
+     },
+     "holiday-entertaining": {
+      "url": "https://www.dollargeneral.com/c/christmas/holiday-entertaining",
+      "subcategories": {
+       "holiday-baking": {
+        "url": "https://www.dollargeneral.com/c/christmas/holiday-entertaining/holiday-baking"
+       },
+       "holiday-candy-treats": {
+        "url": "https://www.dollargeneral.com/c/christmas/holiday-entertaining/holiday-candy-treats"
+       },
+       "holiday-cooking": {
+        "url": "https://www.dollargeneral.com/c/christmas/holiday-entertaining/holiday-cooking"
+       },
+       "holiday-hosting": {
+        "url": "https://www.dollargeneral.com/c/christmas/holiday-entertaining/holiday-hosting"
+       },
+       "holiday-party-supplies": {
+        "url": "https://www.dollargeneral.com/c/christmas/holiday-entertaining/holiday-party-supplies"
+       },
+       "santa-hats-accessories": {
+        "url": "https://www.dollargeneral.com/c/christmas/holiday-entertaining/santa-hats-accessories"
+       }
+      }
+     },
+     "simply-for-you-by-hallmark": {
+      "url": "https://www.dollargeneral.com/c/christmas/simply-for-you-by-hallmark",
+      "subcategories": {
+       "simply-for-you-by-hallmark-decor": {
+        "url": "https://www.dollargeneral.com/c/christmas/simply-for-you-by-hallmark/simply-for-you-by-hallmark-decor"
+       },
+       "simply-for-you-by-hallmark-kitchen": {
+        "url": "https://www.dollargeneral.com/c/christmas/simply-for-you-by-hallmark/simply-for-you-by-hallmark-kitchen"
+       }
+      }
+     },
+     "sugar-sweet-christmas": {
+      "url": "https://www.dollargeneral.com/c/christmas/sugar-sweet-christmas"
+     },
+     "white-christmas": {
+      "url": "https://www.dollargeneral.com/c/christmas/white-christmas"
+     }
+    }
+   },
+   "cleaning": {
+    "url": "https://www.dollargeneral.com/c/cleaning",
+    "subcategories": {
+     "air-fresheners": {
+      "url": "https://www.dollargeneral.com/c/cleaning/air-fresheners",
+      "subcategories": {
+       "shop-by-scent": {
+        "url": "https://www.dollargeneral.com/c/cleaning/air-fresheners/shop-by-scent",
+        "subcategories": {
+         "citrus": {
+          "url": "https://www.dollargeneral.com/c/cleaning/air-fresheners/shop-by-scent/citrus"
+         },
+         "earthy": {
+          "url": "https://www.dollargeneral.com/c/cleaning/air-fresheners/shop-by-scent/earthy"
+         },
+         "floral": {
+          "url": "https://www.dollargeneral.com/c/cleaning/air-fresheners/shop-by-scent/floral"
+         },
+         "fresh": {
+          "url": "https://www.dollargeneral.com/c/cleaning/air-fresheners/shop-by-scent/fresh"
+         },
+         "fruity": {
+          "url": "https://www.dollargeneral.com/c/cleaning/air-fresheners/shop-by-scent/fruity"
+         },
+         "sweet": {
+          "url": "https://www.dollargeneral.com/c/cleaning/air-fresheners/shop-by-scent/sweet"
+         },
+         "woody": {
+          "url": "https://www.dollargeneral.com/c/cleaning/air-fresheners/shop-by-scent/woody"
+         }
+        }
+       }
+      }
+     },
+     "all-purpose-cleaners": {
+      "url": "https://www.dollargeneral.com/c/cleaning/all-purpose-cleaners",
+      "subcategories": {
+       "shop-by-brand": {
+        "url": "https://www.dollargeneral.com/c/cleaning/all-purpose-cleaners/shop-by-brand",
+        "subcategories": {
+         "clorox": {
+          "url": "https://www.dollargeneral.com/c/cleaning/all-purpose-cleaners/shop-by-brand/clorox"
+         },
+         "fabuloso": {
+          "url": "https://www.dollargeneral.com/c/cleaning/all-purpose-cleaners/shop-by-brand/fabuloso"
+         },
+         "las-totally-awesome": {
+          "url": "https://www.dollargeneral.com/c/cleaning/all-purpose-cleaners/shop-by-brand/las-totally-awesome"
+         },
+         "lysol": {
+          "url": "https://www.dollargeneral.com/c/cleaning/all-purpose-cleaners/shop-by-brand/lysol"
+         },
+         "mr-clean": {
+          "url": "https://www.dollargeneral.com/c/cleaning/all-purpose-cleaners/shop-by-brand/mr-clean"
+         },
+         "pine-sol": {
+          "url": "https://www.dollargeneral.com/c/cleaning/all-purpose-cleaners/shop-by-brand/pine-sol"
+         },
+         "trueliving": {
+          "url": "https://www.dollargeneral.com/c/cleaning/all-purpose-cleaners/shop-by-brand/trueliving"
+         },
+         "windex": {
+          "url": "https://www.dollargeneral.com/c/cleaning/all-purpose-cleaners/shop-by-brand/windex"
+         }
+        }
+       }
+      }
+     },
+     "back-to-school-cleaning": {
+      "url": "https://www.dollargeneral.com/c/cleaning/back-to-school-cleaning"
+     },
+     "bathroom-cleaning": {
+      "url": "https://www.dollargeneral.com/c/cleaning/bathroom-cleaning"
+     },
+     "cleaning-on-sale": {
+      "url": "https://www.dollargeneral.com/c/cleaning/cleaning-on-sale"
+     },
+     "cleaning-tools": {
+      "url": "https://www.dollargeneral.com/c/cleaning/cleaning-tools"
+     },
+     "floor-care": {
+      "url": "https://www.dollargeneral.com/c/cleaning/floor-care"
+     },
+     "garbage-bags": {
+      "url": "https://www.dollargeneral.com/c/cleaning/garbage-bags"
+     },
+     "kitchen-cleaning": {
+      "url": "https://www.dollargeneral.com/c/cleaning/kitchen-cleaning",
+      "subcategories": {
+       "shop-by-brand": {
+        "url": "https://www.dollargeneral.com/c/cleaning/kitchen-cleaning/shop-by-brand",
+        "subcategories": {
+         "ajax": {
+          "url": "https://www.dollargeneral.com/c/cleaning/kitchen-cleaning/shop-by-brand/ajax"
+         },
+         "cascade": {
+          "url": "https://www.dollargeneral.com/c/cleaning/kitchen-cleaning/shop-by-brand/cascade"
+         },
+         "clorox": {
+          "url": "https://www.dollargeneral.com/c/cleaning/kitchen-cleaning/shop-by-brand/clorox"
+         },
+         "dawn": {
+          "url": "https://www.dollargeneral.com/c/cleaning/kitchen-cleaning/shop-by-brand/dawn"
+         },
+         "finish": {
+          "url": "https://www.dollargeneral.com/c/cleaning/kitchen-cleaning/shop-by-brand/finish"
+         },
+         "gain": {
+          "url": "https://www.dollargeneral.com/c/cleaning/kitchen-cleaning/shop-by-brand/gain"
+         },
+         "palmolive": {
+          "url": "https://www.dollargeneral.com/c/cleaning/kitchen-cleaning/shop-by-brand/palmolive"
+         },
+         "trueliving-kitchen-cleaning": {
+          "url": "https://www.dollargeneral.com/c/cleaning/kitchen-cleaning/shop-by-brand/trueliving-kitchen-cleaning"
+         }
+        }
+       }
+      }
+     },
+     "laundry-cleaning": {
+      "url": "https://www.dollargeneral.com/c/cleaning/laundry-cleaning",
+      "subcategories": {
+       "detergent": {
+        "url": "https://www.dollargeneral.com/c/cleaning/laundry-cleaning/detergent"
+       },
+       "shop-by-brand": {
+        "url": "https://www.dollargeneral.com/c/cleaning/laundry-cleaning/shop-by-brand",
+        "subcategories": {
+         "all": {
+          "url": "https://www.dollargeneral.com/c/cleaning/laundry-cleaning/shop-by-brand/all"
+         },
+         "arm-hammer": {
+          "url": "https://www.dollargeneral.com/c/cleaning/laundry-cleaning/shop-by-brand/arm-hammer"
+         },
+         "clorox": {
+          "url": "https://www.dollargeneral.com/c/cleaning/laundry-cleaning/shop-by-brand/clorox"
+         },
+         "gain": {
+          "url": "https://www.dollargeneral.com/c/cleaning/laundry-cleaning/shop-by-brand/gain"
+         },
+         "las-totally-awesome": {
+          "url": "https://www.dollargeneral.com/c/cleaning/laundry-cleaning/shop-by-brand/las-totally-awesome"
+         },
+         "snuggle": {
+          "url": "https://www.dollargeneral.com/c/cleaning/laundry-cleaning/shop-by-brand/snuggle"
+         },
+         "suavitel": {
+          "url": "https://www.dollargeneral.com/c/cleaning/laundry-cleaning/shop-by-brand/suavitel"
+         },
+         "tide": {
+          "url": "https://www.dollargeneral.com/c/cleaning/laundry-cleaning/shop-by-brand/tide"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "collections": {
+    "url": "https://www.dollargeneral.com/c/collections",
+    "subcategories": {
+     "beauty-gifts": {
+      "url": "https://www.dollargeneral.com/c/collections/beauty-gifts"
+     },
+     "candy-snacks-delivered": {
+      "url": "https://www.dollargeneral.com/c/collections/candy-snacks-delivered"
+     },
+     "celebration-cleanup-delivered": {
+      "url": "https://www.dollargeneral.com/c/collections/celebration-cleanup-delivered"
+     },
+     "evermark": {
+      "url": "https://www.dollargeneral.com/c/collections/evermark"
+     },
+     "grocery-essentials-delivered": {
+      "url": "https://www.dollargeneral.com/c/collections/grocery-essentials-delivered"
+     },
+     "gym-bag-essentials-delivered": {
+      "url": "https://www.dollargeneral.com/c/collections/gym-bag-essentials-delivered"
+     },
+     "personal-care-gifts": {
+      "url": "https://www.dollargeneral.com/c/collections/personal-care-gifts"
+     },
+     "summer-bbq-grilling": {
+      "url": "https://www.dollargeneral.com/c/collections/summer-bbq-grilling"
+     },
+     "summer-grilling-delivered": {
+      "url": "https://www.dollargeneral.com/c/collections/summer-grilling-delivered"
+     },
+     "summer-refreshments-delivered": {
+      "url": "https://www.dollargeneral.com/c/collections/summer-refreshments-delivered"
+     },
+     "the-clorox-company": {
+      "url": "https://www.dollargeneral.com/c/collections/the-clorox-company"
+     },
+     "unilever": {
+      "url": "https://www.dollargeneral.com/c/collections/unilever"
+     }
+    }
+   },
+   "dg-autodeliver": {
+    "url": "https://www.dollargeneral.com/c/dg-autodeliver",
+    "subcategories": {
+     "autodeliver-baby": {
+      "url": "https://www.dollargeneral.com/c/dg-autodeliver/autodeliver-baby"
+     },
+     "autodeliver-beauty": {
+      "url": "https://www.dollargeneral.com/c/dg-autodeliver/autodeliver-beauty"
+     },
+     "autodeliver-cleaning": {
+      "url": "https://www.dollargeneral.com/c/dg-autodeliver/autodeliver-cleaning"
+     },
+     "autodeliver-food": {
+      "url": "https://www.dollargeneral.com/c/dg-autodeliver/autodeliver-food"
+     },
+     "autodeliver-health": {
+      "url": "https://www.dollargeneral.com/c/dg-autodeliver/autodeliver-health"
+     },
+     "autodeliver-household": {
+      "url": "https://www.dollargeneral.com/c/dg-autodeliver/autodeliver-household"
+     },
+     "autodeliver-oral-care": {
+      "url": "https://www.dollargeneral.com/c/dg-autodeliver/autodeliver-oral-care"
+     },
+     "autodeliver-pet": {
+      "url": "https://www.dollargeneral.com/c/dg-autodeliver/autodeliver-pet"
+     }
+    }
+   },
+   "dg-brands": {
+    "url": "https://www.dollargeneral.com/c/dg-brands",
+    "subcategories": {
+     "321-party-": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/321-party-"
+     },
+     "believe-beauty": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/believe-beauty"
+     },
+     "breeze": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/breeze"
+     },
+     "clover-valley": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/clover-valley",
+      "subcategories": {
+       "clover-valley-baking": {
+        "url": "https://www.dollargeneral.com/c/dg-brands/clover-valley/clover-valley-baking"
+       },
+       "clover-valley-pantry": {
+        "url": "https://www.dollargeneral.com/c/dg-brands/clover-valley/clover-valley-pantry"
+       },
+       "clover-valley-snacks": {
+        "url": "https://www.dollargeneral.com/c/dg-brands/clover-valley/clover-valley-snacks"
+       }
+      }
+     },
+     "comfort-bay": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/comfort-bay"
+     },
+     "composure": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/composure"
+     },
+     "dg-body": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/dg-body"
+     },
+     "dg-brands-pet": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/dg-brands-pet"
+     },
+     "dg-health": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/dg-health"
+     },
+     "dg-home": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/dg-home"
+     },
+     "drive-mxd": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/drive-mxd"
+     },
+     "five-deep-breaths": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/five-deep-breaths"
+     },
+     "forever-pals": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/forever-pals"
+     },
+     "generate": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/generate"
+     },
+     "gentle-steps": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/gentle-steps"
+     },
+     "good-smart": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/good-smart"
+     },
+     "heartland-farms": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/heartland-farms"
+     },
+     "imagine": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/imagine"
+     },
+     "nature-s-menu": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/nature-s-menu"
+     },
+     "ntense-energy": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/ntense-energy"
+     },
+     "office-hub": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/office-hub"
+     },
+     "oh-good": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/oh-good"
+     },
+     "proessentials": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/proessentials"
+     },
+     "rexall": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/rexall",
+      "subcategories": {
+       "rexall-allergy": {
+        "url": "https://www.dollargeneral.com/c/dg-brands/rexall/rexall-allergy"
+       },
+       "rexall-children-s": {
+        "url": "https://www.dollargeneral.com/c/dg-brands/rexall/rexall-children-s"
+       },
+       "rexall-cough-cold": {
+        "url": "https://www.dollargeneral.com/c/dg-brands/rexall/rexall-cough-cold"
+       },
+       "rexall-dental": {
+        "url": "https://www.dollargeneral.com/c/dg-brands/rexall/rexall-dental"
+       },
+       "rexall-digestive": {
+        "url": "https://www.dollargeneral.com/c/dg-brands/rexall/rexall-digestive"
+       },
+       "rexall-eye-ear": {
+        "url": "https://www.dollargeneral.com/c/dg-brands/rexall/rexall-eye-ear"
+       },
+       "rexall-feminine-hygiene": {
+        "url": "https://www.dollargeneral.com/c/dg-brands/rexall/rexall-feminine-hygiene"
+       },
+       "rexall-first-aid": {
+        "url": "https://www.dollargeneral.com/c/dg-brands/rexall/rexall-first-aid"
+       },
+       "rexall-foot-care": {
+        "url": "https://www.dollargeneral.com/c/dg-brands/rexall/rexall-foot-care"
+       },
+       "rexall-hair-care": {
+        "url": "https://www.dollargeneral.com/c/dg-brands/rexall/rexall-hair-care"
+       },
+       "rexall-pain-relief": {
+        "url": "https://www.dollargeneral.com/c/dg-brands/rexall/rexall-pain-relief"
+       },
+       "rexall-smoking-cessation": {
+        "url": "https://www.dollargeneral.com/c/dg-brands/rexall/rexall-smoking-cessation"
+       },
+       "rexall-vitamins-supplements": {
+        "url": "https://www.dollargeneral.com/c/dg-brands/rexall/rexall-vitamins-supplements"
+       }
+      }
+     },
+     "root-to-end": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/root-to-end"
+     },
+     "scent-happy": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/scent-happy"
+     },
+     "sensora": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/sensora"
+     },
+     "shavely-s-sierra": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/shavely-s-sierra"
+     },
+     "simmer-stir": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/simmer-stir"
+     },
+     "smart-simple": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/smart-simple"
+     },
+     "studio-selection": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/studio-selection"
+     },
+     "sweet-smiles": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/sweet-smiles"
+     },
+     "trueliving": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/trueliving",
+      "subcategories": {
+       "trueliving-home": {
+        "url": "https://www.dollargeneral.com/c/dg-brands/trueliving/trueliving-home"
+       },
+       "trueliving-household-essentials": {
+        "url": "https://www.dollargeneral.com/c/dg-brands/trueliving/trueliving-household-essentials"
+       },
+       "trueliving-kitchen": {
+        "url": "https://www.dollargeneral.com/c/dg-brands/trueliving/trueliving-kitchen"
+       },
+       "trueliving-outdoor-living": {
+        "url": "https://www.dollargeneral.com/c/dg-brands/trueliving/trueliving-outdoor-living"
+       }
+      }
+     },
+     "trueliving-laundry": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/trueliving-laundry"
+     },
+     "yumzee": {
+      "url": "https://www.dollargeneral.com/c/dg-brands/yumzee"
+     }
+    }
+   },
+   "digital-shelves": {
+    "url": "https://www.dollargeneral.com/c/digital-shelves",
+    "subcategories": {
+     "2-for--6-on-select-post-cereal": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/2-for--6-on-select-post-cereal"
+     },
+     "2-for-10-febreze": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/2-for-10-febreze"
+     },
+     "2-for-10-swiffer": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/2-for-10-swiffer"
+     },
+     "2-for-4-25-everyday": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/2-for-4-25-everyday"
+     },
+     "2-for-7": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/2-for-7"
+     },
+     "20-off-galaxy-a16": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/20-off-galaxy-a16"
+     },
+     "3-off-1-tide-evo": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/3-off-1-tide-evo"
+     },
+     "30-in-savings": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/30-in-savings"
+     },
+     "30-off-galaxy-a16": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/30-off-galaxy-a16"
+     },
+     "3lbs-more-for-free": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/3lbs-more-for-free"
+     },
+     "5-refills-300-days--60-days-per-refill-on-low-setting": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/5-refills-300-days--60-days-per-refill-on-low-setting"
+     },
+     "5-refills-300-days-60-days-per-refill-on-low-setting": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/5-refills-300-days-60-days-per-refill-on-low-setting"
+     },
+     "a-clean-as-good-as-it-smells": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/a-clean-as-good-as-it-smells"
+     },
+     "a-healthy-start-for-every-semester": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/a-healthy-start-for-every-semester"
+     },
+     "a-healthy-start-for-every-semester0": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/a-healthy-start-for-every-semester0"
+     },
+     "a-little-spooky-a-lot-intense": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/a-little-spooky-a-lot-intense"
+     },
+     "a-products-a-savings": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/a-products-a-savings"
+     },
+     "affordable-and-effective-pest-protection": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/affordable-and-effective-pest-protection"
+     },
+     "after-school-cool": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/after-school-cool"
+     },
+     "airheads-have-more-fun-this-halloween": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/airheads-have-more-fun-this-halloween"
+     },
+     "all-in-one-clean": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/all-in-one-clean"
+     },
+     "always": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/always"
+     },
+     "always-discreet-pads": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/always-discreet-pads"
+     },
+     "always-discreet-pads0": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/always-discreet-pads0"
+     },
+     "always-discreet-underwear": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/always-discreet-underwear"
+     },
+     "always-discreet-underwear0": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/always-discreet-underwear0"
+     },
+     "always-liners": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/always-liners"
+     },
+     "always-maximum-protection": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/always-maximum-protection"
+     },
+     "always-pads": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/always-pads"
+     },
+     "always-worth-it": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/always-worth-it"
+     },
+     "americas-favorite-chip-est-1938": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/americas-favorite-chip-est-1938"
+     },
+     "amerigas-propane": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/amerigas-propane"
+     },
+     "an-ice-cold-american-tradition-back-for-now--gone-in-a-sip": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/an-ice-cold-american-tradition-back-for-now--gone-in-a-sip"
+     },
+     "armor-all": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/armor-all"
+     },
+     "armor-all-instant-savings": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/armor-all-instant-savings"
+     },
+     "back-to-school-with-jimmy-dean": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/back-to-school-with-jimmy-dean"
+     },
+     "base-lyte-zero-3-3": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/base-lyte-zero-3-3"
+     },
+     "base-lyte-zero-3-for-3": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/base-lyte-zero-3-for-3"
+     },
+     "bathroom-cleaning-the-scrubby-way": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/bathroom-cleaning-the-scrubby-way"
+     },
+     "be-storm-ready-this-season-with-energizer": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/be-storm-ready-this-season-with-energizer"
+     },
+     "be-the-hero-of-your-halftime": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/be-the-hero-of-your-halftime"
+     },
+     "bloom-energy-drinks": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/bloom-energy-drinks"
+     },
+     "blue-plate-mayonnaise": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/blue-plate-mayonnaise"
+     },
+     "body-armor-work-hard-hydrate-hard": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/body-armor-work-hard-hydrate-hard"
+     },
+     "bold--crisp--and-always-in-budget": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/bold--crisp--and-always-in-budget"
+     },
+     "bold-crisp-and-always-in-budget": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/bold-crisp-and-always-in-budget"
+     },
+     "bold-crisp-and-always-in-budget0": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/bold-crisp-and-always-in-budget0"
+     },
+     "bold-fruit-flavor-zero-sugar": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/bold-fruit-flavor-zero-sugar"
+     },
+     "bold-hearty-and-satisfying": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/bold-hearty-and-satisfying"
+     },
+     "brawny-the-only-3-ply-premium-paper-towel": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/brawny-the-only-3-ply-premium-paper-towel"
+     },
+     "bring-chills-to-spooky-season": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/bring-chills-to-spooky-season"
+     },
+     "bring-home-the-tailgate": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/bring-home-the-tailgate"
+     },
+     "buy-a-bic-well-give-a-bic-to-teachers-in-need": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/buy-a-bic-well-give-a-bic-to-teachers-in-need"
+     },
+     "buy-classico-get-clover-valley-pasta-free": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/buy-classico-get-clover-valley-pasta-free"
+     },
+     "c4-energy-a250": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/c4-energy-a250"
+     },
+     "candy-shop-brand-shop": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/candy-shop-brand-shop"
+     },
+     "cap-n-crunch-or-life-cereal": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/cap-n-crunch-or-life-cereal"
+     },
+     "cast-a-sweet-spell": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/cast-a-sweet-spell"
+     },
+     "celebrate-americas-birthday": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/celebrate-americas-birthday"
+     },
+     "celebrate-drip-szn-for-less": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/celebrate-drip-szn-for-less"
+     },
+     "celebrate-drip-szn-for-less0": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/celebrate-drip-szn-for-less0"
+     },
+     "celebrate-labor-day-sweetness": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/celebrate-labor-day-sweetness"
+     },
+     "celsius": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/celsius"
+     },
+     "cheetos-scary-good-snacks": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/cheetos-scary-good-snacks"
+     },
+     "choose-better-on-and-off-the-field": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/choose-better-on-and-off-the-field"
+     },
+     "clean-home-clear-mind": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/clean-home-clear-mind"
+     },
+     "clio": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/clio"
+     },
+     "clio-minis-tastes-like-cheesecake-counts-as-yogurt": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/clio-minis-tastes-like-cheesecake-counts-as-yogurt"
+     },
+     "clio0": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/clio0"
+     },
+     "collect-them-all": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/collect-them-all"
+     },
+     "confident-smiles-start-here": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/confident-smiles-start-here"
+     },
+     "convenient-on-the-go-energy": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/convenient-on-the-go-energy"
+     },
+     "cool-down-with-ice-cold-protein": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/cool-down-with-ice-cold-protein"
+     },
+     "countdown-to-school-year-s-eve": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/countdown-to-school-year-s-eve"
+     },
+     "cozy-comforts-for-home": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/cozy-comforts-for-home"
+     },
+     "crest-toothpaste": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/crest-toothpaste"
+     },
+     "crunch-and-flavor-over-everything": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/crunch-and-flavor-over-everything"
+     },
+     "cups-and-boxes-now-4-for-5": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/cups-and-boxes-now-4-for-5"
+     },
+     "delicious-any-way-you-scoop-it": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/delicious-any-way-you-scoop-it"
+     },
+     "delicious-any-way-you-scoop-it0": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/delicious-any-way-you-scoop-it0"
+     },
+     "discover-craveable-crunch-chicken-favorites": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/discover-craveable-crunch-chicken-favorites"
+     },
+     "discover-friskies-gravy-with-rich-saucy-flavors": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/discover-friskies-gravy-with-rich-saucy-flavors"
+     },
+     "discover-lego-sets-that-will-help-make-going-to-school-a-lot": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/discover-lego-sets-that-will-help-make-going-to-school-a-lot"
+     },
+     "discover-new-items-to-love": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/discover-new-items-to-love"
+     },
+     "discover-new-lego-sets-toys": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/discover-new-lego-sets-toys"
+     },
+     "discover-new-purina-items-to-love": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/discover-new-purina-items-to-love"
+     },
+     "discover-seafood-sensations-from-friskies": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/discover-seafood-sensations-from-friskies"
+     },
+     "discover-them-all": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/discover-them-all"
+     },
+     "discover-them-all2": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/discover-them-all2"
+     },
+     "don-t-get-mad--get-glad-": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/don-t-get-mad--get-glad-"
+     },
+     "doritos-bold-comes-in-every-flavor": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/doritos-bold-comes-in-every-flavor"
+     },
+     "drink-in-and-serve-hope": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/drink-in-and-serve-hope"
+     },
+     "drink-in-fifa-world-cup-2026": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/drink-in-fifa-world-cup-2026"
+     },
+     "earn-1-80-dg-cashback-with-pedigree": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/earn-1-80-dg-cashback-with-pedigree"
+     },
+     "easiest-decision-this-school-year": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/easiest-decision-this-school-year"
+     },
+     "easy-to-pack-easy-to-please": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/easy-to-pack-easy-to-please"
+     },
+     "easy-tricks-halloween-treats": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/easy-tricks-halloween-treats"
+     },
+     "el-monterey-big-flavor-minimum-labor": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/el-monterey-big-flavor-minimum-labor"
+     },
+     "energizer-ultimate-child-shield": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/energizer-ultimate-child-shield"
+     },
+     "enfamil-120-years-of-trusted-infant-nutrition": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/enfamil-120-years-of-trusted-infant-nutrition"
+     },
+     "enjoy-the-match-with-your-ferrero-favorites": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/enjoy-the-match-with-your-ferrero-favorites"
+     },
+     "every-goal-starts-with-an-assist": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/every-goal-starts-with-an-assist"
+     },
+     "everything-your-family-counts-on": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/everything-your-family-counts-on"
+     },
+     "feed-your-chocolate-monster": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/feed-your-chocolate-monster"
+     },
+     "feed-your-chocolate-monster2": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/feed-your-chocolate-monster2"
+     },
+     "feel-good-do-good-with-suave": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/feel-good-do-good-with-suave"
+     },
+     "feel-good-energy": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/feel-good-energy"
+     },
+     "fill-the-candy-bowl-for-less": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/fill-the-candy-bowl-for-less"
+     },
+     "flavor-meets-futbol": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/flavor-meets-futbol"
+     },
+     "for-a-clean-classroom-all-year-long": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/for-a-clean-classroom-all-year-long"
+     },
+     "fresh-solutions-trusted-brands": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/fresh-solutions-trusted-brands"
+     },
+     "friskies-surf-turf-get-the-best-of-both-worlds": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/friskies-surf-turf-get-the-best-of-both-worlds"
+     },
+     "from-table-to-tidy": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/from-table-to-tidy"
+     },
+     "fruity-flavor-fruity-fun": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/fruity-flavor-fruity-fun"
+     },
+     "fuel-the-school-year-with-great-tasting-protein": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/fuel-the-school-year-with-great-tasting-protein"
+     },
+     "gain-laundry-detergent": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/gain-laundry-detergent"
+     },
+     "gameday-picks-priced-right": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/gameday-picks-priced-right"
+     },
+     "garnier-micellar-maybelline-sky-high": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/garnier-micellar-maybelline-sky-high"
+     },
+     "get-hydration-and-added-shine-with-shea-moisture": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/get-hydration-and-added-shine-with-shea-moisture"
+     },
+     "get-pumped-for-vibrant-scents": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/get-pumped-for-vibrant-scents"
+     },
+     "get-salon-quality-hair-at-home-with-tresemme-": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/get-salon-quality-hair-at-home-with-tresemme-"
+     },
+     "get-your-snacks-in-gear": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/get-your-snacks-in-gear"
+     },
+     "gift-literacy-with-every-purchase": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/gift-literacy-with-every-purchase"
+     },
+     "gift-the-love-of-bricks": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/gift-the-love-of-bricks"
+     },
+     "gives-you-wiiings": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/gives-you-wiiings"
+     },
+     "glade-fall-fragrances-drop-august-15": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/glade-fall-fragrances-drop-august-15"
+     },
+     "glade-small-room-air-fresheners": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/glade-small-room-air-fresheners"
+     },
+     "grab-a-fanta-before-they-do": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/grab-a-fanta-before-they-do"
+     },
+     "grab-a-fanta-before-they-do0": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/grab-a-fanta-before-they-do0"
+     },
+     "grab-fall-favorites": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/grab-fall-favorites"
+     },
+     "greek-yogurt-made-with-only-natural-ingredients": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/greek-yogurt-made-with-only-natural-ingredients"
+     },
+     "grill-like-a-champion": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/grill-like-a-champion"
+     },
+     "high-quality-protein-to-build-muscle": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/high-quality-protein-to-build-muscle"
+     },
+     "hit-refresh-on-flavor": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/hit-refresh-on-flavor"
+     },
+     "holiday-gifting": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/holiday-gifting"
+     },
+     "home-care-made-easy-with-dg-delivery": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/home-care-made-easy-with-dg-delivery"
+     },
+     "home-care-made-easy-with-dg-delivery2": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/home-care-made-easy-with-dg-delivery2"
+     },
+     "hydrate-and-save-big": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/hydrate-and-save-big"
+     },
+     "hydrate-and-save-on-propel": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/hydrate-and-save-on-propel"
+     },
+     "hydrate-save-on-gatorade-today": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/hydrate-save-on-gatorade-today"
+     },
+     "instantly-save-2-on-energizer-max-aa-or-aaa-16pks": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/instantly-save-2-on-energizer-max-aa-or-aaa-16pks"
+     },
+     "international-delight-creamers": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/international-delight-creamers"
+     },
+     "it-s-always-worth-it": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/it-s-always-worth-it"
+     },
+     "joyful-scents-for-festive-moments": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/joyful-scents-for-festive-moments"
+     },
+     "july-ice-cream": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/july-ice-cream"
+     },
+     "keep-her-confident-with-dove-": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/keep-her-confident-with-dove-"
+     },
+     "keep-your-engine-running-like-new-with-mobil": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/keep-your-engine-running-like-new-with-mobil"
+     },
+     "kibbles-n-bits": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/kibbles-n-bits"
+     },
+     "kick-up-your-water": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/kick-up-your-water"
+     },
+     "kraft-mac-cheese": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/kraft-mac-cheese"
+     },
+     "l-a-colors-quality-that-performs": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/l-a-colors-quality-that-performs"
+     },
+     "live-fit-go": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/live-fit-go"
+     },
+     "live-life-nvr-bugged": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/live-life-nvr-bugged"
+     },
+     "live-loud-2-for-3-50": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/live-loud-2-for-3-50"
+     },
+     "livefitgo": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/livefitgo"
+     },
+     "loads-of-value": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/loads-of-value"
+     },
+     "long-lasting-freshness-powerful-clean": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/long-lasting-freshness-powerful-clean"
+     },
+     "lunch-to-the-fullest": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/lunch-to-the-fullest"
+     },
+     "lunch-to-the-fullest0": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/lunch-to-the-fullest0"
+     },
+     "lunch-to-the-fullest4": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/lunch-to-the-fullest4"
+     },
+     "made-for-every-table": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/made-for-every-table"
+     },
+     "make-any-night-fright-night-with-tyson-foods": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/make-any-night-fright-night-with-tyson-foods"
+     },
+     "make-dinner-dollars-go-further-with-eggs": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/make-dinner-dollars-go-further-with-eggs"
+     },
+     "make-it-a-cheesy-good-year": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/make-it-a-cheesy-good-year"
+     },
+     "make-it-an-airheads-summer": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/make-it-an-airheads-summer"
+     },
+     "make-mealtime-fun-with-spaghettios": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/make-mealtime-fun-with-spaghettios"
+     },
+     "make-mornings-more-delicious": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/make-mornings-more-delicious"
+     },
+     "make-the-switch-to-oxiclean": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/make-the-switch-to-oxiclean"
+     },
+     "make-their-lunchbox-legendary": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/make-their-lunchbox-legendary"
+     },
+     "make-your-cats-holiday-a-little-merrier": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/make-your-cats-holiday-a-little-merrier"
+     },
+     "maxcontrol-technology-2pk-glade-warmers-for-4-25": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/maxcontrol-technology-2pk-glade-warmers-for-4-25"
+     },
+     "mentos-gum-yes-to-fresh": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/mentos-gum-yes-to-fresh"
+     },
+     "mini-donuts-make-for-big-smiles": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/mini-donuts-make-for-big-smiles"
+     },
+     "mini-snack-big-flavor-5-new-hot-pockets-minis": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/mini-snack-big-flavor-5-new-hot-pockets-minis"
+     },
+     "more-slices-more-layers-more-lunches": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/more-slices-more-layers-more-lunches"
+     },
+     "natures-bounty-its-in-your-nature-to-thrive": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/natures-bounty-its-in-your-nature-to-thrive"
+     },
+     "never-lose-a-tailgate": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/never-lose-a-tailgate"
+     },
+     "never-lose-a-tailgate0": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/never-lose-a-tailgate0"
+     },
+     "new-bag--same-stud-puds-": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/new-bag--same-stud-puds-"
+     },
+     "new-everyday-lower-pricing": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/new-everyday-lower-pricing"
+     },
+     "new-low-price-": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/new-low-price-"
+     },
+     "new-low-prices-": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/new-low-prices-"
+     },
+     "no-brainer-snacks": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/no-brainer-snacks"
+     },
+     "no-tricks-all-treats": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/no-tricks-all-treats"
+     },
+     "now-available-at-dg-": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/now-available-at-dg-"
+     },
+     "off-repellents": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/off-repellents"
+     },
+     "oreo-bts-are-calling-join-us": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/oreo-bts-are-calling-join-us"
+     },
+     "out-of-this-world-delicious": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/out-of-this-world-delicious"
+     },
+     "pack-a-snacktime-friend": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/pack-a-snacktime-friend"
+     },
+     "palmolive-dish-soap-pumps": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/palmolive-dish-soap-pumps"
+     },
+     "paw-activated-freshness-in-every-step": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/paw-activated-freshness-in-every-step"
+     },
+     "peanut-butter---jelly-time-is-back": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/peanut-butter---jelly-time-is-back"
+     },
+     "planty-deliciousness-made-for-mornings": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/planty-deliciousness-made-for-mornings"
+     },
+     "power-the-holidays-with-energizer-max": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/power-the-holidays-with-energizer-max"
+     },
+     "power-through-the-storm-be-storm-ready-this-season-with-energiz": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/power-through-the-storm-be-storm-ready-this-season-with-energiz"
+     },
+     "power-up-for-power-outs-stay-prepared-for-power-outages-shop": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/power-up-for-power-outs-stay-prepared-for-power-outages-shop"
+     },
+     "power-up-lunchtime-fun": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/power-up-lunchtime-fun"
+     },
+     "power-up-your-laundry-routine": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/power-up-your-laundry-routine"
+     },
+     "power-up-your-laundry-routine0": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/power-up-your-laundry-routine0"
+     },
+     "power-your-potential": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/power-your-potential"
+     },
+     "prepare-for-cough-cold-flu": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/prepare-for-cough-cold-flu"
+     },
+     "propane-made-easy": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/propane-made-easy"
+     },
+     "protein-that-satisfies": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/protein-that-satisfies"
+     },
+     "proud-partner-of-dollar-general-literacy-foundation": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/proud-partner-of-dollar-general-literacy-foundation"
+     },
+     "quality-cuts-bold-flavor": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/quality-cuts-bold-flavor"
+     },
+     "raise-a-rocher-this-holiday-season": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/raise-a-rocher-this-holiday-season"
+     },
+     "read-with-ritz-crackers": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/read-with-ritz-crackers"
+     },
+     "ready-set-summer": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/ready-set-summer"
+     },
+     "readysetsummer": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/readysetsummer"
+     },
+     "real-dairy-priced-right": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/real-dairy-priced-right"
+     },
+     "real-solution-for-real-homes2": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/real-solution-for-real-homes2"
+     },
+     "real-solutions-for-real-homes": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/real-solutions-for-real-homes"
+     },
+     "red-bull-energy": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/red-bull-energy"
+     },
+     "refresh-with-dasani": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/refresh-with-dasani"
+     },
+     "refresh-your-holiday-spirit-spend-10-save-2": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/refresh-your-holiday-spirit-spend-10-save-2"
+     },
+     "refreshing-flavor--big-value": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/refreshing-flavor--big-value"
+     },
+     "refreshing-flavor-big-value": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/refreshing-flavor-big-value"
+     },
+     "rehydrate-fast-with-gatorlyte": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/rehydrate-fast-with-gatorlyte"
+     },
+     "restaurant-favorites-now-at-home": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/restaurant-favorites-now-at-home"
+     },
+     "reynolds---hefty-holiday-essentials": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/reynolds---hefty-holiday-essentials"
+     },
+     "ritz-crackers-for-every-occasion": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/ritz-crackers-for-every-occasion"
+     },
+     "rockin--protein": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/rockin--protein"
+     },
+     "rubbermaid-locked-in-pricing": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/rubbermaid-locked-in-pricing"
+     },
+     "save-1": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/save-1"
+     },
+     "save-2-on-10-of-any-frozen-food-brands-shown": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/save-2-on-10-of-any-frozen-food-brands-shown"
+     },
+     "save-2-on-energizer-max-aa-or-aaa-16pks": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/save-2-on-energizer-max-aa-or-aaa-16pks"
+     },
+     "save-2-when-you-buy-2": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/save-2-when-you-buy-2"
+     },
+     "save-big-on-routine-essentials": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/save-big-on-routine-essentials"
+     },
+     "save-big-stay-ready": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/save-big-stay-ready"
+     },
+     "save-now": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/save-now"
+     },
+     "save-now-with-l-a-colors": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/save-now-with-l-a-colors"
+     },
+     "save-on-dog-chow-30-lb--see-coupon-on-bag": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/save-on-dog-chow-30-lb--see-coupon-on-bag"
+     },
+     "save-on-gatorade-favorites-today-hydrates-better-than-water": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/save-on-gatorade-favorites-today-hydrates-better-than-water"
+     },
+     "save-on-hefty-press-to-close-food-storage-bag": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/save-on-hefty-press-to-close-food-storage-bag"
+     },
+     "save-on-post-cereal-today": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/save-on-post-cereal-today"
+     },
+     "save-on-select-dog-chow-items": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/save-on-select-dog-chow-items"
+     },
+     "save-on-summer-essentials-to-celebrate-americas-250th-birthday": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/save-on-summer-essentials-to-celebrate-americas-250th-birthday"
+     },
+     "savor-the-scents-of-fall": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/savor-the-scents-of-fall"
+     },
+     "say-goodbye-to-fleas-and-ticks": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/say-goodbye-to-fleas-and-ticks"
+     },
+     "scoop-into-summer": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/scoop-into-summer"
+     },
+     "scoop-smile-support-literacy": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/scoop-smile-support-literacy"
+     },
+     "score-big-for-the-match": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/score-big-for-the-match"
+     },
+     "score-big-grab-a-gallon": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/score-big-grab-a-gallon"
+     },
+     "score-footballs-greatest-lineup": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/score-footballs-greatest-lineup"
+     },
+     "score-hometown-touchdowns": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/score-hometown-touchdowns"
+     },
+     "serve-up-delicious-quality": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/serve-up-delicious-quality"
+     },
+     "shamrock-farms": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/shamrock-farms"
+     },
+     "shamrock-farms-x-rockin-protein": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/shamrock-farms-x-rockin-protein"
+     },
+     "shamrock-farms2": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/shamrock-farms2"
+     },
+     "shop-always-discreet-pads": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/shop-always-discreet-pads"
+     },
+     "shop-energizer-stay-prepared-for-wildfires": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/shop-energizer-stay-prepared-for-wildfires"
+     },
+     "shop-hanes": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/shop-hanes"
+     },
+     "shop-hanes0": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/shop-hanes0"
+     },
+     "shop-milos-teas-and-lemonades": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/shop-milos-teas-and-lemonades"
+     },
+     "shop-natures-own-bread": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/shop-natures-own-bread"
+     },
+     "shop-new-dg-health-arrivals": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/shop-new-dg-health-arrivals"
+     },
+     "shop-now": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/shop-now"
+     },
+     "shop-smarter-for-back-to-school": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/shop-smarter-for-back-to-school"
+     },
+     "shop-twix-ice-cream": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/shop-twix-ice-cream"
+     },
+     "shop-your-back-to-school-faves": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/shop-your-back-to-school-faves"
+     },
+     "silk-almondmilk": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/silk-almondmilk"
+     },
+     "sip-save-on-pepsi-mountain-dew": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/sip-save-on-pepsi-mountain-dew"
+     },
+     "sip-snack-summer-buy-2-save-4": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/sip-snack-summer-buy-2-save-4"
+     },
+     "smooth-skin--bold-moves-": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/smooth-skin--bold-moves-"
+     },
+     "smore-fun-for-everyone": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/smore-fun-for-everyone"
+     },
+     "snack-time-with-gerber": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/snack-time-with-gerber"
+     },
+     "snack-to-school-faves": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/snack-to-school-faves"
+     },
+     "snacks-to-brighten-their-day": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/snacks-to-brighten-their-day"
+     },
+     "sour-sweet-spooky": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/sour-sweet-spooky"
+     },
+     "spend-15-save-5": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/spend-15-save-5"
+     },
+     "spook-tacular-savings": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/spook-tacular-savings"
+     },
+     "stars-stripes-savings": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/stars-stripes-savings"
+     },
+     "stars-stripes-summer-ready": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/stars-stripes-summer-ready"
+     },
+     "start-fresh-for-success": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/start-fresh-for-success"
+     },
+     "start-school-days-the-right-way": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/start-school-days-the-right-way"
+     },
+     "stay-cool-and-hydrate": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/stay-cool-and-hydrate"
+     },
+     "stay-cool-with-shamrock-farms": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/stay-cool-with-shamrock-farms"
+     },
+     "stay-fresh-all-day-with-degree-body-wash": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/stay-fresh-all-day-with-degree-body-wash"
+     },
+     "stay-fresh-with-axe-degree-and-dove-men-care-": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/stay-fresh-with-axe-degree-and-dove-men-care-"
+     },
+     "stay-irresistibly-fresh-non-stop-with-axe": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/stay-irresistibly-fresh-non-stop-with-axe"
+     },
+     "stay-prepared-for-power-outages-with-energizer": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/stay-prepared-for-power-outages-with-energizer"
+     },
+     "stay-ready-season-refresh-your-routine": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/stay-ready-season-refresh-your-routine"
+     },
+     "stem--live-life-nvr-bugged": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/stem--live-life-nvr-bugged"
+     },
+     "stock-up---save-on-unilever-with-mydg-delivery": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/stock-up---save-on-unilever-with-mydg-delivery"
+     },
+     "stock-up-and-save-now-on-school-essentials": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/stock-up-and-save-now-on-school-essentials"
+     },
+     "stock-up-clean-up-save": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/stock-up-clean-up-save"
+     },
+     "stock-up-for-summer-": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/stock-up-for-summer-"
+     },
+     "stock-up-on-a-snacks": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/stock-up-on-a-snacks"
+     },
+     "stock-up-on-angel-soft-sparkle-for-back-to-school": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/stock-up-on-angel-soft-sparkle-for-back-to-school"
+     },
+     "stock-up-on-school-supplies": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/stock-up-on-school-supplies"
+     },
+     "stock-up-save-on-degree": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/stock-up-save-on-degree"
+     },
+     "stock-up-stay-safe-ac-shop-energizer-stay-prepared-for-wild": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/stock-up-stay-safe-ac-shop-energizer-stay-prepared-for-wild"
+     },
+     "stok-cold-brew-coffee": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/stok-cold-brew-coffee"
+     },
+     "stouffers-for-when-the-clock-strikes-dinner": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/stouffers-for-when-the-clock-strikes-dinner"
+     },
+     "summer-2026-milos-tea": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/summer-2026-milos-tea"
+     },
+     "summer-bbq": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/summer-bbq"
+     },
+     "summer-grilling-tyson-fresh-beef-pork": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/summer-grilling-tyson-fresh-beef-pork"
+     },
+     "summer-hydration-for-less": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/summer-hydration-for-less"
+     },
+     "summerscoops": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/summerscoops"
+     },
+     "sweetenyoursummer": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/sweetenyoursummer"
+     },
+     "tail-wagging-meaty-tastes": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/tail-wagging-meaty-tastes"
+     },
+     "tailgating-made-simple": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/tailgating-made-simple"
+     },
+     "take-taco-night-on-a-flavor-trip": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/take-taco-night-on-a-flavor-trip"
+     },
+     "takeyoursweettime": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/takeyoursweettime"
+     },
+     "tampax": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/tampax"
+     },
+     "taste-of-game-day-every-day": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/taste-of-game-day-every-day"
+     },
+     "taste-the-difference": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/taste-the-difference"
+     },
+     "tasty-savory-end-of-story": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/tasty-savory-end-of-story"
+     },
+     "tasty-savory-end-of-story-2": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/tasty-savory-end-of-story-2"
+     },
+     "tbc": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/tbc"
+     },
+     "the-a-after-school-duo": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/the-a-after-school-duo"
+     },
+     "the-purr-fect-halloween-treat-haul": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/the-purr-fect-halloween-treat-haul"
+     },
+     "the-snack-of-the-most-intense-fans": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/the-snack-of-the-most-intense-fans"
+     },
+     "the-united-tastes-of-america": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/the-united-tastes-of-america"
+     },
+     "the-united-tastes-of-america0": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/the-united-tastes-of-america0"
+     },
+     "tint-shine-glow-with-l-a-colors": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/tint-shine-glow-with-l-a-colors"
+     },
+     "tostitos-gameday-tradition-matters": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/tostitos-gameday-tradition-matters"
+     },
+     "tradition-made-delicious": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/tradition-made-delicious"
+     },
+     "trick-or-treat-yourself-to-bold-l-a-colors-glam": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/trick-or-treat-yourself-to-bold-l-a-colors-glam"
+     },
+     "trusted-for-140-years": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/trusted-for-140-years"
+     },
+     "try-new-gatorade-lower-sugar": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/try-new-gatorade-lower-sugar"
+     },
+     "try-new-mountain-dew-trolli-today": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/try-new-mountain-dew-trolli-today"
+     },
+     "try-new-pepsi-vanilla-cream": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/try-new-pepsi-vanilla-cream"
+     },
+     "try-new-pepsi-wild-cherry-cream": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/try-new-pepsi-wild-cherry-cream"
+     },
+     "try-new-pepsi-wild-cherry-cream1": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/try-new-pepsi-wild-cherry-cream1"
+     },
+     "try-new-purple-cotton-candy": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/try-new-purple-cotton-candy"
+     },
+     "try-the-new-red-bull-summer-edition---limited-time-only-": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/try-the-new-red-bull-summer-edition---limited-time-only-"
+     },
+     "twist-lick-vote": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/twist-lick-vote"
+     },
+     "undeniable-snack-champ": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/undeniable-snack-champ"
+     },
+     "unlock-your-my-dg-rewards": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/unlock-your-my-dg-rewards"
+     },
+     "upgrade-your-mornings": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/upgrade-your-mornings"
+     },
+     "utz-chips-crunch-and-flavor-over-everything": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/utz-chips-crunch-and-flavor-over-everything"
+     },
+     "visibly-brighter-teeth-for-the-holidays": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/visibly-brighter-teeth-for-the-holidays"
+     },
+     "wake-up-your-best-self": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/wake-up-your-best-self"
+     },
+     "we-have-got-your-ice-cream-dream-line-up": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/we-have-got-your-ice-cream-dream-line-up"
+     },
+     "weather-the-weather-with-energizer-max": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/weather-the-weather-with-energizer-max"
+     },
+     "whats-new-in-snacking-at-dollar-general": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/whats-new-in-snacking-at-dollar-general"
+     },
+     "when-dinner-time-strikes-think-stouffer": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/when-dinner-time-strikes-think-stouffer"
+     },
+     "yasso-frozen-greek-yogurt": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/yasso-frozen-greek-yogurt"
+     },
+     "your-little-luxury--try-new-hersheyas-creme-bars-": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/your-little-luxury--try-new-hersheyas-creme-bars-"
+     },
+     "your-tailgate-starting-lineup": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/your-tailgate-starting-lineup"
+     },
+     "yum-obviously-big-flavor-bigger-savings": {
+      "url": "https://www.dollargeneral.com/c/digital-shelves/yum-obviously-big-flavor-bigger-savings"
+     }
+    }
+   },
+   "ds": {
+    "url": "https://www.dollargeneral.com/c/ds",
+    "subcategories": {
+     "a-w-family-night": {
+      "url": "https://www.dollargeneral.com/c/ds/a-w-family-night"
+     },
+     "angel-soft-scented": {
+      "url": "https://www.dollargeneral.com/c/ds/angel-soft-scented"
+     },
+     "astepro": {
+      "url": "https://www.dollargeneral.com/c/ds/astepro"
+     },
+     "bayer-digestive-health": {
+      "url": "https://www.dollargeneral.com/c/ds/bayer-digestive-health"
+     },
+     "bayer-vitamins": {
+      "url": "https://www.dollargeneral.com/c/ds/bayer-vitamins"
+     },
+     "fall-allergy-relief": {
+      "url": "https://www.dollargeneral.com/c/ds/fall-allergy-relief"
+     },
+     "fall-projects-are-in-the-bag-with-hefty-trash-bags": {
+      "url": "https://www.dollargeneral.com/c/ds/fall-projects-are-in-the-bag-with-hefty-trash-bags"
+     },
+     "ferrera": {
+      "url": "https://www.dollargeneral.com/c/ds/ferrera"
+     },
+     "fill-their-bowl-with-ingredients-they-will-really-love": {
+      "url": "https://www.dollargeneral.com/c/ds/fill-their-bowl-with-ingredients-they-will-really-love"
+     },
+     "general-mills": {
+      "url": "https://www.dollargeneral.com/c/ds/general-mills"
+     },
+     "general-mills-baking": {
+      "url": "https://www.dollargeneral.com/c/ds/general-mills-baking"
+     },
+     "get-outstanding-odor-control-with-tidy-cats": {
+      "url": "https://www.dollargeneral.com/c/ds/get-outstanding-odor-control-with-tidy-cats"
+     },
+     "hanes-holiday": {
+      "url": "https://www.dollargeneral.com/c/ds/hanes-holiday"
+     },
+     "hefty": {
+      "url": "https://www.dollargeneral.com/c/ds/hefty"
+     },
+     "holiday-entertaining-made-easy": {
+      "url": "https://www.dollargeneral.com/c/ds/holiday-entertaining-made-easy"
+     },
+     "holiday-flavors": {
+      "url": "https://www.dollargeneral.com/c/ds/holiday-flavors"
+     },
+     "johnson-and-johnson-digestive": {
+      "url": "https://www.dollargeneral.com/c/ds/johnson-and-johnson-digestive"
+     },
+     "johnson-johnson-cold-cough-flu": {
+      "url": "https://www.dollargeneral.com/c/ds/johnson-johnson-cold-cough-flu"
+     },
+     "johnson-johnson-consumer-health-adult-and-pediatrics-pain": {
+      "url": "https://www.dollargeneral.com/c/ds/johnson-johnson-consumer-health-adult-and-pediatrics-pain"
+     },
+     "kraft-heinz-bake-center": {
+      "url": "https://www.dollargeneral.com/c/ds/kraft-heinz-bake-center"
+     },
+     "kraft-heinz-classico": {
+      "url": "https://www.dollargeneral.com/c/ds/kraft-heinz-classico"
+     },
+     "kraft-heinz-grilled-cheese": {
+      "url": "https://www.dollargeneral.com/c/ds/kraft-heinz-grilled-cheese"
+     },
+     "kraft-heinz-sauces": {
+      "url": "https://www.dollargeneral.com/c/ds/kraft-heinz-sauces"
+     },
+     "kraft-heinz-snap": {
+      "url": "https://www.dollargeneral.com/c/ds/kraft-heinz-snap"
+     },
+     "kraft-heinz-thanksgiving": {
+      "url": "https://www.dollargeneral.com/c/ds/kraft-heinz-thanksgiving"
+     },
+     "kraft-sandwich-inspiration": {
+      "url": "https://www.dollargeneral.com/c/ds/kraft-sandwich-inspiration"
+     },
+     "make-happy-and-healthy-happen-with-beneful": {
+      "url": "https://www.dollargeneral.com/c/ds/make-happy-and-healthy-happen-with-beneful"
+     },
+     "malt-o-meal": {
+      "url": "https://www.dollargeneral.com/c/ds/malt-o-meal"
+     },
+     "mondelez-stocking-stuffers": {
+      "url": "https://www.dollargeneral.com/c/ds/mondelez-stocking-stuffers"
+     },
+     "power-of-breakfast": {
+      "url": "https://www.dollargeneral.com/c/ds/power-of-breakfast"
+     },
+     "unilever-hair-event": {
+      "url": "https://www.dollargeneral.com/c/ds/unilever-hair-event"
+     },
+     "valuecollection": {
+      "url": "https://www.dollargeneral.com/c/ds/valuecollection"
+     },
+     "wound-care": {
+      "url": "https://www.dollargeneral.com/c/ds/wound-care"
+     }
+    }
+   },
+   "electronics": {
+    "url": "https://www.dollargeneral.com/c/electronics",
+    "subcategories": {
+     "batteries": {
+      "url": "https://www.dollargeneral.com/c/electronics/batteries"
+     },
+     "electronics-on-sale": {
+      "url": "https://www.dollargeneral.com/c/electronics/electronics-on-sale"
+     },
+     "gift-cards-reloadable-cards": {
+      "url": "https://www.dollargeneral.com/c/electronics/gift-cards-reloadable-cards"
+     },
+     "home-gaming": {
+      "url": "https://www.dollargeneral.com/c/electronics/home-gaming"
+     },
+     "portable-audio": {
+      "url": "https://www.dollargeneral.com/c/electronics/portable-audio"
+     },
+     "prepaid-phones": {
+      "url": "https://www.dollargeneral.com/c/electronics/prepaid-phones",
+      "subcategories": {
+       "accessories": {
+        "url": "https://www.dollargeneral.com/c/electronics/prepaid-phones/accessories"
+       },
+       "devices": {
+        "url": "https://www.dollargeneral.com/c/electronics/prepaid-phones/devices"
+       },
+       "devices0": {
+        "url": "https://www.dollargeneral.com/c/electronics/prepaid-phones/devices0"
+       },
+       "plans---sim-cards": {
+        "url": "https://www.dollargeneral.com/c/electronics/prepaid-phones/plans---sim-cards"
+       },
+       "plans-sim-cards": {
+        "url": "https://www.dollargeneral.com/c/electronics/prepaid-phones/plans-sim-cards"
+       },
+       "simple-mobile": {
+        "url": "https://www.dollargeneral.com/c/electronics/prepaid-phones/simple-mobile"
+       },
+       "verizon": {
+        "url": "https://www.dollargeneral.com/c/electronics/prepaid-phones/verizon"
+       }
+      }
+     },
+     "tech-accessories": {
+      "url": "https://www.dollargeneral.com/c/electronics/tech-accessories"
+     },
+     "tracfone": {
+      "url": "https://www.dollargeneral.com/c/electronics/tracfone"
+     }
+    }
+   },
+   "food-beverage": {
+    "url": "https://www.dollargeneral.com/c/food-beverage",
+    "subcategories": {
+     "2-food-items": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/2-food-items",
+      "subcategories": {
+       "breakfast-ideas-for--2-or-less": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/2-food-items/breakfast-ideas-for--2-or-less"
+       },
+       "dinner-ideas-for--2-or-less": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/2-food-items/dinner-ideas-for--2-or-less"
+       },
+       "lunch-ideas-for--2-or-less": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/2-food-items/lunch-ideas-for--2-or-less"
+       },
+       "sweet-treats-for--2-or-less": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/2-food-items/sweet-treats-for--2-or-less"
+       }
+      }
+     },
+     "armour": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/armour"
+     },
+     "baby-food": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/baby-food"
+     },
+     "baking-cakes-mixes": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/baking-cakes-mixes"
+     },
+     "better-for-you": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/better-for-you",
+      "subcategories": {
+       "better-for-you-beverages": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/better-for-you/better-for-you-beverages"
+       },
+       "better-for-you-frozen-refrigerated-food": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/better-for-you/better-for-you-frozen-refrigerated-food"
+       },
+       "better-for-you-grocery": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/better-for-you/better-for-you-grocery"
+       },
+       "better-for-you-snacks-cookies": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/better-for-you/better-for-you-snacks-cookies"
+       }
+      }
+     },
+     "beverages": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/beverages",
+      "subcategories": {
+       "beer": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/beverages/beer"
+       },
+       "beer0": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/beverages/beer0"
+       },
+       "coffee-tea": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/beverages/coffee-tea"
+       },
+       "drink-mixes": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/beverages/drink-mixes"
+       },
+       "energy-drinks": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/beverages/energy-drinks"
+       },
+       "juice": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/beverages/juice"
+       },
+       "shop-by-brand": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/beverages/shop-by-brand",
+        "subcategories": {
+         "clover-valley": {
+          "url": "https://www.dollargeneral.com/c/food-beverage/beverages/shop-by-brand/clover-valley"
+         },
+         "coca-cola": {
+          "url": "https://www.dollargeneral.com/c/food-beverage/beverages/shop-by-brand/coca-cola"
+         },
+         "gatorade": {
+          "url": "https://www.dollargeneral.com/c/food-beverage/beverages/shop-by-brand/gatorade"
+         },
+         "red-bull": {
+          "url": "https://www.dollargeneral.com/c/food-beverage/beverages/shop-by-brand/red-bull"
+         },
+         "starbucks": {
+          "url": "https://www.dollargeneral.com/c/food-beverage/beverages/shop-by-brand/starbucks"
+         }
+        }
+       },
+       "soft-drinks": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/beverages/soft-drinks",
+        "subcategories": {
+         "shop-by-brand": {
+          "url": "https://www.dollargeneral.com/c/food-beverage/beverages/soft-drinks/shop-by-brand",
+          "subcategories": {
+           "aw": {
+            "url": "https://www.dollargeneral.com/c/food-beverage/beverages/soft-drinks/shop-by-brand/aw"
+           },
+           "canada-dry": {
+            "url": "https://www.dollargeneral.com/c/food-beverage/beverages/soft-drinks/shop-by-brand/canada-dry"
+           },
+           "dr-pepper": {
+            "url": "https://www.dollargeneral.com/c/food-beverage/beverages/soft-drinks/shop-by-brand/dr-pepper"
+           },
+           "fanta": {
+            "url": "https://www.dollargeneral.com/c/food-beverage/beverages/soft-drinks/shop-by-brand/fanta"
+           },
+           "mountain-dew": {
+            "url": "https://www.dollargeneral.com/c/food-beverage/beverages/soft-drinks/shop-by-brand/mountain-dew"
+           },
+           "pepsi": {
+            "url": "https://www.dollargeneral.com/c/food-beverage/beverages/soft-drinks/shop-by-brand/pepsi"
+           },
+           "sprite": {
+            "url": "https://www.dollargeneral.com/c/food-beverage/beverages/soft-drinks/shop-by-brand/sprite"
+           }
+          }
+         }
+        }
+       },
+       "sports-drinks": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/beverages/sports-drinks"
+       },
+       "water": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/beverages/water"
+       },
+       "wine": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/beverages/wine"
+       },
+       "wine0": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/beverages/wine0"
+       }
+      }
+     },
+     "breakroom-coffee-snacks": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/breakroom-coffee-snacks"
+     },
+     "candy-gum": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/candy-gum",
+      "subcategories": {
+       "shop-by-brand": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/candy-gum/shop-by-brand",
+        "subcategories": {
+         "extra": {
+          "url": "https://www.dollargeneral.com/c/food-beverage/candy-gum/shop-by-brand/extra"
+         },
+         "haribo": {
+          "url": "https://www.dollargeneral.com/c/food-beverage/candy-gum/shop-by-brand/haribo"
+         },
+         "hersheys": {
+          "url": "https://www.dollargeneral.com/c/food-beverage/candy-gum/shop-by-brand/hersheys"
+         },
+         "life-savers": {
+          "url": "https://www.dollargeneral.com/c/food-beverage/candy-gum/shop-by-brand/life-savers"
+         },
+         "mms": {
+          "url": "https://www.dollargeneral.com/c/food-beverage/candy-gum/shop-by-brand/mms"
+         },
+         "reeses": {
+          "url": "https://www.dollargeneral.com/c/food-beverage/candy-gum/shop-by-brand/reeses"
+         },
+         "russell-stover": {
+          "url": "https://www.dollargeneral.com/c/food-beverage/candy-gum/shop-by-brand/russell-stover"
+         },
+         "snickers": {
+          "url": "https://www.dollargeneral.com/c/food-beverage/candy-gum/shop-by-brand/snickers"
+         },
+         "sour-patch-kids": {
+          "url": "https://www.dollargeneral.com/c/food-beverage/candy-gum/shop-by-brand/sour-patch-kids"
+         },
+         "trolli": {
+          "url": "https://www.dollargeneral.com/c/food-beverage/candy-gum/shop-by-brand/trolli"
+         }
+        }
+       }
+      }
+     },
+     "capri-sun": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/capri-sun"
+     },
+     "cereal-breakfast": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/cereal-breakfast",
+      "subcategories": {
+       "shop-by-brand": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/cereal-breakfast/shop-by-brand",
+        "subcategories": {
+         "cheerios": {
+          "url": "https://www.dollargeneral.com/c/food-beverage/cereal-breakfast/shop-by-brand/cheerios"
+         },
+         "cinnamon-toast-crunch": {
+          "url": "https://www.dollargeneral.com/c/food-beverage/cereal-breakfast/shop-by-brand/cinnamon-toast-crunch"
+         },
+         "clover-valley": {
+          "url": "https://www.dollargeneral.com/c/food-beverage/cereal-breakfast/shop-by-brand/clover-valley"
+         },
+         "frosted-flakes": {
+          "url": "https://www.dollargeneral.com/c/food-beverage/cereal-breakfast/shop-by-brand/frosted-flakes"
+         },
+         "jimmy-dean": {
+          "url": "https://www.dollargeneral.com/c/food-beverage/cereal-breakfast/shop-by-brand/jimmy-dean"
+         },
+         "pebbles": {
+          "url": "https://www.dollargeneral.com/c/food-beverage/cereal-breakfast/shop-by-brand/pebbles"
+         },
+         "pop-tarts": {
+          "url": "https://www.dollargeneral.com/c/food-beverage/cereal-breakfast/shop-by-brand/pop-tarts"
+         },
+         "quaker": {
+          "url": "https://www.dollargeneral.com/c/food-beverage/cereal-breakfast/shop-by-brand/quaker"
+         }
+        }
+       }
+      }
+     },
+     "cheerios": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/cheerios"
+     },
+     "coffee-tea": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/coffee-tea"
+     },
+     "conagra": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/conagra"
+     },
+     "dreyers-grand-ice-cream": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/dreyers-grand-ice-cream"
+     },
+     "folgers": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/folgers"
+     },
+     "food-beverage-on-sale": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/food-beverage-on-sale"
+     },
+     "fresh-food": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/fresh-food"
+     },
+     "frozen-food": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/frozen-food",
+      "subcategories": {
+       "frozen-appetizers---snacks": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/frozen-food/frozen-appetizers---snacks"
+       },
+       "frozen-bread---dough": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/frozen-food/frozen-bread---dough"
+       },
+       "frozen-breakfast-food": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/frozen-food/frozen-breakfast-food"
+       },
+       "frozen-meals---entrees": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/frozen-food/frozen-meals---entrees"
+       },
+       "frozen-meat---seafood": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/frozen-food/frozen-meat---seafood"
+       },
+       "frozen-pizza": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/frozen-food/frozen-pizza"
+       },
+       "frozen-sides": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/frozen-food/frozen-sides"
+       },
+       "ice-cream-desserts": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/frozen-food/ice-cream-desserts"
+       }
+      }
+     },
+     "game-day-food-drinks": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/game-day-food-drinks"
+     },
+     "hispanic-food-pantry": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/hispanic-food-pantry"
+     },
+     "hispanic-foods-ingredients": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/hispanic-foods-ingredients"
+     },
+     "hormel": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/hormel"
+     },
+     "kelloggs-cereal": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/kelloggs-cereal"
+     },
+     "keurig-dr-pepper": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/keurig-dr-pepper"
+     },
+     "lunch-after-school-snacks": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/lunch-after-school-snacks"
+     },
+     "mars-snacking": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/mars-snacking"
+     },
+     "meals-side-dishes": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/meals-side-dishes",
+      "subcategories": {
+       "bread-tortillas-wraps": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/meals-side-dishes/bread-tortillas-wraps"
+       },
+       "canned-fruit": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/meals-side-dishes/canned-fruit"
+       },
+       "condiments-sauces-spices": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/meals-side-dishes/condiments-sauces-spices"
+       },
+       "pasta-rice": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/meals-side-dishes/pasta-rice"
+       },
+       "prepared-meals": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/meals-side-dishes/prepared-meals"
+       },
+       "soups": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/meals-side-dishes/soups"
+       },
+       "vegetables-beans": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/meals-side-dishes/vegetables-beans"
+       }
+      }
+     },
+     "milos-tea-company": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/milos-tea-company"
+     },
+     "minute-maid": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/minute-maid"
+     },
+     "pepsico": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/pepsico"
+     },
+     "perdue": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/perdue"
+     },
+     "pure-kick": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/pure-kick"
+     },
+     "ritz": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/ritz"
+     },
+     "shamrock-farms": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/shamrock-farms"
+     },
+     "silk": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/silk"
+     },
+     "snacks-cookies": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/snacks-cookies",
+      "subcategories": {
+       "chips": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/snacks-cookies/chips"
+       },
+       "cookies-cakes": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/snacks-cookies/cookies-cakes"
+       },
+       "snacks": {
+        "url": "https://www.dollargeneral.com/c/food-beverage/snacks-cookies/snacks"
+       }
+      }
+     },
+     "stock-up-and-save-on-baking": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/stock-up-and-save-on-baking"
+     },
+     "summer-grilling-picnic-foods": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/summer-grilling-picnic-foods"
+     },
+     "test-l1-aem-new": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/test-l1-aem-new"
+     },
+     "thanksgiving-dining-guide": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/thanksgiving-dining-guide"
+     },
+     "thanksgiving-meal-ideas": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/thanksgiving-meal-ideas"
+     },
+     "the-hershey-company": {
+      "url": "https://www.dollargeneral.com/c/food-beverage/the-hershey-company"
+     }
+    }
+   },
+   "health": {
+    "url": "https://www.dollargeneral.com/c/health",
+    "subcategories": {
+     "exercise---fitness": {
+      "url": "https://www.dollargeneral.com/c/health/exercise---fitness"
+     },
+     "exercise-fitness": {
+      "url": "https://www.dollargeneral.com/c/health/exercise-fitness"
+     },
+     "eye-care": {
+      "url": "https://www.dollargeneral.com/c/health/eye-care"
+     },
+     "foot-care": {
+      "url": "https://www.dollargeneral.com/c/health/foot-care"
+     },
+     "health-on-sale": {
+      "url": "https://www.dollargeneral.com/c/health/health-on-sale"
+     },
+     "medicine-cabinet": {
+      "url": "https://www.dollargeneral.com/c/health/medicine-cabinet",
+      "subcategories": {
+       "allergy-sinus-relief": {
+        "url": "https://www.dollargeneral.com/c/health/medicine-cabinet/allergy-sinus-relief"
+       },
+       "childrens-medicine": {
+        "url": "https://www.dollargeneral.com/c/health/medicine-cabinet/childrens-medicine"
+       },
+       "cough-cold-flu": {
+        "url": "https://www.dollargeneral.com/c/health/medicine-cabinet/cough-cold-flu",
+        "subcategories": {
+         "shop-by-brand": {
+          "url": "https://www.dollargeneral.com/c/health/medicine-cabinet/cough-cold-flu/shop-by-brand",
+          "subcategories": {
+           "alka-seltzer": {
+            "url": "https://www.dollargeneral.com/c/health/medicine-cabinet/cough-cold-flu/shop-by-brand/alka-seltzer"
+           },
+           "dg-health-cough-cold---flu": {
+            "url": "https://www.dollargeneral.com/c/health/medicine-cabinet/cough-cold-flu/shop-by-brand/dg-health-cough-cold---flu"
+           },
+           "halls": {
+            "url": "https://www.dollargeneral.com/c/health/medicine-cabinet/cough-cold-flu/shop-by-brand/halls"
+           },
+           "mucinex": {
+            "url": "https://www.dollargeneral.com/c/health/medicine-cabinet/cough-cold-flu/shop-by-brand/mucinex"
+           },
+           "ricola": {
+            "url": "https://www.dollargeneral.com/c/health/medicine-cabinet/cough-cold-flu/shop-by-brand/ricola"
+           },
+           "robitussin": {
+            "url": "https://www.dollargeneral.com/c/health/medicine-cabinet/cough-cold-flu/shop-by-brand/robitussin"
+           },
+           "tylenol": {
+            "url": "https://www.dollargeneral.com/c/health/medicine-cabinet/cough-cold-flu/shop-by-brand/tylenol"
+           },
+           "vicks": {
+            "url": "https://www.dollargeneral.com/c/health/medicine-cabinet/cough-cold-flu/shop-by-brand/vicks"
+           }
+          }
+         }
+        }
+       },
+       "digestion-stomach": {
+        "url": "https://www.dollargeneral.com/c/health/medicine-cabinet/digestion-stomach"
+       },
+       "first-aid": {
+        "url": "https://www.dollargeneral.com/c/health/medicine-cabinet/first-aid"
+       },
+       "itch-relief": {
+        "url": "https://www.dollargeneral.com/c/health/medicine-cabinet/itch-relief"
+       },
+       "pain-relief": {
+        "url": "https://www.dollargeneral.com/c/health/medicine-cabinet/pain-relief"
+       },
+       "sleep-aids-supplements": {
+        "url": "https://www.dollargeneral.com/c/health/medicine-cabinet/sleep-aids-supplements"
+       },
+       "stop-smoking": {
+        "url": "https://www.dollargeneral.com/c/health/medicine-cabinet/stop-smoking"
+       },
+       "symptom-relief--5---under": {
+        "url": "https://www.dollargeneral.com/c/health/medicine-cabinet/symptom-relief--5---under"
+       }
+      }
+     },
+     "nutritional-supplements": {
+      "url": "https://www.dollargeneral.com/c/health/nutritional-supplements"
+     },
+     "vitamins": {
+      "url": "https://www.dollargeneral.com/c/health/vitamins"
+     }
+    }
+   },
+   "home": {
+    "url": "https://www.dollargeneral.com/c/home",
+    "subcategories": {
+     "bath": {
+      "url": "https://www.dollargeneral.com/c/home/bath",
+      "subcategories": {
+       "bath-towels-washcloths": {
+        "url": "https://www.dollargeneral.com/c/home/bath/bath-towels-washcloths"
+       },
+       "bathroom-accessories": {
+        "url": "https://www.dollargeneral.com/c/home/bath/bathroom-accessories"
+       },
+       "bathroom-rugs-mats": {
+        "url": "https://www.dollargeneral.com/c/home/bath/bathroom-rugs-mats"
+       },
+       "beach-towels": {
+        "url": "https://www.dollargeneral.com/c/home/bath/beach-towels"
+       },
+       "shower-curtains-accessories": {
+        "url": "https://www.dollargeneral.com/c/home/bath/shower-curtains-accessories"
+       }
+      }
+     },
+     "bedding": {
+      "url": "https://www.dollargeneral.com/c/home/bedding",
+      "subcategories": {
+       "bed-pillows": {
+        "url": "https://www.dollargeneral.com/c/home/bedding/bed-pillows"
+       },
+       "blankets-throws": {
+        "url": "https://www.dollargeneral.com/c/home/bedding/blankets-throws"
+       },
+       "comforters-quilts": {
+        "url": "https://www.dollargeneral.com/c/home/bedding/comforters-quilts"
+       },
+       "kids-bedding": {
+        "url": "https://www.dollargeneral.com/c/home/bedding/kids-bedding"
+       },
+       "mattress-protectors-pads": {
+        "url": "https://www.dollargeneral.com/c/home/bedding/mattress-protectors-pads"
+       },
+       "sheets-pillowcases": {
+        "url": "https://www.dollargeneral.com/c/home/bedding/sheets-pillowcases"
+       }
+      }
+     },
+     "betseyville-everyday": {
+      "url": "https://www.dollargeneral.com/c/home/betseyville-everyday"
+     },
+     "beverly-hills-polo-club": {
+      "url": "https://www.dollargeneral.com/c/home/beverly-hills-polo-club"
+     },
+     "cherokee": {
+      "url": "https://www.dollargeneral.com/c/home/cherokee"
+     },
+     "closet-laundry": {
+      "url": "https://www.dollargeneral.com/c/home/closet-laundry",
+      "subcategories": {
+       "closet-organizers-hangers": {
+        "url": "https://www.dollargeneral.com/c/home/closet-laundry/closet-organizers-hangers"
+       },
+       "ironing-clothing-care": {
+        "url": "https://www.dollargeneral.com/c/home/closet-laundry/ironing-clothing-care"
+       },
+       "laundry-baskets-hampers": {
+        "url": "https://www.dollargeneral.com/c/home/closet-laundry/laundry-baskets-hampers"
+       }
+      }
+     },
+     "cosmopolitan": {
+      "url": "https://www.dollargeneral.com/c/home/cosmopolitan"
+     },
+     "crafted-collected": {
+      "url": "https://www.dollargeneral.com/c/home/crafted-collected"
+     },
+     "dearfoams": {
+      "url": "https://www.dollargeneral.com/c/home/dearfoams"
+     },
+     "dolly-heart-and-home": {
+      "url": "https://www.dollargeneral.com/c/home/dolly-heart-and-home"
+     },
+     "dollys-home-collection": {
+      "url": "https://www.dollargeneral.com/c/home/dollys-home-collection"
+     },
+     "essentials-by-elle": {
+      "url": "https://www.dollargeneral.com/c/home/essentials-by-elle"
+     },
+     "furniture": {
+      "url": "https://www.dollargeneral.com/c/home/furniture"
+     },
+     "home-decor": {
+      "url": "https://www.dollargeneral.com/c/home/home-decor",
+      "subcategories": {
+       "artificial-plants-flower-stems": {
+        "url": "https://www.dollargeneral.com/c/home/home-decor/artificial-plants-flower-stems"
+       },
+       "candles-home-fragrance": {
+        "url": "https://www.dollargeneral.com/c/home/home-decor/candles-home-fragrance"
+       },
+       "clocks": {
+        "url": "https://www.dollargeneral.com/c/home/home-decor/clocks"
+       },
+       "decorative-pillows-throws": {
+        "url": "https://www.dollargeneral.com/c/home/home-decor/decorative-pillows-throws"
+       },
+       "lamps-lighting": {
+        "url": "https://www.dollargeneral.com/c/home/home-decor/lamps-lighting"
+       },
+       "picture-frames": {
+        "url": "https://www.dollargeneral.com/c/home/home-decor/picture-frames"
+       },
+       "rugs-doormats": {
+        "url": "https://www.dollargeneral.com/c/home/home-decor/rugs-doormats"
+       },
+       "vases-home-accents": {
+        "url": "https://www.dollargeneral.com/c/home/home-decor/vases-home-accents"
+       },
+       "wall-decor-art": {
+        "url": "https://www.dollargeneral.com/c/home/home-decor/wall-decor-art"
+       },
+       "window-treatments": {
+        "url": "https://www.dollargeneral.com/c/home/home-decor/window-treatments"
+       }
+      }
+     },
+     "john-deere": {
+      "url": "https://www.dollargeneral.com/c/home/john-deere"
+     },
+     "ki-by-kathy-ireland": {
+      "url": "https://www.dollargeneral.com/c/home/ki-by-kathy-ireland"
+     },
+     "serta": {
+      "url": "https://www.dollargeneral.com/c/home/serta"
+     },
+     "simply-belle-by-simply-southern": {
+      "url": "https://www.dollargeneral.com/c/home/simply-belle-by-simply-southern"
+     },
+     "simply-lofty": {
+      "url": "https://www.dollargeneral.com/c/home/simply-lofty"
+     },
+     "storage-organization": {
+      "url": "https://www.dollargeneral.com/c/home/storage-organization",
+      "subcategories": {
+       "storage-bins-boxes": {
+        "url": "https://www.dollargeneral.com/c/home/storage-organization/storage-bins-boxes"
+       },
+       "storage-tubs-totes": {
+        "url": "https://www.dollargeneral.com/c/home/storage-organization/storage-tubs-totes"
+       },
+       "trash-cans-waste-baskets": {
+        "url": "https://www.dollargeneral.com/c/home/storage-organization/trash-cans-waste-baskets"
+       }
+      }
+     },
+     "wrangler": {
+      "url": "https://www.dollargeneral.com/c/home/wrangler"
+     },
+     "xo-holly-by-holly-williams": {
+      "url": "https://www.dollargeneral.com/c/home/xo-holly-by-holly-williams"
+     },
+     "xoxo-home": {
+      "url": "https://www.dollargeneral.com/c/home/xoxo-home"
+     }
+    }
+   },
+   "household": {
+    "url": "https://www.dollargeneral.com/c/household",
+    "subcategories": {
+     "as-seen-on-tv": {
+      "url": "https://www.dollargeneral.com/c/household/as-seen-on-tv"
+     },
+     "bed-bath": {
+      "url": "https://www.dollargeneral.com/c/household/bed-bath",
+      "subcategories": {
+       "bath-accessories": {
+        "url": "https://www.dollargeneral.com/c/household/bed-bath/bath-accessories"
+       },
+       "bath-towels-and-washcloths": {
+        "url": "https://www.dollargeneral.com/c/household/bed-bath/bath-towels-and-washcloths"
+       },
+       "bath-towels-and-washcloths0": {
+        "url": "https://www.dollargeneral.com/c/household/bed-bath/bath-towels-and-washcloths0"
+       },
+       "bath-towels-and-washcloths0_msm_moved": {
+        "url": "https://www.dollargeneral.com/c/household/bed-bath/bath-towels-and-washcloths0_msm_moved"
+       },
+       "bath-towels-and-washcloths_msm_moved": {
+        "url": "https://www.dollargeneral.com/c/household/bed-bath/bath-towels-and-washcloths_msm_moved"
+       },
+       "bath-towels-washcloths": {
+        "url": "https://www.dollargeneral.com/c/household/bed-bath/bath-towels-washcloths"
+       },
+       "beach-towels": {
+        "url": "https://www.dollargeneral.com/c/household/bed-bath/beach-towels"
+       },
+       "bedding": {
+        "url": "https://www.dollargeneral.com/c/household/bed-bath/bedding"
+       },
+       "shower-rods-curtains": {
+        "url": "https://www.dollargeneral.com/c/household/bed-bath/shower-rods-curtains"
+       }
+      }
+     },
+     "betseyville-everyday": {
+      "url": "https://www.dollargeneral.com/c/household/betseyville-everyday",
+      "subcategories": {
+       "betseyville-halloween": {
+        "url": "https://www.dollargeneral.com/c/household/betseyville-everyday/betseyville-halloween"
+       }
+      }
+     },
+     "beverly-hills-polo-club": {
+      "url": "https://www.dollargeneral.com/c/household/beverly-hills-polo-club"
+     },
+     "brights-hydration": {
+      "url": "https://www.dollargeneral.com/c/household/brights-hydration"
+     },
+     "capri-summer": {
+      "url": "https://www.dollargeneral.com/c/household/capri-summer"
+     },
+     "clothing-care": {
+      "url": "https://www.dollargeneral.com/c/household/clothing-care"
+     },
+     "cosmopolitan": {
+      "url": "https://www.dollargeneral.com/c/household/cosmopolitan"
+     },
+     "crafted-collected": {
+      "url": "https://www.dollargeneral.com/c/household/crafted-collected"
+     },
+     "dearfoams": {
+      "url": "https://www.dollargeneral.com/c/household/dearfoams"
+     },
+     "denim-daisies": {
+      "url": "https://www.dollargeneral.com/c/household/denim-daisies",
+      "subcategories": {
+       "denim---daisies-drinkware": {
+        "url": "https://www.dollargeneral.com/c/household/denim-daisies/denim---daisies-drinkware"
+       },
+       "denim-daisies-apparel": {
+        "url": "https://www.dollargeneral.com/c/household/denim-daisies/denim-daisies-apparel"
+       }
+      }
+     },
+     "dollys-home-collection": {
+      "url": "https://www.dollargeneral.com/c/household/dollys-home-collection"
+     },
+     "home-decor-curtains": {
+      "url": "https://www.dollargeneral.com/c/household/home-decor-curtains",
+      "subcategories": {
+       "candles-candleholders": {
+        "url": "https://www.dollargeneral.com/c/household/home-decor-curtains/candles-candleholders"
+       },
+       "clocks": {
+        "url": "https://www.dollargeneral.com/c/household/home-decor-curtains/clocks"
+       },
+       "curtains": {
+        "url": "https://www.dollargeneral.com/c/household/home-decor-curtains/curtains"
+       },
+       "frames-wall-decor": {
+        "url": "https://www.dollargeneral.com/c/household/home-decor-curtains/frames-wall-decor"
+       },
+       "lamps-lampshades": {
+        "url": "https://www.dollargeneral.com/c/household/home-decor-curtains/lamps-lampshades"
+       },
+       "pillows---throws": {
+        "url": "https://www.dollargeneral.com/c/household/home-decor-curtains/pillows---throws"
+       },
+       "rugs": {
+        "url": "https://www.dollargeneral.com/c/household/home-decor-curtains/rugs"
+       }
+      }
+     },
+     "john-deere": {
+      "url": "https://www.dollargeneral.com/c/household/john-deere"
+     },
+     "ki-by-kathy-ireland": {
+      "url": "https://www.dollargeneral.com/c/household/ki-by-kathy-ireland"
+     },
+     "kitchen-dining": {
+      "url": "https://www.dollargeneral.com/c/household/kitchen-dining",
+      "subcategories": {
+       "catering-serveware": {
+        "url": "https://www.dollargeneral.com/c/household/kitchen-dining/catering-serveware"
+       },
+       "cookware-bakeware": {
+        "url": "https://www.dollargeneral.com/c/household/kitchen-dining/cookware-bakeware"
+       },
+       "kitchen-appliances": {
+        "url": "https://www.dollargeneral.com/c/household/kitchen-dining/kitchen-appliances"
+       },
+       "kitchen-essentials-tools": {
+        "url": "https://www.dollargeneral.com/c/household/kitchen-dining/kitchen-essentials-tools"
+       }
+      }
+     },
+     "lighters": {
+      "url": "https://www.dollargeneral.com/c/household/lighters"
+     },
+     "margaritaville": {
+      "url": "https://www.dollargeneral.com/c/household/margaritaville"
+     },
+     "palm-beach": {
+      "url": "https://www.dollargeneral.com/c/household/palm-beach"
+     },
+     "paper-plastic": {
+      "url": "https://www.dollargeneral.com/c/household/paper-plastic",
+      "subcategories": {
+       "bath-facial-tissue": {
+        "url": "https://www.dollargeneral.com/c/household/paper-plastic/bath-facial-tissue"
+       },
+       "food-storage": {
+        "url": "https://www.dollargeneral.com/c/household/paper-plastic/food-storage"
+       },
+       "paper-plastic-tableware": {
+        "url": "https://www.dollargeneral.com/c/household/paper-plastic/paper-plastic-tableware"
+       },
+       "paper-towels-napkins": {
+        "url": "https://www.dollargeneral.com/c/household/paper-plastic/paper-towels-napkins"
+       }
+      }
+     },
+     "serta": {
+      "url": "https://www.dollargeneral.com/c/household/serta"
+     },
+     "simply-belle": {
+      "url": "https://www.dollargeneral.com/c/household/simply-belle"
+     },
+     "simply-belle-by-simply-southern": {
+      "url": "https://www.dollargeneral.com/c/household/simply-belle-by-simply-southern"
+     },
+     "storage": {
+      "url": "https://www.dollargeneral.com/c/household/storage"
+     },
+     "wrangler": {
+      "url": "https://www.dollargeneral.com/c/household/wrangler"
+     },
+     "xo-holly-by-holly-williams": {
+      "url": "https://www.dollargeneral.com/c/household/xo-holly-by-holly-williams",
+      "subcategories": {
+       "-1-finds": {
+        "url": "https://www.dollargeneral.com/c/household/xo-holly-by-holly-williams/-1-finds"
+       },
+       "-3-finds": {
+        "url": "https://www.dollargeneral.com/c/household/xo-holly-by-holly-williams/-3-finds"
+       },
+       "-5-finds": {
+        "url": "https://www.dollargeneral.com/c/household/xo-holly-by-holly-williams/-5-finds"
+       },
+       "xo-by-holly-williams-living-room-accents": {
+        "url": "https://www.dollargeneral.com/c/household/xo-holly-by-holly-williams/xo-by-holly-williams-living-room-accents"
+       },
+       "xo-holly-by-holly-williams-bedding": {
+        "url": "https://www.dollargeneral.com/c/household/xo-holly-by-holly-williams/xo-holly-by-holly-williams-bedding"
+       },
+       "xo-holly-by-holly-williams-home-decor": {
+        "url": "https://www.dollargeneral.com/c/household/xo-holly-by-holly-williams/xo-holly-by-holly-williams-home-decor"
+       },
+       "xo-holly-by-holly-williams-kitchen-finds": {
+        "url": "https://www.dollargeneral.com/c/household/xo-holly-by-holly-williams/xo-holly-by-holly-williams-kitchen-finds"
+       }
+      }
+     }
+    }
+   },
+   "kitchen-dining": {
+    "url": "https://www.dollargeneral.com/c/kitchen-dining",
+    "subcategories": {
+     "brights-hydration": {
+      "url": "https://www.dollargeneral.com/c/kitchen-dining/brights-hydration"
+     },
+     "capri-summer": {
+      "url": "https://www.dollargeneral.com/c/kitchen-dining/capri-summer"
+     },
+     "cookware-bakeware": {
+      "url": "https://www.dollargeneral.com/c/kitchen-dining/cookware-bakeware",
+      "subcategories": {
+       "aluminum-baking-pans-sheets": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/cookware-bakeware/aluminum-baking-pans-sheets"
+       },
+       "baking-sheets-pans": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/cookware-bakeware/baking-sheets-pans"
+       },
+       "baking-tools-accessories": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/cookware-bakeware/baking-tools-accessories"
+       },
+       "pots-pans": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/cookware-bakeware/pots-pans"
+       }
+      }
+     },
+     "dining-dinnerware": {
+      "url": "https://www.dollargeneral.com/c/kitchen-dining/dining-dinnerware",
+      "subcategories": {
+       "dinnerware": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/dining-dinnerware/dinnerware"
+       },
+       "kids-dinnerware": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/dining-dinnerware/kids-dinnerware"
+       },
+       "placemats-table-linens": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/dining-dinnerware/placemats-table-linens"
+       },
+       "silverware-flatware": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/dining-dinnerware/silverware-flatware"
+       }
+      }
+     },
+     "drinkware-glassware": {
+      "url": "https://www.dollargeneral.com/c/kitchen-dining/drinkware-glassware",
+      "subcategories": {
+       "coffee-mugs": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/drinkware-glassware/coffee-mugs"
+       },
+       "glassware-cups": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/drinkware-glassware/glassware-cups"
+       },
+       "kids-drinkware": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/drinkware-glassware/kids-drinkware"
+       },
+       "straws-accessories": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/drinkware-glassware/straws-accessories"
+       },
+       "travel-mugs-water-bottles": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/drinkware-glassware/travel-mugs-water-bottles"
+       }
+      }
+     },
+     "kitchen-storage": {
+      "url": "https://www.dollargeneral.com/c/kitchen-dining/kitchen-storage",
+      "subcategories": {
+       "cabinet-drawer-organizers": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/kitchen-storage/cabinet-drawer-organizers"
+       },
+       "food-storage-containers": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/kitchen-storage/food-storage-containers"
+       },
+       "fridge-storage": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/kitchen-storage/fridge-storage"
+       },
+       "kitchen-accessories": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/kitchen-storage/kitchen-accessories"
+       }
+      }
+     },
+     "kitchen-towels-linens": {
+      "url": "https://www.dollargeneral.com/c/kitchen-dining/kitchen-towels-linens",
+      "subcategories": {
+       "dish-cloths": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/kitchen-towels-linens/dish-cloths"
+       },
+       "dish-drying-mats": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/kitchen-towels-linens/dish-drying-mats"
+       },
+       "kitchen-towels": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/kitchen-towels-linens/kitchen-towels"
+       },
+       "oven-mitts-pot-holders": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/kitchen-towels-linens/oven-mitts-pot-holders"
+       }
+      }
+     },
+     "kitchen-utensils-gadgets": {
+      "url": "https://www.dollargeneral.com/c/kitchen-dining/kitchen-utensils-gadgets",
+      "subcategories": {
+       "cooking-utensils": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/kitchen-utensils-gadgets/cooking-utensils"
+       },
+       "knives-cutlery": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/kitchen-utensils-gadgets/knives-cutlery"
+       },
+       "measuring-cups-spoons": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/kitchen-utensils-gadgets/measuring-cups-spoons"
+       },
+       "specialty-tools": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/kitchen-utensils-gadgets/specialty-tools"
+       }
+      }
+     },
+     "margaritaville": {
+      "url": "https://www.dollargeneral.com/c/kitchen-dining/margaritaville"
+     },
+     "rise-by-dash-appliances": {
+      "url": "https://www.dollargeneral.com/c/kitchen-dining/rise-by-dash-appliances"
+     },
+     "serveware": {
+      "url": "https://www.dollargeneral.com/c/kitchen-dining/serveware",
+      "subcategories": {
+       "pitchers-dispensers": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/serveware/pitchers-dispensers"
+       },
+       "serving-bowls": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/serveware/serving-bowls"
+       },
+       "serving-trays-platters": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/serveware/serving-trays-platters"
+       },
+       "serving-utensils": {
+        "url": "https://www.dollargeneral.com/c/kitchen-dining/serveware/serving-utensils"
+       }
+      }
+     },
+     "small-appliances": {
+      "url": "https://www.dollargeneral.com/c/kitchen-dining/small-appliances"
+     }
+    }
+   },
+   "office-school-supplies": {
+    "url": "https://www.dollargeneral.com/c/office-school-supplies",
+    "subcategories": {
+     "arts---crafts": {
+      "url": "https://www.dollargeneral.com/c/office-school-supplies/arts---crafts"
+     },
+     "arts-crafts-supplies": {
+      "url": "https://www.dollargeneral.com/c/office-school-supplies/arts-crafts-supplies",
+      "subcategories": {
+       "brushes--canvases-paint-supplies": {
+        "url": "https://www.dollargeneral.com/c/office-school-supplies/arts-crafts-supplies/brushes--canvases-paint-supplies"
+       },
+       "pencils-pens-markers": {
+        "url": "https://www.dollargeneral.com/c/office-school-supplies/arts-crafts-supplies/pencils-pens-markers"
+       }
+      }
+     },
+     "back-to-school": {
+      "url": "https://www.dollargeneral.com/c/office-school-supplies/back-to-school"
+     },
+     "back-to-school-apparel": {
+      "url": "https://www.dollargeneral.com/c/office-school-supplies/back-to-school-apparel"
+     },
+     "backpacks-lunch-boxes": {
+      "url": "https://www.dollargeneral.com/c/office-school-supplies/backpacks-lunch-boxes"
+     },
+     "bic": {
+      "url": "https://www.dollargeneral.com/c/office-school-supplies/bic"
+     },
+     "coloring-supplies": {
+      "url": "https://www.dollargeneral.com/c/office-school-supplies/coloring-supplies",
+      "subcategories": {
+       "activity-coloring-books": {
+        "url": "https://www.dollargeneral.com/c/office-school-supplies/coloring-supplies/activity-coloring-books"
+       }
+      }
+     },
+     "crayola": {
+      "url": "https://www.dollargeneral.com/c/office-school-supplies/crayola"
+     },
+     "desk-supplies": {
+      "url": "https://www.dollargeneral.com/c/office-school-supplies/desk-supplies"
+     },
+     "duck": {
+      "url": "https://www.dollargeneral.com/c/office-school-supplies/duck"
+     },
+     "elmer-s": {
+      "url": "https://www.dollargeneral.com/c/office-school-supplies/elmer-s"
+     },
+     "expo": {
+      "url": "https://www.dollargeneral.com/c/office-school-supplies/expo"
+     },
+     "glue-tape": {
+      "url": "https://www.dollargeneral.com/c/office-school-supplies/glue-tape"
+     },
+     "halloween-costumes---da-cor": {
+      "url": "https://www.dollargeneral.com/c/office-school-supplies/halloween-costumes---da-cor"
+     },
+     "lunch-after-school-snacks": {
+      "url": "https://www.dollargeneral.com/c/office-school-supplies/lunch-after-school-snacks"
+     },
+     "notebooks-folders-binders": {
+      "url": "https://www.dollargeneral.com/c/office-school-supplies/notebooks-folders-binders",
+      "subcategories": {
+       "dollar-notebooks": {
+        "url": "https://www.dollargeneral.com/c/office-school-supplies/notebooks-folders-binders/dollar-notebooks"
+       },
+       "journals-planners": {
+        "url": "https://www.dollargeneral.com/c/office-school-supplies/notebooks-folders-binders/journals-planners"
+       },
+       "poly-folders": {
+        "url": "https://www.dollargeneral.com/c/office-school-supplies/notebooks-folders-binders/poly-folders"
+       }
+      }
+     },
+     "office-school-supplies-on-sale": {
+      "url": "https://www.dollargeneral.com/c/office-school-supplies/office-school-supplies-on-sale"
+     },
+     "packing-shipping-supplies": {
+      "url": "https://www.dollargeneral.com/c/office-school-supplies/packing-shipping-supplies"
+     },
+     "paper-mate": {
+      "url": "https://www.dollargeneral.com/c/office-school-supplies/paper-mate"
+     },
+     "pens-pencils": {
+      "url": "https://www.dollargeneral.com/c/office-school-supplies/pens-pencils"
+     },
+     "post-it": {
+      "url": "https://www.dollargeneral.com/c/office-school-supplies/post-it"
+     },
+     "scotch": {
+      "url": "https://www.dollargeneral.com/c/office-school-supplies/scotch"
+     },
+     "sharpie": {
+      "url": "https://www.dollargeneral.com/c/office-school-supplies/sharpie"
+     },
+     "teacher-supplies": {
+      "url": "https://www.dollargeneral.com/c/office-school-supplies/teacher-supplies"
+     },
+     "teacher-supply": {
+      "url": "https://www.dollargeneral.com/c/office-school-supplies/teacher-supply"
+     }
+    }
+   },
+   "on-sale": {
+    "url": "https://www.dollargeneral.com/c/on-sale",
+    "subcategories": {
+     "2-day-sale-event": {
+      "url": "https://www.dollargeneral.com/c/on-sale/2-day-sale-event"
+     },
+     "2-for-3-select-pringles": {
+      "url": "https://www.dollargeneral.com/c/on-sale/2-for-3-select-pringles"
+     },
+     "2-for-5-select-cereal": {
+      "url": "https://www.dollargeneral.com/c/on-sale/2-for-5-select-cereal"
+     },
+     "3-day-sale-event": {
+      "url": "https://www.dollargeneral.com/c/on-sale/3-day-sale-event"
+     },
+     "3-for-6-select-cereal": {
+      "url": "https://www.dollargeneral.com/c/on-sale/3-for-6-select-cereal"
+     },
+     "buy-1-get-1-50-off-select-rexall": {
+      "url": "https://www.dollargeneral.com/c/on-sale/buy-1-get-1-50-off-select-rexall"
+     },
+     "clearance-event": {
+      "url": "https://www.dollargeneral.com/c/on-sale/clearance-event"
+     },
+     "clover-valley-deals": {
+      "url": "https://www.dollargeneral.com/c/on-sale/clover-valley-deals"
+     },
+     "coffee-deals": {
+      "url": "https://www.dollargeneral.com/c/on-sale/coffee-deals"
+     },
+     "day-1-offer-1": {
+      "url": "https://www.dollargeneral.com/c/on-sale/day-1-offer-1"
+     },
+     "day-2-offer-1": {
+      "url": "https://www.dollargeneral.com/c/on-sale/day-2-offer-1"
+     },
+     "day-3-offer-1": {
+      "url": "https://www.dollargeneral.com/c/on-sale/day-3-offer-1"
+     },
+     "day-3-offer-2": {
+      "url": "https://www.dollargeneral.com/c/on-sale/day-3-offer-2"
+     },
+     "day-4-offer-1": {
+      "url": "https://www.dollargeneral.com/c/on-sale/day-4-offer-1"
+     },
+     "day-4-offer-2": {
+      "url": "https://www.dollargeneral.com/c/on-sale/day-4-offer-2"
+     },
+     "day-5-offer-1": {
+      "url": "https://www.dollargeneral.com/c/on-sale/day-5-offer-1"
+     },
+     "day-6-offer-1": {
+      "url": "https://www.dollargeneral.com/c/on-sale/day-6-offer-1"
+     },
+     "day-6-offer-2": {
+      "url": "https://www.dollargeneral.com/c/on-sale/day-6-offer-2"
+     },
+     "day-7-offer-1": {
+      "url": "https://www.dollargeneral.com/c/on-sale/day-7-offer-1"
+     },
+     "deals-on-candles": {
+      "url": "https://www.dollargeneral.com/c/on-sale/deals-on-candles"
+     },
+     "deals-on-candy": {
+      "url": "https://www.dollargeneral.com/c/on-sale/deals-on-candy"
+     },
+     "deals-on-candy-snacks": {
+      "url": "https://www.dollargeneral.com/c/on-sale/deals-on-candy-snacks"
+     },
+     "deals-on-cereal": {
+      "url": "https://www.dollargeneral.com/c/on-sale/deals-on-cereal"
+     },
+     "deals-on-chips": {
+      "url": "https://www.dollargeneral.com/c/on-sale/deals-on-chips"
+     },
+     "deals-on-coffee": {
+      "url": "https://www.dollargeneral.com/c/on-sale/deals-on-coffee"
+     },
+     "deals-on-grocery": {
+      "url": "https://www.dollargeneral.com/c/on-sale/deals-on-grocery"
+     },
+     "deals-on-home-decor": {
+      "url": "https://www.dollargeneral.com/c/on-sale/deals-on-home-decor"
+     },
+     "deals-on-insect-spray": {
+      "url": "https://www.dollargeneral.com/c/on-sale/deals-on-insect-spray"
+     },
+     "deals-on-paper-products": {
+      "url": "https://www.dollargeneral.com/c/on-sale/deals-on-paper-products"
+     },
+     "deals-on-personal-care": {
+      "url": "https://www.dollargeneral.com/c/on-sale/deals-on-personal-care"
+     },
+     "deals-on-pet-products": {
+      "url": "https://www.dollargeneral.com/c/on-sale/deals-on-pet-products"
+     },
+     "deals-on-pizza": {
+      "url": "https://www.dollargeneral.com/c/on-sale/deals-on-pizza"
+     },
+     "deals-on-snacks": {
+      "url": "https://www.dollargeneral.com/c/on-sale/deals-on-snacks"
+     },
+     "deals-on-snacks-cookies": {
+      "url": "https://www.dollargeneral.com/c/on-sale/deals-on-snacks-cookies"
+     },
+     "deals-on-soda": {
+      "url": "https://www.dollargeneral.com/c/on-sale/deals-on-soda"
+     },
+     "deals-on-sunglasses": {
+      "url": "https://www.dollargeneral.com/c/on-sale/deals-on-sunglasses"
+     },
+     "dg-deal-days": {
+      "url": "https://www.dollargeneral.com/c/on-sale/dg-deal-days"
+     },
+     "dollar-deals": {
+      "url": "https://www.dollargeneral.com/c/on-sale/dollar-deals",
+      "subcategories": {
+       "dollar-beauty": {
+        "url": "https://www.dollargeneral.com/c/on-sale/dollar-deals/dollar-beauty"
+       },
+       "dollar-candy-snacks": {
+        "url": "https://www.dollargeneral.com/c/on-sale/dollar-deals/dollar-candy-snacks"
+       },
+       "dollar-food": {
+        "url": "https://www.dollargeneral.com/c/on-sale/dollar-deals/dollar-food"
+       },
+       "dollar-health": {
+        "url": "https://www.dollargeneral.com/c/on-sale/dollar-deals/dollar-health"
+       },
+       "dollar-holiday-decor": {
+        "url": "https://www.dollargeneral.com/c/on-sale/dollar-deals/dollar-holiday-decor"
+       },
+       "dollar-home-kitchen": {
+        "url": "https://www.dollargeneral.com/c/on-sale/dollar-deals/dollar-home-kitchen"
+       },
+       "dollar-household-cleaning": {
+        "url": "https://www.dollargeneral.com/c/on-sale/dollar-deals/dollar-household-cleaning"
+       },
+       "dollar-office-school-supplies": {
+        "url": "https://www.dollargeneral.com/c/on-sale/dollar-deals/dollar-office-school-supplies"
+       },
+       "dollar-party-supplies": {
+        "url": "https://www.dollargeneral.com/c/on-sale/dollar-deals/dollar-party-supplies"
+       },
+       "dollar-pet": {
+        "url": "https://www.dollargeneral.com/c/on-sale/dollar-deals/dollar-pet"
+       },
+       "dollar-toys": {
+        "url": "https://www.dollargeneral.com/c/on-sale/dollar-deals/dollar-toys"
+       }
+      }
+     },
+     "energy-drink-deals": {
+      "url": "https://www.dollargeneral.com/c/on-sale/energy-drink-deals"
+     },
+     "even-lower-prices": {
+      "url": "https://www.dollargeneral.com/c/on-sale/even-lower-prices"
+     },
+     "flash-sale": {
+      "url": "https://www.dollargeneral.com/c/on-sale/flash-sale"
+     },
+     "flash-sale-event": {
+      "url": "https://www.dollargeneral.com/c/on-sale/flash-sale-event"
+     },
+     "holiday-sale": {
+      "url": "https://www.dollargeneral.com/c/on-sale/holiday-sale"
+     },
+     "home-deals": {
+      "url": "https://www.dollargeneral.com/c/on-sale/home-deals"
+     },
+     "household-deals": {
+      "url": "https://www.dollargeneral.com/c/on-sale/household-deals"
+     },
+     "new-products": {
+      "url": "https://www.dollargeneral.com/c/on-sale/new-products",
+      "subcategories": {
+       "beauty-personal-care": {
+        "url": "https://www.dollargeneral.com/c/on-sale/new-products/beauty-personal-care"
+       },
+       "cleaning-paper-products": {
+        "url": "https://www.dollargeneral.com/c/on-sale/new-products/cleaning-paper-products"
+       },
+       "dg-exclusives": {
+        "url": "https://www.dollargeneral.com/c/on-sale/new-products/dg-exclusives"
+       },
+       "food-pantry": {
+        "url": "https://www.dollargeneral.com/c/on-sale/new-products/food-pantry"
+       },
+       "pet-food-treats": {
+        "url": "https://www.dollargeneral.com/c/on-sale/new-products/pet-food-treats"
+       }
+      }
+     },
+     "outdoor-deals": {
+      "url": "https://www.dollargeneral.com/c/on-sale/outdoor-deals"
+     },
+     "pantry-deals": {
+      "url": "https://www.dollargeneral.com/c/on-sale/pantry-deals"
+     },
+     "pasta-deals": {
+      "url": "https://www.dollargeneral.com/c/on-sale/pasta-deals"
+     },
+     "save-on-aluminum-baking": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-aluminum-baking"
+     },
+     "save-on-baby-supplies": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-baby-supplies"
+     },
+     "save-on-baking": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-baking"
+     },
+     "save-on-beach-towels": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-beach-towels"
+     },
+     "save-on-bed-bath": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-bed-bath"
+     },
+     "save-on-beverages": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-beverages"
+     },
+     "save-on-breakfast": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-breakfast"
+     },
+     "save-on-breakfast-bars": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-breakfast-bars"
+     },
+     "save-on-buns": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-buns"
+     },
+     "save-on-candy": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-candy"
+     },
+     "save-on-cereal": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-cereal"
+     },
+     "save-on-chips": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-chips"
+     },
+     "save-on-coffee": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-coffee"
+     },
+     "save-on-condiments": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-condiments"
+     },
+     "save-on-disposable-tableware": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-disposable-tableware"
+     },
+     "save-on-doritos": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-doritos"
+     },
+     "save-on-food-storage": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-food-storage"
+     },
+     "save-on-grocery": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-grocery"
+     },
+     "save-on-home-deals": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-home-deals"
+     },
+     "save-on-household": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-household"
+     },
+     "save-on-household-items": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-household-items"
+     },
+     "save-on-ice-cream": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-ice-cream"
+     },
+     "save-on-kitchen-cleaning": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-kitchen-cleaning"
+     },
+     "save-on-laundry": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-laundry"
+     },
+     "save-on-lays": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-lays"
+     },
+     "save-on-meat": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-meat"
+     },
+     "save-on-paper-products": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-paper-products"
+     },
+     "save-on-pizza": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-pizza"
+     },
+     "save-on-school-supplies": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-school-supplies"
+     },
+     "save-on-seasonal-decor": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-seasonal-decor"
+     },
+     "save-on-select-apparel": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-select-apparel"
+     },
+     "save-on-select-coffee": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-select-coffee"
+     },
+     "save-on-select-grocery": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-select-grocery"
+     },
+     "save-on-select-outdoor": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-select-outdoor"
+     },
+     "save-on-select-rexall-vitamins": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-select-rexall-vitamins"
+     },
+     "save-on-select-storage": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-select-storage"
+     },
+     "save-on-sides-meals": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-sides-meals"
+     },
+     "save-on-snacks": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-snacks"
+     },
+     "save-on-soda": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-soda"
+     },
+     "save-on-soft-drinks": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-soft-drinks"
+     },
+     "save-on-sports-drinks": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-sports-drinks"
+     },
+     "save-on-tableware": {
+      "url": "https://www.dollargeneral.com/c/on-sale/save-on-tableware"
+     },
+     "school-supplies-deals": {
+      "url": "https://www.dollargeneral.com/c/on-sale/school-supplies-deals"
+     },
+     "select-cereal---3-for-6": {
+      "url": "https://www.dollargeneral.com/c/on-sale/select-cereal---3-for-6"
+     },
+     "select-cereal-2-for-7": {
+      "url": "https://www.dollargeneral.com/c/on-sale/select-cereal-2-for-7"
+     },
+     "select-cereal-3-for-6": {
+      "url": "https://www.dollargeneral.com/c/on-sale/select-cereal-3-for-6"
+     },
+     "soda-deals": {
+      "url": "https://www.dollargeneral.com/c/on-sale/soda-deals"
+     },
+     "super-saturday": {
+      "url": "https://www.dollargeneral.com/c/on-sale/super-saturday"
+     },
+     "thanksgiving-day-sale": {
+      "url": "https://www.dollargeneral.com/c/on-sale/thanksgiving-day-sale"
+     },
+     "toy-deals": {
+      "url": "https://www.dollargeneral.com/c/on-sale/toy-deals"
+     },
+     "week-long-deals": {
+      "url": "https://www.dollargeneral.com/c/on-sale/week-long-deals"
+     },
+     "week-long-savings": {
+      "url": "https://www.dollargeneral.com/c/on-sale/week-long-savings"
+     },
+     "wow-wednesday": {
+      "url": "https://www.dollargeneral.com/c/on-sale/wow-wednesday"
+     }
+    }
+   },
+   "outdoor-living": {
+    "url": "https://www.dollargeneral.com/c/outdoor-living",
+    "subcategories": {
+     "beach-pool": {
+      "url": "https://www.dollargeneral.com/c/outdoor-living/beach-pool"
+     },
+     "coolers": {
+      "url": "https://www.dollargeneral.com/c/outdoor-living/coolers"
+     },
+     "fans": {
+      "url": "https://www.dollargeneral.com/c/outdoor-living/fans"
+     },
+     "garden-decor": {
+      "url": "https://www.dollargeneral.com/c/outdoor-living/garden-decor"
+     },
+     "grilling-cooking": {
+      "url": "https://www.dollargeneral.com/c/outdoor-living/grilling-cooking",
+      "subcategories": {
+       "charcoal-propane": {
+        "url": "https://www.dollargeneral.com/c/outdoor-living/grilling-cooking/charcoal-propane"
+       },
+       "grills-grill-accessories": {
+        "url": "https://www.dollargeneral.com/c/outdoor-living/grilling-cooking/grills-grill-accessories"
+       }
+      }
+     },
+     "insect-pest-control": {
+      "url": "https://www.dollargeneral.com/c/outdoor-living/insect-pest-control"
+     },
+     "lawn-garden-care": {
+      "url": "https://www.dollargeneral.com/c/outdoor-living/lawn-garden-care"
+     },
+     "outdoor-furniture": {
+      "url": "https://www.dollargeneral.com/c/outdoor-living/outdoor-furniture"
+     },
+     "outdoor-living-on-sale": {
+      "url": "https://www.dollargeneral.com/c/outdoor-living/outdoor-living-on-sale"
+     },
+     "outdoor-play": {
+      "url": "https://www.dollargeneral.com/c/outdoor-living/outdoor-play"
+     },
+     "planters-flower-pots": {
+      "url": "https://www.dollargeneral.com/c/outdoor-living/planters-flower-pots"
+     }
+    }
+   },
+   "party-occasions": {
+    "url": "https://www.dollargeneral.com/c/party-occasions",
+    "subcategories": {
+     "baby-shower-supplies": {
+      "url": "https://www.dollargeneral.com/c/party-occasions/baby-shower-supplies"
+     },
+     "balloons": {
+      "url": "https://www.dollargeneral.com/c/party-occasions/balloons",
+      "subcategories": {
+       "arches-novelty-balloons": {
+        "url": "https://www.dollargeneral.com/c/party-occasions/balloons/arches-novelty-balloons"
+       },
+       "latex-balloons": {
+        "url": "https://www.dollargeneral.com/c/party-occasions/balloons/latex-balloons"
+       },
+       "mylar-foil-balloons": {
+        "url": "https://www.dollargeneral.com/c/party-occasions/balloons/mylar-foil-balloons"
+       },
+       "number-letter-balloons": {
+        "url": "https://www.dollargeneral.com/c/party-occasions/balloons/number-letter-balloons"
+       }
+      }
+     },
+     "birthday-party-supplies": {
+      "url": "https://www.dollargeneral.com/c/party-occasions/birthday-party-supplies"
+     },
+     "bridal-shower-supplies": {
+      "url": "https://www.dollargeneral.com/c/party-occasions/bridal-shower-supplies"
+     },
+     "cake-cupcake-supplies": {
+      "url": "https://www.dollargeneral.com/c/party-occasions/cake-cupcake-supplies"
+     },
+     "character-parties": {
+      "url": "https://www.dollargeneral.com/c/party-occasions/character-parties"
+     },
+     "game-day-partyware": {
+      "url": "https://www.dollargeneral.com/c/party-occasions/game-day-partyware"
+     },
+     "gift-packaging": {
+      "url": "https://www.dollargeneral.com/c/party-occasions/gift-packaging"
+     },
+     "party-accessories": {
+      "url": "https://www.dollargeneral.com/c/party-occasions/party-accessories"
+     },
+     "party-decorations": {
+      "url": "https://www.dollargeneral.com/c/party-occasions/party-decorations"
+     },
+     "party-favors": {
+      "url": "https://www.dollargeneral.com/c/party-occasions/party-favors"
+     },
+     "party-occasions-on-sale": {
+      "url": "https://www.dollargeneral.com/c/party-occasions/party-occasions-on-sale"
+     },
+     "patriotic-partyware": {
+      "url": "https://www.dollargeneral.com/c/party-occasions/patriotic-partyware"
+     },
+     "pinatas": {
+      "url": "https://www.dollargeneral.com/c/party-occasions/pinatas"
+     },
+     "spring-partyware": {
+      "url": "https://www.dollargeneral.com/c/party-occasions/spring-partyware"
+     },
+     "tableware": {
+      "url": "https://www.dollargeneral.com/c/party-occasions/tableware"
+     }
+    }
+   },
+   "personal-care": {
+    "url": "https://www.dollargeneral.com/c/personal-care",
+    "subcategories": {
+     "-3-personal-care-finds": {
+      "url": "https://www.dollargeneral.com/c/personal-care/-3-personal-care-finds"
+     },
+     "-5-personal-care-finds": {
+      "url": "https://www.dollargeneral.com/c/personal-care/-5-personal-care-finds"
+     },
+     "adult-incontinence": {
+      "url": "https://www.dollargeneral.com/c/personal-care/adult-incontinence"
+     },
+     "bath-additives-accessories": {
+      "url": "https://www.dollargeneral.com/c/personal-care/bath-additives-accessories"
+     },
+     "deodorants-antiperspirants": {
+      "url": "https://www.dollargeneral.com/c/personal-care/deodorants-antiperspirants",
+      "subcategories": {
+       "shop-by-brand": {
+        "url": "https://www.dollargeneral.com/c/personal-care/deodorants-antiperspirants/shop-by-brand",
+        "subcategories": {
+         "axe": {
+          "url": "https://www.dollargeneral.com/c/personal-care/deodorants-antiperspirants/shop-by-brand/axe"
+         },
+         "degree": {
+          "url": "https://www.dollargeneral.com/c/personal-care/deodorants-antiperspirants/shop-by-brand/degree"
+         },
+         "dove": {
+          "url": "https://www.dollargeneral.com/c/personal-care/deodorants-antiperspirants/shop-by-brand/dove"
+         },
+         "gillette": {
+          "url": "https://www.dollargeneral.com/c/personal-care/deodorants-antiperspirants/shop-by-brand/gillette"
+         },
+         "old-spice": {
+          "url": "https://www.dollargeneral.com/c/personal-care/deodorants-antiperspirants/shop-by-brand/old-spice"
+         },
+         "secret": {
+          "url": "https://www.dollargeneral.com/c/personal-care/deodorants-antiperspirants/shop-by-brand/secret"
+         },
+         "speed-stick": {
+          "url": "https://www.dollargeneral.com/c/personal-care/deodorants-antiperspirants/shop-by-brand/speed-stick"
+         },
+         "suave": {
+          "url": "https://www.dollargeneral.com/c/personal-care/deodorants-antiperspirants/shop-by-brand/suave"
+         }
+        }
+       }
+      }
+     },
+     "edgewell": {
+      "url": "https://www.dollargeneral.com/c/personal-care/edgewell"
+     },
+     "feminine-care": {
+      "url": "https://www.dollargeneral.com/c/personal-care/feminine-care"
+     },
+     "new---trending-personal-care-": {
+      "url": "https://www.dollargeneral.com/c/personal-care/new---trending-personal-care-"
+     },
+     "oral-care": {
+      "url": "https://www.dollargeneral.com/c/personal-care/oral-care",
+      "subcategories": {
+       "breath-fresheners": {
+        "url": "https://www.dollargeneral.com/c/personal-care/oral-care/breath-fresheners"
+       },
+       "breath-fresheners-mouthwash": {
+        "url": "https://www.dollargeneral.com/c/personal-care/oral-care/breath-fresheners-mouthwash"
+       },
+       "dental-for-kids": {
+        "url": "https://www.dollargeneral.com/c/personal-care/oral-care/dental-for-kids"
+       },
+       "denture-care": {
+        "url": "https://www.dollargeneral.com/c/personal-care/oral-care/denture-care"
+       },
+       "floss-dental-accessories": {
+        "url": "https://www.dollargeneral.com/c/personal-care/oral-care/floss-dental-accessories"
+       },
+       "oral-pain-relief": {
+        "url": "https://www.dollargeneral.com/c/personal-care/oral-care/oral-pain-relief"
+       },
+       "shop-by-brand": {
+        "url": "https://www.dollargeneral.com/c/personal-care/oral-care/shop-by-brand",
+        "subcategories": {
+         "colgate": {
+          "url": "https://www.dollargeneral.com/c/personal-care/oral-care/shop-by-brand/colgate"
+         },
+         "crest": {
+          "url": "https://www.dollargeneral.com/c/personal-care/oral-care/shop-by-brand/crest"
+         },
+         "dg-health-oral-care": {
+          "url": "https://www.dollargeneral.com/c/personal-care/oral-care/shop-by-brand/dg-health-oral-care"
+         },
+         "fixodent": {
+          "url": "https://www.dollargeneral.com/c/personal-care/oral-care/shop-by-brand/fixodent"
+         },
+         "listerine": {
+          "url": "https://www.dollargeneral.com/c/personal-care/oral-care/shop-by-brand/listerine"
+         },
+         "oral-b": {
+          "url": "https://www.dollargeneral.com/c/personal-care/oral-care/shop-by-brand/oral-b"
+         },
+         "rexall-oral-care": {
+          "url": "https://www.dollargeneral.com/c/personal-care/oral-care/shop-by-brand/rexall-oral-care"
+         },
+         "sensodyne": {
+          "url": "https://www.dollargeneral.com/c/personal-care/oral-care/shop-by-brand/sensodyne"
+         }
+        }
+       },
+       "toothbrushes": {
+        "url": "https://www.dollargeneral.com/c/personal-care/oral-care/toothbrushes"
+       },
+       "toothpaste": {
+        "url": "https://www.dollargeneral.com/c/personal-care/oral-care/toothpaste"
+       }
+      }
+     },
+     "personal-care-on-sale": {
+      "url": "https://www.dollargeneral.com/c/personal-care/personal-care-on-sale"
+     },
+     "sexual-wellness": {
+      "url": "https://www.dollargeneral.com/c/personal-care/sexual-wellness"
+     },
+     "shaving": {
+      "url": "https://www.dollargeneral.com/c/personal-care/shaving",
+      "subcategories": {
+       "shop-by-brand": {
+        "url": "https://www.dollargeneral.com/c/personal-care/shaving/shop-by-brand",
+        "subcategories": {
+         "bic": {
+          "url": "https://www.dollargeneral.com/c/personal-care/shaving/shop-by-brand/bic"
+         },
+         "gillette": {
+          "url": "https://www.dollargeneral.com/c/personal-care/shaving/shop-by-brand/gillette"
+         },
+         "nair": {
+          "url": "https://www.dollargeneral.com/c/personal-care/shaving/shop-by-brand/nair"
+         },
+         "schick": {
+          "url": "https://www.dollargeneral.com/c/personal-care/shaving/shop-by-brand/schick"
+         },
+         "skintimate": {
+          "url": "https://www.dollargeneral.com/c/personal-care/shaving/shop-by-brand/skintimate"
+         },
+         "studio-selection-shaving": {
+          "url": "https://www.dollargeneral.com/c/personal-care/shaving/shop-by-brand/studio-selection-shaving"
+         },
+         "venus": {
+          "url": "https://www.dollargeneral.com/c/personal-care/shaving/shop-by-brand/venus"
+         },
+         "wahl": {
+          "url": "https://www.dollargeneral.com/c/personal-care/shaving/shop-by-brand/wahl"
+         }
+        }
+       }
+      }
+     },
+     "soap-body-wash": {
+      "url": "https://www.dollargeneral.com/c/personal-care/soap-body-wash",
+      "subcategories": {
+       "shop-by-brand": {
+        "url": "https://www.dollargeneral.com/c/personal-care/soap-body-wash/shop-by-brand",
+        "subcategories": {
+         "axe": {
+          "url": "https://www.dollargeneral.com/c/personal-care/soap-body-wash/shop-by-brand/axe"
+         },
+         "dial": {
+          "url": "https://www.dollargeneral.com/c/personal-care/soap-body-wash/shop-by-brand/dial"
+         },
+         "dove": {
+          "url": "https://www.dollargeneral.com/c/personal-care/soap-body-wash/shop-by-brand/dove"
+         },
+         "irish-spring": {
+          "url": "https://www.dollargeneral.com/c/personal-care/soap-body-wash/shop-by-brand/irish-spring"
+         },
+         "jergens": {
+          "url": "https://www.dollargeneral.com/c/personal-care/soap-body-wash/shop-by-brand/jergens"
+         },
+         "old-spice": {
+          "url": "https://www.dollargeneral.com/c/personal-care/soap-body-wash/shop-by-brand/old-spice"
+         },
+         "softsoap": {
+          "url": "https://www.dollargeneral.com/c/personal-care/soap-body-wash/shop-by-brand/softsoap"
+         },
+         "studio-selection": {
+          "url": "https://www.dollargeneral.com/c/personal-care/soap-body-wash/shop-by-brand/studio-selection"
+         },
+         "suave": {
+          "url": "https://www.dollargeneral.com/c/personal-care/soap-body-wash/shop-by-brand/suave"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "pet": {
+    "url": "https://www.dollargeneral.com/c/pet",
+    "subcategories": {
+     "cat-accessories": {
+      "url": "https://www.dollargeneral.com/c/pet/cat-accessories"
+     },
+     "cat-food": {
+      "url": "https://www.dollargeneral.com/c/pet/cat-food"
+     },
+     "cat-litter": {
+      "url": "https://www.dollargeneral.com/c/pet/cat-litter"
+     },
+     "cat-treats": {
+      "url": "https://www.dollargeneral.com/c/pet/cat-treats",
+      "subcategories": {
+       "shop-by-brand": {
+        "url": "https://www.dollargeneral.com/c/pet/cat-treats/shop-by-brand",
+        "subcategories": {
+         "delectables": {
+          "url": "https://www.dollargeneral.com/c/pet/cat-treats/shop-by-brand/delectables"
+         },
+         "friskies": {
+          "url": "https://www.dollargeneral.com/c/pet/cat-treats/shop-by-brand/friskies"
+         },
+         "heartland-farms": {
+          "url": "https://www.dollargeneral.com/c/pet/cat-treats/shop-by-brand/heartland-farms"
+         },
+         "temptations": {
+          "url": "https://www.dollargeneral.com/c/pet/cat-treats/shop-by-brand/temptations"
+         }
+        }
+       }
+      }
+     },
+     "dog-accessories-cleaning": {
+      "url": "https://www.dollargeneral.com/c/pet/dog-accessories-cleaning"
+     },
+     "dog-food": {
+      "url": "https://www.dollargeneral.com/c/pet/dog-food",
+      "subcategories": {
+       "shop-by-brand": {
+        "url": "https://www.dollargeneral.com/c/pet/dog-food/shop-by-brand",
+        "subcategories": {
+         "cesar": {
+          "url": "https://www.dollargeneral.com/c/pet/dog-food/shop-by-brand/cesar"
+         },
+         "gravy-train": {
+          "url": "https://www.dollargeneral.com/c/pet/dog-food/shop-by-brand/gravy-train"
+         },
+         "iams": {
+          "url": "https://www.dollargeneral.com/c/pet/dog-food/shop-by-brand/iams"
+         },
+         "kibbles-n-bits": {
+          "url": "https://www.dollargeneral.com/c/pet/dog-food/shop-by-brand/kibbles-n-bits"
+         },
+         "pedigree": {
+          "url": "https://www.dollargeneral.com/c/pet/dog-food/shop-by-brand/pedigree"
+         },
+         "purina": {
+          "url": "https://www.dollargeneral.com/c/pet/dog-food/shop-by-brand/purina"
+         }
+        }
+       }
+      }
+     },
+     "dog-treats": {
+      "url": "https://www.dollargeneral.com/c/pet/dog-treats",
+      "subcategories": {
+       "shop-by-brand": {
+        "url": "https://www.dollargeneral.com/c/pet/dog-treats/shop-by-brand",
+        "subcategories": {
+         "beggin": {
+          "url": "https://www.dollargeneral.com/c/pet/dog-treats/shop-by-brand/beggin"
+         },
+         "canine-carry-outs": {
+          "url": "https://www.dollargeneral.com/c/pet/dog-treats/shop-by-brand/canine-carry-outs"
+         },
+         "dreambone": {
+          "url": "https://www.dollargeneral.com/c/pet/dog-treats/shop-by-brand/dreambone"
+         },
+         "good-n-fun": {
+          "url": "https://www.dollargeneral.com/c/pet/dog-treats/shop-by-brand/good-n-fun"
+         },
+         "heartland-farms": {
+          "url": "https://www.dollargeneral.com/c/pet/dog-treats/shop-by-brand/heartland-farms"
+         },
+         "milk-bone": {
+          "url": "https://www.dollargeneral.com/c/pet/dog-treats/shop-by-brand/milk-bone"
+         },
+         "pup-peroni": {
+          "url": "https://www.dollargeneral.com/c/pet/dog-treats/shop-by-brand/pup-peroni"
+         }
+        }
+       }
+      }
+     },
+     "pet-gifts": {
+      "url": "https://www.dollargeneral.com/c/pet/pet-gifts",
+      "subcategories": {
+       "gifts-for-cats": {
+        "url": "https://www.dollargeneral.com/c/pet/pet-gifts/gifts-for-cats"
+       },
+       "gifts-for-dogs": {
+        "url": "https://www.dollargeneral.com/c/pet/pet-gifts/gifts-for-dogs"
+       }
+      }
+     },
+     "pet-on-sale": {
+      "url": "https://www.dollargeneral.com/c/pet/pet-on-sale"
+     },
+     "purina": {
+      "url": "https://www.dollargeneral.com/c/pet/purina"
+     }
+    }
+   },
+   "seasonal": {
+    "url": "https://www.dollargeneral.com/c/seasonal",
+    "subcategories": {
+     "easter": {
+      "url": "https://www.dollargeneral.com/c/seasonal/easter",
+      "subcategories": {
+       "baskets-eggs---grass": {
+        "url": "https://www.dollargeneral.com/c/seasonal/easter/baskets-eggs---grass"
+       },
+       "baskets-eggs-grass": {
+        "url": "https://www.dollargeneral.com/c/seasonal/easter/baskets-eggs-grass"
+       },
+       "easter-candy": {
+        "url": "https://www.dollargeneral.com/c/seasonal/easter/easter-candy"
+       },
+       "easter-crafts": {
+        "url": "https://www.dollargeneral.com/c/seasonal/easter/easter-crafts"
+       },
+       "easter-decor-accessories": {
+        "url": "https://www.dollargeneral.com/c/seasonal/easter/easter-decor-accessories"
+       },
+       "easter-gifts": {
+        "url": "https://www.dollargeneral.com/c/seasonal/easter/easter-gifts"
+       },
+       "easter-gifts-for-boys": {
+        "url": "https://www.dollargeneral.com/c/seasonal/easter/easter-gifts-for-boys"
+       },
+       "easter-gifts-for-girls": {
+        "url": "https://www.dollargeneral.com/c/seasonal/easter/easter-gifts-for-girls"
+       },
+       "easter-party": {
+        "url": "https://www.dollargeneral.com/c/seasonal/easter/easter-party"
+       },
+       "easter-peeps": {
+        "url": "https://www.dollargeneral.com/c/seasonal/easter/easter-peeps"
+       }
+      }
+     },
+     "fall": {
+      "url": "https://www.dollargeneral.com/c/seasonal/fall",
+      "subcategories": {
+       "fall-decor-entertaining": {
+        "url": "https://www.dollargeneral.com/c/seasonal/fall/fall-decor-entertaining",
+        "subcategories": {
+         "fall-candles-scents": {
+          "url": "https://www.dollargeneral.com/c/seasonal/fall/fall-decor-entertaining/fall-candles-scents"
+         },
+         "indoor-fall-decorations": {
+          "url": "https://www.dollargeneral.com/c/seasonal/fall/fall-decor-entertaining/indoor-fall-decorations"
+         },
+         "outdoor-fall-decorations": {
+          "url": "https://www.dollargeneral.com/c/seasonal/fall/fall-decor-entertaining/outdoor-fall-decorations"
+         }
+        }
+       },
+       "fall-florals": {
+        "url": "https://www.dollargeneral.com/c/seasonal/fall/fall-florals"
+       },
+       "fall-party-supplies": {
+        "url": "https://www.dollargeneral.com/c/seasonal/fall/fall-party-supplies"
+       },
+       "tailgating-supplies": {
+        "url": "https://www.dollargeneral.com/c/seasonal/fall/tailgating-supplies"
+       },
+       "thanksgiving-guide": {
+        "url": "https://www.dollargeneral.com/c/seasonal/fall/thanksgiving-guide"
+       },
+       "thanksgiving-guide_msm_moved": {
+        "url": "https://www.dollargeneral.com/c/seasonal/fall/thanksgiving-guide_msm_moved"
+       }
+      }
+     },
+     "father-s-day-gifts": {
+      "url": "https://www.dollargeneral.com/c/seasonal/father-s-day-gifts"
+     },
+     "graduation": {
+      "url": "https://www.dollargeneral.com/c/seasonal/graduation"
+     },
+     "halloween": {
+      "url": "https://www.dollargeneral.com/c/seasonal/halloween",
+      "subcategories": {
+       "halloween-bags-buckets": {
+        "url": "https://www.dollargeneral.com/c/seasonal/halloween/halloween-bags-buckets"
+       },
+       "halloween-candy": {
+        "url": "https://www.dollargeneral.com/c/seasonal/halloween/halloween-candy"
+       },
+       "halloween-costumes-accessories": {
+        "url": "https://www.dollargeneral.com/c/seasonal/halloween/halloween-costumes-accessories",
+        "subcategories": {
+         "halloween-makeup": {
+          "url": "https://www.dollargeneral.com/c/seasonal/halloween/halloween-costumes-accessories/halloween-makeup"
+         }
+        }
+       },
+       "halloween-decor": {
+        "url": "https://www.dollargeneral.com/c/seasonal/halloween/halloween-decor",
+        "subcategories": {
+         "1-halloween-decor": {
+          "url": "https://www.dollargeneral.com/c/seasonal/halloween/halloween-decor/1-halloween-decor"
+         },
+         "3-halloween-decor": {
+          "url": "https://www.dollargeneral.com/c/seasonal/halloween/halloween-decor/3-halloween-decor"
+         },
+         "5-halloween-decor": {
+          "url": "https://www.dollargeneral.com/c/seasonal/halloween/halloween-decor/5-halloween-decor"
+         },
+         "indoor-halloween-decorations": {
+          "url": "https://www.dollargeneral.com/c/seasonal/halloween/halloween-decor/indoor-halloween-decorations"
+         },
+         "light-up-halloween-decor": {
+          "url": "https://www.dollargeneral.com/c/seasonal/halloween/halloween-decor/light-up-halloween-decor"
+         },
+         "outdoor-halloween-decorations": {
+          "url": "https://www.dollargeneral.com/c/seasonal/halloween/halloween-decor/outdoor-halloween-decorations"
+         }
+        }
+       },
+       "halloween-party-supplies": {
+        "url": "https://www.dollargeneral.com/c/seasonal/halloween/halloween-party-supplies",
+        "subcategories": {
+         "halloween-glow-products-party-favors": {
+          "url": "https://www.dollargeneral.com/c/seasonal/halloween/halloween-party-supplies/halloween-glow-products-party-favors"
+         },
+         "halloween-party-plates-tableware": {
+          "url": "https://www.dollargeneral.com/c/seasonal/halloween/halloween-party-supplies/halloween-party-plates-tableware"
+         }
+        }
+       },
+       "new-trending-halloween": {
+        "url": "https://www.dollargeneral.com/c/seasonal/halloween/new-trending-halloween",
+        "subcategories": {
+         "halloween-bubble-decorations": {
+          "url": "https://www.dollargeneral.com/c/seasonal/halloween/new-trending-halloween/halloween-bubble-decorations"
+         },
+         "halloween-ghost-buckets": {
+          "url": "https://www.dollargeneral.com/c/seasonal/halloween/new-trending-halloween/halloween-ghost-buckets"
+         }
+        }
+       },
+       "pumpkin-carving-crafts": {
+        "url": "https://www.dollargeneral.com/c/seasonal/halloween/pumpkin-carving-crafts"
+       }
+      }
+     },
+     "mother-s-day": {
+      "url": "https://www.dollargeneral.com/c/seasonal/mother-s-day",
+      "subcategories": {
+       "mother-s-day-brunch": {
+        "url": "https://www.dollargeneral.com/c/seasonal/mother-s-day/mother-s-day-brunch"
+       },
+       "mother-s-day-crafts": {
+        "url": "https://www.dollargeneral.com/c/seasonal/mother-s-day/mother-s-day-crafts"
+       },
+       "mother-s-day-gifts": {
+        "url": "https://www.dollargeneral.com/c/seasonal/mother-s-day/mother-s-day-gifts"
+       },
+       "mothers-day-brunch": {
+        "url": "https://www.dollargeneral.com/c/seasonal/mother-s-day/mothers-day-brunch"
+       },
+       "mothers-day-crafts": {
+        "url": "https://www.dollargeneral.com/c/seasonal/mother-s-day/mothers-day-crafts"
+       },
+       "mothers-day-gifts": {
+        "url": "https://www.dollargeneral.com/c/seasonal/mother-s-day/mothers-day-gifts"
+       }
+      }
+     },
+     "mothers-day": {
+      "url": "https://www.dollargeneral.com/c/seasonal/mothers-day",
+      "subcategories": {
+       "mother-s-day-brunch": {
+        "url": "https://www.dollargeneral.com/c/seasonal/mothers-day/mother-s-day-brunch"
+       },
+       "mother-s-day-crafts": {
+        "url": "https://www.dollargeneral.com/c/seasonal/mothers-day/mother-s-day-crafts"
+       },
+       "mother-s-day-gifts": {
+        "url": "https://www.dollargeneral.com/c/seasonal/mothers-day/mother-s-day-gifts"
+       },
+       "mothers-day-brunch": {
+        "url": "https://www.dollargeneral.com/c/seasonal/mothers-day/mothers-day-brunch"
+       },
+       "mothers-day-crafts": {
+        "url": "https://www.dollargeneral.com/c/seasonal/mothers-day/mothers-day-crafts"
+       },
+       "mothers-day-gifts": {
+        "url": "https://www.dollargeneral.com/c/seasonal/mothers-day/mothers-day-gifts"
+       }
+      }
+     },
+     "new-years-eve": {
+      "url": "https://www.dollargeneral.com/c/seasonal/new-years-eve"
+     },
+     "patriotic": {
+      "url": "https://www.dollargeneral.com/c/seasonal/patriotic",
+      "subcategories": {
+       "patriotic-clothes-accessories": {
+        "url": "https://www.dollargeneral.com/c/seasonal/patriotic/patriotic-clothes-accessories"
+       },
+       "patriotic-decor-starting-at-1": {
+        "url": "https://www.dollargeneral.com/c/seasonal/patriotic/patriotic-decor-starting-at-1"
+       }
+      }
+     },
+     "seasonal-on-sale": {
+      "url": "https://www.dollargeneral.com/c/seasonal/seasonal-on-sale"
+     },
+     "tailgating": {
+      "url": "https://www.dollargeneral.com/c/seasonal/tailgating"
+     },
+     "valentine-s-day": {
+      "url": "https://www.dollargeneral.com/c/seasonal/valentine-s-day",
+      "subcategories": {
+       "valentine-s-candy": {
+        "url": "https://www.dollargeneral.com/c/seasonal/valentine-s-day/valentine-s-candy"
+       },
+       "valentine-s-day-cards-gift-wrap": {
+        "url": "https://www.dollargeneral.com/c/seasonal/valentine-s-day/valentine-s-day-cards-gift-wrap"
+       },
+       "valentine-s-day-crafts": {
+        "url": "https://www.dollargeneral.com/c/seasonal/valentine-s-day/valentine-s-day-crafts"
+       },
+       "valentine-s-day-favors-decor": {
+        "url": "https://www.dollargeneral.com/c/seasonal/valentine-s-day/valentine-s-day-favors-decor"
+       },
+       "valentine-s-day-gifts": {
+        "url": "https://www.dollargeneral.com/c/seasonal/valentine-s-day/valentine-s-day-gifts"
+       },
+       "valentine-s-day-gifts-for-her": {
+        "url": "https://www.dollargeneral.com/c/seasonal/valentine-s-day/valentine-s-day-gifts-for-her"
+       },
+       "valentine-s-day-gifts-for-him": {
+        "url": "https://www.dollargeneral.com/c/seasonal/valentine-s-day/valentine-s-day-gifts-for-him"
+       },
+       "valentine-s-day-gifts-for-kids": {
+        "url": "https://www.dollargeneral.com/c/seasonal/valentine-s-day/valentine-s-day-gifts-for-kids"
+       },
+       "valentine-s-day-plush-toys": {
+        "url": "https://www.dollargeneral.com/c/seasonal/valentine-s-day/valentine-s-day-plush-toys"
+       }
+      }
+     }
+    }
+   },
+   "toys": {
+    "url": "https://www.dollargeneral.com/c/toys",
+    "subcategories": {
+     "-5-toys": {
+      "url": "https://www.dollargeneral.com/c/toys/-5-toys"
+     },
+     "15-under-toys": {
+      "url": "https://www.dollargeneral.com/c/toys/15-under-toys"
+     },
+     "5-surprise": {
+      "url": "https://www.dollargeneral.com/c/toys/5-surprise"
+     },
+     "5-under-toys": {
+      "url": "https://www.dollargeneral.com/c/toys/5-under-toys"
+     },
+     "Vtech": {
+      "url": "https://www.dollargeneral.com/c/toys/Vtech"
+     },
+     "action-figures": {
+      "url": "https://www.dollargeneral.com/c/toys/action-figures"
+     },
+     "action-figures0": {
+      "url": "https://www.dollargeneral.com/c/toys/action-figures0"
+     },
+     "active-outdoor-play": {
+      "url": "https://www.dollargeneral.com/c/toys/active-outdoor-play"
+     },
+     "arts---crafts-toys": {
+      "url": "https://www.dollargeneral.com/c/toys/arts---crafts-toys"
+     },
+     "arts-crafts-toys": {
+      "url": "https://www.dollargeneral.com/c/toys/arts-crafts-toys"
+     },
+     "baby-alive": {
+      "url": "https://www.dollargeneral.com/c/toys/baby-alive"
+     },
+     "baby-preschool-toys": {
+      "url": "https://www.dollargeneral.com/c/toys/baby-preschool-toys"
+     },
+     "baby-shark": {
+      "url": "https://www.dollargeneral.com/c/toys/baby-shark"
+     },
+     "barbie": {
+      "url": "https://www.dollargeneral.com/c/toys/barbie"
+     },
+     "beach-pool-toys": {
+      "url": "https://www.dollargeneral.com/c/toys/beach-pool-toys"
+     },
+     "bluey": {
+      "url": "https://www.dollargeneral.com/c/toys/bluey"
+     },
+     "bubbles": {
+      "url": "https://www.dollargeneral.com/c/toys/bubbles"
+     },
+     "chalk": {
+      "url": "https://www.dollargeneral.com/c/toys/chalk"
+     },
+     "cloud-test-1": {
+      "url": "https://www.dollargeneral.com/c/toys/cloud-test-1"
+     },
+     "collectibles-stocking-stuffers": {
+      "url": "https://www.dollargeneral.com/c/toys/collectibles-stocking-stuffers"
+     },
+     "disney": {
+      "url": "https://www.dollargeneral.com/c/toys/disney"
+     },
+     "dolls": {
+      "url": "https://www.dollargeneral.com/c/toys/dolls"
+     },
+     "dress-up-pretend-play": {
+      "url": "https://www.dollargeneral.com/c/toys/dress-up-pretend-play"
+     },
+     "fisher-price": {
+      "url": "https://www.dollargeneral.com/c/toys/fisher-price"
+     },
+     "hasbro": {
+      "url": "https://www.dollargeneral.com/c/toys/hasbro"
+     },
+     "hot-wheels": {
+      "url": "https://www.dollargeneral.com/c/toys/hot-wheels"
+     },
+     "learning---stem-toys": {
+      "url": "https://www.dollargeneral.com/c/toys/learning---stem-toys"
+     },
+     "learning-stem-toys": {
+      "url": "https://www.dollargeneral.com/c/toys/learning-stem-toys"
+     },
+     "lego-": {
+      "url": "https://www.dollargeneral.com/c/toys/lego-"
+     },
+     "lol-surprise": {
+      "url": "https://www.dollargeneral.com/c/toys/lol-surprise"
+     },
+     "marvel": {
+      "url": "https://www.dollargeneral.com/c/toys/marvel"
+     },
+     "mattel": {
+      "url": "https://www.dollargeneral.com/c/toys/mattel"
+     },
+     "melissa-doug": {
+      "url": "https://www.dollargeneral.com/c/toys/melissa-doug"
+     },
+     "mickey-minnie-mouse": {
+      "url": "https://www.dollargeneral.com/c/toys/mickey-minnie-mouse"
+     },
+     "nerf": {
+      "url": "https://www.dollargeneral.com/c/toys/nerf"
+     },
+     "peppa-pig": {
+      "url": "https://www.dollargeneral.com/c/toys/peppa-pig"
+     },
+     "play-doh": {
+      "url": "https://www.dollargeneral.com/c/toys/play-doh"
+     },
+     "playsets": {
+      "url": "https://www.dollargeneral.com/c/toys/playsets"
+     },
+     "playsets0": {
+      "url": "https://www.dollargeneral.com/c/toys/playsets0"
+     },
+     "pokemon": {
+      "url": "https://www.dollargeneral.com/c/toys/pokemon"
+     },
+     "puzzles-games---books": {
+      "url": "https://www.dollargeneral.com/c/toys/puzzles-games---books"
+     },
+     "puzzles-games-books": {
+      "url": "https://www.dollargeneral.com/c/toys/puzzles-games-books"
+     },
+     "shop-by-age": {
+      "url": "https://www.dollargeneral.com/c/toys/shop-by-age",
+      "subcategories": {
+       "0-24-months": {
+        "url": "https://www.dollargeneral.com/c/toys/shop-by-age/0-24-months"
+       },
+       "11-years": {
+        "url": "https://www.dollargeneral.com/c/toys/shop-by-age/11-years"
+       },
+       "2-4-years": {
+        "url": "https://www.dollargeneral.com/c/toys/shop-by-age/2-4-years"
+       },
+       "5-7-years": {
+        "url": "https://www.dollargeneral.com/c/toys/shop-by-age/5-7-years"
+       },
+       "8-10-years": {
+        "url": "https://www.dollargeneral.com/c/toys/shop-by-age/8-10-years"
+       }
+      }
+     },
+     "squishmallows": {
+      "url": "https://www.dollargeneral.com/c/toys/squishmallows"
+     },
+     "squishy": {
+      "url": "https://www.dollargeneral.com/c/toys/squishy"
+     },
+     "stuffed-animals-plush": {
+      "url": "https://www.dollargeneral.com/c/toys/stuffed-animals-plush"
+     },
+     "toy-new-arrivals": {
+      "url": "https://www.dollargeneral.com/c/toys/toy-new-arrivals"
+     },
+     "toys-on-sale": {
+      "url": "https://www.dollargeneral.com/c/toys/toys-on-sale"
+     },
+     "vehicles-trains-rc": {
+      "url": "https://www.dollargeneral.com/c/toys/vehicles-trains-rc"
+     },
+     "video-games-electronics": {
+      "url": "https://www.dollargeneral.com/c/toys/video-games-electronics"
+     },
+     "vtech": {
+      "url": "https://www.dollargeneral.com/c/toys/vtech"
+     },
+     "zuru": {
+      "url": "https://www.dollargeneral.com/c/toys/zuru"
+     }
+    }
+   }
+  }
+ }
+}

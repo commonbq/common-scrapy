@@ -1,0 +1,122 @@
+[
+ {
+  "rank": 1,
+  "name": "on-sale",
+  "url": "https://www.dollargeneral.com/c/on-sale",
+  "subcategories": 118
+ },
+ {
+  "rank": 2,
+  "name": "food-beverage",
+  "url": "https://www.dollargeneral.com/c/food-beverage",
+  "subcategories": 113
+ },
+ {
+  "rank": 3,
+  "name": "seasonal",
+  "url": "https://www.dollargeneral.com/c/seasonal",
+  "subcategories": 72
+ },
+ {
+  "rank": 4,
+  "name": "christmas",
+  "url": "https://www.dollargeneral.com/c/christmas",
+  "subcategories": 61
+ },
+ {
+  "rank": 5,
+  "name": "household",
+  "url": "https://www.dollargeneral.com/c/household",
+  "subcategories": 60
+ },
+ {
+  "rank": 6,
+  "name": "personal-care",
+  "url": "https://www.dollargeneral.com/c/personal-care",
+  "subcategories": 58
+ },
+ {
+  "rank": 7,
+  "name": "toys",
+  "url": "https://www.dollargeneral.com/c/toys",
+  "subcategories": 57
+ },
+ {
+  "rank": 8,
+  "name": "home",
+  "url": "https://www.dollargeneral.com/c/home",
+  "subcategories": 50
+ },
+ {
+  "rank": 9,
+  "name": "cleaning",
+  "url": "https://www.dollargeneral.com/c/cleaning",
+  "subcategories": 46
+ },
+ {
+  "rank": 10,
+  "name": "kitchen-dining",
+  "url": "https://www.dollargeneral.com/c/kitchen-dining",
+  "subcategories": 41
+ },
+ {
+  "rank": 11,
+  "name": "beauty",
+  "url": "https://www.dollargeneral.com/c/beauty",
+  "subcategories": 36
+ },
+ {
+  "rank": 12,
+  "name": "apparel",
+  "url": "https://www.dollargeneral.com/c/apparel",
+  "subcategories": 33
+ },
+ {
+  "rank": 13,
+  "name": "pet",
+  "url": "https://www.dollargeneral.com/c/pet",
+  "subcategories": 32
+ },
+ {
+  "rank": 14,
+  "name": "office-school-supplies",
+  "url": "https://www.dollargeneral.com/c/office-school-supplies",
+  "subcategories": 31
+ },
+ {
+  "rank": 15,
+  "name": "health",
+  "url": "https://www.dollargeneral.com/c/health",
+  "subcategories": 27
+ },
+ {
+  "rank": 16,
+  "name": "party-occasions",
+  "url": "https://www.dollargeneral.com/c/party-occasions",
+  "subcategories": 20
+ },
+ {
+  "rank": 17,
+  "name": "electronics",
+  "url": "https://www.dollargeneral.com/c/electronics",
+  "subcategories": 15
+ },
+ {
+  "rank": 18,
+  "name": "auto-hardware",
+  "url": "https://www.dollargeneral.com/c/auto-hardware",
+  "subcategories": 14
+ },
+ {
+  "rank": 19,
+  "name": "outdoor-living",
+  "url": "https://www.dollargeneral.com/c/outdoor-living",
+  "subcategories": 13
+ },
+ {
+  "rank": 20,
+  "name": "baby",
+  "url": "https://www.dollargeneral.com/c/baby",
+  "subcategories": 10
+ }
+]
