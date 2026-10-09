@@ -1,0 +1,6080 @@
+{
+ "https://www.toolstation.com/sale-clearance/c17": {
+  "name": "sale clearance",
+  "id": "c17",
+  "path": "sale-clearance",
+  "products": null
+ },
+ "https://www.toolstation.com/sale-clearance/lighting/c177": {
+  "name": "lighting",
+  "id": "c177",
+  "path": "sale-clearance/lighting",
+  "products": 77
+ },
+ "https://www.toolstation.com/sale-clearance/electrical/c176": {
+  "name": "electrical",
+  "id": "c176",
+  "path": "sale-clearance/electrical",
+  "products": 353
+ },
+ "https://www.toolstation.com/sale-clearance/power-tools/c379": {
+  "name": "power tools",
+  "id": "c379",
+  "path": "sale-clearance/power-tools",
+  "products": 80
+ },
+ "https://www.toolstation.com/sale-clearance/hand-tools/c171": {
+  "name": "hand tools",
+  "id": "c171",
+  "path": "sale-clearance/hand-tools",
+  "products": null
+ },
+ "https://www.toolstation.com/sale-clearance/workwear-safety/c170": {
+  "name": "workwear safety",
+  "id": "c170",
+  "path": "sale-clearance/workwear-safety",
+  "products": 86
+ },
+ "https://www.toolstation.com/sale-clearance/ladders-storage/c569": {
+  "name": "ladders storage",
+  "id": "c569",
+  "path": "sale-clearance/ladders-storage",
+  "products": 15
+ },
+ "https://www.toolstation.com/sale-clearance/power-tool-accessories/c166": {
+  "name": "power tool accessories",
+  "id": "c166",
+  "path": "sale-clearance/power-tool-accessories",
+  "products": 114
+ },
+ "https://www.toolstation.com/sale-clearance/plumbing/c306": {
+  "name": "plumbing",
+  "id": "c306",
+  "path": "sale-clearance/plumbing",
+  "products": 33
+ },
+ "https://www.toolstation.com/sale-clearance/security/c134": {
+  "name": "security",
+  "id": "c134",
+  "path": "sale-clearance/security",
+  "products": null
+ },
+ "https://www.toolstation.com/sale-clearance/central-heating/c1400": {
+  "name": "central heating",
+  "id": "c1400",
+  "path": "sale-clearance/central-heating",
+  "products": 12
+ },
+ "https://www.toolstation.com/sale-clearance/automotive/c570": {
+  "name": "automotive",
+  "id": "c570",
+  "path": "sale-clearance/automotive",
+  "products": 19
+ },
+ "https://www.toolstation.com/sale-clearance/bathrooms/c925": {
+  "name": "bathrooms",
+  "id": "c925",
+  "path": "sale-clearance/bathrooms",
+  "products": 22
+ },
+ "https://www.toolstation.com/sale-clearance/ironmongery/c174": {
+  "name": "ironmongery",
+  "id": "c174",
+  "path": "sale-clearance/ironmongery",
+  "products": 229
+ },
+ "https://www.toolstation.com/sale-clearance/painting-decorating/c255": {
+  "name": "painting decorating",
+  "id": "c255",
+  "path": "sale-clearance/painting-decorating",
+  "products": null
+ },
+ "https://www.toolstation.com/sale-clearance/kitchens/c1401": {
+  "name": "kitchens",
+  "id": "c1401",
+  "path": "sale-clearance/kitchens",
+  "products": 8
+ },
+ "https://www.toolstation.com/sale-clearance/cleaning-pest-control/c434": {
+  "name": "cleaning pest control",
+  "id": "c434",
+  "path": "sale-clearance/cleaning-pest-control",
+  "products": 10
+ },
+ "https://www.toolstation.com/sale-clearance/ventilation-heating/c1402": {
+  "name": "ventilation heating",
+  "id": "c1402",
+  "path": "sale-clearance/ventilation-heating",
+  "products": 11
+ },
+ "https://www.toolstation.com/sale-clearance/construction-insulation/c208": {
+  "name": "construction insulation",
+  "id": "c208",
+  "path": "sale-clearance/construction-insulation",
+  "products": 15
+ },
+ "https://www.toolstation.com/sale-clearance/landscaping/c571": {
+  "name": "landscaping",
+  "id": "c571",
+  "path": "sale-clearance/landscaping",
+  "products": 14
+ },
+ "https://www.toolstation.com/sale-clearance/screws-fixings/c175": {
+  "name": "screws fixings",
+  "id": "c175",
+  "path": "sale-clearance/screws-fixings",
+  "products": 127
+ },
+ "https://www.toolstation.com/sale-clearance/adhesives-sealants/c173": {
+  "name": "adhesives sealants",
+  "id": "c173",
+  "path": "sale-clearance/adhesives-sealants",
+  "products": 15
+ },
+ "https://www.toolstation.com/deals/c1458": {
+  "name": "deals",
+  "id": "c1458",
+  "path": "deals",
+  "products": null
+ },
+ "https://www.toolstation.com/deals/offers/c1460": {
+  "name": "offers",
+  "id": "c1460",
+  "path": "deals/offers",
+  "products": 2428
+ },
+ "https://www.toolstation.com/deals/power-tools/c1532": {
+  "name": "power tools",
+  "id": "c1532",
+  "path": "deals/power-tools",
+  "products": 79
+ },
+ "https://www.toolstation.com/deals/landscaping/c1528": {
+  "name": "landscaping",
+  "id": "c1528",
+  "path": "deals/landscaping",
+  "products": 47
+ },
+ "https://www.toolstation.com/deals/lighting/c1529": {
+  "name": "lighting",
+  "id": "c1529",
+  "path": "deals/lighting",
+  "products": 231
+ },
+ "https://www.toolstation.com/deals/painting-decorating/c1530": {
+  "name": "painting decorating",
+  "id": "c1530",
+  "path": "deals/painting-decorating",
+  "products": 55
+ },
+ "https://www.toolstation.com/deals/adhesives-sealants/c1517": {
+  "name": "adhesives sealants",
+  "id": "c1517",
+  "path": "deals/adhesives-sealants",
+  "products": 29
+ },
+ "https://www.toolstation.com/deals/automotive/c1518": {
+  "name": "automotive",
+  "id": "c1518",
+  "path": "deals/automotive",
+  "products": 20
+ },
+ "https://www.toolstation.com/deals/bathrooms/c1519": {
+  "name": "bathrooms",
+  "id": "c1519",
+  "path": "deals/bathrooms",
+  "products": 270
+ },
+ "https://www.toolstation.com/deals/construction-insulation/c1520": {
+  "name": "construction insulation",
+  "id": "c1520",
+  "path": "deals/construction-insulation",
+  "products": 41
+ },
+ "https://www.toolstation.com/deals/central-heating-supplies/c1521": {
+  "name": "central heating supplies",
+  "id": "c1521",
+  "path": "deals/central-heating-supplies",
+  "products": 429
+ },
+ "https://www.toolstation.com/deals/cleaning-pest-control/c1522": {
+  "name": "cleaning pest control",
+  "id": "c1522",
+  "path": "deals/cleaning-pest-control",
+  "products": 28
+ },
+ "https://www.toolstation.com/deals/electrical-supplies-accessories/c1523": {
+  "name": "electrical supplies accessories",
+  "id": "c1523",
+  "path": "deals/electrical-supplies-accessories",
+  "products": 53
+ },
+ "https://www.toolstation.com/deals/hand-tools/c1524": {
+  "name": "hand tools",
+  "id": "c1524",
+  "path": "deals/hand-tools",
+  "products": 74
+ },
+ "https://www.toolstation.com/deals/ironmongery/c1525": {
+  "name": "ironmongery",
+  "id": "c1525",
+  "path": "deals/ironmongery",
+  "products": 33
+ },
+ "https://www.toolstation.com/deals/kitchens/c1526": {
+  "name": "kitchens",
+  "id": "c1526",
+  "path": "deals/kitchens",
+  "products": 521
+ },
+ "https://www.toolstation.com/deals/ladders-storage/c1527": {
+  "name": "ladders storage",
+  "id": "c1527",
+  "path": "deals/ladders-storage",
+  "products": 36
+ },
+ "https://www.toolstation.com/deals/plumbing/c1531": {
+  "name": "plumbing",
+  "id": "c1531",
+  "path": "deals/plumbing",
+  "products": 613
+ },
+ "https://www.toolstation.com/deals/power-tool-accessories/c1533": {
+  "name": "power tool accessories",
+  "id": "c1533",
+  "path": "deals/power-tool-accessories",
+  "products": 55
+ },
+ "https://www.toolstation.com/deals/screws-fixings/c1535": {
+  "name": "screws fixings",
+  "id": "c1535",
+  "path": "deals/screws-fixings",
+  "products": 165
+ },
+ "https://www.toolstation.com/deals/security/c1534": {
+  "name": "security",
+  "id": "c1534",
+  "path": "deals/security",
+  "products": 36
+ },
+ "https://www.toolstation.com/deals/smart-home/c1536": {
+  "name": "smart home",
+  "id": "c1536",
+  "path": "deals/smart-home",
+  "products": 53
+ },
+ "https://www.toolstation.com/deals/ventilation-heating/c1537": {
+  "name": "ventilation heating",
+  "id": "c1537",
+  "path": "deals/ventilation-heating",
+  "products": 70
+ },
+ "https://www.toolstation.com/deals/workwear-safety/c1538": {
+  "name": "workwear safety",
+  "id": "c1538",
+  "path": "deals/workwear-safety",
+  "products": 41
+ },
+ "https://www.toolstation.com/new/c1506": {
+  "name": "new",
+  "id": "c1506",
+  "path": "new",
+  "products": null
+ },
+ "https://www.toolstation.com/new/top-new/c1507": {
+  "name": "top new",
+  "id": "c1507",
+  "path": "new/top-new",
+  "products": null
+ },
+ "https://www.toolstation.com/new/all-new/c1508": {
+  "name": "all new",
+  "id": "c1508",
+  "path": "new/all-new",
+  "products": null
+ },
+ "https://www.toolstation.com/adhesives-sealants/c13": {
+  "name": "adhesives sealants",
+  "id": "c13",
+  "path": "adhesives-sealants",
+  "products": null
+ },
+ "https://www.toolstation.com/adhesives-sealants/tapes/c123": {
+  "name": "tapes",
+  "id": "c123",
+  "path": "adhesives-sealants/tapes",
+  "products": 124
+ },
+ "https://www.toolstation.com/adhesives-sealants/cloth-duct-tape/c838": {
+  "name": "cloth duct tape",
+  "id": "c838",
+  "path": "adhesives-sealants/cloth-duct-tape",
+  "products": 12
+ },
+ "https://www.toolstation.com/adhesives-sealants/masking-tape/c204": {
+  "name": "masking tape",
+  "id": "c204",
+  "path": "adhesives-sealants/masking-tape",
+  "products": 36
+ },
+ "https://www.toolstation.com/adhesives-sealants/safety-hazard-tape/c841": {
+  "name": "safety hazard tape",
+  "id": "c841",
+  "path": "adhesives-sealants/safety-hazard-tape",
+  "products": 5
+ },
+ "https://www.toolstation.com/adhesives-sealants/plaster-board-tape/c839": {
+  "name": "plaster board tape",
+  "id": "c839",
+  "path": "adhesives-sealants/plaster-board-tape",
+  "products": 7
+ },
+ "https://www.toolstation.com/adhesives-sealants/fixing-repair-tape/c840": {
+  "name": "fixing repair tape",
+  "id": "c840",
+  "path": "adhesives-sealants/fixing-repair-tape",
+  "products": null
+ },
+ "https://www.toolstation.com/adhesives-sealants/expanding-foam/c303": {
+  "name": "expanding foam",
+  "id": "c303",
+  "path": "adhesives-sealants/expanding-foam",
+  "products": 21
+ },
+ "https://www.toolstation.com/adhesives-sealants/sealant-foam-tools/c402": {
+  "name": "sealant foam tools",
+  "id": "c402",
+  "path": "adhesives-sealants/sealant-foam-tools",
+  "products": 21
+ },
+ "https://www.toolstation.com/adhesives-sealants/caulks/c535": {
+  "name": "caulks",
+  "id": "c535",
+  "path": "adhesives-sealants/caulks",
+  "products": 8
+ },
+ "https://www.toolstation.com/adhesives-sealants/adhesives/c657": {
+  "name": "adhesives",
+  "id": "c657",
+  "path": "adhesives-sealants/adhesives",
+  "products": 103
+ },
+ "https://www.toolstation.com/adhesives-sealants/grab-adhesive/c403": {
+  "name": "grab adhesive",
+  "id": "c403",
+  "path": "adhesives-sealants/grab-adhesive",
+  "products": 47
+ },
+ "https://www.toolstation.com/adhesives-sealants/wood-glue/c304": {
+  "name": "wood glue",
+  "id": "c304",
+  "path": "adhesives-sealants/wood-glue",
+  "products": 15
+ },
+ "https://www.toolstation.com/adhesives-sealants/general-adhesives-glue/c117": {
+  "name": "general adhesives glue",
+  "id": "c117",
+  "path": "adhesives-sealants/general-adhesives-glue",
+  "products": 35
+ },
+ "https://www.toolstation.com/adhesives-sealants/wallpaper-adhesive/c425": {
+  "name": "wallpaper adhesive",
+  "id": "c425",
+  "path": "adhesives-sealants/wallpaper-adhesive",
+  "products": 6
+ },
+ "https://www.toolstation.com/adhesives-sealants/sealants/c658": {
+  "name": "sealants",
+  "id": "c658",
+  "path": "adhesives-sealants/sealants",
+  "products": 92
+ },
+ "https://www.toolstation.com/adhesives-sealants/building-roofing-sealants/c560": {
+  "name": "building roofing sealants",
+  "id": "c560",
+  "path": "adhesives-sealants/building-roofing-sealants",
+  "products": null
+ },
+ "https://www.toolstation.com/adhesives-sealants/sanitary-sealants/c426": {
+  "name": "sanitary sealants",
+  "id": "c426",
+  "path": "adhesives-sealants/sanitary-sealants",
+  "products": 29
+ },
+ "https://www.toolstation.com/adhesives-sealants/general-sealants/c120": {
+  "name": "general sealants",
+  "id": "c120",
+  "path": "adhesives-sealants/general-sealants",
+  "products": 26
+ },
+ "https://www.toolstation.com/adhesives-sealants/fire-heat-sealants/c261": {
+  "name": "fire heat sealants",
+  "id": "c261",
+  "path": "adhesives-sealants/fire-heat-sealants",
+  "products": 5
+ },
+ "https://www.toolstation.com/automotive/c16": {
+  "name": "automotive",
+  "id": "c16",
+  "path": "automotive",
+  "products": null
+ },
+ "https://www.toolstation.com/automotive/lubricants-sprays/c264": {
+  "name": "lubricants sprays",
+  "id": "c264",
+  "path": "automotive/lubricants-sprays",
+  "products": 60
+ },
+ "https://www.toolstation.com/automotive/vehicle-accessories/c463": {
+  "name": "vehicle accessories",
+  "id": "c463",
+  "path": "automotive/vehicle-accessories",
+  "products": 461
+ },
+ "https://www.toolstation.com/automotive/straps-ropes/c774": {
+  "name": "straps ropes",
+  "id": "c774",
+  "path": "automotive/straps-ropes",
+  "products": 70
+ },
+ "https://www.toolstation.com/automotive/car-trailers-accessories/c1515": {
+  "name": "car trailers accessories",
+  "id": "c1515",
+  "path": "automotive/car-trailers-accessories",
+  "products": 13
+ },
+ "https://www.toolstation.com/automotive/roof-racks/c1011": {
+  "name": "roof racks",
+  "id": "c1011",
+  "path": "automotive/roof-racks",
+  "products": 292
+ },
+ "https://www.toolstation.com/automotive/ev-chargers/c1410": {
+  "name": "ev chargers",
+  "id": "c1410",
+  "path": "automotive/ev-chargers",
+  "products": 15
+ },
+ "https://www.toolstation.com/automotive/safety-security/c773": {
+  "name": "safety security",
+  "id": "c773",
+  "path": "automotive/safety-security",
+  "products": 48
+ },
+ "https://www.toolstation.com/automotive/power-inverters/c1017": {
+  "name": "power inverters",
+  "id": "c1017",
+  "path": "automotive/power-inverters",
+  "products": 12
+ },
+ "https://www.toolstation.com/automotive/interior-accessories/c1015": {
+  "name": "interior accessories",
+  "id": "c1015",
+  "path": "automotive/interior-accessories",
+  "products": 14
+ },
+ "https://www.toolstation.com/automotive/automotive-tools/c655": {
+  "name": "automotive tools",
+  "id": "c655",
+  "path": "automotive/automotive-tools",
+  "products": 261
+ },
+ "https://www.toolstation.com/automotive/sockets/c310": {
+  "name": "sockets",
+  "id": "c310",
+  "path": "automotive/sockets",
+  "products": 106
+ },
+ "https://www.toolstation.com/automotive/spanners-ratchets-wrenches/c329": {
+  "name": "spanners ratchets wrenches",
+  "id": "c329",
+  "path": "automotive/spanners-ratchets-wrenches",
+  "products": 37
+ },
+ "https://www.toolstation.com/automotive/mechanics-tools/c40": {
+  "name": "mechanics tools",
+  "id": "c40",
+  "path": "automotive/mechanics-tools",
+  "products": 55
+ },
+ "https://www.toolstation.com/automotive/hex-keys/c419": {
+  "name": "hex keys",
+  "id": "c419",
+  "path": "automotive/hex-keys",
+  "products": 17
+ },
+ "https://www.toolstation.com/automotive/bodywork-tools/c533": {
+  "name": "bodywork tools",
+  "id": "c533",
+  "path": "automotive/bodywork-tools",
+  "products": 29
+ },
+ "https://www.toolstation.com/automotive/tyre-inflators/c563": {
+  "name": "tyre inflators",
+  "id": "c563",
+  "path": "automotive/tyre-inflators",
+  "products": 19
+ },
+ "https://www.toolstation.com/automotive/motor-additives/c330": {
+  "name": "motor additives",
+  "id": "c330",
+  "path": "automotive/motor-additives",
+  "products": 15
+ },
+ "https://www.toolstation.com/automotive/vehicle-breakdown/c414": {
+  "name": "vehicle breakdown",
+  "id": "c414",
+  "path": "automotive/vehicle-breakdown",
+  "products": 42
+ },
+ "https://www.toolstation.com/automotive/battery-starting-chargers/c441": {
+  "name": "battery starting chargers",
+  "id": "c441",
+  "path": "automotive/battery-starting-chargers",
+  "products": 25
+ },
+ "https://www.toolstation.com/automotive/jump-leads/c1443": {
+  "name": "jump leads",
+  "id": "c1443",
+  "path": "automotive/jump-leads",
+  "products": 2
+ },
+ "https://www.toolstation.com/automotive/towing/c1014": {
+  "name": "towing",
+  "id": "c1014",
+  "path": "automotive/towing",
+  "products": 2
+ },
+ "https://www.toolstation.com/automotive/fuel-cans-funnels/c554": {
+  "name": "fuel cans funnels",
+  "id": "c554",
+  "path": "automotive/fuel-cans-funnels",
+  "products": 15
+ },
+ "https://www.toolstation.com/automotive/car-bulbs/c629": {
+  "name": "car bulbs",
+  "id": "c629",
+  "path": "automotive/car-bulbs",
+  "products": 13
+ },
+ "https://www.toolstation.com/automotive/car-care-cleaning/c961": {
+  "name": "car care cleaning",
+  "id": "c961",
+  "path": "automotive/car-care-cleaning",
+  "products": 69
+ },
+ "https://www.toolstation.com/automotive/garage-equipment/c654": {
+  "name": "garage equipment",
+  "id": "c654",
+  "path": "automotive/garage-equipment",
+  "products": null
+ },
+ "https://www.toolstation.com/automotive/compressors/c776": {
+  "name": "compressors",
+  "id": "c776",
+  "path": "automotive/compressors",
+  "products": 7
+ },
+ "https://www.toolstation.com/automotive/jacks-stands-winches/c453": {
+  "name": "jacks stands winches",
+  "id": "c453",
+  "path": "automotive/jacks-stands-winches",
+  "products": 56
+ },
+ "https://www.toolstation.com/automotive/electric-car-and-insulated-tools/c1477": {
+  "name": "electric car and insulated tools",
+  "id": "c1477",
+  "path": "automotive/electric-car-and-insulated-tools",
+  "products": 25
+ },
+ "https://www.toolstation.com/bathrooms/c733": {
+  "name": "bathrooms",
+  "id": "c733",
+  "path": "bathrooms",
+  "products": null
+ },
+ "https://www.toolstation.com/bathrooms/bathroom-taps/c180": {
+  "name": "bathroom taps",
+  "id": "c180",
+  "path": "bathrooms/bathroom-taps",
+  "products": 288
+ },
+ "https://www.toolstation.com/bathrooms/basin-pillar-taps/c1131": {
+  "name": "basin pillar taps",
+  "id": "c1131",
+  "path": "bathrooms/basin-pillar-taps",
+  "products": 25
+ },
+ "https://www.toolstation.com/bathrooms/basin-mixer-taps/c885": {
+  "name": "basin mixer taps",
+  "id": "c885",
+  "path": "bathrooms/basin-mixer-taps",
+  "products": 102
+ },
+ "https://www.toolstation.com/bathrooms/bath-pillar-taps/c1132": {
+  "name": "bath pillar taps",
+  "id": "c1132",
+  "path": "bathrooms/bath-pillar-taps",
+  "products": 21
+ },
+ "https://www.toolstation.com/bathrooms/bath-filler-taps/c886": {
+  "name": "bath filler taps",
+  "id": "c886",
+  "path": "bathrooms/bath-filler-taps",
+  "products": 46
+ },
+ "https://www.toolstation.com/bathrooms/bath-shower-mixer-taps/c1128": {
+  "name": "bath shower mixer taps",
+  "id": "c1128",
+  "path": "bathrooms/bath-shower-mixer-taps",
+  "products": 61
+ },
+ "https://www.toolstation.com/bathrooms/cloakroom-basin-taps/c1129": {
+  "name": "cloakroom basin taps",
+  "id": "c1129",
+  "path": "bathrooms/cloakroom-basin-taps",
+  "products": 24
+ },
+ "https://www.toolstation.com/bathrooms/commercial-taps/c517": {
+  "name": "commercial taps",
+  "id": "c517",
+  "path": "bathrooms/commercial-taps",
+  "products": 6
+ },
+ "https://www.toolstation.com/bathrooms/reviver-kits-spares/c1130": {
+  "name": "reviver kits spares",
+  "id": "c1130",
+  "path": "bathrooms/reviver-kits-spares",
+  "products": 4
+ },
+ "https://www.toolstation.com/bathrooms/showers/c732": {
+  "name": "showers",
+  "id": "c732",
+  "path": "bathrooms/showers",
+  "products": 217
+ },
+ "https://www.toolstation.com/bathrooms/mixer-showers/c996": {
+  "name": "mixer showers",
+  "id": "c996",
+  "path": "bathrooms/mixer-showers",
+  "products": 97
+ },
+ "https://www.toolstation.com/bathrooms/electric-showers/c422": {
+  "name": "electric showers",
+  "id": "c422",
+  "path": "bathrooms/electric-showers",
+  "products": 100
+ },
+ "https://www.toolstation.com/bathrooms/power-showers/c977": {
+  "name": "power showers",
+  "id": "c977",
+  "path": "bathrooms/power-showers",
+  "products": 4
+ },
+ "https://www.toolstation.com/bathrooms/digital-showers/c976": {
+  "name": "digital showers",
+  "id": "c976",
+  "path": "bathrooms/digital-showers",
+  "products": 16
+ },
+ "https://www.toolstation.com/bathrooms/bathroom-fittings/c1090": {
+  "name": "bathroom fittings",
+  "id": "c1090",
+  "path": "bathrooms/bathroom-fittings",
+  "products": 475
+ },
+ "https://www.toolstation.com/bathrooms/bathroom-suites/c994": {
+  "name": "bathroom suites",
+  "id": "c994",
+  "path": "bathrooms/bathroom-suites",
+  "products": 340
+ },
+ "https://www.toolstation.com/bathrooms/baths/c993": {
+  "name": "baths",
+  "id": "c993",
+  "path": "bathrooms/baths",
+  "products": 56
+ },
+ "https://www.toolstation.com/bathrooms/bathroom-sinks-basins/c789": {
+  "name": "bathroom sinks basins",
+  "id": "c789",
+  "path": "bathrooms/bathroom-sinks-basins",
+  "products": 94
+ },
+ "https://www.toolstation.com/bathrooms/toilets/c1091": {
+  "name": "toilets",
+  "id": "c1091",
+  "path": "bathrooms/toilets",
+  "products": 59
+ },
+ "https://www.toolstation.com/bathrooms/urinals/c1092": {
+  "name": "urinals",
+  "id": "c1092",
+  "path": "bathrooms/urinals",
+  "products": 18
+ },
+ "https://www.toolstation.com/bathrooms/shower-enclosures/c1089": {
+  "name": "shower enclosures",
+  "id": "c1089",
+  "path": "bathrooms/shower-enclosures",
+  "products": 1000
+ },
+ "https://www.toolstation.com/bathrooms/bathroom-wall-panels/c1432": {
+  "name": "bathroom wall panels",
+  "id": "c1432",
+  "path": "bathrooms/bathroom-wall-panels",
+  "products": 376
+ },
+ "https://www.toolstation.com/bathrooms/bath-shower-screens/c930": {
+  "name": "bath shower screens",
+  "id": "c930",
+  "path": "bathrooms/bath-shower-screens",
+  "products": 9
+ },
+ "https://www.toolstation.com/bathrooms/shower-doors-cubicles/c1026": {
+  "name": "shower doors cubicles",
+  "id": "c1026",
+  "path": "bathrooms/shower-doors-cubicles",
+  "products": 229
+ },
+ "https://www.toolstation.com/bathrooms/shower-trays/c364": {
+  "name": "shower trays",
+  "id": "c364",
+  "path": "bathrooms/shower-trays",
+  "products": 387
+ },
+ "https://www.toolstation.com/bathrooms/shower-pumps/c327": {
+  "name": "shower pumps",
+  "id": "c327",
+  "path": "bathrooms/shower-pumps",
+  "products": 80
+ },
+ "https://www.toolstation.com/bathrooms/shower-accessories/c1087": {
+  "name": "shower accessories",
+  "id": "c1087",
+  "path": "bathrooms/shower-accessories",
+  "products": 224
+ },
+ "https://www.toolstation.com/bathrooms/shower-heads/c420": {
+  "name": "shower heads",
+  "id": "c420",
+  "path": "bathrooms/shower-heads",
+  "products": 65
+ },
+ "https://www.toolstation.com/bathrooms/shower-hoses/c1088": {
+  "name": "shower hoses",
+  "id": "c1088",
+  "path": "bathrooms/shower-hoses",
+  "products": 19
+ },
+ "https://www.toolstation.com/bathrooms/shower-riser-rails-kits/c270": {
+  "name": "shower riser rails kits",
+  "id": "c270",
+  "path": "bathrooms/shower-riser-rails-kits",
+  "products": 80
+ },
+ "https://www.toolstation.com/bathrooms/shower-valves/c328": {
+  "name": "shower valves",
+  "id": "c328",
+  "path": "bathrooms/shower-valves",
+  "products": 55
+ },
+ "https://www.toolstation.com/bathrooms/shower-curtains-rails/c205": {
+  "name": "shower curtains rails",
+  "id": "c205",
+  "path": "bathrooms/shower-curtains-rails",
+  "products": 14
+ },
+ "https://www.toolstation.com/bathrooms/bathroom-lighting/c788": {
+  "name": "bathroom lighting",
+  "id": "c788",
+  "path": "bathrooms/bathroom-lighting",
+  "products": 25
+ },
+ "https://www.toolstation.com/bathrooms/bathroom-wall-lights/c1051": {
+  "name": "bathroom wall lights",
+  "id": "c1051",
+  "path": "bathrooms/bathroom-wall-lights",
+  "products": 4
+ },
+ "https://www.toolstation.com/bathrooms/bathroom-ceiling-lights/c1052": {
+  "name": "bathroom ceiling lights",
+  "id": "c1052",
+  "path": "bathrooms/bathroom-ceiling-lights",
+  "products": 22
+ },
+ "https://www.toolstation.com/bathrooms/bathroom-accessories/c1426": {
+  "name": "bathroom accessories",
+  "id": "c1426",
+  "path": "bathrooms/bathroom-accessories",
+  "products": 169
+ },
+ "https://www.toolstation.com/bathrooms/hand-dryers/c641": {
+  "name": "hand dryers",
+  "id": "c641",
+  "path": "bathrooms/hand-dryers",
+  "products": 50
+ },
+ "https://www.toolstation.com/bathrooms/toilet-roll-holders-storage/c228": {
+  "name": "toilet roll holders storage",
+  "id": "c228",
+  "path": "bathrooms/toilet-roll-holders-storage",
+  "products": 82
+ },
+ "https://www.toolstation.com/bathrooms/toilet-seats/c995": {
+  "name": "toilet seats",
+  "id": "c995",
+  "path": "bathrooms/toilet-seats",
+  "products": 37
+ },
+ "https://www.toolstation.com/bathrooms/assisted-living/c1254": {
+  "name": "assisted living",
+  "id": "c1254",
+  "path": "bathrooms/assisted-living",
+  "products": 51
+ },
+ "https://www.toolstation.com/bathrooms/grab-rails/c1438": {
+  "name": "grab rails",
+  "id": "c1438",
+  "path": "bathrooms/grab-rails",
+  "products": 45
+ },
+ "https://www.toolstation.com/bathrooms/shower-seats/c1439": {
+  "name": "shower seats",
+  "id": "c1439",
+  "path": "bathrooms/shower-seats",
+  "products": 11
+ },
+ "https://www.toolstation.com/bathrooms/bathroom-furniture/c1094": {
+  "name": "bathroom furniture",
+  "id": "c1094",
+  "path": "bathrooms/bathroom-furniture",
+  "products": 279
+ },
+ "https://www.toolstation.com/bathrooms/bathroom-cabinets-storage/c1064": {
+  "name": "bathroom cabinets storage",
+  "id": "c1064",
+  "path": "bathrooms/bathroom-cabinets-storage",
+  "products": 32
+ },
+ "https://www.toolstation.com/bathrooms/bathroom-units/c1093": {
+  "name": "bathroom units",
+  "id": "c1093",
+  "path": "bathrooms/bathroom-units",
+  "products": 185
+ },
+ "https://www.toolstation.com/bathrooms/bathroom-mirrors/c1095": {
+  "name": "bathroom mirrors",
+  "id": "c1095",
+  "path": "bathrooms/bathroom-mirrors",
+  "products": 68
+ },
+ "https://www.toolstation.com/central-heating-supplies/c22": {
+  "name": "central heating supplies",
+  "id": "c22",
+  "path": "central-heating-supplies",
+  "products": null
+ },
+ "https://www.toolstation.com/central-heating-supplies/central-heating-radiators/c318": {
+  "name": "central heating radiators",
+  "id": "c318",
+  "path": "central-heating-supplies/central-heating-radiators",
+  "products": 223
+ },
+ "https://www.toolstation.com/central-heating-supplies/single-panel-type-11/c820": {
+  "name": "single panel type 11",
+  "id": "c820",
+  "path": "central-heating-supplies/single-panel-type-11",
+  "products": 82
+ },
+ "https://www.toolstation.com/central-heating-supplies/double-panel-plus-type-21/c821": {
+  "name": "double panel plus type 21",
+  "id": "c821",
+  "path": "central-heating-supplies/double-panel-plus-type-21",
+  "products": 67
+ },
+ "https://www.toolstation.com/central-heating-supplies/double-panel-type-22/c822": {
+  "name": "double panel type 22",
+  "id": "c822",
+  "path": "central-heating-supplies/double-panel-type-22",
+  "products": 76
+ },
+ "https://www.toolstation.com/central-heating-supplies/triple-panel-type-33/c1555": {
+  "name": "triple panel type 33",
+  "id": "c1555",
+  "path": "central-heating-supplies/triple-panel-type-33",
+  "products": 10
+ },
+ "https://www.toolstation.com/central-heating-supplies/designer-radiators/c769": {
+  "name": "designer radiators",
+  "id": "c769",
+  "path": "central-heating-supplies/designer-radiators",
+  "products": 601
+ },
+ "https://www.toolstation.com/central-heating-supplies/horizontal-radiators/c823": {
+  "name": "horizontal radiators",
+  "id": "c823",
+  "path": "central-heating-supplies/horizontal-radiators",
+  "products": 252
+ },
+ "https://www.toolstation.com/central-heating-supplies/vertical-radiators/c1556": {
+  "name": "vertical radiators",
+  "id": "c1556",
+  "path": "central-heating-supplies/vertical-radiators",
+  "products": 368
+ },
+ "https://www.toolstation.com/central-heating-supplies/boilers/c1063": {
+  "name": "boilers",
+  "id": "c1063",
+  "path": "central-heating-supplies/boilers",
+  "products": 198
+ },
+ "https://www.toolstation.com/central-heating-supplies/combi-boilers/c1407": {
+  "name": "combi boilers",
+  "id": "c1407",
+  "path": "central-heating-supplies/combi-boilers",
+  "products": 63
+ },
+ "https://www.toolstation.com/central-heating-supplies/system-boilers/c1408": {
+  "name": "system boilers",
+  "id": "c1408",
+  "path": "central-heating-supplies/system-boilers",
+  "products": 28
+ },
+ "https://www.toolstation.com/central-heating-supplies/electric-boilers/c1501": {
+  "name": "electric boilers",
+  "id": "c1501",
+  "path": "central-heating-supplies/electric-boilers",
+  "products": 16
+ },
+ "https://www.toolstation.com/central-heating-supplies/boiler-flues-accessories/c1399": {
+  "name": "boiler flues accessories",
+  "id": "c1399",
+  "path": "central-heating-supplies/boiler-flues-accessories",
+  "products": 89
+ },
+ "https://www.toolstation.com/central-heating-supplies/heat-only-boilers/c1574": {
+  "name": "heat only boilers",
+  "id": "c1574",
+  "path": "central-heating-supplies/heat-only-boilers",
+  "products": 5
+ },
+ "https://www.toolstation.com/central-heating-supplies/boiler-spares/c1562": {
+  "name": "boiler spares",
+  "id": "c1562",
+  "path": "central-heating-supplies/boiler-spares",
+  "products": 680
+ },
+ "https://www.toolstation.com/central-heating-supplies/radiator-valves/c235": {
+  "name": "radiator valves",
+  "id": "c235",
+  "path": "central-heating-supplies/radiator-valves",
+  "products": 96
+ },
+ "https://www.toolstation.com/central-heating-supplies/heating-essentials/c676": {
+  "name": "heating essentials",
+  "id": "c676",
+  "path": "central-heating-supplies/heating-essentials",
+  "products": 142
+ },
+ "https://www.toolstation.com/central-heating-supplies/central-heating-accessories/c193": {
+  "name": "central heating accessories",
+  "id": "c193",
+  "path": "central-heating-supplies/central-heating-accessories",
+  "products": 64
+ },
+ "https://www.toolstation.com/central-heating-supplies/central-heating-pumps/c522": {
+  "name": "central heating pumps",
+  "id": "c522",
+  "path": "central-heating-supplies/central-heating-pumps",
+  "products": 25
+ },
+ "https://www.toolstation.com/central-heating-supplies/cowls/c373": {
+  "name": "cowls",
+  "id": "c373",
+  "path": "central-heating-supplies/cowls",
+  "products": 32
+ },
+ "https://www.toolstation.com/central-heating-supplies/oil-fittings/c210": {
+  "name": "oil fittings",
+  "id": "c210",
+  "path": "central-heating-supplies/oil-fittings",
+  "products": 5
+ },
+ "https://www.toolstation.com/central-heating-supplies/heating-controls/c1099": {
+  "name": "heating controls",
+  "id": "c1099",
+  "path": "central-heating-supplies/heating-controls",
+  "products": 93
+ },
+ "https://www.toolstation.com/central-heating-supplies/smart-heating/c1100": {
+  "name": "smart heating",
+  "id": "c1100",
+  "path": "central-heating-supplies/smart-heating",
+  "products": 31
+ },
+ "https://www.toolstation.com/central-heating-supplies/thermostats/c209": {
+  "name": "thermostats",
+  "id": "c209",
+  "path": "central-heating-supplies/thermostats",
+  "products": 41
+ },
+ "https://www.toolstation.com/central-heating-supplies/motorised-valves/c458": {
+  "name": "motorised valves",
+  "id": "c458",
+  "path": "central-heating-supplies/motorised-valves",
+  "products": 23
+ },
+ "https://www.toolstation.com/central-heating-supplies/programmers-time-switches/c1101": {
+  "name": "programmers time switches",
+  "id": "c1101",
+  "path": "central-heating-supplies/programmers-time-switches",
+  "products": 12
+ },
+ "https://www.toolstation.com/central-heating-supplies/bathroom-radiators/c825": {
+  "name": "bathroom radiators",
+  "id": "c825",
+  "path": "central-heating-supplies/bathroom-radiators",
+  "products": 242
+ },
+ "https://www.toolstation.com/central-heating-supplies/towel-radiators/c163": {
+  "name": "towel radiators",
+  "id": "c163",
+  "path": "central-heating-supplies/towel-radiators",
+  "products": 175
+ },
+ "https://www.toolstation.com/central-heating-supplies/designer-towel-radiators/c1539": {
+  "name": "designer towel radiators",
+  "id": "c1539",
+  "path": "central-heating-supplies/designer-towel-radiators",
+  "products": 71
+ },
+ "https://www.toolstation.com/central-heating-supplies/column-radiators/c445": {
+  "name": "column radiators",
+  "id": "c445",
+  "path": "central-heating-supplies/column-radiators",
+  "products": 184
+ },
+ "https://www.toolstation.com/central-heating-supplies/central-heating-additives/c461": {
+  "name": "central heating additives",
+  "id": "c461",
+  "path": "central-heating-supplies/central-heating-additives",
+  "products": 40
+ },
+ "https://www.toolstation.com/central-heating-supplies/central-heating-cleaners/c1102": {
+  "name": "central heating cleaners",
+  "id": "c1102",
+  "path": "central-heating-supplies/central-heating-cleaners",
+  "products": 20
+ },
+ "https://www.toolstation.com/central-heating-supplies/inhibitors-protectors/c1103": {
+  "name": "inhibitors protectors",
+  "id": "c1103",
+  "path": "central-heating-supplies/inhibitors-protectors",
+  "products": 10
+ },
+ "https://www.toolstation.com/central-heating-supplies/leak-sealers/c1105": {
+  "name": "leak sealers",
+  "id": "c1105",
+  "path": "central-heating-supplies/leak-sealers",
+  "products": 6
+ },
+ "https://www.toolstation.com/central-heating-supplies/tanks-vessels/c460": {
+  "name": "tanks vessels",
+  "id": "c460",
+  "path": "central-heating-supplies/tanks-vessels",
+  "products": 52
+ },
+ "https://www.toolstation.com/central-heating-supplies/cold-water-tanks/c1071": {
+  "name": "cold water tanks",
+  "id": "c1071",
+  "path": "central-heating-supplies/cold-water-tanks",
+  "products": 7
+ },
+ "https://www.toolstation.com/central-heating-supplies/hot-water-cylinders/c1072": {
+  "name": "hot water cylinders",
+  "id": "c1072",
+  "path": "central-heating-supplies/hot-water-cylinders",
+  "products": 36
+ },
+ "https://www.toolstation.com/central-heating-supplies/expansion-vessels/c1073": {
+  "name": "expansion vessels",
+  "id": "c1073",
+  "path": "central-heating-supplies/expansion-vessels",
+  "products": 10
+ },
+ "https://www.toolstation.com/central-heating-supplies/smart-central-heating-supplies/c1453": {
+  "name": "smart central heating supplies",
+  "id": "c1453",
+  "path": "central-heating-supplies/smart-central-heating-supplies",
+  "products": 31
+ },
+ "https://www.toolstation.com/central-heating-supplies/underfloor-heating/c273": {
+  "name": "underfloor heating",
+  "id": "c273",
+  "path": "central-heating-supplies/underfloor-heating",
+  "products": 82
+ },
+ "https://www.toolstation.com/central-heating-supplies/electric-underfloor-heating/c612": {
+  "name": "electric underfloor heating",
+  "id": "c612",
+  "path": "central-heating-supplies/electric-underfloor-heating",
+  "products": 23
+ },
+ "https://www.toolstation.com/central-heating-supplies/water-underfloor-heating/c827": {
+  "name": "water underfloor heating",
+  "id": "c827",
+  "path": "central-heating-supplies/water-underfloor-heating",
+  "products": null
+ },
+ "https://www.toolstation.com/central-heating-supplies/plates-boards/c826": {
+  "name": "plates boards",
+  "id": "c826",
+  "path": "central-heating-supplies/plates-boards",
+  "products": 5
+ },
+ "https://www.toolstation.com/cleaning-pest-control/c25": {
+  "name": "cleaning pest control",
+  "id": "c25",
+  "path": "cleaning-pest-control",
+  "products": null
+ },
+ "https://www.toolstation.com/cleaning-pest-control/pressure-washers/c751": {
+  "name": "pressure washers",
+  "id": "c751",
+  "path": "cleaning-pest-control/pressure-washers",
+  "products": 50
+ },
+ "https://www.toolstation.com/cleaning-pest-control/pressure-washer-accessories/c1449": {
+  "name": "pressure washer accessories",
+  "id": "c1449",
+  "path": "cleaning-pest-control/pressure-washer-accessories",
+  "products": 15
+ },
+ "https://www.toolstation.com/cleaning-pest-control/vacuum-cleaners/c752": {
+  "name": "vacuum cleaners",
+  "id": "c752",
+  "path": "cleaning-pest-control/vacuum-cleaners",
+  "products": 84
+ },
+ "https://www.toolstation.com/cleaning-pest-control/pest-control/c439": {
+  "name": "pest control",
+  "id": "c439",
+  "path": "cleaning-pest-control/pest-control",
+  "products": 89
+ },
+ "https://www.toolstation.com/cleaning-pest-control/wipes-cloths-rolls/c456": {
+  "name": "wipes cloths rolls",
+  "id": "c456",
+  "path": "cleaning-pest-control/wipes-cloths-rolls",
+  "products": 23
+ },
+ "https://www.toolstation.com/cleaning-pest-control/outdoor-cleaning/c480": {
+  "name": "outdoor cleaning",
+  "id": "c480",
+  "path": "cleaning-pest-control/outdoor-cleaning",
+  "products": 23
+ },
+ "https://www.toolstation.com/cleaning-pest-control/cleaning-fluid/c269": {
+  "name": "cleaning fluid",
+  "id": "c269",
+  "path": "cleaning-pest-control/cleaning-fluid",
+  "products": 47
+ },
+ "https://www.toolstation.com/cleaning-pest-control/steam-cleaners/c997": {
+  "name": "steam cleaners",
+  "id": "c997",
+  "path": "cleaning-pest-control/steam-cleaners",
+  "products": 2
+ },
+ "https://www.toolstation.com/cleaning-pest-control/window-cleaning/c455": {
+  "name": "window cleaning",
+  "id": "c455",
+  "path": "cleaning-pest-control/window-cleaning",
+  "products": 12
+ },
+ "https://www.toolstation.com/cleaning-pest-control/floor-cleaning/c1445": {
+  "name": "floor cleaning",
+  "id": "c1445",
+  "path": "cleaning-pest-control/floor-cleaning",
+  "products": 9
+ },
+ "https://www.toolstation.com/cleaning-pest-control/waste-litter-disposal/c471": {
+  "name": "waste litter disposal",
+  "id": "c471",
+  "path": "cleaning-pest-control/waste-litter-disposal",
+  "products": 7
+ },
+ "https://www.toolstation.com/cleaning-pest-control/brushes-brooms/c470": {
+  "name": "brushes brooms",
+  "id": "c470",
+  "path": "cleaning-pest-control/brushes-brooms",
+  "products": 34
+ },
+ "https://www.toolstation.com/cleaning-pest-control/mops-sponges/c479": {
+  "name": "mops sponges",
+  "id": "c479",
+  "path": "cleaning-pest-control/mops-sponges",
+  "products": 8
+ },
+ "https://www.toolstation.com/cleaning-pest-control/hand-cleansers/c468": {
+  "name": "hand cleansers",
+  "id": "c468",
+  "path": "cleaning-pest-control/hand-cleansers",
+  "products": 14
+ },
+ "https://www.toolstation.com/construction-insulation/c20": {
+  "name": "construction insulation",
+  "id": "c20",
+  "path": "construction-insulation",
+  "products": null
+ },
+ "https://www.toolstation.com/construction-insulation/builders-metalwork/c266": {
+  "name": "builders metalwork",
+  "id": "c266",
+  "path": "construction-insulation/builders-metalwork",
+  "products": 262
+ },
+ "https://www.toolstation.com/construction-insulation/insulation/c754": {
+  "name": "insulation",
+  "id": "c754",
+  "path": "construction-insulation/insulation",
+  "products": 98
+ },
+ "https://www.toolstation.com/construction-insulation/foil-insulation/c626": {
+  "name": "foil insulation",
+  "id": "c626",
+  "path": "construction-insulation/foil-insulation",
+  "products": 24
+ },
+ "https://www.toolstation.com/construction-insulation/multi-layer/c625": {
+  "name": "multi layer",
+  "id": "c625",
+  "path": "construction-insulation/multi-layer",
+  "products": 9
+ },
+ "https://www.toolstation.com/construction-insulation/cavity-closure/c627": {
+  "name": "cavity closure",
+  "id": "c627",
+  "path": "construction-insulation/cavity-closure",
+  "products": 6
+ },
+ "https://www.toolstation.com/construction-insulation/pipe-insulation-cylinder-jackets/c635": {
+  "name": "pipe insulation cylinder jackets",
+  "id": "c635",
+  "path": "construction-insulation/pipe-insulation-cylinder-jackets",
+  "products": 27
+ },
+ "https://www.toolstation.com/construction-insulation/loft-insulation/c1423": {
+  "name": "loft insulation",
+  "id": "c1423",
+  "path": "construction-insulation/loft-insulation",
+  "products": 19
+ },
+ "https://www.toolstation.com/construction-insulation/insulation-boards/c1588": {
+  "name": "insulation boards",
+  "id": "c1588",
+  "path": "construction-insulation/insulation-boards",
+  "products": 21
+ },
+ "https://www.toolstation.com/construction-insulation/wall-insulation/c1589": {
+  "name": "wall insulation",
+  "id": "c1589",
+  "path": "construction-insulation/wall-insulation",
+  "products": 15
+ },
+ "https://www.toolstation.com/construction-insulation/damp-proofing/c252": {
+  "name": "damp proofing",
+  "id": "c252",
+  "path": "construction-insulation/damp-proofing",
+  "products": 141
+ },
+ "https://www.toolstation.com/construction-insulation/joinery/c1478": {
+  "name": "joinery",
+  "id": "c1478",
+  "path": "construction-insulation/joinery",
+  "products": 1325
+ },
+ "https://www.toolstation.com/construction-insulation/sliding-wardrobe-doors/c1516": {
+  "name": "sliding wardrobe doors",
+  "id": "c1516",
+  "path": "construction-insulation/sliding-wardrobe-doors",
+  "products": 437
+ },
+ "https://www.toolstation.com/construction-insulation/doors/c1463": {
+  "name": "doors",
+  "id": "c1463",
+  "path": "construction-insulation/doors",
+  "products": 520
+ },
+ "https://www.toolstation.com/construction-insulation/windows/c1505": {
+  "name": "windows",
+  "id": "c1505",
+  "path": "construction-insulation/windows",
+  "products": 353
+ },
+ "https://www.toolstation.com/construction-insulation/roof-windows/c753": {
+  "name": "roof windows",
+  "id": "c753",
+  "path": "construction-insulation/roof-windows",
+  "products": 15
+ },
+ "https://www.toolstation.com/construction-insulation/porch-gallow-brackets/c527": {
+  "name": "porch gallow brackets",
+  "id": "c527",
+  "path": "construction-insulation/porch-gallow-brackets",
+  "products": null
+ },
+ "https://www.toolstation.com/construction-insulation/fascia-and-soffit/c543": {
+  "name": "fascia and soffit",
+  "id": "c543",
+  "path": "construction-insulation/fascia-and-soffit",
+  "products": 10
+ },
+ "https://www.toolstation.com/construction-insulation/roofing/c999": {
+  "name": "roofing",
+  "id": "c999",
+  "path": "construction-insulation/roofing",
+  "products": 188
+ },
+ "https://www.toolstation.com/construction-insulation/roofing-membrane/c1000": {
+  "name": "roofing membrane",
+  "id": "c1000",
+  "path": "construction-insulation/roofing-membrane",
+  "products": 11
+ },
+ "https://www.toolstation.com/construction-insulation/corrugated-sheets/c1109": {
+  "name": "corrugated sheets",
+  "id": "c1109",
+  "path": "construction-insulation/corrugated-sheets",
+  "products": 47
+ },
+ "https://www.toolstation.com/construction-insulation/polycarbonate-sheets/c1110": {
+  "name": "polycarbonate sheets",
+  "id": "c1110",
+  "path": "construction-insulation/polycarbonate-sheets",
+  "products": 58
+ },
+ "https://www.toolstation.com/construction-insulation/glazing-sheets/c1111": {
+  "name": "glazing sheets",
+  "id": "c1111",
+  "path": "construction-insulation/glazing-sheets",
+  "products": null
+ },
+ "https://www.toolstation.com/construction-insulation/roof-repair/c280": {
+  "name": "roof repair",
+  "id": "c280",
+  "path": "construction-insulation/roof-repair",
+  "products": 22
+ },
+ "https://www.toolstation.com/construction-insulation/roof-ventilation/c224": {
+  "name": "roof ventilation",
+  "id": "c224",
+  "path": "construction-insulation/roof-ventilation",
+  "products": 16
+ },
+ "https://www.toolstation.com/construction-insulation/glazing-bars/c1112": {
+  "name": "glazing bars",
+  "id": "c1112",
+  "path": "construction-insulation/glazing-bars",
+  "products": 10
+ },
+ "https://www.toolstation.com/construction-insulation/roofing-felt/c1563": {
+  "name": "roofing felt",
+  "id": "c1563",
+  "path": "construction-insulation/roofing-felt",
+  "products": 19
+ },
+ "https://www.toolstation.com/construction-insulation/admixtures-mortars/c427": {
+  "name": "admixtures mortars",
+  "id": "c427",
+  "path": "construction-insulation/admixtures-mortars",
+  "products": 67
+ },
+ "https://www.toolstation.com/construction-insulation/pva/c506": {
+  "name": "pva",
+  "id": "c506",
+  "path": "construction-insulation/pva",
+  "products": 2
+ },
+ "https://www.toolstation.com/construction-insulation/flooring/c268": {
+  "name": "flooring",
+  "id": "c268",
+  "path": "construction-insulation/flooring",
+  "products": 35
+ },
+ "https://www.toolstation.com/construction-insulation/site-equipment/c1059": {
+  "name": "site equipment",
+  "id": "c1059",
+  "path": "construction-insulation/site-equipment",
+  "products": 5
+ },
+ "https://www.toolstation.com/construction-insulation/expansion-jointing/c1572": {
+  "name": "expansion jointing",
+  "id": "c1572",
+  "path": "construction-insulation/expansion-jointing",
+  "products": 3
+ },
+ "https://www.toolstation.com/construction-insulation/plasterboard/c1573": {
+  "name": "plasterboard",
+  "id": "c1573",
+  "path": "construction-insulation/plasterboard",
+  "products": null
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/c4": {
+  "name": "electrical supplies accessories",
+  "id": "c4",
+  "path": "electrical-supplies-accessories",
+  "products": null
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/switches-sockets/c660": {
+  "name": "switches sockets",
+  "id": "c660",
+  "path": "electrical-supplies-accessories/switches-sockets",
+  "products": 794
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/white-switches-sockets/c147": {
+  "name": "white switches sockets",
+  "id": "c147",
+  "path": "electrical-supplies-accessories/white-switches-sockets",
+  "products": 318
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/decorative-switches-sockets/c806": {
+  "name": "decorative switches sockets",
+  "id": "c806",
+  "path": "electrical-supplies-accessories/decorative-switches-sockets",
+  "products": 272
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/weatherproof/c804": {
+  "name": "weatherproof",
+  "id": "c804",
+  "path": "electrical-supplies-accessories/weatherproof",
+  "products": 26
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/boxes-pattresses/c148": {
+  "name": "boxes pattresses",
+  "id": "c148",
+  "path": "electrical-supplies-accessories/boxes-pattresses",
+  "products": 85
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/metal-clad/c345": {
+  "name": "metal clad",
+  "id": "c345",
+  "path": "electrical-supplies-accessories/metal-clad",
+  "products": 45
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/grid-wiring/c802": {
+  "name": "grid wiring",
+  "id": "c802",
+  "path": "electrical-supplies-accessories/grid-wiring",
+  "products": 56
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/cables-flexes/c1118": {
+  "name": "cables flexes",
+  "id": "c1118",
+  "path": "electrical-supplies-accessories/cables-flexes",
+  "products": 251
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/armoured-cable/c1120": {
+  "name": "armoured cable",
+  "id": "c1120",
+  "path": "electrical-supplies-accessories/armoured-cable",
+  "products": 30
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/cut-to-length-armoured-cable/c1405": {
+  "name": "cut to length armoured cable",
+  "id": "c1405",
+  "path": "electrical-supplies-accessories/cut-to-length-armoured-cable",
+  "products": 29
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/cable/c894": {
+  "name": "cable",
+  "id": "c894",
+  "path": "electrical-supplies-accessories/cable",
+  "products": 140
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/flexes/c1119": {
+  "name": "flexes",
+  "id": "c1119",
+  "path": "electrical-supplies-accessories/flexes",
+  "products": 47
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/power-leads-adaptors/c945": {
+  "name": "power leads adaptors",
+  "id": "c945",
+  "path": "electrical-supplies-accessories/power-leads-adaptors",
+  "products": null
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/cable-management/c207": {
+  "name": "cable management",
+  "id": "c207",
+  "path": "electrical-supplies-accessories/cable-management",
+  "products": 621
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/electrical-conduit/c973": {
+  "name": "electrical conduit",
+  "id": "c973",
+  "path": "electrical-supplies-accessories/electrical-conduit",
+  "products": 200
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/mini-trunking/c974": {
+  "name": "mini trunking",
+  "id": "c974",
+  "path": "electrical-supplies-accessories/mini-trunking",
+  "products": 56
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/junction-boxes/c338": {
+  "name": "junction boxes",
+  "id": "c338",
+  "path": "electrical-supplies-accessories/junction-boxes",
+  "products": 49
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/multi-compartment-trunking/c975": {
+  "name": "multi compartment trunking",
+  "id": "c975",
+  "path": "electrical-supplies-accessories/multi-compartment-trunking",
+  "products": 8
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/cable-connectors-terminals/c1133": {
+  "name": "cable connectors terminals",
+  "id": "c1133",
+  "path": "electrical-supplies-accessories/cable-connectors-terminals",
+  "products": 127
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/cable-ties/c1121": {
+  "name": "cable ties",
+  "id": "c1121",
+  "path": "electrical-supplies-accessories/cable-ties",
+  "products": 22
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/cable-clips/c1122": {
+  "name": "cable clips",
+  "id": "c1122",
+  "path": "electrical-supplies-accessories/cable-clips",
+  "products": 24
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/18th-edition-compliant-fixings/c1033": {
+  "name": "18th edition compliant fixings",
+  "id": "c1033",
+  "path": "electrical-supplies-accessories/18th-edition-compliant-fixings",
+  "products": 7
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/cable-accessories/c943": {
+  "name": "cable accessories",
+  "id": "c943",
+  "path": "electrical-supplies-accessories/cable-accessories",
+  "products": 146
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/enclosures/c1123": {
+  "name": "enclosures",
+  "id": "c1123",
+  "path": "electrical-supplies-accessories/enclosures",
+  "products": 71
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/power-distribution/c662": {
+  "name": "power distribution",
+  "id": "c662",
+  "path": "electrical-supplies-accessories/power-distribution",
+  "products": 140
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/consumer-units/c937": {
+  "name": "consumer units",
+  "id": "c937",
+  "path": "electrical-supplies-accessories/consumer-units",
+  "products": 61
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/3-phase-industrial/c630": {
+  "name": "3 phase industrial",
+  "id": "c630",
+  "path": "electrical-supplies-accessories/3-phase-industrial",
+  "products": 9
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/surge-protection/c1258": {
+  "name": "surge protection",
+  "id": "c1258",
+  "path": "electrical-supplies-accessories/surge-protection",
+  "products": 5
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/mcbs/c938": {
+  "name": "mcbs",
+  "id": "c938",
+  "path": "electrical-supplies-accessories/mcbs",
+  "products": 38
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/rcbos/c939": {
+  "name": "rcbos",
+  "id": "c939",
+  "path": "electrical-supplies-accessories/rcbos",
+  "products": 27
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/rccbs/c940": {
+  "name": "rccbs",
+  "id": "c940",
+  "path": "electrical-supplies-accessories/rccbs",
+  "products": 4
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/isolators-devices/c942": {
+  "name": "isolators devices",
+  "id": "c942",
+  "path": "electrical-supplies-accessories/isolators-devices",
+  "products": 7
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/consumer-unit-accessories/c941": {
+  "name": "consumer unit accessories",
+  "id": "c941",
+  "path": "electrical-supplies-accessories/consumer-unit-accessories",
+  "products": 19
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/extension-leads-cable-reels/c127": {
+  "name": "extension leads cable reels",
+  "id": "c127",
+  "path": "electrical-supplies-accessories/extension-leads-cable-reels",
+  "products": 54
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/extension-leads/c1124": {
+  "name": "extension leads",
+  "id": "c1124",
+  "path": "electrical-supplies-accessories/extension-leads",
+  "products": 35
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/cable-reels/c1125": {
+  "name": "cable reels",
+  "id": "c1125",
+  "path": "electrical-supplies-accessories/cable-reels",
+  "products": 15
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/pop-up-sockets/c1126": {
+  "name": "pop up sockets",
+  "id": "c1126",
+  "path": "electrical-supplies-accessories/pop-up-sockets",
+  "products": 3
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/desktop-power-supply/c1096": {
+  "name": "desktop power supply",
+  "id": "c1096",
+  "path": "electrical-supplies-accessories/desktop-power-supply",
+  "products": 5
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/under-desk-power-supply/c1097": {
+  "name": "under desk power supply",
+  "id": "c1097",
+  "path": "electrical-supplies-accessories/under-desk-power-supply",
+  "products": null
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/tv-aerials-data-telecoms/c344": {
+  "name": "tv aerials data telecoms",
+  "id": "c344",
+  "path": "electrical-supplies-accessories/tv-aerials-data-telecoms",
+  "products": 100
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/aerial/c898": {
+  "name": "aerial",
+  "id": "c898",
+  "path": "electrical-supplies-accessories/aerial",
+  "products": 7
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/satellite/c944": {
+  "name": "satellite",
+  "id": "c944",
+  "path": "electrical-supplies-accessories/satellite",
+  "products": 17
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/data-telecoms/c222": {
+  "name": "data telecoms",
+  "id": "c222",
+  "path": "electrical-supplies-accessories/data-telecoms",
+  "products": 67
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/tv-data-modular-range/c947": {
+  "name": "tv data modular range",
+  "id": "c947",
+  "path": "electrical-supplies-accessories/tv-data-modular-range",
+  "products": 15
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/amplifiers-distribution/c899": {
+  "name": "amplifiers distribution",
+  "id": "c899",
+  "path": "electrical-supplies-accessories/amplifiers-distribution",
+  "products": 9
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/electrical-test-equipment/c1024": {
+  "name": "electrical test equipment",
+  "id": "c1024",
+  "path": "electrical-supplies-accessories/electrical-test-equipment",
+  "products": null
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/commercial/c666": {
+  "name": "commercial",
+  "id": "c666",
+  "path": "electrical-supplies-accessories/commercial",
+  "products": null
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/connectors-site-electrics/c764": {
+  "name": "connectors site electrics",
+  "id": "c764",
+  "path": "electrical-supplies-accessories/connectors-site-electrics",
+  "products": 25
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/motor-control/c124": {
+  "name": "motor control",
+  "id": "c124",
+  "path": "electrical-supplies-accessories/motor-control",
+  "products": null
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/rotary-isolators/c341": {
+  "name": "rotary isolators",
+  "id": "c341",
+  "path": "electrical-supplies-accessories/rotary-isolators",
+  "products": 5
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/din-rail-and-terminals/c1396": {
+  "name": "din rail and terminals",
+  "id": "c1396",
+  "path": "electrical-supplies-accessories/din-rail-and-terminals",
+  "products": null
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/batteries-powerbanks/c125": {
+  "name": "batteries powerbanks",
+  "id": "c125",
+  "path": "electrical-supplies-accessories/batteries-powerbanks",
+  "products": 92
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/alarms-detectors/c661": {
+  "name": "alarms detectors",
+  "id": "c661",
+  "path": "electrical-supplies-accessories/alarms-detectors",
+  "products": 54
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/carbon-monoxide-detectors/c262": {
+  "name": "carbon monoxide detectors",
+  "id": "c262",
+  "path": "electrical-supplies-accessories/carbon-monoxide-detectors",
+  "products": 15
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/smoke-heat-detectors/c393": {
+  "name": "smoke heat detectors",
+  "id": "c393",
+  "path": "electrical-supplies-accessories/smoke-heat-detectors",
+  "products": 40
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/hook-ups/c746": {
+  "name": "hook ups",
+  "id": "c746",
+  "path": "electrical-supplies-accessories/hook-ups",
+  "products": 4
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/hook-up-units-mounts/c1250": {
+  "name": "hook up units mounts",
+  "id": "c1250",
+  "path": "electrical-supplies-accessories/hook-up-units-mounts",
+  "products": 3
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/caravan-consumer-units/c1251": {
+  "name": "caravan consumer units",
+  "id": "c1251",
+  "path": "electrical-supplies-accessories/caravan-consumer-units",
+  "products": null
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/electric-vehicle-charging/c1406": {
+  "name": "electric vehicle charging",
+  "id": "c1406",
+  "path": "electrical-supplies-accessories/electric-vehicle-charging",
+  "products": 15
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/timers/c664": {
+  "name": "timers",
+  "id": "c664",
+  "path": "electrical-supplies-accessories/timers",
+  "products": 18
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/plug-in-timers/c1086": {
+  "name": "plug in timers",
+  "id": "c1086",
+  "path": "electrical-supplies-accessories/plug-in-timers",
+  "products": 4
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/hard-wired-timers/c1085": {
+  "name": "hard wired timers",
+  "id": "c1085",
+  "path": "electrical-supplies-accessories/hard-wired-timers",
+  "products": 14
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/smart-electrical/c1457": {
+  "name": "smart electrical",
+  "id": "c1457",
+  "path": "electrical-supplies-accessories/smart-electrical",
+  "products": 26
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/label-printers/c1023": {
+  "name": "label printers",
+  "id": "c1023",
+  "path": "electrical-supplies-accessories/label-printers",
+  "products": 17
+ },
+ "https://www.toolstation.com/electrical-supplies-accessories/card-payment-readers/c1448": {
+  "name": "card payment readers",
+  "id": "c1448",
+  "path": "electrical-supplies-accessories/card-payment-readers",
+  "products": 8
+ },
+ "https://www.toolstation.com/hand-tools/c6": {
+  "name": "hand tools",
+  "id": "c6",
+  "path": "hand-tools",
+  "products": null
+ },
+ "https://www.toolstation.com/hand-tools/tarpaulin-sheeting-waste-bags/c49": {
+  "name": "tarpaulin sheeting waste bags",
+  "id": "c49",
+  "path": "hand-tools/tarpaulin-sheeting-waste-bags",
+  "products": 24
+ },
+ "https://www.toolstation.com/hand-tools/rubble-sacks/c1165": {
+  "name": "rubble sacks",
+  "id": "c1165",
+  "path": "hand-tools/rubble-sacks",
+  "products": null
+ },
+ "https://www.toolstation.com/hand-tools/sawing-cutting/c674": {
+  "name": "sawing cutting",
+  "id": "c674",
+  "path": "hand-tools/sawing-cutting",
+  "products": 202
+ },
+ "https://www.toolstation.com/hand-tools/hand-saws/c31": {
+  "name": "hand saws",
+  "id": "c31",
+  "path": "hand-tools/hand-saws",
+  "products": 77
+ },
+ "https://www.toolstation.com/hand-tools/hand-saw-blades/c91": {
+  "name": "hand saw blades",
+  "id": "c91",
+  "path": "hand-tools/hand-saw-blades",
+  "products": 26
+ },
+ "https://www.toolstation.com/hand-tools/knives-blades/c28": {
+  "name": "knives blades",
+  "id": "c28",
+  "path": "hand-tools/knives-blades",
+  "products": 97
+ },
+ "https://www.toolstation.com/hand-tools/multi-tools/c550": {
+  "name": "multi tools",
+  "id": "c550",
+  "path": "hand-tools/multi-tools",
+  "products": 2
+ },
+ "https://www.toolstation.com/hand-tools/screwdrivers/c675": {
+  "name": "screwdrivers",
+  "id": "c675",
+  "path": "hand-tools/screwdrivers",
+  "products": 95
+ },
+ "https://www.toolstation.com/hand-tools/insulated-screwdriver/c1177": {
+  "name": "insulated screwdriver",
+  "id": "c1177",
+  "path": "hand-tools/insulated-screwdriver",
+  "products": 8
+ },
+ "https://www.toolstation.com/hand-tools/precision-screwdrivers/c1196": {
+  "name": "precision screwdrivers",
+  "id": "c1196",
+  "path": "hand-tools/precision-screwdrivers",
+  "products": 12
+ },
+ "https://www.toolstation.com/hand-tools/ratcheting-screwdrivers/c1247": {
+  "name": "ratcheting screwdrivers",
+  "id": "c1247",
+  "path": "hand-tools/ratcheting-screwdrivers",
+  "products": 8
+ },
+ "https://www.toolstation.com/hand-tools/screwdrivers-sets/c32": {
+  "name": "screwdrivers sets",
+  "id": "c32",
+  "path": "hand-tools/screwdrivers-sets",
+  "products": 46
+ },
+ "https://www.toolstation.com/hand-tools/vde-screwdrivers-sets/c374": {
+  "name": "vde screwdrivers sets",
+  "id": "c374",
+  "path": "hand-tools/vde-screwdrivers-sets",
+  "products": 30
+ },
+ "https://www.toolstation.com/hand-tools/levels-measuring-detection/c671": {
+  "name": "levels measuring detection",
+  "id": "c671",
+  "path": "hand-tools/levels-measuring-detection",
+  "products": 259
+ },
+ "https://www.toolstation.com/hand-tools/laser-levels/c281": {
+  "name": "laser levels",
+  "id": "c281",
+  "path": "hand-tools/laser-levels",
+  "products": 73
+ },
+ "https://www.toolstation.com/hand-tools/tape-measures/c34": {
+  "name": "tape measures",
+  "id": "c34",
+  "path": "hand-tools/tape-measures",
+  "products": 53
+ },
+ "https://www.toolstation.com/hand-tools/spirit-levels/c29": {
+  "name": "spirit levels",
+  "id": "c29",
+  "path": "hand-tools/spirit-levels",
+  "products": null
+ },
+ "https://www.toolstation.com/hand-tools/distance-measures/c991": {
+  "name": "distance measures",
+  "id": "c991",
+  "path": "hand-tools/distance-measures",
+  "products": 17
+ },
+ "https://www.toolstation.com/hand-tools/detection-equipment/c194": {
+  "name": "detection equipment",
+  "id": "c194",
+  "path": "hand-tools/detection-equipment",
+  "products": 36
+ },
+ "https://www.toolstation.com/hand-tools/bolsters-wrecking-bars/c417": {
+  "name": "bolsters wrecking bars",
+  "id": "c417",
+  "path": "hand-tools/bolsters-wrecking-bars",
+  "products": 50
+ },
+ "https://www.toolstation.com/hand-tools/crowbar/c1150": {
+  "name": "crowbar",
+  "id": "c1150",
+  "path": "hand-tools/crowbar",
+  "products": 20
+ },
+ "https://www.toolstation.com/hand-tools/pry-bar/c1154": {
+  "name": "pry bar",
+  "id": "c1154",
+  "path": "hand-tools/pry-bar",
+  "products": 8
+ },
+ "https://www.toolstation.com/hand-tools/wrecking-bar/c1166": {
+  "name": "wrecking bar",
+  "id": "c1166",
+  "path": "hand-tools/wrecking-bar",
+  "products": 24
+ },
+ "https://www.toolstation.com/hand-tools/spanners/c1134": {
+  "name": "spanners",
+  "id": "c1134",
+  "path": "hand-tools/spanners",
+  "products": 37
+ },
+ "https://www.toolstation.com/hand-tools/tap-spanner/c1135": {
+  "name": "tap spanner",
+  "id": "c1135",
+  "path": "hand-tools/tap-spanner",
+  "products": 5
+ },
+ "https://www.toolstation.com/hand-tools/box-spanner/c1137": {
+  "name": "box spanner",
+  "id": "c1137",
+  "path": "hand-tools/box-spanner",
+  "products": 2
+ },
+ "https://www.toolstation.com/hand-tools/ratchet-spanners/c1138": {
+  "name": "ratchet spanners",
+  "id": "c1138",
+  "path": "hand-tools/ratchet-spanners",
+  "products": 5
+ },
+ "https://www.toolstation.com/hand-tools/socket-wrench/c1139": {
+  "name": "socket wrench",
+  "id": "c1139",
+  "path": "hand-tools/socket-wrench",
+  "products": 4
+ },
+ "https://www.toolstation.com/hand-tools/pipe-wrench/c1140": {
+  "name": "pipe wrench",
+  "id": "c1140",
+  "path": "hand-tools/pipe-wrench",
+  "products": 2
+ },
+ "https://www.toolstation.com/hand-tools/tap-wrench/c1141": {
+  "name": "tap wrench",
+  "id": "c1141",
+  "path": "hand-tools/tap-wrench",
+  "products": 3
+ },
+ "https://www.toolstation.com/hand-tools/basin-wrench/c1142": {
+  "name": "basin wrench",
+  "id": "c1142",
+  "path": "hand-tools/basin-wrench",
+  "products": 2
+ },
+ "https://www.toolstation.com/hand-tools/adjustable-spanner/c1143": {
+  "name": "adjustable spanner",
+  "id": "c1143",
+  "path": "hand-tools/adjustable-spanner",
+  "products": 9
+ },
+ "https://www.toolstation.com/hand-tools/torque-wrench/c1144": {
+  "name": "torque wrench",
+  "id": "c1144",
+  "path": "hand-tools/torque-wrench",
+  "products": 4
+ },
+ "https://www.toolstation.com/hand-tools/combination-spanner/c1176": {
+  "name": "combination spanner",
+  "id": "c1176",
+  "path": "hand-tools/combination-spanner",
+  "products": 5
+ },
+ "https://www.toolstation.com/hand-tools/building-tools/c667": {
+  "name": "building tools",
+  "id": "c667",
+  "path": "hand-tools/building-tools",
+  "products": 273
+ },
+ "https://www.toolstation.com/hand-tools/dry-lining-tools/c1230": {
+  "name": "dry lining tools",
+  "id": "c1230",
+  "path": "hand-tools/dry-lining-tools",
+  "products": 18
+ },
+ "https://www.toolstation.com/hand-tools/builders-tools/c36": {
+  "name": "builders tools",
+  "id": "c36",
+  "path": "hand-tools/builders-tools",
+  "products": 81
+ },
+ "https://www.toolstation.com/hand-tools/bricklayers-tools/c992": {
+  "name": "bricklayers tools",
+  "id": "c992",
+  "path": "hand-tools/bricklayers-tools",
+  "products": 46
+ },
+ "https://www.toolstation.com/hand-tools/plastering-tools/c284": {
+  "name": "plastering tools",
+  "id": "c284",
+  "path": "hand-tools/plastering-tools",
+  "products": 114
+ },
+ "https://www.toolstation.com/hand-tools/flooring-tools/c516": {
+  "name": "flooring tools",
+  "id": "c516",
+  "path": "hand-tools/flooring-tools",
+  "products": 13
+ },
+ "https://www.toolstation.com/hand-tools/roofing-tools/c326": {
+  "name": "roofing tools",
+  "id": "c326",
+  "path": "hand-tools/roofing-tools",
+  "products": 16
+ },
+ "https://www.toolstation.com/hand-tools/plumbing-tools/c672": {
+  "name": "plumbing tools",
+  "id": "c672",
+  "path": "hand-tools/plumbing-tools",
+  "products": 279
+ },
+ "https://www.toolstation.com/hand-tools/manhole-keys/c1149": {
+  "name": "manhole keys",
+  "id": "c1149",
+  "path": "hand-tools/manhole-keys",
+  "products": 4
+ },
+ "https://www.toolstation.com/hand-tools/pipe-freezing-kit/c1153": {
+  "name": "pipe freezing kit",
+  "id": "c1153",
+  "path": "hand-tools/pipe-freezing-kit",
+  "products": 2
+ },
+ "https://www.toolstation.com/hand-tools/pipe-bender/c1163": {
+  "name": "pipe bender",
+  "id": "c1163",
+  "path": "hand-tools/pipe-bender",
+  "products": 17
+ },
+ "https://www.toolstation.com/hand-tools/pipe-detector/c1191": {
+  "name": "pipe detector",
+  "id": "c1191",
+  "path": "hand-tools/pipe-detector",
+  "products": 6
+ },
+ "https://www.toolstation.com/hand-tools/pipe-threader/c1197": {
+  "name": "pipe threader",
+  "id": "c1197",
+  "path": "hand-tools/pipe-threader",
+  "products": null
+ },
+ "https://www.toolstation.com/hand-tools/water-pressure-gauge/c1233": {
+  "name": "water pressure gauge",
+  "id": "c1233",
+  "path": "hand-tools/water-pressure-gauge",
+  "products": null
+ },
+ "https://www.toolstation.com/hand-tools/water-pump-adjustable-wrenches/c33": {
+  "name": "water pump adjustable wrenches",
+  "id": "c33",
+  "path": "hand-tools/water-pump-adjustable-wrenches",
+  "products": 68
+ },
+ "https://www.toolstation.com/hand-tools/pipe-cutting-bending/c324": {
+  "name": "pipe cutting bending",
+  "id": "c324",
+  "path": "hand-tools/pipe-cutting-bending",
+  "products": null
+ },
+ "https://www.toolstation.com/hand-tools/soldering-torches-accessories/c68": {
+  "name": "soldering torches accessories",
+  "id": "c68",
+  "path": "hand-tools/soldering-torches-accessories",
+  "products": 41
+ },
+ "https://www.toolstation.com/hand-tools/drain-rods-plungers/c307": {
+  "name": "drain rods plungers",
+  "id": "c307",
+  "path": "hand-tools/drain-rods-plungers",
+  "products": 20
+ },
+ "https://www.toolstation.com/hand-tools/plumbers-tools/c42": {
+  "name": "plumbers tools",
+  "id": "c42",
+  "path": "hand-tools/plumbers-tools",
+  "products": 51
+ },
+ "https://www.toolstation.com/hand-tools/electrical-tools/c39": {
+  "name": "electrical tools",
+  "id": "c39",
+  "path": "hand-tools/electrical-tools",
+  "products": 32
+ },
+ "https://www.toolstation.com/hand-tools/cable-rods/c1152": {
+  "name": "cable rods",
+  "id": "c1152",
+  "path": "hand-tools/cable-rods",
+  "products": 20
+ },
+ "https://www.toolstation.com/hand-tools/soldering-iron/c1241": {
+  "name": "soldering iron",
+  "id": "c1241",
+  "path": "hand-tools/soldering-iron",
+  "products": 10
+ },
+ "https://www.toolstation.com/hand-tools/engineering-tools/c673": {
+  "name": "engineering tools",
+  "id": "c673",
+  "path": "hand-tools/engineering-tools",
+  "products": 37
+ },
+ "https://www.toolstation.com/hand-tools/vernier-caliper/c1173": {
+  "name": "vernier caliper",
+  "id": "c1173",
+  "path": "hand-tools/vernier-caliper",
+  "products": 2
+ },
+ "https://www.toolstation.com/hand-tools/ruler/c1231": {
+  "name": "ruler",
+  "id": "c1231",
+  "path": "hand-tools/ruler",
+  "products": 7
+ },
+ "https://www.toolstation.com/hand-tools/engineers-tools/c41": {
+  "name": "engineers tools",
+  "id": "c41",
+  "path": "hand-tools/engineers-tools",
+  "products": 28
+ },
+ "https://www.toolstation.com/hand-tools/punches/c519": {
+  "name": "punches",
+  "id": "c519",
+  "path": "hand-tools/punches",
+  "products": 4
+ },
+ "https://www.toolstation.com/hand-tools/hammers/c27": {
+  "name": "hammers",
+  "id": "c27",
+  "path": "hand-tools/hammers",
+  "products": 67
+ },
+ "https://www.toolstation.com/hand-tools/ball-pein-hammer/c1136": {
+  "name": "ball pein hammer",
+  "id": "c1136",
+  "path": "hand-tools/ball-pein-hammer",
+  "products": null
+ },
+ "https://www.toolstation.com/hand-tools/mallet/c1229": {
+  "name": "mallet",
+  "id": "c1229",
+  "path": "hand-tools/mallet",
+  "products": null
+ },
+ "https://www.toolstation.com/hand-tools/pliers-cutters/c670": {
+  "name": "pliers cutters",
+  "id": "c670",
+  "path": "hand-tools/pliers-cutters",
+  "products": 118
+ },
+ "https://www.toolstation.com/hand-tools/tin-snips/c1167": {
+  "name": "tin snips",
+  "id": "c1167",
+  "path": "hand-tools/tin-snips",
+  "products": 12
+ },
+ "https://www.toolstation.com/hand-tools/bolt-cutters/c1168": {
+  "name": "bolt cutters",
+  "id": "c1168",
+  "path": "hand-tools/bolt-cutters",
+  "products": 5
+ },
+ "https://www.toolstation.com/hand-tools/pliers/c30": {
+  "name": "pliers",
+  "id": "c30",
+  "path": "hand-tools/pliers",
+  "products": 60
+ },
+ "https://www.toolstation.com/hand-tools/cutters-snips/c121": {
+  "name": "cutters snips",
+  "id": "c121",
+  "path": "hand-tools/cutters-snips",
+  "products": 56
+ },
+ "https://www.toolstation.com/hand-tools/clamps-vices/c669": {
+  "name": "clamps vices",
+  "id": "c669",
+  "path": "hand-tools/clamps-vices",
+  "products": 69
+ },
+ "https://www.toolstation.com/hand-tools/clamps/c26": {
+  "name": "clamps",
+  "id": "c26",
+  "path": "hand-tools/clamps",
+  "products": 61
+ },
+ "https://www.toolstation.com/hand-tools/vices/c65": {
+  "name": "vices",
+  "id": "c65",
+  "path": "hand-tools/vices",
+  "products": 8
+ },
+ "https://www.toolstation.com/hand-tools/buckets/c1252": {
+  "name": "buckets",
+  "id": "c1252",
+  "path": "hand-tools/buckets",
+  "products": 17
+ },
+ "https://www.toolstation.com/hand-tools/builders-buckets/c1200": {
+  "name": "builders buckets",
+  "id": "c1200",
+  "path": "hand-tools/builders-buckets",
+  "products": 6
+ },
+ "https://www.toolstation.com/hand-tools/flexi-buckets/c1198": {
+  "name": "flexi buckets",
+  "id": "c1198",
+  "path": "hand-tools/flexi-buckets",
+  "products": 5
+ },
+ "https://www.toolstation.com/hand-tools/plasterers-buckets/c1253": {
+  "name": "plasterers buckets",
+  "id": "c1253",
+  "path": "hand-tools/plasterers-buckets",
+  "products": 7
+ },
+ "https://www.toolstation.com/hand-tools/measuring-tools/c1156": {
+  "name": "measuring tools",
+  "id": "c1156",
+  "path": "hand-tools/measuring-tools",
+  "products": 29
+ },
+ "https://www.toolstation.com/hand-tools/caliper/c1155": {
+  "name": "caliper",
+  "id": "c1155",
+  "path": "hand-tools/caliper",
+  "products": 2
+ },
+ "https://www.toolstation.com/hand-tools/measuring-wheel/c1174": {
+  "name": "measuring wheel",
+  "id": "c1174",
+  "path": "hand-tools/measuring-wheel",
+  "products": 3
+ },
+ "https://www.toolstation.com/hand-tools/scribing-tool/c1178": {
+  "name": "scribing tool",
+  "id": "c1178",
+  "path": "hand-tools/scribing-tool",
+  "products": 4
+ },
+ "https://www.toolstation.com/hand-tools/thermometer/c1211": {
+  "name": "thermometer",
+  "id": "c1211",
+  "path": "hand-tools/thermometer",
+  "products": 4
+ },
+ "https://www.toolstation.com/hand-tools/angle-finder/c1214": {
+  "name": "angle finder",
+  "id": "c1214",
+  "path": "hand-tools/angle-finder",
+  "products": 10
+ },
+ "https://www.toolstation.com/hand-tools/clamp-meter/c1242": {
+  "name": "clamp meter",
+  "id": "c1242",
+  "path": "hand-tools/clamp-meter",
+  "products": 2
+ },
+ "https://www.toolstation.com/hand-tools/pressure-gauge/c1244": {
+  "name": "pressure gauge",
+  "id": "c1244",
+  "path": "hand-tools/pressure-gauge",
+  "products": 4
+ },
+ "https://www.toolstation.com/hand-tools/files-rasps/c386": {
+  "name": "files rasps",
+  "id": "c386",
+  "path": "hand-tools/files-rasps",
+  "products": 10
+ },
+ "https://www.toolstation.com/hand-tools/staplers/c197": {
+  "name": "staplers",
+  "id": "c197",
+  "path": "hand-tools/staplers",
+  "products": 11
+ },
+ "https://www.toolstation.com/hand-tools/hammer-tacker/c1203": {
+  "name": "hammer tacker",
+  "id": "c1203",
+  "path": "hand-tools/hammer-tacker",
+  "products": 2
+ },
+ "https://www.toolstation.com/hand-tools/work-benches-trestles/c35": {
+  "name": "work benches trestles",
+  "id": "c35",
+  "path": "hand-tools/work-benches-trestles",
+  "products": 29
+ },
+ "https://www.toolstation.com/hand-tools/workbench/c1161": {
+  "name": "workbench",
+  "id": "c1161",
+  "path": "hand-tools/workbench",
+  "products": 12
+ },
+ "https://www.toolstation.com/hand-tools/saw-horse/c1162": {
+  "name": "saw horse",
+  "id": "c1162",
+  "path": "hand-tools/saw-horse",
+  "products": 17
+ },
+ "https://www.toolstation.com/hand-tools/woodworking-tools/c668": {
+  "name": "woodworking tools",
+  "id": "c668",
+  "path": "hand-tools/woodworking-tools",
+  "products": 164
+ },
+ "https://www.toolstation.com/hand-tools/carving-chisels/c1148": {
+  "name": "carving chisels",
+  "id": "c1148",
+  "path": "hand-tools/carving-chisels",
+  "products": 8
+ },
+ "https://www.toolstation.com/hand-tools/marking-gauge/c1169": {
+  "name": "marking gauge",
+  "id": "c1169",
+  "path": "hand-tools/marking-gauge",
+  "products": 2
+ },
+ "https://www.toolstation.com/hand-tools/carpenters-square/c1170": {
+  "name": "carpenters square",
+  "id": "c1170",
+  "path": "hand-tools/carpenters-square",
+  "products": 7
+ },
+ "https://www.toolstation.com/hand-tools/combination-square/c1171": {
+  "name": "combination square",
+  "id": "c1171",
+  "path": "hand-tools/combination-square",
+  "products": 4
+ },
+ "https://www.toolstation.com/hand-tools/joinery-tools/c1175": {
+  "name": "joinery tools",
+  "id": "c1175",
+  "path": "hand-tools/joinery-tools",
+  "products": 3
+ },
+ "https://www.toolstation.com/hand-tools/hand-router/c1181": {
+  "name": "hand router",
+  "id": "c1181",
+  "path": "hand-tools/hand-router",
+  "products": null
+ },
+ "https://www.toolstation.com/hand-tools/carpenters-pencil/c1228": {
+  "name": "carpenters pencil",
+  "id": "c1228",
+  "path": "hand-tools/carpenters-pencil",
+  "products": null
+ },
+ "https://www.toolstation.com/hand-tools/mitre-box/c1240": {
+  "name": "mitre box",
+  "id": "c1240",
+  "path": "hand-tools/mitre-box",
+  "products": null
+ },
+ "https://www.toolstation.com/hand-tools/pocket-hole-jig/c1245": {
+  "name": "pocket hole jig",
+  "id": "c1245",
+  "path": "hand-tools/pocket-hole-jig",
+  "products": 8
+ },
+ "https://www.toolstation.com/hand-tools/bradawl/c1248": {
+  "name": "bradawl",
+  "id": "c1248",
+  "path": "hand-tools/bradawl",
+  "products": null
+ },
+ "https://www.toolstation.com/hand-tools/wood-chisels/c119": {
+  "name": "wood chisels",
+  "id": "c119",
+  "path": "hand-tools/wood-chisels",
+  "products": 25
+ },
+ "https://www.toolstation.com/hand-tools/marker-pens-pencils/c558": {
+  "name": "marker pens pencils",
+  "id": "c558",
+  "path": "hand-tools/marker-pens-pencils",
+  "products": 74
+ },
+ "https://www.toolstation.com/hand-tools/carpenters-tools/c37": {
+  "name": "carpenters tools",
+  "id": "c37",
+  "path": "hand-tools/carpenters-tools",
+  "products": 44
+ },
+ "https://www.toolstation.com/hand-tools/crimping-tool/c1164": {
+  "name": "crimping tool",
+  "id": "c1164",
+  "path": "hand-tools/crimping-tool",
+  "products": 7
+ },
+ "https://www.toolstation.com/hand-tools/wire-crimpers/c1147": {
+  "name": "wire crimpers",
+  "id": "c1147",
+  "path": "hand-tools/wire-crimpers",
+  "products": 3
+ },
+ "https://www.toolstation.com/hand-tools/bootlace-crimping-tool/c1188": {
+  "name": "bootlace crimping tool",
+  "id": "c1188",
+  "path": "hand-tools/bootlace-crimping-tool",
+  "products": null
+ },
+ "https://www.toolstation.com/hand-tools/ratchet-crimping-tool/c1189": {
+  "name": "ratchet crimping tool",
+  "id": "c1189",
+  "path": "hand-tools/ratchet-crimping-tool",
+  "products": 5
+ },
+ "https://www.toolstation.com/ironmongery/c7": {
+  "name": "ironmongery",
+  "id": "c7",
+  "path": "ironmongery",
+  "products": null
+ },
+ "https://www.toolstation.com/ironmongery/outdoor-hardware/c684": {
+  "name": "outdoor hardware",
+  "id": "c684",
+  "path": "ironmongery/outdoor-hardware",
+  "products": 303
+ },
+ "https://www.toolstation.com/ironmongery/outdoor-hinges/c499": {
+  "name": "outdoor hinges",
+  "id": "c499",
+  "path": "ironmongery/outdoor-hinges",
+  "products": 139
+ },
+ "https://www.toolstation.com/ironmongery/outdoor-bolts/c1008": {
+  "name": "outdoor bolts",
+  "id": "c1008",
+  "path": "ironmongery/outdoor-bolts",
+  "products": 64
+ },
+ "https://www.toolstation.com/ironmongery/outdoor-latches-handles/c1009": {
+  "name": "outdoor latches handles",
+  "id": "c1009",
+  "path": "ironmongery/outdoor-latches-handles",
+  "products": 96
+ },
+ "https://www.toolstation.com/ironmongery/gate-hardware/c312": {
+  "name": "gate hardware",
+  "id": "c312",
+  "path": "ironmongery/gate-hardware",
+  "products": 31
+ },
+ "https://www.toolstation.com/ironmongery/door-handles-knobs/c678": {
+  "name": "door handles knobs",
+  "id": "c678",
+  "path": "ironmongery/door-handles-knobs",
+  "products": 494
+ },
+ "https://www.toolstation.com/ironmongery/lever-on-backplate-handles/c1006": {
+  "name": "lever on backplate handles",
+  "id": "c1006",
+  "path": "ironmongery/lever-on-backplate-handles",
+  "products": null
+ },
+ "https://www.toolstation.com/ironmongery/lever-on-rose-handles/c1007": {
+  "name": "lever on rose handles",
+  "id": "c1007",
+  "path": "ironmongery/lever-on-rose-handles",
+  "products": 137
+ },
+ "https://www.toolstation.com/ironmongery/mortice-knob-sets/c52": {
+  "name": "mortice knob sets",
+  "id": "c52",
+  "path": "ironmongery/mortice-knob-sets",
+  "products": 40
+ },
+ "https://www.toolstation.com/ironmongery/upvc-door-handles/c54": {
+  "name": "upvc door handles",
+  "id": "c54",
+  "path": "ironmongery/upvc-door-handles",
+  "products": 26
+ },
+ "https://www.toolstation.com/ironmongery/pull-handles-plates-signs/c290": {
+  "name": "pull handles plates signs",
+  "id": "c290",
+  "path": "ironmongery/pull-handles-plates-signs",
+  "products": null
+ },
+ "https://www.toolstation.com/ironmongery/smart-door-controls/c645": {
+  "name": "smart door controls",
+  "id": "c645",
+  "path": "ironmongery/smart-door-controls",
+  "products": null
+ },
+ "https://www.toolstation.com/ironmongery/door-locks-security/c680": {
+  "name": "door locks security",
+  "id": "c680",
+  "path": "ironmongery/door-locks-security",
+  "products": 509
+ },
+ "https://www.toolstation.com/ironmongery/cylinders/c342": {
+  "name": "cylinders",
+  "id": "c342",
+  "path": "ironmongery/cylinders",
+  "products": 143
+ },
+ "https://www.toolstation.com/ironmongery/locks/c139": {
+  "name": "locks",
+  "id": "c139",
+  "path": "ironmongery/locks",
+  "products": 87
+ },
+ "https://www.toolstation.com/ironmongery/fire-door-locks/c889": {
+  "name": "fire door locks",
+  "id": "c889",
+  "path": "ironmongery/fire-door-locks",
+  "products": 21
+ },
+ "https://www.toolstation.com/ironmongery/door-chains-bolts/c234": {
+  "name": "door chains bolts",
+  "id": "c234",
+  "path": "ironmongery/door-chains-bolts",
+  "products": 32
+ },
+ "https://www.toolstation.com/ironmongery/night-latches/c444": {
+  "name": "night latches",
+  "id": "c444",
+  "path": "ironmongery/night-latches",
+  "products": 48
+ },
+ "https://www.toolstation.com/ironmongery/latches/c53": {
+  "name": "latches",
+  "id": "c53",
+  "path": "ironmongery/latches",
+  "products": 58
+ },
+ "https://www.toolstation.com/ironmongery/push-button-locks/c259": {
+  "name": "push button locks",
+  "id": "c259",
+  "path": "ironmongery/push-button-locks",
+  "products": 14
+ },
+ "https://www.toolstation.com/ironmongery/door-lock-accessories/c51": {
+  "name": "door lock accessories",
+  "id": "c51",
+  "path": "ironmongery/door-lock-accessories",
+  "products": 107
+ },
+ "https://www.toolstation.com/ironmongery/hinges/c683": {
+  "name": "hinges",
+  "id": "c683",
+  "path": "ironmongery/hinges",
+  "products": 136
+ },
+ "https://www.toolstation.com/ironmongery/door-furniture-hinges/c114": {
+  "name": "door furniture hinges",
+  "id": "c114",
+  "path": "ironmongery/door-furniture-hinges",
+  "products": 77
+ },
+ "https://www.toolstation.com/ironmongery/fire-door-hinges/c888": {
+  "name": "fire door hinges",
+  "id": "c888",
+  "path": "ironmongery/fire-door-hinges",
+  "products": null
+ },
+ "https://www.toolstation.com/ironmongery/cabinet-wardrobe-hardware/c679": {
+  "name": "cabinet wardrobe hardware",
+  "id": "c679",
+  "path": "ironmongery/cabinet-wardrobe-hardware",
+  "products": 324
+ },
+ "https://www.toolstation.com/ironmongery/wardrobe-fittings/c286": {
+  "name": "wardrobe fittings",
+  "id": "c286",
+  "path": "ironmongery/wardrobe-fittings",
+  "products": 39
+ },
+ "https://www.toolstation.com/ironmongery/catches/c115": {
+  "name": "catches",
+  "id": "c115",
+  "path": "ironmongery/catches",
+  "products": 32
+ },
+ "https://www.toolstation.com/ironmongery/sliding-door-gear/c473": {
+  "name": "sliding door gear",
+  "id": "c473",
+  "path": "ironmongery/sliding-door-gear",
+  "products": 98
+ },
+ "https://www.toolstation.com/ironmongery/cabinet-hardware/c138": {
+  "name": "cabinet hardware",
+  "id": "c138",
+  "path": "ironmongery/cabinet-hardware",
+  "products": 157
+ },
+ "https://www.toolstation.com/ironmongery/door-furniture/c1005": {
+  "name": "door furniture",
+  "id": "c1005",
+  "path": "ironmongery/door-furniture",
+  "products": 142
+ },
+ "https://www.toolstation.com/ironmongery/knobs-studs/c253": {
+  "name": "knobs studs",
+  "id": "c253",
+  "path": "ironmongery/knobs-studs",
+  "products": 4
+ },
+ "https://www.toolstation.com/ironmongery/door-signs/c1264": {
+  "name": "door signs",
+  "id": "c1264",
+  "path": "ironmongery/door-signs",
+  "products": 13
+ },
+ "https://www.toolstation.com/ironmongery/panic-hardware/c260": {
+  "name": "panic hardware",
+  "id": "c260",
+  "path": "ironmongery/panic-hardware",
+  "products": 9
+ },
+ "https://www.toolstation.com/ironmongery/door-numerals/c624": {
+  "name": "door numerals",
+  "id": "c624",
+  "path": "ironmongery/door-numerals",
+  "products": 60
+ },
+ "https://www.toolstation.com/ironmongery/post-boxes/c116": {
+  "name": "post boxes",
+  "id": "c116",
+  "path": "ironmongery/post-boxes",
+  "products": 31
+ },
+ "https://www.toolstation.com/ironmongery/letter-plates/c500": {
+  "name": "letter plates",
+  "id": "c500",
+  "path": "ironmongery/letter-plates",
+  "products": 25
+ },
+ "https://www.toolstation.com/ironmongery/hooks-picture-hanging/c158": {
+  "name": "hooks picture hanging",
+  "id": "c158",
+  "path": "ironmongery/hooks-picture-hanging",
+  "products": 131
+ },
+ "https://www.toolstation.com/ironmongery/brackets/c685": {
+  "name": "brackets",
+  "id": "c685",
+  "path": "ironmongery/brackets",
+  "products": 161
+ },
+ "https://www.toolstation.com/ironmongery/tv-brackets/c92": {
+  "name": "tv brackets",
+  "id": "c92",
+  "path": "ironmongery/tv-brackets",
+  "products": 42
+ },
+ "https://www.toolstation.com/ironmongery/shelf-brackets/c112": {
+  "name": "shelf brackets",
+  "id": "c112",
+  "path": "ironmongery/shelf-brackets",
+  "products": 99
+ },
+ "https://www.toolstation.com/ironmongery/handrail-kits-brackets/c553": {
+  "name": "handrail kits brackets",
+  "id": "c553",
+  "path": "ironmongery/handrail-kits-brackets",
+  "products": 20
+ },
+ "https://www.toolstation.com/ironmongery/window-hardware/c409": {
+  "name": "window hardware",
+  "id": "c409",
+  "path": "ironmongery/window-hardware",
+  "products": 111
+ },
+ "https://www.toolstation.com/ironmongery/wheels-castors/c336": {
+  "name": "wheels castors",
+  "id": "c336",
+  "path": "ironmongery/wheels-castors",
+  "products": 75
+ },
+ "https://www.toolstation.com/ironmongery/door-control/c681": {
+  "name": "door control",
+  "id": "c681",
+  "path": "ironmongery/door-control",
+  "products": 81
+ },
+ "https://www.toolstation.com/ironmongery/door-closers/c242": {
+  "name": "door closers",
+  "id": "c242",
+  "path": "ironmongery/door-closers",
+  "products": 37
+ },
+ "https://www.toolstation.com/ironmongery/door-access-control/c131": {
+  "name": "door access control",
+  "id": "c131",
+  "path": "ironmongery/door-access-control",
+  "products": 4
+ },
+ "https://www.toolstation.com/ironmongery/door-stops/c410": {
+  "name": "door stops",
+  "id": "c410",
+  "path": "ironmongery/door-stops",
+  "products": 37
+ },
+ "https://www.toolstation.com/ironmongery/fire-door-holders/c597": {
+  "name": "fire door holders",
+  "id": "c597",
+  "path": "ironmongery/fire-door-holders",
+  "products": 3
+ },
+ "https://www.toolstation.com/ironmongery/door-seals-draught-excluders/c682": {
+  "name": "door seals draught excluders",
+  "id": "c682",
+  "path": "ironmongery/door-seals-draught-excluders",
+  "products": 107
+ },
+ "https://www.toolstation.com/ironmongery/draught-excluders/c272": {
+  "name": "draught excluders",
+  "id": "c272",
+  "path": "ironmongery/draught-excluders",
+  "products": 84
+ },
+ "https://www.toolstation.com/ironmongery/fire-door-seals/c890": {
+  "name": "fire door seals",
+  "id": "c890",
+  "path": "ironmongery/fire-door-seals",
+  "products": 13
+ },
+ "https://www.toolstation.com/ironmongery/carpet-metal-edging/c332": {
+  "name": "carpet metal edging",
+  "id": "c332",
+  "path": "ironmongery/carpet-metal-edging",
+  "products": 10
+ },
+ "https://www.toolstation.com/kitchens/c734": {
+  "name": "kitchens",
+  "id": "c734",
+  "path": "kitchens",
+  "products": null
+ },
+ "https://www.toolstation.com/kitchens/kitchen-cabinets/c1468": {
+  "name": "kitchen cabinets",
+  "id": "c1468",
+  "path": "kitchens/kitchen-cabinets",
+  "products": 1771
+ },
+ "https://www.toolstation.com/kitchens/flat-pack-kitchen-units/c1500": {
+  "name": "flat pack kitchen units",
+  "id": "c1500",
+  "path": "kitchens/flat-pack-kitchen-units",
+  "products": 1376
+ },
+ "https://www.toolstation.com/kitchens/cabinet-panels/c1473": {
+  "name": "cabinet panels",
+  "id": "c1473",
+  "path": "kitchens/cabinet-panels",
+  "products": 194
+ },
+ "https://www.toolstation.com/kitchens/cabinet-accessories/c1474": {
+  "name": "cabinet accessories",
+  "id": "c1474",
+  "path": "kitchens/cabinet-accessories",
+  "products": 201
+ },
+ "https://www.toolstation.com/kitchens/kitchen-worktops-and-upstands/c1475": {
+  "name": "kitchen worktops and upstands",
+  "id": "c1475",
+  "path": "kitchens/kitchen-worktops-and-upstands",
+  "products": 317
+ },
+ "https://www.toolstation.com/kitchens/kitchen-taps/c349": {
+  "name": "kitchen taps",
+  "id": "c349",
+  "path": "kitchens/kitchen-taps",
+  "products": 215
+ },
+ "https://www.toolstation.com/kitchens/pillar-taps/c883": {
+  "name": "pillar taps",
+  "id": "c883",
+  "path": "kitchens/pillar-taps",
+  "products": 12
+ },
+ "https://www.toolstation.com/kitchens/mixer-taps/c884": {
+  "name": "mixer taps",
+  "id": "c884",
+  "path": "kitchens/mixer-taps",
+  "products": 182
+ },
+ "https://www.toolstation.com/kitchens/pull-out-taps/c1127": {
+  "name": "pull out taps",
+  "id": "c1127",
+  "path": "kitchens/pull-out-taps",
+  "products": 27
+ },
+ "https://www.toolstation.com/kitchens/boiling-water-taps/c1065": {
+  "name": "boiling water taps",
+  "id": "c1065",
+  "path": "kitchens/boiling-water-taps",
+  "products": 13
+ },
+ "https://www.toolstation.com/kitchens/filter-taps/c1066": {
+  "name": "filter taps",
+  "id": "c1066",
+  "path": "kitchens/filter-taps",
+  "products": 6
+ },
+ "https://www.toolstation.com/kitchens/sinks-waste-disposal-units/c1266": {
+  "name": "sinks waste disposal units",
+  "id": "c1266",
+  "path": "kitchens/sinks-waste-disposal-units",
+  "products": 130
+ },
+ "https://www.toolstation.com/kitchens/kitchen-sinks/c791": {
+  "name": "kitchen sinks",
+  "id": "c791",
+  "path": "kitchens/kitchen-sinks",
+  "products": 122
+ },
+ "https://www.toolstation.com/kitchens/waste-disposal-units/c1265": {
+  "name": "waste disposal units",
+  "id": "c1265",
+  "path": "kitchens/waste-disposal-units",
+  "products": null
+ },
+ "https://www.toolstation.com/kitchens/hardware/c164": {
+  "name": "hardware",
+  "id": "c164",
+  "path": "kitchens/hardware",
+  "products": 78
+ },
+ "https://www.toolstation.com/kitchens/splashbacks/c1027": {
+  "name": "splashbacks",
+  "id": "c1027",
+  "path": "kitchens/splashbacks",
+  "products": 199
+ },
+ "https://www.toolstation.com/kitchens/storage/c790": {
+  "name": "storage",
+  "id": "c790",
+  "path": "kitchens/storage",
+  "products": 29
+ },
+ "https://www.toolstation.com/kitchens/kitchen-lighting/c792": {
+  "name": "kitchen lighting",
+  "id": "c792",
+  "path": "kitchens/kitchen-lighting",
+  "products": 59
+ },
+ "https://www.toolstation.com/kitchens/under-cabinet-spotlights/c1053": {
+  "name": "under cabinet spotlights",
+  "id": "c1053",
+  "path": "kitchens/under-cabinet-spotlights",
+  "products": 15
+ },
+ "https://www.toolstation.com/kitchens/under-cabinet-strip-lights/c1054": {
+  "name": "under cabinet strip lights",
+  "id": "c1054",
+  "path": "kitchens/under-cabinet-strip-lights",
+  "products": 42
+ },
+ "https://www.toolstation.com/kitchens/track-lights/c1056": {
+  "name": "track lights",
+  "id": "c1056",
+  "path": "kitchens/track-lights",
+  "products": null
+ },
+ "https://www.toolstation.com/kitchens/spotlights/c1057": {
+  "name": "spotlights",
+  "id": "c1057",
+  "path": "kitchens/spotlights",
+  "products": 6
+ },
+ "https://www.toolstation.com/kitchens/appliances/c9": {
+  "name": "appliances",
+  "id": "c9",
+  "path": "kitchens/appliances",
+  "products": 30
+ },
+ "https://www.toolstation.com/kitchens/ovens/c632": {
+  "name": "ovens",
+  "id": "c632",
+  "path": "kitchens/ovens",
+  "products": 5
+ },
+ "https://www.toolstation.com/kitchens/hobs/c633": {
+  "name": "hobs",
+  "id": "c633",
+  "path": "kitchens/hobs",
+  "products": 10
+ },
+ "https://www.toolstation.com/kitchens/extractor-hoods/c634": {
+  "name": "extractor hoods",
+  "id": "c634",
+  "path": "kitchens/extractor-hoods",
+  "products": 13
+ },
+ "https://www.toolstation.com/kitchens/microwaves/c929": {
+  "name": "microwaves",
+  "id": "c929",
+  "path": "kitchens/microwaves",
+  "products": null
+ },
+ "https://www.toolstation.com/ladders-storage/c3": {
+  "name": "ladders storage",
+  "id": "c3",
+  "path": "ladders-storage",
+  "products": null
+ },
+ "https://www.toolstation.com/ladders-storage/tool-storage/c687": {
+  "name": "tool storage",
+  "id": "c687",
+  "path": "ladders-storage/tool-storage",
+  "products": 230
+ },
+ "https://www.toolstation.com/ladders-storage/tool-box/c56": {
+  "name": "tool box",
+  "id": "c56",
+  "path": "ladders-storage/tool-box",
+  "products": 149
+ },
+ "https://www.toolstation.com/ladders-storage/tool-bags/c467": {
+  "name": "tool bags",
+  "id": "c467",
+  "path": "ladders-storage/tool-bags",
+  "products": 51
+ },
+ "https://www.toolstation.com/ladders-storage/tool-chest/c1421": {
+  "name": "tool chest",
+  "id": "c1421",
+  "path": "ladders-storage/tool-chest",
+  "products": 32
+ },
+ "https://www.toolstation.com/ladders-storage/ladders/c686": {
+  "name": "ladders",
+  "id": "c686",
+  "path": "ladders-storage/ladders",
+  "products": 102
+ },
+ "https://www.toolstation.com/ladders-storage/combination-ladders/c212": {
+  "name": "combination ladders",
+  "id": "c212",
+  "path": "ladders-storage/combination-ladders",
+  "products": 38
+ },
+ "https://www.toolstation.com/ladders-storage/extension-ladders/c94": {
+  "name": "extension ladders",
+  "id": "c94",
+  "path": "ladders-storage/extension-ladders",
+  "products": 50
+ },
+ "https://www.toolstation.com/ladders-storage/telescopic-ladders/c1050": {
+  "name": "telescopic ladders",
+  "id": "c1050",
+  "path": "ladders-storage/telescopic-ladders",
+  "products": 13
+ },
+ "https://www.toolstation.com/ladders-storage/roof-ladders/c651": {
+  "name": "roof ladders",
+  "id": "c651",
+  "path": "ladders-storage/roof-ladders",
+  "products": 4
+ },
+ "https://www.toolstation.com/ladders-storage/work-platforms/c536": {
+  "name": "work platforms",
+  "id": "c536",
+  "path": "ladders-storage/work-platforms",
+  "products": 6
+ },
+ "https://www.toolstation.com/ladders-storage/step-ladders/c323": {
+  "name": "step ladders",
+  "id": "c323",
+  "path": "ladders-storage/step-ladders",
+  "products": 123
+ },
+ "https://www.toolstation.com/ladders-storage/platform-step-ladders/c1076": {
+  "name": "platform step ladders",
+  "id": "c1076",
+  "path": "ladders-storage/platform-step-ladders",
+  "products": 89
+ },
+ "https://www.toolstation.com/ladders-storage/swingback-step-ladders/c1077": {
+  "name": "swingback step ladders",
+  "id": "c1077",
+  "path": "ladders-storage/swingback-step-ladders",
+  "products": 34
+ },
+ "https://www.toolstation.com/ladders-storage/loft-ladders/c520": {
+  "name": "loft ladders",
+  "id": "c520",
+  "path": "ladders-storage/loft-ladders",
+  "products": 19
+ },
+ "https://www.toolstation.com/ladders-storage/step-stools/c50": {
+  "name": "step stools",
+  "id": "c50",
+  "path": "ladders-storage/step-stools",
+  "products": 12
+ },
+ "https://www.toolstation.com/ladders-storage/access-towers/c521": {
+  "name": "access towers",
+  "id": "c521",
+  "path": "ladders-storage/access-towers",
+  "products": 16
+ },
+ "https://www.toolstation.com/ladders-storage/ladder-accessories/c512": {
+  "name": "ladder accessories",
+  "id": "c512",
+  "path": "ladders-storage/ladder-accessories",
+  "products": 20
+ },
+ "https://www.toolstation.com/ladders-storage/shelving/c1263": {
+  "name": "shelving",
+  "id": "c1263",
+  "path": "ladders-storage/shelving",
+  "products": 146
+ },
+ "https://www.toolstation.com/ladders-storage/shelving-system/c608": {
+  "name": "shelving system",
+  "id": "c608",
+  "path": "ladders-storage/shelving-system",
+  "products": 71
+ },
+ "https://www.toolstation.com/ladders-storage/louvre-panel-racks-bins/c1262": {
+  "name": "louvre panel racks bins",
+  "id": "c1262",
+  "path": "ladders-storage/louvre-panel-racks-bins",
+  "products": 75
+ },
+ "https://www.toolstation.com/ladders-storage/plastic-storage-boxes/c1442": {
+  "name": "plastic storage boxes",
+  "id": "c1442",
+  "path": "ladders-storage/plastic-storage-boxes",
+  "products": 45
+ },
+ "https://www.toolstation.com/ladders-storage/lockers-cabinets/c1424": {
+  "name": "lockers cabinets",
+  "id": "c1424",
+  "path": "ladders-storage/lockers-cabinets",
+  "products": 11
+ },
+ "https://www.toolstation.com/ladders-storage/sack-trucks/c66": {
+  "name": "sack trucks",
+  "id": "c66",
+  "path": "ladders-storage/sack-trucks",
+  "products": 11
+ },
+ "https://www.toolstation.com/ladders-storage/trolleys-dollies/c1425": {
+  "name": "trolleys dollies",
+  "id": "c1425",
+  "path": "ladders-storage/trolleys-dollies",
+  "products": 29
+ },
+ "https://www.toolstation.com/landscaping/c1": {
+  "name": "landscaping",
+  "id": "c1",
+  "path": "landscaping",
+  "products": null
+ },
+ "https://www.toolstation.com/landscaping/garden-power-tools/c690": {
+  "name": "garden power tools",
+  "id": "c690",
+  "path": "landscaping/garden-power-tools",
+  "products": 471
+ },
+ "https://www.toolstation.com/landscaping/chainsaws/c424": {
+  "name": "chainsaws",
+  "id": "c424",
+  "path": "landscaping/chainsaws",
+  "products": 66
+ },
+ "https://www.toolstation.com/landscaping/shredders-blowers/c610": {
+  "name": "shredders blowers",
+  "id": "c610",
+  "path": "landscaping/shredders-blowers",
+  "products": 47
+ },
+ "https://www.toolstation.com/landscaping/hedge-trimmers/c1436": {
+  "name": "hedge trimmers",
+  "id": "c1436",
+  "path": "landscaping/hedge-trimmers",
+  "products": 100
+ },
+ "https://www.toolstation.com/landscaping/grass-trimmers/c609": {
+  "name": "grass trimmers",
+  "id": "c609",
+  "path": "landscaping/grass-trimmers",
+  "products": 86
+ },
+ "https://www.toolstation.com/landscaping/log-splitters/c1084": {
+  "name": "log splitters",
+  "id": "c1084",
+  "path": "landscaping/log-splitters",
+  "products": 6
+ },
+ "https://www.toolstation.com/landscaping/lawnmowers/c561": {
+  "name": "lawnmowers",
+  "id": "c561",
+  "path": "landscaping/lawnmowers",
+  "products": 80
+ },
+ "https://www.toolstation.com/landscaping/pressure-washers/c1078": {
+  "name": "pressure washers",
+  "id": "c1078",
+  "path": "landscaping/pressure-washers",
+  "products": 53
+ },
+ "https://www.toolstation.com/landscaping/tillers-scarifiers/c611": {
+  "name": "tillers scarifiers",
+  "id": "c611",
+  "path": "landscaping/tillers-scarifiers",
+  "products": 14
+ },
+ "https://www.toolstation.com/landscaping/garden-power-spares/c1437": {
+  "name": "garden power spares",
+  "id": "c1437",
+  "path": "landscaping/garden-power-spares",
+  "products": 69
+ },
+ "https://www.toolstation.com/landscaping/ride-on-mowers/c1074": {
+  "name": "ride on mowers",
+  "id": "c1074",
+  "path": "landscaping/ride-on-mowers",
+  "products": null
+ },
+ "https://www.toolstation.com/landscaping/watering/c691": {
+  "name": "watering",
+  "id": "c691",
+  "path": "landscaping/watering",
+  "products": 120
+ },
+ "https://www.toolstation.com/landscaping/water-pumps/c783": {
+  "name": "water pumps",
+  "id": "c783",
+  "path": "landscaping/water-pumps",
+  "products": 34
+ },
+ "https://www.toolstation.com/landscaping/hose-reels-trolleys/c406": {
+  "name": "hose reels trolleys",
+  "id": "c406",
+  "path": "landscaping/hose-reels-trolleys",
+  "products": 24
+ },
+ "https://www.toolstation.com/landscaping/hose-fittings/c532": {
+  "name": "hose fittings",
+  "id": "c532",
+  "path": "landscaping/hose-fittings",
+  "products": 35
+ },
+ "https://www.toolstation.com/landscaping/water-timers-sprinklers-sprayers/c189": {
+  "name": "water timers sprinklers sprayers",
+  "id": "c189",
+  "path": "landscaping/water-timers-sprinklers-sprayers",
+  "products": 21
+ },
+ "https://www.toolstation.com/landscaping/watering-cans-butts/c539": {
+  "name": "watering cans butts",
+  "id": "c539",
+  "path": "landscaping/watering-cans-butts",
+  "products": 2
+ },
+ "https://www.toolstation.com/landscaping/garden-taps/c1069": {
+  "name": "garden taps",
+  "id": "c1069",
+  "path": "landscaping/garden-taps",
+  "products": 6
+ },
+ "https://www.toolstation.com/landscaping/lawn-garden-maintenance/c547": {
+  "name": "lawn garden maintenance",
+  "id": "c547",
+  "path": "landscaping/lawn-garden-maintenance",
+  "products": 66
+ },
+ "https://www.toolstation.com/landscaping/garden-incinerators/c1058": {
+  "name": "garden incinerators",
+  "id": "c1058",
+  "path": "landscaping/garden-incinerators",
+  "products": 2
+ },
+ "https://www.toolstation.com/landscaping/waste-bags/c45": {
+  "name": "waste bags",
+  "id": "c45",
+  "path": "landscaping/waste-bags",
+  "products": 15
+ },
+ "https://www.toolstation.com/landscaping/weed-ground-control/c450": {
+  "name": "weed ground control",
+  "id": "c450",
+  "path": "landscaping/weed-ground-control",
+  "products": 39
+ },
+ "https://www.toolstation.com/landscaping/garden-hand-tools/c688": {
+  "name": "garden hand tools",
+  "id": "c688",
+  "path": "landscaping/garden-hand-tools",
+  "products": 205
+ },
+ "https://www.toolstation.com/landscaping/rakes/c305": {
+  "name": "rakes",
+  "id": "c305",
+  "path": "landscaping/rakes",
+  "products": null
+ },
+ "https://www.toolstation.com/landscaping/axes-mauls-log-splitting/c405": {
+  "name": "axes mauls log splitting",
+  "id": "c405",
+  "path": "landscaping/axes-mauls-log-splitting",
+  "products": 30
+ },
+ "https://www.toolstation.com/landscaping/wheelbarrows/c1070": {
+  "name": "wheelbarrows",
+  "id": "c1070",
+  "path": "landscaping/wheelbarrows",
+  "products": 13
+ },
+ "https://www.toolstation.com/landscaping/shovels-spades/c159": {
+  "name": "shovels spades",
+  "id": "c159",
+  "path": "landscaping/shovels-spades",
+  "products": 35
+ },
+ "https://www.toolstation.com/landscaping/garden-tools-accessories/c496": {
+  "name": "garden tools accessories",
+  "id": "c496",
+  "path": "landscaping/garden-tools-accessories",
+  "products": 14
+ },
+ "https://www.toolstation.com/landscaping/secateurs-loppers-pruners/c407": {
+  "name": "secateurs loppers pruners",
+  "id": "c407",
+  "path": "landscaping/secateurs-loppers-pruners",
+  "products": 39
+ },
+ "https://www.toolstation.com/landscaping/ground-working-tools/c288": {
+  "name": "ground working tools",
+  "id": "c288",
+  "path": "landscaping/ground-working-tools",
+  "products": 25
+ },
+ "https://www.toolstation.com/landscaping/garden-forks/c531": {
+  "name": "garden forks",
+  "id": "c531",
+  "path": "landscaping/garden-forks",
+  "products": 6
+ },
+ "https://www.toolstation.com/landscaping/tarpaulin/c1068": {
+  "name": "tarpaulin",
+  "id": "c1068",
+  "path": "landscaping/tarpaulin",
+  "products": 14
+ },
+ "https://www.toolstation.com/landscaping/sledge-hammers/c481": {
+  "name": "sledge hammers",
+  "id": "c481",
+  "path": "landscaping/sledge-hammers",
+  "products": 13
+ },
+ "https://www.toolstation.com/landscaping/garden-saws/c487": {
+  "name": "garden saws",
+  "id": "c487",
+  "path": "landscaping/garden-saws",
+  "products": 11
+ },
+ "https://www.toolstation.com/landscaping/fencing/c689": {
+  "name": "fencing",
+  "id": "c689",
+  "path": "landscaping/fencing",
+  "products": 275
+ },
+ "https://www.toolstation.com/landscaping/fence-panels/c1079": {
+  "name": "fence panels",
+  "id": "c1079",
+  "path": "landscaping/fence-panels",
+  "products": 101
+ },
+ "https://www.toolstation.com/landscaping/fence-posts-gravel-boards/c449": {
+  "name": "fence posts gravel boards",
+  "id": "c449",
+  "path": "landscaping/fence-posts-gravel-boards",
+  "products": 74
+ },
+ "https://www.toolstation.com/landscaping/fencing-supplies/c1394": {
+  "name": "fencing supplies",
+  "id": "c1394",
+  "path": "landscaping/fencing-supplies",
+  "products": 57
+ },
+ "https://www.toolstation.com/landscaping/fencing-tools/c1098": {
+  "name": "fencing tools",
+  "id": "c1098",
+  "path": "landscaping/fencing-tools",
+  "products": 13
+ },
+ "https://www.toolstation.com/landscaping/wire-fencing/c546": {
+  "name": "wire fencing",
+  "id": "c546",
+  "path": "landscaping/wire-fencing",
+  "products": 20
+ },
+ "https://www.toolstation.com/landscaping/gates/c1106": {
+  "name": "gates",
+  "id": "c1106",
+  "path": "landscaping/gates",
+  "products": null
+ },
+ "https://www.toolstation.com/landscaping/outdoor-buildings/c692": {
+  "name": "outdoor buildings",
+  "id": "c692",
+  "path": "landscaping/outdoor-buildings",
+  "products": 518
+ },
+ "https://www.toolstation.com/landscaping/sheds/c781": {
+  "name": "sheds",
+  "id": "c781",
+  "path": "landscaping/sheds",
+  "products": 488
+ },
+ "https://www.toolstation.com/landscaping/summer-houses-log-cabins/c782": {
+  "name": "summer houses log cabins",
+  "id": "c782",
+  "path": "landscaping/summer-houses-log-cabins",
+  "products": 12
+ },
+ "https://www.toolstation.com/landscaping/greenhouses/c926": {
+  "name": "greenhouses",
+  "id": "c926",
+  "path": "landscaping/greenhouses",
+  "products": 18
+ },
+ "https://www.toolstation.com/landscaping/decking-metalwork-tools/c548": {
+  "name": "decking metalwork tools",
+  "id": "c548",
+  "path": "landscaping/decking-metalwork-tools",
+  "products": 46
+ },
+ "https://www.toolstation.com/landscaping/paving-concrete/c601": {
+  "name": "paving concrete",
+  "id": "c601",
+  "path": "landscaping/paving-concrete",
+  "products": 11
+ },
+ "https://www.toolstation.com/landscaping/paving/c1060": {
+  "name": "paving",
+  "id": "c1060",
+  "path": "landscaping/paving",
+  "products": null
+ },
+ "https://www.toolstation.com/landscaping/concrete/c1062": {
+  "name": "concrete",
+  "id": "c1062",
+  "path": "landscaping/concrete",
+  "products": 3
+ },
+ "https://www.toolstation.com/landscaping/paving-walling/c1509": {
+  "name": "paving walling",
+  "id": "c1509",
+  "path": "landscaping/paving-walling",
+  "products": 76
+ },
+ "https://www.toolstation.com/landscaping/garden-walling/c1512": {
+  "name": "garden walling",
+  "id": "c1512",
+  "path": "landscaping/garden-walling",
+  "products": 11
+ },
+ "https://www.toolstation.com/landscaping/garden-paving-slabs/c1511": {
+  "name": "garden paving slabs",
+  "id": "c1511",
+  "path": "landscaping/garden-paving-slabs",
+  "products": 34
+ },
+ "https://www.toolstation.com/landscaping/kerbs-edging/c1513": {
+  "name": "kerbs edging",
+  "id": "c1513",
+  "path": "landscaping/kerbs-edging",
+  "products": 2
+ },
+ "https://www.toolstation.com/landscaping/driveways/c1510": {
+  "name": "driveways",
+  "id": "c1510",
+  "path": "landscaping/driveways",
+  "products": null
+ },
+ "https://www.toolstation.com/landscaping/jointing-compound-accessories/c1514": {
+  "name": "jointing compound accessories",
+  "id": "c1514",
+  "path": "landscaping/jointing-compound-accessories",
+  "products": 10
+ },
+ "https://www.toolstation.com/landscaping/outdoor-living/c777": {
+  "name": "outdoor living",
+  "id": "c777",
+  "path": "landscaping/outdoor-living",
+  "products": 150
+ },
+ "https://www.toolstation.com/landscaping/garden-arches/c778": {
+  "name": "garden arches",
+  "id": "c778",
+  "path": "landscaping/garden-arches",
+  "products": 10
+ },
+ "https://www.toolstation.com/landscaping/planters/c780": {
+  "name": "planters",
+  "id": "c780",
+  "path": "landscaping/planters",
+  "products": 40
+ },
+ "https://www.toolstation.com/landscaping/gazebos/c1259": {
+  "name": "gazebos",
+  "id": "c1259",
+  "path": "landscaping/gazebos",
+  "products": 10
+ },
+ "https://www.toolstation.com/landscaping/outdoor-storage/c1260": {
+  "name": "outdoor storage",
+  "id": "c1260",
+  "path": "landscaping/outdoor-storage",
+  "products": 11
+ },
+ "https://www.toolstation.com/landscaping/log-storage/c1267": {
+  "name": "log storage",
+  "id": "c1267",
+  "path": "landscaping/log-storage",
+  "products": 3
+ },
+ "https://www.toolstation.com/landscaping/garden-furniture/c1403": {
+  "name": "garden furniture",
+  "id": "c1403",
+  "path": "landscaping/garden-furniture",
+  "products": 18
+ },
+ "https://www.toolstation.com/landscaping/arbours/c1404": {
+  "name": "arbours",
+  "id": "c1404",
+  "path": "landscaping/arbours",
+  "products": 11
+ },
+ "https://www.toolstation.com/landscaping/lattice-and-trellis/c1409": {
+  "name": "lattice and trellis",
+  "id": "c1409",
+  "path": "landscaping/lattice-and-trellis",
+  "products": 13
+ },
+ "https://www.toolstation.com/landscaping/garden-benches/c1440": {
+  "name": "garden benches",
+  "id": "c1440",
+  "path": "landscaping/garden-benches",
+  "products": 14
+ },
+ "https://www.toolstation.com/landscaping/garden-tables/c1441": {
+  "name": "garden tables",
+  "id": "c1441",
+  "path": "landscaping/garden-tables",
+  "products": 4
+ },
+ "https://www.toolstation.com/landscaping/decking/c1586": {
+  "name": "decking",
+  "id": "c1586",
+  "path": "landscaping/decking",
+  "products": 25
+ },
+ "https://www.toolstation.com/landscaping/screens-borders/c451": {
+  "name": "screens borders",
+  "id": "c451",
+  "path": "landscaping/screens-borders",
+  "products": null
+ },
+ "https://www.toolstation.com/lighting/c21": {
+  "name": "lighting",
+  "id": "c21",
+  "path": "lighting",
+  "products": null
+ },
+ "https://www.toolstation.com/lighting/outside-lights/c697": {
+  "name": "outside lights",
+  "id": "c697",
+  "path": "lighting/outside-lights",
+  "products": 339
+ },
+ "https://www.toolstation.com/lighting/floodlights-security-lights/c462": {
+  "name": "floodlights security lights",
+  "id": "c462",
+  "path": "lighting/floodlights-security-lights",
+  "products": 99
+ },
+ "https://www.toolstation.com/lighting/bulkheads/c452": {
+  "name": "bulkheads",
+  "id": "c452",
+  "path": "lighting/bulkheads",
+  "products": 54
+ },
+ "https://www.toolstation.com/lighting/outdoor-wall-lights/c156": {
+  "name": "outdoor wall lights",
+  "id": "c156",
+  "path": "lighting/outdoor-wall-lights",
+  "products": 132
+ },
+ "https://www.toolstation.com/lighting/lanterns/c953": {
+  "name": "lanterns",
+  "id": "c953",
+  "path": "lighting/lanterns",
+  "products": 10
+ },
+ "https://www.toolstation.com/lighting/solar-lights/c740": {
+  "name": "solar lights",
+  "id": "c740",
+  "path": "lighting/solar-lights",
+  "products": 36
+ },
+ "https://www.toolstation.com/lighting/garden-lights/c110": {
+  "name": "garden lights",
+  "id": "c110",
+  "path": "lighting/garden-lights",
+  "products": 22
+ },
+ "https://www.toolstation.com/lighting/security-lights/c1239": {
+  "name": "security lights",
+  "id": "c1239",
+  "path": "lighting/security-lights",
+  "products": 10
+ },
+ "https://www.toolstation.com/lighting/dusk-lighting/c1209": {
+  "name": "dusk lighting",
+  "id": "c1209",
+  "path": "lighting/dusk-lighting",
+  "products": 9
+ },
+ "https://www.toolstation.com/lighting/post-lights/c1217": {
+  "name": "post lights",
+  "id": "c1217",
+  "path": "lighting/post-lights",
+  "products": 7
+ },
+ "https://www.toolstation.com/lighting/ground-lights/c1216": {
+  "name": "ground lights",
+  "id": "c1216",
+  "path": "lighting/ground-lights",
+  "products": 6
+ },
+ "https://www.toolstation.com/lighting/light-bulbs-lamps/c950": {
+  "name": "light bulbs lamps",
+  "id": "c950",
+  "path": "lighting/light-bulbs-lamps",
+  "products": 187
+ },
+ "https://www.toolstation.com/lighting/led/c703": {
+  "name": "led",
+  "id": "c703",
+  "path": "lighting/led",
+  "products": 159
+ },
+ "https://www.toolstation.com/lighting/gu10/c1415": {
+  "name": "gu10",
+  "id": "c1415",
+  "path": "lighting/gu10",
+  "products": 64
+ },
+ "https://www.toolstation.com/lighting/gls-bulb/c1414": {
+  "name": "gls bulb",
+  "id": "c1414",
+  "path": "lighting/gls-bulb",
+  "products": 50
+ },
+ "https://www.toolstation.com/lighting/candle-bulbs/c1412": {
+  "name": "candle bulbs",
+  "id": "c1412",
+  "path": "lighting/candle-bulbs",
+  "products": 16
+ },
+ "https://www.toolstation.com/lighting/globe-bulbs/c1411": {
+  "name": "globe bulbs",
+  "id": "c1411",
+  "path": "lighting/globe-bulbs",
+  "products": 16
+ },
+ "https://www.toolstation.com/lighting/mr16/c1416": {
+  "name": "mr16",
+  "id": "c1416",
+  "path": "lighting/mr16",
+  "products": 2
+ },
+ "https://www.toolstation.com/lighting/reflector-bulb/c1417": {
+  "name": "reflector bulb",
+  "id": "c1417",
+  "path": "lighting/reflector-bulb",
+  "products": 2
+ },
+ "https://www.toolstation.com/lighting/capsule-bulbs/c1413": {
+  "name": "capsule bulbs",
+  "id": "c1413",
+  "path": "lighting/capsule-bulbs",
+  "products": 16
+ },
+ "https://www.toolstation.com/lighting/appliance-bulb/c237": {
+  "name": "appliance bulb",
+  "id": "c237",
+  "path": "lighting/appliance-bulb",
+  "products": 6
+ },
+ "https://www.toolstation.com/lighting/filament-bulb/c1418": {
+  "name": "filament bulb",
+  "id": "c1418",
+  "path": "lighting/filament-bulb",
+  "products": 16
+ },
+ "https://www.toolstation.com/lighting/compact-fluorescent/c696": {
+  "name": "compact fluorescent",
+  "id": "c696",
+  "path": "lighting/compact-fluorescent",
+  "products": null
+ },
+ "https://www.toolstation.com/lighting/floodlight-bulb/c1219": {
+  "name": "floodlight bulb",
+  "id": "c1219",
+  "path": "lighting/floodlight-bulb",
+  "products": null
+ },
+ "https://www.toolstation.com/lighting/commercial-bulb/c340": {
+  "name": "commercial bulb",
+  "id": "c340",
+  "path": "lighting/commercial-bulb",
+  "products": null
+ },
+ "https://www.toolstation.com/lighting/halogen-bulbs/c693": {
+  "name": "halogen bulbs",
+  "id": "c693",
+  "path": "lighting/halogen-bulbs",
+  "products": null
+ },
+ "https://www.toolstation.com/lighting/vintage-bulb/c1420": {
+  "name": "vintage bulb",
+  "id": "c1420",
+  "path": "lighting/vintage-bulb",
+  "products": null
+ },
+ "https://www.toolstation.com/lighting/sensor-bulb/c1220": {
+  "name": "sensor bulb",
+  "id": "c1220",
+  "path": "lighting/sensor-bulb",
+  "products": 4
+ },
+ "https://www.toolstation.com/lighting/interior-lighting/c701": {
+  "name": "interior lighting",
+  "id": "c701",
+  "path": "lighting/interior-lighting",
+  "products": 172
+ },
+ "https://www.toolstation.com/lighting/ceiling-lights/c951": {
+  "name": "ceiling lights",
+  "id": "c951",
+  "path": "lighting/ceiling-lights",
+  "products": 27
+ },
+ "https://www.toolstation.com/lighting/spotlights/c1237": {
+  "name": "spotlights",
+  "id": "c1237",
+  "path": "lighting/spotlights",
+  "products": 14
+ },
+ "https://www.toolstation.com/lighting/wall-lights/c952": {
+  "name": "wall lights",
+  "id": "c952",
+  "path": "lighting/wall-lights",
+  "products": 5
+ },
+ "https://www.toolstation.com/lighting/led-strip-lights/c1083": {
+  "name": "led strip lights",
+  "id": "c1083",
+  "path": "lighting/led-strip-lights",
+  "products": 49
+ },
+ "https://www.toolstation.com/lighting/strip-lights/c1238": {
+  "name": "strip lights",
+  "id": "c1238",
+  "path": "lighting/strip-lights",
+  "products": 30
+ },
+ "https://www.toolstation.com/lighting/cabinet-lights/c1235": {
+  "name": "cabinet lights",
+  "id": "c1235",
+  "path": "lighting/cabinet-lights",
+  "products": 12
+ },
+ "https://www.toolstation.com/lighting/mood-lighting/c1232": {
+  "name": "mood lighting",
+  "id": "c1232",
+  "path": "lighting/mood-lighting",
+  "products": null
+ },
+ "https://www.toolstation.com/lighting/display-lighting/c1234": {
+  "name": "display lighting",
+  "id": "c1234",
+  "path": "lighting/display-lighting",
+  "products": null
+ },
+ "https://www.toolstation.com/lighting/plug-in-light/c1236": {
+  "name": "plug in light",
+  "id": "c1236",
+  "path": "lighting/plug-in-light",
+  "products": 2
+ },
+ "https://www.toolstation.com/lighting/lamp-shades/c1428": {
+  "name": "lamp shades",
+  "id": "c1428",
+  "path": "lighting/lamp-shades",
+  "products": null
+ },
+ "https://www.toolstation.com/lighting/batten-lights/c694": {
+  "name": "batten lights",
+  "id": "c694",
+  "path": "lighting/batten-lights",
+  "products": 48
+ },
+ "https://www.toolstation.com/lighting/batten-fittings/c489": {
+  "name": "batten fittings",
+  "id": "c489",
+  "path": "lighting/batten-fittings",
+  "products": 32
+ },
+ "https://www.toolstation.com/lighting/weatherproof-batten-fittings/c817": {
+  "name": "weatherproof batten fittings",
+  "id": "c817",
+  "path": "lighting/weatherproof-batten-fittings",
+  "products": 22
+ },
+ "https://www.toolstation.com/lighting/downlights/c698": {
+  "name": "downlights",
+  "id": "c698",
+  "path": "lighting/downlights",
+  "products": 205
+ },
+ "https://www.toolstation.com/lighting/fire-rated-downlights/c356": {
+  "name": "fire rated downlights",
+  "id": "c356",
+  "path": "lighting/fire-rated-downlights",
+  "products": 145
+ },
+ "https://www.toolstation.com/lighting/non-fire-rated-downlights/c263": {
+  "name": "non fire rated downlights",
+  "id": "c263",
+  "path": "lighting/non-fire-rated-downlights",
+  "products": 30
+ },
+ "https://www.toolstation.com/lighting/lighting-transformers/c523": {
+  "name": "lighting transformers",
+  "id": "c523",
+  "path": "lighting/lighting-transformers",
+  "products": 4
+ },
+ "https://www.toolstation.com/lighting/downlight-accessories/c956": {
+  "name": "downlight accessories",
+  "id": "c956",
+  "path": "lighting/downlight-accessories",
+  "products": 37
+ },
+ "https://www.toolstation.com/lighting/kitchen-lights/c702": {
+  "name": "kitchen lights",
+  "id": "c702",
+  "path": "lighting/kitchen-lights",
+  "products": 58
+ },
+ "https://www.toolstation.com/lighting/under-cabinet-spotlights/c957": {
+  "name": "under cabinet spotlights",
+  "id": "c957",
+  "path": "lighting/under-cabinet-spotlights",
+  "products": 16
+ },
+ "https://www.toolstation.com/lighting/under-cabinet-strip-lights/c958": {
+  "name": "under cabinet strip lights",
+  "id": "c958",
+  "path": "lighting/under-cabinet-strip-lights",
+  "products": 45
+ },
+ "https://www.toolstation.com/lighting/track-lights/c168": {
+  "name": "track lights",
+  "id": "c168",
+  "path": "lighting/track-lights",
+  "products": null
+ },
+ "https://www.toolstation.com/lighting/tubes/c699": {
+  "name": "tubes",
+  "id": "c699",
+  "path": "lighting/tubes",
+  "products": 16
+ },
+ "https://www.toolstation.com/lighting/led-tubes/c282": {
+  "name": "led tubes",
+  "id": "c282",
+  "path": "lighting/led-tubes",
+  "products": 15
+ },
+ "https://www.toolstation.com/lighting/fluorescent-tubes/c509": {
+  "name": "fluorescent tubes",
+  "id": "c509",
+  "path": "lighting/fluorescent-tubes",
+  "products": null
+ },
+ "https://www.toolstation.com/lighting/bathroom-lights/c431": {
+  "name": "bathroom lights",
+  "id": "c431",
+  "path": "lighting/bathroom-lights",
+  "products": 54
+ },
+ "https://www.toolstation.com/lighting/shower-downlights/c1183": {
+  "name": "shower downlights",
+  "id": "c1183",
+  "path": "lighting/shower-downlights",
+  "products": 21
+ },
+ "https://www.toolstation.com/lighting/shower-light/c1213": {
+  "name": "shower light",
+  "id": "c1213",
+  "path": "lighting/shower-light",
+  "products": 2
+ },
+ "https://www.toolstation.com/lighting/shaver-light/c1212": {
+  "name": "shaver light",
+  "id": "c1212",
+  "path": "lighting/shaver-light",
+  "products": 3
+ },
+ "https://www.toolstation.com/lighting/site-work-lights/c128": {
+  "name": "site work lights",
+  "id": "c128",
+  "path": "lighting/site-work-lights",
+  "products": 59
+ },
+ "https://www.toolstation.com/lighting/commercial-safety-lights/c695": {
+  "name": "commercial safety lights",
+  "id": "c695",
+  "path": "lighting/commercial-safety-lights",
+  "products": 50
+ },
+ "https://www.toolstation.com/lighting/commercial-lights/c238": {
+  "name": "commercial lights",
+  "id": "c238",
+  "path": "lighting/commercial-lights",
+  "products": 40
+ },
+ "https://www.toolstation.com/lighting/emergency-lights/c544": {
+  "name": "emergency lights",
+  "id": "c544",
+  "path": "lighting/emergency-lights",
+  "products": 12
+ },
+ "https://www.toolstation.com/lighting/smart-lighting/c742": {
+  "name": "smart lighting",
+  "id": "c742",
+  "path": "lighting/smart-lighting",
+  "products": 21
+ },
+ "https://www.toolstation.com/lighting/torches-head-torches/c700": {
+  "name": "torches head torches",
+  "id": "c700",
+  "path": "lighting/torches-head-torches",
+  "products": 37
+ },
+ "https://www.toolstation.com/painting-decorating/c8": {
+  "name": "painting decorating",
+  "id": "c8",
+  "path": "painting-decorating",
+  "products": null
+ },
+ "https://www.toolstation.com/painting-decorating/decorators-tools/c38": {
+  "name": "decorators tools",
+  "id": "c38",
+  "path": "painting-decorating/decorators-tools",
+  "products": 30
+ },
+ "https://www.toolstation.com/painting-decorating/knives/c845": {
+  "name": "knives",
+  "id": "c845",
+  "path": "painting-decorating/knives",
+  "products": 10
+ },
+ "https://www.toolstation.com/painting-decorating/scrapers/c846": {
+  "name": "scrapers",
+  "id": "c846",
+  "path": "painting-decorating/scrapers",
+  "products": 18
+ },
+ "https://www.toolstation.com/painting-decorating/sanding-paper/c95": {
+  "name": "sanding paper",
+  "id": "c95",
+  "path": "painting-decorating/sanding-paper",
+  "products": 59
+ },
+ "https://www.toolstation.com/painting-decorating/paint-varnish-removers/c291": {
+  "name": "paint varnish removers",
+  "id": "c291",
+  "path": "painting-decorating/paint-varnish-removers",
+  "products": 9
+ },
+ "https://www.toolstation.com/painting-decorating/paint-brushes/c325": {
+  "name": "paint brushes",
+  "id": "c325",
+  "path": "painting-decorating/paint-brushes",
+  "products": 46
+ },
+ "https://www.toolstation.com/painting-decorating/fillers-putty/c395": {
+  "name": "fillers putty",
+  "id": "c395",
+  "path": "painting-decorating/fillers-putty",
+  "products": 78
+ },
+ "https://www.toolstation.com/painting-decorating/rollers-poles/c397": {
+  "name": "rollers poles",
+  "id": "c397",
+  "path": "painting-decorating/rollers-poles",
+  "products": 95
+ },
+ "https://www.toolstation.com/painting-decorating/roller-frame-sets/c1080": {
+  "name": "roller frame sets",
+  "id": "c1080",
+  "path": "painting-decorating/roller-frame-sets",
+  "products": 32
+ },
+ "https://www.toolstation.com/painting-decorating/roller-sleeves/c1081": {
+  "name": "roller sleeves",
+  "id": "c1081",
+  "path": "painting-decorating/roller-sleeves",
+  "products": 41
+ },
+ "https://www.toolstation.com/painting-decorating/roller-trays-poles/c1082": {
+  "name": "roller trays poles",
+  "id": "c1082",
+  "path": "painting-decorating/roller-trays-poles",
+  "products": 23
+ },
+ "https://www.toolstation.com/painting-decorating/dust-sheets-protectors/c416": {
+  "name": "dust sheets protectors",
+  "id": "c416",
+  "path": "painting-decorating/dust-sheets-protectors",
+  "products": 37
+ },
+ "https://www.toolstation.com/painting-decorating/wallpapering/c475": {
+  "name": "wallpapering",
+  "id": "c475",
+  "path": "painting-decorating/wallpapering",
+  "products": 42
+ },
+ "https://www.toolstation.com/painting-decorating/wallpaper-adhesive/c848": {
+  "name": "wallpaper adhesive",
+  "id": "c848",
+  "path": "painting-decorating/wallpaper-adhesive",
+  "products": 6
+ },
+ "https://www.toolstation.com/painting-decorating/wallpapering-tools/c849": {
+  "name": "wallpapering tools",
+  "id": "c849",
+  "path": "painting-decorating/wallpapering-tools",
+  "products": 8
+ },
+ "https://www.toolstation.com/painting-decorating/wallpaper/c850": {
+  "name": "wallpaper",
+  "id": "c850",
+  "path": "painting-decorating/wallpaper",
+  "products": 27
+ },
+ "https://www.toolstation.com/painting-decorating/pasting-tables/c851": {
+  "name": "pasting tables",
+  "id": "c851",
+  "path": "painting-decorating/pasting-tables",
+  "products": null
+ },
+ "https://www.toolstation.com/painting-decorating/brush-cleaners-paint-thinners/c478": {
+  "name": "brush cleaners paint thinners",
+  "id": "c478",
+  "path": "painting-decorating/brush-cleaners-paint-thinners",
+  "products": 10
+ },
+ "https://www.toolstation.com/painting-decorating/masking-tape/c485": {
+  "name": "masking tape",
+  "id": "c485",
+  "path": "painting-decorating/masking-tape",
+  "products": 36
+ },
+ "https://www.toolstation.com/painting-decorating/coving/c510": {
+  "name": "coving",
+  "id": "c510",
+  "path": "painting-decorating/coving",
+  "products": 23
+ },
+ "https://www.toolstation.com/painting-decorating/paint/c705": {
+  "name": "paint",
+  "id": "c705",
+  "path": "painting-decorating/paint",
+  "products": 342
+ },
+ "https://www.toolstation.com/painting-decorating/woodcare/c706": {
+  "name": "woodcare",
+  "id": "c706",
+  "path": "painting-decorating/woodcare",
+  "products": 124
+ },
+ "https://www.toolstation.com/painting-decorating/wood-oil/c1575": {
+  "name": "wood oil",
+  "id": "c1575",
+  "path": "painting-decorating/wood-oil",
+  "products": 22
+ },
+ "https://www.toolstation.com/painting-decorating/wood-preservatives-treatments/c1576": {
+  "name": "wood preservatives treatments",
+  "id": "c1576",
+  "path": "painting-decorating/wood-preservatives-treatments",
+  "products": 60
+ },
+ "https://www.toolstation.com/painting-decorating/wood-varnish/c1577": {
+  "name": "wood varnish",
+  "id": "c1577",
+  "path": "painting-decorating/wood-varnish",
+  "products": 14
+ },
+ "https://www.toolstation.com/painting-decorating/wood-stain/c1578": {
+  "name": "wood stain",
+  "id": "c1578",
+  "path": "painting-decorating/wood-stain",
+  "products": 22
+ },
+ "https://www.toolstation.com/painting-decorating/wood-wax/c1579": {
+  "name": "wood wax",
+  "id": "c1579",
+  "path": "painting-decorating/wood-wax",
+  "products": 10
+ },
+ "https://www.toolstation.com/painting-decorating/tiling/c707": {
+  "name": "tiling",
+  "id": "c707",
+  "path": "painting-decorating/tiling",
+  "products": 75
+ },
+ "https://www.toolstation.com/painting-decorating/tile-cutters/c847": {
+  "name": "tile cutters",
+  "id": "c847",
+  "path": "painting-decorating/tile-cutters",
+  "products": 8
+ },
+ "https://www.toolstation.com/painting-decorating/tile-adhesive-grout/c355": {
+  "name": "tile adhesive grout",
+  "id": "c355",
+  "path": "painting-decorating/tile-adhesive-grout",
+  "products": 26
+ },
+ "https://www.toolstation.com/painting-decorating/tiling-tools/c511": {
+  "name": "tiling tools",
+  "id": "c511",
+  "path": "painting-decorating/tiling-tools",
+  "products": 43
+ },
+ "https://www.toolstation.com/plumbing/c15": {
+  "name": "plumbing",
+  "id": "c15",
+  "path": "plumbing",
+  "products": null
+ },
+ "https://www.toolstation.com/plumbing/waste-fittings/c708": {
+  "name": "waste fittings",
+  "id": "c708",
+  "path": "plumbing/waste-fittings",
+  "products": 217
+ },
+ "https://www.toolstation.com/plumbing/compression-waste/c299": {
+  "name": "compression waste",
+  "id": "c299",
+  "path": "plumbing/compression-waste",
+  "products": 56
+ },
+ "https://www.toolstation.com/plumbing/solvent-weld-waste/c297": {
+  "name": "solvent weld waste",
+  "id": "c297",
+  "path": "plumbing/solvent-weld-waste",
+  "products": 95
+ },
+ "https://www.toolstation.com/plumbing/push-fit-waste/c295": {
+  "name": "push fit waste",
+  "id": "c295",
+  "path": "plumbing/push-fit-waste",
+  "products": 38
+ },
+ "https://www.toolstation.com/plumbing/overflow-waste/c215": {
+  "name": "overflow waste",
+  "id": "c215",
+  "path": "plumbing/overflow-waste",
+  "products": 26
+ },
+ "https://www.toolstation.com/plumbing/compression-fittings/c978": {
+  "name": "compression fittings",
+  "id": "c978",
+  "path": "plumbing/compression-fittings",
+  "products": 118
+ },
+ "https://www.toolstation.com/plumbing/brass/c979": {
+  "name": "brass",
+  "id": "c979",
+  "path": "plumbing/brass",
+  "products": 108
+ },
+ "https://www.toolstation.com/plumbing/chrome/c980": {
+  "name": "chrome",
+  "id": "c980",
+  "path": "plumbing/chrome",
+  "products": 7
+ },
+ "https://www.toolstation.com/plumbing/brassware-valves-taps/c183": {
+  "name": "brassware valves taps",
+  "id": "c183",
+  "path": "plumbing/brassware-valves-taps",
+  "products": 122
+ },
+ "https://www.toolstation.com/plumbing/valves/c913": {
+  "name": "valves",
+  "id": "c913",
+  "path": "plumbing/valves",
+  "products": null
+ },
+ "https://www.toolstation.com/plumbing/stop-cocks/c914": {
+  "name": "stop cocks",
+  "id": "c914",
+  "path": "plumbing/stop-cocks",
+  "products": 22
+ },
+ "https://www.toolstation.com/plumbing/exterior-taps/c915": {
+  "name": "exterior taps",
+  "id": "c915",
+  "path": "plumbing/exterior-taps",
+  "products": 9
+ },
+ "https://www.toolstation.com/plumbing/push-fit-fittings/c968": {
+  "name": "push fit fittings",
+  "id": "c968",
+  "path": "plumbing/push-fit-fittings",
+  "products": 474
+ },
+ "https://www.toolstation.com/plumbing/plastic-push-fit/c969": {
+  "name": "plastic push fit",
+  "id": "c969",
+  "path": "plumbing/plastic-push-fit",
+  "products": 416
+ },
+ "https://www.toolstation.com/plumbing/copper-push-fit/c970": {
+  "name": "copper push fit",
+  "id": "c970",
+  "path": "plumbing/copper-push-fit",
+  "products": 49
+ },
+ "https://www.toolstation.com/plumbing/chrome-push-fit/c971": {
+  "name": "chrome push fit",
+  "id": "c971",
+  "path": "plumbing/chrome-push-fit",
+  "products": 6
+ },
+ "https://www.toolstation.com/plumbing/pipe/c964": {
+  "name": "pipe",
+  "id": "c964",
+  "path": "plumbing/pipe",
+  "products": 97
+ },
+ "https://www.toolstation.com/plumbing/copper-pipe/c211": {
+  "name": "copper pipe",
+  "id": "c211",
+  "path": "plumbing/copper-pipe",
+  "products": 14
+ },
+ "https://www.toolstation.com/plumbing/pex-pipe/c965": {
+  "name": "pex pipe",
+  "id": "c965",
+  "path": "plumbing/pex-pipe",
+  "products": 32
+ },
+ "https://www.toolstation.com/plumbing/pb-polybutylene-pipe/c966": {
+  "name": "pb polybutylene pipe",
+  "id": "c966",
+  "path": "plumbing/pb-polybutylene-pipe",
+  "products": 22
+ },
+ "https://www.toolstation.com/plumbing/waste-overflow-pipe/c967": {
+  "name": "waste overflow pipe",
+  "id": "c967",
+  "path": "plumbing/waste-overflow-pipe",
+  "products": null
+ },
+ "https://www.toolstation.com/plumbing/mdpe-pipe/c963": {
+  "name": "mdpe pipe",
+  "id": "c963",
+  "path": "plumbing/mdpe-pipe",
+  "products": 6
+ },
+ "https://www.toolstation.com/plumbing/traps-wastes/c1446": {
+  "name": "traps wastes",
+  "id": "c1446",
+  "path": "plumbing/traps-wastes",
+  "products": 154
+ },
+ "https://www.toolstation.com/plumbing/traps/c982": {
+  "name": "traps",
+  "id": "c982",
+  "path": "plumbing/traps",
+  "products": 100
+ },
+ "https://www.toolstation.com/plumbing/wastes/c981": {
+  "name": "wastes",
+  "id": "c981",
+  "path": "plumbing/wastes",
+  "products": 64
+ },
+ "https://www.toolstation.com/plumbing/toilet-fittings/c902": {
+  "name": "toilet fittings",
+  "id": "c902",
+  "path": "plumbing/toilet-fittings",
+  "products": 171
+ },
+ "https://www.toolstation.com/plumbing/flush-valves/c989": {
+  "name": "flush valves",
+  "id": "c989",
+  "path": "plumbing/flush-valves",
+  "products": 60
+ },
+ "https://www.toolstation.com/plumbing/flush-levers/c990": {
+  "name": "flush levers",
+  "id": "c990",
+  "path": "plumbing/flush-levers",
+  "products": 33
+ },
+ "https://www.toolstation.com/plumbing/toilet-cisterns/c988": {
+  "name": "toilet cisterns",
+  "id": "c988",
+  "path": "plumbing/toilet-cisterns",
+  "products": 28
+ },
+ "https://www.toolstation.com/plumbing/pan-connectors/c294": {
+  "name": "pan connectors",
+  "id": "c294",
+  "path": "plumbing/pan-connectors",
+  "products": 39
+ },
+ "https://www.toolstation.com/plumbing/toilet-sundries/c357": {
+  "name": "toilet sundries",
+  "id": "c357",
+  "path": "plumbing/toilet-sundries",
+  "products": 10
+ },
+ "https://www.toolstation.com/plumbing/soil-pipes-fittings/c298": {
+  "name": "soil pipes fittings",
+  "id": "c298",
+  "path": "plumbing/soil-pipes-fittings",
+  "products": 73
+ },
+ "https://www.toolstation.com/plumbing/flexible-tap-connectors/c983": {
+  "name": "flexible tap connectors",
+  "id": "c983",
+  "path": "plumbing/flexible-tap-connectors",
+  "products": 82
+ },
+ "https://www.toolstation.com/plumbing/compression/c984": {
+  "name": "compression",
+  "id": "c984",
+  "path": "plumbing/compression",
+  "products": 30
+ },
+ "https://www.toolstation.com/plumbing/wras-certified/c985": {
+  "name": "wras certified",
+  "id": "c985",
+  "path": "plumbing/wras-certified",
+  "products": 15
+ },
+ "https://www.toolstation.com/plumbing/push-fit/c986": {
+  "name": "push fit",
+  "id": "c986",
+  "path": "plumbing/push-fit",
+  "products": 32
+ },
+ "https://www.toolstation.com/plumbing/tap-tails-tap-glands/c987": {
+  "name": "tap tails tap glands",
+  "id": "c987",
+  "path": "plumbing/tap-tails-tap-glands",
+  "products": 11
+ },
+ "https://www.toolstation.com/plumbing/underground-drainage/c998": {
+  "name": "underground drainage",
+  "id": "c998",
+  "path": "plumbing/underground-drainage",
+  "products": 69
+ },
+ "https://www.toolstation.com/plumbing/110mm-underground-drainage/c229": {
+  "name": "110mm underground drainage",
+  "id": "c229",
+  "path": "plumbing/110mm-underground-drainage",
+  "products": 49
+ },
+ "https://www.toolstation.com/plumbing/160mm-underground-drainage/c267": {
+  "name": "160mm underground drainage",
+  "id": "c267",
+  "path": "plumbing/160mm-underground-drainage",
+  "products": 14
+ },
+ "https://www.toolstation.com/plumbing/plumbing-consumables/c181": {
+  "name": "plumbing consumables",
+  "id": "c181",
+  "path": "plumbing/plumbing-consumables",
+  "products": 54
+ },
+ "https://www.toolstation.com/plumbing/guttering-fittings/c1001": {
+  "name": "guttering fittings",
+  "id": "c1001",
+  "path": "plumbing/guttering-fittings",
+  "products": 153
+ },
+ "https://www.toolstation.com/plumbing/ogee-guttering/c360": {
+  "name": "ogee guttering",
+  "id": "c360",
+  "path": "plumbing/ogee-guttering",
+  "products": 9
+ },
+ "https://www.toolstation.com/plumbing/square-line-guttering/c271": {
+  "name": "square line guttering",
+  "id": "c271",
+  "path": "plumbing/square-line-guttering",
+  "products": 44
+ },
+ "https://www.toolstation.com/plumbing/half-round-guttering/c1565": {
+  "name": "half round guttering",
+  "id": "c1565",
+  "path": "plumbing/half-round-guttering",
+  "products": 96
+ },
+ "https://www.toolstation.com/plumbing/washing-machine-fittings/c191": {
+  "name": "washing machine fittings",
+  "id": "c191",
+  "path": "plumbing/washing-machine-fittings",
+  "products": 24
+ },
+ "https://www.toolstation.com/plumbing/clips-washers-fixings/c712": {
+  "name": "clips washers fixings",
+  "id": "c712",
+  "path": "plumbing/clips-washers-fixings",
+  "products": 169
+ },
+ "https://www.toolstation.com/plumbing/solder-ring-fittings/c186": {
+  "name": "solder ring fittings",
+  "id": "c186",
+  "path": "plumbing/solder-ring-fittings",
+  "products": 66
+ },
+ "https://www.toolstation.com/plumbing/mdpe-fittings/c206": {
+  "name": "mdpe fittings",
+  "id": "c206",
+  "path": "plumbing/mdpe-fittings",
+  "products": 97
+ },
+ "https://www.toolstation.com/plumbing/press-fit-fittings/c1451": {
+  "name": "press fit fittings",
+  "id": "c1451",
+  "path": "plumbing/press-fit-fittings",
+  "products": 93
+ },
+ "https://www.toolstation.com/plumbing/end-feed-fittings/c185": {
+  "name": "end feed fittings",
+  "id": "c185",
+  "path": "plumbing/end-feed-fittings",
+  "products": 98
+ },
+ "https://www.toolstation.com/plumbing/water-heating/c354": {
+  "name": "water heating",
+  "id": "c354",
+  "path": "plumbing/water-heating",
+  "products": 46
+ },
+ "https://www.toolstation.com/plumbing/drainage-channels-accessories/c396": {
+  "name": "drainage channels accessories",
+  "id": "c396",
+  "path": "plumbing/drainage-channels-accessories",
+  "products": 20
+ },
+ "https://www.toolstation.com/plumbing/water-treatment/c321": {
+  "name": "water treatment",
+  "id": "c321",
+  "path": "plumbing/water-treatment",
+  "products": 32
+ },
+ "https://www.toolstation.com/plumbing/plumbing-testing-reporting/c226": {
+  "name": "plumbing testing reporting",
+  "id": "c226",
+  "path": "plumbing/plumbing-testing-reporting",
+  "products": 22
+ },
+ "https://www.toolstation.com/plumbing/gas-fittings/c187": {
+  "name": "gas fittings",
+  "id": "c187",
+  "path": "plumbing/gas-fittings",
+  "products": 26
+ },
+ "https://www.toolstation.com/plumbing/cold-water-storage/c818": {
+  "name": "cold water storage",
+  "id": "c818",
+  "path": "plumbing/cold-water-storage",
+  "products": null
+ },
+ "https://www.toolstation.com/plumbing/macerators/c906": {
+  "name": "macerators",
+  "id": "c906",
+  "path": "plumbing/macerators",
+  "products": 10
+ },
+ "https://www.toolstation.com/power-tool-accessories/c11": {
+  "name": "power tool accessories",
+  "id": "c11",
+  "path": "power-tool-accessories",
+  "products": null
+ },
+ "https://www.toolstation.com/power-tool-accessories/drill-bits/c713": {
+  "name": "drill bits",
+  "id": "c713",
+  "path": "power-tool-accessories/drill-bits",
+  "products": 853
+ },
+ "https://www.toolstation.com/power-tool-accessories/hss-drill-bits/c83": {
+  "name": "hss drill bits",
+  "id": "c83",
+  "path": "power-tool-accessories/hss-drill-bits",
+  "products": 122
+ },
+ "https://www.toolstation.com/power-tool-accessories/core-drill-bits/c81": {
+  "name": "core drill bits",
+  "id": "c81",
+  "path": "power-tool-accessories/core-drill-bits",
+  "products": 57
+ },
+ "https://www.toolstation.com/power-tool-accessories/sds-drill-bits/c84": {
+  "name": "sds drill bits",
+  "id": "c84",
+  "path": "power-tool-accessories/sds-drill-bits",
+  "products": 205
+ },
+ "https://www.toolstation.com/power-tool-accessories/wood-drill-bits/c80": {
+  "name": "wood drill bits",
+  "id": "c80",
+  "path": "power-tool-accessories/wood-drill-bits",
+  "products": 113
+ },
+ "https://www.toolstation.com/power-tool-accessories/masonry-drill-bits/c85": {
+  "name": "masonry drill bits",
+  "id": "c85",
+  "path": "power-tool-accessories/masonry-drill-bits",
+  "products": 103
+ },
+ "https://www.toolstation.com/power-tool-accessories/multi-purpose-drill-bits/c814": {
+  "name": "multi purpose drill bits",
+  "id": "c814",
+  "path": "power-tool-accessories/multi-purpose-drill-bits",
+  "products": 30
+ },
+ "https://www.toolstation.com/power-tool-accessories/step-drill-bit/c1145": {
+  "name": "step drill bit",
+  "id": "c1145",
+  "path": "power-tool-accessories/step-drill-bit",
+  "products": 9
+ },
+ "https://www.toolstation.com/power-tool-accessories/glass-drill-bit/c1146": {
+  "name": "glass drill bit",
+  "id": "c1146",
+  "path": "power-tool-accessories/glass-drill-bit",
+  "products": 10
+ },
+ "https://www.toolstation.com/power-tool-accessories/screw-extractor/c1151": {
+  "name": "screw extractor",
+  "id": "c1151",
+  "path": "power-tool-accessories/screw-extractor",
+  "products": null
+ },
+ "https://www.toolstation.com/power-tool-accessories/hinge-cutter/c1190": {
+  "name": "hinge cutter",
+  "id": "c1190",
+  "path": "power-tool-accessories/hinge-cutter",
+  "products": 4
+ },
+ "https://www.toolstation.com/power-tool-accessories/wire-brush-for-drill/c1204": {
+  "name": "wire brush for drill",
+  "id": "c1204",
+  "path": "power-tool-accessories/wire-brush-for-drill",
+  "products": 17
+ },
+ "https://www.toolstation.com/power-tool-accessories/hss-titanium-drill-bits/c251": {
+  "name": "hss titanium drill bits",
+  "id": "c251",
+  "path": "power-tool-accessories/hss-titanium-drill-bits",
+  "products": 40
+ },
+ "https://www.toolstation.com/power-tool-accessories/cobalt-drill-bits/c82": {
+  "name": "cobalt drill bits",
+  "id": "c82",
+  "path": "power-tool-accessories/cobalt-drill-bits",
+  "products": 32
+ },
+ "https://www.toolstation.com/power-tool-accessories/tile-drill-bits/c404": {
+  "name": "tile drill bits",
+  "id": "c404",
+  "path": "power-tool-accessories/tile-drill-bits",
+  "products": 115
+ },
+ "https://www.toolstation.com/power-tool-accessories/auger-bits/c418": {
+  "name": "auger bits",
+  "id": "c418",
+  "path": "power-tool-accessories/auger-bits",
+  "products": 21
+ },
+ "https://www.toolstation.com/power-tool-accessories/speciality-drill-bits-chucks/c86": {
+  "name": "speciality drill bits chucks",
+  "id": "c86",
+  "path": "power-tool-accessories/speciality-drill-bits-chucks",
+  "products": 24
+ },
+ "https://www.toolstation.com/power-tool-accessories/cutting-blades/c715": {
+  "name": "cutting blades",
+  "id": "c715",
+  "path": "power-tool-accessories/cutting-blades",
+  "products": 859
+ },
+ "https://www.toolstation.com/power-tool-accessories/diamond-blades/c89": {
+  "name": "diamond blades",
+  "id": "c89",
+  "path": "power-tool-accessories/diamond-blades",
+  "products": 171
+ },
+ "https://www.toolstation.com/power-tool-accessories/circular-saw-blades/c366": {
+  "name": "circular saw blades",
+  "id": "c366",
+  "path": "power-tool-accessories/circular-saw-blades",
+  "products": 242
+ },
+ "https://www.toolstation.com/power-tool-accessories/cutting-discs/c96": {
+  "name": "cutting discs",
+  "id": "c96",
+  "path": "power-tool-accessories/cutting-discs",
+  "products": 76
+ },
+ "https://www.toolstation.com/power-tool-accessories/hole-saws/c90": {
+  "name": "hole saws",
+  "id": "c90",
+  "path": "power-tool-accessories/hole-saws",
+  "products": 188
+ },
+ "https://www.toolstation.com/power-tool-accessories/jigsaw-blades/c1003": {
+  "name": "jigsaw blades",
+  "id": "c1003",
+  "path": "power-tool-accessories/jigsaw-blades",
+  "products": 87
+ },
+ "https://www.toolstation.com/power-tool-accessories/reciprocating-saw-blades/c1004": {
+  "name": "reciprocating saw blades",
+  "id": "c1004",
+  "path": "power-tool-accessories/reciprocating-saw-blades",
+  "products": 69
+ },
+ "https://www.toolstation.com/power-tool-accessories/grinding-discs/c97": {
+  "name": "grinding discs",
+  "id": "c97",
+  "path": "power-tool-accessories/grinding-discs",
+  "products": 24
+ },
+ "https://www.toolstation.com/power-tool-accessories/planer-blades/c1450": {
+  "name": "planer blades",
+  "id": "c1450",
+  "path": "power-tool-accessories/planer-blades",
+  "products": 5
+ },
+ "https://www.toolstation.com/power-tool-accessories/bandsaw-blades/c88": {
+  "name": "bandsaw blades",
+  "id": "c88",
+  "path": "power-tool-accessories/bandsaw-blades",
+  "products": 17
+ },
+ "https://www.toolstation.com/power-tool-accessories/multi-tool-accessories/c507": {
+  "name": "multi tool accessories",
+  "id": "c507",
+  "path": "power-tool-accessories/multi-tool-accessories",
+  "products": 125
+ },
+ "https://www.toolstation.com/power-tool-accessories/multi-tool-blades/c1172": {
+  "name": "multi tool blades",
+  "id": "c1172",
+  "path": "power-tool-accessories/multi-tool-blades",
+  "products": 93
+ },
+ "https://www.toolstation.com/power-tool-accessories/screwdriver-accessories/c718": {
+  "name": "screwdriver accessories",
+  "id": "c718",
+  "path": "power-tool-accessories/screwdriver-accessories",
+  "products": 195
+ },
+ "https://www.toolstation.com/power-tool-accessories/screwdriver-bit-sets/c63": {
+  "name": "screwdriver bit sets",
+  "id": "c63",
+  "path": "power-tool-accessories/screwdriver-bit-sets",
+  "products": 53
+ },
+ "https://www.toolstation.com/power-tool-accessories/screwdriver-bit-holders/c137": {
+  "name": "screwdriver bit holders",
+  "id": "c137",
+  "path": "power-tool-accessories/screwdriver-bit-holders",
+  "products": 39
+ },
+ "https://www.toolstation.com/power-tool-accessories/screwdriver-bits/c64": {
+  "name": "screwdriver bits",
+  "id": "c64",
+  "path": "power-tool-accessories/screwdriver-bits",
+  "products": 48
+ },
+ "https://www.toolstation.com/power-tool-accessories/diamond-screwdriver-bits/c61": {
+  "name": "diamond screwdriver bits",
+  "id": "c61",
+  "path": "power-tool-accessories/diamond-screwdriver-bits",
+  "products": 5
+ },
+ "https://www.toolstation.com/power-tool-accessories/gold-screwdriver-bits/c755": {
+  "name": "gold screwdriver bits",
+  "id": "c755",
+  "path": "power-tool-accessories/gold-screwdriver-bits",
+  "products": 4
+ },
+ "https://www.toolstation.com/power-tool-accessories/impact-bits/c815": {
+  "name": "impact bits",
+  "id": "c815",
+  "path": "power-tool-accessories/impact-bits",
+  "products": 67
+ },
+ "https://www.toolstation.com/power-tool-accessories/chisels/c248": {
+  "name": "chisels",
+  "id": "c248",
+  "path": "power-tool-accessories/chisels",
+  "products": 68
+ },
+ "https://www.toolstation.com/power-tool-accessories/power-chisel/c1195": {
+  "name": "power chisel",
+  "id": "c1195",
+  "path": "power-tool-accessories/power-chisel",
+  "products": 66
+ },
+ "https://www.toolstation.com/power-tool-accessories/sanding/c716": {
+  "name": "sanding",
+  "id": "c716",
+  "path": "power-tool-accessories/sanding",
+  "products": 288
+ },
+ "https://www.toolstation.com/power-tool-accessories/power-tool-sanding-sheets/c98": {
+  "name": "power tool sanding sheets",
+  "id": "c98",
+  "path": "power-tool-accessories/power-tool-sanding-sheets",
+  "products": 119
+ },
+ "https://www.toolstation.com/power-tool-accessories/sanding-belts/c220": {
+  "name": "sanding belts",
+  "id": "c220",
+  "path": "power-tool-accessories/sanding-belts",
+  "products": 35
+ },
+ "https://www.toolstation.com/power-tool-accessories/sanding-discs-and-wheels/c1002": {
+  "name": "sanding discs and wheels",
+  "id": "c1002",
+  "path": "power-tool-accessories/sanding-discs-and-wheels",
+  "products": 138
+ },
+ "https://www.toolstation.com/power-tool-accessories/routing/c717": {
+  "name": "routing",
+  "id": "c717",
+  "path": "power-tool-accessories/routing",
+  "products": 159
+ },
+ "https://www.toolstation.com/power-tool-accessories/router-bits/c133": {
+  "name": "router bits",
+  "id": "c133",
+  "path": "power-tool-accessories/router-bits",
+  "products": 106
+ },
+ "https://www.toolstation.com/power-tool-accessories/router-jigs/c43": {
+  "name": "router jigs",
+  "id": "c43",
+  "path": "power-tool-accessories/router-jigs",
+  "products": 53
+ },
+ "https://www.toolstation.com/power-tool-accessories/buffing-polishing/c182": {
+  "name": "buffing polishing",
+  "id": "c182",
+  "path": "power-tool-accessories/buffing-polishing",
+  "products": 12
+ },
+ "https://www.toolstation.com/power-tool-accessories/wire-abrasives/c99": {
+  "name": "wire abrasives",
+  "id": "c99",
+  "path": "power-tool-accessories/wire-abrasives",
+  "products": 29
+ },
+ "https://www.toolstation.com/power-tool-accessories/dowels-biscuits/c87": {
+  "name": "dowels biscuits",
+  "id": "c87",
+  "path": "power-tool-accessories/dowels-biscuits",
+  "products": 13
+ },
+ "https://www.toolstation.com/power-tools/c5": {
+  "name": "power tools",
+  "id": "c5",
+  "path": "power-tools",
+  "products": null
+ },
+ "https://www.toolstation.com/power-tools/drills/c719": {
+  "name": "drills",
+  "id": "c719",
+  "path": "power-tools/drills",
+  "products": 185
+ },
+ "https://www.toolstation.com/power-tools/combi-drills/c765": {
+  "name": "combi drills",
+  "id": "c765",
+  "path": "power-tools/combi-drills",
+  "products": 48
+ },
+ "https://www.toolstation.com/power-tools/sds-drills/c514": {
+  "name": "sds drills",
+  "id": "c514",
+  "path": "power-tools/sds-drills",
+  "products": 93
+ },
+ "https://www.toolstation.com/power-tools/drill-drivers/c768": {
+  "name": "drill drivers",
+  "id": "c768",
+  "path": "power-tools/drill-drivers",
+  "products": 25
+ },
+ "https://www.toolstation.com/power-tools/impact-drills/c1159": {
+  "name": "impact drills",
+  "id": "c1159",
+  "path": "power-tools/impact-drills",
+  "products": 11
+ },
+ "https://www.toolstation.com/power-tools/percussion-drills/c161": {
+  "name": "percussion drills",
+  "id": "c161",
+  "path": "power-tools/percussion-drills",
+  "products": 4
+ },
+ "https://www.toolstation.com/power-tools/diamond-core-drills/c767": {
+  "name": "diamond core drills",
+  "id": "c767",
+  "path": "power-tools/diamond-core-drills",
+  "products": 4
+ },
+ "https://www.toolstation.com/power-tools/angle-drills/c766": {
+  "name": "angle drills",
+  "id": "c766",
+  "path": "power-tools/angle-drills",
+  "products": 5
+ },
+ "https://www.toolstation.com/power-tools/kits-twin-packs/c529": {
+  "name": "kits twin packs",
+  "id": "c529",
+  "path": "power-tools/kits-twin-packs",
+  "products": 46
+ },
+ "https://www.toolstation.com/power-tools/saws/c722": {
+  "name": "saws",
+  "id": "c722",
+  "path": "power-tools/saws",
+  "products": 390
+ },
+ "https://www.toolstation.com/power-tools/mitre-saws/c317": {
+  "name": "mitre saws",
+  "id": "c317",
+  "path": "power-tools/mitre-saws",
+  "products": 60
+ },
+ "https://www.toolstation.com/power-tools/circular-saws/c236": {
+  "name": "circular saws",
+  "id": "c236",
+  "path": "power-tools/circular-saws",
+  "products": 86
+ },
+ "https://www.toolstation.com/power-tools/table-saws/c202": {
+  "name": "table saws",
+  "id": "c202",
+  "path": "power-tools/table-saws",
+  "products": 23
+ },
+ "https://www.toolstation.com/power-tools/reciprocating-saws/c353": {
+  "name": "reciprocating saws",
+  "id": "c353",
+  "path": "power-tools/reciprocating-saws",
+  "products": null
+ },
+ "https://www.toolstation.com/power-tools/jigsaws/c474": {
+  "name": "jigsaws",
+  "id": "c474",
+  "path": "power-tools/jigsaws",
+  "products": 45
+ },
+ "https://www.toolstation.com/power-tools/plunge-saws/c762": {
+  "name": "plunge saws",
+  "id": "c762",
+  "path": "power-tools/plunge-saws",
+  "products": 6
+ },
+ "https://www.toolstation.com/power-tools/chop-saws/c606": {
+  "name": "chop saws",
+  "id": "c606",
+  "path": "power-tools/chop-saws",
+  "products": 18
+ },
+ "https://www.toolstation.com/power-tools/bandsaws/c811": {
+  "name": "bandsaws",
+  "id": "c811",
+  "path": "power-tools/bandsaws",
+  "products": 24
+ },
+ "https://www.toolstation.com/power-tools/scroll-saws/c933": {
+  "name": "scroll saws",
+  "id": "c933",
+  "path": "power-tools/scroll-saws",
+  "products": null
+ },
+ "https://www.toolstation.com/power-tools/concrete-saws/c1061": {
+  "name": "concrete saws",
+  "id": "c1061",
+  "path": "power-tools/concrete-saws",
+  "products": null
+ },
+ "https://www.toolstation.com/power-tools/insulation-saws/c1261": {
+  "name": "insulation saws",
+  "id": "c1261",
+  "path": "power-tools/insulation-saws",
+  "products": 30
+ },
+ "https://www.toolstation.com/power-tools/oscillating-saw/c1182": {
+  "name": "oscillating saw",
+  "id": "c1182",
+  "path": "power-tools/oscillating-saw",
+  "products": 2
+ },
+ "https://www.toolstation.com/power-tools/angle-grinders/c378": {
+  "name": "angle grinders",
+  "id": "c378",
+  "path": "power-tools/angle-grinders",
+  "products": 93
+ },
+ "https://www.toolstation.com/power-tools/radios/c244": {
+  "name": "radios",
+  "id": "c244",
+  "path": "power-tools/radios",
+  "products": 18
+ },
+ "https://www.toolstation.com/power-tools/dab-site-radio/c1157": {
+  "name": "dab site radio",
+  "id": "c1157",
+  "path": "power-tools/dab-site-radio",
+  "products": 8
+ },
+ "https://www.toolstation.com/power-tools/torches-worklights/c812": {
+  "name": "torches worklights",
+  "id": "c812",
+  "path": "power-tools/torches-worklights",
+  "products": 107
+ },
+ "https://www.toolstation.com/power-tools/air-tools-compressors/c720": {
+  "name": "air tools compressors",
+  "id": "c720",
+  "path": "power-tools/air-tools-compressors",
+  "products": null
+ },
+ "https://www.toolstation.com/power-tools/air-tools/c256": {
+  "name": "air tools",
+  "id": "c256",
+  "path": "power-tools/air-tools",
+  "products": 46
+ },
+ "https://www.toolstation.com/power-tools/air-compressors/c375": {
+  "name": "air compressors",
+  "id": "c375",
+  "path": "power-tools/air-compressors",
+  "products": 40
+ },
+ "https://www.toolstation.com/power-tools/routers-planers/c725": {
+  "name": "routers planers",
+  "id": "c725",
+  "path": "power-tools/routers-planers",
+  "products": 56
+ },
+ "https://www.toolstation.com/power-tools/routers/c287": {
+  "name": "routers",
+  "id": "c287",
+  "path": "power-tools/routers",
+  "products": 27
+ },
+ "https://www.toolstation.com/power-tools/planer-thicknessers/c265": {
+  "name": "planer thicknessers",
+  "id": "c265",
+  "path": "power-tools/planer-thicknessers",
+  "products": 29
+ },
+ "https://www.toolstation.com/power-tools/impact-drivers-wrenches/c551": {
+  "name": "impact drivers wrenches",
+  "id": "c551",
+  "path": "power-tools/impact-drivers-wrenches",
+  "products": 169
+ },
+ "https://www.toolstation.com/power-tools/impact-wrench/c1186": {
+  "name": "impact wrench",
+  "id": "c1186",
+  "path": "power-tools/impact-wrench",
+  "products": null
+ },
+ "https://www.toolstation.com/power-tools/impact-driver/c1210": {
+  "name": "impact driver",
+  "id": "c1210",
+  "path": "power-tools/impact-driver",
+  "products": 73
+ },
+ "https://www.toolstation.com/power-tools/multi-tools/c446": {
+  "name": "multi tools",
+  "id": "c446",
+  "path": "power-tools/multi-tools",
+  "products": 62
+ },
+ "https://www.toolstation.com/power-tools/oscillating-multi-tool/c1158": {
+  "name": "oscillating multi tool",
+  "id": "c1158",
+  "path": "power-tools/oscillating-multi-tool",
+  "products": 44
+ },
+ "https://www.toolstation.com/power-tools/rotary-tool/c1205": {
+  "name": "rotary tool",
+  "id": "c1205",
+  "path": "power-tools/rotary-tool",
+  "products": 18
+ },
+ "https://www.toolstation.com/power-tools/power-tool-batteries-chargers/c142": {
+  "name": "power tool batteries chargers",
+  "id": "c142",
+  "path": "power-tools/power-tool-batteries-chargers",
+  "products": 168
+ },
+ "https://www.toolstation.com/power-tools/sanders/c863": {
+  "name": "sanders",
+  "id": "c863",
+  "path": "power-tools/sanders",
+  "products": 113
+ },
+ "https://www.toolstation.com/power-tools/detail-sanders/c865": {
+  "name": "detail sanders",
+  "id": "c865",
+  "path": "power-tools/detail-sanders",
+  "products": 17
+ },
+ "https://www.toolstation.com/power-tools/disc-sander/c1180": {
+  "name": "disc sander",
+  "id": "c1180",
+  "path": "power-tools/disc-sander",
+  "products": null
+ },
+ "https://www.toolstation.com/power-tools/sander-polisher/c1201": {
+  "name": "sander polisher",
+  "id": "c1201",
+  "path": "power-tools/sander-polisher",
+  "products": 12
+ },
+ "https://www.toolstation.com/power-tools/palm-sander/c1206": {
+  "name": "palm sander",
+  "id": "c1206",
+  "path": "power-tools/palm-sander",
+  "products": 3
+ },
+ "https://www.toolstation.com/power-tools/orbital-sander/c1207": {
+  "name": "orbital sander",
+  "id": "c1207",
+  "path": "power-tools/orbital-sander",
+  "products": null
+ },
+ "https://www.toolstation.com/power-tools/random-orbit-sanders/c868": {
+  "name": "random orbit sanders",
+  "id": "c868",
+  "path": "power-tools/random-orbit-sanders",
+  "products": 40
+ },
+ "https://www.toolstation.com/power-tools/belt-sanders/c864": {
+  "name": "belt sanders",
+  "id": "c864",
+  "path": "power-tools/belt-sanders",
+  "products": 23
+ },
+ "https://www.toolstation.com/power-tools/bobbin-sander/c1179": {
+  "name": "bobbin sander",
+  "id": "c1179",
+  "path": "power-tools/bobbin-sander",
+  "products": 3
+ },
+ "https://www.toolstation.com/power-tools/sheet-sanders/c867": {
+  "name": "sheet sanders",
+  "id": "c867",
+  "path": "power-tools/sheet-sanders",
+  "products": 13
+ },
+ "https://www.toolstation.com/power-tools/drywall-sanders/c866": {
+  "name": "drywall sanders",
+  "id": "c866",
+  "path": "power-tools/drywall-sanders",
+  "products": 7
+ },
+ "https://www.toolstation.com/power-tools/jack-hammers-concrete-breakers-demolition/c577": {
+  "name": "jack hammers concrete breakers demolition",
+  "id": "c577",
+  "path": "power-tools/jack-hammers-concrete-breakers-demolition",
+  "products": 12
+ },
+ "https://www.toolstation.com/power-tools/demolition-hammer/c1185": {
+  "name": "demolition hammer",
+  "id": "c1185",
+  "path": "power-tools/demolition-hammer",
+  "products": null
+ },
+ "https://www.toolstation.com/power-tools/demolition-breaker/c1224": {
+  "name": "demolition breaker",
+  "id": "c1224",
+  "path": "power-tools/demolition-breaker",
+  "products": 8
+ },
+ "https://www.toolstation.com/power-tools/mixers-compactors/c723": {
+  "name": "mixers compactors",
+  "id": "c723",
+  "path": "power-tools/mixers-compactors",
+  "products": 24
+ },
+ "https://www.toolstation.com/power-tools/cement-mixing-tray/c1187": {
+  "name": "cement mixing tray",
+  "id": "c1187",
+  "path": "power-tools/cement-mixing-tray",
+  "products": 2
+ },
+ "https://www.toolstation.com/power-tools/cement-mixer/c1225": {
+  "name": "cement mixer",
+  "id": "c1225",
+  "path": "power-tools/cement-mixer",
+  "products": null
+ },
+ "https://www.toolstation.com/power-tools/plaster-mixer/c1226": {
+  "name": "plaster mixer",
+  "id": "c1226",
+  "path": "power-tools/plaster-mixer",
+  "products": 21
+ },
+ "https://www.toolstation.com/power-tools/decorators-power-tools/c935": {
+  "name": "decorators power tools",
+  "id": "c935",
+  "path": "power-tools/decorators-power-tools",
+  "products": 44
+ },
+ "https://www.toolstation.com/power-tools/sprayers/c469": {
+  "name": "sprayers",
+  "id": "c469",
+  "path": "power-tools/sprayers",
+  "products": 39
+ },
+ "https://www.toolstation.com/power-tools/wallpaper-steamers-strippers/c497": {
+  "name": "wallpaper steamers strippers",
+  "id": "c497",
+  "path": "power-tools/wallpaper-steamers-strippers",
+  "products": 5
+ },
+ "https://www.toolstation.com/power-tools/generators/c388": {
+  "name": "generators",
+  "id": "c388",
+  "path": "power-tools/generators",
+  "products": 25
+ },
+ "https://www.toolstation.com/power-tools/nail-guns/c48": {
+  "name": "nail guns",
+  "id": "c48",
+  "path": "power-tools/nail-guns",
+  "products": 72
+ },
+ "https://www.toolstation.com/power-tools/first-fix-nail-gun/c1192": {
+  "name": "first fix nail gun",
+  "id": "c1192",
+  "path": "power-tools/first-fix-nail-gun",
+  "products": 51
+ },
+ "https://www.toolstation.com/power-tools/brad-nailer/c1193": {
+  "name": "brad nailer",
+  "id": "c1193",
+  "path": "power-tools/brad-nailer",
+  "products": 16
+ },
+ "https://www.toolstation.com/power-tools/flooring-nailer/c1194": {
+  "name": "flooring nailer",
+  "id": "c1194",
+  "path": "power-tools/flooring-nailer",
+  "products": null
+ },
+ "https://www.toolstation.com/power-tools/screw-gun/c1184": {
+  "name": "screw gun",
+  "id": "c1184",
+  "path": "power-tools/screw-gun",
+  "products": 3
+ },
+ "https://www.toolstation.com/power-tools/power-screwdriver/c813": {
+  "name": "power screwdriver",
+  "id": "c813",
+  "path": "power-tools/power-screwdriver",
+  "products": 21
+ },
+ "https://www.toolstation.com/power-tools/water-pumps/c443": {
+  "name": "water pumps",
+  "id": "c443",
+  "path": "power-tools/water-pumps",
+  "products": 16
+ },
+ "https://www.toolstation.com/power-tools/workshop-tools/c721": {
+  "name": "workshop tools",
+  "id": "c721",
+  "path": "power-tools/workshop-tools",
+  "products": 153
+ },
+ "https://www.toolstation.com/power-tools/grinder/c1243": {
+  "name": "grinder",
+  "id": "c1243",
+  "path": "power-tools/grinder",
+  "products": 7
+ },
+ "https://www.toolstation.com/power-tools/bench-tools/c335": {
+  "name": "bench tools",
+  "id": "c335",
+  "path": "power-tools/bench-tools",
+  "products": 42
+ },
+ "https://www.toolstation.com/power-tools/bevelling-tools/c637": {
+  "name": "bevelling tools",
+  "id": "c637",
+  "path": "power-tools/bevelling-tools",
+  "products": 3
+ },
+ "https://www.toolstation.com/power-tools/biscuit-jointers/c530": {
+  "name": "biscuit jointers",
+  "id": "c530",
+  "path": "power-tools/biscuit-jointers",
+  "products": 4
+ },
+ "https://www.toolstation.com/power-tools/rollers-stands/c387": {
+  "name": "rollers stands",
+  "id": "c387",
+  "path": "power-tools/rollers-stands",
+  "products": 23
+ },
+ "https://www.toolstation.com/power-tools/workshop-heating-cooling/c315": {
+  "name": "workshop heating cooling",
+  "id": "c315",
+  "path": "power-tools/workshop-heating-cooling",
+  "products": 6
+ },
+ "https://www.toolstation.com/power-tools/dust-extraction/c760": {
+  "name": "dust extraction",
+  "id": "c760",
+  "path": "power-tools/dust-extraction",
+  "products": 71
+ },
+ "https://www.toolstation.com/power-tools/welders-welding-supplies/c157": {
+  "name": "welders welding supplies",
+  "id": "c157",
+  "path": "power-tools/welders-welding-supplies",
+  "products": 109
+ },
+ "https://www.toolstation.com/power-tools/welding-supplies/c1160": {
+  "name": "welding supplies",
+  "id": "c1160",
+  "path": "power-tools/welding-supplies",
+  "products": 97
+ },
+ "https://www.toolstation.com/power-tools/other-power-tools/c932": {
+  "name": "other power tools",
+  "id": "c932",
+  "path": "power-tools/other-power-tools",
+  "products": 95
+ },
+ "https://www.toolstation.com/power-tools/testing/c808": {
+  "name": "testing",
+  "id": "c808",
+  "path": "power-tools/testing",
+  "products": 2
+ },
+ "https://www.toolstation.com/power-tools/polishers/c525": {
+  "name": "polishers",
+  "id": "c525",
+  "path": "power-tools/polishers",
+  "products": null
+ },
+ "https://www.toolstation.com/power-tools/heat-grease-guns/c528": {
+  "name": "heat grease guns",
+  "id": "c528",
+  "path": "power-tools/heat-grease-guns",
+  "products": 26
+ },
+ "https://www.toolstation.com/power-tools/vacuum-steam-cleaners/c454": {
+  "name": "vacuum steam cleaners",
+  "id": "c454",
+  "path": "power-tools/vacuum-steam-cleaners",
+  "products": 9
+ },
+ "https://www.toolstation.com/security/c14": {
+  "name": "security",
+  "id": "c14",
+  "path": "security",
+  "products": null
+ },
+ "https://www.toolstation.com/security/cctv-cameras-systems/c151": {
+  "name": "cctv cameras systems",
+  "id": "c151",
+  "path": "security/cctv-cameras-systems",
+  "products": 43
+ },
+ "https://www.toolstation.com/security/burglar-alarms/c231": {
+  "name": "burglar alarms",
+  "id": "c231",
+  "path": "security/burglar-alarms",
+  "products": 20
+ },
+ "https://www.toolstation.com/security/door-chimes/c438": {
+  "name": "door chimes",
+  "id": "c438",
+  "path": "security/door-chimes",
+  "products": 31
+ },
+ "https://www.toolstation.com/security/ip-cameras/c745": {
+  "name": "ip cameras",
+  "id": "c745",
+  "path": "security/ip-cameras",
+  "products": 17
+ },
+ "https://www.toolstation.com/security/padlock-bolts-hasps/c382": {
+  "name": "padlock bolts hasps",
+  "id": "c382",
+  "path": "security/padlock-bolts-hasps",
+  "products": 34
+ },
+ "https://www.toolstation.com/security/padlocks/c130": {
+  "name": "padlocks",
+  "id": "c130",
+  "path": "security/padlocks",
+  "products": 97
+ },
+ "https://www.toolstation.com/security/shackles-chain/c140": {
+  "name": "shackles chain",
+  "id": "c140",
+  "path": "security/shackles-chain",
+  "products": 67
+ },
+ "https://www.toolstation.com/security/security-cables-chains/c313": {
+  "name": "security cables chains",
+  "id": "c313",
+  "path": "security/security-cables-chains",
+  "products": 36
+ },
+ "https://www.toolstation.com/security/safes-cabinets/c383": {
+  "name": "safes cabinets",
+  "id": "c383",
+  "path": "security/safes-cabinets",
+  "products": 64
+ },
+ "https://www.toolstation.com/security/fire-alarms/c195": {
+  "name": "fire alarms",
+  "id": "c195",
+  "path": "security/fire-alarms",
+  "products": 26
+ },
+ "https://www.toolstation.com/security/google-nest-assistant/c1433": {
+  "name": "google nest assistant",
+  "id": "c1433",
+  "path": "security/google-nest-assistant",
+  "products": 4
+ },
+ "https://www.toolstation.com/security/safety-barriers/c285": {
+  "name": "safety barriers",
+  "id": "c285",
+  "path": "security/safety-barriers",
+  "products": 10
+ },
+ "https://www.toolstation.com/screws-fixings/c12": {
+  "name": "screws fixings",
+  "id": "c12",
+  "path": "screws-fixings",
+  "products": null
+ },
+ "https://www.toolstation.com/screws-fixings/screws/c728": {
+  "name": "screws",
+  "id": "c728",
+  "path": "screws-fixings/screws",
+  "products": 758
+ },
+ "https://www.toolstation.com/screws-fixings/decking-roofing-screws/c301": {
+  "name": "decking roofing screws",
+  "id": "c301",
+  "path": "screws-fixings/decking-roofing-screws",
+  "products": 66
+ },
+ "https://www.toolstation.com/screws-fixings/screw-trade-packs/c853": {
+  "name": "screw trade packs",
+  "id": "c853",
+  "path": "screws-fixings/screw-trade-packs",
+  "products": 87
+ },
+ "https://www.toolstation.com/screws-fixings/wood-screws/c852": {
+  "name": "wood screws",
+  "id": "c852",
+  "path": "screws-fixings/wood-screws",
+  "products": 422
+ },
+ "https://www.toolstation.com/screws-fixings/drywall/c390": {
+  "name": "drywall",
+  "id": "c390",
+  "path": "screws-fixings/drywall",
+  "products": 38
+ },
+ "https://www.toolstation.com/screws-fixings/stainless-steel-screws/c73": {
+  "name": "stainless steel screws",
+  "id": "c73",
+  "path": "screws-fixings/stainless-steel-screws",
+  "products": 57
+ },
+ "https://www.toolstation.com/screws-fixings/masonry-screws/c856": {
+  "name": "masonry screws",
+  "id": "c856",
+  "path": "screws-fixings/masonry-screws",
+  "products": 19
+ },
+ "https://www.toolstation.com/screws-fixings/self-tapping-screws/c71": {
+  "name": "self tapping screws",
+  "id": "c71",
+  "path": "screws-fixings/self-tapping-screws",
+  "products": 42
+ },
+ "https://www.toolstation.com/screws-fixings/self-drill-roofing/c574": {
+  "name": "self drill roofing",
+  "id": "c574",
+  "path": "screws-fixings/self-drill-roofing",
+  "products": 38
+ },
+ "https://www.toolstation.com/screws-fixings/speciality-screws/c69": {
+  "name": "speciality screws",
+  "id": "c69",
+  "path": "screws-fixings/speciality-screws",
+  "products": 24
+ },
+ "https://www.toolstation.com/screws-fixings/twinthread-screws/c75": {
+  "name": "twinthread screws",
+  "id": "c75",
+  "path": "screws-fixings/twinthread-screws",
+  "products": 31
+ },
+ "https://www.toolstation.com/screws-fixings/roofing-screws/c855": {
+  "name": "roofing screws",
+  "id": "c855",
+  "path": "screws-fixings/roofing-screws",
+  "products": 5
+ },
+ "https://www.toolstation.com/screws-fixings/flooring-screws/c860": {
+  "name": "flooring screws",
+  "id": "c860",
+  "path": "screws-fixings/flooring-screws",
+  "products": 13
+ },
+ "https://www.toolstation.com/screws-fixings/electrical-screws/c857": {
+  "name": "electrical screws",
+  "id": "c857",
+  "path": "screws-fixings/electrical-screws",
+  "products": 6
+ },
+ "https://www.toolstation.com/screws-fixings/machine-screws/c76": {
+  "name": "machine screws",
+  "id": "c76",
+  "path": "screws-fixings/machine-screws",
+  "products": 17
+ },
+ "https://www.toolstation.com/screws-fixings/brass-screws/c74": {
+  "name": "brass screws",
+  "id": "c74",
+  "path": "screws-fixings/brass-screws",
+  "products": 6
+ },
+ "https://www.toolstation.com/screws-fixings/fixings-fasteners/c730": {
+  "name": "fixings fasteners",
+  "id": "c730",
+  "path": "screws-fixings/fixings-fasteners",
+  "products": 286
+ },
+ "https://www.toolstation.com/screws-fixings/frame-fixings-hammer-fixings/c101": {
+  "name": "frame fixings hammer fixings",
+  "id": "c101",
+  "path": "screws-fixings/frame-fixings-hammer-fixings",
+  "products": 52
+ },
+ "https://www.toolstation.com/screws-fixings/wall-plugs/c105": {
+  "name": "wall plugs",
+  "id": "c105",
+  "path": "screws-fixings/wall-plugs",
+  "products": 62
+ },
+ "https://www.toolstation.com/screws-fixings/cavity-fixings/c100": {
+  "name": "cavity fixings",
+  "id": "c100",
+  "path": "screws-fixings/cavity-fixings",
+  "products": 61
+ },
+ "https://www.toolstation.com/screws-fixings/steel-anchors/c104": {
+  "name": "steel anchors",
+  "id": "c104",
+  "path": "screws-fixings/steel-anchors",
+  "products": 63
+ },
+ "https://www.toolstation.com/screws-fixings/sanitary-fixings/c923": {
+  "name": "sanitary fixings",
+  "id": "c923",
+  "path": "screws-fixings/sanitary-fixings",
+  "products": 15
+ },
+ "https://www.toolstation.com/screws-fixings/fixing-sets/c526": {
+  "name": "fixing sets",
+  "id": "c526",
+  "path": "screws-fixings/fixing-sets",
+  "products": 7
+ },
+ "https://www.toolstation.com/screws-fixings/rivets/c103": {
+  "name": "rivets",
+  "id": "c103",
+  "path": "screws-fixings/rivets",
+  "products": 16
+ },
+ "https://www.toolstation.com/screws-fixings/mirror-picture-fixings/c892": {
+  "name": "mirror picture fixings",
+  "id": "c892",
+  "path": "screws-fixings/mirror-picture-fixings",
+  "products": 3
+ },
+ "https://www.toolstation.com/screws-fixings/packer-shims/c924": {
+  "name": "packer shims",
+  "id": "c924",
+  "path": "screws-fixings/packer-shims",
+  "products": 8
+ },
+ "https://www.toolstation.com/screws-fixings/nuts-bolts-washers/c727": {
+  "name": "nuts bolts washers",
+  "id": "c727",
+  "path": "screws-fixings/nuts-bolts-washers",
+  "products": 270
+ },
+ "https://www.toolstation.com/screws-fixings/coach-roof-bolts/c93": {
+  "name": "coach roof bolts",
+  "id": "c93",
+  "path": "screws-fixings/coach-roof-bolts",
+  "products": 74
+ },
+ "https://www.toolstation.com/screws-fixings/nuts-washers/c77": {
+  "name": "nuts washers",
+  "id": "c77",
+  "path": "screws-fixings/nuts-washers",
+  "products": 81
+ },
+ "https://www.toolstation.com/screws-fixings/coach-screws/c893": {
+  "name": "coach screws",
+  "id": "c893",
+  "path": "screws-fixings/coach-screws",
+  "products": 55
+ },
+ "https://www.toolstation.com/screws-fixings/bolts-set-screws/c78": {
+  "name": "bolts set screws",
+  "id": "c78",
+  "path": "screws-fixings/bolts-set-screws",
+  "products": 60
+ },
+ "https://www.toolstation.com/screws-fixings/nails-staples/c729": {
+  "name": "nails staples",
+  "id": "c729",
+  "path": "screws-fixings/nails-staples",
+  "products": 244
+ },
+ "https://www.toolstation.com/screws-fixings/collated-nails/c246": {
+  "name": "collated nails",
+  "id": "c246",
+  "path": "screws-fixings/collated-nails",
+  "products": 120
+ },
+ "https://www.toolstation.com/screws-fixings/galvanised-nails/c107": {
+  "name": "galvanised nails",
+  "id": "c107",
+  "path": "screws-fixings/galvanised-nails",
+  "products": 42
+ },
+ "https://www.toolstation.com/screws-fixings/staples/c109": {
+  "name": "staples",
+  "id": "c109",
+  "path": "screws-fixings/staples",
+  "products": 52
+ },
+ "https://www.toolstation.com/screws-fixings/specialised-nails/c108": {
+  "name": "specialised nails",
+  "id": "c108",
+  "path": "screws-fixings/specialised-nails",
+  "products": 37
+ },
+ "https://www.toolstation.com/screws-fixings/bright-nails/c106": {
+  "name": "bright nails",
+  "id": "c106",
+  "path": "screws-fixings/bright-nails",
+  "products": 16
+ },
+ "https://www.toolstation.com/screws-fixings/chemical-fixings/c102": {
+  "name": "chemical fixings",
+  "id": "c102",
+  "path": "screws-fixings/chemical-fixings",
+  "products": 33
+ },
+ "https://www.toolstation.com/screws-fixings/resin/c919": {
+  "name": "resin",
+  "id": "c919",
+  "path": "screws-fixings/resin",
+  "products": 18
+ },
+ "https://www.toolstation.com/screws-fixings/stud/c921": {
+  "name": "stud",
+  "id": "c921",
+  "path": "screws-fixings/stud",
+  "products": 8
+ },
+ "https://www.toolstation.com/screws-fixings/gun/c920": {
+  "name": "gun",
+  "id": "c920",
+  "path": "screws-fixings/gun",
+  "products": 7
+ },
+ "https://www.toolstation.com/screws-fixings/screw-storage/c385": {
+  "name": "screw storage",
+  "id": "c385",
+  "path": "screws-fixings/screw-storage",
+  "products": 10
+ },
+ "https://www.toolstation.com/screws-fixings/caps-cups/c70": {
+  "name": "caps cups",
+  "id": "c70",
+  "path": "screws-fixings/caps-cups",
+  "products": 17
+ },
+ "https://www.toolstation.com/screws-fixings/screw-cups-caps/c859": {
+  "name": "screw cups caps",
+  "id": "c859",
+  "path": "screws-fixings/screw-cups-caps",
+  "products": 12
+ },
+ "https://www.toolstation.com/screws-fixings/cup-hooks/c150": {
+  "name": "cup hooks",
+  "id": "c150",
+  "path": "screws-fixings/cup-hooks",
+  "products": 5
+ },
+ "https://www.toolstation.com/screws-fixings/clips/c384": {
+  "name": "clips",
+  "id": "c384",
+  "path": "screws-fixings/clips",
+  "products": 7
+ },
+ "https://www.toolstation.com/smart-home/c1480": {
+  "name": "smart home",
+  "id": "c1480",
+  "path": "smart-home",
+  "products": null
+ },
+ "https://www.toolstation.com/smart-home/smart-lighting/c1487": {
+  "name": "smart lighting",
+  "id": "c1487",
+  "path": "smart-home/smart-lighting",
+  "products": 61
+ },
+ "https://www.toolstation.com/smart-home/smart-bulbs/c1493": {
+  "name": "smart bulbs",
+  "id": "c1493",
+  "path": "smart-home/smart-bulbs",
+  "products": 21
+ },
+ "https://www.toolstation.com/smart-home/smart-ceiling-lights/c1497": {
+  "name": "smart ceiling lights",
+  "id": "c1497",
+  "path": "smart-home/smart-ceiling-lights",
+  "products": 12
+ },
+ "https://www.toolstation.com/smart-home/smart-light-kits/c1498": {
+  "name": "smart light kits",
+  "id": "c1498",
+  "path": "smart-home/smart-light-kits",
+  "products": 9
+ },
+ "https://www.toolstation.com/smart-home/smart-outdoor-lighting/c1496": {
+  "name": "smart outdoor lighting",
+  "id": "c1496",
+  "path": "smart-home/smart-outdoor-lighting",
+  "products": 13
+ },
+ "https://www.toolstation.com/smart-home/smart-strip-lights/c1495": {
+  "name": "smart strip lights",
+  "id": "c1495",
+  "path": "smart-home/smart-strip-lights",
+  "products": 5
+ },
+ "https://www.toolstation.com/smart-home/smart-light-switches/c1494": {
+  "name": "smart light switches",
+  "id": "c1494",
+  "path": "smart-home/smart-light-switches",
+  "products": 4
+ },
+ "https://www.toolstation.com/smart-home/smart-thermostats/c1489": {
+  "name": "smart thermostats",
+  "id": "c1489",
+  "path": "smart-home/smart-thermostats",
+  "products": 31
+ },
+ "https://www.toolstation.com/smart-home/smart-cameras/c1483": {
+  "name": "smart cameras",
+  "id": "c1483",
+  "path": "smart-home/smart-cameras",
+  "products": 54
+ },
+ "https://www.toolstation.com/smart-home/smart-doorbells/c1482": {
+  "name": "smart doorbells",
+  "id": "c1482",
+  "path": "smart-home/smart-doorbells",
+  "products": 18
+ },
+ "https://www.toolstation.com/smart-home/smart-plugs-switches-and-sockets/c1490": {
+  "name": "smart plugs switches and sockets",
+  "id": "c1490",
+  "path": "smart-home/smart-plugs-switches-and-sockets",
+  "products": 26
+ },
+ "https://www.toolstation.com/smart-home/smart-locks/c1481": {
+  "name": "smart locks",
+  "id": "c1481",
+  "path": "smart-home/smart-locks",
+  "products": 15
+ },
+ "https://www.toolstation.com/smart-home/smart-wifi-accessories/c1491": {
+  "name": "smart wifi accessories",
+  "id": "c1491",
+  "path": "smart-home/smart-wifi-accessories",
+  "products": 15
+ },
+ "https://www.toolstation.com/smart-home/smart-heaters-and-fans/c1488": {
+  "name": "smart heaters and fans",
+  "id": "c1488",
+  "path": "smart-home/smart-heaters-and-fans",
+  "products": 15
+ },
+ "https://www.toolstation.com/smart-home/smart-alarms/c1484": {
+  "name": "smart alarms",
+  "id": "c1484",
+  "path": "smart-home/smart-alarms",
+  "products": 21
+ },
+ "https://www.toolstation.com/smart-home/smart-speakers-and-assistants/c1492": {
+  "name": "smart speakers and assistants",
+  "id": "c1492",
+  "path": "smart-home/smart-speakers-and-assistants",
+  "products": 4
+ },
+ "https://www.toolstation.com/smart-home/smart-smoke-alarms/c1485": {
+  "name": "smart smoke alarms",
+  "id": "c1485",
+  "path": "smart-home/smart-smoke-alarms",
+  "products": 4
+ },
+ "https://www.toolstation.com/ventilation-heating/c1018": {
+  "name": "ventilation heating",
+  "id": "c1018",
+  "path": "ventilation-heating",
+  "products": null
+ },
+ "https://www.toolstation.com/ventilation-heating/electric-heaters-dryers/c394": {
+  "name": "electric heaters dryers",
+  "id": "c394",
+  "path": "ventilation-heating/electric-heaters-dryers",
+  "products": 160
+ },
+ "https://www.toolstation.com/ventilation-heating/oil-filled-radiators/c1020": {
+  "name": "oil filled radiators",
+  "id": "c1020",
+  "path": "ventilation-heating/oil-filled-radiators",
+  "products": null
+ },
+ "https://www.toolstation.com/ventilation-heating/convector-heaters/c1044": {
+  "name": "convector heaters",
+  "id": "c1044",
+  "path": "ventilation-heating/convector-heaters",
+  "products": null
+ },
+ "https://www.toolstation.com/ventilation-heating/fan-heaters/c1045": {
+  "name": "fan heaters",
+  "id": "c1045",
+  "path": "ventilation-heating/fan-heaters",
+  "products": 16
+ },
+ "https://www.toolstation.com/ventilation-heating/panel-heaters/c1046": {
+  "name": "panel heaters",
+  "id": "c1046",
+  "path": "ventilation-heating/panel-heaters",
+  "products": 50
+ },
+ "https://www.toolstation.com/ventilation-heating/utility-heaters/c1047": {
+  "name": "utility heaters",
+  "id": "c1047",
+  "path": "ventilation-heating/utility-heaters",
+  "products": 45
+ },
+ "https://www.toolstation.com/ventilation-heating/space-heaters/c1049": {
+  "name": "space heaters",
+  "id": "c1049",
+  "path": "ventilation-heating/space-heaters",
+  "products": 15
+ },
+ "https://www.toolstation.com/ventilation-heating/patio-heaters/c1043": {
+  "name": "patio heaters",
+  "id": "c1043",
+  "path": "ventilation-heating/patio-heaters",
+  "products": 10
+ },
+ "https://www.toolstation.com/ventilation-heating/smart-heating/c770": {
+  "name": "smart heating",
+  "id": "c770",
+  "path": "ventilation-heating/smart-heating",
+  "products": 31
+ },
+ "https://www.toolstation.com/ventilation-heating/ventilation/c1566": {
+  "name": "ventilation",
+  "id": "c1566",
+  "path": "ventilation-heating/ventilation",
+  "products": 301
+ },
+ "https://www.toolstation.com/ventilation-heating/dehumidifiers/c644": {
+  "name": "dehumidifiers",
+  "id": "c644",
+  "path": "ventilation-heating/dehumidifiers",
+  "products": 18
+ },
+ "https://www.toolstation.com/ventilation-heating/extractor-fans/c47": {
+  "name": "extractor fans",
+  "id": "c47",
+  "path": "ventilation-heating/extractor-fans",
+  "products": 161
+ },
+ "https://www.toolstation.com/ventilation-heating/ducting/c343": {
+  "name": "ducting",
+  "id": "c343",
+  "path": "ventilation-heating/ducting",
+  "products": 49
+ },
+ "https://www.toolstation.com/ventilation-heating/vents-grilles/c376": {
+  "name": "vents grilles",
+  "id": "c376",
+  "path": "ventilation-heating/vents-grilles",
+  "products": 47
+ },
+ "https://www.toolstation.com/ventilation-heating/cooling-fans/c605": {
+  "name": "cooling fans",
+  "id": "c605",
+  "path": "ventilation-heating/cooling-fans",
+  "products": 25
+ },
+ "https://www.toolstation.com/ventilation-heating/air-purifiers/c1447": {
+  "name": "air purifiers",
+  "id": "c1447",
+  "path": "ventilation-heating/air-purifiers",
+  "products": 2
+ },
+ "https://www.toolstation.com/ventilation-heating/fires/c1567": {
+  "name": "fires",
+  "id": "c1567",
+  "path": "ventilation-heating/fires",
+  "products": 66
+ },
+ "https://www.toolstation.com/ventilation-heating/gas-fires/c1564": {
+  "name": "gas fires",
+  "id": "c1564",
+  "path": "ventilation-heating/gas-fires",
+  "products": null
+ },
+ "https://www.toolstation.com/ventilation-heating/electric-fires/c1048": {
+  "name": "electric fires",
+  "id": "c1048",
+  "path": "ventilation-heating/electric-fires",
+  "products": 52
+ },
+ "https://www.toolstation.com/workwear-safety/c10": {
+  "name": "workwear safety",
+  "id": "c10",
+  "path": "workwear-safety",
+  "products": null
+ },
+ "https://www.toolstation.com/workwear-safety/tool-belts-accessories/c240": {
+  "name": "tool belts accessories",
+  "id": "c240",
+  "path": "workwear-safety/tool-belts-accessories",
+  "products": 54
+ },
+ "https://www.toolstation.com/workwear-safety/ppe/c735": {
+  "name": "ppe",
+  "id": "c735",
+  "path": "workwear-safety/ppe",
+  "products": 356
+ },
+ "https://www.toolstation.com/workwear-safety/face-masks-dust-masks/c44": {
+  "name": "face masks dust masks",
+  "id": "c44",
+  "path": "workwear-safety/face-masks-dust-masks",
+  "products": 53
+ },
+ "https://www.toolstation.com/workwear-safety/ear-protection/c57": {
+  "name": "ear protection",
+  "id": "c57",
+  "path": "workwear-safety/ear-protection",
+  "products": 19
+ },
+ "https://www.toolstation.com/workwear-safety/work-gloves/c60": {
+  "name": "work gloves",
+  "id": "c60",
+  "path": "workwear-safety/work-gloves",
+  "products": 146
+ },
+ "https://www.toolstation.com/workwear-safety/knee-protection/c111": {
+  "name": "knee protection",
+  "id": "c111",
+  "path": "workwear-safety/knee-protection",
+  "products": 31
+ },
+ "https://www.toolstation.com/workwear-safety/eye-protection/c243": {
+  "name": "eye protection",
+  "id": "c243",
+  "path": "workwear-safety/eye-protection",
+  "products": 67
+ },
+ "https://www.toolstation.com/workwear-safety/head-protection/c257": {
+  "name": "head protection",
+  "id": "c257",
+  "path": "workwear-safety/head-protection",
+  "products": 38
+ },
+ "https://www.toolstation.com/workwear-safety/height-safety/c316": {
+  "name": "height safety",
+  "id": "c316",
+  "path": "workwear-safety/height-safety",
+  "products": 6
+ },
+ "https://www.toolstation.com/workwear-safety/safety/c736": {
+  "name": "safety",
+  "id": "c736",
+  "path": "workwear-safety/safety",
+  "products": 263
+ },
+ "https://www.toolstation.com/workwear-safety/first-aid/c1067": {
+  "name": "first aid",
+  "id": "c1067",
+  "path": "workwear-safety/first-aid",
+  "products": 6
+ },
+ "https://www.toolstation.com/workwear-safety/floor-safety/c1422": {
+  "name": "floor safety",
+  "id": "c1422",
+  "path": "workwear-safety/floor-safety",
+  "products": 112
+ },
+ "https://www.toolstation.com/workwear-safety/fire-safety/c58": {
+  "name": "fire safety",
+  "id": "c58",
+  "path": "workwear-safety/fire-safety",
+  "products": 24
+ },
+ "https://www.toolstation.com/workwear-safety/safety-signs/c491": {
+  "name": "safety signs",
+  "id": "c491",
+  "path": "workwear-safety/safety-signs",
+  "products": 82
+ },
+ "https://www.toolstation.com/workwear-safety/traffic-control/c576": {
+  "name": "traffic control",
+  "id": "c576",
+  "path": "workwear-safety/traffic-control",
+  "products": 40
+ },
+ "https://www.toolstation.com/workwear-safety/safety-footwear/c737": {
+  "name": "safety footwear",
+  "id": "c737",
+  "path": "workwear-safety/safety-footwear",
+  "products": 496
+ },
+ "https://www.toolstation.com/workwear-safety/work-socks-overshoes/c118": {
+  "name": "work socks overshoes",
+  "id": "c118",
+  "path": "workwear-safety/work-socks-overshoes",
+  "products": null
+ },
+ "https://www.toolstation.com/workwear-safety/safety-boots/c122": {
+  "name": "safety boots",
+  "id": "c122",
+  "path": "workwear-safety/safety-boots",
+  "products": 349
+ },
+ "https://www.toolstation.com/workwear-safety/wellington-boots/c160": {
+  "name": "wellington boots",
+  "id": "c160",
+  "path": "workwear-safety/wellington-boots",
+  "products": 9
+ },
+ "https://www.toolstation.com/workwear-safety/safety-trainers/c216": {
+  "name": "safety trainers",
+  "id": "c216",
+  "path": "workwear-safety/safety-trainers",
+  "products": 100
+ },
+ "https://www.toolstation.com/workwear-safety/rigger-boots/c1568": {
+  "name": "rigger boots",
+  "id": "c1568",
+  "path": "workwear-safety/rigger-boots",
+  "products": 7
+ },
+ "https://www.toolstation.com/workwear-safety/dealer-boots/c1569": {
+  "name": "dealer boots",
+  "id": "c1569",
+  "path": "workwear-safety/dealer-boots",
+  "products": 35
+ },
+ "https://www.toolstation.com/workwear-safety/workwear/c794": {
+  "name": "workwear",
+  "id": "c794",
+  "path": "workwear-safety/workwear",
+  "products": 609
+ },
+ "https://www.toolstation.com/workwear-safety/work-shorts/c887": {
+  "name": "work shorts",
+  "id": "c887",
+  "path": "workwear-safety/work-shorts",
+  "products": 33
+ },
+ "https://www.toolstation.com/workwear-safety/work-t-shirts-polo-shirts/c241": {
+  "name": "work t shirts polo shirts",
+  "id": "c241",
+  "path": "workwear-safety/work-t-shirts-polo-shirts",
+  "products": 142
+ },
+ "https://www.toolstation.com/workwear-safety/work-trousers/c411": {
+  "name": "work trousers",
+  "id": "c411",
+  "path": "workwear-safety/work-trousers",
+  "products": 142
+ },
+ "https://www.toolstation.com/workwear-safety/work-overalls/c413": {
+  "name": "work overalls",
+  "id": "c413",
+  "path": "workwear-safety/work-overalls",
+  "products": 19
+ },
+ "https://www.toolstation.com/workwear-safety/work-body-warmers-gilets/c415": {
+  "name": "work body warmers gilets",
+  "id": "c415",
+  "path": "workwear-safety/work-body-warmers-gilets",
+  "products": 26
+ },
+ "https://www.toolstation.com/workwear-safety/chainsaw-clothing/c476": {
+  "name": "chainsaw clothing",
+  "id": "c476",
+  "path": "workwear-safety/chainsaw-clothing",
+  "products": 4
+ },
+ "https://www.toolstation.com/workwear-safety/work-hoodies-sweatshirts/c495": {
+  "name": "work hoodies sweatshirts",
+  "id": "c495",
+  "path": "workwear-safety/work-hoodies-sweatshirts",
+  "products": 111
+ },
+ "https://www.toolstation.com/workwear-safety/work-jackets-coats/c580": {
+  "name": "work jackets coats",
+  "id": "c580",
+  "path": "workwear-safety/work-jackets-coats",
+  "products": 90
+ },
+ "https://www.toolstation.com/workwear-safety/workwear-accessories/c1571": {
+  "name": "workwear accessories",
+  "id": "c1571",
+  "path": "workwear-safety/workwear-accessories",
+  "products": 51
+ },
+ "https://www.toolstation.com/black-friday/c1540": {
+  "name": "black friday",
+  "id": "c1540",
+  "path": "black-friday",
+  "products": null
+ },
+ "https://www.toolstation.com/gifts/c1557": {
+  "name": "gifts",
+  "id": "c1557",
+  "path": "gifts",
+  "products": null
+ },
+ "https://www.toolstation.com/gifts/seasonal-deals/c1558": {
+  "name": "seasonal deals",
+  "id": "c1558",
+  "path": "gifts/seasonal-deals",
+  "products": null
+ },
+ "https://www.toolstation.com/gifts/top-gift-ideas/c1560": {
+  "name": "top gift ideas",
+  "id": "c1560",
+  "path": "gifts/top-gift-ideas",
+  "products": null
+ },
+ "https://www.toolstation.com/gifts/gifts-under-ps30/c1559": {
+  "name": "gifts under ps30",
+  "id": "c1559",
+  "path": "gifts/gifts-under-ps30",
+  "products": null
+ },
+ "https://www.toolstation.com/gifts/stocking-fillers/c1561": {
+  "name": "stocking fillers",
+  "id": "c1561",
+  "path": "gifts/stocking-fillers",
+  "products": null
+ }
+}
