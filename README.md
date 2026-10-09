@@ -245,6 +245,7 @@ Working spiders running daily in production:
 | [`dollargeneral_listing`](#dollargeneral_listing) | Active | api | ScrapeOps proxy (`keep_headers=true`) | Dollar General category listings from the first-party Omni v5 product-search API; no HTML-card or JSON-LD fallback. | 24 per API page | 20 high-coverage departments | `{"item_id":"37000853794","title":"Crest Plus Scope Whitening Toothpaste...","price":8.25,"currency":"USD","source":"dollargeneral_omni_search_api"...}` |
 | [`agoda_listing`](#agoda_listing) | Experimental | api | proxy required | Agoda curated destination accommodations from the first-party Cronos geo API. | 30 (Bali, one API response) | 20 popular cities from the homepage destination payload | `{"category":"bali","item_id":"489045","title":"RIMBA by AYANA Bali","review_score":9.1,"star_rating":5.0,"source":"agoda_cronos_geo_api","timestamp":"2026-10-06 10:30:00"...}` |
 | [`adorama_listing`](#adorama_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | DataDome | Adorama category listings from server-rendered Next.js hydration state. | 24 (one page; 48 across 2 pages) | 1,079 crawlable categories across 11 departments from `adorama_categories.py` | `{"category":"cameras","item_id":"KKRK0603A","title":"Kodak Charmera Millenium Edition...","price":54.94,"currency":"USD"...}` |
+| [`argos_listing`](#argos_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | ScrapeOps proxy | Argos UK category listings from the server-rendered product hydration state; no HTML-card or JSON-LD fallback. | 60/page | Top 20 categories ranked by catalogue size | `{"category":"laptops","item_id":"9547021","title":"Lenovo IdeaPad Slim 3...","price":499.0,"currency":"GBP","source":"argos_next_data_bootstrap"...}` |
 | [`amazon_listing`](#amazon_listing-category) | Active | html | none detected | Amazon category listing spider (category shortcuts). | 22 (ok) | electronics, fashion, beauty, home-kitchen, toys-games, sports-outdoors, grocery, books | `{"asin":"B0DKDTBBF7","title":"2 Packs Electric Candle Lighters, Windproof Flameless USB Rechargeable Plasma Arc Long Lighter for Grill Fi...` |
 | [`amazon_search`](#amazon_search) | Active | html | none detected | Amazon keyword search spider. | 22 (ok) | - | `{"asin":"B0GHQRV71M","title":"16\" FHD IPS Laptop Computer - 16GB RAM 512GB SSD, Pentium N100(Beat to i3-1115G4, 4 Cores Up to 3.4GHz), B...` |
 | [`acehardware_listing`](#acehardware_listing) | Active | bootstrap | ScrapeOps residential + `bypass=5` required | Ace Hardware category listings and recursive department discovery from server-rendered Kibo/Mozu hydration. | 60 (2 pages, cordless-drills) | 20 department/category seeds from `acehardware_categories.py`; department pages recursively discover product-bearing leaves | `{"category":"cordless-drills","item_id":"2385458","title":"DeWalt 20V MAX 1/2 in. Brushed Cordless Compact Drill Kit (Battery & Charger)","brand":"DeWalt","price":179.0,"currency":"USD","source":"acehardware_mozu_hydration",...}` |
@@ -4768,6 +4769,23 @@ listing page's direct HTML or JSON-LD as a product-data fallback.
 
 ```bash
 scrapy crawl patagonia_listing -a category=new-arrivals -a max_pages=1 -s HTTPCACHE_ENABLED=False -O patagonia.jsonl
+```
+
+### argos_listing
+
+`argos_listing` reads one authoritative data direction: Argos category products
+from `script#__NEXT_DATA__` at `props.pageProps.productData`. It deliberately has
+no rendered-HTML or JSON-LD product fallback. Twenty high-inventory Argos UK
+categories are included, and `/opt/page:N/` pagination follows the hydrated
+`productMetadata.totalPages` while respecting `max_pages` and deduplicating IDs.
+
+The ordered `FEED_EXPORT_FIELDS` contract includes product identity, brand,
+canonical URL and image, current and previous GBP prices, ratings, fulfilment
+and product flags, pagination metadata, the raw bootstrap record, provenance,
+and timestamp. Missing or malformed hydration and non-200 responses fail visibly.
+
+```bash
+scrapy crawl argos_listing -a category=laptops -a max_pages=1 -s HTTPCACHE_ENABLED=False -O argos.jsonl
 ```
 
 ### etsy_listing
