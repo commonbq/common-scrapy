@@ -63,11 +63,17 @@ def _crawl(body, url=CORDLESS, status=200, meta=None, spider=None, **kwargs):
 
 def test_categories_are_well_formed_and_unique():
     assert ACEHARDWARE_CATEGORIES
-    slugs = [entry["category"] for entry in ACEHARDWARE_CATEGORIES]
+    leaves = [
+        (leaf, value)
+        for group in ACEHARDWARE_CATEGORIES.values()
+        for leaf, value in group.items()
+    ]
+    slugs = [leaf for leaf, _ in leaves]
     assert len(slugs) == len(set(slugs)), "category slugs must be unique"
-    for entry in ACEHARDWARE_CATEGORIES:
-        assert entry["url"].startswith(BASE_URL)
-        assert entry["url"].count("?") == 0
+    for leaf, value in leaves:
+        url = value["url"] if isinstance(value, dict) else value
+        assert url.startswith(BASE_URL)
+        assert url.count("?") == 0
 
 
 def test_spider_requires_a_target():
