@@ -319,6 +319,7 @@ Spiders below are returning items in recent smoke runs:
 | [`zumper_listing`](#zumper_listing) | Active | bootstrap (`window.__PRELOADED_STATE__`) | ScrapeOps US proxy | Zumper rental listings from the server-rendered `window.__PRELOADED_STATE__` bootstrap (`currentSearch.listables`) with hydrated `?page=N` pagination; no HTML-card or JSON-LD fallback. | 25 (1 page, `new-york-ny`) | 20 major US rental markets from `zumper_categories.py` | `{"category":"new-york-ny","item_id":"456715","title":"Parker Towers","min_price":2829,"max_price":6489,"currency":"USD","city":"New York","state":"NY","source":"zumper_preloaded_state","timestamp":"2026-10-07 05:36:58"...}` |
 | [`crateandbarrel_listing`](#crateandbarrel_listing) | Active | bootstrap (React `ProductListing` hydration) | Akamai (ScrapeOps residential proxy required) | Crate & Barrel category listings from the first-party React `ProductListing` hydration payload only; 13 product-bearing category URLs with numeric-path pagination. | 100 (1 page, `sofas`) | 13 category URLs from `crateandbarrel_categories.py` | `{"category":"sofas","item_id":"322117","title":"Lounge Sofa (62\"-105\")","brand":"Crate & Barrel","price":1529.0,"currency":"USD","source":"crateandbarrel_productlisting_bootstrap","timestamp":"2026-10-07 09:46:17"...}` |
 | [`ssense_listing`](#ssense_listing) | Experimental | bootstrap | Cloudflare; configured US proxy required | SSENSE men/women category products from the server-rendered Next.js RSC (`self.__next_f`) bootstrap only; no rendered HTML-card or JSON-LD extraction. | 120/page | 20 stable men/women category shortcuts from `ssense_categories.py` | `{"category":"men-clothing","department":"men","item_id":"15856491","sku":"242232M188005","title":"Gray Porterville Stefan Cargo Pants","brand":"Rick Owens","price":1400,"currency":"USD","total_pages":97,"source":"ssense_next_rsc_bootstrap",...}` |
+| [`gymshark_listing`](#gymshark_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | none detected | Gymshark category products from the Algolia-style `props.pageProps.ssrQuery` hydration in the server-rendered Next.js bootstrap; no rendered HTML-card or JSON-LD extraction. Real page count derived from `nbHits` because the hydrated `nbPages` is capped. | 60/page (1 page, `all-products`) | 20 highest-inventory non-promotional collections from `gymshark_categories.py` | `{"category":"all-products","item_id":"6806409347274","sku":"A4B9W","title":"Power T-Shirt","brand":"Gymshark","price":36,"currency":"USD","rating":3.9268,"in_stock":true,"source":"gymshark_next_data_ssr_query",...}` |
 
 ### flipkart_listing
 
@@ -4677,6 +4678,25 @@ prices, availability, pagination metadata, raw bootstrap data, and timestamp.
 
 ```bash
 scrapy crawl ssense_listing -a category=men-clothing -a max_pages=1 -s HTTPCACHE_ENABLED=False -O ssense.jsonl
+```
+
+### gymshark_listing
+
+`gymshark_listing` extracts products through one structured data direction:
+Gymshark's Algolia-style `props.pageProps.ssrQuery` in the server-rendered
+Next.js `#__NEXT_DATA__` bootstrap. It does not parse rendered product cards or
+JSON-LD. The spider includes the 20 highest-inventory non-promotional collection
+seeds, follows the storefront's zero-based `?page=N` URLs, and derives the real
+page count from `nbHits` because the hydrated `nbPages` value is capped.
+
+The ordered 34-field `FEED_EXPORT_FIELDS` contract covers product and SKU
+identity, canonical URLs, images, prices, color and fit attributes, stock and
+per-size inventory, ratings, category/pagination context, provenance, the raw
+hydrated hit, and timestamp. With no category argument the spider crawls the
+`all-products` seed.
+
+```bash
+scrapy crawl gymshark_listing -s HTTPCACHE_ENABLED=False -O gymshark.jsonl
 ```
 
 ### patagonia_listing
