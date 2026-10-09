@@ -20,6 +20,11 @@ def _query(response_or_request) -> dict:
     return urlparse.parse_qs(urlparse.urlparse(response_or_request.url).query)
 
 
+def _flat_categories() -> list:
+    """Flatten the ``{department: {leaf: entry}}`` mapping into leaf rows."""
+    return [entry for group in _load_categories().values() for entry in group.values()]
+
+
 def _iter(nodes):
     for node in nodes:
         yield node
@@ -55,7 +60,7 @@ class AcademyCategoriesTest(unittest.TestCase):
                 self.assertTrue(url.startswith("https://www.academy.com/c/"))
 
     def test_load_categories_dedupes_cross_listed_ids(self):
-        rows = _load_categories()
+        rows = _flat_categories()
         ids = [entry["category_id"] for entry in rows]
         self.assertEqual(len(ids), len(set(ids)))
         self.assertIn(HOT_DEALS_ID, ids)
@@ -65,7 +70,7 @@ class AcademyCategoriesTest(unittest.TestCase):
         self.assertGreaterEqual(len(hot["departments"]), 1)
 
     def test_hot_deals_category_slug(self):
-        rows = _load_categories()
+        rows = _flat_categories()
         slugs = {entry["category"] for entry in rows}
         self.assertIn("deals-clearance-hot-deals", slugs)
 
@@ -143,8 +148,9 @@ class AcademyListingSpiderTest(unittest.TestCase):
     def test_default_run_targets_every_inventory_category(self):
         spider = AcademyListingSpider()
         targets = [request.meta["category"] for request in spider.start_requests()]
-        self.assertEqual(len(targets), len(spider.categories))
-        self.assertEqual(len(set(targets)), len(spider.categories))
+        total = len(spider.available_categories())
+        self.assertEqual(len(targets), total)
+        self.assertEqual(len(set(targets)), total)
 
     def test_url_input_resolves_to_inventory_entry(self):
         spider = AcademyListingSpider(url=HOT_DEALS_URL)
@@ -558,7 +564,7 @@ class AcademyHeaderHydrationTest(unittest.TestCase):
             for node in _iter(captured)
         } - {""}
         self.assertTrue(captured_ids)
-        self.assertTrue(captured_ids <= {entry["category_id"] for entry in _load_categories()})
+        self.assertTrue(captured_ids <= {entry["category_id"] for entry in _flat_categories()})
 
 
 if __name__ == "__main__":

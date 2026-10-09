@@ -1582,8 +1582,8 @@ def _iter_nodes(node: dict):
             yield from _iter_nodes(child)
 
 
-def load_categories() -> list[dict]:
-    """Return the canonical, de-duplicated listing categories."""
+def load_categories() -> dict[str, dict[str, dict]]:
+    """Return the canonical listing categories as ``{department: {leaf: entry}}``."""
     by_id: dict[str, dict] = {}
     ordered: list[dict] = []
     for department in ACADEMY_CATEGORY_INVENTORY:
@@ -1621,4 +1621,7 @@ def load_categories() -> list[dict]:
                 entry["category"] = slug or entry["category"]
                 if name:
                     entry["name"] = name
-    return ordered
+    groups: dict[str, dict[str, dict]] = {}
+    for entry in ordered:
+        groups.setdefault(entry.get("department") or "all", {})[entry["category"]] = entry
+    return groups

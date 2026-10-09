@@ -3048,4 +3048,12 @@ def _flatten() -> list:
     return flat
 
 
-BELK_CATEGORIES = _flatten()
+def _group(flat: list) -> dict:
+    """Group flat browse-path rows into ``{department: {path: entry}}``."""
+    groups: dict = {}
+    for entry in flat:
+        groups.setdefault(entry.get("department") or "all", {})[entry["category"]] = entry
+    return groups
+
+
+BELK_CATEGORIES = _group(_flatten())
