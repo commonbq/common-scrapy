@@ -250,6 +250,7 @@ Working spiders running daily in production:
 | [`amazon_listing`](#amazon_listing-category) | Active | html | none detected | Amazon category listing spider (category shortcuts). | 22 (ok) | electronics, fashion, beauty, home-kitchen, toys-games, sports-outdoors, grocery, books | `{"asin":"B0DKDTBBF7","title":"2 Packs Electric Candle Lighters, Windproof Flameless USB Rechargeable Plasma Arc Long Lighter for Grill Fi...` |
 | [`amazon_search`](#amazon_search) | Active | html | none detected | Amazon keyword search spider. | 22 (ok) | - | `{"asin":"B0GHQRV71M","title":"16\" FHD IPS Laptop Computer - 16GB RAM 512GB SSD, Pentium N100(Beat to i3-1115G4, 4 Cores Up to 3.4GHz), B...` |
 | [`acehardware_listing`](#acehardware_listing) | Active | bootstrap | ScrapeOps residential + `bypass=5` required | Ace Hardware category listings and recursive department discovery from server-rendered Kibo/Mozu hydration. | 60 (2 pages, cordless-drills) | 20 department/category seeds from `acehardware_categories.py`; department pages recursively discover product-bearing leaves | `{"category":"cordless-drills","item_id":"2385458","title":"DeWalt 20V MAX 1/2 in. Brushed Cordless Compact Drill Kit (Battery & Charger)","brand":"DeWalt","price":179.0,"currency":"USD","source":"acehardware_mozu_hydration",...}` |
+| [`abercrombie_listing`](#abercrombie_listing) | Active | bootstrap | ScrapeOps US proxy | Abercrombie & Fitch US products from the server-rendered catalog Apollo cache only; no product-card or JSON-LD fallback. | 90/page | 37 product-listing categories across Women's, Men's, Kids, and brand collections | `{"category":"womens","item_id":"ANF_KIC_144-6328-00243-480","title":"A&F Carrie Wool-Blend Trench Coat","price":250.0,"currency":"USD","source":"abercrombie_catalog_apollo_bootstrap"...}` |
 | [`backcountry_listing`](#backcountry_listing) | Active | bootstrap | AWS WAF (datacenter + `bypass=5` both return the challenge; `residential=true` required) | Backcountry.com category/collection/brand listings from the server-rendered Next.js `#__NEXT_DATA__` PLP payload joined to `__APOLLO_STATE__`. | 84 (2 pages, `cat-mens-shirts`); 52 (`rc-mens-parkas`, natural last page) | 398 unique targets across 14 top-level menus / 110 sections from `backcountry_categories.py` | `{"category":"cat-mens-shirts","department":"Men","section":"Clothing","item_id":"FJRZ133","title":"Fjallglim Regular Shirt - Men's","brand":"Fjallraven","price":124.95,"original_price":null,"currency":"USD","in_stock":true,"source":"backcountry_next_data",...}` |
 | [`landwatch_listing`](#landwatch_listing) | Active | bootstrap | Akamai; ScrapeOps US residential required | LandWatch property listings from the authoritative server-rendered `#__SERVER_STATE__.searchPage.searchResults.propertyResults` payload only; no HTML-card or JSON-LD fallback. | 25/page | 20 high-inventory US state markets | `{"category":"texas","item_id":"427783557","title":"Superior Views, Better Hunting","price":769950,"acres":108.1,"source":"landwatch_server_state_bootstrap",...}` |
 | [`realtor_listing`](#realtor_listing) | Active | bootstrap | residential ScrapeOps + `bypass=5` required | Realtor.com sale listings from authoritative React Router streamed SSR loader state. | 42/page | 20 major US city markets from `realtor_categories.py` | `{"item_id":"9573322873","listing_id":"2994590506","title":"11201 Chalon Rd, Los Angeles, CA 90049","price":400000000,"source":"realtor_react_router_stream",...}` |
@@ -4543,6 +4544,27 @@ record (`raw`), and a per-item `timestamp`.
 
 ```bash
 scrapy crawl movoto_listing -a category=new-york-ny -a max_pages=1 -O movoto.jsonl -s HTTPCACHE_ENABLED=False
+```
+
+### abercrombie_listing
+
+`abercrombie_listing` extracts products exclusively from Abercrombie & Fitch
+US category pages' server-rendered
+`APOLLO_STATE__catalog-mfe-web-service-CategoryPageFrontEnd-config` cache. It
+resolves the category query's ordered product references to normalized Apollo
+`Product:<id>` and `ProductSwatch:<style-id>` entities. Rendered product cards
+and JSON-LD are intentionally ignored, and missing or malformed hydration fails
+the crawl visibly.
+
+The 37 stable category aliases cover Women's, Men's, Kids, and brand collection
+navigation. Pagination uses the catalog's SSR `start` offset (`?start=90` for
+page 2) and is bounded by hydrated page totals and `max_pages`. Products are
+deduplicated by `partNumber`. The ordered 31-field `FEED_EXPORT_FIELDS` contract
+includes product/style IDs, colorways, price, badges, availability, pagination,
+the authoritative raw Apollo records, and provenance.
+
+```bash
+scrapy crawl abercrombie_listing -a category=womens -a max_pages=2 -s HTTPCACHE_ENABLED=False -O abercrombie.jsonl
 ```
 
 ### harborfreight_listing
