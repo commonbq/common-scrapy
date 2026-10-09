@@ -61,20 +61,20 @@ class ShopbopListingSpiderTests(unittest.TestCase):
     # ------------------------------------------------------------------ taxonomy
 
     def test_inventory_is_unique_and_crawlable(self):
-        self.assertEqual(len(SHOPBOP_CATEGORIES), 266)
-        self.assertEqual(len({e["category"] for e in SHOPBOP_CATEGORIES}), 266)
-        self.assertEqual(len({e["url"] for e in SHOPBOP_CATEGORIES}), 266)
-        self.assertTrue(all(e["url"].startswith("https://www.shopbop.com/") for e in SHOPBOP_CATEGORIES))
+        self.assertEqual(len(_FLAT(SHOPBOP_CATEGORIES)), 266)
+        self.assertEqual(len({e["category"] for e in _FLAT(SHOPBOP_CATEGORIES)}), 266)
+        self.assertEqual(len({e["url"] for e in _FLAT(SHOPBOP_CATEGORIES)}), 266)
+        self.assertTrue(all(e["url"].startswith("https://www.shopbop.com/") for e in _FLAT(SHOPBOP_CATEGORIES)))
         # Only PLP routes survive; the storefront's editorial and designer-index links carry
         # no folderId and are filtered out.
-        self.assertTrue(all(e["folder_id"] for e in SHOPBOP_CATEGORIES))
-        self.assertFalse([e for e in SHOPBOP_CATEGORIES if "/ci/" in e["url"]])
-        self.assertFalse([e for e in SHOPBOP_CATEGORIES if "/vp/" in e["url"]])
+        self.assertTrue(all(e["folder_id"] for e in _FLAT(SHOPBOP_CATEGORIES)))
+        self.assertFalse([e for e in _FLAT(SHOPBOP_CATEGORIES) if "/ci/" in e["url"]])
+        self.assertFalse([e for e in _FLAT(SHOPBOP_CATEGORIES) if "/vp/" in e["url"]])
 
     def test_taxonomy_covers_the_three_navigation_groups(self):
-        groups = {e["department"] for e in SHOPBOP_CATEGORIES}
+        groups = {e["department"] for e in _FLAT(SHOPBOP_CATEGORIES)}
         self.assertEqual(groups, {"Women", "Men", "Beauty"})
-        counts = {g: sum(1 for e in SHOPBOP_CATEGORIES if e["department"] == g) for g in groups}
+        counts = {g: sum(1 for e in _FLAT(SHOPBOP_CATEGORIES) if e["department"] == g) for g in groups}
         self.assertEqual(counts, {"Women": 183, "Men": 70, "Beauty": 13})
 
     def test_category_lookup_returns_the_hydrated_url(self):
@@ -119,17 +119,17 @@ class ShopbopListingSpiderTests(unittest.TestCase):
         expected = {
             "https://www.shopbop.com" + url: row[6] for url, row in shallowest.items()
         }
-        actual = {e["url"]: e["folder_id"] for e in SHOPBOP_CATEGORIES}
+        actual = {e["url"]: e["folder_id"] for e in _FLAT(SHOPBOP_CATEGORIES)}
         self.assertEqual(actual, expected)
 
     def test_deepest_duplicate_keeps_the_shallow_placement(self):
         """/whats-new is shipped three times; the primary category node must win."""
-        entries = [e for e in SHOPBOP_CATEGORIES if e["folder_id"] == "13198"]
+        entries = [e for e in _FLAT(SHOPBOP_CATEGORIES) if e["folder_id"] == "13198"]
         self.assertEqual(len(entries), 1)
         self.assertEqual(entries[0]["category"], "Women > What's New")
 
     def test_non_product_navigation_links_are_excluded(self):
-        urls = {e["url"] for e in SHOPBOP_CATEGORIES}
+        urls = {e["url"] for e in _FLAT(SHOPBOP_CATEGORIES)}
         self.assertNotIn("https://www.shopbop.com/designers", urls)
         self.assertNotIn("https://www.shopbop.com/shop-men", urls)
         self.assertNotIn("https://www.shopbop.com/giftcard", urls)
@@ -444,3 +444,8 @@ class ShopbopListingSpiderTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def _FLAT(const):
+    """Flatten a ``{group: {leaf: value}}`` categories mapping into leaf rows."""
+    return [value for group in const.values() for value in group.values()]

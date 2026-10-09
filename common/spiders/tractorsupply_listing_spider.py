@@ -37,10 +37,10 @@ class TractorsupplyListingSpider(BaseListingSpider):
     }
 
     def start_requests(self):
-        targets = self.categories
+        targets = list(self.iter_categories())
         if self.category or self.category_url or self.url:
             target = self.resolve_target_url()
-            targets = [row for row in self.categories if row["url"] == target]
+            targets = [row for row in self.iter_categories() if row["url"] == target]
         for entry in targets:
             yield scrapy.Request(entry["url"], callback=self.parse_sitemap, meta={"entry": entry})
 

@@ -52,12 +52,12 @@ class ContainerStoreListingSpiderTests(unittest.TestCase):
     # ---------------------------------------------------------------- taxonomy
 
     def test_inventory_is_unique_and_crawlable(self):
-        self.assertEqual(len(CONTAINERSTORE_CATEGORIES), 295)
-        self.assertEqual(len({e["category"] for e in CONTAINERSTORE_CATEGORIES}), 295)
-        self.assertEqual(len({e["url"] for e in CONTAINERSTORE_CATEGORIES}), 295)
-        self.assertTrue(all(e["url"].startswith("https://www.containerstore.com/s/") for e in CONTAINERSTORE_CATEGORIES))
+        self.assertEqual(len(_FLAT(CONTAINERSTORE_CATEGORIES)), 295)
+        self.assertEqual(len({e["category"] for e in _FLAT(CONTAINERSTORE_CATEGORIES)}), 295)
+        self.assertEqual(len({e["url"] for e in _FLAT(CONTAINERSTORE_CATEGORIES)}), 295)
+        self.assertTrue(all(e["url"].startswith("https://www.containerstore.com/s/") for e in _FLAT(CONTAINERSTORE_CATEGORIES)))
         # 14 department + 189 L2 + 159 L3 = 362 hydrated nodes, 295 unique catalogue URLs.
-        self.assertEqual(len({e["department"] for e in CONTAINERSTORE_CATEGORIES}), 14)
+        self.assertEqual(len({e["department"] for e in _FLAT(CONTAINERSTORE_CATEGORIES)}), 14)
 
     def test_category_lookup_returns_the_hydrated_url(self):
         self.assertEqual(
@@ -304,3 +304,8 @@ class ContainerStoreListingSpiderTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def _FLAT(const):
+    """Flatten a ``{group: {leaf: value}}`` categories mapping into leaf rows."""
+    return [value for group in const.values() for value in group.values()]

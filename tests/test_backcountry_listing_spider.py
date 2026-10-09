@@ -64,18 +64,18 @@ def _hydration(page_props: dict) -> str:
 
 
 def test_categories_are_unique_and_well_formed():
-    slugs = [entry["category"] for entry in BACKCOUNTRY_CATEGORIES]
-    urls = [entry["url"] for entry in BACKCOUNTRY_CATEGORIES]
+    slugs = [entry["category"] for entry in _FLAT(BACKCOUNTRY_CATEGORIES)]
+    urls = [entry["url"] for entry in _FLAT(BACKCOUNTRY_CATEGORIES)]
     assert slugs, "category inventory must not be empty"
     assert len(slugs) == len(set(slugs)), "category slugs must be unique"
     assert len(urls) == len(set(urls)), "category URLs must be unique"
-    for entry in BACKCOUNTRY_CATEGORIES:
+    for entry in _FLAT(BACKCOUNTRY_CATEGORIES):
         assert entry["url"].startswith("https://www.backcountry.com/")
         assert entry["department"] and entry["section"]
 
 
 def test_categories_cover_both_cat_and_rc_families():
-    prefixes = {entry["category"].split("-", 1)[0] for entry in BACKCOUNTRY_CATEGORIES}
+    prefixes = {entry["category"].split("-", 1)[0] for entry in _FLAT(BACKCOUNTRY_CATEGORIES)}
     assert "cat" in prefixes
     assert "rc" in prefixes
 
@@ -83,20 +83,20 @@ def test_categories_cover_both_cat_and_rc_families():
 def test_taxonomy_normalizes_links_without_a_category_id():
     # The header emits filtered /rc/ and /brand/ links with an empty categoryId.
     # Those must survive normalization rather than being silently dropped.
-    without_id = [e for e in BACKCOUNTRY_CATEGORIES if e["category_id"] is None]
+    without_id = [e for e in _FLAT(BACKCOUNTRY_CATEGORIES) if e["category_id"] is None]
     assert without_id, "links lacking a categoryId must be kept"
     assert all(e["url"].startswith("https://www.backcountry.com/") for e in without_id)
     assert all(e["category"] and e["name"] for e in without_id)
 
 
 def test_taxonomy_slugs_derive_from_the_storefront_path():
-    entry = next(e for e in BACKCOUNTRY_CATEGORIES if e["category"] == "rc-mens-parkas")
+    entry = next(e for e in _FLAT(BACKCOUNTRY_CATEGORIES) if e["category"] == "rc-mens-parkas")
     assert entry["url"].endswith("/rc/mens-parkas")
     assert entry["category"] == "rc-mens-parkas"
 
 
 def test_mens_shirts_is_crawlable():
-    entry = next(e for e in BACKCOUNTRY_CATEGORIES if e["category"] == "cat-mens-shirts")
+    entry = next(e for e in _FLAT(BACKCOUNTRY_CATEGORIES) if e["category"] == "cat-mens-shirts")
     assert entry["url"] == MENS_SHIRTS
     assert entry["category_id"] == "bc-mens-shirts"
 
@@ -443,3 +443,8 @@ def test_apollo_products_falls_back_to_cache_key():
     apollo = {"Product:SKU9": {"__ref": "Product:SKU9", "name": "No id field"}}
     products = BackcountryListingSpider._apollo_products(apollo)
     assert list(products) == ["SKU9"]
+
+
+def _FLAT(const):
+    """Flatten a ``{group: {leaf: value}}`` categories mapping into leaf rows."""
+    return [value for group in const.values() for value in group.values()]

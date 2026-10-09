@@ -44,9 +44,9 @@ class LlbeanListingSpiderTests(unittest.TestCase):
         return items, [o for o in outputs if isinstance(o, Request)]
 
     def test_category_inventory_is_unique_and_addressable(self):
-        self.assertEqual(len(LLBEAN_CATEGORIES), 500)
-        self.assertEqual(len({c["category"] for c in LLBEAN_CATEGORIES}), 500)
-        self.assertEqual(len({c["url"] for c in LLBEAN_CATEGORIES}), 500)
+        self.assertEqual(len(_FLAT(LLBEAN_CATEGORIES)), 500)
+        self.assertEqual(len({c["category"] for c in _FLAT(LLBEAN_CATEGORIES)}), 500)
+        self.assertEqual(len({c["url"] for c in _FLAT(LLBEAN_CATEGORIES)}), 500)
         # Ambiguous leaf names are qualified so `-a category=` stays unambiguous.
         self.assertIn("Gift Shop", self.spider.available_categories())
         self.assertIn("Clothing / Sweaters [611]", self.spider.available_categories())
@@ -172,3 +172,8 @@ class LlbeanListingSpiderTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def _FLAT(const):
+    """Flatten a ``{group: {leaf: value}}`` categories mapping into leaf rows."""
+    return [value for group in const.values() for value in group.values()]

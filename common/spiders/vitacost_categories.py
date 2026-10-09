@@ -23,27 +23,31 @@ SHOP_DOMAIN = "icost.myshopify.com"
 FILTER_API_URL = "https://services.mybcapps.com/bc-sf-filter/filter"
 
 
-def build_vitacost_categories(tree: dict) -> list[dict]:
-    """Flatten the mega-menu tree into listing-spider category entries."""
-    entries: list[dict] = []
+def build_vitacost_categories(tree: dict) -> dict[str, dict[str, dict]]:
+    """Group the mega-menu tree into ``{department: {leaf: entry}}``."""
+    groups: dict[str, dict[str, dict]] = {}
     for department, node in tree.items():
         handle = node["url"].rsplit("/", 1)[-1]
-        entries.append({
-            "category": department,
-            "url": node["url"],
-            "department": department,
-            "subcategory": None,
-            "handle": handle,
-        })
+        leaves: dict[str, dict] = {
+            department: {
+                "category": department,
+                "url": node["url"],
+                "department": department,
+                "subcategory": None,
+                "handle": handle,
+            }
+        }
         for label, url in node.get("subcategories", {}).items():
-            entries.append({
-                "category": f"{department} > {label}",
+            leaf = f"{department} > {label}"
+            leaves[leaf] = {
+                "category": leaf,
                 "url": url,
                 "department": department,
                 "subcategory": label,
                 "handle": url.rsplit("/", 1)[-1],
-            })
-    return entries
+            }
+        groups[department] = leaves
+    return groups
 
 
 VITACOST_MENU = {

@@ -36,7 +36,7 @@ class BhphotovideoListingSpider(BaseListingSpider):
 
     def start_requests(self):
         target = self.resolve_target_url()
-        selected = next((row for row in self.categories if row["url"] == target), {})
+        selected = next((row for row in self.iter_categories() if row["url"] == target), {})
         yield scrapy.Request(target, callback=self.parse, meta={
             "page": 1,
             "category": self.category or selected.get("category") or "custom",

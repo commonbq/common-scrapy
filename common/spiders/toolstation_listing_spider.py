@@ -51,7 +51,7 @@ class ToolstationListingSpider(BaseListingSpider):
         self._seen: set[str] = set()
         target = self.resolve_target_url()
         self._category_record = next(
-            (row for row in self.categories if row["url"] == target), {}
+            (row for row in self.iter_categories() if row["url"] == target), {}
         )
         match = re.search(r"/c(\d+)(?:[/?]|$)", target)
         if not match:
