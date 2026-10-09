@@ -7,7 +7,7 @@ from urllib.parse import urlsplit, urlunsplit
 
 import scrapy
 
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 
 
 _FLIGHT_CHUNK_RE = re.compile(
@@ -48,7 +48,7 @@ class OverstockListingSpider(BaseListingSpider):
     name = "overstock_listing"
     allowed_domains = ["overstock.com", "www.overstock.com", "localhost", "127.0.0.1"]
 
-    categories = OVERSTOCK_CATEGORIES
+    categories = group_categories(OVERSTOCK_CATEGORIES, "department")
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
@@ -69,7 +69,7 @@ class OverstockListingSpider(BaseListingSpider):
         self._seen_products.clear()
         target_url = self.resolve_target_url()
         target = next(
-            (entry for entry in self.categories if entry["category"] == self.category),
+            (entry for entry in self.iter_categories() if entry["category"] == self.category),
             {"category": self.category or self._slug_from_url(target_url),
              "department": None, "subcategory": None, "url": target_url},
         )

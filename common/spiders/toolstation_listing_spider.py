@@ -10,14 +10,14 @@ from urllib.parse import urlencode
 
 import scrapy
 
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 from common.spiders.toolstation_categories import TOOLSTATION_CATEGORIES
 
 
 class ToolstationListingSpider(BaseListingSpider):
     name = "toolstation_listing"
     allowed_domains = ["toolstation.com", "www.toolstation.com"]
-    categories = TOOLSTATION_CATEGORIES
+    categories = group_categories(TOOLSTATION_CATEGORIES, "department")
     page_size = 48
     api_url = "https://www.toolstation.com/api/search/crs"
 
@@ -51,7 +51,7 @@ class ToolstationListingSpider(BaseListingSpider):
         self._seen: set[str] = set()
         target = self.resolve_target_url()
         self._category_record = next(
-            (row for row in self.categories if row["url"] == target), {}
+            (row for row in self.iter_categories() if row["url"] == target), {}
         )
         match = re.search(r"/c(\d+)(?:[/?]|$)", target)
         if not match:

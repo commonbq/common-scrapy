@@ -50,7 +50,7 @@ from urllib.parse import quote, urlsplit
 
 import scrapy
 
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 from common.spiders.petsmart_categories import (
     PETSMART_CATEGORIES,
     PETSMART_DEPARTMENTS,
@@ -164,7 +164,7 @@ class PetsmartListingSpider(BaseListingSpider):
     allowed_domains = ["petsmart.com", "www.petsmart.com", "localhost", "127.0.0.1"]
     require_category_arg = False
 
-    categories = PETSMART_CATEGORIES
+    categories = group_categories(PETSMART_CATEGORIES, "department")
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
@@ -274,20 +274,20 @@ class PetsmartListingSpider(BaseListingSpider):
     def _target_categories(self) -> list[dict[str, Any]]:
         target = self.resolve_target_url() if (self.url or self.category_url or self.category) else None
         if target is None:
-            return list(self.categories)
-        for entry in self.categories:
+            return list(self.iter_categories())
+        for entry in self.iter_categories():
             if entry["url"] == target or entry["category"] == self.category:
                 return [entry]
         # A PLP URL that is in the inventory only through an override, or a
         # hand-typed path: match on the slug of the incoming URL.
         slug = self._url_slug(target)
-        for entry in self.categories:
+        for entry in self.iter_categories():
             if entry["category"] == slug:
                 return [entry]
         raise ValueError(
             f"Unknown category '{self.category or target}'. petsmart_listing filters the "
             "first-party search API, so the target must be one of the bundled inventory "
-            f"entries ({len(self.categories)} paths / 7 departments). Example: "
+            f"entries ({sum(len(v) for v in self._all_category_entries().values())} paths / 7 departments). Example: "
             "-a category=dog/food/dry-food or -a category_url=https://www.petsmart.com/cat/toys/"
         )
 

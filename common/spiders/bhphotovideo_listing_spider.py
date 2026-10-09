@@ -8,7 +8,7 @@ from urllib.parse import urljoin
 
 import scrapy
 
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 from common.spiders.bhphotovideo_categories import BH_PHOTO_CATEGORIES
 
 
@@ -17,7 +17,7 @@ class BhphotovideoListingSpider(BaseListingSpider):
 
     name = "bhphotovideo_listing"
     allowed_domains = ["bhphotovideo.com", "www.bhphotovideo.com"]
-    categories = BH_PHOTO_CATEGORIES
+    categories = group_categories(BH_PHOTO_CATEGORIES, "department")
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
@@ -36,7 +36,7 @@ class BhphotovideoListingSpider(BaseListingSpider):
 
     def start_requests(self):
         target = self.resolve_target_url()
-        selected = next((row for row in self.categories if row["url"] == target), {})
+        selected = next((row for row in self.iter_categories() if row["url"] == target), {})
         yield scrapy.Request(target, callback=self.parse, meta={
             "page": 1,
             "category": self.category or selected.get("category") or "custom",

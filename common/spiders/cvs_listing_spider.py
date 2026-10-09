@@ -34,7 +34,7 @@ from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 import scrapy
 
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 from common.spiders.cvs_categories import CVS_CATEGORY_INVENTORY
 
 SITE_BASE = "https://www.cvs.com"
@@ -121,7 +121,7 @@ class CvsListingSpider(BaseListingSpider):
     # category-only gate; __init__ still rejects a run with no target at all.
     require_category_arg = False
 
-    categories = _load_categories()
+    categories = group_categories(_load_categories(), "department")
 
     custom_settings = {
         # Each PLP is a ~3.9 MB SSR document; stay polite on one host.
@@ -288,7 +288,7 @@ class CvsListingSpider(BaseListingSpider):
         return payload
 
     def _entry_for(self, listing_url: str) -> dict[str, Any]:
-        for entry in self.categories:
+        for entry in self.iter_categories():
             if entry["url"] == listing_url:
                 return entry
         return {

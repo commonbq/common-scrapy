@@ -10,7 +10,7 @@ from urllib.parse import parse_qsl, urlencode, urljoin, urlsplit, urlunsplit
 import scrapy
 
 from common.spiders.backcountry_categories import BACKCOUNTRY_CATEGORIES, BASE_URL
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 
 
 # ScrapeOps option appended to the proxy username. Backcountry sits behind an AWS
@@ -42,7 +42,7 @@ class BackcountryListingSpider(BaseListingSpider):
 
     name = "backcountry_listing"
     allowed_domains = ["backcountry.com", "www.backcountry.com"]
-    categories = BACKCOUNTRY_CATEGORIES
+    categories = group_categories(BACKCOUNTRY_CATEGORIES, "department")
     # Direct url=/category_url= runs are supported, so opt out of the base class
     # category-only gate; resolve_target_url() still rejects a run with no target.
     require_category_arg = False
@@ -116,7 +116,7 @@ class BackcountryListingSpider(BaseListingSpider):
     def start_requests(self) -> Iterable[scrapy.Request]:
         self._seen.clear()
         target = self.resolve_target_url()
-        selected = next((entry for entry in self.categories if entry.get("url") == target), {})
+        selected = next((entry for entry in self.iter_categories() if entry.get("url") == target), {})
         yield self._page_request(target, page=1, selected=selected)
 
     def _page_request(self, url: str, *, page: int, selected: dict[str, Any]) -> scrapy.Request:
@@ -282,7 +282,7 @@ class BackcountryListingSpider(BaseListingSpider):
         if has_next is None and last_page is not None and current_page >= last_page:
             return
 
-        selected = next((entry for entry in self.categories if entry.get("url") == response.url), {})
+        selected = next((entry for entry in self.iter_categories() if entry.get("url") == response.url), {})
         yield self._page_request(response.url, page=current_page + 1, selected=selected)
 
     # ------------------------------------------------------------- extraction

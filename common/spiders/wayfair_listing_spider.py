@@ -6,7 +6,7 @@ from urllib.parse import urljoin
 
 import scrapy
 
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 from common.spiders.wayfair_categories import WAYFAIR_CATEGORIES
 
 
@@ -15,7 +15,7 @@ class WayfairListingSpider(BaseListingSpider):
 
     name = "wayfair_listing"
     allowed_domains = ["wayfair.com", "www.wayfair.com", "localhost", "127.0.0.1"]
-    categories = WAYFAIR_CATEGORIES
+    categories = group_categories(WAYFAIR_CATEGORIES, "department")
     require_category_arg = False
 
     custom_settings = {
@@ -42,7 +42,7 @@ class WayfairListingSpider(BaseListingSpider):
     def start_requests(self):
         self._seen_products.clear()
         target = self.resolve_target_url()
-        selected = next((row for row in self.categories if row["url"] == target), {})
+        selected = next((row for row in self.iter_categories() if row["url"] == target), {})
         yield scrapy.Request(
             target,
             callback=self.parse,

@@ -6,7 +6,7 @@ from urllib.parse import urlencode, urljoin
 
 import scrapy
 
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 from common.spiders.uniqlo_categories import UNIQLO_CATEGORIES, UNIQLO_CATEGORY_PATHS
 
 PRODUCTS_API = "https://www.uniqlo.com/us/api/commerce/v5/en/products"
@@ -37,7 +37,7 @@ class UniqloListingSpider(BaseListingSpider):
         "localhost",
         "127.0.0.1",
     ]
-    categories = UNIQLO_CATEGORIES
+    categories = group_categories(UNIQLO_CATEGORIES, "department")
     require_category_arg = False
 
     page_size = 36
@@ -74,7 +74,7 @@ class UniqloListingSpider(BaseListingSpider):
         return (
             f"Known categories: {len(names)} total, e.g. "
             f"{', '.join(names[:12])}, ... "
-            f"(first: {self.categories[0]['url']})."
+            f"(first: {next(iter(self.iter_categories()))['url']})."
         )
 
     def start_requests(self):
@@ -208,7 +208,7 @@ class UniqloListingSpider(BaseListingSpider):
     def _lookup(self, url: str) -> dict:
         """Resolve a listing URL to its taxonomy entry (and id path)."""
         normalized = url.split("#", 1)[0].rstrip("/")
-        for entry in self.categories:
+        for entry in self.iter_categories():
             if entry.get("url", "").rstrip("/") == normalized:
                 return entry
         path = UNIQLO_CATEGORY_PATHS.get(normalized)

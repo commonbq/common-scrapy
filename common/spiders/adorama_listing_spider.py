@@ -7,7 +7,7 @@ from urllib.parse import urljoin
 import scrapy
 
 from common.spiders.adorama_categories import ADORAMA_BASE_URL, ADORAMA_CATEGORIES
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 
 
 class AdoramaListingSpider(BaseListingSpider):
@@ -26,7 +26,7 @@ class AdoramaListingSpider(BaseListingSpider):
 
     name = "adorama_listing"
     allowed_domains = ["adorama.com", "www.adorama.com", "localhost", "127.0.0.1"]
-    categories = ADORAMA_CATEGORIES
+    categories = group_categories(ADORAMA_CATEGORIES, "department")
     require_category_arg = False
 
     custom_settings = {
@@ -57,7 +57,7 @@ class AdoramaListingSpider(BaseListingSpider):
     def start_requests(self):
         self._seen_products.clear()
         target = self.resolve_target_url()
-        selected = next((entry for entry in self.categories if entry["url"] == target), {})
+        selected = next((entry for entry in self.iter_categories() if entry["url"] == target), {})
         yield scrapy.Request(
             target,
             callback=self.parse,

@@ -6,7 +6,7 @@ from urllib.parse import urljoin, urlsplit, urlunsplit, parse_qsl, urlencode
 
 import scrapy
 
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 from common.spiders.belk_categories import BELK_API_BASE, BELK_BASE_URL, BELK_CATEGORIES
 
 
@@ -26,7 +26,7 @@ class BelkListingSpider(BaseListingSpider):
 
     name = "belk_listing"
     allowed_domains = ["belk.com", "www.belk.com", "localhost", "127.0.0.1"]
-    categories = BELK_CATEGORIES
+    categories = group_categories(BELK_CATEGORIES, "department")
     require_category_arg = False
 
     PAGE_SIZE = 60
@@ -98,11 +98,11 @@ class BelkListingSpider(BaseListingSpider):
         if not category:
             return None
         wanted = category.strip().strip("/")
-        for entry in self.categories:
+        for entry in self.iter_categories():
             if entry["category"] == wanted:
                 return entry
         tail = "/" + wanted
-        matches = [entry for entry in self.categories if entry["category"].endswith(tail)]
+        matches = [entry for entry in self.iter_categories() if entry["category"].endswith(tail)]
         if len(matches) == 1:
             return matches[0]
         if len(matches) > 1:

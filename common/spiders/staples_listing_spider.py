@@ -6,7 +6,7 @@ from urllib.parse import urljoin
 
 import scrapy
 
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 from common.spiders.staples_categories import STAPLES_CATEGORIES
 
 
@@ -15,7 +15,7 @@ class StaplesListingSpider(BaseListingSpider):
 
     name = "staples_listing"
     allowed_domains = ["staples.com", "www.staples.com", "localhost", "127.0.0.1"]
-    categories = STAPLES_CATEGORIES
+    categories = group_categories(STAPLES_CATEGORIES, "department")
     require_category_arg = False
 
     custom_settings = {
@@ -44,7 +44,7 @@ class StaplesListingSpider(BaseListingSpider):
     def start_requests(self):
         self._seen_products.clear()
         target = self.resolve_target_url()
-        selected = next((entry for entry in self.categories if entry["url"] == target), {})
+        selected = next((entry for entry in self.iter_categories() if entry["url"] == target), {})
         yield scrapy.Request(
             target,
             callback=self.parse,

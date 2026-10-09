@@ -78,8 +78,9 @@ class DickssportinggoodsListingSpiderTest(unittest.TestCase):
     def test_default_run_targets_every_inventory_category(self):
         spider = DickssportinggoodsListingSpider()
         targets = [request.meta["category"] for request in spider.start_requests()]
-        self.assertEqual(len(targets), len(spider.categories))
-        self.assertEqual(len(set(targets)), len(spider.categories))
+        n = len(list(spider.iter_categories()))
+        self.assertEqual(len(targets), n)
+        self.assertEqual(len(set(targets)), n)
 
     def test_url_input_resolves_to_inventory_entry(self):
         spider = DickssportinggoodsListingSpider(
@@ -183,15 +184,17 @@ class DickssportinggoodsListingSpiderTest(unittest.TestCase):
     # -------------------------------------------------------------- inventory
 
     def test_inventory_has_unique_urls_and_complete_taxonomy(self):
-        urls = [entry["url"] for entry in self.spider.categories]
+        urls = [entry["url"] for entry in self.spider.iter_categories()]
         self.assertEqual(len(urls), len(set(urls)))
         # 1685 nodes collapse to 1287 unique URLs in the captured inventory.
         self.assertEqual(len(urls), 1287)
-        departments = {dept for entry in self.spider.categories for dept in entry["departments"]}
+        departments = {
+            dept for entry in self.spider.iter_categories() for dept in entry["departments"]
+        }
         self.assertEqual(len(departments), 10)
 
     def test_inventory_entries_are_well_formed(self):
-        for entry in self.spider.categories:
+        for entry in self.spider.iter_categories():
             self.assertIsInstance(entry["category"], str)
             self.assertTrue(entry["category"])
             self.assertIsInstance(entry["url"], str)
@@ -199,7 +202,7 @@ class DickssportinggoodsListingSpiderTest(unittest.TestCase):
             self.assertIsInstance(entry["catgroupId"], int)
             self.assertTrue(entry["departments"])
         # category slugs are unique because they key the inventory entries.
-        slugs = [entry["category"] for entry in self.spider.categories]
+        slugs = [entry["category"] for entry in self.spider.iter_categories()]
         self.assertEqual(len(slugs), len(set(slugs)))
 
 

@@ -8,7 +8,7 @@ from urllib.parse import parse_qsl, urlencode, urljoin, urlsplit, urlunsplit
 
 import scrapy
 
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 from common.spiders.hm_categories import HM_CATEGORIES
 
 
@@ -16,7 +16,7 @@ class HmListingSpider(BaseListingSpider):
     name = "hm_listing"
     allowed_domains = ["hm.com", "www2.hm.com"]
     require_category_arg = False
-    categories = HM_CATEGORIES
+    categories = group_categories(HM_CATEGORIES, "department")
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
@@ -38,7 +38,7 @@ class HmListingSpider(BaseListingSpider):
             category = self.category or self._category_for_url(url)
             yield self._request(url, category=category, page=1, category_url=url)
             return
-        for entry in self.categories:
+        for entry in self.iter_categories():
             yield self._request(entry["url"], category=entry["category"], page=1, category_url=entry["url"])
 
     def _request(self, url: str, *, category: str, page: int, category_url: str):
@@ -94,7 +94,7 @@ class HmListingSpider(BaseListingSpider):
         color = product.get("productColor") or {}
         sizes = product.get("sizes") or []
         stock_values = [self._int(s.get("stock")) for s in sizes if isinstance(s, dict)]
-        department = next((e.get("department") for e in self.categories if e["category"] == category), None)
+        department = next((e.get("department") for e in self.iter_categories() if e["category"] == category), None)
         return {
             "category": category,
             "department": department,
@@ -147,7 +147,7 @@ class HmListingSpider(BaseListingSpider):
         return urlunsplit((parts.scheme, parts.netloc, parts.path, urlencode(query), parts.fragment))
 
     def _category_for_url(self, url: str) -> str:
-        match = next((e["category"] for e in self.categories if e["url"] == url), None)
+        match = next((e["category"] for e in self.iter_categories() if e["url"] == url), None)
         return match or urlsplit(url).path.rsplit("/", 1)[-1].removesuffix(".html")
 
     @staticmethod

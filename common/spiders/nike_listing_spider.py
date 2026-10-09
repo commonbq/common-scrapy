@@ -31,7 +31,7 @@ from urllib.parse import urljoin, urlsplit, urlunsplit, quote
 
 import scrapy
 
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 from common.spiders.nike_categories import NIKE_CATEGORIES
 
 _SLUG_CLEAN_RE = re.compile(r"[^a-z0-9]+")
@@ -89,7 +89,7 @@ class NikeListingSpider(BaseListingSpider):
         re.S,
     )
 
-    categories = _load_categories()
+    categories = group_categories(_load_categories(), "department")
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
@@ -141,14 +141,13 @@ class NikeListingSpider(BaseListingSpider):
         `_validate_categories_schema_if_needed` returns early and a malformed
         entry would only surface later as a confusing lookup failure.
         """
-        if not isinstance(self.categories, list) or not self.categories:
+        entries = list(self.iter_categories())
+        if not entries:
             raise ValueError(
-                "Nike inventory must define `categories` as a non-empty list of "
-                "{'category','url'} dicts"
+                "Nike inventory must define `categories` as a non-empty mapping of "
+                "{group: {category: url}}"
             )
-        for i, entry in enumerate(self.categories):
-            if not isinstance(entry, dict):
-                raise ValueError(f"categories[{i}] must be a dict")
+        for i, entry in enumerate(entries):
             for key in ("category", "url"):
                 if not isinstance(entry.get(key), str) or not entry[key]:
                     raise ValueError(f"categories[{i}] missing string '{key}'")
@@ -410,19 +409,19 @@ class NikeListingSpider(BaseListingSpider):
         )
 
     def _category_for(self, url: str) -> str:
-        for entry in self.categories:
+        for entry in self.iter_categories():
             if entry["url"] == url:
                 return entry["category"]
         return category_slug(url)
 
     def _department_for(self, category: str) -> str | None:
-        for entry in self.categories:
+        for entry in self.iter_categories():
             if entry["category"] == category:
                 return entry.get("department")
         return None
 
     def _group_for(self, category: str) -> str | None:
-        for entry in self.categories:
+        for entry in self.iter_categories():
             if entry["category"] == category:
                 return entry.get("group")
         return None

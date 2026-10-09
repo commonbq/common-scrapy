@@ -5,7 +5,7 @@ from urllib.parse import parse_qsl, urlencode, urljoin, urlsplit, urlunsplit
 
 import scrapy
 
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 from common.spiders.harborfreight_categories import HARBORFREIGHT_CATEGORIES
 from common.spiders.retail_bootstrap_utils import extract_apollo_state
 
@@ -15,7 +15,7 @@ class HarborfreightListingSpider(BaseListingSpider):
 
     name = "harborfreight_listing"
     allowed_domains = ["harborfreight.com", "www.harborfreight.com"]
-    categories = HARBORFREIGHT_CATEGORIES
+    categories = group_categories(HARBORFREIGHT_CATEGORIES, "department")
     require_category_arg = False
 
     custom_settings = {
@@ -42,7 +42,7 @@ class HarborfreightListingSpider(BaseListingSpider):
     def start_requests(self):
         self._seen.clear()
         target = self.resolve_target_url()
-        selected = next((e for e in self.categories if e["url"] == target), {})
+        selected = next((e for e in self.iter_categories() if e["url"] == target), {})
         yield self._request(target, 1, selected)
 
     def _request(self, base_url: str, page: int, selected: dict[str, Any]):

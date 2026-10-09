@@ -95,7 +95,7 @@ class IkeaListingSpiderTest(unittest.TestCase):
         self.assertEqual(list(self.spider.parse(self.response(second, start=24, end=48))), [])
 
     def test_inventory_has_unique_urls(self):
-        urls = [entry["url"] for entry in self.spider.categories]
+        urls = [entry["url"] for entry in self.spider.iter_categories()]
         self.assertEqual(len(urls), len(set(urls)))
         # Exact count from the captured inventory, not a loose lower bound: the
         # issue requires the complete concrete inventory.
@@ -105,8 +105,7 @@ class IkeaListingSpiderTest(unittest.TestCase):
         # require_category_arg=False makes BaseListingSpider skip its
         # `_validate_categories_schema_if_needed` check, so the spider validates
         # the inventory itself. Every entry must still be a well-formed dict.
-        for entry in self.spider.categories:
-            self.assertIsInstance(entry, dict)
+        for entry in self.spider.iter_categories():
             self.assertIsInstance(entry["category"], str)
             self.assertTrue(entry["category"])
             self.assertIsInstance(entry["url"], str)
@@ -117,28 +116,31 @@ class IkeaListingSpiderTest(unittest.TestCase):
                 IkeaListingSpider._category_id(entry["url"]), entry["category"]
             )
         # The default construction path runs the same validation.
-        self.assertEqual(len(IkeaListingSpider(category="st004").categories), 221)
+        self.assertEqual(
+            len(list(IkeaListingSpider(category="st004").iter_categories())), 221
+        )
 
     def test_malformed_inventory_is_rejected(self):
         # A bad entry must fail at construction, not later as a confusing
         # "Unknown category" error at crawl time.
         with self.assertRaisesRegex(ValueError, "missing string 'category'"):
             self._spider_with_inventory(
-                [{"category": "", "url": "https://www.ikea.com/us/en/cat/x-st999/"}]
+                {"all": {"": {"url": "https://www.ikea.com/us/en/cat/x-st999/"}}}
             )
         with self.assertRaisesRegex(ValueError, "does not match the token"):
             self._spider_with_inventory(
-                [
-                    {
-                        "category": "st004",
-                        "url": "https://www.ikea.com/us/en/cat/other-st001/",
+                {
+                    "all": {
+                        "st004": {
+                            "url": "https://www.ikea.com/us/en/cat/other-st001/"
+                        }
                     }
-                ]
+                }
             )
+        with self.assertRaisesRegex(ValueError, "'url' must be a non-empty string"):
+            self._spider_with_inventory({"all": {"st004": {"url": ""}}})
         with self.assertRaisesRegex(ValueError, "missing string 'url'"):
-            self._spider_with_inventory([{"category": "st004", "url": ""}])
-        with self.assertRaisesRegex(ValueError, "missing string 'url'"):
-            self._spider_with_inventory([{"category": "st004"}])
+            self._spider_with_inventory({"all": {"st004": {}}})
 
     @staticmethod
     def _spider_with_inventory(categories):

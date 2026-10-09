@@ -23,7 +23,7 @@ class TractorsupplyListingSpiderTest(unittest.TestCase):
             "inventoryAvailabilityData": {"inventoryStatus": "AVL"},
             "breadcrumb": {"breadCrumbTrailEntryView": [{"label": "Trailer Dollies"}]},
         }}}}}}
-        request = Request("https://www.tractorsupply.com/tsc/product/trailer-lift", meta={"entry": spider.categories[0]})
+        request = Request("https://www.tractorsupply.com/tsc/product/trailer-lift", meta={"entry": next(iter(spider.iter_categories()))})
         html = f'<script id="__NEXT_DATA__">{json.dumps(payload)}</script>'
         item = list(spider.parse_product(HtmlResponse(request.url, request=request, body=html.encode(), encoding="utf-8")))[0]
         self.assertEqual(item["item_id"], "867")

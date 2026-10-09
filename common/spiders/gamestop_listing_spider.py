@@ -37,7 +37,7 @@ from urllib.parse import parse_qsl, unquote, urlencode, urljoin
 
 import scrapy
 
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 from common.spiders.gamestop_categories import GAMESTOP_CATEGORIES
 
 _SLUG_CLEAN_RE = re.compile(r"[^a-z0-9]+")
@@ -101,7 +101,7 @@ class GamestopListingSpider(BaseListingSpider):
     # request is chunked rather than risking a silently truncated response.
     TILE_BATCH_SIZE = 20
 
-    categories = _load_categories()
+    categories = group_categories(_load_categories(), "department")
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
@@ -472,13 +472,13 @@ class GamestopListingSpider(BaseListingSpider):
         return None
 
     def _category_for(self, url: str) -> str:
-        for entry in self.categories:
+        for entry in self.iter_categories():
             if entry["url"] == url:
                 return entry["category"]
         return category_slug(url)
 
     def _department_for(self, category: str) -> str | None:
-        for entry in self.categories:
+        for entry in self.iter_categories():
             if entry["category"] == category:
                 return entry.get("department")
         return None

@@ -5,7 +5,7 @@ from urllib.parse import parse_qsl, urlencode, urljoin, urlsplit, urlunsplit
 
 import scrapy
 
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 from common.spiders.shopbop_categories import BASE_URL, SHOPBOP_CATEGORIES
 
 
@@ -35,7 +35,7 @@ class ShopbopListingSpider(BaseListingSpider):
 
     name = "shopbop_listing"
     allowed_domains = ["shopbop.com", "www.shopbop.com", "localhost", "127.0.0.1"]
-    categories = SHOPBOP_CATEGORIES
+    categories = group_categories(SHOPBOP_CATEGORIES, "department")
     require_category_arg = False
 
     custom_settings = {
@@ -64,7 +64,7 @@ class ShopbopListingSpider(BaseListingSpider):
     def start_requests(self):
         self._seen_products.clear()
         target = self.resolve_target_url()
-        selected = next((entry for entry in self.categories if entry["url"] == target), {})
+        selected = next((entry for entry in self.iter_categories() if entry["url"] == target), {})
         yield scrapy.Request(
             target,
             callback=self.parse,

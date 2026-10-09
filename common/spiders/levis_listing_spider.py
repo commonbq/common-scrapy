@@ -7,7 +7,7 @@ from urllib.parse import parse_qsl, urlencode, urljoin, urlsplit, urlunsplit
 
 import scrapy
 
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 from common.spiders.levi_categories import LEVI_CATEGORIES, LEVI_SITE_BASE
 
 
@@ -26,7 +26,7 @@ class LevisListingSpider(BaseListingSpider):
 
     name = "levis_listing"
     allowed_domains = ["levi.com", "www.levi.com", "localhost", "127.0.0.1"]
-    categories = LEVI_CATEGORIES
+    categories = group_categories(LEVI_CATEGORIES, "department")
     require_category_arg = False
 
     custom_settings = {
@@ -58,7 +58,7 @@ class LevisListingSpider(BaseListingSpider):
     def start_requests(self):
         self._seen_products.clear()
         target = self.resolve_target_url()
-        selected = next((entry for entry in self.categories if entry["url"] == target), {})
+        selected = next((entry for entry in self.iter_categories() if entry["url"] == target), {})
         yield scrapy.Request(
             target,
             callback=self.parse,

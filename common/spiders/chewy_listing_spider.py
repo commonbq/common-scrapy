@@ -8,14 +8,14 @@ from urllib.parse import parse_qs, quote, unquote, urlencode, urljoin, urlsplit,
 
 import scrapy
 
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 from common.spiders.chewy_categories import CHEWY_CATEGORIES
 
 
 class ChewyListingSpider(BaseListingSpider):
     name = "chewy_listing"
     allowed_domains = ["chewy.com", "www.chewy.com"]
-    categories = CHEWY_CATEGORIES
+    categories = group_categories(CHEWY_CATEGORIES, "department")
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
         "FEED_EXPORT_FIELDS": [

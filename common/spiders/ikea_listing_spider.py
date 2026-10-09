@@ -8,7 +8,7 @@ from urllib.parse import urljoin
 
 import scrapy
 
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 from common.spiders.ikea_categories import IKE_A_CATEGORIES
 
 
@@ -53,7 +53,7 @@ class IkeaListingSpider(BaseListingSpider):
     # good value but overridable with `-a sik_version=` when IKEA rotates it.
     DEFAULT_SIK_VERSION = "20250507"
     PAGE_SIZE = 24
-    categories = _load_categories()
+    categories = group_categories(_load_categories(), "department")
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
@@ -106,7 +106,7 @@ class IkeaListingSpider(BaseListingSpider):
         self._validate_inventory()
 
     def _validate_inventory(self) -> None:
-        """Enforce the `{'category', 'url'}` inventory contract.
+        """Enforce the `{group: {category: url}}` inventory contract.
 
         `BaseListingSpider._validate_categories_schema_if_needed` returns early
         whenever `require_category_arg` is False, which this spider needs so
@@ -116,14 +116,13 @@ class IkeaListingSpider(BaseListingSpider):
         a confusing `Unknown category ... Available categories: ...` error.
         Validate it here instead.
         """
-        if not isinstance(self.categories, list) or not self.categories:
+        entries = list(self.iter_categories())
+        if not entries:
             raise ValueError(
-                "IKEA inventory must define `categories` as a non-empty list of "
-                "{'category','url'} dicts"
+                "IKEA inventory must define `categories` as a non-empty mapping of "
+                "{group: {category: url}}"
             )
-        for i, entry in enumerate(self.categories):
-            if not isinstance(entry, dict):
-                raise ValueError(f"categories[{i}] must be a dict")
+        for i, entry in enumerate(entries):
             for key in ("category", "url"):
                 if not isinstance(entry.get(key), str) or not entry[key]:
                     raise ValueError(f"categories[{i}] missing string '{key}'")

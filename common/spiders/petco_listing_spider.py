@@ -6,7 +6,7 @@ from urllib.parse import parse_qsl, urlencode, urljoin, urlsplit, urlunsplit
 
 import scrapy
 
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 from common.spiders.petco_categories import PETCO_CATEGORIES
 
 
@@ -28,7 +28,7 @@ class PetcoListingSpider(BaseListingSpider):
 
     name = "petco_listing"
     allowed_domains = ["petco.com", "www.petco.com", "localhost", "127.0.0.1"]
-    categories = PETCO_CATEGORIES
+    categories = group_categories(PETCO_CATEGORIES, "department")
     require_category_arg = False
 
     custom_settings = {
@@ -57,7 +57,7 @@ class PetcoListingSpider(BaseListingSpider):
     def start_requests(self):
         self._seen_products.clear()
         target = self.resolve_target_url()
-        selected = next((entry for entry in self.categories if entry["url"] == target), {})
+        selected = next((entry for entry in self.iter_categories() if entry["url"] == target), {})
         yield scrapy.Request(
             target,
             callback=self.parse,

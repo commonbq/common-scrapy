@@ -8,7 +8,7 @@ from urllib.parse import urlencode, urljoin, urlparse
 import scrapy
 
 from common.settings import PROXY
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 from common.spiders.vitacost_categories import (
     BASE_URL,
     FILTER_API_URL,
@@ -80,7 +80,7 @@ class VitacostListingSpider(BaseListingSpider):
 
     name = "vitacost_listing"
     allowed_domains = ["vitacost.com", "www.vitacost.com", "services.mybcapps.com", "localhost", "127.0.0.1"]
-    categories = VITACOST_CATEGORIES
+    categories = group_categories(VITACOST_CATEGORIES, "department")
     require_category_arg = False
 
     custom_settings = {
@@ -116,7 +116,7 @@ class VitacostListingSpider(BaseListingSpider):
     def start_requests(self):
         self._seen_products.clear()
         target = self.resolve_target_url()
-        selected = next((entry for entry in self.categories if entry["url"] == target), {})
+        selected = next((entry for entry in self.iter_categories() if entry["url"] == target), {})
         handle = self._handle(target)
         if not handle:
             raise ValueError(

@@ -100,8 +100,9 @@ class CvsCategoryInventoryTests(unittest.TestCase):
         self.assertNotIn("/shop/content/", blob)
 
     def test_categories_flatten_to_unique_rows(self):
-        slugs = [entry["category"] for entry in CvsListingSpider.categories]
-        urls = [entry["url"] for entry in CvsListingSpider.categories]
+        spider = CvsListingSpider(category="allergy-medicine")
+        slugs = [entry["category"] for entry in spider.iter_categories()]
+        urls = [entry["url"] for entry in spider.iter_categories()]
         self.assertEqual(len(slugs), len(set(slugs)))
         self.assertEqual(len(urls), len(set(urls)))
         self.assertGreaterEqual(len(urls), 700)
@@ -109,9 +110,7 @@ class CvsCategoryInventoryTests(unittest.TestCase):
         self.assertIn("allergy-sinus", slugs)
 
     def test_categories_cover_subcategory_paths(self):
-        entry = next(
-            e for e in CvsListingSpider.categories if e["category"] == "allergy-medicine"
-        )
+        entry = CvsListingSpider(category="allergy-medicine").category_entry("allergy-medicine")
         self.assertEqual(
             entry["url"],
             "https://www.cvs.com/shop/health-medicine/allergy-sinus/allergy-medicine",
@@ -123,7 +122,11 @@ class CvsCategoryInventoryTests(unittest.TestCase):
         self.assertEqual(entry["category_id"], "cat510010")
 
     def test_cross_listed_labels_get_unique_slugs(self):
-        rows = [e for e in CvsListingSpider.categories if "bar-soap" in e["category"]]
+        rows = [
+            e
+            for e in CvsListingSpider(category="allergy-medicine").iter_categories()
+            if "bar-soap" in e["category"]
+        ]
         self.assertGreaterEqual(len(rows), 2)
         self.assertEqual(len({r["category"] for r in rows}), len(rows))
 

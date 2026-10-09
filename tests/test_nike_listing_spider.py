@@ -85,7 +85,7 @@ class NikeListingSpiderTests(unittest.TestCase):
     # ------------------------------------------------------------- inventory
 
     def test_categories_are_unique_and_cover_the_inventory(self):
-        names = [entry["category"] for entry in self.spider.categories]
+        names = [entry["category"] for entry in self.spider.iter_categories()]
         self.assertEqual(len(names), len(set(names)))
 
         expected = {
@@ -94,13 +94,13 @@ class NikeListingSpiderTests(unittest.TestCase):
             for subcategories in groups.values()
             for url in subcategories.values()
         }
-        self.assertEqual({entry["url"] for entry in self.spider.categories}, expected)
+        self.assertEqual({entry["url"] for entry in self.spider.iter_categories()}, expected)
 
     def test_duplicate_nav_names_resolve_to_one_entry(self):
         # "Shoes"/"All Shoes" and "New & Featured"/"New Arrivals" are the same page.
-        urls = [entry["url"] for entry in self.spider.categories]
+        urls = [entry["url"] for entry in self.spider.iter_categories()]
         self.assertEqual(len(urls), len(set(urls)))
-        shoes = [e for e in self.spider.categories if e["category"] == "mens-shoes-nik1zy7ok"]
+        shoes = [e for e in self.spider.iter_categories() if e["category"] == "mens-shoes-nik1zy7ok"]
         self.assertEqual(len(shoes), 1)
         self.assertEqual(shoes[0]["name"], "Shoes")
 
@@ -115,9 +115,7 @@ class NikeListingSpiderTests(unittest.TestCase):
         )
 
     def test_inventory_preserves_department_and_group_hierarchy(self):
-        entry = next(
-            e for e in self.spider.categories if e["category"] == "mens-shoes-nik1zy7ok"
-        )
+        entry = self.spider.category_entry("mens-shoes-nik1zy7ok")
         self.assertEqual(entry["department"], "Men")
         self.assertEqual(entry["group"], "Shoes")
 

@@ -9,7 +9,7 @@ from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
 import scrapy
 from scrapy.exceptions import CloseSpider
 
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 from common.spiders.etsy_categories import ETSY_CATEGORIES
 
 
@@ -37,7 +37,7 @@ class EtsyListingSpider(BaseListingSpider):
 
     name = "etsy_listing"
     allowed_domains = ["etsy.com", "www.etsy.com"]
-    categories = ETSY_CATEGORIES
+    categories = group_categories(ETSY_CATEGORIES, "department")
     page_size = 48
 
     custom_settings = {

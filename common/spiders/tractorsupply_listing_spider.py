@@ -14,14 +14,14 @@ from typing import Any
 
 import scrapy
 
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 from common.spiders.tractorsupply_categories import TRACTORSUPPLY_CATEGORIES
 
 
 class TractorsupplyListingSpider(BaseListingSpider):
     name = "tractorsupply_listing"
     allowed_domains = ["tractorsupply.com", "www.tractorsupply.com"]
-    categories = TRACTORSUPPLY_CATEGORIES
+    categories = group_categories(TRACTORSUPPLY_CATEGORIES, "department")
     require_category_arg = False
     PAGE_SIZE = 24
 
@@ -37,10 +37,10 @@ class TractorsupplyListingSpider(BaseListingSpider):
     }
 
     def start_requests(self):
-        targets = self.categories
+        targets = self.iter_categories()
         if self.category or self.category_url or self.url:
             target = self.resolve_target_url()
-            targets = [row for row in self.categories if row["url"] == target]
+            targets = [row for row in self.iter_categories() if row["url"] == target]
         for entry in targets:
             yield scrapy.Request(entry["url"], callback=self.parse_sitemap, meta={"entry": entry})
 

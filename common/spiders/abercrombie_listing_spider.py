@@ -8,7 +8,7 @@ from urllib.parse import parse_qsl, urlencode, urljoin, urlsplit, urlunsplit
 import scrapy
 
 from common.spiders.abercrombie_categories import ABERCROMBIE_CATEGORIES
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 
 
 class AbercrombieListingSpider(BaseListingSpider):
@@ -16,7 +16,7 @@ class AbercrombieListingSpider(BaseListingSpider):
 
     name = "abercrombie_listing"
     allowed_domains = ["abercrombie.com", "www.abercrombie.com"]
-    categories = ABERCROMBIE_CATEGORIES
+    categories = group_categories(ABERCROMBIE_CATEGORIES, "department")
     page_size = 90
 
     custom_settings = {
@@ -59,7 +59,7 @@ class AbercrombieListingSpider(BaseListingSpider):
         self._seen.clear()
         target = self.resolve_target_url()
         selected = next(
-            (entry for entry in self.categories if entry["category"] == self.category),
+            (entry for entry in self.iter_categories() if entry["category"] == self.category),
             {},
         )
         yield self._request(target, 1, selected.get("department"))

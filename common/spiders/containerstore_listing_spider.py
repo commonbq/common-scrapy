@@ -6,7 +6,7 @@ from urllib.parse import urljoin
 
 import scrapy
 
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 from common.spiders.containerstore_categories import BASE_URL, CONTAINERSTORE_CATEGORIES
 
 
@@ -17,7 +17,7 @@ class ContainerStoreListingSpider(BaseListingSpider):
 
     name = "containerstore_listing"
     allowed_domains = ["containerstore.com", "www.containerstore.com", "localhost", "127.0.0.1"]
-    categories = CONTAINERSTORE_CATEGORIES
+    categories = group_categories(CONTAINERSTORE_CATEGORIES, "department")
     require_category_arg = False
 
     custom_settings = {
@@ -46,7 +46,7 @@ class ContainerStoreListingSpider(BaseListingSpider):
     def start_requests(self):
         self._seen_products.clear()
         target = self.resolve_target_url()
-        selected = next((entry for entry in self.categories if entry["url"] == target), {})
+        selected = next((entry for entry in self.iter_categories() if entry["url"] == target), {})
         yield scrapy.Request(
             target,
             callback=self.parse,

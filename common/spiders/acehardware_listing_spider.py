@@ -11,7 +11,7 @@ from urllib.parse import parse_qsl, urlencode, urljoin, urlsplit, urlunsplit
 import scrapy
 
 from common.spiders.acehardware_categories import ACEHARDWARE_CATEGORIES, BASE_URL
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 
 
 # ScrapeOps option appended to the proxy username. Ace Hardware sits behind a bot
@@ -55,7 +55,7 @@ class AceHardwareListingSpider(BaseListingSpider):
 
     name = "acehardware_listing"
     allowed_domains = ["acehardware.com", "www.acehardware.com"]
-    categories = ACEHARDWARE_CATEGORIES
+    categories = group_categories(ACEHARDWARE_CATEGORIES, "department")
     # Direct url=/category_url= runs are supported, so opt out of the base class
     # category-only gate; resolve_target_url() still rejects a run with no target.
     require_category_arg = False
@@ -133,7 +133,7 @@ class AceHardwareListingSpider(BaseListingSpider):
         self._seen.clear()
         self._visited_categories.clear()
         target = self.resolve_target_url()
-        selected = next((entry for entry in self.categories if entry.get("url") == target), {})
+        selected = next((entry for entry in self.iter_categories() if entry.get("url") == target), {})
         yield self._page_request(target, page=1, start_index=0, selected=selected)
 
     def _page_request(
@@ -307,7 +307,7 @@ class AceHardwareListingSpider(BaseListingSpider):
         # it bounds the walk even when `hasNextPage` is absent.
         if last_page is not None and current_page >= last_page:
             return
-        selected = next((entry for entry in self.categories if entry.get("url") == response.url), {})
+        selected = next((entry for entry in self.iter_categories() if entry.get("url") == response.url), {})
         yield self._page_request(
             self._base_url(response.url),
             page=current_page + 1,

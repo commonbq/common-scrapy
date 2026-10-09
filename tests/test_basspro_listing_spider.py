@@ -119,14 +119,19 @@ class BassproListingSpiderTest(unittest.TestCase):
     def test_ambiguous_slug_with_different_urls_is_rejected(self):
         spider = BassproListingSpider(settings=self.settings, category="life-jackets")
         # Simulate a taxonomy regression: two paths, two different URLs.
-        boat = next(e for e in spider.categories if e["category"] == "Boating/Water Sports/Life Jackets")
-        outdoor = next(e for e in spider.categories if e["category"] == "Outdoor Rec/Water Sports/Life Jackets")
+        boat = spider.category_entry("Boating/Water Sports/Life Jackets")
+        outdoor = spider.category_entry("Outdoor Rec/Water Sports/Life Jackets")
         boat, outdoor = dict(boat), dict(outdoor)
+        boat["slug"] = "life-jackets"
+        outdoor["slug"] = "life-jackets"
         outdoor["url"] = "https://www.basspro.com/l/life-jackets-alt"
-        spider.categories = [
-            outdoor if e["category"] == boat["category"] else e
-            for e in spider.categories
-        ] + [outdoor]
+        spider.categories = {
+            "all": {
+                "Boating/Water Sports/Life Jackets": boat,
+                "Outdoor Rec/Water Sports/Life Jackets": outdoor,
+            }
+        }
+        spider._category_cache = None  # rebuilt after the taxonomy mutation
         with self.assertRaises(ValueError) as ctx:
             spider.resolve_entry()
         self.assertIn("Ambiguous category", str(ctx.exception))

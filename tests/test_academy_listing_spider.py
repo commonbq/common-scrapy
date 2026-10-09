@@ -143,8 +143,9 @@ class AcademyListingSpiderTest(unittest.TestCase):
     def test_default_run_targets_every_inventory_category(self):
         spider = AcademyListingSpider()
         targets = [request.meta["category"] for request in spider.start_requests()]
-        self.assertEqual(len(targets), len(spider.categories))
-        self.assertEqual(len(set(targets)), len(spider.categories))
+        n = len(list(spider.iter_categories()))
+        self.assertEqual(len(targets), n)
+        self.assertEqual(len(set(targets)), n)
 
     def test_url_input_resolves_to_inventory_entry(self):
         spider = AcademyListingSpider(url=HOT_DEALS_URL)

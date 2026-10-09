@@ -8,7 +8,7 @@ import scrapy
 
 from scrapy.exceptions import CloseSpider
 
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 from common.spiders.basspro_categories import (
     BASSPRO_BASE_URL,
     BASSPRO_CATEGORIES,
@@ -115,7 +115,7 @@ class BassproListingSpider(BaseListingSpider):
 
     name = "basspro_listing"
     allowed_domains = ["basspro.com", "www.basspro.com", COVEO_DOMAIN, "localhost", "127.0.0.1"]
-    categories = BASSPRO_CATEGORIES
+    categories = group_categories(BASSPRO_CATEGORIES, "department")
     require_category_arg = False
 
     DEFAULT_PAGE_SIZE = 48
@@ -153,7 +153,7 @@ class BassproListingSpider(BaseListingSpider):
         if not (self.category or self.category_url or self.url):
             raise ValueError(
                 "Provide -a category=<path>, category_url=<url>, or url=<listing url>. "
-                f"basspro_categories.py defines {len(self.categories)} entries, "
+                f"basspro_categories.py defines {sum(len(v) for v in self._all_category_entries().values())} entries, "
                 "e.g. 'Fishing/Rod & Reel Combos' or the bare slug 'rod-reel-combos'."
             )
         self._seen_items: set[str] = set()
@@ -209,15 +209,15 @@ class BassproListingSpider(BaseListingSpider):
         if wanted.startswith(BASSPRO_BASE_URL):
             wanted = urlsplit(wanted).path.strip("/").split("/")[-1]
 
-        for entry in self.categories:
+        for entry in self.iter_categories():
             if entry["category"].casefold() == wanted.casefold():
                 return entry
 
-        matches = [e for e in self.categories if e["slug"].casefold() == wanted.casefold()]
+        matches = [e for e in self.iter_categories() if e["slug"].casefold() == wanted.casefold()]
         if not matches:
             raise ValueError(
                 f"Unknown category {wanted!r}. basspro_categories.py has "
-                f"{len(self.categories)} entries; use a full path like "
+                f"{sum(len(v) for v in self._all_category_entries().values())} entries; use a full path like "
                 "'Fishing/Rod & Reel Combos' or a bare slug like 'rod-reel-combos'."
             )
         # 119 slugs are linked from more than one department (e.g. /l/trailer-accessories

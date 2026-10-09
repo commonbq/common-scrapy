@@ -45,7 +45,7 @@ from urllib.parse import quote, urlencode, urlsplit, urlunsplit
 
 import scrapy
 
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 from common.spiders.dickssportinggoods_categories import (
     DICKSSPORTINGGOODS_CATEGORY_INVENTORY,
 )
@@ -100,6 +100,7 @@ def _load_categories() -> list[dict[str, Any]]:
                     "url": url,
                     "catgroupId": catgroup_id,
                     "page_type": node.get("pageType"),
+                    "department": department,
                     "departments": [department],
                 }
                 by_url[url] = entry
@@ -119,7 +120,7 @@ class DickssportinggoodsListingSpider(BaseListingSpider):
     ]
     require_category_arg = False
 
-    categories = _load_categories()
+    categories = group_categories(_load_categories(), "department")
 
     PAGE_SIZE = PAGE_SIZE
 
@@ -189,8 +190,8 @@ class DickssportinggoodsListingSpider(BaseListingSpider):
     def _target_categories(self) -> list[dict[str, Any]]:
         target = self.resolve_target_url() if (self.url or self.category_url or self.category) else None
         if target is None:
-            return list(self.categories)
-        for entry in self.categories:
+            return list(self.iter_categories())
+        for entry in self.iter_categories():
             if entry["url"] == target or entry["category"] == self.category:
                 return [entry]
         available = ", ".join(self.available_categories()[:20])

@@ -8,7 +8,7 @@ from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 import scrapy
 
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 from common.spiders.microcenter_categories import MICROCENTER_CATEGORIES
 
 
@@ -18,7 +18,7 @@ class MicrocenterListingSpider(BaseListingSpider):
         "microcenter.com", "www.microcenter.com", "productimages.microcenter.com",
         "127.0.0.1", "localhost",  # explicit fixture/custom-URL verification
     ]
-    categories = MICROCENTER_CATEGORIES
+    categories = group_categories(MICROCENTER_CATEGORIES, "department")
     page_size = 24
 
     custom_settings = {
@@ -38,7 +38,7 @@ class MicrocenterListingSpider(BaseListingSpider):
         super().__init__(*args, **kwargs)
         self._seen: set[str] = set()
         self._category_record = next(
-            (entry for entry in self.categories if entry["category"] == self.category), {}
+            (entry for entry in self.iter_categories() if entry["category"] == self.category), {}
         )
 
     def start_requests(self):

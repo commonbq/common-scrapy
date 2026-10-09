@@ -7,7 +7,7 @@ from urllib.parse import urlencode, urlsplit, urlunsplit
 import scrapy
 
 from common.spiders.adidas_categories import ADIDAS_CATEGORIES
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 
 # `translations["currency.symbol"]` is a template placeholder ("${0}"), so the ISO
 # code is derived from the locale adidas ships in the same hydration payload.
@@ -19,7 +19,7 @@ class AdidasListingSpider(BaseListingSpider):
 
     name = "adidas_listing"
     allowed_domains = ["adidas.com", "www.adidas.com", "localhost", "127.0.0.1"]
-    categories = ADIDAS_CATEGORIES
+    categories = group_categories(ADIDAS_CATEGORIES, "department")
     require_category_arg = False
 
     custom_settings = {
@@ -49,7 +49,7 @@ class AdidasListingSpider(BaseListingSpider):
     def start_requests(self):
         self._seen_products.clear()
         target = self.resolve_target_url()
-        selected = next((entry for entry in self.categories if entry["url"] == target), {})
+        selected = next((entry for entry in self.iter_categories() if entry["url"] == target), {})
         yield scrapy.Request(
             target,
             callback=self.parse,

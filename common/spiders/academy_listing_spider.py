@@ -37,7 +37,7 @@ from urllib.parse import quote, urlencode, urlsplit, urlunsplit
 
 import scrapy
 
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 from common.spiders.academy_categories import load_categories
 
 SITE_BASE = "https://www.academy.com"
@@ -73,7 +73,7 @@ class AcademyListingSpider(BaseListingSpider):
     allowed_domains = ["academy.com", "www.academy.com", "academy.scene7.com"]
     require_category_arg = False
 
-    categories = load_categories()
+    categories = group_categories(load_categories(), "department")
 
     PAGE_SIZE = PAGE_SIZE
 
@@ -166,13 +166,13 @@ class AcademyListingSpider(BaseListingSpider):
 
     def _target_categories(self) -> list[dict[str, Any]]:
         if not (self.url or self.category_url or self.category):
-            return list(self.categories)
-        for entry in self.categories:
+            return list(self.iter_categories())
+        for entry in self.iter_categories():
             if entry["category"] == self.category:
                 return [entry]
         target = self.url or self.category_url
         if target:
-            for entry in self.categories:
+            for entry in self.iter_categories():
                 if entry["url"] == target:
                     return [entry]
         available = ", ".join(self.available_categories()[:20])

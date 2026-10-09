@@ -33,7 +33,7 @@ from urllib.parse import urlencode
 
 import scrapy
 
-from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.base_listing_spider import BaseListingSpider, group_categories
 from common.spiders.llbean_categories import LLBEAN_CATEGORIES
 
 API_URL = "https://www.llbean.com/api/udal/product-discovery/search"
@@ -56,7 +56,7 @@ class LlbeanListingSpider(BaseListingSpider):
 
     name = "llbean_listing"
     allowed_domains = ["llbean.com", "www.llbean.com", "localhost", "127.0.0.1"]
-    categories = LLBEAN_CATEGORIES
+    categories = group_categories(LLBEAN_CATEGORIES, "department")
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
@@ -83,7 +83,7 @@ class LlbeanListingSpider(BaseListingSpider):
                 f"Cannot read a category id from '{target}'. Expected a "
                 "https://www.llbean.com/llb/shop/<categoryId> URL."
             )
-        selected = next((entry for entry in self.categories if entry["url"] == target), {})
+        selected = next((entry for entry in self.iter_categories() if entry["url"] == target), {})
         yield self._api_request(
             category_id,
             start=0,
