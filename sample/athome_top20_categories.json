@@ -1,0 +1,126 @@
+{
+  "site": "https://www.athome.com",
+  "ranking": "measured product count (data-product-count on the category PLP)",
+  "categories": [
+    {
+      "rank": 1,
+      "name": "Christmas",
+      "url": "https://www.athome.com/christmas/",
+      "products": 3475
+    },
+    {
+      "rank": 2,
+      "name": "Gift Ideas",
+      "url": "https://www.athome.com/gift-ideas/",
+      "products": 1931
+    },
+    {
+      "rank": 3,
+      "name": "Artificial Flowers & Greenery",
+      "url": "https://www.athome.com/artificial-flowers-greenery/",
+      "products": 1198
+    },
+    {
+      "rank": 4,
+      "name": "Outdoor Décor",
+      "url": "https://www.athome.com/outdoor-decor/",
+      "products": 948
+    },
+    {
+      "rank": 5,
+      "name": "Halloween",
+      "url": "https://www.athome.com/halloween/",
+      "products": 789
+    },
+    {
+      "rank": 6,
+      "name": "Vases",
+      "url": "https://www.athome.com/vases/",
+      "products": 736
+    },
+    {
+      "rank": 7,
+      "name": "Area Rugs",
+      "url": "https://www.athome.com/area-rugs/",
+      "products": 686
+    },
+    {
+      "rank": 8,
+      "name": "Outdoor Pots & Planters",
+      "url": "https://www.athome.com/outdoor-pots-planters/",
+      "products": 655
+    },
+    {
+      "rank": 9,
+      "name": "Framed Art",
+      "url": "https://www.athome.com/framed-art/",
+      "products": 622
+    },
+    {
+      "rank": 10,
+      "name": "Storage Baskets",
+      "url": "https://www.athome.com/storage-baskets/",
+      "products": 566
+    },
+    {
+      "rank": 11,
+      "name": "Kitchen Storage",
+      "url": "https://www.athome.com/kitchen-storage/",
+      "products": 544
+    },
+    {
+      "rank": 12,
+      "name": "Drinkware",
+      "url": "https://www.athome.com/drinkware-glassware/",
+      "products": 540
+    },
+    {
+      "rank": 13,
+      "name": "Throw Pillows",
+      "url": "https://www.athome.com/toss-pillows/",
+      "products": 477
+    },
+    {
+      "rank": 14,
+      "name": "Canvas Art",
+      "url": "https://www.athome.com/canvas-art/",
+      "products": 460
+    },
+    {
+      "rank": 15,
+      "name": "Lamps",
+      "url": "https://www.athome.com/lamps/",
+      "products": 326
+    },
+    {
+      "rank": 16,
+      "name": "Sculptures & Figurines",
+      "url": "https://www.athome.com/sculptures-figurines/",
+      "products": 322
+    },
+    {
+      "rank": 17,
+      "name": "Bath Towels & Washcloths",
+      "url": "https://www.athome.com/bath-towels-washcloths/",
+      "products": 314
+    },
+    {
+      "rank": 18,
+      "name": "Bed Sheets & Pillowcases",
+      "url": "https://www.athome.com/bed-sheets-pillowcases/",
+      "products": 272
+    },
+    {
+      "rank": 19,
+      "name": "Bathroom Rugs & Bath Mats",
+      "url": "https://www.athome.com/bathroom-rugs-mats/",
+      "products": 233
+    },
+    {
+      "rank": 20,
+      "name": "Scented Candles",
+      "url": "https://www.athome.com/scented-candles/",
+      "products": 225
+    }
+  ]
+}

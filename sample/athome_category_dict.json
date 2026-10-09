@@ -1,0 +1,1845 @@
+{
+  "site": "https://www.athome.com",
+  "platform": "Salesforce Commerce Cloud (Demandware SFRA)",
+  "source": "Homepage mega-nav (?nav=top_nav anchor links), cross-checked against https://www.athome.com/sitemap_1.xml",
+  "note": "Flat dict keyed by URL slug. Every entry is a category/navigation URL on athome.com.",
+  "category_count": 459,
+  "categories": {
+    "furniture": {
+      "name": "Furniture",
+      "url": "https://www.athome.com/furniture/"
+    },
+    "furniture-new-products": {
+      "name": "New Arrivals",
+      "url": "https://www.athome.com/furniture-new-products/"
+    },
+    "accent-furniture": {
+      "name": "Accent Furniture",
+      "url": "https://www.athome.com/accent-furniture/"
+    },
+    "accent-chairs": {
+      "name": "Accent Chairs",
+      "url": "https://www.athome.com/accent-chairs/"
+    },
+    "cabinets-chests": {
+      "name": "Cabinets & Chests",
+      "url": "https://www.athome.com/cabinets-chests/"
+    },
+    "accent-tables": {
+      "name": "Accent Tables",
+      "url": "https://www.athome.com/accent-tables/"
+    },
+    "bookshelves": {
+      "name": "Bookshelves",
+      "url": "https://www.athome.com/bookshelves/"
+    },
+    "stools-benches": {
+      "name": "Stools & Benches",
+      "url": "https://www.athome.com/stools-benches/"
+    },
+    "plant-stand-tables": {
+      "name": "Plant Stands",
+      "url": "https://www.athome.com/plant-stand-tables/"
+    },
+    "living-room-furniture": {
+      "name": "Living Room Furniture",
+      "url": "https://www.athome.com/living-room-furniture/"
+    },
+    "sofas-loveseats": {
+      "name": "Sofas, Settees & Loveseats",
+      "url": "https://www.athome.com/sofas-loveseats/"
+    },
+    "coffee-end-tables": {
+      "name": "Coffee & End Tables",
+      "url": "https://www.athome.com/coffee-end-tables/"
+    },
+    "occasional-chairs-recliners": {
+      "name": "Accent Chairs",
+      "url": "https://www.athome.com/occasional-chairs-recliners/"
+    },
+    "ottomans": {
+      "name": "Ottomans & Poufs",
+      "url": "https://www.athome.com/ottomans/"
+    },
+    "benches": {
+      "name": "Benches",
+      "url": "https://www.athome.com/benches/"
+    },
+    "bedroom-furniture": {
+      "name": "Bedroom Furniture",
+      "url": "https://www.athome.com/bedroom-furniture/"
+    },
+    "headboards": {
+      "name": "Headboards",
+      "url": "https://www.athome.com/headboards/"
+    },
+    "bed-frames": {
+      "name": "Bed Frames",
+      "url": "https://www.athome.com/bed-frames/"
+    },
+    "mattresses": {
+      "name": "Mattresses & Foundations",
+      "url": "https://www.athome.com/mattresses/"
+    },
+    "bedroom-benches-ottomans": {
+      "name": "Bedroom Benches & Ottomans",
+      "url": "https://www.athome.com/bedroom-benches-ottomans/"
+    },
+    "dressers-nightstands": {
+      "name": "Dressers & Nightstands",
+      "url": "https://www.athome.com/dressers-nightstands/"
+    },
+    "dining-room-furniture": {
+      "name": "Dining Room Furniture",
+      "url": "https://www.athome.com/dining-room-furniture/"
+    },
+    "barstools": {
+      "name": "Barstools",
+      "url": "https://www.athome.com/barstools/"
+    },
+    "counter-stools": {
+      "name": "Counter Height Stools",
+      "url": "https://www.athome.com/counter-stools/"
+    },
+    "dining-tables-sets": {
+      "name": "Dining Tables & Sets",
+      "url": "https://www.athome.com/dining-tables-sets/"
+    },
+    "dining-chairs": {
+      "name": "Dining Chairs & Benches",
+      "url": "https://www.athome.com/dining-chairs/"
+    },
+    "bakers-racks-barcarts": {
+      "name": "Baker's Racks & Bar Carts",
+      "url": "https://www.athome.com/bakers-racks-barcarts/"
+    },
+    "chair-cushions": {
+      "name": "Dining Chair Cushions & Pads",
+      "url": "https://www.athome.com/chair-cushions/"
+    },
+    "office-furniture": {
+      "name": "Office Furniture",
+      "url": "https://www.athome.com/office-furniture/"
+    },
+    "bookcases": {
+      "name": "Bookshelves",
+      "url": "https://www.athome.com/bookcases/"
+    },
+    "office-chairs": {
+      "name": "Office Chairs",
+      "url": "https://www.athome.com/office-chairs/"
+    },
+    "desks": {
+      "name": "Desks",
+      "url": "https://www.athome.com/desks/"
+    },
+    "office-desk-organizers": {
+      "name": "Office Organization",
+      "url": "https://www.athome.com/office-desk-organizers/"
+    },
+    "furniture-product-sets": {
+      "name": "Furniture Sets",
+      "url": "https://www.athome.com/furniture-product-sets/"
+    },
+    "build-your-own-furniture-bundle": {
+      "name": "Build Your Own Bundle",
+      "url": "https://www.athome.com/build-your-own-furniture-bundle/"
+    },
+    "accent-chair-sets": {
+      "name": "Accent Chair Sets",
+      "url": "https://www.athome.com/accent-chair-sets/"
+    },
+    "bar-counter-stool-sets": {
+      "name": "Bar & Counter Stool Sets",
+      "url": "https://www.athome.com/bar-counter-stool-sets/"
+    },
+    "dining-room-sets": {
+      "name": "Dining Room Sets",
+      "url": "https://www.athome.com/dining-room-sets/"
+    },
+    "living-room-sets": {
+      "name": "Living Room Sets",
+      "url": "https://www.athome.com/living-room-sets/"
+    },
+    "holiday": {
+      "name": "Holidays",
+      "url": "https://www.athome.com/holiday/"
+    },
+    "halloween": {
+      "name": "Halloween",
+      "url": "https://www.athome.com/halloween/"
+    },
+    "halloween-shop-all": {
+      "name": "Shop All Halloween",
+      "url": "https://www.athome.com/halloween-shop-all/"
+    },
+    "halloween-outdoor-decor": {
+      "name": "Outdoor Halloween Décor",
+      "url": "https://www.athome.com/halloween-outdoor-decor/"
+    },
+    "halloween-decor": {
+      "name": "Indoor Halloween Décor",
+      "url": "https://www.athome.com/halloween-decor/"
+    },
+    "halloween-skeletons": {
+      "name": "Skeletons & Skulls",
+      "url": "https://www.athome.com/halloween-skeletons/"
+    },
+    "halloween-inflatables": {
+      "name": "Halloween Inflatables",
+      "url": "https://www.athome.com/halloween-inflatables/"
+    },
+    "halloween-animatronics": {
+      "name": "Halloween Animatronics",
+      "url": "https://www.athome.com/halloween-animatronics/"
+    },
+    "halloween-pumpkins": {
+      "name": "Halloween Pumpkins",
+      "url": "https://www.athome.com/halloween-pumpkins/"
+    },
+    "halloween-lights-projectors": {
+      "name": "Halloween Lights & Projectors",
+      "url": "https://www.athome.com/halloween-lights-projectors/"
+    },
+    "halloween-rugs-doormats": {
+      "name": "Halloween Rugs & Doormats",
+      "url": "https://www.athome.com/halloween-rugs-doormats/"
+    },
+    "halloween-pillows": {
+      "name": "Halloween Pillows & Throws",
+      "url": "https://www.athome.com/halloween-pillows/"
+    },
+    "halloween-kitchen-entertaining": {
+      "name": "Halloween Kitchen & Entertaining",
+      "url": "https://www.athome.com/halloween-kitchen-entertaining/"
+    },
+    "halloween-collections": {
+      "name": "Halloween Collections",
+      "url": "https://www.athome.com/halloween-collections/"
+    },
+    "halloween-deals": {
+      "name": "Spooky Sale",
+      "url": "https://www.athome.com/halloween-deals/"
+    },
+    "thanksgiving-fall": {
+      "name": "Fall & Thanksgiving",
+      "url": "https://www.athome.com/thanksgiving-fall/"
+    },
+    "fall-shop-all": {
+      "name": "Shop All Fall",
+      "url": "https://www.athome.com/fall-shop-all/"
+    },
+    "fall-outdoor-decor": {
+      "name": "Fall Porch & Outdoor Décor",
+      "url": "https://www.athome.com/fall-outdoor-decor/"
+    },
+    "fall-decor": {
+      "name": "Fall Indoor Décor",
+      "url": "https://www.athome.com/fall-decor/"
+    },
+    "fall-floral-decorations": {
+      "name": "Fall Floral",
+      "url": "https://www.athome.com/fall-floral-decorations/"
+    },
+    "fall-entertaining": {
+      "name": "Fall Kitchen & Entertaining",
+      "url": "https://www.athome.com/fall-entertaining/"
+    },
+    "fall-pumpkin-decorations": {
+      "name": "Fall Pumpkins",
+      "url": "https://www.athome.com/fall-pumpkin-decorations/"
+    },
+    "fall-pillows-throws": {
+      "name": "Fall Pillows & Throws",
+      "url": "https://www.athome.com/fall-pillows-throws/"
+    },
+    "fall-yardstakes": {
+      "name": "Fall Yard Stakes",
+      "url": "https://www.athome.com/fall-yardstakes/"
+    },
+    "fall-doormats-rugs": {
+      "name": "Fall Rugs & Doormats",
+      "url": "https://www.athome.com/fall-doormats-rugs/"
+    },
+    "fall-candles": {
+      "name": "Fall Candles & Fragrance",
+      "url": "https://www.athome.com/fall-candles/"
+    },
+    "fall-thanksgiving-wreaths": {
+      "name": "Fall Wreaths",
+      "url": "https://www.athome.com/fall-thanksgiving-wreaths/"
+    },
+    "fall-deals": {
+      "name": "Fall Sale",
+      "url": "https://www.athome.com/fall-deals/"
+    },
+    "christmas": {
+      "name": "Christmas",
+      "url": "https://www.athome.com/christmas/"
+    },
+    "christmas-shop-all": {
+      "name": "Shop All Christmas",
+      "url": "https://www.athome.com/christmas-shop-all/"
+    },
+    "christmas-trees": {
+      "name": "Christmas Trees",
+      "url": "https://www.athome.com/christmas-trees/"
+    },
+    "christmas-ornaments": {
+      "name": "Christmas Ornaments",
+      "url": "https://www.athome.com/christmas-ornaments/"
+    },
+    "christmas-indoor-decor": {
+      "name": "Christmas Indoor Décor",
+      "url": "https://www.athome.com/christmas-indoor-decor/"
+    },
+    "christmas-outdoor-decor": {
+      "name": "Christmas Outdoor & Inflatables",
+      "url": "https://www.athome.com/christmas-outdoor-decor/"
+    },
+    "christmas-wreaths-floral": {
+      "name": "Christmas Wreaths & Floral",
+      "url": "https://www.athome.com/christmas-wreaths-floral/"
+    },
+    "christmas-collections": {
+      "name": "Christmas Collections",
+      "url": "https://www.athome.com/christmas-collections/"
+    },
+    "christmas-tree-decorations": {
+      "name": "Christmas Tree Décor",
+      "url": "https://www.athome.com/christmas-tree-decorations/"
+    },
+    "christmas-bed-bath": {
+      "name": "Christmas Pillows Bed & Bath",
+      "url": "https://www.athome.com/christmas-bed-bath/"
+    },
+    "christmas-entertaining": {
+      "name": "Christmas Kitchen & Entertaining",
+      "url": "https://www.athome.com/christmas-entertaining/"
+    },
+    "christmas-rugs-doormats": {
+      "name": "Christmas Rugs & Doormats",
+      "url": "https://www.athome.com/christmas-rugs-doormats/"
+    },
+    "christmas-stockings-holders": {
+      "name": "Christmas Stockings & Holders",
+      "url": "https://www.athome.com/christmas-stockings-holders/"
+    },
+    "christmas-candles": {
+      "name": "Christmas Candles & Fragrance",
+      "url": "https://www.athome.com/christmas-candles/"
+    },
+    "christmas-gift-wrap": {
+      "name": "Christmas Gift Wrap",
+      "url": "https://www.athome.com/christmas-gift-wrap/"
+    },
+    "christmas-storage": {
+      "name": "Christmas Storage",
+      "url": "https://www.athome.com/christmas-storage/"
+    },
+    "christmas-toys": {
+      "name": "Toys, Books & More",
+      "url": "https://www.athome.com/christmas-toys/"
+    },
+    "hanukkah": {
+      "name": "Hanukkah",
+      "url": "https://www.athome.com/hanukkah/"
+    },
+    "back-to-campus": {
+      "name": "College Dorm Room",
+      "url": "https://www.athome.com/back-to-campus/"
+    },
+    "dorm-bedding": {
+      "name": "Dorm Bedding",
+      "url": "https://www.athome.com/dorm-bedding/"
+    },
+    "dorm-storage": {
+      "name": "Dorm Storage",
+      "url": "https://www.athome.com/dorm-storage/"
+    },
+    "dorm-closet": {
+      "name": "Dorm Closet Organization",
+      "url": "https://www.athome.com/dorm-closet/"
+    },
+    "dorm-baskets-bins": {
+      "name": "Dorm Baskets",
+      "url": "https://www.athome.com/dorm-baskets-bins/"
+    },
+    "dorm-furniture": {
+      "name": "Dorm Furniture",
+      "url": "https://www.athome.com/dorm-furniture/"
+    },
+    "dorm-decor-wall-art": {
+      "name": "Dorm Wall Art & Frames",
+      "url": "https://www.athome.com/dorm-decor-wall-art/"
+    },
+    "dorm-rugs": {
+      "name": "Dorm Rugs",
+      "url": "https://www.athome.com/dorm-rugs/"
+    },
+    "dorm-lighting": {
+      "name": "Dorm Lamps & Lighting",
+      "url": "https://www.athome.com/dorm-lighting/"
+    },
+    "dorm-bath": {
+      "name": "Dorm Bath",
+      "url": "https://www.athome.com/dorm-bath/"
+    },
+    "dorm-laundry": {
+      "name": "Dorm Laundry",
+      "url": "https://www.athome.com/dorm-laundry/"
+    },
+    "gift-ideas": {
+      "name": "Gift Ideas",
+      "url": "https://www.athome.com/gift-ideas/"
+    },
+    "gifts-under-10": {
+      "name": "Gifts Under $10",
+      "url": "https://www.athome.com/gifts-under-10/"
+    },
+    "gifts-under-20": {
+      "name": "Gifts Under $20",
+      "url": "https://www.athome.com/gifts-under-20/"
+    },
+    "gifts-under-30": {
+      "name": "Gifts Under $30",
+      "url": "https://www.athome.com/gifts-under-30/"
+    },
+    "gifts-under-50": {
+      "name": "Gifts Under $50",
+      "url": "https://www.athome.com/gifts-under-50/"
+    },
+    "gifts-for-her": {
+      "name": "Gifts For Her",
+      "url": "https://www.athome.com/gifts-for-her/"
+    },
+    "giftsforhim": {
+      "name": "Gifts For Him",
+      "url": "https://www.athome.com/giftsforhim/"
+    },
+    "giftsforkids": {
+      "name": "Gifts For Kids",
+      "url": "https://www.athome.com/giftsforkids/"
+    },
+    "pets": {
+      "name": "Gifts For Pets",
+      "url": "https://www.athome.com/pets/"
+    },
+    "gifts-for-hostess": {
+      "name": "For the Host",
+      "url": "https://www.athome.com/gifts-for-hostess/"
+    },
+    "gifts-for-baker": {
+      "name": "For the Baker",
+      "url": "https://www.athome.com/gifts-for-baker/"
+    },
+    "gifts-for-homebody": {
+      "name": "For the Homebody",
+      "url": "https://www.athome.com/gifts-for-homebody/"
+    },
+    "gift-cards": {
+      "name": "Gift Cards",
+      "url": "https://www.athome.com/gift-cards/"
+    },
+    "self-care": {
+      "name": "Self Care Gifts",
+      "url": "https://www.athome.com/self-care/"
+    },
+    "entertaining-gift-ideas": {
+      "name": "Entertaining Gifts",
+      "url": "https://www.athome.com/entertaining-gift-ideas/"
+    },
+    "stationery": {
+      "name": "Stationery",
+      "url": "https://www.athome.com/stationery/"
+    },
+    "graduation-gifts": {
+      "name": "Graduation Gifts",
+      "url": "https://www.athome.com/graduation-gifts/"
+    },
+    "rugs": {
+      "name": "Rugs",
+      "url": "https://www.athome.com/rugs/"
+    },
+    "area-rugs": {
+      "name": "Area Rugs",
+      "url": "https://www.athome.com/area-rugs/"
+    },
+    "accent-rugs": {
+      "name": "Accent Rugs",
+      "url": "https://www.athome.com/accent-rugs/"
+    },
+    "runner-rugs": {
+      "name": "Runner Rugs",
+      "url": "https://www.athome.com/runner-rugs/"
+    },
+    "outdoor-rugs": {
+      "name": "Outdoor Rugs",
+      "url": "https://www.athome.com/outdoor-rugs/"
+    },
+    "kitchen-floor-mats": {
+      "name": "Kitchen Floor Mats",
+      "url": "https://www.athome.com/kitchen-floor-mats/"
+    },
+    "doormats": {
+      "name": "Doormats",
+      "url": "https://www.athome.com/doormats/"
+    },
+    "washable-rugs": {
+      "name": "Washable Rugs",
+      "url": "https://www.athome.com/washable-rugs/"
+    },
+    "rug-pads": {
+      "name": "Rug Pads",
+      "url": "https://www.athome.com/rug-pads/"
+    },
+    "rugs-by-size": {
+      "name": "Rugs by Size",
+      "url": "https://www.athome.com/rugs-by-size/"
+    },
+    "2x7-rugs": {
+      "name": "2x7",
+      "url": "https://www.athome.com/2x7-rugs/"
+    },
+    "3x5-rugs": {
+      "name": "3x5",
+      "url": "https://www.athome.com/3x5-rugs/"
+    },
+    "5x7-rugs": {
+      "name": "5x7",
+      "url": "https://www.athome.com/5x7-rugs/"
+    },
+    "8x10-rugs": {
+      "name": "8x10",
+      "url": "https://www.athome.com/8x10-rugs/"
+    },
+    "9x12-rugs": {
+      "name": "9x12",
+      "url": "https://www.athome.com/9x12-rugs/"
+    },
+    "round-rugs": {
+      "name": "Round Rugs",
+      "url": "https://www.athome.com/round-rugs/"
+    },
+    "rugs-by-color": {
+      "name": "Rugs by Color",
+      "url": "https://www.athome.com/rugs-by-color/"
+    },
+    "cool-blue-rugs": {
+      "name": "Cool Blues",
+      "url": "https://www.athome.com/cool-blue-rugs/"
+    },
+    "earthy-green-rugs": {
+      "name": "Earthy Greens",
+      "url": "https://www.athome.com/earthy-green-rugs/"
+    },
+    "grey-black-rugs": {
+      "name": "Grey & Black",
+      "url": "https://www.athome.com/grey-black-rugs/"
+    },
+    "neutral-tone-rugs": {
+      "name": "Neutral Tones",
+      "url": "https://www.athome.com/neutral-tone-rugs/"
+    },
+    "warm-tone-rugs": {
+      "name": "Warm Tones",
+      "url": "https://www.athome.com/warm-tone-rugs/"
+    },
+    "multicolor-rugs": {
+      "name": "Multi-Colored",
+      "url": "https://www.athome.com/multicolor-rugs/"
+    },
+    "rugs-by-style": {
+      "name": "Rugs by Style",
+      "url": "https://www.athome.com/rugs-by-style/"
+    },
+    "floral-rugs": {
+      "name": "Floral Rugs",
+      "url": "https://www.athome.com/floral-rugs/"
+    },
+    "geometric-rugs": {
+      "name": "Geometric Rugs",
+      "url": "https://www.athome.com/geometric-rugs/"
+    },
+    "shag-rugs": {
+      "name": "Shag Rugs",
+      "url": "https://www.athome.com/shag-rugs/"
+    },
+    "abstract-rugs": {
+      "name": "Abstract Rugs",
+      "url": "https://www.athome.com/abstract-rugs/"
+    },
+    "jute-braided-rugs": {
+      "name": "Jute Braided Rugs",
+      "url": "https://www.athome.com/jute-braided-rugs/"
+    },
+    "medallion-rugs": {
+      "name": "Medallion Rugs",
+      "url": "https://www.athome.com/medallion-rugs/"
+    },
+    "boarder-rugs": {
+      "name": "Border Rugs",
+      "url": "https://www.athome.com/boarder-rugs/"
+    },
+    "rugs-by-room": {
+      "name": "Rugs by Room",
+      "url": "https://www.athome.com/rugs-by-room/"
+    },
+    "livingroom-rug": {
+      "name": "Living Room Rug",
+      "url": "https://www.athome.com/livingroom-rug/"
+    },
+    "hallway-rugs": {
+      "name": "Hallway Rugs",
+      "url": "https://www.athome.com/hallway-rugs/"
+    },
+    "bathroomrugs": {
+      "name": "Bathroom Rugs & Mats",
+      "url": "https://www.athome.com/bathroomrugs/"
+    },
+    "rugnewarrivals": {
+      "name": "New Arrivals",
+      "url": "https://www.athome.com/rugnewarrivals/"
+    },
+    "seasonal-rugs": {
+      "name": "Seasonal Rugs",
+      "url": "https://www.athome.com/seasonal-rugs/"
+    },
+    "wall-decor": {
+      "name": "Wall Art & Mirrors",
+      "url": "https://www.athome.com/wall-decor/"
+    },
+    "mirrors": {
+      "name": "Mirrors",
+      "url": "https://www.athome.com/mirrors/"
+    },
+    "rectangle-mirrors": {
+      "name": "Rectangle Mirrors",
+      "url": "https://www.athome.com/rectangle-mirrors/"
+    },
+    "floor-standing-mirrors": {
+      "name": "Floor & Full-Length Mirrors",
+      "url": "https://www.athome.com/floor-standing-mirrors/"
+    },
+    "round-mirrors": {
+      "name": "Round Mirrors",
+      "url": "https://www.athome.com/round-mirrors/"
+    },
+    "unique-mirrors": {
+      "name": "Unique Mirrors",
+      "url": "https://www.athome.com/unique-mirrors/"
+    },
+    "mirror-sets": {
+      "name": "Mirror Sets",
+      "url": "https://www.athome.com/mirror-sets/"
+    },
+    "framed-art": {
+      "name": "Framed Art",
+      "url": "https://www.athome.com/framed-art/"
+    },
+    "framed-art-small": {
+      "name": "Small Framed Art",
+      "url": "https://www.athome.com/framed-art-small/"
+    },
+    "framed-art-medium": {
+      "name": "Medium Framed Art",
+      "url": "https://www.athome.com/framed-art-medium/"
+    },
+    "framed-art-large": {
+      "name": "Large Framed Art",
+      "url": "https://www.athome.com/framed-art-large/"
+    },
+    "frames": {
+      "name": "Wall Frames",
+      "url": "https://www.athome.com/frames/"
+    },
+    "4x6-frames": {
+      "name": "4x6 Frames",
+      "url": "https://www.athome.com/4x6-frames/"
+    },
+    "5x7-frames": {
+      "name": "5x7 Frames",
+      "url": "https://www.athome.com/5x7-frames/"
+    },
+    "8x10-frames": {
+      "name": "8x10 Frames",
+      "url": "https://www.athome.com/8x10-frames/"
+    },
+    "11x14-frames": {
+      "name": "11x14 Frames",
+      "url": "https://www.athome.com/11x14-frames/"
+    },
+    "collage-picture-frames": {
+      "name": "Collage Picture Frames",
+      "url": "https://www.athome.com/collage-picture-frames/"
+    },
+    "matted-frames": {
+      "name": "Matted Frames",
+      "url": "https://www.athome.com/matted-frames/"
+    },
+    "float-frames": {
+      "name": "Float Frames",
+      "url": "https://www.athome.com/float-frames/"
+    },
+    "canvas-art": {
+      "name": "Canvas Art",
+      "url": "https://www.athome.com/canvas-art/"
+    },
+    "canvas-art-small": {
+      "name": "Small Canvas Art",
+      "url": "https://www.athome.com/canvas-art-small/"
+    },
+    "canvas-art-medium": {
+      "name": "Medium Canvas Art",
+      "url": "https://www.athome.com/canvas-art-medium/"
+    },
+    "canvas-art-large": {
+      "name": "Large Canvas Art",
+      "url": "https://www.athome.com/canvas-art-large/"
+    },
+    "tabletop-frames": {
+      "name": "Tabletop Frames",
+      "url": "https://www.athome.com/tabletop-frames/"
+    },
+    "wall-accents": {
+      "name": "Wall Accents",
+      "url": "https://www.athome.com/wall-accents/"
+    },
+    "clocks": {
+      "name": "Clocks",
+      "url": "https://www.athome.com/clocks/"
+    },
+    "wall-shelves-ledges": {
+      "name": "Wall Shelves, Ledges & Hooks",
+      "url": "https://www.athome.com/wall-shelves-ledges/"
+    },
+    "wall-decor-new-products": {
+      "name": "New Arrivals",
+      "url": "https://www.athome.com/wall-decor-new-products/"
+    },
+    "wall-decor-lookbook": {
+      "name": "Wall Decor Lookbook",
+      "url": "https://www.athome.com/wall-decor-lookbook/"
+    },
+    "home-decor": {
+      "name": "Décor",
+      "url": "https://www.athome.com/home-decor/"
+    },
+    "home-accents": {
+      "name": "Home Accents",
+      "url": "https://www.athome.com/home-accents/"
+    },
+    "vases": {
+      "name": "Vases",
+      "url": "https://www.athome.com/vases/"
+    },
+    "sculptures-figurines": {
+      "name": "Sculptures & Figurines",
+      "url": "https://www.athome.com/sculptures-figurines/"
+    },
+    "decorative-plates-bowls-trays": {
+      "name": "Decorative Plates, Bowls & Trays",
+      "url": "https://www.athome.com/decorative-plates-bowls-trays/"
+    },
+    "candle-holders": {
+      "name": "Candle Holders & Lanterns",
+      "url": "https://www.athome.com/candle-holders/"
+    },
+    "decorative-boxes": {
+      "name": "Decorative Boxes & Trunks",
+      "url": "https://www.athome.com/decorative-boxes/"
+    },
+    "decorative-glass-balls": {
+      "name": "Decorative Spheres & Glass Balls",
+      "url": "https://www.athome.com/decorative-glass-balls/"
+    },
+    "vase-bowl-fillers": {
+      "name": "Vase & Bowl Fillers",
+      "url": "https://www.athome.com/vase-bowl-fillers/"
+    },
+    "bookends": {
+      "name": "Bookends",
+      "url": "https://www.athome.com/bookends/"
+    },
+    "signs-accents": {
+      "name": "Signs & Accents",
+      "url": "https://www.athome.com/signs-accents/"
+    },
+    "easels-stands": {
+      "name": "Easels, Risers & Stands",
+      "url": "https://www.athome.com/easels-stands/"
+    },
+    "artificial-flowers-greenery": {
+      "name": "Artificial Flowers & Greenery",
+      "url": "https://www.athome.com/artificial-flowers-greenery/"
+    },
+    "floral-arrangements": {
+      "name": "Floral Arrangements",
+      "url": "https://www.athome.com/floral-arrangements/"
+    },
+    "flowers-stems-sprays": {
+      "name": "Flowers, Stems & Sprays",
+      "url": "https://www.athome.com/flowers-stems-sprays/"
+    },
+    "trees-plants-topiaries": {
+      "name": "Trees, Plants & Topiaries",
+      "url": "https://www.athome.com/trees-plants-topiaries/"
+    },
+    "wreaths-garland": {
+      "name": "Wreaths & Garland",
+      "url": "https://www.athome.com/wreaths-garland/"
+    },
+    "succulents": {
+      "name": "Succulents",
+      "url": "https://www.athome.com/succulents/"
+    },
+    "seasonal-floral": {
+      "name": "Seasonal Floral",
+      "url": "https://www.athome.com/seasonal-floral/"
+    },
+    "floral-supplies": {
+      "name": "Floral Supplies",
+      "url": "https://www.athome.com/floral-supplies/"
+    },
+    "floral-shop-all": {
+      "name": "Shop All",
+      "url": "https://www.athome.com/floral-shop-all/"
+    },
+    "floral-lookbook": {
+      "name": "Floral Lookbook",
+      "url": "https://www.athome.com/floral-lookbook/"
+    },
+    "floor-decor": {
+      "name": "Floor & Oversized Décor",
+      "url": "https://www.athome.com/floor-decor/"
+    },
+    "floor-mirrors": {
+      "name": "Mirrors",
+      "url": "https://www.athome.com/floor-mirrors/"
+    },
+    "floor-standing-vases": {
+      "name": "Vases",
+      "url": "https://www.athome.com/floor-standing-vases/"
+    },
+    "floor-plants": {
+      "name": "Plants & Trees",
+      "url": "https://www.athome.com/floor-plants/"
+    },
+    "floor-candle-holders": {
+      "name": "Floor Candle Holders",
+      "url": "https://www.athome.com/floor-candle-holders/"
+    },
+    "floor-stands-easels": {
+      "name": "Stands, Easels & Chalkboards",
+      "url": "https://www.athome.com/floor-stands-easels/"
+    },
+    "floor-sculptures": {
+      "name": "Sculptures & Figurines",
+      "url": "https://www.athome.com/floor-sculptures/"
+    },
+    "fireplace-screens-tools": {
+      "name": "Fireplace Screens & Accessories",
+      "url": "https://www.athome.com/fireplace-screens-tools/"
+    },
+    "candles-home-fragrance": {
+      "name": "Candles & Home Fragrance",
+      "url": "https://www.athome.com/candles-home-fragrance/"
+    },
+    "scented-candles": {
+      "name": "Scented Candles",
+      "url": "https://www.athome.com/scented-candles/"
+    },
+    "pillar-candles": {
+      "name": "Pillar Candles",
+      "url": "https://www.athome.com/pillar-candles/"
+    },
+    "unscented-candles": {
+      "name": "Unscented Candles",
+      "url": "https://www.athome.com/unscented-candles/"
+    },
+    "flameless-candles": {
+      "name": "Flameless & LED Candles",
+      "url": "https://www.athome.com/flameless-candles/"
+    },
+    "wax-warmers-melts": {
+      "name": "Wax Melts & Warmers",
+      "url": "https://www.athome.com/wax-warmers-melts/"
+    },
+    "citronella-candles": {
+      "name": "Citronella & Torches",
+      "url": "https://www.athome.com/citronella-candles/"
+    },
+    "seasonal-candles": {
+      "name": "Seasonal Candles & Fragrance",
+      "url": "https://www.athome.com/seasonal-candles/"
+    },
+    "taper-candles": {
+      "name": "Taper Candles",
+      "url": "https://www.athome.com/taper-candles/"
+    },
+    "pillows": {
+      "name": "Pillows",
+      "url": "https://www.athome.com/pillows/"
+    },
+    "toss-pillows": {
+      "name": "Throw Pillows",
+      "url": "https://www.athome.com/toss-pillows/"
+    },
+    "oblong-pillows": {
+      "name": "Lumbar Pillows",
+      "url": "https://www.athome.com/oblong-pillows/"
+    },
+    "round-pillows": {
+      "name": "Round & Shaped Pillows",
+      "url": "https://www.athome.com/round-pillows/"
+    },
+    "multi-pack-pillows": {
+      "name": "Multi-Pack Pillows",
+      "url": "https://www.athome.com/multi-pack-pillows/"
+    },
+    "pillows-by-color": {
+      "name": "Pillows by Color",
+      "url": "https://www.athome.com/pillows-by-color/"
+    },
+    "blue-pillows": {
+      "name": "Blue",
+      "url": "https://www.athome.com/blue-pillows/"
+    },
+    "grey-pillows": {
+      "name": "Grey",
+      "url": "https://www.athome.com/grey-pillows/"
+    },
+    "green-pillows": {
+      "name": "Green",
+      "url": "https://www.athome.com/green-pillows/"
+    },
+    "natural-pillows": {
+      "name": "Natural",
+      "url": "https://www.athome.com/natural-pillows/"
+    },
+    "brown-pillows": {
+      "name": "Brown",
+      "url": "https://www.athome.com/brown-pillows/"
+    },
+    "colorful-pillows": {
+      "name": "Multi-Color",
+      "url": "https://www.athome.com/colorful-pillows/"
+    },
+    "black-pillows": {
+      "name": "Black",
+      "url": "https://www.athome.com/black-pillows/"
+    },
+    "white-pillows": {
+      "name": "White",
+      "url": "https://www.athome.com/white-pillows/"
+    },
+    "red-pillows": {
+      "name": "Red",
+      "url": "https://www.athome.com/red-pillows/"
+    },
+    "pink-pillows": {
+      "name": "Pink",
+      "url": "https://www.athome.com/pink-pillows/"
+    },
+    "orange-pillows": {
+      "name": "Orange",
+      "url": "https://www.athome.com/orange-pillows/"
+    },
+    "yellow-pillows": {
+      "name": "Yellow",
+      "url": "https://www.athome.com/yellow-pillows/"
+    },
+    "purple-pillows": {
+      "name": "Purple",
+      "url": "https://www.athome.com/purple-pillows/"
+    },
+    "pillows-by-style": {
+      "name": "Pillows by Style",
+      "url": "https://www.athome.com/pillows-by-style/"
+    },
+    "embroidered-pillows": {
+      "name": "Embroidered",
+      "url": "https://www.athome.com/embroidered-pillows/"
+    },
+    "patterned-printed-pillows": {
+      "name": "Patterned & Printed",
+      "url": "https://www.athome.com/patterned-printed-pillows/"
+    },
+    "textured-pillows": {
+      "name": "Textured",
+      "url": "https://www.athome.com/textured-pillows/"
+    },
+    "boucle-sherpa-pillows": {
+      "name": "Boucle & Sherpa",
+      "url": "https://www.athome.com/boucle-sherpa-pillows/"
+    },
+    "striped-pillows": {
+      "name": "Striped",
+      "url": "https://www.athome.com/striped-pillows/"
+    },
+    "fringe-tassels-pillows": {
+      "name": "Fringe & Tassels",
+      "url": "https://www.athome.com/fringe-tassels-pillows/"
+    },
+    "knitted-quilted-pillows": {
+      "name": "Knitted & Quilted",
+      "url": "https://www.athome.com/knitted-quilted-pillows/"
+    },
+    "beaded-pillows": {
+      "name": "Beaded",
+      "url": "https://www.athome.com/beaded-pillows/"
+    },
+    "floor-pillows-poufs": {
+      "name": "Floor Pillows & Poufs",
+      "url": "https://www.athome.com/floor-pillows-poufs/"
+    },
+    "bedrests": {
+      "name": "Bedrests",
+      "url": "https://www.athome.com/bedrests/"
+    },
+    "bed-pillows": {
+      "name": "Bed Pillows",
+      "url": "https://www.athome.com/bed-pillows/"
+    },
+    "seasonal-pillows": {
+      "name": "Seasonal Pillows",
+      "url": "https://www.athome.com/seasonal-pillows/"
+    },
+    "new-throw-pillows": {
+      "name": "New Arrivals",
+      "url": "https://www.athome.com/new-throw-pillows/"
+    },
+    "kitchen-dining": {
+      "name": "Kitchen & Dining",
+      "url": "https://www.athome.com/kitchen-dining/"
+    },
+    "serveware": {
+      "name": "Serveware",
+      "url": "https://www.athome.com/serveware/"
+    },
+    "platters-servers": {
+      "name": "Platters, Boards & Servers",
+      "url": "https://www.athome.com/platters-servers/"
+    },
+    "pitchers-beverage-dispensers": {
+      "name": "Pitchers & Beverage Dispensers",
+      "url": "https://www.athome.com/pitchers-beverage-dispensers/"
+    },
+    "serving-bowls-baskets": {
+      "name": "Serving Bowls & Baskets",
+      "url": "https://www.athome.com/serving-bowls-baskets/"
+    },
+    "serving-accessories": {
+      "name": "Serving Utensils & Accessories",
+      "url": "https://www.athome.com/serving-accessories/"
+    },
+    "kitchen-storage": {
+      "name": "Kitchen Storage",
+      "url": "https://www.athome.com/kitchen-storage/"
+    },
+    "cabinet-pantry-organization": {
+      "name": "Cabinet & Pantry Organization",
+      "url": "https://www.athome.com/cabinet-pantry-organization/"
+    },
+    "kitchen-canisters-jars": {
+      "name": "Kitchen Canisters & Jars",
+      "url": "https://www.athome.com/kitchen-canisters-jars/"
+    },
+    "food-storage-containers": {
+      "name": "Food Storage Containers",
+      "url": "https://www.athome.com/food-storage-containers/"
+    },
+    "utensil-holders": {
+      "name": "Utensil Holders & Caddies",
+      "url": "https://www.athome.com/utensil-holders/"
+    },
+    "kitchen-drawer-organizers": {
+      "name": "Drawer Organizers",
+      "url": "https://www.athome.com/kitchen-drawer-organizers/"
+    },
+    "shelf-liners": {
+      "name": "Shelf Liners",
+      "url": "https://www.athome.com/shelf-liners/"
+    },
+    "paper-towel-napkin-holders": {
+      "name": "Paper Towel & Napkin Holders",
+      "url": "https://www.athome.com/paper-towel-napkin-holders/"
+    },
+    "kitchen-counter-protectors": {
+      "name": "Trivets & Spoon Rests",
+      "url": "https://www.athome.com/kitchen-counter-protectors/"
+    },
+    "kitchen-tools-gadgets": {
+      "name": "Tools & Gadgets",
+      "url": "https://www.athome.com/kitchen-tools-gadgets/"
+    },
+    "kitchen-tools-utensils": {
+      "name": "Cooking Utensils",
+      "url": "https://www.athome.com/kitchen-tools-utensils/"
+    },
+    "kitchen-gadgets": {
+      "name": "Gadgets & Tools",
+      "url": "https://www.athome.com/kitchen-gadgets/"
+    },
+    "salt-and-pepper-shakers": {
+      "name": "Salt & Pepper Shakers",
+      "url": "https://www.athome.com/salt-and-pepper-shakers/"
+    },
+    "dinnerware": {
+      "name": "Dinnerware",
+      "url": "https://www.athome.com/dinnerware/"
+    },
+    "dinnerware-sets": {
+      "name": "Dinnerware Sets",
+      "url": "https://www.athome.com/dinnerware-sets/"
+    },
+    "dishes": {
+      "name": "Plates, Bowls & Dishes",
+      "url": "https://www.athome.com/dishes/"
+    },
+    "charger-plates": {
+      "name": "Charger Plates",
+      "url": "https://www.athome.com/charger-plates/"
+    },
+    "kitchen-table-linens": {
+      "name": "Kitchen & Table Linens",
+      "url": "https://www.athome.com/kitchen-table-linens/"
+    },
+    "placemats": {
+      "name": "Placemats",
+      "url": "https://www.athome.com/placemats/"
+    },
+    "table-runners": {
+      "name": "Table Runners",
+      "url": "https://www.athome.com/table-runners/"
+    },
+    "tablecloths": {
+      "name": "Tablecloths",
+      "url": "https://www.athome.com/tablecloths/"
+    },
+    "kitchen-towels": {
+      "name": "Kitchen Towels",
+      "url": "https://www.athome.com/kitchen-towels/"
+    },
+    "napkins": {
+      "name": "Napkins & Napkin Rings",
+      "url": "https://www.athome.com/napkins/"
+    },
+    "cookware-bakeware": {
+      "name": "Cookware & Bakeware",
+      "url": "https://www.athome.com/cookware-bakeware/"
+    },
+    "pots-pans-skillets": {
+      "name": "Pots, Pans & Skillets",
+      "url": "https://www.athome.com/pots-pans-skillets/"
+    },
+    "cookware-sets": {
+      "name": "Cookware Sets",
+      "url": "https://www.athome.com/cookware-sets/"
+    },
+    "baking-sheets-pans": {
+      "name": "Baking Sheets & Pans",
+      "url": "https://www.athome.com/baking-sheets-pans/"
+    },
+    "baking-dishes": {
+      "name": "Baking Dishes",
+      "url": "https://www.athome.com/baking-dishes/"
+    },
+    "drinkware-glassware": {
+      "name": "Drinkware",
+      "url": "https://www.athome.com/drinkware-glassware/"
+    },
+    "drinking-glasses": {
+      "name": "Drinking Glasses",
+      "url": "https://www.athome.com/drinking-glasses/"
+    },
+    "mugs": {
+      "name": "Mugs",
+      "url": "https://www.athome.com/mugs/"
+    },
+    "water-bottles-tumblers": {
+      "name": "Water Bottles & Tumblers",
+      "url": "https://www.athome.com/water-bottles-tumblers/"
+    },
+    "knives-cutlery": {
+      "name": "Flatware & Cutlery",
+      "url": "https://www.athome.com/knives-cutlery/"
+    },
+    "knives-knife-sets": {
+      "name": "Knives & Knife Sets",
+      "url": "https://www.athome.com/knives-knife-sets/"
+    },
+    "cutting-boards": {
+      "name": "Cutting Boards",
+      "url": "https://www.athome.com/cutting-boards/"
+    },
+    "cutlery-accessories": {
+      "name": "Shears, Knife Sharpeners & More",
+      "url": "https://www.athome.com/cutlery-accessories/"
+    },
+    "flatware": {
+      "name": "Flatware",
+      "url": "https://www.athome.com/flatware/"
+    },
+    "barware-stemware": {
+      "name": "Bar & Wine",
+      "url": "https://www.athome.com/barware-stemware/"
+    },
+    "coasters": {
+      "name": "Drink Coasters",
+      "url": "https://www.athome.com/coasters/"
+    },
+    "melamine-acrylic": {
+      "name": "Melamine & Acrylic Dining",
+      "url": "https://www.athome.com/melamine-acrylic/"
+    },
+    "small-kitchen-appliances": {
+      "name": "Small Kitchen Appliances",
+      "url": "https://www.athome.com/small-kitchen-appliances/"
+    },
+    "partyware": {
+      "name": "Party Supplies",
+      "url": "https://www.athome.com/partyware/"
+    },
+    "bed-bath": {
+      "name": "Bed & Bath",
+      "url": "https://www.athome.com/bed-bath/"
+    },
+    "bed": {
+      "name": "Bedding",
+      "url": "https://www.athome.com/bed/"
+    },
+    "comforter-sets": {
+      "name": "Comforters & Comforter Sets",
+      "url": "https://www.athome.com/comforter-sets/"
+    },
+    "quilts-coverlets": {
+      "name": "Quilts & Coverlets",
+      "url": "https://www.athome.com/quilts-coverlets/"
+    },
+    "bed-blankets": {
+      "name": "Bed Blankets",
+      "url": "https://www.athome.com/bed-blankets/"
+    },
+    "bed-sheets-pillowcases": {
+      "name": "Bed Sheets & Pillowcases",
+      "url": "https://www.athome.com/bed-sheets-pillowcases/"
+    },
+    "bed-pillows-protectors": {
+      "name": "Bed Pillows & Protectors",
+      "url": "https://www.athome.com/bed-pillows-protectors/"
+    },
+    "mattress-toppers-bed-skirts": {
+      "name": "Mattress Protection & Bed Skirts",
+      "url": "https://www.athome.com/mattress-toppers-bed-skirts/"
+    },
+    "bath": {
+      "name": "Bath",
+      "url": "https://www.athome.com/bath/"
+    },
+    "shower-curtains-accessories": {
+      "name": "Shower Curtains & Accessories",
+      "url": "https://www.athome.com/shower-curtains-accessories/"
+    },
+    "bathroom-accessories": {
+      "name": "Bathroom Accessories",
+      "url": "https://www.athome.com/bathroom-accessories/"
+    },
+    "bathroom-rugs-mats": {
+      "name": "Bathroom Rugs & Bath Mats",
+      "url": "https://www.athome.com/bathroom-rugs-mats/"
+    },
+    "bath-towels-washcloths": {
+      "name": "Bath Towels & Washcloths",
+      "url": "https://www.athome.com/bath-towels-washcloths/"
+    },
+    "bathroom-storage-organization": {
+      "name": "Bathroom Storage & Organization",
+      "url": "https://www.athome.com/bathroom-storage-organization/"
+    },
+    "bath-hardware": {
+      "name": "Bath Hardware",
+      "url": "https://www.athome.com/bath-hardware/"
+    },
+    "bathroom-cleaning": {
+      "name": "Bathroom Cleaning & Care",
+      "url": "https://www.athome.com/bathroom-cleaning/"
+    },
+    "throwpillows": {
+      "name": "Throw Pillows",
+      "url": "https://www.athome.com/throwpillows/"
+    },
+    "throw-blankets": {
+      "name": "Blankets & Decorative Throws",
+      "url": "https://www.athome.com/throw-blankets/"
+    },
+    "bed-bath-seasonal": {
+      "name": "Seasonal",
+      "url": "https://www.athome.com/bed-bath-seasonal/"
+    },
+    "bed-bath-new-products": {
+      "name": "New Arrivals",
+      "url": "https://www.athome.com/bed-bath-new-products/"
+    },
+    "window": {
+      "name": "Window",
+      "url": "https://www.athome.com/window/"
+    },
+    "curtains": {
+      "name": "Curtains",
+      "url": "https://www.athome.com/curtains/"
+    },
+    "sheer-curtains": {
+      "name": "Sheer Curtains",
+      "url": "https://www.athome.com/sheer-curtains/"
+    },
+    "light-filtering-curtains": {
+      "name": "Light Filtering Curtains",
+      "url": "https://www.athome.com/light-filtering-curtains/"
+    },
+    "room-darkening-curtains": {
+      "name": "Room Darkening Curtains",
+      "url": "https://www.athome.com/room-darkening-curtains/"
+    },
+    "blackout-curtains": {
+      "name": "Blackout Curtains",
+      "url": "https://www.athome.com/blackout-curtains/"
+    },
+    "small-window-curtains": {
+      "name": "Small Window Curtains",
+      "url": "https://www.athome.com/small-window-curtains/"
+    },
+    "curtain-rods-hardware": {
+      "name": "Curtain Rods & Hardware",
+      "url": "https://www.athome.com/curtain-rods-hardware/"
+    },
+    "curtain-rods-18-36-inch": {
+      "name": "18-36\" Rods",
+      "url": "https://www.athome.com/curtain-rods-18-36-inch/"
+    },
+    "curtain-rods-24-48-inch": {
+      "name": "24-48\" Rods",
+      "url": "https://www.athome.com/curtain-rods-24-48-inch/"
+    },
+    "curtain-rods-36-72-inch": {
+      "name": "36-72\" Rods",
+      "url": "https://www.athome.com/curtain-rods-36-72-inch/"
+    },
+    "curtain-rods-48-84-inch": {
+      "name": "48-84\" Rods",
+      "url": "https://www.athome.com/curtain-rods-48-84-inch/"
+    },
+    "curtain-rods-72-120-inch": {
+      "name": "72-120\" Rods",
+      "url": "https://www.athome.com/curtain-rods-72-120-inch/"
+    },
+    "curtains-by-top-construction": {
+      "name": "Curtains by Top Construction",
+      "url": "https://www.athome.com/curtains-by-top-construction/"
+    },
+    "grommet-curtains": {
+      "name": "Grommet",
+      "url": "https://www.athome.com/grommet-curtains/"
+    },
+    "rod-pocket-curtains": {
+      "name": "Rod Pocket",
+      "url": "https://www.athome.com/rod-pocket-curtains/"
+    },
+    "tab-curtains": {
+      "name": "Top Tab & Back Tab",
+      "url": "https://www.athome.com/tab-curtains/"
+    },
+    "curtains-by-length": {
+      "name": "Curtains by Length",
+      "url": "https://www.athome.com/curtains-by-length/"
+    },
+    "63-inch-curtains": {
+      "name": "63\" Curtains",
+      "url": "https://www.athome.com/63-inch-curtains/"
+    },
+    "84-inch-curtains": {
+      "name": "84\" Curtains",
+      "url": "https://www.athome.com/84-inch-curtains/"
+    },
+    "96-inch-curtains": {
+      "name": "96\" Curtains",
+      "url": "https://www.athome.com/96-inch-curtains/"
+    },
+    "window-new-arrivals": {
+      "name": "New Arrivals",
+      "url": "https://www.athome.com/window-new-arrivals/"
+    },
+    "lighting": {
+      "name": "Lighting",
+      "url": "https://www.athome.com/lighting/"
+    },
+    "lamps": {
+      "name": "Lamps",
+      "url": "https://www.athome.com/lamps/"
+    },
+    "table-lamps": {
+      "name": "Table Lamps",
+      "url": "https://www.athome.com/table-lamps/"
+    },
+    "desk-lamps": {
+      "name": "Desk Lamps",
+      "url": "https://www.athome.com/desk-lamps/"
+    },
+    "floor-lamps": {
+      "name": "Floor Lamps",
+      "url": "https://www.athome.com/floor-lamps/"
+    },
+    "accent-lamps": {
+      "name": "Accent Lamps",
+      "url": "https://www.athome.com/accent-lamps/"
+    },
+    "rechargeable": {
+      "name": "Rechargeable Lamps",
+      "url": "https://www.athome.com/rechargeable/"
+    },
+    "lamp-shades": {
+      "name": "Lamp Shades",
+      "url": "https://www.athome.com/lamp-shades/"
+    },
+    "small-lamp-shades": {
+      "name": "Small Lamp Shades",
+      "url": "https://www.athome.com/small-lamp-shades/"
+    },
+    "medium-lamp-shades": {
+      "name": "Medium Lamp Shades",
+      "url": "https://www.athome.com/medium-lamp-shades/"
+    },
+    "large-lamp-shades": {
+      "name": "Large & Oversized Lamp Shades",
+      "url": "https://www.athome.com/large-lamp-shades/"
+    },
+    "lighting-by-room": {
+      "name": "Lighting by Room",
+      "url": "https://www.athome.com/lighting-by-room/"
+    },
+    "outdoor-lighting-collection": {
+      "name": "Patio Lighting",
+      "url": "https://www.athome.com/outdoor-lighting-collection/"
+    },
+    "bedroom-lighting": {
+      "name": "Bedroom Lighting",
+      "url": "https://www.athome.com/bedroom-lighting/"
+    },
+    "living-room-lighting": {
+      "name": "Living Room Lighting",
+      "url": "https://www.athome.com/living-room-lighting/"
+    },
+    "novelty-lights": {
+      "name": "Novelty Lights",
+      "url": "https://www.athome.com/novelty-lights/"
+    },
+    "finials-harps-light-bulbs": {
+      "name": "Finials, Harps & Light Bulbs",
+      "url": "https://www.athome.com/finials-harps-light-bulbs/"
+    },
+    "storage-organization": {
+      "name": "Storage",
+      "url": "https://www.athome.com/storage-organization/"
+    },
+    "general-storage": {
+      "name": "Baskets & Bins",
+      "url": "https://www.athome.com/general-storage/"
+    },
+    "storage-baskets": {
+      "name": "Baskets",
+      "url": "https://www.athome.com/storage-baskets/"
+    },
+    "storage-bins": {
+      "name": "Bins",
+      "url": "https://www.athome.com/storage-bins/"
+    },
+    "storage-crates": {
+      "name": "Crates",
+      "url": "https://www.athome.com/storage-crates/"
+    },
+    "storage-trunks": {
+      "name": "Trunks",
+      "url": "https://www.athome.com/storage-trunks/"
+    },
+    "storage-drawers": {
+      "name": "Drawers & Carts",
+      "url": "https://www.athome.com/storage-drawers/"
+    },
+    "closet-organization": {
+      "name": "Closet Organization",
+      "url": "https://www.athome.com/closet-organization/"
+    },
+    "shoe-storage": {
+      "name": "Shoe Storage",
+      "url": "https://www.athome.com/shoe-storage/"
+    },
+    "closet-organizers": {
+      "name": "Closet & Drawer Organizers",
+      "url": "https://www.athome.com/closet-organizers/"
+    },
+    "closet-storage": {
+      "name": "Closet Bins & Baskets",
+      "url": "https://www.athome.com/closet-storage/"
+    },
+    "hangers": {
+      "name": "Hangers & Closet Accessories",
+      "url": "https://www.athome.com/hangers/"
+    },
+    "jewelry-organizers": {
+      "name": "Jewelry Organizers & Stands",
+      "url": "https://www.athome.com/jewelry-organizers/"
+    },
+    "garment-racks": {
+      "name": "Garment Racks & Shelves",
+      "url": "https://www.athome.com/garment-racks/"
+    },
+    "over-door-hooks": {
+      "name": "Over Door Hooks",
+      "url": "https://www.athome.com/over-door-hooks/"
+    },
+    "laundry-room": {
+      "name": "Laundry Room Organization",
+      "url": "https://www.athome.com/laundry-room/"
+    },
+    "hampers": {
+      "name": "Laundry Hampers",
+      "url": "https://www.athome.com/hampers/"
+    },
+    "laundry-baskets": {
+      "name": "Laundry Baskets",
+      "url": "https://www.athome.com/laundry-baskets/"
+    },
+    "laundry-accessories": {
+      "name": "Ironing Boards & Clothing Care",
+      "url": "https://www.athome.com/laundry-accessories/"
+    },
+    "clothes-drying-racks": {
+      "name": "Clothes Drying Racks",
+      "url": "https://www.athome.com/clothes-drying-racks/"
+    },
+    "bathroom-organization": {
+      "name": "Bathroom Organization",
+      "url": "https://www.athome.com/bathroom-organization/"
+    },
+    "bathroom-counter-organizers": {
+      "name": "Bathroom Counter & Makeup Organizers",
+      "url": "https://www.athome.com/bathroom-counter-organizers/"
+    },
+    "shower-caddies-totes": {
+      "name": "Shower Caddies & Totes",
+      "url": "https://www.athome.com/shower-caddies-totes/"
+    },
+    "bathroom-storage": {
+      "name": "Bathroom Shelves, Carts & Storage",
+      "url": "https://www.athome.com/bathroom-storage/"
+    },
+    "toilet-paper-holders-stands": {
+      "name": "Toilet Paper Holders & Stands",
+      "url": "https://www.athome.com/toilet-paper-holders-stands/"
+    },
+    "office-organization": {
+      "name": "Office Organization",
+      "url": "https://www.athome.com/office-organization/"
+    },
+    "kitchen-organization": {
+      "name": "Kitchen Organization",
+      "url": "https://www.athome.com/kitchen-organization/"
+    },
+    "housekeeping": {
+      "name": "Cleaning Essentials",
+      "url": "https://www.athome.com/housekeeping/"
+    },
+    "household-cleaners": {
+      "name": "Household Cleaners",
+      "url": "https://www.athome.com/household-cleaners/"
+    },
+    "cleaning-tools": {
+      "name": "Cleaning Tools",
+      "url": "https://www.athome.com/cleaning-tools/"
+    },
+    "kitchen-cleaning": {
+      "name": "Kitchen Cleaning",
+      "url": "https://www.athome.com/kitchen-cleaning/"
+    },
+    "bathroom-essentials": {
+      "name": "Bathroom Cleaning",
+      "url": "https://www.athome.com/bathroom-essentials/"
+    },
+    "floor-cleaning": {
+      "name": "Floor Cleaning",
+      "url": "https://www.athome.com/floor-cleaning/"
+    },
+    "trash-cans-waste-baskets": {
+      "name": "Trash Cans & Wastebaskets",
+      "url": "https://www.athome.com/trash-cans-waste-baskets/"
+    },
+    "stepstools-ladders": {
+      "name": "Step Stools & Ladders",
+      "url": "https://www.athome.com/stepstools-ladders/"
+    },
+    "trash-cans": {
+      "name": "Trash Cans",
+      "url": "https://www.athome.com/trash-cans/"
+    },
+    "kitchen-trash-cans": {
+      "name": "Kitchen Trash Cans",
+      "url": "https://www.athome.com/kitchen-trash-cans/"
+    },
+    "waste-baskets": {
+      "name": "Waste Baskets",
+      "url": "https://www.athome.com/waste-baskets/"
+    },
+    "garage-storage": {
+      "name": "Garage Storage",
+      "url": "https://www.athome.com/garage-storage/"
+    },
+    "utility-category": {
+      "name": "Home Improvement",
+      "url": "https://www.athome.com/utility-category/"
+    },
+    "storage-product-sets": {
+      "name": "Storage Product Sets",
+      "url": "https://www.athome.com/storage-product-sets/"
+    },
+    "outdoor-furniture-decor": {
+      "name": "Outdoor",
+      "url": "https://www.athome.com/outdoor-furniture-decor/"
+    },
+    "patio-furniture": {
+      "name": "Patio Furniture",
+      "url": "https://www.athome.com/patio-furniture/"
+    },
+    "shop-all-patio-furniture": {
+      "name": "Shop All Patio Furniture",
+      "url": "https://www.athome.com/shop-all-patio-furniture/"
+    },
+    "patio-chairs": {
+      "name": "Patio Chairs & Seating",
+      "url": "https://www.athome.com/patio-chairs/"
+    },
+    "outdoor-patio-sets": {
+      "name": "Patio Sets",
+      "url": "https://www.athome.com/outdoor-patio-sets/"
+    },
+    "patio-tables": {
+      "name": "Outdoor Tables",
+      "url": "https://www.athome.com/patio-tables/"
+    },
+    "outdoor-dining": {
+      "name": "Outdoor Dining",
+      "url": "https://www.athome.com/outdoor-dining/"
+    },
+    "outdoor-collections": {
+      "name": "Outdoor Collections",
+      "url": "https://www.athome.com/outdoor-collections/"
+    },
+    "patio-pillows-cushions": {
+      "name": "Outdoor Cushions & Pillows",
+      "url": "https://www.athome.com/patio-pillows-cushions/"
+    },
+    "shop-all-outdoor-patio-cushions-pillows": {
+      "name": "Shop All Patio Cushions & Pillows",
+      "url": "https://www.athome.com/shop-all-outdoor-patio-cushions-pillows/"
+    },
+    "lounge-chair-cushions": {
+      "name": "Chair Cushions",
+      "url": "https://www.athome.com/lounge-chair-cushions/"
+    },
+    "deep-seat-cushions": {
+      "name": "Deep Seat Cushions",
+      "url": "https://www.athome.com/deep-seat-cushions/"
+    },
+    "chaise-lounge-cushions": {
+      "name": "Chaise Lounge Cushions",
+      "url": "https://www.athome.com/chaise-lounge-cushions/"
+    },
+    "outdoor-pillows-poufs": {
+      "name": "Outdoor Pillows & Poufs",
+      "url": "https://www.athome.com/outdoor-pillows-poufs/"
+    },
+    "hinged-patio-cushions": {
+      "name": "Hinged Cushions",
+      "url": "https://www.athome.com/hinged-patio-cushions/"
+    },
+    "bench-cushions": {
+      "name": "Bench Cushions",
+      "url": "https://www.athome.com/bench-cushions/"
+    },
+    "patio-garden-planters-stands-pottery": {
+      "name": "Pots & Planters",
+      "url": "https://www.athome.com/patio-garden-planters-stands-pottery/"
+    },
+    "outdoor-pots-planters": {
+      "name": "Outdoor Pots & Planters",
+      "url": "https://www.athome.com/outdoor-pots-planters/"
+    },
+    "indoor-pots-planters": {
+      "name": "Indoor Pots & Planters",
+      "url": "https://www.athome.com/indoor-pots-planters/"
+    },
+    "outdoor-decor": {
+      "name": "Outdoor Décor",
+      "url": "https://www.athome.com/outdoor-decor/"
+    },
+    "plant-stands": {
+      "name": "Plant Stands & Trellises",
+      "url": "https://www.athome.com/plant-stands/"
+    },
+    "statues-sculptures": {
+      "name": "Statues & Sculptures",
+      "url": "https://www.athome.com/statues-sculptures/"
+    },
+    "yard-art": {
+      "name": "Yard Stakes & Flags",
+      "url": "https://www.athome.com/yard-art/"
+    },
+    "outdoor-fountains": {
+      "name": "Fountains & Wind Chimes",
+      "url": "https://www.athome.com/outdoor-fountains/"
+    },
+    "outdoor-wall-decor": {
+      "name": "Outdoor Wall Décor",
+      "url": "https://www.athome.com/outdoor-wall-decor/"
+    },
+    "outdoor-lanterns": {
+      "name": "Outdoor Lanterns",
+      "url": "https://www.athome.com/outdoor-lanterns/"
+    },
+    "umbrellas-shade": {
+      "name": "Patio Umbrellas",
+      "url": "https://www.athome.com/umbrellas-shade/"
+    },
+    "round-umbrella": {
+      "name": "Round Umbrellas",
+      "url": "https://www.athome.com/round-umbrella/"
+    },
+    "rectangle-umbrella": {
+      "name": "Rectangle Umbrellas",
+      "url": "https://www.athome.com/rectangle-umbrella/"
+    },
+    "umbrella-bases": {
+      "name": "Umbrella Bases & Accessories",
+      "url": "https://www.athome.com/umbrella-bases/"
+    },
+    "outdoor-rugs-doormats": {
+      "name": "Outdoor Rugs & Doormats",
+      "url": "https://www.athome.com/outdoor-rugs-doormats/"
+    },
+    "outdoor-lighting": {
+      "name": "Outdoor Lighting",
+      "url": "https://www.athome.com/outdoor-lighting/"
+    },
+    "string-lights": {
+      "name": "String Lights",
+      "url": "https://www.athome.com/string-lights/"
+    },
+    "solar-pathway-lighting": {
+      "name": "Landscape Lighting",
+      "url": "https://www.athome.com/solar-pathway-lighting/"
+    },
+    "outdoor-lighting-accessories": {
+      "name": "Outdoor Lighting Accessories",
+      "url": "https://www.athome.com/outdoor-lighting-accessories/"
+    },
+    "lawn-garden": {
+      "name": "Lawn & Garden",
+      "url": "https://www.athome.com/lawn-garden/"
+    },
+    "outdoor-entertaining": {
+      "name": "Outdoor Entertaining",
+      "url": "https://www.athome.com/outdoor-entertaining/"
+    },
+    "outdoor-drinkware": {
+      "name": "Drinkware & Bar",
+      "url": "https://www.athome.com/outdoor-drinkware/"
+    },
+    "grills-outdoor-cooking": {
+      "name": "Grill Accessories & Outdoor Cooking",
+      "url": "https://www.athome.com/grills-outdoor-cooking/"
+    },
+    "citronella": {
+      "name": "Citronella",
+      "url": "https://www.athome.com/citronella/"
+    },
+    "beachtowels": {
+      "name": "Beach Towels",
+      "url": "https://www.athome.com/beachtowels/"
+    },
+    "pools-and-floats": {
+      "name": "Pools, Floats & Games",
+      "url": "https://www.athome.com/pools-and-floats/"
+    },
+    "clearance": {
+      "name": "Sale & Clearance",
+      "url": "https://www.athome.com/clearance/"
+    },
+    "spooky-sale": {
+      "name": "The Spooky Sale",
+      "url": "https://www.athome.com/spooky-sale/"
+    },
+    "all-clearance": {
+      "name": "Shop All Clearance",
+      "url": "https://www.athome.com/all-clearance/"
+    },
+    "furniture-clearance": {
+      "name": "Furniture Clearance",
+      "url": "https://www.athome.com/furniture-clearance/"
+    },
+    "rugs-clearance": {
+      "name": "Rugs Clearance",
+      "url": "https://www.athome.com/rugs-clearance/"
+    },
+    "wall-art-mirrors-clearance": {
+      "name": "Wall Art & Mirrors Clearance",
+      "url": "https://www.athome.com/wall-art-mirrors-clearance/"
+    },
+    "storage-cleaning-clearance": {
+      "name": "Storage Clearance",
+      "url": "https://www.athome.com/storage-cleaning-clearance/"
+    },
+    "home-decor-clearance": {
+      "name": "Home Décor Clearance",
+      "url": "https://www.athome.com/home-decor-clearance/"
+    },
+    "kitchen-dining-clearance": {
+      "name": "Kitchen & Dining Clearance",
+      "url": "https://www.athome.com/kitchen-dining-clearance/"
+    },
+    "bed-bath-clearance": {
+      "name": "Bed & Bath Clearance",
+      "url": "https://www.athome.com/bed-bath-clearance/"
+    },
+    "pillows-clearance": {
+      "name": "Pillows Clearance",
+      "url": "https://www.athome.com/pillows-clearance/"
+    },
+    "lighting-clearance": {
+      "name": "Lighting Clearance",
+      "url": "https://www.athome.com/lighting-clearance/"
+    },
+    "patio-garden-clearance": {
+      "name": "Outdoor Clearance",
+      "url": "https://www.athome.com/patio-garden-clearance/"
+    },
+    "patio-furniture-clearance": {
+      "name": "Patio Furniture Clearance",
+      "url": "https://www.athome.com/patio-furniture-clearance/"
+    },
+    "patio-cushions-pillows-clearance": {
+      "name": "Patio Cushions & Pillows Clearance",
+      "url": "https://www.athome.com/patio-cushions-pillows-clearance/"
+    },
+    "pots-planters-clearance": {
+      "name": "Pots & Planters Clearance",
+      "url": "https://www.athome.com/pots-planters-clearance/"
+    },
+    "patio-umbrellas-clearance": {
+      "name": "Patio Umbrellas Clearance",
+      "url": "https://www.athome.com/patio-umbrellas-clearance/"
+    },
+    "garden-decor-clearance": {
+      "name": "Garden Decor Clearance",
+      "url": "https://www.athome.com/garden-decor-clearance/"
+    }
+  }
+}
