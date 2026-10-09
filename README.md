@@ -472,6 +472,33 @@ These are still being worked on and currently returned `0` items in recent smoke
 *`Number of items output` reflects recent local smoke runs (typically `max_pages=1`) and can vary by location, anti-bot behavior, and site changes.*
 Many listing spiders accept `-a category=<name>` shortcuts (in addition to `-a category_url=<url>`), including Amazon, Walmart, eBay, Home Depot, Best Buy, and Kroger. Costco listing uses category-only selection.
 
+### Category inventory contract
+
+Every listing spider defines a class-level `categories` inventory as a **mapping
+of group → leaf**:
+
+```python
+categories = {
+    "<group>": {
+        "<leaf>": "https://...",                            # simple form
+        "<leaf>": {"url": "https://...", "slug": "..."},    # rich form
+    },
+}
+```
+
+- The **group** is a navigation parent (department, section, collection).
+- The **leaf** is the crawl target: it is the value `-a category=<leaf>` selects
+  and the unit the Airflow DAG factory schedules one task per.
+- Rich leaf values keep any per-row fields the spider reads at runtime
+  (`slug`, `department`, `category_name`, …).
+- A flat `{leaf: url}` mapping and the legacy `[{"category", "url"}, …]` sequence
+  are still accepted and normalised to a single `"all"` group, so un-migrated
+  spiders keep working.
+- Helpers on `BaseListingSpider`: `iter_categories()` yields rich leaves
+  (`{group, category, url, **extras}`) and `category_entry(name)` looks a leaf up
+  across every group. `group_categories(entries, group_field)` builds the mapping
+  from flat rows, preserving extras as rich leaf values.
+
 ### dell_listing
 
 `dell_listing` reads Dell's authoritative Product Stack bootstrap map from
