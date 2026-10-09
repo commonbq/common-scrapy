@@ -82,6 +82,22 @@ seeds are ranked by the API's live product totals in
 scrapy crawl dollartree_listing -a category=food-candy-drinks -a max_pages=2 -s HTTPCACHE_ENABLED=False -O dollartree.jsonl
 ```
 
+### athome_listing
+
+`athome_listing` requests At Home's first-party Salesforce Commerce Cloud
+`Search-UpdateGrid` AJAX API directly. This is the spider's only product-data
+direction: it does not request category pages and has no JSON-LD fallback. The
+controller returns 24 product tiles plus the authoritative inventory count per
+request; the spider follows its `start` offset and extracts product/master IDs,
+titles, canonical URLs, images, prices, ratings, badges, and clearance metadata.
+The 20 category seeds in `athome_categories.py` are the largest verified
+product-listing categories. Its ordered `FEED_EXPORT_FIELDS` contract has 30
+fields.
+
+```bash
+scrapy crawl athome_listing -a category=area-rugs -a max_pages=2 -s HTTPCACHE_ENABLED=False -O athome.jsonl
+```
+
 ### tripcom_listing
 
 `tripcom_listing` reads the server-provided `data-jsondata` state for Trip.com's
@@ -141,6 +157,7 @@ Working spiders running daily in production:
 
 | Spider Name | Status | Method | Antibot | Description | Number of items output | Spider Categories | Sample output |
 |---|---|---|---|---|---|---|---|
+| [`athome_listing`](#athome_listing) | Active | API | Akamai; ScrapeOps US proxy | At Home products from the SFCC `Search-UpdateGrid` AJAX API only; no category-page or JSON-LD fallback. | 24/API page | Top 20 product-listing categories ranked by measured inventory | `{"category":"christmas","item_id":"125043763","title":"50-Count Burgundy Ornaments, 2.4\"","price":11.99,"currency":"USD","source":"athome_sfra_search_updategrid_api"...}` |
 | [`decathlon_listing`](#decathlon_listing) | Active | API | none detected direct; compatible with plain ScrapeOps US proxy | Decathlon products from Shopify's first-party collection JSON API only; no HTML, embedded-metadata, or JSON-LD fallback. | Up to 250/API page | Top 20 primary-nav collections ranked by product count | `{"category":"camp-hike","item_id":"8209731190846","title":"Simond Men’s Xplore Hooded Down Jacket","price":119.0,"currency":"USD","source":"decathlon_shopify_collection_api"...}` |
 | [`dollartree_listing`](#dollartree_listing) | Active | API | none detected direct | Dollar Tree products from the first-party Oracle Commerce Cloud guided-search API only; no HTML or JSON-LD fallback. | 24/page | Top 20 categories ranked by live product count | `{"category":"food-candy-drinks","item_id":"354662","title":"Lil' Dutch Maid Duplex Crème Cookies.","price":1.25,"currency":"USD","source":"dollartree_occ_guided_search_api"...}` |
 | [`etsy_listing`](#etsy_listing) | Active | html | ScrapeOps US proxy | Etsy products from the server-rendered category document: the `ld+json` `ItemList` plus listing-card markup; the async Neu Spec API is not extractable anonymously (its `public` route returns an empty `output` and the client's results path is an authenticated `member` POST). | 60/page | 20 primary Etsy categories | `{"category":"jewelry","item_id":"1806011672","title":"Baguette Birthstone Necklace, Family Birthstone Necklace, Personalized Gift","price":32.8,"currency":"USD","source":"etsy_itemlist_jsonld"...}` |
