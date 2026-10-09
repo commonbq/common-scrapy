@@ -4623,3 +4623,22 @@ record. Requests go through the configured ScrapeOps US proxy.
 ```bash
 scrapy crawl etsy_listing -a category=jewelry -a max_pages=1 -s HTTPCACHE_ENABLED=False -O etsy.jsonl
 ```
+
+### mediamarkt_listing
+
+`mediamarkt_listing` extracts products exclusively from MediaMarkt Germany's
+server-rendered `window.__PRELOADED_STATE__` bootstrap. The Apollo cache's
+`ProductListPage` supplies the ordered 12-product grid, while its normalized
+product, price, media, availability, badge, and feature entities provide the
+listing fields. It does not parse rendered product cards or JSON-LD, and it
+follows the bootstrap's bounded `?page=N` pagination.
+
+The spider exposes 20 electronics and appliance categories. Its ordered
+`FEED_EXPORT_FIELDS` contract includes product/EAN identity, URLs, imagery,
+current and strike-through prices, discount, ratings, availability,
+marketplace seller data, taxonomy, highlighted features, pagination totals,
+provenance, and the contributing hydrated entities.
+
+```bash
+scrapy crawl mediamarkt_listing -a category='Computer & Büro' -a max_pages=1 -s HTTPCACHE_ENABLED=False -O mediamarkt.jsonl
+```
