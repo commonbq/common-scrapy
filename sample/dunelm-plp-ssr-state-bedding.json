@@ -1,0 +1,540 @@
+{
+  "cdnTimestamp": 1791437350417,
+  "searchParam": {
+    "filterValues": {
+      "hierarchicalCategories.lvl1": [
+        "home and furniture > bedding"
+      ]
+    },
+    "query": "",
+    "page": 0,
+    "orderBy": "ranking_desc"
+  },
+  "productCount": 60,
+  "partialProductById_sample": {
+    "1000000601": {
+      "id": "1000000601",
+      "productUrl": "non-iron-plain-fitted-sheet-1000000601",
+      "name": "Non Iron Plain Fitted Sheet",
+      "brand": "Dunelm",
+      "type": "",
+      "colors": [
+        "Ivory",
+        "White",
+        "Silver",
+        "Navy"
+      ],
+      "priceRange": {
+        "wasMin": null,
+        "wasMax": null,
+        "min": 6,
+        "max": 20
+      },
+      "orderBy": "",
+      "description": {
+        "short": "",
+        "long": ""
+      },
+      "goodToKnow": "",
+      "rating": 3,
+      "category": [
+        {
+          "key": "Home-and-Furniture",
+          "label": "Home and Furniture"
+        },
+        {
+          "key": "Bedding",
+          "label": "Bedding"
+        },
+        {
+          "key": "All-Bedding",
+          "label": "All Bedding"
+        }
+      ],
+      "options": [],
+      "primaryWebCategory": "Bed_Sheets",
+      "skus": [
+        {
+          "id": "30145683",
+          "productId": "1000000601",
+          "productUrl": "non-iron-plain-fitted-sheet-1000000601",
+          "name": "",
+          "brand": "Dunelm",
+          "type": "",
+          "department": "",
+          "colors": [
+            "Ivory",
+            "White",
+            "Silver",
+            "Navy"
+          ],
+          "consciousChoice": [],
+          "colourGroup": "Other",
+          "description": {
+            "short": "",
+            "long": ""
+          },
+          "orderBy": "",
+          "hideWasNow": "Y",
+          "colourOptionImage": "",
+          "showNowPrice": false,
+          "price": {
+            "previous": [],
+            "current": 12,
+            "history": []
+          },
+          "media": {
+            "image": [
+              "30145683.jpg",
+              "30145683_alt01.jpg",
+              "30145683_alt02.jpg",
+              "30145683_alt03.jpg"
+            ],
+            "youtubeId": ""
+          },
+          "documents": [],
+          "options": {},
+          "features": {},
+          "clickAndCollectEligible": false,
+          "xSell": {
+            "quantity": 1
+          },
+          "totalReviewCount": 4324,
+          "customProduct": "",
+          "crossSellSortOrder": "",
+          "multiSelectProductOptions": {},
+          "availableServices": {
+            "fitting": null
+          },
+          "associatedSkus": [],
+          "perfectMatch": {
+            "sku": null,
+            "quantity": 1
+          },
+          "skuCount": 62,
+          "isReturnable": true,
+          "maxFabricWidth": null,
+          "highlights": [],
+          "crossSellAssociations": [],
+          "defaultProduct": {
+            "name": "Non Iron Plain Fitted Sheet",
+            "priceRange": {
+              "wasMin": null,
+              "wasMax": null,
+              "min": 6,
+              "max": 20
+            }
+          },
+          "longTermCreditProduct": "Ineligible"
+        }
+      ],
+      "hideWasNow": "Y",
+      "colourOptionImage": "",
+      "sticker": null,
+      "hierarchicalCategories": {
+        "lvl1": [
+          "Home and Furniture > Bedding",
+          "Sale > All Sale",
+          "Home and Furniture > Great Value Everyday",
+          "Inspiration > Modern Style"
+        ],
+        "lvl0": [
+          "Home and Furniture",
+          "Sale",
+          "Inspiration"
+        ],
+        "lvl2": [
+          "Home and Furniture > Bedding > All Bedding",
+          "Home and Furniture > Bedding > Bed Sheets"
+        ]
+      },
+      "totalReviewCount": 4324,
+      "isBundle": false,
+      "skuCount": 62,
+      "longTermCreditProduct": "Ineligible",
+      "showNowPrice": false
+    },
+    "1000068017": {
+      "id": "1000068017",
+      "productUrl": "fogarty-superfull-135-tog-duvet-1000068017",
+      "name": "Fogarty Superfull 13.5 Tog Winter Duvet",
+      "brand": "Dunelm",
+      "type": "",
+      "colors": [],
+      "priceRange": {
+        "wasMin": null,
+        "wasMax": null,
+        "min": 34,
+        "max": 46
+      },
+      "orderBy": "",
+      "description": {
+        "short": "",
+        "long": ""
+      },
+      "goodToKnow": "",
+      "rating": 3,
+      "category": [
+        {
+          "key": "Home-and-Furniture",
+          "label": "Home and Furniture"
+        },
+        {
+          "key": "Bedding",
+          "label": "Bedding"
+        },
+        {
+          "key": "All-Bedding",
+          "label": "All Bedding"
+        }
+      ],
+      "options": [],
+      "primaryWebCategory": "Duvets",
+      "skus": [
+        {
+          "id": "30193150",
+          "productId": "1000068017",
+          "productUrl": "fogarty-superfull-135-tog-duvet-1000068017",
+          "name": "",
+          "brand": "Dunelm",
+          "type": "",
+          "department": "",
+          "colors": [],
+          "consciousChoice": [],
+          "colourGroup": "Other",
+          "description": {
+            "short": "",
+            "long": ""
+          },
+          "orderBy": "",
+          "hideWasNow": "Y",
+          "colourOptionImage": "",
+          "showNowPrice": false,
+          "price": {
+            "previous": [],
+            "current": 38,
+            "history": []
+          },
+          "media": {
+            "image": [
+              "30193150.jpg",
+              "30193150_alt01.jpg",
+              "30193150_alt02.jpg"
+            ],
+            "youtubeId": ""
+          },
+          "documents": [],
+          "options": {},
+          "features": {},
+          "clickAndCollectEligible": false,
+          "xSell": {
+            "quantity": 1
+          },
+          "totalReviewCount": 647,
+          "customProduct": "",
+          "crossSellSortOrder": "",
+          "multiSelectProductOptions": {},
+          "availableServices": {
+            "fitting": null
+          },
+          "associatedSkus": [],
+          "perfectMatch": {
+            "sku": null,
+            "quantity": 1
+          },
+          "skuCount": 4,
+          "isReturnable": true,
+          "maxFabricWidth": null,
+          "highlights": [],
+          "crossSellAssociations": [],
+          "defaultProduct": {
+            "name": "Fogarty Superfull 13.5 Tog Winter Duvet",
+            "priceRange": {
+              "wasMin": null,
+              "wasMax": null,
+              "min": 34,
+              "max": 46
+            }
+          },
+          "longTermCreditProduct": "Ineligible"
+        }
+      ],
+      "hideWasNow": "Y",
+      "colourOptionImage": "",
+      "sticker": null,
+      "hierarchicalCategories": {
+        "lvl1": [
+          "Home and Furniture > Bedding",
+          "Brands > All Brands",
+          "Seasonal > The Cosy Zone",
+          "Brands > Fogarty",
+          "Sale > All Sale",
+          "Seasonal > Cold Weather Essentials",
+          "Seasonal > Snowy Day Essentials"
+        ],
+        "lvl0": [
+          "Home and Furniture",
+          "Brands",
+          "Seasonal",
+          "Sale"
+        ],
+        "lvl2": [
+          "Home and Furniture > Bedding > All Bedding",
+          "Seasonal > The Cosy Zone > All Cosy Zone",
+          "Brands > Fogarty > All Fogarty",
+          "Home and Furniture > Bedding > Duvets",
+          "Home and Furniture > Bedding > Winter Bedding"
+        ]
+      },
+      "totalReviewCount": 647,
+      "isBundle": false,
+      "skuCount": 4,
+      "longTermCreditProduct": "Ineligible",
+      "showNowPrice": false
+    },
+    "1000074899": {
+      "id": "1000074899",
+      "productUrl": "fogarty-soft-touch-fitted-sheet-1000074899",
+      "name": "Fogarty Soft Touch Fitted Sheet",
+      "brand": "Dunelm",
+      "type": "",
+      "colors": [
+        "White",
+        "Silver",
+        "Teal Blue",
+        "Dark Navy",
+        "Iris",
+        "Forest Green",
+        "Eucalyptus",
+        "Duck Egg Blue",
+        "Ochre",
+        "Luxe Navy",
+        "Ocean Blue",
+        "Chai",
+        "Olive Green",
+        "Mushroom",
+        "Rose",
+        "Rhino Grey",
+        "Chalk Pink",
+        "Ivory",
+        "Cranberry",
+        "Daffodil",
+        "Cornish Blue",
+        "Folkstone Blue",
+        "White Sand"
+      ],
+      "priceRange": {
+        "wasMin": null,
+        "wasMax": null,
+        "min": 7,
+        "max": 22
+      },
+      "orderBy": "",
+      "description": {
+        "short": "",
+        "long": ""
+      },
+      "goodToKnow": "",
+      "rating": 3,
+      "category": [
+        {
+          "key": "Home-and-Furniture",
+          "label": "Home and Furniture"
+        },
+        {
+          "key": "Bedding",
+          "label": "Bedding"
+        },
+        {
+          "key": "All-Bedding",
+          "label": "All Bedding"
+        }
+      ],
+      "options": [],
+      "primaryWebCategory": "Bed_Sheets",
+      "skus": [
+        {
+          "id": "30214618",
+          "productId": "1000074899",
+          "productUrl": "fogarty-soft-touch-fitted-sheet-1000074899",
+          "name": "",
+          "brand": "Dunelm",
+          "type": "",
+          "department": "",
+          "colors": [
+            "White",
+            "Silver",
+            "Teal Blue",
+            "Dark Navy",
+            "Iris",
+            "Forest Green",
+            "Eucalyptus",
+            "Duck Egg Blue",
+            "Ochre",
+            "Luxe Navy",
+            "Ocean Blue",
+            "Chai",
+            "Olive Green",
+            "Mushroom",
+            "Rose",
+            "Rhino Grey",
+            "Chalk Pink",
+            "Ivory",
+            "Cranberry",
+            "Daffodil",
+            "Cornish Blue",
+            "Folkstone Blue",
+            "White Sand"
+          ],
+          "consciousChoice": [],
+          "colourGroup": "Other",
+          "description": {
+            "short": "",
+            "long": ""
+          },
+          "orderBy": "",
+          "hideWasNow": "N",
+          "colourOptionImage": "",
+          "showNowPrice": false,
+          "price": {
+            "previous": [],
+            "current": 14,
+            "history": []
+          },
+          "media": {
+            "image": [
+              "30214618.jpg"
+            ],
+            "youtubeId": ""
+          },
+          "documents": [],
+          "options": {},
+          "features": {},
+          "clickAndCollectEligible": false,
+          "xSell": {
+            "quantity": 1
+          },
+          "totalReviewCount": 3911,
+          "customProduct": "",
+          "crossSellSortOrder": "",
+          "multiSelectProductOptions": {},
+          "availableServices": {
+            "fitting": null
+          },
+          "associatedSkus": [],
+          "perfectMatch": {
+            "sku": null,
+            "quantity": 1
+          },
+          "skuCount": 290,
+          "isReturnable": true,
+          "maxFabricWidth": null,
+          "highlights": [],
+          "crossSellAssociations": [],
+          "defaultProduct": {
+            "name": "Fogarty Soft Touch Fitted Sheet",
+            "priceRange": {
+              "wasMin": null,
+              "wasMax": null,
+              "min": 7,
+              "max": 22
+            }
+          },
+          "longTermCreditProduct": "Ineligible"
+        }
+      ],
+      "hideWasNow": "N",
+      "colourOptionImage": "",
+      "sticker": {
+        "label": "New",
+        "color": "blue",
+        "enabled": true
+      },
+      "hierarchicalCategories": {
+        "lvl1": [
+          "Home and Furniture > Bedding",
+          "Brands > All Brands",
+          "Brands > Fogarty"
+        ],
+        "lvl0": [
+          "Home and Furniture",
+          "Brands"
+        ],
+        "lvl2": [
+          "Home and Furniture > Bedding > All Bedding",
+          "Brands > Fogarty > All Fogarty",
+          "Home and Furniture > Bedding > Bed Sheets"
+        ]
+      },
+      "totalReviewCount": 3911,
+      "isBundle": false,
+      "skuCount": 290,
+      "longTermCreditProduct": "Ineligible",
+      "showNowPrice": false
+    }
+  },
+  "algoliaConfig": {
+    "id": "FY8PLEBN34",
+    "key": "ae9bc9ca475f6c3d7579016da0305a33",
+    "cdaV2": {
+      "index": "prod_CDA"
+    },
+    "seo": {
+      "id": "FY8PLEBN34",
+      "key": "93d035147fa219c8c22bf3c0663a18e5",
+      "index": "seo_prod"
+    },
+    "displayNamesMapper": {
+      "index": "display_name_mapper_prod"
+    },
+    "indexes": {
+      "ranking_desc": "search_prod",
+      "publishedDate_desc": "search_prod__sort_newest",
+      "rating_desc": "search_prod__sort_rating",
+      "newest": "search_prod__sort_newest",
+      "price_asc": "search_prod__sort_asc",
+      "price_desc": "search_prod__sort_desc",
+      "category": "category",
+      "biggest_discount": "search_prod__sort_biggest_discount",
+      "products": "search_prod",
+      "display_names": "display_names"
+    },
+    "experimentationIndexes": {
+      "ranking_desc": "experimentation_search_prod",
+      "price_asc": "experimentation_search_prod__sort_asc",
+      "price_desc": "experimentation_search_prod__sort_desc",
+      "rating_desc": "experimentation_search_prod__sort_rating",
+      "category": "category",
+      "newest": "experimentation_search_prod__sort_newest",
+      "biggest_discount": "experimentation_search_prod__sort_biggest_discount"
+    },
+    "querySuggestions": {
+      "key": "ae9bc9ca475f6c3d7579016da0305a33",
+      "index": "search_prod_query_suggestions",
+      "hitsPerPage": 5,
+      "minimumCharactersForSearch": 1,
+      "attributesToRetrieve": [
+        "query"
+      ],
+      "numberOfAutosuggestions": "8"
+    },
+    "filter": {
+      "index": "filter_order",
+      "indexExperimentation": "filter_order_experimentation",
+      "searchIndex": "filter_order_search",
+      "searchIndexExperimentation": "filter_order_search_experimentation"
+    }
+  },
+  "enrichedProductApi": {
+    "url": "https://enriched-product-api.dunelm.com"
+  },
+  "appConfig": {
+    "domain": "www.dunelm.com",
+    "protocol": "https",
+    "basename": "",
+    "version": "fb810220",
+    "env": "Production",
+    "releaseDate": "",
+    "devServer": false
+  }
+}

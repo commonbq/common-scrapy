@@ -1,0 +1,142 @@
+{
+  "id": "1000000601",
+  "productUrl": "non-iron-plain-fitted-sheet-1000000601",
+  "name": "Non Iron Plain Fitted Sheet",
+  "brand": "Dunelm",
+  "type": "",
+  "colors": [
+    "Ivory",
+    "White",
+    "Silver",
+    "Navy"
+  ],
+  "priceRange": {
+    "wasMin": null,
+    "wasMax": null,
+    "min": 6,
+    "max": 20
+  },
+  "orderBy": "",
+  "description": {
+    "short": "",
+    "long": ""
+  },
+  "goodToKnow": "",
+  "rating": 3,
+  "category": [
+    {
+      "key": "Home-and-Furniture",
+      "label": "Home and Furniture"
+    },
+    {
+      "key": "Bedding",
+      "label": "Bedding"
+    },
+    {
+      "key": "All-Bedding",
+      "label": "All Bedding"
+    }
+  ],
+  "options": [],
+  "primaryWebCategory": "Bed_Sheets",
+  "skus": [
+    {
+      "id": "30145683",
+      "productId": "1000000601",
+      "productUrl": "non-iron-plain-fitted-sheet-1000000601",
+      "name": "",
+      "brand": "Dunelm",
+      "type": "",
+      "department": "",
+      "colors": [
+        "Ivory",
+        "White",
+        "Silver",
+        "Navy"
+      ],
+      "consciousChoice": [],
+      "colourGroup": "Other",
+      "description": {
+        "short": "",
+        "long": ""
+      },
+      "orderBy": "",
+      "hideWasNow": "Y",
+      "colourOptionImage": "",
+      "showNowPrice": false,
+      "price": {
+        "previous": [],
+        "current": 12,
+        "history": []
+      },
+      "media": {
+        "image": [
+          "30145683.jpg",
+          "30145683_alt01.jpg",
+          "30145683_alt02.jpg",
+          "30145683_alt03.jpg"
+        ],
+        "youtubeId": ""
+      },
+      "documents": [],
+      "options": {},
+      "features": {},
+      "clickAndCollectEligible": false,
+      "xSell": {
+        "quantity": 1
+      },
+      "totalReviewCount": 4324,
+      "customProduct": "",
+      "crossSellSortOrder": "",
+      "multiSelectProductOptions": {},
+      "availableServices": {
+        "fitting": null
+      },
+      "associatedSkus": [],
+      "perfectMatch": {
+        "sku": null,
+        "quantity": 1
+      },
+      "skuCount": 62,
+      "isReturnable": true,
+      "maxFabricWidth": null,
+      "highlights": [],
+      "crossSellAssociations": [],
+      "defaultProduct": {
+        "name": "Non Iron Plain Fitted Sheet",
+        "priceRange": {
+          "wasMin": null,
+          "wasMax": null,
+          "min": 6,
+          "max": 20
+        }
+      },
+      "longTermCreditProduct": "Ineligible"
+    }
+  ],
+  "hideWasNow": "Y",
+  "colourOptionImage": "",
+  "sticker": null,
+  "hierarchicalCategories": {
+    "lvl1": [
+      "Home and Furniture > Bedding",
+      "Sale > All Sale",
+      "Home and Furniture > Great Value Everyday",
+      "Inspiration > Modern Style"
+    ],
+    "lvl0": [
+      "Home and Furniture",
+      "Sale",
+      "Inspiration"
+    ],
+    "lvl2": [
+      "Home and Furniture > Bedding > All Bedding",
+      "Home and Furniture > Bedding > Bed Sheets"
+    ]
+  },
+  "totalReviewCount": 4324,
+  "isBundle": false,
+  "skuCount": 62,
+  "longTermCreditProduct": "Ineligible",
+  "showNowPrice": false
+}
