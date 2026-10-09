@@ -1,0 +1,165 @@
+{
+ "top20": [
+  {
+   "name": "kitchen cabinets",
+   "url": "https://www.toolstation.com/kitchens/kitchen-cabinets/c1468",
+   "id": "c1468",
+   "products": 1771,
+   "department": "kitchens",
+   "path": "kitchens/kitchen-cabinets"
+  },
+  {
+   "name": "flat pack kitchen units",
+   "url": "https://www.toolstation.com/kitchens/flat-pack-kitchen-units/c1500",
+   "id": "c1500",
+   "products": 1376,
+   "department": "kitchens",
+   "path": "kitchens/flat-pack-kitchen-units"
+  },
+  {
+   "name": "joinery",
+   "url": "https://www.toolstation.com/construction-insulation/joinery/c1478",
+   "id": "c1478",
+   "products": 1325,
+   "department": "construction-insulation",
+   "path": "construction-insulation/joinery"
+  },
+  {
+   "name": "shower enclosures",
+   "url": "https://www.toolstation.com/bathrooms/shower-enclosures/c1089",
+   "id": "c1089",
+   "products": 1000,
+   "department": "bathrooms",
+   "path": "bathrooms/shower-enclosures"
+  },
+  {
+   "name": "cutting blades",
+   "url": "https://www.toolstation.com/power-tool-accessories/cutting-blades/c715",
+   "id": "c715",
+   "products": 859,
+   "department": "power-tool-accessories",
+   "path": "power-tool-accessories/cutting-blades"
+  },
+  {
+   "name": "drill bits",
+   "url": "https://www.toolstation.com/power-tool-accessories/drill-bits/c713",
+   "id": "c713",
+   "products": 853,
+   "department": "power-tool-accessories",
+   "path": "power-tool-accessories/drill-bits"
+  },
+  {
+   "name": "switches sockets",
+   "url": "https://www.toolstation.com/electrical-supplies-accessories/switches-sockets/c660",
+   "id": "c660",
+   "products": 794,
+   "department": "electrical-supplies-accessories",
+   "path": "electrical-supplies-accessories/switches-sockets"
+  },
+  {
+   "name": "screws",
+   "url": "https://www.toolstation.com/screws-fixings/screws/c728",
+   "id": "c728",
+   "products": 758,
+   "department": "screws-fixings",
+   "path": "screws-fixings/screws"
+  },
+  {
+   "name": "boiler spares",
+   "url": "https://www.toolstation.com/central-heating-supplies/boiler-spares/c1562",
+   "id": "c1562",
+   "products": 680,
+   "department": "central-heating-supplies",
+   "path": "central-heating-supplies/boiler-spares"
+  },
+  {
+   "name": "cable management",
+   "url": "https://www.toolstation.com/electrical-supplies-accessories/cable-management/c207",
+   "id": "c207",
+   "products": 621,
+   "department": "electrical-supplies-accessories",
+   "path": "electrical-supplies-accessories/cable-management"
+  },
+  {
+   "name": "workwear",
+   "url": "https://www.toolstation.com/workwear-safety/workwear/c794",
+   "id": "c794",
+   "products": 609,
+   "department": "workwear-safety",
+   "path": "workwear-safety/workwear"
+  },
+  {
+   "name": "designer radiators",
+   "url": "https://www.toolstation.com/central-heating-supplies/designer-radiators/c769",
+   "id": "c769",
+   "products": 601,
+   "department": "central-heating-supplies",
+   "path": "central-heating-supplies/designer-radiators"
+  },
+  {
+   "name": "doors",
+   "url": "https://www.toolstation.com/construction-insulation/doors/c1463",
+   "id": "c1463",
+   "products": 520,
+   "department": "construction-insulation",
+   "path": "construction-insulation/doors"
+  },
+  {
+   "name": "outdoor buildings",
+   "url": "https://www.toolstation.com/landscaping/outdoor-buildings/c692",
+   "id": "c692",
+   "products": 518,
+   "department": "landscaping",
+   "path": "landscaping/outdoor-buildings"
+  },
+  {
+   "name": "door locks security",
+   "url": "https://www.toolstation.com/ironmongery/door-locks-security/c680",
+   "id": "c680",
+   "products": 509,
+   "department": "ironmongery",
+   "path": "ironmongery/door-locks-security"
+  },
+  {
+   "name": "safety footwear",
+   "url": "https://www.toolstation.com/workwear-safety/safety-footwear/c737",
+   "id": "c737",
+   "products": 496,
+   "department": "workwear-safety",
+   "path": "workwear-safety/safety-footwear"
+  },
+  {
+   "name": "door handles knobs",
+   "url": "https://www.toolstation.com/ironmongery/door-handles-knobs/c678",
+   "id": "c678",
+   "products": 494,
+   "department": "ironmongery",
+   "path": "ironmongery/door-handles-knobs"
+  },
+  {
+   "name": "sheds",
+   "url": "https://www.toolstation.com/landscaping/sheds/c781",
+   "id": "c781",
+   "products": 488,
+   "department": "landscaping",
+   "path": "landscaping/sheds"
+  },
+  {
+   "name": "bathroom fittings",
+   "url": "https://www.toolstation.com/bathrooms/bathroom-fittings/c1090",
+   "id": "c1090",
+   "products": 475,
+   "department": "bathrooms",
+   "path": "bathrooms/bathroom-fittings"
+  },
+  {
+   "name": "push fit fittings",
+   "url": "https://www.toolstation.com/plumbing/push-fit-fittings/c968",
+   "id": "c968",
+   "products": 474,
+   "department": "plumbing",
+   "path": "plumbing/push-fit-fittings"
+  }
+ ],
+ "note": "Ranked by \"(N products)\" count measured on each PLP; promotional deals/* and sale-clearance/* excluded."
+}

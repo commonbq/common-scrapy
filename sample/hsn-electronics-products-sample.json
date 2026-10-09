@@ -1,0 +1,416 @@
+[
+  {
+    "current_time": 0,
+    "display_page": 0,
+    "display_count": 0,
+    "display_skip": 0,
+    "product_id": [
+      23993915
+    ],
+    "product_sku": [
+      944190
+    ],
+    "product_brand": [
+      "HP"
+    ],
+    "product_name": [
+      "HP OmniBook 3 16 Touch Intel Laptop 4GB RAM 128GB SSD w MS365, SmartFriend  Voucher"
+    ],
+    "product_sale_price": [
+      459.99
+    ],
+    "product_original_price": [
+      559.99
+    ],
+    "product_shipping_handling": [
+      "0.00"
+    ],
+    "product_brand_attribute": [
+      {
+        "Name": "HP",
+        "Id": 51
+      }
+    ],
+    "product_brand_name": [
+      "HP"
+    ],
+    "product_brand_id": [
+      51
+    ],
+    "categories": [
+      [
+        {
+          "Name": "Electronics",
+          "Id": "EC"
+        },
+        {
+          "Name": "Computers",
+          "Id": "EC0027"
+        },
+        {
+          "Name": "Laptops",
+          "Id": "EC0033"
+        }
+      ]
+    ],
+    "product_primary_category_id": [
+      "EC0033"
+    ],
+    "product_primary_category_name": [
+      "Laptops"
+    ],
+    "product_attributes": [
+      []
+    ],
+    "product_item_flag": [
+      "Customer Pick"
+    ],
+    "product_rating_average": [
+      0.0
+    ],
+    "product_rating_count": [
+      0
+    ],
+    "product_retek_division": [
+      6
+    ],
+    "product_afs_status": [
+      true
+    ],
+    "is_onair_today": [
+      false
+    ],
+    "error_type": 0,
+    "search_suggested": false
+  },
+  {
+    "current_time": 0,
+    "display_page": 0,
+    "display_count": 0,
+    "display_skip": 0,
+    "product_id": [
+      23993915
+    ],
+    "product_sku": [
+      944190
+    ],
+    "product_brand": [
+      "HP"
+    ],
+    "product_name": [
+      "HP OmniBook 3 16 Touch Intel Laptop 4GB RAM 128GB SSD w MS365, SmartFriend  Voucher"
+    ],
+    "product_sale_price": [
+      459.99
+    ],
+    "product_original_price": [
+      559.99
+    ],
+    "product_shipping_handling": [
+      "0.00"
+    ],
+    "product_brand_attribute": [
+      {
+        "Name": "HP",
+        "Id": 51
+      }
+    ],
+    "product_brand_name": [
+      "HP"
+    ],
+    "product_brand_id": [
+      51
+    ],
+    "categories": [
+      [
+        {
+          "Name": "Electronics",
+          "Id": "EC"
+        },
+        {
+          "Name": "Computers",
+          "Id": "EC0027"
+        },
+        {
+          "Name": "Laptops",
+          "Id": "EC0033"
+        }
+      ]
+    ],
+    "product_primary_category_id": [
+      "EC0033"
+    ],
+    "product_primary_category_name": [
+      "Laptops"
+    ],
+    "product_attributes": [
+      []
+    ],
+    "product_item_flag": [
+      "Customer Pick"
+    ],
+    "product_rating_average": [
+      0.0
+    ],
+    "product_rating_count": [
+      0
+    ],
+    "product_retek_division": [
+      6
+    ],
+    "product_afs_status": [
+      true
+    ],
+    "is_onair_today": [
+      false
+    ],
+    "error_type": 0,
+    "search_suggested": false
+  },
+  {
+    "current_time": 0,
+    "display_page": 0,
+    "display_count": 0,
+    "display_skip": 0,
+    "product_id": [
+      23997004
+    ],
+    "product_sku": [
+      944581
+    ],
+    "product_brand": [
+      "none"
+    ],
+    "product_name": [
+      "HP 17 Touch OmniBook 3 N150 128GB RAM Laptop wMS365  Voucher"
+    ],
+    "product_sale_price": [
+      629.99
+    ],
+    "product_original_price": [
+      769.99
+    ],
+    "product_shipping_handling": [
+      "0.00"
+    ],
+    "product_brand_attribute": [
+      {}
+    ],
+    "product_brand_name": [
+      ""
+    ],
+    "product_brand_id": [
+      null
+    ],
+    "categories": [
+      [
+        {
+          "Name": "Electronics",
+          "Id": "EC"
+        },
+        {
+          "Name": "Computers",
+          "Id": "EC0027"
+        },
+        {
+          "Name": "Laptops",
+          "Id": "EC0033"
+        }
+      ]
+    ],
+    "product_primary_category_id": [
+      "EC0033"
+    ],
+    "product_primary_category_name": [
+      "Laptops"
+    ],
+    "product_attributes": [
+      []
+    ],
+    "product_item_flag": [
+      "Customer Pick"
+    ],
+    "product_rating_average": [
+      0.0
+    ],
+    "product_rating_count": [
+      0
+    ],
+    "product_retek_division": [
+      6
+    ],
+    "product_afs_status": [
+      true
+    ],
+    "is_onair_today": [
+      false
+    ],
+    "error_type": 0,
+    "search_suggested": false
+  },
+  {
+    "current_time": 0,
+    "display_page": 0,
+    "display_count": 0,
+    "display_skip": 0,
+    "product_id": [
+      23997004
+    ],
+    "product_sku": [
+      944581
+    ],
+    "product_brand": [
+      "none"
+    ],
+    "product_name": [
+      "HP 17 Touch OmniBook 3 N150 128GB RAM Laptop wMS365  Voucher"
+    ],
+    "product_sale_price": [
+      629.99
+    ],
+    "product_original_price": [
+      769.99
+    ],
+    "product_shipping_handling": [
+      "0.00"
+    ],
+    "product_brand_attribute": [
+      {}
+    ],
+    "product_brand_name": [
+      ""
+    ],
+    "product_brand_id": [
+      null
+    ],
+    "categories": [
+      [
+        {
+          "Name": "Electronics",
+          "Id": "EC"
+        },
+        {
+          "Name": "Computers",
+          "Id": "EC0027"
+        },
+        {
+          "Name": "Laptops",
+          "Id": "EC0033"
+        }
+      ]
+    ],
+    "product_primary_category_id": [
+      "EC0033"
+    ],
+    "product_primary_category_name": [
+      "Laptops"
+    ],
+    "product_attributes": [
+      []
+    ],
+    "product_item_flag": [
+      "Customer Pick"
+    ],
+    "product_rating_average": [
+      0.0
+    ],
+    "product_rating_count": [
+      0
+    ],
+    "product_retek_division": [
+      6
+    ],
+    "product_afs_status": [
+      true
+    ],
+    "is_onair_today": [
+      false
+    ],
+    "error_type": 0,
+    "search_suggested": false
+  },
+  {
+    "current_time": 0,
+    "display_page": 0,
+    "display_count": 0,
+    "display_skip": 0,
+    "product_id": [
+      20835639
+    ],
+    "product_sku": [
+      1345454
+    ],
+    "product_brand": [
+      "Apple"
+    ],
+    "product_name": [
+      "Refurbished 2017 Apple MacBook Air 13 128GB Bundle"
+    ],
+    "product_sale_price": [
+      384.99
+    ],
+    "product_original_price": [
+      439.99
+    ],
+    "product_shipping_handling": [
+      "0.00"
+    ],
+    "product_brand_attribute": [
+      {
+        "Name": "Apple",
+        "Id": 8682
+      }
+    ],
+    "product_brand_name": [
+      "Apple"
+    ],
+    "product_brand_id": [
+      8682
+    ],
+    "categories": [
+      [
+        {
+          "Name": "Electronics",
+          "Id": "EC"
+        },
+        {
+          "Name": "Computers",
+          "Id": "EC0027"
+        },
+        {
+          "Name": "Laptops",
+          "Id": "EC0033"
+        }
+      ]
+    ],
+    "product_primary_category_id": [
+      "EC0033"
+    ],
+    "product_primary_category_name": [
+      "Laptops"
+    ],
+    "product_attributes": [
+      []
+    ],
+    "product_item_flag": [
+      null
+    ],
+    "product_rating_average": [
+      3.0
+    ],
+    "product_rating_count": [
+      2
+    ],
+    "product_retek_division": [
+      6
+    ],
+    "product_afs_status": [
+      true
+    ],
+    "is_onair_today": [
+      false
+    ],
+    "error_type": 0,
+    "search_suggested": false
+  }
+]
