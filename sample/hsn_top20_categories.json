@@ -1,0 +1,122 @@
+[
+  {
+    "rank": 1,
+    "name": "Fashion",
+    "url": "https://www.hsn.com/shop/fashion/fa",
+    "level": "L1"
+  },
+  {
+    "rank": 2,
+    "name": "Home",
+    "url": "https://www.hsn.com/shop/home/ho",
+    "level": "L1"
+  },
+  {
+    "rank": 3,
+    "name": "Electronics",
+    "url": "https://www.hsn.com/shop/electronics/ec",
+    "level": "L1"
+  },
+  {
+    "rank": 4,
+    "name": "Beauty",
+    "url": "https://www.hsn.com/shop/beauty/bs",
+    "level": "L1"
+  },
+  {
+    "rank": 5,
+    "name": "Jewelry",
+    "url": "https://www.hsn.com/shop/jewelry/j",
+    "level": "L1"
+  },
+  {
+    "rank": 6,
+    "name": "Kitchen & Food",
+    "url": "https://www.hsn.com/shop/kitchen-and-food/qc",
+    "level": "L1"
+  },
+  {
+    "rank": 7,
+    "name": "Health & Fitness",
+    "url": "https://www.hsn.com/shop/health-and-fitness/hf",
+    "level": "L1"
+  },
+  {
+    "rank": 8,
+    "name": "Crafts & Sewing",
+    "url": "https://www.hsn.com/shop/crafts-and-sewing/ct",
+    "level": "L1"
+  },
+  {
+    "rank": 9,
+    "name": "Shoes",
+    "url": "https://www.hsn.com/shop/shoes/fa0045",
+    "level": "L1"
+  },
+  {
+    "rank": 10,
+    "name": "Men's",
+    "url": "https://www.hsn.com/shop/mens/mn",
+    "level": "L1"
+  },
+  {
+    "rank": 11,
+    "name": "Fan Shop",
+    "url": "https://www.hsn.com/shop/fan-shop/sp",
+    "level": "L1"
+  },
+  {
+    "rank": 12,
+    "name": "Dresses",
+    "url": "https://www.hsn.com/shop/dresses/fa0283",
+    "level": "L2"
+  },
+  {
+    "rank": 13,
+    "name": "Women's Tops",
+    "url": "https://www.hsn.com/shop/womens-tops/fa0053",
+    "level": "L2"
+  },
+  {
+    "rank": 14,
+    "name": "Women's Jeans",
+    "url": "https://www.hsn.com/shop/womens-jeans/fa0173",
+    "level": "L2"
+  },
+  {
+    "rank": 15,
+    "name": "Intimates",
+    "url": "https://www.hsn.com/shop/intimates/fa0031",
+    "level": "L2"
+  },
+  {
+    "rank": 16,
+    "name": "Handbags & Wallets",
+    "url": "https://www.hsn.com/shop/handbags-and-wallets/fa0402",
+    "level": "L2"
+  },
+  {
+    "rank": 17,
+    "name": "Home Appliances",
+    "url": "https://www.hsn.com/shop/home-appliances/ho0209",
+    "level": "L2"
+  },
+  {
+    "rank": 18,
+    "name": "Storage & Organization",
+    "url": "https://www.hsn.com/shop/storage-and-organization/ho0299",
+    "level": "L2"
+  },
+  {
+    "rank": 19,
+    "name": "Vacuums & Floor Care",
+    "url": "https://www.hsn.com/shop/vacuums-and-floor-care/ho0441",
+    "level": "L2"
+  },
+  {
+    "rank": 20,
+    "name": "Luggage & Travel",
+    "url": "https://www.hsn.com/shop/luggage-and-travel/ho0235",
+    "level": "L2"
+  }
+]

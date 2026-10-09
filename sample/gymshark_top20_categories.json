@@ -1,0 +1,182 @@
+[
+ {
+  "name": "All Products",
+  "url": "https://www.gymshark.com/collections/all-products",
+  "handle": "all-products",
+  "path": "all-products",
+  "gender": null,
+  "products": 2472,
+  "rank": 1
+ },
+ {
+  "name": "Steven Kelly",
+  "url": "https://www.gymshark.com/collections/steven-kelly",
+  "handle": "steven-kelly",
+  "path": "steven-kelly",
+  "gender": null,
+  "products": 2472,
+  "rank": 2
+ },
+ {
+  "name": "All Products (Women)",
+  "url": "https://www.gymshark.com/collections/all-products/womens",
+  "handle": "all-products",
+  "path": "all-products/womens",
+  "gender": "womens",
+  "products": 1528,
+  "rank": 3
+ },
+ {
+  "name": "Conditioning",
+  "url": "https://www.gymshark.com/collections/conditioning",
+  "handle": "conditioning",
+  "path": "conditioning",
+  "gender": null,
+  "products": 1218,
+  "rank": 4
+ },
+ {
+  "name": "All Products (Men)",
+  "url": "https://www.gymshark.com/collections/all-products/mens",
+  "handle": "all-products",
+  "path": "all-products/mens",
+  "gender": "mens",
+  "products": 1123,
+  "rank": 5
+ },
+ {
+  "name": "Steven Kelly (Men)",
+  "url": "https://www.gymshark.com/collections/steven-kelly/mens",
+  "handle": "steven-kelly",
+  "path": "steven-kelly/mens",
+  "gender": "mens",
+  "products": 1123,
+  "rank": 6
+ },
+ {
+  "name": "Matching Sets",
+  "url": "https://www.gymshark.com/collections/matching-sets",
+  "handle": "matching-sets",
+  "path": "matching-sets",
+  "gender": null,
+  "products": 1118,
+  "rank": 7
+ },
+ {
+  "name": "Matching Sets (Women)",
+  "url": "https://www.gymshark.com/collections/matching-sets/womens",
+  "handle": "matching-sets",
+  "path": "matching-sets/womens",
+  "gender": "womens",
+  "products": 1004,
+  "rank": 8
+ },
+ {
+  "name": "T Shirts Tops",
+  "url": "https://www.gymshark.com/collections/t-shirts-tops",
+  "handle": "t-shirts-tops",
+  "path": "t-shirts-tops",
+  "gender": null,
+  "products": 825,
+  "rank": 9
+ },
+ {
+  "name": "All Tops",
+  "url": "https://www.gymshark.com/collections/all-tops",
+  "handle": "all-tops",
+  "path": "all-tops",
+  "gender": null,
+  "products": 825,
+  "rank": 10
+ },
+ {
+  "name": "Conditioning (Women)",
+  "url": "https://www.gymshark.com/collections/conditioning/womens",
+  "handle": "conditioning",
+  "path": "conditioning/womens",
+  "gender": "womens",
+  "products": 789,
+  "rank": 11
+ },
+ {
+  "name": "Running",
+  "url": "https://www.gymshark.com/collections/running",
+  "handle": "running",
+  "path": "running",
+  "gender": null,
+  "products": 712,
+  "rank": 12
+ },
+ {
+  "name": "Airport Outfits",
+  "url": "https://www.gymshark.com/collections/airport-outfits",
+  "handle": "airport-outfits",
+  "path": "airport-outfits",
+  "gender": null,
+  "products": 666,
+  "rank": 13
+ },
+ {
+  "name": "Travel Outfits",
+  "url": "https://www.gymshark.com/collections/travel-outfits",
+  "handle": "travel-outfits",
+  "path": "travel-outfits",
+  "gender": null,
+  "products": 666,
+  "rank": 14
+ },
+ {
+  "name": "Black Staples",
+  "url": "https://www.gymshark.com/collections/black-staples",
+  "handle": "black-staples",
+  "path": "black-staples",
+  "gender": null,
+  "products": 652,
+  "rank": 15
+ },
+ {
+  "name": "Slounge",
+  "url": "https://www.gymshark.com/collections/slounge",
+  "handle": "slounge",
+  "path": "slounge",
+  "gender": null,
+  "products": 573,
+  "rank": 16
+ },
+ {
+  "name": "Power Down",
+  "url": "https://www.gymshark.com/collections/power-down",
+  "handle": "power-down",
+  "path": "power-down",
+  "gender": null,
+  "products": 573,
+  "rank": 17
+ },
+ {
+  "name": "Reset",
+  "url": "https://www.gymshark.com/collections/reset",
+  "handle": "reset",
+  "path": "reset",
+  "gender": null,
+  "products": 573,
+  "rank": 18
+ },
+ {
+  "name": "Rest Day",
+  "url": "https://www.gymshark.com/collections/rest-day",
+  "handle": "rest-day",
+  "path": "rest-day",
+  "gender": null,
+  "products": 573,
+  "rank": 19
+ },
+ {
+  "name": "Functional Fitness",
+  "url": "https://www.gymshark.com/collections/functional-fitness",
+  "handle": "functional-fitness",
+  "path": "functional-fitness",
+  "gender": null,
+  "products": 570,
+  "rank": 20
+ }
+]
