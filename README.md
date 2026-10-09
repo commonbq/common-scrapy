@@ -195,6 +195,7 @@ Working spiders running daily in production:
 |---|---|---|---|---|---|---|---|
 | [`athome_listing`](#athome_listing) | Active | API | Akamai; ScrapeOps US proxy | At Home products from the SFCC `Search-UpdateGrid` AJAX API only; no category-page or JSON-LD fallback. | 24/API page | Top 20 product-listing categories ranked by measured inventory | `{"category":"christmas","item_id":"125043763","title":"50-Count Burgundy Ornaments, 2.4\"","price":11.99,"currency":"USD","source":"athome_sfra_search_updategrid_api"...}` |
 | [`decathlon_listing`](#decathlon_listing) | Active | API | none detected direct; compatible with plain ScrapeOps US proxy | Decathlon products from Shopify's first-party collection JSON API only; no HTML, embedded-metadata, or JSON-LD fallback. | Up to 250/API page | Top 20 primary-nav collections ranked by product count | `{"category":"camp-hike","item_id":"8209731190846","title":"Simond Men’s Xplore Hooded Down Jacket","price":119.0,"currency":"USD","source":"decathlon_shopify_collection_api"...}` |
+| [`wickes_listing`](#wickes_listing) | Active | bootstrap | none detected | Wickes products from the server-rendered `var product = {...}` analytics bootstrap only; no rendered-card or JSON-LD fallback. | 29 (one page) | Top 20 verified product-bearing categories | `{"category":"wall-ceiling-emulsion-paint","item_id":"106974","title":"Dulux Matt Emulsion Paint - Egyptian Cotton - 2.5L","brand":"Dulux","price":25,"currency":"GBP","source":"wickes_analytics_bootstrap"...}` |
 | [`toolstation_listing`](#toolstation_listing) | Active | API | none detected | Toolstation UK products from the first-party Bloomreach CRS `/api/search/crs` API only; no HTML-card, Nuxt-state, or JSON-LD fallback. | 48/page | Top 20 non-promotional categories ranked by sitemap inventory | `{"category":"kitchen-cabinets","item_id":"12145","title":"Kitchen Kit Flatpack Shaker Kitchen Cabinet Base End Ultra Matt Cashmere 900mm","brand":"Kitchen Kit","price":44.54,"currency":"GBP","source":"toolstation_bloomreach_crs_api"...}` |
 | [`dollartree_listing`](#dollartree_listing) | Active | API | none detected direct | Dollar Tree products from the first-party Oracle Commerce Cloud guided-search API only; no HTML or JSON-LD fallback. | 24/page | Top 20 categories ranked by live product count | `{"category":"food-candy-drinks","item_id":"354662","title":"Lil' Dutch Maid Duplex Crème Cookies.","price":1.25,"currency":"USD","source":"dollartree_occ_guided_search_api"...}` |
 | [`etsy_listing`](#etsy_listing) | Active | html | ScrapeOps US proxy | Etsy products from the server-rendered category document: the `ld+json` `ItemList` plus listing-card markup; the async Neu Spec API is not extractable anonymously (its `public` route returns an empty `output` and the client's results path is an authenticated `member` POST). | 60/page | 20 primary Etsy categories | `{"category":"jewelry","item_id":"1806011672","title":"Baguette Birthstone Necklace, Family Birthstone Necklace, Personalized Gift","price":32.8,"currency":"USD","source":"etsy_itemlist_jsonld"...}` |
@@ -4755,4 +4756,24 @@ record. Requests go through the configured ScrapeOps US proxy.
 
 ```bash
 scrapy crawl etsy_listing -a category=jewelry -a max_pages=1 -s HTTPCACHE_ENABLED=False -O etsy.jsonl
+```
+
+### wickes_listing
+
+`wickes_listing` reads one product-data source: the server-rendered analytics
+bootstrap that Wickes uses to initialise its product-impression state. Both the
+initial category page and each `/c/<id>/results/view` load-more response contain
+the same `var product = {...}` records. The spider does not parse rendered
+product cards or JSON-LD, and it has no fallback data direction.
+
+The inventory exposes the 20 largest verified product-bearing Wickes categories.
+Pagination follows the storefront's load-more endpoint sequentially, deduplicates
+stable product IDs, and stops on `max_pages` or the first empty bootstrap page.
+The ordered `FEED_EXPORT_FIELDS` contract covers category context, product ID,
+title, brand, taxonomy, variant, canonical resolving URL, price/currency,
+pagination, provenance, the authoritative raw bootstrap record, and timestamp.
+
+```bash
+scrapy crawl wickes_listing -a category=wall-ceiling-emulsion-paint -a max_pages=2 \
+  -s HTTPCACHE_ENABLED=False -O wickes.jsonl
 ```
