@@ -236,6 +236,7 @@ Working spiders running daily in production:
 | [`fivebelow_listing`](#fivebelow_listing) | Active | API | Cloudflare on discovery page; configured proxy required | Five Below variants from the first-party Algolia product-search API. The category page only supplies current API configuration; no HTML-card, RSC-product, or JSON-LD fallback. | 39 variants from 24 products/page | Top 20 categories ranked by sitemap breadth | `{"category":"new-and-now","item_id":"9252012","title":"Littlest Pet Shop® x Like Nastya DIY Bestie Bag Charm","price":5.0,"currency":"USD","source":"fivebelow_algolia_product_search_api"...}` |
 | [`etsy_listing`](#etsy_listing) | Active | html | ScrapeOps US proxy | Etsy products from the server-rendered category document: the `ld+json` `ItemList` plus listing-card markup; the async Neu Spec API is not extractable anonymously (its `public` route returns an empty `output` and the client's results path is an authenticated `member` POST). | 60/page | 20 primary Etsy categories | `{"category":"jewelry","item_id":"1806011672","title":"Baguette Birthstone Necklace, Family Birthstone Necklace, Personalized Gift","price":32.8,"currency":"USD","source":"etsy_itemlist_jsonld"...}` |
 | [`dunelm_listing`](#dunelm_listing) | Active | bootstrap | none detected | Dunelm products from server-rendered Redux `#ssr-state-data`; department HTML is used only for leaf discovery, never as product data. | 60/page | 20 broad catalogue departments | `{"category":"home-and-furniture","item_id":"1000194189","title":"Pure Cotton Fitted Sheet","price":14,"currency":"GBP","source":"dunelm_redux_ssr_bootstrap"...}` |
+| [`superdrug_listing`](#superdrug_listing) | Active | bootstrap | ScrapeOps proxy | Superdrug UK products from Angular Spartacus `#spartacus-app-state` only; no HTML-card or JSON-LD fallback. | 8/bootstrap page | 28 stable UK product-listing categories | `{"category":"health-winter","item_id":"406503","title":"Superdrug Max Day and Night Capsules x 16","price":1.99,"currency":"GBP","source":"superdrug_spartacus_bootstrap"...}` |
 | [`barnesandnoble_listing`](#barnesandnoble_listing) | Active | API | none detected | Barnes & Noble products from the first-party Shopify Storefront GraphQL API. The collection page only supplies rotating API configuration; there is no HTML-card or JSON-LD product fallback. | 50/page | 20 stable collection seeds | `{"category":"fiction","item_id":"8827283734769","ean":"9780765635969","title":"Projecting Politics: Political Messages in American Films","format":"Hardcover","price":237.61,"currency":"USD","source":"barnesandnoble_storefront_graphql_api"...}` |
 | [`hsn_listing`](#hsn_listing) | Active | API | none detected on direct Constructor hosts | HSN products from the first-party Constructor browse API only; the public HSN Constructor client supplies the current key and no category-page, HTML-card, or JSON-LD product fallback is used. | 60/API page | 20 departments and high-value subcategories | `{"category":"Electronics","item_id":"10095486","title":"Apple 11\" iPad A16 Wi-Fi...","price":599.99,"currency":"USD","source":"hsn_constructor_browse_api"...}` |
 | [`hobbylobby_listing`](#hobbylobby_listing) | Experimental | bootstrap | ScrapeOps US proxy | Hobby Lobby products from the server-rendered Algolia InstantSearch state only; no direct HTML-card or JSON-LD extraction. | 12/page | 20 product-bearing level-2 categories | `{"category":"art-supplies-painting-supplies","item_id":"80968391","title":"Master's Touch Oil Paint - 12 Piece Set","price":6.99,"source":"hobbylobby_instantsearch_bootstrap"...}` |
@@ -4851,4 +4852,28 @@ pagination, provenance, the authoritative raw bootstrap record, and timestamp.
 ```bash
 scrapy crawl wickes_listing -a category=wall-ceiling-emulsion-paint -a max_pages=2 \
   -s HTTPCACHE_ENABLED=False -O wickes.jsonl
+```
+
+### superdrug_listing
+
+`superdrug_listing` uses one product-data direction: the server-rendered Angular
+Spartacus transfer state in `script#spartacus-app-state`. The
+`mp-product-list.model$` object supplies rich product records plus authoritative
+pagination totals. Rendered product cards and JSON-LD are deliberately not parsed.
+
+Superdrug advertises 60 items per storefront page but serializes eight complete
+product records into transfer state. The spider therefore requests `pageSize=8`
+so `pagination.totalPages` describes every eight-product window and all products
+remain reachable. It follows zero-based `currentPage`, deduplicates product codes,
+and respects `max_pages`. Categories are a deterministic dictionary of 28 stable
+UK product-listing routes.
+
+The ordered 31-field `FEED_EXPORT_FIELDS` contract covers identifiers, brand,
+canonical URL and image, GBP pricing, ratings, stock, regulatory/product flags,
+promotions, taxonomy, pagination, provenance, the complete raw bootstrap record,
+and timestamp.
+
+```bash
+scrapy crawl superdrug_listing -a category=health-winter -a max_pages=2 \
+  -s HTTPCACHE_ENABLED=False -O superdrug.jsonl
 ```
