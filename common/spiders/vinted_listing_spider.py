@@ -136,7 +136,7 @@ class VintedListingSpider(BaseListingSpider):
     def _category_entry(self) -> dict[str, Any]:
         target = self.resolve_target_url()
         normalized = target.rstrip("/")
-        for entry in self.categories:
+        for entry in self.iter_categories():
             if entry["category"] == self.category or entry["url"].rstrip("/") == normalized:
                 return entry
         match = re.search(r"/catalog/(\d+)-([^/?#]+)", target)

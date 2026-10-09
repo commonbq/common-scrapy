@@ -49,13 +49,14 @@ class VintedListingSpiderTests(unittest.TestCase):
         self.spider = VintedListingSpider(category="home", max_pages=2)
 
     def response(self, body, page=1):
-        request = Request(URL, meta={"category_entry": self.spider.categories[0], "page": page})
+        request = Request(URL, meta={"category_entry": next(self.spider.iter_categories()), "page": page})
         return TextResponse(URL, request=request, body=body, encoding="utf-8")
 
     def test_inventory_has_twenty_unique_categories(self):
-        self.assertEqual(len(self.spider.categories), 20)
-        self.assertEqual(len({entry["category"] for entry in self.spider.categories}), 20)
-        self.assertEqual(len({entry["url"] for entry in self.spider.categories}), 20)
+        entries = list(self.spider.iter_categories())
+        self.assertEqual(len(entries), 20)
+        self.assertEqual(len({entry["category"] for entry in entries}), 20)
+        self.assertEqual(len({entry["url"] for entry in entries}), 20)
 
     def test_rsc_item_contract_and_hydrated_pagination(self):
         outputs = list(self.spider.parse(self.response(document(
