@@ -234,7 +234,7 @@ Working spiders running daily in production:
 | [`toolstation_listing`](#toolstation_listing) | Active | API | none detected | Toolstation UK products from the first-party Bloomreach CRS `/api/search/crs` API only; no HTML-card, Nuxt-state, or JSON-LD fallback. | 48/page | Top 20 non-promotional categories ranked by sitemap inventory | `{"category":"kitchen-cabinets","item_id":"12145","title":"Kitchen Kit Flatpack Shaker Kitchen Cabinet Base End Ultra Matt Cashmere 900mm","brand":"Kitchen Kit","price":44.54,"currency":"GBP","source":"toolstation_bloomreach_crs_api"...}` |
 | [`dollartree_listing`](#dollartree_listing) | Active | API | none detected direct | Dollar Tree products from the first-party Oracle Commerce Cloud guided-search API only; no HTML or JSON-LD fallback. | 24/page | Top 20 categories ranked by live product count | `{"category":"food-candy-drinks","item_id":"354662","title":"Lil' Dutch Maid Duplex Crème Cookies.","price":1.25,"currency":"USD","source":"dollartree_occ_guided_search_api"...}` |
 | [`fivebelow_listing`](#fivebelow_listing) | Active | API | Cloudflare on discovery page; configured proxy required | Five Below variants from the first-party Algolia product-search API. The category page only supplies current API configuration; no HTML-card, RSC-product, or JSON-LD fallback. | 39 variants from 24 products/page | Top 20 categories ranked by sitemap breadth | `{"category":"new-and-now","item_id":"9252012","title":"Littlest Pet Shop® x Like Nastya DIY Bestie Bag Charm","price":5.0,"currency":"USD","source":"fivebelow_algolia_product_search_api"...}` |
-| [`etsy_listing`](#etsy_listing) | Active | html | ScrapeOps US proxy | Etsy products from the server-rendered category document: the `ld+json` `ItemList` plus listing-card markup; the async Neu Spec API is not extractable anonymously (its `public` route returns an empty `output` and the client's results path is an authenticated `member` POST). | 60/page | 20 primary Etsy categories | `{"category":"jewelry","item_id":"1806011672","title":"Baguette Birthstone Necklace, Family Birthstone Necklace, Personalized Gift","price":32.8,"currency":"USD","source":"etsy_itemlist_jsonld"...}` |
+| [`etsy_listing`](#etsy_listing) | Active | bootstrap | DataDome; session-pinned ScrapeOps US proxy | Etsy listing identity, shop, price, discount, position, and pagination from the server-provided `Etsy.Context.data` bootstrap only; no rendered-card or JSON-LD fallback. | 48/bootstrap page | 17 departments and 175 immediate subcategories | `{"category":"jewelry","item_id":"4402089910","shop_id":"54384097","price":85.74,"currency":"PLN","source":"etsy_context_bootstrap"...}` |
 | [`dunelm_listing`](#dunelm_listing) | Active | bootstrap | none detected | Dunelm products from server-rendered Redux `#ssr-state-data`; department HTML is used only for leaf discovery, never as product data. | 60/page | 20 broad catalogue departments | `{"category":"home-and-furniture","item_id":"1000194189","title":"Pure Cotton Fitted Sheet","price":14,"currency":"GBP","source":"dunelm_redux_ssr_bootstrap"...}` |
 | [`barnesandnoble_listing`](#barnesandnoble_listing) | Active | API | none detected | Barnes & Noble products from the first-party Shopify Storefront GraphQL API. The collection page only supplies rotating API configuration; there is no HTML-card or JSON-LD product fallback. | 50/page | 20 stable collection seeds | `{"category":"fiction","item_id":"8827283734769","ean":"9780765635969","title":"Projecting Politics: Political Messages in American Films","format":"Hardcover","price":237.61,"currency":"USD","source":"barnesandnoble_storefront_graphql_api"...}` |
 | [`hsn_listing`](#hsn_listing) | Active | API | none detected on direct Constructor hosts | HSN products from the first-party Constructor browse API only; the public HSN Constructor client supplies the current key and no category-page, HTML-card, or JSON-LD product fallback is used. | 60/API page | 20 departments and high-value subcategories | `{"category":"Electronics","item_id":"10095486","title":"Apple 11\" iPad A16 Wi-Fi...","price":599.99,"currency":"USD","source":"hsn_constructor_browse_api"...}` |
@@ -4790,25 +4790,22 @@ scrapy crawl argos_listing -a category=laptops -a max_pages=1 -s HTTPCACHE_ENABL
 
 ### etsy_listing
 
-`etsy_listing` reads the 20 stable category seeds that mirror the marketplace's
-primary departments from the server-rendered category document. Each page
-embeds an `application/ld+json` `ItemList` with the organic products (name,
-image, canonical listing URL, brand, offers), and the accompanying
-`[data-listing-id]` listing-card markup supplies shop IDs, ratings, review
-counts, ad and free-shipping flags. Pagination follows the server-rendered
-`?ref=pagination&page=N` links.
+`etsy_listing` uses one product-data direction: Etsy's server-provided
+`Etsy.Context.data` bootstrap. Its per-listing `encoded_impression` records
+provide listing/shop IDs, current price, currency, discount, page, and position;
+top-level state provides request identity, total pages, and organic inventory.
+The spider never reads rendered product cards or JSON-LD and has no product-data
+fallback.
 
-Etsy's asynchronous Neu Spec search API is not an extractable alternative:
-the anonymous `/bespoke/public/` endpoint answers every request shape
-(SSR-exact args, page 2, `initial`, `search_results` route, `log_performance_metrics`)
-with an empty `output` list, and the client's real results path is an
-authenticated `/bespoke/member/` POST gated by a CSRF nonce and login session
-(verified live against Etsy's own `chunk-b-etsylibs` client contract).
+The spider exposes the complete current taxonomy of 17 departments and 175
+immediate subcategories (192 stable crawl targets). Pagination follows the
+bootstrap's `total_pages` value and remains bounded by `max_pages`.
 
-The ordered `FEED_EXPORT_FIELDS` contract covers listing and shop IDs, title,
-shop, canonical URL, image, current/original prices, currency, rating/reviews,
-ad and shipping flags, category/page/position, source, and the raw identity
-record. Requests go through the configured ScrapeOps US proxy.
+The ordered 18-field `FEED_EXPORT_FIELDS` contract covers listing/shop identity,
+canonical URL, current/derived-original price, currency and discount,
+category/page/position, bootstrap page totals and request identity, provenance,
+the raw encoded impression, and timestamp. Requests use a session-pinned
+ScrapeOps US residential route with JavaScript rendering for DataDome.
 
 ```bash
 scrapy crawl etsy_listing -a category=jewelry -a max_pages=1 -s HTTPCACHE_ENABLED=False -O etsy.jsonl
