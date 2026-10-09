@@ -11,7 +11,7 @@ FIXTURE = Path(__file__).parents[1] / "sample" / "athome-search-updategrid-xhr-s
 
 def response(spider=None, *, page=1, offset=0, status=200):
     spider = spider or AthomeListingSpider()
-    entry = spider.categories[0]
+    entry = next(iter(spider.iter_categories()))
     request = spider._api_request(entry, page=page, offset=offset)
     return HtmlResponse(
         request.url,

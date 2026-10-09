@@ -79,7 +79,9 @@ class BarnesandnobleListingSpider(BaseListingSpider):
     def start_requests(self):
         self._seen.clear()
         target = self.resolve_target_url()
-        selected = next((x for x in self.categories if x["url"] == target), {})
+        selected = next(
+            (x for x in self.iter_categories() if x["url"] == target), {}
+        )
         query = selected.get("search_query") or (self.category or "").replace("-", " ")
         yield scrapy.Request(
             target, callback=self.parse_bootstrap, headers=self._storefront_headers(),

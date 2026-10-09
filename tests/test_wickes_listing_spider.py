@@ -8,6 +8,11 @@ from common.spiders.wickes_categories import WICKES_CATEGORIES
 from common.spiders.wickes_listing_spider import WickesListingSpider
 
 
+def _FLAT(const):
+    """Flatten a ``{group: {leaf: value}}`` categories mapping into leaf rows."""
+    return [value for group in const.values() for value in group.values()]
+
+
 BOOTSTRAP = r'''
 <script>
 var impressionsEvent = {ecommerce: {currencyCode: "GBP", impressions: []}};
@@ -43,9 +48,10 @@ class WickesListingSpiderTests(unittest.TestCase):
         return TextResponse(url, request=request, body=body, encoding="utf-8")
 
     def test_top_twenty_category_inventory(self):
-        self.assertEqual(len(WICKES_CATEGORIES), 20)
-        self.assertEqual(len({entry["category"] for entry in WICKES_CATEGORIES}), 20)
-        self.assertTrue(all("/c/" in entry["url"] for entry in WICKES_CATEGORIES))
+        rows = _FLAT(WICKES_CATEGORIES)
+        self.assertEqual(len(rows), 20)
+        self.assertEqual(len({entry["category"] for entry in rows}), 20)
+        self.assertTrue(all("/c/" in entry["url"] for entry in rows))
 
     def test_extracts_only_analytics_bootstrap_records(self):
         records = self.spider.extract_bootstrap_products(BOOTSTRAP)

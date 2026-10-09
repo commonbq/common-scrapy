@@ -7,6 +7,11 @@ from common.spiders.flipkart_categories import FLIPKART_CATEGORIES
 from common.spiders.flipkart_listing_spider import FlipkartListingSpider
 
 
+def _FLAT(const):
+    """Flatten a ``{group: {leaf: value}}`` categories mapping into leaf rows."""
+    return [value for group in const.values() for value in group.values()]
+
+
 class FlipkartListingSpiderTests(unittest.TestCase):
     def setUp(self):
         self.spider = FlipkartListingSpider(category="rings", max_pages=2)
@@ -31,7 +36,7 @@ class FlipkartListingSpiderTests(unittest.TestCase):
                 {"id": 9, "widget": {"data": {"currentPage": 1, "totalPages": 1762}}},
             ],
         }}}}
-        url = FLIPKART_CATEGORIES[0]["url"]
+        url = _FLAT(FLIPKART_CATEGORIES)[0]["url"]
         body = "<script>window.__INITIAL_STATE__ = " + json.dumps(state) + ";</script>"
         request = Request(url, meta={"category": "rings", "category_name": "Rings", "page": 1})
         return TextResponse(url, request=request, body=body, encoding="utf-8")
@@ -52,11 +57,12 @@ class FlipkartListingSpiderTests(unittest.TestCase):
 
     def test_uses_query_string_pagination(self):
         follow = list(self.spider.parse(self.response()))[-1]
-        self.assertEqual(follow.url, FLIPKART_CATEGORIES[0]["url"] + "&page=2")
+        self.assertEqual(follow.url, _FLAT(FLIPKART_CATEGORIES)[0]["url"] + "&page=2")
 
     def test_taxonomy_has_20_unique_categories(self):
-        self.assertEqual(len(FLIPKART_CATEGORIES), 20)
-        self.assertEqual(len({row["category"] for row in FLIPKART_CATEGORIES}), 20)
+        rows = _FLAT(FLIPKART_CATEGORIES)
+        self.assertEqual(len(rows), 20)
+        self.assertEqual(len({row["category"] for row in rows}), 20)
 
     def test_missing_bootstrap_fails_visibly(self):
         response = self.response().replace(body=b"<html></html>")

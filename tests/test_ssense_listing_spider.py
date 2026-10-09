@@ -9,6 +9,11 @@ from common.spiders.ssense_categories import SSENSE_CATEGORIES
 from common.spiders.ssense_listing_spider import SsenseListingSpider
 
 
+def _FLAT(const):
+    """Flatten a ``{group: {leaf: value}}`` categories mapping into leaf rows."""
+    return [value for group in const.values() for value in group.values()]
+
+
 def document(payload: str) -> str:
     return f"<script>self.__next_f.push([1,{json.dumps(payload)}])</script>"
 
@@ -30,8 +35,9 @@ class SsenseListingSpiderTests(unittest.TestCase):
         return TextResponse(url, request=request, body=document(payload), encoding="utf-8")
 
     def test_category_inventory(self):
-        self.assertEqual(len(SSENSE_CATEGORIES), 20)
-        self.assertEqual(len({row["category"] for row in SSENSE_CATEGORIES}), 20)
+        rows = _FLAT(SSENSE_CATEGORIES)
+        self.assertEqual(len(rows), 20)
+        self.assertEqual(len({row["category"] for row in rows}), 20)
 
     def test_rsc_item_mapping_feed_contract_and_pagination(self):
         outputs = list(self.spider.parse(self.response()))

@@ -64,7 +64,7 @@ class DecathlonListingSpider(BaseListingSpider):
         self._seen.clear()
         has_target = self.category or self.category_url or self.url
         listing_url = (
-            self.resolve_target_url() if has_target else self.categories[0]["url"]
+            self.resolve_target_url() if has_target else next(iter(self.iter_categories()))["url"]
         )
         yield self._api_request(listing_url, page=1)
 

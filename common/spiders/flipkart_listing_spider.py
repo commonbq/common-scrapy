@@ -43,12 +43,19 @@ class FlipkartListingSpider(BaseListingSpider):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if not (self.category or self.category_url or self.url):
-            self.category = self.categories[0]["category"]
+            self.category = next(iter(self.iter_categories()))["category"]
         self._seen: set[str] = set()
 
     def start_requests(self) -> Iterable[scrapy.Request]:
         target = self.resolve_target_url()
-        entry = next((row for row in self.categories if row["url"].rstrip("/") == target.rstrip("/")), {})
+        entry = next(
+            (
+                row
+                for row in self.iter_categories()
+                if row["url"].rstrip("/") == target.rstrip("/")
+            ),
+            {},
+        )
         yield scrapy.Request(
             target,
             headers=self.headers,
