@@ -9,6 +9,11 @@ from common.spiders.mediamarkt_categories import MEDIAMARKT_CATEGORIES
 from common.spiders.mediamarkt_listing_spider import MediamarktListingSpider
 
 
+def _FLAT(const):
+    """Flatten a ``{group: {leaf: value}}`` categories mapping into leaf rows."""
+    return [value for group in const.values() for value in group.values()]
+
+
 def document(state: dict, *, undefined: bool = False) -> str:
     payload = json.dumps(state, separators=(",", ":"))
     if undefined:
@@ -72,16 +77,17 @@ class MediamarktListingSpiderTests(unittest.TestCase):
         self.spider = MediamarktListingSpider(category="Computer & Büro", max_pages=2)
 
     def response(self, state: dict = STATE, *, undefined: bool = False):
-        url = MEDIAMARKT_CATEGORIES[0]["url"]
+        url = _FLAT(MEDIAMARKT_CATEGORIES)[0]["url"]
         request = Request(url, meta={"page": 1, "base_url": url})
         return TextResponse(
             url, request=request, body=document(state, undefined=undefined), encoding="utf-8"
         )
 
     def test_category_inventory(self):
-        self.assertEqual(len(MEDIAMARKT_CATEGORIES), 20)
-        self.assertEqual(len({row["category"] for row in MEDIAMARKT_CATEGORIES}), 20)
-        self.assertTrue(all(row["url"].startswith("https://www.mediamarkt.de/") for row in MEDIAMARKT_CATEGORIES))
+        rows = _FLAT(MEDIAMARKT_CATEGORIES)
+        self.assertEqual(len(rows), 20)
+        self.assertEqual(len({row["category"] for row in rows}), 20)
+        self.assertTrue(all(row["url"].startswith("https://www.mediamarkt.de/") for row in rows))
 
     def test_bootstrap_mapping_feed_contract_and_pagination(self):
         outputs = list(self.spider.parse(self.response(undefined=True)))
@@ -99,7 +105,7 @@ class MediamarktListingSpiderTests(unittest.TestCase):
         self.assertEqual(item["features"], {"Prozessor": "Snapdragon X"})
         self.assertEqual(item["source"], "mediamarkt_preloaded_apollo_bootstrap")
         self.assertEqual(list(item), self.spider.custom_settings["FEED_EXPORT_FIELDS"])
-        self.assertEqual(request.url, MEDIAMARKT_CATEGORIES[0]["url"] + "?page=2")
+        self.assertEqual(request.url, _FLAT(MEDIAMARKT_CATEGORIES)[0]["url"] + "?page=2")
 
     def test_uses_listing_product_order_not_all_hydrated_products(self):
         state = json.loads(json.dumps(STATE))
@@ -110,7 +116,7 @@ class MediamarktListingSpiderTests(unittest.TestCase):
         self.assertEqual([item["item_id"] for item in items], ["3037446"])
 
     def test_no_json_ld_or_html_fallback(self):
-        url = MEDIAMARKT_CATEGORIES[0]["url"]
+        url = _FLAT(MEDIAMARKT_CATEGORIES)[0]["url"]
         request = Request(url, meta={"page": 1, "base_url": url})
         response = TextResponse(
             url,

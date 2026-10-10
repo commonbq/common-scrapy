@@ -68,13 +68,18 @@ class EtsyListingSpiderTest(unittest.TestCase):
             list(self.spider().parse(response(body)))
 
     def test_complete_taxonomy(self):
-        departments = {entry["department"] for entry in ETSY_CATEGORIES}
-        top_level = [entry for entry in ETSY_CATEGORIES if "/" not in entry["category"]]
+        departments = {entry["department"] for entry in _FLAT(ETSY_CATEGORIES)}
+        top_level = [entry for entry in _FLAT(ETSY_CATEGORIES) if "/" not in entry["category"]]
         self.assertEqual(len(departments), 17)
         self.assertEqual(len(top_level), 17)
-        self.assertEqual(len(ETSY_CATEGORIES) - len(top_level), 175)
-        self.assertEqual(len({entry["category"] for entry in ETSY_CATEGORIES}), 192)
+        self.assertEqual(len(_FLAT(ETSY_CATEGORIES)) - len(top_level), 175)
+        self.assertEqual(len({entry["category"] for entry in _FLAT(ETSY_CATEGORIES)}), 192)
 
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def _FLAT(const):
+    """Flatten a ``{group: {leaf: value}}`` categories mapping into leaf rows."""
+    return [value for group in const.values() for value in group.values()]

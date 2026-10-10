@@ -116,7 +116,7 @@ class BackcountryListingSpider(BaseListingSpider):
     def start_requests(self) -> Iterable[scrapy.Request]:
         self._seen.clear()
         target = self.resolve_target_url()
-        selected = next((entry for entry in self.categories if entry.get("url") == target), {})
+        selected = next((entry for entry in self.iter_categories() if entry.get("url") == target), {})
         yield self._page_request(target, page=1, selected=selected)
 
     def _page_request(self, url: str, *, page: int, selected: dict[str, Any]) -> scrapy.Request:
@@ -282,7 +282,7 @@ class BackcountryListingSpider(BaseListingSpider):
         if has_next is None and last_page is not None and current_page >= last_page:
             return
 
-        selected = next((entry for entry in self.categories if entry.get("url") == response.url), {})
+        selected = next((entry for entry in self.iter_categories() if entry.get("url") == response.url), {})
         yield self._page_request(response.url, page=current_page + 1, selected=selected)
 
     # ------------------------------------------------------------- extraction

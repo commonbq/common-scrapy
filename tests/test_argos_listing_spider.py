@@ -34,10 +34,16 @@ def split(outputs):
     return [value for value in values if isinstance(value, dict)], [value for value in values if not isinstance(value, dict)]
 
 
+def _FLAT(const):
+    """Flatten a ``{group: {leaf: value}}`` categories mapping into leaf rows."""
+    return [value for group in const.values() for value in group.values()]
+
+
 def test_top_20_categories_are_unique():
-    assert len(ARGOS_CATEGORIES) == 20
-    assert len({entry["category"] for entry in ARGOS_CATEGORIES}) == 20
-    assert len({entry["url"] for entry in ARGOS_CATEGORIES}) == 20
+    rows = _FLAT(ARGOS_CATEGORIES)
+    assert len(rows) == 20
+    assert len({entry["category"] for entry in rows}) == 20
+    assert len({entry["url"] for entry in rows}) == 20
 
 
 def test_hydration_mapping_feed_contract_and_path_pagination():

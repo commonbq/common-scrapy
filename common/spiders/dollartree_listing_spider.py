@@ -49,9 +49,7 @@ class DollartreeListingSpider(BaseListingSpider):
 
     def _selected_category(self) -> dict[str, str]:
         if self.category:
-            selected = next(
-                (entry for entry in self.categories if entry["category"] == self.category), None
-            )
+            selected = self.category_entry(self.category)
             if selected is None:
                 available = ", ".join(self.available_categories())
                 raise ValueError(
@@ -60,13 +58,15 @@ class DollartreeListingSpider(BaseListingSpider):
             return selected
         if self.category_url or self.url:
             target = self.category_url or self.url
-            selected = next((entry for entry in self.categories if entry["url"] == target), None)
+            selected = next(
+                (entry for entry in self.iter_categories() if entry["url"] == target), None
+            )
             if selected is None:
                 raise ValueError(
                     "Custom URLs are unsupported because the OCC dimension_id is required"
                 )
             return selected
-        return self.categories[0]
+        return next(iter(self.iter_categories()))
 
     def _api_request(self, selected: dict[str, str], page: int, offset: int):
         query = urlencode(

@@ -9,6 +9,11 @@ from common.spiders.hsn_categories import HSN_CATEGORIES
 from common.spiders.hsn_listing_spider import HsnListingSpider
 
 
+def _FLAT(const):
+    """Flatten a ``{group: {leaf: value}}`` categories mapping into leaf rows."""
+    return [value for group in const.values() for value in group.values()]
+
+
 def response(url, body, meta=None):
     request = Request(url, meta=meta or {})
     return TextResponse(url, request=request, body=body.encode(), encoding="utf-8")
@@ -26,8 +31,9 @@ class HsnListingSpiderTests(unittest.TestCase):
         }
 
     def test_top_twenty_categories_are_unique(self):
-        self.assertEqual(len(HSN_CATEGORIES), 20)
-        self.assertEqual(len({x["category"] for x in HSN_CATEGORIES}), 20)
+        rows = _FLAT(HSN_CATEGORIES)
+        self.assertEqual(len(rows), 20)
+        self.assertEqual(len({x["category"] for x in rows}), 20)
 
     def test_start_requests_fetches_constructor_client_only(self):
         requests = list(self.spider.start_requests())

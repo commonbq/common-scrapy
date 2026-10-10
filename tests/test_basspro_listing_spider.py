@@ -40,7 +40,7 @@ class BassproListingSpiderTest(unittest.TestCase):
         self.plp_html = PLP_FIXTURE.read_text()
         self.page1 = PAGE1_FIXTURE.read_text()
         self.page2 = PAGE2_FIXTURE.read_text()
-        self.entry = next(e for e in BASSPRO_CATEGORIES if e["slug"] == "rod-reel-combos")
+        self.entry = next(e for e in _FLAT(BASSPRO_CATEGORIES) if e["slug"] == "rod-reel-combos")
 
     def response(self, request, body, status=200):
         if not isinstance(body, str):
@@ -57,25 +57,25 @@ class BassproListingSpiderTest(unittest.TestCase):
 
     def test_taxonomy_inventory(self):
         levels = {}
-        for entry in BASSPRO_CATEGORIES:
+        for entry in _FLAT(BASSPRO_CATEGORIES):
             levels[entry["level"]] = levels.get(entry["level"], 0) + 1
         self.assertEqual(len(BASSPRO_DEPARTMENTS), 11)
         self.assertEqual(levels, {1: 11, 2: 116, 3: 782})
-        self.assertEqual(len(BASSPRO_CATEGORIES), 909)
+        self.assertEqual(len(_FLAT(BASSPRO_CATEGORIES)), 909)
 
     def test_taxonomy_entries_are_complete_and_unique_per_path(self):
-        paths = [entry["category"] for entry in BASSPRO_CATEGORIES]
+        paths = [entry["category"] for entry in _FLAT(BASSPRO_CATEGORIES)]
         self.assertEqual(len(paths), len(set(paths)))
-        for entry in BASSPRO_CATEGORIES:
+        for entry in _FLAT(BASSPRO_CATEGORIES):
             self.assertTrue(entry["url"].startswith("https://www.basspro.com/"))
             self.assertEqual(entry["url"], "https://www.basspro.com" + "/" + entry["url_type"] + "/" + entry["slug"])
             self.assertTrue(entry["department"])
 
     def test_duplicate_urls_keep_every_navigation_path(self):
         # /l/life-jackets is linked from two departments; both stay addressable.
-        slugs = [e["slug"] for e in BASSPRO_CATEGORIES if e["slug"] == "life-jackets"]
+        slugs = [e["slug"] for e in _FLAT(BASSPRO_CATEGORIES) if e["slug"] == "life-jackets"]
         self.assertGreater(len(slugs), 1)
-        self.assertEqual(len(set(e["category"] for e in BASSPRO_CATEGORIES if e["slug"] == "life-jackets")), len(slugs))
+        self.assertEqual(len(set(e["category"] for e in _FLAT(BASSPRO_CATEGORIES) if e["slug"] == "life-jackets")), len(slugs))
 
     def test_resolve_by_slug(self):
         entry = self.spider.resolve_entry()
@@ -118,15 +118,24 @@ class BassproListingSpiderTest(unittest.TestCase):
 
     def test_ambiguous_slug_with_different_urls_is_rejected(self):
         spider = BassproListingSpider(settings=self.settings, category="life-jackets")
-        # Simulate a taxonomy regression: two paths, two different URLs.
-        boat = next(e for e in spider.categories if e["category"] == "Boating/Water Sports/Life Jackets")
-        outdoor = next(e for e in spider.categories if e["category"] == "Outdoor Rec/Water Sports/Life Jackets")
-        boat, outdoor = dict(boat), dict(outdoor)
-        outdoor["url"] = "https://www.basspro.com/l/life-jackets-alt"
-        spider.categories = [
-            outdoor if e["category"] == boat["category"] else e
-            for e in spider.categories
-        ] + [outdoor]
+        # Simulate a taxonomy regression: two paths, same slug, two different URLs.
+        spider.categories = {
+            "Boating": {
+                "Boating/Water Sports/Life Jackets": {
+                    "category": "Boating/Water Sports/Life Jackets",
+                    "slug": "life-jackets",
+                    "url": "https://www.basspro.com/l/life-jackets",
+                }
+            },
+            "Outdoor Rec": {
+                "Outdoor Rec/Water Sports/Life Jackets": {
+                    "category": "Outdoor Rec/Water Sports/Life Jackets",
+                    "slug": "life-jackets",
+                    "url": "https://www.basspro.com/l/life-jackets-alt",
+                }
+            },
+        }
+        spider._category_cache = None
         with self.assertRaises(ValueError) as ctx:
             spider.resolve_entry()
         self.assertIn("Ambiguous category", str(ctx.exception))
@@ -454,3 +463,8 @@ class BassproListingSpiderTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def _FLAT(const):
+    """Flatten a ``{group: {leaf: value}}`` categories mapping into leaf rows."""
+    return [value for group in const.values() for value in group.values()]

@@ -83,7 +83,7 @@ class LlbeanListingSpider(BaseListingSpider):
                 f"Cannot read a category id from '{target}'. Expected a "
                 "https://www.llbean.com/llb/shop/<categoryId> URL."
             )
-        selected = next((entry for entry in self.categories if entry["url"] == target), {})
+        selected = next((entry for entry in self.iter_categories() if entry["url"] == target), {})
         yield self._api_request(
             category_id,
             start=0,

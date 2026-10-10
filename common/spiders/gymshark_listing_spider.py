@@ -54,7 +54,11 @@ class GymsharkListingSpider(BaseListingSpider):
 
     def start_requests(self):
         self._seen.clear()
-        target = self.resolve_target_url() if (self.url or self.category_url or self.category) else self.categories[0]["url"]
+        target = (
+            self.resolve_target_url()
+            if (self.url or self.category_url or self.category)
+            else next(iter(self.iter_categories()))["url"]
+        )
         category = self.category or self._category_for_url(target)
         yield scrapy.Request(
             target,
@@ -184,7 +188,7 @@ class GymsharkListingSpider(BaseListingSpider):
 
     def _category_for_url(self, url: str) -> str:
         path = urlsplit(url).path.rstrip("/")
-        for row in self.categories:
+        for row in self.iter_categories():
             if urlsplit(row["url"]).path.rstrip("/") == path:
                 return row["category"]
         return path.removeprefix("/collections/").replace("/", "-") or "custom"

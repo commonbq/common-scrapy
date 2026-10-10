@@ -63,18 +63,18 @@ class AthomeListingSpider(BaseListingSpider):
         target = self.url or self.category_url
         if target:
             slug = urlsplit(target).path.strip("/").split("/")[-1]
-            entry = next((row for row in self.categories if row["category"] == slug), None)
+            entry = self.category_entry(slug)
         elif self.category:
             wanted = self.category.casefold()
             entry = next(
                 (
-                    row for row in self.categories
-                    if wanted in {row["category"].casefold(), row["name"].casefold()}
+                    row for row in self.iter_categories()
+                    if wanted in {row["category"].casefold(), row.get("name", "").casefold()}
                 ),
                 None,
             )
         else:
-            entry = self.categories[0]
+            entry = next(iter(self.iter_categories()))
         if entry is None:
             available = ", ".join(self.available_categories())
             raise ValueError(

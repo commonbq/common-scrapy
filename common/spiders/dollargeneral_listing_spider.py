@@ -54,7 +54,9 @@ class DollargeneralListingSpider(BaseListingSpider):
         self.session_url = getattr(self, "session_url", SESSION_URL)
         self.api_url = getattr(self, "api_url", SEARCH_API_URL)
         self._seen: set[str] = set()
-        self._target = next(entry for entry in self.categories if entry["category"] == self.category)
+        self._target = self.category_entry(self.category) if self.category else next(
+            iter(self.iter_categories())
+        )
 
     def start_requests(self):
         self._seen.clear()

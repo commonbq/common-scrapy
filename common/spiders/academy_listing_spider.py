@@ -166,13 +166,13 @@ class AcademyListingSpider(BaseListingSpider):
 
     def _target_categories(self) -> list[dict[str, Any]]:
         if not (self.url or self.category_url or self.category):
-            return list(self.categories)
-        for entry in self.categories:
+            return list(self.iter_categories())
+        for entry in self.iter_categories():
             if entry["category"] == self.category:
                 return [entry]
         target = self.url or self.category_url
         if target:
-            for entry in self.categories:
+            for entry in self.iter_categories():
                 if entry["url"] == target:
                     return [entry]
         available = ", ".join(self.available_categories()[:20])

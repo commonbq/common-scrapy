@@ -90,17 +90,14 @@ class FiveBelowListingSpider(BaseListingSpider):
                 "url": self.url or self.category_url,
             }
         if self.category:
-            selected = next(
-                (entry for entry in self.categories if entry["category"] == self.category),
-                None,
-            )
+            selected = self.category_entry(self.category)
             if selected:
                 return selected
             available = ", ".join(self.available_categories())
             raise ValueError(
                 f"Unknown category '{self.category}'. Available categories: {available}"
             )
-        return self.categories[0]
+        return next(iter(self.iter_categories()))
 
     def parse_discovery(self, response: scrapy.http.Response):
         self._reject_storefront(response)

@@ -9,6 +9,11 @@ from common.spiders.gymshark_categories import GYMSHARK_CATEGORIES
 from common.spiders.gymshark_listing_spider import GymsharkListingSpider
 
 
+def _FLAT(const):
+    """Flatten a ``{group: {leaf: value}}`` categories mapping into leaf rows."""
+    return [value for group in const.values() for value in group.values()]
+
+
 HIT = {
     "id": 6806409347274,
     "sku": "A4B9W",
@@ -48,8 +53,9 @@ class GymsharkListingSpiderTests(unittest.TestCase):
         self.spider = GymsharkListingSpider(category="all-products", max_pages=2)
 
     def test_top_twenty_category_inventory(self):
-        self.assertEqual(len(GYMSHARK_CATEGORIES), 20)
-        self.assertEqual(len({row["category"] for row in GYMSHARK_CATEGORIES}), 20)
+        rows = _FLAT(GYMSHARK_CATEGORIES)
+        self.assertEqual(len(rows), 20)
+        self.assertEqual(len({row["category"] for row in rows}), 20)
 
     def test_hydration_mapping_feed_contract_and_pagination(self):
         query = {"hits": [HIT], "nbHits": 121, "hitsPerPage": 60, "page": 0, "nbPages": 17, "queryID": "qid"}

@@ -116,7 +116,7 @@ class VitacostListingSpider(BaseListingSpider):
     def start_requests(self):
         self._seen_products.clear()
         target = self.resolve_target_url()
-        selected = next((entry for entry in self.categories if entry["url"] == target), {})
+        selected = next((entry for entry in self.iter_categories() if entry["url"] == target), {})
         handle = self._handle(target)
         if not handle:
             raise ValueError(

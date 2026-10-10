@@ -98,11 +98,11 @@ class BelkListingSpider(BaseListingSpider):
         if not category:
             return None
         wanted = category.strip().strip("/")
-        for entry in self.categories:
+        for entry in self.iter_categories():
             if entry["category"] == wanted:
                 return entry
         tail = "/" + wanted
-        matches = [entry for entry in self.categories if entry["category"].endswith(tail)]
+        matches = [entry for entry in self.iter_categories() if entry["category"].endswith(tail)]
         if len(matches) == 1:
             return matches[0]
         if len(matches) > 1:

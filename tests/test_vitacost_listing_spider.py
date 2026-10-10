@@ -68,13 +68,13 @@ class VitacostListingSpiderTests(unittest.TestCase):
     # ------------------------------------------------------------------ taxonomy
 
     def test_inventory_is_unique_and_crawlable(self):
-        self.assertEqual(len(VITACOST_CATEGORIES), 92)
-        self.assertEqual(len({e["category"] for e in VITACOST_CATEGORIES}), 92)
-        self.assertEqual(len({e["department"] for e in VITACOST_CATEGORIES}), 8)
-        self.assertTrue(all(e["url"].startswith("https://www.vitacost.com/collections/") for e in VITACOST_CATEGORIES))
-        self.assertTrue(all(e["handle"] == e["url"].rsplit("/", 1)[-1] for e in VITACOST_CATEGORIES))
+        self.assertEqual(len(_FLAT(VITACOST_CATEGORIES)), 92)
+        self.assertEqual(len({e["category"] for e in _FLAT(VITACOST_CATEGORIES)}), 92)
+        self.assertEqual(len({e["department"] for e in _FLAT(VITACOST_CATEGORIES)}), 8)
+        self.assertTrue(all(e["url"].startswith("https://www.vitacost.com/collections/") for e in _FLAT(VITACOST_CATEGORIES)))
+        self.assertTrue(all(e["handle"] == e["url"].rsplit("/", 1)[-1] for e in _FLAT(VITACOST_CATEGORIES)))
         # `Sunscreen` and `Essential Oils & Aromatherapy` each exist twice, so 92 labels -> 90 URLs.
-        self.assertEqual(len({e["url"] for e in VITACOST_CATEGORIES}), 90)
+        self.assertEqual(len({e["url"] for e in _FLAT(VITACOST_CATEGORIES)}), 90)
 
     def test_category_lookup_returns_the_collection_url(self):
         self.assertEqual(
@@ -294,3 +294,8 @@ class VitacostListingSpiderTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def _FLAT(const):
+    """Flatten a ``{group: {leaf: value}}`` categories mapping into leaf rows."""
+    return [value for group in const.values() for value in group.values()]

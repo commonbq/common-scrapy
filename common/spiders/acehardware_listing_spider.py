@@ -133,7 +133,7 @@ class AceHardwareListingSpider(BaseListingSpider):
         self._seen.clear()
         self._visited_categories.clear()
         target = self.resolve_target_url()
-        selected = next((entry for entry in self.categories if entry.get("url") == target), {})
+        selected = next((entry for entry in self.iter_categories() if entry.get("url") == target), {})
         yield self._page_request(target, page=1, start_index=0, selected=selected)
 
     def _page_request(
@@ -307,7 +307,7 @@ class AceHardwareListingSpider(BaseListingSpider):
         # it bounds the walk even when `hasNextPage` is absent.
         if last_page is not None and current_page >= last_page:
             return
-        selected = next((entry for entry in self.categories if entry.get("url") == response.url), {})
+        selected = next((entry for entry in self.iter_categories() if entry.get("url") == response.url), {})
         yield self._page_request(
             self._base_url(response.url),
             page=current_page + 1,

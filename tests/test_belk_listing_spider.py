@@ -44,26 +44,26 @@ class BelkListingSpiderTests(unittest.TestCase):
 
     def test_inventory_shape_and_first_url(self):
         self.assertEqual(len(BELK_CATEGORY_INVENTORY), 13)
-        self.assertEqual(len(BELK_CATEGORIES), 427)
-        self.assertEqual(len({entry["category"] for entry in BELK_CATEGORIES}), 427)
-        self.assertEqual(len({entry["url"] for entry in BELK_CATEGORIES}), 427)
+        self.assertEqual(len(_FLAT(BELK_CATEGORIES)), 427)
+        self.assertEqual(len({entry["category"] for entry in _FLAT(BELK_CATEGORIES)}), 427)
+        self.assertEqual(len({entry["url"] for entry in _FLAT(BELK_CATEGORIES)}), 427)
         self.assertTrue(all(entry["url"].startswith(
-            "https://www.belk.com/ecom/cio/v1/web/category/") for entry in BELK_CATEGORIES
+            "https://www.belk.com/ecom/cio/v1/web/category/") for entry in _FLAT(BELK_CATEGORIES)
         ))
         self.assertEqual(self.spider._first_api_url(), API_URL)
         self.assertEqual(self.spider._meta()["department"], "Shoes")
 
     def test_cross_linked_paths_report_the_shallowest_department(self):
         """/fan-gear/ is linked 30 times; the department itself must win."""
-        entry = next(e for e in BELK_CATEGORIES if e["category"] == "fan-gear")
+        entry = next(e for e in _FLAT(BELK_CATEGORIES) if e["category"] == "fan-gear")
         self.assertEqual(entry["department"], "Fan Gear")
         self.assertEqual(entry["cgid"], "fan-gear")
-        home = next(e for e in BELK_CATEGORIES if e["category"] == "home/home-decor")
+        home = next(e for e in _FLAT(BELK_CATEGORIES) if e["category"] == "home/home-decor")
         self.assertEqual(home["department"], "Home")
-        self.assertEqual(len({e["department"] for e in BELK_CATEGORIES}), 13)
+        self.assertEqual(len({e["department"] for e in _FLAT(BELK_CATEGORIES)}), 13)
 
     def test_search_shortcuts_are_not_categories_but_their_children_are(self):
-        categories = {entry["category"] for entry in BELK_CATEGORIES}
+        categories = {entry["category"] for entry in _FLAT(BELK_CATEGORIES)}
         self.assertNotIn("search", categories)
         self.assertNotIn("shopbybrand", categories)
         self.assertIn("home/home-decor", categories)  # lives under a /search/ mega-menu node
@@ -99,7 +99,7 @@ class BelkListingSpiderTests(unittest.TestCase):
 
     def test_ambiguous_leaf_and_unknown_category_fail_loudly(self):
         tails = {}
-        for entry in BELK_CATEGORIES:
+        for entry in _FLAT(BELK_CATEGORIES):
             tails.setdefault(entry["category"].rsplit("/", 1)[-1], []).append(entry["category"])
         ambiguous = next(name for name, paths in sorted(tails.items()) if len(paths) > 1)
         with self.assertRaises(ValueError) as ctx:
@@ -286,3 +286,8 @@ class BelkListingSpiderTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def _FLAT(const):
+    """Flatten a ``{group: {leaf: value}}`` categories mapping into leaf rows."""
+    return [value for group in const.values() for value in group.values()]
