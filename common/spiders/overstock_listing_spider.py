@@ -8,6 +8,7 @@ from urllib.parse import urlsplit, urlunsplit
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.overstock_categories import OVERSTOCK_CATEGORIES
 
 
 _FLIGHT_CHUNK_RE = re.compile(
@@ -17,30 +18,6 @@ _CHALLENGE_MARKERS = (
     "access denied", "are you a human", "captcha", "request unsuccessful",
     "proxy authentication required",
 )
-
-OVERSTOCK_CATEGORIES: list[dict[str, str | None]] = [
-    {"category": "furniture", "department": "Furniture", "subcategory": None, "url": "https://www.overstock.com/c/furniture?t=24352"},
-    {"category": "living-room-furniture", "department": "Furniture", "subcategory": "Living Room Furniture", "url": "https://www.overstock.com/c/furniture/living-room-furniture?t=24359"},
-    {"category": "bedroom-furniture", "department": "Furniture", "subcategory": "Bedroom Furniture", "url": "https://www.overstock.com/c/furniture/bedroom-furniture?t=24356"},
-    {"category": "rugs", "department": "Rugs", "subcategory": None, "url": "https://www.overstock.com/c/rugs?t=17602"},
-    {"category": "area-rugs", "department": "Rugs", "subcategory": "Area Rugs", "url": "https://www.overstock.com/c/rugs/area-rugs?t=17603"},
-    {"category": "patio-outdoor", "department": "Patio", "subcategory": None, "url": "https://www.overstock.com/c/outdoor?t=7907"},
-    {"category": "patio-furniture", "department": "Patio", "subcategory": "Patio Furniture", "url": "https://www.overstock.com/c/outdoor/patio-furniture?t=7908"},
-    {"category": "lighting", "department": "Lighting", "subcategory": None, "url": "https://www.overstock.com/c/lighting?t=31087"},
-    {"category": "ceiling-lighting", "department": "Lighting", "subcategory": "Ceiling Lighting", "url": "https://www.overstock.com/c/lighting/ceiling-lighting?t=31290"},
-    {"category": "home-decor", "department": "Decor", "subcategory": None, "url": "https://www.overstock.com/c/home-decor?t=28396"},
-    {"category": "art", "department": "Decor", "subcategory": "Art", "url": "https://www.overstock.com/c/art?t=28454"},
-    {"category": "bedding", "department": "Bedding", "subcategory": None, "url": "https://www.overstock.com/c/bed-bath/bedding?t=1"},
-    {"category": "mattresses", "department": "Bedding", "subcategory": "Mattresses", "url": "https://www.overstock.com/c/mattresses?t=24351"},
-    {"category": "apparel", "department": "Apparel", "subcategory": None, "url": "https://www.overstock.com/c/clothing-shoes?t=75555"},
-    {"category": "womens-clothing", "department": "Apparel", "subcategory": "Women's Clothing", "url": "https://www.overstock.com/c/womens/womens-clothing?t=75703"},
-    {"category": "mens-clothing", "department": "Apparel", "subcategory": "Men's Clothing", "url": "https://www.overstock.com/c/mens/mens-clothing?t=75687"},
-    {"category": "jewelry-watches", "department": "Jewelry & Watches", "subcategory": None, "url": "https://www.overstock.com/c/jewelry-watches?t=71533"},
-    {"category": "watches", "department": "Jewelry & Watches", "subcategory": "Watches", "url": "https://www.overstock.com/c/jewelry-watches/watches?t=78255"},
-    {"category": "kitchen-dining", "department": "More", "subcategory": "Kitchen & Dining", "url": "https://www.overstock.com/c/kitchen-dining?t=24566"},
-    {"category": "home-improvement", "department": "More", "subcategory": "Home Improvement", "url": "https://www.overstock.com/c/home-improvement?t=31076"},
-]
-
 
 class OverstockListingSpider(BaseListingSpider):
     """Overstock listings from the server-rendered Next.js RSC hydration."""
@@ -68,11 +45,12 @@ class OverstockListingSpider(BaseListingSpider):
     def start_requests(self):
         self._seen_products.clear()
         target_url = self.resolve_target_url()
-        target = next(
-            (entry for entry in self.categories if entry["category"] == self.category),
-            {"category": self.category or self._slug_from_url(target_url),
-             "department": None, "subcategory": None, "url": target_url},
-        )
+        target = self.category_entry(self.category) or {
+            "group": None,
+            "category": self.category or self._slug_from_url(target_url),
+            "subcategory": None,
+            "url": target_url,
+        }
         yield scrapy.Request(
             target_url, callback=self.parse, headers=self._html_headers(),
             meta={"target": target, "page": 1},

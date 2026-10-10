@@ -18,7 +18,7 @@ class OverstockListingSpiderTests(unittest.TestCase):
     def response(self, body, page=1):
         request = Request(
             "https://www.overstock.com/c/furniture?t=24352",
-            meta={"target": self.spider.categories[0], "page": page},
+            meta={"target": self.spider.category_entry("furniture"), "page": page},
         )
         return HtmlResponse(request.url, request=request, body=body, encoding="utf-8")
 
@@ -69,8 +69,10 @@ class OverstockListingSpiderTests(unittest.TestCase):
             list(self.spider.parse(self.response("<html>CAPTCHA</html>")))
 
     def test_catalog_has_twenty_verified_targets(self):
-        self.assertEqual(len(self.spider.categories), 20)
-        self.assertEqual(len({entry["url"] for entry in self.spider.categories}), 20)
+        entries = list(self.spider.iter_categories())
+        self.assertEqual(len(entries), 20)
+        self.assertEqual(len({entry["url"] for entry in entries}), 20)
+        self.assertEqual(len(self.spider.categories), 9)
 
 
 if __name__ == "__main__":
