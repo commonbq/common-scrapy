@@ -48,8 +48,8 @@ def classify_target(url: str, *, is_department_root: bool = False) -> str:
     return "listing"
 
 
-def flatten_wayfair_categories() -> list[dict[str, str]]:
-    """Return stable names for every unique product-listing target.
+def build_wayfair_categories() -> dict[str, dict[str, dict[str, str]]]:
+    """Return grouped stable names for every unique product-listing target.
 
     A plain label is used when it is unique (for example, ``sofas``). When the
     menu repeats a label, the department is prefixed to keep the key stable.
@@ -69,7 +69,7 @@ def flatten_wayfair_categories() -> list[dict[str, str]]:
         key = _slug(label)
         label_counts[key] = label_counts.get(key, 0) + 1
 
-    categories: list[dict[str, str]] = []
+    categories: dict[str, dict[str, dict[str, str]]] = {}
     seen_urls: set[str] = set()
     seen_keys: set[str] = set()
     for department, label, url, is_department_root in rows:
@@ -86,8 +86,11 @@ def flatten_wayfair_categories() -> list[dict[str, str]]:
                 suffix += 1
             key = f"{key}-{suffix}"
         seen_keys.add(key)
-        categories.append({"category": key, "url": url, "department": department})
+        categories.setdefault(department, {})[key] = {
+            "url": url,
+            "department": department,
+        }
     return categories
 
 
-WAYFAIR_CATEGORIES = flatten_wayfair_categories()
+WAYFAIR_CATEGORIES = build_wayfair_categories()

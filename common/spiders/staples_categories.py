@@ -251,11 +251,12 @@ def _slug(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
 
 
-def _flatten_categories() -> list[dict[str, str]]:
-    categories: list[dict[str, str]] = []
+def _group_categories() -> dict[str, dict[str, dict[str, str]]]:
+    categories: dict[str, dict[str, dict[str, str]]] = {}
     seen_urls: set[str] = set()
     used_names: set[str] = set()
     for root, group in STAPLES_CATEGORY_INVENTORY.items():
+        category_group: dict[str, dict[str, str]] = {}
         entries = [(root, group["url"]), *group["subcategories"].items()]
         for label, url in entries:
             if url in seen_urls:
@@ -270,8 +271,14 @@ def _flatten_categories() -> list[dict[str, str]]:
                 name = f"{_slug(root)}-{base}-{suffix}"
                 suffix += 1
             used_names.add(name)
-            categories.append({"category": name, "department": root, "subcategory": label, "url": url})
+            category_group[name] = {
+                "category": name,
+                "url": url,
+                "department": root,
+                "subcategory": label,
+            }
+        categories[_slug(root)] = category_group
     return categories
 
 
-STAPLES_CATEGORIES = _flatten_categories()
+STAPLES_CATEGORIES = _group_categories()

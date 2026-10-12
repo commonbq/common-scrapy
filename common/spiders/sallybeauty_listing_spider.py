@@ -7,26 +7,14 @@ import re
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.sallybeauty_categories import SALLYBEAUTY_CATEGORIES
 
 
 class SallybeautyListingSpider(BaseListingSpider):
     name = "sallybeauty_listing"
     allowed_domains = ["sallybeauty.com", "www.sallybeauty.com", "127.0.0.1"]
 
-    categories = [
-        {"category": "hair-color", "url": "https://www.sallybeauty.com/hair-color/"},
-        {"category": "hair-care", "url": "https://www.sallybeauty.com/hair-care/shop-by-product/"},
-        {"category": "textured-curly-hair", "url": "https://www.sallybeauty.com/textured-and-curly-hair-care/"},
-        {"category": "hair-extensions", "url": "https://www.sallybeauty.com/hair-extensions/"},
-        {"category": "tools-brushes", "url": "https://www.sallybeauty.com/tools-and-brushes/"},
-        {"category": "nails", "url": "https://www.sallybeauty.com/nails/"},
-        {"category": "cosmetics-skin-care", "url": "https://www.sallybeauty.com/cosmetics-and-skin-care/"},
-        {"category": "fragrances", "url": "https://www.sallybeauty.com/fragrances/"},
-        {"category": "mens-grooming", "url": "https://www.sallybeauty.com/mens-grooming/"},
-        {"category": "salon-supplies", "url": "https://www.sallybeauty.com/salon-supplies/"},
-        {"category": "new", "url": "https://www.sallybeauty.com/featured/new-and-now/"},
-        {"category": "deals", "url": "https://www.sallybeauty.com/deals/"},
-    ]
+    categories = SALLYBEAUTY_CATEGORIES
 
     custom_settings = {
         "DOWNLOAD_DELAY": 1,

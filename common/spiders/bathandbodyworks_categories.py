@@ -2,7 +2,7 @@
 
 BASE_URL = "https://www.bathandbodyworks.com"
 
-BATHANDBODYWORKS_CATEGORIES = {
+_BATHANDBODYWORKS_CATEGORY_PATHS = {
     "sale": {"all-sale": "/g/all-sale", "top-offers": "/g/top-offers"},
     "new-and-now": {
         "new-and-now": "/g/new-and-now",
@@ -56,11 +56,7 @@ BATHANDBODYWORKS_CATEGORIES = {
     },
 }
 
-
-def flattened_categories():
-    """Return category aliases accepted by the spider, preserving nav order."""
-    return [
-        {"category": name, "url": BASE_URL + path}
-        for group in BATHANDBODYWORKS_CATEGORIES.values()
-        for name, path in group.items()
-    ]
+BATHANDBODYWORKS_CATEGORIES = {
+    group: {name: BASE_URL + path for name, path in categories.items()}
+    for group, categories in _BATHANDBODYWORKS_CATEGORY_PATHS.items()
+}

@@ -597,24 +597,25 @@ def category_url(path: str) -> str:
     return f"{SITE_BASE}/{category_slug(path)}/"
 
 
-def _flatten_categories() -> list[dict[str, object]]:
-    categories: list[dict[str, object]] = []
+def _group_categories() -> dict[str, dict[str, dict[str, object]]]:
+    categories: dict[str, dict[str, dict[str, object]]] = {
+        department: {} for department in PETSMART_DEPARTMENTS
+    }
     for path, item_count in sorted(
         PETSMART_CATEGORY_COUNTS.items(), key=lambda entry: tuple(entry[0].split(" > "))
     ):
         parts = path.split(" > ")
         department = parts[0]
-        categories.append(
-            {
-                "category": category_slug(path),
-                "department": department,
-                "subcategory": " > ".join(parts[1:-1]) or None,
-                "name": path,
-                "item_count": item_count,
-                "url": category_url(path),
-            }
-        )
+        leaf = category_slug(path)
+        categories[department][leaf] = {
+            "category": leaf,
+            "department": department,
+            "subcategory": " > ".join(parts[1:-1]) or None,
+            "name": path,
+            "item_count": item_count,
+            "url": category_url(path),
+        }
     return categories
 
 
-PETSMART_CATEGORIES = _flatten_categories()
+PETSMART_CATEGORIES = _group_categories()

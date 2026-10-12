@@ -46,11 +46,15 @@ _ROOTS = {
     "Wipers & Components": "/shop/b/wipers---components/f2ff19411853",
 }
 
-OREILLY_CATEGORIES = [
-    {"category": re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-"),
-     "category_path": name, "url": urljoin(BASE_URL, path)}
-    for name, path in _ROOTS.items()
-]
+OREILLY_CATEGORIES = {
+    "all": {
+        re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-"): {
+            "category_path": name,
+            "url": urljoin(BASE_URL, path),
+        }
+        for name, path in _ROOTS.items()
+    }
+}
 
 
 def child_categories(text: str) -> list[dict[str, str]]:

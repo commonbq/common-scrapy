@@ -43,7 +43,7 @@ class OreillyListingSpider(BaseListingSpider):
     def start_requests(self):
         self._seen.clear()
         target = self.resolve_target_url()
-        selected = next((x for x in self.categories if x["url"] == target), {})
+        selected = next((x for x in self.iter_categories() if x["url"] == target), {})
         yield self._request(target, 1, selected.get("category_path"))
 
     def _request(self, url, page, category_path):

@@ -16,7 +16,7 @@ class MenardsListingSpider(BaseListingSpider):
 
     name = "menards_listing"
     allowed_domains = ["menards.com", "www.menards.com", "127.0.0.1"]
-    categories = [{"category": key, "url": url} for key, url in MENARDS_CATEGORIES.items()]
+    categories = MENARDS_CATEGORIES
     api_url = "https://www.menards.com/main/search/category.ajx"
     custom_settings = {
         "FEED_EXPORT_FIELDS": [
@@ -151,7 +151,6 @@ class MenardsListingSpider(BaseListingSpider):
             return float(str(value).replace("$", "").replace(",", "")) if value is not None else None
         except (TypeError, ValueError):
             return None
-
     @staticmethod
     def _integer(value):
         try:

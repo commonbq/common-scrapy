@@ -37,9 +37,7 @@ class MicrocenterListingSpider(BaseListingSpider):
         self.store_id = str(kwargs.get("store_id") or "121").strip()
         super().__init__(*args, **kwargs)
         self._seen: set[str] = set()
-        self._category_record = next(
-            (entry for entry in self.categories if entry["category"] == self.category), {}
-        )
+        self._category_record = self.category_entry(self.category) or {}
 
     def start_requests(self):
         url = self._with_query(self.resolve_target_url(), storeid=self.store_id, page="1")

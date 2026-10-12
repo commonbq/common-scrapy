@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import re
+from urllib.parse import unquote
+
 """GameStop category inventory (issue #159).
 
 Canonical taxonomy captured from the storefront header-menu controller
@@ -7,15 +10,15 @@ Canonical taxonomy captured from the storefront header-menu controller
 served -- `sitemap_index.xml` only lists `*-product.xml` sitemaps and carries no
 category sitemap.
 
-The dict below maps a top-level department slug to the absolute category URLs
-underneath it. Leaves are kept flat (no nesting depth in the keys) so
-`_load_categories()` can build one crawl target per entry.
+The source inventory maps a top-level department slug to the absolute category
+URLs underneath it. ``GAMESTOP_CATEGORIES`` exposes that inventory in the
+grouped mapping contract consumed by ``BaseListingSpider``.
 
 The raw capture is committed at `sample/gamestop-categories.json` so the
 inventory can be diffed when GameStop renames a department.
 """
 
-GAMESTOP_CATEGORIES: dict[str, list[str]] = {
+_GAMESTOP_CATEGORY_URLS: dict[str, list[str]] = {
     "video-games": [
         "https://www.gamestop.com/video-games",
         "https://www.gamestop.com/video-games/hidden-gems",
@@ -157,4 +160,23 @@ GAMESTOP_CATEGORIES: dict[str, list[str]] = {
     "marvel": ["https://www.gamestop.com/marvel"],
     "pokemon": ["https://www.gamestop.com/pokemon"],
     "star-wars": ["https://www.gamestop.com/star-wars"],
+}
+
+
+def category_slug(url: str) -> str:
+    """Build a stable leaf key from the full path, avoiding cross-group collisions."""
+    path = unquote(url.split("gamestop.com", 1)[-1].split("?", 1)[0].strip("/"))
+    return re.sub(r"[^a-z0-9]+", "-", path.lower()).strip("-")
+
+
+GAMESTOP_CATEGORIES: dict[str, dict[str, dict[str, str]]] = {
+    department: {
+        category_slug(url): {
+            "url": url,
+            "department": department,
+            "name": unquote(url.rstrip("/").rsplit("/", 1)[-1]).replace("-", " "),
+        }
+        for url in urls
+    }
+    for department, urls in _GAMESTOP_CATEGORY_URLS.items()
 }

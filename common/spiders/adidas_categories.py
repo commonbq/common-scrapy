@@ -271,12 +271,13 @@ def _slug(label: str) -> str:
     return slug or "category"
 
 
-def _flatten_categories() -> list[dict[str, str]]:
-    """Flatten the sitemap sections into the base spider's category contract."""
-    categories: list[dict[str, str]] = []
+def _group_categories() -> dict[str, dict[str, dict[str, str]]]:
+    """Convert sitemap sections into the base spider's grouped mapping contract."""
+    categories: dict[str, dict[str, dict[str, str]]] = {}
     seen_urls: set[str] = set()
     used_names: set[str] = set()
     for section, entries in ADIDAS_CATEGORY_SECTIONS.items():
+        group: dict[str, dict[str, str]] = {}
         for entry in entries:
             url = entry["url"]
             if url in seen_urls:
@@ -291,10 +292,15 @@ def _flatten_categories() -> list[dict[str, str]]:
                 name = f"{_slug(section)}-{base}-{suffix}"
                 suffix += 1
             used_names.add(name)
-            categories.append(
-                {"category": name, "department": section, "subcategory": entry["name"], "url": url}
-            )
+            group[name] = {
+                "category": name,
+                "url": url,
+                "department": section,
+                "subcategory": entry["name"],
+            }
+        if group:
+            categories[section] = group
     return categories
 
 
-ADIDAS_CATEGORIES = _flatten_categories()
+ADIDAS_CATEGORIES = _group_categories()

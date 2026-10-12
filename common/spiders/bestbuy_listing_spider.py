@@ -14,6 +14,7 @@ from common.spiders.base_listing_spider import BaseListingSpider
 from common.spiders.bestbuy_bootstrap_utils import (
     extract_bestbuy_items_from_apollo,
 )
+from common.spiders.bestbuy_categories import BESTBUY_CATEGORIES
 
 
 class BestbuyListingSpider(BaseListingSpider):
@@ -51,28 +52,7 @@ class BestbuyListingSpider(BaseListingSpider):
         ]
     }
 
-    categories = [
-        {
-            "category": "laptops",
-            "url": "https://www.bestbuy.com/site/all-laptops/laptops/abcat0502000.c?id=abcat0502000",
-        },
-        {
-            "category": "tvs",
-            "url": "https://www.bestbuy.com/site/tv-home-theater/televisions/abcat0101001.c?id=abcat0101001",
-        },
-        {
-            "category": "headphones",
-            "url": "https://www.bestbuy.com/site/headphones/all-headphones/abcat0204000.c?id=abcat0204000",
-        },
-        {
-            "category": "monitors",
-            "url": "https://www.bestbuy.com/site/computer-cards-components/monitors/abcat0509000.c?id=abcat0509000",
-        },
-        {
-            "category": "cell-phones",
-            "url": "https://www.bestbuy.com/site/cell-phones/all-cell-phones/pcmcat311200050005.c?id=pcmcat311200050005",
-        },
-    ]
+    categories = BESTBUY_CATEGORIES
 
     def start_requests(self):
         target = self._resolve_target_url()
@@ -99,7 +79,7 @@ class BestbuyListingSpider(BaseListingSpider):
             yield item
 
         subcategories: dict[str, str] = {}
-        if page_num == 1:
+        if page_num == 1 and not response.meta.get("is_subcategory", False):
             for link in response.css("main a.cn-carousel-item"):
                 href = link.attrib.get("href")
                 if not href:
@@ -122,6 +102,7 @@ class BestbuyListingSpider(BaseListingSpider):
                     callback=self.parse_listing_page,
                     meta={
                         "page": 1,
+                        "is_subcategory": True,
                         "sub_category": subcategory_name,
                     },
                 )
@@ -153,11 +134,11 @@ class BestbuyListingSpider(BaseListingSpider):
             return self.url
         if self.category_url:
             return self.category_url
-        for entry in self.categories:
-            if entry.get("category") == self.category:
-                self.category_url = entry.get("url")
-                return self.category_url
-        names = ", ".join(sorted([c["category"] for c in self.categories]))
+        entry = self.category_entry(self.category)
+        if entry:
+            self.category_url = entry.get("url")
+            return self.category_url
+        names = ", ".join(self.available_categories())
         raise ValueError(f"Unknown category '{self.category}'. Use one of: {names}")
 
     @staticmethod

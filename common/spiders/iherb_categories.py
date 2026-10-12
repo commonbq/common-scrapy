@@ -503,14 +503,14 @@ def url_name_for(url: str) -> str:
     return "/".join(parts)
 
 
-def _flatten_categories() -> list[dict[str, str]]:
-    """Flatten the inventory into ``BaseListingSpider`` category entries.
+def _group_categories() -> dict[str, dict[str, dict[str, str]]]:
+    """Convert the inventory to the grouped ``BaseListingSpider`` contract.
 
     Entries are deduplicated on the API ``urlName`` (not the HTML URL) so a
     storefront path is never requested twice, and category names that collide
     across departments are prefixed with their department.
     """
-    categories: list[dict[str, str]] = []
+    categories: dict[str, dict[str, dict[str, str]]] = {}
     seen_url_names: set[str] = set()
     used_names: set[str] = set()
     for root, group in IHERB_CATEGORY_INVENTORY.items():
@@ -529,16 +529,13 @@ def _flatten_categories() -> list[dict[str, str]]:
                 name = f"{_slug(root)}-{base}-{suffix}"
                 suffix += 1
             used_names.add(name)
-            categories.append(
-                {
-                    "category": name,
-                    "department": root,
-                    "subcategory": label,
-                    "url": url,
-                    "url_name": url_name,
-                }
-            )
+            categories.setdefault(root, {})[name] = {
+                "url": url,
+                "department": root,
+                "subcategory": label,
+                "url_name": url_name,
+            }
     return categories
 
 
-IHERB_CATEGORIES = _flatten_categories()
+IHERB_CATEGORIES = _group_categories()

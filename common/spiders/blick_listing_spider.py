@@ -45,7 +45,7 @@ from urllib.parse import urlencode, urljoin
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
-from common.spiders.blick_categories import BLICK_SITE_BASE, crawlable_categories
+from common.spiders.blick_categories import BLICK_CATEGORIES, BLICK_SITE_BASE
 
 API_BASE = "https://api.dickblick.com/product-search/api/v1.0/collections/alias"
 PAGE_SIZE = 30
@@ -87,16 +87,7 @@ class BlickListingSpider(BaseListingSpider):
     allowed_domains = ["dickblick.com", "www.dickblick.com", "api.dickblick.com"]
     require_category_arg = False
 
-    categories = [
-        {
-            "category": row["category"],
-            "name": row["name"],
-            "url": row["url"],
-            "path": row["path"],
-            "depth": row["depth"],
-        }
-        for row in crawlable_categories()
-    ]
+    categories = BLICK_CATEGORIES
 
     PAGE_SIZE = PAGE_SIZE
 
@@ -159,9 +150,9 @@ class BlickListingSpider(BaseListingSpider):
 
     def _target_categories(self) -> list[dict[str, Any]]:
         if not (self.url or self.category_url or self.category):
-            return list(self.categories)
+            return list(self.iter_categories())
         target_url = self.url or self.category_url
-        for entry in self.categories:
+        for entry in self.iter_categories():
             if self.category and entry["category"] == self.category:
                 return [entry]
             # Exact match: substring matching would let a department URL such as

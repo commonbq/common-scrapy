@@ -74,14 +74,21 @@ def _slug(value: str) -> str:
     return value.lower().replace(" ", "-")
 
 
-ZAPPOS_CATEGORIES = []
-for department, group in ZAPPOS_CATEGORY_INVENTORY.items():
-    ZAPPOS_CATEGORIES.append({"category": _slug(department), "department": department, "url": group["url"]})
-    ZAPPOS_CATEGORIES.extend(
-        {
-            "category": f"{_slug(department)}-{_slug(name)}",
+ZAPPOS_CATEGORIES = {
+    department: {
+        _slug(department): {
+            "category": _slug(department),
             "department": department,
-            "url": url,
-        }
-        for name, url in group["subcategories"].items()
-    )
+            "url": group["url"],
+        },
+        **{
+            f"{_slug(department)}-{_slug(name)}": {
+                "category": f"{_slug(department)}-{_slug(name)}",
+                "department": department,
+                "url": url,
+            }
+            for name, url in group["subcategories"].items()
+        },
+    }
+    for department, group in ZAPPOS_CATEGORY_INVENTORY.items()
+}

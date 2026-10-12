@@ -39,6 +39,8 @@ import json
 import re
 from pathlib import Path
 
+from common.spiders.base_listing_spider import group_categories
+
 NEWEGG_SITE_BASE = "https://www.newegg.com"
 NEWEGG_MENU_URL = f"{NEWEGG_SITE_BASE}/api/RolloverMenu?CountryCode=USA"
 
@@ -125,7 +127,33 @@ def _flatten_categories() -> list[dict[str, str]]:
     return deduped
 
 
-NEWEGG_CATEGORIES: list[dict[str, str]] = _flatten_categories()
-NEWEGG_LISTING_CATEGORIES: list[dict[str, str]] = [
-    entry for entry in NEWEGG_CATEGORIES if entry["kind"] == "SubCategory"
-]
+_NEWEGG_CATEGORY_ROWS = _flatten_categories()
+
+# BaseListingSpider's category contract is group -> leaf -> rich value.  Keep
+# the department hierarchy in the exported constants so both spiders and DAGs
+# consume the same shape without rebuilding it at import sites.
+NEWEGG_CATEGORIES = group_categories(_NEWEGG_CATEGORY_ROWS, "department")
+NEWEGG_LISTING_CATEGORIES = group_categories(
+    [entry for entry in _NEWEGG_CATEGORY_ROWS if entry["kind"] == "SubCategory"],
+    "department",
+)
+
+# ``all-current-categories`` remains the efficient DAG entry point: it asks the
+# spider to refresh the first-party navigation endpoint at crawl time.  Direct
+# ``-a category=<leaf>`` runs use the complete captured listing inventory above.
+NEWEGG_SPIDER_CATEGORIES = {
+    **NEWEGG_LISTING_CATEGORIES,
+    "featured": {
+        # Preserve the original documented direct-run category name.
+        "desktop-cpu-processors": {
+            "url": "https://www.newegg.com/Desktop-CPU-Processor/SubCategory/ID-343",
+            "kind": "SubCategory",
+        }
+    },
+    "inventory": {
+        "all-current-categories": {
+            "url": NEWEGG_MENU_URL,
+            "kind": "inventory",
+        }
+    },
+}

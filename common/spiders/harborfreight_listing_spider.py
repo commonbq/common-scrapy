@@ -42,7 +42,10 @@ class HarborfreightListingSpider(BaseListingSpider):
     def start_requests(self):
         self._seen.clear()
         target = self.resolve_target_url()
-        selected = next((e for e in self.categories if e["url"] == target), {})
+        selected = next(
+            (entry for entry in self.iter_categories() if entry.get("url") == target),
+            {},
+        )
         yield self._request(target, 1, selected)
 
     def _request(self, base_url: str, page: int, selected: dict[str, Any]):

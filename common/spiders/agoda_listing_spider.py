@@ -19,9 +19,7 @@ class AgodaListingSpider(BaseListingSpider):
 
     name = "agoda_listing"
     allowed_domains = ["agoda.com", "www.agoda.com"]
-    categories = [
-        {"category": name, "url": url} for name, url in AGODA_CATEGORIES.items()
-    ]
+    categories = AGODA_CATEGORIES
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
         "FEED_EXPORT_FIELDS": [
@@ -152,4 +150,3 @@ class AgodaListingSpider(BaseListingSpider):
             "source_url": response.meta["source_url"], "source": "agoda_cronos_geo_api", "raw": card,
             "timestamp": self.get_timestamp(),
         }
-

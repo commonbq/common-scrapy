@@ -234,19 +234,18 @@ CHEWY_CATEGORY_INVENTORY = {
     }
 }
 
-CHEWY_CATEGORIES = []
+CHEWY_CATEGORIES = {}
 _seen_urls = set()
 for department, groups in CHEWY_CATEGORY_INVENTORY.items():
+    department_categories = CHEWY_CATEGORIES.setdefault(department, {})
     for group, links in groups.items():
         for label, url in links.items():
             if url in _seen_urls:
                 continue
             _seen_urls.add(url)
-            CHEWY_CATEGORIES.append({
-                "category": url.rstrip("/").rsplit("/", 1)[-1],
+            category = url.rstrip("/").rsplit("/", 1)[-1]
+            department_categories[category] = {
                 "url": url,
-                "department": department,
-                "group": group,
+                "section": group,
                 "label": label,
-            })
-
+            }

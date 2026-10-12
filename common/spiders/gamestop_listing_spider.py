@@ -31,55 +31,13 @@ the URL, because the two diverge for most categories.
 """
 
 import json
-import re
 from typing import Any
-from urllib.parse import parse_qsl, unquote, urlencode, urljoin
+from urllib.parse import parse_qsl, urlencode, urljoin
 
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
-from common.spiders.gamestop_categories import GAMESTOP_CATEGORIES
-
-_SLUG_CLEAN_RE = re.compile(r"[^a-z0-9]+")
-
-
-def _slugify(value: str) -> str:
-    return _SLUG_CLEAN_RE.sub("-", value.lower()).strip("-")
-
-
-def category_slug(url: str) -> str:
-    """Build a stable, unique `category` key from a GameStop category URL.
-
-    Leaf slugs collide across departments (`nintendo-switch` exists under both
-    `video-games` and `consoles-hardware`), so the full URL path is used, e.g.
-    `consoles-hardware-nintendo-switch`.
-    """
-    # `%7C` decodes to a pipe ("xbox-series-x|s"), which must be normalized before
-    # slugging or the key reads `x-7cs`.
-    path = unquote(url.split("gamestop.com", 1)[-1].split("?", 1)[0].strip("/"))
-    return _slugify(path)
-
-
-def _load_categories() -> list[dict[str, str]]:
-    categories: list[dict[str, str]] = []
-    seen: set[str] = set()
-    for department, urls in GAMESTOP_CATEGORIES.items():
-        for url in urls:
-            if url in seen:
-                continue
-            seen.add(url)
-            slug = category_slug(url)
-            categories.append(
-                {
-                    "category": slug,
-                    "department": department,
-                    "name": url.rstrip("/").rsplit("/", 1)[-1]
-                    .replace("%7C", "|")
-                    .replace("-", " "),
-                    "url": url,
-                }
-            )
-    return categories
+from common.spiders.gamestop_categories import GAMESTOP_CATEGORIES, category_slug
 
 
 class GamestopListingSpider(BaseListingSpider):
@@ -101,7 +59,7 @@ class GamestopListingSpider(BaseListingSpider):
     # request is chunked rather than risking a silently truncated response.
     TILE_BATCH_SIZE = 20
 
-    categories = _load_categories()
+    categories = GAMESTOP_CATEGORIES
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
@@ -472,16 +430,14 @@ class GamestopListingSpider(BaseListingSpider):
         return None
 
     def _category_for(self, url: str) -> str:
-        for entry in self.categories:
+        for entry in self.iter_categories():
             if entry["url"] == url:
                 return entry["category"]
         return category_slug(url)
 
     def _department_for(self, category: str) -> str | None:
-        for entry in self.categories:
-            if entry["category"] == category:
-                return entry.get("department")
-        return None
+        entry = self.category_entry(category)
+        return entry.get("department") if entry else None
 
     def _product_item(
         self,

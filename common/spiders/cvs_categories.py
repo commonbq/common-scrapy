@@ -28,6 +28,9 @@ its CVS ``cat*`` id (the same ids the ``facets.facetFields`` category refinement
 
 from __future__ import annotations
 
+import re
+from typing import Any, Iterator
+
 CVS_CATEGORY_INVENTORY: dict[str, dict] = {
     "Health & Medicine": {
         "url": "/shop/health-medicine",
@@ -1375,3 +1378,59 @@ CVS_CATEGORY_INVENTORY: dict[str, dict] = {
         },
     },
 }
+
+
+_SLUG_RE = re.compile(r"[^a-z0-9]+")
+
+
+def _slugify(value: str) -> str:
+    return _SLUG_RE.sub("-", value.lower()).strip("-")
+
+
+def _walk(
+    node: dict[str, Any], path: tuple[str, ...]
+) -> Iterator[tuple[tuple[str, ...], dict[str, Any]]]:
+    """Yield every taxonomy node with its full display-name path."""
+    yield path, node
+    for label, child in (node.get("subcategories") or {}).items():
+        if isinstance(child, dict):
+            yield from _walk(child, path + (label,))
+
+
+def _grouped_categories() -> dict[str, dict[str, dict[str, Any]]]:
+    """Convert the captured tree to the BaseListingSpider category contract."""
+    groups: dict[str, dict[str, dict[str, Any]]] = {}
+    seen_urls: set[str] = set()
+    seen_slugs: set[str] = set()
+
+    for department, node in CVS_CATEGORY_INVENTORY.items():
+        leaves: dict[str, dict[str, Any]] = {}
+        for path, entry in _walk(node, (department,)):
+            url = entry.get("url")
+            if not url or url in seen_urls:
+                continue
+            seen_urls.add(url)
+            name = path[-1]
+            slug = _slugify(name)
+            if slug in seen_slugs:
+                slug = f"{_slugify(department)}-{slug}"
+            if slug in seen_slugs:
+                slug = "-".join(_slugify(part) for part in path)
+            suffix = 2
+            unique = slug
+            while unique in seen_slugs:
+                unique = f"{slug}-{suffix}"
+                suffix += 1
+            seen_slugs.add(unique)
+            leaves[unique] = {
+                "url": f"https://www.cvs.com{url}",
+                "name": name,
+                "department": department,
+                "breadcrumb": list(path),
+                "category_id": entry.get("id"),
+            }
+        groups[department] = leaves
+    return groups
+
+
+CVS_CATEGORIES = _grouped_categories()

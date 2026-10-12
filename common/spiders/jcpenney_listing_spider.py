@@ -5,6 +5,7 @@ from urllib.parse import parse_qsl, urlencode, urljoin, urlparse
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.jcpenney_categories import JCPENNEY_CATEGORIES
 
 
 class JCPenneyListingSpider(BaseListingSpider):
@@ -13,18 +14,7 @@ class JCPenneyListingSpider(BaseListingSpider):
     name = "jcpenney_listing"
     allowed_domains = ["search-api.jcpenney.com", "www.jcpenney.com", "jcpenney.com", "127.0.0.1"]
 
-    categories = [
-        {"category": "women", "url": "https://www.jcpenney.com/g/women?id=dept20000013"},
-        {"category": "womens_tops", "url": "https://www.jcpenney.com/g/women/tops?id=cat100210006"},
-        {"category": "men", "url": "https://www.jcpenney.com/g/men?id=dept20000014"},
-        {"category": "mens_shirts", "url": "https://www.jcpenney.com/g/men/mens-shirts?id=cat100240025"},
-        {"category": "kids", "url": "https://www.jcpenney.com/g/kids?id=dept20000016"},
-        {"category": "shoes", "url": "https://www.jcpenney.com/g/shoes?id=dept20000018"},
-        {"category": "handbags", "url": "https://www.jcpenney.com/g/handbags-accessories?id=dept20000019"},
-        {"category": "jewelry", "url": "https://www.jcpenney.com/g/jewelry-and-watches?id=dept20000020"},
-        {"category": "beauty", "url": "https://www.jcpenney.com/g/beauty?id=dept20024960026"},
-        {"category": "home", "url": "https://www.jcpenney.com/g/home-store?id=dept20000011"},
-    ]
+    categories = JCPENNEY_CATEGORIES
 
     custom_settings = {
         "FEED_EXPORT_FIELDS": [

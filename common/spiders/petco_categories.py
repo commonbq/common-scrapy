@@ -301,14 +301,15 @@ def _slug(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
 
 
-def _flatten_categories() -> list[dict[str, str]]:
-    """Flatten the nested inventory into `-a category=` entries.
+def _group_categories() -> dict[str, dict[str, dict[str, str]]]:
+    """Convert the nested inventory to the base spider's grouped mapping.
 
     The category name is the slug of the full category path (`cat-cat-food-dry-cat-food`)
-    so sibling departments never collide on a short leaf name.
+    so sibling departments never collide on a short leaf name. Top-level taxonomy
+    roots become groups and all of their descendants become rich leaf values.
     """
 
-    categories: list[dict[str, str]] = []
+    categories: dict[str, dict[str, dict[str, str]]] = {}
     seen_urls: set[str] = set()
     seen_names: set[str] = set()
 
@@ -321,14 +322,12 @@ def _flatten_categories() -> list[dict[str, str]]:
             seen_names.add(name)
             seen_urls.add(entry["url"])
             leaf = label if path[-1] != department else subcategory
-            categories.append(
-                {
-                    "category": name,
-                    "department": department,
-                    "subcategory": leaf,
-                    "url": entry["url"],
-                }
-            )
+            categories.setdefault(department, {})[name] = {
+                "category": name,
+                "department": department,
+                "subcategory": leaf,
+                "url": entry["url"],
+            }
             walk(entry.get("subcategories", {}), path, department, leaf)
 
     for root_label, group in PETCO_CATEGORY_INVENTORY.items():
@@ -337,4 +336,4 @@ def _flatten_categories() -> list[dict[str, str]]:
     return categories
 
 
-PETCO_CATEGORIES = _flatten_categories()
+PETCO_CATEGORIES = _group_categories()

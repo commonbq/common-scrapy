@@ -7,6 +7,7 @@ from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.elfcosmetics_categories import ELFCOSMETICS_CATEGORIES
 
 
 class ElfcosmeticsListingSpider(BaseListingSpider):
@@ -42,17 +43,7 @@ class ElfcosmeticsListingSpider(BaseListingSpider):
         ],
     }
 
-    categories = [
-        {"category": "makeup", "url": "https://www.elfcosmetics.com/collections/all-makeup"},
-        {"category": "face", "url": "https://www.elfcosmetics.com/collections/face"},
-        {"category": "eyes", "url": "https://www.elfcosmetics.com/collections/eyes"},
-        {"category": "lips", "url": "https://www.elfcosmetics.com/collections/lips"},
-        {"category": "skin-care", "url": "https://www.elfcosmetics.com/collections/skin-care"},
-        {"category": "hair", "url": "https://www.elfcosmetics.com/collections/hair"},
-        {"category": "brushes", "url": "https://www.elfcosmetics.com/collections/brushes"},
-        {"category": "best-sellers", "url": "https://www.elfcosmetics.com/collections/best-sellers"},
-        {"category": "whats-new", "url": "https://www.elfcosmetics.com/collections/whats-new"},
-    ]
+    categories = ELFCOSMETICS_CATEGORIES
 
     def start_requests(self):
         target = self.resolve_target_url()

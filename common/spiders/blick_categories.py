@@ -4038,3 +4038,24 @@ def flatten_categories(tree: dict[str, dict] | None = None) -> list[dict]:
 def crawlable_categories(tree: dict[str, dict] | None = None) -> list[dict]:
     """Return only the rows that map to a crawlable category landing page."""
     return [row for row in flatten_categories(tree) if row["url"]]
+
+
+def grouped_categories(
+    tree: dict[str, dict] | None = None,
+) -> dict[str, dict[str, dict]]:
+    """Return the base-spider ``{group: {leaf: rich value}}`` category shape.
+
+    Leaf keys keep the full taxonomy path, so they remain globally unique even
+    when multiple Blick departments use the same display name.
+    """
+    groups: dict[str, dict[str, dict]] = {}
+    for row in crawlable_categories(tree):
+        category = row["category"]
+        group = category.split("/", 1)[0]
+        groups.setdefault(group, {})[category] = {
+            key: value for key, value in row.items() if key != "category"
+        }
+    return groups
+
+
+BLICK_CATEGORIES = grouped_categories()

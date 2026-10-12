@@ -49,7 +49,12 @@ class AdidasListingSpider(BaseListingSpider):
     def start_requests(self):
         self._seen_products.clear()
         target = self.resolve_target_url()
-        selected = next((entry for entry in self.categories if entry["url"] == target), {})
+        selected = self.category_entry(self.category) if self.category else None
+        if selected is None:
+            selected = next(
+                (entry for entry in self.iter_categories() if entry.get("url") == target),
+                {},
+            )
         yield scrapy.Request(
             target,
             callback=self.parse,

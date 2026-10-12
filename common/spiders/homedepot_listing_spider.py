@@ -3,6 +3,7 @@ from __future__ import annotations
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.homedepot_categories import HOMEDEPOT_CATEGORIES
 from common.spiders.homedepot_search_spider import HomeDepotSearchSpider
 
 
@@ -13,23 +14,7 @@ class HomeDepotListingSpider(BaseListingSpider):
     allowed_domains = ["homedepot.com", "www.homedepot.com", "127.0.0.1"]
 
     # Department landing pages whose PLPs expose products in __APOLLO_STATE__.
-    categories = [
-        {"category": "appliances", "url": "https://www.homedepot.com/b/Appliances/N-5yc1vZbv1w"},
-        {"category": "bath", "url": "https://www.homedepot.com/b/Bath/N-5yc1vZbzb3"},
-        {"category": "building-materials", "url": "https://www.homedepot.com/b/Building-Materials/N-5yc1vZaqns"},
-        {"category": "decor-and-furniture", "url": "https://www.homedepot.com/b/Home-Decor-Furniture/N-5yc1vZas6p"},
-        {"category": "electrical", "url": "https://www.homedepot.com/b/Electrical/N-5yc1vZarcd"},
-        {"category": "flooring", "url": "https://www.homedepot.com/b/Flooring/N-5yc1vZaq7r"},
-        {"category": "hardware", "url": "https://www.homedepot.com/b/Hardware/N-5yc1vZc21m"},
-        {"category": "heating-and-cooling", "url": "https://www.homedepot.com/b/Heating-Venting-Cooling/N-5yc1vZc4k8"},
-        {"category": "kitchen", "url": "https://www.homedepot.com/b/Kitchen/N-5yc1vZar4i"},
-        {"category": "lawn-and-garden", "url": "https://www.homedepot.com/b/Outdoors-Garden-Center/N-5yc1vZbx6k"},
-        {"category": "lighting", "url": "https://www.homedepot.com/b/Lighting/N-5yc1vZbvn5"},
-        {"category": "paint", "url": "https://www.homedepot.com/b/Paint/N-5yc1vZar2d"},
-        {"category": "plumbing", "url": "https://www.homedepot.com/b/Plumbing/N-5yc1vZbqew"},
-        {"category": "storage", "url": "https://www.homedepot.com/b/Storage-Organization/N-5yc1vZas7e"},
-        {"category": "tools", "url": "https://www.homedepot.com/b/Tools/N-5yc1vZc1xy"},
-    ]
+    categories = HOMEDEPOT_CATEGORIES
 
     custom_settings = {
         "FEED_EXPORT_FIELDS": [
@@ -104,7 +89,7 @@ class HomeDepotListingSpider(BaseListingSpider):
             yield scrapy.Request(self._page_url(next_page), callback=self.parse, meta={"category": category, "page": next_page})
 
     def _category_entry(self):
-        return next(entry for entry in self.categories if entry["category"] == self.category)
+        return self.category_entry(self.category)
 
     def _page_url(self, page: int) -> str:
         base = self._category_entry()["url"]
