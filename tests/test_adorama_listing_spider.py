@@ -41,13 +41,15 @@ class AdoramaListingSpiderTests(unittest.TestCase):
 
     def test_inventory_and_category_selection(self):
         self.assertEqual(len(ADORAMA_CATEGORY_INVENTORY), 11)
-        self.assertEqual(len(ADORAMA_CATEGORIES), 1079)
-        self.assertEqual(len({entry["url"] for entry in ADORAMA_CATEGORIES}), 1079)
-        self.assertEqual(len({entry["category"] for entry in ADORAMA_CATEGORIES}), 1079)
+        self.assertEqual(len(ADORAMA_CATEGORIES), 11)
+        entries = list(self.spider.iter_categories())
+        self.assertEqual(len(entries), 1079)
+        self.assertEqual(len({entry["url"] for entry in entries}), 1079)
+        self.assertEqual(len({entry["category"] for entry in entries}), 1079)
         self.assertEqual(self.spider.resolve_target_url(), "https://www.adorama.com/l/Photography/Cameras")
         # Depth-1 department landings have no product grid and must not be crawlable.
-        self.assertNotIn("https://www.adorama.com/l/Photography", {e["url"] for e in ADORAMA_CATEGORIES})
-        leaf = next(e for e in ADORAMA_CATEGORIES if e["category"] == "microphone-cases")
+        self.assertNotIn("https://www.adorama.com/l/Photography", {e["url"] for e in entries})
+        leaf = self.spider.category_entry("microphone-cases")
         self.assertEqual(leaf["url"], "https://www.adorama.com/l/Audio/Audio-Bags-and-Cases/Microphone-Cases")
 
     def test_hydration_yields_24_items_and_feed_contract(self):

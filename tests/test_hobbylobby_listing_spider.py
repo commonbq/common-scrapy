@@ -6,7 +6,9 @@ from scrapy.http import HtmlResponse, Request
 from common.spiders.hobbylobby_categories import HOBBY_LOBBY_CATEGORIES
 from common.spiders.hobbylobby_listing_spider import HobbylobbyListingSpider
 
-URL = HOBBY_LOBBY_CATEGORIES["art-supplies-painting-supplies"]
+URL = HOBBY_LOBBY_CATEGORIES["art-supplies"][
+    "art-supplies-painting-supplies"
+]
 
 
 def hit(object_id="80968391"):
@@ -63,8 +65,17 @@ def response_for(hits=None, page=0, pages=2):
 
 class HobbyLobbyListingSpiderTests(unittest.TestCase):
     def test_categories_have_twenty_product_bearing_seeds(self):
-        self.assertEqual(len(HOBBY_LOBBY_CATEGORIES), 20)
-        self.assertTrue(all("/c/" in url for url in HOBBY_LOBBY_CATEGORIES.values()))
+        self.assertEqual(
+            sum(len(categories) for categories in HOBBY_LOBBY_CATEGORIES.values()),
+            20,
+        )
+        self.assertTrue(
+            all(
+                "/c/" in url
+                for categories in HOBBY_LOBBY_CATEGORIES.values()
+                for url in categories.values()
+            )
+        )
 
     def test_brace_matched_bootstrap_and_item_contract(self):
         spider = HobbylobbyListingSpider(

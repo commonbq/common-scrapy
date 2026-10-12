@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from pathlib import Path
 import unittest
 
@@ -19,9 +20,15 @@ class ZapposListingSpiderTests(unittest.TestCase):
 
     def test_inventory_and_category_selection(self):
         self.assertEqual(len(ZAPPOS_CATEGORY_INVENTORY), 4)
-        self.assertEqual(len(ZAPPOS_CATEGORIES), 50)
+        self.assertIsInstance(ZAPPOS_CATEGORIES, Mapping)
+        self.assertTrue(
+            all(isinstance(group, Mapping) for group in ZAPPOS_CATEGORIES.values())
+        )
+        self.assertEqual(sum(map(len, ZAPPOS_CATEGORIES.values())), 50)
         spider = ZapposListingSpider(category="women-shoes")
         self.assertIn("women-shoes", spider.resolve_target_url())
+        request = next(spider.start_requests())
+        self.assertEqual(request.meta["department"], "Women")
 
     def test_state_mapping_feed_contract_and_pagination(self):
         outputs = list(self.spider.parse(self.response()))

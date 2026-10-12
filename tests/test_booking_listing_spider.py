@@ -35,15 +35,22 @@ class BookingListingSpiderTests(unittest.TestCase):
         self.spider = BookingListingSpider(category="las-vegas", max_pages=2)
 
     def test_categories(self):
-        self.assertEqual(len(self.spider.categories), 20)
-        self.assertEqual(self.spider.categories[0]["category"], "las-vegas")
+        self.assertEqual(len(list(self.spider.iter_categories())), 20)
+        self.assertEqual(
+            self.spider.category_entry("las-vegas")["url"],
+            "https://www.booking.com/city/us/las-vegas.html",
+        )
 
     def test_city_handoff_uses_apollo(self):
         payload = {"ROOT_QUERY": {"lxAccommodations({})": {"web": {
             "destination": {"identifier": {"destId": 1}},
             "searchResultSnippet": {"seeAllUrl": "/searchresults.html?city=1&"},
         }}}}
-        out = list(self.spider.parse_city(response(payload, url=self.spider.categories[0]["url"], meta={"category": "las-vegas"})))
+        out = list(self.spider.parse_city(response(
+            payload,
+            url=self.spider.category_entry("las-vegas")["url"],
+            meta={"category": "las-vegas"},
+        )))
         self.assertEqual(len(out), 1)
         self.assertIn("rows=25", out[0].url)
         self.assertIn("offset=0", out[0].url)

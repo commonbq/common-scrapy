@@ -1,4 +1,5 @@
 import unittest
+from collections.abc import Mapping
 from pathlib import Path
 
 from scrapy.http import Request, TextResponse
@@ -27,6 +28,15 @@ class HomeDepotListingSpiderTest(unittest.TestCase):
     def test_missing_contract_fails_visibly(self):
         with self.assertRaisesRegex(RuntimeError, "did not contain __APOLLO_STATE__"):
             list(self.spider.parse(self.response(b"<html></html>")))
+
+    def test_categories_use_grouped_mapping_contract(self):
+        self.assertIsInstance(self.spider.categories, Mapping)
+        self.assertEqual(list(self.spider.categories), ["departments"])
+        self.assertEqual(len(list(self.spider.iter_categories())), 26)
+        self.assertEqual(
+            self.spider.category_entry("tools")["url"],
+            "https://www.homedepot.com/b/Tools/N-5yc1vZc1xy",
+        )
 
 
 if __name__ == "__main__":

@@ -20,7 +20,10 @@ def response_for(html, url="https://www.dunelm.com/category/home-and-furniture/b
 
 def test_categories_and_feed_contract():
     spider = make_spider()
-    assert len(spider.categories) == 20
+    assert len(list(spider.iter_categories())) == 20
+    assert spider.category_entry("home-and-furniture")["url"].endswith(
+        "/category/home-and-furniture"
+    )
     fields = spider.custom_settings["FEED_EXPORT_FIELDS"]
     assert fields[0:4] == ["category", "item_id", "title", "brand"]
     assert fields[-3:] == ["source", "raw", "timestamp"]
@@ -63,4 +66,3 @@ def test_department_page_discovers_leaf_without_parsing_json_ld():
 
 def test_pagination_url_replaces_page():
     assert DunelmListingSpider._with_page("https://www.dunelm.com/category/rugs?page=2", 3).endswith("?page=3")
-

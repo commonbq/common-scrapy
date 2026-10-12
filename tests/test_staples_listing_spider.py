@@ -1,5 +1,6 @@
-from pathlib import Path
+from collections.abc import Mapping
 import json
+from pathlib import Path
 import unittest
 
 from scrapy.http import Request, TextResponse
@@ -28,8 +29,12 @@ class StaplesListingSpiderTests(unittest.TestCase):
     def test_inventory_and_category_selection(self):
         self.assertEqual(len(STAPLES_CATEGORY_INVENTORY), 34)
         self.assertEqual(sum(len(group["subcategories"]) for group in STAPLES_CATEGORY_INVENTORY.values()), 208)
-        self.assertEqual(len(STAPLES_CATEGORIES), 242)
-        self.assertEqual(len({entry["url"] for entry in STAPLES_CATEGORIES}), 242)
+        self.assertIsInstance(STAPLES_CATEGORIES, Mapping)
+        self.assertEqual(len(STAPLES_CATEGORIES), 34)
+        self.assertTrue(all(isinstance(group, Mapping) for group in STAPLES_CATEGORIES.values()))
+        entries = list(self.spider.iter_categories())
+        self.assertEqual(len(entries), 242)
+        self.assertEqual(len({entry["url"] for entry in entries}), 242)
         self.assertEqual(self.spider.resolve_target_url(), "https://www.staples.com/Binders/cat_CL167205")
 
     def test_hydration_yields_40_items_and_feed_contract(self):

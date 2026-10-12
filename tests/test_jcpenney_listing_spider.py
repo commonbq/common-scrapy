@@ -1,5 +1,6 @@
 import json
 import unittest
+from collections.abc import Mapping
 from pathlib import Path
 
 from scrapy.http import Request, TextResponse
@@ -32,6 +33,14 @@ class JCPenneyListingSpiderTest(unittest.TestCase):
         self.assertEqual(items[0]["price"], 12.99)
         self.assertEqual(items[0]["reviews_count"], 118)
         self.assertEqual(items[1]["brand"], "Liz Claiborne")
+
+    def test_categories_use_grouped_mapping_contract(self):
+        self.assertIsInstance(self.spider.categories, Mapping)
+        self.assertEqual(len(list(self.spider.iter_categories())), 20)
+        self.assertEqual(
+            self.spider.category_entry("mens_shoes")["url"],
+            "https://www.jcpenney.com/g/shoes/mens-shoes?id=cat100300057",
+        )
 
     def test_missing_json_contract_fails_visibly(self):
         with self.assertRaisesRegex(RuntimeError, "No JCPenney search-service JSON"):

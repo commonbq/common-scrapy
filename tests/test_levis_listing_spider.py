@@ -35,9 +35,11 @@ class LevisListingSpiderTests(unittest.TestCase):
 
     def test_inventory_shape_and_category_selection(self):
         self.assertEqual(len(LEVI_CATEGORY_INVENTORY), 5)
-        self.assertEqual(len(LEVI_CATEGORIES), 83)
-        names = [entry["category"] for entry in LEVI_CATEGORIES]
-        urls = [entry["url"] for entry in LEVI_CATEGORIES]
+        self.assertEqual(set(LEVI_CATEGORIES), set(LEVI_CATEGORY_INVENTORY))
+        entries = list(self.spider.iter_categories())
+        self.assertEqual(len(entries), 83)
+        names = [entry["category"] for entry in entries]
+        urls = [entry["url"] for entry in entries]
         self.assertEqual(len(set(names)), len(names))
         self.assertEqual(len(set(urls)), len(urls))
         self.assertTrue(all(url.startswith(LEVI_SITE_BASE + "/") for url in urls))

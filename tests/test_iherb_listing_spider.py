@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import unittest
+from collections.abc import Mapping
 
 from scrapy.http import Request, TextResponse
 
@@ -64,11 +65,16 @@ class IherbListingSpiderTests(unittest.TestCase):
         return IherbListingSpider(category="magnesium", **kwargs)
 
     def test_taxonomy_is_unique_and_complete(self):
-        self.assertEqual(len(IHERB_CATEGORIES), 380)
-        self.assertEqual(len({entry["url"] for entry in IHERB_CATEGORIES}), 380)
-        self.assertEqual(len({entry["category"] for entry in IHERB_CATEGORIES}), 380)
-        self.assertTrue(all("?" not in entry["url"] for entry in IHERB_CATEGORIES))
-        self.assertEqual({entry["department"] for entry in IHERB_CATEGORIES}, {
+        self.assertIsInstance(IHERB_CATEGORIES, Mapping)
+        self.assertTrue(
+            all(isinstance(group, Mapping) for group in IHERB_CATEGORIES.values())
+        )
+        entries = list(self.spider().iter_categories())
+        self.assertEqual(len(entries), 380)
+        self.assertEqual(len({entry["url"] for entry in entries}), 380)
+        self.assertEqual(len({entry["category"] for entry in entries}), 380)
+        self.assertTrue(all("?" not in entry["url"] for entry in entries))
+        self.assertEqual({entry["department"] for entry in entries}, {
             "Supplements", "Sports", "Bath", "Beauty", "Grocery", "Home",
             "Baby", "Pets", "Health Topics",
         })

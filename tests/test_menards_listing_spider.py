@@ -1,8 +1,24 @@
 import json
+from collections.abc import Mapping
 
 from scrapy.http import HtmlResponse, Request, TextResponse
 
 from common.spiders.menards_listing_spider import MenardsListingSpider
+
+
+def test_categories_use_grouped_mapping_contract():
+    assert isinstance(MenardsListingSpider.categories, Mapping)
+    assert all(
+        isinstance(group, Mapping)
+        for group in MenardsListingSpider.categories.values()
+    )
+    entries = list(MenardsListingSpider(category="appliances").iter_categories())
+    assert len(entries) == 20
+    assert entries[1] == {
+        "group": "all",
+        "category": "appliances",
+        "url": "https://www.menards.com/main/appliances/c-5570.htm",
+    }
 
 
 def response(url, body, *, meta=None, content_type="application/json"):
@@ -51,4 +67,3 @@ def test_challenge_and_missing_contract_fail_loudly():
         assert False
     except RuntimeError as exc:
         assert "blocked" in str(exc)
-

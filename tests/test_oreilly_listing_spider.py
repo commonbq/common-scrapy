@@ -1,6 +1,6 @@
 from scrapy.http import HtmlResponse, Request
 
-from common.spiders.oreilly_categories import child_categories
+from common.spiders.oreilly_categories import OREILLY_CATEGORIES, child_categories
 from common.spiders.oreilly_listing_spider import OreillyListingSpider
 
 
@@ -38,3 +38,17 @@ def test_child_category_hydration_and_page_url():
         {"name": "Rotors", "url": "https://www.oreillyauto.com/shop/b/rotors/x"}
     ]
     assert OreillyListingSpider._page_url("https://example.test/cat?x=1", 2).endswith("x=1&page=2")
+
+
+def test_categories_use_grouped_mapping_contract():
+    assert list(OREILLY_CATEGORIES) == ["all"]
+    assert len(OREILLY_CATEGORIES["all"]) == 34
+
+    spider = OreillyListingSpider(category="brakes")
+    entry = spider.category_entry("brakes")
+    assert entry == {
+        "group": "all",
+        "category": "brakes",
+        "category_path": "Brakes",
+        "url": "https://www.oreillyauto.com/shop/b/brakes/b6d08f551887",
+    }

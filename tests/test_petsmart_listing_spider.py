@@ -1,5 +1,6 @@
-from pathlib import Path
+from collections.abc import Mapping
 import json
+from pathlib import Path
 import unittest
 from urllib.parse import unquote
 
@@ -24,27 +25,39 @@ FIXTURES = Path("sample")
 
 
 def _entry(name="dog/food/dry-food"):
-    return next(entry for entry in PETSMART_CATEGORIES if entry["category"] == name)
+    return next(
+        entry
+        for group in PETSMART_CATEGORIES.values()
+        for entry in group.values()
+        if entry["category"] == name
+    )
+
+
+def _entries():
+    return [entry for group in PETSMART_CATEGORIES.values() for entry in group.values()]
 
 
 class PetsmartCategoriesTests(unittest.TestCase):
     def test_inventory_shape_and_url_rules(self):
+        self.assertIsInstance(PETSMART_CATEGORIES, Mapping)
+        self.assertTrue(all(isinstance(group, Mapping) for group in PETSMART_CATEGORIES.values()))
         self.assertEqual(len(PETSMART_CATEGORY_COUNTS), 491)
-        self.assertEqual(len(PETSMART_CATEGORIES), 491)
+        self.assertEqual(sum(len(group) for group in PETSMART_CATEGORIES.values()), 491)
         self.assertEqual(len(PETSMART_DEPARTMENTS), 7)
+        entries = _entries()
         # marketing overlays are not browse departments
         self.assertFalse(
-            [entry for entry in PETSMART_CATEGORIES if entry["department"] in ("Sale", "Featured Brands")]
+            [entry for entry in entries if entry["department"] in ("Sale", "Featured Brands")]
         )
-        self.assertTrue(all(entry["url"].startswith("https://www.petsmart.com/") for entry in PETSMART_CATEGORIES))
+        self.assertTrue(all(entry["url"].startswith("https://www.petsmart.com/") for entry in entries))
         self.assertEqual(
-            {entry["department"] for entry in PETSMART_CATEGORIES},
+            {entry["department"] for entry in entries},
             set(PETSMART_DEPARTMENTS),
         )
-        self.assertTrue(all(isinstance(entry["item_count"], int) for entry in PETSMART_CATEGORIES))
+        self.assertTrue(all(isinstance(entry["item_count"], int) for entry in entries))
         # the facet taxonomy keeps both a relocated path and its current path for
         # some landing pages, so paths outnumber URLs
-        self.assertEqual(len({entry["url"] for entry in PETSMART_CATEGORIES}), 481)
+        self.assertEqual(len({entry["url"] for entry in entries}), 481)
 
     def test_slug_and_url_derivation(self):
         self.assertEqual(category_slug("Dog > Food > Dry Food"), "dog/food/dry-food")

@@ -1,4 +1,5 @@
 import unittest
+from collections.abc import Mapping
 from pathlib import Path
 
 import scrapy
@@ -42,8 +43,14 @@ class SallybeautyListingSpiderTest(unittest.TestCase):
         self.assertEqual(page_two[0]["source"], "sallybeauty_sfcc_search_update_grid")
 
     def test_category_inventory(self):
-        self.assertEqual(len(self.spider.categories), 12)
+        self.assertIsInstance(self.spider.categories, Mapping)
+        self.assertTrue(all(isinstance(group, Mapping) for group in self.spider.categories.values()))
+        self.assertEqual(len(list(self.spider.iter_categories())), 14)
         self.assertIn("salon-supplies", self.spider.available_categories())
+        self.assertEqual(
+            self.spider.category_entry("new")["url"],
+            "https://www.sallybeauty.com/sally-new/",
+        )
 
 
 if __name__ == "__main__":

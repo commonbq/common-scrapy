@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from pathlib import Path
 import json
 import re
@@ -7,6 +8,7 @@ from scrapy.http import Request, TextResponse
 
 from common.spiders.asos_categories import (
     ASOS_CATEGORIES,
+    ASOS_CATEGORY_GROUPS,
     ASOS_CATEGORY_INVENTORY,
     ASOS_DEPARTMENT_TARGETS,
 )
@@ -33,6 +35,9 @@ class AsosListingSpiderTests(unittest.TestCase):
         self.assertEqual(set(ASOS_CATEGORY_INVENTORY), {"women", "men"})
         self.assertEqual(sum(len(entries) for entries in ASOS_CATEGORY_INVENTORY.values()), 571)
         self.assertEqual(len(ASOS_CATEGORIES), 412)
+        self.assertIsInstance(AsosListingSpider.categories, Mapping)
+        self.assertEqual(set(ASOS_CATEGORY_GROUPS), {"women", "men"})
+        self.assertEqual(sum(len(entries) for entries in ASOS_CATEGORY_GROUPS.values()), 414)
         self.assertIn("cid=53315", self.spider.resolve_target_url())
         self.assertEqual(len({entry["cid"] for entry in ASOS_CATEGORIES}), len(ASOS_CATEGORIES))
         self.assertEqual(len({entry["category"] for entry in ASOS_CATEGORIES}), len(ASOS_CATEGORIES))

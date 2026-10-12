@@ -32,10 +32,12 @@ def collect(spider, page=response()):
 
 def test_taxonomy_preserves_full_navigation_and_deduplicates_urls():
     categories = load_categories()
-    assert len(categories) == 513
-    assert len({x["url"] for x in categories}) == 513
-    assert len({x["category"] for x in categories}) == 513
-    contexts = [context for item in categories for context in item["navigation_contexts"]]
+    entries = [item for group in categories.values() for item in group.values()]
+    assert len(categories) == 20
+    assert len(entries) == 513
+    assert len({x["url"] for x in entries}) == 513
+    assert len({x["category"] for x in entries}) == 513
+    contexts = [context for item in entries for context in item["navigation_contexts"]]
     assert len(contexts) == 578
     assert len({(x["department"], x["group"]) for x in contexts}) == 118
     assert len({x["department"] for x in contexts}) == 20

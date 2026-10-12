@@ -50,18 +50,24 @@ class UniqloListingSpiderTests(unittest.TestCase):
 
     def test_inventory_and_category_selection(self):
         self.assertEqual(len(UNIQLO_CATEGORY_INVENTORY), 4)
-        self.assertEqual(len(UNIQLO_CATEGORIES), 2741)
+        entries = list(self.spider.iter_categories())
+        self.assertEqual(
+            set(UNIQLO_CATEGORIES), {"all", "Women", "Men", "Kids", "Baby"}
+        )
+        self.assertTrue(all(isinstance(group, dict) for group in UNIQLO_CATEGORIES.values()))
+        self.assertEqual(len(entries), 2741)
         self.assertEqual(len(UNIQLO_CATEGORY_PATHS), 2741)
-        self.assertEqual(len({entry["url"] for entry in UNIQLO_CATEGORIES}), 2741)
+        self.assertEqual(len({entry["url"] for entry in entries}), 2741)
         self.assertEqual(
             self.spider.resolve_target_url(),
             "https://www.uniqlo.com/us/en/women/tops/t-shirts",
         )
 
     def test_every_category_carries_a_unique_slug_and_taxonomy_path(self):
-        slugs = [entry["category"] for entry in UNIQLO_CATEGORIES]
+        entries = list(self.spider.iter_categories())
+        slugs = [entry["category"] for entry in entries]
         self.assertEqual(len(slugs), len(set(slugs)))
-        for entry in UNIQLO_CATEGORIES:
+        for entry in entries:
             self.assertTrue(entry["path"], entry["url"])
             self.assertTrue(entry["url"].startswith("https://www.uniqlo.com/us/en/"))
             parts = entry["path"].split(",")
@@ -69,14 +75,16 @@ class UniqloListingSpiderTests(unittest.TestCase):
 
     def test_parents_are_preserved_for_deep_leaves(self):
         url = "https://www.uniqlo.com/us/en/men/accessories-and-shoes/bags/backpacks"
-        entry = next(e for e in UNIQLO_CATEGORIES if e["url"] == url)
+        entry = next(e for e in self.spider.iter_categories() if e["url"] == url)
         self.assertEqual(entry["path"], "22211,23309,31985,68744")
         self.assertEqual(entry["department"], "Men")
         self.assertEqual(entry["subcategory"], "Accessories")
         self.assertEqual(entry["category_name"], "Backpacks")
 
     def test_colliding_leaf_slugs_are_disambiguated(self):
-        vests = [e for e in UNIQLO_CATEGORIES if e["category_name"] == "Vest"]
+        vests = [
+            e for e in self.spider.iter_categories() if e["category_name"] == "Vest"
+        ]
         self.assertGreater(len(vests), 1)
         self.assertEqual(len({e["category"] for e in vests}), len(vests))
         self.assertEqual(len({e["url"] for e in vests}), len(vests))

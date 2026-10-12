@@ -1,4 +1,5 @@
 import json
+from collections.abc import Mapping
 
 import pytest
 
@@ -13,6 +14,23 @@ class Response:
         self.text = f"<script>window.__APOLLO_STATE__ = {json.dumps(state)};</script>"
         self.meta = {"page": page, "base_url": self.url, "category": "Automotive",
                      "department": "Automotive", "subcategory": "jacks-jack-stands"}
+
+
+def test_categories_are_complete_grouped_mapping():
+    categories = HarborfreightListingSpider.categories
+    assert isinstance(categories, Mapping)
+    assert len(categories) == 17
+    assert sum(len(leaves) for leaves in categories.values()) == 145
+    assert all(isinstance(leaves, Mapping) for leaves in categories.values())
+    assert "automotive-jacks-jack-stands" in categories["Automotive"]
+
+
+def test_category_leaf_resolves_with_department_metadata():
+    spider = HarborfreightListingSpider(category="automotive-jacks-jack-stands")
+    entry = spider.category_entry("automotive-jacks-jack-stands")
+    assert entry["department"] == "Automotive"
+    assert entry["subcategory"] == "jacks-jack-stands"
+    assert spider.resolve_target_url().endswith("/automotive/jacks-jack-stands.html")
 
 
 def state(page=1, refs=("SimpleProduct:13354",), total_pages=1):
@@ -31,7 +49,7 @@ def state(page=1, refs=("SimpleProduct:13354",), total_pages=1):
 
 
 def test_maps_apollo_reference_and_feed_contract():
-    spider = HarborfreightListingSpider(category="Automotive")
+    spider = HarborfreightListingSpider(category="automotive-jacks-jack-stands")
     output = list(spider.parse(Response(state())))
     assert len(output) == 1
     item = output[0]
@@ -43,13 +61,13 @@ def test_maps_apollo_reference_and_feed_contract():
 
 
 def test_paginates_with_magento_p_parameter():
-    spider = HarborfreightListingSpider(category="Automotive", max_pages=2)
+    spider = HarborfreightListingSpider(category="automotive-jacks-jack-stands", max_pages=2)
     output = list(spider.parse(Response(state(total_pages=2))))
     assert output[-1].url.endswith("?p=2")
 
 
 def test_deduplicates_skus():
-    spider = HarborfreightListingSpider(category="Automotive")
+    spider = HarborfreightListingSpider(category="automotive-jacks-jack-stands")
     assert len(list(spider.parse(Response(state())))) == 1
     assert list(spider.parse(Response(state()))) == []
 
@@ -58,7 +76,7 @@ def test_missing_hydration_fails_loudly():
     response = Response(state())
     response.text = "<html><title>Access denied</title></html>"
     with pytest.raises(RuntimeError, match="hydration"):
-        list(HarborfreightListingSpider(category="Automotive").parse(response))
+        list(HarborfreightListingSpider(category="automotive-jacks-jack-stands").parse(response))
 
 
 def test_page_url_preserves_query():
