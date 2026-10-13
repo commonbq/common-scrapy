@@ -46,9 +46,14 @@ class RightmoveListingSpider(BaseListingSpider):
 
     def start_requests(self):
         self._seen_ids.clear()
-        targets = self.categories if self.category == "all" else [{
-            "category": self.category or "custom", "url": self.resolve_target_url()
-        }]
+        targets = (
+            [{"category": entry["category"], "url": entry["url"]}
+             for entry in self.iter_categories()]
+            if self.category == "all"
+            else [{
+                "category": self.category or "custom", "url": self.resolve_target_url()
+            }]
+        )
         for target in targets:
             yield scrapy.Request(
                 target["url"],
