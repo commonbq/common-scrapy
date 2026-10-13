@@ -7,11 +7,7 @@ from urllib.parse import urljoin, urlsplit
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
-
-
-QVC_CATEGORIES = {
-    "fashion": ["https://www.qvc.com/c/fashion/-/lglt/c.html"],
-}
+from common.spiders.qvc_categories import QVC_CATEGORIES
 
 
 class QvcListingSpider(BaseListingSpider):
@@ -40,7 +36,7 @@ class QvcListingSpider(BaseListingSpider):
             raise ValueError(
                 f"Provide -a category=<name>. Available categories: {', '.join(self.available_categories())}"
             )
-        if not (self.url or self.category_url) and self.category not in self.categories:
+        if not (self.url or self.category_url) and self.category_entry(self.category) is None:
             raise ValueError(
                 f"Unknown category '{self.category}'. Available categories: {', '.join(self.available_categories())}"
             )
@@ -50,16 +46,21 @@ class QvcListingSpider(BaseListingSpider):
         self._seen_ids: set[str] = set()
 
     def available_categories(self) -> list[str]:
-        return sorted(self.categories)
+        return super().available_categories()
 
     def start_requests(self):
-        urls = [self.url or self.category_url] if (self.url or self.category_url) else self.categories[self.category]
+        if self.url or self.category_url:
+            urls = [self.url or self.category_url]
+        else:
+            urls = [self.resolve_target_url()]
+        entry = self.category_entry(self.category) if self.category else None
+        label = (entry or {}).get("category") or self.category or "custom"
         for url in urls:
             yield scrapy.Request(
                 url,
                 callback=self.parse,
                 headers=self._headers(),
-                meta={"category": self.category, "page": 1, "handle_httpstatus_all": True},
+                meta={"category": label, "page": 1, "handle_httpstatus_all": True},
             )
 
     def parse(self, response: scrapy.http.Response):

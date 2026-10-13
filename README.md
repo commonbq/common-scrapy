@@ -370,7 +370,7 @@ Spiders below are returning items in recent smoke runs:
 | [`michaels_listing`](#michaels_listing) | Experimental | Next.js RSC hydration | none detected (Akamai fronted; no challenge observed) | Michaels listings from the server-rendered React Server Component payload (`self.__next_f` -> `initialProducts`), paginated by `?page=`. | 40 (1 page, live proxy; page 2 blocked by a local 407 on CONNECT) | 3,611 categories under 33 departments from `sitemap_MIK_category.xml` | `{"category":"home-decor-floral-arrangements","item_id":"10809872","title":"11\" Pink Peony & Cream Rose Mix Bouquet by Ashland®","brand":"Michaels","price":9.99,"rating":4.5...` |
 | [`vinted_listing`](#vinted_listing) | Active | bootstrap (Next.js RSC) | none detected (ScrapeOps proxy convention) | Vinted catalog listings exclusively from server-rendered `self.__next_f` catalog state; no HTML-card or JSON-LD fallback. | 96/page | 7 groups / 20 leaves (grouped mapping) from `vinted_categories.py` | `{"category":"home","item_id":"10287111268","title":"Chocolate drink maker","brand":"Hersey","condition":"New without tags","price":5,"currency":"USD","source":"vinted_nextjs_rsc_catalog_items"}` |
 | [`poshmark_listing`](#poshmark_listing) | Experimental | bootstrap | none detected | Poshmark listing spider via `window.__INITIAL_STATE__` category grid data. | 48 (ok) | 91 categories across 6 departments from `poshmark_categories.py` | `{"category":"women","item_id":"6989d90ac4e7b4d4de556bac","title":"🔥Stunning  Farm Rio NWT Size Large Tropical Midi Dress with Sleeves – V...` |
-| [`qvc_listing`](#qvc_listing) | Experimental | html + bootstrap | Akamai | QVC listing spider via server-rendered gallery cards and `utag_data` page state. | 96 (Beauty proxy capture) | fashion | `{"category":"beauty","category_id":"NAV6285","item_id":"A740517","title":"Whish 12 Days of Beauty Whishes Advent Calendar","price":59.98,...}` |
+| [`qvc_listing`](#qvc_listing) | Experimental | html + bootstrap | Akamai | QVC listing spider via server-rendered gallery cards and `utag_data` page state. | 96 (Beauty proxy capture) | 411 department-grouped listing categories (37 top-level departments) | `{"category":"beauty-makeup","category_id":"NAV6285","item_id":"A740517","title":"Whish 12 Days of Beauty Whishes Advent Calendar","price":59.98,...}` |
 | [`zappos_listing`](#zappos_listing) | Experimental | Redux hydration | none detected through proxy | Zappos listings from `window.__INITIAL_STATE__.products.list`. | 100 (one-page proxy smoke) | 4 departments / 50 targets | `{"item_id":"8910671","title":"Kiruna Padded Parka","brand":"Fjällräven","price":300.0,...}` |
 | [`zara_listing`](#zara_listing) | Active | api | Akamai (ScrapeOps `country=us,bypass=5`) | Zara US listings from the first-party category and product JSON APIs; no HTML or JSON-LD fallback. | 637 (Dresses; one API response) | 912 live product categories across 8 menu sections | `{"category":"WOMAN > COLLECTION > DRESSES","item_id":"560058525","title":"STRIPED PUFF SLEEVE MINI DRESS","price":69.9,"currency":"USD","source":"zara_api"...}` |
 | [`zoro_listing`](#zoro_listing) | Experimental | bootstrap | intermittent direct 403; configured proxy requires active credits | Zoro category listings from server-rendered Vuex `window.INITIAL_STATE.search.response.records` only. | 36/page | 20 top-level departments; hydrated taxonomy resolves leaf PLPs | `{"category":"custom","department":"Raw Materials","leaf_category":"Aluminum Angles","item_id":"G3109732","title":"Angle, Al, 6061, 1/8 In T, 2 In Leg, 4 Ft L","price":17.39,"currency":"USD","source":"zoro_initial_state_search_records"...}` |
@@ -2352,7 +2352,7 @@ because the captured category page did not use that endpoint to populate its gri
 
 ```json
 {
-  "category": "beauty",
+  "category": "beauty-makeup",
   "category_id": "NAV6285",
   "item_id": "A740517",
   "title": "Whish 12 Days of Beauty Whishes Advent Calendar",
@@ -2377,11 +2377,16 @@ because the captured category page did not use that endpoint to populate its gri
 
 Run example:
 
-`common-scrapy crawl qvc_listing -a category=fashion -a max_pages=1 -O qvc_listing.jsonl`
+`common-scrapy crawl qvc_listing -a category=beauty-makeup -a max_pages=1 -O qvc_listing.jsonl`
 
 Contract notes:
 
-- The built-in category is `fashion`. A direct page can also be supplied with
+- Categories are the department-grouped `{department: {leaf: url}}` mapping in
+  `qvc_categories.py` (411 leaves across 37 top-level departments, captured
+  2026-10-14 from the storefront mega-menu). `-a category=<leaf>` selects one
+  crawl target, resolved through the base `category_entry()` helper; leaf keys
+  are the full breadcrumb slug (e.g. `beauty-makeup`) so they stay globally
+  unique for the DAG output paths. A direct page can also be supplied with
   `-a url=<category-url>` or `-a category_url=<category-url>` while retaining a
   category label.
 - The fixed 20-field export contract includes product identity, URLs, prices,

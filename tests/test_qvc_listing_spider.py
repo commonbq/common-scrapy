@@ -11,7 +11,8 @@ class QvcListingSpiderTest(unittest.TestCase):
         self.spider = QvcListingSpider(category="fashion", max_pages=2)
         html = Path("sample/qvc-fashion-sample.html").read_text()
         request = Request(
-            QVC_CATEGORIES["fashion"][0], meta={"category": "fashion", "page": 1}
+            QVC_CATEGORIES["fashion"]["fashion"],
+            meta={"category": "fashion", "page": 1},
         )
         self.response = HtmlResponse(request.url, request=request, body=html, encoding="utf-8")
 
@@ -47,6 +48,25 @@ class QvcListingSpiderTest(unittest.TestCase):
     def test_missing_grid_has_no_fallback_items(self):
         blocked = self.response.replace(body=b"<html><body>blocked</body></html>")
         self.assertEqual([], list(self.spider.parse(blocked)))
+
+    def test_categories_are_department_grouped_and_leaves_resolve(self):
+        self.assertTrue(all(isinstance(v, dict) for v in QVC_CATEGORIES.values()))
+        self.assertEqual(411, sum(len(v) for v in QVC_CATEGORIES.values()))
+        spider = QvcListingSpider(category="beauty-makeup")
+        self.assertEqual(
+            "https://www.qvc.com/c/beauty/makeup/-/rhuy/c.html",
+            spider.resolve_target_url(),
+        )
+        with self.assertRaises(ValueError):
+            QvcListingSpider(category="not-a-real-leaf")
+
+    def test_start_requests_labels_the_selected_leaf(self):
+        spider = QvcListingSpider(category="beauty-makeup")
+        request = list(spider.start_requests())[0]
+        self.assertEqual("beauty-makeup", request.meta["category"])
+        self.assertEqual(
+            "https://www.qvc.com/c/beauty/makeup/-/rhuy/c.html", request.url
+        )
 
 
 if __name__ == "__main__":
