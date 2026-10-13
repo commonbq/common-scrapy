@@ -19,9 +19,16 @@ class MovotoListingSpiderTest(unittest.TestCase):
         return HtmlResponse(url, request=request, body=body, encoding="utf-8")
 
     def test_categories_are_ordered_and_complete(self):
-        self.assertEqual(20, len(MOVOTO_CATEGORIES))
-        self.assertEqual("new-york-ny", MOVOTO_CATEGORIES[0]["category"])
-        self.assertEqual("las-vegas-nv", MOVOTO_CATEGORIES[-1]["category"])
+        leaves = [
+            (leaf, entry)
+            for group in MOVOTO_CATEGORIES.values()
+            for leaf, entry in group.items()
+        ]
+        self.assertEqual(149, len(leaves))
+        self.assertEqual(37, len(MOVOTO_CATEGORIES))
+        self.assertEqual("anchorage-ak", leaves[0][0])
+        self.assertIn("new-york-ny", MOVOTO_CATEGORIES["NY"])
+        self.assertIn("las-vegas-nv", MOVOTO_CATEGORIES["NV"])
 
     def test_maps_initial_state_and_feed_fields(self):
         spider = MovotoListingSpider(category="new-york-ny", max_pages=1)

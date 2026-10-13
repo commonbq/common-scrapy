@@ -45,9 +45,11 @@ class MovotoListingSpider(BaseListingSpider):
     def start_requests(self):
         self._seen_ids.clear()
         self._first_ids.clear()
-        targets = self.categories if self.category == "all" else [{
-            "category": self.category or "custom", "url": self.resolve_target_url()
-        }]
+        targets = (
+            list(self.iter_categories())
+            if self.category == "all"
+            else [{"category": self.category or "custom", "url": self.resolve_target_url()}]
+        )
         for target in targets:
             yield scrapy.Request(target["url"], callback=self.parse, headers=self._headers(), meta={
                 "category": target["category"], "page": 1, "base_url": target["url"]
