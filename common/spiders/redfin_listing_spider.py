@@ -44,17 +44,31 @@ class RedfinListingSpider(BaseListingSpider):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if not (self.category or self.category_url or self.url):
-            raise ValueError("Provide category, category_url, or url")
+            raise ValueError(
+                "Provide -a category=<name|all>, category_url=<url>, or url=<url>. "
+                f"Available categories: {', '.join(self.available_categories())}"
+            )
+        if self.category and self.category != "all" and self.category_entry(self.category) is None:
+            raise ValueError(
+                f"Unknown category '{self.category}'. Available categories: "
+                f"{', '.join(self.available_categories())}"
+            )
         self._seen: set[str] = set()
 
     def start_requests(self) -> Iterable[scrapy.Request]:
         self._seen.clear()
-        url = self.resolve_target_url()
-        meta = {"category": self.category or "custom", "page": 1, "listing_url": url}
-        proxy = self.settings.get("PROXY")
-        if proxy:
-            meta["proxy"] = proxy
-        yield scrapy.Request(url, headers=self.headers, meta=meta, callback=self.parse)
+        targets = (
+            [{"category": entry["category"], "url": entry["url"]}
+             for entry in self.iter_categories()]
+            if self.category == "all"
+            else [{"category": self.category or "custom", "url": self.resolve_target_url()}]
+        )
+        proxy = getattr(self, "settings", {}).get("PROXY")
+        for target in targets:
+            meta = {"category": target["category"], "page": 1, "listing_url": target["url"]}
+            if proxy:
+                meta["proxy"] = proxy
+            yield scrapy.Request(target["url"], headers=self.headers, meta=meta, callback=self.parse)
 
     def parse(self, response):
         self._validate_response(response, "category")

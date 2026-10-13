@@ -1,4 +1,5 @@
 import json
+from collections.abc import Mapping
 
 from scrapy.http import HtmlResponse, Request, TextResponse
 
@@ -12,8 +13,37 @@ def gis(homes):
 
 def test_categories_and_feed_contract():
     spider = RedfinListingSpider(category="los-angeles-ca")
-    assert len(REDFIN_CATEGORIES) == 20
+    assert isinstance(REDFIN_CATEGORIES, Mapping)
+    assert all(isinstance(group, Mapping) for group in REDFIN_CATEGORIES.values())
+    leaves = [leaf for group in REDFIN_CATEGORIES.values() for leaf in group]
+    assert len(leaves) == len(set(leaves)) == 33798
+    assert len(REDFIN_CATEGORIES) == 51
+    assert "houston-tx" in REDFIN_CATEGORIES["TX"]
+    assert "new-york-ny" in REDFIN_CATEGORIES["NY"]
+    for leaf, url in ((l, u) for g in REDFIN_CATEGORIES.values() for l, u in g.items()):
+        assert url.startswith("https://www.redfin.com/city/")
     assert spider.custom_settings["FEED_EXPORT_FIELDS"][-3:] == ["source", "raw", "timestamp"]
+
+
+def test_category_entry_resolves_leaf_across_groups():
+    spider = RedfinListingSpider(category="los-angeles-ca")
+    assert spider.resolve_target_url() == "https://www.redfin.com/city/11203/CA/Los-Angeles"
+
+
+def test_unknown_category_fails_loudly():
+    try:
+        RedfinListingSpider(category="not-a-real-city")
+    except ValueError as exc:
+        assert "Unknown category" in str(exc)
+    else:
+        raise AssertionError("unknown category did not fail")
+
+
+def test_all_category_starts_every_market():
+    spider = RedfinListingSpider(category="all", max_pages=1)
+    requests = list(spider.start_requests())
+    assert len(requests) == 33798
+    assert requests[0].meta["category"] in REDFIN_CATEGORIES["AK"]
 
 
 def test_hydration_discovers_cached_api_response():

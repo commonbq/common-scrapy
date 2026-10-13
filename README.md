@@ -346,7 +346,7 @@ Spiders below are returning items in recent smoke runs:
 | [`levis_listing`](#levis_listing) | Active | bootstrap | none detected through proxy | Levi's listings from SSR `__LSCO_INITIAL_STATE__.ssrViewStoreProductList`. | 48 (2 pages, live proxy) | 5 sections / 83 PLP targets from `levi_categories.py` | `{"category":"shop-all-men-s-jeans","item_id":"005053473","title":"505™ Regular Dobby Men's Jeans","brand":"Levi's","price":64.99...` |
 | [`lululemon_listing`](#lululemon_listing) | Active | bootstrap | Akamai | lululemon listing spider via Next.js `__NEXT_DATA__`. | 40 (ok) | women-shorts, women-leggings, men-shorts, bags | `{"category":"women-shorts","product_id":"prod11860112","name":"Shake It Out High-Rise Running Short 2.5\"","brand":"lululemon","price":["...` |
 | [`newegg_listing`](#newegg_listing) | Experimental | SSR hydration state | none detected | Newegg listing spider reading server-rendered `window.__initialState__.Products` with `/Page-N` pagination and the captured RolloverMenu taxonomy. | 36 (ok) | 1,159 JSON-backed listing leaves across 16 departments | `{"item_id":"19-113-877","title":"AMD Ryzen 7 9800X3D - Ryzen 7 9000 Series Zen 5 8-Core 5.2 GHz - Socket AM5 120W - AMD Radeon Graphics Desktop Processor - 100-100001084WOF","model":"100-100001084WOF","brand":"AMD","price":469,"currency":"USD","url":"https://www.newegg.com/amd-ryzen-7-9000-series-ryzen-7-9800x3d-granite-ridge-zen-5-socket-am5-desktop-cpu-processor/p/N82E16819113877","image":"https://c1.neweggimages.com/ProductImageOriginal/19-113-877-01.png","rating":4.8,"reviews_count":729,"page":1,"source":"newegg_initial_state"}` |
-| [`redfin_listing`](#redfin_listing) | Active | api | ScrapeOps US proxy | Redfin city listings from the first-party Stingray GIS JSON API discovered in React server hydration. | 350 (one page) | 20 major US city markets | `{"category":"los-angeles-ca","item_id":"5196541","price":1399000,"source":"redfin_stingray_api"...}` |
+| [`redfin_listing`](#redfin_listing) | Active | api | ScrapeOps US proxy | Redfin city listings from the first-party Stingray GIS JSON API discovered in React server hydration. | 350 (one page) | 51 state groups / 33,798 city markets (grouped mapping) from `redfin_categories.py` | `{"category":"los-angeles-ca","item_id":"5196541","price":1399000,"source":"redfin_stingray_api"...}` |
 | [`movoto_listing`](#movoto_listing) | Experimental | bootstrap | PerimeterX (ScrapeOps US proxy required) | Movoto sale listings from server-rendered Nuxt `__INITIAL_STATE__.pageData.listings` only; no HTML or JSON-LD fallback. | 50 (one page, live proxy) | 37 state groups / 149 city markets (grouped mapping) | `{"category":"new-york-ny","item_id":"aca725fa-4f79-41bc-a458-6de558312a3b","title":"50 W 66th St #10C New York, NY 10023","price":10950000,"source":"movoto_initial_state"...}` |
 | [`oreilly_listing`](#oreilly_listing) | Active | bootstrap (`window._ost`) | direct 403; ScrapeOps US residential required | O'Reilly Auto Parts category listings from the server-rendered product bootstrap only. | 18 (live brake rotors page) | 34 root departments from `oreilly_categories.py`; direct leaf URLs supported | `{"item_id":"BBR|3512RGS","title":"BrakeBest Select Front Brake Rotor - 3512RGS","price":89.99,"currency":"USD","source":"oreilly_ost_bootstrap"}` |
 | [`rei_listing`](#rei_listing) | Active | bootstrap (`#initial-props`) | none detected | REI category listings from the server-rendered `#initial-props` bootstrap (`ProductSearch.products.searchResults.results`); follows hydration pagination and dedupes by `prodId`. | 30 (1 page, hiking-footwear) | 20 stable commerce-category shortcuts from `rei_categories.py` | `{"category":"hiking-footwear","item_id":"202126","title":"Moab 3 Hiking Shoes - Women's","brand":"Merrell","price":71.83,"currency":"USD","source":"rei_initial_props_bootstrap","timestamp":"2026-10-06 20:34:00"}` |
@@ -520,12 +520,19 @@ reach the Omni host unchanged.
 
 ### redfin_listing
 
-`redfin_listing` supports 20 popular US city markets. It reads Redfin's
+`redfin_listing` supports the full first-party city-market inventory: **51 state
+groups / 33,798 city markets** from Redfin's `sitemap_com_city.xml` index and
+per-state `sitemap_com_city_<ST>.xml.gz` shards (captured 2026-10-13, grouped by
+the trailing state code so leaf names stay globally unique for the DAG output
+paths). It reads Redfin's
 server-rendered React `InitialContext` only to discover the authoritative cached
 `/stingray/api/gis` request, then uses that first-party JSON API as its single
 listing-data direction. The API's `{}&&` anti-hijacking prefix is removed before
 decoding; no HTML-card or JSON-LD fallback is used. Pagination preserves each
 market's hydrated query contract and increments `page_number` and `start`.
+
+Run one market with `-a category=<leaf>` or every market with
+`-a category=all`.
 
 ```bash
 scrapy crawl redfin_listing -a category=los-angeles-ca -a max_pages=2 \
