@@ -82,7 +82,7 @@ class CostcoListingSpiderTests(unittest.TestCase):
             inventory["count"],
         )
         self.assertEqual(
-            set(self.spider.available_categories()), set(self.spider.categories)
+            len(self.spider.available_categories()), inventory["count"]
         )
         self.assertEqual(
             self.spider._selected_subcategories(),
@@ -98,13 +98,13 @@ class CostcoListingSpiderTests(unittest.TestCase):
         coffee_requests = list(self.spider.start_requests())
         self.assertEqual(
             {request.meta["subcategory"] for request in coffee_requests},
-            set(self.spider.categories["coffee"]),
+            set(self.spider.category_targets("coffee")),
         )
         appliances = CostcoListingSpider(category="appliances")
         appliance_requests = list(appliances.start_requests())
         self.assertEqual(
             {request.meta["subcategory"] for request in appliance_requests},
-            set(appliances.categories["appliances"]),
+            set(appliances.category_targets("appliances")),
         )
         self.assertTrue(
             all("category_url" not in request.meta for request in appliance_requests)

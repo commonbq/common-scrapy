@@ -11,7 +11,7 @@ from urllib.parse import urlsplit, urlunsplit
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
-from common.spiders.newegg_categories import NEWEGG_SPIDER_CATEGORIES
+from common.spiders.newegg_categories import NEWEGG_LISTING_CATEGORIES
 
 
 class NeweggListingSpider(BaseListingSpider):
@@ -21,15 +21,15 @@ class NeweggListingSpider(BaseListingSpider):
     # category-only gate; resolve_target_url() still rejects a run with no target.
     require_category_arg = False
 
-    # Complete department -> listing mapping captured from the first-party
-    # navigation endpoint, plus the live-inventory entry used by the DAG.
-    categories = NEWEGG_SPIDER_CATEGORIES
+    # Complete department -> listing mapping loaded from the captured first-party
+    # navigation tree in ``newegg_category_urls.json``.
+    categories = NEWEGG_LISTING_CATEGORIES
 
     custom_settings = {
         "CONCURRENT_REQUESTS_PER_DOMAIN": 2,
         "DOWNLOAD_DELAY": 0.25,
-        # Let the explicit status checks in parse()/parse_categories() run so
-        # non-2xx responses surface the documented actionable errors.
+        # Let the explicit status checks in parse() run so non-2xx responses
+        # surface the documented actionable errors.
         "HTTPERROR_ALLOW_ALL": True,
         "FEED_EXPORT_FIELDS": [
             "item_id",
@@ -77,57 +77,7 @@ class NeweggListingSpider(BaseListingSpider):
 
     def start_requests(self) -> Iterable[scrapy.Request]:
         url = self.resolve_target_url()
-        if "api/RolloverMenu" in url:
-            yield scrapy.Request(url, headers=self.headers, callback=self.parse_categories)
-            return
         yield self._page_request(url, page=1)
-
-    def parse_categories(self, response):
-        if response.status != 200:
-            raise RuntimeError(f"Newegg category inventory returned HTTP {response.status}")
-        try:
-            payload = json.loads(response.text)
-        except json.JSONDecodeError as exc:
-            raise RuntimeError("Newegg category inventory was not JSON") from exc
-
-        targets = self._inventory_urls(payload)
-        if not targets:
-            raise RuntimeError("Newegg category inventory contained no crawlable URLs")
-        for url in targets:
-            yield self._page_request(url, page=1)
-
-    @classmethod
-    def _inventory_urls(cls, payload) -> list[str]:
-        """Return unique concrete category URLs from either raw or normalized menus."""
-        found: list[str] = []
-
-        def visit(node):
-            if isinstance(node, dict):
-                # The RolloverMenu contract lets an explicit CustomLink override any
-                # generated/generic URL field, so prefer it when present.
-                url = node.get("CustomLink") or node.get("url") or node.get("Url")
-                store_type = node.get("StoreType")
-                store_id = node.get("StoreId")
-                store_name = node.get("StoreName") or node.get("Description")
-                if not url and store_type in (1, 2, 3) and store_id and store_name:
-                    slug = re.sub(r"[^a-z0-9]+", "-", store_name.lower()).strip("-")
-                    segment = {1: "Store", 2: "Category", 3: "SubCategory"}[store_type]
-                    url = f"https://www.newegg.com/{slug}/{segment}/ID-{store_id}"
-                if isinstance(url, str) and url:
-                    if url.startswith("//"):
-                        url = "https:" + url
-                    elif url.startswith("/"):
-                        url = "https://www.newegg.com" + url
-                    if any(part in url for part in ("/Store/", "/Category/", "/SubCategory/")):
-                        found.append(url)
-                for value in node.values():
-                    visit(value)
-            elif isinstance(node, list):
-                for value in node:
-                    visit(value)
-
-        visit(payload)
-        return list(dict.fromkeys(found))
 
     def _page_request(self, url: str, page: int, page_size: int | None = None):
         return scrapy.Request(

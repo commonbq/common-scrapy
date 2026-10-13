@@ -5,10 +5,11 @@ Source of truth:
     GET https://www.newegg.com/api/RolloverMenu?CountryCode=USA
 
 Captured 2026-10-04 UTC from the US storefront. The payload nests **1,789**
-navigation nodes under ``RollOverMenu[]`` across **17** top-level departments.
+navigation nodes under ``RollOverMenu[]`` across **16** captured departments.
 ``StoreType=0`` nodes are pure grouping labels with no listing behind them, so
 they are not crawlable and are excluded. The remaining nodes resolve to
-**1,557** distinct listing URLs, all shipped in ``newegg_category_urls.json``.
+**1,557** distinct taxonomy URLs, including **1,159** concrete
+``SubCategory`` listing URLs, all shipped in ``newegg_category_urls.json``.
 
 URL resolution rules, applied while capturing the inventory:
 
@@ -38,11 +39,6 @@ from __future__ import annotations
 import json
 import re
 from pathlib import Path
-
-from common.spiders.base_listing_spider import group_categories
-
-NEWEGG_SITE_BASE = "https://www.newegg.com"
-NEWEGG_MENU_URL = f"{NEWEGG_SITE_BASE}/api/RolloverMenu?CountryCode=USA"
 
 _INVENTORY_PATH = Path(__file__).resolve().parent / "newegg_category_urls.json"
 _SELF_KEY = "@url"
@@ -127,33 +123,25 @@ def _flatten_categories() -> list[dict[str, str]]:
     return deduped
 
 
+def _grouped_categories(
+    entries: list[dict[str, str]],
+) -> dict[str, dict[str, dict[str, str]]]:
+    """Convert JSON-derived rows to the canonical group -> leaf -> rich mapping."""
+    grouped: dict[str, dict[str, dict[str, str]]] = {}
+    for entry in entries:
+        row = dict(entry)
+        category = row.pop("category")
+        department = row.pop("department")
+        grouped.setdefault(department, {})[category] = row
+    return grouped
+
+
 _NEWEGG_CATEGORY_ROWS = _flatten_categories()
 
 # BaseListingSpider's category contract is group -> leaf -> rich value.  Keep
 # the department hierarchy in the exported constants so both spiders and DAGs
 # consume the same shape without rebuilding it at import sites.
-NEWEGG_CATEGORIES = group_categories(_NEWEGG_CATEGORY_ROWS, "department")
-NEWEGG_LISTING_CATEGORIES = group_categories(
+NEWEGG_CATEGORIES = _grouped_categories(_NEWEGG_CATEGORY_ROWS)
+NEWEGG_LISTING_CATEGORIES = _grouped_categories(
     [entry for entry in _NEWEGG_CATEGORY_ROWS if entry["kind"] == "SubCategory"],
-    "department",
 )
-
-# ``all-current-categories`` remains the efficient DAG entry point: it asks the
-# spider to refresh the first-party navigation endpoint at crawl time.  Direct
-# ``-a category=<leaf>`` runs use the complete captured listing inventory above.
-NEWEGG_SPIDER_CATEGORIES = {
-    **NEWEGG_LISTING_CATEGORIES,
-    "featured": {
-        # Preserve the original documented direct-run category name.
-        "desktop-cpu-processors": {
-            "url": "https://www.newegg.com/Desktop-CPU-Processor/SubCategory/ID-343",
-            "kind": "SubCategory",
-        }
-    },
-    "inventory": {
-        "all-current-categories": {
-            "url": NEWEGG_MENU_URL,
-            "kind": "inventory",
-        }
-    },
-}

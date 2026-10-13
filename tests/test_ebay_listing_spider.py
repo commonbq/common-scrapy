@@ -17,11 +17,23 @@ class EbayListingSpiderTests(unittest.TestCase):
         self.assertEqual(
             sum(len(section) for section in EbayListingSpider.categories.values()), 209
         )
-        self.assertIn("Antiques", EbayListingSpider.categories["Collectibles & Art"])
+        self.assertIn(
+            "collectibles-art-antiques",
+            EbayListingSpider.categories["Collectibles & Art"],
+        )
         self.assertEqual(
-            EbayListingSpider.categories["Collectibles & Art"]["Antiques"],
+            EbayListingSpider.categories["Collectibles & Art"]
+            ["collectibles-art-antiques"]["url"],
             "https://www.ebay.com/b/Antiques/20081/bn_1851017",
         )
+
+    def test_leaf_category_selects_one_listing(self):
+        spider = EbayListingSpider(
+            category="collectibles-art-antiques", max_pages=1
+        )
+        requests = list(spider.start_requests())
+        self.assertEqual(len(requests), 1)
+        self.assertEqual(requests[0].meta["subCategory"], "Antiques")
 
     def test_antique_fixture_parses_non_zero_subcategories(self):
         fixture_path = (

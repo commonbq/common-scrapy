@@ -5,6 +5,7 @@ from urllib.parse import parse_qs, urlencode, urlparse
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.gap_categories import GAP_CATEGORIES
 
 
 class GapListingSpider(BaseListingSpider):
@@ -13,23 +14,6 @@ class GapListingSpider(BaseListingSpider):
     name = "gap_listing"
     allowed_domains = ["gap.com", "www.gap.com", "api.gap.com"]
 
-    GAP_CATEGORIES = {
-        "women": {
-            "dresses": "https://www.gap.com/browse/category.do?cid=13658",
-            "new-arrivals": "https://www.gap.com/browse/category.do?cid=8792",
-            "jeans": "https://www.gap.com/browse/category.do?cid=5664",
-            "tops": "https://www.gap.com/browse/category.do?cid=17076",
-            "pants": "https://www.gap.com/browse/category.do?cid=5736",
-            "sweaters": "https://www.gap.com/browse/category.do?cid=5745",
-        },
-        "men": {
-            "all": "https://www.gap.com/browse/category.do?cid=6998",
-            "new-arrivals": "https://www.gap.com/browse/category.do?cid=1127938",
-            "jeans": "https://www.gap.com/browse/category.do?cid=34524",
-            "pants": "https://www.gap.com/browse/category.do?cid=34608",
-        },
-        "girls": {"all": "https://www.gap.com/browse/category.do?cid=14257"},
-    }
     categories = GAP_CATEGORIES
 
     custom_settings = {
@@ -64,17 +48,14 @@ class GapListingSpider(BaseListingSpider):
         super().__init__(*args, **kwargs)
         self._seen_products: set[str] = set()
 
-    def available_categories(self) -> list[str]:
-        return sorted(self.categories)
-
     def _selected_subcategories(self) -> dict[str, str]:
-        try:
-            return self.categories[self.category]
-        except KeyError:
-            available = ", ".join(self.available_categories())
-            raise ValueError(
-                f"Unknown category '{self.category}'. Available categories: {available}"
-            ) from None
+        selected = self.category_targets(self.category)
+        if selected is not None:
+            return selected
+        available = ", ".join(self.available_categories())
+        raise ValueError(
+            f"Unknown category '{self.category}'. Available categories: {available}"
+        )
 
     @staticmethod
     def _cid(url: str) -> str:

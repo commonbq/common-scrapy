@@ -9,38 +9,7 @@ from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
-
-
-FASHIONNOVA_CATEGORIES = {
-    "new": {"all": "https://www.fashionnova.com/collections/new"},
-    "women": {"all": "https://www.fashionnova.com/collections/women"},
-    "novadeals": {"all": "https://www.fashionnova.com/collections/womens-novadeals"},
-    "halloween": {"all": "https://www.fashionnova.com/collections/halloween"},
-    "jeans": {"all": "https://www.fashionnova.com/collections/jeans"},
-    "dresses": {
-        "all": "https://www.fashionnova.com/collections/dresses",
-        "going-out": "https://www.fashionnova.com/collections/club-dresses",
-        "birthday": "https://www.fashionnova.com/collections/birthday-dresses",
-        "office": "https://www.fashionnova.com/collections/wear-to-work-dresses",
-        "cocktail": "https://www.fashionnova.com/collections/cocktail-dresses",
-        "fall": "https://www.fashionnova.com/collections/fall-dresses",
-        "formal": "https://www.fashionnova.com/collections/formal-shop",
-        "luxe": "https://www.fashionnova.com/collections/womens-nova-luxe-dresses",
-        "deals": "https://www.fashionnova.com/collections/everyday-dresses",
-    },
-    "matching-sets": {"all": "https://www.fashionnova.com/collections/matching-sets"},
-    "tops": {"all": "https://www.fashionnova.com/collections/all-tops"},
-    "graphic-tops": {"all": "https://www.fashionnova.com/collections/graphic-tops"},
-    "jackets-and-sweaters": {"all": "https://www.fashionnova.com/collections/jackets"},
-    "shoes": {"all": "https://www.fashionnova.com/collections/shoes"},
-    "formal": {"all": "https://www.fashionnova.com/collections/formal-shop"},
-    "jumpsuits": {"all": "https://www.fashionnova.com/collections/rompers-and-jumpsuits"},
-    "bottoms": {"all": "https://www.fashionnova.com/collections/bottoms"},
-    "lingerie-and-sleep": {"all": "https://www.fashionnova.com/collections/lingerie"},
-    "accessories": {"all": "https://www.fashionnova.com/collections/accessories"},
-    "sale": {"all": "https://www.fashionnova.com/collections/sale"},
-    "nova-luxe": {"all": "https://www.fashionnova.com/collections/luxe"},
-}
+from common.spiders.fashionnova_categories import FASHIONNOVA_CATEGORIES
 
 
 class FashionnovaListingSpider(BaseListingSpider):
@@ -77,21 +46,19 @@ class FashionnovaListingSpider(BaseListingSpider):
         super().__init__(*args, **kwargs)
         self._seen_products: set[str] = set()
 
-    def available_categories(self) -> list[str]:
-        return sorted(self.categories)
-
     def start_requests(self) -> Iterable[scrapy.Request]:
         if self.url or self.category_url:
             url = self.url or self.category_url
             yield self._request(url, self.category or "custom", "custom", 1)
             return
 
-        if self.category not in self.categories:
+        selected = self.category_targets(self.category)
+        if selected is None:
             available = ", ".join(self.available_categories())
             raise ValueError(
                 f"Unknown category '{self.category}'. Available categories: {available}"
             )
-        for subcategory, url in self.categories[self.category].items():
+        for subcategory, url in selected.items():
             yield self._request(url, self.category, subcategory, 1)
 
     def _request(self, url: str, category: str, subcategory: str, page: int):

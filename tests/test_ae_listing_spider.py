@@ -58,19 +58,21 @@ class AeListingSpiderTests(unittest.TestCase):
     def test_category_dictionary_is_grouped_by_user_selectable_category(self):
         self.assertEqual(set(self.spider.categories), {"women", "men", "aerie"})
         self.assertEqual(
-            self.spider.categories["women"]["tops"],
+            self.spider.categories["women"]["women-tops"]["url"],
             "https://www.ae.com/us/en/c/women/tops/cat10049",
         )
         self.assertEqual(
-            self.spider.categories["men"]["clearance"],
+            self.spider.categories["men"]["men-clearance"]["url"],
             "https://www.ae.com/us/en/c/men/clearance/clrmens",
         )
         self.assertEqual(
-            self.spider.categories["aerie"]["all"],
+            self.spider.categories["aerie"]["aerie-all"]["url"],
             "https://www.ae.com/us/en/c/aerie/clothing-accessories/cat870009",
         )
-        with self.assertRaisesRegex(ValueError, "Unknown category 'women-tops'"):
-            AeListingSpider(category="women-tops")._selected_subcategories()
+        self.assertEqual(
+            AeListingSpider(category="women-tops")._selected_subcategories(),
+            {"tops": "https://www.ae.com/us/en/c/women/tops/cat10049"},
+        )
 
     def test_parse_html_uses_fastboot_payload_and_schedules_browse_page(self):
         body = (self.sample_dir / "ae-listing-sample.html").read_text(encoding="utf-8")
@@ -163,7 +165,7 @@ class AeListingSpiderTests(unittest.TestCase):
         self.assertEqual(self.spider._seen_products, set())
         self.assertEqual(
             {request.meta["subcategory"] for request in requests},
-            set(self.spider.categories["women"]),
+            set(self.spider.category_targets("women")),
         )
 
     def test_zero_product_and_blocked_pages_yield_no_results(self):

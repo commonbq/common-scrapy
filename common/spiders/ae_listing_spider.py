@@ -9,6 +9,7 @@ from urllib.parse import parse_qs, urlencode, urljoin, urlparse, urlunparse
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.ae_categories import AE_CATEGORIES
 
 
 class AeListingSpider(BaseListingSpider):
@@ -16,44 +17,6 @@ class AeListingSpider(BaseListingSpider):
 
     name = "ae_listing"
     allowed_domains = ["ae.com", "www.ae.com"]
-
-    AE_CATEGORIES = {
-        "women": {
-            "all": "https://www.ae.com/us/en/c/women/womens",
-            "jeans": "https://www.ae.com/us/en/c/women/bottoms/jeans/cat6430042",
-            "tops": "https://www.ae.com/us/en/c/women/tops/cat10049",
-            "bottoms": "https://www.ae.com/us/en/c/women/bottoms/cat10051",
-            "pants-sweatpants": "https://www.ae.com/us/en/c/women/bottoms/pants-sweatpants/cat90034",
-            "t-shirts": "https://www.ae.com/us/en/c/women/tops/t-shirts/cat90030",
-            "hoodies-sweatshirts": "https://www.ae.com/us/en/c/women/tops/hoodies-sweatshirts/cat90048",
-            "sweaters-cardigans": "https://www.ae.com/us/en/c/women/tops/sweaters-cardigans/cat1410002",
-            "dresses-jumpsuits": "https://www.ae.com/us/en/c/women/dresses/cat1320034",
-            "loungewear-pjs": "https://www.ae.com/us/en/c/women/loungewear-pjs/cat730011",
-            "jackets-vests": "https://www.ae.com/us/en/c/women/tops/jackets-vests/cat4260032",
-            "accessories-socks": "https://www.ae.com/us/en/c/women/accessories-socks/cat4840018",
-            "shoes": "https://www.ae.com/us/en/c/women/shoes/cat4840020",
-            "clearance": "https://www.ae.com/us/en/c/women/clearance/clrwomens",
-        },
-        "men": {
-            "all": "https://www.ae.com/us/en/c/men/mens",
-            "jeans": "https://www.ae.com/us/en/c/men/bottoms/jeans/cat6430041",
-            "tops": "https://www.ae.com/us/en/c/men/tops/cat10025",
-            "bottoms": "https://www.ae.com/us/en/c/men/bottoms/cat10027",
-            "hoodies-sweatshirts": "https://www.ae.com/us/en/c/men/tops/hoodies-sweatshirts/cat90020",
-            "t-shirts": "https://www.ae.com/us/en/c/men/tops/t-shirts/cat90012",
-            "shirts-flannels": "https://www.ae.com/us/en/c/men/tops/shirts-flannels/cat40005",
-            "underwear": "https://www.ae.com/us/en/c/men/underwear/cat10032",
-            "activewear": "https://www.ae.com/us/en/c/men/activewear/cat1100008",
-            "loungewear-pjs": "https://www.ae.com/us/en/c/men/loungewear-pjs/cat130005",
-            "jackets": "https://www.ae.com/us/en/c/men/tops/jackets/cat380145",
-            "accessories-socks": "https://www.ae.com/us/en/c/men/accessories-socks/cat4840022",
-            "shoes": "https://www.ae.com/us/en/c/men/shoes/cat4840024",
-            "clearance": "https://www.ae.com/us/en/c/men/clearance/clrmens",
-        },
-        "aerie": {
-            "all": "https://www.ae.com/us/en/c/aerie/clothing-accessories/cat870009",
-        },
-    }
 
     categories = AE_CATEGORIES
 
@@ -72,12 +35,10 @@ class AeListingSpider(BaseListingSpider):
         super().__init__(*args, **kwargs)
         self._seen_products: set[str] = set()
 
-    def available_categories(self) -> list[str]:
-        return sorted(self.categories)
-
     def _selected_subcategories(self) -> dict[str, str]:
-        if self.category in self.categories:
-            return self.categories[self.category]
+        selected = self.category_targets(self.category)
+        if selected is not None:
+            return selected
         available = ", ".join(self.available_categories())
         raise ValueError(
             f"Unknown category '{self.category}'. Available categories: {available}"
