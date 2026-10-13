@@ -42,12 +42,20 @@ class RightmoveListingSpiderTests(unittest.TestCase):
         return TextResponse(url, request=request, body=html, encoding="utf-8")
 
     def test_categories_are_complete_and_unique(self):
-        self.assertEqual(len(RIGHTMOVE_CATEGORIES), 20)
-        self.assertEqual(len({entry["category"] for entry in RIGHTMOVE_CATEGORIES}), 20)
+        self.assertTrue(all(isinstance(v, dict) for v in RIGHTMOVE_CATEGORIES.values()))
+        leaves = [leaf for leaves in RIGHTMOVE_CATEGORIES.values() for leaf in leaves]
+        self.assertEqual(len(RIGHTMOVE_CATEGORIES), 155)
+        self.assertEqual(len(leaves), 34742)
+        self.assertEqual(len(set(leaves)), 34742)
         self.assertEqual(self.spider.resolve_target_url(), "https://www.rightmove.co.uk/property-for-sale/London.html")
-        self.assertEqual(len(list(RightmoveListingSpider(category="all").start_requests())), 20)
+        self.assertEqual(len(list(RightmoveListingSpider(category="all").start_requests())), 34742)
+        self.assertEqual(self.spider.category_entry("london")["group"], "London")
         custom = RightmoveListingSpider(category_url="https://www.rightmove.co.uk/property-for-sale/York.html")
         self.assertEqual(next(custom.start_requests()).meta["category"], "custom")
+
+    def test_unknown_category_fails_visibly(self):
+        with self.assertRaisesRegex(ValueError, "Unknown category"):
+            RightmoveListingSpider(category="not-a-real-town")
 
     def test_hydration_item_and_feed_contract(self):
         outputs = list(self.spider.parse(self.response()))
