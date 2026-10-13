@@ -1,9 +1,34 @@
 import html
 import json
+from collections.abc import Mapping
 
 from scrapy.http import HtmlResponse, Request
 
+from common.spiders.tripcom_categories import TRIPCOM_CATEGORIES
 from common.spiders.tripcom_listing_spider import TripcomListingSpider
+
+
+def test_categories_grouped_mapping():
+    # Grouped mapping contract: {country: {leaf: url}}.
+    assert isinstance(TRIPCOM_CATEGORIES, Mapping)
+    assert all(isinstance(group, Mapping) for group in TRIPCOM_CATEGORIES.values())
+    leaves = [leaf for group in TRIPCOM_CATEGORIES.values() for leaf in group]
+    assert len(leaves) == len(set(leaves)) == 21
+    assert "bangkok" in TRIPCOM_CATEGORIES["Thailand"]
+    # The 21st popular-hotel link (Vietnam) is included.
+    assert TRIPCOM_CATEGORIES["Vietnam"]["da-nang"] == (
+        "https://us.trip.com/hotels/da-nang-hotels-list-1356/"
+    )
+    for url in (u for group in TRIPCOM_CATEGORIES.values() for u in group.values()):
+        assert url.startswith("https://us.trip.com/hotels/")
+
+
+def test_category_entry_resolves_leaf_across_groups():
+    spider = TripcomListingSpider(category="da-nang")
+    assert spider.resolve_target_url() == (
+        "https://us.trip.com/hotels/da-nang-hotels-list-1356/"
+    )
+    assert len(list(spider.iter_categories())) == 21
 
 
 def test_city_bootstrap_items():

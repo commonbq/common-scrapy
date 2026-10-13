@@ -140,16 +140,25 @@ scrapy crawl athome_listing -a category=area-rugs -a max_pages=2 -s HTTPCACHE_EN
 
 `tripcom_listing` reads the server-provided `data-jsondata` state for Trip.com's
 `City` template component. This is a single bootstrap direction: it does not parse
-rendered hotel cards or JSON-LD. The 20 deterministic city categories come from
-Trip.com's popular-hotel destination links. Each city SEO page is fetched once;
-the component supplies hotel names, prices, price units, and city metadata.
+rendered hotel cards or JSON-LD. The 21 deterministic city categories come from
+Trip.com's popular-hotel destination links, stored in `tripcom_categories.py` as a
+country-grouped mapping (`{country: {leaf: url}}`) — e.g. Shanghai/Beijing under
+`China`, Da Nang under `Vietnam`. Each city SEO page is fetched once; the component
+supplies hotel names, prices, price units, and city metadata.
 
-Every exported item includes the verbatim `raw` City-bootstrap hotel record and a
-per-run crawl `timestamp`.
+Trip.com exposes no public "all cities" JSON endpoint: its `/hotels/all-cities/`
+page renders only the first alphabetical page (~1,000 links) and paginates on the
+client with no reachable data URL, so the curated popular-destination set is the
+deterministic source.
+
+Run one city with `-a category=<leaf>` (or `-a category=all` for every leaf):
 
 ```bash
 scrapy crawl tripcom_listing -a category=bangkok -s HTTPCACHE_ENABLED=False -O tripcom.jsonl
 ```
+
+Every exported item includes the verbatim `raw` City-bootstrap hotel record and a
+per-run crawl `timestamp`.
 
 ### hobbylobby_listing
 
@@ -251,7 +260,7 @@ Working spiders running daily in production:
 | [`barnesandnoble_listing`](#barnesandnoble_listing) | Active | API | none detected | Barnes & Noble products from the first-party Shopify Storefront GraphQL API. The collection page only supplies rotating API configuration; there is no HTML-card or JSON-LD product fallback. | 50/page | 20 stable collection seeds | `{"category":"fiction","item_id":"8827283734769","ean":"9780765635969","title":"Projecting Politics: Political Messages in American Films","format":"Hardcover","price":237.61,"currency":"USD","source":"barnesandnoble_storefront_graphql_api"...}` |
 | [`hsn_listing`](#hsn_listing) | Active | API | none detected on direct Constructor hosts | HSN products from the first-party Constructor browse API only; the public HSN Constructor client supplies the current key and no category-page, HTML-card, or JSON-LD product fallback is used. | 60/API page | 20 departments and high-value subcategories | `{"category":"Electronics","item_id":"10095486","title":"Apple 11\" iPad A16 Wi-Fi...","price":599.99,"currency":"USD","source":"hsn_constructor_browse_api"...}` |
 | [`hobbylobby_listing`](#hobbylobby_listing) | Experimental | bootstrap | ScrapeOps US proxy | Hobby Lobby products from the server-rendered Algolia InstantSearch state only; no direct HTML-card or JSON-LD extraction. | 12/page | 20 product-bearing level-2 categories | `{"category":"art-supplies-painting-supplies","item_id":"80968391","title":"Master's Touch Oil Paint - 12 Piece Set","price":6.99,"source":"hobbylobby_instantsearch_bootstrap"...}` |
-| [`tripcom_listing`](#tripcom_listing) | Experimental | bootstrap | ScrapeOps proxy | Trip.com hotels from the server-provided `City` template-component state; no direct HTML-card or JSON-LD extraction. | 9 (one city page) | 20 popular hotel destinations | `{"category":"bangkok","title":"NASA BANGKOK - Airport Rail Link Ramkhamhang","price":15,"currency":"USD","source":"tripcom_city_component_bootstrap"...}` |
+| [`tripcom_listing`](#tripcom_listing) | Experimental | bootstrap | ScrapeOps proxy | Trip.com hotels from the server-provided `City` template-component state; no direct HTML-card or JSON-LD extraction. | 9 (one city page) | 21 popular hotel destinations, grouped by country (grouped mapping) from `tripcom_categories.py` | `{"category":"bangkok","title":"NASA BANGKOK - Airport Rail Link Ramkhamhang","price":15,"currency":"USD","source":"tripcom_city_component_bootstrap"...}` |
 | [`hostelworld_listing`](#hostelworld_listing) | Active | api | none detected; API must be direct so proxy does not rewrite `Accept` | Hostelworld properties from the first-party Apigee city-properties API only; no HTML or JSON-LD fallback. | 29 (New York, one page) | 20 popular global cities; 2,838 city URLs available from the sitemap index | `{"category":"new-york","item_id":"1850","name":"HI New York City Hostel","source":"hostelworld_city_properties_api"...}` |
 | [`dell_listing`](#dell_listing) | Experimental | bootstrap | ScrapeOps proxy | Dell US listings from the authoritative `data-product-detail-info` Product Stack bootstrap; no product-card or JSON-LD fallback. | Live smoke tested below | 18 stable product/deal categories | `{"item_id":"dellplus16laptopdb16250","title":"Dell 16 Plus Laptop","price":1559.99,"currency":"USD","source":"dell_product_stack_bootstrap"...}` |
 | [`dollargeneral_listing`](#dollargeneral_listing) | Active | api | ScrapeOps proxy (`keep_headers=true`) | Dollar General category listings from the first-party Omni v5 product-search API; no HTML-card or JSON-LD fallback. | 24 per API page | 20 high-coverage departments | `{"item_id":"37000853794","title":"Crest Plus Scope Whitening Toothpaste...","price":8.25,"currency":"USD","source":"dollargeneral_omni_search_api"...}` |
