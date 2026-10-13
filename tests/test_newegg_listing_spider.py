@@ -17,6 +17,9 @@ def response_for(state, page=1):
 
 
 class NeweggListingSpiderTests(unittest.TestCase):
+    desktop_cpu_category = (
+        "components-storage-core-component-cpu-processor-desktop-cpu-processor"
+    )
     product = {
         "ProductNumber": "19-113-877",
         "ItemCell": {
@@ -66,20 +69,18 @@ class NeweggListingSpiderTests(unittest.TestCase):
         self.assertTrue(all(isinstance(leaves, Mapping) for leaves in categories.values()))
         self.assertGreater(sum(len(leaves) for leaves in categories.values()), 20)
 
-        spider = NeweggListingSpider(category="desktop-cpu-processors")
-        entry = spider.category_entry("desktop-cpu-processors")
-        self.assertEqual(entry["group"], "featured")
+        spider = NeweggListingSpider(category=self.desktop_cpu_category)
+        entry = spider.category_entry(self.desktop_cpu_category)
+        self.assertEqual(entry["group"], "Components & Storage")
         self.assertEqual(
             entry["url"],
             "https://www.newegg.com/Desktop-CPU-Processor/SubCategory/ID-343",
         )
-        self.assertEqual(
-            spider.category_entry("all-current-categories")["url"],
-            "https://www.newegg.com/api/RolloverMenu?CountryCode=USA",
-        )
+        self.assertEqual(entry["kind"], "SubCategory")
+        self.assertIsNone(spider.category_entry("all-current-categories"))
 
     def test_hydration_mapping_feed_fields_and_pagination(self):
-        spider = NeweggListingSpider(category="desktop-cpu-processors", max_pages=2)
+        spider = NeweggListingSpider(category=self.desktop_cpu_category, max_pages=2)
         output = list(spider.parse(
             response_for({"Products": [self.product, self.second_product], "TotalItemCount": 40}),
             "https://www.newegg.com/Desktop-CPU-Processor/SubCategory/ID-343", 1))
@@ -112,7 +113,7 @@ class NeweggListingSpiderTests(unittest.TestCase):
 
     def test_partial_final_page_keeps_first_page_size(self):
         # 40 products, 36 on page 1, 4 on page 2 must not schedule a phantom page 3.
-        spider = NeweggListingSpider(category="desktop-cpu-processors", max_pages=10)
+        spider = NeweggListingSpider(category=self.desktop_cpu_category, max_pages=10)
         page1 = list(spider.parse(
             response_for({"Products": [self.product] * 36, "TotalItemCount": 40}),
             "https://www.newegg.com/Desktop-CPU-Processor/SubCategory/ID-343", 1))
@@ -137,8 +138,29 @@ class NeweggListingSpiderTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Provide -a category"):
             NeweggListingSpider()
 
+    def test_json_inventory_contains_only_runnable_subcategory_urls(self):
+        spider = NeweggListingSpider(category=self.desktop_cpu_category)
+        entries = list(spider.iter_categories())
+        self.assertEqual(len(entries), 1159)
+        self.assertTrue(all(entry["kind"] == "SubCategory" for entry in entries))
+        self.assertTrue(all("/SubCategory/" in entry["url"] for entry in entries))
+
+    def test_json_inventory_leaf_names_are_globally_unique(self):
+        spider = NeweggListingSpider(category=self.desktop_cpu_category)
+        leaves = [entry["category"] for entry in spider.iter_categories()]
+        self.assertEqual(len(leaves), len(set(leaves)))
+
+    def test_json_inventory_leaf_starts_one_listing_request(self):
+        spider = NeweggListingSpider(category=self.desktop_cpu_category)
+        requests = list(spider.start_requests())
+        self.assertEqual(len(requests), 1)
+        self.assertEqual(
+            requests[0].url,
+            "https://www.newegg.com/Desktop-CPU-Processor/SubCategory/ID-343",
+        )
+
     def test_duplicate_ids_are_not_emitted(self):
-        spider = NeweggListingSpider(category="desktop-cpu-processors")
+        spider = NeweggListingSpider(category=self.desktop_cpu_category)
         state = {"Products": [self.product, self.product], "TotalItemCount": 2}
         self.assertEqual(len(list(spider.parse(response_for(state), response_for(state).url, 1))), 1)
 
@@ -146,26 +168,8 @@ class NeweggListingSpiderTests(unittest.TestCase):
         text = '<script>window.__initialState__={"Products":[]};</script><script>{bad}</script>'
         self.assertEqual(NeweggListingSpider._extract_initial_state(text), {"Products": []})
 
-    def test_inventory_flattens_and_deduplicates_concrete_urls(self):
-        url = "https://www.newegg.com/Desktop-CPU-Processor/SubCategory/ID-343"
-        payload = {"Menu": [{"url": url}, {"children": [{"CustomLink": url}]}]}
-        self.assertEqual(NeweggListingSpider._inventory_urls(payload), [url])
-
-    def test_custom_link_overrides_generic_url_field(self):
-        custom = "https://www.newegg.com/AMD-Processors/Category/ID-10"
-        generic = "https://www.newegg.com/Computers/Category/ID-1"
-        payload = {"Menu": [{"url": generic, "CustomLink": custom}]}
-        self.assertEqual(NeweggListingSpider._inventory_urls(payload), [custom])
-
-    def test_inventory_builds_urls_from_store_contract(self):
-        payload = {"StoreType": 3, "StoreId": 343, "StoreName": "Desktop CPU Processor"}
-        self.assertEqual(
-            NeweggListingSpider._inventory_urls(payload),
-            ["https://www.newegg.com/desktop-cpu-processor/SubCategory/ID-343"],
-        )
-
     def test_schema_drift_fails_loudly(self):
-        spider = NeweggListingSpider(category="desktop-cpu-processors")
+        spider = NeweggListingSpider(category=self.desktop_cpu_category)
         with self.assertRaisesRegex(RuntimeError, "no Products list"):
             list(spider.parse(response_for({"Wrong": []}), response_for({}).url, 1))
 
