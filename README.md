@@ -261,7 +261,7 @@ Working spiders running daily in production:
 | [`hsn_listing`](#hsn_listing) | Active | API | none detected on direct Constructor hosts | HSN products from the first-party Constructor browse API only; the public HSN Constructor client supplies the current key and no category-page, HTML-card, or JSON-LD product fallback is used. | 60/API page | 20 departments and high-value subcategories | `{"category":"Electronics","item_id":"10095486","title":"Apple 11\" iPad A16 Wi-Fi...","price":599.99,"currency":"USD","source":"hsn_constructor_browse_api"...}` |
 | [`hobbylobby_listing`](#hobbylobby_listing) | Experimental | bootstrap | ScrapeOps US proxy | Hobby Lobby products from the server-rendered Algolia InstantSearch state only; no direct HTML-card or JSON-LD extraction. | 12/page | 20 product-bearing level-2 categories | `{"category":"art-supplies-painting-supplies","item_id":"80968391","title":"Master's Touch Oil Paint - 12 Piece Set","price":6.99,"source":"hobbylobby_instantsearch_bootstrap"...}` |
 | [`tripcom_listing`](#tripcom_listing) | Experimental | bootstrap | ScrapeOps proxy | Trip.com hotels from the server-provided `City` template-component state; no direct HTML-card or JSON-LD extraction. | 9 (one city page) | 21 popular hotel destinations, grouped by country (grouped mapping) from `tripcom_categories.py` | `{"category":"bangkok","title":"NASA BANGKOK - Airport Rail Link Ramkhamhang","price":15,"currency":"USD","source":"tripcom_city_component_bootstrap"...}` |
-| [`hostelworld_listing`](#hostelworld_listing) | Active | api | none detected; API must be direct so proxy does not rewrite `Accept` | Hostelworld properties from the first-party Apigee city-properties API only; no HTML or JSON-LD fallback. | 29 (New York, one page) | 20 popular global cities; 2,838 city URLs available from the sitemap index | `{"category":"new-york","item_id":"1850","name":"HI New York City Hostel","source":"hostelworld_city_properties_api"...}` |
+| [`hostelworld_listing`](#hostelworld_listing) | Active | api | none detected; API must be direct so proxy does not rewrite `Accept` | Hostelworld properties from the first-party Apigee city-properties API only; no HTML or JSON-LD fallback. | 29 (New York, one page) | 3,520 cities across 6 continents (grouped mapping) from `hostelworld_categories.py`; full first-party taxonomy (167 countries) | `{"category":"new-york-usa","item_id":"1850","name":"HI New York City Hostel","source":"hostelworld_city_properties_api"...}` |
 | [`dell_listing`](#dell_listing) | Experimental | bootstrap | ScrapeOps proxy | Dell US listings from the authoritative `data-product-detail-info` Product Stack bootstrap; no product-card or JSON-LD fallback. | Live smoke tested below | 18 stable product/deal categories | `{"item_id":"dellplus16laptopdb16250","title":"Dell 16 Plus Laptop","price":1559.99,"currency":"USD","source":"dell_product_stack_bootstrap"...}` |
 | [`dollargeneral_listing`](#dollargeneral_listing) | Active | api | ScrapeOps proxy (`keep_headers=true`) | Dollar General category listings from the first-party Omni v5 product-search API; no HTML-card or JSON-LD fallback. | 24 per API page | 20 high-coverage departments | `{"item_id":"37000853794","title":"Crest Plus Scope Whitening Toothpaste...","price":8.25,"currency":"USD","source":"dollargeneral_omni_search_api"...}` |
 | [`agoda_listing`](#agoda_listing) | Experimental | api | proxy required | Agoda curated destination accommodations from the first-party Cronos geo API. | 30 (Bali, one API response) | 20 popular cities from the homepage destination payload | `{"category":"bali","item_id":"489045","title":"RIMBA by AYANA Bali","review_score":9.1,"star_rating":5.0,"source":"agoda_cronos_geo_api","timestamp":"2026-10-06 10:30:00"...}` |
@@ -431,12 +431,16 @@ facilities and paging totals. Requests go directly to Apigee because a proxy
 that rewrites `Accept` or `Accept-Language` causes the gateway to reject them;
 there is no direct-HTML or JSON-LD fallback.
 
-The spider includes 20 deterministic popular-city seeds. Hostelworld's full
-continent/country/city taxonomy is published by `sitemap-index.xml` across 32
-gzipped sitemap files (about 2,838 city listing URLs).
+The spider's `categories` is a grouped ``{continent: {city-leaf: {url, city_id, ...}}}``
+mapping built from Hostelworld's first-party taxonomy API
+(``legacy-hwapi-service/2.2/continents/`` then ``/countries/<id>/cities/``):
+**3,520 city markets across 6 continents** (167 countries), each leaf carrying
+the numeric ``city_id`` the paging endpoint needs. ``-a category=all`` runs every
+leaf; ``-a category=<leaf>`` (for example ``new-york-usa``) runs one; a custom
+``category_url``/``url`` is matched against the inventory.
 
 ```bash
-scrapy crawl hostelworld_listing -a category=new-york -a max_pages=1 -s HTTPCACHE_ENABLED=False -O hostelworld.jsonl
+scrapy crawl hostelworld_listing -a category=new-york-usa -a max_pages=1 -s HTTPCACHE_ENABLED=False -O hostelworld.jsonl
 ```
 
 ### menards_listing

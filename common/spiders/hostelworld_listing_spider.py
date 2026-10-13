@@ -6,11 +6,7 @@ from urllib.parse import urlparse
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
-from common.spiders.hostelworld_categories import (
-    HOSTELWORLD_CATEGORIES,
-    HOSTELWORLD_CATEGORY_LIST,
-    HOSTELWORLD_CITY_IDS,
-)
+from common.spiders.hostelworld_categories import HOSTELWORLD_CATEGORIES
 
 
 class HostelworldListingSpider(BaseListingSpider):
@@ -18,7 +14,9 @@ class HostelworldListingSpider(BaseListingSpider):
 
     name = "hostelworld_listing"
     allowed_domains = ["prod.apigee.hostelworld.com"]
-    categories = HOSTELWORLD_CATEGORY_LIST
+    # Complete continent -> city mapping from the first-party taxonomy API;
+    # every leaf carries the numeric ``city_id`` the paging API needs.
+    categories = HOSTELWORLD_CATEGORIES
     require_category_arg = False
     api_key = "TKM51SUbyeCZl8soGScBLR9lYQdjCvTR8cIN4vfqpG6oExKT"
     api_base = "https://prod.apigee.hostelworld.com/legacy-staticpages-service/city/hostel"
@@ -40,11 +38,14 @@ class HostelworldListingSpider(BaseListingSpider):
         super().__init__(*args, **kwargs)
         if not (self.category or self.category_url or self.url):
             raise ValueError(
-                "Provide -a category=<name|all>, category_url=<known city URL>, or url=<known city URL>. "
+                "Provide -a category=<leaf|all>, category_url=<known city URL>, or url=<known city URL>. "
                 f"Available categories: {', '.join(self.available_categories())}"
             )
-        if self.category and self.category != "all" and self.category not in HOSTELWORLD_CITY_IDS:
-            raise ValueError(f"Unknown category '{self.category}'. Available categories: {', '.join(self.available_categories())}")
+        if self.category and self.category != "all" and self.category_entry(self.category) is None:
+            raise ValueError(
+                f"Unknown category '{self.category}'. Available categories: "
+                f"{', '.join(self.available_categories())}"
+            )
         self._seen_ids: set[str] = set()
         self._first_ids: dict[str, str] = {}
 
@@ -52,12 +53,18 @@ class HostelworldListingSpider(BaseListingSpider):
         self._seen_ids.clear()
         self._first_ids.clear()
         if self.category == "all":
-            targets = [(slug, city_id) for slug, city_id in HOSTELWORLD_CITY_IDS.items()]
+            targets = [
+                (entry["category"], entry["city_id"])
+                for entry in self.iter_categories()
+            ]
         else:
             slug = self.category or self._slug_for_url(self.url or self.category_url or "")
-            if slug not in HOSTELWORLD_CITY_IDS:
-                raise ValueError("Custom URL must match one of the 20 configured Hostelworld city URLs")
-            targets = [(slug, HOSTELWORLD_CITY_IDS[slug])]
+            entry = self.category_entry(slug) if slug else None
+            if entry is None:
+                raise ValueError(
+                    "Custom URL must match a configured Hostelworld city URL"
+                )
+            targets = [(entry["category"], entry["city_id"])]
         for slug, city_id in targets:
             yield self._api_request(slug, city_id, 1)
 
@@ -150,11 +157,14 @@ class HostelworldListingSpider(BaseListingSpider):
             "timestamp": self.job_timestamp.isoformat(),
         }
 
-    @staticmethod
-    def _slug_for_url(url):
+    def _slug_for_url(self, url):
+        """Return the inventory leaf whose URL matches ``url``, if any."""
+        for entry in self.iter_categories():
+            if entry.get("url") == url:
+                return entry["category"]
         path = urlparse(url).path.rstrip("/")
         slug = path.rsplit("/", 1)[-1]
-        return slug if HOSTELWORLD_CATEGORIES.get(slug) else None
+        return slug if self.category_entry(slug) else None
 
     @staticmethod
     def _integer(value):
