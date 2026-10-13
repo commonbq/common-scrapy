@@ -35,9 +35,26 @@ class MaccosmeticsListingSpiderTest(unittest.TestCase):
 
     def test_inventory_matches_current_sitemap(self):
         entries = list(self.spider.iter_categories())
-        self.assertEqual(len(entries), 79)
+        self.assertEqual(len(entries), 50)
+        self.assertEqual(len(self.spider.categories), 10)
         self.assertIn("face", {entry["category"] for entry in entries})
-        self.assertEqual(self.spider.category_entry("face")["group"], "collections")
+        self.assertEqual(self.spider.category_entry("face")["group"], "face")
+
+    def test_inventory_has_unique_collection_leaves_and_urls(self):
+        entries = list(self.spider.iter_categories())
+        self.assertEqual(
+            len({entry["category"] for entry in entries}),
+            len(entries),
+        )
+        self.assertEqual(len({entry["url"] for entry in entries}), len(entries))
+        self.assertTrue(
+            all(
+                entry["url"].startswith(
+                    "https://www.maccosmetics.com/collections/"
+                )
+                for entry in entries
+            )
+        )
 
 
 if __name__ == "__main__":
