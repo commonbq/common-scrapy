@@ -34,18 +34,6 @@ class CrateandbarrelListingSpider(BaseListingSpider):
         super().__init__(*args, **kwargs)
         self._seen: set[str] = set()
 
-    def available_categories(self) -> list[str]:
-        return sorted(self.categories)
-
-    def resolve_target_url(self) -> str:
-        if self.url or self.category_url:
-            return self.url or self.category_url
-        try:
-            return self.categories[self.category]
-        except KeyError:
-            available = ", ".join(self.available_categories())
-            raise ValueError(f"Unknown category '{self.category}'. Available: {available}") from None
-
     def start_requests(self):
         self._seen.clear()
         yield self._request(self.resolve_target_url(), 1)
