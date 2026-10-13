@@ -11,61 +11,20 @@ import copy
 import hashlib
 import json
 import re
-from pathlib import Path
 from typing import Any
 from urllib.parse import quote, urljoin, urlparse, urlsplit, urlunsplit
 
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.costco_categories import COSTCO_CATEGORIES
 from common.spiders.retail_bootstrap_utils import extract_next_flight_rows
 
 DEFAULT_WAREHOUSE_NUMBER = "847"
 
 
-def _sample_path(name: str) -> Path:
-    return Path(__file__).resolve().parents[2] / "sample" / name
-
-
 def _category_slug(name: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
-
-
-def _load_categories_by_parent() -> dict[str, list[dict[str, Any]]]:
-    try:
-        payload = json.loads(_sample_path("costco-categories.json").read_text("utf-8"))
-    except (OSError, ValueError, TypeError):
-        return {}
-    categories = payload.get("categories_by_parent")
-    return categories if isinstance(categories, dict) else {}
-
-
-def _expand_costco_categories() -> dict[str, dict[str, str]]:
-    categories_by_parent = _load_categories_by_parent()
-    expanded: dict[str, dict[str, str]] = {}
-    for parent_name, entries in categories_by_parent.items():
-        if not isinstance(parent_name, str) or not isinstance(entries, list):
-            continue
-        parent_slug = _category_slug(parent_name)
-        if not parent_slug:
-            continue
-        bucket: dict[str, str] = {}
-        for entry in entries:
-            if not isinstance(entry, dict):
-                continue
-            name = entry.get("name")
-            url = entry.get("url")
-            if not isinstance(name, str) or not isinstance(url, str):
-                continue
-            child_slug = _category_slug(name)
-            if child_slug:
-                bucket[child_slug] = urljoin("https://www.costco.com", url)
-        if bucket:
-            expanded[parent_slug] = bucket
-    return expanded
-
-
-COSTCO_CATEGORIES = _expand_costco_categories()
 
 
 class CostcoListingSpider(BaseListingSpider):
@@ -89,17 +48,15 @@ class CostcoListingSpider(BaseListingSpider):
         super().__init__(*args, **kwargs)
         self._seen_products: set[tuple[str | None, str]] = set()
 
-    def available_categories(self) -> list[str]:
-        return sorted(self.categories)
-
     def _selected_subcategories(self) -> dict[str, str]:
         if not self.category:
             available = ", ".join(self.available_categories())
             raise ValueError(
                 f"Provide -a category=<name>. Available categories: {available}"
             )
-        if self.category in self.categories:
-            return self.categories[self.category]
+        selected = self.category_targets(self.category)
+        if selected is not None:
+            return selected
         available = ", ".join(self.available_categories())
         raise ValueError(
             f"Unknown category '{self.category}'. Available categories: {available}"

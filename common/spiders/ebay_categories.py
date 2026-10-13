@@ -1,4 +1,7 @@
-EBAY_CATEGORIES = {
+import re
+
+
+_EBAY_CATEGORY_TREE = {
   "eBay Motors": {
     "Parts & Accessories": "https://www.ebay.com/b/Auto-Parts-Accessories/6028/bn_569479",
     "Other Vehicles & Trailers": "https://www.ebay.com/b/Other-Vehicles-Trailers/6038/bn_1865426",
@@ -244,4 +247,17 @@ EBAY_CATEGORIES = {
     "Graphic & Logo Design": "https://www.ebay.com/b/Graphic-Logo-Design-Services/47131/bn_1862258",
     "Media Editing & Duplication": "https://www.ebay.com/b/Media-Editing-Duplication-Services/50355/bn_1865556"
   }
+}
+
+
+def _slug(value: str) -> str:
+  return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
+
+
+EBAY_CATEGORIES = {
+  group: {
+    f"{_slug(group)}-{_slug(leaf)}": {"url": url, "subcategory": leaf}
+    for leaf, url in leaves.items()
+  }
+  for group, leaves in _EBAY_CATEGORY_TREE.items()
 }

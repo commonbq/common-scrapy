@@ -256,6 +256,21 @@ class BaseListingSpider(scrapy.Spider):
                 return {"group": group, **entry}
         return None
 
+    def category_targets(self, name: str) -> dict[str, str] | None:
+        """Resolve a legacy group selector or one canonical leaf into URLs."""
+        groups = self._all_category_entries()
+        if name in groups:
+            entries = groups[name]
+        else:
+            entry = self.category_entry(name)
+            if entry is None:
+                return None
+            entries = {entry["category"]: entry}
+        return {
+            str(entry.get("subcategory") or leaf): entry["url"]
+            for leaf, entry in entries.items()
+        }
+
     def available_categories(self) -> list[str]:
         return sorted(
             leaf for leaves in self._all_category_entries().values() for leaf in leaves

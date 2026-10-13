@@ -41,12 +41,14 @@ class EbayListingSpider(BaseListingSpider):
     categories = EBAY_CATEGORIES
 
     def start_requests(self):
-        if self.args.category not in self.categories:
+        selected = self.category_targets(self.args.category)
+        if selected is None:
             raise ValueError(
-                f"Invalid category '{self.args.category}'. Available categories: {list(self.categories.keys())}"
+                f"Invalid category '{self.args.category}'. Available categories: "
+                f"{self.available_categories()}"
             )
 
-        for subCategory, subCategoryUrl in self.categories[self.args.category].items():
+        for subCategory, subCategoryUrl in selected.items():
             self.logger.info(
                 f"Starting requests for subCategory: {subCategory} ({subCategoryUrl})"
             )
