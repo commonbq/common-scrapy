@@ -39,10 +39,26 @@ class ZumperListingSpider(BaseListingSpider):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        if not (self.category or self.category_url or self.url):
+            raise ValueError(
+                "Provide -a category=<name|all>, category_url=<url>, or url=<url>. "
+                f"Available categories: {', '.join(self.available_categories())}"
+            )
+        if self.category and self.category != "all" and self.category_entry(self.category) is None:
+            raise ValueError(
+                f"Unknown category '{self.category}'. Available categories: "
+                f"{', '.join(self.available_categories())}"
+            )
         self._seen: set[str] = set()
 
     def start_requests(self) -> Iterable[scrapy.Request]:
-        yield self._request(self.resolve_target_url(), 1)
+        targets = (
+            list(self.iter_categories())
+            if self.category == "all"
+            else [{"category": self.category or "custom", "url": self.resolve_target_url()}]
+        )
+        for target in targets:
+            yield self._request(target["url"], 1)
 
     def _request(self, base_url: str, page: int) -> scrapy.Request:
         return scrapy.Request(
