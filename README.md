@@ -489,7 +489,7 @@ These are still being worked on and currently returned `0` items in recent smoke
 | [`anthropologie_listing`](#anthropologie_listing) | Experimental | api + html | PerimeterX / HUMAN | Anthropologie listing spider (API + HTML fallback). | 0 (ok) | women, dresses, sale | `n/a` |
 | [`bathandbodyworks_listing`](#bathandbodyworks_listing) | Active | Mobify React Query hydration | PerimeterX / HUMAN (px-captcha) | Bath & Body Works category listings from server-rendered product state. | 48 (live, one page) | 65 current navigation targets | `{"category":"body-care","item_id":"028030187","title":"Vanilla Silk Skin Replenishing Body Wash",...}` |
 | [`costco_search`](#costco_search--costco_listing) | Active | bootstrap + html | Akamai | Costco keyword search with state extraction + fallback. | 0 (skipped2) | - | `{}` |
-| [`dillards_listing`](#dillards_listing) | Experimental | bootstrap | Akamai | Dillard's listing spider via `window.__INITIAL_STATE__`. | 0 (ok) | women, men, shoes, handbags, beauty, juniors, home | `n/a` |
+| [`dillards_listing`](#dillards_listing) | Experimental | bootstrap | Akamai | Dillard's listing spider via `window.__INITIAL_STATE__`. | 0 (ok) | 10 departments / 124 leaves (grouped mapping) from `dillards_categories.py` | `n/a` |
 | [`kohls_listing`](#kohls_listing) | Experimental | api | Akamai (Cloudflare challenge assets also observed) | Kohl’s listing via `/web/catalog/...` API. | 0 (ok) | 540 site-map categories in 59 groups | `n/a` |
 | [`nordstromrack_listing`](#nordstromrack_listing) | Experimental | JSON-LD | Fastly (`x-jungle`); residential proxy required | Nordstrom Rack category listings from server-rendered Schema.org `ItemList` data. | 2 (fixture; live 403 direct) | 1335 leaves in 18 departments (from `navigation-sitemap.xml`) | `{"item_id":"7788991","title":"Pleated Midi Dress","brand":"Donna Ricco","price":34.97,"currency":"USD",...}` |
 | [`menards_listing`](#menards_listing) | Active | api | Incapsula (ScrapeOps US residential route required; API leg still returns a proxy/Incapsula failure envelope) | Menards category listings from the first-party `POST /main/search/category.ajx` JSON API; session is seeded from the category page and taxonomy comes from the homepage `mcom-header` menu JSON. | 0 (live proxy unverified; fixture smoke emits items) | 20 department/category seeds from `menards_categories.py` | `{"category":"halloween-animated-decorations","item_id":"123","title":"Animated Dragon","brand":"Enchanted Forest","price":99.99,"currency":"USD","source":"menards_category_api",...}` |
@@ -2282,12 +2282,12 @@ Run example:
 `common-scrapy crawl jcpenney_listing -a category=womens_tops -a max_pages=1 -O jcpenney_listing.jsonl`
 
 ### dillards_listing
-Extracts the authoritative `CatalogEntryList` from Dillard's `window.__INITIAL_STATE__` bootstrap data. The category inventory covers 10 top-level departments and 124 current child listing URLs; selecting a department crawls every child and deduplicates products by catalog entry ID. Pagination uses Dillard's `pageNumber` query parameter and is bounded by `max_pages` per child listing.
+Extracts the authoritative `CatalogEntryList` from Dillard's `window.__INITIAL_STATE__` bootstrap data. The category inventory in `dillards_categories.py` is a `{department: {leaf: entry}}` mapping covering 10 departments and 124 current child listing routes; each leaf is the storefront `/c/<slug>` code, so the DAG schedules one task per leaf and selecting a leaf crawls that one listing. Selecting a department (the legacy parent selector, e.g. `-a category=women`) still crawls every child in that department and deduplicates products by catalog entry ID. Pagination uses Dillard's `pageNumber` query parameter and is bounded by `max_pages` per child listing.
 
 Run example:
-`common-scrapy crawl dillards_listing -a category=women -a max_pages=1 -O dillards_listing.jsonl`
+`common-scrapy crawl dillards_listing -a category=women-dresses -a max_pages=1 -O dillards_listing.jsonl`
 
-Current category names: `women`, `lingerie`, `juniors`, `shoes`, `handbags`, `accessories`, `men`, `kids`, `home`, `beauty`.
+Current departments: `women`, `lingerie`, `juniors`, `shoes`, `handbags`, `accessories`, `men`, `kids`, `home`, `beauty`. Leaves are the `/c/<slug>` codes (e.g. `women-dresses`, `men-shirts`).
 
 The site is protected by Akamai and may return an HTTP 200 access-denied page from datacenter IPs. Use the configured residential proxy; the spider deliberately stops when the authoritative bootstrap contract is absent.
 

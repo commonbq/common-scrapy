@@ -7,20 +7,7 @@ from urllib.parse import urlencode, urljoin, urlsplit, urlunsplit, parse_qsl
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
-
-
-DILLARDS_CATEGORIES = {
-    "women": ["/c/women-dresses", "/c/women-tops", "/c/women-pants", "/c/women-jeans", "/c/women-dressy-pants-sets", "/c/women-loungewear", "/c/women-skirts", "/c/women-activewear", "/c/women-sweaters", "/c/women-suits-suit-separates", "/c/women-coats-jackets-vests", "/c/women-jumpsuits-rompers", "/c/women-outdoor-wear", "/c/women-leggings", "/c/women-shorts", "/c/women-swimsuits-cover-ups", "/c/juniors", "/c/women-fan-shop"],
-    "lingerie": ["/c/lingerie-bras", "/c/lingerie-pajamas-sleepwear", "/c/lingerie-panties", "/c/lingerie-robes", "/c/lingerie-intimate-lingerie", "/c/lingerie-shapewear", "/c/lingerie-slips", "/c/lingerie-patio-dresses", "/c/lingerie-rompers-bodysuits", "/c/lingerie-bridal"],
-    "juniors": ["/c/juniors-dresses", "/c/juniors-tops", "/c/juniors-jeans", "/c/juniors-pants", "/c/juniors-skirts", "/c/juniors-loungewear", "/c/juniors-activewear", "/c/juniors-rompers-jumpsuits", "/c/juniors-hoodies-sweatshirts", "/c/juniors-sweaters", "/c/juniors-jackets-coats", "/c/juniors-leggings", "/c/juniors-shorts-capris", "/c/juniors-blazers-kimonos"],
-    "shoes": ["/c/shoes-women-shoes", "/c/shoes-men-shoes", "/c/shoes-kids-shoes", "/c/shoes-shoe-accessories"],
-    "handbags": ["/c/handbags-shoulder-bags", "/c/handbags-cross-body-bags", "/c/handbags-totes", "/c/handbags-wallets", "/c/handbags-clutches-evening-bags", "/c/handbags-satchels", "/c/handbags-hobo-bags", "/c/handbags-bucket-bags", "/c/handbags-small-cases", "/c/handbags-backpacks", "/c/handbags-belt-bags-fanny-packs", "/c/handbags-beach-bags", "/c/handbags-diaper-bags"],
-    "accessories": ["/c/accessories-jewelry", "/c/accessories-scarves-wraps", "/c/accessories-watches", "/c/accessories-sunglasses-eyewear", "/c/accessories-belts", "/c/accessories-cold-weather-accessories", "/c/accessories-hats", "/c/accessories-hair-accessories", "/c/accessories-socks-footwear", "/c/accessories-tights-pantyhose", "/c/accessories-tech-accessories-cases", "/c/accessories-school-office"],
-    "men": ["/c/men-shirts", "/c/men-jeans", "/c/men-pants", "/c/men-suits-and-suit-separates", "/c/men-sweaters", "/c/mens-hoodies-sweatshirts", "/c/men-coats-jackets", "/c/men-activewear", "/c/men-loungewear", "/c/men-fan-shop", "/c/men-pajamas-robes", "/c/men-golf", "/c/men-shorts", "/c/men-swimsuits", "/c/men-accessories", "/c/men-underwear-undershirts-socks", "/c/men-gifts"],
-    "kids": ["/c/kids-girls", "/c/kids-boys", "/c/kids-baby-clothing-accessories", "/c/kids-baby-gear", "/c/kids-toys", "/c/kids-accessories"],
-    "home": ["/c/home-holiday-shop", "/c/home-bedding", "/c/home-dining-entertaining", "/c/home-bath-personal-care", "/c/home-decor", "/c/home-kitchen", "/c/home-luggage", "/c/home-candles-home-fragrance", "/c/home-outdoor", "/c/home-accent-furniture", "/c/home-pets", "/c/home-vacuums-floor-care", "/c/home-irons-garment-steamers", "/c/home-entertainment", "/c/home-health-fitness", "/c/home-smart-home-devices", "/c/home-gourmet-food", "/c/home-gift-cards"],
-    "beauty": ["/c/beauty-gifts-value-sets", "/c/beauty-fragrance", "/c/beauty-makeup", "/c/mens-grooming-products", "/c/beauty-skincare", "/c/beauty-travel", "/c/beauty-hair-care", "/c/beauty-bath-body", "/c/beauty-tools-of-the-trade", "/c/beauty-makeup-bags-cases", "/c/beauty-wellness", "/c/beauty-natural-beauty"],
-}
+from common.spiders.dillards_categories import DILLARDS_CATEGORIES
 
 
 class DillardsListingSpider(BaseListingSpider):
@@ -46,25 +33,47 @@ class DillardsListingSpider(BaseListingSpider):
         super().__init__(*args, **kwargs)
         if not self.category:
             raise ValueError(f"Provide -a category=<name>. Available categories: {', '.join(self.available_categories())}")
-        if not (self.url or self.category_url) and self.category not in self.categories:
+        if not (self.url or self.category_url) and self.category_targets(self.category) is None:
             raise ValueError(f"Unknown category '{self.category}'. Available categories: {', '.join(self.available_categories())}")
         self._seen_ids: set[str] = set()
 
-    def available_categories(self) -> list[str]:
-        return sorted(self.categories)
+    def _selected_entries(self) -> list[dict]:
+        """Resolve the selected target(s).
+
+        A department name (the legacy parent selector) expands to every leaf in
+        that group; a canonical leaf name resolves to just that one leaf. This
+        keeps manual ``-a category=women`` runs working while the DAG schedules
+        individual leaves.
+        """
+        if self.category in self._all_category_entries():
+            return [e for e in self.iter_categories() if e["group"] == self.category]
+        entry = self.category_entry(self.category)
+        return [entry] if entry else []
 
     def start_requests(self):
         if self.url or self.category_url:
-            urls = [self.url or self.category_url]
+            targets = [(self.category or "custom", self.url or self.category_url, None)]
         else:
-            urls = [urljoin("https://www.dillards.com", path) for path in self.categories[self.category]]
+            targets = [
+                (
+                    entry.get("department") or entry["group"],
+                    entry["url"],
+                    entry.get("subcategory") or entry["category"],
+                )
+                for entry in self._selected_entries()
+            ]
 
-        for url in urls:
+        for category, url, subcategory in targets:
             yield scrapy.Request(
                 url,
                 callback=self.parse,
                 headers=self._headers(),
-                meta={"category": self.category, "subcategory": urlsplit(url).path.removeprefix("/c/"), "page": 1},
+                meta={
+                    "category": category,
+                    "subcategory": subcategory
+                    or urlsplit(url).path.removeprefix("/c/"),
+                    "page": 1,
+                },
             )
 
     def parse(self, response: scrapy.http.Response):

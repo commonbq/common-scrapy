@@ -14,9 +14,26 @@ class DillardsListingSpiderTest(unittest.TestCase):
         self.response = HtmlResponse(request.url, request=request, body=html, encoding="utf-8")
 
     def test_category_inventory_has_all_departments_and_children(self):
+        # Grouped mapping: {department: {leaf: rich entry}}.
         self.assertEqual(10, len(DILLARDS_CATEGORIES))
-        self.assertEqual(124, sum(len(urls) for urls in DILLARDS_CATEGORIES.values()))
-        self.assertEqual(len(DILLARDS_CATEGORIES["women"]), len(set(DILLARDS_CATEGORIES["women"])))
+        self.assertEqual(124, sum(len(leaves) for leaves in DILLARDS_CATEGORIES.values()))
+        leaves = [leaf for group in DILLARDS_CATEGORIES.values() for leaf in group]
+        self.assertEqual(len(leaves), len(set(leaves)))
+        entry = DILLARDS_CATEGORIES["women"]["women-dresses"]
+        self.assertEqual("https://www.dillards.com/c/women-dresses", entry["url"])
+        self.assertEqual("women", entry["department"])
+
+    def test_parent_selector_expands_and_leaf_selector_is_single(self):
+        spider = DillardsListingSpider(category="women", max_pages=1)
+        self.assertEqual(
+            len(DILLARDS_CATEGORIES["women"]), len(list(spider.start_requests()))
+        )
+        leaf = DillardsListingSpider(category="women-dresses", max_pages=1)
+        requests = list(leaf.start_requests())
+        self.assertEqual(1, len(requests))
+        self.assertEqual("https://www.dillards.com/c/women-dresses", requests[0].url)
+        self.assertEqual("women", requests[0].meta["category"])
+        self.assertEqual("women-dresses", requests[0].meta["subcategory"])
 
     def test_parse_exports_contract_and_next_page(self):
         output = list(self.spider.parse(self.response))
