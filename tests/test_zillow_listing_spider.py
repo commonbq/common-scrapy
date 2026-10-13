@@ -1,8 +1,10 @@
 import json
+from collections.abc import Mapping
 
 import pytest
 from scrapy.http import HtmlResponse, Request
 
+from common.spiders.zillow_categories import ZILLOW_CATEGORIES
 from common.spiders.zillow_listing_spider import ZillowListingSpider
 
 
@@ -21,6 +23,30 @@ def response(spider, body, page_number=1):
         "page": page_number, "base_url": "https://www.zillow.com/homes/for_sale/Houston-TX/"
     })
     return HtmlResponse(request.url, body=body, encoding="utf-8", request=request)
+
+
+def test_categories_are_grouped_mapping():
+    assert isinstance(ZILLOW_CATEGORIES, Mapping)
+    assert all(isinstance(group, Mapping) for group in ZILLOW_CATEGORIES.values())
+    leaves = [leaf for group in ZILLOW_CATEGORIES.values() for leaf in group]
+    assert len(leaves) == len(set(leaves)) == 144973
+    assert len(ZILLOW_CATEGORIES) == 53
+    assert "houston-tx" in ZILLOW_CATEGORIES["TX"]
+    assert "new-york-ny" in ZILLOW_CATEGORIES["NY"]
+    for leaf, url in ((l, u) for g in ZILLOW_CATEGORIES.values() for l, u in g.items()):
+        assert url == f"https://www.zillow.com/{leaf}/"
+
+
+def test_category_entry_resolves_leaf_across_groups():
+    spider = ZillowListingSpider(category="new-york-ny")
+    assert spider.resolve_target_url() == "https://www.zillow.com/new-york-ny/"
+
+
+def test_all_category_starts_every_market():
+    spider = ZillowListingSpider(category="all", max_pages=1)
+    requests = list(spider.start_requests())
+    assert len(requests) == 144973
+    assert requests[0].meta["category"] in ZILLOW_CATEGORIES["AK"]
 
 
 def test_maps_hydrated_listing():
