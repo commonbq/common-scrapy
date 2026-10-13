@@ -47,9 +47,17 @@ class GetYourGuideListingSpiderTest(unittest.TestCase):
         return HtmlResponse(request.url, status=status, body=body, encoding="utf-8", request=request)
 
     def test_categories_are_verified_twenty_entry_schema(self):
-        self.assertEqual(len(GETYOURGUIDE_CATEGORIES), 20)
-        self.assertEqual(GETYOURGUIDE_CATEGORIES[0]["category"], "argentina")
-        self.assertEqual(GETYOURGUIDE_CATEGORIES[-1]["category"], "brunei")
+        self.assertEqual(set(GETYOURGUIDE_CATEGORIES), {"south-america", "asia"})
+        self.assertEqual(sum(map(len, GETYOURGUIDE_CATEGORIES.values())), 20)
+        self.assertEqual(
+            GETYOURGUIDE_CATEGORIES["south-america"]["argentina"],
+            "https://www.getyourguide.com/argentina-l168992/",
+        )
+        self.assertEqual(
+            GETYOURGUIDE_CATEGORIES["asia"]["brunei"],
+            "https://www.getyourguide.com/brunei-l169076/",
+        )
+        self.assertEqual(self.spider.category_entry("argentina")["group"], "south-america")
 
     def test_maps_hydrated_product_and_feed_contract(self):
         fixture = Path(__file__).parents[1] / "sample" / "getyourguide-argentina-sample.html"

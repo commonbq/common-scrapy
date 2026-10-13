@@ -106,10 +106,12 @@ class UrbanOutfittersListingSpider(BaseListingSpider):
 
     # Seed inventory so `-a category=<slug>` is valid (and documented) before the
     # sitemap is fetched; parse_category_sitemap() replaces it with the full set.
-    categories = [
-        {"category": slug, "name": name, "url": url, "nav_root": name}
-        for slug, name, url in URBN_NAV_ROOTS
-    ]
+    categories = {
+        "all": {
+            slug: {"name": name, "url": url, "nav_root": name}
+            for slug, name, url in URBN_NAV_ROOTS
+        }
+    }
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
@@ -191,12 +193,14 @@ class UrbanOutfittersListingSpider(BaseListingSpider):
                 "have changed, or the response was not the sitemap."
             )
         self.categories = categories
+        self._category_cache = None
+        category_count = sum(len(leaves) for leaves in categories.values())
         self.logger.info(
             "Urban Outfitters category sitemap: %d categories (%d refinement "
             "variants, %d navigation roots)",
-            len(categories),
-            sum(1 for entry in categories if entry.get("query")),
-            sum(1 for entry in categories if entry.get("nav_root")),
+            category_count,
+            sum(1 for entry in self.iter_categories() if entry.get("query")),
+            sum(1 for entry in self.iter_categories() if entry.get("nav_root")),
         )
 
         target = resolve_category(
@@ -209,7 +213,7 @@ class UrbanOutfittersListingSpider(BaseListingSpider):
             raise ValueError(
                 f"Unknown Urban Outfitters category "
                 f"{self.category or self.category_url or self.url!r}. "
-                f"{len(categories)} categories are in the sitemap; examples: "
+                f"{category_count} categories are in the sitemap; examples: "
                 f"{', '.join(available_categories(categories))}. Pass a slug from "
                 f"{URBN_CATEGORY_SITEMAP_URL}, or -a category_url=/<path>[?<refinement>]."
             )

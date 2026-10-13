@@ -1,5 +1,6 @@
 import json
 import unittest
+from collections.abc import Mapping
 
 from scrapy.http import HtmlResponse, Request
 
@@ -48,8 +49,19 @@ class MarriottListingSpiderTests(unittest.TestCase):
         self.spider = MarriottListingSpider(category="miami", max_pages=2)
 
     def test_categories(self):
-        self.assertEqual(len(self.spider.categories), 20)
-        self.assertEqual(self.spider.categories[2]["category"], "miami")
+        self.assertIsInstance(self.spider.categories, Mapping)
+        self.assertEqual(len(self.spider.categories), 11)
+        self.assertEqual(sum(map(len, self.spider.categories.values())), 990)
+        self.assertEqual(
+            self.spider.category_entry("miami"),
+            {
+                "group": "United States",
+                "category": "miami",
+                "url": "https://www.marriott.com/en/destinations/miami.mi",
+            },
+        )
+        leaves = [entry["category"] for entry in self.spider.iter_categories()]
+        self.assertEqual(len(leaves), len(set(leaves)))
 
     def test_bootstrap_mapping_and_pagination(self):
         output = list(self.spider.parse(fixture()))

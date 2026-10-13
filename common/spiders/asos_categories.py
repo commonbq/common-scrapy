@@ -646,3 +646,20 @@ ASOS_DEPARTMENT_CATEGORIES = [
     }
     for department, target in ASOS_DEPARTMENT_TARGETS.items()
 ]
+
+
+def grouped_categories() -> dict[str, dict[str, dict[str, str]]]:
+    """Return the complete spider inventory in the grouped base-class format."""
+    grouped: dict[str, dict[str, dict[str, str]]] = {}
+    for entry in ASOS_DEPARTMENT_CATEGORIES + ASOS_CATEGORIES:
+        department = entry["department"]
+        category = entry["category"]
+        grouped.setdefault(department, {})[category] = {
+            key: value
+            for key, value in entry.items()
+            if key not in {"category", "department"}
+        }
+    return grouped
+
+
+ASOS_CATEGORY_GROUPS = grouped_categories()

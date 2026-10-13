@@ -29,14 +29,19 @@ class WayfairListingSpiderTests(unittest.TestCase):
 
     def test_complete_inventory_is_flattened_and_deduplicated(self):
         self.assertEqual(len(WAYFAIR_CATEGORY_INVENTORY), 15)
+        self.assertIsInstance(WAYFAIR_CATEGORIES, dict)
+        self.assertTrue(
+            all(isinstance(leaves, dict) for leaves in WAYFAIR_CATEGORIES.values())
+        )
         self.assertEqual(
             sum(len(group["subcategories"]) for group in WAYFAIR_CATEGORY_INVENTORY.values()),
             668,
         )
-        urls = [entry["url"] for entry in WAYFAIR_CATEGORIES]
+        entries = list(self.spider.iter_categories())
+        urls = [entry["url"] for entry in entries]
         self.assertEqual(len(urls), len(set(urls)))
         self.assertEqual(
-            next(entry["url"] for entry in WAYFAIR_CATEGORIES if entry["category"] == "sofas"),
+            next(entry["url"] for entry in entries if entry["category"] == "sofas"),
             "https://www.wayfair.com/furniture/sb0/sofas-c413892.html",
         )
 
@@ -51,7 +56,7 @@ class WayfairListingSpiderTests(unittest.TestCase):
             "https://www.wayfair.com/furniture/cat/furniture-c45974.html", is_department_root=True), "hub")
         self.assertEqual(classify_target("https://www.wayfair.com/furniture/sb0/sofas-c413892.html"), "listing")
 
-        urls = {entry["url"] for entry in WAYFAIR_CATEGORIES}
+        urls = {entry["url"] for entry in self.spider.iter_categories()}
         for bad in (
             "https://www.wayfair.com/help/article/returns/",
             "https://www.wayfair.com/affirm",

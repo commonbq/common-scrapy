@@ -160,15 +160,15 @@ def _slug(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
 
 
-def _flatten_categories() -> list[dict[str, str]]:
-    """Flatten the inventory into unique {category, department, url} rows.
+def _group_categories() -> dict[str, dict[str, dict[str, str]]]:
+    """Build the grouped category mapping expected by BaseListingSpider.
 
     Section is exposed as `department` and the mega-menu group as
     `subcategory`. Names repeat across sections ("Jeans" exists under both
     Men and Women), so a bare slug is only used when it is still free;
     otherwise the section slug is prefixed, matching the Staples inventory.
     """
-    categories: list[dict[str, str]] = []
+    categories: dict[str, dict[str, dict[str, str]]] = {}
     seen_urls: set[str] = set()
     used_names: set[str] = set()
     for section, groups in LEVI_CATEGORY_INVENTORY.items():
@@ -186,16 +186,14 @@ def _flatten_categories() -> list[dict[str, str]]:
                     name = f"{_slug(section)}-{base}-{suffix}"
                     suffix += 1
                 used_names.add(name)
-                categories.append(
-                    {
-                        "category": name,
-                        "department": section,
-                        "subcategory": group,
-                        "label": label,
-                        "url": LEVI_SITE_BASE + url,
-                    }
-                )
+                categories.setdefault(section, {})[name] = {
+                    "category": name,
+                    "department": section,
+                    "subcategory": group,
+                    "label": label,
+                    "url": LEVI_SITE_BASE + url,
+                }
     return categories
 
 
-LEVI_CATEGORIES = _flatten_categories()
+LEVI_CATEGORIES = _group_categories()

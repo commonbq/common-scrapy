@@ -8,6 +8,7 @@ from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.kroger_categories import KROGER_CATEGORIES
 
 
 class KrogerListingSpider(BaseListingSpider):
@@ -16,14 +17,7 @@ class KrogerListingSpider(BaseListingSpider):
     name = "kroger_listing"
     allowed_domains = ["kroger.com", "www.kroger.com", "127.0.0.1"]
 
-    categories = [
-        {"category": "cereal", "url": "https://www.kroger.com/pl/cereal/09002"},
-        {"category": "bread", "url": "https://www.kroger.com/pl/bread/03001"},
-        {"category": "coffee", "url": "https://www.kroger.com/pl/coffee/11005"},
-        {"category": "eggs", "url": "https://www.kroger.com/pl/eggs/02008"},
-        {"category": "milk", "url": "https://www.kroger.com/pl/milk/02001"},
-        {"category": "snacks", "url": "https://www.kroger.com/pl/snacks/12009"},
-    ]
+    categories = KROGER_CATEGORIES
 
     custom_settings = {
         "FEED_EXPORT_FIELDS": [

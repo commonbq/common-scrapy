@@ -11,18 +11,20 @@ from common.spiders.base_listing_spider import BaseListingSpider
 
 
 BLOOMINGDALES_CATEGORIES = {
-    "new-now": "https://www.bloomingdales.com/shop/fashion-lookbooks-videos-style-guide?id=13668",
-    "women": "https://www.bloomingdales.com/shop/womens-apparel?id=2910",
-    "beauty": "https://www.bloomingdales.com/shop/makeup-perfume-beauty?id=2921",
-    "shoes": "https://www.bloomingdales.com/shop/womens-designer-shoes?id=16961",
-    "handbags": "https://www.bloomingdales.com/shop/handbags?id=16958",
-    "jewelry-accessories": "https://www.bloomingdales.com/shop/jewelry-accessories?id=3376",
-    "men": "https://www.bloomingdales.com/shop/mens?id=3864",
-    "kids": "https://www.bloomingdales.com/shop/kids?id=3866",
-    "home": "https://www.bloomingdales.com/shop/home?id=3865",
-    "sale": "https://www.bloomingdales.com/shop/sale?id=3977",
-    "gifts": "https://www.bloomingdales.com/shop/gifts?id=3948",
-    "designers": "https://www.bloomingdales.com/shop/all-designers?id=1001351",
+    "all": {
+        "new-now": "https://www.bloomingdales.com/shop/fashion-lookbooks-videos-style-guide?id=13668",
+        "women": "https://www.bloomingdales.com/shop/womens-apparel?id=2910",
+        "beauty": "https://www.bloomingdales.com/shop/makeup-perfume-beauty?id=2921",
+        "shoes": "https://www.bloomingdales.com/shop/womens-designer-shoes?id=16961",
+        "handbags": "https://www.bloomingdales.com/shop/handbags?id=16958",
+        "jewelry-accessories": "https://www.bloomingdales.com/shop/jewelry-accessories?id=3376",
+        "men": "https://www.bloomingdales.com/shop/mens?id=3864",
+        "kids": "https://www.bloomingdales.com/shop/kids?id=3866",
+        "home": "https://www.bloomingdales.com/shop/home?id=3865",
+        "sale": "https://www.bloomingdales.com/shop/sale?id=3977",
+        "gifts": "https://www.bloomingdales.com/shop/gifts?id=3948",
+        "designers": "https://www.bloomingdales.com/shop/all-designers?id=1001351",
+    },
 }
 
 
@@ -41,19 +43,16 @@ class BloomingdalesListingSpider(BaseListingSpider):
         ],
     }
 
-    categories = [
-        {"category": category, "url": url}
-        for category, url in BLOOMINGDALES_CATEGORIES.items()
-    ]
+    categories = BLOOMINGDALES_CATEGORIES
 
     def _selected_category_url(self) -> str:
-        try:
-            return BLOOMINGDALES_CATEGORIES[self.category]
-        except KeyError:
-            available = ", ".join(sorted(BLOOMINGDALES_CATEGORIES))
-            raise ValueError(
-                f"Unknown category '{self.category}'. Available categories: {available}"
-            ) from None
+        entry = self.category_entry(self.category)
+        if entry is not None:
+            return entry["url"]
+        available = ", ".join(self.available_categories())
+        raise ValueError(
+            f"Unknown category '{self.category}'. Available categories: {available}"
+        )
 
     def start_requests(self):
         target_url = self._selected_category_url()

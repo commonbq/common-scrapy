@@ -15,8 +15,9 @@ def response(body=None, page=1):
 
 
 def test_exact_category_inventory():
-    assert len(TRULIA_CATEGORIES) == 20
-    assert TRULIA_CATEGORIES["colorado-springs-co"].endswith("/CO/Colorado_Springs/")
+    assert len(TRULIA_CATEGORIES) == 51
+    assert sum(len(cities) for cities in TRULIA_CATEGORIES.values()) == 993
+    assert TRULIA_CATEGORIES["CO"]["colorado-springs-co"].endswith("/CO/Colorado_Springs/")
 
 
 def test_hydration_mapping_and_export_contract():

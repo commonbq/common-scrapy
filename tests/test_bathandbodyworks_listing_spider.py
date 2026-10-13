@@ -1,4 +1,5 @@
 import unittest
+from collections.abc import Mapping
 from pathlib import Path
 
 from scrapy.http import HtmlResponse, Request
@@ -51,9 +52,15 @@ class BathAndBodyWorksListingSpiderTest(unittest.TestCase):
             list(self.spider.parse(self.response("<html></html>")))
 
     def test_navigation_inventory_is_nested_and_complete(self):
+        self.assertIs(BathAndBodyWorksListingSpider.categories, BATHANDBODYWORKS_CATEGORIES)
+        self.assertIsInstance(BathAndBodyWorksListingSpider.categories, Mapping)
         self.assertEqual(len(BATHANDBODYWORKS_CATEGORIES), 9)
         self.assertEqual(sum(map(len, BATHANDBODYWORKS_CATEGORIES.values())), 65)
         self.assertIn("3-wick-candles", BATHANDBODYWORKS_CATEGORIES["candles"])
+        self.assertEqual(
+            self.spider.category_entry("3-wick-candles")["url"],
+            "https://www.bathandbodyworks.com/c/all-candles/3-wick-candles",
+        )
 
 
 if __name__ == "__main__":

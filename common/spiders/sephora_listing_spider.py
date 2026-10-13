@@ -6,6 +6,7 @@ from urllib.parse import urlencode
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.sephora_categories import SEPHORA_CATEGORIES
 
 
 class SephoraListingSpider(BaseListingSpider):
@@ -55,28 +56,7 @@ class SephoraListingSpider(BaseListingSpider):
         ],
     }
 
-    categories = [
-        {
-            "category": "makeup",
-            "url": "https://www.sephora.com/shop/makeup-cosmetics",
-            "slug": "makeup-cosmetics",
-        },
-        {
-            "category": "skincare",
-            "url": "https://www.sephora.com/shop/skincare",
-            "slug": "skincare",
-        },
-        {
-            "category": "gifts",
-            "url": "https://www.sephora.com/shop/gifts",
-            "slug": "gifts",
-        },
-        {
-            "category": "fragrance",
-            "url": "https://www.sephora.com/shop/fragrance",
-            "slug": "fragrance",
-        },
-    ]
+    categories = SEPHORA_CATEGORIES
 
     def start_requests(self):
         page = 1
@@ -184,12 +164,12 @@ class SephoraListingSpider(BaseListingSpider):
 
     def _resolve_slug(self) -> str:
         if self.category:
-            for c in self.categories:
-                if c.get("category") == self.category:
-                    return c.get("slug")
+            entry = self.category_entry(self.category)
+            if entry:
+                return entry.get("slug")
 
         u = self.url or self.category_url or ""
-        for c in self.categories:
+        for c in self.iter_categories():
             if c.get("url") == u:
                 return c.get("slug")
         raise ValueError("Provide -a category=<name> for sephora_listing")
@@ -199,7 +179,7 @@ class SephoraListingSpider(BaseListingSpider):
             return self.category
 
         u = self.url or self.category_url or ""
-        for c in self.categories:
+        for c in self.iter_categories():
             if c.get("url") == u:
                 return c.get("category")
         return None

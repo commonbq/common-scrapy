@@ -101,7 +101,7 @@ class IherbListingSpider(BaseListingSpider):
         self._previous_page_first_id = None
         target = self.resolve_target_url()
         selected = next(
-            (entry for entry in self.categories if entry["url"] == target), {}
+            (entry for entry in self.iter_categories() if entry["url"] == target), {}
         )
         url_name = selected.get("url_name") or url_name_for(target)
         if not url_name:

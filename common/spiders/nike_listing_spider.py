@@ -26,6 +26,7 @@ Two details that are load-bearing:
 
 import json
 import re
+from collections.abc import Mapping
 from typing import Any
 from urllib.parse import urljoin, urlsplit, urlunsplit, quote
 
@@ -49,33 +50,6 @@ def category_slug(url: str) -> str:
     return _SLUG_CLEAN_RE.sub("-", path.lower()).strip("-")
 
 
-def _load_categories() -> list[dict[str, str]]:
-    """Flatten the department -> group -> subcategory inventory.
-
-    The subcategory *name* is not unique (Men's "Shoes"/"All Shoes" and
-    "New & Featured"/"New Arrivals" are the same page), so entries are keyed by
-    URL and the first name seen for that URL wins.
-    """
-    categories: list[dict[str, str]] = []
-    seen: dict[str, int] = {}
-    for department, groups in NIKE_CATEGORIES.items():
-        for group, subcategories in groups.items():
-            for name, url in subcategories.items():
-                if url in seen:
-                    continue
-                seen[url] = 1
-                categories.append(
-                    {
-                        "category": category_slug(url),
-                        "department": department,
-                        "group": group,
-                        "name": name,
-                        "url": url,
-                    }
-                )
-    return categories
-
-
 class NikeListingSpider(BaseListingSpider):
     name = "nike_listing"
     allowed_domains = ["nike.com", "www.nike.com", "api.nike.com"]
@@ -89,7 +63,7 @@ class NikeListingSpider(BaseListingSpider):
         re.S,
     )
 
-    categories = _load_categories()
+    categories = NIKE_CATEGORIES
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
@@ -141,14 +115,11 @@ class NikeListingSpider(BaseListingSpider):
         `_validate_categories_schema_if_needed` returns early and a malformed
         entry would only surface later as a confusing lookup failure.
         """
-        if not isinstance(self.categories, list) or not self.categories:
+        if not isinstance(self.categories, Mapping) or not self.categories:
             raise ValueError(
-                "Nike inventory must define `categories` as a non-empty list of "
-                "{'category','url'} dicts"
+                "Nike inventory must define `categories` as a non-empty grouped mapping"
             )
-        for i, entry in enumerate(self.categories):
-            if not isinstance(entry, dict):
-                raise ValueError(f"categories[{i}] must be a dict")
+        for i, entry in enumerate(self.iter_categories()):
             for key in ("category", "url"):
                 if not isinstance(entry.get(key), str) or not entry[key]:
                     raise ValueError(f"categories[{i}] missing string '{key}'")
@@ -410,19 +381,19 @@ class NikeListingSpider(BaseListingSpider):
         )
 
     def _category_for(self, url: str) -> str:
-        for entry in self.categories:
+        for entry in self.iter_categories():
             if entry["url"] == url:
                 return entry["category"]
         return category_slug(url)
 
     def _department_for(self, category: str) -> str | None:
-        for entry in self.categories:
+        for entry in self.iter_categories():
             if entry["category"] == category:
                 return entry.get("department")
         return None
 
     def _group_for(self, category: str) -> str | None:
-        for entry in self.categories:
+        for entry in self.iter_categories():
             if entry["category"] == category:
                 return entry.get("group")
         return None

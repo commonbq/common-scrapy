@@ -11,6 +11,7 @@ from urllib.parse import urlsplit, urlunsplit
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.newegg_categories import NEWEGG_SPIDER_CATEGORIES
 
 
 class NeweggListingSpider(BaseListingSpider):
@@ -20,19 +21,9 @@ class NeweggListingSpider(BaseListingSpider):
     # category-only gate; resolve_target_url() still rejects a run with no target.
     require_category_arg = False
 
-    # Stable entry points. Any concrete Newegg category URL is also accepted via
-    # ``category_url`` or ``url``; the live navigation endpoint remains the
-    # authoritative complete category inventory.
-    categories = [
-        {
-            "category": "desktop-cpu-processors",
-            "url": "https://www.newegg.com/Desktop-CPU-Processor/SubCategory/ID-343",
-        },
-        {
-            "category": "all-current-categories",
-            "url": "https://www.newegg.com/api/RolloverMenu?CountryCode=USA",
-        },
-    ]
+    # Complete department -> listing mapping captured from the first-party
+    # navigation endpoint, plus the live-inventory entry used by the DAG.
+    categories = NEWEGG_SPIDER_CATEGORIES
 
     custom_settings = {
         "CONCURRENT_REQUESTS_PER_DOMAIN": 2,

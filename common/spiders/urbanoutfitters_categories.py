@@ -37,6 +37,8 @@ from __future__ import annotations
 
 import html
 import re
+from collections.abc import Iterator, Mapping
+from itertools import islice
 from typing import Any
 from urllib.parse import parse_qsl, urlencode, urlsplit
 
@@ -133,10 +135,16 @@ def category_display_name(path_slug: str, query: list[tuple[str, str]]) -> str:
     return f"{name} ({refinements})"
 
 
-def parse_category_sitemap(payload: str | bytes) -> list[dict[str, str]]:
-    """Parse the category sitemap into ``BaseListingSpider.categories`` entries.
+CategoryInventory = dict[str, dict[str, dict[str, Any]]]
 
-    Each entry is ``{"category", "name", "path", "query", "url", "nav_root"}``.
+
+def parse_category_sitemap(payload: str | bytes) -> CategoryInventory:
+    """Parse the sitemap into the grouped ``BaseListingSpider.categories`` shape.
+
+    Urban Outfitters exposes a flat sitemap rather than a dependable parent-child
+    taxonomy, so all leaves live in the synthetic ``"all"`` group. Each rich
+    leaf contains ``{"name", "path", "query", "url", "nav_root"}``; its mapping
+    key is the category slug.
 
     The same path can appear many times, once per refinement, so the path slug is
     only used verbatim when it is unfiltered *and* unique; every filtered variant
@@ -198,7 +206,14 @@ def parse_category_sitemap(payload: str | bytes) -> list[dict[str, str]]:
                 "nav_root": name,
             }
         )
-    return entries
+    return {
+        "all": {
+            entry["category"]: {
+                key: value for key, value in entry.items() if key != "category"
+            }
+            for entry in entries
+        }
+    }
 
 
 def nav_root_for_path(path_slug: str) -> str | None:
@@ -222,13 +237,24 @@ def nav_root_for_path(path_slug: str) -> str | None:
     return None
 
 
-def category_index(categories: list[dict[str, str]]) -> dict[str, dict[str, str]]:
+def iter_category_entries(
+    categories: Mapping[str, Mapping[str, Mapping[str, Any]]],
+) -> Iterator[dict[str, Any]]:
+    """Yield rich rows from a grouped category inventory."""
+    for leaves in categories.values():
+        for category, value in leaves.items():
+            yield {"category": category, **value}
+
+
+def category_index(
+    categories: Mapping[str, Mapping[str, Mapping[str, Any]]],
+) -> dict[str, dict[str, Any]]:
     """``category`` slug -> inventory entry, for ``-a category=<slug>`` lookup."""
-    return {entry["category"]: entry for entry in categories}
+    return {entry["category"]: entry for entry in iter_category_entries(categories)}
 
 
 def resolve_category(
-    categories: list[dict[str, str]],
+    categories: Mapping[str, Mapping[str, Mapping[str, Any]]],
     *,
     category: str | None = None,
     category_url: str | None = None,
@@ -262,7 +288,7 @@ def resolve_category(
     if not wanted_path:
         return None
     wanted_pairs = sorted(wanted_query)
-    for entry in categories:
+    for entry in iter_category_entries(categories):
         if entry["path"] != wanted_path:
             continue
         if not wanted_pairs:
@@ -273,6 +299,11 @@ def resolve_category(
     return None
 
 
-def available_categories(categories: list[dict[str, str]], limit: int = 10) -> list[Any]:
+def available_categories(
+    categories: Mapping[str, Mapping[str, Mapping[str, Any]]], limit: int = 10
+) -> list[str]:
     """A short, deterministic sample of category slugs for error messages."""
-    return [entry["category"] for entry in categories[:limit]]
+    return [
+        entry["category"]
+        for entry in islice(iter_category_entries(categories), limit)
+    ]

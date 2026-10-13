@@ -2,12 +2,13 @@ from __future__ import annotations
 
 import json
 import unittest
+from collections.abc import Mapping
 from pathlib import Path
 from unittest.mock import Mock
 
 from scrapy.http import Request, TextResponse
 
-from common.spiders.nike_categories import NIKE_CATEGORIES
+from common.spiders.nike_categories import NIKE_CATEGORIES, NIKE_NAVIGATION
 from common.spiders.nike_listing_spider import NikeListingSpider, category_slug
 
 SAMPLE_DIR = Path(__file__).resolve().parents[1] / "sample"
@@ -85,22 +86,28 @@ class NikeListingSpiderTests(unittest.TestCase):
     # ------------------------------------------------------------- inventory
 
     def test_categories_are_unique_and_cover_the_inventory(self):
-        names = [entry["category"] for entry in self.spider.categories]
+        self.assertIsInstance(NIKE_CATEGORIES, Mapping)
+        self.assertTrue(
+            all(isinstance(group, Mapping) for group in NIKE_CATEGORIES.values())
+        )
+        entries = list(self.spider.iter_categories())
+        names = [entry["category"] for entry in entries]
         self.assertEqual(len(names), len(set(names)))
 
         expected = {
             url
-            for groups in NIKE_CATEGORIES.values()
+            for groups in NIKE_NAVIGATION.values()
             for subcategories in groups.values()
             for url in subcategories.values()
         }
-        self.assertEqual({entry["url"] for entry in self.spider.categories}, expected)
+        self.assertEqual({entry["url"] for entry in entries}, expected)
 
     def test_duplicate_nav_names_resolve_to_one_entry(self):
         # "Shoes"/"All Shoes" and "New & Featured"/"New Arrivals" are the same page.
-        urls = [entry["url"] for entry in self.spider.categories]
+        entries = list(self.spider.iter_categories())
+        urls = [entry["url"] for entry in entries]
         self.assertEqual(len(urls), len(set(urls)))
-        shoes = [e for e in self.spider.categories if e["category"] == "mens-shoes-nik1zy7ok"]
+        shoes = [e for e in entries if e["category"] == "mens-shoes-nik1zy7ok"]
         self.assertEqual(len(shoes), 1)
         self.assertEqual(shoes[0]["name"], "Shoes")
 
@@ -116,7 +123,9 @@ class NikeListingSpiderTests(unittest.TestCase):
 
     def test_inventory_preserves_department_and_group_hierarchy(self):
         entry = next(
-            e for e in self.spider.categories if e["category"] == "mens-shoes-nik1zy7ok"
+            e
+            for e in self.spider.iter_categories()
+            if e["category"] == "mens-shoes-nik1zy7ok"
         )
         self.assertEqual(entry["department"], "Men")
         self.assertEqual(entry["group"], "Shoes")

@@ -29,13 +29,13 @@ The category taxonomy is bundled in ``cvs_categories.py`` and was captured from
 
 import json
 import re
-from typing import Any, Iterable, Iterator
+from typing import Any, Iterable
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
-from common.spiders.cvs_categories import CVS_CATEGORY_INVENTORY
+from common.spiders.cvs_categories import CVS_CATEGORIES
 
 SITE_BASE = "https://www.cvs.com"
 SHOP_BASE = f"{SITE_BASE}/shop"
@@ -45,70 +45,6 @@ _SLUG_RE = re.compile(r"[^a-z0-9]+")
 
 def _slugify(value: str) -> str:
     return _SLUG_RE.sub("-", value.lower()).strip("-")
-
-
-
-
-
-def _load_categories() -> list[dict[str, Any]]:
-    """Flatten the captured taxonomy into unique ``{category,url,...}`` rows.
-
-    The same label can appear under two departments (e.g. "Hair Care" exists under
-    both Personal Care and Beauty), so the CLI slug is namespaced with the
-    department whenever the plain slug is already taken. Rows are deduplicated on
-    the browse URL so every row maps to exactly one category page.
-    """
-    rows: list[dict[str, Any]] = []
-    seen_urls: set[str] = set()
-    seen_slugs: set[str] = set()
-
-    for department, node in CVS_CATEGORY_INVENTORY.items():
-        for path, entry in _walk(node, (department,)):
-            url = entry.get("url")
-            if not url or url in seen_urls:
-                continue
-            seen_urls.add(url)
-            name = path[-1]
-            slug = _slugify(name)
-            if slug in seen_slugs:
-                slug = f"{_slugify(department)}-{slug}"
-            # A label can repeat inside one department too (CVS cross-lists e.g.
-            # "Compression Hosiery & Stockings" under two Home Health Care
-            # branches), so fall back to a path-qualified slug, then a counter.
-            if slug in seen_slugs:
-                slug = "-".join(_slugify(part) for part in path)
-            suffix = 2
-            unique = slug
-            while unique in seen_slugs:
-                unique = f"{slug}-{suffix}"
-                suffix += 1
-            seen_slugs.add(unique)
-            rows.append(
-                {
-                    "category": unique,
-                    "name": name,
-                    "url": f"{SITE_BASE}{url}",
-                    "department": department,
-                    "breadcrumb": list(path),
-                    "category_id": entry.get("id"),
-                }
-            )
-    return rows
-
-
-def _walk(
-    node: dict[str, Any], path: tuple[str, ...]
-) -> Iterator[tuple[tuple[str, ...], dict[str, Any]]]:
-    """Yield ``(path, entry)`` for ``node`` and its descendants, root first.
-
-    The taxonomy module keys subcategories by their display label, so the label is
-    threaded in from the mapping key on the way down instead of being stored on the
-    node itself.
-    """
-    yield path, node
-    for label, child in (node.get("subcategories") or {}).items():
-        if isinstance(child, dict):
-            yield from _walk(child, path + (label,))
 
 
 class CvsListingSpider(BaseListingSpider):
@@ -121,7 +57,7 @@ class CvsListingSpider(BaseListingSpider):
     # category-only gate; __init__ still rejects a run with no target at all.
     require_category_arg = False
 
-    categories = _load_categories()
+    categories = CVS_CATEGORIES
 
     custom_settings = {
         # Each PLP is a ~3.9 MB SSR document; stay polite on one host.
@@ -288,7 +224,7 @@ class CvsListingSpider(BaseListingSpider):
         return payload
 
     def _entry_for(self, listing_url: str) -> dict[str, Any]:
-        for entry in self.categories:
+        for entry in self.iter_categories():
             if entry["url"] == listing_url:
                 return entry
         return {

@@ -8,6 +8,7 @@ import scrapy
 
 from common.settings import PROXY
 from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.nordstrom_categories import NORDSTROM_CATEGORIES
 
 
 class NordstromListingSpider(BaseListingSpider):
@@ -68,15 +69,7 @@ class NordstromListingSpider(BaseListingSpider):
         ],
     }
 
-    categories = [
-        {"category": "women", "url": "https://www.nordstrom.com/browse/women"},
-        {"category": "men", "url": "https://www.nordstrom.com/browse/men"},
-        {"category": "kids", "url": "https://www.nordstrom.com/browse/kids"},
-        {"category": "beauty", "url": "https://www.nordstrom.com/browse/beauty"},
-        {"category": "home", "url": "https://www.nordstrom.com/browse/home"},
-        {"category": "designer", "url": "https://www.nordstrom.com/browse/designer"},
-        {"category": "sale", "url": "https://www.nordstrom.com/browse/sale"},
-    ]
+    categories = NORDSTROM_CATEGORIES
 
     require_category_arg = False
 

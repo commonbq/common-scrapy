@@ -6,6 +6,17 @@ from scrapy.http import HtmlResponse, Request
 from common.spiders.autozone_listing_spider import AutozoneListingSpider
 
 
+def test_categories_use_grouped_mapping_contract():
+    assert list(AutozoneListingSpider.categories) == ["all"]
+    assert len(AutozoneListingSpider.categories["all"]) == 20
+    spider = AutozoneListingSpider(category="oil-filter")
+    assert spider.category_entry("oil-filter") == {
+        "group": "all",
+        "category": "oil-filter",
+        "url": "https://www.autozone.com/filters-and-pcv/oil-filter",
+    }
+
+
 def response(payload, page=1):
     url = "https://www.autozone.com/filters-and-pcv/oil-filter"
     body = f'<script id="__NEXT_DATA__" type="application/json">{json.dumps(payload)}</script>'

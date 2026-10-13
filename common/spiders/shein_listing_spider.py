@@ -5,6 +5,7 @@ import json
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.shein_categories import SHEIN_CATEGORIES
 
 
 class SheinListingSpider(BaseListingSpider):
@@ -13,19 +14,7 @@ class SheinListingSpider(BaseListingSpider):
     name = "shein_listing"
     allowed_domains = ["shein.com", "www.shein.com", "us.shein.com"]
 
-    categories = [
-        {"category": "women", "url": "https://us.shein.com/Women-c-2030.html"},
-        {"category": "curve", "url": "https://us.shein.com/Curve-Plus-Size-c-1888.html"},
-        {"category": "men", "url": "https://us.shein.com/Men-c-2026.html"},
-        {"category": "kids", "url": "https://us.shein.com/Kids-c-2031.html"},
-        {"category": "baby", "url": "https://us.shein.com/Baby-c-2032.html"},
-        {"category": "home", "url": "https://us.shein.com/Home-Living-c-2034.html"},
-        {"category": "beauty", "url": "https://us.shein.com/Beauty-Health-c-1864.html"},
-        {"category": "shoes", "url": "https://us.shein.com/Shoes-c-1745.html"},
-        {"category": "bags", "url": "https://us.shein.com/Bags-c-1764.html"},
-        {"category": "jewelry", "url": "https://us.shein.com/Jewelry-Accessories-c-1765.html"},
-        {"category": "sports", "url": "https://us.shein.com/Sports-Outdoor-c-3195.html"},
-    ]
+    categories = SHEIN_CATEGORIES
 
     custom_settings = {
         "FEED_EXPORT_FIELDS": [

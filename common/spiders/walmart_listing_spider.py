@@ -7,6 +7,7 @@ from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.walmart_categories import WALMART_CATEGORIES
 
 
 class WalmartListingSpider(BaseListingSpider):
@@ -105,36 +106,7 @@ class WalmartListingSpider(BaseListingSpider):
         ]
     }
 
-    categories = [
-        {
-            "category": "electronics",
-            "url": "https://www.walmart.com/cp/electronics/3944",
-        },
-        {
-            "category": "home",
-            "url": "https://www.walmart.com/cp/home/4044",
-        },
-        {
-            "category": "clothing",
-            "url": "https://www.walmart.com/cp/clothing/5438",
-        },
-        {
-            "category": "beauty",
-            "url": "https://www.walmart.com/cp/beauty/1085666",
-        },
-        {
-            "category": "toys",
-            "url": "https://www.walmart.com/cp/toys/4171",
-        },
-        {
-            "category": "sports-and-outdoors",
-            "url": "https://www.walmart.com/cp/sports-outdoors/4125",
-        },
-        {
-            "category": "grocery",
-            "url": "https://www.walmart.com/cp/food/976759",
-        },
-    ]
+    categories = WALMART_CATEGORIES
 
     def start_requests(self):
         category_url = self.resolve_target_url()

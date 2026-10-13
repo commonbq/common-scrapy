@@ -1,5 +1,6 @@
 import json
 import unittest
+from collections.abc import Mapping
 
 from scrapy.http import HtmlResponse, Request
 
@@ -8,7 +9,7 @@ from common.spiders.anthropologie_listing_spider import AnthropologieListingSpid
 
 class AnthropologieListingSpiderTest(unittest.TestCase):
     def setUp(self):
-        self.spider = AnthropologieListingSpider(category="womens-clothing", max_pages=2)
+        self.spider = AnthropologieListingSpider(category="clothes", max_pages=2)
 
     def response(self, state):
         body = f'<script id="urbnInitialPiniaState">{json.dumps(json.dumps(state))}</script>'
@@ -51,8 +52,10 @@ class AnthropologieListingSpiderTest(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "No Anthropologie urbnInitialPiniaState"):
             list(self.spider.parse(response))
 
-    def test_page_2_category_preserves_starting_page(self):
-        spider = AnthropologieListingSpider(category="womens-clothing-page-2", max_pages=3)
+    def test_category_url_preserves_starting_page(self):
+        spider = AnthropologieListingSpider(
+            category_url="https://www.anthropologie.com/clothes?page=2", max_pages=3
+        )
         request = list(spider.start_requests())[0]
         self.assertIn("page=2", request.url)
         self.assertEqual(request.meta["page"], 2)
@@ -63,6 +66,21 @@ class AnthropologieListingSpiderTest(unittest.TestCase):
         self.assertEqual(AnthropologieListingSpider(category_url=url).resolve_target_url(), url)
         with self.assertRaisesRegex(ValueError, "Provide -a category"):
             AnthropologieListingSpider()
+
+    def test_categories_use_grouped_mapping_contract(self):
+        self.assertIsInstance(AnthropologieListingSpider.categories, Mapping)
+        self.assertTrue(
+            all(
+                isinstance(group, Mapping)
+                for group in AnthropologieListingSpider.categories.values()
+            )
+        )
+        entries = list(self.spider.iter_categories())
+        self.assertEqual(len(entries), 12)
+        self.assertEqual(
+            self.spider.category_entry("all-gifts")["url"],
+            "https://www.anthropologie.com/all-gifts",
+        )
 
     def test_every_exported_item_carries_a_non_empty_raw(self):
         tiles = [

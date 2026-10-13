@@ -1,5 +1,6 @@
 import json
 import unittest
+from collections.abc import Mapping
 
 from scrapy.http import HtmlResponse, Request
 
@@ -9,6 +10,26 @@ from common.spiders.poshmark_listing_spider import PoshmarkListingSpider
 class PoshmarkListingSpiderTest(unittest.TestCase):
     def setUp(self):
         self.spider = PoshmarkListingSpider(category="women", max_pages=1)
+
+    def test_full_category_inventory_uses_grouped_mapping(self):
+        self.assertIsInstance(self.spider.categories, Mapping)
+        self.assertEqual(set(self.spider.categories), {
+            "women", "men", "kids", "home", "electronics", "pets"
+        })
+        self.assertTrue(
+            all(isinstance(categories, Mapping) for categories in self.spider.categories.values())
+        )
+        entries = list(self.spider.iter_categories())
+        self.assertEqual(len(entries), 91)
+        self.assertEqual(len({entry["category"] for entry in entries}), 91)
+        self.assertEqual(
+            self.spider.category_entry("women-bath-and-body")["url"],
+            "https://poshmark.com/category/Women-Bath_&_Body",
+        )
+        self.assertEqual(
+            self.spider.category_entry("pets-dog-collars-leashes-and-harnesses")["url"],
+            "https://poshmark.com/category/Pets-Dog-Collars,_Leashes_&_Harnesses",
+        )
 
     def test_feed_contract_and_bootstrap_extraction(self):
         product = {

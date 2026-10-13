@@ -14,7 +14,9 @@ def response(url, body, **meta):
 
 
 def test_categories_and_xhr_discovery():
-    assert len(KLOOK_CATEGORIES) == 20
+    assert set(KLOOK_CATEGORIES) == {"popular-regions", "popular-destinations"}
+    assert sum(len(group) for group in KLOOK_CATEGORIES.values()) == 40
+    assert KLOOK_CATEGORIES["popular-destinations"]["phu-quoc"].endswith("c130-phu-quoc/")
     spider = KlookListingSpider(category="japan")
     html = '<script>window.__KLOOK__=' + json.dumps({"data": [{"pageData": {"page": {"body": {"sections": [
         {"data_type": "other"}, {"body": {"content": {"data_type": "ttd_acts", "src": "/v1/acts?dest_id=1012"}}}

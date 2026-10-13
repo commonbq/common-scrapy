@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-"""UNIQLO US navigation taxonomy flattened into the listing ``categories`` contract.
+"""UNIQLO US navigation taxonomy in the grouped listing ``categories`` contract.
 
 The tree is harvested from ``window.__PRELOADED_STATE__.taxonomies`` (present in the
 SSR shell of every UNIQLO page) and committed as ``sample/uniqlo-categories.json``:
@@ -107,10 +107,24 @@ def _flatten_inventory() -> list[dict[str, Any]]:
     return categories
 
 
+def _group_inventory(
+    entries: list[dict[str, Any]],
+) -> dict[str, dict[str, dict[str, Any]]]:
+    """Group unique category leaves by their top-level department."""
+    groups: dict[str, dict[str, dict[str, Any]]] = {}
+    for entry in entries:
+        category = entry["category"]
+        group = str(entry.get("department") or "all")
+        groups.setdefault(group, {})[category] = dict(entry)
+    return groups
+
+
 UNIQLO_CATEGORY_INVENTORY = load_uniqlo_inventory()
-UNIQLO_CATEGORIES = _flatten_inventory()
+UNIQLO_CATEGORIES = _group_inventory(_flatten_inventory())
 
 # url -> taxonomy id path, used to resolve -a category_url / -a url targets.
 UNIQLO_CATEGORY_PATHS: dict[str, str] = {
-    entry["url"]: entry["path"] for entry in UNIQLO_CATEGORIES
+    entry["url"]: entry["path"]
+    for group in UNIQLO_CATEGORIES.values()
+    for entry in group.values()
 }

@@ -20,8 +20,10 @@ _CATEGORY_GROUPS = {
     "Brand/Collections": ["jeans", "activewear", "new", "sale"],
 }
 
-ABERCROMBIE_CATEGORIES = [
-    {"category": slug, "department": department, "url": f"{BASE_URL}/{slug}"}
+ABERCROMBIE_CATEGORIES = {
+    department: {
+        slug: {"department": department, "url": f"{BASE_URL}/{slug}"}
+        for slug in slugs
+    }
     for department, slugs in _CATEGORY_GROUPS.items()
-    for slug in slugs
-]
+}

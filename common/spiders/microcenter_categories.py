@@ -4,7 +4,8 @@ from __future__ import annotations
 
 The packaged JSON preserves all 20 departments, 118 groups, and 578 navigation
 links. ``MICROCENTER_CATEGORIES`` deduplicates repeated destinations while
-retaining every navigation context on the resulting category record.
+retaining every navigation context on the resulting category record, then
+groups the leaf records by their primary department.
 """
 
 import hashlib
@@ -27,7 +28,7 @@ def _category_id(url: str) -> str | None:
     return match.group(1) if match else None
 
 
-def load_categories() -> list[dict]:
+def load_categories() -> dict[str, dict[str, dict]]:
     tree = json.loads(_INVENTORY.read_text(encoding="utf-8"))
     by_url: dict[str, dict] = {}
     used_slugs: set[str] = set()
@@ -58,7 +59,10 @@ def load_categories() -> list[dict]:
                     "url": url,
                     "navigation_contexts": [context],
                 }
-    return list(by_url.values())
+    categories: dict[str, dict[str, dict]] = {}
+    for entry in by_url.values():
+        categories.setdefault(entry["department"], {})[entry["category"]] = entry
+    return categories
 
 
 MICROCENTER_CATEGORIES = load_categories()

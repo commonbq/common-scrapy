@@ -14,9 +14,7 @@ from common.spiders.dunelm_categories import CATEGORIES
 class DunelmListingSpider(BaseListingSpider):
     name = "dunelm_listing"
     allowed_domains = ["dunelm.com", "www.dunelm.com"]
-    categories = [
-        {"category": category, "url": url} for category, url in CATEGORIES.items()
-    ]
+    categories = CATEGORIES
 
     custom_settings = {
         "PROXY": "",
@@ -175,4 +173,3 @@ class DunelmListingSpider(BaseListingSpider):
         query = dict(parse_qsl(parts.query, keep_blank_values=True))
         query["page"] = str(page)
         return urlunparse(parts._replace(query=urlencode(query)))
-

@@ -58,10 +58,7 @@ class AbercrombieListingSpider(BaseListingSpider):
     def start_requests(self):
         self._seen.clear()
         target = self.resolve_target_url()
-        selected = next(
-            (entry for entry in self.categories if entry["category"] == self.category),
-            {},
-        )
+        selected = self.category_entry(self.category) or {}
         yield self._request(target, 1, selected.get("department"))
 
     def _request(self, base_url: str, page: int, department: str | None):

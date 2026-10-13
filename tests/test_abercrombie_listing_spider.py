@@ -84,11 +84,12 @@ class AbercrombieListingSpiderTests(unittest.TestCase):
         self.spider = AbercrombieListingSpider(category="womens", max_pages=2)
 
     def test_complete_category_inventory(self):
-        self.assertEqual(len(ABERCROMBIE_CATEGORIES), 37)
-        self.assertEqual(len({row["category"] for row in ABERCROMBIE_CATEGORIES}), 37)
+        rows = list(self.spider.iter_categories())
+        self.assertEqual(len(rows), 37)
+        self.assertEqual(len({row["category"] for row in rows}), 37)
         self.assertTrue(all(
             row["url"].startswith("https://www.abercrombie.com/shop/us/")
-            for row in ABERCROMBIE_CATEGORIES
+            for row in rows
         ))
 
     def test_maps_apollo_product_and_feed_contract(self):

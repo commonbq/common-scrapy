@@ -38,6 +38,7 @@ from common.spiders.williams_sonoma_categories import (
     CATEGORY_TREE_URL,
     Category,
     SITE_BASE,
+    build_grouped_inventory,
     build_index,
     group_id_from_url,
     parse_category_tree,
@@ -71,7 +72,9 @@ class WilliamsSonomaListingSpider(BaseListingSpider):
     BROWSE_BASE = "https://ac.cnstrc.com"
     PAGE_SIZE = 100
 
-    categories: list[dict[str, str]] = []
+    # The full inventory is loaded from the first-party category tree at crawl
+    # time and then stored in BaseListingSpider's group -> leaf mapping shape.
+    categories: dict[str, dict[str, dict[str, str | int | None]]] = {}
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
@@ -152,6 +155,8 @@ class WilliamsSonomaListingSpider(BaseListingSpider):
                 "taxonomy contract may have changed."
             )
         self._index = build_index(categories)
+        self.categories = build_grouped_inventory(categories)
+        self._category_cache = None
         self.logger.info(
             "Williams-Sonoma category tree: %s crawlable targets (%s headers excluded)",
             len(self._index),

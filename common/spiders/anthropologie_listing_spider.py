@@ -6,7 +6,7 @@ from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 
 import scrapy
 
-from common.spiders.anthropologie_categories import flattened_categories
+from common.spiders.anthropologie_categories import ANTHROPOLOGIE_CATEGORIES
 from common.spiders.base_listing_spider import BaseListingSpider
 
 
@@ -18,7 +18,7 @@ class AnthropologieListingSpider(BaseListingSpider):
     # Direct url=/category_url= runs are supported, so opt out of the base class
     # category-only gate; resolve_target_url() still rejects a run with no target.
     require_category_arg = False
-    categories = flattened_categories()
+    categories = ANTHROPOLOGIE_CATEGORIES
 
     custom_settings = {
         "FEED_EXPORT_FIELDS": [

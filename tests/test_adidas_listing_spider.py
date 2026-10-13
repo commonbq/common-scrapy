@@ -30,10 +30,12 @@ class AdidasListingSpiderTests(unittest.TestCase):
 
     def test_inventory_and_category_selection(self):
         self.assertEqual(len(ADIDAS_CATEGORY_SECTIONS), 25)
-        self.assertEqual(len(ADIDAS_CATEGORIES), 196)
-        self.assertEqual(len({entry["url"] for entry in ADIDAS_CATEGORIES}), 196)
+        entries = list(self.spider.iter_categories())
+        self.assertEqual(len(ADIDAS_CATEGORIES), 25)
+        self.assertEqual(len(entries), 196)
+        self.assertEqual(len({entry["url"] for entry in entries}), 196)
         self.assertEqual(
-            {entry["category"] for entry in ADIDAS_CATEGORIES if entry["subcategory"] == "Samba"},
+            {entry["category"] for entry in entries if entry["subcategory"] == "Samba"},
             {"samba"},
         )
         self.assertEqual(
@@ -41,7 +43,9 @@ class AdidasListingSpiderTests(unittest.TestCase):
             "https://www.adidas.com/us/men-athletic_sneakers",
         )
         # every category URL is a real, crawlable /us/ PLP route
-        self.assertTrue(all(entry["url"].startswith("https://www.adidas.com/us/") for entry in ADIDAS_CATEGORIES))
+        self.assertTrue(
+            all(entry["url"].startswith("https://www.adidas.com/us/") for entry in entries)
+        )
 
     def test_missing_category_arg_raises_with_available_names(self):
         with self.assertRaisesRegex(ValueError, "Available categories"):

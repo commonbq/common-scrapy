@@ -8,6 +8,7 @@ from scrapy.http import Request, TextResponse
 
 from common.spiders.williams_sonoma_categories import (
     NON_CATEGORY_TYPES,
+    build_grouped_inventory,
     build_index,
     group_id_from_url,
     parse_category_tree,
@@ -115,6 +116,22 @@ class CategoryTreeTests(unittest.TestCase):
         categories = parse_category_tree(self.tree)
         self.assertEqual(len(build_index(categories)), len(categories))
 
+    def test_grouped_inventory_matches_base_spider_category_contract(self):
+        categories = parse_category_tree(self.tree)
+        inventory = build_grouped_inventory(categories)
+        self.assertIsInstance(inventory, dict)
+        self.assertTrue(inventory)
+        self.assertTrue(all(isinstance(leaves, dict) for leaves in inventory.values()))
+        self.assertEqual(
+            sum(len(leaves) for leaves in inventory.values()), len(categories)
+        )
+        entry = inventory["cookware"]["cookware-sets"]
+        self.assertEqual(
+            entry["url"],
+            "https://www.williams-sonoma.com/shop/cookware/cookware-sets/",
+        )
+        self.assertEqual(entry["parent_id"], "cookware")
+
     def test_group_id_from_url(self):
         self.assertEqual(
             group_id_from_url("https://www.williams-sonoma.com/shop/cookware/cookware-sets/"),
@@ -178,6 +195,16 @@ class WilliamsSonomaListingSpiderTests(unittest.TestCase):
         targets = spider._resolve_targets()
         self.assertEqual(len(targets), len(spider._index))
         self.assertIn("cookware-sets", [t.group_id for t in targets])
+
+    def test_live_tree_populates_grouped_categories(self):
+        self.assertIsInstance(self.spider.categories, dict)
+        self.assertEqual(
+            sum(len(leaves) for leaves in self.spider.categories.values()),
+            len(self.spider._index),
+        )
+        self.assertEqual(
+            self.spider.category_entry("cookware-sets")["group"], "cookware"
+        )
 
     def test_unknown_category_fails_loudly(self):
         spider = WilliamsSonomaListingSpider(category="not-a-real-cat", max_pages=1)

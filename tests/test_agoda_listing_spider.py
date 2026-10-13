@@ -1,4 +1,5 @@
 import json
+from collections.abc import Mapping
 
 import pytest
 from scrapy.http import HtmlResponse, Request, TextResponse
@@ -10,6 +11,18 @@ def response(url, body, *, meta=None, html=False, status=200):
     request = Request(url, meta=meta or {})
     cls = HtmlResponse if html else TextResponse
     return cls(url=url, body=body.encode(), encoding="utf-8", request=request, status=status)
+
+
+def test_categories_use_grouped_mapping_contract():
+    spider = AgodaListingSpider(category="bali")
+    assert isinstance(spider.categories, Mapping)
+    assert all(isinstance(group, Mapping) for group in spider.categories.values())
+    assert len(list(spider.iter_categories())) == 20
+    assert spider.category_entry("bali") == {
+        "category": "bali",
+        "url": "https://www.agoda.com/city/bali-id.html",
+        "group": "destinations",
+    }
 
 
 def test_config_builds_cronos_request():
@@ -48,4 +61,3 @@ def test_malformed_hydration_and_empty_cards_fail():
     meta = {"category": "bali", "source_url": "x", "page_type_id": 5, "object_id": 17193, "accommodation_type_id": 0}
     with pytest.raises(RuntimeError, match="empty"):
         list(spider.parse(response("https://www.agoda.com/api/cronos/geo/accommodations/", '{"hotelcards":[]}', meta=meta)))
-

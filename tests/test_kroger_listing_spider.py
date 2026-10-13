@@ -1,4 +1,5 @@
 import unittest
+from collections.abc import Mapping
 from pathlib import Path
 
 from scrapy.http import Request, TextResponse
@@ -26,6 +27,17 @@ class KrogerListingSpiderTest(unittest.TestCase):
         self.assertEqual(items[0]["price"], 3.99)
         self.assertEqual(items[0]["regular_price"], 4.49)
         self.assertEqual(items[1]["price"], 5.29)
+
+    def test_categories_use_grouped_mapping_contract(self):
+        self.assertIsInstance(self.spider.categories, Mapping)
+        self.assertGreaterEqual(sum(map(len, self.spider.categories.values())), 25)
+        self.assertTrue(
+            all(isinstance(group, Mapping) for group in self.spider.categories.values())
+        )
+        self.assertEqual(
+            self.spider.category_entry("cereal")["url"],
+            "https://www.kroger.com/pl/cereal/09002",
+        )
 
     def test_missing_contract_fails_visibly(self):
         with self.assertRaisesRegex(RuntimeError, "No Kroger __INITIAL_STATE__ JSON"):

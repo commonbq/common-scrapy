@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import re
+
 """Nike US category inventory.
 
 Extracted from the Nike.com desktop global navigation (issue #134). The
@@ -11,7 +13,7 @@ Six URLs are reachable from two departments (for example
 deduplicates by URL and keeps the first department in the inventory order below.
 """
 
-NIKE_CATEGORIES: dict[str, dict[str, dict[str, str]]] = {
+NIKE_NAVIGATION: dict[str, dict[str, dict[str, str]]] = {
     "Men": {
         "New & Featured": {
             "New & Featured": "https://www.nike.com/w/new-mens-3n82yznik1",
@@ -288,3 +290,37 @@ NIKE_CATEGORIES: dict[str, dict[str, dict[str, str]]] = {
         },
     },
 }
+
+
+_SLUG_CLEAN_RE = re.compile(r"[^a-z0-9]+")
+
+
+def _category_slug(url: str) -> str:
+    path = url.split("nike.com", 1)[-1].split("?", 1)[0].strip("/")
+    if path.startswith("w/"):
+        path = path[2:]
+    return _SLUG_CLEAN_RE.sub("-", path.lower()).strip("-")
+
+
+def _grouped_categories() -> dict[str, dict[str, dict[str, str]]]:
+    """Return the base-spider ``department -> leaf -> rich value`` mapping."""
+    categories: dict[str, dict[str, dict[str, str]]] = {}
+    seen_urls: set[str] = set()
+    for department, groups in NIKE_NAVIGATION.items():
+        department_categories: dict[str, dict[str, str]] = {}
+        for group, subcategories in groups.items():
+            for name, url in subcategories.items():
+                if url in seen_urls:
+                    continue
+                seen_urls.add(url)
+                department_categories[_category_slug(url)] = {
+                    "url": url,
+                    "department": department,
+                    "group": group,
+                    "name": name,
+                }
+        categories[department] = department_categories
+    return categories
+
+
+NIKE_CATEGORIES = _grouped_categories()

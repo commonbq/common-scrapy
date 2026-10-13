@@ -39,5 +39,6 @@ build/
 !common/spiders/ebay_category_urls.json
 !common/spiders/wayfair_categories.json
 
+sample/
 data/
 !sample/*.json

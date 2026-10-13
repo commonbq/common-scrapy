@@ -6,6 +6,7 @@ from pathlib import Path
 from scrapy.http import TextResponse
 
 from common.spiders.blick_categories import (
+    BLICK_CATEGORIES,
     BLICK_CATEGORY_COUNTS,
     BLICK_CATEGORY_TREE,
     crawlable_categories,
@@ -51,6 +52,18 @@ class BlickCategoriesTest(unittest.TestCase):
         self.assertEqual(len(slugs), len(set(slugs)))
         self.assertIn(ACRYLIC_CATEGORY, slugs)
 
+    def test_categories_use_grouped_base_spider_mapping(self):
+        self.assertIs(BlickListingSpider.categories, BLICK_CATEGORIES)
+        self.assertEqual(len(BLICK_CATEGORIES), 17)
+        self.assertEqual(sum(map(len, BLICK_CATEGORIES.values())), 899)
+        self.assertTrue(
+            all(isinstance(leaves, dict) for leaves in BLICK_CATEGORIES.values())
+        )
+        self.assertEqual(
+            BLICK_CATEGORIES["paint-and-mediums"][ACRYLIC_CATEGORY]["url"],
+            ACRYLIC_URL,
+        )
+
     def test_acrylic_paint_is_a_leaf_under_paint_and_mediums(self):
         row = next(r for r in self.crawlable if r["url"] == ACRYLIC_URL)
         self.assertEqual(row["category"], ACRYLIC_CATEGORY)
@@ -88,9 +101,7 @@ class BlickCategoriesTest(unittest.TestCase):
 class BlickListingSpiderTest(unittest.TestCase):
     def setUp(self):
         self.spider = BlickListingSpider(category=ACRYLIC_CATEGORY, max_pages=2)
-        self.entry = next(
-            entry for entry in self.spider.categories if entry["category"] == ACRYLIC_CATEGORY
-        )
+        self.entry = self.spider.category_entry(ACRYLIC_CATEGORY)
         self.next_data = _load("blick-acrylic-next-data.json")
         self.page0 = _load("blick-acrylic-api-page0.json")
         self.page1 = _load("blick-acrylic-api-page1.json")
@@ -223,7 +234,7 @@ class BlickListingSpiderTest(unittest.TestCase):
 
     def test_pagination_stops_at_total_pages(self):
         spider = BlickListingSpider(category=ACRYLIC_CATEGORY, max_pages=99)
-        entry = next(e for e in spider.categories if e["category"] == ACRYLIC_CATEGORY)
+        entry = spider.category_entry(ACRYLIC_CATEGORY)
         spider._seen_items.update(
             {item["itemId"] for item in self.page0["items"] + self.page1["items"]}
         )
@@ -241,7 +252,7 @@ class BlickListingSpiderTest(unittest.TestCase):
 
     def test_pagination_stops_on_empty_page(self):
         spider = BlickListingSpider(category=ACRYLIC_CATEGORY, max_pages=99)
-        entry = next(e for e in spider.categories if e["category"] == ACRYLIC_CATEGORY)
+        entry = spider.category_entry(ACRYLIC_CATEGORY)
         request = spider._api_request(entry, ACRYLIC_ENTRY_ID, page=6)
         payload = dict(self.page1, items=[], pageNumber=6, totalPages=None)
         outputs = [
@@ -255,7 +266,7 @@ class BlickListingSpiderTest(unittest.TestCase):
 
     def test_pagination_respects_max_pages(self):
         spider = BlickListingSpider(category=ACRYLIC_CATEGORY, max_pages=1)
-        entry = next(e for e in spider.categories if e["category"] == ACRYLIC_CATEGORY)
+        entry = spider.category_entry(ACRYLIC_CATEGORY)
         spider._seen_items.update({item["itemId"] for item in self.page0["items"]})
         request = spider._api_request(entry, ACRYLIC_ENTRY_ID, page=0)
         outputs = [
@@ -269,7 +280,7 @@ class BlickListingSpiderTest(unittest.TestCase):
 
     def test_total_count_is_a_backstop_when_total_pages_is_missing(self):
         spider = BlickListingSpider(category=ACRYLIC_CATEGORY, max_pages=99)
-        entry = next(e for e in spider.categories if e["category"] == ACRYLIC_CATEGORY)
+        entry = spider.category_entry(ACRYLIC_CATEGORY)
         request = spider._api_request(entry, ACRYLIC_ENTRY_ID, page=5)
         payload = dict(self.last_page, totalPages=None, totalCount=168)
         spider._seen_items.update({item["itemId"] for item in self.last_page["items"]})

@@ -16,6 +16,18 @@ class ElfcosmeticsListingSpiderTests(unittest.TestCase):
         body = (Path(__file__).parents[1] / "sample" / "elfcosmetics-face.html").read_bytes()
         return HtmlResponse(url, request=request, body=body, encoding="utf-8")
 
+    def test_categories_use_grouped_mapping_with_full_sitemap_inventory(self):
+        self.assertIsInstance(self.spider.categories, dict)
+        self.assertTrue(
+            all(isinstance(leaves, dict) for leaves in self.spider.categories.values())
+        )
+        entries = list(self.spider.iter_categories())
+        self.assertEqual(len(entries), 153)
+        self.assertEqual(
+            self.spider.category_entry("face")["url"],
+            "https://www.elfcosmetics.com/collections/face",
+        )
+
     def test_feed_export_fields_include_bootstrap_product_data(self):
         fields = self.spider.custom_settings["FEED_EXPORT_FIELDS"]
         for field in (

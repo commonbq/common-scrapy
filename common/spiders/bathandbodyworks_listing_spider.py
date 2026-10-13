@@ -6,7 +6,7 @@ from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
-from common.spiders.bathandbodyworks_categories import flattened_categories
+from common.spiders.bathandbodyworks_categories import BATHANDBODYWORKS_CATEGORIES
 
 
 class BathAndBodyWorksListingSpider(BaseListingSpider):
@@ -18,7 +18,7 @@ class BathAndBodyWorksListingSpider(BaseListingSpider):
     # the base class's category-only gate; resolve_target_url() still rejects a run
     # with no usable target.
     require_category_arg = False
-    categories = flattened_categories()
+    categories = BATHANDBODYWORKS_CATEGORIES
 
     custom_settings = {
         "FEED_EXPORT_FIELDS": [

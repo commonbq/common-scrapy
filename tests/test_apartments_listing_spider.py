@@ -36,9 +36,11 @@ class ApartmentsListingSpiderTest(unittest.TestCase):
         }
 
     def test_taxonomy_has_exact_twenty_markets(self):
-        self.assertEqual(20, len(APARTMENTS_CATEGORIES))
-        self.assertEqual("new-york-ny", APARTMENTS_CATEGORIES[0]["category"])
-        self.assertEqual("boston-ma", APARTMENTS_CATEGORIES[-1]["category"])
+        self.assertEqual(["all"], list(APARTMENTS_CATEGORIES))
+        self.assertEqual(20, len(APARTMENTS_CATEGORIES["all"]))
+        entries = list(self.spider.iter_categories())
+        self.assertEqual("new-york-ny", entries[0]["category"])
+        self.assertEqual("boston-ma", entries[-1]["category"])
 
     def test_bootstrap_item_mapping_and_pagination(self):
         output = list(self.spider.parse(response(self.state)))

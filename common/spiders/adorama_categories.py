@@ -19,7 +19,9 @@ Two page kinds live under ``/l/``:
   ``ADORAMA_CATEGORIES``.
 * **Depth-2+ category pages** (``/l/Photography/Cameras``) render
   ``pageInfo.pageType == "listPage"`` with 24 SSR products per page. These are
-  the 1,079 crawlable URLs exposed by ``ADORAMA_CATEGORIES``.
+  the 1,079 crawlable URLs exposed by ``ADORAMA_CATEGORIES``. That constant is
+  grouped by top-level department using the ``BaseListingSpider`` category
+  mapping contract: ``{department: {category: {url, ...}}}``.
 
 To refresh the inventory, re-derive the nested dictionary from
 ``/UnifySiteMaps/Category.xml`` and keep this schema: department label ->
@@ -1319,17 +1321,18 @@ def _walk(node: dict, depth: int = 1, name: str | None = None):
         yield from _walk(child, depth + 1, child_name)
 
 
-def _flatten_categories() -> list[dict[str, str]]:
-    """Flatten depth-2+ inventory nodes into ``BaseListingSpider`` categories.
+def _group_categories() -> dict[str, dict[str, dict[str, str]]]:
+    """Group depth-2+ inventory nodes into ``BaseListingSpider`` categories.
 
     Depth-1 department landings are skipped: they render ``bcmsSitePage`` CMS
     content with no product grid. Category slugs are disambiguated with the
     department when the same label appears under multiple departments.
     """
-    categories: list[dict[str, str]] = []
+    categories: dict[str, dict[str, dict[str, str]]] = {}
     seen_urls: set[str] = set()
     used_names: set[str] = set()
     for department, root in ADORAMA_CATEGORY_INVENTORY.items():
+        group: dict[str, dict[str, str]] = {}
         for depth, name, node in _walk(root):
             if depth < 2 or not name:
                 continue
@@ -1346,14 +1349,15 @@ def _flatten_categories() -> list[dict[str, str]]:
                 category = f"{_slug(department)}-{slug}-{suffix}"
                 suffix += 1
             used_names.add(category)
-            categories.append({
+            group[category] = {
                 "category": category,
                 "department": department,
                 "subcategory": name,
                 "path": path,
                 "url": f"{ADORAMA_BASE_URL}{path}",
-            })
+            }
+        categories[department] = group
     return categories
 
 
-ADORAMA_CATEGORIES = _flatten_categories()
+ADORAMA_CATEGORIES = _group_categories()

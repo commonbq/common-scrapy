@@ -38,7 +38,6 @@ Flow:
 """
 
 import json
-import re
 import time
 from typing import Any
 from urllib.parse import quote, urlencode, urlsplit, urlunsplit
@@ -47,7 +46,7 @@ import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
 from common.spiders.dickssportinggoods_categories import (
-    DICKSSPORTINGGOODS_CATEGORY_INVENTORY,
+    DICKSSPORTINGGOODS_CATEGORIES,
 )
 
 SEARCH_ENDPOINT = "https://prod-catalog-product-api.dickssportinggoods.com/v2/search"
@@ -63,52 +62,6 @@ IMAGE_PRESET = "?$DSG_ProductCard$"
 # the plain route and `bypass=2/3/4` returned the Akamai "Site Unavailable" page.
 PRODUCT_API_BYPASS = 5
 
-_SLUG_RE = re.compile(r"[^a-z0-9]+")
-
-
-def _slugify(value: str) -> str:
-    return _SLUG_RE.sub("-", value.lower()).strip("-")
-
-
-def _iter_nodes(node: dict[str, Any]):
-    yield node
-    for child in node.get("subcategories") or []:
-        if isinstance(child, dict):
-            yield from _iter_nodes(child)
-
-
-def _load_categories() -> list[dict[str, Any]]:
-    """Flatten the nested SEO inventory into unique ``{category,url,...}`` rows.
-
-    Cross-listed nodes repeat under several departments with an identical URL
-    and ``catgroupId``, so dedupe on the URL and collect every department that
-    references the node.
-    """
-    by_url: dict[str, dict[str, Any]] = {}
-    ordered: list[dict[str, Any]] = []
-    for department, root in DICKSSPORTINGGOODS_CATEGORY_INVENTORY.items():
-        for node in _iter_nodes(root):
-            url = node.get("url")
-            catgroup_id = node.get("catgroupId")
-            if not url or catgroup_id is None:
-                continue
-            entry = by_url.get(url)
-            if entry is None:
-                entry = {
-                    "category": node.get("seoUrl") or _slugify(url),
-                    "name": node.get("name") or department,
-                    "url": url,
-                    "catgroupId": catgroup_id,
-                    "page_type": node.get("pageType"),
-                    "departments": [department],
-                }
-                by_url[url] = entry
-                ordered.append(entry)
-            elif department not in entry["departments"]:
-                entry["departments"].append(department)
-    return ordered
-
-
 class DickssportinggoodsListingSpider(BaseListingSpider):
     name = "dickssportinggoods_listing"
     allowed_domains = [
@@ -119,7 +72,7 @@ class DickssportinggoodsListingSpider(BaseListingSpider):
     ]
     require_category_arg = False
 
-    categories = _load_categories()
+    categories = DICKSSPORTINGGOODS_CATEGORIES
 
     PAGE_SIZE = PAGE_SIZE
 
@@ -189,8 +142,8 @@ class DickssportinggoodsListingSpider(BaseListingSpider):
     def _target_categories(self) -> list[dict[str, Any]]:
         target = self.resolve_target_url() if (self.url or self.category_url or self.category) else None
         if target is None:
-            return list(self.categories)
-        for entry in self.categories:
+            return list(self.iter_categories())
+        for entry in self.iter_categories():
             if entry["url"] == target or entry["category"] == self.category:
                 return [entry]
         available = ", ".join(self.available_categories()[:20])

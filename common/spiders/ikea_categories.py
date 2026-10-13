@@ -1,6 +1,7 @@
 import json
+import re
 
-IKE_A_CATEGORIES = json.loads(r'''
+_IKE_A_CATEGORY_LINKS = json.loads(r'''
 {
   "Storage & organization": [
     {
@@ -1030,3 +1031,36 @@ IKE_A_CATEGORIES = json.loads(r'''
   ]
 }
 ''')
+
+
+def _group_categories(
+    category_links: dict[str, list[dict[str, str]]],
+) -> dict[str, dict[str, dict[str, str]]]:
+    categories: dict[str, dict[str, dict[str, str]]] = {}
+    seen_urls: set[str] = set()
+    seen_categories: set[str] = set()
+    for department, links in category_links.items():
+        leaves = {}
+        for link in links:
+            url = link["url"]
+            if url in seen_urls:
+                continue
+            match = re.search(r"-([a-z]*\d+)/?$", url)
+            if not match:
+                continue
+            category = match.group(1)
+            if category in seen_categories:
+                raise ValueError(f"Duplicate IKEA category token: {category}")
+            seen_urls.add(url)
+            seen_categories.add(category)
+            leaves[category] = {
+                "department": department,
+                "name": link["name"],
+                "url": url,
+            }
+        if leaves:
+            categories[department] = leaves
+    return categories
+
+
+IKE_A_CATEGORIES = _group_categories(_IKE_A_CATEGORY_LINKS)

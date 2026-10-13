@@ -1,5 +1,6 @@
 import json
 import unittest
+from collections.abc import Mapping
 from pathlib import Path
 
 from scrapy.http import HtmlResponse, Request
@@ -30,6 +31,19 @@ class LululemonListingSpiderTest(unittest.TestCase):
         response = HtmlResponse(request.url, body="<html></html>", encoding="utf-8", request=request)
         with self.assertRaisesRegex(RuntimeError, "No Lululemon __NEXT_DATA__"):
             list(self.spider.parse(response))
+
+    def test_categories_use_grouped_mapping_contract(self):
+        self.assertIsInstance(self.spider.categories, Mapping)
+        self.assertTrue(
+            all(isinstance(group, Mapping) for group in self.spider.categories.values())
+        )
+        entries = list(self.spider.iter_categories())
+        self.assertEqual(len(entries), 112)
+        self.assertEqual(len({entry["category"] for entry in entries}), len(entries))
+        self.assertEqual(
+            self.spider.category_entry("women-leggings")["url"],
+            "https://shop.lululemon.com/c/women-leggings/n1udsq",
+        )
 
 
 if __name__ == "__main__":

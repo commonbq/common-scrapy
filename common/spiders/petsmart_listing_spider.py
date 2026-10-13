@@ -274,20 +274,21 @@ class PetsmartListingSpider(BaseListingSpider):
     def _target_categories(self) -> list[dict[str, Any]]:
         target = self.resolve_target_url() if (self.url or self.category_url or self.category) else None
         if target is None:
-            return list(self.categories)
-        for entry in self.categories:
+            return list(self.iter_categories())
+        for entry in self.iter_categories():
             if entry["url"] == target or entry["category"] == self.category:
                 return [entry]
         # A PLP URL that is in the inventory only through an override, or a
         # hand-typed path: match on the slug of the incoming URL.
         slug = self._url_slug(target)
-        for entry in self.categories:
+        for entry in self.iter_categories():
             if entry["category"] == slug:
                 return [entry]
+        category_count = sum(len(leaves) for leaves in self._all_category_entries().values())
         raise ValueError(
             f"Unknown category '{self.category or target}'. petsmart_listing filters the "
             "first-party search API, so the target must be one of the bundled inventory "
-            f"entries ({len(self.categories)} paths / 7 departments). Example: "
+            f"entries ({category_count} paths / 7 departments). Example: "
             "-a category=dog/food/dry-food or -a category_url=https://www.petsmart.com/cat/toys/"
         )
 

@@ -12,14 +12,30 @@ tree below was assembled by recursing on each child's ``seoUrl``. It holds
 always with the same ``catgroupId``).
 
 Each node carries ``name``/``seoUrl``/``url``/``catgroupId``/``pageType``
-(``c`` = CLP, ``f`` = filtered PLP, ``s`` = search-style). The spider flattens
-this tree and derives every product request's ``selectedCategory`` as
-``12301_<catgroupId>``.
+(``c`` = CLP, ``f`` = filtered PLP, ``s`` = search-style). This module converts
+the tree to the base spider's grouped mapping and the spider derives every
+product request's ``selectedCategory`` as ``12301_<catgroupId>``.
 """
 
 from __future__ import annotations
 
 import json
+import re
+from typing import Any
+
+
+_SLUG_RE = re.compile(r"[^a-z0-9]+")
+
+
+def _slugify(value: str) -> str:
+    return _SLUG_RE.sub("-", value.lower()).strip("-")
+
+
+def _iter_nodes(node: dict[str, Any]):
+    yield node
+    for child in node.get("subcategories") or []:
+        if isinstance(child, dict):
+            yield from _iter_nodes(child)
 
 DICKSSPORTINGGOODS_CATEGORY_INVENTORY = json.loads(
     r"""
@@ -10596,3 +10612,45 @@ DICKSSPORTINGGOODS_CATEGORY_INVENTORY = json.loads(
 }
 """
 )
+
+
+def _group_categories() -> dict[str, dict[str, dict[str, Any]]]:
+    """Convert the captured tree to the base spider's grouped category schema.
+
+    Cross-listed nodes keep every department in ``departments`` but belong to
+    the first department encountered so every leaf key and output path remains
+    unique.
+    """
+    grouped: dict[str, dict[str, dict[str, Any]]] = {
+        department: {} for department in DICKSSPORTINGGOODS_CATEGORY_INVENTORY
+    }
+    by_url: dict[str, dict[str, Any]] = {}
+
+    for department, root in DICKSSPORTINGGOODS_CATEGORY_INVENTORY.items():
+        for node in _iter_nodes(root):
+            url = node.get("url")
+            catgroup_id = node.get("catgroupId")
+            if not url or catgroup_id is None:
+                continue
+
+            existing = by_url.get(url)
+            if existing is not None:
+                if department not in existing["departments"]:
+                    existing["departments"].append(department)
+                continue
+
+            category = node.get("seoUrl") or _slugify(url)
+            entry = {
+                "url": url,
+                "name": node.get("name") or department,
+                "catgroupId": catgroup_id,
+                "page_type": node.get("pageType"),
+                "departments": [department],
+            }
+            grouped[department][category] = entry
+            by_url[url] = entry
+
+    return grouped
+
+
+DICKSSPORTINGGOODS_CATEGORIES = _group_categories()

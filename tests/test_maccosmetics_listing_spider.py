@@ -22,7 +22,7 @@ class MaccosmeticsListingSpiderTest(unittest.TestCase):
     def test_feed_export_fields(self):
         self.assertEqual(
             list(self.spider.custom_settings["FEED_EXPORT_FIELDS"]),
-            ["category", "item_id", "sku", "title", "brand", "product_type", "url", "image_url", "price", "currency", "page", "source", "raw"],
+            ["category", "item_id", "sku", "title", "brand", "product_type", "url", "image_url", "price", "currency", "page", "source", "raw", "timestamp"],
         )
 
     def test_parses_shopify_catalog(self):
@@ -34,8 +34,10 @@ class MaccosmeticsListingSpiderTest(unittest.TestCase):
         self.assertEqual(item["image_url"], "https://cdn.example/studio.png")
 
     def test_inventory_matches_current_sitemap(self):
-        self.assertEqual(len(self.spider.categories), 79)
-        self.assertIn("face", {entry["category"] for entry in self.spider.categories})
+        entries = list(self.spider.iter_categories())
+        self.assertEqual(len(entries), 79)
+        self.assertIn("face", {entry["category"] for entry in entries})
+        self.assertEqual(self.spider.category_entry("face")["group"], "collections")
 
 
 if __name__ == "__main__":

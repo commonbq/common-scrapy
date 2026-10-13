@@ -42,7 +42,9 @@ class WayfairListingSpider(BaseListingSpider):
     def start_requests(self):
         self._seen_products.clear()
         target = self.resolve_target_url()
-        selected = next((row for row in self.categories if row["url"] == target), {})
+        selected = next(
+            (row for row in self.iter_categories() if row["url"] == target), {}
+        )
         yield scrapy.Request(
             target,
             callback=self.parse,

@@ -1,5 +1,6 @@
 import json
 import unittest
+from collections.abc import Mapping
 
 import scrapy
 from scrapy.http import HtmlResponse, Request
@@ -58,6 +59,24 @@ class NeweggListingSpiderTests(unittest.TestCase):
             "Subcategory": {"SubcategoryDescription": "Desktop CPU Processor"},
         },
     }
+
+    def test_categories_use_grouped_mapping_with_full_inventory(self):
+        categories = NeweggListingSpider.categories
+        self.assertIsInstance(categories, Mapping)
+        self.assertTrue(all(isinstance(leaves, Mapping) for leaves in categories.values()))
+        self.assertGreater(sum(len(leaves) for leaves in categories.values()), 20)
+
+        spider = NeweggListingSpider(category="desktop-cpu-processors")
+        entry = spider.category_entry("desktop-cpu-processors")
+        self.assertEqual(entry["group"], "featured")
+        self.assertEqual(
+            entry["url"],
+            "https://www.newegg.com/Desktop-CPU-Processor/SubCategory/ID-343",
+        )
+        self.assertEqual(
+            spider.category_entry("all-current-categories")["url"],
+            "https://www.newegg.com/api/RolloverMenu?CountryCode=USA",
+        )
 
     def test_hydration_mapping_feed_fields_and_pagination(self):
         spider = NeweggListingSpider(category="desktop-cpu-processors", max_pages=2)

@@ -31,8 +31,14 @@ def split(outputs):
 
 def test_complete_navigation_taxonomy():
     assert set(CHEWY_CATEGORY_INVENTORY) == {"dog", "cat", "more-pets-farm"}
-    assert len(CHEWY_CATEGORIES) >= 170
-    assert len({entry["url"] for entry in CHEWY_CATEGORIES}) == len(CHEWY_CATEGORIES)
+    assert set(CHEWY_CATEGORIES) == {"dog", "cat", "more-pets-farm"}
+    spider = ChewyListingSpider(category="food-332")
+    entries = list(spider.iter_categories())
+    assert len(entries) >= 170
+    assert len({entry["url"] for entry in entries}) == len(entries)
+    assert all(entry["group"] in CHEWY_CATEGORIES for entry in entries)
+    assert all(entry["section"] for entry in entries)
+    assert spider.resolve_target_url() == "https://www.chewy.com/b/food-332"
 
 
 def test_hydration_mapping_feed_contract_and_pagination():

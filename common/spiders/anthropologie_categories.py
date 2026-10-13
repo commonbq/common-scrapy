@@ -1,21 +1,40 @@
-"""Anthropologie category inventory captured from the US site on 2026-09-27."""
+"""Anthropologie US category inventory captured from the live nav on 2026-10-11."""
 
 ANTHROPOLOGIE_CATEGORIES = {
-    "clothing": [
-        {"category": "womens-clothing", "url": "https://www.anthropologie.com/womens-clothing"},
-        {"category": "womens-clothing-ca", "url": "https://www.anthropologie.com/en-ca/womens-clothing"},
-        {"category": "womens-clothing-page-2", "url": "https://www.anthropologie.com/womens-clothing?page=2"},
-        {"category": "dresses", "url": "https://www.anthropologie.com/dresses"},
-        {"category": "dresses-long-sleeve", "url": "https://www.anthropologie.com/dresses?sleevelength=Long+Sleeve"},
-        {"category": "dresses-shift", "url": "https://www.anthropologie.com/dresses?style=Shift"},
-        {"category": "dresses-slip", "url": "https://www.anthropologie.com/dresses?style=Slip"},
-        {"category": "shoes", "url": "https://www.anthropologie.com/shoes"},
-    ],
-    "sale": [
-        {"category": "sale", "url": "https://www.anthropologie.com/sale-all"},
-    ],
+    "new": {
+        "new-clothes": "https://www.anthropologie.com/new-clothes",
+    },
+    "gifts-holiday": {
+        "all-gifts": "https://www.anthropologie.com/all-gifts",
+    },
+    "top-rated": {
+        "top-rated-products": "https://www.anthropologie.com/top-rated-products",
+    },
+    "dresses": {
+        "dresses": "https://www.anthropologie.com/dresses",
+    },
+    "clothing": {
+        "clothes": "https://www.anthropologie.com/clothes",
+    },
+    "shoes": {
+        "shoes": "https://www.anthropologie.com/shoes",
+    },
+    "accessories": {
+        "shoes-accessories": "https://www.anthropologie.com/shoes-accessories",
+    },
+    "weddings": {
+        "bhldn-weddings": "https://www.anthropologie.com/bhldn-weddings",
+    },
+    "home-furniture": {
+        "house-home": "https://www.anthropologie.com/house-home",
+    },
+    "beauty": {
+        "beauty-wellness": "https://www.anthropologie.com/beauty-wellness",
+    },
+    "maeve": {
+        "maeve": "https://www.anthropologie.com/maeve",
+    },
+    "sale": {
+        "sale-all": "https://www.anthropologie.com/sale-all",
+    },
 }
-
-
-def flattened_categories() -> list[dict[str, str]]:
-    return [entry for entries in ANTHROPOLOGIE_CATEGORIES.values() for entry in entries]

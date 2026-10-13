@@ -22,10 +22,7 @@ class HobbylobbyListingSpider(BaseListingSpider):
     name = "hobbylobby_listing"
     allowed_domains = ["hobbylobby.com", "www.hobbylobby.com"]
     require_category_arg = False
-    categories = [
-        {"category": category, "url": url}
-        for category, url in HOBBY_LOBBY_CATEGORIES.items()
-    ]
+    categories = HOBBY_LOBBY_CATEGORIES
 
     custom_settings = {
         "CONCURRENT_REQUESTS_PER_DOMAIN": 1,

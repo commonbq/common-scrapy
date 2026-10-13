@@ -3,6 +3,7 @@ import json
 import pytest
 from scrapy.http import HtmlResponse, Request
 
+from common.spiders.hilton_categories import HILTON_CATEGORIES
 from common.spiders.hilton_listing_spider import HiltonListingSpider
 
 
@@ -26,8 +27,16 @@ def hotel(item_id="NYCTEPO"):
     }
 
 
+def test_categories_match_grouped_mapping_contract():
+    assert list(HILTON_CATEGORIES) == ["states", "amenities-and-features", "brands"]
+    assert sum(map(len, HILTON_CATEGORIES.values())) == 92
+    assert HiltonListingSpider(category="new-york").resolve_target_url() == (
+        "https://www.hilton.com/en/locations/usa/new-york/"
+    )
+
+
 def test_maps_next_data_hotel_and_feed_contract():
-    spider = HiltonListingSpider(category="new-york-ny")
+    spider = HiltonListingSpider(category="new-york")
     item = list(spider.parse(response([hotel()])))[0]
     assert item["item_id"] == "NYCTEPO"
     assert item["url"] == "https://www.hilton.com/en/hotels/nyctepo-tempo/"
@@ -38,13 +47,13 @@ def test_maps_next_data_hotel_and_feed_contract():
 
 
 def test_deduplicates_by_property_code():
-    spider = HiltonListingSpider(category="new-york-ny")
+    spider = HiltonListingSpider(category="new-york")
     assert len(list(spider.parse(response([hotel(), hotel()])))) == 1
 
 
 @pytest.mark.parametrize("body", ["<html></html>", "captcha", '<script id="__NEXT_DATA__">{}</script>'])
 def test_rejects_missing_invalid_or_challenge_payload(body):
-    spider = HiltonListingSpider(category="new-york-ny")
+    spider = HiltonListingSpider(category="new-york")
     page = HtmlResponse("https://www.hilton.com/x", body=body, encoding="utf-8")
     with pytest.raises(RuntimeError):
         list(spider.parse(page))

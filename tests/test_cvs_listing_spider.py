@@ -4,7 +4,7 @@ import unittest
 from scrapy.http import HtmlResponse, Request, TextResponse
 
 from common.spiders.cvs_listing_spider import CvsListingSpider
-from common.spiders.cvs_categories import CVS_CATEGORY_INVENTORY
+from common.spiders.cvs_categories import CVS_CATEGORIES, CVS_CATEGORY_INVENTORY
 
 LISTING_URL = "https://www.cvs.com/shop/health-medicine"
 
@@ -100,8 +100,9 @@ class CvsCategoryInventoryTests(unittest.TestCase):
         self.assertNotIn("/shop/content/", blob)
 
     def test_categories_flatten_to_unique_rows(self):
-        slugs = [entry["category"] for entry in CvsListingSpider.categories]
-        urls = [entry["url"] for entry in CvsListingSpider.categories]
+        rows = list(CvsListingSpider(category="health-medicine").iter_categories())
+        slugs = [entry["category"] for entry in rows]
+        urls = [entry["url"] for entry in rows]
         self.assertEqual(len(slugs), len(set(slugs)))
         self.assertEqual(len(urls), len(set(urls)))
         self.assertGreaterEqual(len(urls), 700)
@@ -110,7 +111,9 @@ class CvsCategoryInventoryTests(unittest.TestCase):
 
     def test_categories_cover_subcategory_paths(self):
         entry = next(
-            e for e in CvsListingSpider.categories if e["category"] == "allergy-medicine"
+            e
+            for e in CvsListingSpider(category="health-medicine").iter_categories()
+            if e["category"] == "allergy-medicine"
         )
         self.assertEqual(
             entry["url"],
@@ -123,9 +126,18 @@ class CvsCategoryInventoryTests(unittest.TestCase):
         self.assertEqual(entry["category_id"], "cat510010")
 
     def test_cross_listed_labels_get_unique_slugs(self):
-        rows = [e for e in CvsListingSpider.categories if "bar-soap" in e["category"]]
+        rows = [
+            e
+            for e in CvsListingSpider(category="health-medicine").iter_categories()
+            if "bar-soap" in e["category"]
+        ]
         self.assertGreaterEqual(len(rows), 2)
         self.assertEqual(len({r["category"] for r in rows}), len(rows))
+
+    def test_categories_use_grouped_mapping_contract(self):
+        self.assertIs(CvsListingSpider.categories, CVS_CATEGORIES)
+        self.assertTrue(CVS_CATEGORIES)
+        self.assertTrue(all(isinstance(group, dict) for group in CVS_CATEGORIES.values()))
 
 
 class CvsPageUrlTests(unittest.TestCase):

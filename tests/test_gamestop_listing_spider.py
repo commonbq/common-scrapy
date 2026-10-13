@@ -45,11 +45,16 @@ class GamestopListingSpiderTests(unittest.TestCase):
     # ------------------------------------------------------------ inventory
 
     def test_categories_are_unique_and_cover_the_inventory(self):
-        names = [entry["category"] for entry in self.spider.categories]
+        entries = list(self.spider.iter_categories())
+        names = [entry["category"] for entry in entries]
         self.assertEqual(len(names), len(set(names)))
 
-        expected = {url for urls in GAMESTOP_CATEGORIES.values() for url in urls}
-        self.assertEqual({entry["url"] for entry in self.spider.categories}, expected)
+        expected = {
+            entry["url"]
+            for group in GAMESTOP_CATEGORIES.values()
+            for entry in group.values()
+        }
+        self.assertEqual({entry["url"] for entry in entries}, expected)
 
     def test_category_slug_disambiguates_repeated_leaf_slugs(self):
         # `nintendo-switch` exists under both departments, so leaf-only slugs would

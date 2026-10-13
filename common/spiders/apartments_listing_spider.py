@@ -59,7 +59,7 @@ class ApartmentsListingSpider(BaseListingSpider):
         if self.url or self.category_url or self.category:
             yield self._request(self.resolve_target_url(), self.category or "custom", 1)
             return
-        for entry in self.categories:
+        for entry in self.iter_categories():
             yield self._request(entry["url"], entry["category"], 1)
 
     def _request(self, url: str, category: str, page: int):

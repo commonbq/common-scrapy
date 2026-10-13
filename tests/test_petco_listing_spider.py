@@ -1,5 +1,6 @@
 import json
 import unittest
+from collections.abc import Mapping
 from pathlib import Path
 
 from scrapy.http import Request, TextResponse
@@ -69,10 +70,15 @@ class PetcoListingSpiderTests(unittest.TestCase):
         self.assertEqual(
             sum(_node_counts(group) for group in PETCO_CATEGORY_INVENTORY.values()), 286
         )
-        self.assertEqual(len(PETCO_CATEGORIES), 264)
-        self.assertEqual(len({entry["url"] for entry in PETCO_CATEGORIES}), 264)
+        self.assertIsInstance(PETCO_CATEGORIES, Mapping)
+        self.assertTrue(
+            all(isinstance(leaves, Mapping) for leaves in PETCO_CATEGORIES.values())
+        )
+        entries = list(self.spider.iter_categories())
+        self.assertEqual(len(entries), 264)
+        self.assertEqual(len({entry["url"] for entry in entries}), 264)
         selected = next(
-            entry for entry in PETCO_CATEGORIES
+            entry for entry in entries
             if entry["category"] == "cat-cat-food-dry-cat-food"
         )
         self.assertEqual(selected["url"], LISTING_URL)
