@@ -1,6 +1,11 @@
 from __future__ import annotations
 
-"""Nordstrom Rack listings from the server-rendered ItemList JSON-LD."""
+"""Nordstrom Rack listings from the server-rendered ItemList JSON-LD.
+
+The category inventory (grouped ``{department: {leaf: url}}``) comes from the
+site's own ``navigation-sitemap.xml``; see
+:mod:`common.spiders.nordstromrack_categories`.
+"""
 
 import json
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
@@ -8,18 +13,7 @@ from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
-
-
-NORDSTROMRACK_CATEGORIES = {
-    "women": "https://www.nordstromrack.com/c/women",
-    "men": "https://www.nordstromrack.com/c/men",
-    "kids": "https://www.nordstromrack.com/c/kids",
-    "shoes": "https://www.nordstromrack.com/c/shoes",
-    "bags-and-accessories": "https://www.nordstromrack.com/c/bags-and-accessories",
-    "beauty": "https://www.nordstromrack.com/c/beauty",
-    "home": "https://www.nordstromrack.com/c/home",
-    "clearance": "https://www.nordstromrack.com/c/clearance",
-}
+from common.spiders.nordstromrack_categories import NORDSTROMRACK_CATEGORIES
 
 
 class NordstromrackListingSpider(BaseListingSpider):
@@ -42,17 +36,23 @@ class NordstromrackListingSpider(BaseListingSpider):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if not self.category:
-            raise ValueError(f"Provide -a category=<name>. Available categories: {', '.join(self.available_categories())}")
-        if not (self.url or self.category_url) and self.category not in self.categories:
-            raise ValueError(f"Unknown category '{self.category}'. Available categories: {', '.join(self.available_categories())}")
+        if not (self.category or self.category_url or self.url):
+            raise ValueError(
+                "Provide -a category=<leaf>. Available categories: "
+                f"{', '.join(self.available_categories())}"
+            )
+        if not (self.url or self.category_url) and self.category_entry(self.category) is None:
+            raise ValueError(
+                f"Unknown category {self.category!r}. Available categories: "
+                f"{', '.join(self.available_categories())}"
+            )
         self._seen: set[str] = set()
 
-    def available_categories(self):
-        return sorted(self.categories)
-
     def start_requests(self):
-        url = self.url or self.category_url or self.categories[self.category]
+        url = self.url or self.category_url
+        if not url:
+            entry = self.category_entry(self.category)
+            url = entry.get("url")
         yield scrapy.Request(self._page_url(url, 1), callback=self.parse, headers=self._headers(),
                              meta={"category": self.category, "page": 1, "listing_url": url})
 
