@@ -3,6 +3,7 @@ import json
 import pytest
 from scrapy.http import HtmlResponse, Request
 
+from common.spiders.rent_categories import RENT_CATEGORIES
 from common.spiders.rent_listing_spider import RentListingSpider
 
 
@@ -53,3 +54,28 @@ def test_rejects_missing_or_invalid_hydration(body):
     page = HtmlResponse(request.url, body=body, encoding="utf-8", request=request)
     with pytest.raises(RuntimeError):
         list(spider.parse(page))
+
+
+def test_categories_are_grouped_and_complete():
+    assert isinstance(RENT_CATEGORIES, dict)
+    assert all(isinstance(v, dict) for v in RENT_CATEGORIES.values())
+    leaves = [leaf for group in RENT_CATEGORIES.values() for leaf in group]
+    assert len(leaves) == 18077
+    assert len(set(leaves)) == 18077
+    assert RENT_CATEGORIES["CA"]["los-angeles-ca"] == (
+        "https://www.rent.com/california/los-angeles-apartments"
+    )
+    assert len(RENT_CATEGORIES) == 51
+
+
+def test_categories_reject_unknown_leaf():
+    with pytest.raises(ValueError, match="Unknown category"):
+        RentListingSpider(category="nowhere-xx")
+
+
+def test_all_category_expands_every_leaf():
+    spider = RentListingSpider(category="all", max_pages=1)
+    requests = list(spider.start_requests())
+    assert len(requests) == 18077
+    assert len({r.meta["base_url"] for r in requests}) == 18077
+    assert all(r.url.startswith("https://www.rent.com/") for r in requests)

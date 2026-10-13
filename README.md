@@ -267,7 +267,7 @@ Working spiders running daily in production:
 | [`realtor_listing`](#realtor_listing) | Active | bootstrap | residential ScrapeOps + `bypass=5` required | Realtor.com sale listings from authoritative React Router streamed SSR loader state. | 42/page | All 50 states plus DC, grouped by US Census region | `{"item_id":"9573322873","listing_id":"2994590506","title":"11201 Chalon Rd, Los Angeles, CA 90049","price":400000000,"source":"realtor_react_router_stream",...}` |
 | [`zillow_listing`](#zillow_listing) | Active | bootstrap | PerimeterX | Zillow sale listings from server-rendered Next.js `__NEXT_DATA__`, including path-based SSR pagination. | 82 (2 pages, `houston-tx`) | 20 major US city markets | `{"item_id":"55476612","title":"8323 Gentlewood Ct, Houston, TX 77095","price":375000,"beds":4,"baths":3,"area":2992,"source":"zillow_next_data"}` |
 | [`loopnet_listing`](#loopnet_listing) | Experimental | api | ScrapeOps US proxy | Commercial-property records from LoopNet's first-party `/services/search` JSON service and its API-delivered placard payload, initialized from the page's search-criteria bootstrap; no listing-page or JSON-LD fallback. | Live smoke tested below | 20 sale/lease property-type searches | `{"item_id":"42148644","title":"THE GARAGE Luxury Condos","source":"loopnet_search_api"...}` |
-| [`rent_listing`](#rent_listing) | Active | bootstrap | ScrapeOps US proxy | Rent.com apartment listings from authoritative server-rendered Next.js `__NEXT_DATA__`, with `/page-N` pagination and no fallback. | 30/page | 20 major US rental markets | `{"category":"los-angeles-ca","item_id":"lc6732384","title":"El Conquistador","price_min":1664,"source":"rent_next_data"...}` |
+| [`rent_listing`](#rent_listing) | Active | bootstrap | ScrapeOps US proxy | Rent.com apartment listings from authoritative server-rendered Next.js `__NEXT_DATA__`, with `/page-N` pagination and no fallback. | 30/page | 51 state groups / 18,077 city markets (grouped mapping) from the first-party sitemap | `{"category":"los-angeles-ca","item_id":"lc6732384","title":"El Conquistador","price_min":1664,"source":"rent_next_data"...}` |
 | [`apartments_listing`](#apartments_listing) | Experimental | bootstrap | ScrapeOps US proxy | Apartments.com rental map inventory from authoritative server-rendered `window.aptsState`; no HTML-card or JSON-LD fallback. | 567 unique listings in captured New York page 1 state | 20 major US rental markets | `{"category":"new-york-ny","item_id":"1j2c5h6","rent_min":5075,"latitude":40.7766,"source":"apartments_apts_state_bootstrap"...}` |
 | [`hilton_listing`](#hilton_listing) | Active | bootstrap | ScrapeOps US proxy | Hilton destination hotels from authoritative server-rendered Next.js `__NEXT_DATA__`; no HTML or JSON-LD fallback. | Up to 20 | 20 major US city markets | `{"category":"new-york-ny","item_id":"NYCTEPO","title":"Tempo by Hilton New York Times Square","source":"hilton_next_data"...}` |
 | [`basspro_listing`](#basspro_listing) | Active | api | Akamai on the storefront legs (403 direct); the Coveo search leg must stay unproxied | Bass Pro Shops category listings from the storefront Coveo Headless search API (`platform.cloud.coveo.com/rest/search/v2`); taxonomy from the `__NEXT_DATA__.props.megaNavHtmlV2` mega-nav. | 96 (2 pages, rod-reel-combos) | 11 departments / 909 leaves (grouped mapping) | `{"category":"Fishing/Rod & Reel Combos","item_id":"3472884","title":"Bass Pro Shops Megacast Baitcast Combo","brand":"Bass Pro Shops","url":"https://www.basspro.com/p/bass-pro-shops-megacast-baitcast-combo","price":69.99,"availability":"InStock","source":"basspro_coveo"...}` |
@@ -4497,10 +4497,16 @@ canonical `/page-N` pages and has no rendered-HTML or JSON-LD fallback.
 scrapy crawl rent_listing -a category=los-angeles-ca -a max_pages=1 -s HTTPCACHE_ENABLED=False -O rent.jsonl
 ```
 
-The spider exposes 20 major US rental markets from `rent_categories.py`. Its ordered
-`FEED_EXPORT_FIELDS` cover property identity, location, price and bed ranges,
-floor-plan bath and square-footage ranges, availability, ratings, amenities, photo
-IDs, contact details, pagination metadata, and the authoritative raw record.
+The spider exposes the complete Rent.com city inventory from `rent_categories.py`:
+a grouped `{state: {city-slug: url}}` mapping of **18,077 city markets across 51
+state groups**, mined from Rent.com's first-party `sitemap.xml`
+(`SrpCityApt1Ref` shards, captured 2026-10-13). Grouping by the trailing state
+code keeps every leaf name globally unique for the DAG output paths. Run one
+market with `-a category=<city-slug>`, every market with `-a category=all`, or a
+custom `category_url`/`url`. Its ordered `FEED_EXPORT_FIELDS` cover property
+identity, location, price and bed ranges, floor-plan bath and square-footage
+ranges, availability, ratings, amenities, photo IDs, contact details, pagination
+metadata, and the authoritative raw record.
 
 ### hotpads_listing
 
