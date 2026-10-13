@@ -41,4 +41,5 @@ build/
 
 sample/
 data/
+dags/
 !sample/*.json

@@ -43,13 +43,20 @@ class ZillowListingSpider(BaseListingSpider):
         self.seen = set()
 
     def start_requests(self):
+        if self.category == "all":
+            for target in self.iter_categories():
+                yield self._request(target["url"], 1, category=target["category"])
+            return
         yield self._request(self.resolve_target_url(), 1)
 
-    def _request(self, base_url, page):
+    def _request(self, base_url, page, category=None):
         settings = getattr(self, "settings", {})
         return scrapy.Request(
             self._page_url(base_url, page), callback=self.parse, headers=self.headers,
-            meta={"proxy": settings.get("PROXY"), "page": page, "base_url": base_url},
+            meta={
+                "proxy": settings.get("PROXY"), "page": page, "base_url": base_url,
+                "category": category or self.category or "custom",
+            },
             dont_filter=True,
         )
 
@@ -113,11 +120,14 @@ class ZillowListingSpider(BaseListingSpider):
                 "rent_zestimate": home.get("rentZestimate"), "broker": product.get("brokerName"),
                 "days_on_zillow": home.get("daysOnZillow"), "time_on_zillow": home.get("timeOnZillow"),
                 "listing_sub_type": home.get("listing_sub_type"), "has_3d_model": product.get("has3DModel"),
-                "category": self.category or "custom", "region_id": region.get("regionId"),
+                "category": response.meta.get("category") or self.category or "custom",
+                "region_id": region.get("regionId"),
                 "region_name": region.get("displayName") or region.get("regionName"),
                 "page": page, "position": position, "total_count": total,
                 "source": "zillow_next_data", "raw": product,
                 "timestamp": self.job_timestamp,
             }
         if page < self.max_pages and results and new_count == len(results):
-            yield self._request(response.meta["base_url"], page + 1)
+            yield self._request(
+                response.meta["base_url"], page + 1, category=response.meta.get("category")
+            )
