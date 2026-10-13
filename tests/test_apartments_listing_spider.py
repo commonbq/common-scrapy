@@ -35,12 +35,21 @@ class ApartmentsListingSpiderTest(unittest.TestCase):
             }
         }
 
-    def test_taxonomy_has_exact_twenty_markets(self):
-        self.assertEqual(["all"], list(APARTMENTS_CATEGORIES))
-        self.assertEqual(20, len(APARTMENTS_CATEGORIES["all"]))
+    def test_taxonomy_is_state_grouped_inventory(self):
+        self.assertTrue(all(isinstance(v, dict) for v in APARTMENTS_CATEGORIES.values()))
+        self.assertIn("NY", APARTMENTS_CATEGORIES)
+        self.assertEqual(
+            "https://www.apartments.com/new-york-ny/",
+            APARTMENTS_CATEGORIES["NY"]["new-york-ny"],
+        )
+        self.assertEqual("new-york-ny", self.spider.category_entry("new-york-ny")["category"])
+        self.assertEqual(
+            "https://www.apartments.com/new-york-ny/",
+            self.spider.resolve_target_url(),
+        )
         entries = list(self.spider.iter_categories())
-        self.assertEqual("new-york-ny", entries[0]["category"])
-        self.assertEqual("boston-ma", entries[-1]["category"])
+        self.assertGreater(len(entries), 10000)
+        self.assertTrue(all(entry["group"] and entry["url"] for entry in entries))
 
     def test_bootstrap_item_mapping_and_pagination(self):
         output = list(self.spider.parse(response(self.state)))

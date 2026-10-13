@@ -56,11 +56,11 @@ class ApartmentsListingSpider(BaseListingSpider):
         self.seen: set[str] = set()
 
     def start_requests(self):
-        if self.url or self.category_url or self.category:
-            yield self._request(self.resolve_target_url(), self.category or "custom", 1)
+        if self.category == "all" or not (self.url or self.category_url or self.category):
+            for entry in self.iter_categories():
+                yield self._request(entry["url"], entry["category"], 1)
             return
-        for entry in self.iter_categories():
-            yield self._request(entry["url"], entry["category"], 1)
+        yield self._request(self.resolve_target_url(), self.category or "custom", 1)
 
     def _request(self, url: str, category: str, page: int):
         settings = getattr(self, "settings", {})
