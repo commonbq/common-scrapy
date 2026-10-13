@@ -1,8 +1,29 @@
 import json
+from collections.abc import Mapping
 
 from scrapy.http import HtmlResponse, Request
 
+from common.spiders.zumper_categories import ZUMPER_CATEGORIES
 from common.spiders.zumper_listing_spider import ZumperListingSpider
+
+
+def test_categories_are_grouped_mapping():
+    assert isinstance(ZUMPER_CATEGORIES, Mapping)
+    assert all(isinstance(group, Mapping) for group in ZUMPER_CATEGORIES.values())
+    leaves = [leaf for group in ZUMPER_CATEGORIES.values() for leaf in group]
+    assert len(leaves) == 10684
+    assert len(ZUMPER_CATEGORIES) == 61
+    assert "new-york-ny" in ZUMPER_CATEGORIES["NY"]
+    assert ZUMPER_CATEGORIES["NY"]["new-york-ny"].endswith(
+        "/apartments-for-rent/new-york-ny"
+    )
+
+
+def test_category_entry_resolves_leaf_across_groups():
+    spider = ZumperListingSpider(category="new-york-ny")
+    entry = spider.category_entry("new-york-ny")
+    assert entry["group"] == "NY"
+    assert entry["url"].endswith("/apartments-for-rent/new-york-ny")
 
 
 def response_for(state):
