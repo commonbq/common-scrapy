@@ -3,6 +3,7 @@ import json
 import pytest
 from scrapy.http import HtmlResponse, Request
 
+from common.spiders.hotpads_categories import HOTPADS_CATEGORIES
 from common.spiders.hotpads_listing_spider import HotPadsListingSpider
 
 
@@ -29,6 +30,28 @@ def building(item_id="abc"):
                     "price": {"min": 3000, "max": 5000}},
         "tags": ["active"], "unitCount": 4, "contactPhone": "555-0100",
     }]}
+
+
+def test_categories_are_grouped_and_unique():
+    leaves = [
+        (leaf, url)
+        for group in HOTPADS_CATEGORIES.values()
+        for leaf, url in group.items()
+    ]
+    names = [leaf for leaf, _ in leaves]
+    assert len(names) == len(set(names)) == 8373
+    assert len(HOTPADS_CATEGORIES) == 62
+    assert "new-york-ny" in HOTPADS_CATEGORIES["NY"]
+    assert "los-angeles-ca" in HOTPADS_CATEGORIES["CA"]
+    for leaf, url in leaves:
+        assert url == f"https://hotpads.com/{leaf}/apartments-for-rent"
+
+
+def test_all_category_starts_every_market():
+    spider = HotPadsListingSpider(category="all", max_pages=1)
+    requests = list(spider.start_requests())
+    assert len(requests) == 8373
+    assert requests[0].meta["category"] == "ab"
 
 
 def test_maps_rsc_listing_and_paginates():

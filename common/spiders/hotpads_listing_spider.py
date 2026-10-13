@@ -44,11 +44,15 @@ class HotPadsListingSpider(BaseListingSpider):
         self.seen: set[str] = set()
 
     def start_requests(self):
+        if self.category == "all":
+            for entry in self.iter_categories():
+                yield self._request(entry["url"], entry["category"], 1)
+            return
         if self.url or self.category_url or self.category:
             category = self.category or "custom"
             yield self._request(self.resolve_target_url(), category, 1)
             return
-        for entry in self.categories:
+        for entry in self.iter_categories():
             yield self._request(entry["url"], entry["category"], 1)
 
     def _request(self, base_url: str, category: str, page: int):
