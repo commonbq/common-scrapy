@@ -20,10 +20,19 @@ def response_for(html, url="https://www.dunelm.com/category/home-and-furniture/b
 
 def test_categories_and_feed_contract():
     spider = make_spider()
-    assert len(list(spider.iter_categories())) == 20
+    # Grouped {department: {leaf: url}} mapping built from the full sitemap
+    # taxonomy: 46 departments / 670 crawlable leaves.
+    assert len(spider._all_category_entries()) == 46
+    assert len(list(spider.iter_categories())) == 670
+    # A bare leaf resolves across every group; a department-prefixed leaf is
+    # globally unique (DAG/GCS output paths use the bare leaf name).
     assert spider.category_entry("home-and-furniture")["url"].endswith(
         "/category/home-and-furniture"
     )
+    assert spider.category_entry("home-and-furniture-bathroom-towels")[
+        "url"
+    ].endswith("/category/home-and-furniture/bathroom/towels")
+    assert spider.category_entry("does-not-exist") is None
     fields = spider.custom_settings["FEED_EXPORT_FIELDS"]
     assert fields[0:4] == ["category", "item_id", "title", "brand"]
     assert fields[-3:] == ["source", "raw", "timestamp"]
