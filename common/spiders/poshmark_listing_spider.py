@@ -8,6 +8,7 @@ from curl_cffi import requests as curl_requests
 from scrapy.http import HtmlResponse
 
 from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.poshmark_categories import POSHMARK_CATEGORIES
 
 
 class PoshmarkBrowserDownloadMiddleware:
@@ -43,14 +44,7 @@ class PoshmarkListingSpider(BaseListingSpider):
     name = "poshmark_listing"
     allowed_domains = ["poshmark.com", "www.poshmark.com"]
 
-    categories = [
-        {"category": "women", "url": "https://poshmark.com/category/Women"},
-        {"category": "men", "url": "https://poshmark.com/category/Men"},
-        {"category": "kids", "url": "https://poshmark.com/category/Kids"},
-        {"category": "home", "url": "https://poshmark.com/category/Home"},
-        {"category": "electronics", "url": "https://poshmark.com/category/Electronics"},
-        {"category": "pets", "url": "https://poshmark.com/category/Pets"},
-    ]
+    categories = POSHMARK_CATEGORIES
 
     custom_settings = {
         "DOWNLOADER_MIDDLEWARES": {

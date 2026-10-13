@@ -18,7 +18,7 @@ _PAGE_RE = re.compile(r'href=["\']([^"\']*/(\d+)_p/[^"\']*)["\']')
 class TruliaListingSpider(BaseListingSpider):
     name = "trulia_listing"
     allowed_domains = ["trulia.com", "www.trulia.com"]
-    categories = [{"category": key, "url": url} for key, url in TRULIA_CATEGORIES.items()]
+    categories = TRULIA_CATEGORIES
     custom_settings = {
         "CONCURRENT_REQUESTS_PER_DOMAIN": 1,
         "DOWNLOAD_DELAY": 1.0,

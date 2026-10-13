@@ -52,12 +52,18 @@ SAMPLE = {
 
 
 class RealtorListingSpiderTests(unittest.TestCase):
-    def test_taxonomy_is_exactly_twenty_cities(self):
-        self.assertEqual(len(REALTOR_CATEGORIES), 20)
+    def test_taxonomy_covers_every_state_and_dc(self):
+        self.assertEqual(set(REALTOR_CATEGORIES), {"northeast", "midwest", "south", "west"})
+        self.assertEqual(sum(map(len, REALTOR_CATEGORIES.values())), 51)
+        self.assertEqual(
+            REALTOR_CATEGORIES["west"]["california"],
+            "https://www.realtor.com/realestateandhomes-search/California",
+        )
 
     def test_stream_decode_and_item_mapping(self):
-        spider = RealtorListingSpider(category="los-angeles-ca")
-        request = Request(REALTOR_CATEGORIES["los-angeles-ca"], meta={"page": 1, "base_url": REALTOR_CATEGORIES["los-angeles-ca"]})
+        spider = RealtorListingSpider(category="california")
+        url = REALTOR_CATEGORIES["west"]["california"]
+        request = Request(url, meta={"page": 1, "base_url": url})
         response = HtmlResponse(request.url, request=request, body=streamed_html([SAMPLE]).encode())
         output = list(spider.parse(response))
         self.assertEqual(len(output), 1)
@@ -71,8 +77,9 @@ class RealtorListingSpiderTests(unittest.TestCase):
         self.assertEqual(list(item), spider.custom_settings["FEED_EXPORT_FIELDS"])
 
     def test_deduplicates_and_paginates(self):
-        spider = RealtorListingSpider(category="los-angeles-ca", max_pages=2)
-        request = Request(REALTOR_CATEGORIES["los-angeles-ca"], meta={"page": 1, "base_url": REALTOR_CATEGORIES["los-angeles-ca"]})
+        spider = RealtorListingSpider(category="california", max_pages=2)
+        url = REALTOR_CATEGORIES["west"]["california"]
+        request = Request(url, meta={"page": 1, "base_url": url})
         response = HtmlResponse(request.url, request=request, body=streamed_html([SAMPLE, SAMPLE]).encode())
         output = list(spider.parse(response))
         self.assertEqual(sum(isinstance(value, dict) for value in output), 1)
@@ -80,7 +87,7 @@ class RealtorListingSpiderTests(unittest.TestCase):
         self.assertTrue(follow.url.endswith("/pg-2"))
 
     def test_proxy_options_are_idempotent(self):
-        spider = RealtorListingSpider(category="los-angeles-ca")
+        spider = RealtorListingSpider(category="california")
         spider.settings = {"PROXY": "http://scrapeops.country=us.residential=true:key@proxy.scrapeops.io:5353"}
         proxy = spider._realtor_proxy()
         self.assertEqual(proxy.count("residential=true"), 1)

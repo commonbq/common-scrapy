@@ -1,4 +1,5 @@
 import unittest
+from collections.abc import Mapping
 from pathlib import Path
 
 from scrapy.http import HtmlResponse, Request
@@ -28,6 +29,17 @@ class HomesListingSpiderTest(unittest.TestCase):
         self.assertEqual(search["count"], 23209)
         self.assertEqual(search["sc"]["pagingCriteria"]["resultSize"], 700)
         self.assertGreater(len(search["p"].split("~")), 600)
+
+    def test_categories_match_grouped_market_contract(self):
+        spider = HomesListingSpider(category="new-york-ny")
+        entries = list(spider.iter_categories())
+        self.assertIsInstance(spider.categories, Mapping)
+        self.assertTrue(
+            all(isinstance(group, Mapping) for group in spider.categories.values())
+        )
+        self.assertEqual(len(entries), 74)
+        self.assertEqual(len({entry["category"] for entry in entries}), 74)
+        self.assertEqual(spider.category_entry("new-york-ny")["group"], "NY")
 
     def test_emits_bootstrap_records_and_contract(self):
         spider = HomesListingSpider(category="new-york-ny")

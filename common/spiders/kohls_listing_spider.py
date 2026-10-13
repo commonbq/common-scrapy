@@ -6,6 +6,7 @@ from urllib.parse import quote, urlencode
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.kohls_categories import KOHLS_CATEGORIES
 
 
 class KohlsListingSpider(BaseListingSpider):
@@ -14,20 +15,7 @@ class KohlsListingSpider(BaseListingSpider):
     name = "kohls_listing"
     allowed_domains = ["kohls.com", "www.kohls.com", "127.0.0.1"]
 
-    categories = [
-        {"category": "women", "url": "https://www.kohls.com/catalog/womens.jsp", "cn": "Gender:Womens"},
-        {"category": "women-clothing", "url": "https://www.kohls.com/catalog/womens-clothing.jsp", "cn": "Gender:Womens Department:Clothing"},
-        {"category": "men", "url": "https://www.kohls.com/catalog/mens.jsp", "cn": "Gender:Mens"},
-        {"category": "men-clothing", "url": "https://www.kohls.com/catalog/mens-clothing.jsp", "cn": "Gender:Mens Department:Clothing"},
-        {"category": "kids", "url": "https://www.kohls.com/catalog/kids.jsp", "cn": "AgeAppropriate:Kids"},
-        {"category": "baby", "url": "https://www.kohls.com/catalog/baby.jsp", "cn": "AgeAppropriate:Baby"},
-        {"category": "home", "url": "https://www.kohls.com/catalog/home.jsp", "cn": "Department:Home"},
-        {"category": "bed-and-bath", "url": "https://www.kohls.com/catalog/bed-bath.jsp", "cn": "Department:Bed & Bath"},
-        {"category": "shoes", "url": "https://www.kohls.com/catalog/shoes.jsp", "cn": "Department:Shoes"},
-        {"category": "jewelry", "url": "https://www.kohls.com/catalog/jewelry.jsp", "cn": "Department:Jewelry"},
-        {"category": "beauty", "url": "https://www.kohls.com/catalog/beauty.jsp", "cn": "Department:Beauty"},
-        {"category": "sale", "url": "https://www.kohls.com/catalog/sale.jsp", "cn": "Promotions:Clearance Promotions:Sale"},
-    ]
+    categories = KOHLS_CATEGORIES
 
     custom_settings = {
         "FEED_EXPORT_FIELDS": [
@@ -81,6 +69,7 @@ class KohlsListingSpider(BaseListingSpider):
                 "category_url": self._category_entry().get("url"),
                 "page": page,
                 "raw": product,
+                "timestamp": self.job_timestamp,
             }
 
         total = payload.get("payload", {}).get("totalProducts") or payload.get("payload", {}).get("totalResults")
@@ -90,7 +79,10 @@ class KohlsListingSpider(BaseListingSpider):
             yield scrapy.Request(self._build_api_url(next_page), callback=self.parse, headers=self._headers(), meta={"category": category, "page": next_page})
 
     def _category_entry(self):
-        return next(entry for entry in self.categories if entry["category"] == self.category)
+        entry = self.category_entry(self.category)
+        if entry is None:
+            raise ValueError(f"Unknown Kohl's category {self.category!r}")
+        return entry
 
     def _build_api_url(self, page: int) -> str:
         entry = self._category_entry()

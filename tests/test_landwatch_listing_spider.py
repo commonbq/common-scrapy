@@ -68,10 +68,12 @@ def _product():
     }
 
 
-def test_categories_are_the_twenty_unique_state_seeds():
-    assert len(LANDWATCH_CATEGORIES) == 20
-    assert len({entry["url"] for entry in LANDWATCH_CATEGORIES}) == 20
-    assert LANDWATCH_CATEGORIES[0]["category"] == "texas"
+def test_categories_are_the_fifty_unique_state_routes():
+    assert set(LANDWATCH_CATEGORIES) == {"states"}
+    states = LANDWATCH_CATEGORIES["states"]
+    assert len(states) == 50
+    assert len(set(states.values())) == 50
+    assert states["texas"] == "https://www.landwatch.com/texas-land-for-sale"
 
 
 def test_bootstrap_maps_rich_property_fields():

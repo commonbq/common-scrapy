@@ -10,7 +10,7 @@ from urllib.parse import urljoin, urlsplit, urlunsplit
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
-from common.spiders.realtor_categories import CATEGORIES
+from common.spiders.realtor_categories import REALTOR_CATEGORIES
 
 
 ENQUEUE = re.compile(r"streamController\.enqueue\(")
@@ -20,7 +20,7 @@ PATCH = re.compile(r"P(\d+):(.*?)(?:\n)?\Z", re.S)
 class RealtorListingSpider(BaseListingSpider):
     name = "realtor_listing"
     allowed_domains = ["realtor.com", "www.realtor.com"]
-    categories = CATEGORIES
+    categories = REALTOR_CATEGORIES
 
     custom_settings = {
         "CONCURRENT_REQUESTS_PER_DOMAIN": 1,

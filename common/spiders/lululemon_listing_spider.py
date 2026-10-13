@@ -6,6 +6,7 @@ from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.lululemon_categories import LULULEMON_CATEGORIES
 
 
 class LululemonListingSpider(BaseListingSpider):
@@ -14,20 +15,7 @@ class LululemonListingSpider(BaseListingSpider):
     name = "lululemon_listing"
     allowed_domains = ["shop.lululemon.com", "lululemon.com", "127.0.0.1"]
 
-    categories = [
-        {"category": "women", "url": "https://shop.lululemon.com/c/womens-clothes/_/N-7z5"},
-        {"category": "women-leggings", "url": "https://shop.lululemon.com/c/womens-leggings/_/N-8r6"},
-        {"category": "women-tops", "url": "https://shop.lululemon.com/c/womens-tops/_/N-1z0xsl3"},
-        {"category": "women-shorts", "url": "https://shop.lululemon.com/c/women-shorts/_/N-7we"},
-        {"category": "men", "url": "https://shop.lululemon.com/c/men/_/N-1z13zi2"},
-        {"category": "men-pants", "url": "https://shop.lululemon.com/c/men-pants/_/N-7ub"},
-        {"category": "men-shirts", "url": "https://shop.lululemon.com/c/men-tops/_/N-1z0xl9f"},
-        {"category": "men-shorts", "url": "https://shop.lululemon.com/c/men-shorts/_/N-7u7"},
-        {"category": "bags", "url": "https://shop.lululemon.com/c/bags/_/N-1z0xl1c"},
-        {"category": "accessories", "url": "https://shop.lululemon.com/c/accessories/_/N-8a4"},
-        {"category": "shoes", "url": "https://shop.lululemon.com/c/shoes/_/N-1z0xss0"},
-        {"category": "we-made-too-much", "url": "https://shop.lululemon.com/c/sale/_/N-1z0xcmk"},
-    ]
+    categories = LULULEMON_CATEGORIES
 
     custom_settings = {
         "FEED_EXPORT_FIELDS": [

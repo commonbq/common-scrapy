@@ -1,8 +1,10 @@
 import json
 import unittest
+from collections.abc import Mapping
 
 from scrapy.http import HtmlResponse, Request
 
+from common.spiders.remax_categories import REMAX_CATEGORIES
 from common.spiders.remax_listing_spider import RemaxListingSpider
 
 
@@ -55,6 +57,15 @@ def response(records, page=1):
 
 
 class RemaxListingSpiderTest(unittest.TestCase):
+    def test_categories_cover_all_state_routes_in_grouped_mapping(self):
+        self.assertIsInstance(REMAX_CATEGORIES, Mapping)
+        self.assertEqual(set(REMAX_CATEGORIES), {"states"})
+        self.assertEqual(len(REMAX_CATEGORIES["states"]), 50)
+        self.assertEqual(
+            REMAX_CATEGORIES["states"]["wyoming"],
+            "https://www.remax.com/homes-for-sale/wy",
+        )
+
     def test_maps_rsc_bootstrap_and_obeys_feed_contract(self):
         spider = RemaxListingSpider(category="california", max_pages=1)
         item = list(spider.parse(response([listing()])))[0]

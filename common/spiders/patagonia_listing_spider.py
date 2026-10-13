@@ -15,10 +15,7 @@ class PatagoniaListingSpider(BaseListingSpider):
     name = "patagonia_listing"
     allowed_domains = ["patagonia.com", "www.patagonia.com"]
     require_category_arg = False
-    categories = [
-        {"category": category, "url": url}
-        for category, url in PATAGONIA_CATEGORIES.items()
-    ]
+    categories = PATAGONIA_CATEGORIES
     api_url = (
         "https://www.patagonia.com/on/demandware.store/"
         "Sites-patagonia-us-Site/en_US/AsyncComponents-ProductList"

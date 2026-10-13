@@ -8,11 +8,11 @@ from common.spiders.kohls_listing_spider import KohlsListingSpider
 
 class KohlsListingSpiderTest(unittest.TestCase):
     def setUp(self):
-        self.spider = KohlsListingSpider(category="women-clothing", max_pages=1)
+        self.spider = KohlsListingSpider(category="womens-clothing", max_pages=1)
 
     def response(self):
         body = Path("sample/kohls-listing-products.json").read_bytes()
-        request = Request("https://www.kohls.com/web/catalog/Gender:Womens%20Department:Clothing", meta={"category": "women-clothing", "page": 1})
+        request = Request("https://www.kohls.com/web/catalog/Gender:Womens%20Department:Clothing", meta={"category": "womens-clothing", "page": 1})
         return TextResponse(request.url, body=body, encoding="utf-8", request=request)
 
     def test_catalog_api_feed_contract(self):
@@ -25,7 +25,7 @@ class KohlsListingSpiderTest(unittest.TestCase):
         self.assertEqual(items[1]["price"], 20.0)
 
     def test_missing_contract_fails_visibly(self):
-        request = Request("https://www.kohls.com/web/catalog/test", meta={"category": "women-clothing", "page": 1})
+        request = Request("https://www.kohls.com/web/catalog/test", meta={"category": "womens-clothing", "page": 1})
         response = TextResponse(request.url, body=b'{"payload": {"products": []}}', encoding="utf-8", request=request)
         with self.assertRaisesRegex(RuntimeError, "No Kohl's catalog API products"):
             list(self.spider.parse(response))

@@ -134,6 +134,30 @@ def build_index(categories: list[Category]) -> dict[str, Category]:
     return {category.group_id: category for category in categories}
 
 
+def build_grouped_inventory(
+    categories: list[Category],
+) -> dict[str, dict[str, dict[str, str | int | None]]]:
+    """Return the live tree in ``BaseListingSpider.categories`` format.
+
+    The first path component is the storefront's top-level department and the
+    leaf key remains the Constructor ``group_id`` used by ``-a category=``.
+    ``group_id`` values are globally unique in the parsed inventory, so no DAG
+    output path can collide across departments.
+    """
+    grouped: dict[str, dict[str, dict[str, str | int | None]]] = {}
+    for category in categories:
+        group = category.group_ids[0] if category.group_ids else "all"
+        grouped.setdefault(group, {})[category.group_id] = {
+            "url": category.url,
+            "category_name": category.name,
+            "parent_category": category.parent_name,
+            "parent_id": category.parent_id,
+            "node_type": category.node_type,
+            "depth": category.depth,
+        }
+    return grouped
+
+
 def group_id_from_url(url: str) -> str:
     """Extract the trailing category id from a shop URL.
 

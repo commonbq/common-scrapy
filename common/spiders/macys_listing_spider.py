@@ -8,6 +8,7 @@ from urllib.parse import urlencode, urlparse
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.macys_categories import MACYS_CATEGORIES
 from common.utils import dict_get
 
 
@@ -16,12 +17,7 @@ class MacysListingSpider(BaseListingSpider):
     name = "macys_listing"
     allowed_domains = ["macys.com", "www.macys.com"]
 
-    categories = [
-        {"category": "fragrance", "url": "https://www.macys.com/shop/beauty/fragrance", "id": "277259"},
-        {"category": "skin-care", "url": "https://www.macys.com/shop/beauty/skin-care", "id": "30078"},
-        {"category": "makeup", "url": "https://www.macys.com/shop/beauty/makeup", "id": "30077"},
-        {"category": "hair-care", "url": "https://www.macys.com/shop/beauty/hair-care", "id": "60600"},
-    ]
+    categories = MACYS_CATEGORIES
 
     custom_settings = {
         "FEED_EXPORT_FIELDS": [
@@ -102,9 +98,8 @@ class MacysListingSpider(BaseListingSpider):
         )
 
     def _get_category_id(self) -> str | None:
-        for entry in self.categories:
-            if entry.get("category") == self.category:
-                return entry.get("id")
+        entry = self.category_entry(self.category)
+        return entry.get("id") if entry else None
 
     def _build_macys_api_url(self, page_index: int, pathname: str | None = None) -> str:
         pathname = pathname or self._default_pathname()

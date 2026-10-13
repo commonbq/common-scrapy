@@ -1,4 +1,5 @@
 import unittest
+from collections.abc import Mapping
 
 from scrapy.http import HtmlResponse, Request
 
@@ -32,6 +33,21 @@ class PatagoniaListingSpiderTest(unittest.TestCase):
         self.assertEqual(item["original_price"], 399.0)
         self.assertEqual(item["swatch_count"], 4)
         self.assertEqual(item["image_url"], "https://www.patagonia.com/30355.jpg")
+
+    def test_categories_are_grouped_full_navigation_inventory(self):
+        categories = PatagoniaListingSpider.categories
+        self.assertIsInstance(categories, Mapping)
+        self.assertTrue(all(isinstance(leaves, Mapping) for leaves in categories.values()))
+        self.assertEqual(len(categories), 7)
+        self.assertEqual(sum(len(leaves) for leaves in categories.values()), 144)
+        self.assertEqual(
+            PatagoniaListingSpider(category="new-arrivals").resolve_target_url(),
+            "https://www.patagonia.com/shop/new-arrivals",
+        )
+        self.assertEqual(
+            PatagoniaListingSpider(category="packs-gear").resolve_target_url(),
+            "https://www.patagonia.com/shop/gear",
+        )
 
     def test_malformed_gtm_keeps_attribute_data(self):
         spider = PatagoniaListingSpider(category="new-arrivals", max_pages=1)

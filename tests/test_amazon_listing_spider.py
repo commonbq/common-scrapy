@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import unittest
+from collections.abc import Mapping
 from pathlib import Path
 
 from scrapy.http import HtmlResponse, Request
@@ -9,11 +10,24 @@ from common.spiders.amazon_listing_spider import AmazonListingSpider
 
 
 class AmazonListingSpiderTests(unittest.TestCase):
+    def test_categories_use_grouped_mapping_with_live_search_aliases(self):
+        self.assertIsInstance(AmazonListingSpider.categories, Mapping)
+        self.assertEqual(set(AmazonListingSpider.categories), {"departments"})
+        self.assertEqual(len(AmazonListingSpider.categories["departments"]), 58)
+
+        spider = AmazonListingSpider(category="electronics")
+        self.assertEqual(
+            spider.resolve_target_url(),
+            "https://www.amazon.com/s?i=electronics",
+        )
+        self.assertEqual(
+            spider.category_entry("electronics")["label"],
+            "Electronics",
+        )
+
     def test_category_fixture_follows_shop_by_category_carousel(self):
         fixture_path = (
-            Path(__file__).resolve().parents[1]
-            / "sample"
-            / "amazon-home-kitchen.html"
+            Path(__file__).resolve().parents[1] / "sample" / "amazon-home-kitchen.html"
         )
         url = "https://www.amazon.com/b?node=1055398"
         request = Request(

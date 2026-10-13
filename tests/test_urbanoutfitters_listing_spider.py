@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from collections.abc import Mapping
 from pathlib import Path
 import unittest
 
@@ -30,9 +31,13 @@ class UrbanOutfittersListingSpiderTests(unittest.TestCase):
         return TextResponse(url, request=request, body=fixture.read_bytes(), encoding="utf-8")
 
     def test_full_sitemap_inventory_and_query_categories(self):
-        self.assertEqual(len(self.categories), 2162)
-        self.assertEqual(len({row["category"] for row in self.categories}), 2162)
-        self.assertEqual(len({row["url"] for row in self.categories}), 2162)
+        self.assertIsInstance(self.categories, Mapping)
+        self.assertEqual(set(self.categories), {"all"})
+        self.assertEqual(len(self.categories["all"]), 2162)
+        self.assertEqual(len(set(self.categories["all"])), 2162)
+        self.assertEqual(
+            len({row["url"] for row in self.categories["all"].values()}), 2162
+        )
         refined = resolve_category(
             self.categories,
             category_url="/dresses?length=Mini&sleeve=Long+Sleeve",

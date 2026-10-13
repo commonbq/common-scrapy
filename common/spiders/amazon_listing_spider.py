@@ -5,6 +5,7 @@ from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 
 import scrapy
 
+from common.spiders.amazon_categories import AMAZON_CATEGORIES
 from common.spiders.base_listing_spider import BaseListingSpider
 
 
@@ -34,59 +35,7 @@ class AmazonListingSpider(BaseListingSpider):
         ],
     }
 
-    categories = [
-        {"category": "pillow", "url": "https://www.amazon.com/b?node=1199122"},
-        {
-            "category": "Home & Kitchen",
-            "category_id": "1055398",
-            "url": "https://www.amazon.com/b?node=1055398",
-        },
-        {
-            "category": "Beauty & Personal Care",
-            "category_id": "3760911",
-            "url": "https://www.amazon.com/b?node=3760911",
-        },
-        {
-            "category": "Clothing Shoes & Jewelry",
-            "category_id": "7141123011",
-            "url": "https://www.amazon.com/b?node=7141123011",
-        },
-        {
-            "category": "Toys & Games",
-            "category_id": "165793011",
-            "url": "https://www.amazon.com/b?node=165793011",
-        },
-        {
-            "category": "Electronics",
-            "category_id": "172282",
-            "url": "https://www.amazon.com/b?node=172282",
-        },
-        {
-            "category": "Sports & Outdoors",
-            "category_id": "3375251",
-            "url": "https://www.amazon.com/b?node=3375251",
-        },
-        {
-            "category": "Health & Household",
-            "category_id": "3760901",
-            "url": "https://www.amazon.com/b?node=3760901",
-        },
-        {
-            "category": "Grocery & Gourmet Food",
-            "category_id": "16310101",
-            "url": "https://www.amazon.com/b?node=16310101",
-        },
-        {
-            "category": "Tools & Home Improvement",
-            "category_id": "228013",
-            "url": "https://www.amazon.com/b?node=228013",
-        },
-        {
-            "category": "Books",
-            "category_id": "283155",
-            "url": "https://www.amazon.com/b?node=283155",
-        },
-    ]
+    categories = AMAZON_CATEGORIES
 
     def start_requests(self):
         target_url = self.resolve_target_url()

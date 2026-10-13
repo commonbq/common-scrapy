@@ -1,5 +1,6 @@
 import json
 import unittest
+from collections.abc import Mapping
 from pathlib import Path
 
 from scrapy.http import HtmlResponse, Request
@@ -33,6 +34,15 @@ class SheinListingSpiderTest(unittest.TestCase):
         body = f'<script type="application/ld+json">{json.dumps({"@type": "WebPage"})}</script>'
         with self.assertRaisesRegex(RuntimeError, "No SHEIN ItemList JSON-LD"):
             list(self.spider.parse(self.response(body)))
+
+    def test_categories_use_complete_grouped_mapping(self):
+        self.assertIsInstance(SheinListingSpider.categories, Mapping)
+        self.assertEqual(set(SheinListingSpider.categories), {"all"})
+        self.assertEqual(len(SheinListingSpider.categories["all"]), 23)
+        self.assertEqual(
+            self.spider.category_entry("electronics")["url"],
+            "https://us.shein.com/RecommendSelection/Electronics-sc-017706908.html",
+        )
 
 
 if __name__ == "__main__":
