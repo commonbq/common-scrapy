@@ -289,7 +289,7 @@ Working spiders running daily in production:
 | [`macys_listing`](#macys_listing) | Active | api | Akamai | Macy’s beauty listings via the xapi endpoint (with fallback routing). | 60 (ok) | 14 Beauty department categories from `macys_categories.py` | `{"item_id":"17595303","title":"5Core AC Power Cord 6Ft 3 Prong US Male to Female Extension Adapter 18AWG 10A 7A 125V","brand":"5 Core","u...` |
 | [`nordstrom_listing`](#nordstrom_listing) | Active | bootstrap + html | PerimeterX / HUMAN | Nordstrom listing parser; often blocked/changed. | 0 (timeout2) | new, women, men, beauty, shoes, accessories, kids, designer, home, gifts, sale | `{}` |
 | [`sephora_listing`](#sephora_listing) | Active | api | Akamai | Sephora listing via `/api/v2/catalog/categories/<slug>/seo`. | 60 (ok) | makeup, skincare, hair, fragrance, tools-brushes, bath-body | `{"item_id":"P517483","title":"Pocket Blush Buildable Hydrating Cream Blush","url":"https://www.sephora.com/product/pocket-blush-P517483?s...` |
-| [`ulta_listing`](#ulta_listing-category) | Active | api | Akamai | Ulta category listing with dynamic GraphQL module discovery. | 152 (2 pages, proxy) | makeup, skin-care, hair-care, fragrance, body-care | `n/a` |
+| [`ulta_listing`](#ulta_listing-category) | Active | api | Akamai | Ulta category listing with dynamic GraphQL module discovery. | 152 (2 pages, proxy) | 267 `/shop/` PLP leaves across 16 departments | `n/a` |
 | [`ulta_search`](#ulta_search-keyword) | Active | api + html | Akamai | Ulta keyword search via GraphQL (with unsorted retry + HTML fallback). | 64 (ok) | - | `{"item_id":"xlsImpprod15511061","title":"All Soft Shampoo","source":"ulta_dxl_graphql"...}` |
 | [`walmart_listing`](#walmart_listing-category) | Active | api + html | Akamai (+ PerimeterX/HUMAN signals) | Walmart category listing spider (direct API+HTML flow). | 105 (`video-games`, one page) | 23 top-level departments from `walmart_categories.py` | `{"productId":"19231301884","usItemId":"19231301884","title":"No Boundaries Women's Faux Leather Loafers","brand":"No Boundaries"...` |
 | [`walmart_search`](#walmart_search-keyword) | Active | api + html | Akamai (+ PerimeterX/HUMAN signals) | Walmart keyword search spider. | 12 (ok) | - | `{"item_id":"13542163431","title":"ASUS Vivobook Go 15.6” Laptop, Intel i3-N305, 8GB, 256GB, Windows 11 Home in S mode, Cool Silver, E1504...` |
@@ -1863,13 +1863,16 @@ with `page=N`. An empty first page triggers one rediscovery attempt; blocked,
 invalid, exhausted, or repeated results terminate without HTML fallback.
 
 ```sh
-common-scrapy crawl ulta_listing -a category=makeup -a max_pages=2 -O ulta.jsonl
+common-scrapy crawl ulta_listing -a category=makeup-all -a max_pages=2 -O ulta.jsonl
 ```
 
-Categories are a name-to-URL dictionary: `makeup`, `skin-care`, `hair-care`,
-`fragrance`, `body-care`.
-Use `-a url='https://www.ulta.com/shop/makeup/eyes/mascara'` with a category
-label to override the route.
+Categories are a grouped `{department: {leaf: url}}` mapping (`common/spiders/ulta_categories.py`):
+267 crawlable `/shop/` PLP leaves across 16 departments, captured 2026-10-13 from
+the mega-menu payload. Leaf names are prefixed with the department slug so they
+stay globally unique for the DAG output paths (`-a category=makeup-all`,
+`-a category=skin-care-cleansers`, ...); the same bare label recurs under several
+departments (`suncare`, `makeup`, `cleansers`).
+Use `-a url='https://www.ulta.com/shop/makeup/eyes/mascara'` to override the route.
 
 The item schema and export columns remain unchanged: original Ulta card fields
 plus `category`. Illustrative exported card (abbreviated):

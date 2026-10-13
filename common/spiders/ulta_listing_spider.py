@@ -6,6 +6,7 @@ from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.ulta_categories import ULTA_CATEGORIES
 from common.spiders.ulta_search_spider import UltaSearchSpider
 
 
@@ -58,22 +59,17 @@ class UltaListingSpider(BaseListingSpider):
         ],
     }
 
-    categories = {
-        "makeup": "https://www.ulta.com/shop/makeup/all",
-        "skin-care": "https://www.ulta.com/shop/skin-care/all",
-        "hair-care": "https://www.ulta.com/shop/hair/all",
-        "fragrance": "https://www.ulta.com/shop/fragrance/all",
-        "body-care": "https://www.ulta.com/shop/body-care/all",
-    }
-
-    def available_categories(self) -> list[str]:
-        return sorted(self.categories)
+    # Grouped {department: {leaf: url}} mapping from Ulta's /shop/ taxonomy;
+    # leaf names carry the department prefix so they stay globally unique for
+    # the DAG output paths. See ulta_categories.py for provenance.
+    categories = ULTA_CATEGORIES
 
     def resolve_target_url(self) -> str:
         if self.url or self.category_url:
             return self.url or self.category_url
-        if self.category in self.categories:
-            return self.categories[self.category]
+        entry = self.category_entry(self.category) if self.category else None
+        if entry is not None and entry.get("url"):
+            return entry["url"]
         available = ", ".join(self.available_categories())
         raise ValueError(
             f"Unknown category '{self.category}'. Available categories: {available}"

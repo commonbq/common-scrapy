@@ -56,6 +56,16 @@ def _purpose_built_spider_names() -> set[str]:
 def _available_categories(spider_cls: type[scrapy.Spider]) -> list[str]:
     categories = getattr(spider_cls, "categories", None)
     if isinstance(categories, Mapping):
+        # Nested ``{group: {leaf: url|{...}}}`` -> the leaf names; a flat
+        # ``{leaf: url}`` mapping -> its keys (both are what ``-a category=``
+        # selects and what the DAG emits one task per).
+        if categories and all(isinstance(v, Mapping) for v in categories.values()):
+            return sorted(
+                str(leaf)
+                for leaves in categories.values()
+                for leaf in leaves
+                if isinstance(leaf, str)
+            )
         return sorted(key for key in categories if isinstance(key, str))
     if not isinstance(categories, list):
         return []

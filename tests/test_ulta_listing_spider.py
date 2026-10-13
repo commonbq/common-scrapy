@@ -10,7 +10,7 @@ from common.spiders.ulta_listing_spider import UltaListingSpider
 
 class UltaListingSpiderTests(unittest.TestCase):
     def setUp(self):
-        self.spider = UltaListingSpider(category="makeup", max_pages=3)
+        self.spider = UltaListingSpider(category="makeup-all", max_pages=3)
         self.first = next(self.spider.start_requests())
 
     def response(self, request, content=None, *, body=None, status=200):
@@ -55,11 +55,22 @@ class UltaListingSpiderTests(unittest.TestCase):
         self.assertEqual(
             _available_categories(UltaListingSpider), self.spider.available_categories()
         )
-        for category, url in UltaListingSpider.categories.items():
-            self.assertEqual(
-                UltaListingSpider(category=category).resolve_target_url(), url
-            )
-        with self.assertRaisesRegex(ValueError, "Available categories:.*makeup"):
+        # Categories are a grouped {department: {leaf: url}} mapping; every leaf
+        # resolves to its own URL and ``-a category=<leaf>`` is what the DAG emits.
+        leaves = [
+            leaf
+            for department in UltaListingSpider.categories.values()
+            for leaf in department
+        ]
+        self.assertGreaterEqual(len(leaves), 25)
+        self.assertEqual(len(leaves), len(set(leaves)))
+        for leaf in leaves:
+            self.assertIn(leaf, self.spider.available_categories())
+        self.assertEqual(
+            UltaListingSpider(category="makeup-all").resolve_target_url(),
+            "https://www.ulta.com/shop/makeup/all",
+        )
+        with self.assertRaisesRegex(ValueError, "Available categories:.*makeup-all"):
             UltaListingSpider()
         with self.assertRaisesRegex(ValueError, "Unknown category"):
             UltaListingSpider(category="unknown").resolve_target_url()
@@ -103,7 +114,7 @@ class UltaListingSpiderTests(unittest.TestCase):
         item, following = list(
             self.spider.parse_listing(self.response(listing, {"items": [self.card()]}))
         )
-        self.assertEqual(item, {**self.card(), "category": "makeup"})
+        self.assertEqual(item, {**self.card(), "category": "makeup-all"})
         self.assertEqual(following.meta["page"], 2)
         self.assertEqual(following.meta["cookiejar"], "session")
         self.assertNotIn("proxy", following.meta)
