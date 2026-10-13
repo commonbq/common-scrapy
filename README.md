@@ -384,7 +384,7 @@ Spiders below are returning items in recent smoke runs:
 | [`target_listing`](#target_listing) | Active (alias) | api | PerimeterX / HUMAN (cookie signals) | Deprecated alias of `target_search`. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
 | [`uniqlo_listing`](#uniqlo_listing) | Experimental | api | none detected (plain ScrapeOps datacenter route) | UNIQLO US category listings from the first-party commerce BFF products API. | 36 (one page, ok) | 2741 taxonomy URLs (4 genders / 46 classes / 212 categories / 2479 subcategories) from `uniqlo-categories.json` | `{"item_id":"E424873-000-00","title":"Crew Neck T-Shirt","color":"White","price":19.9,"currency":"USD"...}` |
 | [`target_search`](#target_search) | Active | api | PerimeterX / HUMAN (cookie signals) | Target RedSky search API spider. | 24 (ok) | - | `{"product_id":"90600286","name":"Women&#39;s Waffle Short Robe - Auden&#8482; Light Gray M/L: Front Tie, Long Sleeve","price":"$35.00","u...` |
-| [`victoriassecret_listing`](#victoriassecret_listing) | Active | api | none detected (ScrapeOps proxy, plain datacenter route) | Victoria's Secret / PINK listings from the first-party `stacks` JSON API; page 0 reads `collectionId` from SSR `clientProps`. | 192 (2 pages, live) | 427 targets across `vs` + `pink` brands from `victoriassecret_categories.py` | `{"category":"vs-bras","brand":"vs","item_id":"11295563|7I65","name":"Signature Shine Cotton Lightly Lined Balconette Bra","price":49.95,...}` |
+| [`victoriassecret_listing`](#victoriassecret_listing) | Active | api | none detected (ScrapeOps proxy, plain datacenter route) | Victoria's Secret / PINK listings from the first-party `stacks` JSON API; page 0 reads `collectionId` from SSR `clientProps`. | 192 (2 pages, live) | 427 leaves across `vs` + `pink` groups in `victoriassecret_categories.py` | `{"category":"vs-bras","brand":"vs","item_id":"11295563|7I65","name":"Signature Shine Cotton Lightly Lined Balconette Bra","price":49.95,...}` |
 | [`williams_sonoma_listing`](#williams_sonoma_listing) | Active | api | Akamai (not an issue for API) | Williams-Sonoma category listings via the Constructor.io browse API (taxonomy from the runtime category-tree API). | 100 (1 page, proxy) | ~3500 group_ids from the runtime category-tree API | `{"category":"cookware-sets","item_id":"greenpan-reserve-pro-ceramic-nonstick-10-piece-cookware-set","title":"GreenPan™ Reserve Pro Ceramic Nonstick 10-Piece Cookware Set","price":399.95,"currency":"USD","image_url":"https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202631/0164/img2c.jpg","flags":["freeShip","more_colors"],"source":"williams_sonoma_constructor_browse"...` |
 | [`harborfreight_listing`](#harborfreight_listing) | Active | bootstrap (`window.__APOLLO_STATE__`) | none detected | Harbor Freight category listings from the server-rendered Apollo hydration state; grouped public sitemap taxonomy and Magento `?p=N` pagination. | 36 (1 page, `automotive-jacks-jack-stands`) | 17 departments / 145 category leaves from `harborfreight_categories.py` | `{"category":"automotive-jacks-jack-stands","item_id":"64784","title":"3 Ton Low-Profile Professional Floor Jack with RAPID PUMP, Green","brand":"DAYTONA","price":199.99,"currency":"USD","source":"harborfreight_apollo_bootstrap"...}` |
 | [`lowes_listing`](#lowes_listing) | Active | bootstrap (`window['__PRELOADED_STATE__']`) | Akamai (ScrapeOps residential + `bypass=5` required) | Lowe's category listings from the server-rendered `__PRELOADED_STATE__` bootstrap payload only; 16 stable category shortcuts with `?page=N` pagination. | 24 (1 page, `beverage-wine-chillers`) | 16 stable category shortcuts from `lowes_categories.py` | `{"category":"beverage-wine-chillers","item_id":"5017343139","title":"23.4-in W 20-Bottles Stainless Steel Dual Zone Cooling Built-in Indoor Wine Cooler","price":...,"source":"lowes_preloaded_state"...}` |
@@ -4091,10 +4091,12 @@ Two details worth knowing:
   (`png/zz/26/08/28/01/112955637I65_OM_F`); only the `380x507` rendition under
   `/p/<w>x<h>/<path>.jpg` resolved in testing.
 
-Category shortcuts come from `common/spiders/victoriassecret_categories.py` (the
-full `vs` + `pink` mega-menu, flattened to 427 targets). Slugs are
-brand-prefixed (`vs-bras`, `vs-bras-push-up`) because leaf labels collide across
-departments. Run the module directly to list or resolve them:
+Category shortcuts come from `common/spiders/victoriassecret_categories.py`, a
+`{brand: {leaf: rich}}` mapping of the full `vs` + `pink` mega-menu (427 leaves
+across the two brand groups). Slugs are brand-prefixed (`vs-bras`,
+`vs-bras-push-up`) because leaf labels collide across departments, so they stay
+globally unique for the DAG output paths. Run the module directly to list or
+resolve them:
 
 ```bash
 python -m common.spiders.victoriassecret_categories

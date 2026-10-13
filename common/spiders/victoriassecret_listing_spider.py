@@ -8,7 +8,7 @@ from urllib.parse import urlencode, urljoin
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
-from common.spiders.victoriassecret_categories import load_categories, slugify
+from common.spiders.victoriassecret_categories import VICTORIASSECRET_CATEGORIES
 
 SITE_BASE = "https://www.victoriassecret.com"
 # Page 0 is served from the bare ``/stacks/v46/`` (trailing slash); the load
@@ -50,6 +50,7 @@ class VictoriassecretListingSpider(BaseListingSpider):
 
     name = "victoriassecret_listing"
     allowed_domains = ["victoriassecret.com", "www.victoriassecret.com", "api.victoriassecret.com"]
+    categories = VICTORIASSECRET_CATEGORIES
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
@@ -86,21 +87,19 @@ class VictoriassecretListingSpider(BaseListingSpider):
     }
 
     def __init__(self, *args, **kwargs):
-        # Set before BaseListingSpider.__init__, which validates the schema.
-        self.categories = load_categories()
         super().__init__(*args, **kwargs)
         self._seen_ids: set[str] = set()
 
     # -- category plumbing -------------------------------------------------
 
     def _category_entry(self) -> dict[str, str]:
-        for entry in self.categories:
-            if entry["category"] == self.category:
-                return entry
-        raise ValueError(
-            f"Unknown category '{self.category}'. "
-            f"Available: {', '.join(self.available_categories())}"
-        )
+        entry = self.category_entry(self.category)
+        if entry is None:
+            raise ValueError(
+                f"Unknown category '{self.category}'. "
+                f"Available: {', '.join(self.available_categories())}"
+            )
+        return entry
 
     # -- stage 1: category page -> collection id ---------------------------
 

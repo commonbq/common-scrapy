@@ -6,12 +6,14 @@ from pathlib import Path
 
 from scrapy.http import Request, TextResponse
 
-from common.spiders.victoriassecret_categories import VICTORIASSECRET_CATEGORIES
+from common.spiders.victoriassecret_categories import (
+    VICTORIASSECRET_CATEGORIES,
+    load_categories,
+    slugify,
+)
 from common.spiders.victoriassecret_listing_spider import (
     VictoriassecretListingSpider,
-    load_categories,
     parse_money,
-    slugify,
 )
 
 SAMPLE_DIR = Path(__file__).resolve().parents[1] / "sample"
@@ -48,25 +50,37 @@ class VictoriassecretListingSpiderTests(unittest.TestCase):
     # ------------------------------------------------------------ taxonomy
 
     def test_categories_are_unique_and_urls_are_absolute(self):
-        names = [entry["category"] for entry in self.spider.categories]
+        entries = list(self.spider.iter_categories())
+        names = [entry["category"] for entry in entries]
         self.assertEqual(len(names), len(set(names)))
-        for entry in self.spider.categories:
+        for entry in entries:
             self.assertTrue(entry["url"].startswith("https://www.victoriassecret.com"))
 
+    def test_categories_are_a_grouped_mapping(self):
+        self.assertIsInstance(VictoriassecretListingSpider.categories, dict)
+        self.assertEqual(set(VictoriassecretListingSpider.categories), {"vs", "pink"})
+        for group in VictoriassecretListingSpider.categories.values():
+            self.assertTrue(all(isinstance(v, dict) and v.get("url") for v in group.values()))
+
     def test_both_brands_are_represented(self):
-        brands = {entry["brand"] for entry in self.spider.categories}
+        brands = {entry["brand"] for entry in self.spider.iter_categories()}
         self.assertEqual(brands, {"vs", "pink"})
 
     def test_taxonomy_matches_the_source_tree(self):
-        # Every reachable top-level path should yield a crawl target.
-        tops = {
-            f"{brand}-{slugify(name)}"
-            for brand, data in VICTORIASSECRET_CATEGORIES.items()
-            for name, node in data.items()
-            if node.get("path")
+        # Top-level navigation items are themselves crawl targets.
+        slugs = {entry["category"] for entry in self.spider.iter_categories()}
+        self.assertTrue({"vs-new", "vs-bras", "pink-panties"}.issubset(slugs))
+
+    def test_load_categories_flattens_the_grouped_mapping(self):
+        flat = load_categories()
+        nested = {
+            leaf: value
+            for group in VICTORIASSECRET_CATEGORIES.values()
+            for leaf, value in group.items()
         }
-        slugs = {entry["category"] for entry in self.spider.categories}
-        self.assertTrue(tops.issubset(slugs))
+        self.assertEqual(len(flat), len(nested))
+        self.assertEqual({e["category"] for e in flat}, set(nested))
+        self.assertEqual(len(flat), 427)
 
     def test_header_rows_without_path_are_skipped(self):
         # "Pink Color" is a heading row with a placeholder path and must not be a
@@ -75,10 +89,20 @@ class VictoriassecretListingSpiderTests(unittest.TestCase):
         self.assertNotIn("vs-pink-color", slugs)
 
     def test_sub_category_labels_are_attached(self):
-        push_up = [e for e in self.spider.categories if e["category"] == "vs-bras-push-up"]
+        push_up = [
+            e for e in self.spider.iter_categories() if e["category"] == "vs-bras-push-up"
+        ]
         self.assertEqual(len(push_up), 1)
         self.assertEqual(push_up[0]["sub_category"], "Push-Up")
         self.assertEqual(push_up[0]["top_category"], "BRAS")
+
+    def test_category_entry_resolves_across_groups(self):
+        self.assertEqual(
+            self.spider._category_entry()["brand"],
+            "vs",
+        )
+        pink = VictoriassecretListingSpider(category="pink-panties", max_pages=1)
+        self.assertEqual(pink._category_entry()["brand"], "pink")
 
     # ------------------------------------------------------- helpers
 
