@@ -8,24 +8,7 @@ from urllib.parse import parse_qs, parse_qsl, urlencode, urljoin, urlparse, urlu
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
-
-
-BLOOMINGDALES_CATEGORIES = {
-    "all": {
-        "new-now": "https://www.bloomingdales.com/shop/fashion-lookbooks-videos-style-guide?id=13668",
-        "women": "https://www.bloomingdales.com/shop/womens-apparel?id=2910",
-        "beauty": "https://www.bloomingdales.com/shop/makeup-perfume-beauty?id=2921",
-        "shoes": "https://www.bloomingdales.com/shop/womens-designer-shoes?id=16961",
-        "handbags": "https://www.bloomingdales.com/shop/handbags?id=16958",
-        "jewelry-accessories": "https://www.bloomingdales.com/shop/jewelry-accessories?id=3376",
-        "men": "https://www.bloomingdales.com/shop/mens?id=3864",
-        "kids": "https://www.bloomingdales.com/shop/kids?id=3866",
-        "home": "https://www.bloomingdales.com/shop/home?id=3865",
-        "sale": "https://www.bloomingdales.com/shop/sale?id=3977",
-        "gifts": "https://www.bloomingdales.com/shop/gifts?id=3948",
-        "designers": "https://www.bloomingdales.com/shop/all-designers?id=1001351",
-    },
-}
+from common.spiders.bloomingdales_categories import BLOOMINGDALES_CATEGORIES
 
 
 class BloomingdalesListingSpider(BaseListingSpider):
@@ -45,23 +28,48 @@ class BloomingdalesListingSpider(BaseListingSpider):
 
     categories = BLOOMINGDALES_CATEGORIES
 
-    def _selected_category_url(self) -> str:
+    def _selected_entries(self) -> list[dict]:
+        """Resolve the selected target(s).
+
+        A department name (the legacy parent selector, e.g. ``women``) expands to
+        every leaf in that group; a canonical leaf name schedules just that one
+        leaf. This keeps manual ``-a category=women`` runs working while the DAG
+        schedules individual leaves.
+        """
+        if self.category in self._all_category_entries():
+            return [e for e in self.iter_categories() if e["group"] == self.category]
         entry = self.category_entry(self.category)
-        if entry is not None:
-            return entry["url"]
-        available = ", ".join(self.available_categories())
-        raise ValueError(
-            f"Unknown category '{self.category}'. Available categories: {available}"
-        )
+        return [entry] if entry else []
+
+    def _selected_category_url(self) -> str:
+        entries = self._selected_entries()
+        if not entries:
+            available = ", ".join(self.available_categories())
+            raise ValueError(
+                f"Unknown category '{self.category}'. Available categories: {available}"
+            )
+        return entries[0]["url"]
 
     def start_requests(self):
-        target_url = self._selected_category_url()
-        yield scrapy.Request(
-            self._page_url(target_url, 1),
-            callback=self.parse,
-            meta={"page": 1, "category_root_url": target_url, "_seen_item_ids": set()},
-            headers=self._request_headers(),
-        )
+        entries = self._selected_entries()
+        if not entries:
+            available = ", ".join(self.available_categories())
+            raise ValueError(
+                f"Unknown category '{self.category}'. Available categories: {available}"
+            )
+        for entry in entries:
+            target_url = entry["url"]
+            yield scrapy.Request(
+                self._page_url(target_url, 1),
+                callback=self.parse,
+                meta={
+                    "page": 1,
+                    "category_root_url": target_url,
+                    "category": entry.get("department") or entry["group"],
+                    "_seen_item_ids": set(),
+                },
+                headers=self._request_headers(),
+            )
 
     def parse(self, response: scrapy.http.Response):
         if self._is_blocked_response(response):
@@ -96,6 +104,7 @@ class BloomingdalesListingSpider(BaseListingSpider):
                         "category_root_url": response.meta.get(
                             "category_root_url", response.url
                         ),
+                        "category": response.meta.get("category", self.category),
                         "_seen_item_ids": seen_item_ids,
                     },
                     headers=self._request_headers(),
@@ -110,7 +119,7 @@ class BloomingdalesListingSpider(BaseListingSpider):
             if item_id:
                 seen_item_ids.add(item_id)
 
-            product["category"] = self.category
+            product["category"] = response.meta.get("category", self.category)
             product["category_root_url"] = response.meta.get(
                 "category_root_url", response.url
             )
@@ -135,6 +144,7 @@ class BloomingdalesListingSpider(BaseListingSpider):
                 "category_root_url": response.meta.get(
                     "category_root_url", response.url
                 ),
+                "category": response.meta.get("category", self.category),
                 "_seen_item_ids": seen_item_ids,
             },
             headers=self._request_headers(),

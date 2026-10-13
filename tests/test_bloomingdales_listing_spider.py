@@ -34,7 +34,8 @@ class BloomingdalesListingSpiderTests(unittest.TestCase):
             meta={
                 "page": page,
                 "resolved_leaf": resolved_leaf,
-                "category_root_url": BLOOMINGDALES_CATEGORIES["all"]["women"],
+                "category": "women",
+                "category_root_url": BLOOMINGDALES_CATEGORIES["women"]["womens-apparel"]["url"],
             },
         )
         return TextResponse(
@@ -45,14 +46,37 @@ class BloomingdalesListingSpiderTests(unittest.TestCase):
             status=200,
         )
 
-    def test_full_stable_seed_categories_are_exposed(self):
-        expected = sorted(BLOOMINGDALES_CATEGORIES["all"])
-        self.assertEqual(self.spider.available_categories(), expected)
-        for category, url in BLOOMINGDALES_CATEGORIES["all"].items():
-            self.assertEqual(
-                BloomingdalesListingSpider(category=category)._selected_category_url(),
-                url,
-            )
+    def test_grouped_mapping_covers_departments_and_leaves(self):
+        self.assertEqual(len(BLOOMINGDALES_CATEGORIES), 677)
+        self.assertEqual(
+            sum(len(leaves) for leaves in BLOOMINGDALES_CATEGORIES.values()), 3305
+        )
+        # Leaf keys are globally unique (the DAG output path is the bare leaf).
+        leaves = [leaf for leaves in BLOOMINGDALES_CATEGORIES.values() for leaf in leaves]
+        self.assertEqual(len(leaves), len(set(leaves)))
+        for group, leaves in BLOOMINGDALES_CATEGORIES.items():
+            for leaf, entry in leaves.items():
+                self.assertEqual(entry["category"], leaf)
+                self.assertEqual(entry["department"], group)
+                self.assertTrue(entry["url"].startswith("https://www.bloomingdales.com/shop/"))
+
+    def test_department_selector_expands_to_every_leaf(self):
+        spider = BloomingdalesListingSpider(category="women", max_pages=1)
+        entries = spider._selected_entries()
+        self.assertEqual(len(entries), len(BLOOMINGDALES_CATEGORIES["women"]))
+        self.assertTrue(all(e["group"] == "women" for e in entries))
+        # start_requests yields one splash request per leaf in the department.
+        self.assertEqual(len(list(spider.start_requests())), len(entries))
+
+    def test_canonical_leaf_schedules_exactly_one_target(self):
+        leaf = "womens-apparel-activewear-workout-clothes"
+        spider = BloomingdalesListingSpider(category=leaf, max_pages=1)
+        entries = spider._selected_entries()
+        self.assertEqual(len(entries), 1)
+        self.assertEqual(entries[0]["url"], BLOOMINGDALES_CATEGORIES["women"][leaf]["url"])
+        self.assertEqual(len(list(spider.start_requests())), 1)
+
+    def test_unknown_category_raises_with_a_helpful_message(self):
         with self.assertRaisesRegex(ValueError, "Unknown category 'not-a-category'"):
             BloomingdalesListingSpider(
                 category="not-a-category"
@@ -60,7 +84,7 @@ class BloomingdalesListingSpiderTests(unittest.TestCase):
 
     def test_splash_response_requests_all_leaf_browse_pages(self):
         response = self._response(
-            BLOOMINGDALES_CATEGORIES["all"]["women"],
+            BLOOMINGDALES_CATEGORIES["women"]["womens-apparel"]["url"],
             self._fixture("bloomingdales-women-splash.html"),
         )
 
@@ -79,10 +103,18 @@ class BloomingdalesListingSpiderTests(unittest.TestCase):
         self.assertTrue(all(follow.meta["resolved_leaf"] for follow in outputs))
 
     def test_start_requests_uses_category_only(self):
-        requests = list(self.spider.start_requests())
+        # A canonical leaf yields exactly one splash request whose URL is the
+        # leaf's own listing page (no category_url override).
+        spider = BloomingdalesListingSpider(
+            category="womens-apparel-activewear-workout-clothes", max_pages=1
+        )
+        requests = list(spider.start_requests())
         self.assertEqual(len(requests), 1)
         self.assertEqual(
-            requests[0].url, BLOOMINGDALES_CATEGORIES["all"]["women"]
+            requests[0].url,
+            BLOOMINGDALES_CATEGORIES["women"][
+                "womens-apparel-activewear-workout-clothes"
+            ]["url"],
         )
         self.assertNotIn("category_url", requests[0].meta)
 
@@ -94,7 +126,7 @@ class BloomingdalesListingSpiderTests(unittest.TestCase):
         ]
         self.assertEqual(
             self.spider._category_leaf_urls(
-                leaves, BLOOMINGDALES_CATEGORIES["all"]["women"]
+                leaves, BLOOMINGDALES_CATEGORIES["women"]["womens-apparel"]["url"]
             ),
             leaves[:2],
         )
@@ -163,7 +195,10 @@ class BloomingdalesListingSpiderTests(unittest.TestCase):
         self.assertEqual(second_outputs, [])
 
     def test_block_page_raises_runtime_error(self):
-        request = Request(BLOOMINGDALES_CATEGORIES["all"]["women"], meta={"page": 1})
+        request = Request(
+            BLOOMINGDALES_CATEGORIES["women"]["womens-apparel"]["url"],
+            meta={"page": 1, "category": "women"},
+        )
         blocked = TextResponse(
             url=request.url,
             request=request,
