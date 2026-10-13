@@ -6,6 +6,8 @@ from scrapy.http import HtmlResponse, Request
 from common.spiders.superdrug_categories import SUPERDRUG_CATEGORIES
 from common.spiders.superdrug_listing_spider import SuperdrugListingSpider
 
+HEALTH_WINTER_URL = SUPERDRUG_CATEGORIES["health"]["health-winter"]
+
 
 class SuperdrugListingSpiderTests(unittest.TestCase):
     def setUp(self):
@@ -23,7 +25,7 @@ class SuperdrugListingSpiderTests(unittest.TestCase):
             f"?pageSize=8&currentPage={page - 1}",
             meta={
                 "category": "health-winter",
-                "base_url": SUPERDRUG_CATEGORIES["health-winter"],
+                "base_url": HEALTH_WINTER_URL,
                 "page": page,
             },
         )
@@ -57,11 +59,33 @@ class SuperdrugListingSpiderTests(unittest.TestCase):
             },
         }
 
-    def test_categories_are_a_dict(self):
-        self.assertIsInstance(SUPERDRUG_CATEGORIES, dict)
-        self.assertEqual(
-            self.spider.resolve_target_url(), SUPERDRUG_CATEGORIES["health-winter"]
+    def test_categories_are_grouped_mapping(self):
+        from collections.abc import Mapping
+
+        self.assertIsInstance(SUPERDRUG_CATEGORIES, Mapping)
+        self.assertTrue(
+            all(isinstance(v, Mapping) for v in SUPERDRUG_CATEGORIES.values())
         )
+        self.assertEqual(sum(len(v) for v in SUPERDRUG_CATEGORIES.values()), 163)
+        self.assertEqual(len(SUPERDRUG_CATEGORIES), 63)
+        # A stored URL in the sample repeats the breadcrumb, so walk for the
+        # ``c/<slug>`` code rather than asserting the full path.
+        self.assertTrue(
+            SUPERDRUG_CATEGORIES["health"]["health-winter"].endswith(
+                "/c/health-winter"
+            )
+        )
+
+    def test_resolves_leaf_across_departments(self):
+        entry = self.spider.category_entry("health-winter")
+        self.assertIsNotNone(entry)
+        self.assertEqual(entry["group"], "health")
+        self.assertTrue(self.spider.resolve_target_url().endswith("/c/health-winter"))
+
+    def test_unknown_category_is_rejected(self):
+        spider = SuperdrugListingSpider(category="not-a-category", max_pages=1)
+        with self.assertRaisesRegex(ValueError, "Unknown category"):
+            spider.resolve_target_url()
 
     def test_parses_bootstrap_and_schedules_next_page(self):
         response = self.response(self.model())
@@ -73,7 +97,7 @@ class SuperdrugListingSpiderTests(unittest.TestCase):
         self.assertEqual(item["brand"], "Superdrug")
         self.assertEqual(item["total_count"], 189)
         self.assertEqual(item["source"], "superdrug_spartacus_bootstrap")
-        self.assertEqual(output[1].url, SUPERDRUG_CATEGORIES["health-winter"] + "?pageSize=8&currentPage=1")
+        self.assertEqual(output[1].url, HEALTH_WINTER_URL + "?pageSize=8&currentPage=1")
         self.assertNotIn("proxy", output[1].meta)
         self.assertNotIn("_auth_proxy", output[1].meta)
 

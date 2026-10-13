@@ -37,26 +37,21 @@ class SuperdrugListingSpider(BaseListingSpider):
         super().__init__(*args, **kwargs)
         self._seen: set[str] = set()
 
-    def available_categories(self) -> list[str]:
-        return sorted(self.categories)
-
     def resolve_target_url(self) -> str:
-        if self.url:
-            return self.url
-        if self.category_url:
-            return self.category_url
-        if self.category in self.categories:
-            return self.categories[self.category]
-        available = ", ".join(self.available_categories())
-        raise ValueError(f"Unknown category {self.category!r}. Available categories: {available}")
+        # ``SUPERDRUG_CATEGORIES`` is now the grouped ``{department: {leaf: url}}``
+        # mapping; the base ``resolve_target_url`` looks a leaf up across every
+        # group and raises a clear error for an unknown category.
+        return super().resolve_target_url()
 
     def start_requests(self):
         target = self.resolve_target_url()
+        entry = self.category_entry(self.category) if self.category else None
+        category = (entry or {}).get("category") or self.category or "custom"
         yield scrapy.Request(
             self._page_url(target, 0),
             callback=self.parse,
             headers=self._headers(),
-            meta={"category": self.category or "custom", "base_url": target, "page": 1},
+            meta={"category": category, "base_url": target, "page": 1},
         )
 
     def parse(self, response: scrapy.http.Response):
