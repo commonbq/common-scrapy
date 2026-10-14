@@ -9,6 +9,10 @@ from urllib.parse import urljoin, urlsplit, urlunsplit
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.officedepot_categories import (
+    OFFICEDEPOT_CATEGORIES,
+    parse_categories,
+)
 
 SITE_BASE = "https://www.officedepot.com"
 CATEGORY_API_URL = "https://ma.officedepot.com/header-menu-excel/products.json"
@@ -82,6 +86,7 @@ class OfficedepotListingSpider(BaseListingSpider):
         "ma.officedepot.com",
     ]
     require_category_arg = False  # Categories are resolved dynamically.
+    categories = OFFICEDEPOT_CATEGORIES
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
@@ -136,37 +141,18 @@ class OfficedepotListingSpider(BaseListingSpider):
 
     def parse_categories_json(self, response: scrapy.http.Response):
         try:
-            data = json.loads(response.text)
-            menu_list = data.get("responseObject", {}).get("menuList", [])
-
-            def _walk_category_tree(nodes: list[dict], department: str, sub_category: str):
-                for node in nodes:
-                    name = (node.get("name") or "").strip()
-                    url = (node.get("url") or "").strip()
-                    if url.startswith("/b/"):
-                        entry = {
-                            "department": department,
-                            "sub_category": sub_category,
-                            "name": name,
-                            "url": url,
-                        }
-                        self._categories_to_resolve.append(entry)
-                        self._add_to_slug_index(entry)
-                    _walk_category_tree(node.get("hierarchy") or [], department, name)
-
-            for department_node in menu_list:
-                department_name = (department_node.get("name") or "").strip()
-                department_url = (department_node.get("url") or "").strip()
-                if department_url.startswith("/b/"):
-                    entry = {
-                        "department": department_name,
-                        "sub_category": "",
-                        "name": department_name,
-                        "url": department_url,
-                    }
-                    self._categories_to_resolve.append(entry)
-                    self._add_to_slug_index(entry)
-                _walk_category_tree(department_node.get("hierarchy") or [], department_name, "")
+            self.categories = parse_categories(response.text)
+            self._category_cache = None
+            for entry in self.iter_categories():
+                normalized = {
+                    "department": entry["group"],
+                    "sub_category": entry.get("sub_category") or "",
+                    "name": entry["name"],
+                    "url": entry["url"],
+                    "category_slug": entry["category"],
+                }
+                self._categories_to_resolve.append(normalized)
+                self._add_to_slug_index(normalized)
 
             self.logger.info(f"Resolved {len(self._categories_to_resolve)} browse categories.")
 
@@ -187,6 +173,9 @@ class OfficedepotListingSpider(BaseListingSpider):
             self.logger.error(f"Category resolution error: {e}")
 
     def _add_to_slug_index(self, entry: dict[str, Any]):
+        canonical_slug = entry.get("category_slug")
+        if canonical_slug:
+            self._slug_index[canonical_slug] = entry
         plain_slug = _slugify(entry["name"])
         qualified_slug = _slugify(f"{entry['department']}-{entry['name']}")
 

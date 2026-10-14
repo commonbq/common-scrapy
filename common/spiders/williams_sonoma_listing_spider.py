@@ -36,6 +36,7 @@ import scrapy
 from common.spiders.base_listing_spider import BaseListingSpider
 from common.spiders.williams_sonoma_categories import (
     CATEGORY_TREE_URL,
+    WILLIAMS_SONOMA_CATEGORIES,
     Category,
     SITE_BASE,
     build_grouped_inventory,
@@ -74,7 +75,9 @@ class WilliamsSonomaListingSpider(BaseListingSpider):
 
     # The full inventory is loaded from the first-party category tree at crawl
     # time and then stored in BaseListingSpider's group -> leaf mapping shape.
-    categories: dict[str, dict[str, dict[str, str | int | None]]] = {}
+    categories: dict[str, dict[str, dict[str, str | int | None]]] = (
+        WILLIAMS_SONOMA_CATEGORIES
+    )
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
