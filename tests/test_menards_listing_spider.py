@@ -12,13 +12,28 @@ def test_categories_use_grouped_mapping_contract():
         isinstance(group, Mapping)
         for group in MenardsListingSpider.categories.values()
     )
+    assert len(MenardsListingSpider.categories) == 25
     entries = list(MenardsListingSpider(category="appliances").iter_categories())
-    assert len(entries) == 20
-    assert entries[1] == {
-        "group": "all",
-        "category": "appliances",
-        "url": "https://www.menards.com/main/appliances/c-5570.htm",
+    assert len(entries) == 372
+    # Leaf keys are globally unique so a bare category is a safe output path.
+    leaves = [entry["category"] for entry in entries]
+    assert len(leaves) == len(set(leaves))
+    appliance_leaf = next(
+        entry for entry in entries if entry["category"] == "appliance-parts-accessories"
+    )
+    assert appliance_leaf == {
+        "group": "appliances",
+        "category": "appliance-parts-accessories",
+        "name": "Appliance Parts & Accessories",
+        "url": "https://www.menards.com/main/appliances/appliance-parts-accessories/c-9332.htm",
     }
+
+
+def test_leaf_selector_resolves_category_urls():
+    spider = MenardsListingSpider(category="cooktops")
+    assert spider.resolve_target_url() == (
+        "https://www.menards.com/main/appliances/cooktops/c-14092.htm"
+    )
 
 
 def response(url, body, *, meta=None, content_type="application/json"):

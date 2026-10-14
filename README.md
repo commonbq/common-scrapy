@@ -62,7 +62,7 @@ Examples:
 - `common-scrapy crawl sephora_listing --category makeup-cosmetics -a max_pages=1 -O sephora_listing.jsonl`
 - `common-scrapy crawl newegg_listing --category components-storage-core-component-cpu-processor-desktop-cpu-processor -a max_pages=1 -O newegg.jsonl` (36 items, verified live on 2026-10-02; see [newegg_listing](#newegg_listing))
 - `common-scrapy crawl cvs_listing --category health-medicine -a max_pages=3 -O cvs.jsonl` (60 items, verified live on 2026-10-04; see [cvs_listing](#cvs_listing))
-- `common-scrapy crawl menards_listing --category halloween-animated-decorations -a max_pages=1 -O menards.jsonl`
+- `common-scrapy crawl menards_listing --category appliance-parts-accessories -a max_pages=1 -O menards.jsonl`
 - `common-scrapy crawl dunelm_listing --category home-and-furniture -a max_pages=1 -O dunelm.jsonl`
 
 ### toolstation_listing
@@ -452,12 +452,17 @@ to establish the proxy-backed cookie session, derives `categoryId` from the
 canonical `c-<id>.htm` URL, and then paginates the API's `searchResult.items`
 contract. It does not parse product cards or JSON-LD.
 
-The spider includes 20 stable department/category seeds from Menards' Shop >
-Departments navigation. Both the category page and API request use the configured
-US proxy because direct API requests receive an Incapsula challenge.
+The spider ships the full Menards `Shop > Departments` navigation taxonomy: 25
+departments and 372 crawlable category leaves captured from the homepage
+`mcom-header` menu JSON on 2026-10-14, each carrying its canonical
+`/main/.../c-<id>.htm` listing URL (all 25 department URLs verified HTTP 200).
+Leaf keys are globally unique so a bare category is a safe Airflow task / GCS
+output path; a destination exposed under two departments is kept once. Both the
+category page and API request use the configured US proxy because direct API
+requests receive an Incapsula challenge.
 
 ```bash
-scrapy crawl menards_listing -a category=halloween-animated-decorations -a max_pages=1 -s HTTPCACHE_ENABLED=False -O menards.jsonl
+scrapy crawl menards_listing -a category=appliance-parts-accessories -a max_pages=1 -s HTTPCACHE_ENABLED=False -O menards.jsonl
 ```
 
 ### microcenter_listing
@@ -492,7 +497,7 @@ These are still being worked on and currently returned `0` items in recent smoke
 | [`dillards_listing`](#dillards_listing) | Experimental | bootstrap | Akamai | Dillard's listing spider via `window.__INITIAL_STATE__`. | 0 (ok) | 10 departments / 124 leaves (grouped mapping) from `dillards_categories.py` | `n/a` |
 | [`kohls_listing`](#kohls_listing) | Experimental | api | Akamai (Cloudflare challenge assets also observed) | Kohl’s listing via `/web/catalog/...` API. | 0 (ok) | 540 site-map categories in 59 groups | `n/a` |
 | [`nordstromrack_listing`](#nordstromrack_listing) | Experimental | JSON-LD | Fastly (`x-jungle`); residential proxy required | Nordstrom Rack category listings from server-rendered Schema.org `ItemList` data. | 2 (fixture; live 403 direct) | 1335 leaves in 18 departments (from `navigation-sitemap.xml`) | `{"item_id":"7788991","title":"Pleated Midi Dress","brand":"Donna Ricco","price":34.97,"currency":"USD",...}` |
-| [`menards_listing`](#menards_listing) | Active | api | Incapsula (ScrapeOps US residential route required; API leg still returns a proxy/Incapsula failure envelope) | Menards category listings from the first-party `POST /main/search/category.ajx` JSON API; session is seeded from the category page and taxonomy comes from the homepage `mcom-header` menu JSON. | 0 (live proxy unverified; fixture smoke emits items) | 20 department/category seeds from `menards_categories.py` | `{"category":"halloween-animated-decorations","item_id":"123","title":"Animated Dragon","brand":"Enchanted Forest","price":99.99,"currency":"USD","source":"menards_category_api",...}` |
+| [`menards_listing`](#menards_listing) | Active | api | Incapsula (ScrapeOps US residential route required; API leg still returns a proxy/Incapsula failure envelope) | Menards category listings from the first-party `POST /main/search/category.ajx` JSON API; session is seeded from the category page and taxonomy comes from the homepage `mcom-header` menu JSON. | 0 (live proxy unverified; fixture smoke emits items) | 25 departments / 372 leaves (grouped mapping) from `menards_categories.py` | `{"category":"halloween-animated-decorations","item_id":"123","title":"Animated Dragon","brand":"Enchanted Forest","price":99.99,"currency":"USD","source":"menards_category_api",...}` |
 
 *`Number of items output` reflects recent local smoke runs (typically `max_pages=1`) and can vary by location, anti-bot behavior, and site changes.*
 Many listing spiders accept `-a category=<name>` shortcuts (in addition to `-a category_url=<url>`), including Amazon, Walmart, eBay, Home Depot, Best Buy, and Kroger. Costco listing uses category-only selection.
