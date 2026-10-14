@@ -4,7 +4,10 @@ import pytest
 from scrapy.exceptions import CloseSpider
 from scrapy.http import Request, TextResponse
 
+from common.spiders.worldmarket_categories import WORLD_MARKET_CATEGORIES
 from common.spiders.worldmarket_listing_spider import WorldmarketListingSpider
+
+LEAF = "furniture-living-room-furniture-sofas-and-loveseats"
 
 
 CATEGORY_HTML = """
@@ -35,7 +38,39 @@ def response(url, body, meta=None, status=200):
 
 
 def spider(max_pages=2):
-    return WorldmarketListingSpider(category="furniture-shop-all-furniture", max_pages=max_pages)
+    return WorldmarketListingSpider(category=LEAF, max_pages=max_pages)
+
+
+def test_categories_are_grouped_mapping_of_854_unique_leaves():
+    leaves = [
+        leaf
+        for group in WORLD_MARKET_CATEGORIES.values()
+        for leaf in group
+    ]
+    assert len(WORLD_MARKET_CATEGORIES) == 32
+    assert len(leaves) == 854
+    assert len(set(leaves)) == 854
+    for group in WORLD_MARKET_CATEGORIES.values():
+        for leaf, entry in group.items():
+            assert entry["url"].startswith("https://www.worldmarket.com/c/")
+            assert entry["category"] == leaf
+
+
+def test_resolves_cross_group_leaf_and_group_root():
+    assert (
+        spider().resolve_target_url()
+        == "https://www.worldmarket.com/c/furniture/living-room-furniture/sofas-and-loveseats/"
+    )
+    assert (
+        WorldmarketListingSpider(category="holidays").resolve_target_url()
+        == "https://www.worldmarket.com/c/holidays/"
+    )
+    assert len(spider().available_categories()) == 854
+
+
+def test_unknown_category_lists_available():
+    with pytest.raises(ValueError, match="Unknown category"):
+        WorldmarketListingSpider(category="not-a-real-leaf").resolve_target_url()
 
 
 def test_start_and_category_handoff_use_api_start_zero():
