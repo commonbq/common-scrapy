@@ -122,12 +122,34 @@ def parse_taxonomy(payload: dict[str, Any]) -> list[dict[str, Any]]:
     return list(by_url.values())
 
 
-def load_categories(payload: dict[str, Any]) -> list[dict[str, str]]:
-    """Flattened ``{'category','url'}`` list for ``BaseListingSpider``."""
-    return [
-        {"category": entry["category"], "url": entry["url"]}
-        for entry in parse_taxonomy(payload)
-    ]
+def grouped_categories(payload: dict[str, Any]) -> dict[str, dict[str, dict[str, Any]]]:
+    """Group the taxonomy into the ``{group: {leaf: rich}}`` mapping contract.
+
+    Implements :class:`BaseListingSpider`'s ``categories`` shape directly: the
+    enclosing **section** (top-level menu node) becomes the group key and each
+    eligible leaf becomes a rich value carrying everything the products
+    endpoint needs (``category_id``, ``seo_category_id``, ``keyword``, ``url``,
+    ``name``, ``section``, ``path``, ``departments``).
+
+    Leaf keys stay the full breadcrumb ``category`` string (e.g.
+    ``"WOMAN > NEW ARRIVALS > THE NEW > DRESSES"``) so they remain globally
+    unique across sections -- the DAG factory schedules one task per leaf, and
+    output paths key on the bare leaf name, so a collision would merge two
+    categories. The breadcrumb (not the bare menu label) is also what
+    ``-a category=`` matches, which disambiguates the repeated labels
+    (``VIEW ALL``, ``THE NEW``) the Zara menu is full of.
+    """
+    groups: dict[str, dict[str, dict[str, Any]]] = {}
+    for entry in parse_taxonomy(payload):
+        group = str(entry.get("section") or "all")
+        groups.setdefault(group, {})[entry["category"]] = entry
+    return groups
+
+
+def load_categories(payload: dict[str, Any]) -> dict[str, dict[str, dict[str, Any]]]:
+    """Grouped ``categories`` mapping for ``BaseListingSpider`` (see
+    :func:`grouped_categories`)."""
+    return grouped_categories(payload)
 
 
 def seo_category_id_from_url(url: str) -> str | None:

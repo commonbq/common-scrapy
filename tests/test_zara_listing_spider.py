@@ -6,6 +6,7 @@ from scrapy.http import TextResponse
 
 from common.spiders.zara_categories import (
     category_key,
+    grouped_categories,
     is_product_category,
     listing_url,
     load_categories,
@@ -87,11 +88,25 @@ class ZaraTaxonomyTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             parse_taxonomy(None)
 
-    def test_load_categories_returns_flat_schema(self):
-        flat = load_categories(self.payload)
-        self.assertEqual(len(flat), len(self.entries))
-        for entry in flat:
-            self.assertEqual(set(entry), {"category", "url"})
+    def test_load_categories_returns_grouped_mapping(self):
+        # The base-class contract is ``{group: {leaf: rich}}``; the group is the
+        # top-level menu section and every leaf keeps the full taxonomy entry.
+        grouped = load_categories(self.payload)
+        self.assertEqual(grouped, grouped_categories(self.payload))
+        self.assertEqual(
+            sum(len(leaves) for leaves in grouped.values()), len(self.entries)
+        )
+        for group, leaves in grouped.items():
+            self.assertTrue(group)
+            for leaf, entry in leaves.items():
+                self.assertEqual(entry["category"], leaf)
+                self.assertTrue(entry["url"])
+
+    def test_grouped_categories_sections_match_entry_sections(self):
+        grouped = grouped_categories(self.payload)
+        self.assertEqual(
+            {entry["section"] for entry in self.entries}, set(grouped)
+        )
 
     def test_seo_category_id_from_url(self):
         self.assertEqual(
@@ -141,7 +156,7 @@ class ZaraListingSpiderTest(unittest.TestCase):
         )
 
     def test_parse_categories_selects_the_requested_entry(self):
-        self.spider.categories = []
+        self.spider.categories = {}
         request = next(self.spider.start_requests())
         response = self.response(request, self.taxonomy)
         follow = list(self.spider.parse_categories(response))
@@ -151,7 +166,9 @@ class ZaraListingSpiderTest(unittest.TestCase):
             "https://www.zara.com/us/en/category/2546081/products?ajax=true",
         )
         self.assertEqual(follow[0].meta["entry"]["category"], "WOMAN > NEW ARRIVALS > THE NEW")
-        self.assertEqual(len(self.spider.categories), 3)
+        self.assertEqual(
+            sum(len(leaves) for leaves in self.spider.categories.values()), 3
+        )
 
     def test_products_request_carries_a_plp_referer(self):
         entry = self.entries[0]
@@ -163,7 +180,7 @@ class ZaraListingSpiderTest(unittest.TestCase):
 
     def test_taxonomy_run_without_a_target_crawls_every_category(self):
         spider = ZaraListingSpider(max_pages=1)
-        spider.categories = []
+        spider.categories = {}
         request = next(spider.start_requests())
         follow = list(spider.parse_categories(self.response(request, self.taxonomy)))
         self.assertEqual(len(follow), 3)

@@ -66,6 +66,7 @@ from common.spiders.zara_categories import (
     PRODUCTS_ENDPOINT_TEMPLATE,
     ZARA_LOCALE_PREFIX,
     ZARA_SITE_BASE,
+    grouped_categories,
     parse_taxonomy,
     seo_category_id_from_url,
 )
@@ -134,7 +135,7 @@ class ZaraListingSpider(BaseListingSpider):
     ]
     require_category_arg = False
 
-    categories: list[dict[str, Any]] = []
+    categories: dict[str, dict[str, dict[str, Any]]] = {}
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
@@ -213,7 +214,7 @@ class ZaraListingSpider(BaseListingSpider):
         )
 
     def _entry_for(self, target: str) -> dict[str, Any]:
-        for entry in self.categories:
+        for entry in self.iter_categories():
             if entry["url"] == target or entry["category"] == self.category:
                 return entry
 
@@ -267,7 +268,8 @@ class ZaraListingSpider(BaseListingSpider):
                 "Zara /us/en/categories returned no product-category nodes at "
                 f"{response.url}; the menu contract changed (expected >= 1 entry)."
             )
-        self.categories = entries
+        self.categories = grouped_categories(payload)
+        self._category_cache = None
         self.logger.info(
             "Zara taxonomy hydrated: %d unique product categories", len(entries)
         )
