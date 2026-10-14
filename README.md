@@ -257,7 +257,7 @@ Working spiders running daily in production:
 |---|---|---|---|---|---|---|---|
 | [`athome_listing`](#athome_listing) | Active | API | Akamai; ScrapeOps US proxy | At Home products from the SFCC `Search-UpdateGrid` AJAX API only; no category-page or JSON-LD fallback. | 24/API page | Top 20 product-listing categories ranked by measured inventory | `{"category":"christmas","item_id":"125043763","title":"50-Count Burgundy Ornaments, 2.4\"","price":11.99,"currency":"USD","source":"athome_sfra_search_updategrid_api"...}` |
 | [`decathlon_listing`](#decathlon_listing) | Active | API | none detected direct; compatible with plain ScrapeOps US proxy | Decathlon products from Shopify's first-party collection JSON API only; no HTML, embedded-metadata, or JSON-LD fallback. | Up to 250/API page | Top 20 primary-nav collections ranked by product count | `{"category":"camp-hike","item_id":"8209731190846","title":"Simond Men’s Xplore Hooded Down Jacket","price":119.0,"currency":"USD","source":"decathlon_shopify_collection_api"...}` |
-| [`wickes_listing`](#wickes_listing) | Active | bootstrap | none detected | Wickes products from the server-rendered `var product = {...}` analytics bootstrap only; no rendered-card or JSON-LD fallback. | 29 (one page) | Top 20 verified product-bearing categories | `{"category":"wall-ceiling-emulsion-paint","item_id":"106974","title":"Dulux Matt Emulsion Paint - Egyptian Cotton - 2.5L","brand":"Dulux","price":25,"currency":"GBP","source":"wickes_analytics_bootstrap"...}` |
+| [`wickes_listing`](#wickes_listing) | Active | bootstrap | none detected | Wickes products from the server-rendered `var product = {...}` analytics bootstrap only; no rendered-card or JSON-LD fallback. | 29 (one page) | 1036 `/.../c<id>` leaves across 30 departments (from the live `sitemap-categories.xml`) | `{"category":"painting-decorating-interior-paint-wall-ceiling-emulsion-paint","item_id":"106974","title":"Dulux Matt Emulsion Paint - Egyptian Cotton - 2.5L","brand":"Dulux","price":25,"currency":"GBP","source":"wickes_analytics_bootstrap"...}` |
 | [`toolstation_listing`](#toolstation_listing) | Active | API | none detected | Toolstation UK products from the first-party Bloomreach CRS `/api/search/crs` API only; no HTML-card, Nuxt-state, or JSON-LD fallback. | 48/page | 1,015 `/.../c<id>` leaves across 27 departments from the `departments.xml` sitemap; reviewed top-20 preserved for the DAG | `{"category":"kitchens-kitchen-cabinets","item_id":"12145","title":"Kitchen Kit Flatpack Shaker Kitchen Cabinet Base End Ultra Matt Cashmere 900mm","brand":"Kitchen Kit","price":44.54,"currency":"GBP","source":"toolstation_bloomreach_crs_api"...}` |
 | [`dollartree_listing`](#dollartree_listing) | Active | API | none detected direct | Dollar Tree products from the first-party Oracle Commerce Cloud guided-search API only; no HTML or JSON-LD fallback. | 24/page | Top 20 categories ranked by live product count | `{"category":"food-candy-drinks","item_id":"354662","title":"Lil' Dutch Maid Duplex Crème Cookies.","price":1.25,"currency":"USD","source":"dollartree_occ_guided_search_api"...}` |
 | [`fivebelow_listing`](#fivebelow_listing) | Active | API | Cloudflare on discovery page; configured proxy required | Five Below variants from the first-party Algolia product-search API. The category page only supplies current API configuration; no HTML-card, RSC-product, or JSON-LD fallback. | 39 variants from 24 products/page | Top 20 categories ranked by sitemap breadth | `{"category":"new-and-now","item_id":"9252012","title":"Littlest Pet Shop® x Like Nastya DIY Bestie Bag Charm","price":5.0,"currency":"USD","source":"fivebelow_algolia_product_search_api"...}` |
@@ -5057,7 +5057,16 @@ initial category page and each `/c/<id>/results/view` load-more response contain
 the same `var product = {...}` records. The spider does not parse rendered
 product cards or JSON-LD, and it has no fallback data direction.
 
-The inventory exposes the 20 largest verified product-bearing Wickes categories.
+The inventory (`common/spiders/wickes_categories.py`) is a grouped
+`{department: {leaf: {name, department, url, code}}}` mapping — **1036
+product-bearing leaves across 30 departments**, captured 2026-10-15 from the
+first-party category sitemap (`/sitemap-categories.xml`) and each verified live
+(HTTP 200 plus at least one `var product` record). Leaf keys are the slugified
+URL path below `Products`, globally unique for the Airflow task ids and GCS
+output paths; `code` is the numeric `/c/<id>` the spider regexes out of the URL.
+`-a category=<leaf>` selects one leaf, `-a category=<department>` remains a
+legacy parent selector.
+
 Pagination follows the storefront's load-more endpoint sequentially, deduplicates
 stable product IDs, and stops on `max_pages` or the first empty bootstrap page.
 The ordered `FEED_EXPORT_FIELDS` contract covers category context, product ID,
@@ -5065,7 +5074,7 @@ title, brand, taxonomy, variant, canonical resolving URL, price/currency,
 pagination, provenance, the authoritative raw bootstrap record, and timestamp.
 
 ```bash
-scrapy crawl wickes_listing -a category=wall-ceiling-emulsion-paint -a max_pages=2 \
+scrapy crawl wickes_listing -a category=painting-decorating-interior-paint-wall-ceiling-emulsion-paint -a max_pages=2 \
   -s HTTPCACHE_ENABLED=False -O wickes.jsonl
 ```
 

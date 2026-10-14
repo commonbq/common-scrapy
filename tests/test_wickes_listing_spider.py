@@ -40,18 +40,30 @@ var currentPosition = impressionsEvent.ecommerce.impressions.length;
 
 class WickesListingSpiderTests(unittest.TestCase):
     def setUp(self):
-        self.spider = WickesListingSpider(category="wall-ceiling-emulsion-paint", max_pages=2)
+        self.spider = WickesListingSpider(
+            category="painting-decorating-interior-paint-wall-ceiling-emulsion-paint",
+            max_pages=2,
+        )
 
     def response(self, page=1, body=BOOTSTRAP):
         url = self.spider._target_url if page == 1 else self.spider._results_url(page - 1)
         request = Request(url, meta={"page": page})
         return TextResponse(url, request=request, body=body, encoding="utf-8")
 
-    def test_top_twenty_category_inventory(self):
+    def test_full_category_inventory_is_grouped_and_unique(self):
         rows = _FLAT(WICKES_CATEGORIES)
-        self.assertEqual(len(rows), 20)
-        self.assertEqual(len({entry["category"] for entry in rows}), 20)
+        leaves = [leaf for group in WICKES_CATEGORIES.values() for leaf in group]
+        self.assertEqual(len(rows), 1036)
+        self.assertEqual(len(set(leaves)), 1036)
         self.assertTrue(all("/c/" in entry["url"] for entry in rows))
+        # Grouped mapping: leaf keys are the slugified path below ``Products``.
+        self.assertTrue(all(isinstance(group, dict) for group in WICKES_CATEGORIES.values()))
+        self.assertIn("Bathrooms", WICKES_CATEGORIES)
+        self.assertIn("tiles-all-tiles", WICKES_CATEGORIES["Tiles"])
+        self.assertNotIn(
+            "wall-ceiling-emulsion-paint",
+            {leaf for group in WICKES_CATEGORIES.values() for leaf in group},
+        )
 
     def test_extracts_only_analytics_bootstrap_records(self):
         records = self.spider.extract_bootstrap_products(BOOTSTRAP)
@@ -73,6 +85,12 @@ class WickesListingSpiderTests(unittest.TestCase):
         self.assertEqual(
             requests[0].url,
             "https://www.wickes.co.uk/c/1001115/results/view?q=%3Arelevance&page=1&sort=relevance",
+        )
+        self.assertEqual(self.spider.category, "painting-decorating-interior-paint-wall-ceiling-emulsion-paint")
+        self.assertEqual(
+            self.spider._target_url,
+            "https://www.wickes.co.uk/Products/Painting+Decorating/Interior-Paint/"
+            "Wall+Ceiling-Emulsion-Paint/c/1001115",
         )
 
     def test_empty_first_page_fails_but_empty_later_page_stops(self):
