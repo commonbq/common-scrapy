@@ -377,7 +377,7 @@ Spiders below are returning items in recent smoke runs:
 | [`zara_listing`](#zara_listing) | Active | api | Akamai (ScrapeOps `country=us,bypass=5`) | Zara US listings from the first-party category and product JSON APIs; no HTML or JSON-LD fallback. | 637 (Dresses; one API response) | 912 live product categories across 8 menu sections | `{"category":"WOMAN > COLLECTION > DRESSES","item_id":"560058525","title":"STRIPED PUFF SLEEVE MINI DRESS","price":69.9,"currency":"USD","source":"zara_api"...}` |
 | [`zoro_listing`](#zoro_listing) | Experimental | bootstrap | intermittent direct 403; configured proxy requires active credits | Zoro category listings from server-rendered Vuex `window.INITIAL_STATE.search.response.records` only. | 36/page | 20 top-level departments; hydrated taxonomy resolves leaf PLPs | `{"category":"custom","department":"Raw Materials","leaf_category":"Aluminum Angles","item_id":"G3109732","title":"Angle, Al, 6061, 1/8 In T, 2 In Leg, 4 Ft L","price":17.39,"currency":"USD","source":"zoro_initial_state_search_records"...}` |
 | [`saksfifthavenue_listing`](#saksfifthavenue_listing-category) | Experimental | html | DataDome | Saks Fifth Avenue listing spider via direct category HTML cards. | 24 (ok) | women, men, shoes, beauty, handbags | `{"item_id":"0400026449047","title":"Prada Washed Re Nylon Rain Jacket","url":"https://www.saksfifthavenue.com/product/prada-washed-re-nyl...` |
-| [`sallybeauty_listing`](#sallybeauty_listing) | Experimental | html + AJAX | PerimeterX / HUMAN (px-captcha signals) | Sally Beauty SFCC product-grid spider with `Search-UpdateGrid` pagination. | 2 (fixture) | hair-color, hair-care, textured-curly-hair, hair-extensions, tools-brushes, nails, cosmetics-skin-care, fragrances, mens-grooming, salon-supplies, new, deals | `{"category":"hair-care","item_id":"SBS-539230","title":"Low Porosity Aloe Vera Gel Shampoo","brand":"Texture ID","price":11.99...` |
+| [`sallybeauty_listing`](#sallybeauty_listing) | Experimental | html + AJAX | PerimeterX / HUMAN (px-captcha signals) | Sally Beauty SFCC product-grid spider with `Search-UpdateGrid` pagination. | 2 (fixture) | 242 leaves across 12 departments: hair-color, hair-care, textured-and-curly-hair-care, hair-extensions, tools-and-brushes, nails, cosmetics-and-skin-care, fragrances, mens-grooming, salon-supplies, deals, perm-rods | `{"category":"hair-care","item_id":"SBS-539230","title":"Low Porosity Aloe Vera Gel Shampoo","brand":"Texture ID","price":11.99...` |
 | [`belk_listing`](#belk_listing) | Experimental | api | none detected (first-party JSON) | Belk listings from the `/ecom/cio/v1/web/category/{path}?v2=true` search facade. | 60 (one page, ok) | 13 departments / 427 leaves (grouped mapping) from `belk_categories.py` | `{"item_id":"2900965MULANEYW","title":"Mulaney Flats","brand":"DV Dolce Vita","price":45.5,"original_price":65.0,"discount_percent":30.0,"currency":"USD"...}` |
 | [`stockx_listing`](#stockx_listing) | Experimental | bootstrap + html | Cloudflare | StockX listing via `__NEXT_DATA__` bootstrap. | 41 (ok) | sneakers, apparel, electronics, trading-cards, collectibles | `{"item_id":"brands","title":"Brands","url":"https://stockx.com/brands","price":null,"currency":null}` |
 | [`urbanoutfitters_listing`](#urbanoutfitters_listing) | Active | bootstrap | none detected through ScrapeOps proxy | Urban Outfitters listings from double-decoded Vue/Pinia SSR state (`#urbnInitialPiniaState`), with `?page=` pagination and no HTML fallback. | 144 (2 pages, live proxy) | 2,158 sitemap PLPs plus 4 navigation roots absent from the sitemap (2,162 targets total) | `{"category":"new-arrivals","item_id":"UO-106663735-000","title":"Kimchi Blue Ella Flyaway Ruffle Lace Trim Cami","brand":"Kimchi Blue","price":39,"rating":4.7308,"reviews_count":26,"color":"Maroon","source":"urbanoutfitters_pinia_ssr_tiles"...}` |
@@ -2884,8 +2884,15 @@ and offset.
 Run examples:
 
 - `common-scrapy crawl sallybeauty_listing -a category='hair-care' -a max_pages=1 -O sallybeauty.jsonl`
-- `common-scrapy crawl sallybeauty_listing -a category='hair-care' -a max_pages=3 -O sallybeauty.jsonl`
+- `common-scrapy crawl sallybeauty_listing -a category='hair-care-shop-by-product-shampoo' -a max_pages=3 -O sallybeauty.jsonl`
 - `common-scrapy crawl sallybeauty_listing -a category='hair-care' -a url='https://www.sallybeauty.com/hair-care/shop-by-product/shampoo/' -a max_pages=2 -O shampoo.jsonl`
+
+The category inventory is the grouped `SALLYBEAUTY_CATEGORIES` mapping in
+`common/spiders/sallybeauty_categories.py`: 242 globally unique leaves across 12
+departments, refreshed 2026-10-15 from the live homepage navigation. Every URL was
+fetched through the configured proxy and confirmed to render an SFCC product grid;
+brand-index and `explore-*` editorial destinations are excluded. `-a category=<department>`
+still expands to the department's leaves via the base-class parent selector.
 
 The export contract is ordered as:
 

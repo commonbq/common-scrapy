@@ -45,11 +45,20 @@ class SallybeautyListingSpiderTest(unittest.TestCase):
     def test_category_inventory(self):
         self.assertIsInstance(self.spider.categories, Mapping)
         self.assertTrue(all(isinstance(group, Mapping) for group in self.spider.categories.values()))
-        self.assertEqual(len(list(self.spider.iter_categories())), 14)
-        self.assertIn("salon-supplies", self.spider.available_categories())
+        leaves = list(self.spider.iter_categories())
+        self.assertGreater(len(leaves), 25)
+        # Leaf keys are globally unique across departments so the DAG's GCS
+        # output paths cannot collide.
+        self.assertEqual(len({leaf["category"] for leaf in leaves}), len(leaves))
+        # One canonical leaf and one department parent both resolve.
+        self.assertIn("hair-care-shop-by-product-shampoo", self.spider.available_categories())
         self.assertEqual(
-            self.spider.category_entry("new")["url"],
-            "https://www.sallybeauty.com/sally-new/",
+            self.spider.category_entry("hair-care-shop-by-product-shampoo")["url"],
+            "https://www.sallybeauty.com/hair-care/shop-by-product/shampoo/",
+        )
+        self.assertEqual(
+            self.spider.category_targets("Hair Care")["hair-care"],
+            "https://www.sallybeauty.com/hair-care/",
         )
 
 
