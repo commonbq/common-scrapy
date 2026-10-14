@@ -8,7 +8,7 @@ from common.spiders.toolstation_listing_spider import ToolstationListingSpider
 
 class ToolstationListingSpiderTests(unittest.TestCase):
     def setUp(self):
-        self.spider = ToolstationListingSpider(category="kitchen-cabinets", max_pages=2)
+        self.spider = ToolstationListingSpider(category="kitchens-kitchen-cabinets", max_pages=2)
 
     def response(self, *, start=0, total=49):
         product = {
@@ -50,6 +50,33 @@ class ToolstationListingSpiderTests(unittest.TestCase):
         self.assertEqual(fields[0:5], ["category", "category_name", "category_id", "department", "category_url"])
         self.assertIn("raw", fields)
         self.assertEqual(fields[-1], "timestamp")
+
+    def test_category_inventory(self):
+        from collections.abc import Mapping
+
+        self.assertIsInstance(self.spider.categories, Mapping)
+        self.assertTrue(
+            all(isinstance(group, Mapping) for group in self.spider.categories.values())
+        )
+        leaves = list(self.spider.iter_categories())
+        self.assertGreater(len(leaves), 25)
+        # Leaf keys are globally unique across departments so the Airflow task id
+        # and GCS output path cannot collide.
+        self.assertEqual(len({leaf["category"] for leaf in leaves}), len(leaves))
+        # One canonical leaf and one department parent both resolve.
+        self.assertIn(
+            "kitchens-kitchen-cabinets", self.spider.available_categories()
+        )
+        self.assertEqual(
+            self.spider.category_entry("kitchens-kitchen-cabinets")["url"],
+            "https://www.toolstation.com/kitchens/kitchen-cabinets/c1468",
+        )
+        self.assertEqual(
+            self.spider.category_entry("screws-fixings-screws")["category_id"],
+            "c728",
+        )
+        # A group selector expands to every leaf in the department.
+        self.assertIn("kitchens", self.spider.category_targets("kitchens"))
 
 
 if __name__ == "__main__":

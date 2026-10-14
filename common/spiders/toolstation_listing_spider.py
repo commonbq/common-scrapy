@@ -46,7 +46,7 @@ class ToolstationListingSpider(BaseListingSpider):
     }
 
     def __init__(self, *args, **kwargs):
-        kwargs.setdefault("category", "kitchen-cabinets")
+        kwargs.setdefault("category", "kitchens-kitchen-cabinets")
         super().__init__(*args, **kwargs)
         self._seen: set[str] = set()
         target = self.resolve_target_url()

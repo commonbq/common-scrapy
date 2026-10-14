@@ -71,16 +71,20 @@ Examples:
 first-party Bloomreach CRS search API. It sends the stable `c<id>` taxonomy ID
 from each category seed to `/api/search/crs` and paginates with the API's
 zero-based `start` offset. It does not parse rendered HTML cards, Nuxt state, or
-JSON-LD. The 20 category seeds are the highest-inventory non-promotional
-listings measured from Toolstation's department sitemap, exposed as a grouped
-`{group: {leaf: entry}}` mapping (11 groups). The spider's ordered
-`FEED_EXPORT_FIELDS` contract contains 34 fields, including API pricing,
-ratings, fulfilment channel, variation, pagination, provenance, and raw data.
-The default category is `kitchen-cabinets`; pass `-a category=<name>` to select
-one of the other seeds.
+JSON-LD. The complete category inventory is the authoritative first-party
+`departments.xml` sitemap, captured as a grouped `{group: {leaf: entry}}` mapping
+in `common/spiders/toolstation_categories.py`: 1,015 `/.../c<id>` leaves across 27
+departments. Leaf keys are the full path slug, so every leaf is globally unique
+and `-a category=<leaf>` addresses one listing. `-a category=<department-slug>`
+expands to every leaf in that department, and the reviewed top-20 coverage is
+preserved in `TOOLSTATION_DAG_CATEGORIES` (11 groups) so the DAG still schedules
+at most three leaves per group. The spider's ordered `FEED_EXPORT_FIELDS`
+contract contains 34 fields, including API pricing, ratings, fulfilment channel,
+variation, pagination, provenance, and raw data. The default category is
+`kitchens-kitchen-cabinets`; pass `-a category=<name>` to select another leaf.
 
 ```bash
-scrapy crawl toolstation_listing -a category=kitchen-cabinets -a max_pages=2 -s HTTPCACHE_ENABLED=False -O toolstation.jsonl
+scrapy crawl toolstation_listing -a category=kitchens-kitchen-cabinets -a max_pages=2 -s HTTPCACHE_ENABLED=False -O toolstation.jsonl
 ```
 
 `newegg_listing` parses the server-rendered `window.__initialState__.Products`
@@ -254,7 +258,7 @@ Working spiders running daily in production:
 | [`athome_listing`](#athome_listing) | Active | API | Akamai; ScrapeOps US proxy | At Home products from the SFCC `Search-UpdateGrid` AJAX API only; no category-page or JSON-LD fallback. | 24/API page | Top 20 product-listing categories ranked by measured inventory | `{"category":"christmas","item_id":"125043763","title":"50-Count Burgundy Ornaments, 2.4\"","price":11.99,"currency":"USD","source":"athome_sfra_search_updategrid_api"...}` |
 | [`decathlon_listing`](#decathlon_listing) | Active | API | none detected direct; compatible with plain ScrapeOps US proxy | Decathlon products from Shopify's first-party collection JSON API only; no HTML, embedded-metadata, or JSON-LD fallback. | Up to 250/API page | Top 20 primary-nav collections ranked by product count | `{"category":"camp-hike","item_id":"8209731190846","title":"Simond Men’s Xplore Hooded Down Jacket","price":119.0,"currency":"USD","source":"decathlon_shopify_collection_api"...}` |
 | [`wickes_listing`](#wickes_listing) | Active | bootstrap | none detected | Wickes products from the server-rendered `var product = {...}` analytics bootstrap only; no rendered-card or JSON-LD fallback. | 29 (one page) | Top 20 verified product-bearing categories | `{"category":"wall-ceiling-emulsion-paint","item_id":"106974","title":"Dulux Matt Emulsion Paint - Egyptian Cotton - 2.5L","brand":"Dulux","price":25,"currency":"GBP","source":"wickes_analytics_bootstrap"...}` |
-| [`toolstation_listing`](#toolstation_listing) | Active | API | none detected | Toolstation UK products from the first-party Bloomreach CRS `/api/search/crs` API only; no HTML-card, Nuxt-state, or JSON-LD fallback. | 48/page | 11 groups / 20 leaves (grouped mapping) ranked by sitemap inventory | `{"category":"kitchen-cabinets","item_id":"12145","title":"Kitchen Kit Flatpack Shaker Kitchen Cabinet Base End Ultra Matt Cashmere 900mm","brand":"Kitchen Kit","price":44.54,"currency":"GBP","source":"toolstation_bloomreach_crs_api"...}` |
+| [`toolstation_listing`](#toolstation_listing) | Active | API | none detected | Toolstation UK products from the first-party Bloomreach CRS `/api/search/crs` API only; no HTML-card, Nuxt-state, or JSON-LD fallback. | 48/page | 1,015 `/.../c<id>` leaves across 27 departments from the `departments.xml` sitemap; reviewed top-20 preserved for the DAG | `{"category":"kitchens-kitchen-cabinets","item_id":"12145","title":"Kitchen Kit Flatpack Shaker Kitchen Cabinet Base End Ultra Matt Cashmere 900mm","brand":"Kitchen Kit","price":44.54,"currency":"GBP","source":"toolstation_bloomreach_crs_api"...}` |
 | [`dollartree_listing`](#dollartree_listing) | Active | API | none detected direct | Dollar Tree products from the first-party Oracle Commerce Cloud guided-search API only; no HTML or JSON-LD fallback. | 24/page | Top 20 categories ranked by live product count | `{"category":"food-candy-drinks","item_id":"354662","title":"Lil' Dutch Maid Duplex Crème Cookies.","price":1.25,"currency":"USD","source":"dollartree_occ_guided_search_api"...}` |
 | [`fivebelow_listing`](#fivebelow_listing) | Active | API | Cloudflare on discovery page; configured proxy required | Five Below variants from the first-party Algolia product-search API. The category page only supplies current API configuration; no HTML-card, RSC-product, or JSON-LD fallback. | 39 variants from 24 products/page | Top 20 categories ranked by sitemap breadth | `{"category":"new-and-now","item_id":"9252012","title":"Littlest Pet Shop® x Like Nastya DIY Bestie Bag Charm","price":5.0,"currency":"USD","source":"fivebelow_algolia_product_search_api"...}` |
 | [`etsy_listing`](#etsy_listing) | Active | bootstrap | DataDome; session-pinned ScrapeOps US proxy | Etsy listing identity, shop, price, discount, position, and pagination from the server-provided `Etsy.Context.data` bootstrap only; no rendered-card or JSON-LD fallback. | 48/bootstrap page | 17 departments / 192 leaves (grouped mapping; 175 immediate subcategories) | `{"category":"jewelry","item_id":"4402089910","shop_id":"54384097","price":85.74,"currency":"PLN","source":"etsy_context_bootstrap"...}` |
