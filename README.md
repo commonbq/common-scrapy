@@ -287,7 +287,7 @@ Working spiders running daily in production:
 | [`bestbuy_listing`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | unknown (timeout/no verdict) | Best Buy listing via direct HTTP + Apollo bootstrap extraction. | 10 (skipped2) | 15 categories across all 14 Best Buy departments (including laptops, tvs, headphones, monitors, cell-phones) | `{"item_id":"6572184","title":"Samsung - Galaxy Book4 15.6\" FHD Laptop - Intel Core 7- 16GB Memory - 512GB SSD - Silver","url":"https://www.bestbuy.com/product/samsung-galaxy-bo...` |
 | [`backcountry_listing`](#backcountry_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | AWS WAF (residential proxy: `scrapeops.country=us.residential=true`) | Backcountry category, `/rc/` collection and brand listings from the server-rendered PLP hydration state; taxonomy from the header `headerNavigation` mega-nav. | 42 (1 page) / 84 (2 pages) / 42 (`/rc/`) / 42 (brand) | 12 departments / 398 leaves (grouped mapping) from `backcountry_categories.py` | `{"item_id":"FJRZ133","title":"Fjallglim Regular Shirt - Men's","brand":"Fjallraven","price":124.95,"original_price":124.95,"currency":"USD","url":"https://www.backcountry.com/fjallraven-fjallglim-regular-shirt-mens","availability":"IN_STOCK","in_stock":true,"page":1,"source":"backcountry_next_data"...}` |
 | [`bestbuy_search`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | unknown (timeout/no verdict) | Best Buy search via direct HTTP + Apollo bootstrap extraction. | 4 (skipped2) | - | `{"item_id":"6613879","title":"HP - 14\" Laptop - Intel Processor N150 2025 - 4GB Memory - 128GB UFS - Willow Green","url":"https://www.bestbuy.com/product/hp-14-laptop-intel-pro...` |
-| [`macys_listing`](#macys_listing) | Active | api | Akamai | Macy’s beauty listings via the xapi endpoint (with fallback routing). | 60 (ok) | 14 Beauty department categories from `macys_categories.py` | `{"item_id":"17595303","title":"5Core AC Power Cord 6Ft 3 Prong US Male to Female Extension Adapter 18AWG 10A 7A 125V","brand":"5 Core","u...` |
+| [`macys_listing`](#macys_listing) | Active | api | Akamai | Macy’s storefront listings via the xapi endpoint (with fallback routing). | 60 (ok) | 362 crawlable leaves across 13 departments from `macys_categories.py` | `{"item_id":"17595303","title":"5Core AC Power Cord 6Ft 3 Prong US Male to Female Extension Adapter 18AWG 10A 7A 125V","brand":"5 Core","u...` |
 | [`nordstrom_listing`](#nordstrom_listing) | Active | bootstrap + html | PerimeterX / HUMAN | Nordstrom listing parser; often blocked/changed. | 0 (timeout2) | 1887 leaves in 30 departments (from `navigation-sitemap.xml`) | `{}` |
 | [`sephora_listing`](#sephora_listing) | Active | api | Akamai | Sephora listing via `/api/v2/catalog/categories/<slug>/seo`. | 60 (ok) | 218 `/shop/` leaves across 7 departments (grouped mapping) from `sephora_categories.py` | `{"item_id":"P517483","title":"Pocket Blush Buildable Hydrating Cream Blush","url":"https://www.sephora.com/product/pocket-blush-P517483?s...` |
 | [`ulta_listing`](#ulta_listing-category) | Active | api | Akamai | Ulta category listing with dynamic GraphQL module discovery. | 152 (2 pages, proxy) | 267 `/shop/` PLP leaves across 16 departments | `n/a` |
@@ -1839,11 +1839,18 @@ and the raw catalog object. Collection pagination is followed up to `max_pages`.
 
 ### macys_listing
 
-The grouped category mapping covers all 14 categories linked from Macy's Beauty
-department page.
+Macy's listings via the first-party `/xapi/discover/v1/page` API. The category
+mapping (`common/spiders/macys_categories.py`) is a grouped
+`{department: {leaf: {url, id}}}` dict — **362 crawlable leaves across 13
+departments**, captured 2026-10-14 from the homepage header mega-menu. Each leaf
+carries the storefront `id` the spider passes to the API and the canonical
+id-bearing `url`. Leaf keys are the full `/shop`-relative path slug so labels
+that recur across departments (`womens-shoes`, `home-area-rugs`) stay globally
+unique for the DAG output paths. The old 14-leaf Beauty-only mapping is a subset
+of the new tree.
 
 ```sh
-common-scrapy crawl macys_listing -a category=fragrance -a max_pages=1 -O macys.jsonl
+common-scrapy crawl macys_listing -a category=beauty-fragrance-perfume -a max_pages=1 -O macys.jsonl
 ```
 
 ```json
