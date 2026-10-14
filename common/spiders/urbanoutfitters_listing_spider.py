@@ -47,6 +47,7 @@ from common.spiders.urbanoutfitters_categories import (
     URBN_CATEGORY_SITEMAP_URL,
     URBN_NAV_ROOTS,
     URBN_SITE_BASE,
+    URBANOUTFITTERS_CATEGORIES,
     available_categories,
     parse_category_sitemap,
     resolve_category,
@@ -104,14 +105,9 @@ class UrbanOutfittersListingSpider(BaseListingSpider):
 
     require_category_arg = False
 
-    # Seed inventory so `-a category=<slug>` is valid (and documented) before the
-    # sitemap is fetched; parse_category_sitemap() replaces it with the full set.
-    categories = {
-        "all": {
-            slug: {"name": name, "url": url, "nav_root": name}
-            for slug, name, url in URBN_NAV_ROOTS
-        }
-    }
+    # Parse-time snapshot used by Airflow; refreshed from the live sitemap at
+    # crawl time so taxonomy changes are still picked up by the spider.
+    categories = URBANOUTFITTERS_CATEGORIES
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,

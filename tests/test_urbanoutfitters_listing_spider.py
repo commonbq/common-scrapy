@@ -32,11 +32,16 @@ class UrbanOutfittersListingSpiderTests(unittest.TestCase):
 
     def test_full_sitemap_inventory_and_query_categories(self):
         self.assertIsInstance(self.categories, Mapping)
-        self.assertEqual(set(self.categories), {"all"})
-        self.assertEqual(len(self.categories["all"]), 2162)
-        self.assertEqual(len(set(self.categories["all"])), 2162)
+        leaves = [
+            (category, row)
+            for group in self.categories.values()
+            for category, row in group.items()
+        ]
+        self.assertGreater(len(self.categories), 1)
+        self.assertEqual(len(leaves), 2162)
+        self.assertEqual(len({category for category, _ in leaves}), 2162)
         self.assertEqual(
-            len({row["url"] for row in self.categories["all"].values()}), 2162
+            len({row["url"] for _, row in leaves}), 2162
         )
         refined = resolve_category(
             self.categories,

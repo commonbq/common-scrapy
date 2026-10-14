@@ -9,7 +9,10 @@ from urllib.parse import unquote, urljoin, urlsplit, urlunsplit
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
-# from common.spiders.footlocker_categories import FOOTLOCKER_CATEGORIES # Will be fetched dynamically
+from common.spiders.footlocker_categories import (
+    FOOTLOCKER_CATEGORIES,
+    category_slug,
+)
 
 SITE_BASE = "https://www.footlocker.com"
 API_BASE = "https://www.footlocker.com/zgw/search-core/products/v3/search"
@@ -97,6 +100,7 @@ class FootlockerListingSpider(BaseListingSpider):
         "www.footlocker.com",
     ]
     require_category_arg = False # Will be overridden after category resolution
+    categories = FOOTLOCKER_CATEGORIES
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
@@ -185,6 +189,9 @@ class FootlockerListingSpider(BaseListingSpider):
         
         # Now populate _categories_to_resolve from the rebuilt tree
         for entry in _iter_nav_nodes(rebuilt_tree):
+            entry["category_slug"] = category_slug(
+                entry["band"], entry["sub_category"], entry["name"]
+            )
             self._categories_to_resolve.append(entry)
 
         # When a single category is requested, only resolve that one. Resolving
@@ -195,7 +202,7 @@ class FootlockerListingSpider(BaseListingSpider):
         if self.args.category:
             matching = [
                 e for e in self._categories_to_resolve
-                if _slugify(e["name"]) == self.args.category
+                if e["category_slug"] == self.args.category
             ]
             if matching:
                 self._categories_to_resolve = matching
@@ -215,7 +222,6 @@ class FootlockerListingSpider(BaseListingSpider):
                 # Directly extract searchParams from the URL
                 query_part = entry["url"].split('?query=', 1)[1]
                 entry["searchParams"] = unquote(query_part)
-                entry["category_slug"] = _slugify(entry["name"])
                 self._resolved_categories.append(entry)
                 self.logger.debug(f"Resolved query-based category: {entry['name']} -> {entry['searchParams']}")
             else:
@@ -235,10 +241,13 @@ class FootlockerListingSpider(BaseListingSpider):
 
     def parse_search_params_from_html(self, response: scrapy.http.Response):
         entry = response.meta['entry']
+        entry.setdefault(
+            "category_slug",
+            category_slug(entry["band"], entry["sub_category"], entry["name"]),
+        )
         search_params = self._extract_search_params_from_html(response)
         if search_params:
             entry["searchParams"] = search_params
-            entry["category_slug"] = _slugify(entry["name"])
             self._resolved_categories.append(entry)
             self.logger.debug(f"Resolved HTML-based category: {entry['name']} -> {entry['searchParams']}")
         else:

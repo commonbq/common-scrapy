@@ -19,7 +19,11 @@ class FootlockerListingSpiderTest(unittest.TestCase):
     def setUp(self):
         self.settings = Settings()
         self.settings.set("PROXY", "http://scrapeops.country=us:test_key@proxy.scrapeops.io:5353")
-        self.spider = FootlockerListingSpider(category="all-men-s-shoes", settings=self.settings, max_pages=2)
+        self.spider = FootlockerListingSpider(
+            category="men-s-shoes-all-men-s-shoes",
+            settings=self.settings,
+            max_pages=2,
+        )
 
         self.header_json = json.loads(Path("sample/footlocker-header.json").read_text())
         self.mens_shoes_html = Path("sample/footlocker-mens-shoes.html").read_text()
@@ -80,7 +84,9 @@ class FootlockerListingSpiderTest(unittest.TestCase):
         # One category should be resolved
         self.assertEqual(len(self.spider._resolved_categories), 1)
         resolved_entry = self.spider._resolved_categories[0]
-        self.assertEqual(resolved_entry["category_slug"], "all-men-s-shoes")
+        self.assertEqual(
+            resolved_entry["category_slug"], "men-s-shoes-all-men-s-shoes"
+        )
         self.assertEqual(resolved_entry["searchParams"], "::collection_id:men-s-shoes")
 
         # If this was the last category to resolve, it should trigger API crawls
@@ -94,7 +100,7 @@ class FootlockerListingSpiderTest(unittest.TestCase):
     # --------------------------------------------------------------- API Product Crawl
 
     def test_api_request_construction(self):
-        entry = {"band": "Men's", "sub_category": "Shoes", "name": "All Men's Shoes", "url": "/category/mens/shoes.html", "searchParams": "::collection_id:men-s-shoes", "category_slug": "all-men-s-shoes"}
+        entry = {"band": "Men's", "sub_category": "Shoes", "name": "All Men's Shoes", "url": "/category/mens/shoes.html", "searchParams": "::collection_id:men-s-shoes", "category_slug": "men-s-shoes-all-men-s-shoes"}
         req = self.spider._api_request(entry["searchParams"], entry["url"], page=0, metadata=entry)
 
         self.assertIn(API_BASE, req.url)
@@ -104,7 +110,7 @@ class FootlockerListingSpiderTest(unittest.TestCase):
         self.assertEqual(req.headers.get('Referer').decode(), entry["url"])
 
     def test_parse_api_products_yields_items_and_next_page(self):
-        entry = {"band": "Men's", "sub_category": "Shoes", "name": "All Men's Shoes", "url": "/category/mens/shoes.html", "searchParams": "::collection_id:men-s-shoes", "category_slug": "all-men-s-shoes"}
+        entry = {"band": "Men's", "sub_category": "Shoes", "name": "All Men's Shoes", "url": "/category/mens/shoes.html", "searchParams": "::collection_id:men-s-shoes", "category_slug": "men-s-shoes-all-men-s-shoes"}
         request = Request(API_BASE, meta={
             "category_url": entry["url"],
             "search_params": entry["searchParams"],
@@ -126,7 +132,7 @@ class FootlockerListingSpiderTest(unittest.TestCase):
         self.assertEqual(first_item["currency"], "USD")
         self.assertEqual(first_item["band"], "Men's")
         self.assertEqual(first_item["sub_category"], "Shoes")
-        self.assertEqual(first_item["category"], "all-men-s-shoes")
+        self.assertEqual(first_item["category"], "men-s-shoes-all-men-s-shoes")
         self.assertEqual(first_item["brand"], "Jordan")
         self.assertEqual(first_item["page"], 1)
         self.assertEqual(first_item["source"], "footlocker_api")
@@ -153,7 +159,7 @@ class FootlockerListingSpiderTest(unittest.TestCase):
 
     def test_max_pages_stops_pagination(self):
         self.spider.max_pages = 1 # Only one page
-        entry = {"band": "Men's", "sub_category": "Shoes", "name": "All Men's Shoes", "url": "/category/mens/shoes.html", "searchParams": "::collection_id:men-s-shoes", "category_slug": "all-men-s-shoes"}
+        entry = {"band": "Men's", "sub_category": "Shoes", "name": "All Men's Shoes", "url": "/category/mens/shoes.html", "searchParams": "::collection_id:men-s-shoes", "category_slug": "men-s-shoes-all-men-s-shoes"}
         request = Request(API_BASE, meta={
             "category_url": entry["url"],
             "search_params": entry["searchParams"],
@@ -168,7 +174,7 @@ class FootlockerListingSpiderTest(unittest.TestCase):
         self.assertFalse(any(req.callback == self.spider.parse_api_products for req in results[48:]))
 
     def test_no_products_stops_pagination(self):
-        entry = {"band": "Men's", "sub_category": "Shoes", "name": "All Men's Shoes", "url": "/category/mens/shoes.html", "searchParams": "::collection_id:men-s-shoes", "category_slug": "all-men-s-shoes"}
+        entry = {"band": "Men's", "sub_category": "Shoes", "name": "All Men's Shoes", "url": "/category/mens/shoes.html", "searchParams": "::collection_id:men-s-shoes", "category_slug": "men-s-shoes-all-men-s-shoes"}
         request = Request(API_BASE, meta={
             "category_url": entry["url"],
             "search_params": entry["searchParams"],
@@ -190,12 +196,12 @@ class FootlockerListingSpiderTest(unittest.TestCase):
             "name": "All Men's Shoes",
             "url": "/category/mens/shoes.html",
             "searchParams": "::collection_id:men-s-shoes",
-            "category_slug": "all-men-s-shoes",
+            "category_slug": "men-s-shoes-all-men-s-shoes",
         }]
         self.spider._category_resolution_in_progress = False
 
         # Re-initialize spider with specific category
-        spider_with_category = FootlockerListingSpider(category="all-men-s-shoes", settings=self.settings, max_pages=1)
+        spider_with_category = FootlockerListingSpider(category="men-s-shoes-all-men-s-shoes", settings=self.settings, max_pages=1)
         # Manually set resolved categories (this is normally done by earlier stages)
         spider_with_category._resolved_categories = self.spider._resolved_categories
         # ``start_requests`` only fetches the header when there is nothing to
@@ -211,5 +217,4 @@ class FootlockerListingSpiderTest(unittest.TestCase):
         self.assertIn("currentPage=0", req.url)
         self.assertIn(RESIDENTIAL_PROXY, req.meta['proxy'])
         self.assertEqual(req.callback, spider_with_category.parse_api_products)
-        self.assertEqual(req.meta["metadata"]["category_slug"], "all-men-s-shoes")
-
+        self.assertEqual(req.meta["metadata"]["category_slug"], "men-s-shoes-all-men-s-shoes")
