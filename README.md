@@ -394,7 +394,7 @@ Spiders below are returning items in recent smoke runs:
 | [`victoriassecret_listing`](#victoriassecret_listing) | Active | api | none detected (ScrapeOps proxy, plain datacenter route) | Victoria's Secret / PINK listings from the first-party `stacks` JSON API; page 0 reads `collectionId` from SSR `clientProps`. | 192 (2 pages, live) | 427 leaves across `vs` + `pink` groups in `victoriassecret_categories.py` | `{"category":"vs-bras","brand":"vs","item_id":"11295563|7I65","name":"Signature Shine Cotton Lightly Lined Balconette Bra","price":49.95,...}` |
 | [`williams_sonoma_listing`](#williams_sonoma_listing) | Active | api | Akamai (not an issue for API) | Williams-Sonoma category listings via the Constructor.io browse API (taxonomy from the runtime category-tree API). | 100 (1 page, proxy) | ~3500 group_ids from the runtime category-tree API | `{"category":"cookware-sets","item_id":"greenpan-reserve-pro-ceramic-nonstick-10-piece-cookware-set","title":"GreenPan™ Reserve Pro Ceramic Nonstick 10-Piece Cookware Set","price":399.95,"currency":"USD","image_url":"https://assets.wsimgs.com/wsimgs/rk/images/dp/wcm/202631/0164/img2c.jpg","flags":["freeShip","more_colors"],"source":"williams_sonoma_constructor_browse"...` |
 | [`harborfreight_listing`](#harborfreight_listing) | Active | bootstrap (`window.__APOLLO_STATE__`) | none detected | Harbor Freight category listings from the server-rendered Apollo hydration state; grouped public sitemap taxonomy and Magento `?p=N` pagination. | 36 (1 page, `automotive-jacks-jack-stands`) | 17 departments / 145 category leaves from `harborfreight_categories.py` | `{"category":"automotive-jacks-jack-stands","item_id":"64784","title":"3 Ton Low-Profile Professional Floor Jack with RAPID PUMP, Green","brand":"DAYTONA","price":199.99,"currency":"USD","source":"harborfreight_apollo_bootstrap"...}` |
-| [`lowes_listing`](#lowes_listing) | Active | bootstrap (`window['__PRELOADED_STATE__']`) | Akamai (ScrapeOps residential + `bypass=5` required) | Lowe's category listings from the server-rendered `__PRELOADED_STATE__` bootstrap payload only; 16 stable category shortcuts with `?page=N` pagination. | 24 (1 page, `beverage-wine-chillers`) | 16 stable category shortcuts from `lowes_categories.py` | `{"category":"beverage-wine-chillers","item_id":"5017343139","title":"23.4-in W 20-Bottles Stainless Steel Dual Zone Cooling Built-in Indoor Wine Cooler","price":...,"source":"lowes_preloaded_state"...}` |
+| [`lowes_listing`](#lowes_listing) | Active | bootstrap (`window['__PRELOADED_STATE__']`) | Akamai (ScrapeOps residential + `bypass=5` required) | Lowe's category listings from the server-rendered `__PRELOADED_STATE__` bootstrap payload only; the live Departments taxonomy (32 departments) with `?page=N` pagination. | 24 (1 page, `beverage-wine-chillers-appliances`) | 32 departments / 359 leaves (grouped mapping) from `lowes_categories.py` | `{"category":"beverage-wine-chillers-appliances","item_id":"5017343139","title":"23.4-in W 20-Bottles Stainless Steel Dual Zone Cooling Built-in Indoor Wine Cooler","price":...,"source":"lowes_preloaded_state"...}` |
 | [`bhphotovideo_listing`](#bh-photo-video-listing-spider) | Active | bootstrap (`bh-preloaded-data` / `ListingStore`) | ScrapeOps proxy | B&H Photo Video category listings from the server-rendered MobX `ListingStore` hydration; no HTML-card or JSON-LD fallback. | 28 (1 page, `Mirrorless Lenses`) | 12 departments / 13 leaves (grouped mapping) from `bhphotovideo_categories.py` | `{"category":"Mirrorless Lenses","product_id":2000025,"sku":"SO60063GM","title":"Sony FE 600mm f/6.3 GM OSS Lens (Sony E)","price":3698,"currency":"USD","source":"bootstrap","timestamp":"2026-10-07 00:38:12"...}` |
 | [`vitacost_listing`](#vitacost_listing) | Active | api | none detected | Vitacost (Shopify + Boost AI Search) category listings from the first-party `services.mybcapps.com/bc-sf-filter/filter` JSON API; taxonomy from the `Categories` mega-menu. | 96 (2 pages, `category=Supplements`, page size 48) | 8 departments / 92 leaves (grouped mapping) from `vitacost_categories.py` | `{"category":"Supplements","handle":"supplements","collection_id":"457575104827","item_id":"10390080782651","title":"Vitacost, Root2®, Turmeric Extract Curcumin C3 Complex®, 120 Capsules","brand":"Vitacost","price":24.74,"original_price":32.99,"discount_percentage":25.0,"source":"vitacost_boost_filter_api"...}` |
 | [`hotpads_listing`](#hotpads_listing) | Active | bootstrap (Next.js RSC `initialListingsData`) | ScrapeOps proxy | HotPads rental-building listings from the server-rendered Next.js App Router RSC bootstrap; no rendered-card or JSON-LD fallback. | 40 (1 page, `new-york-ny`) | 62 state/province groups / 8,373 city markets from `hotpads_categories.py` (grouped mapping) | `{"category":"new-york-ny","item_id":"24cjp0b","title":"Sky Three","price_low":3675,"price_high":5575,"city":"Brooklyn","state":"NY","source":"hotpads_rsc_bootstrap","timestamp":"2026-10-07 02:36:00"...}` |
@@ -4751,12 +4751,20 @@ scrapy crawl harborfreight_listing -a category=automotive-jacks-jack-stands -a m
 
 `lowes_listing` reads products exclusively from Lowe's server-rendered
 `window['__PRELOADED_STATE__']` bootstrap payload. It does not fall back to HTML
-cards or JSON-LD. Stable category shortcuts, `category_url`, and `url` are
-supported; `?page=N` pagination is bounded by `max_pages`. Lowe's requires the
-configured ScrapeOps proxy and challenge responses fail loudly.
+cards or JSON-LD. `category`, `category_url`, and `url` are supported; `?page=N`
+pagination is bounded by `max_pages`. Lowe's requires the configured ScrapeOps
+proxy and challenge responses fail loudly.
+
+The category inventory is the live Departments taxonomy captured from
+`__PRELOADED_STATE__.taxonomy.departments`: **32 departments / 359
+subcategories** (grouped `{department: {leaf: {name, department, url}}}`
+mapping). Leaf keys are the cleaned storefront path slug
+(`<subcategory>-<department>`, e.g. `beverage-wine-chillers-appliances`), so
+they stay globally unique across departments. `-a category=<department name>`
+expands to every leaf in that department.
 
 ```bash
-scrapy crawl lowes_listing -a category=beverage-wine-chillers -a max_pages=1 -s HTTPCACHE_ENABLED=False -O lowes.jsonl
+scrapy crawl lowes_listing -a category=beverage-wine-chillers-appliances -a max_pages=1 -s HTTPCACHE_ENABLED=False -O lowes.jsonl
 ```
 
 ### zumper_listing
