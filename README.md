@@ -379,7 +379,7 @@ Spiders below are returning items in recent smoke runs:
 | [`qvc_listing`](#qvc_listing) | Experimental | html + bootstrap | Akamai | QVC listing spider via server-rendered gallery cards and `utag_data` page state. | 96 (Beauty proxy capture) | 411 department-grouped listing categories (37 top-level departments) | `{"category":"beauty-makeup","category_id":"NAV6285","item_id":"A740517","title":"Whish 12 Days of Beauty Whishes Advent Calendar","price":59.98,...}` |
 | [`zappos_listing`](#zappos_listing) | Experimental | Redux hydration | none detected through proxy | Zappos listings from `window.__INITIAL_STATE__.products.list`. | 100 (one-page proxy smoke) | 4 departments / 50 targets | `{"item_id":"8910671","title":"Kiruna Padded Parka","brand":"Fjällräven","price":300.0,...}` |
 | [`zara_listing`](#zara_listing) | Active | api | Akamai (ScrapeOps `country=us,bypass=5`) | Zara US listings from the first-party category and product JSON APIs; no HTML or JSON-LD fallback. | 637 (Dresses; one API response) | 912 live product categories across 8 menu sections | `{"category":"WOMAN > COLLECTION > DRESSES","item_id":"560058525","title":"STRIPED PUFF SLEEVE MINI DRESS","price":69.9,"currency":"USD","source":"zara_api"...}` |
-| [`zoro_listing`](#zoro_listing) | Experimental | bootstrap | intermittent direct 403; configured proxy requires active credits | Zoro category listings from server-rendered Vuex `window.INITIAL_STATE.search.response.records` only. | 36/page | 20 top-level departments; hydrated taxonomy resolves leaf PLPs | `{"category":"custom","department":"Raw Materials","leaf_category":"Aluminum Angles","item_id":"G3109732","title":"Angle, Al, 6061, 1/8 In T, 2 In Leg, 4 Ft L","price":17.39,"currency":"USD","source":"zoro_initial_state_search_records"...}` |
+| [`zoro_listing`](#zoro_listing) | Experimental | bootstrap | intermittent direct 403; configured proxy requires active credits | Zoro category listings from server-rendered Vuex `window.INITIAL_STATE.search.response.records` only. | 36/page | 20 departments; 2,189-leaf taxonomy schedules leaves | `{"category":"custom","department":"Raw Materials","leaf_category":"Aluminum Angles","item_id":"G3109732","title":"Angle, Al, 6061, 1/8 In T, 2 In Leg, 4 Ft L","price":17.39,"currency":"USD","source":"zoro_initial_state_search_records"...}` |
 | [`saksfifthavenue_listing`](#saksfifthavenue_listing-category) | Experimental | html | DataDome | Saks Fifth Avenue listing spider via direct category HTML cards. | 24 (ok) | women, men, shoes, beauty, handbags | `{"item_id":"0400026449047","title":"Prada Washed Re Nylon Rain Jacket","url":"https://www.saksfifthavenue.com/product/prada-washed-re-nyl...` |
 | [`sallybeauty_listing`](#sallybeauty_listing) | Experimental | html + AJAX | PerimeterX / HUMAN (px-captcha signals) | Sally Beauty SFCC product-grid spider with `Search-UpdateGrid` pagination. | 2 (fixture) | 242 leaves across 12 departments: hair-color, hair-care, textured-and-curly-hair-care, hair-extensions, tools-and-brushes, nails, cosmetics-and-skin-care, fragrances, mens-grooming, salon-supplies, deals, perm-rods | `{"category":"hair-care","item_id":"SBS-539230","title":"Low Porosity Aloe Vera Gel Shampoo","brand":"Texture ID","price":11.99...` |
 | [`belk_listing`](#belk_listing) | Experimental | api | none detected (first-party JSON) | Belk listings from the `/ecom/cio/v1/web/category/{path}?v2=true` search facade. | 60 (one page, ok) | 13 departments / 427 leaves (grouped mapping) from `belk_categories.py` | `{"item_id":"2900965MULANEYW","title":"Mulaney Flats","brand":"DV Dolce Vita","price":45.5,"original_price":65.0,"discount_percent":30.0,"currency":"USD"...}` |
@@ -3884,13 +3884,29 @@ scrapy crawl zoro_listing \
   -s HTTPCACHE_ENABLED=False
 ```
 
-The 20 bundled category names are Zoro's highest-coverage top-level
-departments: `raw-materials`, `office-business-supplies`, `electronics`,
-`fasteners`, `building-materials-hardware`, `lighting`, `automotive-vehicle`,
-`plumbing`, `grounds-outdoor`, `heating-cooling`, `storage-workspace`,
-`electrical-supplies`, `test-instruments-gauges`, `pumps`,
-`furniture-linens-decor`, `medical-personal-care`, `food-service`,
-`janitorial-cleaning`, `tools-machining`, and `abrasives-polishers`.
+The bundled inventory is the grouped `{department: {leaf: {name, department,
+url, category}}}` mapping the base listing contract expects: the full Zoro
+category tree captured 2026-10-15, **2,189 leaves across 20 departments**. Leaf
+keys are the URL slug (globally unique, so no two departments collide on the
+GCS output path); `-a category=<leaf>` schedules exactly that one PLP, while a
+department slug such as `raw-materials` remains a legacy parent selector that
+fetches the department hub and live-walks its tree to every child PLP.
+
+```bash
+scrapy crawl zoro_listing -a category=aluminum-angles -a max_pages=1 \
+  -O zoro-aluminum-angles.jsonl -s HTTPCACHE_ENABLED=False
+```
+
+The 20 departments are `raw-materials`, `shipping-packaging-office-supplies`,
+`electronics`, `fasteners`, `hardware-building-materials`, `lighting`,
+`vehicle-maintenance`, `plumbing`, `grounds-outdoor`, `heating-cooling`,
+`storage-workspace`, `electrical-supplies`, `test-instruments-gauges`, `pumps`,
+`furniture-linens-decor`, `medical-personal-care`,
+`food-service-restaurant-supplies`, `janitorial-cleaning-supplies`,
+`tools-machining`, and `abrasives-polishers`. The previous seed module's
+short department names (`office-business-supplies`, `building-materials-hardware`,
+`automotive-vehicle`, `food-service`, `janitorial-cleaning`) are retained as
+aliases.
 
 Pagination is ordinary SSR `?page=N`. Each response hydrates 36 records and a
 `pagination` object containing `totalSize` and `pageSize`; the spider follows

@@ -11,7 +11,11 @@ from urllib.parse import parse_qsl, quote, urlencode, urlsplit, urlunsplit
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
-from common.spiders.zoro_categories import ZORO_CATEGORIES
+from common.spiders.zoro_categories import (
+    ZORO_CATEGORIES,
+    ZORO_DEPARTMENT_ALIASES,
+    ZORO_DEPARTMENT_HUBS,
+)
 
 
 _INITIAL_STATE_RE = re.compile(
@@ -65,15 +69,56 @@ class ZoroListingSpider(BaseListingSpider):
             )
         self._seen: set[str] = set()
 
+    def available_categories(self) -> list[str]:
+        # A ``-a category=`` value may be a canonical leaf key or a legacy
+        # department (group) selector, so advertise both.
+        groups = self._all_category_entries()
+        return sorted(
+            set(groups) | {leaf for leaves in groups.values() for leaf in leaves}
+        )
+
     def start_requests(self):
         self._seen.clear()
-        target = self.resolve_target_url()
-        yield scrapy.Request(
-            target,
-            callback=self.parse,
-            headers=self.headers,
-            meta={"page": 1, "base_url": target, "department": self.category or "custom"},
-            dont_filter=True,
+        for url, department, leaf in self._resolve_targets():
+            yield scrapy.Request(
+                url,
+                callback=self.parse,
+                headers=self.headers,
+                meta={
+                    "page": 1,
+                    "base_url": url,
+                    "department": department or self.category or "custom",
+                    "leaf_category": leaf,
+                },
+                dont_filter=True,
+            )
+
+    def _resolve_targets(self) -> list[tuple[str, str | None, str | None]]:
+        """Resolve a run target into ``(url, department, leaf)`` triples.
+
+        ``url=``/``category_url=`` pass through as a single custom target. A
+        ``-a category=<department>`` selector fetches that department's hub and
+        live-walks its hydration tree (the legacy parent selector), while
+        ``-a category=<leaf>`` schedules exactly that one leaf PLP.
+        """
+        if self.url or self.category_url:
+            return [(self.url or self.category_url, self.category or "custom", None)]
+        if not self.category:
+            raise ValueError(
+                "Provide -a category=<department|leaf>, category_url=<url>, or url=<url>"
+            )
+        hub = ZORO_DEPARTMENT_HUBS.get(self.category)
+        if hub is not None:
+            return [(hub, self.category, None)]
+        alias = ZORO_DEPARTMENT_ALIASES.get(self.category)
+        if alias is not None:
+            return [(ZORO_DEPARTMENT_HUBS[alias], alias, None)]
+        entry = self.category_entry(self.category)
+        if entry is not None:
+            return [(entry["url"], entry.get("group"), self.category)]
+        raise ValueError(
+            f"Unknown category '{self.category}'. Available categories: "
+            + ", ".join(self.available_categories())
         )
 
     def parse(self, response):
