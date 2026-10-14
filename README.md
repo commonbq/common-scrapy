@@ -345,7 +345,7 @@ Spiders below are returning items in recent smoke runs:
 | [`footlocker_listing`](#footlocker_listing) | Active | api | residential proxy (ScrapeOps) | Foot Locker category listings from the ZGW search API (residential proxy required). | 48 (1 page, residential proxy) | Dynamically resolved from `header.public.json` | `{"band":"Men's","sub_category":"Shoes","category":"all-men-s-shoes","item_id":"T8013103","title":"Jordan Retro 12 - Men's","url":"https://www.footlocker.com/product/T8013103.html","image_url":"https://images.footlocker.com/is/image/EBFL2/T8013103","price":215.0,"original_price":215.0,"currency":"USD","availability":"InStock","brand":"Jordan","rating":5.0,"reviews_count":999,"page":1,"category_url":"/category/mens/shoes.html","source":"footlocker_api"...` |
 | [`homedepot_listing`](#homedepot_listing-category-apollo-state) | Flaky | bootstrap | Akamai | Home Depot department listings from embedded Apollo state. | 2 (fixture) | 26 Shop All departments from `homedepot_categories.py` | `{"category":"tools","item_id":"100000001","sku":"1000000001","title":"16 oz. Fiberglass Claw Hammer","brand":"Husky","price":14.97...` |
 | [`flipkart_listing`](#flipkart_listing) | Experimental | bootstrap (`window.__INITIAL_STATE__`) | none detected through ScrapeOps | Flipkart India listings from server-rendered React product widgets only. | 40/page | Top 20 categories by live catalogue size | `{"category":"rings","item_id":"RNGHKBT6XTRQYGNU","title":"Mushk butterfly bloom ring...","price":665,"currency":"INR","source":"flipkart_initial_state_product_widgets"}` |
-| [`hm_listing`](#hm_listing) | Experimental | bootstrap (Next.js `__NEXT_DATA__`) | Akamai | H&M US product listings from authoritative server-rendered PLP hydration, with hydrated pagination. | 60/page | 5 departments / 5 leaves (grouped mapping): Women, Men, Kids, Home, Beauty new arrivals | `{"category":"women-new-arrivals","item_id":"1345672001","title":"Scarf-Detail Jacket","price":59.99,"currency":"USD","source":"hm_next_data"}` |
+| [`hm_listing`](#hm_listing) | Experimental | bootstrap (Next.js `__NEXT_DATA__`) | Akamai | H&M US product listings from authoritative server-rendered PLP hydration, with hydrated pagination. | 60/page | 5 departments / 122 leaves (grouped mapping): Women (33), Men (28), Kids (35), Home (14), Beauty (12) | `{"category":"women-new-arrivals","item_id":"1345672001","title":"Scarf-Detail Jacket","price":59.99,"currency":"USD","source":"hm_next_data"}` |
 | [`homedepot_search`](#homedepot_search-keyword-apollo-bootstrap) | Active | bootstrap + html | Akamai | Home Depot keyword search via Apollo state. | 24 (ok) | - | `{"item_id":"336787835","sku":"1014334650","brand":"Lukyamzn","title":"14 in. Dual-Core Celeron N4000 Laptop 6 GB RAM 128 GB SSD IPS Displ...` |
 | [`jcpenney_listing`](#jcpenney_listing) | Active | api | Akamai (+ reCAPTCHA scripts observed) | JCPenney listing spider via search API bootstrap endpoint. | 48 (ok) | womens_tops, mens_shirts | `{"item_id":"ppr5008584232","title":"St. John's Bay Womens Boat Neck Elbow Sleeve T-Shirt","brand":"st. john's bay","url":"https://www.jcp...` |
 | [`ikea_listing`](#ikea_listing) | Active | api + html | none detected | IKEA category listings from the SIK search API, with a server-rendered HTML fallback. | 46 (api, ok) / 24 (html, ok) | 221 unique targets from 23 departments | `{"category":"st004","item_id":"50561244","title":"STORKLINTA","product_type":"6-drawer dresser","price":279.99,"department":"Storage & organization",...}` |
@@ -4374,9 +4374,14 @@ HTTPCACHE_ENABLED=False common-scrapy crawl backcountry_listing -a category=cat-
 `#__NEXT_DATA__` PLP state. It does not parse HTML product cards or JSON-LD.
 Hydrated `pagination` metadata drives `?page=N` requests, while an article-code
 deduplication guard stops repeated pages. The curated taxonomy is a grouped
-`{department: {leaf: entry}}` mapping (5 departments / 5 leaves) containing
-stable, product-bearing new-arrival leaves for Women, Men, Kids, Home, and Beauty;
-H&M's hydrated `siteStructure` is the source to use when refreshing that inventory.
+`{department: {leaf: entry}}` mapping (5 departments / 122 leaves), refreshed from
+H&M's own hydrated `siteStructure` navigation on the US homepage: Women (33), Men
+(28), Kids (35), Home (14), and Beauty (12) listing leaves. Leaf keys are
+group-qualified (`<department>-<section>-<slug>`) so the bare leaf name used as the
+Airflow task id / GCS output path is globally unique across departments, and
+`-a category=<department>` still expands to every leaf in that department through
+the base class parent-selector support. Re-run the siteStructure capture when
+refreshing that inventory.
 
 The ordered `FEED_EXPORT_FIELDS` contract covers IDs, department/category,
 canonical product and image URLs, current and regular prices, color, size/stock,

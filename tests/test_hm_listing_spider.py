@@ -56,5 +56,25 @@ def test_missing_or_malformed_hydration_fails_loudly():
 
 def test_url_override_and_all_category_mode():
     assert HmListingSpider(category="men-new-arrivals").resolve_target_url().endswith("/men/new-arrivals.html")
-    requests = list(HmListingSpider().start_requests())
-    assert len(requests) == 5
+    spider = HmListingSpider()
+    total = len(spider.available_categories())
+    assert total == 122
+    requests = list(spider.start_requests())
+    assert len(requests) == total
+
+
+def test_grouped_mapping_and_parent_selector():
+    from collections.abc import Mapping
+    from common.spiders.hm_categories import HM_CATEGORIES
+
+    assert isinstance(HM_CATEGORIES, Mapping)
+    assert all(isinstance(v, Mapping) for v in HM_CATEGORIES.values())
+    leaves = [leaf for group in HM_CATEGORIES.values() for leaf in group]
+    assert len(leaves) == len(set(leaves)) == 122
+    assert all("url" in leaf_entry for group in HM_CATEGORIES.values() for leaf_entry in group.values())
+
+    spider = HmListingSpider(category="women-categories-dresses")
+    assert spider.resolve_target_url().endswith("/ladies/shop-by-product/dresses.html")
+    # Department selector expands to every leaf in that group.
+    entry = spider.category_entry("men-new-arrivals")
+    assert entry is not None and entry["group"] == "Men"
