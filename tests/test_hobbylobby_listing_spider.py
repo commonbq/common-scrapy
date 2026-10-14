@@ -64,11 +64,12 @@ def response_for(hits=None, page=0, pages=2):
 
 
 class HobbyLobbyListingSpiderTests(unittest.TestCase):
-    def test_categories_have_twenty_product_bearing_seeds(self):
+    def test_categories_cover_full_storefront_inventory(self):
         self.assertEqual(
             sum(len(categories) for categories in HOBBY_LOBBY_CATEGORIES.values()),
-            20,
+            1084,
         )
+        self.assertEqual(len(HOBBY_LOBBY_CATEGORIES), 24)
         self.assertTrue(
             all(
                 "/c/" in url
