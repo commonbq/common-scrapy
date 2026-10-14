@@ -4015,8 +4015,13 @@ Every exported item also includes the crawl `timestamp`.
 ### Gap listing spider
 
 `gap_listing` uses Gap's public commerce search API and exports a stable field
-order through `FEED_EXPORT_FIELDS`. Choose `women`, `men`, or `girls`; each
-selection expands to its maintained child listing URLs.
+order through `FEED_EXPORT_FIELDS`. Categories come from the live Gap category
+sitemap (`gap_categories.py`), which enumerates 231 verified listing CIDs across
+11 departments: `women`, `men`, `boys`, `girls`, `baby-and-toddler`, `maternity`,
+`new`, `gapx`, `matching`, `vacation-shop`, and `gift-shop`. Passing a department
+(e.g. `-a category=women`) expands to every leaf in that department through the
+base class parent selector; passing a group-qualified leaf (e.g.
+`-a category=women-dresses`) schedules exactly that URL.
 
 ```bash
 scrapy crawl gap_listing -a category=women -a max_pages=1 -O gap.jsonl
