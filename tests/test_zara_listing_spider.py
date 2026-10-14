@@ -5,6 +5,7 @@ from pathlib import Path
 from scrapy.http import TextResponse
 
 from common.spiders.zara_categories import (
+    ZARA_CATEGORIES,
     category_key,
     grouped_categories,
     is_product_category,
@@ -106,6 +107,25 @@ class ZaraTaxonomyTest(unittest.TestCase):
         grouped = grouped_categories(self.payload)
         self.assertEqual(
             {entry["section"] for entry in self.entries}, set(grouped)
+        )
+
+    def test_static_inventory_is_grouped_and_has_unique_runnable_leaves(self):
+        self.assertTrue(ZARA_CATEGORIES)
+        categories = [
+            category
+            for leaves in ZARA_CATEGORIES.values()
+            for category in leaves
+        ]
+        urls = [
+            url
+            for leaves in ZARA_CATEGORIES.values()
+            for url in leaves.values()
+        ]
+        self.assertEqual(len(categories), len(set(categories)))
+        self.assertEqual(len(urls), len(set(urls)))
+        self.assertTrue(all(category for category in categories))
+        self.assertTrue(
+            all(url.startswith("https://www.zara.com/us/en/") for url in urls)
         )
 
     def test_seo_category_id_from_url(self):

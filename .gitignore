@@ -38,6 +38,7 @@ build/
 *.json
 !common/spiders/ebay_category_urls.json
 !common/spiders/wayfair_categories.json
+!common/spiders/zara_categories_snapshot.json
 
 sample/
 data/

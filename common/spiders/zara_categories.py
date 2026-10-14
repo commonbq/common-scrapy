@@ -34,6 +34,9 @@ Menu labels are not unique (``VIEW ALL`` x210, ``THE NEW`` x14, ``JACKETS`` x6)
 so `-a category=` matches on the full breadcrumb path, which disambiguates.
 """
 
+import json
+from collections import Counter
+from pathlib import Path
 from typing import Any
 
 ZARA_SITE_BASE = "https://www.zara.com"
@@ -46,6 +49,14 @@ PRODUCTS_ENDPOINT_TEMPLATE = (
 
 #: Only this layout renders a product grid.
 PRODUCTS_LAYOUT = "products-category-view"
+
+#: Parse-time category inventory used by Airflow. Crawls still hydrate the live
+#: taxonomy before requesting products because the products API needs the live
+#: numeric menu id, which is deliberately not treated as stable snapshot data.
+_SNAPSHOT_PATH = Path(__file__).with_name("zara_categories_snapshot.json")
+ZARA_CATEGORIES: dict[str, dict[str, str]] = json.loads(
+    _SNAPSHOT_PATH.read_text(encoding="utf-8")
+)
 
 
 def listing_url(keyword: str, seo_category_id: int | str) -> str:
@@ -131,18 +142,26 @@ def grouped_categories(payload: dict[str, Any]) -> dict[str, dict[str, dict[str,
     endpoint needs (``category_id``, ``seo_category_id``, ``keyword``, ``url``,
     ``name``, ``section``, ``path``, ``departments``).
 
-    Leaf keys stay the full breadcrumb ``category`` string (e.g.
+    Leaf keys use the full breadcrumb ``category`` string (e.g.
     ``"WOMAN > NEW ARRIVALS > THE NEW > DRESSES"``) so they remain globally
-    unique across sections -- the DAG factory schedules one task per leaf, and
-    output paths key on the bare leaf name, so a collision would merge two
-    categories. The breadcrumb (not the bare menu label) is also what
-    ``-a category=`` matches, which disambiguates the repeated labels
+    unique across sections. If Zara publishes the same breadcrumb for distinct
+    URLs in different sections, the section is prefixed to both keys. The DAG
+    factory schedules one task per leaf and output paths key on the bare leaf
+    name, so a collision would merge two categories. The breadcrumb (not the
+    bare menu label) is also what ``-a category=`` matches, which disambiguates
+    the repeated labels
     (``VIEW ALL``, ``THE NEW``) the Zara menu is full of.
     """
+    entries = parse_taxonomy(payload)
+    category_counts = Counter(entry["category"] for entry in entries)
     groups: dict[str, dict[str, dict[str, Any]]] = {}
-    for entry in parse_taxonomy(payload):
+    for entry in entries:
         group = str(entry.get("section") or "all")
-        groups.setdefault(group, {})[entry["category"]] = entry
+        category = entry["category"]
+        if category_counts[category] > 1:
+            category = f"{group} > {category}"
+            entry = {**entry, "category": category}
+        groups.setdefault(group, {})[category] = entry
     return groups
 
 
