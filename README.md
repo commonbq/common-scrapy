@@ -59,7 +59,7 @@ Examples:
 
 - `common-scrapy crawl target_search --category 5xtc0 -a max_pages=2 -O target.jsonl`
 - `common-scrapy crawl kohls_listing --category womens-clothing -a max_pages=1 -O kohls_listing.jsonl`
-- `common-scrapy crawl sephora_listing --category makeup -a max_pages=1 -O sephora_listing.jsonl`
+- `common-scrapy crawl sephora_listing --category makeup-cosmetics -a max_pages=1 -O sephora_listing.jsonl`
 - `common-scrapy crawl newegg_listing --category components-storage-core-component-cpu-processor-desktop-cpu-processor -a max_pages=1 -O newegg.jsonl` (36 items, verified live on 2026-10-02; see [newegg_listing](#newegg_listing))
 - `common-scrapy crawl cvs_listing --category health-medicine -a max_pages=3 -O cvs.jsonl` (60 items, verified live on 2026-10-04; see [cvs_listing](#cvs_listing))
 - `common-scrapy crawl menards_listing --category halloween-animated-decorations -a max_pages=1 -O menards.jsonl`
@@ -289,7 +289,7 @@ Working spiders running daily in production:
 | [`bestbuy_search`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | unknown (timeout/no verdict) | Best Buy search via direct HTTP + Apollo bootstrap extraction. | 4 (skipped2) | - | `{"item_id":"6613879","title":"HP - 14\" Laptop - Intel Processor N150 2025 - 4GB Memory - 128GB UFS - Willow Green","url":"https://www.bestbuy.com/product/hp-14-laptop-intel-pro...` |
 | [`macys_listing`](#macys_listing) | Active | api | Akamai | Macy’s beauty listings via the xapi endpoint (with fallback routing). | 60 (ok) | 14 Beauty department categories from `macys_categories.py` | `{"item_id":"17595303","title":"5Core AC Power Cord 6Ft 3 Prong US Male to Female Extension Adapter 18AWG 10A 7A 125V","brand":"5 Core","u...` |
 | [`nordstrom_listing`](#nordstrom_listing) | Active | bootstrap + html | PerimeterX / HUMAN | Nordstrom listing parser; often blocked/changed. | 0 (timeout2) | new, women, men, beauty, shoes, accessories, kids, designer, home, gifts, sale | `{}` |
-| [`sephora_listing`](#sephora_listing) | Active | api | Akamai | Sephora listing via `/api/v2/catalog/categories/<slug>/seo`. | 60 (ok) | makeup, skincare, hair, fragrance, tools-brushes, bath-body | `{"item_id":"P517483","title":"Pocket Blush Buildable Hydrating Cream Blush","url":"https://www.sephora.com/product/pocket-blush-P517483?s...` |
+| [`sephora_listing`](#sephora_listing) | Active | api | Akamai | Sephora listing via `/api/v2/catalog/categories/<slug>/seo`. | 60 (ok) | 218 `/shop/` leaves across 7 departments (grouped mapping) from `sephora_categories.py` | `{"item_id":"P517483","title":"Pocket Blush Buildable Hydrating Cream Blush","url":"https://www.sephora.com/product/pocket-blush-P517483?s...` |
 | [`ulta_listing`](#ulta_listing-category) | Active | api | Akamai | Ulta category listing with dynamic GraphQL module discovery. | 152 (2 pages, proxy) | 267 `/shop/` PLP leaves across 16 departments | `n/a` |
 | [`ulta_search`](#ulta_search-keyword) | Active | api + html | Akamai | Ulta keyword search via GraphQL (with unsorted retry + HTML fallback). | 64 (ok) | - | `{"item_id":"xlsImpprod15511061","title":"All Soft Shampoo","source":"ulta_dxl_graphql"...}` |
 | [`walmart_listing`](#walmart_listing-category) | Active | api + html | Akamai (+ PerimeterX/HUMAN signals) | Walmart category listing spider (direct API+HTML flow). | 105 (`video-games`, one page) | 23 top-level departments from `walmart_categories.py` | `{"productId":"19231301884","usItemId":"19231301884","title":"No Boundaries Women's Faux Leather Loafers","brand":"No Boundaries"...` |
@@ -1966,8 +1966,14 @@ Run example:
   "source": "sephora_catalog_api"
 }
 ```
+The 218 crawlable categories are captured from the live US mega-navigation and
+grouped by storefront department (`common/spiders/sephora_categories.py`). Each
+leaf key is the canonical `/shop/<slug>` route segment passed to the catalogue
+API as `/api/v2/catalog/categories/<slug>/seo`; every slug was verified
+live on 2026-10-14 (HTTP 200, non-zero products).
+
 Run example:
-`common-scrapy crawl sephora_listing -a category=makeup -a max_pages=1 -O sephora_listing.jsonl`
+`common-scrapy crawl sephora_listing -a category=makeup-cosmetics -a max_pages=1 -O sephora_listing.jsonl`
 
 ### stockx_listing
 ```json
