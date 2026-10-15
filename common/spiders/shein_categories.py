@@ -1,8 +1,10 @@
 """SHEIN's complete top-level category inventory.
 
-Sourced from the live US homepage category navigation on 2026-10-12.  SHEIN
+Sourced from the live US homepage category navigation on 2026-10-16.  SHEIN
 publishes these as peer categories, so the base spider's synthetic ``all``
-group is represented explicitly here.
+group is represented explicitly here.  The homepage exposes 24 RecommendSelection
+links; ``fall-winter`` (captured live on 2026-10-16) was added to close the
+only gap versus the live navigation.
 """
 
 SHEIN_CATEGORIES = {
@@ -29,6 +31,7 @@ SHEIN_CATEGORIES = {
         "home-appliances": "https://us.shein.com/RecommendSelection/Appliances-sc-017172977.html",
         "automotive": "https://us.shein.com/RecommendSelection/Automotive-sc-017172975.html",
         "books-magazines": "https://us.shein.com/RecommendSelection/Books-Magazines-sc-0175086797.html",
+        "fall-winter": "https://us.shein.com/RecommendSelection/Fall-Winter-sc-0171717757.html",
         "food-beverages": "https://us.shein.com/RecommendSelection/Food-Beverages-sc-0175086791.html",
     }
 }

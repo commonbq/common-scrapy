@@ -38,7 +38,7 @@ class SheinListingSpiderTest(unittest.TestCase):
     def test_categories_use_complete_grouped_mapping(self):
         self.assertIsInstance(SheinListingSpider.categories, Mapping)
         self.assertEqual(set(SheinListingSpider.categories), {"all"})
-        self.assertEqual(len(SheinListingSpider.categories["all"]), 23)
+        self.assertEqual(len(SheinListingSpider.categories["all"]), 24)
         self.assertEqual(
             self.spider.category_entry("electronics")["url"],
             "https://us.shein.com/RecommendSelection/Electronics-sc-017706908.html",
