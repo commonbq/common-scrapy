@@ -2529,6 +2529,11 @@ Validation notes (2026-03-01):
 - Disabled proxy routing for Target spider requests (`disable_proxy`) because the configured proxy path returned RedSky 404 for this endpoint.
 - Verified `target_listing` (`category=5xtc0`, `max_pages=1`) returns **24 items** with NordVPN US cities **Ashburn** and **Dallas**, and also while NordVPN is disconnected.
 
+Validation notes (2026-10-15):
+- Regression: commit `80ce58b` ("Update PROXY policy") dropped the `disable_proxy` early-return from `CommonDownloaderMiddleware`, so the configured ScrapeOps proxy was forced onto the RedSky request. RedSky is direct-only: tunnelling it through `proxy.scrapeops.io:5353` is rejected with **407 Proxy Authentication Required** and the spider scraped **0 items** (hence the missing `item_scraped_count` in DAG logs).
+- `CommonDownloaderMiddleware.process_request` now honours `meta["disable_proxy"]` again and also drops any inherited `proxy` meta, so opt-out requests stay on direct egress while the seed HTML request keeps the configured proxy.
+- Verified `scrapy crawl target_listing -s HTTPCACHE_ENABLED=False -a category=grocery-all -a max_pages=1` returns **24 items** (`item_scraped_count: 24`), each with the full feed contract including `raw` and `timestamp`.
+
 ### nordstrom_listing
 
 HTML-first Nordstrom listing spider that extracts products from embedded hydration data (`window.__INITIAL_CONFIG__`, with `__NEXT_DATA__`/generic JSON fallback). The category inventory in `common/spiders/nordstrom_categories.py` is a `{department: {leaf: url}}` mapping refreshed from the live `navigation-sitemap.xml` (verified 2026-10-14): **1887 crawlable leaves across 30 shopping departments**. Leaf keys are the full `<path>` slug below `/browse` (e.g. `women-maternity-nursing-clothing`), so the DAG schedules one task per leaf and the bare-leaf GCS output path cannot collide across departments. Selecting a leaf (`-a category=women-maternity-nursing-clothing`) crawls that one listing; selecting a department (`-a category=women`, the legacy parent selector) still resolves to that department landing page and expands to all of its children via the base class parent-selector support.

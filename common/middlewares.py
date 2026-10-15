@@ -89,6 +89,16 @@ class CommonDownloaderMiddleware:
         return s
 
     def process_request(self, request, spider):
+        # Spiders opt individual requests out of proxy routing with
+        # meta["disable_proxy"] = True (first-party JSON APIs reachable directly,
+        # e.g. Target RedSky and the Barnes & Noble Storefront API). Honour that
+        # opt-out instead of forcing PROXY onto the request: a tunnel through
+        # ScrapeOps for those hosts is rejected with a 407 and the spider then
+        # scrapes 0 items, so `item_scraped_count` is missing from the run logs.
+        if request.meta.get("disable_proxy"):
+            request.meta.pop("proxy", None)
+            return None
+
         if not request.meta.get("proxy"):
             proxy = spider.settings.get("PROXY") if "PROXY" in spider.settings else PROXY
             if proxy:
