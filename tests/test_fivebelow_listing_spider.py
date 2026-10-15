@@ -110,7 +110,10 @@ def test_unknown_category_fails_loudly():
 
 
 def test_defaults_to_first_category():
-    assert FiveBelowListingSpider()._selected_category()["category"] == "new-and-now"
+    spider = FiveBelowListingSpider()
+    selected = spider._selected_category()
+    assert selected["category"] == next(iter(spider.iter_categories()))["category"]
+    assert selected["url"] == spider.category_entry(selected["category"])["url"]
 
 
 def test_missing_hydration_fails_loudly():
