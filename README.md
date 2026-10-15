@@ -2529,6 +2529,12 @@ Validation notes (2026-03-01):
 - Disabled proxy routing for Target spider requests (`disable_proxy`) because the configured proxy path returned RedSky 404 for this endpoint.
 - Verified `target_listing` (`category=5xtc0`, `max_pages=1`) returns **24 items** with NordVPN US cities **Ashburn** and **Dallas**, and also while NordVPN is disconnected.
 
+Validation notes (2026-10-15):
+- The `disable_proxy` opt-out above was being ignored: `CommonDownloaderMiddleware` only skipped the proxy when a request already carried a `proxy` meta value, so it forced the configured ScrapeOps proxy onto every "direct" request. A CONNECT tunnel to `proxy.scrapeops.io:5353` for `redsky.target.com` is rejected with **407 Proxy Authentication Required**, and the RedSky request failed after retries → **0 items scraped** (the missing `item_scraped_count` reported for `target_listing`).
+- Fixed `CommonDownloaderMiddleware.process_request` to honour `meta["disable_proxy"]` and leave those requests on direct egress. Target now reaches RedSky directly while the proxy stays configured for the seed HTML request.
+- Verified `scrapy crawl target_listing -s HTTPCACHE_ENABLED=False -a category=women -a max_pages=1` returns **24 items** with `timestamp` and a populated `raw` dict on every row.
+- Regression test added in `tests/test_common_downloader_middleware.py`.
+
 ### nordstrom_listing
 
 HTML-first Nordstrom listing spider that extracts products from embedded hydration data (`window.__INITIAL_CONFIG__`, with `__NEXT_DATA__`/generic JSON fallback). The category inventory in `common/spiders/nordstrom_categories.py` is a `{department: {leaf: url}}` mapping refreshed from the live `navigation-sitemap.xml` (verified 2026-10-14): **1887 crawlable leaves across 30 shopping departments**. Leaf keys are the full `<path>` slug below `/browse` (e.g. `women-maternity-nursing-clothing`), so the DAG schedules one task per leaf and the bare-leaf GCS output path cannot collide across departments. Selecting a leaf (`-a category=women-maternity-nursing-clothing`) crawls that one listing; selecting a department (`-a category=women`, the legacy parent selector) still resolves to that department landing page and expands to all of its children via the base class parent-selector support.

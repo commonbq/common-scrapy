@@ -95,6 +95,7 @@ class TargetListingSpiderTests(unittest.TestCase):
                 "page",
                 "source",
                 "raw",
+                "timestamp",
             ],
         )
 
