@@ -1,4 +1,5 @@
 import json
+from collections.abc import Mapping
 
 import pytest
 from scrapy.http import HtmlResponse, Request
@@ -54,3 +55,16 @@ def test_missing_bootstrap_fails_loudly():
     blocked = HtmlResponse(request.url, request=request, body=b"<html></html>", encoding="utf-8")
     with pytest.raises(RuntimeError, match="initial-props"):
         list(spider.parse(blocked))
+
+
+def test_categories_use_grouped_collision_free_mapping_contract():
+    spider = ReiListingSpider(category="kayaks")
+    categories = ReiListingSpider.categories
+    assert isinstance(categories, Mapping)
+    assert all(isinstance(group, Mapping) for group in categories.values())
+    leaves = spider.available_categories()
+    assert len(leaves) > 400
+    # Leaves are globally unique, so DAG task ids / GCS paths cannot clash.
+    assert len(leaves) == len(set(leaves))
+    assert spider.category_entry("hiking-footwear")["url"] == "https://www.rei.com/c/hiking-footwear"
+    assert spider.category_entry("kayaks")["department"]
