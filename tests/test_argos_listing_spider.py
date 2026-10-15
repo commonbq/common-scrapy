@@ -39,11 +39,21 @@ def _FLAT(const):
     return [value for group in const.values() for value in group.values()]
 
 
-def test_top_20_categories_are_unique():
+def test_category_inventory_is_a_grouped_collision_free_mapping():
     rows = _FLAT(ARGOS_CATEGORIES)
-    assert len(rows) == 20
-    assert len({entry["category"] for entry in rows}) == 20
-    assert len({entry["url"] for entry in rows}) == 20
+    # Full live taxonomy from the browse sitemap; assert the shape contract
+    # rather than a brittle literal count.
+    assert len(rows) >= 100
+    assert len({entry["category"] for entry in rows}) == len(rows)
+    assert len({entry["url"] for entry in rows}) == len(rows)
+    assert all(entry["url"].startswith("https://www.argos.co.uk/browse/") for entry in rows)
+
+
+def test_inventory_resolves_a_refreshed_leaf():
+    spider = ArgosListingSpider(category="technology-laptops-and-pcs-laptops-c-30049")
+    assert spider.resolve_target_url() == (
+        "https://www.argos.co.uk/browse/technology/laptops-and-pcs/laptops/c:30049/"
+    )
 
 
 def test_hydration_mapping_feed_contract_and_path_pagination():
