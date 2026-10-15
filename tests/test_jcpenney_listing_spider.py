@@ -36,9 +36,18 @@ class JCPenneyListingSpiderTest(unittest.TestCase):
 
     def test_categories_use_grouped_mapping_contract(self):
         self.assertIsInstance(self.spider.categories, Mapping)
-        self.assertEqual(len(list(self.spider.iter_categories())), 20)
+        # Sitemap-derived inventory is large and refreshed from the live
+        # category-*.xml shards, so assert shape/uniqueness rather than a
+        # brittle literal count.
+        entries = list(self.spider.iter_categories())
+        self.assertGreater(len(entries), 100)
+        leaves = [entry["category"] for entry in entries]
+        self.assertEqual(len(leaves), len(set(leaves)))
+        for entry in entries:
+            self.assertTrue(entry["url"].startswith("https://www.jcpenney.com/g/"))
+            self.assertIn("?id=", entry["url"])
         self.assertEqual(
-            self.spider.category_entry("mens_shoes")["url"],
+            self.spider.category_entry("shoes-mens-shoes")["url"],
             "https://www.jcpenney.com/g/shoes/mens-shoes?id=cat100300057",
         )
 
