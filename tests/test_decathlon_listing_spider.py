@@ -1,8 +1,10 @@
 import json
 import unittest
+from collections.abc import Mapping
 
 from scrapy.http import TextResponse
 
+from common.spiders.decathlon_categories import DECATHLON_CATEGORIES
 from common.spiders.decathlon_listing_spider import DecathlonListingSpider
 
 
@@ -74,3 +76,19 @@ class DecathlonListingSpiderTest(unittest.TestCase):
     def test_missing_products_fails_loudly(self):
         with self.assertRaisesRegex(RuntimeError, "products list"):
             list(DecathlonListingSpider().parse_api(response({})))
+
+    def test_inventory_is_grouped_with_unique_leaves(self):
+        self.assertIsInstance(DECATHLON_CATEGORIES, Mapping)
+        self.assertTrue(all(isinstance(v, Mapping) for v in DECATHLON_CATEGORIES.values()))
+        leaves = [leaf for group in DECATHLON_CATEGORIES.values() for leaf in group]
+        self.assertEqual(len(leaves), len(set(leaves)))
+        self.assertEqual(len(leaves), 74)
+        self.assertEqual(
+            sorted(DECATHLON_CATEGORIES),
+            ["all-sports", "kids-outdoor", "men", "women"],
+        )
+        entry = DecathlonListingSpider().category_entry("camp-hike")
+        self.assertEqual(entry["department"], "all-sports")
+        self.assertEqual(
+            entry["url"], "https://www.decathlon.com/collections/camp-hike"
+        )
