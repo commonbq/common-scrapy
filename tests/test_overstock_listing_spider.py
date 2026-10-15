@@ -68,11 +68,11 @@ class OverstockListingSpiderTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "challenge"):
             list(self.spider.parse(self.response("<html>CAPTCHA</html>")))
 
-    def test_catalog_has_twenty_verified_targets(self):
+    def test_catalog_has_verified_targets(self):
         entries = list(self.spider.iter_categories())
-        self.assertEqual(len(entries), 20)
-        self.assertEqual(len({entry["url"] for entry in entries}), 20)
-        self.assertEqual(len(self.spider.categories), 9)
+        self.assertGreaterEqual(len(entries), 25)
+        self.assertEqual(len({entry["url"] for entry in entries}), len(entries))
+        self.assertGreaterEqual(len(self.spider.categories), 9)
 
 
 if __name__ == "__main__":
