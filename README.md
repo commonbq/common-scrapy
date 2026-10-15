@@ -4130,6 +4130,17 @@ Pagination stops at `max_pages`, the API's `totalSize`, an empty page, or a
 repeated product page. Non-JSON, empty-body, and missing-contract responses fail
 loudly so bot challenges cannot masquerade as successful empty categories.
 
+The catalog API intermittently answers the plain datacenter route with an
+**HTTP-200 ScrapeOps aggregator envelope** instead of the product payload:
+`{"Concurrency": "This request exceeded your accounts concurrency limit."}`.
+The failure is a 200, so Scrapy's `RetryMiddleware` never sees it; the spider
+therefore recognises this envelope and re-issues the request up to
+`MAX_CONCURRENCY_RETRIES` (4) times before failing visibly. Verified live
+2026-10-15, the DAG routes this spider through the **US premium** route
+(`scrapeops.premium=true.country=us`, matching `ulta_listing`), which returned the
+catalog JSON on every sequential attempt; a bounded smoke run of `magnesium`
+exported 50 items with `item_scraped_count: 50`.
+
 The ordered export contract is:
 
 `category`, `department`, `subcategory`, `category_url_name`, `item_id`,

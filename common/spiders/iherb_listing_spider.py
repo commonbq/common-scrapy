@@ -19,6 +19,12 @@ DEFAULT_PAGE_SIZE = 50
 # service resolves country/currency from the caller IP and never echoes a
 # currency code, so the symbol is the only currency signal it exposes.
 CURRENCY_BY_SYMBOL = {"$": "USD"}
+# ScrapeOps can answer with an HTTP 200 aggregator envelope instead of the
+# catalog payload when the account is over its concurrency limit:
+#   {"Concurrency": "This request exceeded your accounts concurrency limit."}
+# The failure is a 200, so Scrapy's RetryMiddleware never sees it. Re-issue the
+# request a bounded number of times before failing visibly.
+MAX_CONCURRENCY_RETRIES = 4
 
 
 class IherbListingSpider(BaseListingSpider):
@@ -131,7 +137,7 @@ class IherbListingSpider(BaseListingSpider):
             key: meta.get(key)
             for key in (
                 "category", "department", "subcategory", "category_url_name",
-                "listing_url",
+                "listing_url", "concurrency_retries",
             )
         }
         request_meta["page"] = page
@@ -153,6 +159,28 @@ class IherbListingSpider(BaseListingSpider):
         payload = self._payload(response)
         products = payload.get("products")
         if not isinstance(products, list):
+            if self._is_concurrency_envelope(payload):
+                retries = int(response.meta.get("concurrency_retries", 0) or 0)
+                if retries < MAX_CONCURRENCY_RETRIES:
+                    self.logger.warning(
+                        "iHerb catalog API hit a proxy concurrency envelope "
+                        "(attempt %d/%d); retrying %s",
+                        retries + 1,
+                        MAX_CONCURRENCY_RETRIES,
+                        response.url,
+                    )
+                    meta = dict(response.meta)
+                    meta["concurrency_retries"] = retries + 1
+                    yield self._products_request(
+                        response.meta["category_url_name"],
+                        page=int(response.meta.get("page", 1)),
+                        meta=meta,
+                    )
+                    return
+                raise RuntimeError(
+                    "iHerb catalog API kept returning a proxy concurrency envelope "
+                    f"after {MAX_CONCURRENCY_RETRIES} retries: {response.url}"
+                )
             raise RuntimeError(
                 "iHerb catalog API returned no products array "
                 f"(blocked or contract change): {response.url}"
@@ -218,6 +246,23 @@ class IherbListingSpider(BaseListingSpider):
                 f"iHerb catalog API returned a non-object payload: {response.url}"
             )
         return payload
+
+    @staticmethod
+    def _is_concurrency_envelope(payload: dict) -> bool:
+        """True for the ScrapeOps HTTP-200 concurrency-limit aggregator body.
+
+        The body carries no ``products`` list and a single ``Concurrency`` key
+        whose message names the account concurrency limit. It is a transient
+        routing failure, not a storefront contract change.
+        """
+        if not isinstance(payload, dict) or "products" in payload:
+            return False
+        for key, value in payload.items():
+            if str(key).strip().lower() == "concurrency":
+                return True
+            if isinstance(value, str) and "concurrency limit" in value.lower():
+                return True
+        return False
 
     def _request_failed(self, failure):
         message = (

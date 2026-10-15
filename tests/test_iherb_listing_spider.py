@@ -141,6 +141,43 @@ class IherbListingSpiderTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "empty first page"):
             list(self.spider().parse(response_for({"totalSize": 0, "products": []})))
 
+    def test_concurrency_envelope_is_retried(self):
+        spider = self.spider(max_pages=2)
+        envelope = response_for(
+            {"Concurrency": "This request exceeded your accounts concurrency limit."}
+        )
+        outputs = list(spider.parse(envelope))
+        self.assertEqual(len(outputs), 1)
+        self.assertEqual(outputs[0].meta["concurrency_retries"], 1)
+        self.assertEqual(outputs[0].meta["page"], 1)
+
+    def test_concurrency_envelope_fails_after_bounded_retries(self):
+        spider = self.spider()
+        response = response_for(
+            {"Concurrency": "This request exceeded your accounts concurrency limit."}
+        )
+        response.meta["concurrency_retries"] = 4
+        with self.assertRaisesRegex(RuntimeError, "concurrency envelope"):
+            list(spider.parse(response))
+
+    def test_concurrency_envelope_not_confused_with_contract_change(self):
+        self.assertTrue(
+            IherbListingSpider._is_concurrency_envelope(
+                {"Concurrency": "This request exceeded your accounts concurrency limit."}
+            )
+        )
+        self.assertTrue(
+            IherbListingSpider._is_concurrency_envelope(
+                {"message": "exceeded accounts concurrency limit"}
+            )
+        )
+        self.assertFalse(
+            IherbListingSpider._is_concurrency_envelope({"message": "unknown category"})
+        )
+        self.assertFalse(
+            IherbListingSpider._is_concurrency_envelope({"totalSize": 0, "products": []})
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
