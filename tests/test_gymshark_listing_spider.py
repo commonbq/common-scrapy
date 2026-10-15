@@ -52,10 +52,22 @@ class GymsharkListingSpiderTests(unittest.TestCase):
     def setUp(self):
         self.spider = GymsharkListingSpider(category="all-products", max_pages=2)
 
-    def test_top_twenty_category_inventory(self):
+    def test_live_category_inventory_is_grouped_and_collision_free(self):
         rows = _FLAT(GYMSHARK_CATEGORIES)
-        self.assertEqual(len(rows), 20)
-        self.assertEqual(len({row["category"] for row in rows}), 20)
+        # Refreshed 2026-10-15 from the live Gymshark storefront navigation;
+        # one leaf per crawlable /collections/<slug> page, ranked by nbHits.
+        self.assertEqual(len(rows), 105)
+        self.assertEqual(len({row["category"] for row in rows}), 105)
+        self.assertEqual(len({row["url"] for row in rows}), 105)
+        self.assertEqual(
+            {group for group in GYMSHARK_CATEGORIES},
+            {"women", "men", "accessories", "explore"},
+        )
+        for group, leaves in GYMSHARK_CATEGORIES.items():
+            for leaf, value in leaves.items():
+                self.assertEqual(value["category"], leaf)
+                self.assertEqual(value["department"], group)
+                self.assertTrue(value["url"].startswith("https://www.gymshark.com/collections/"))
 
     def test_hydration_mapping_feed_contract_and_pagination(self):
         query = {"hits": [HIT], "nbHits": 121, "hitsPerPage": 60, "page": 0, "nbPages": 17, "queryID": "qid"}

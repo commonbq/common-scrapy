@@ -413,7 +413,7 @@ Spiders below are returning items in recent smoke runs:
 | [`crateandbarrel_listing`](#crateandbarrel_listing) | Active | bootstrap (React `ProductListing` hydration) | Akamai (ScrapeOps residential proxy required) | Crate & Barrel category listings from the first-party React `ProductListing` hydration payload only; 1,884 product-bearing category URLs across 35 departments with numeric-path pagination. | 100 (1 page, `furniture-sofas`) | 1,884 category URLs grouped by department from `crateandbarrel_categories.py` | `{"category":"sofas","item_id":"322117","title":"Lounge Sofa (62\"-105\")","brand":"Crate & Barrel","price":1529.0,"currency":"USD","source":"crateandbarrel_productlisting_bootstrap","timestamp":"2026-10-07 09:46:17"...}` |
 | [`ssense_listing`](#ssense_listing) | Experimental | bootstrap | Cloudflare; configured US proxy required | SSENSE men/women/everything-else category products from the server-rendered Next.js RSC (`self.__next_f`) bootstrap only; no rendered HTML-card or JSON-LD extraction. | 120/page | Full men/women/everything-else taxonomy (602 categories, sale mirror included) from the public category sitemaps in `ssense_categories.py` | `{"category":"men-clothing","department":"men","item_id":"15856491","sku":"242232M188005","title":"Gray Porterville Stefan Cargo Pants","brand":"Rick Owens","price":1400,"currency":"USD","total_pages":97,"source":"ssense_next_rsc_bootstrap",...}` |
 | [`mediamarkt_listing`](#mediamarkt_listing) | Active | bootstrap (Apollo `window.__PRELOADED_STATE__`) | ScrapeOps proxy required (direct requests hit a 403 CAPTCHA) | MediaMarkt Germany products from the server-rendered `window.__PRELOADED_STATE__` Apollo cache (`ProductListPage` + normalized product/price/media/status/badge/feature entities); no rendered-card or JSON-LD fallback. | 12 (1 page, `Computer & Büro`) | 20 electronics and appliance categories from `mediamarkt_categories.py` | `{"category":"Computer & Büro","item_id":"3037446","title":"SAMSUNG Galaxy Book4 Edge...","brand":"SAMSUNG","price":629,"original_price":1019,"currency":"EUR","rating":4.8333,"availability":"AVAILABLE","source":"mediamarkt_preloaded_apollo_bootstrap","timestamp":"2026-10-09 01:36:58"...}` |
-| [`gymshark_listing`](#gymshark_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | none detected | Gymshark category products from the Algolia-style `props.pageProps.ssrQuery` hydration in the server-rendered Next.js bootstrap; no rendered HTML-card or JSON-LD extraction. Real page count derived from `nbHits` because the hydrated `nbPages` is capped. | 60/page (1 page, `all-products`) | 20 highest-inventory non-promotional collections from `gymshark_categories.py` | `{"category":"all-products","item_id":"6806409347274","sku":"A4B9W","title":"Power T-Shirt","brand":"Gymshark","price":36,"currency":"USD","rating":3.9268,"in_stock":true,"source":"gymshark_next_data_ssr_query",...}` |
+| [`gymshark_listing`](#gymshark_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | none detected | Gymshark category products from the Algolia-style `props.pageProps.ssrQuery` hydration in the server-rendered Next.js bootstrap; no rendered HTML-card or JSON-LD extraction. Real page count derived from `nbHits` because the hydrated `nbPages` is capped. | 60/page (1 page, `all-products`) | 105 live crawlable collections across 4 navigation groups from `gymshark_categories.py` | `{"category":"all-products","item_id":"6806409347274","sku":"A4B9W","title":"Power T-Shirt","brand":"Gymshark","price":36,"currency":"USD","rating":3.9268,"in_stock":true,"source":"gymshark_next_data_ssr_query",...}` |
 
 ### flipkart_listing
 
@@ -4986,9 +4986,12 @@ scrapy crawl ssense_listing -a category=men-clothing -a max_pages=1 -s HTTPCACHE
 `gymshark_listing` extracts products through one structured data direction:
 Gymshark's Algolia-style `props.pageProps.ssrQuery` in the server-rendered
 Next.js `#__NEXT_DATA__` bootstrap. It does not parse rendered product cards or
-JSON-LD. The spider includes the 20 highest-inventory non-promotional collection
-seeds, follows the storefront's zero-based `?page=N` URLs, and derives the real
-page count from `nbHits` because the hydrated `nbPages` value is capped.
+JSON-LD. The spider exposes the complete crawlable collection taxonomy as a
+grouped `{department: {leaf: entry}}` mapping (4 navigation groups / 105 unique
+collection leaves, captured 2026-10-15 from the storefront navigation and
+`sitemap_collections_1.xml`, ranked by live `nbHits`). It follows the storefront's
+zero-based `?page=N` URLs and derives the real page count from `nbHits` because
+the hydrated `nbPages` value is capped.
 
 The ordered 34-field `FEED_EXPORT_FIELDS` contract covers product and SKU
 identity, canonical URLs, images, prices, color and fit attributes, stock and
