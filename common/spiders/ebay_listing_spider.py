@@ -18,6 +18,17 @@ from common.spiders.ebay_bootstrap_utils import (
 )
 from common.spiders.ebay_categories import EBAY_CATEGORIES
 
+# A proxy/anti-bot envelope can be returned with HTTP 200. It is not an HTML
+# listing page, so parsing it yields 0 items and no `item_scraped_count` (the
+# field reported missing for `ebay_listing`, #375). Recognise the common
+# markers and log a route failure instead of hiding it behind a selector error.
+_PROXY_ENVELOPE_MARKERS = (
+    "couldn't retrieve a successful response",
+    "could not retrieve a successful response",
+    "proxy authentication required",
+    "request unsuccessful",
+)
+
 
 class EbayListingSpider(BaseListingSpider):
     name = "ebay_listing"
@@ -63,6 +74,17 @@ class EbayListingSpider(BaseListingSpider):
             )
 
     def parse(self, response: scrapy.http.Response):
+        if not self._is_listing_html(response):
+            self.logger.warning(
+                "ebay_listing: non-HTML body for %s (status=%s, bytes=%s, "
+                "content-type=%s); skipping — likely a proxy/anti-bot envelope",
+                response.url,
+                response.status,
+                len(response.body),
+                response.headers.get("Content-Type", b"").decode("latin-1", "replace"),
+            )
+            return
+
         page = int(response.meta.get("page", 1))
 
         ecommerce_context = {
@@ -100,6 +122,31 @@ class EbayListingSpider(BaseListingSpider):
                     "page": page + 1,
                 },
             )
+
+    @staticmethod
+    def _is_listing_html(response: scrapy.http.Response) -> bool:
+        """Return True only for a real HTML listing page.
+
+        eBay browse pages are HTML documents. A JSON body or a small proxy/
+        anti-bot envelope served with HTTP 200 is not a listing page; rejecting
+        it here surfaces a route failure instead of silently exporting 0 items
+        with no explanation (#375).
+        """
+        if response.status != 200:
+            return False
+        content_type = response.headers.get("Content-Type", b"").decode(
+            "latin-1", "replace"
+        ).lower()
+        if "json" in content_type:
+            return False
+        body = response.body or b""
+        head = body[:4096].lower()
+        if any(marker.encode() in head for marker in _PROXY_ENVELOPE_MARKERS):
+            return False
+        stripped = head.lstrip()
+        if stripped[:1] in (b"{", b"["):
+            return False
+        return True
 
     @staticmethod
     def _with_page(url: str, page: int) -> str:

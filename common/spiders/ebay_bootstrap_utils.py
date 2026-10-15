@@ -8,8 +8,17 @@ from parsel import Selector
 
 
 def extract_marko_products(html: str) -> list[dict[str, Any]]:
-    """Extract eBay search-result products from Marko hydration state."""
+    """Extract eBay search-result products from Marko hydration state.
+
+    A proxy or anti-bot envelope can be served with HTTP 200 and a JSON body;
+    parsel then auto-detects ``type == "json"`` and ``.css("script")`` raises
+    ``ValueError``, crashing the callback and yielding 0 items (the missing
+    ``item_scraped_count`` reported for ``ebay_listing``, #375). Only parse a
+    real HTML document; a non-HTML body simply has no Marko products.
+    """
     sel = Selector(text=html or "")
+    if sel.type != "html":
+        return []
     cards: list[dict[str, Any]] = []
     seen: set[str] = set()
 
@@ -32,8 +41,14 @@ def extract_marko_products(html: str) -> list[dict[str, Any]]:
 
 
 def extract_subcategories_from_html(html: str) -> list[dict[str, Any]]:
-    """Return the subcategory name and URL for each browse destination tile."""
+    """Return the subcategory name and URL for each browse destination tile.
+
+    Like :func:`extract_marko_products`, a JSON proxy/anti-bot envelope with
+    HTTP 200 cannot make ``.css()`` raise and abort the crawl (#375).
+    """
     sel = Selector(text=html or "")
+    if sel.type != "html":
+        return []
     out: list[dict[str, Any]] = []
     seen: set[tuple[str | None, str | None]] = set()
 
