@@ -194,15 +194,24 @@ scrapy crawl hobbylobby_listing -a category=art-supplies-painting-supplies -a ma
 version, and public Storefront token from the selected collection shell, then
 uses the first-party Storefront GraphQL API exclusively for products and cursor
 pagination. It exports product, price-range, image, option, and variant data in
-the spider's ordered 32-field `FEED_EXPORT_FIELDS` contract. Direct connections
-are used because both storefront hosts are reachable without anti-bot handling.
+the spider's ordered 32-field `FEED_EXPORT_FIELDS` contract.
+
+Routing is split by host, because the two hosts need opposite proxy treatment:
+
+- The collection shell on `www.barnesandnoble.com` sits behind Akamai and needs
+  the configured proxy; a direct request returns **HTTP 403** ("Access Denied").
+- The Storefront API POST is sent **direct** via `meta["disable_proxy"] = True`:
+  a proxy tunnel strips the GraphQL request body, and Shopify replies
+  `{"errors":[{"message":"No query string was present"}]}` with 0 products.
 
 ```bash
 scrapy crawl barnesandnoble_listing -a category=fiction -a max_pages=2 -s HTTPCACHE_ENABLED=False -O barnesandnoble.jsonl
 ```
 
-Verified live on 2026-10-08: 100 unique products across two API pages (50 per
-page), with all three responses returning HTTP 200.
+Verified live on 2026-10-15: 50 unique products on page 1 (`category=fiction`,
+`max_pages=1`), source `barnesandnoble_storefront_graphql_api`. The
+`BARNESANDNOBLE_CATEGORIES` inventory is a nested `{department: {leaf: {...}}}`
+mapping and `FEED_EXPORT_FIELDS` carries `raw` + `timestamp` on every row.
 
 ### dunelm_listing
 

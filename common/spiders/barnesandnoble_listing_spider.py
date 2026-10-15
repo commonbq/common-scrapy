@@ -58,9 +58,9 @@ class BarnesandnobleListingSpider(BaseListingSpider):
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
         "CONCURRENT_REQUESTS_PER_DOMAIN": 1,
-        # Both the Oxygen storefront and Shopify API are directly reachable;
-        # a proxy tunnel strips the Storefront POST body in this environment.
-        "PROXY": "",
+        # The collection shell is behind Akamai and needs the configured proxy;
+        # the Storefront API POST is sent direct via ``disable_proxy`` because a
+        # proxy tunnel strips its body.
         "FEED_EXPORT_FIELDS": [
             "category", "search_query", "item_id", "variant_id", "ean",
             "title", "handle", "description", "vendor", "format", "url",

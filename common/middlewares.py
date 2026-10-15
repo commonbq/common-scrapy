@@ -89,6 +89,11 @@ class CommonDownloaderMiddleware:
         return s
 
     def process_request(self, request, spider):
+        # Honour an explicit opt-out: some first-party API hosts reject the
+        # configured proxy tunnel (407) or strip the request body.
+        if request.meta.get("disable_proxy"):
+            request.meta.pop("proxy", None)
+            return None
         if not request.meta.get("proxy"):
             proxy = spider.settings.get("PROXY") if "PROXY" in spider.settings else PROXY
             if proxy:
