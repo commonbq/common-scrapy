@@ -273,7 +273,7 @@ Working spiders running daily in production:
 | [`hobbylobby_listing`](#hobbylobby_listing) | Experimental | bootstrap | ScrapeOps US proxy | Hobby Lobby products from the server-rendered Algolia InstantSearch state only; no direct HTML-card or JSON-LD extraction. | 12/page | 1,084 storefront categories (24 sections) | `{"category":"art-supplies-painting-supplies","item_id":"80968391","title":"Master's Touch Oil Paint - 12 Piece Set","price":6.99,"source":"hobbylobby_instantsearch_bootstrap"...}` |
 | [`tripcom_listing`](#tripcom_listing) | Experimental | bootstrap | ScrapeOps proxy | Trip.com hotels from the server-provided `City` template-component state; no direct HTML-card or JSON-LD extraction. | 9 (one city page) | 21 popular hotel destinations, grouped by country (grouped mapping) from `tripcom_categories.py` | `{"category":"bangkok","title":"NASA BANGKOK - Airport Rail Link Ramkhamhang","price":15,"currency":"USD","source":"tripcom_city_component_bootstrap"...}` |
 | [`hostelworld_listing`](#hostelworld_listing) | Active | api | none detected; API must be direct so proxy does not rewrite `Accept` | Hostelworld properties from the first-party Apigee city-properties API only; no HTML or JSON-LD fallback. | 29 (New York, one page) | 3,520 cities across 6 continents (grouped mapping) from `hostelworld_categories.py`; full first-party taxonomy (167 countries) | `{"category":"new-york-usa","item_id":"1850","name":"HI New York City Hostel","source":"hostelworld_city_properties_api"...}` |
-| [`dell_listing`](#dell_listing) | Experimental | bootstrap | ScrapeOps proxy | Dell US listings from the authoritative `data-product-detail-info` Product Stack bootstrap; no product-card or JSON-LD fallback. | Live smoke tested below | 18 stable product/deal categories | `{"item_id":"dellplus16laptopdb16250","title":"Dell 16 Plus Laptop","price":1559.99,"currency":"USD","source":"dell_product_stack_bootstrap"...}` |
+| [`dell_listing`](#dell_listing) | Experimental | bootstrap | ScrapeOps proxy | Dell US listings from the authoritative `data-product-detail-info` Product Stack bootstrap; no product-card or JSON-LD fallback. | 12 (live, `gaming-monitors`, one page) | 67 product-listing leaves across 7 departments (grouped mapping) from `dell_categories.py` | `{"item_id":"dellplus16laptopdb16250","title":"Dell 16 Plus Laptop","price":1559.99,"currency":"USD","source":"dell_product_stack_bootstrap"...}` |
 | [`dollargeneral_listing`](#dollargeneral_listing) | Active | api | ScrapeOps proxy (`keep_headers=true`) | Dollar General category listings from the first-party Omni v5 product-search API; no HTML-card or JSON-LD fallback. | 24 per API page | 20 high-coverage departments | `{"item_id":"37000853794","title":"Crest Plus Scope Whitening Toothpaste...","price":8.25,"currency":"USD","source":"dollargeneral_omni_search_api"...}` |
 | [`agoda_listing`](#agoda_listing) | Experimental | api | proxy required | Agoda curated destination accommodations from the first-party Cronos geo API. | 30 (Bali, one API response) | 20 popular cities from the homepage destination payload | `{"category":"bali","item_id":"489045","title":"RIMBA by AYANA Bali","review_score":9.1,"star_rating":5.0,"source":"agoda_cronos_geo_api","timestamp":"2026-10-06 10:30:00"...}` |
 | [`adorama_listing`](#adorama_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | DataDome | Adorama category listings from server-rendered Next.js hydration state. | 24 (one page; 48 across 2 pages) | 1,079 crawlable categories across 11 departments from `adorama_categories.py` | `{"category":"cameras","item_id":"KKRK0603A","title":"Kodak Charmera Millenium Edition...","price":54.94,"currency":"USD"...}` |
@@ -517,6 +517,13 @@ Many listing spiders accept `-a category=<name>` shortcuts (in addition to `-a c
 `dell_listing` reads Dell's authoritative Product Stack bootstrap map from
 `data-product-detail-info`. Product cards and JSON-LD are intentionally not used
 as fallback data sources.
+
+Categories come from Dell's own top-level mega-navigation on
+`https://www.dell.com/en-us` (captured 2026-10-15): 67 product-listing leaves
+across 7 departments (Laptops, Desktops, Monitors, Monitor Accessories, PC
+Accessories, Electronics, Deals). Every leaf was verified live to return the
+`#ps-wrapper` bootstrap with one or more products; product-detail (`spd`/`apd`),
+landing (`lp`), and category-hub (`sc`) routes are excluded.
 
 ```bash
 scrapy crawl dell_listing -a category=view-all-laptops -a max_pages=2 \

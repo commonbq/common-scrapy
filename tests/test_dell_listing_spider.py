@@ -1,4 +1,5 @@
 import json
+from collections.abc import Mapping
 
 import pytest
 from scrapy.http import HtmlResponse, Request
@@ -40,3 +41,20 @@ def test_export_fields_are_ordered():
     fields = DellListingSpider.custom_settings["FEED_EXPORT_FIELDS"]
     assert fields[:6] == ["category", "item_id", "offer_id", "title", "url", "image"]
     assert fields[-3:] == ["source_url", "raw", "timestamp"]
+
+
+def test_categories_use_grouped_collision_free_mapping_contract():
+    spider = DellListingSpider(category="view-all-laptops")
+    categories = DellListingSpider.categories
+    assert isinstance(categories, Mapping)
+    assert all(isinstance(group, Mapping) for group in categories.values())
+    leaves = spider.available_categories()
+    assert len(leaves) == 67
+    # Leaves are globally unique, so DAG task ids / GCS paths cannot clash.
+    assert len(leaves) == len(set(leaves))
+    assert spider.category_entry("view-all-laptops")["url"] == (
+        "https://www.dell.com/en-us/shop/laptop-computers/scr/laptop"
+    )
+    assert spider.category_entry("gaming-monitors")["department"] == "computer-monitors"
+    assert all(str(entry["url"]).startswith("https://www.dell.com/en-us/shop/")
+               for entry in spider.iter_categories())
