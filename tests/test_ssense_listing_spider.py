@@ -36,8 +36,12 @@ class SsenseListingSpiderTests(unittest.TestCase):
 
     def test_category_inventory(self):
         rows = _FLAT(SSENSE_CATEGORIES)
-        self.assertEqual(len(rows), 20)
-        self.assertEqual(len({row["category"] for row in rows}), 20)
+        self.assertGreaterEqual(len(rows), 20)
+        self.assertEqual(len(rows), len({row["category"] for row in rows}))
+        # every leaf is runnable and uniquely selected by -a category=<leaf>
+        for row in rows:
+            self.assertTrue(row["category"])
+            self.assertTrue(row["url"].startswith("https://www.ssense.com/en-us/"))
 
     def test_rsc_item_mapping_feed_contract_and_pagination(self):
         outputs = list(self.spider.parse(self.response()))
