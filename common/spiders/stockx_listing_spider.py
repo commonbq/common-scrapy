@@ -4,7 +4,15 @@ from __future__ import annotations
 
 import json
 from collections.abc import Iterable
-from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
+from urllib.parse import (
+    parse_qs,
+    quote,
+    urlencode,
+    urlparse,
+    urlsplit,
+    urlunparse,
+    urlunsplit,
+)
 
 import scrapy
 
@@ -72,6 +80,7 @@ class StockxListingSpider(BaseListingSpider):
             yield self._request(url, self.category, subcategory, 1)
 
     def _request(self, url: str, category: str, subcategory: str, page: int):
+        proxy = self._residential_proxy()
         return scrapy.Request(
             self._with_page(url, page),
             callback=self.parse,
@@ -89,12 +98,23 @@ class StockxListingSpider(BaseListingSpider):
                 "page": page,
                 "listing_url": url,
                 "handle_httpstatus_all": True,
+                **({"proxy": proxy} if proxy else {}),
             },
             dont_filter=True,
         )
 
     def parse(self, response: scrapy.http.Response):
         page = int(response.meta["page"])
+        if not isinstance(response, scrapy.http.HtmlResponse):
+            self.logger.error(
+                "StockX listing returned a non-HTML proxy/challenge payload: "
+                "status=%s content_type=%s bytes=%s url=%s",
+                response.status,
+                response.headers.get("Content-Type", b"").decode(errors="replace"),
+                len(response.body),
+                response.url,
+            )
+            return
         script = response.css("script#__NEXT_DATA__::text").get()
         if response.status != 200 and not script:
             self.logger.error(
@@ -198,3 +218,29 @@ class StockxListingSpider(BaseListingSpider):
         else:
             query.pop("page", None)
         return urlunparse(parts._replace(query=urlencode(query, doseq=True)))
+
+    def _residential_proxy(self) -> str | None:
+        """Route StockX through ScrapeOps' residential pool.
+
+        StockX rejects both direct requests and the configured datacenter route.
+        ScrapeOps carries options in the proxy username, so preserve the API key
+        and password while adding ``residential=true`` exactly once.
+        """
+        proxy = getattr(self, "settings", {}).get("PROXY")
+        if not isinstance(proxy, str) or not proxy:
+            return None
+        parts = urlsplit(proxy)
+        if parts.hostname != "proxy.scrapeops.io" or not parts.username:
+            return proxy
+        username = parts.username
+        if ".residential=true" not in username:
+            username = f"{username}.residential=true"
+        credentials = quote(username, safe=".=_-")
+        if parts.password is not None:
+            credentials += f":{quote(parts.password, safe='')}"
+        host = parts.hostname
+        if parts.port is not None:
+            host += f":{parts.port}"
+        return urlunsplit(
+            (parts.scheme, f"{credentials}@{host}", parts.path, parts.query, parts.fragment)
+        )

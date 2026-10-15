@@ -2024,6 +2024,8 @@ Run example:
 
 The spider reads the authoritative `browse.results` query from StockX's
 `__NEXT_DATA__` state, follows its `pageCount`, and deduplicates products by ID.
+StockX rejects direct and datacenter-proxy requests, so configured ScrapeOps
+credentials are routed through its residential pool for the listing HTML.
 Available categories are `sneakers`, `apparel`, `electronics`, `trading-cards`,
 and `collectibles`.
 

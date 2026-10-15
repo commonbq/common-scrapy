@@ -1,7 +1,8 @@
 import json
 import unittest
 
-from scrapy.http import HtmlResponse, Request
+from scrapy.http import HtmlResponse, JsonResponse, Request
+from scrapy.settings import Settings
 
 from common.spiders.stockx_listing_spider import StockxListingSpider
 
@@ -53,7 +54,7 @@ class StockxListingSpiderTests(unittest.TestCase):
     def test_feed_export_fields_are_stable(self):
         fields = self.spider.custom_settings["FEED_EXPORT_FIELDS"]
         self.assertEqual(fields[0:4], ["item_id", "title", "brand", "price"])
-        self.assertEqual(fields[-4:], ["subcategory", "page", "source", "raw"])
+        self.assertEqual(fields[-4:], ["page", "source", "raw", "timestamp"])
 
     def test_parse_authoritative_browse_product(self):
         product = {
@@ -90,6 +91,41 @@ class StockxListingSpiderTests(unittest.TestCase):
         self.assertEqual(len(results), 1)
         self.assertIsInstance(results[0], Request)
         self.assertEqual(results[0].url, "https://stockx.com/sneakers?page=2")
+
+    def test_scrapeops_requests_use_residential_proxy(self):
+        settings = Settings()
+        settings.set("PROXY", "http://scrapeops:key@proxy.scrapeops.io:5353")
+        self.spider.settings = settings
+
+        request = self.spider._request(
+            "https://stockx.com/sneakers", "sneakers", "all", 1
+        )
+
+        self.assertEqual(
+            request.meta["proxy"],
+            "http://scrapeops.residential=true:key@proxy.scrapeops.io:5353",
+        )
+
+    def test_non_html_proxy_failure_is_logged_and_skipped(self):
+        request = Request(
+            "https://stockx.com/sneakers",
+            meta={
+                "page": 1,
+                "category": "sneakers",
+                "subcategory": "all",
+                "listing_url": "https://stockx.com/sneakers",
+            },
+        )
+        response = JsonResponse(
+            request.url,
+            request=request,
+            body=b'{"status":"proxy failure"}',
+            headers={"Content-Type": "application/json"},
+        )
+
+        with self.assertLogs(self.spider.logger.name, level="ERROR") as logs:
+            self.assertEqual(list(self.spider.parse(response)), [])
+        self.assertIn("non-HTML proxy/challenge payload", logs.output[0])
 
 
 if __name__ == "__main__":
