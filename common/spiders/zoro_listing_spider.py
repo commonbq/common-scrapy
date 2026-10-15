@@ -39,6 +39,13 @@ class ZoroListingSpider(BaseListingSpider):
     require_category_arg = False
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
+        # Zoro's server-rendered PLPs are directly reachable (verified 2026-10-15,
+        # ten leaf PLPs all returned HTTP 200 with ``window.INITIAL_STATE``). The
+        # shared ScrapeOps proxy intermittently fails the second proxied HTTPS
+        # CONNECT with ``407 Proxy Authentication Required`` / an "API credits"
+        # envelope and the run then exports 0 items — which is why the field was
+        # absent, not zero (#392). Route the whole crawl direct.
+        "PROXY": "",
         "CONCURRENT_REQUESTS_PER_DOMAIN": 2,
         "DOWNLOAD_DELAY": 0.25,
         "FEED_EXPORT_FIELDS": [

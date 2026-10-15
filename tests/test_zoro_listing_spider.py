@@ -83,6 +83,13 @@ def test_group_record_uses_group_url_and_fields():
     assert item["group_sku_count"] == 2
 
 
+def test_spider_routes_directly_by_disabling_the_shared_proxy():
+    # The shared ScrapeOps proxy intermittently 407s on Zoro and the crawl then
+    # exports 0 items (#392); the spider must opt out of it entirely.
+    spider = ZoroListingSpider(category="plastic-sheets", max_pages=1)
+    assert spider.custom_settings["PROXY"] == ""
+
+
 def test_missing_bootstrap_fails_visibly():
     spider = ZoroListingSpider(category_url="https://www.zoro.com/test/c/1/")
     request = Request(spider.category_url, meta={"page": 1, "base_url": spider.category_url})

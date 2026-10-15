@@ -383,7 +383,7 @@ Spiders below are returning items in recent smoke runs:
 | [`qvc_listing`](#qvc_listing) | Experimental | html + bootstrap | Akamai | QVC listing spider via server-rendered gallery cards and `utag_data` page state. | 96 (Beauty proxy capture) | 411 department-grouped listing categories (37 top-level departments) | `{"category":"beauty-makeup","category_id":"NAV6285","item_id":"A740517","title":"Whish 12 Days of Beauty Whishes Advent Calendar","price":59.98,...}` |
 | [`zappos_listing`](#zappos_listing) | Experimental | Redux hydration | none detected through proxy | Zappos listings from `window.__INITIAL_STATE__.products.list`. | 100 (one-page proxy smoke) | 4 departments / 50 targets | `{"item_id":"8910671","title":"Kiruna Padded Parka","brand":"Fjällräven","price":300.0,...}` |
 | [`zara_listing`](#zara_listing) | Active | api | Akamai (ScrapeOps `country=us,bypass=5`) | Zara US listings from the first-party category and product JSON APIs; no HTML or JSON-LD fallback. | 637 (Dresses; one API response) | 912 live product categories across 8 menu sections | `{"category":"WOMAN > COLLECTION > DRESSES","item_id":"560058525","title":"STRIPED PUFF SLEEVE MINI DRESS","price":69.9,"currency":"USD","source":"zara_api"...}` |
-| [`zoro_listing`](#zoro_listing) | Experimental | bootstrap | intermittent direct 403; configured proxy requires active credits | Zoro category listings from server-rendered Vuex `window.INITIAL_STATE.search.response.records` only. | 36/page | 20 departments; 2,189-leaf taxonomy schedules leaves | `{"category":"custom","department":"Raw Materials","leaf_category":"Aluminum Angles","item_id":"G3109732","title":"Angle, Al, 6061, 1/8 In T, 2 In Leg, 4 Ft L","price":17.39,"currency":"USD","source":"zoro_initial_state_search_records"...}` |
+| [`zoro_listing`](#zoro_listing) | Experimental | bootstrap | direct (opt-out of proxy); shared ScrapeOps proxy intermittently 407s | Zoro category listings from server-rendered Vuex `window.INITIAL_STATE.search.response.records` only. | 36/page | 20 departments; 2,189-leaf taxonomy schedules leaves | `{"category":"custom","department":"Raw Materials","leaf_category":"Aluminum Angles","item_id":"G3109732","title":"Angle, Al, 6061, 1/8 In T, 2 In Leg, 4 Ft L","price":17.39,"currency":"USD","source":"zoro_initial_state_search_records"...}` |
 | [`saksfifthavenue_listing`](#saksfifthavenue_listing-category) | Experimental | html | DataDome | Saks Fifth Avenue listing spider via direct category HTML cards. | 24 (ok) | women, men, shoes, beauty, handbags | `{"item_id":"0400026449047","title":"Prada Washed Re Nylon Rain Jacket","url":"https://www.saksfifthavenue.com/product/prada-washed-re-nyl...` |
 | [`sallybeauty_listing`](#sallybeauty_listing) | Experimental | html + AJAX | PerimeterX / HUMAN (px-captcha signals) | Sally Beauty SFCC product-grid spider with `Search-UpdateGrid` pagination. | 2 (fixture) | 242 leaves across 12 departments: hair-color, hair-care, textured-and-curly-hair-care, hair-extensions, tools-and-brushes, nails, cosmetics-and-skin-care, fragrances, mens-grooming, salon-supplies, deals, perm-rods | `{"category":"hair-care","item_id":"SBS-539230","title":"Low Porosity Aloe Vera Gel Shampoo","brand":"Texture ID","price":11.99...` |
 | [`belk_listing`](#belk_listing) | Experimental | api | none detected (first-party JSON) | Belk listings from the `/ecom/cio/v1/web/category/{path}?v2=true` search facade. | 60 (one page, ok) | 13 departments / 427 leaves (grouped mapping) from `belk_categories.py` | `{"item_id":"2900965MULANEYW","title":"Mulaney Flats","brand":"DV Dolce Vita","price":45.5,"original_price":65.0,"discount_percent":30.0,"currency":"USD"...}` |
@@ -3888,6 +3888,13 @@ bootstrap assigned to `window.INITIAL_STATE`. Product rows come only from
 `search.response.records`; rendered product cards and JSON-LD are not parsed.
 The same hydration payload contains Zoro's category tree, so a selected
 top-level department is resolved to leaf PLPs without scraping navigation HTML.
+
+The spider opts out of the shared proxy (`PROXY: ""`): Zoro's PLPs are directly
+reachable (verified 2026-10-15) while the configured ScrapeOps proxy
+intermittently fails the second proxied HTTPS CONNECT with **407 Proxy
+Authentication Required** / an "API credits" envelope, after which the run
+finished with 0 items and the `item_scraped_count` field was absent entirely
+(#392).
 
 ```bash
 scrapy crawl zoro_listing -a category=raw-materials -a max_pages=1 \
