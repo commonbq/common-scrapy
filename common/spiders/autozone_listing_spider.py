@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 from typing import Any, Iterable
-from urllib.parse import quote, unquote, urljoin, urlsplit, urlunsplit, parse_qsl, urlencode
+from urllib.parse import parse_qsl, urlencode, urljoin, urlsplit, urlunsplit
 
 import scrapy
 
@@ -65,33 +65,10 @@ class AutozoneListingSpider(BaseListingSpider):
 
     def _request(self, listing_url: str, page: int) -> scrapy.Request:
         meta = {"category": self.category, "page": page, "listing_url": listing_url}
-        proxy = self._residential_proxy()
-        if proxy:
-            meta["proxy"] = proxy
         return scrapy.Request(
             self._page_url(listing_url, page), headers=self.headers, meta=meta,
             callback=self.parse, dont_filter=True,
         )
-
-    def _residential_proxy(self) -> str | None:
-        settings = getattr(self, "settings", {})
-        proxy = settings.get("PROXY")
-        if not isinstance(proxy, str) or not proxy:
-            return None
-        parts = urlsplit(proxy)
-        if parts.hostname != "proxy.scrapeops.io" or not parts.username:
-            return proxy
-        username = unquote(parts.username)
-        options = username.split(".")
-        if "residential=true" not in options:
-            username += ".residential=true"
-        if "country=us" not in options:
-            username += ".country=us"
-        auth = quote(username, safe=".=")
-        if parts.password is not None:
-            auth += ":" + quote(unquote(parts.password), safe="")
-        host = parts.hostname + (f":{parts.port}" if parts.port else "")
-        return urlunsplit((parts.scheme, f"{auth}@{host}", parts.path, parts.query, parts.fragment))
 
     @staticmethod
     def _page_url(url: str, page: int) -> str:

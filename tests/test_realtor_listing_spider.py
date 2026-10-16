@@ -86,13 +86,6 @@ class RealtorListingSpiderTests(unittest.TestCase):
         follow = next(value for value in output if isinstance(value, Request))
         self.assertTrue(follow.url.endswith("/pg-2"))
 
-    def test_proxy_options_are_idempotent(self):
-        spider = RealtorListingSpider(category="california")
-        spider.settings = {"PROXY": "http://scrapeops.country=us.residential=true:key@proxy.scrapeops.io:5353"}
-        proxy = spider._realtor_proxy()
-        self.assertEqual(proxy.count("residential=true"), 1)
-        self.assertEqual(proxy.count("bypass=5"), 1)
-
     def test_missing_stream_fails_loudly(self):
         with self.assertRaisesRegex(RuntimeError, "Missing React Router"):
             RealtorListingSpider._decode_router_stream("<html></html>")

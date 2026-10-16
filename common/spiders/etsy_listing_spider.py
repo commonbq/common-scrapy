@@ -154,12 +154,9 @@ class EtsyListingSpider(BaseListingSpider):
             return proxy
         parsed = urlparse(proxy)
         username = parsed.username or ""
-        for option in (
-            "residential=true", "country=us", "keep_headers=true", "bypass=5",
-            "render_js=true", f"session_id={self._session_id}",
-        ):
-            if option not in username:
-                username += f".{option}"
+        option = f"session_id={self._session_id}"
+        if option not in username:
+            username += f".{option}"
         host = parsed.hostname or ""
         netloc = f"{username}:{parsed.password or ''}@{host}"
         if parsed.port:

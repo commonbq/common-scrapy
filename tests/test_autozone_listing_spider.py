@@ -74,14 +74,6 @@ def test_missing_or_malformed_next_data_fails_loudly():
         AutozoneListingSpider._next_data(blank)
 
 
-def test_proxy_options_are_idempotent():
-    spider = AutozoneListingSpider(category="oil-filter")
-    spider.settings = {"PROXY": "http://scrapeops.country=us.residential=true:key@proxy.scrapeops.io:5353"}
-    proxy = spider._residential_proxy()
-    assert proxy.count("country=us") == 1
-    assert proxy.count("residential=true") == 1
-
-
 def test_category_discovery():
     data = {"props": {"pageProps": {"topNavProductData": {"rootCategories": [
         {"name": "Brakes", "url": "/brakes-and-traction-control"}]}}}}

@@ -354,64 +354,6 @@ def test_plp_without_container_raises():
         _crawl_text(None, body=body)
 
 
-# ---------------------------------------------------------------------- proxy
-
-
-class _Settings(dict):
-    pass
-
-
-def _spider_with_proxy(proxy):
-    spider = BackcountryListingSpider(category="cat-mens-shirts")
-    spider.settings = _Settings({"PROXY": proxy})
-    return spider
-
-
-SECRET = "6538bdfd-12b3-4108-b863-06151459cf00"
-
-
-def test_residential_appended_once_for_scrapeops():
-    proxy = f"http://scrapeops.country=us:{SECRET}@proxy.scrapeops.io:5353"
-    result = _spider_with_proxy(proxy)._residential_proxy()
-    assert result == (
-        f"http://scrapeops.country=us.residential=true:{SECRET}@proxy.scrapeops.io:5353"
-    )
-    # Idempotent: a second pass does not append again.
-    spider = _spider_with_proxy(result)
-    assert spider._residential_proxy() == result
-
-
-def test_other_scrapeops_options_are_preserved():
-    proxy = f"http://scrapeops.country=de.render_js=false:{SECRET}@proxy.scrapeops.io:5353"
-    result = _spider_with_proxy(proxy)._residential_proxy()
-    assert result.startswith("http://scrapeops.country=de.render_js=false.residential=true:")
-    assert result.endswith(f"@proxy.scrapeops.io:5353")
-
-
-def test_non_scrapeops_proxy_unchanged():
-    proxy = f"http://user:pass@proxy.example.com:8080"
-    assert _spider_with_proxy(proxy)._residential_proxy() == proxy
-
-
-def test_missing_proxy_returns_none():
-    assert _spider_with_proxy(None)._residential_proxy() is None
-
-
-def test_proxy_password_never_logged():
-    proxy = f"http://scrapeops.country=us:{SECRET}@proxy.scrapeops.io:5353"
-    result = _spider_with_proxy(proxy)._residential_proxy()
-    assert result.count(SECRET) == 1
-    assert "residential=true" in result
-
-
-def test_requests_carry_the_residential_proxy():
-    spider = BackcountryListingSpider(category="cat-mens-shirts")
-    spider.settings = _Settings({"PROXY": "http://scrapeops.country=us:k@proxy.scrapeops.io:5353"})
-    requests = list(spider.start_requests())
-    assert len(requests) == 1
-    assert "residential=true" in requests[0].meta["proxy"]
-
-
 # ------------------------------------------------------------------- numbers
 
 

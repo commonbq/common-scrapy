@@ -48,19 +48,8 @@ class OreillyListingSpider(BaseListingSpider):
 
     def _request(self, url, page, category_path):
         return scrapy.Request(self._page_url(url, page), headers=self.headers, callback=self.parse,
-            meta={"proxy": self._residential_proxy(), "page": page,
+            meta={"page": page,
                   "category_path": category_path}, dont_filter=True)
-
-    def _residential_proxy(self):
-        proxy = self.settings.get("PROXY")
-        if not proxy or "scrapeops" not in proxy.lower() or "residential=true" in proxy:
-            return proxy
-        parts = urlsplit(proxy)
-        if not parts.password or not parts.hostname:
-            return proxy
-        username = f"{parts.username}.country=us.residential=true"
-        return urlunsplit((parts.scheme, f"{username}:{parts.password}@{parts.hostname}:{parts.port}",
-                           parts.path, parts.query, parts.fragment))
 
     @staticmethod
     def _page_url(url, page):

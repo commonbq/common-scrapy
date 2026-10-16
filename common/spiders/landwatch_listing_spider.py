@@ -4,15 +4,12 @@ from __future__ import annotations
 
 import json
 from typing import Any, Iterable
-from urllib.parse import urljoin, urlsplit, urlunsplit
+from urllib.parse import urljoin
 
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
 from common.spiders.landwatch_categories import LANDWATCH_CATEGORIES
-
-
-RESIDENTIAL_PROXY = "residential=true"
 
 
 class LandwatchListingSpider(BaseListingSpider):
@@ -66,25 +63,11 @@ class LandwatchListingSpider(BaseListingSpider):
             callback=self.parse,
             headers=self.headers,
             meta={
-                "proxy": self._residential_proxy(),
                 "page": page,
                 "category": self.category or "custom",
             },
             dont_filter=True,
         )
-
-    def _residential_proxy(self) -> str | None:
-        proxy = getattr(self, "settings", {}).get("PROXY")
-        if not isinstance(proxy, str) or not proxy or "scrapeops" not in proxy.lower():
-            return proxy or None
-        parts = urlsplit(proxy)
-        if not parts.hostname or parts.password is None:
-            return proxy
-        if RESIDENTIAL_PROXY in (parts.username or ""):
-            return proxy
-        username = f"{parts.username}.{RESIDENTIAL_PROXY}"
-        netloc = f"{username}:{parts.password}@{parts.hostname}:{parts.port}"
-        return urlunsplit((parts.scheme, netloc, parts.path, parts.query, parts.fragment))
 
     def parse(self, response: scrapy.http.Response):
         if response.status != 200:

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 import re
-from urllib.parse import parse_qs, quote, unquote, urlencode, urljoin, urlsplit, urlunsplit
+from urllib.parse import parse_qs, urlencode, urljoin, urlsplit, urlunsplit
 
 import scrapy
 
@@ -39,30 +39,10 @@ class ChewyListingSpider(BaseListingSpider):
 
     def _request(self, base_url, page):
         meta = {"category": self.category or "custom", "page": page, "base_url": base_url}
-        proxy = self._residential_proxy()
-        if proxy:
-            meta["proxy"] = proxy
         return scrapy.Request(
             self._page_url(base_url, page), callback=self.parse, headers=self.headers,
             meta=meta,
         )
-
-    def _residential_proxy(self):
-        proxy = getattr(self, "settings", {}).get("PROXY")
-        if not proxy:
-            return None
-        parts = urlsplit(proxy)
-        if parts.hostname != "proxy.scrapeops.io" or not parts.username:
-            return proxy
-        username = unquote(parts.username)
-        for option in ("residential=true", "country=us"):
-            if option not in username.split("."):
-                username += "." + option
-        auth = quote(username, safe=".=")
-        if parts.password is not None:
-            auth += ":" + quote(unquote(parts.password), safe="")
-        host = parts.hostname + (f":{parts.port}" if parts.port else "")
-        return urlunsplit((parts.scheme, f"{auth}@{host}", parts.path, parts.query, parts.fragment))
 
     def parse(self, response):
         if response.status != 200:
