@@ -506,7 +506,7 @@ These are still being worked on and currently returned `0` items in recent smoke
 | [`costco_search`](#costco_search--costco_listing) | Active | bootstrap + html | Akamai | Costco keyword search with state extraction + fallback. | 0 (skipped2) | - | `{}` |
 | [`dillards_listing`](#dillards_listing) | Experimental | bootstrap | Akamai | Dillard's listing spider via `window.__INITIAL_STATE__`. | 0 (ok) | 10 departments / 124 leaves (grouped mapping) from `dillards_categories.py` | `n/a` |
 | [`kohls_listing`](#kohls_listing) | Experimental | api | Akamai (Cloudflare challenge assets also observed) | Kohl’s listing via `/web/catalog/...` API. | 0 (ok) | 540 site-map categories in 59 groups | `n/a` |
-| [`nordstromrack_listing`](#nordstromrack_listing) | Experimental | JSON-LD | Fastly (`x-jungle`); residential proxy required | Nordstrom Rack category listings from server-rendered Schema.org `ItemList` data. | 2 (fixture; live 403 direct) | 1335 leaves in 18 departments (from `navigation-sitemap.xml`) | `{"item_id":"7788991","title":"Pleated Midi Dress","brand":"Donna Ricco","price":34.97,"currency":"USD",...}` |
+| [`nordstromrack_listing`](#nordstromrack_listing) | Experimental | hydration state + JSON-LD | Fastly (`x-jungle`); US residential proxy required | Nordstrom Rack category listings from `window.__INITIAL_CONFIG__` (`productResults.productsById`), with Schema.org `ItemList` fallback. | 76 (live residential; fixture fallback) | 1335 leaves in 18 departments (from `navigation-sitemap.xml`) | `{"item_id":"3287827","title":"'Wayfarer' 58mm Sunglasses","brand":"Ray-Ban","price":89.97,...}` |
 | [`menards_listing`](#menards_listing) | Active | api | Incapsula (ScrapeOps US residential route required; API leg still returns a proxy/Incapsula failure envelope) | Menards category listings from the first-party `POST /main/search/category.ajx` JSON API; session is seeded from the category page and taxonomy comes from the homepage `mcom-header` menu JSON. | 0 (live proxy unverified; fixture smoke emits items) | 25 departments / 372 leaves (grouped mapping) from `menards_categories.py` | `{"category":"halloween-animated-decorations","item_id":"123","title":"Animated Dragon","brand":"Enchanted Forest","price":99.99,"currency":"USD","source":"menards_category_api",...}` |
 
 *`Number of items output` reflects recent local smoke runs (typically `max_pages=1`) and can vary by location, anti-bot behavior, and site changes.*
@@ -2559,12 +2559,23 @@ Validation notes (2026-02-25):
 
 ### nordstromrack_listing
 
-Direct-HTTP listing spider for Nordstrom Rack category pages. It reads the
-server-rendered Schema.org `ItemList` JSON-LD, deduplicates products, and follows
-the category `page` query parameter up to `max_pages`.
+Listing spider for Nordstrom Rack category pages. It reads the server-rendered
+`window.__INITIAL_CONFIG__` hydration state (`productResults.productsById`),
+falls back to the older Schema.org `ItemList` JSON-LD when that block is absent,
+deduplicates products, and follows the category `page` query parameter up to
+`max_pages`.
+
+The Airflow DAG supplies the US residential ScrapeOps route (`country=us`,
+`residential=true`) through its `PROXY` environment override. On the default datacenter and premium routes the
+category page comes back as an HTTP-200 anti-bot stub (~250 KB, no product data)
+or a ScrapeOps failure envelope, so the spider emits 0 items and
+`item_scraped_count` is missing from the run log; the real ~4.8 MB document only
+arrives on the residential route. Because the failure and the envelope are both
+HTTP 200, Scrapy's `RetryMiddleware` never sees them, so the spider re-requests
+a proxy envelope a bounded number of times (3) before failing visibly.
 
 Run example:
-`common-scrapy crawl nordstromrack_listing -a category=women-clothing-dresses -a max_pages=1 -O nordstromrack_listing.jsonl`
+`common-scrapy crawl nordstromrack_listing -a category=women-clothing-dresses -a max_pages=1 -s HTTPCACHE_ENABLED=False -O nordstromrack_listing.jsonl`
 
 Categories are the site's full `navigation-sitemap.xml` taxonomy: **1335
 crawlable leaves across 18 departments**. `-a category=` selects a leaf by its
@@ -2574,32 +2585,38 @@ List them with `-a category=...` errors or `iter_categories()`.
 
 The export contract is ordered and includes `item_id`, `title`, `brand`,
 `price`, `price_max`, `currency`, `availability`, `url`, `image_url`,
-`category`, `page`, `position`, `source`, and the original JSON-LD product in
+`category`, `page`, `position`, `source`, and the original product object in
 `raw`.
 
-Sample output:
+Sample output (residential route, `accessories`, verified 2026-10-16):
 ```json
 {
-  "item_id": "7788991",
-  "title": "Pleated Midi Dress",
-  "brand": "Donna Ricco",
-  "price": 34.97,
-  "price_max": 49.97,
+  "item_id": "3287827",
+  "title": "'Wayfarer' 58mm Sunglasses",
+  "brand": "Ray-Ban",
+  "price": 89.97,
+  "price_max": 89.97,
   "currency": "USD",
-  "availability": "InStock",
-  "url": "https://www.nordstromrack.com/s/pleated-midi-dress/7788991",
-  "image_url": "https://n.nordstrommedia.com/id/example.jpeg",
-  "category": "women",
+  "availability": "Sellable",
+  "url": "https://www.nordstromrack.com/s/ray-ban-wayfarer-58mm-sunglasses/3287827",
+  "image_url": "https://n.nordstrommedia.com/it/9ae2c565-0f1b-40a1-ab14-56177879b975.jpeg",
+  "category": "accessories",
   "page": 1,
   "position": 1,
-  "source": "nordstromrack_itemlist_json_ld",
-  "raw": {"@type": "Product", "sku": "7788991"}
+  "source": "nordstromrack_initial_config",
+  "raw": {"id": "3287827", "webPathAlias": "ray-ban-wayfarer-58mm-sunglasses"}
 }
 ```
 
-Live requests returned Fastly's `x-jungle` HTTP 403 response during the latest
-validation. The checked-in representative fixture exercises the same JSON-LD
-contract deterministically.
+Live crawl on the residential route with no cache (2026-10-16):
+
+```
+scrapy crawl nordstromrack_listing -s HTTPCACHE_ENABLED=False -a category=accessories -a max_pages=1 -O /tmp/nr.jsonl
+```
+
+exported **76 items** with `item_scraped_count: 76` and `finish_reason: finished`.
+The checked-in representative fixtures exercise both the `__INITIAL_CONFIG__` and
+legacy JSON-LD contracts deterministically.
 
 ### bestbuy_search / bestbuy_listing
 
