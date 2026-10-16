@@ -7,6 +7,7 @@ import re
 
 import scrapy
 
+from common.settings import PROXY
 from common.spiders.barnesandnoble_categories import BARNESANDNOBLE_CATEGORIES
 from common.spiders.base_listing_spider import BaseListingSpider
 
@@ -58,8 +59,17 @@ class BarnesandnobleListingSpider(BaseListingSpider):
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
         "CONCURRENT_REQUESTS_PER_DOMAIN": 1,
-        # Both the Oxygen storefront and Shopify API are directly reachable;
-        # a proxy tunnel strips the Storefront POST body in this environment.
+        # The two hosts need opposite proxy treatment, so keep the spider-level
+        # default direct and opt the shell request back in explicitly.
+        #
+        # The collection shell (`www.barnesandnoble.com/collections/...`, behind
+        # Akamai) returns HTTP 403 Access Denied on a direct request, so it needs
+        # the configured proxy. The Storefront GraphQL POST
+        # (`<domain>.myshopify.com/api/<ver>/graphql.json`) must be sent direct:
+        # a proxy tunnel strips the request body and Shopify answers
+        # `{"errors":[{"message":"No query string was present"}]}` with 0
+        # products. Either way the crawl emitted 0 items, so
+        # `item_scraped_count` was absent from the run log.
         "PROXY": "",
         "FEED_EXPORT_FIELDS": [
             "category", "search_query", "item_id", "variant_id", "ean",
@@ -85,7 +95,14 @@ class BarnesandnobleListingSpider(BaseListingSpider):
         query = selected.get("search_query") or (self.category or "").replace("-", " ")
         yield scrapy.Request(
             target, callback=self.parse_bootstrap, headers=self._storefront_headers(),
-            meta={"category": selected.get("category") or self.category or "custom", "search_query": query},
+            # The Akamai-fronted shell is direct-blocked (HTTP 403), so route
+            # only this request through the configured proxy. The Storefront
+            # API request below stays direct via `disable_proxy`.
+            meta={
+                "category": selected.get("category") or self.category or "custom",
+                "search_query": query,
+                **({"proxy": PROXY} if PROXY else {}),
+            },
         )
 
     def parse_bootstrap(self, response: scrapy.http.Response):

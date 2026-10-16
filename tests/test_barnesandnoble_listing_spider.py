@@ -1,5 +1,6 @@
 import json
 import unittest
+from unittest import mock
 
 from scrapy.http import HtmlResponse, Request, TextResponse
 
@@ -29,6 +30,26 @@ def api_response(products, *, page=1, next_page=False):
 
 
 class BarnesandnobleListingSpiderTest(unittest.TestCase):
+    def test_shell_request_uses_configured_proxy_but_api_stays_direct(self):
+        # The Akamai-fronted shell is HTTP-403 direct, so it must carry the
+        # configured proxy; the Storefront API POST must stay direct (a proxy
+        # tunnel strips the body and Shopify replies "No query string").
+        spider = BarnesandnobleListingSpider(category="books", max_pages=1)
+        sentinel = "http://scrapeops.example:5353"
+        with mock.patch(
+            "common.spiders.barnesandnoble_listing_spider.PROXY", sentinel
+        ):
+            [shell_request] = list(spider.start_requests())
+        self.assertEqual(shell_request.meta.get("proxy"), sentinel)
+
+        document = r'<script>window.x=[\"publicStoreDomain\",\"store.myshopify.com\",\"publicStorefrontApiVersion\",\"2025-07\",\"storefrontAccessToken\",\"public-token\"]</script>'
+        bootstrap = HtmlResponse(
+            shell_request.url, request=shell_request, body=document, encoding="utf-8"
+        )
+        [api_request] = list(spider.parse_bootstrap(bootstrap))
+        self.assertTrue(api_request.meta.get("disable_proxy"))
+        self.assertNotIn("proxy", api_request.meta)
+
     def test_bootstraps_rotating_api_configuration_without_parsing_cards(self):
         spider = BarnesandnobleListingSpider(category="fiction")
         document = r'<script>window.x=[\"publicStoreDomain\",\"store.myshopify.com\",\"publicStorefrontApiVersion\",\"2025-07\",\"storefrontAccessToken\",\"public-token\"]</script>'
