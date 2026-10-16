@@ -353,7 +353,7 @@ Spiders below are returning items in recent smoke runs:
 | [`autozone_listing`](#autozone_listing) | Active | bootstrap (Next.js React Query hydration) | ScrapeOps residential proxy required (`residential=true.country=us`) | AutoZone category listings from server-rendered Next.js/TanStack React Query bootstrap state (`productshelf-results` joined to `productSkuDetails` by SKU). | 24 (one page, oil-filter) | 20 stable category seeds | `{"category":"oil-filter","item_id":"1117175","title":"STP Oil Filter S45023","brand":"STP","price":5.99,"currency":"USD","source":"autozone_next_data"...}` |
 | [`viator_listing`](#viator_listing) | Active | bootstrap | none detected through ScrapeOps proxy | Viator destination activity shelves from server-rendered `__PRELOADED_DATA__.pageModel.topActivities` hydration (no HTML or JSON-LD fallback). | 15 (one bounded shelf, live proxy) | 20 Popular Cities from `viator_categories.py` | `{"category":"nashville","item_id":"361513P2","title":"LUXURY 5-Star PRIVATE Nashville Party Tour w/ Panoramic Views","price":395,"currency":"USD","source":"viator_preloaded_top_activities"...}` |
 | [`footlocker_listing`](#footlocker_listing) | Active | api | residential proxy (ScrapeOps) | Foot Locker category listings from the ZGW search API (residential proxy required). | 48 (1 page, residential proxy) | Dynamically resolved from `header.public.json` | `{"band":"Men's","sub_category":"Shoes","category":"all-men-s-shoes","item_id":"T8013103","title":"Jordan Retro 12 - Men's","url":"https://www.footlocker.com/product/T8013103.html","image_url":"https://images.footlocker.com/is/image/EBFL2/T8013103","price":215.0,"original_price":215.0,"currency":"USD","availability":"InStock","brand":"Jordan","rating":5.0,"reviews_count":999,"page":1,"category_url":"/category/mens/shoes.html","source":"footlocker_api"...` |
-| [`homedepot_listing`](#homedepot_listing-category-apollo-state) | Flaky | bootstrap | Akamai | Home Depot department listings from embedded Apollo state. | 2 (fixture) | 26 Shop All departments from `homedepot_categories.py` | `{"category":"tools","item_id":"100000001","sku":"1000000001","title":"16 oz. Fiberglass Claw Hammer","brand":"Husky","price":14.97...` |
+| [`homedepot_listing`](#homedepot_listing-category-apollo-state) | Active | bootstrap | Akamai | Home Depot department listings from embedded Apollo state. | 24 (live 2026-10-15) | 26 Shop All departments from `homedepot_categories.py` | `{"category":"tools","item_id":"342752170","sku":null,"title":"6 AMP Corded 3 1/4 inch Hand Planer","brand":"RYOBI","price":139.0...` |
 | [`flipkart_listing`](#flipkart_listing) | Experimental | bootstrap (`window.__INITIAL_STATE__`) | none detected through ScrapeOps | Flipkart India listings from server-rendered React product widgets only. | 40/page | Top 20 categories by live catalogue size | `{"category":"rings","item_id":"RNGHKBT6XTRQYGNU","title":"Mushk butterfly bloom ring...","price":665,"currency":"INR","source":"flipkart_initial_state_product_widgets"}` |
 | [`hm_listing`](#hm_listing) | Experimental | bootstrap (Next.js `__NEXT_DATA__`) | Akamai | H&M US product listings from authoritative server-rendered PLP hydration, with hydrated pagination. | 60/page | 5 departments / 122 leaves (grouped mapping): Women (33), Men (28), Kids (35), Home (14), Beauty (12) | `{"category":"women-new-arrivals","item_id":"1345672001","title":"Scarf-Detail Jacket","price":59.99,"currency":"USD","source":"hm_next_data"}` |
 | [`homedepot_search`](#homedepot_search-keyword-apollo-bootstrap) | Active | bootstrap + html | Akamai | Home Depot keyword search via Apollo state. | 24 (ok) | - | `{"item_id":"336787835","sku":"1014334650","brand":"Lukyamzn","title":"14 in. Dual-Core Celeron N4000 Laptop 6 GB RAM 128 GB SSD IPS Displ...` |
@@ -1834,10 +1834,19 @@ Run example:
 `common-scrapy crawl homedepot_listing -a category=tools -a max_pages=1 -O homedepot_listing.jsonl`
 
 Notes:
-- Products are extracted from the PLP's embedded `window.__APOLLO_STATE__`; missing Apollo state or product references fail the crawl visibly instead of emitting a silent empty feed.
-- Output uses a fixed 17-field export order: category, identifiers, product details, pricing, reviews, availability, source, category URL, and page.
+- Products are extracted from the PLP's embedded `window.__APOLLO_STATE__`; missing Apollo state, a proxy/challenge payload, or missing product references fail the crawl visibly instead of emitting a silent empty feed.
+- Output uses a fixed 18-field export order: category, identifiers, product details, pricing, reviews, availability, source, category URL, page, and timestamp.
 - Duplicate Apollo references are removed by item ID. Additional pages use Home Depot's `Nao` offset in increments of 24.
-- A direct live request returned Home Depot's 403 anti-bot response during the latest verification. The checked-in representative fixture emitted 2 products and is covered by deterministic contract tests.
+- **Proxy routing (fixed 2026-10-15).** Home Depot is Akamai-fronted: a direct request returns an HTTP 403 `Access Denied` page, and the default ScrapeOps **datacenter** route returns the 367-byte JSON failure envelope (`We couldn't retrieve a successful response...`) with HTTP 200. Only the **US residential** route (`country=us,residential=true`) returns the ~900 KB PLP document. The Airflow DAG supplies that route through its `PROXY` environment override; the spider still retries bounded HTTP-200 proxy envelopes because Scrapy's `RetryMiddleware` cannot see them.
+- **Apollo shape (fixed 2026-10-15).** The storefront moved the product list: the `SearchModel` now nests under `ROOT_QUERY` under a `searchModel({...})` key, and products are `BaseProduct` nodes referenced from a plain `products` list. The spider accepts both the new shape and the legacy top-level `SearchModel:<...>` + `products({...})` bootstrap.
+
+Live verification (2026-10-15):
+
+```bash
+scrapy crawl homedepot_listing -s HTTPCACHE_ENABLED=False -a category=tools -a max_pages=1 -O homedepot_listing.jsonl
+```
+
+`item_scraped_count: 24`, `finish_reason: finished` (previously 0 items / field absent).
 
 ### maccosmetics_listing (Shopify collection catalog)
 
