@@ -6,7 +6,9 @@ from scrapy.http import HtmlResponse
 from common.spiders.athome_listing_spider import AthomeListingSpider
 
 
-FIXTURE = Path(__file__).parents[1] / "sample" / "athome-search-updategrid-xhr-sample.html"
+FIXTURE = (
+    Path(__file__).parents[1] / "sample" / "athome-search-updategrid-xhr-sample.html"
+)
 
 
 def response(spider=None, *, page=1, offset=0, status=200):
@@ -46,11 +48,25 @@ def test_paginates_the_ajax_api_by_offset():
 
 def test_default_named_and_url_categories():
     assert AthomeListingSpider()._selected_category()["category"] == "christmas"
-    assert AthomeListingSpider(category="Area Rugs")._selected_category()["category"] == "area-rugs"
     assert (
-        AthomeListingSpider(url="https://www.athome.com/vases/")._selected_category()["category"]
+        AthomeListingSpider(category="Area Rugs")._selected_category()["category"]
+        == "area-rugs"
+    )
+    assert (
+        AthomeListingSpider(url="https://www.athome.com/vases/")._selected_category()[
+            "category"
+        ]
         == "vases"
     )
+
+
+def test_full_primary_navigation_taxonomy_is_grouped_and_unique():
+    spider = AthomeListingSpider()
+    entries = list(spider.iter_categories())
+    assert len(spider.categories) == 13
+    assert len(entries) == 458
+    assert len({entry["category"] for entry in entries}) == len(entries)
+    assert all(entry["department"] == entry["group"] for entry in entries)
 
 
 def test_invalid_category_fails_loudly():
