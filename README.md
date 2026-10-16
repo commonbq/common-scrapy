@@ -119,10 +119,14 @@ was confirmed live (HTTP 200, one or more products) the same day.
 `dollartree_listing` reads product records exclusively from Dollar Tree's
 first-party Oracle Commerce Cloud guided-search API. It sends each category's
 stable Endeca `dimension_id` to `/ccstoreui/v1/search` and paginates with the
-API's `No` offset; there is no direct-HTML or JSON-LD fallback. The 20 category
-seeds are ranked by the API's live product totals in
-`dollartree_categories.py`. Each product includes the source attributes in
-`raw`; the ordered `FEED_EXPORT_FIELDS` contract contains 27 fields.
+API's `No` offset; there is no direct-HTML or JSON-LD fallback. The grouped
+inventory in `dollartree_categories.py` is a snapshot of the storefront's full
+active product taxonomy: 522 categories across 16 departments. Blog-only
+collections are excluded. Each product includes the source attributes in `raw`;
+the ordered `FEED_EXPORT_FIELDS` contract contains 27 fields.
+
+Live verification on 2026-10-17: the newly added `breakfast-cereal` leaf
+returned HTTP 200 and exported 24 unique products from its first page.
 
 ```bash
 scrapy crawl dollartree_listing -a category=food-candy-drinks -a max_pages=2 -s HTTPCACHE_ENABLED=False -O dollartree.jsonl
@@ -263,7 +267,7 @@ Working spiders running daily in production:
 | [`decathlon_listing`](#decathlon_listing) | Active | API | none detected direct; compatible with plain ScrapeOps US proxy | Decathlon products from Shopify's first-party collection JSON API only; no HTML, embedded-metadata, or JSON-LD fallback. | Up to 250/API page | Full live primary-nav taxonomy: 74 collection leaves across 4 departments | `{"category":"camp-hike","item_id":"8209731190846","title":"Simond Men’s Xplore Hooded Down Jacket","price":119.0,"currency":"USD","source":"decathlon_shopify_collection_api"...}` |
 | [`wickes_listing`](#wickes_listing) | Active | bootstrap | none detected | Wickes products from the server-rendered `var product = {...}` analytics bootstrap only; no rendered-card or JSON-LD fallback. | 29 (one page) | 1036 `/.../c<id>` leaves across 30 departments (from the live `sitemap-categories.xml`) | `{"category":"painting-decorating-interior-paint-wall-ceiling-emulsion-paint","item_id":"106974","title":"Dulux Matt Emulsion Paint - Egyptian Cotton - 2.5L","brand":"Dulux","price":25,"currency":"GBP","source":"wickes_analytics_bootstrap"...}` |
 | [`toolstation_listing`](#toolstation_listing) | Active | API | none detected | Toolstation UK products from the first-party Bloomreach CRS `/api/search/crs` API only; no HTML-card, Nuxt-state, or JSON-LD fallback. | 48/page | 1,015 `/.../c<id>` leaves across 27 departments from the `departments.xml` sitemap; reviewed top-20 preserved for the DAG | `{"category":"kitchens-kitchen-cabinets","item_id":"12145","title":"Kitchen Kit Flatpack Shaker Kitchen Cabinet Base End Ultra Matt Cashmere 900mm","brand":"Kitchen Kit","price":44.54,"currency":"GBP","source":"toolstation_bloomreach_crs_api"...}` |
-| [`dollartree_listing`](#dollartree_listing) | Active | API | none detected direct | Dollar Tree products from the first-party Oracle Commerce Cloud guided-search API only; no HTML or JSON-LD fallback. | 24/page | Top 20 categories ranked by live product count | `{"category":"food-candy-drinks","item_id":"354662","title":"Lil' Dutch Maid Duplex Crème Cookies.","price":1.25,"currency":"USD","source":"dollartree_occ_guided_search_api"...}` |
+| [`dollartree_listing`](#dollartree_listing) | Active | API | none detected direct | Dollar Tree products from the first-party Oracle Commerce Cloud guided-search API only; no HTML or JSON-LD fallback. | 24/page | 522 active product categories across 16 departments from the live storefront taxonomy | `{"category":"food-candy-drinks","item_id":"354662","title":"Lil' Dutch Maid Duplex Crème Cookies.","price":1.25,"currency":"USD","source":"dollartree_occ_guided_search_api"...}` |
 | [`fivebelow_listing`](#fivebelow_listing) | Active | API | Cloudflare on discovery page; configured proxy required | Five Below variants from the first-party Algolia product-search API. The category page only supplies current API configuration; no HTML-card, RSC-product, or JSON-LD fallback. | 39 variants from 24 products/page | 370 `/categories/<department>/<leaf>` leaves across 27 departments (from the live `sitemap-categories.xml`) | `{"category":"new-and-now","item_id":"9252012","title":"Littlest Pet Shop® x Like Nastya DIY Bestie Bag Charm","price":5.0,"currency":"USD","source":"fivebelow_algolia_product_search_api"...}` |
 | [`etsy_listing`](#etsy_listing) | Active | bootstrap | DataDome; session-pinned ScrapeOps US proxy | Etsy listing identity, shop, price, discount, position, and pagination from the server-provided `Etsy.Context.data` bootstrap only; no rendered-card or JSON-LD fallback. | 48/bootstrap page | 17 departments / 192 leaves (grouped mapping; 175 immediate subcategories) | `{"category":"jewelry","item_id":"4402089910","shop_id":"54384097","price":85.74,"currency":"PLN","source":"etsy_context_bootstrap"...}` |
 | [`dunelm_listing`](#dunelm_listing) | Active | bootstrap | none detected | Dunelm products from server-rendered Redux `#ssr-state-data`; department HTML is used only for leaf discovery, never as product data. | 60/page | 670 leaves / 46 departments | `{"category":"home-and-furniture","item_id":"1000194189","title":"Pure Cotton Fitted Sheet","price":14,"currency":"GBP","source":"dunelm_redux_ssr_bootstrap"...}` |
