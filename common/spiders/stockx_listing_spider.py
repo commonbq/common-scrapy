@@ -9,15 +9,7 @@ from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
-
-
-STOCKX_CATEGORIES = {
-    "sneakers": {"all": "https://stockx.com/sneakers"},
-    "apparel": {"all": "https://stockx.com/apparel"},
-    "electronics": {"all": "https://stockx.com/electronics"},
-    "trading-cards": {"all": "https://stockx.com/trading-cards"},
-    "collectibles": {"all": "https://stockx.com/collectibles"},
-}
+from common.spiders.stockx_categories import STOCKX_CATEGORIES
 
 
 class StockxListingSpider(BaseListingSpider):
@@ -53,23 +45,19 @@ class StockxListingSpider(BaseListingSpider):
         super().__init__(*args, **kwargs)
         self._seen_products: set[str] = set()
 
-    def available_categories(self) -> list[str]:
-        return sorted(self.categories)
-
     def start_requests(self) -> Iterable[scrapy.Request]:
         if self.url or self.category_url:
             url = self.url or self.category_url
             yield self._request(url, self.category or "custom", "custom", 1)
             return
 
-        if self.category not in self.categories:
+        entry = self.category_entry(self.category)
+        if entry is None:
             available = ", ".join(self.available_categories())
             raise ValueError(
                 f"Unknown category '{self.category}'. Available categories: {available}"
             )
-
-        for subcategory, url in self.categories[self.category].items():
-            yield self._request(url, self.category, subcategory, 1)
+        yield self._request(entry["url"], entry["category"], entry["category"], 1)
 
     def _request(self, url: str, category: str, subcategory: str, page: int):
         return scrapy.Request(

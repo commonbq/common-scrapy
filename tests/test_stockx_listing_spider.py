@@ -53,7 +53,21 @@ class StockxListingSpiderTests(unittest.TestCase):
     def test_feed_export_fields_are_stable(self):
         fields = self.spider.custom_settings["FEED_EXPORT_FIELDS"]
         self.assertEqual(fields[0:4], ["item_id", "title", "brand", "price"])
-        self.assertEqual(fields[-4:], ["subcategory", "page", "source", "raw"])
+        self.assertEqual(
+            fields[-5:], ["subcategory", "page", "source", "raw", "timestamp"]
+        )
+
+    def test_live_navigation_inventory_uses_grouped_mapping_contract(self):
+        self.assertEqual(
+            self.spider.available_categories(),
+            [
+                "accessories", "apparel", "collectibles", "electronics",
+                "mystery-boxes", "shoes", "sneakers", "trading-cards",
+            ],
+        )
+        request = next(self.spider.start_requests())
+        self.assertEqual(request.url, "https://stockx.com/category/sneakers")
+        self.assertEqual(request.meta["subcategory"], "sneakers")
 
     def test_parse_authoritative_browse_product(self):
         product = {
