@@ -66,6 +66,7 @@ from common.spiders.zara_categories import (
     PRODUCTS_ENDPOINT_TEMPLATE,
     ZARA_LOCALE_PREFIX,
     ZARA_SITE_BASE,
+    ZARA_CATEGORIES,
     grouped_categories,
     parse_taxonomy,
     seo_category_id_from_url,
@@ -135,7 +136,10 @@ class ZaraListingSpider(BaseListingSpider):
     ]
     require_category_arg = False
 
-    categories: dict[str, dict[str, dict[str, Any]]] = {}
+    # Parse-time snapshot for BaseListingSpider validation, CLI discovery and
+    # Airflow. Every crawl refreshes it from the live taxonomy before resolving
+    # the selected products endpoint.
+    categories = ZARA_CATEGORIES
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
@@ -189,10 +193,9 @@ class ZaraListingSpider(BaseListingSpider):
 
     def start_requests(self):
         self._seen_items.clear()
-        # `self.categories` is populated at runtime from /us/en/categories, so
-        # it is empty at this point: any run (even `-a category=`) has to
-        # hydrate the taxonomy first to turn a breadcrumb name / URL into the
-        # menu id the products endpoint needs.
+        # Any run (even `-a category=`) hydrates the live taxonomy first to turn
+        # the snapshot's breadcrumb name / URL into the menu id the products
+        # endpoint needs.
         yield scrapy.Request(
             CATEGORIES_ENDPOINT,
             callback=self.parse_categories,

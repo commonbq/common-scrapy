@@ -386,7 +386,7 @@ Spiders below are returning items in recent smoke runs:
 | [`poshmark_listing`](#poshmark_listing) | Experimental | bootstrap | none detected | Poshmark listing spider via `window.__INITIAL_STATE__` category grid data. | 48 (ok) | 91 categories across 6 departments from `poshmark_categories.py` | `{"category":"women","item_id":"6989d90ac4e7b4d4de556bac","title":"🔥Stunning  Farm Rio NWT Size Large Tropical Midi Dress with Sleeves – V...` |
 | [`qvc_listing`](#qvc_listing) | Experimental | html + bootstrap | Akamai | QVC listing spider via server-rendered gallery cards and `utag_data` page state. | 96 (Beauty proxy capture) | 411 department-grouped listing categories (37 top-level departments) | `{"category":"beauty-makeup","category_id":"NAV6285","item_id":"A740517","title":"Whish 12 Days of Beauty Whishes Advent Calendar","price":59.98,...}` |
 | [`zappos_listing`](#zappos_listing) | Experimental | Redux hydration | none detected through proxy | Zappos listings from `window.__INITIAL_STATE__.products.list`. | 100 (one-page proxy smoke) | 4 departments / 50 targets | `{"item_id":"8910671","title":"Kiruna Padded Parka","brand":"Fjällräven","price":300.0,...}` |
-| [`zara_listing`](#zara_listing) | Active | api | Akamai (ScrapeOps `country=us,bypass=5`) | Zara US listings from the first-party category and product JSON APIs; no HTML or JSON-LD fallback. | 637 (Dresses; one API response) | 912 live product categories across 8 menu sections | `{"category":"WOMAN > COLLECTION > DRESSES","item_id":"560058525","title":"STRIPED PUFF SLEEVE MINI DRESS","price":69.9,"currency":"USD","source":"zara_api"...}` |
+| [`zara_listing`](#zara_listing) | Active | api | Akamai (ScrapeOps `country=us,bypass=5`) | Zara US listings from the first-party category and product JSON APIs; no HTML or JSON-LD fallback. | 88 (`BEAUTY > KIDS > PERFUMES`; one API response) | 908 live product categories across 8 menu sections | `{"category":"WOMAN > COLLECTION > DRESSES","item_id":"560058525","title":"STRIPED PUFF SLEEVE MINI DRESS","price":69.9,"currency":"USD","source":"zara_api"...}` |
 | [`zoro_listing`](#zoro_listing) | Experimental | bootstrap | intermittent direct 403; configured proxy requires active credits | Zoro category listings from server-rendered Vuex `window.INITIAL_STATE.search.response.records` only. | 36/page | 20 departments; 2,189-leaf taxonomy schedules leaves | `{"category":"custom","department":"Raw Materials","leaf_category":"Aluminum Angles","item_id":"G3109732","title":"Angle, Al, 6061, 1/8 In T, 2 In Leg, 4 Ft L","price":17.39,"currency":"USD","source":"zoro_initial_state_search_records"...}` |
 | [`saksfifthavenue_listing`](#saksfifthavenue_listing-category) | Experimental | html | DataDome | Saks Fifth Avenue listing spider via direct category HTML cards. | 24 (ok) | women, men, shoes, beauty, handbags | `{"item_id":"0400026449047","title":"Prada Washed Re Nylon Rain Jacket","url":"https://www.saksfifthavenue.com/product/prada-washed-re-nyl...` |
 | [`sallybeauty_listing`](#sallybeauty_listing) | Experimental | html + AJAX | PerimeterX / HUMAN (px-captcha signals) | Sally Beauty SFCC product-grid spider with `Search-UpdateGrid` pagination. | 2 (fixture) | 242 leaves across 12 departments: hair-color, hair-care, textured-and-curly-hair-care, hair-extensions, tools-and-brushes, nails, cosmetics-and-skin-care, fragrances, mens-grooming, salon-supplies, deals, perm-rods | `{"category":"hair-care","item_id":"SBS-539230","title":"Low Porosity Aloe Vera Gel Shampoo","brand":"Texture ID","price":11.99...` |
@@ -4306,7 +4306,7 @@ requests the selected category from
 returns the complete category in one response, so `max_pages` is accepted for
 CLI consistency but values above one do not create duplicate requests.
 
-The runtime taxonomy currently resolves **912 unique product URLs** across
+The runtime taxonomy currently resolves **908 unique product URLs** across
 WOMAN, MAN, KIDS, ZARA HOME, MASSIMO DUTTI, BEAUTY, PRE-OWNED, and one root
 entry. Only `layout == "products-category-view"`, non-irrelevant nodes with a
 complete SEO URL are crawlable. Repeated labels are disambiguated with their
@@ -4344,10 +4344,10 @@ The ordered export contract (`FEED_EXPORT_FIELDS`) is:
 }
 ```
 
-Verified live on 2026-10-04 through ScrapeOps US `bypass=5` with
-`HTTPCACHE_ENABLED=False`: the taxonomy returned 912 unique product categories,
-and `WOMAN > COLLECTION > DRESSES` returned **637 unique items** from one product
-JSON response. There is no HTML-card, browser, bootstrap, or JSON-LD fallback;
+Verified live on 2026-10-17 through ScrapeOps US `bypass=5` with
+`HTTPCACHE_ENABLED=False`: the taxonomy returned 908 unique product categories,
+and `BEAUTY > KIDS > PERFUMES` returned **88 unique items** from one product JSON
+response, with `raw` present on all 88. There is no HTML-card, browser, bootstrap, or JSON-LD fallback;
 changed API contracts raise explicit errors instead of returning a silent empty
 feed.
 

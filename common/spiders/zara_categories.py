@@ -5,7 +5,7 @@ from __future__ import annotations
 The whole taxonomy ships as JSON, so nothing here is hard-coded (issue #208):
 
     GET https://www.zara.com/us/en/categories        -> application/json
-    {"categories": [<node>, ...]}                    2,622 nodes / 6 levels
+    {"categories": [<node>, ...]}                    2,642 nodes / 6 levels
 
 A node is a product listing page when all of the following hold:
 
@@ -19,7 +19,7 @@ A node is a product listing page when all of the following hold:
 * ``seo.keyword`` and ``seo.seoCategoryId`` are present. 2,622 nodes carry
   ``irrelevant`` but only 2,493 carry a usable ``seo`` pair.
 
-That leaves **1,347 eligible nodes -> 912 unique listing URLs** (the rest are the
+That leaves **1,348 eligible nodes -> 908 unique listing URLs** (the rest are the
 same category cross-listed under several departments, e.g. the 210 ``VIEW ALL``
 menus all point at their parent). Both numbers were re-verified live.
 
@@ -145,7 +145,7 @@ def grouped_categories(payload: dict[str, Any]) -> dict[str, dict[str, dict[str,
     Leaf keys use the full breadcrumb ``category`` string (e.g.
     ``"WOMAN > NEW ARRIVALS > THE NEW > DRESSES"``) so they remain globally
     unique across sections. If Zara publishes the same breadcrumb for distinct
-    URLs in different sections, the section is prefixed to both keys. The DAG
+    URLs, the SEO category id is appended to each key. The DAG
     factory schedules one task per leaf and output paths key on the bare leaf
     name, so a collision would merge two categories. The breadcrumb (not the
     bare menu label) is also what ``-a category=`` matches, which disambiguates
@@ -159,7 +159,7 @@ def grouped_categories(payload: dict[str, Any]) -> dict[str, dict[str, dict[str,
         group = str(entry.get("section") or "all")
         category = entry["category"]
         if category_counts[category] > 1:
-            category = f"{group} > {category}"
+            category = f"{category} [{entry['seo_category_id']}]"
             entry = {**entry, "category": category}
         groups.setdefault(group, {})[category] = entry
     return groups

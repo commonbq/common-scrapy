@@ -109,6 +109,35 @@ class ZaraTaxonomyTest(unittest.TestCase):
             {entry["section"] for entry in self.entries}, set(grouped)
         )
 
+    def test_grouped_categories_keeps_duplicate_breadcrumb_urls(self):
+        payload = {
+            "categories": [
+                {
+                    "name": "KIDS",
+                    "subcategories": [
+                        {
+                            "name": "GIRL",
+                            "id": 1,
+                            "layout": "products-category-view",
+                            "irrelevant": False,
+                            "seo": {"keyword": "kids-girl", "seoCategoryId": 323},
+                        },
+                        {
+                            "name": "GIRL",
+                            "id": 2,
+                            "layout": "products-category-view",
+                            "irrelevant": False,
+                            "seo": {"keyword": "kids-promotions", "seoCategoryId": 19239},
+                        },
+                    ],
+                }
+            ]
+        }
+        leaves = grouped_categories(payload)["KIDS"]
+        self.assertEqual(
+            set(leaves), {"KIDS > GIRL [323]", "KIDS > GIRL [19239]"}
+        )
+
     def test_static_inventory_is_grouped_and_has_unique_runnable_leaves(self):
         self.assertTrue(ZARA_CATEGORIES)
         categories = [
@@ -123,6 +152,8 @@ class ZaraTaxonomyTest(unittest.TestCase):
         ]
         self.assertEqual(len(categories), len(set(categories)))
         self.assertEqual(len(urls), len(set(urls)))
+        self.assertEqual(len(categories), 908)
+        self.assertIs(ZaraListingSpider.categories, ZARA_CATEGORIES)
         self.assertTrue(all(category for category in categories))
         self.assertTrue(
             all(url.startswith("https://www.zara.com/us/en/") for url in urls)
