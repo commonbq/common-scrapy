@@ -33,5 +33,6 @@ SHEIN_CATEGORIES = {
         "books-magazines": "https://us.shein.com/RecommendSelection/Books-Magazines-sc-0175086797.html",
         "fall-winter": "https://us.shein.com/RecommendSelection/Fall-Winter-sc-0171717757.html",
         "food-beverages": "https://us.shein.com/RecommendSelection/Food-Beverages-sc-0175086791.html",
+        "fall-winter": "https://us.shein.com/RecommendSelection/Fall-Winter-sc-0171717757.html",
     }
 }
