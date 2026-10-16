@@ -408,7 +408,7 @@ Spiders below are returning items in recent smoke runs:
 | [`worldmarket_listing`](#worldmarket_listing) | Active | api | none detected (ScrapeOps proxy) | World Market products from the first-party SFCC `Search-UpdateGrid` grid API (no direct product-card or JSON-LD fallback). | 60 (1 page, live proxy) | 32 departments / 854 leaves (grouped mapping) from `worldmarket_categories.py` | `{"category":"furniture-living-room-furniture-sofas-and-loveseats","item_id":"SET135122","title":"Isaiah Tufted Mid Century Seating Collection","price":299.99,"currency":"USD","source":"worldmarket_sfcc_search_update_grid_api"...}` |
 | [`walgreens_listing`](#walgreens_listing) | Active | bootstrap (Redux `window.getInitialState()`) | Akamai (ScrapeOps US JS rendering required) | Walgreens category listings from the server-rendered Redux `window.getInitialState()` bootstrap (`searchResult.productList[*].productInfo`); no HTML-card or JSON-LD fallback. | 24 (1 page, `Allergy & Sinus`) | 19 departments / 170 child categories from `walgreens_categories.py` | `{"category":"Allergy & Sinus","category_id":"360545","product_id":"prod6335256","title":"Walgreens Neti Pot Kit","brand":"Walgreens","price":11.99,"currency":"USD","source_url":"https://www.walgreens.com/store/c/productlist/N=360545/1/ShopAll=360545","raw":{...},"timestamp":"2026-10-07 05:40:00"...}` |
 | [`chewy_listing`](#chewy_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | ScrapeOps US residential route required | Chewy category listings from the server-rendered Next.js `__NEXT_DATA__` bootstrap (`props.pageProps.initialState.searchSlice.plpData.products`); no HTML-card or JSON-LD fallback. | 44 (1 page, `food-332`) | 172-category pet taxonomy (dogs, cats, other pets) from `chewy_categories.py` | `{"category":"food-332","item_id":"147999","title":"Instinct Original Adult Grain-Free Real Beef Recipe Wet Dog Food, 13.2-oz can, case of 6","brand":"Instinct","price":28.14,"currency":"USD","source":"chewy_next_data_bootstrap","timestamp":"2026-10-06 21:40:56"...}` |
-| [`patagonia_listing`](#patagonia_listing) | Active | api | ScrapeOps residential route required | Patagonia product listings from the first-party SFCC `AsyncComponents-ProductList` API, driven by the page's `cgid` category contract; no HTML-card or JSON-LD fallback. | Live smoke tested below; 0 items on current failover shell, parser verified against documented payload | 7 navigation groups / 144 category leaves from `patagonia_categories.py` | `{"category":"new-arrivals","item_id":"...","title":"...","price":...,"currency":"USD","source":"patagonia_sfcc_async_components_api",...}` |
+| [`patagonia_listing`](#patagonia_listing) | Active | api | ScrapeOps residential route required | Patagonia product listings from the first-party SFCC search grid (`Search-UpdateGrid`), the same endpoint the storefront's Load More calls; the spider reads the listing page's `cgid` first. | Live verified 2026-10-16: `item_scraped_count: 16` on `category=new-arrivals`; `category=packs-gear` also 16 | 7 navigation groups / 144 category leaves from `patagonia_categories.py` | `{"category":"new-arrivals","item_id":"...","title":"...","price":...,"currency":"USD","source":"patagonia_sfcc_search_grid",...}` |
 | [`zumper_listing`](#zumper_listing) | Active | bootstrap (`window.__PRELOADED_STATE__`) | ScrapeOps US proxy | Zumper rental listings from the server-rendered `window.__PRELOADED_STATE__` bootstrap (`currentSearch.listables`) with hydrated `?page=N` pagination; no HTML-card or JSON-LD fallback. | 25 (1 page, `new-york-ny`) | 61 state/province groups / 10,684 city markets (grouped mapping) | `{"category":"new-york-ny","item_id":"456715","title":"Parker Towers","min_price":2829,"max_price":6489,"currency":"USD","city":"New York","state":"NY","source":"zumper_preloaded_state","timestamp":"2026-10-07 05:36:58"...}` |
 | [`crateandbarrel_listing`](#crateandbarrel_listing) | Active | bootstrap (React `ProductListing` hydration) | Akamai (ScrapeOps residential proxy required) | Crate & Barrel category listings from the first-party React `ProductListing` hydration payload only; 1,884 product-bearing category URLs across 35 departments with numeric-path pagination. | 100 (1 page, `furniture-sofas`) | 1,884 category URLs grouped by department from `crateandbarrel_categories.py` | `{"category":"sofas","item_id":"322117","title":"Lounge Sofa (62\"-105\")","brand":"Crate & Barrel","price":1529.0,"currency":"USD","source":"crateandbarrel_productlisting_bootstrap","timestamp":"2026-10-07 09:46:17"...}` |
 | [`ssense_listing`](#ssense_listing) | Experimental | bootstrap | Cloudflare; configured US proxy required | SSENSE men/women/everything-else category products from the server-rendered Next.js RSC (`self.__next_f`) bootstrap only; no rendered HTML-card or JSON-LD extraction. | 120/page | Full men/women/everything-else taxonomy (602 categories, sale mirror included) from the public category sitemaps in `ssense_categories.py` | `{"category":"men-clothing","department":"men","item_id":"15856491","sku":"242232M188005","title":"Gray Porterville Stefan Cargo Pants","brand":"Rick Owens","price":1400,"currency":"USD","total_pages":97,"source":"ssense_next_rsc_bootstrap",...}` |
@@ -5006,16 +5006,26 @@ scrapy crawl gymshark_listing -s HTTPCACHE_ENABLED=False -O gymshark.jsonl
 ### patagonia_listing
 
 `patagonia_listing` extracts products through one authoritative data direction:
-Patagonia's first-party Salesforce Commerce Cloud `AsyncComponents-ProductList`
-API. It exposes the complete current US storefront navigation taxonomy as a
-grouped mapping (7 navigation groups / 144 unique category leaves), supports
-custom listing URLs, and uses the API's offset parameters for bounded
-pagination. It does not parse the listing page's direct HTML or JSON-LD as a
-product-data fallback.
+Patagonia's first-party Salesforce Commerce Cloud **search grid** endpoint
+(`Search-UpdateGrid`), the same one the storefront's own *Load More* control
+calls. The spider first loads the listing page to read its `cgid`, then paginates
+the grid with `start`/`sz`. It exposes the complete current US storefront
+navigation taxonomy as a grouped mapping (7 navigation groups / 144 unique
+category leaves) and supports custom listing URLs.
+
+> **2026-10-16:** the previously used `AsyncComponents-ProductList` endpoint is
+dead — it now returns a full page shell with zero `<product-tile>` elements, so
+runs exported 0 items and `item_scraped_count` was absent. The live grid
+endpoint returns 16 `product-tile` cards per page with the same `data-gtm` and
+`product-tile-pricing` attributes the parser already understood.
 
 ```bash
 scrapy crawl patagonia_listing -a category=new-arrivals -a max_pages=1 -s HTTPCACHE_ENABLED=False -O patagonia.jsonl
 ```
+
+Bounded uncached run (2026-10-16, `category=new-arrivals`, `max_pages=1`):
+`item_scraped_count: 16`, `finish_reason: finished`, `source:
+patagonia_sfcc_search_grid` (previously 0 items — field absent).
 
 ### argos_listing
 
