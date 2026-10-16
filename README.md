@@ -364,7 +364,7 @@ Spiders below are returning items in recent smoke runs:
 | [`klook_listing`](#klook_listing) | Active | API | none detected through ScrapeOps | Klook activities from the first-party destination recommendation API discovered in `window.__KLOOK__` hydration. | 12 (Japan, one curated response) | 20 popular country/city destinations | `{"item_id":"46604","title":"Universal Studios Japan Studio Pass","currency":"HKD","source":"klook_destination_api",...}` |
 | [`kroger_search`](#kroger_search--kroger_listing) | Active | bootstrap + html | unknown (timeout/no verdict) | Kroger keyword search with state extraction + fallback. | 27 (ok) | - | `{'item_id':'kroger-2-reduced-fat-milk-gallon','url':'https://www.kroger.com/p/kroger-2-reduced-fat-milk-gallon/0001111041700','source':'kroger_html_links_fallback'}` |
 | [`levis_listing`](#levis_listing) | Active | bootstrap | none detected through proxy | Levi's listings from SSR `__LSCO_INITIAL_STATE__.ssrViewStoreProductList`. | 48 (2 pages, live proxy) | 5 sections / 83 PLP targets from `levi_categories.py` | `{"category":"shop-all-men-s-jeans","item_id":"005053473","title":"505™ Regular Dobby Men's Jeans","brand":"Levi's","price":64.99...` |
-| [`lululemon_listing`](#lululemon_listing) | Active | bootstrap | Akamai | lululemon listing spider via Next.js `__NEXT_DATA__`. | 40 (ok) | women-shorts, women-leggings, men-shorts, bags | `{"category":"women-shorts","product_id":"prod11860112","name":"Shake It Out High-Rise Running Short 2.5\"","brand":"lululemon","price":["...` |
+| [`lululemon_listing`](#lululemon_listing) | Active | bootstrap | Akamai + ScrapeOps residential | lululemon listing spider via Next.js `__NEXT_DATA__` (`catalogPageData` JSON:API). | 40 (ok) | women-shorts, women-leggings, men-shorts, bags | `{"category":"women-leggings","item_id":"Groove-High-Rise-Tight-25-Stripe-Trim","title":"Groove High-Rise Tight 25\" *Stripe Trim","brand":"lululemon","price":118.0,...` |
 | [`newegg_listing`](#newegg_listing) | Experimental | SSR hydration state | none detected | Newegg listing spider reading server-rendered `window.__initialState__.Products` with `/Page-N` pagination and the captured RolloverMenu taxonomy. | 36 (ok) | 1,159 JSON-backed listing leaves across 16 departments | `{"item_id":"19-113-877","title":"AMD Ryzen 7 9800X3D - Ryzen 7 9000 Series Zen 5 8-Core 5.2 GHz - Socket AM5 120W - AMD Radeon Graphics Desktop Processor - 100-100001084WOF","model":"100-100001084WOF","brand":"AMD","price":469,"currency":"USD","url":"https://www.newegg.com/amd-ryzen-7-9000-series-ryzen-7-9800x3d-granite-ridge-zen-5-socket-am5-desktop-cpu-processor/p/N82E16819113877","image":"https://c1.neweggimages.com/ProductImageOriginal/19-113-877-01.png","rating":4.8,"reviews_count":729,"page":1,"source":"newegg_initial_state"}` |
 | [`redfin_listing`](#redfin_listing) | Active | api | ScrapeOps US proxy | Redfin city listings from the first-party Stingray GIS JSON API discovered in React server hydration. | 350 (one page) | 51 state groups / 33,798 city markets (grouped mapping) from `redfin_categories.py` | `{"category":"los-angeles-ca","item_id":"5196541","price":1399000,"source":"redfin_stingray_api"...}` |
 | [`movoto_listing`](#movoto_listing) | Experimental | bootstrap | PerimeterX (ScrapeOps US proxy required) | Movoto sale listings from server-rendered Nuxt `__INITIAL_STATE__.pageData.listings` only; no HTML or JSON-LD fallback. | 50 (one page, live proxy) | 37 state groups / 149 city markets (grouped mapping) | `{"category":"new-york-ny","item_id":"aca725fa-4f79-41bc-a458-6de558312a3b","title":"50 W 66th St #10C New York, NY 10023","price":10950000,"source":"movoto_initial_state"...}` |
@@ -2304,7 +2304,31 @@ Notes:
 
 ### lululemon_listing
 Run example:
-`common-scrapy crawl lululemon_listing -a category=women-shorts -a max_pages=1 -O lululemon_listing.jsonl`
+`common-scrapy crawl lululemon_listing -a category=women-leggings -a max_pages=1 -O lululemon_listing.jsonl`
+
+Extracts products from the server-rendered `__NEXT_DATA__` bootstrap state.
+Lululemon re-platformed the category grid: the current page exposes a
+`catalogPageData` query whose result is a JSON:API document (product entities in
+`included`, paging as `totalCount`/`limit`/`offset`). The spider handles that
+contract and the legacy flat `CategoryPageDataQuery` payload, so fixtures from
+either era still parse. The exported `FEED_EXPORT_FIELDS` contract is unchanged.
+
+Routing matters here. On the default ScrapeOps datacenter route,
+`shop.lululemon.com` answers with an HTTP 200 **55-byte JSON error envelope**
+(`{"message": "Bad Request.", "errorCode": "GE401001"}`); the storefront only
+returns the real ~2 MB Next.js document on the **US residential route**
+(`country=us,residential=true`). The Airflow DAG supplies that route through its
+`PROXY` environment override. The spider detects a non-HTML body *before* calling CSS
+selectors, instead of raising `ValueError: Cannot use css on a Selector of type
+'json'`. The residential pool is not perfectly reliable, so the spider re-requests
+a bounded number of times (`MAX_PROXY_RETRIES`) when it sees a proxy envelope; a
+transient miss no longer becomes a silent zero-item run.
+
+Live verification (2026-10-15, `HTTPCACHE_ENABLED=False`, US residential route):
+
+| command | response | items | item_scraped_count | finish_reason |
+|---|---|---|---|---|
+| `scrapy crawl lululemon_listing -s HTTPCACHE_ENABLED=False -a category=women-leggings -a max_pages=1` | HTTP 200 | 40 | 40 | finished |
 
 ### jcpenney_listing
 Extracts the authoritative `organicZoneInfo.products` collection from JCPenney's
