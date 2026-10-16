@@ -14,15 +14,6 @@ from common.spiders.acehardware_categories import ACEHARDWARE_CATEGORIES, BASE_U
 from common.spiders.base_listing_spider import BaseListingSpider
 
 
-# ScrapeOps option appended to the proxy username. Ace Hardware sits behind a bot
-# wall that rejects the datacenter route outright: `country=us` alone, `bypass=5`
-# through `bypass=20`, and `residential=true` without a bypass level each return the
-# 367-byte ScrapeOps "couldn't retrieve a successful response" envelope instead of
-# the document. Only the combination below returns the real ~1.9 MB SSR page with
-# its `data-mz-preload-*` hydration blocks.
-RESIDENTIAL_PROXY = "residential=true"
-BYPASS_PROXY = "bypass=5"
-
 # Image sources hydrate as protocol-relative Mozu CMS paths.
 IMAGE_CDN = "https://cdn-tp6.mozu.com"
 
@@ -149,7 +140,6 @@ class AceHardwareListingSpider(BaseListingSpider):
             callback=self.parse,
             headers=self.headers,
             meta={
-                "proxy": self._proxy_url(),
                 "page": page,
                 "start_index": start_index,
                 "category": self.category or selected.get("category") or "custom",
@@ -176,7 +166,6 @@ class AceHardwareListingSpider(BaseListingSpider):
             callback=self.parse,
             headers=self.headers,
             meta={
-                "proxy": self._proxy_url(),
                 "page": 1,
                 "start_index": 0,
                 "category": parent.get("category") or "custom",
@@ -212,38 +201,6 @@ class AceHardwareListingSpider(BaseListingSpider):
         ]
         query.append(("startIndex", str(start_index)))
         return urlunsplit((parts.scheme, parts.netloc, parts.path, urlencode(query), parts.fragment))
-
-    def _proxy_url(self) -> str | None:
-        """Return the configured proxy with the residential + bypass options enabled.
-
-        ScrapeOps credentials are carried as ``<options>:<api_key>@host:port``, so
-        the options belong on the username side and the password is preserved
-        verbatim. A non-ScrapeOps proxy, or one that already carries the options, is
-        returned untouched.
-        """
-        proxy = getattr(self, "settings", {}).get("PROXY")
-        if not isinstance(proxy, str) or not proxy:
-            return None
-        if "scrapeops" not in proxy.lower():
-            return proxy
-        parts = urlsplit(proxy)
-        if parts.password is None or not parts.hostname:
-            return proxy
-        username = parts.username or ""
-        if BYPASS_PROXY.split("=")[-1] in username:
-            return proxy
-        if RESIDENTIAL_PROXY.split("=")[-1] not in username:
-            username = f"{username}.{RESIDENTIAL_PROXY}"
-        username = f"{username}.{BYPASS_PROXY}"
-        return urlunsplit(
-            (
-                parts.scheme,
-                f"{username}:{parts.password}@{parts.hostname}:{parts.port}",
-                parts.path,
-                parts.query,
-                parts.fragment,
-            )
-        )
 
     # ------------------------------------------------------------------ parse
 

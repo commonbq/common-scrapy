@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import re
 from typing import Any, Iterable
-from urllib.parse import parse_qsl, quote, unquote, urlencode, urljoin, urlsplit, urlunsplit
+from urllib.parse import parse_qsl, urlencode, urljoin, urlsplit, urlunsplit
 
 import scrapy
 
@@ -89,7 +89,6 @@ class MarriottListingSpider(BaseListingSpider):
             self._page_url(url, page), callback=self.parse, headers=self.headers,
             dont_filter=page > 1,
             meta={
-                "proxy": self._residential_proxy(),
                 "category": self.category or "custom",
                 "page": page,
             },
@@ -103,24 +102,6 @@ class MarriottListingSpider(BaseListingSpider):
         if page > 1:
             query.append(("pg", str(page)))
         return urlunsplit((parts.scheme, parts.netloc, parts.path, urlencode(query), parts.fragment))
-
-    def _residential_proxy(self) -> str | None:
-        """Enable the US residential ScrapeOps route without embedding credentials."""
-        proxy = getattr(self, "settings", {}).get("PROXY")
-        if not proxy:
-            return None
-        parts = urlsplit(proxy)
-        if parts.hostname != "proxy.scrapeops.io" or not parts.username:
-            return proxy
-        username = unquote(parts.username)
-        for option in ("residential=true", "country=us"):
-            if option not in username.split("."):
-                username += "." + option
-        auth = quote(username, safe=".=")
-        if parts.password is not None:
-            auth += ":" + quote(unquote(parts.password), safe="")
-        host = parts.hostname + (f":{parts.port}" if parts.port else "")
-        return urlunsplit((parts.scheme, f"{auth}@{host}", parts.path, parts.query, parts.fragment))
 
     @staticmethod
     def _check_response(response: scrapy.http.Response) -> None:

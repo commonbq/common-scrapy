@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import json
-from urllib.parse import quote, urlparse, urlunparse
+from urllib.parse import quote, urlparse
 
 import scrapy
 
@@ -55,7 +55,6 @@ class PatagoniaListingSpider(BaseListingSpider):
                 "X-Requested-With": "XMLHttpRequest",
             },
             meta={
-                "proxy": self._residential_proxy(),
                 "listing_url": listing_url,
                 "page": page,
                 "start": start,
@@ -136,24 +135,6 @@ class PatagoniaListingSpider(BaseListingSpider):
                 response.meta["listing_url"], page=page + 1,
                 start=response.meta["start"] + len(tiles),
             )
-
-    def _residential_proxy(self):
-        proxy = getattr(self, "settings", {}).get("PROXY")
-        if not proxy or "scrapeops" not in proxy.lower():
-            return proxy
-        parts = urlparse(proxy)
-        username = parts.username or ""
-        options = username.split(".")[1:]
-        for option in ("country=us", "residential=true"):
-            if option not in options:
-                username += f".{option}"
-        host = parts.hostname or ""
-        if parts.port:
-            host += f":{parts.port}"
-        auth = username
-        if parts.password is not None:
-            auth += f":{parts.password}"
-        return urlunparse((parts.scheme, f"{auth}@{host}", parts.path, "", "", ""))
 
     @staticmethod
     def _number(value):

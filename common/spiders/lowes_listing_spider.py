@@ -47,21 +47,8 @@ class LowesListingSpider(BaseListingSpider):
     def _request(self, url: str, page: int) -> scrapy.Request:
         return scrapy.Request(
             self._page_url(url, page), headers=self.headers, callback=self.parse,
-            meta={"proxy": self._proxy(), "page": page}, dont_filter=True,
+            meta={"page": page}, dont_filter=True,
         )
-
-    def _proxy(self) -> str | None:
-        proxy = self.settings.get("PROXY")
-        if not proxy or "scrapeops" not in proxy.lower():
-            return proxy
-        parts = urlsplit(proxy)
-        if not parts.hostname or parts.password is None:
-            return proxy
-        username = parts.username or ""
-        for option in ("residential=true", "bypass=5"):
-            if option not in username:
-                username += f".{option}"
-        return urlunsplit((parts.scheme, f"{username}:{parts.password}@{parts.hostname}:{parts.port}", parts.path, parts.query, parts.fragment))
 
     @staticmethod
     def _page_url(url: str, page: int) -> str:

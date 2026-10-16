@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import re
 from typing import Any, Iterable
-from urllib.parse import urljoin, urlsplit, urlunsplit
+from urllib.parse import urljoin
 
 import scrapy
 
@@ -60,25 +60,9 @@ class RealtorListingSpider(BaseListingSpider):
             url,
             callback=self.parse,
             headers=self.headers,
-            meta={"proxy": self._realtor_proxy(), "page": page, "base_url": base_url},
+            meta={"page": page, "base_url": base_url},
             dont_filter=True,
         )
-
-    def _realtor_proxy(self) -> str | None:
-        proxy = getattr(self, "settings", {}).get("PROXY")
-        if not isinstance(proxy, str) or not proxy or "scrapeops" not in proxy.lower():
-            return proxy or None
-        parts = urlsplit(proxy)
-        if not parts.username or parts.password is None or not parts.hostname:
-            return proxy
-        options = parts.username.split(".")
-        keys = {part.split("=", 1)[0] for part in options}
-        for option in ("residential=true", "bypass=5"):
-            if option.split("=", 1)[0] not in keys:
-                options.append(option)
-        port = f":{parts.port}" if parts.port else ""
-        netloc = f"{'.'.join(options)}:{parts.password}@{parts.hostname}{port}"
-        return urlunsplit((parts.scheme, netloc, parts.path, parts.query, parts.fragment))
 
     def parse(self, response: scrapy.http.Response):
         if response.status != 200:

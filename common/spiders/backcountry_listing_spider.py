@@ -13,13 +13,6 @@ from common.spiders.backcountry_categories import BACKCOUNTRY_CATEGORIES, BASE_U
 from common.spiders.base_listing_spider import BaseListingSpider
 
 
-# ScrapeOps option appended to the proxy username. Backcountry sits behind an AWS
-# WAF: the plain datacenter route and every `bypass` level return a 2.4 KB
-# `window.awsWafCookieDomainList` interstitial instead of the page, and the
-# challenge never resolves server-side. Only the residential route returns the
-# real 1 MB+ SSR document.
-RESIDENTIAL_PROXY = "residential=true"
-
 # The color swatches hydrate as storefront-relative paths; the CDN host that the
 # same SSR response uses for the <img> tags is the canonical origin for them.
 IMAGE_CDN = "https://content.backcountry.com"
@@ -125,7 +118,6 @@ class BackcountryListingSpider(BaseListingSpider):
             callback=self.parse,
             headers=self.headers,
             meta={
-                "proxy": self._residential_proxy(),
                 "page": page,
                 "category": self.category or selected.get("category") or "custom",
                 "department": selected.get("department"),
@@ -151,35 +143,6 @@ class BackcountryListingSpider(BaseListingSpider):
         query = [(k, v) for k, v in query if k != "page"]
         query.append(("page", str(page)))
         return urlunsplit((parts.scheme, parts.netloc, parts.path, urlencode(query), parts.fragment))
-
-    def _residential_proxy(self) -> str | None:
-        """Return the configured proxy with the residential option enabled.
-
-        ScrapeOps credentials are carried as ``<options>:<api_key>@host:port``, so
-        the option belongs on the username side and the password is preserved
-        verbatim. A proxy that is already residential, or any non-ScrapeOps proxy,
-        is returned untouched.
-        """
-        proxy = getattr(self, "settings", {}).get("PROXY")
-        if not isinstance(proxy, str) or not proxy:
-            return None
-        if "scrapeops" not in proxy.lower():
-            return proxy
-        parts = urlsplit(proxy)
-        if parts.password is None or not parts.hostname:
-            return proxy
-        if RESIDENTIAL_PROXY.split("=")[-1] in (parts.username or ""):
-            return proxy
-        username = f"{parts.username}.{RESIDENTIAL_PROXY}"
-        return urlunsplit(
-            (
-                parts.scheme,
-                f"{username}:{parts.password}@{parts.hostname}:{parts.port}",
-                parts.path,
-                parts.query,
-                parts.fragment,
-            )
-        )
 
     # ------------------------------------------------------------------ parse
 

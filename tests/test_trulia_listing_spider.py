@@ -54,12 +54,3 @@ def test_deduplicates_property_ids():
 def test_missing_or_malformed_state_fails(body, message):
     with pytest.raises(RuntimeError, match=message):
         list(TruliaListingSpider(category="colorado-springs-co").parse(response(body)))
-
-
-def test_scrapeops_options_are_idempotent():
-    spider = TruliaListingSpider(category="colorado-springs-co")
-    spider.settings = {"PROXY": "http://scrapeops.country=us:key@proxy.scrapeops.io:5353"}
-    mutated = spider._proxy()
-    assert "residential=true" in mutated and "bypass=5" in mutated
-    spider.settings = {"PROXY": mutated}
-    assert spider._proxy() == mutated

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 import re
-from urllib.parse import quote, urljoin, urlsplit, urlunsplit
+from urllib.parse import urljoin
 
 import scrapy
 
@@ -46,26 +46,8 @@ class TruliaListingSpider(BaseListingSpider):
 
     def _request(self, url: str, page: int):
         return scrapy.Request(url, callback=self.parse, headers=self.headers, meta={
-            "page": page, "category": self.category or "custom", "proxy": self._proxy(),
+            "page": page, "category": self.category or "custom",
         }, dont_filter=True)
-
-    def _proxy(self):
-        proxy = getattr(self, "settings", {}).get("PROXY")
-        if not isinstance(proxy, str) or not proxy or "scrapeops" not in proxy.lower():
-            return proxy or None
-        parts = urlsplit(proxy)
-        if not parts.hostname or parts.password is None:
-            return proxy
-        username = parts.username or ""
-        options = username.split(".")
-        if "residential=true" not in options:
-            options.append("residential=true")
-        if "bypass=5" not in options:
-            options.append("bypass=5")
-        host = f"{'.'.join(options)}:{quote(parts.password, safe='')}@{parts.hostname}"
-        if parts.port:
-            host += f":{parts.port}"
-        return urlunsplit((parts.scheme, host, parts.path, parts.query, parts.fragment))
 
     def parse(self, response):
         if response.status != 200:

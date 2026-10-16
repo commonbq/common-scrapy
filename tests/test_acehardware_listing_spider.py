@@ -10,8 +10,6 @@ import pytest
 from common.spiders.acehardware_categories import ACEHARDWARE_CATEGORIES
 from common.spiders.acehardware_listing_spider import (
     BASE_URL,
-    BYPASS_PROXY,
-    RESIDENTIAL_PROXY,
     AceHardwareListingSpider,
 )
 
@@ -163,7 +161,7 @@ def test_department_page_follows_children_instead_of_emitting_nothing():
     assert f"{BASE_URL}/departments/tools/power-tools" in urls
     assert f"{BASE_URL}/departments/tools/hand-tools" in urls
     assert all(request.meta["depth"] == 1 for request in requests)
-    assert all(request.meta["proxy"] is None for request in requests)
+    assert all("proxy" not in request.meta for request in requests)
 
 
 def test_hidden_children_are_skipped():
@@ -189,40 +187,6 @@ def test_depth_guard_stops_recursion():
               "depth": 99},
     )
     assert items == [] and requests == []
-
-
-# ------------------------------------------------------------------- proxy route
-
-
-def test_scrapeops_proxy_gains_residential_and_bypass_options():
-    spider = AceHardwareListingSpider(category="cordless-drills")
-    spider.settings = {
-        "PROXY": "http://scrapeops.country=us:apikey@proxy.scrapeops.io:5353"
-    }
-    url = spider._proxy_url()
-    assert url == "http://scrapeops.country=us.residential=true.bypass=5:apikey@proxy.scrapeops.io:5353"
-
-
-def test_proxy_options_are_not_duplicated():
-    spider = AceHardwareListingSpider(category="cordless-drills")
-    spider.settings = {
-        "PROXY": "http://scrapeops.country=us.residential=true.bypass=5:k@proxy.scrapeops.io:5353"
-    }
-    url = spider._proxy_url()
-    username = url.split("://", 1)[1].split(":", 1)[0]
-    assert username == "scrapeops.country=us.residential=true.bypass=5"
-
-
-def test_non_scrapeops_proxy_is_untouched():
-    spider = AceHardwareListingSpider(category="cordless-drills")
-    spider.settings = {"PROXY": "http://user:pass@brd.superproxy.io:33335"}
-    assert spider._proxy_url() == "http://user:pass@brd.superproxy.io:33335"
-
-
-def test_missing_proxy_returns_none():
-    spider = AceHardwareListingSpider(category="cordless-drills")
-    spider.settings = {}
-    assert spider._proxy_url() is None
 
 
 # ------------------------------------------------------------------ page guards

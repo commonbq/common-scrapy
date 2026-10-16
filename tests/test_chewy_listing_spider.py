@@ -54,13 +54,6 @@ def test_hydration_mapping_feed_contract_and_pagination():
     assert requests[0].url == "https://www.chewy.com/b/food-332?page=2"
 
 
-def test_scrapeops_proxy_is_upgraded_to_us_residential():
-    spider = ChewyListingSpider(category="food-332")
-    spider.settings = {"PROXY": "http://scrapeops:key@proxy.scrapeops.io:5353"}
-    proxy = spider._residential_proxy()
-    assert "scrapeops.residential=true.country=us" in proxy
-
-
 def test_sponsored_redirect_and_deduplication():
     spider = ChewyListingSpider(category="food-332", max_pages=2)
     href = "/click?redirect=https%3A%2F%2Fwww.chewy.com%2Fcanonical%2Fdp%2F7"

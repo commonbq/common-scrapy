@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 import re
-from urllib.parse import quote, unquote, urljoin, urlsplit, urlunsplit
+from urllib.parse import unquote, urljoin, urlsplit, urlunsplit
 
 import scrapy
 
@@ -45,24 +45,9 @@ class TripadvisorListingSpider(BaseListingSpider):
     def _request(self, base_url: str, page: int):
         return scrapy.Request(
             self._page_url(base_url, page), callback=self.parse, headers=self.headers,
-            meta={"proxy": self._proxy(), "base_url": base_url, "page": page},
+            meta={"base_url": base_url, "page": page},
             dont_filter=True,
         )
-
-    def _proxy(self):
-        proxy = self.settings.get("PROXY")
-        if not isinstance(proxy, str) or not proxy or "scrapeops" not in proxy.lower():
-            return proxy or None
-        parts = urlsplit(proxy)
-        if not parts.hostname or parts.password is None:
-            return proxy
-        options = (parts.username or "").split(".")
-        if "residential=true" not in options:
-            options.append("residential=true")
-        host = f"{'.'.join(options)}:{quote(parts.password, safe='')}@{parts.hostname}"
-        if parts.port:
-            host += f":{parts.port}"
-        return urlunsplit((parts.scheme, host, parts.path, parts.query, parts.fragment))
 
     @staticmethod
     def _page_url(url: str, page: int) -> str:

@@ -40,9 +40,6 @@ class CrateandbarrelListingSpider(BaseListingSpider):
 
     def _request(self, url: str, page: int):
         meta = {"page": page}
-        proxy = self._residential_proxy()
-        if proxy:
-            meta["proxy"] = proxy
         return scrapy.Request(
             self._page_url(url, page), callback=self.parse,
             headers={
@@ -129,17 +126,6 @@ class CrateandbarrelListingSpider(BaseListingSpider):
         parts = urlsplit(url)
         path = re.sub(r"/\d+/?$", f"/{page}", parts.path.rstrip("/"))
         return urlunsplit((parts.scheme, parts.netloc, path, parts.query, ""))
-
-    def _residential_proxy(self):
-        proxy = self.settings.get("PROXY")
-        if not proxy:
-            return None
-        parts = urlsplit(proxy); username = parts.username or ""
-        for option in ("residential=true", "bypass=5"):
-            if option not in username:
-                username = f"{username}.{option}"
-        auth = f"{username}:{parts.password}@{parts.hostname}:{parts.port}"
-        return urlunsplit((parts.scheme, auth, parts.path, parts.query, parts.fragment))
 
     @staticmethod
     def _number(value):
