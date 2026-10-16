@@ -57,12 +57,14 @@ class FlipkartListingSpiderTests(unittest.TestCase):
 
     def test_uses_query_string_pagination(self):
         follow = list(self.spider.parse(self.response()))[-1]
-        self.assertEqual(follow.url, _FLAT(FLIPKART_CATEGORIES)[0]["url"] + "&page=2")
+        base_url = _FLAT(FLIPKART_CATEGORIES)[0]["url"]
+        sep = "&" if "?" in base_url else "?"
+        self.assertEqual(follow.url, base_url + sep + "page=2")
 
-    def test_taxonomy_has_20_unique_categories(self):
+    def test_taxonomy_has_61_unique_categories(self):
         rows = _FLAT(FLIPKART_CATEGORIES)
-        self.assertEqual(len(rows), 20)
-        self.assertEqual(len({row["category"] for row in rows}), 20)
+        self.assertEqual(len(rows), 61)
+        self.assertEqual(len({row["category"] for row in rows}), 61)
 
     def test_missing_bootstrap_fails_visibly(self):
         response = self.response().replace(body=b"<html></html>")
