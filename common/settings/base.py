@@ -93,3 +93,6 @@ FEED_EXPORT_ENCODING = "utf-8"
 COMMON_ENV = dotenv_values()
 
 PROXY = os.environ.get("PROXY") or COMMON_ENV.get("PROXY")
+RESIDENTIAL_PROXY = (
+    os.environ.get("RESIDENTIAL_PROXY") or COMMON_ENV.get("RESIDENTIAL_PROXY")
+)

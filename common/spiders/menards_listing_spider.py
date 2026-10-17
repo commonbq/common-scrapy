@@ -3,7 +3,7 @@ from __future__ import annotations
 import html
 import json
 import re
-from urllib.parse import urljoin, urlsplit, urlunsplit
+from urllib.parse import urljoin
 
 import scrapy
 
@@ -80,20 +80,13 @@ class MenardsListingSpider(BaseListingSpider):
                   "category_url": category_url, "page": page})
 
     def _api_proxy(self):
-        proxy = self.settings.get("PROXY") if hasattr(self, "settings") else None
-        if not isinstance(proxy, str) or "scrapeops" not in proxy.lower():
-            return proxy
-        parts = urlsplit(proxy)
-        if not parts.username or parts.password is None or not parts.hostname:
-            return proxy
-        options = parts.username.split(".")
-        keys = {option.split("=", 1)[0] for option in options}
-        for option in ("country=us", "residential=true", "bypass=5"):
-            if option.split("=", 1)[0] not in keys:
-                options.append(option)
-        port = f":{parts.port}" if parts.port else ""
-        netloc = f"{'.'.join(options)}:{parts.password}@{parts.hostname}{port}"
-        return urlunsplit((parts.scheme, netloc, parts.path, parts.query, parts.fragment))
+        """Return the residential API route supplied by the Airflow DAG."""
+        proxy = (
+            self.settings.get("RESIDENTIAL_PROXY")
+            if hasattr(self, "settings")
+            else None
+        )
+        return proxy if isinstance(proxy, str) and proxy else None
 
     @staticmethod
     def _category_id(url, text):

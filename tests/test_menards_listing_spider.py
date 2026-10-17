@@ -2,6 +2,7 @@ import json
 from collections.abc import Mapping
 
 from scrapy.http import HtmlResponse, Request, TextResponse
+from scrapy.settings import Settings
 
 from common.spiders.menards_listing_spider import MenardsListingSpider
 
@@ -44,13 +45,23 @@ def response(url, body, *, meta=None, content_type="application/json"):
 
 
 def test_category_get_builds_api_request():
-    spider = MenardsListingSpider(category="halloween-animated-decorations")
+    residential_proxy = "http://residential:test_key@proxy.example.com:5353"
+    settings = Settings(
+        {
+            "PROXY": "http://plain:test_key@proxy.example.com:5353",
+            "RESIDENTIAL_PROXY": residential_proxy,
+        }
+    )
+    spider = MenardsListingSpider(
+        category="halloween-animated-decorations", settings=settings
+    )
     first = next(spider.start_requests())
     request = next(spider.parse_category(response(first.url, "<html></html>", meta=first.meta, content_type="text/html")))
     assert request.method == "POST"
     assert json.loads(request.body) == {"categoryId": "19081", "firstRequest": True, "page": 1,
                                         "sortBy": "BEST_MATCH", "selectedFacets": [], "inStockToday": False}
     assert request.headers["Referer"].decode() == first.url
+    assert request.meta["proxy"] == residential_proxy
 
 
 def test_api_items_deduplicate_and_paginate():
