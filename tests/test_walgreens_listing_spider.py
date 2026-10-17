@@ -34,6 +34,11 @@ def response(products=None, page=1, pages=2):
 
 
 class WalgreensListingTests(unittest.TestCase):
+    def test_request_leaves_proxy_routing_to_project_middleware(self):
+        spider = WalgreensListingSpider(category="Allergy & Sinus")
+        request = next(iter(spider.start_requests()))
+        self.assertNotIn("proxy", request.meta)
+
     def test_category_and_url_precedence(self):
         spider = WalgreensListingSpider(category="Allergy & Sinus")
         self.assertEqual(spider.resolve_target_url(), URL)
@@ -72,10 +77,3 @@ class WalgreensListingTests(unittest.TestCase):
         self.assertEqual(list(empty.parse(response([]), URL, 1)), [])
         one = WalgreensListingSpider(category="Allergy & Sinus", max_pages=1)
         self.assertEqual(len(list(one.parse(response([product()]), URL, 1))), 1)
-
-    def test_proxy_options_are_applied_without_secret_constants(self):
-        spider = WalgreensListingSpider(category="Allergy & Sinus")
-        spider.settings = {"PROXY": "http://user:secret@proxy.scrapeops.io:5353"}
-        proxy = spider._render_proxy()
-        self.assertIn("render_js=true", proxy)
-        self.assertIn("country=us", proxy)

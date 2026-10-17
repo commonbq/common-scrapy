@@ -24,10 +24,8 @@ SPA's ``seoDao.makeSEODataRequest$`` calls), captured once into
     GET https://api-search.dickssportinggoods.com/seo-category/v1/categories
         ?seoUrl=<seoToken>&storeId=15108&children=true&published=true
 
-Akamai protection differs per host: the SEO category host answers on the plain
-datacenter route, while the catalog product host requires a stronger bypass
-(``scrapeops.country=us.bypass=5``).  ``_search_api_proxy()`` adds that option to
-the ScrapeOps username for product requests only.
+The catalog product host requires the DAG-provided ScrapeOps ``bypass=5``
+route; the spider itself does not own proxy credentials or routing options.
 
 Flow:
     category (or all categories)
@@ -40,7 +38,7 @@ Flow:
 import json
 import time
 from typing import Any
-from urllib.parse import quote, urlencode, urlsplit, urlunsplit
+from urllib.parse import urlencode
 
 import scrapy
 
@@ -56,11 +54,6 @@ STORE_ID = 15108
 PAGE_SIZE = 48
 IMAGE_BASE = "https://dks.scene7.com/is/image/dkscdn/"
 IMAGE_PRESET = "?$DSG_ProductCard$"
-
-# ScrapeOps option appended to the proxy username for the Akamai-protected
-# catalog host. `bypass=5` was the lightest level that returned product JSON;
-# the plain route and `bypass=2/3/4` returned the Akamai "Site Unavailable" page.
-PRODUCT_API_BYPASS = 5
 
 class DickssportinggoodsListingSpider(BaseListingSpider):
     name = "dickssportinggoods_listing"
@@ -172,9 +165,6 @@ class DickssportinggoodsListingSpider(BaseListingSpider):
             "department": entry.get("departments", [None])[0],
             "page": page,
         }
-        proxy = self._search_api_proxy()
-        if proxy:
-            meta["proxy"] = proxy
         return scrapy.Request(
             url,
             callback=self.parse_search,
@@ -329,36 +319,6 @@ class DickssportinggoodsListingSpider(BaseListingSpider):
             if isinstance(pair, dict):
                 merged.update(pair)
         return merged
-
-    # ------------------------------------------------------------------ proxy
-
-    def _search_api_proxy(self) -> str | None:
-        """Return the ScrapeOps proxy URL with the catalog-host bypass option.
-
-        DICK'S catalog host is Akamai-protected: the plain datacenter route is
-        rejected while ``bypass=5`` returns JSON. Copy the configured proxy and
-        append the option to the username, preserving credentials.
-        """
-        if not hasattr(self, "settings"):
-            return None
-        proxy = self.settings.get("PROXY")
-        if not isinstance(proxy, str) or not proxy:
-            return None
-        parts = urlsplit(proxy)
-        if parts.hostname != "proxy.scrapeops.io" or not parts.username:
-            return None
-        username = parts.username
-        if ".bypass=" not in username:
-            username = f"{username}.bypass={PRODUCT_API_BYPASS}"
-        credentials = quote(username, safe=".=_-")
-        if parts.password is not None:
-            credentials += f":{quote(parts.password, safe='')}"
-        host = parts.hostname
-        if parts.port is not None:
-            host += f":{parts.port}"
-        return urlunsplit(
-            (parts.scheme, f"{credentials}@{host}", parts.path, parts.query, parts.fragment)
-        )
 
     # ------------------------------------------------------------------ utils
 

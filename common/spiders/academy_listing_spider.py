@@ -20,8 +20,8 @@ The category taxonomy is bundled in ``academy_categories.py`` (captured from the
 global header's ``window.ASOData`` component registry, see that module).
 
 Academy fronts the site with PerimeterX: a datacenter request to ``/c/...``
-returns a stub, and the JSON API additionally needs ``bypass=5`` on the
-ScrapeOps username.  ``_api_proxy()`` adds that option for API requests.
+returns a stub, and the JSON API needs the DAG-provided ScrapeOps
+``bypass=5`` route.
 
 Flow:
     category (or all categories)
@@ -33,7 +33,7 @@ Flow:
 import json
 import re
 from typing import Any
-from urllib.parse import quote, urlencode, urlsplit, urlunsplit
+from urllib.parse import urlencode
 
 import scrapy
 
@@ -45,11 +45,6 @@ CATEGORY_ENDPOINT = f"{SITE_BASE}/api/category/v3/"
 PDP_BASE = f"{SITE_BASE}/p/"
 PAGE_SIZE = 48
 IMAGE_BASE = "https://academy.scene7.com/is/image/academy/"
-
-# ScrapeOps option appended to the proxy username for the category API.  The
-# plain datacenter route returns PerimeterX stub HTML instead of JSON;
-# `bypass=5` was the lightest level that returned product JSON.
-API_BYPASS = 5
 
 # An HTML/JSON body where a product payload was expected means a bot wall or a
 # geo-block rather than data. Matched case-insensitively: the WAF varies casing.
@@ -196,9 +191,6 @@ class AcademyListingSpider(BaseListingSpider):
             "category": entry["category"],
             "page": page,
         }
-        proxy = self._api_proxy()
-        if proxy:
-            meta["proxy"] = proxy
         return scrapy.Request(
             url,
             callback=self.parse_category,
@@ -464,37 +456,6 @@ class AcademyListingSpider(BaseListingSpider):
         if value.startswith("http"):
             return value
         return f"{IMAGE_BASE}{value}"
-
-    # ------------------------------------------------------------------ proxy
-
-    def _api_proxy(self) -> str | None:
-        """Return the ScrapeOps proxy URL with the API-host bypass option.
-
-        The academy.com JSON API is PerimeterX-protected: the plain datacenter
-        route returns a stub while ``bypass=5`` returns product JSON. Copy the
-        configured proxy and append the option to the username, preserving
-        credentials.
-        """
-        if not hasattr(self, "settings"):
-            return None
-        proxy = self.settings.get("PROXY")
-        if not isinstance(proxy, str) or not proxy:
-            return None
-        parts = urlsplit(proxy)
-        if parts.hostname != "proxy.scrapeops.io" or not parts.username:
-            return None
-        username = parts.username
-        if ".bypass=" not in username:
-            username = f"{username}.bypass={API_BYPASS}"
-        credentials = quote(username, safe=".=_-")
-        if parts.password is not None:
-            credentials += f":{quote(parts.password, safe='')}"
-        host = parts.hostname
-        if parts.port is not None:
-            host += f":{parts.port}"
-        return urlunsplit(
-            (parts.scheme, f"{credentials}@{host}", parts.path, parts.query, parts.fragment)
-        )
 
     # ------------------------------------------------------------------ utils
 
