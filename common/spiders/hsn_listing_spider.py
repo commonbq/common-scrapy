@@ -36,9 +36,6 @@ class HsnListingSpider(BaseListingSpider):
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
-        # Both public Constructor hosts work directly. This also avoids a known
-        # environment-level 407 on a second proxied HTTPS CONNECT.
-        "PROXY": "",
         "CONCURRENT_REQUESTS_PER_DOMAIN": 1,
         "DOWNLOAD_DELAY": 0.25,
         "FEED_EXPORT_FIELDS": [

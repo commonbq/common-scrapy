@@ -17,7 +17,6 @@ class DunelmListingSpider(BaseListingSpider):
     categories = CATEGORIES
 
     custom_settings = {
-        "PROXY": "",
         "HTTPERROR_ALLOW_ALL": True,
         "DOWNLOAD_DELAY": 0.25,
         "FEED_EXPORT_FIELDS": [
