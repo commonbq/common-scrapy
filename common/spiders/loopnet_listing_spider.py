@@ -1,16 +1,56 @@
 from __future__ import annotations
 
-"""LoopNet listings from its first-party JSON search service only."""
+"""LoopNet listings from the server-rendered search results page.
 
+LoopNet's category page is a server-rendered search-results page. Every listing
+card is present in the HTML as an ``article.placard-card`` element, and the page
+ships the full search state in an obfuscated ``window.gState`` JSON blob. That
+blob carries the authoritative search criteria, the result count, and the
+per-listing latitude/longitude pairs (which the placard HTML does not repeat).
+
+The previous implementation hydrated the site's private ``viewdata.set(...)``
+bootstrap and replayed it against ``POST /services/search``. LoopNet has since
+removed that bootstrap *and* that service now rejects replayed requests, so the
+spider emitted zero items and the run log had no ``item_scraped_count``
+(commonbq/common-scrapy#379). This spider now reads the one authoritative
+product source the page actually serves: the server-rendered placards plus the
+``window.gState`` search state.
+"""
+
+import codecs
 import json
 import re
 from typing import Any
-from urllib.parse import urljoin
 
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
 from common.spiders.loopnet_categories import LOOPNET_CATEGORIES
+
+# The gState JSON string is offset by three code points (a simple obfuscation):
+# every printable ASCII byte in the embedded string is shifted down by 3.
+_SHIFT = 3
+_GSTATE_RE = re.compile(r'window\.gState\s*=\s*"((?:[^"\\]|\\.)*)"', re.S)
+_CHALLENGE_MARKERS = (
+    "access denied",
+    "captcha",
+    "pardon the interruption",
+    "concurrency limit",
+    "failed to get successful response",
+)
+_PRICE_RE = re.compile(r"\$\s*([\d,]+(?:\.\d+)?)")
+
+
+def _unshift(value: str) -> str:
+    out = []
+    for char in value:
+        code = ord(char)
+        if 32 <= code <= 126:
+            shifted = code - _SHIFT
+            out.append(chr(shifted if shifted >= 32 else shifted + 95))
+        else:
+            out.append(char)
+    return "".join(out)
 
 
 class LoopnetListingSpider(BaseListingSpider):
@@ -43,186 +83,152 @@ class LoopnetListingSpider(BaseListingSpider):
 
     def start_requests(self):
         yield scrapy.Request(
-            self.resolve_target_url(), callback=self.parse_bootstrap, headers=self.headers,
-            meta={"proxy": self.settings.get("PROXY")}, dont_filter=True,
+            self.resolve_target_url(), callback=self.parse_page, headers=self.headers,
+            meta={"proxy": getattr(self, "settings", {}).get("PROXY"), "page": 1},
+            dont_filter=True,
         )
 
+    # ------------------------------------------------------------- page state
+
     @staticmethod
-    def _bootstrap(text: str, url: str = "response") -> dict[str, Any]:
+    def _search_state(text: str, url: str = "response") -> dict[str, Any]:
+        """Decode LoopNet's ``window.gState`` search-state blob."""
         lower = text[:200000].lower()
-        if any(marker in lower for marker in (
-            "failed to get successful response", "access denied", "captcha",
-            "concurrency limit", "pardon the interruption",
-        )):
+        if any(marker in lower for marker in _CHALLENGE_MARKERS):
             raise RuntimeError(f"LoopNet returned a challenge/proxy page: {url}")
-        marker = "viewdata.set("
-        start = text.find(marker)
-        if start < 0:
-            raise RuntimeError(f"LoopNet response has no viewdata bootstrap: {url}")
+        match = _GSTATE_RE.search(text)
+        if not match:
+            raise RuntimeError(f"LoopNet response has no gState bootstrap: {url}")
         try:
-            state, _ = json.JSONDecoder().raw_decode(text[start + len(marker):])
-        except (json.JSONDecodeError, TypeError) as exc:
-            raise RuntimeError(f"Invalid LoopNet viewdata bootstrap at {url}: {exc}") from exc
+            state = json.loads(_unshift(codecs.decode(match.group(1), "unicode_escape")))
+        except (json.JSONDecodeError, ValueError, TypeError) as exc:
+            raise RuntimeError(f"Invalid LoopNet gState bootstrap at {url}: {exc}") from exc
+        if not isinstance(state, dict):
+            raise RuntimeError(f"LoopNet gState bootstrap is not an object at {url}")
         return state
 
-    def parse_bootstrap(self, response):
-        if response.status != 200:
-            raise RuntimeError(f"LoopNet returned HTTP {response.status}: {response.url}")
-        state = self._bootstrap(response.text, response.url)
-        criteria = state.get("criteria")
-        if not isinstance(criteria, dict):
-            raise RuntimeError(f"LoopNet bootstrap has no search criteria: {response.url}")
-        criteria["PageNumber"] = 1
-        yield self._api_request(criteria, 1, response.url)
-
-    def _api_request(self, criteria: dict[str, Any], page: int, referer: str):
-        payload = {
-            "pageguid": None,
-            "criteria": {**criteria, "PageNumber": page},
-            "savedsearcheditmode": False,
-        }
-        return scrapy.Request(
-            "https://www.loopnet.com/services/search", method="POST",
-            body=json.dumps(payload, separators=(",", ":")), callback=self.parse_api,
-            headers={**self.headers, "accept": "application/json, text/plain, */*",
-                     "content-type": "application/json;charset=UTF-8",
-                     "x-requested-with": "XMLHttpRequest", "referer": referer},
-            meta={"proxy": self.settings.get("PROXY"), "criteria": criteria,
-                  "page": page, "referer": referer}, dont_filter=True,
-        )
-
-    @staticmethod
-    def _value(row: dict[str, Any], *names: str):
-        for name in names:
-            value = row.get(name)
-            if value not in (None, "", []):
-                return value
-        return None
-
     @classmethod
-    def _records(cls, data: dict[str, Any]) -> list[dict[str, Any]]:
-        """Select structured records, including the search API's placard fragment."""
-        candidates = [
-            data.get("Listings"), data.get("SearchResults"), data.get("Results"),
-            data.get("MapPins"), (data.get("Map") or {}).get("Pins") if isinstance(data.get("Map"), dict) else None,
-            (data.get("SearchPlacards") or {}).get("Items") if isinstance(data.get("SearchPlacards"), dict) else None,
-        ]
-        for candidate in candidates:
-            if isinstance(candidate, list) and candidate and all(isinstance(x, dict) for x in candidate):
-                return candidate
-        placards = data.get("Placards") or data.get("SearchPlacards") or {}
-        if isinstance(placards, dict):
-            html = placards.get("HTML") or placards.get("Html")
-            if isinstance(html, str):
-                return cls._placard_records(html, placards)
-        return []
-
-    @staticmethod
-    def _text(node, css: str) -> str | None:
-        values = node.css(css).getall()
-        value = " ".join(part.strip() for part in values if part.strip()).strip()
-        return value or None
-
-    @classmethod
-    def _placard_records(cls, html: str, placards: dict[str, Any] | None = None) -> list[dict[str, Any]]:
-        selector = scrapy.Selector(text=html)
-        coordinates: dict[str, dict[str, Any]] = {}
-        event_raw = None
-        if isinstance(placards, dict):
-            event_raw = placards.get("PlacardsEventModel") or placards.get("placardsEventModel")
-        if not event_raw:
-            event_raw = selector.css("[placard-event-model]::attr(placard-event-model)").get()
-        if isinstance(event_raw, str):
+    def _coordinates(cls, state: dict[str, Any]) -> dict[str, tuple[float, float]]:
+        """Join listing id -> (lat, lon) from the ``as.sp`` map-pin string."""
+        raw = ((state.get("as") or {}).get("sp")) or ""
+        if not isinstance(raw, str):
+            return {}
+        coordinates: dict[str, tuple[float, float]] = {}
+        for chunk in raw.split("~"):
+            parts = chunk.split("|")
+            if len(parts) < 4 or not parts[0]:
+                continue
             try:
-                event = json.loads(event_raw)
-                coordinates = {
-                    str(row.get("ListingID")): row
-                    for row in event.get("ListingSearchResultItems", [])
-                    if isinstance(row, dict) and row.get("ListingID") is not None
-                }
-            except (json.JSONDecodeError, TypeError):
-                pass
+                coordinates.setdefault(parts[0], (float(parts[2]), float(parts[3])))
+            except (ValueError, TypeError):
+                continue
+        return coordinates
+
+    @staticmethod
+    def _total_results(state: dict[str, Any]) -> int | None:
+        search = (state.get("as") or {}).get("sc") or {}
+        for key in ("mrc", "count"):
+            value = (state.get("as") or {}).get(key)
+            if isinstance(value, int):
+                return value
+        page_size = (search.get("pagingCriteria") or {}).get("pageSize")
+        return page_size if isinstance(page_size, int) else None
+
+    # ---------------------------------------------------------- placard parse
+
+    @staticmethod
+    def _placard_records(html: str) -> list[dict[str, Any]]:
+        selector = scrapy.Selector(text=html)
         records = []
-        for card in selector.css("article.placard[data-id]"):
-            listing_id = card.attrib.get("data-id")
-            price_display = cls._text(card, "ul.data-points-a li[name='Price'] *::text, ul.data-points-a li[name='Price']::text")
-            price_match = re.search(r"[\d,]+(?:\.\d+)?", price_display or "")
-            title = cls._text(card, "a.left-h6 *::text, a.left-h6::text") or cls._text(card, "a.left-h4 *::text, a.left-h4::text")
-            address = cls._text(card, "a.left-h4 *::text, a.left-h4::text")
-            location = cls._text(card, "a.right-h6 *::text, a.right-h6::text")
-            coord = coordinates.get(str(listing_id), {})
+        for card in selector.css("article.placard-card"):
+            listing_id = card.attrib.get("data-lk") or card.attrib.get("data-gtm-listing_id")
+            if not listing_id:
+                continue
+            data_rows = [
+                " ".join(part.strip() for part in row.css("span::text").getall() if part.strip())
+                for row in card.css("p.data-row")
+            ]
+            price_display = next((row for row in data_rows if "$" in row), None)
+            price_match = _PRICE_RE.search(price_display or "")
+            size_display = next((row for row in data_rows if "SF" in row or "AC" in row), None)
+            size_match = re.search(r"([\d,]+(?:\.\d+)?)\s*(?:-|SF|AC)", size_display or "")
+            address_tail = card.css("p.placard-address::text").get()
             records.append({
                 "ListingId": listing_id,
-                "PropertyId": card.attrib.get("gtm-listing-property-id"),
-                "Title": title, "Address": address,
-                "ListingUrl": card.css("a.left-h4::attr(href), a.left-h6::attr(href), .placard-pseudo a::attr(ng-href)").get(),
-                "City": card.attrib.get("gtm-listing-city"),
-                "State": card.attrib.get("gtm-listing-state"),
-                "PostalCode": card.attrib.get("gtm-listing-zip"),
-                "CountryCode": card.attrib.get("gtm-listing-country"),
-                "PropertyType": card.attrib.get("gtm-listing-property-type-name"),
-                "ListingType": card.attrib.get("gtm-listing-search-type"),
-                "Price": float(price_match.group().replace(",", "")) if price_match else None,
+                "PropertyId": card.attrib.get("data-gtm-listing_id"),
+                "Title": card.css("span.building-name::text").get()
+                or card.css("a.placard-link::attr(title)").get(),
+                "Address": address_tail,
+                "ListingUrl": card.css("a.placard-link::attr(href)").get(),
+                "City": card.attrib.get("data-automation-city"),
+                "State": card.attrib.get("data-automation-state"),
+                "PostalCode": card.attrib.get("data-automation-postal-code"),
+                "CountryCode": card.attrib.get("data-automation-country"),
+                "PropertyType": card.attrib.get("data-automation-property-type"),
+                "ListingType": card.attrib.get("data-automation-transaction-type"),
+                "Price": float(price_match.group(1).replace(",", "")) if price_match else None,
                 "PriceDisplay": price_display,
-                "SizeDisplay": cls._text(card, "a.right-h4 *::text, a.right-h4::text"),
-                "LocationDisplay": location,
-                "Latitude": coord.get("Latitude"), "Longitude": coord.get("Longitude"),
-                "ImageUrl": card.css(".carousel-inner .slide.active img::attr(src), .carousel-inner img::attr(src)").get(),
+                "Size": float(size_match.group(1).replace(",", "")) if size_match else None,
+                "SizeDisplay": size_display,
+                "ImageUrl": card.css("img.embla__slide__img::attr(src)").get(),
                 "Position": card.attrib.get("data-gtm-listing_position"),
             })
         return records
 
-    def parse_api(self, response):
-        if response.status != 200:
-            raise RuntimeError(f"LoopNet search API returned HTTP {response.status}: {response.url}")
-        try:
-            envelope = json.loads(response.text)
-        except json.JSONDecodeError as exc:
-            raise RuntimeError(f"LoopNet search API returned invalid JSON: {exc}") from exc
-        data = envelope.get("data", envelope)
-        if not isinstance(data, dict):
-            raise RuntimeError("LoopNet search API returned no data object")
-        records = self._records(data)
-        if not records:
-            summary = {key: type(value).__name__ for key, value in data.items()}
-            raise RuntimeError(f"LoopNet search API returned no structured listing records: {summary}")
+    # ------------------------------------------------------------------ parse
 
-        page = int(response.meta["page"])
-        total = self._value(data.get("MetaState") or {}, "TotalResultCount", "totalResultCount")
-        emitted = 0
+    def parse_page(self, response):
+        if response.status != 200:
+            raise RuntimeError(f"LoopNet returned HTTP {response.status}: {response.url}")
+        state = self._search_state(response.text, response.url)
+        coordinates = self._coordinates(state)
+        records = self._placard_records(response.text)
+        if not records:
+            raise RuntimeError(f"LoopNet page returned no placard listings: {response.url}")
+
+        page = int(response.meta.get("page", 1))
+        total = self._total_results(state)
         for position, raw in enumerate(records, 1):
-            item_id = self._value(raw, "ListingId", "listingId", "ListingID", "Id", "id", "PropertyId", "propertyId")
-            if item_id is None or str(item_id) in self.seen:
+            item_id = str(raw["ListingId"])
+            if item_id in self.seen:
                 continue
-            item_id = str(item_id)
             self.seen.add(item_id)
-            emitted += 1
+            latitude, longitude = coordinates.get(item_id, (None, None))
             yield {
                 "item_id": item_id,
-                "property_id": self._value(raw, "PropertyId", "propertyId", "PID", "pid"),
-                "title": self._value(raw, "Title", "title", "Name", "name", "PropertyName", "propertyName"),
-                "url": urljoin("https://www.loopnet.com", self._value(raw, "Url", "url", "ListingUrl", "listingUrl") or ""),
-                "address": self._value(raw, "Address", "address", "AddressLine", "addressLine"),
-                "city": self._value(raw, "City", "city"), "state": self._value(raw, "State", "state"),
-                "postal_code": self._value(raw, "Zip", "zip", "PostalCode", "postalCode"),
-                "country": self._value(raw, "Country", "country", "CountryCode", "countryCode"),
-                "property_type": self._value(raw, "PropertyType", "propertyType", "PropertyTypeName"),
-                "transaction_type": self._value(raw, "SearchType", "searchType", "ListingType", "listingType"),
-                "price": self._value(raw, "Price", "price", "PriceValue", "priceValue"),
-                "price_display": self._value(raw, "PriceDisplay", "priceDisplay", "PriceText", "priceText"),
-                "currency": self._value(raw, "Currency", "currency", "CurrencyCode", "currencyCode") or "USD",
-                "size": self._value(raw, "Size", "size", "SizeValue", "sizeValue"),
-                "size_display": self._value(raw, "SizeDisplay", "sizeDisplay", "SizeText", "sizeText"),
-                "latitude": self._value(raw, "Latitude", "latitude", "Lat", "lat"),
-                "longitude": self._value(raw, "Longitude", "longitude", "Lon", "lon", "Lng", "lng"),
-                "status": self._value(raw, "Status", "status"),
-                "image_url": self._value(raw, "ImageUrl", "imageUrl", "PhotoUrl", "photoUrl"),
-                "category": self.category or "custom", "page": page, "position": position,
-                "total_count": total, "source": "loopnet_search_api", "raw": raw,
+                "property_id": raw.get("PropertyId"),
+                "title": raw.get("Title"),
+                "url": raw.get("ListingUrl"),
+                "address": raw.get("Address"),
+                "city": raw.get("City"),
+                "state": raw.get("State"),
+                "postal_code": raw.get("PostalCode"),
+                "country": raw.get("CountryCode"),
+                "property_type": raw.get("PropertyType"),
+                "transaction_type": raw.get("ListingType"),
+                "price": raw.get("Price"),
+                "price_display": raw.get("PriceDisplay"),
+                "currency": "USD",
+                "size": raw.get("Size"),
+                "size_display": raw.get("SizeDisplay"),
+                "latitude": latitude,
+                "longitude": longitude,
+                "status": "Active",
+                "image_url": raw.get("ImageUrl"),
+                "category": self.category or "custom",
+                "page": page,
+                "position": int(raw.get("Position") or position),
+                "total_count": total,
+                "source": "loopnet_placard_html",
+                "raw": raw,
                 "timestamp": self.job_timestamp,
             }
 
-        meta = data.get("MetaState") or {}
-        more = bool(self._value(meta, "HasMoreResults", "hasMoreResults", "MoreResultsChar"))
-        if emitted and page < self.max_pages and (more or not total or page * len(records) < int(total)):
-            yield self._api_request(response.meta["criteria"], page + 1, response.meta["referer"])
+        if page < self.max_pages and records:
+            next_url = response.url.rstrip("/") + f"/{page + 1}/"
+            proxy = getattr(self, "settings", {}).get("PROXY")
+            yield scrapy.Request(
+                next_url, callback=self.parse_page, headers=self.headers,
+                meta={"proxy": proxy, "page": page + 1},
+                dont_filter=True,
+            )

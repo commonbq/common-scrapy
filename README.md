@@ -290,7 +290,7 @@ Working spiders running daily in production:
 | [`landwatch_listing`](#landwatch_listing) | Active | bootstrap | Akamai; ScrapeOps US residential required | LandWatch property listings from the authoritative server-rendered `#__SERVER_STATE__.searchPage.searchResults.propertyResults` payload only; no HTML-card or JSON-LD fallback. | 25/page | 20 high-inventory US state markets | `{"category":"texas","item_id":"427783557","title":"Superior Views, Better Hunting","price":769950,"acres":108.1,"source":"landwatch_server_state_bootstrap",...}` |
 | [`realtor_listing`](#realtor_listing) | Active | bootstrap | residential ScrapeOps + `bypass=5` required | Realtor.com sale listings from authoritative React Router streamed SSR loader state. | 42/page | All 50 states plus DC, grouped by US Census region | `{"item_id":"9573322873","listing_id":"2994590506","title":"11201 Chalon Rd, Los Angeles, CA 90049","price":400000000,"source":"realtor_react_router_stream",...}` |
 | [`zillow_listing`](#zillow_listing) | Active | bootstrap | PerimeterX | Zillow sale listings from server-rendered Next.js `__NEXT_DATA__`, including path-based SSR pagination. | 82 (2 pages, `houston-tx`) | 53 state groups / 144,973 region markets (grouped mapping) from `zillow_categories.py` | `{"item_id":"55476612","title":"8323 Gentlewood Ct, Houston, TX 77095","price":375000,"beds":4,"baths":3,"area":2992,"source":"zillow_next_data"}` |
-| [`loopnet_listing`](#loopnet_listing) | Experimental | api | ScrapeOps US proxy | Commercial-property records from LoopNet's first-party `/services/search` JSON service and its API-delivered placard payload, initialized from the page's search-criteria bootstrap; no listing-page or JSON-LD fallback. | Live smoke tested below | 20 sale/lease property-type searches | `{"item_id":"42148644","title":"THE GARAGE Luxury Condos","source":"loopnet_search_api"...}` |
+| [`loopnet_listing`](#loopnet_listing) | Experimental | html + bootstrap | ScrapeOps US proxy | Commercial-property records from LoopNet's server-rendered search-results page (`article.placard-card` listings plus the obfuscated `window.gState` search state); no JSON-LD fallback. | Live smoke tested below | 20 sale/lease property-type searches | `{"item_id":"42148644","title":"THE GARAGE Luxury Condos","source":"loopnet_placard_html"...}` |
 | [`rent_listing`](#rent_listing) | Active | bootstrap | ScrapeOps US proxy | Rent.com apartment listings from authoritative server-rendered Next.js `__NEXT_DATA__`, with `/page-N` pagination and no fallback. | 30/page | 51 state groups / 18,077 city markets (grouped mapping) from the first-party sitemap | `{"category":"los-angeles-ca","item_id":"lc6732384","title":"El Conquistador","price_min":1664,"source":"rent_next_data"...}` |
 | [`apartments_listing`](#apartments_listing) | Experimental | bootstrap | ScrapeOps US proxy | Apartments.com rental map inventory from authoritative server-rendered `window.aptsState`; no HTML-card or JSON-LD fallback. | 567 unique listings in captured New York page 1 state | 17,154 city markets in 51 state groups | `{"category":"new-york-ny","item_id":"1j2c5h6","rent_min":5075,"latitude":40.7766,"source":"apartments_apts_state_bootstrap"...}` |
 | [`hilton_listing`](#hilton_listing) | Active | bootstrap | ScrapeOps US proxy | Hilton destination hotels from authoritative server-rendered Next.js `__NEXT_DATA__`; no HTML or JSON-LD fallback. | Up to 20 | 20 major US city markets | `{"category":"new-york-ny","item_id":"NYCTEPO","title":"Tempo by Hilton New York Times Square","source":"hilton_next_data"...}` |
@@ -4874,19 +4874,24 @@ scrapy crawl zumper_listing -a category=new-york-ny -a max_pages=1 -s HTTPCACHE_
 
 ### loopnet_listing
 
-`loopnet_listing` uses one product-data direction: LoopNet's first-party
-`POST /services/search` JSON service. The initial category response is used only
-to hydrate the service's exact `viewdata.criteria` request contract. Items are
-read from the service's structured listing arrays or its `Placards.HTML` response
-field, with coordinates joined from the accompanying event model. There is no
-listing-page or JSON-LD fallback.
+`loopnet_listing` reads the server-rendered search-results page. Every listing is
+present as an `article.placard-card` element, and the page ships its full search
+state in an obfuscated `window.gState` JSON blob (a per-character offset cipher).
+That blob supplies the result count and the per-listing latitude/longitude pairs
+that the placard HTML does not repeat. There is no rendered-JavaScript or JSON-LD
+fallback.
+
+The previous implementation replayed LoopNet's private `viewdata.set(...)`
+bootstrap against `POST /services/search`; LoopNet has since removed that
+bootstrap and the service rejects replayed requests, which produced zero-item runs
+with no `item_scraped_count` (commonbq/common-scrapy#379).
 
 Twenty deterministic sale and lease category searches mirror LoopNet's primary
-property-type navigation. API pagination updates `criteria.PageNumber`, respects
-`max_pages`, and deduplicates stable listing IDs. The ordered
-`FEED_EXPORT_FIELDS` contract covers property identity, title and URL, address,
-type, transaction, price, size, coordinates, image, paging context, raw API data,
-provenance, and a crawl timestamp.
+property-type navigation. Path pagination (`/<page>/`) respects `max_pages`, and
+stable listing IDs are deduplicated. The ordered `FEED_EXPORT_FIELDS` contract
+covers property identity, title and URL, address, type, transaction, price, size,
+coordinates, image, paging context, the raw placard record, provenance, and a
+crawl timestamp.
 
 ```bash
 scrapy crawl loopnet_listing -a category=commercial-real-estate-for-sale -a max_pages=1 -s HTTPCACHE_ENABLED=False -O loopnet.jsonl
