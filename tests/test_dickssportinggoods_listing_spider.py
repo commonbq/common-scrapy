@@ -4,7 +4,6 @@ import urllib.parse as urlparse
 from pathlib import Path
 
 from scrapy.http import Request, TextResponse
-from scrapy.settings import Settings
 
 from common.spiders.dickssportinggoods_listing_spider import (
     DickssportinggoodsListingSpider,
@@ -56,24 +55,7 @@ class DickssportinggoodsListingSpiderTest(unittest.TestCase):
         self.assertEqual(search_vo["pageSize"], 48)
         self.assertEqual(search_vo["searchTypes"], ["COLOR_PINNING"])
         self.assertEqual(request.meta["category"], "soccer-gear-equipment")
-
-    def test_product_request_adds_scrapeops_bypass_to_proxy(self):
-        spider = DickssportinggoodsListingSpider(category="soccer-gear-equipment")
-        spider.settings = Settings(
-            {"PROXY": "http://scrapeops.country=us:tok@proxy.scrapeops.io:5353"}
-        )
-        proxy = self.first_request(spider).meta.get("proxy")
-        self.assertIn("scrapeops.country=us.bypass=5", proxy)
-        self.assertIn("tok@proxy.scrapeops.io:5353", proxy)
-
-    def test_proxy_helper_preserves_existing_bypass(self):
-        spider = DickssportinggoodsListingSpider(category="soccer-gear-equipment")
-        spider.settings = Settings(
-            {"PROXY": "http://scrapeops.country=us.bypass=7:tok@proxy.scrapeops.io:5353"}
-        )
-        proxy = self.first_request(spider).meta.get("proxy")
-        self.assertIn("bypass=7", proxy)
-        self.assertNotIn("bypass=5", proxy)
+        self.assertNotIn("proxy", request.meta)
 
     def test_default_run_targets_every_inventory_category(self):
         spider = DickssportinggoodsListingSpider()

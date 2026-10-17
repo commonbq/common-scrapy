@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import re
 from typing import Any, Iterable
-from urllib.parse import quote, unquote, urljoin, urlsplit, urlunsplit
+from urllib.parse import urljoin
 
 import scrapy
 
@@ -55,36 +55,13 @@ class WalgreensListingSpider(BaseListingSpider):
     def _request(self, listing_url: str, page: int) -> scrapy.Request:
         category_id = self._category_id(listing_url)
         url = f"{SITE}/store/c/productlist/N={category_id}/{page}/ShopAll={category_id}"
-        meta = {}
-        proxy = self._render_proxy()
-        if proxy:
-            meta["proxy"] = proxy
         return scrapy.Request(
             url,
             headers=self.headers,
             callback=self.parse,
             cb_kwargs={"listing_url": listing_url, "page": page},
             dont_filter=True,
-            meta=meta,
         )
-
-    def _render_proxy(self) -> str | None:
-        """Ask ScrapeOps to render JS without embedding or copying credentials."""
-        proxy = self.settings.get("PROXY") if hasattr(self, "settings") else None
-        if not isinstance(proxy, str) or not proxy:
-            return None
-        parts = urlsplit(proxy)
-        if parts.hostname != "proxy.scrapeops.io" or not parts.username:
-            return proxy
-        username = unquote(parts.username)
-        for option in ("render_js=true", "country=us"):
-            if option not in username.split("."):
-                username += f".{option}"
-        auth = quote(username, safe=".=")
-        if parts.password is not None:
-            auth += ":" + quote(unquote(parts.password), safe="")
-        host = parts.hostname + (f":{parts.port}" if parts.port else "")
-        return urlunsplit((parts.scheme, f"{auth}@{host}", parts.path, parts.query, parts.fragment))
 
     def parse(self, response: scrapy.http.Response, listing_url: str, page: int):
         if response.status != 200:

@@ -4,7 +4,6 @@ import urllib.parse as urlparse
 from pathlib import Path
 
 from scrapy.http import TextResponse
-from scrapy.settings import Settings
 
 from common.spiders.academy_categories import ACADEMY_CATEGORY_INVENTORY
 from common.spiders.academy_listing_spider import (
@@ -121,29 +120,7 @@ class AcademyListingSpiderTest(unittest.TestCase):
         self.assertEqual(
             request.headers["Referer"].decode(), HOT_DEALS_URL
         )
-
-    def test_request_adds_scrapeops_bypass_to_proxy(self):
-        spider = AcademyListingSpider(category="deals-clearance-hot-deals")
-        spider.settings = Settings(
-            {"PROXY": "http://scrapeops.country=us:tok@proxy.scrapeops.io:5353"}
-        )
-        proxy = self.first_request(spider).meta.get("proxy")
-        self.assertIn("scrapeops.country=us.bypass=5", proxy)
-        self.assertIn("tok@proxy.scrapeops.io:5353", proxy)
-
-    def test_proxy_helper_preserves_existing_bypass(self):
-        spider = AcademyListingSpider(category="deals-clearance-hot-deals")
-        spider.settings = Settings(
-            {"PROXY": "http://scrapeops.country=us.bypass=7:tok@proxy.scrapeops.io:5353"}
-        )
-        proxy = self.first_request(spider).meta.get("proxy")
-        self.assertIn("bypass=7", proxy)
-        self.assertNotIn("bypass=5", proxy)
-
-    def test_proxy_helper_ignores_foreign_proxy(self):
-        spider = AcademyListingSpider(category="deals-clearance-hot-deals")
-        spider.settings = Settings({"PROXY": "http://user:pw@proxy.example.com:8080"})
-        self.assertIsNone(self.first_request(spider).meta.get("proxy"))
+        self.assertNotIn("proxy", request.meta)
 
     def test_default_run_targets_every_inventory_category(self):
         spider = AcademyListingSpider()
