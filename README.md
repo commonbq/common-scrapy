@@ -1780,6 +1780,7 @@ Notes:
 - Product pages emit commerce fields such as current/original price, discount, seller feedback, condition, shipping, delivery, returns, listing type, bid/sold counts, and sponsorship status when present.
 - Browse pages such as the Antiques fixture contain destination tiles rather than products; these are extracted as `subCategory`/`url` pairs and followed until listing pages are reached.
 - All emitted eBay field names use camelCase.
+- A proxy/anti-bot envelope can be served with HTTP 200 (a 72-byte JSON body, status 200). `parse` classifies the body and logs `non-HTML body ... skipping` instead of feeding it to the Marko selectors; previously parsel auto-detected `type == "json"`, `.css()` raised `ValueError: Cannot use css on a Selector of type 'json'`, the callback errored and the run exported 0 items with the `item_scraped_count` stat absent entirely (#375).
 
 ### homedepot_search (keyword; Apollo bootstrap)
 
