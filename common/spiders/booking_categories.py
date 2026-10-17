@@ -22,6 +22,11 @@ BOOKING_CATEGORIES = {
             ("washington", "washington"),
             ("columbus", "columbus"),
             ("seattle", "seattle"),
+            ("boston", "boston"),
+            ("phoenix", "phoenix"),
+            ("philadelphia", "philadelphia"),
+            ("san-antonio", "san-antonio"),
+            ("san-jose", "san-jose"),
             ("myrtle-beach", "myrtle-beach"),
             ("daytona-beach", "daytona-beach"),
         ]

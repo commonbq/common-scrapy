@@ -35,7 +35,7 @@ class BookingListingSpiderTests(unittest.TestCase):
         self.spider = BookingListingSpider(category="las-vegas", max_pages=2)
 
     def test_categories(self):
-        self.assertEqual(len(list(self.spider.iter_categories())), 20)
+        self.assertEqual(len(list(self.spider.iter_categories())), 25)
         self.assertEqual(
             self.spider.category_entry("las-vegas")["url"],
             "https://www.booking.com/city/us/las-vegas.html",
