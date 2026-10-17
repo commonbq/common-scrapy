@@ -20,15 +20,15 @@ Two details that are load-bearing:
   200 with `{"errors":[{"code":"NIKE_API_CALLER_ID_HEADER_NOT_PRESENT"}]}`.
 * ScrapeOps strips custom request headers by default, so the API leg needs the
   provider's `keep_headers=true` username option; without it the header is
-  dropped in transit and Nike returns exactly that error above. The proxy rewrite
-  mirrors `costco_listing_spider._search_api_proxy`.
+  dropped in transit and Nike returns exactly that error above. The Airflow DAG
+  supplies that API-only route through `KEEP_HEADERS_PROXY`.
 """
 
 import json
 import re
 from collections.abc import Mapping
 from typing import Any
-from urllib.parse import urljoin, urlsplit, urlunsplit, quote
+from urllib.parse import urljoin
 
 import scrapy
 
@@ -353,7 +353,7 @@ class NikeListingSpider(BaseListingSpider):
                 )
 
     def _api_proxy(self) -> str | None:
-        """Preserve `nike-api-caller-id` when requests route through ScrapeOps.
+        """Return the DAG-provided route that preserves `nike-api-caller-id`.
 
         ScrapeOps strips custom request headers by default, and Nike answers a
         request that arrives without `nike-api-caller-id` with HTTP 200 and a
@@ -361,24 +361,8 @@ class NikeListingSpider(BaseListingSpider):
         """
         if not hasattr(self, "settings"):
             return None
-        proxy = self.settings.get("PROXY")
-        if not isinstance(proxy, str) or not proxy:
-            return None
-        parts = urlsplit(proxy)
-        if parts.hostname != "proxy.scrapeops.io" or not parts.username:
-            return None
-        username = parts.username
-        if ".keep_headers=true" not in username:
-            username = f"{username}.keep_headers=true"
-        credentials = quote(username, safe=".=_-")
-        if parts.password is not None:
-            credentials += f":{quote(parts.password, safe='')}"
-        host = parts.hostname
-        if parts.port is not None:
-            host += f":{parts.port}"
-        return urlunsplit(
-            (parts.scheme, f"{credentials}@{host}", parts.path, parts.query, parts.fragment)
-        )
+        proxy = self.settings.get("KEEP_HEADERS_PROXY")
+        return proxy if isinstance(proxy, str) and proxy else None
 
     def _category_for(self, url: str) -> str:
         for entry in self.iter_categories():

@@ -8,7 +8,7 @@ from scrapy.http import Request, TextResponse
 from scrapy.settings import Settings
 
 from common.spiders.footlocker_listing_spider import (
-    FootlockerListingSpider, API_BASE, SITE_BASE, RESIDENTIAL_PROXY, _iter_nav_nodes
+    FootlockerListingSpider, API_BASE, SITE_BASE, _iter_nav_nodes
 )
 
 def _query(response_or_request) -> dict:
@@ -18,7 +18,10 @@ def _query(response_or_request) -> dict:
 class FootlockerListingSpiderTest(unittest.TestCase):
     def setUp(self):
         self.settings = Settings()
-        self.settings.set("PROXY", "http://scrapeops.country=us:test_key@proxy.scrapeops.io:5353")
+        self.proxy = "http://plain:test_key@proxy.example.com:5353"
+        self.residential_proxy = "http://residential:test_key@proxy.example.com:5353"
+        self.settings.set("PROXY", self.proxy)
+        self.settings.set("RESIDENTIAL_PROXY", self.residential_proxy)
         self.spider = FootlockerListingSpider(
             category="men-s-shoes-all-men-s-shoes",
             settings=self.settings,
@@ -48,7 +51,7 @@ class FootlockerListingSpiderTest(unittest.TestCase):
         self.assertIn("/api/content/en/header.public.json", req.url)
         self.assertEqual(req.callback, self.spider.parse_header_json_for_categories)
         self.assertIn('proxy', req.meta)
-        self.assertNotIn(RESIDENTIAL_PROXY, req.meta['proxy'])
+        self.assertEqual(req.meta['proxy'], self.proxy)
     
     def test_parse_header_json_for_categories_populates_categories_to_resolve(self):
         initial_request = Request(urljoin(SITE_BASE, "/api/content/en/header.public.json"), meta={'initial': True})
@@ -66,7 +69,7 @@ class FootlockerListingSpiderTest(unittest.TestCase):
             if req.callback == self.spider.parse_search_params_from_html:
                 html_requests_count += 1
                 self.assertIn(SITE_BASE, req.url)
-                self.assertNotIn(RESIDENTIAL_PROXY, req.meta['proxy'])
+                self.assertEqual(req.meta['proxy'], self.proxy)
         self.assertTrue(html_requests_count > 0)
 
     def test_extract_search_params_from_html(self):
@@ -105,7 +108,7 @@ class FootlockerListingSpiderTest(unittest.TestCase):
 
         self.assertIn(API_BASE, req.url)
         self.assertIn("currentPage=0", req.url)
-        self.assertIn(RESIDENTIAL_PROXY, req.meta['proxy'])
+        self.assertEqual(req.meta['proxy'], self.residential_proxy)
         self.assertEqual(req.callback, self.spider.parse_api_products)
         self.assertEqual(req.headers.get('Referer').decode(), entry["url"])
 
@@ -215,6 +218,6 @@ class FootlockerListingSpiderTest(unittest.TestCase):
         req = requests[0]
         self.assertIn(API_BASE, req.url)
         self.assertIn("currentPage=0", req.url)
-        self.assertIn(RESIDENTIAL_PROXY, req.meta['proxy'])
+        self.assertEqual(req.meta['proxy'], self.residential_proxy)
         self.assertEqual(req.callback, spider_with_category.parse_api_products)
         self.assertEqual(req.meta["metadata"]["category_slug"], "men-s-shoes-all-men-s-shoes")

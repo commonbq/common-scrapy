@@ -4,7 +4,7 @@ import json
 import re
 import time
 from typing import Any
-from urllib.parse import unquote, urljoin, urlsplit, urlunsplit
+from urllib.parse import unquote, urljoin, urlsplit
 
 import scrapy
 
@@ -17,11 +17,6 @@ from common.spiders.footlocker_categories import (
 SITE_BASE = "https://www.footlocker.com"
 API_BASE = "https://www.footlocker.com/zgw/search-core/products/v3/search"
 PAGE_SIZE = 48
-
-# ScrapeOps option appended to the proxy username for the Akamai-protected
-# /zgw API host. The plain route and lower bypass levels returned 403 or
-# the Foot Locker EU HTML stub; ``residential=true`` works.
-RESIDENTIAL_PROXY = "residential=true"
 
 _SLUG_CLEAN_RE = re.compile(r"[^a-z0-9]+")
 
@@ -358,30 +353,12 @@ class FootlockerListingSpider(BaseListingSpider):
         )
 
     def _search_api_proxy(self, plain: bool = False) -> str | None:
+        """Select the DAG-provided route for the current request class."""
         if not hasattr(self, "settings"):
             return None
-        proxy = self.settings.get("PROXY")
-        if not isinstance(proxy, str) or not proxy:
-            return None
-
-        parts = urlsplit(proxy)
-        if parts.hostname != "proxy.scrapeops.io" or not parts.username:
-            return proxy
-
-        if plain: # For HTML requests, use plain datacenter proxy
-            return proxy
-
-        if RESIDENTIAL_PROXY in parts.username:
-            return proxy
-
-        # Append the residential option to the ScrapeOps username and rebuild the
-        # proxy URL, preserving any password. The credentials from settings are
-        # already in the form Scrapy expects, so pass them through verbatim.
-        username = f"{parts.username}.{RESIDENTIAL_PROXY}"
-        credentials = username if parts.password is None else f"{username}:{parts.password}"
-        return urlunsplit(
-            (parts.scheme, f"{credentials}@{parts.hostname}:{parts.port}", parts.path, parts.query, parts.fragment)
-        )
+        setting = "PROXY" if plain else "RESIDENTIAL_PROXY"
+        proxy = self.settings.get(setting)
+        return proxy if isinstance(proxy, str) and proxy else None
 
 
     def new_item(self) -> dict[str, Any]:
