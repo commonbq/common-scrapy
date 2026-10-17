@@ -12,7 +12,7 @@ import hashlib
 import json
 import re
 from typing import Any
-from urllib.parse import quote, urljoin, urlparse, urlsplit, urlunsplit
+from urllib.parse import urljoin, urlparse
 
 import scrapy
 
@@ -279,7 +279,7 @@ class CostcoListingSpider(BaseListingSpider):
         }
 
     def _search_api_proxy(self) -> str | None:
-        """Preserve the GRS credentials when requests use ScrapeOps.
+        """Return the DAG-provided route that preserves GRS credentials.
 
         ScrapeOps removes custom origin headers by default. Costco's GRS API
         authenticates with ``client-identifier`` and therefore needs the
@@ -287,24 +287,8 @@ class CostcoListingSpider(BaseListingSpider):
         """
         if not hasattr(self, "settings"):
             return None
-        proxy = self.settings.get("PROXY")
-        if not isinstance(proxy, str) or not proxy:
-            return None
-        parts = urlsplit(proxy)
-        if parts.hostname != "proxy.scrapeops.io" or not parts.username:
-            return None
-        username = parts.username
-        if ".keep_headers=true" not in username:
-            username = f"{username}.keep_headers=true"
-        credentials = quote(username, safe=".=_-")
-        if parts.password is not None:
-            credentials += f":{quote(parts.password, safe='')}"
-        host = parts.hostname
-        if parts.port is not None:
-            host += f":{parts.port}"
-        return urlunsplit(
-            (parts.scheme, f"{credentials}@{host}", parts.path, parts.query, parts.fragment)
-        )
+        proxy = self.settings.get("KEEP_HEADERS_PROXY")
+        return proxy if isinstance(proxy, str) and proxy else None
 
     def _extract_subcategories(
         self, parsed_rows: dict[str, Any], source_url: str

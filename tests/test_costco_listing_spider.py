@@ -201,20 +201,17 @@ class CostcoListingSpiderTests(unittest.TestCase):
             [],
         )
 
-    def test_scrapeops_proxy_keeps_costco_api_headers(self):
+    def test_search_api_uses_keep_headers_proxy(self):
+        keep_headers_proxy = "http://keep-headers:secret@proxy.example.com:5353"
         self.spider.settings = Mock()
-        self.spider.settings.get.return_value = (
-            "http://scrapeops.country=us:secret@proxy.scrapeops.io:5353"
-        )
+        self.spider.settings.get.return_value = keep_headers_proxy
         request = self.listing_request()
-        self.assertEqual(
-            request.meta["proxy"],
-            "http://scrapeops.country=us.keep_headers=true:secret@proxy.scrapeops.io:5353",
-        )
+        self.spider.settings.get.assert_called_with("KEEP_HEADERS_PROXY")
+        self.assertEqual(request.meta["proxy"], keep_headers_proxy)
 
-    def test_non_scrapeops_proxy_is_left_to_project_middleware(self):
+    def test_missing_keep_headers_proxy_is_left_to_project_middleware(self):
         self.spider.settings = Mock()
-        self.spider.settings.get.return_value = "http://localhost:8080"
+        self.spider.settings.get.return_value = None
         request = self.listing_request()
         self.assertNotIn("proxy", request.meta)
 

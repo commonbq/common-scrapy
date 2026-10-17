@@ -274,9 +274,10 @@ class NikeListingSpiderTests(unittest.TestCase):
 
     def test_api_request_sends_the_required_caller_header(self):
         spider = NikeListingSpider(category="mens-shoes-nik1zy7ok", max_pages=3)
-        # Mock the proxy to return a value that doesn't have the username quoted
         spider.settings = Mock()
-        spider.settings.get.return_value = "http://scrapeops.country=us:***@proxy.scrapeops.io:5353"
+        spider.settings.get.return_value = (
+            "http://keep-headers:secret@proxy.example.com:5353"
+        )
         request = spider._api_request(
             "/discover/product_wall/v1/x",
             page=2,
@@ -415,37 +416,31 @@ class NikeListingSpiderTests(unittest.TestCase):
         self.assertEqual(NikeListingSpider._promotion(promotions), "See Price in Bag")
         self.assertIsNone(NikeListingSpider._promotion(None))
 
-    # --------------------------------------------------------- proxy rewrite
+    # --------------------------------------------------------- proxy routing
 
-    def test_scrapeops_proxy_gains_keep_headers(self):
+    def test_api_proxy_uses_keep_headers_setting(self):
+        keep_headers_proxy = "http://keep-headers:secret@proxy.example.com:5353"
         self.spider.settings = Mock()
-        self.spider.settings.get.return_value = "http://scrapeops.country=us:***@proxy.scrapeops.io:5353"
-        self.assertEqual(
-            self.spider._api_proxy(),
-            "http://scrapeops.country=us.keep_headers=true:%2A%2A%2A@proxy.scrapeops.io:5353", # Python's quote encodes '*' as %2A
-        )
+        self.spider.settings.get.return_value = keep_headers_proxy
+        self.assertEqual(self.spider._api_proxy(), keep_headers_proxy)
+        self.spider.settings.get.assert_called_with("KEEP_HEADERS_PROXY")
 
-    def test_existing_keep_headers_is_not_duplicated(self):
+    def test_missing_keep_headers_proxy_returns_none(self):
         self.spider.settings = Mock()
-        self.spider.settings.get.return_value = "http://scrapeops.country=us.keep_headers=true:***@proxy.scrapeops.io:5353"
-        proxy = self.spider._api_proxy()
-        self.assertEqual(proxy.count("keep_headers=true"), 1)
-
-    def test_non_scrapeops_proxy_is_left_to_project_middleware(self):
-        self.spider.settings = Mock()
-        self.spider.settings.get.return_value = "http://localhost:8080"
+        self.spider.settings.get.return_value = None
         self.assertIsNone(self.spider._api_proxy())
 
-    def test_api_request_carries_the_rewritten_proxy(self):
+    def test_api_request_carries_keep_headers_proxy(self):
+        keep_headers_proxy = "http://keep-headers:secret@proxy.example.com:5353"
         self.spider.settings = Mock()
-        self.spider.settings.get.return_value = "http://scrapeops.country=us:***@proxy.scrapeops.io:5353"
+        self.spider.settings.get.return_value = keep_headers_proxy
         request = self.spider._api_request(
             "/discover/product_wall/v1/x",
             page=2,
             category_url="https://www.nike.com/w/mens-shoes-nik1zy7ok",
             category="mens-shoes-nik1zy7ok",
         )
-        self.assertIn("keep_headers=true", request.meta["proxy"])
+        self.assertEqual(request.meta["proxy"], keep_headers_proxy)
 
     def test_listing_page_keeps_the_project_proxy(self):
         # Only the API leg needs keep_headers; the HTML leg must not be rewritten
