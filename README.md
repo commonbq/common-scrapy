@@ -381,7 +381,7 @@ Spiders below are returning items in recent smoke runs:
 | [`overstock_listing`](#overstock_listing) | Active | bootstrap (Next.js RSC) | none detected (ScrapeOps proxy) | Overstock category listings from the server-rendered `self.__next_f` `viewItemList` hydration state; no HTML-card or JSON-LD fallback. | 69 (one page, furniture) | 20 verified department/category targets | `{"category":"furniture","item_id":"43594621","sku":"46634829","title":"Comfy Cloud Modular Sectional Sofa","price":144.49,"currency":"USD","rating":3.67,"source":"overstock_nextjs_rsc_view_item_list"...}` |
 | [`orientaltrading_listing`](#orientaltrading_listing) | Active | API | none detected (ScrapeOps US proxy) | Oriental Trading category products from the first-party `/web/browse/productQuickView` endpoint only; listing HTML is used solely to discover API URLs and pagination. | 5 (bounded live smoke run) | 20 stable top-level shopping categories | `{"item_id":"13913005","title":"Bulk Value Candy Assortment - 30 lb, 3000 pc","price":169.98,"currency":"USD","source":"orientaltrading_quick_view_api"...}` |
 | [`petsmart_listing`](#petsmart_listing) | Active | api | none detected (Akamai sensor served, API open; no proxy needed) | PetSmart category listings from the first-party `/api/search/1/indexes/<replica>/query` endpoint the storefront's Algolia client is pinned to. | 200 (2 pages x 100, ok) | 491 category paths / 7 departments from `petsmart_categories.py` | `{"category":"dog/food/dry-food","item_id":"5252900","title":"Purina Pro Plan Sensitive Skin and Stomach Dry Dog Food Adult Salmon & Rice Formula Digestive Health","brand":"Purina Pro Plan","price":77.99,"currency":"USD","rating":4.5,"reviews_count":9118,"url":"https://www.petsmart.com/dog/food/dry-food/purina-pro-plan-...-36648.html",...}` |
-| [`michaels_listing`](#michaels_listing) | Experimental | Next.js RSC hydration | none detected (Akamai fronted; no challenge observed) | Michaels listings from the server-rendered React Server Component payload (`self.__next_f` -> `initialProducts`), paginated by `?page=`. | 40 (1 page, live proxy; page 2 blocked by a local 407 on CONNECT) | 3,611 categories under 33 departments from `sitemap_MIK_category.xml` | `{"category":"home-decor-floral-arrangements","item_id":"10809872","title":"11\" Pink Peony & Cream Rose Mix Bouquet by Ashland®","brand":"Michaels","price":9.99,"rating":4.5...` |
+| [`michaels_listing`](#michaels_listing) | Experimental | Next.js RSC hydration | none detected (Akamai fronted; no challenge observed) | Michaels listings from the server-rendered React Server Component payload (`self.__next_f` -> `initialProducts`), paginated by `?page=`. | 40 (1 page, live proxy; page 2 blocked by a local 407 on CONNECT) | 3,644 categories under 34 departments from `sitemap_MIK_category.xml` | `{"category":"home-decor-floral-arrangements","item_id":"10809872","title":"11\" Pink Peony & Cream Rose Mix Bouquet by Ashland®","brand":"Michaels","price":9.99,"rating":4.5...` |
 | [`vinted_listing`](#vinted_listing) | Active | bootstrap (Next.js RSC) | none detected (ScrapeOps proxy convention) | Vinted catalog listings exclusively from server-rendered `self.__next_f` catalog state; no HTML-card or JSON-LD fallback. | 96/page | 7 groups / 20 leaves (grouped mapping) from `vinted_categories.py` | `{"category":"home","item_id":"10287111268","title":"Chocolate drink maker","brand":"Hersey","condition":"New without tags","price":5,"currency":"USD","source":"vinted_nextjs_rsc_catalog_items"}` |
 | [`poshmark_listing`](#poshmark_listing) | Experimental | bootstrap | none detected | Poshmark listing spider via `window.__INITIAL_STATE__` category grid data. | 48 (ok) | 91 categories across 6 departments from `poshmark_categories.py` | `{"category":"women","item_id":"6989d90ac4e7b4d4de556bac","title":"🔥Stunning  Farm Rio NWT Size Large Tropical Midi Dress with Sleeves – V...` |
 | [`qvc_listing`](#qvc_listing) | Experimental | html + bootstrap | Akamai | QVC listing spider via server-rendered gallery cards and `utag_data` page state. | 96 (Beauty proxy capture) | 411 department-grouped listing categories (37 top-level departments) | `{"category":"beauty-makeup","category_id":"NAV6285","item_id":"A740517","title":"Whish 12 Days of Beauty Whishes Advent Calendar","price":59.98,...}` |
@@ -4022,11 +4022,14 @@ next window, and a page past the end comes back as a valid document with
 erroring. Items are deduplicated by `skuNumber`.
 
 Categories come from the sitemap the site advertises in `robots.txt`
-(`sitemap_MIK_category.xml`), which is parsed at crawl time rather than
-committed as a 3,611-entry literal -- 3,611 categories under 33 departments, up
-to five levels deep. That is the only other request the spider makes, and it
-exists solely to resolve `-a category=` to a PLP URL and to label items with
-their department. **Leaf slugs repeat across departments** (the live sitemap has
+(`sitemap_MIK_category.xml`). The committed snapshot in
+`michaels_categories.py` (`MICHAELS_CATEGORIES`) holds **3,644 categories under
+34 departments**, up to five levels deep, in the grouped
+`{department: {leaf: {url, subcategory}}}` contract, so the Airflow DAG groups
+one task group per department. The spider still parses the live sitemap at crawl
+time, which is the only other request it makes: it resolves `-a category=` to a
+PLP URL and labels items with their department. **Leaf slugs repeat across
+departments** (the live sitemap has
 five different `floral-arrangements` pages), so a repeated leaf is qualified
 with its department: `home-decor-floral-arrangements`, `floral-floral-arrangements`.
 `-a category_url=/shop/home-decor/floral-arrangements/` also works and needs no
@@ -4046,8 +4049,9 @@ Field notes:
 - `color_count` / `variant_count` come from `colorSwatches` / `variantCount`
   (`"Color:3"`); most listings rows carry none.
 
-Tests: `python -m unittest tests.test_michaels_listing_spider` (22 tests, all
-offline against the fixtures in `sample/`).
+Tests: `python -m unittest tests.test_michaels_listing_spider` (24 tests, all
+offline against the fixtures in `sample/`; `test_page_one_item_contract_and_pagination`
+was already failing on this branch set before the categories change).
 
 ### overstock_listing
 

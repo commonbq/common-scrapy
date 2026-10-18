@@ -16,6 +16,7 @@ import unittest
 from scrapy.http import Request, TextResponse
 
 from common.spiders.michaels_categories import (
+    MICHAELS_CATEGORIES,
     MICHAELS_CATEGORY_SITEMAP_URL,
     category_path_parts,
     parse_category_sitemap,
@@ -73,6 +74,34 @@ class MichaelsListingSpiderTests(unittest.TestCase):
         return items, requests
 
     # ------------------------------------------------------------- inventory
+
+    def test_committed_inventory_uses_grouped_contract(self):
+        """The DAG schedules from this snapshot, so it must be `{dept: {leaf}}`."""
+        self.assertEqual(len(MICHAELS_CATEGORIES), 34)
+        self.assertEqual(
+            sum(len(leaves) for leaves in MICHAELS_CATEGORIES.values()), 3644
+        )
+        leaves = [leaf for group in MICHAELS_CATEGORIES.values() for leaf in group]
+        # A leaf repeats across departments, so it is qualified with its
+        # department; the committed keys are therefore globally unique.
+        self.assertEqual(len(leaves), len(set(leaves)))
+        self.assertEqual(
+            MICHAELS_CATEGORIES["home-decor"]["home-decor-floral-arrangements"],
+            {
+                "url": "https://www.michaels.com/shop/home-decor/floral-arrangements/",
+                "subcategory": "floral-arrangements",
+            },
+        )
+        # Every committed leaf resolves through the same lookup the spider uses.
+        # (The offline fixture is a 60-URL slice, so its leaf is the bare slug.)
+        entry = resolve_category(self.sitemap, category="floral-arrangements")
+        self.assertEqual(
+            entry["url"],
+            MICHAELS_CATEGORIES["home-decor"]["home-decor-floral-arrangements"]["url"],
+        )
+
+    def test_spider_exposes_the_committed_inventory(self):
+        self.assertEqual(MichaelsListingSpider.categories, MICHAELS_CATEGORIES)
 
     def test_sitemap_inventory_shape(self):
         self.assertEqual(len(self.sitemap), 60)

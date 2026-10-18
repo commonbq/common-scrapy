@@ -9,6 +9,7 @@ import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
 from common.spiders.michaels_categories import (
+    MICHAELS_CATEGORIES,
     MICHAELS_CATEGORY_SITEMAP_URL,
     MICHAELS_SITE_BASE,
     available_categories,
@@ -93,6 +94,11 @@ class MichaelsListingSpider(BaseListingSpider):
     ]
 
     require_category_arg = False
+
+    # Parse-time snapshot used by the Airflow DAG (one task per leaf, grouped by
+    # department). The sitemap is still parsed at crawl time, so a taxonomy
+    # change is picked up by the next crawl without a code change.
+    categories = MICHAELS_CATEGORIES
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
