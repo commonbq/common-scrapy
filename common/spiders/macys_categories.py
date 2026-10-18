@@ -1,7 +1,8 @@
 """Macy's complete storefront category inventory.
 
-Captured 2026-10-14 from the header mega-menu flyouts serialized into the
-homepage HTML (one ``flyout-container`` per department, each an ordered list of
+Captured 2026-10-14 and re-verified 2026-10-18 from the header mega-menu
+flyouts serialized into the homepage HTML (one ``flyout-container`` per
+department, each an ordered list of
 ``https://www.macys.com/shop/<path>?id=<categoryId>`` anchors). The four generic
 ``/shop/brands`` index links and every facet/refinement anchor (uppercase, ``%``,
 ``|`` or ``,`` in the path) are dropped; the 858-link ``Sale`` flyout is a promo
@@ -1108,6 +1109,10 @@ MACYS_CATEGORIES: dict[str, dict[str, dict[str, str]]] = {
         "seasonal-celebrations-holiday-shop-christmas-decorations-villages": {
             "url": "https://www.macys.com/shop/seasonal-celebrations/holiday-shop/christmas/decorations/villages?id=111359",
             "id": "111359",
+        },
+        "seasonal-celebrations-holiday-shop-christmas-decorations-outdoor": {
+            "url": "https://www.macys.com/shop/seasonal-celebrations/holiday-shop/christmas/decorations/outdoor?id=111374",
+            "id": "111374",
         },
         "seasonal-celebrations-holiday-shop-christmas-bed-bath": {
             "url": "https://www.macys.com/shop/seasonal-celebrations/holiday-shop/christmas/bed-bath?id=202765",
