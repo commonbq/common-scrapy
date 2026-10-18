@@ -1,5 +1,6 @@
 import json
 import unittest
+from collections.abc import Mapping
 
 from scrapy.http import HtmlResponse, Request
 
@@ -58,6 +59,12 @@ class StockxListingSpiderTests(unittest.TestCase):
         )
 
     def test_live_navigation_inventory_uses_grouped_mapping_contract(self):
+        self.assertIsInstance(self.spider.categories, Mapping)
+        self.assertEqual(len(self.spider.categories), 8)
+        self.assertTrue(
+            all(isinstance(leaves, Mapping) for leaves in self.spider.categories.values())
+        )
+        self.assertTrue(all(len(leaves) == 1 for leaves in self.spider.categories.values()))
         self.assertEqual(
             self.spider.available_categories(),
             [
