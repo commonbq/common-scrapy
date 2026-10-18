@@ -75,3 +75,23 @@ def test_empty_top_activities_fails():
     spider = ViatorListingSpider(category="nashville")
     with pytest.raises(RuntimeError, match="no topActivities records"):
         list(spider.parse(response_for(payload([]))))
+
+
+def test_categories_are_grouped_by_destination_region():
+    from collections.abc import Mapping
+
+    from common.spiders.viator_categories import VIATOR_CATEGORIES
+
+    assert isinstance(VIATOR_CATEGORIES, Mapping)
+    assert all(isinstance(v, Mapping) for v in VIATOR_CATEGORIES.values())
+    leaves = [leaf for group in VIATOR_CATEGORIES.values() for leaf in group]
+    assert len(leaves) == 35
+    assert len(leaves) == len(set(leaves))
+    assert VIATOR_CATEGORIES["tennessee"]["nashville"] == (
+        "https://www.viator.com/Nashville/d799"
+    )
+
+    spider = ViatorListingSpider(category="nashville")
+    assert spider.category_targets("nashville") == {
+        "nashville": "https://www.viator.com/Nashville/d799"
+    }
