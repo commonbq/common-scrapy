@@ -6,15 +6,15 @@ one department flyout and every ``/c/...`` anchor inside it is a listing route.
 
 Only real product-listing paths are kept. Dropped: query-only refinements
 (``?pmid=``, ``?prefn1=``, ``?srule=``, ``?sre=``), editorial and campaign pages
-(``/c/content/``, ``/c/custom/``), the designer index (``/designers``),
-``visual-nav`` shells, live-stream and lookbook pages, and the hidden utility
-``li`` blocks whose ids are bare numbers.
+(``/c/content/``, ``/c/custom/``, ``/c/the-edit``), the designer index
+(``/designers``), ``visual-nav`` shells, live-stream and lookbook pages, and the
+hidden utility ``li`` blocks whose ids are bare numbers.
 
 Grouped ``{department: {leaf: {url, label, subcategory}}}`` mapping as required by
 the base listing spider contract. ``leaf`` is the full ``/c``-relative path slug,
 so leaves that repeat across departments stay globally unique for the DAG output
-paths and the ``-a category=`` selector. Verified 2026-10-18: 430 unique listing
-paths, 430 unique leaf slugs, 13 departments. Entries are ordered shallowest
+paths and the ``-a category=`` selector. Verified 2026-10-18: 429 unique listing
+paths, 429 unique leaf slugs, 12 departments. Entries are ordered shallowest
 first so each department root PLP leads its group.
 
 ``url`` is the query-free canonical PLP; the spider appends ``start``/``sz`` for
@@ -2196,13 +2196,6 @@ SAKS_CATEGORY_SECTIONS: dict[str, dict[str, dict[str, str]]] = {
             "url": "https://www.saksfifthavenue.com/c/sale-2/veronica-beard/sale",
             "label": "Veronica Beard",
             "subcategory": "veronica-beard/sale",
-        },
-    },
-    "The Edit": {
-        "the-edit": {
-            "url": "https://www.saksfifthavenue.com/c/the-edit",
-            "label": "The Edit",
-            "subcategory": "the-edit",
         },
     },
 }

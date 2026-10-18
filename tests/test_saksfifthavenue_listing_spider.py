@@ -16,14 +16,14 @@ class SaksListingSpiderTests(unittest.TestCase):
         self.assertEqual(self.spider.custom_settings["FEED_EXPORT_FIELDS"][0:3], ["category", "subcategory", "item_id"])
 
     def test_inventory_is_a_grouped_mapping(self):
-        self.assertEqual(len(SAKS_CATEGORY_SECTIONS), 13)
+        self.assertEqual(len(SAKS_CATEGORY_SECTIONS), 12)
         leaves = [
             leaf
             for group in SAKS_CATEGORY_SECTIONS.values()
             for leaf in group
         ]
-        self.assertEqual(len(leaves), 430)
-        self.assertEqual(len(set(leaves)), 430, "leaf slugs must be globally unique")
+        self.assertEqual(len(leaves), 429)
+        self.assertEqual(len(set(leaves)), 429, "leaf slugs must be globally unique")
         for group in SAKS_CATEGORY_SECTIONS.values():
             for leaf, entry in group.items():
                 self.assertTrue(leaf)
@@ -37,7 +37,7 @@ class SaksListingSpiderTests(unittest.TestCase):
         self.assertEqual(
             entry["url"], "https://www.saksfifthavenue.com/c/men/apparel"
         )
-        self.assertEqual(len(self.spider.available_categories()), 430)
+        self.assertEqual(len(self.spider.available_categories()), 429)
 
     def test_unknown_category_lists_available_leaves(self):
         spider = SaksfifthavenueListingSpider(category="women", max_pages=1)
