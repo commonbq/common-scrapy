@@ -4466,9 +4466,9 @@ The ordered output contract is defined in the spider's `FEED_EXPORT_FIELDS`.
 ### booking_listing
 
 `booking_listing` crawls the 80 city destinations exposed by the Booking.com
-homepage's `Popular with travelers from the United States` interlinking block
-(30 US states plus the District of Columbia, and 7 non-US countries). It uses
-one extraction direction only: the anonymous
+homepage's `Popular with travelers from the United States` interlinking block:
+60 US leaves across 22 states plus the District of Columbia, and 20 non-US
+leaves across 15 countries. It uses one extraction direction only: the anonymous
 server-rendered Apollo cache in `<script type="application/json">`. The city
 payload's `ROOT_QUERY.lxAccommodations(...)` supplies the destination ID and
 `seeAllUrl`; each exhaustive search page then comes from

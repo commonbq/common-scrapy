@@ -1,8 +1,9 @@
 """Booking.com city destinations exposed by the live homepage.
 
 Sourced on 2026-10-19 from the homepage ``Popular with travelers from the
-United States`` interlinking block: **80 city pages in 38 groups** (30 US
-states plus the District of Columbia, and 7 non-US countries).
+United States`` interlinking block: **80 city pages in 38 groups** -- 60 US
+leaves across 23 groups (22 states plus the District of Columbia) and 20
+non-US leaves across 15 countries.
 
 Every URL was verified live on 2026-10-19 through the configured ScrapeOps US
 route: HTTP 200 with a decodable ``lxAccommodations(...)`` Apollo hydration,
