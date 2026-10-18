@@ -295,7 +295,7 @@ Working spiders running daily in production:
 | [`apartments_listing`](#apartments_listing) | Experimental | bootstrap | ScrapeOps US proxy | Apartments.com rental map inventory from authoritative server-rendered `window.aptsState`; no HTML-card or JSON-LD fallback. | 567 unique listings in captured New York page 1 state | 17,154 city markets in 51 state groups | `{"category":"new-york-ny","item_id":"1j2c5h6","rent_min":5075,"latitude":40.7766,"source":"apartments_apts_state_bootstrap"...}` |
 | [`hilton_listing`](#hilton_listing) | Active | bootstrap | ScrapeOps US proxy | Hilton destination hotels from authoritative server-rendered Next.js `__NEXT_DATA__`; no HTML or JSON-LD fallback. | Up to 20 | 20 major US city markets | `{"category":"new-york-ny","item_id":"NYCTEPO","title":"Tempo by Hilton New York Times Square","source":"hilton_next_data"...}` |
 | [`basspro_listing`](#basspro_listing) | Active | api | Akamai on the storefront legs (403 direct); the Coveo search leg must stay unproxied | Bass Pro Shops category listings from the storefront Coveo Headless search API (`platform.cloud.coveo.com/rest/search/v2`); taxonomy from the `__NEXT_DATA__.props.megaNavHtmlV2` mega-nav. | 96 (2 pages, rod-reel-combos) | 11 departments / 909 leaves (grouped mapping) | `{"category":"Fishing/Rod & Reel Combos","item_id":"3472884","title":"Bass Pro Shops Megacast Baitcast Combo","brand":"Bass Pro Shops","url":"https://www.basspro.com/p/bass-pro-shops-megacast-baitcast-combo","price":69.99,"availability":"InStock","source":"basspro_coveo"...}` |
-| [`booking_listing`](#booking_listing) | Active | bootstrap | none detected (anonymous SSR cruise) | Booking.com listings for the 20 homepage-exposed US city destinations from the anonymous server-rendered Apollo cache (`ROOT_QUERY.lxAccommodations` -> `ROOT_QUERY.searchQueries.search().results`). | 33 (2 pages, `las-vegas`) | 20 US city destinations from `booking_categories.py` | `{"category":"las-vegas","item_id":"15743439","title":"The Platinum Hotel Las Vegas","price":227.91,"currency":"EUR","rating":9.1,"reviews_count":8,"city":"Las Vegas","source":"booking_apollo_hydration"...}` |
+| [`booking_listing`](#booking_listing) | Active | bootstrap | none detected (anonymous SSR cruise) | Booking.com listings for the 80 homepage-exposed city destinations from the anonymous server-rendered Apollo cache (`ROOT_QUERY.lxAccommodations` -> `ROOT_QUERY.searchQueries.search().results`). | 33 (2 pages, `las-vegas`) | 80 city destinations in 38 regions (grouped mapping) from `booking_categories.py` | `{"category":"las-vegas","item_id":"15743439","title":"The Platinum Hotel Las Vegas","price":227.91,"currency":"EUR","rating":9.1,"reviews_count":8,"city":"Las Vegas","source":"booking_apollo_hydration"...}` |
 | [`marriott_listing`](#marriott_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | ScrapeOps US residential proxy required | Marriott destination properties from the server-rendered `processedData.hotels` hydration collection, with `?pg=N` pagination and no fallback. | 12/page (`miami`) | 990 destinations across 11 regions from Marriott's Browse All Destinations catalogue | `{"category":"miami","item_id":"MIAJW","title":"JW Marriott Miami","rating":3.7,"reviews_count":1715,"source":"marriott_next_data_hydration"...}` |
 | [`microcenter_listing`](#microcenter_listing) | Experimental | bootstrap | Cloudflare; configured US proxy required | Store-scoped Micro Center listings from structured server-rendered product-card state. | 24/page | 513 unique targets preserving 20 departments / 118 groups / 578 navigation contexts | `{"category":"processors-cpus","item_id":"706001","sku":"974659","title":"Ryzen 7 9850X3D...","brand":"AMD","price":459.99,"source":"microcenter_card_state_bootstrap"...}` |
 | [`bestbuy_listing`](#bestbuy_search--bestbuy_listing) | Flaky | bootstrap + html | unknown (timeout/no verdict) | Best Buy listing via direct HTTP + Apollo bootstrap extraction. | 10 (skipped2) | 15 categories across all 14 Best Buy departments (including laptops, tvs, headphones, monitors, cell-phones) | `{"item_id":"6572184","title":"Samsung - Galaxy Book4 15.6\" FHD Laptop - Intel Core 7- 16GB Memory - 512GB SSD - Silver","url":"https://www.bestbuy.com/product/samsung-galaxy-bo...` |
@@ -4465,13 +4465,21 @@ The ordered output contract is defined in the spider's `FEED_EXPORT_FIELDS`.
 
 ### booking_listing
 
-`booking_listing` crawls the first 20 US city destinations exposed by the
-Booking.com homepage. It uses one extraction direction only: the anonymous
+`booking_listing` crawls the 80 city destinations exposed by the Booking.com
+homepage's `Popular with travelers from the United States` interlinking block
+(30 US states plus the District of Columbia, and 7 non-US countries). It uses
+one extraction direction only: the anonymous
 server-rendered Apollo cache in `<script type="application/json">`. The city
 payload's `ROOT_QUERY.lxAccommodations(...)` supplies the destination ID and
 `seeAllUrl`; each exhaustive search page then comes from
 `ROOT_QUERY.searchQueries.search(...).results`. No HTML-card or JSON-LD parser
 is used, and missing or ambiguous Apollo state raises an error.
+
+`booking_categories.py` commits the taxonomy as `{region: {leaf: url}}`, so the
+DAG groups one TaskGroup per region (38 groups / 80 leaves); leaf keys stay the
+bare city slug (`-a category=las-vegas` is unchanged). Every URL was verified
+live on 2026-10-19 through the configured ScrapeOps US route: HTTP 200 with a
+decodable `lxAccommodations(...)` hydration.
 
 Search pagination uses Booking's SSR `rows=25&offset=N` contract. Items are
 deduplicated by property ID and include numeric price, ratings, review count,

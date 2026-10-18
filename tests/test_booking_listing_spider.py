@@ -35,10 +35,21 @@ class BookingListingSpiderTests(unittest.TestCase):
         self.spider = BookingListingSpider(category="las-vegas", max_pages=2)
 
     def test_categories(self):
-        self.assertEqual(len(list(self.spider.iter_categories())), 25)
+        # 80 live city pages grouped into 38 regions, one leaf per city.
+        self.assertEqual(len(BookingListingSpider.categories), 38)
+        self.assertEqual(len(list(self.spider.iter_categories())), 80)
         self.assertEqual(
-            self.spider.category_entry("las-vegas")["url"],
-            "https://www.booking.com/city/us/las-vegas.html",
+            self.spider.category_entry("las-vegas"),
+            {
+                "category": "las-vegas",
+                "url": "https://www.booking.com/city/us/las-vegas.html",
+                "group": "Nevada",
+            },
+        )
+        self.assertEqual(self.spider.category_entry("tokyo")["group"], "Japan")
+        self.assertEqual(
+            self.spider.category_entry("washington")["group"],
+            "District Of Columbia",
         )
 
     def test_city_handoff_uses_apollo(self):
