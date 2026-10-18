@@ -17,12 +17,21 @@ def test_categories_use_grouped_mapping_contract():
     spider = AgodaListingSpider(category="bali")
     assert isinstance(spider.categories, Mapping)
     assert all(isinstance(group, Mapping) for group in spider.categories.values())
-    assert len(list(spider.iter_categories())) == 20
+    # 56 live destinations grouped by country (15 countries).
+    assert len(spider.categories) == 15
+    assert len(list(spider.iter_categories())) == 56
     assert spider.category_entry("bali") == {
         "category": "bali",
         "url": "https://www.agoda.com/city/bali-id.html",
-        "group": "destinations",
+        "city": "Bali",
+        "country": "Indonesia",
+        "region": "Asia",
+        "group": "Indonesia",
     }
+    assert spider.category_entry("koh-phangan")["url"] == (
+        "https://www.agoda.com/city/ko-pha-ngan-th.html"
+    )
+    assert spider.category_entry("dubai")["group"] == "United Arab Emirates"
 
 
 def test_config_builds_cronos_request():

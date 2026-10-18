@@ -279,7 +279,7 @@ Working spiders running daily in production:
 | [`hostelworld_listing`](#hostelworld_listing) | Active | api | none detected; API must be direct so proxy does not rewrite `Accept` | Hostelworld properties from the first-party Apigee city-properties API only; no HTML or JSON-LD fallback. | 29 (New York, one page) | 3,520 cities across 6 continents (grouped mapping) from `hostelworld_categories.py`; full first-party taxonomy (167 countries) | `{"category":"new-york-usa","item_id":"1850","name":"HI New York City Hostel","source":"hostelworld_city_properties_api"...}` |
 | [`dell_listing`](#dell_listing) | Experimental | bootstrap | ScrapeOps proxy | Dell US listings from the authoritative `data-product-detail-info` Product Stack bootstrap; no product-card or JSON-LD fallback. | 12 (live, `gaming-monitors`, one page) | 67 product-listing leaves across 7 departments (grouped mapping) from `dell_categories.py` | `{"item_id":"dellplus16laptopdb16250","title":"Dell 16 Plus Laptop","price":1559.99,"currency":"USD","source":"dell_product_stack_bootstrap"...}` |
 | [`dollargeneral_listing`](#dollargeneral_listing) | Active | api | ScrapeOps proxy (`keep_headers=true`) | Dollar General category listings from the first-party Omni v5 product-search API; no HTML-card or JSON-LD fallback. | 24 per API page | 20 high-coverage departments | `{"item_id":"37000853794","title":"Crest Plus Scope Whitening Toothpaste...","price":8.25,"currency":"USD","source":"dollargeneral_omni_search_api"...}` |
-| [`agoda_listing`](#agoda_listing) | Experimental | api | proxy required | Agoda curated destination accommodations from the first-party Cronos geo API. | 30 (Bali, one API response) | 20 popular cities from the homepage destination payload | `{"category":"bali","item_id":"489045","title":"RIMBA by AYANA Bali","review_score":9.1,"star_rating":5.0,"source":"agoda_cronos_geo_api","timestamp":"2026-10-06 10:30:00"...}` |
+| [`agoda_listing`](#agoda_listing) | Experimental | api | proxy required | Agoda curated destination accommodations from the first-party Cronos geo API. | 30 (Bali, one API response) | 56 destination cities across 15 countries from the live homepage footer payload | `{"category":"bali","item_id":"489045","title":"RIMBA by AYANA Bali","review_score":9.1,"star_rating":5.0,"source":"agoda_cronos_geo_api","timestamp":"2026-10-06 10:30:00"...}` |
 | [`adorama_listing`](#adorama_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | DataDome | Adorama category listings from server-rendered Next.js hydration state. | 24 (one page; 48 across 2 pages) | 1,079 crawlable categories across 11 departments from `adorama_categories.py` | `{"category":"cameras","item_id":"KKRK0603A","title":"Kodak Charmera Millenium Edition...","price":54.94,"currency":"USD"...}` |
 | [`argos_listing`](#argos_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | ScrapeOps proxy | Argos UK category listings from the server-rendered product hydration state; no HTML-card or JSON-LD fallback. | 60/page | Full browse-sitemap taxonomy (1500 leaves, 11 departments) | `{"category":"laptops","item_id":"9547021","title":"Lenovo IdeaPad Slim 3...","price":499.0,"currency":"GBP","source":"argos_next_data_bootstrap"...}` |
 | [`amazon_listing`](#amazon_listing-category) | Active | html | ScrapeOps premium US (datacenter returns a challenge shell) | Amazon category listing spider using current storefront search aliases. | 24 (live, `electronics-accessories-supplies`, one page) | 58 departments / 595 leaves (537 subcategories + 58 hubs, grouped mapping) from `amazon_categories.py` | `{"asin":"B0DKDTBBF7","title":"2 Packs Electric Candle Lighters, Windproof Flameless USB Rechargeable Plasma Arc Long Lighter for Grill Fi...` |
@@ -4712,8 +4712,16 @@ The API returns a curated recommendation carousel, not exhaustive
 city search results, and the spider fails visibly on malformed hydration,
 challenges, proxy errors, or empty API output.
 
-The ordered taxonomy contains 20 homepage destinations, from Bali through Johor
-Bahru. The ordered `FEED_EXPORT_FIELDS` contract includes the stable hotel ID,
+The taxonomy holds **56 destination cities across 15 countries**, read from the
+homepage `footerSeoLinksGroups` `Destination Cities` payload plus the six
+Agoda Homes destinations (Koh Kood, Koh Lanta, Koh Phangan, Koh Samet, Phu Quoc
+Island, Port Dickson). `agoda_categories.py` commits it as
+`{country: {leaf: {url, city, country, region}}}`, so the DAG groups one
+TaskGroup per country; leaf keys stay the bare city slug (`-a category=bali` is
+unchanged). Every URL was verified live on 2026-10-19 with a decodable
+`geoPageParams` hydration.
+
+The ordered `FEED_EXPORT_FIELDS` contract includes the stable hotel ID,
 names, normalized hotel and image URLs, ratings and review details, any available
 price fields, discovered geo identifiers, source metadata, and the raw API card.
 Every exported item also includes the crawl `timestamp`.
