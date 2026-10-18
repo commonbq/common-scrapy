@@ -13,15 +13,19 @@ class MacysListingSpiderCategoriesTest(unittest.TestCase):
 
         leaves = [leaf for group in categories.values() for leaf in group]
         self.assertEqual(len(categories), 13)
-        self.assertEqual(len(leaves), 362)
+        self.assertEqual(len(leaves), 363)
         # Leaf keys are the full /shop path slug, so they are globally unique.
-        self.assertEqual(len(set(leaves)), 362)
+        self.assertEqual(len(set(leaves)), 363)
 
         # Cross-listed paths resolve to a single department, keeping leaves unique.
         self.assertIn("womens-shoes", categories["Women"])
         self.assertIn("womens-shoes-sneakers", categories["Shoes"])
         self.assertIn("home-bed-bath-bedding", categories["Home"])
         self.assertIn("beauty-fragrance", categories["Beauty"])
+        self.assertIn(
+            "seasonal-celebrations-holiday-shop-christmas-decorations-outdoor",
+            categories["Holiday Shop"],
+        )
 
     def test_rich_category_fields_build_the_api_request(self):
         spider = MacysListingSpider(category="beauty-fragrance-perfume")
