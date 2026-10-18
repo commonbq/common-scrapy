@@ -306,7 +306,7 @@ Working spiders running daily in production:
 | [`sephora_listing`](#sephora_listing) | Active | api | Akamai | Sephora listing via `/api/v2/catalog/categories/<slug>/seo`. | 60 (ok) | 218 `/shop/` leaves across 7 departments (grouped mapping) from `sephora_categories.py` | `{"item_id":"P517483","title":"Pocket Blush Buildable Hydrating Cream Blush","url":"https://www.sephora.com/product/pocket-blush-P517483?s...` |
 | [`ulta_listing`](#ulta_listing-category) | Active | api | Akamai | Ulta category listing with dynamic GraphQL module discovery. | 152 (2 pages, proxy) | 267 `/shop/` PLP leaves across 16 departments | `n/a` |
 | [`ulta_search`](#ulta_search-keyword) | Active | api + html | Akamai | Ulta keyword search via GraphQL (with unsorted retry + HTML fallback). | 64 (ok) | - | `{"item_id":"xlsImpprod15511061","title":"All Soft Shampoo","source":"ulta_dxl_graphql"...}` |
-| [`walmart_listing`](#walmart_listing-category) | Active | api + html | Akamai (+ PerimeterX/HUMAN signals) | Walmart category listing spider (direct API+HTML flow). | 105 (`video-games`, one page) | 23 top-level departments from `walmart_categories.py` | `{"productId":"19231301884","usItemId":"19231301884","title":"No Boundaries Women's Faux Leather Loafers","brand":"No Boundaries"...` |
+| [`walmart_listing`](#walmart_listing-category) | Active | api + html | Akamai (+ PerimeterX/HUMAN signals) | Walmart category listing spider (direct API+HTML flow). | 105 (`video-games`, one page) | 23 departments / 296 leaves (grouped mapping) from `walmart_categories.py` | `{"productId":"19231301884","usItemId":"19231301884","title":"No Boundaries Women's Faux Leather Loafers","brand":"No Boundaries"...` |
 | [`walmart_search`](#walmart_search-keyword) | Active | api + html | Akamai (+ PerimeterX/HUMAN signals) | Walmart keyword search spider. | 12 (ok) | - | `{"item_id":"13542163431","title":"ASUS Vivobook Go 15.6” Laptop, Intel i3-N305, 8GB, 256GB, Windows 11 Home in S mode, Cool Silver, E1504...` |
 | [`wayfair_listing`](#wayfair_listing) | Experimental | server-rendered HTML cards | none detected | Wayfair listing cards with semantic selectors and tracking metadata. | 1 (committed sofas fixture; no live crawl run) | 15 departments / 668 menu links; 577 verified listing targets | `{"item_id":"W117645758","title":"Boneless 96\" Sectional Couches...","price":399.99,...}` |
 | [`ebay_listing`](#ebay_listing-category-marko-hydration-state) | Active | Marko + html | Akamai | Stable eBay category listing extraction from Marko hydration state, with HTML subcategory discovery. | 18 (Antiques fixture browse tiles) | 18 top-level groups / 209 subcategories from `ebay_categories.py` | `{"productId":"234346994063","title":"MacBook Pro 15 Inch 256GB SSD 16 GB i7 3.40Ghz Apple Retina Big Sur 3yr Warranty","price":439.0,"currency":"USD",...}` |
@@ -1632,6 +1632,17 @@ Verification notes:
 * An Akamai access-denied/challenge page is detected before hydration extraction and fails with a targeted message rather than a generic "no valid hydration" error.
 
 ### walmart_listing (category)
+
+Categories come from `common/spiders/walmart_categories.py`, a grouped
+`{department: {leaf: {url, label}}}` mapping captured 2026-10-18 from the live
+[All Departments](https://www.walmart.com/all-departments) page: **23 departments /
+296 leaves**. `walmart_listing` reads it with
+`_spider_category_groups(..., group_by="department")`, so the DAG emits one
+TaskGroup per department and schedules the first three subcategory PLPs in each.
+Every leaf is globally unique and every target URL is distinct; each department
+also keeps a leaf named after its own group key (`electronics` -> the department
+hub), placed last in the group so the scheduled tasks stay real subcategory PLPs
+while the documented `-a category=electronics` command keeps working.
 ```json
 {
   "url": "https://www.walmart.com/ip/W-NB-HORSEBIT-LOAFER/19231301884?...",
