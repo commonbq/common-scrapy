@@ -41,14 +41,40 @@ def test_child_category_hydration_and_page_url():
 
 
 def test_categories_use_grouped_mapping_contract():
-    assert list(OREILLY_CATEGORIES) == ["all"]
-    assert len(OREILLY_CATEGORIES["all"]) == 34
+    assert len(OREILLY_CATEGORIES) == 34
+    assert all(isinstance(leaves, dict) for leaves in OREILLY_CATEGORIES.values())
 
-    spider = OreillyListingSpider(category="brakes")
-    entry = spider.category_entry("brakes")
+    leaves = [
+        leaf for group in OREILLY_CATEGORIES.values() for leaf in group
+    ]
+    assert len(leaves) == sum(len(g) for g in OREILLY_CATEGORIES.values())
+    # GCS output paths use the bare leaf name, so leaves stay globally unique.
+    assert len(leaves) == len(set(leaves))
+    assert "brakes" in OREILLY_CATEGORIES
+    assert "brake-drums-rotors" in OREILLY_CATEGORIES["brakes"]
+
+    spider = OreillyListingSpider(category="brake-drums-rotors")
+    entry = spider.category_entry("brake-drums-rotors")
     assert entry == {
-        "group": "all",
-        "category": "brakes",
-        "category_path": "Brakes",
-        "url": "https://www.oreillyauto.com/shop/b/brakes/b6d08f551887",
+        "group": "brakes",
+        "url": (
+            "https://www.oreillyauto.com/shop/b/brakes/"
+            "brake-drums---rotors/7145c118aa8d"
+        ),
+        "category_path": "Brake Drums & Rotors",
+        "subcategory": "brake-drums-rotors",
+        "department": "Brakes",
+        "category": "brake-drums-rotors",
     }
+    assert spider.resolve_target_url() == entry["url"]
+
+
+def test_repeated_child_slug_keeps_department_prefix():
+    """`brakes` is both a department key and a child of Performance."""
+    spider = OreillyListingSpider(category="performance-brakes")
+    entry = spider.category_entry("performance-brakes")
+    assert entry["group"] == "performance"
+    assert entry["subcategory"] == "brakes"
+    assert entry["url"].startswith(
+        "https://www.oreillyauto.com/shop/b/performance/brakes/"
+    )

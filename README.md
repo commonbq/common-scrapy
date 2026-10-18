@@ -372,7 +372,7 @@ Spiders below are returning items in recent smoke runs:
 | [`newegg_listing`](#newegg_listing) | Experimental | SSR hydration state | none detected | Newegg listing spider reading server-rendered `window.__initialState__.Products` with `/Page-N` pagination and the captured RolloverMenu taxonomy. | 36 (ok) | 1,159 JSON-backed listing leaves across 16 departments | `{"item_id":"19-113-877","title":"AMD Ryzen 7 9800X3D - Ryzen 7 9000 Series Zen 5 8-Core 5.2 GHz - Socket AM5 120W - AMD Radeon Graphics Desktop Processor - 100-100001084WOF","model":"100-100001084WOF","brand":"AMD","price":469,"currency":"USD","url":"https://www.newegg.com/amd-ryzen-7-9000-series-ryzen-7-9800x3d-granite-ridge-zen-5-socket-am5-desktop-cpu-processor/p/N82E16819113877","image":"https://c1.neweggimages.com/ProductImageOriginal/19-113-877-01.png","rating":4.8,"reviews_count":729,"page":1,"source":"newegg_initial_state"}` |
 | [`redfin_listing`](#redfin_listing) | Active | api | ScrapeOps US proxy | Redfin city listings from the first-party Stingray GIS JSON API discovered in React server hydration. | 350 (one page) | 51 state groups / 33,798 city markets (grouped mapping) from `redfin_categories.py` | `{"category":"los-angeles-ca","item_id":"5196541","price":1399000,"source":"redfin_stingray_api"...}` |
 | [`movoto_listing`](#movoto_listing) | Experimental | bootstrap | PerimeterX (ScrapeOps US proxy required) | Movoto sale listings from server-rendered Nuxt `__INITIAL_STATE__.pageData.listings` only; no HTML or JSON-LD fallback. | 50 (one page, live proxy) | 37 state groups / 149 city markets (grouped mapping) | `{"category":"new-york-ny","item_id":"aca725fa-4f79-41bc-a458-6de558312a3b","title":"50 W 66th St #10C New York, NY 10023","price":10950000,"source":"movoto_initial_state"...}` |
-| [`oreilly_listing`](#oreilly_listing) | Active | bootstrap (`window._ost`) | direct 403; ScrapeOps US residential required | O'Reilly Auto Parts category listings from the server-rendered product bootstrap only. | 18 (live brake rotors page) | 34 root departments from `oreilly_categories.py`; direct leaf URLs supported | `{"item_id":"BBR|3512RGS","title":"BrakeBest Select Front Brake Rotor - 3512RGS","price":89.99,"currency":"USD","source":"oreilly_ost_bootstrap"}` |
+| [`oreilly_listing`](#oreilly_listing) | Active | bootstrap (`window._ost`) | direct 403; ScrapeOps US residential required | O'Reilly Auto Parts category listings from the server-rendered product bootstrap only. | 18 (live brake rotors page) | 34 departments / 1,321 leaves (grouped mapping) from `oreilly_categories.py` | `{"item_id":"BBR|3512RGS","title":"BrakeBest Select Front Brake Rotor - 3512RGS","price":89.99,"currency":"USD","source":"oreilly_ost_bootstrap"}` |
 | [`rei_listing`](#rei_listing) | Active | bootstrap (`#initial-props`) | none detected | REI category listings from the server-rendered `#initial-props` bootstrap (`ProductSearch.products.searchResults.results`); follows hydration pagination and dedupes by `prodId`. | 30 (1 page, hiking-footwear) | 10 departments / 458 leaves (grouped mapping) from `rei_categories.py` | `{"category":"hiking-footwear","item_id":"202126","title":"Moab 3 Hiking Shoes - Women's","brand":"Merrell","price":71.83,"currency":"USD","source":"rei_initial_props_bootstrap","timestamp":"2026-10-06 20:34:00"}` |
 | [`trulia_listing`](#trulia_listing) | Experimental | bootstrap | challenge/WAF | Trulia sale listings from server-rendered Next.js `props.searchData.homes`. | 40 (live) | 993 home-buying cities across 50 states and DC from Trulia's official popular-cities sitemap | `{"item_id":"465800506","title":"97 Marland Rd, Colorado Springs, CO 80906","price":2500000,"currency":"USD"}` |
 | [`llbean_listing`](#llbean_listing) | Active | api | none detected (ScrapeOps `country=us` route required) | L.L.Bean listing via the UDAL `product-discovery` JSON endpoint (no HTML fallback). | 96 (2 pages, proxy) | 11 departments / 500 leaves (grouped mapping) from `llbean_categories.py` | `{"category":"Gift Shop","item_id":"1000316302","sku_id":"1000316302","title":"Women's The Original Double L® Sweater, Crewneck","brand":"L.L.Bean","price":49.99,"original_price":69.95,"currency":"USD","rating":4.4,"reviews_count":359,"color":"Classic Navy","size":"X-Small","availability":"IN","on_sale":true,"page":1,"position":1,"total_count":626,"source":"llbean_udal_product_discovery"...` |
@@ -3413,12 +3413,23 @@ Run example:
 `window._ost` bootstrap assignments. It does not parse product cards or JSON-LD.
 The spider exports the ordered `FEED_EXPORT_FIELDS` contract, validates the
 bootstrap totals, deduplicates item IDs, and supports standard query pagination.
-The 34 stable root departments live in `oreilly_categories.py`; a product-bearing
-leaf can also be supplied with `-a category_url=<url>`. Storefront requests need
-the configured ScrapeOps US residential route and use a Googlebot user agent.
+
+- **Arguments:** `-a category=<leaf>`, `-a category_url=<url>`, or `-a url=<url>`;
+  plus `-a max_pages=<n>`.
+- **Categories:** a grouped `{department: {leaf: entry}}` mapping in
+  `oreilly_categories.py` -- **34 departments / 1,321 child categories**
+  captured 2026-10-18 from the live `window._ost.childCategories` navigation.
+  The DAG schedules the children, not the department hubs: a department landing
+  page carries no product bootstrap (no `totalResults`), while each child is a
+  real PLP (`brakes/brake-drums---rotors` reported 8,749 results on capture).
+  Leaves are globally unique; the 30 child slugs that repeat in another
+  department (or match a department key) keep a department prefix, e.g.
+  `performance-brakes`.
+- **Proxy:** the configured ScrapeOps **US residential** route, with a Googlebot
+  user agent. The datacenter route answers with a challenge envelope.
 
 ```bash
-scrapy crawl oreilly_listing -a category_url=https://www.oreillyauto.com/shop/b/brakes/brake-drums---rotors/7145c118aa8d -a max_pages=1 -s HTTPCACHE_ENABLED=False -O oreilly.jsonl
+common-scrapy crawl oreilly_listing -a category=brake-drums-rotors -a max_pages=1 -O oreilly.jsonl
 ```
 
 ### backcountry_listing
