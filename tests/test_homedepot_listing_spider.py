@@ -68,14 +68,35 @@ class HomeDepotListingSpiderTest(unittest.TestCase):
             list(self.spider.parse(self.response(
                 b"<html></html>", meta={"category": "tools", "page": 1, "proxy_retries": MAX_PROXY_RETRIES})))
 
-    def test_categories_use_grouped_mapping_contract(self):
+    def test_categories_use_grouped_department_mapping(self):
         self.assertIsInstance(self.spider.categories, Mapping)
-        self.assertEqual(list(self.spider.categories), ["departments"])
-        self.assertEqual(len(list(self.spider.iter_categories())), 26)
+        self.assertEqual(len(self.spider.categories), 26)
+        self.assertIn("tools", self.spider.categories)
+        self.assertEqual(len(list(self.spider.iter_categories())), 393)
         self.assertEqual(
             self.spider.category_entry("tools")["url"],
             "https://www.homedepot.com/b/Tools/N-5yc1vZc1xy",
         )
+
+    def test_subcategory_leaf_resolves_inside_its_department(self):
+        entry = self.spider.category_entry("tools-power-tools")
+        self.assertEqual(entry["group"], "tools")
+        self.assertEqual(
+            entry["url"],
+            "https://www.homedepot.com/b/Tools-Power-Tools/N-5yc1vZc298",
+        )
+
+    def test_leaf_keys_and_urls_are_globally_unique(self):
+        entries = list(self.spider.iter_categories())
+        self.assertEqual(len({e["category"] for e in entries}), len(entries))
+        self.assertEqual(len({e["url"] for e in entries}), len(entries))
+
+    def test_department_hub_leaf_is_last_in_its_group(self):
+        # The DAG schedules only the first three leaves per group, so the hub must
+        # sort last for the scheduled tasks to stay real subcategory PLPs.
+        for group, leaves in self.spider.categories.items():
+            self.assertEqual(list(leaves)[-1], group, group)
+            self.assertGreaterEqual(len(leaves), 4, group)
 
 
 if __name__ == "__main__":
