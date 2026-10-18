@@ -287,7 +287,7 @@ Working spiders running daily in production:
 | [`acehardware_listing`](#acehardware_listing) | Active | bootstrap | ScrapeOps residential + `bypass=5` required | Ace Hardware category listings and recursive department discovery from server-rendered Kibo/Mozu hydration. | 60 (2 pages, cordless-drills) | 15 departments / 20 leaves (grouped mapping) from `acehardware_categories.py`; department pages recursively discover product-bearing leaves | `{"category":"cordless-drills","item_id":"2385458","title":"DeWalt 20V MAX 1/2 in. Brushed Cordless Compact Drill Kit (Battery & Charger)","brand":"DeWalt","price":179.0,"currency":"USD","source":"acehardware_mozu_hydration",...}` |
 | [`abercrombie_listing`](#abercrombie_listing) | Active | bootstrap | ScrapeOps US proxy | Abercrombie & Fitch US products from the server-rendered catalog Apollo cache only; no product-card or JSON-LD fallback. | 90/page | 37 product-listing categories across Women's, Men's, Kids, and brand collections | `{"category":"womens","item_id":"ANF_KIC_144-6328-00243-480","title":"A&F Carrie Wool-Blend Trench Coat","price":250.0,"currency":"USD","source":"abercrombie_catalog_apollo_bootstrap"...}` |
 | [`backcountry_listing`](#backcountry_listing) | Active | bootstrap | AWS WAF (datacenter + `bypass=5` both return the challenge; `residential=true` required) | Backcountry.com category/collection/brand listings from the server-rendered Next.js `#__NEXT_DATA__` PLP payload joined to `__APOLLO_STATE__`. | 84 (2 pages, `cat-mens-shirts`); 52 (`rc-mens-parkas`, natural last page) | 12 departments / 398 leaves (grouped mapping) from `backcountry_categories.py` | `{"category":"cat-mens-shirts","department":"Men","section":"Clothing","item_id":"FJRZ133","title":"Fjallglim Regular Shirt - Men's","brand":"Fjallraven","price":124.95,"original_price":null,"currency":"USD","in_stock":true,"source":"backcountry_next_data",...}` |
-| [`landwatch_listing`](#landwatch_listing) | Active | bootstrap | Akamai; ScrapeOps US residential required | LandWatch property listings from the authoritative server-rendered `#__SERVER_STATE__.searchPage.searchResults.propertyResults` payload only; no HTML-card or JSON-LD fallback. | 25/page | 20 high-inventory US state markets | `{"category":"texas","item_id":"427783557","title":"Superior Views, Better Hunting","price":769950,"acres":108.1,"source":"landwatch_server_state_bootstrap",...}` |
+| [`landwatch_listing`](#landwatch_listing) | Active | bootstrap | Akamai; ScrapeOps US residential required | LandWatch property listings from the authoritative server-rendered `#__SERVER_STATE__.searchPage.searchResults.propertyResults` payload only; no HTML-card or JSON-LD fallback. | 25/page | 11 property-type searches + all 50 states and DC in 4 Census-region groups (grouped mapping) from `landwatch_categories.py` | `{"category":"texas","item_id":"427783557","title":"Superior Views, Better Hunting","price":769950,"acres":108.1,"source":"landwatch_server_state_bootstrap",...}` |
 | [`realtor_listing`](#realtor_listing) | Active | bootstrap | residential ScrapeOps + `bypass=5` required | Realtor.com sale listings from authoritative React Router streamed SSR loader state. | 42/page | All 50 states plus DC, grouped by US Census region | `{"item_id":"9573322873","listing_id":"2994590506","title":"11201 Chalon Rd, Los Angeles, CA 90049","price":400000000,"source":"realtor_react_router_stream",...}` |
 | [`zillow_listing`](#zillow_listing) | Active | bootstrap | PerimeterX | Zillow sale listings from server-rendered Next.js `__NEXT_DATA__`, including path-based SSR pagination. | 82 (2 pages, `houston-tx`) | 53 state groups / 144,973 region markets (grouped mapping) from `zillow_categories.py` | `{"item_id":"55476612","title":"8323 Gentlewood Ct, Houston, TX 77095","price":375000,"beds":4,"baths":3,"area":2992,"source":"zillow_next_data"}` |
 | [`loopnet_listing`](#loopnet_listing) | Experimental | html + bootstrap | ScrapeOps US proxy | Commercial-property records from LoopNet's server-rendered search-results page (`article.placard-card` listings plus the obfuscated `window.gState` search state); no JSON-LD fallback. | Live smoke tested below | 20 sale/lease property-type searches | `{"item_id":"42148644","title":"THE GARAGE Luxury Condos","source":"loopnet_placard_html"...}` |
@@ -319,8 +319,17 @@ server-rendered `#__SERVER_STATE__` search bootstrap. The spider reads only
 `searchPage.searchResults.propertyResults`, follows the bootstrap's `paginationData.nextLink`,
 and does not fall back to placard HTML or JSON-LD. It exports stable listing/inventory IDs,
 prices, acreage, property types, address and coordinates, house attributes, seller details,
-media flags, pagination metadata, and the raw bootstrap record. The 20 state seeds are in
-`common/spiders/landwatch_categories.py`.
+media flags, pagination metadata, and the raw bootstrap record.
+
+`common/spiders/landwatch_categories.py` holds the crawl inventory in the grouped
+`{group: {leaf: url}}` contract: a `land-types` group with the 11 property-type searches
+published in the site navigation (`land-for-sale`, `hunting-property`, `farms-ranches`,
+`homes`, `timberland-property`, `commercial-property`, `homesites`,
+`recreational-property`, `horse-property`, `undeveloped-land`, `waterfront-property`),
+plus all 50 states and the District of Columbia split across the `northeast`, `midwest`,
+`south`, and `west` Census regions. Leaf keys are unchanged, so `-a category=texas` still
+selects the Texas market page. The DAG schedules up to three leaves per group as
+TaskGroups.
 
 LandWatch's Akamai edge requires the configured ScrapeOps US residential route. The spider
 adds `residential=true` to a configured ScrapeOps proxy automatically:

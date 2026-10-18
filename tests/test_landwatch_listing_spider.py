@@ -68,12 +68,42 @@ def _product():
     }
 
 
-def test_categories_are_the_fifty_unique_state_routes():
-    assert set(LANDWATCH_CATEGORIES) == {"states"}
-    states = LANDWATCH_CATEGORIES["states"]
-    assert len(states) == 50
-    assert len(set(states.values())) == 50
+def test_categories_group_land_types_and_census_regions():
+    assert set(LANDWATCH_CATEGORIES) == {
+        "land-types",
+        "northeast",
+        "midwest",
+        "south",
+        "west",
+    }
+    states = {
+        leaf: url
+        for group in ("northeast", "midwest", "south", "west")
+        for leaf, url in LANDWATCH_CATEGORIES[group].items()
+    }
+    # 50 states plus the District of Columbia, one route each.
+    assert len(states) == 51
+    assert len(set(states.values())) == 51
     assert states["texas"] == "https://www.landwatch.com/texas-land-for-sale"
+    assert set(LANDWATCH_CATEGORIES["land-types"]) == {
+        "land-for-sale",
+        "hunting-property",
+        "farms-ranches",
+        "homes",
+        "timberland-property",
+        "commercial-property",
+        "homesites",
+        "recreational-property",
+        "horse-property",
+        "undeveloped-land",
+        "waterfront-property",
+    }
+
+
+def test_every_category_resolves_to_a_crawlable_target():
+    for entry in LandwatchListingSpider(category="texas").iter_categories():
+        assert entry["url"].startswith("https://www.landwatch.com/")
+        assert entry["category"]
 
 
 def test_bootstrap_maps_rich_property_fields():
