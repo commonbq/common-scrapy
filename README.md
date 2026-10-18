@@ -388,7 +388,7 @@ Spiders below are returning items in recent smoke runs:
 | [`zappos_listing`](#zappos_listing) | Experimental | Redux hydration | none detected through proxy | Zappos listings from `window.__INITIAL_STATE__.products.list`. | 100 (one-page proxy smoke) | 4 departments / 50 targets | `{"item_id":"8910671","title":"Kiruna Padded Parka","brand":"Fjällräven","price":300.0,...}` |
 | [`zara_listing`](#zara_listing) | Active | api | Akamai (ScrapeOps `country=us,bypass=5`) | Zara US listings from the first-party category and product JSON APIs; no HTML or JSON-LD fallback. | 88 (`BEAUTY > KIDS > PERFUMES`; one API response) | 908 live product categories across 8 menu sections | `{"category":"WOMAN > COLLECTION > DRESSES","item_id":"560058525","title":"STRIPED PUFF SLEEVE MINI DRESS","price":69.9,"currency":"USD","source":"zara_api"...}` |
 | [`zoro_listing`](#zoro_listing) | Experimental | bootstrap | intermittent direct 403; configured proxy requires active credits | Zoro category listings from server-rendered Vuex `window.INITIAL_STATE.search.response.records` only. | 36/page | 20 departments; 2,189-leaf taxonomy schedules leaves | `{"category":"custom","department":"Raw Materials","leaf_category":"Aluminum Angles","item_id":"G3109732","title":"Angle, Al, 6061, 1/8 In T, 2 In Leg, 4 Ft L","price":17.39,"currency":"USD","source":"zoro_initial_state_search_records"...}` |
-| [`saksfifthavenue_listing`](#saksfifthavenue_listing-category) | Experimental | html | DataDome | Saks Fifth Avenue listing spider via direct category HTML cards. | 24 (ok) | women, men, shoes, beauty, handbags | `{"item_id":"0400026449047","title":"Prada Washed Re Nylon Rain Jacket","url":"https://www.saksfifthavenue.com/product/prada-washed-re-nyl...` |
+| [`saksfifthavenue_listing`](#saksfifthavenue_listing-category) | Experimental | html | DataDome | Saks Fifth Avenue listing spider via direct category HTML cards. | 24 (ok) | 13 departments / 430 leaves (grouped mapping) from `saksfifthavenue_categories.py` | `{"item_id":"0400026449047","title":"Prada Washed Re Nylon Rain Jacket","url":"https://www.saksfifthavenue.com/product/prada-washed-re-nyl...` |
 | [`sallybeauty_listing`](#sallybeauty_listing) | Experimental | html + AJAX | PerimeterX / HUMAN (px-captcha signals) | Sally Beauty SFCC product-grid spider with `Search-UpdateGrid` pagination. | 2 (fixture) | 242 leaves across 12 departments: hair-color, hair-care, textured-and-curly-hair-care, hair-extensions, tools-and-brushes, nails, cosmetics-and-skin-care, fragrances, mens-grooming, salon-supplies, deals, perm-rods | `{"category":"hair-care","item_id":"SBS-539230","title":"Low Porosity Aloe Vera Gel Shampoo","brand":"Texture ID","price":11.99...` |
 | [`belk_listing`](#belk_listing) | Experimental | api | none detected (first-party JSON) | Belk listings from the `/ecom/cio/v1/web/category/{path}?v2=true` search facade. | 60 (one page, ok) | 13 departments / 427 leaves (grouped mapping) from `belk_categories.py` | `{"item_id":"2900965MULANEYW","title":"Mulaney Flats","brand":"DV Dolce Vita","price":45.5,"original_price":65.0,"discount_percent":30.0,"currency":"USD"...}` |
 | [`stockx_listing`](#stockx_listing) | Experimental | bootstrap + html | Cloudflare | StockX listing via `__NEXT_DATA__` bootstrap. | 41 (ok) | 8 live product categories | `{"item_id":"brands","title":"Brands","url":"https://stockx.com/brands","price":null,"currency":null}` |
@@ -2508,9 +2508,16 @@ Run example:
 }
 ```
 Run example:
-`common-scrapy crawl saksfifthavenue_listing -a category=women -a max_pages=1 -O saksfifthavenue_listing.jsonl`
+`common-scrapy crawl saksfifthavenue_listing -a category=women-s-apparel -a max_pages=1 -O saksfifthavenue_listing.jsonl`
 
 Notes:
+- Categories come from the live main navigation in `saksfifthavenue_categories.py`:
+  430 listing paths in 13 departments, keyed `{department: {leaf: {url, label, subcategory}}}`.
+  `leaf` is the full `/c`-relative path slug (e.g. `women-s-apparel-dresses-cocktail`), so
+  leaves that repeat across departments stay globally unique for `-a category=` and the
+  DAG output paths. Query-only refinements, editorial/campaign pages and `visual-nav`
+  shells are excluded, so every entry is a real PLP.
+- The Saks DAG schedules one task per department group.
 - Saks is heavily anti-bot protected (DataDome). Direct HTTP requests may return `403` challenge pages from some runtimes/IPs.
 - Treat this spider as **best-effort/experimental**; verify output quality in your target environment before relying on unattended runs.
 

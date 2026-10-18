@@ -6,25 +6,22 @@ from urllib.parse import parse_qs, urlencode, urljoin, urlparse, urlunparse
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
+from common.spiders.saksfifthavenue_categories import SAKS_CATEGORY_SECTIONS
 
 
 class SaksfifthavenueListingSpider(BaseListingSpider):
-    """Saks listings from the server-rendered Salesforce product grid."""
+    """Saks listings from the server-rendered Salesforce product grid.
+
+    ``categories`` is the live department flyout inventory from
+    :mod:`common.spiders.saksfifthavenue_categories`, so ``-a category=<leaf>``
+    selects one listing path and every exported item carries the department
+    (``group``) and nav position (``subcategory``).
+    """
 
     name = "saksfifthavenue_listing"
     allowed_domains = ["saksfifthavenue.com", "www.saksfifthavenue.com", "localhost", "127.0.0.1"]
 
-    SAKS_CATEGORIES = {
-        "women": {"apparel": "https://www.saksfifthavenue.com/c/women-s-apparel"},
-        "men": {"all": "https://www.saksfifthavenue.com/c/men"},
-        "shoes": {"all": "https://www.saksfifthavenue.com/c/shoes"},
-        "handbags": {"all": "https://www.saksfifthavenue.com/c/handbags"},
-        "jewelry-accessories": {"all": "https://www.saksfifthavenue.com/c/jewelry-accessories"},
-        "beauty": {"all": "https://www.saksfifthavenue.com/c/beauty"},
-        "kids": {"all": "https://www.saksfifthavenue.com/c/kids"},
-        "home": {"all": "https://www.saksfifthavenue.com/c/home"},
-    }
-    categories = SAKS_CATEGORIES
+    categories = SAKS_CATEGORY_SECTIONS
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
@@ -41,17 +38,16 @@ class SaksfifthavenueListingSpider(BaseListingSpider):
         super().__init__(*args, **kwargs)
         self._seen_products: set[str] = set()
 
-    def available_categories(self) -> list[str]:
-        return sorted(self.categories)
-
     def _selected_subcategories(self) -> dict[str, str]:
         if self.url or self.category_url:
             return {"custom": self.resolve_target_url()}
-        try:
-            return self.categories[self.category]
-        except KeyError:
+        targets = self.category_targets(self.category)
+        if not targets:
             available = ", ".join(self.available_categories())
-            raise ValueError(f"Unknown category '{self.category}'. Available categories: {available}") from None
+            raise ValueError(
+                f"Unknown category '{self.category}'. Available categories: {available}"
+            )
+        return targets
 
     def start_requests(self):
         self._seen_products.clear()
