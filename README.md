@@ -282,7 +282,7 @@ Working spiders running daily in production:
 | [`agoda_listing`](#agoda_listing) | Experimental | api | proxy required | Agoda curated destination accommodations from the first-party Cronos geo API. | 30 (Bali, one API response) | 20 popular cities from the homepage destination payload | `{"category":"bali","item_id":"489045","title":"RIMBA by AYANA Bali","review_score":9.1,"star_rating":5.0,"source":"agoda_cronos_geo_api","timestamp":"2026-10-06 10:30:00"...}` |
 | [`adorama_listing`](#adorama_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | DataDome | Adorama category listings from server-rendered Next.js hydration state. | 24 (one page; 48 across 2 pages) | 1,079 crawlable categories across 11 departments from `adorama_categories.py` | `{"category":"cameras","item_id":"KKRK0603A","title":"Kodak Charmera Millenium Edition...","price":54.94,"currency":"USD"...}` |
 | [`argos_listing`](#argos_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | ScrapeOps proxy | Argos UK category listings from the server-rendered product hydration state; no HTML-card or JSON-LD fallback. | 60/page | Full browse-sitemap taxonomy (1500 leaves, 11 departments) | `{"category":"laptops","item_id":"9547021","title":"Lenovo IdeaPad Slim 3...","price":499.0,"currency":"GBP","source":"argos_next_data_bootstrap"...}` |
-| [`amazon_listing`](#amazon_listing-category) | Active | html | none detected | Amazon category listing spider using current storefront search aliases. | 0 (current proxy response had no listing cards) | 58 departments from `amazon_categories.py` | `{"asin":"B0DKDTBBF7","title":"2 Packs Electric Candle Lighters, Windproof Flameless USB Rechargeable Plasma Arc Long Lighter for Grill Fi...` |
+| [`amazon_listing`](#amazon_listing-category) | Active | html | ScrapeOps premium US (datacenter returns a challenge shell) | Amazon category listing spider using current storefront search aliases. | 24 (live, `electronics-accessories-supplies`, one page) | 58 departments / 595 leaves (537 subcategories + 58 hubs, grouped mapping) from `amazon_categories.py` | `{"asin":"B0DKDTBBF7","title":"2 Packs Electric Candle Lighters, Windproof Flameless USB Rechargeable Plasma Arc Long Lighter for Grill Fi...` |
 | [`amazon_search`](#amazon_search) | Active | html | none detected | Amazon keyword search spider. | 22 (ok) | - | `{"asin":"B0GHQRV71M","title":"16\" FHD IPS Laptop Computer - 16GB RAM 512GB SSD, Pentium N100(Beat to i3-1115G4, 4 Cores Up to 3.4GHz), B...` |
 | [`acehardware_listing`](#acehardware_listing) | Active | bootstrap | ScrapeOps residential + `bypass=5` required | Ace Hardware category listings and recursive department discovery from server-rendered Kibo/Mozu hydration. | 60 (2 pages, cordless-drills) | 15 departments / 20 leaves (grouped mapping) from `acehardware_categories.py`; department pages recursively discover product-bearing leaves | `{"category":"cordless-drills","item_id":"2385458","title":"DeWalt 20V MAX 1/2 in. Brushed Cordless Compact Drill Kit (Battery & Charger)","brand":"DeWalt","price":179.0,"currency":"USD","source":"acehardware_mozu_hydration",...}` |
 | [`abercrombie_listing`](#abercrombie_listing) | Active | bootstrap | ScrapeOps US proxy | Abercrombie & Fitch US products from the server-rendered catalog Apollo cache only; no product-card or JSON-LD fallback. | 90/page | 37 product-listing categories across Women's, Men's, Kids, and brand collections | `{"category":"womens","item_id":"ANF_KIC_144-6328-00243-480","title":"A&F Carrie Wool-Blend Trench Coat","price":250.0,"currency":"USD","source":"abercrombie_catalog_apollo_bootstrap"...}` |
@@ -1554,14 +1554,32 @@ Run example:
 
 ### amazon_listing (category)
 
-The grouped inventory contains all 58 named departments currently exposed by the
-Amazon US storefront search selector. Category keys are its stable search aliases,
-including `electronics`, `fashion`, `beauty`, `garden`, `toys-and-games`,
-`sporting`, `grocery`, and `stripbooks`.
+The grouped inventory holds all 58 named departments currently exposed by the
+Amazon US storefront search selector, with their live `Department` refinement
+tree: **58 departments / 537 subcategory leaves** plus one hub leaf per
+department. Group keys are the stable search aliases, including `electronics`,
+`fashion`, `beauty`, `garden`, `toys-and-games`, `sporting`, `grocery`, and
+`stripbooks`.
+
+Leaf keys are namespaced `<department>-<subcategory>` (for example
+`electronics-accessories-supplies`), so every DAG task id is unique. Each
+department's own alias is kept as a hub leaf **last** in its group, which keeps
+`-a category=electronics` working while the DAG (which schedules only the first
+three leaves per group) picks real subcategory PLPs.
 
 Notes:
-- Uses Amazon search department URLs (`/s?i=<search-alias>`).
+- Uses Amazon search URLs: the hub is `/s?i=<search-alias>` and a subcategory is
+  `/s?i=<search-alias>&rh=n%3A<department-node>%2Cn%3A<subcategory-node>`.
+- Seven departments Amazon only exposes as a single page (Amazon Autos, Amazon
+  Global Store, Handmade, Home & Business Services, Just for Prime, Smart Home,
+  Subscription Boxes) carry just their hub leaf.
 - If a page returns no cards, spider logs a warning with URL/title to help diagnose layout/response changes.
+
+Verified 2026-10-19: 58 groups / 595 leaves (537 subcategories + 58 hubs), all
+595 leaf keys unique and every leaf URL distinct; the DAG emits 58 TaskGroups /
+153 tasks inside the Airflow 2.10.2 container with no import errors; a bounded
+live crawl of `electronics-accessories-supplies` on the premium US route
+returned `item_scraped_count: 24`, `finish_reason: finished`.
 
 ```json
 {
@@ -1578,7 +1596,7 @@ Notes:
 ```
 
 Run example:
-`common-scrapy crawl amazon_listing -a category=electronics -a max_pages=1 -O amazon_cat.jsonl`
+`common-scrapy crawl amazon_listing -a category=electronics-accessories-supplies -a max_pages=1 -O amazon_cat.jsonl`
 
 ### asos_listing
 

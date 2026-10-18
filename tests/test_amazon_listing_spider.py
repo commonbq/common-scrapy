@@ -10,11 +10,26 @@ from common.spiders.amazon_listing_spider import AmazonListingSpider
 
 
 class AmazonListingSpiderTests(unittest.TestCase):
-    def test_categories_use_grouped_mapping_with_live_search_aliases(self):
-        self.assertIsInstance(AmazonListingSpider.categories, Mapping)
-        self.assertEqual(set(AmazonListingSpider.categories), {"departments"})
-        self.assertEqual(len(AmazonListingSpider.categories["departments"]), 58)
+    def test_categories_use_grouped_mapping_with_live_departments(self):
+        categories = AmazonListingSpider.categories
+        self.assertIsInstance(categories, Mapping)
+        self.assertEqual(len(categories), 58)
+        self.assertNotIn("departments", categories)
+        # A sample of the live department aliases must all be present as groups.
+        for department in (
+            "alexa-skills",
+            "beauty",
+            "electronics",
+            "fashion",
+            "grocery",
+            "pets",
+            "tools",
+            "toys-and-games",
+            "videogames",
+        ):
+            self.assertIn(department, categories)
 
+        # The department search alias stays runnable as a hub leaf.
         spider = AmazonListingSpider(category="electronics")
         self.assertEqual(
             spider.resolve_target_url(),
@@ -23,6 +38,36 @@ class AmazonListingSpiderTests(unittest.TestCase):
         self.assertEqual(
             spider.category_entry("electronics")["label"],
             "Electronics",
+        )
+
+    def test_category_leaves_are_grouped_by_department(self):
+        categories = AmazonListingSpider.categories
+        leaves = [leaf for group in categories.values() for leaf in group]
+        self.assertEqual(len(leaves), len(set(leaves)))
+
+        for department, group in categories.items():
+            # Hub leaf sits last so the first three scheduled tasks per group
+            # are real subcategory PLPs.
+            self.assertEqual(list(group)[-1], department)
+            for leaf, entry in group.items():
+                self.assertTrue(entry["url"].startswith("https://www.amazon.com/s?"))
+                if leaf == department:
+                    self.assertEqual(
+                        entry["url"], f"https://www.amazon.com/s?i={department}"
+                    )
+                    continue
+                self.assertTrue(leaf.startswith(f"{department}-"), leaf)
+                self.assertTrue(entry["node"].isdigit(), entry["node"])
+                self.assertIn(f"%2Cn%3A{entry['node']}", entry["url"])
+
+    def test_department_leaf_resolves_to_subcategory_search_url(self):
+        spider = AmazonListingSpider(category="electronics-accessories-supplies")
+        entry = spider.category_entry("electronics-accessories-supplies")
+        self.assertEqual(entry["group"], "electronics")
+        self.assertEqual(
+            spider.resolve_target_url(),
+            "https://www.amazon.com/s?i=electronics"
+            "&rh=n%3A172282%2Cn%3A281407",
         )
 
     def test_category_fixture_follows_shop_by_category_carousel(self):
@@ -41,7 +86,7 @@ class AmazonListingSpiderTests(unittest.TestCase):
             request=request,
         )
 
-        spider = AmazonListingSpider(category="Home & Kitchen", max_pages=1)
+        spider = AmazonListingSpider(category="garden", max_pages=1)
         outputs = list(spider.parse(response))
         requests = [output for output in outputs if isinstance(output, Request)]
 
