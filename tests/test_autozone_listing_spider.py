@@ -7,20 +7,31 @@ from common.spiders.autozone_listing_spider import AutozoneListingSpider
 
 
 def test_categories_use_grouped_mapping_contract():
-    assert list(AutozoneListingSpider.categories) == ["all"]
-    assert len(AutozoneListingSpider.categories["all"]) == 20
-    spider = AutozoneListingSpider(category="oil-filter")
-    assert spider.category_entry("oil-filter") == {
-        "group": "all",
-        "category": "oil-filter",
-        "url": "https://www.autozone.com/filters-and-pcv/oil-filter",
+    categories = AutozoneListingSpider.categories
+    # 23 live departments, 971 leaves, every leaf slug globally unique.
+    assert len(categories) == 23
+    assert sum(len(leaves) for leaves in categories.values()) == 971
+    assert categories["filters-and-pcv"]["engine-oil-filters"] == {
+        "url": "https://www.autozone.com/filters-and-pcv/engine-oil-filters",
+        "name": "Engine Oil Filters",
     }
+    spider = AutozoneListingSpider(category="engine-oil-filters")
+    assert spider.category_entry("engine-oil-filters") == {
+        "group": "filters-and-pcv",
+        "category": "engine-oil-filters",
+        "url": "https://www.autozone.com/filters-and-pcv/engine-oil-filters",
+        "name": "Engine Oil Filters",
+    }
+    leaves = [leaf for leaves in categories.values() for leaf in leaves]
+    assert len(leaves) == len(set(leaves))
 
 
 def response(payload, page=1):
-    url = "https://www.autozone.com/filters-and-pcv/oil-filter"
+    url = "https://www.autozone.com/filters-and-pcv/engine-oil-filters"
     body = f'<script id="__NEXT_DATA__" type="application/json">{json.dumps(payload)}</script>'
-    request = Request(url, meta={"category": "oil-filter", "page": page, "listing_url": url})
+    request = Request(
+        url, meta={"category": "engine-oil-filters", "page": page, "listing_url": url}
+    )
     return HtmlResponse(url, request=request, body=body.encode(), encoding="utf-8")
 
 
@@ -41,7 +52,7 @@ def payload(last=24, total=30):
 
 
 def test_maps_hydration_and_paginates():
-    spider = AutozoneListingSpider(category="oil-filter", max_pages=2)
+    spider = AutozoneListingSpider(category="engine-oil-filters", max_pages=2)
     output = list(spider.parse(response(payload())))
     item, request = output
     assert list(item) == spider.custom_settings["FEED_EXPORT_FIELDS"]
@@ -52,7 +63,7 @@ def test_maps_hydration_and_paginates():
 
 
 def test_stops_at_total_and_deduplicates():
-    spider = AutozoneListingSpider(category="oil-filter", max_pages=3)
+    spider = AutozoneListingSpider(category="engine-oil-filters", max_pages=3)
     assert len(list(spider.parse(response(payload(last=30, total=30))))) == 1
     assert list(spider.parse(response(payload(last=30, total=30)))) == []
 
@@ -64,11 +75,11 @@ def test_stops_at_total_and_deduplicates():
 def test_missing_queries_fail_loudly(mutator, message):
     data = payload(); mutator(data)
     with pytest.raises(RuntimeError, match=message):
-        list(AutozoneListingSpider(category="oil-filter").parse(response(data)))
+        list(AutozoneListingSpider(category="engine-oil-filters").parse(response(data)))
 
 
 def test_missing_or_malformed_next_data_fails_loudly():
-    url = "https://www.autozone.com/filters-and-pcv/oil-filter"
+    url = "https://www.autozone.com/filters-and-pcv/engine-oil-filters"
     blank = HtmlResponse(url, request=Request(url), body=b"", encoding="utf-8")
     with pytest.raises(RuntimeError, match="no __NEXT_DATA__"):
         AutozoneListingSpider._next_data(blank)

@@ -354,7 +354,7 @@ Spiders below are returning items in recent smoke runs:
 | [`nike_listing`](#nike_listing) | Active | api | none detected (ScrapeOps proxy; keep_headers) | Nike product wall via `__NEXT_DATA__` hydration + `api.nike.com` product-wall API pagination (no HTML fallback). | 239 (page 1, proxy) | 168 unique URLs across 6 departments from `nike_categories.py` | `{"category":"mens-shoes-nik1zy7ok","item_id":"IX3952-600","title":"Nike Moon Shoe OG","price":105,"currency":"USD","source":"nike_next_data"...` |
 | [`gamestop_listing`](#gamestop_listing) | Active | api | none detected (ScrapeOps proxy) | GameStop SFCC Demandware listing via the `Tile-GetProductsJSON` controller (no HTML fallback). | 139 (3 pages, proxy) | 119 URLs across 33 category groups from `gamestop_categories.py` | `{"category":"consoles-hardware","item_id":"106429","title":"Nintendo Wii Original Console with Wii Remote - Super Mario Bros. 25th Anniversary Edition Red","price":"139.99","availability":"InStock","source":"gamestop_tile_json"...` |
 | [`getyourguide_listing`](#getyourguide_listing) | Active | bootstrap | none detected through ScrapeOps proxy | GetYourGuide destination activity shelves from server-rendered `window.__INITIAL_STATE__.sdui` hydration (no HTML or JSON-LD fallback). | 24 (one bounded shelf, live proxy) | 20 destination countries from `getyourguide_categories.py` | `{"category":"argentina","item_id":1220349,"title":"El Calafate: Perito Moreno Glacier Boat Tour with Guide","starting_price":50,"currency":"USD","source":"getyourguide_initial_state_sdui"...}` |
-| [`autozone_listing`](#autozone_listing) | Active | bootstrap (Next.js React Query hydration) | ScrapeOps residential proxy required (`residential=true.country=us`) | AutoZone category listings from server-rendered Next.js/TanStack React Query bootstrap state (`productshelf-results` joined to `productSkuDetails` by SKU). | 24 (one page, oil-filter) | 20 stable category seeds | `{"category":"oil-filter","item_id":"1117175","title":"STP Oil Filter S45023","brand":"STP","price":5.99,"currency":"USD","source":"autozone_next_data"...}` |
+| [`autozone_listing`](#autozone_listing) | Active | bootstrap (Next.js React Query hydration) | ScrapeOps residential proxy required (`residential=true.country=us`) | AutoZone category listings from server-rendered Next.js/TanStack React Query bootstrap state (`productshelf-results` joined to `productSkuDetails` by SKU). | 24 (one page, oil-filter, 2026-10-06; PLP hydration unverified since) | 971 leaves across 23 departments from `autozone_categories.py` | `{"category":"oil-filter","item_id":"1117175","title":"STP Oil Filter S45023","brand":"STP","price":5.99,"currency":"USD","source":"autozone_next_data"...}` |
 | [`viator_listing`](#viator_listing) | Active | bootstrap | none detected through ScrapeOps proxy | Viator destination activity shelves from server-rendered `__PRELOADED_DATA__.pageModel.topActivities` hydration (no HTML or JSON-LD fallback). | 15 (one bounded shelf, live proxy) | 20 Popular Cities from `viator_categories.py` | `{"category":"nashville","item_id":"361513P2","title":"LUXURY 5-Star PRIVATE Nashville Party Tour w/ Panoramic Views","price":395,"currency":"USD","source":"viator_preloaded_top_activities"...}` |
 | [`footlocker_listing`](#footlocker_listing) | Active | api | residential proxy (ScrapeOps) | Foot Locker category listings from the ZGW search API (residential proxy required). | 48 (1 page, residential proxy) | Dynamically resolved from `header.public.json` | `{"band":"Men's","sub_category":"Shoes","category":"all-men-s-shoes","item_id":"T8013103","title":"Jordan Retro 12 - Men's","url":"https://www.footlocker.com/product/T8013103.html","image_url":"https://images.footlocker.com/is/image/EBFL2/T8013103","price":215.0,"original_price":215.0,"currency":"USD","availability":"InStock","brand":"Jordan","rating":5.0,"reviews_count":999,"page":1,"category_url":"/category/mens/shoes.html","source":"footlocker_api"...` |
 | [`homedepot_listing`](#homedepot_listing-category-apollo-state) | Active | bootstrap | Akamai | Home Depot department listings from embedded Apollo state. | 24 (live 2026-10-15) | 26 Shop All departments from `homedepot_categories.py` | `{"category":"tools","item_id":"342752170","sku":null,"title":"6 AMP Corded 3 1/4 inch Hand Planer","brand":"RYOBI","price":139.0...` |
@@ -4640,13 +4640,19 @@ scrapy crawl agoda_listing -a category=bali -s HTTPCACHE_ENABLED=False -O agoda.
 
 ### autozone_listing
 
-`autozone_listing` exposes 20 stable AutoZone category seeds and accepts
-`-a category=<name>`. It reads products exclusively from the server-rendered
-Next.js/TanStack React Query bootstrap state: `productshelf-results` supplies
-the shelf records and `productSkuDetails` supplies authoritative price and
-stock data. Those records are joined by SKU; missing queries, details, and
-prices fail loudly. Pagination requests the next PLP page and stops at the
-hydrated total or `max_pages`.
+`autozone_listing` exposes the live AutoZone category inventory and accepts
+`-a category=<leaf-slug>`. `autozone_categories.py` holds **23 departments and
+971 leaf categories**, read from the `topNavProductData` React Query payload in
+the homepage `__NEXT_DATA__` on 2026-10-18; every leaf slug is globally unique,
+so no department prefix is needed. Its `categories` mapping is
+`{department: {leaf: {url, name}}}`, which the DAG groups by department and the
+spider resolves with `category_entry()`.
+
+It reads products from the server-rendered Next.js/TanStack React Query
+bootstrap state: `productshelf-results` supplies the shelf records and
+`productSkuDetails` supplies authoritative price and stock data. Those records
+are joined by SKU; missing queries, details, and prices fail loudly. Pagination
+requests the next PLP page and stops at the hydrated total or `max_pages`.
 
 All AutoZone requests require the configured ScrapeOps proxy. The spider adds
 `residential=true.country=us` to that proxy username without embedding
@@ -4654,11 +4660,17 @@ credentials. Its ordered `FEED_EXPORT_FIELDS` include category, identifiers,
 product facts, canonical URL, image, price/availability, sponsorship, page and
 position metadata, source, the joined raw hydration records, and the crawl
 timestamp.
-An uncached live check on 2026-10-06 exported 24/24 unique oil-filter SKUs;
-sample: `1117175`, “STP Oil Filter S45023”, `$5.99`, in stock.
+
+The category inventory above is verified live. Product output is **not**
+re-verified on this date: a 2026-10-18 capture of
+`/filters-and-pcv/engine-oil-filters` still carries `__NEXT_DATA__` but its
+`dehydratedState` no longer includes a `productshelf-results` query (the
+`citrus/categorypage` entry holds only `ads`), so a crawl currently stops at
+`AutoZone hydration has no productshelf-results query`. The earlier 2026-10-06
+check exported 24/24 unique oil-filter SKUs.
 
 ```bash
-scrapy crawl autozone_listing -a category=oil-filter -a max_pages=1 -s HTTPCACHE_ENABLED=False
+scrapy crawl autozone_listing -a category=engine-oil-filters -a max_pages=1 -s HTTPCACHE_ENABLED=False
 ```
 
 ### rent_listing

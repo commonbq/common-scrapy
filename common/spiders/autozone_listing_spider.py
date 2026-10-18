@@ -8,39 +8,16 @@ from urllib.parse import parse_qsl, urlencode, urljoin, urlsplit, urlunsplit
 
 import scrapy
 
+from common.spiders.autozone_categories import AUTOZONE_CATEGORIES
 from common.spiders.base_listing_spider import BaseListingSpider
 
 
 class AutozoneListingSpider(BaseListingSpider):
     name = "autozone_listing"
     allowed_domains = ["autozone.com", "www.autozone.com"]
-    categories = {
-        "all": {
-            slug: "https://www.autozone.com" + path
-            for slug, path in [
-                ("oil-filter", "/filters-and-pcv/oil-filter"),
-                ("batteries-chargers", "/batteries-starting-and-charging"),
-                ("brakes", "/brakes-and-traction-control"),
-                ("lighting-electrical", "/electrical-and-lighting"),
-                ("wipers-components", "/ignition-tune-up-and-routine-maintenance"),
-                ("wash-wax", "/wash-and-wax"),
-                ("oil-fluids-chemicals", "/fluids-and-chemicals"),
-                ("alternators-starters", "/alternators-and-charging-system"),
-                ("towing-trailer", "/truck-and-towing"),
-                ("interior-accessories", "/interior-accessories"),
-                ("air-conditioning-heating", "/cooling-heating-and-climate-control"),
-                ("apparel-clothing-hats", "/apparel-clothing-hats"),
-                ("belts-hoses", "/belts-and-hoses"),
-                ("body-collision", "/collision-body-parts-and-hardware"),
-                ("engines", "/external-engine"),
-                ("exhaust-emission-control", "/emission-control-and-exhaust"),
-                ("exterior-accessories", "/exterior-accessories"),
-                ("filters-pcv", "/filters-and-pcv"),
-                ("fuel-air-delivery", "/fuel-and-air-delivery"),
-                ("paint-adhesive", "/paint-and-body"),
-            ]
-        }
-    }
+    # Canonical group -> leaf -> {url, name} inventory from the live top
+    # navigation; see common/spiders/autozone_categories.py.
+    categories = AUTOZONE_CATEGORIES
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
         "DOWNLOAD_DELAY": 1,
