@@ -59,12 +59,24 @@ def response(records, page=1):
 class RemaxListingSpiderTest(unittest.TestCase):
     def test_categories_cover_all_state_routes_in_grouped_mapping(self):
         self.assertIsInstance(REMAX_CATEGORIES, Mapping)
-        self.assertEqual(set(REMAX_CATEGORIES), {"states"})
-        self.assertEqual(len(REMAX_CATEGORIES["states"]), 50)
         self.assertEqual(
-            REMAX_CATEGORIES["states"]["wyoming"],
-            "https://www.remax.com/homes-for-sale/wy",
+            set(REMAX_CATEGORIES), {"northeast", "midwest", "south", "west"}
         )
+        leaves = {
+            leaf: url
+            for group in REMAX_CATEGORIES.values()
+            for leaf, url in group.items()
+        }
+        # All 50 states from the live navigation plus the DC state page.
+        self.assertEqual(len(leaves), 51)
+        self.assertEqual(
+            leaves["wyoming"], "https://www.remax.com/homes-for-sale/wy"
+        )
+        self.assertEqual(
+            leaves["district-of-columbia"],
+            "https://www.remax.com/homes-for-sale/dc",
+        )
+        self.assertIn("district-of-columbia", REMAX_CATEGORIES["south"])
 
     def test_maps_rsc_bootstrap_and_obeys_feed_contract(self):
         spider = RemaxListingSpider(category="california", max_pages=1)

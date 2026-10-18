@@ -1,57 +1,142 @@
-"""All US state sale-search routes linked by the RE/MAX website."""
+"""RE/MAX crawl inventory: every US state sale-search route, grouped by region.
+
+The state list is the ``homes-for-sale/<state>`` navigation published on
+https://www.remax.com/ (captured live on 2026-10-19: 50 states, unchanged from
+the previous flat inventory). The District of Columbia is added explicitly:
+``/homes-for-sale/dc`` is not in the desktop navigation, but it is a real state
+page (verified live 2026-10-19, 3,839 sale listings), so the inventory covers all
+51 sale-search state routes RE/MAX serves.
+
+Leaf keys are the values accepted by ``-a category=``. The
+``northeast``/``midwest``/``south``/``west`` groups are the four US Census
+regions, matching the convention already used by ``landwatch_categories.py`` and
+``realtor_categories.py``; the grouping is editorial and the leaf slugs are
+unchanged from the flat inventory this file used to hold.
+"""
+
+
+def _state_urls(*names: str) -> dict[str, str]:
+    return {
+        name.lower(): f"https://www.remax.com/homes-for-sale/{_STATE_CODES[name]}"
+        for name in names
+    }
+
+
+# RE/MAX state route segments. The site uses the postal abbreviation for every
+# state, which is not mechanically derivable from the full state name.
+_STATE_CODES = {
+    "Alabama": "al",
+    "Alaska": "ak",
+    "Arizona": "az",
+    "Arkansas": "ar",
+    "California": "ca",
+    "Colorado": "co",
+    "Connecticut": "ct",
+    "Delaware": "de",
+    "District-of-Columbia": "dc",
+    "Florida": "fl",
+    "Georgia": "ga",
+    "Hawaii": "hi",
+    "Idaho": "id",
+    "Illinois": "il",
+    "Indiana": "in",
+    "Iowa": "ia",
+    "Kansas": "ks",
+    "Kentucky": "ky",
+    "Louisiana": "la",
+    "Maine": "me",
+    "Maryland": "md",
+    "Massachusetts": "ma",
+    "Michigan": "mi",
+    "Minnesota": "mn",
+    "Mississippi": "ms",
+    "Missouri": "mo",
+    "Montana": "mt",
+    "Nebraska": "ne",
+    "Nevada": "nv",
+    "New-Hampshire": "nh",
+    "New-Jersey": "nj",
+    "New-Mexico": "nm",
+    "New-York": "ny",
+    "North-Carolina": "nc",
+    "North-Dakota": "nd",
+    "Ohio": "oh",
+    "Oklahoma": "ok",
+    "Oregon": "or",
+    "Pennsylvania": "pa",
+    "Rhode-Island": "ri",
+    "South-Carolina": "sc",
+    "South-Dakota": "sd",
+    "Tennessee": "tn",
+    "Texas": "tx",
+    "Utah": "ut",
+    "Vermont": "vt",
+    "Virginia": "va",
+    "Washington": "wa",
+    "West-Virginia": "wv",
+    "Wisconsin": "wi",
+    "Wyoming": "wy",
+}
 
 
 REMAX_CATEGORIES = {
-    "states": {
-        "alabama": "https://www.remax.com/homes-for-sale/al",
-        "alaska": "https://www.remax.com/homes-for-sale/ak",
-        "arizona": "https://www.remax.com/homes-for-sale/az",
-        "arkansas": "https://www.remax.com/homes-for-sale/ar",
-        "california": "https://www.remax.com/homes-for-sale/ca",
-        "colorado": "https://www.remax.com/homes-for-sale/co",
-        "connecticut": "https://www.remax.com/homes-for-sale/ct",
-        "delaware": "https://www.remax.com/homes-for-sale/de",
-        "florida": "https://www.remax.com/homes-for-sale/fl",
-        "georgia": "https://www.remax.com/homes-for-sale/ga",
-        "hawaii": "https://www.remax.com/homes-for-sale/hi",
-        "idaho": "https://www.remax.com/homes-for-sale/id",
-        "illinois": "https://www.remax.com/homes-for-sale/il",
-        "indiana": "https://www.remax.com/homes-for-sale/in",
-        "iowa": "https://www.remax.com/homes-for-sale/ia",
-        "kansas": "https://www.remax.com/homes-for-sale/ks",
-        "kentucky": "https://www.remax.com/homes-for-sale/ky",
-        "louisiana": "https://www.remax.com/homes-for-sale/la",
-        "maine": "https://www.remax.com/homes-for-sale/me",
-        "maryland": "https://www.remax.com/homes-for-sale/md",
-        "massachusetts": "https://www.remax.com/homes-for-sale/ma",
-        "michigan": "https://www.remax.com/homes-for-sale/mi",
-        "minnesota": "https://www.remax.com/homes-for-sale/mn",
-        "mississippi": "https://www.remax.com/homes-for-sale/ms",
-        "missouri": "https://www.remax.com/homes-for-sale/mo",
-        "montana": "https://www.remax.com/homes-for-sale/mt",
-        "nebraska": "https://www.remax.com/homes-for-sale/ne",
-        "nevada": "https://www.remax.com/homes-for-sale/nv",
-        "new-hampshire": "https://www.remax.com/homes-for-sale/nh",
-        "new-jersey": "https://www.remax.com/homes-for-sale/nj",
-        "new-mexico": "https://www.remax.com/homes-for-sale/nm",
-        "new-york": "https://www.remax.com/homes-for-sale/ny",
-        "north-carolina": "https://www.remax.com/homes-for-sale/nc",
-        "north-dakota": "https://www.remax.com/homes-for-sale/nd",
-        "ohio": "https://www.remax.com/homes-for-sale/oh",
-        "oklahoma": "https://www.remax.com/homes-for-sale/ok",
-        "oregon": "https://www.remax.com/homes-for-sale/or",
-        "pennsylvania": "https://www.remax.com/homes-for-sale/pa",
-        "rhode-island": "https://www.remax.com/homes-for-sale/ri",
-        "south-carolina": "https://www.remax.com/homes-for-sale/sc",
-        "south-dakota": "https://www.remax.com/homes-for-sale/sd",
-        "tennessee": "https://www.remax.com/homes-for-sale/tn",
-        "texas": "https://www.remax.com/homes-for-sale/tx",
-        "utah": "https://www.remax.com/homes-for-sale/ut",
-        "vermont": "https://www.remax.com/homes-for-sale/vt",
-        "virginia": "https://www.remax.com/homes-for-sale/va",
-        "washington": "https://www.remax.com/homes-for-sale/wa",
-        "west-virginia": "https://www.remax.com/homes-for-sale/wv",
-        "wisconsin": "https://www.remax.com/homes-for-sale/wi",
-        "wyoming": "https://www.remax.com/homes-for-sale/wy",
-    },
+    "northeast": _state_urls(
+        "Connecticut",
+        "Maine",
+        "Massachusetts",
+        "New-Hampshire",
+        "Rhode-Island",
+        "Vermont",
+        "New-Jersey",
+        "New-York",
+        "Pennsylvania",
+    ),
+    "midwest": _state_urls(
+        "Indiana",
+        "Illinois",
+        "Michigan",
+        "Ohio",
+        "Wisconsin",
+        "Iowa",
+        "Kansas",
+        "Minnesota",
+        "Missouri",
+        "Nebraska",
+        "North-Dakota",
+        "South-Dakota",
+    ),
+    "south": _state_urls(
+        "Delaware",
+        "District-of-Columbia",
+        "Florida",
+        "Georgia",
+        "Maryland",
+        "North-Carolina",
+        "South-Carolina",
+        "Virginia",
+        "West-Virginia",
+        "Alabama",
+        "Kentucky",
+        "Mississippi",
+        "Tennessee",
+        "Arkansas",
+        "Louisiana",
+        "Oklahoma",
+        "Texas",
+    ),
+    "west": _state_urls(
+        "Arizona",
+        "Colorado",
+        "Idaho",
+        "Montana",
+        "Nevada",
+        "New-Mexico",
+        "Utah",
+        "Wyoming",
+        "Alaska",
+        "California",
+        "Hawaii",
+        "Oregon",
+        "Washington",
+    ),
 }
