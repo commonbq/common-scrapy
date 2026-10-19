@@ -1,8 +1,61 @@
+"""IKEA US product taxonomy, captured from the live storefront navigation.
+
+Sourced from the `catalogSlim` navigation tree embedded in the IKEA US
+homepage on 2026-10-19: **23 departments and 219 unique category targets**.
+Each department contributes its own landing page (stored as ``Shop all``) plus
+its direct child categories, which are the concrete SIK category pages the
+spider crawls with ``-a category=<token>``.
+
+``IKE_A_CATEGORIES`` uses the grouped mapping contract consumed by
+``BaseListingSpider``: ``{department: {token: {department, name, url}}}``.
+Leaf keys stay the final IKEA category token (for example ``st004``), so the
+documented ``-a category=st004`` command is unchanged; the DAG groups the
+tasks by department.
+"""
+
 import json
 import re
 
 _IKE_A_CATEGORY_LINKS = json.loads(r'''
 {
+  "Winter holiday shop": [
+    {
+      "name": "Shop all",
+      "url": "https://www.ikea.com/us/en/cat/winter-holidays-wt001/"
+    },
+    {
+      "name": "Holiday decor",
+      "url": "https://www.ikea.com/us/en/cat/winter-decoration-49149/"
+    },
+    {
+      "name": "Christmas lights",
+      "url": "https://www.ikea.com/us/en/cat/winter-lights-49150/"
+    },
+    {
+      "name": "Holiday textiles",
+      "url": "https://www.ikea.com/us/en/cat/winter-textiles-49152/"
+    },
+    {
+      "name": "Holiday tableware",
+      "url": "https://www.ikea.com/us/en/cat/winter-tableware-49153/"
+    },
+    {
+      "name": "Winter plants",
+      "url": "https://www.ikea.com/us/en/cat/winter-pots-plants-49151/"
+    },
+    {
+      "name": "Holiday food",
+      "url": "https://www.ikea.com/us/en/cat/holiday-foods-49227/"
+    },
+    {
+      "name": "Wrapping paper and bags",
+      "url": "https://www.ikea.com/us/en/cat/paper-shop-25227/"
+    },
+    {
+      "name": "Holiday baking tools",
+      "url": "https://www.ikea.com/us/en/cat/winter-cooking-baking-49154/"
+    }
+  ],
   "Storage & organization": [
     {
       "name": "Shop all",
@@ -275,10 +328,6 @@ _IKE_A_CATEGORY_LINKS = json.loads(r'''
       "url": "https://www.ikea.com/us/en/cat/home-textiles-tl001/"
     },
     {
-      "name": "Bedding & bedding sets",
-      "url": "https://www.ikea.com/us/en/cat/bedding-tl004/"
-    },
-    {
       "name": "Decorative pillows & couch cushion covers",
       "url": "https://www.ikea.com/us/en/cat/decorative-pillows-cushion-covers-10659/"
     },
@@ -411,10 +460,6 @@ _IKE_A_CATEGORY_LINKS = json.loads(r'''
       "url": "https://www.ikea.com/us/en/cat/mittzon-conference-meeting-tables-54173/"
     },
     {
-      "name": "Conference table & chair sets",
-      "url": "https://www.ikea.com/us/en/cat/conference-table-chair-sets-700424/"
-    },
-    {
       "name": "Desk & chair sets",
       "url": "https://www.ikea.com/us/en/cat/desk-chair-sets-53249/"
     },
@@ -457,20 +502,12 @@ _IKE_A_CATEGORY_LINKS = json.loads(r'''
       "url": "https://www.ikea.com/us/en/cat/flatware-18865/"
     },
     {
-      "name": "Table linens",
-      "url": "https://www.ikea.com/us/en/cat/table-linen-20538/"
-    },
-    {
       "name": "Bakeware & accessories",
       "url": "https://www.ikea.com/us/en/cat/bakeware-20636/"
     },
     {
       "name": "Dishwashing accessories",
       "url": "https://www.ikea.com/us/en/cat/dishwashing-accessories-15938/"
-    },
-    {
-      "name": "Kitchen linens & textiles",
-      "url": "https://www.ikea.com/us/en/cat/kitchen-textiles-18850/"
     },
     {
       "name": "Kids tableware & dinnerware",
@@ -543,14 +580,6 @@ _IKE_A_CATEGORY_LINKS = json.loads(r'''
       "url": "https://www.ikea.com/us/en/cat/clocks-10759/"
     },
     {
-      "name": "Holiday decor",
-      "url": "https://www.ikea.com/us/en/cat/winter-decoration-49149/"
-    },
-    {
-      "name": "Wrapping paper and bags",
-      "url": "https://www.ikea.com/us/en/cat/paper-shop-25227/"
-    },
-    {
       "name": "Table decor & decorative accessories",
       "url": "https://www.ikea.com/us/en/cat/decorative-accessories-24924/"
     }
@@ -575,20 +604,12 @@ _IKE_A_CATEGORY_LINKS = json.loads(r'''
       "url": "https://www.ikea.com/us/en/cat/storage-containers-st007/"
     },
     {
-      "name": "Storage boxes & organization bins",
-      "url": "https://www.ikea.com/us/en/cat/storage-boxes-baskets-10550/"
-    },
-    {
       "name": "Clothes organizers",
       "url": "https://www.ikea.com/us/en/cat/clothes-organizers-10452/"
     },
     {
       "name": "Desk accessories",
       "url": "https://www.ikea.com/us/en/cat/desk-accessories-10573/"
-    },
-    {
-      "name": "Food storage & organizing",
-      "url": "https://www.ikea.com/us/en/cat/food-storage-organizing-15937/"
     },
     {
       "name": "Bathroom accessories & organizers",
@@ -637,14 +658,6 @@ _IKE_A_CATEGORY_LINKS = json.loads(r'''
       "url": "https://www.ikea.com/us/en/cat/bathroom-shelving-units-20804/"
     },
     {
-      "name": "Bathroom accessories & organizers",
-      "url": "https://www.ikea.com/us/en/cat/bathroom-accessories-10555/"
-    },
-    {
-      "name": "Bathroom textiles",
-      "url": "https://www.ikea.com/us/en/cat/bathroom-textiles-tl003/"
-    },
-    {
       "name": "Bathroom wall cabinets",
       "url": "https://www.ikea.com/us/en/cat/bathroom-wall-cabinets-20808/"
     },
@@ -673,10 +686,6 @@ _IKE_A_CATEGORY_LINKS = json.loads(r'''
       "url": "https://www.ikea.com/us/en/cat/bathroom-laundry-ba003/"
     },
     {
-      "name": "Bathroom lighting",
-      "url": "https://www.ikea.com/us/en/cat/bathroom-lighting-10736/"
-    },
-    {
       "name": "Bathroom sinks",
       "url": "https://www.ikea.com/us/en/cat/bathroom-sinks-20723/"
     },
@@ -703,10 +712,6 @@ _IKE_A_CATEGORY_LINKS = json.loads(r'''
       "url": "https://www.ikea.com/us/en/cat/outdoor-patio-furniture-od003/"
     },
     {
-      "name": "Outdoor storage: shelves, cabinets & boxes",
-      "url": "https://www.ikea.com/us/en/cat/outdoor-organizing-21958/"
-    },
-    {
       "name": "Outdoor tiles & flooring",
       "url": "https://www.ikea.com/us/en/cat/outdoor-flooring-21957/"
     },
@@ -725,10 +730,6 @@ _IKE_A_CATEGORY_LINKS = json.loads(r'''
     {
       "name": "Plant accessories",
       "url": "https://www.ikea.com/us/en/cat/outdoor-pots-plants-31787/"
-    },
-    {
-      "name": "Outdoor lighting",
-      "url": "https://www.ikea.com/us/en/cat/outdoor-lighting-17897/"
     },
     {
       "name": "Outdoor rugs",
@@ -767,14 +768,6 @@ _IKE_A_CATEGORY_LINKS = json.loads(r'''
       "url": "https://www.ikea.com/us/en/cat/plants-planters-pp001/"
     },
     {
-      "name": "Plants and flowers",
-      "url": "https://www.ikea.com/us/en/cat/plants-flowers-pp003/"
-    },
-    {
-      "name": "Plant pots & stands",
-      "url": "https://www.ikea.com/us/en/cat/flower-pots-stands-pp004/"
-    },
-    {
       "name": "Plant stands",
       "url": "https://www.ikea.com/us/en/cat/plant-stands-movers-20494/"
     },
@@ -799,10 +792,6 @@ _IKE_A_CATEGORY_LINKS = json.loads(r'''
     {
       "name": "Waste sorting",
       "url": "https://www.ikea.com/us/en/cat/bins-bags-16213/"
-    },
-    {
-      "name": "Dishwashing accessories",
-      "url": "https://www.ikea.com/us/en/cat/dishwashing-accessories-15938/"
     },
     {
       "name": "Laundry room cabinets & shelving",
@@ -833,10 +822,6 @@ _IKE_A_CATEGORY_LINKS = json.loads(r'''
     {
       "name": "Shop all",
       "url": "https://www.ikea.com/us/en/cat/ikea-food-restaurant-fb001/"
-    },
-    {
-      "name": "Holiday food",
-      "url": "https://www.ikea.com/us/en/cat/holiday-foods-49227/"
     },
     {
       "name": "Side dishes & sauces",
@@ -873,10 +858,6 @@ _IKE_A_CATEGORY_LINKS = json.loads(r'''
     {
       "name": "Beverages",
       "url": "https://www.ikea.com/us/en/cat/beverages-25211/"
-    },
-    {
-      "name": "Summer food",
-      "url": "https://www.ikea.com/us/en/cat/summer-food-53254/"
     }
   ],
   "Home electronics": [
@@ -897,18 +878,6 @@ _IKE_A_CATEGORY_LINKS = json.loads(r'''
       "url": "https://www.ikea.com/us/en/cat/cords-chargers-40845/"
     },
     {
-      "name": "Cable management & cord organizers",
-      "url": "https://www.ikea.com/us/en/cat/cable-management-accessories-16195/"
-    },
-    {
-      "name": "Smart lighting",
-      "url": "https://www.ikea.com/us/en/cat/smart-lighting-36812/"
-    },
-    {
-      "name": "Kitchen appliances",
-      "url": "https://www.ikea.com/us/en/cat/appliances-ka002/"
-    },
-    {
       "name": "Air purifiers & filters",
       "url": "https://www.ikea.com/us/en/cat/air-quality-products-49081/"
     },
@@ -927,24 +896,12 @@ _IKE_A_CATEGORY_LINKS = json.loads(r'''
       "url": "https://www.ikea.com/us/en/cat/skytta-sliding-door-system-55984/"
     },
     {
-      "name": "Knobs and handles",
-      "url": "https://www.ikea.com/us/en/cat/cabinet-knobs-handles-pulls-16298/"
-    },
-    {
-      "name": "Outdoor tiles & flooring",
-      "url": "https://www.ikea.com/us/en/cat/outdoor-flooring-21957/"
-    },
-    {
       "name": "Tools and accessories",
       "url": "https://www.ikea.com/us/en/cat/tools-hardware-16292/"
     },
     {
       "name": "Faucets",
       "url": "https://www.ikea.com/us/en/cat/taps-700718/"
-    },
-    {
-      "name": "Moving supplies",
-      "url": "https://www.ikea.com/us/en/cat/moving-supplies-46078/"
     },
     {
       "name": "Wood treatment oils & furniture paint",
@@ -979,56 +936,11 @@ _IKE_A_CATEGORY_LINKS = json.loads(r'''
       "url": "https://www.ikea.com/us/en/cat/smart-home-hs001/"
     },
     {
-      "name": "Smart lighting",
-      "url": "https://www.ikea.com/us/en/cat/smart-lighting-36812/"
-    },
-    {
-      "name": "Smart switches, plugs & sensors",
-      "url": "https://www.ikea.com/us/en/cat/smart-light-wireless-switch-36814/"
-    },
-    {
       "name": "Smart air purifiers",
       "url": "https://www.ikea.com/us/en/cat/smart-air-purifiers-56472/"
     }
-  ],
-  "Winter holiday shop": [
-    {
-      "name": "Shop all",
-      "url": "https://www.ikea.com/us/en/cat/winter-holidays-wt001/"
-    },
-    {
-      "name": "Holiday decor",
-      "url": "https://www.ikea.com/us/en/cat/winter-decoration-49149/"
-    },
-    {
-      "name": "Christmas lights",
-      "url": "https://www.ikea.com/us/en/cat/winter-lights-49150/"
-    },
-    {
-      "name": "Holiday textiles",
-      "url": "https://www.ikea.com/us/en/cat/winter-textiles-49152/"
-    },
-    {
-      "name": "Holiday tableware",
-      "url": "https://www.ikea.com/us/en/cat/winter-tableware-49153/"
-    },
-    {
-      "name": "Winter plants",
-      "url": "https://www.ikea.com/us/en/cat/winter-pots-plants-49151/"
-    },
-    {
-      "name": "Holiday food",
-      "url": "https://www.ikea.com/us/en/cat/holiday-foods-49227/"
-    },
-    {
-      "name": "Wrapping paper and bags",
-      "url": "https://www.ikea.com/us/en/cat/paper-shop-25227/"
-    },
-    {
-      "name": "Holiday baking tools",
-      "url": "https://www.ikea.com/us/en/cat/winter-cooking-baking-49154/"
-    }
   ]
+
 }
 ''')
 

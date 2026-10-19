@@ -104,7 +104,7 @@ class IkeaListingSpiderTest(unittest.TestCase):
         self.assertEqual(len(urls), len(set(urls)))
         # Exact count from the captured inventory, not a loose lower bound: the
         # issue requires the complete concrete inventory.
-        self.assertEqual(len(urls), 221)
+        self.assertEqual(len(urls), 219)
 
     def test_inventory_entries_pass_schema_validation(self):
         # require_category_arg=False makes BaseListingSpider skip its
@@ -123,7 +123,7 @@ class IkeaListingSpiderTest(unittest.TestCase):
             )
         # The default construction path runs the same validation.
         self.assertEqual(
-            len(list(IkeaListingSpider(category="st004").iter_categories())), 221
+            len(list(IkeaListingSpider(category="st004").iter_categories())), 219
         )
 
     def test_malformed_inventory_is_rejected(self):

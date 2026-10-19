@@ -371,7 +371,7 @@ Spiders below are returning items in recent smoke runs:
 | [`hm_listing`](#hm_listing) | Experimental | bootstrap (Next.js `__NEXT_DATA__`) | Akamai | H&M US product listings from authoritative server-rendered PLP hydration, with hydrated pagination. | 60/page | 5 departments / 122 leaves (grouped mapping): Women (33), Men (28), Kids (35), Home (14), Beauty (12) | `{"category":"women-new-arrivals","item_id":"1345672001","title":"Scarf-Detail Jacket","price":59.99,"currency":"USD","source":"hm_next_data"}` |
 | [`homedepot_search`](#homedepot_search-keyword-apollo-bootstrap) | Active | bootstrap + html | Akamai | Home Depot keyword search via Apollo state. | 24 (ok) | - | `{"item_id":"336787835","sku":"1014334650","brand":"Lukyamzn","title":"14 in. Dual-Core Celeron N4000 Laptop 6 GB RAM 128 GB SSD IPS Displ...` |
 | [`jcpenney_listing`](#jcpenney_listing) | Active | api | Akamai (+ reCAPTCHA scripts observed) | JCPenney listing spider via search API bootstrap endpoint. | 48 (ok) | 638 storefront categories across 14 departments from the public category sitemaps in `jcpenney_categories.py` | `{"item_id":"ppr5008584232","title":"St. John's Bay Womens Boat Neck Elbow Sleeve T-Shirt","brand":"st. john's bay","url":"https://www.jcp...` |
-| [`ikea_listing`](#ikea_listing) | Active | api + html | none detected | IKEA category listings from the SIK search API, with a server-rendered HTML fallback. | 46 (api, ok) / 24 (html, ok) | 221 unique targets from 23 departments | `{"category":"st004","item_id":"50561244","title":"STORKLINTA","product_type":"6-drawer dresser","price":279.99,"department":"Storage & organization",...}` |
+| [`ikea_listing`](#ikea_listing) | Active | api + html | none detected | IKEA category listings from the SIK search API, with a server-rendered HTML fallback. | 46 (api, ok) / 24 (html, ok) | 219 unique targets in 23 departments (grouped mapping, up to 3 per DAG group) | `{"category":"st004","item_id":"50561244","title":"STORKLINTA","product_type":"6-drawer dresser","price":279.99,"department":"Storage & organization",...}` |
 | [`iherb_listing`](#iherb_listing) | Active | api | PerimeterX on storefront; catalog API works through ScrapeOps US proxy | iHerb category listings from the first-party catalog product API (single API direction; no HTML or JSON-LD fallback). | 100 (2 pages, magnesium) | 380 unique category URLs across 9 departments from `iherb_categories.py` | `{"category":"magnesium","item_id":"103273","title":"California Gold Nutrition, Magnesium Bisglycinate Chelate...","price":12.59,"currency":"USD","source":"iherb_catalog_api",...}` |
 | [`kroger_listing`](#kroger_search--kroger_listing) | Active | Redux bootstrap | unknown (timeout/no verdict) | Kroger category listings from `window.__INITIAL_STATE__` search products. | 2 (fixture) | cereal, milk, eggs, bread, coffee, snacks | `{"category":"cereal","item_id":"0001111012345","title":"Kroger Toasted Oats Cereal","brand":"Kroger","price":3.99,...}` |
 | [`klook_listing`](#klook_listing) | Active | API | none detected through ScrapeOps | Klook activities from the first-party destination recommendation API discovered in `window.__KLOOK__` hydration. | 12 (Japan, one curated response) | 20 popular country/city destinations | `{"item_id":"46604","title":"Universal Studios Japan Studio Pass","currency":"HKD","source":"klook_destination_api",...}` |
@@ -2952,9 +2952,14 @@ hydrated record.
 ### ikea_listing
 
 Uses IKEA's SIK category-search endpoint as the single authoritative product
-source. The bundled inventory is normalized from 23 product departments and
-deduplicated by IKEA item number; category arguments are the final IKEA category
-tokens (for example, `st004`).
+source. `ikea_categories.py` holds the storefront's own `catalogSlim` navigation
+tree captured live on 2026-10-19 as a grouped mapping — **219 category targets in
+23 departments**, each department contributing its landing page plus its direct
+child categories. Duplicate URLs are dropped; category arguments are the final
+IKEA category tokens (for example, `st004`). The `ikea_listing` DAG consumes the
+inventory through `_spider_category_groups(..., group_by="department")`, so each
+department becomes a TaskGroup and the factory schedules up to three categories
+per group.
 
 Pagination uses fixed 24-**slot** windows — offsets `0, 24, 48, ...` — not
 24-product windows. A window is a mixed slot budget: the storefront fills it with
