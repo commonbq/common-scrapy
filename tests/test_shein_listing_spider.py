@@ -24,7 +24,9 @@ class SheinListingSpiderTest(unittest.TestCase):
         items = list(self.spider.parse(self.response(body)))
 
         self.assertEqual(len(items), 2)
-        self.assertEqual(list(items[0]), self.spider.custom_settings["FEED_EXPORT_FIELDS"])
+        self.assertEqual(
+            list(items[0]), self.spider.custom_settings["FEED_EXPORT_FIELDS"]
+        )
         self.assertEqual(items[0]["item_id"], "12345678")
         self.assertEqual(items[0]["price"], 19.99)
         self.assertEqual(items[0]["availability"], "InStock")
@@ -37,11 +39,24 @@ class SheinListingSpiderTest(unittest.TestCase):
 
     def test_categories_use_complete_grouped_mapping(self):
         self.assertIsInstance(SheinListingSpider.categories, Mapping)
-        self.assertEqual(set(SheinListingSpider.categories), {"all"})
-        self.assertEqual(len(SheinListingSpider.categories["all"]), 24)
+        self.assertEqual(len(SheinListingSpider.categories), 25)
+        self.assertEqual(
+            sum(len(leaves) for leaves in SheinListingSpider.categories.values()),
+            2067,
+        )
+        self.assertIn("new-in", SheinListingSpider.categories)
+        self.assertIn("sale", SheinListingSpider.categories)
+        leaves = [
+            leaf for group in SheinListingSpider.categories.values() for leaf in group
+        ]
+        self.assertEqual(len(leaves), len(set(leaves)))
         self.assertEqual(
             self.spider.category_entry("electronics")["url"],
             "https://us.shein.com/RecommendSelection/Electronics-sc-017706908.html",
+        )
+        self.assertEqual(
+            self.spider.category_entry("women-dresses")["url"],
+            "https://us.shein.com/Women-Dresses-c-12472.html",
         )
 
 
