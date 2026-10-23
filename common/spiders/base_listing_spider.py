@@ -30,14 +30,13 @@ Helpers: ``iter_categories()`` yields rich leaves ``{group, category, url, ...}`
 """
 
 import re
-import sys
+import os
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from typing import Any
 
 import scrapy
 from scrapy import signals
-from scrapy.exceptions import CloseSpider
 
 from datetime import datetime
 
@@ -102,7 +101,8 @@ class BaseListingSpider(scrapy.Spider):
     def _check_items_scraped(self, spider, reason):
         """Fail the crawl when it closes without exporting any items."""
         if spider.crawler.stats.get_value("item_scraped_count", 0) == 0:
-            sys.exit(1)
+            # Bypasses Twisted exception catching and terminates process with code 1
+            os._exit(1)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
