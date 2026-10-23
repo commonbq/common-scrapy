@@ -30,6 +30,7 @@ Helpers: ``iter_categories()`` yields rich leaves ``{group, category, url, ...}`
 """
 
 import re
+import sys
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from typing import Any
@@ -101,7 +102,7 @@ class BaseListingSpider(scrapy.Spider):
     def _check_items_scraped(self, spider, reason):
         """Fail the crawl when it closes without exporting any items."""
         if spider.crawler.stats.get_value("item_scraped_count", 0) == 0:
-            raise CloseSpider("no_items_scraped")
+            sys.exit(1)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
