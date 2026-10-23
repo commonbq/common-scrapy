@@ -35,6 +35,8 @@ from dataclasses import dataclass
 from typing import Any
 
 import scrapy
+from scrapy import signals
+from scrapy.exceptions import CloseSpider
 
 from datetime import datetime
 
@@ -89,6 +91,17 @@ class BaseListingSpider(scrapy.Spider):
     categories: Mapping[str, Mapping[str, Any]] | Sequence[Mapping[str, Any]] = []
     # BaseSearchSpider overrides this to False.
     require_category_arg: bool = True
+
+    @classmethod
+    def from_crawler(cls, crawler, *args, **kwargs):
+        spider = super().from_crawler(crawler, *args, **kwargs)
+        crawler.signals.connect(spider._check_items_scraped, signal=signals.spider_closed)
+        return spider
+
+    def _check_items_scraped(self, spider, reason):
+        """Fail the crawl when it closes without exporting any items."""
+        if spider.crawler.stats.get_value("item_scraped_count", 0) == 0:
+            raise CloseSpider("no_items_scraped")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
