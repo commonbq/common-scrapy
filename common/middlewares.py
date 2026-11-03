@@ -18,6 +18,7 @@ class CommonSpiderMiddleware:
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the spider middleware does not modify the
     # passed objects.
+    RETRY_KEY = "retries"
 
     @classmethod
     def from_crawler(cls, crawler):
@@ -50,7 +51,30 @@ class CommonSpiderMiddleware:
         # (from other spider middleware) raises an exception.
 
         # Should return either None or an iterable of Request or item objects.
-        pass
+        # Import lazily so loading project middleware does not introduce a
+        # module-level dependency on every listing spider's base class.
+        from common.spiders.base_listing_spider import BaseListingSpider
+
+        if not isinstance(spider, BaseListingSpider):
+            return None
+        if not isinstance(exception, RuntimeError):
+            return None
+
+        retry_count = int(response.meta.get(self.RETRY_KEY, 0))
+        max_retries = spider.settings.getint("MAX_RETRIES", 2)
+        if retry_count > max_retries:
+            return None
+
+        retry_request = response.request.copy()
+        retry_request.dont_filter = True
+        retry_request.meta["dont_cache"] = True
+        retry_request.meta[self.RETRY_KEY] = retry_count + 1
+        spider.logger.warning(
+            "Retrying after RuntimeError (%s): %s",
+            exception,
+            response.url,
+        )
+        return [retry_request]
 
     async def process_start(self, start):
         # Called with an async iterator over the spider start() method or the
@@ -93,6 +117,11 @@ class CommonDownloaderMiddleware:
         retries = int(request.meta.get("retries", 0))
         retry_proxy = os.environ.get(f"RETRY_PROXY_{retries}") if retries > 0 else None
         if retry_proxy:
+            spider.logger.info(
+                "Using retry proxy for request %s (retry count: %d)",
+                request.url,
+                retries,
+            )
             request.meta["proxy"] = retry_proxy
             return None
 

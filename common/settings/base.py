@@ -90,6 +90,9 @@ DOWNLOADER_MIDDLEWARES = {
 # Set settings whose default value is deprecated to a future-proof value
 FEED_EXPORT_ENCODING = "utf-8"
 
+# Max number of retries for a request due to RuntimeError in the spider.
+MAX_RETRIES = 2
+
 COMMON_ENV = dotenv_values()
 
 PROXY = os.environ.get("PROXY") or COMMON_ENV.get("PROXY")
