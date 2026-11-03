@@ -45,12 +45,12 @@ class KrogerSearchSpider(BaseSearchSpider):
         yield scrapy.Request(
             self._build_url(self.q or "", 1),
             callback=self.parse,
-            meta={"page": 1, "sort_index": 0},
+            meta={"page": 1, "retries": 0},
         )
 
     def parse(self, response: scrapy.http.Response):
         page = int(response.meta.get("page", 1))
-        sort_index = int(response.meta.get("sort_index", 0))
+        retries = int(response.meta.get("retries", 0))
         html = response.text or ""
         yielded = 0
 
@@ -83,8 +83,8 @@ class KrogerSearchSpider(BaseSearchSpider):
                 item.update({"mode": "keyword", "query": self.q, "page": page, "source_url": response.url})
                 yield item
 
-        if yielded == 0 and sort_index + 1 < len(self.sort_variants):
-            next_sort_idx = sort_index + 1
+        if yielded == 0 and retries + 1 < len(self.sort_variants):
+            next_sort_idx = retries + 1
             retry_url = self._build_url(self.q or "", page, sort=self.sort_variants[next_sort_idx])
             self.logger.warning(
                 "Kroger search empty; retrying with sort variant %s: %s",
@@ -94,7 +94,7 @@ class KrogerSearchSpider(BaseSearchSpider):
             yield scrapy.Request(
                 retry_url,
                 callback=self.parse,
-                meta={"page": page, "sort_index": next_sort_idx},
+                meta={"page": page, "retries": retries + 1},
                 dont_filter=True,
             )
             return
@@ -107,7 +107,7 @@ class KrogerSearchSpider(BaseSearchSpider):
             yield scrapy.Request(
                 self._build_url(self.q or "", next_page),
                 callback=self.parse,
-                meta={"page": next_page, "sort_index": 0},
+                meta={"page": next_page, "retries": 0},
             )
 
     @staticmethod

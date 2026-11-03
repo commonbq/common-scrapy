@@ -96,7 +96,7 @@ class NordstromrackListingSpider(BaseListingSpider):
                 "category": category,
                 "page": page,
                 "listing_url": url,
-                "proxy_retries": retries,
+                "retries": retries,
             },
             dont_filter=True,
         )
@@ -104,7 +104,7 @@ class NordstromrackListingSpider(BaseListingSpider):
     def _on_error(self, failure):
         """Retry a bounded number of times, then surface the failure."""
         request = failure.request
-        retries = int(request.meta.get("proxy_retries", 0))
+        retries = int(request.meta.get("retries", 0))
         if retries < MAX_PROXY_RETRIES:
             self.logger.warning(
                 "Nordstrom Rack request failed (%s); retrying %s/%s: %s",
@@ -122,7 +122,7 @@ class NordstromrackListingSpider(BaseListingSpider):
 
     def parse(self, response):
         if self._is_proxy_payload(response):
-            retries = int(response.meta.get("proxy_retries", 0))
+            retries = int(response.meta.get("retries", 0))
             if retries < MAX_PROXY_RETRIES:
                 self.logger.warning(
                     "Nordstrom Rack proxy envelope (%s); retrying %s/%s: %s",

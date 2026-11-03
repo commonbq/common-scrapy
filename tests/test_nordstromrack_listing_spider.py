@@ -105,7 +105,7 @@ class NordstromrackListingSpiderTests(unittest.TestCase):
                 "category": "accessories",
                 "page": 1,
                 "listing_url": "https://www.nordstromrack.com/shop/accessories",
-                "proxy_retries": 0,
+                "retries": 0,
             },
         )
         envelope = '{"status": "We could not retrieve a successful response"}'.encode()
@@ -120,7 +120,7 @@ class NordstromrackListingSpiderTests(unittest.TestCase):
 
         self.assertIsInstance(retried[0], ScrapyRequest)
         # At the retry cap the failure surfaces instead of a zero-item run.
-        request.meta["proxy_retries"] = 3
+        request.meta["retries"] = 3
         with self.assertRaises(RuntimeError):
             list(self.spider.parse(response))
 

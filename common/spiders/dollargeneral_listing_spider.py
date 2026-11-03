@@ -65,7 +65,7 @@ class DollargeneralListingSpider(BaseListingSpider):
             callback=self.parse_session,
             headers=self._session_headers(),
             dont_filter=True,
-            meta={"api_retry": 0},
+            meta={"retries": 0},
         )
 
     def parse_session(self, response: scrapy.http.Response):
@@ -181,7 +181,7 @@ class DollargeneralListingSpider(BaseListingSpider):
             dont_filter=True,
             meta={
                 "tokens": tokens, "store_number": store_number, "page": page,
-                "api_retry": 0, "proxy": self._api_proxy(),
+                "retries": 0, "proxy": self._api_proxy(),
             },
         )
 
@@ -204,11 +204,11 @@ class DollargeneralListingSpider(BaseListingSpider):
         return records, int(total or 0)
 
     def _retry(self, request: scrapy.Request, reason: str) -> scrapy.Request:
-        retries = int(request.meta.get("api_retry", 0)) + 1
+        retries = int(request.meta.get("retries", 0)) + 1
         if retries > MAX_API_RETRIES:
             raise RuntimeError(f"Dollar General {reason} after {MAX_API_RETRIES + 1} attempts")
         self.logger.warning("Retrying Dollar General request (%s, attempt %d)", reason, retries + 1)
-        return request.replace(dont_filter=True, meta={**request.meta, "api_retry": retries})
+        return request.replace(dont_filter=True, meta={**request.meta, "retries": retries})
 
     def _api_proxy(self) -> str | None:
         proxy = self.settings.get("PROXY") if hasattr(self, "settings") else None

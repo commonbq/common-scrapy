@@ -55,18 +55,18 @@ class HomeDepotListingSpiderTest(unittest.TestCase):
     def test_proxy_envelope_retries_then_fails_visibly(self):
         retry = list(self.spider.parse(self.response(PROXY_ENVELOPE)))
         self.assertEqual(len(retry), 1)
-        self.assertEqual(retry[0].meta["proxy_retries"], 1)
+        self.assertEqual(retry[0].meta["retries"], 1)
         with self.assertRaisesRegex(RuntimeError, "blocked/proxy payload"):
             list(self.spider.parse(self.response(
-                PROXY_ENVELOPE, meta={"category": "tools", "page": 1, "proxy_retries": MAX_PROXY_RETRIES})))
+                PROXY_ENVELOPE, meta={"category": "tools", "page": 1, "retries": MAX_PROXY_RETRIES})))
 
     def test_missing_contract_retries_then_fails_visibly(self):
         retry = list(self.spider.parse(self.response(b"<html></html>")))
         self.assertEqual(len(retry), 1)
-        self.assertEqual(retry[0].meta["proxy_retries"], 1)
+        self.assertEqual(retry[0].meta["retries"], 1)
         with self.assertRaisesRegex(RuntimeError, "did not contain __APOLLO_STATE__"):
             list(self.spider.parse(self.response(
-                b"<html></html>", meta={"category": "tools", "page": 1, "proxy_retries": MAX_PROXY_RETRIES})))
+                b"<html></html>", meta={"category": "tools", "page": 1, "retries": MAX_PROXY_RETRIES})))
 
     def test_categories_use_grouped_department_mapping(self):
         self.assertIsInstance(self.spider.categories, Mapping)

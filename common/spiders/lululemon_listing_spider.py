@@ -57,7 +57,7 @@ class LululemonListingSpider(BaseListingSpider):
             meta={
                 "category": category,
                 "page": page,
-                "proxy_retries": retries,
+                "retries": retries,
             },
             dont_filter=True,
         )
@@ -71,7 +71,7 @@ class LululemonListingSpider(BaseListingSpider):
         zero-item run; a real contract change still fails after the last try.
         """
         request = failure.request
-        retries = int(request.meta.get("proxy_retries", 0))
+        retries = int(request.meta.get("retries", 0))
         if retries < MAX_PROXY_RETRIES:
             self.logger.warning(
                 "Lululemon request failed (%s); retrying %s/%s: %s",
@@ -97,7 +97,7 @@ class LululemonListingSpider(BaseListingSpider):
 
     def parse(self, response: scrapy.http.Response):
         if self._is_proxy_payload(response):
-            retries = int(response.meta.get("proxy_retries", 0))
+            retries = int(response.meta.get("retries", 0))
             if retries < MAX_PROXY_RETRIES:
                 self.logger.warning(
                     "Lululemon proxy envelope (%s); retrying %s/%s: %s",

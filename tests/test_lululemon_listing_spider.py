@@ -42,12 +42,12 @@ class LululemonListingSpiderTest(unittest.TestCase):
         url = "https://shop.lululemon.com/c/women-leggings/n1udsq?page=1"
         envelope = b'{"status":"We couldn\'t retrieve a successful response."}'
         request = Request(
-            url, meta={"category": "women-leggings", "page": 1, "proxy_retries": 0}
+            url, meta={"category": "women-leggings", "page": 1, "retries": 0}
         )
         response = HtmlResponse(url, body=envelope, encoding="utf-8", request=request)
         issued = list(spider.parse(response))
         self.assertEqual(len(issued), 1)
-        self.assertEqual(issued[0].meta["proxy_retries"], 1)
+        self.assertEqual(issued[0].meta["retries"], 1)
         self.assertEqual(issued[0].url, url)
 
     def test_proxy_envelope_fails_after_the_bound(self):
@@ -59,7 +59,7 @@ class LululemonListingSpiderTest(unittest.TestCase):
             meta={
                 "category": "women-leggings",
                 "page": 1,
-                "proxy_retries": MAX_PROXY_RETRIES,
+                "retries": MAX_PROXY_RETRIES,
             },
         )
         response = HtmlResponse(url, body=envelope, encoding="utf-8", request=request)
@@ -118,7 +118,7 @@ class LululemonListingSpiderTest(unittest.TestCase):
         # ScrapeOps datacenter route: HTTP 200 with a 55-byte JSON body.
         request = Request(
             "https://shop.lululemon.com/c/women-clothes/n14uwk?page=1",
-            meta={"proxy_retries": MAX_PROXY_RETRIES},
+            meta={"retries": MAX_PROXY_RETRIES},
         )
         body = '{\n"message": "Bad Request.", \n"errorCode": "GE401001"\n}'
         response = HtmlResponse(

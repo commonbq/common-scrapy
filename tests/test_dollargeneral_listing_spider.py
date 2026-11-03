@@ -16,10 +16,10 @@ class DollarGeneralListingSpiderTests(unittest.TestCase):
     def setUp(self):
         self.spider = DollargeneralListingSpider(category="on-sale", max_pages="2")
 
-    def response(self, body, *, page=1, api_retry=0):
+    def response(self, body, *, page=1, retries=0):
         request = Request(
             "https://dggo.dollargeneral.com/omni/api/v5/search/shoppinglist/product/Provider",
-            meta={"tokens": TOKENS, "store_number": "12107", "page": page, "api_retry": api_retry},
+            meta={"tokens": TOKENS, "store_number": "12107", "page": page, "retries": retries},
         )
         return TextResponse(request.url, body=body.encode(), encoding="utf-8", request=request)
 
@@ -28,7 +28,7 @@ class DollarGeneralListingSpiderTests(unittest.TestCase):
         response = TextResponse(
             "https://www.dollargeneral.com/bin/dg/user",
             body=json.dumps(data).encode(), encoding="utf-8",
-            request=Request("https://www.dollargeneral.com/bin/dg/user", meta={"api_retry": 0}),
+            request=Request("https://www.dollargeneral.com/bin/dg/user", meta={"retries": 0}),
         )
         request = list(self.spider.parse_session(response))[0]
         payload = json.loads(request.body)
@@ -68,9 +68,9 @@ class DollarGeneralListingSpiderTests(unittest.TestCase):
     def test_proxy_failure_retries_then_fails(self):
         response = self.response('{"status":"Failed to get successful response from website. Please retry the request."}')
         retry = list(self.spider.parse_api(response))[0]
-        self.assertEqual(retry.meta["api_retry"], 1)
+        self.assertEqual(retry.meta["retries"], 1)
         with self.assertRaises(RuntimeError):
-            list(self.spider.parse_api(self.response(response.text, api_retry=2)))
+            list(self.spider.parse_api(self.response(response.text, retries=2)))
 
 
 if __name__ == "__main__":

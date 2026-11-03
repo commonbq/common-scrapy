@@ -38,7 +38,7 @@ class HomeDepotListingSpider(BaseListingSpider):
         yield self._request(self.url or self._page_url(1), self.category, 1)
 
     def _request(self, url: str, category, page: int, retries: int = 0) -> scrapy.Request:
-        meta = {"category": category, "page": page, "proxy_retries": retries}
+        meta = {"category": category, "page": page, "retries": retries}
         return scrapy.Request(
             url,
             callback=self.parse,
@@ -50,7 +50,7 @@ class HomeDepotListingSpider(BaseListingSpider):
     def _on_error(self, failure):
         """Retry a bounded number of times, then surface the failure."""
         request = failure.request
-        retries = int(request.meta.get("proxy_retries", 0))
+        retries = int(request.meta.get("retries", 0))
         if retries < MAX_PROXY_RETRIES:
             self.logger.warning(
                 "Home Depot request failed (%s); retrying %s/%s: %s",
@@ -67,7 +67,7 @@ class HomeDepotListingSpider(BaseListingSpider):
             )
 
     def parse(self, response: scrapy.http.Response):
-        retries = int(response.meta.get("proxy_retries", 0))
+        retries = int(response.meta.get("retries", 0))
 
         if self._is_blocked(response):
             if retries < MAX_PROXY_RETRIES:

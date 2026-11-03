@@ -99,7 +99,7 @@ class UltaSearchSpider(BaseSearchSpider):
             first_url,
             callback=self.parse_listing,
             headers=self._headers(),
-            meta=({"content_id": content_id, "page": 1, "base_path": base_path}),
+            meta=({"content_id": content_id, "page": 1, "base_path": base_path, "retries": 0}),
         )
 
     def parse_listing(self, response: scrapy.http.Response):
@@ -163,7 +163,7 @@ class UltaSearchSpider(BaseSearchSpider):
             next_url,
             callback=self.parse_listing,
             headers=self._headers(),
-            meta=({"content_id": content_id, "page": next_page, "base_path": base_path}),
+            meta=({"content_id": content_id, "page": next_page, "base_path": base_path, "retries": 0}),
         )
 
     def parse_html_listing(self, response: scrapy.http.Response):
@@ -233,7 +233,7 @@ class UltaSearchSpider(BaseSearchSpider):
 
     def _build_page_request(self, base_path: str, meta: dict | None = None) -> scrapy.Request:
         variables = {"moduleParams": {}, "url": {"path": base_path}}
-        req_meta = {"page": 1, "base_path": base_path, "mode": "graphql"}
+        req_meta = {"page": 1, "base_path": base_path, "mode": "graphql", "retries": 0}
         if meta:
             req_meta.update(meta)
         return scrapy.Request(
@@ -254,7 +254,8 @@ class UltaSearchSpider(BaseSearchSpider):
         )
 
     def _retry_without_sort(self, response: scrapy.http.Response, *, reason: str | None = None):
-        if response.meta.get("unsorted_page_retry"):
+        retries = int(response.meta.get("retries", 0))
+        if retries:
             return None
         base_path = response.meta.get("base_path") or self._target_with_sort(self._base_search_url())
         unsorted = self._without_sort(base_path)
@@ -267,7 +268,7 @@ class UltaSearchSpider(BaseSearchSpider):
         meta = dict(response.meta)
         meta["base_path"] = unsorted
         meta["page"] = 1
-        meta["unsorted_page_retry"] = True
+        meta["retries"] = retries + 1
         meta.pop("content_id", None)
         return self._build_page_request(unsorted, meta=meta)
 
