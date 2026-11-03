@@ -3,6 +3,7 @@
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+import os
 from datetime import datetime
 
 from scrapy import signals
@@ -89,6 +90,12 @@ class CommonDownloaderMiddleware:
         return s
 
     def process_request(self, request, spider):
+        retries = int(request.meta.get("retries", 0))
+        retry_proxy = os.environ.get(f"RETRY_PROXY_{retries}") if retries > 0 else None
+        if retry_proxy:
+            request.meta["proxy"] = retry_proxy
+            return None
+
         if not request.meta.get("proxy"):
             proxy = spider.settings.get("PROXY") if "PROXY" in spider.settings else PROXY
             if proxy:
