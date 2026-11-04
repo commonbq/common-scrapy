@@ -116,10 +116,12 @@ class WalmartListingSpider(BaseListingSpider):
 
     def html_parse(self, response: scrapy.http.Response):
         if self._is_blocked(response):
-            self.logger.warning("Walmart blocked direct request (status=%s) for %s", response.status, response.url)
-            return
+            raise RuntimeError(f"Walmart blocked direct request: {response.url}")
 
         cards = response.css("[data-item-id][data-type='items'], div[data-item-id]")
+        current_page = int(response.meta.get("page", 1))
+        if not cards and current_page == 1:
+            raise RuntimeError(f"Walmart listing returned zero product cards: {response.url}")
         seen_ids: set[str] = set()
 
         for card in cards:
@@ -175,7 +177,6 @@ class WalmartListingSpider(BaseListingSpider):
                 ),
             }
 
-        current_page = int(response.meta.get("page", 1))
         if current_page >= self.max_pages:
             return
 
@@ -250,14 +251,10 @@ class WalmartListingSpider(BaseListingSpider):
 
     def parse(self, response: scrapy.http.Response):
         if self._is_blocked(response):
-            self.logger.warning(
-                "Walmart blocked direct request (status=%s) for %s",
-                response.status,
-                response.url,
-            )
-            return
+            raise RuntimeError(f"Walmart blocked direct request: {response.url}")
 
         products = self._extract_embedded_products(response)
+        current_page = int(response.meta.get("page", 1))
 
         if products:
             for position, product in enumerate(products, start=1):
@@ -267,13 +264,16 @@ class WalmartListingSpider(BaseListingSpider):
                     position=position,
                 )
         else:
+            if current_page == 1 and not response.css(
+                "[data-item-id][data-type='items'], div[data-item-id]"
+            ):
+                raise RuntimeError(f"Walmart listing returned zero products: {response.url}")
             self.logger.warning(
                 "__NEXT_DATA__ products unavailable; using DOM fallback for %s",
                 response.url,
             )
             yield from self._parse_dom_cards(response)
 
-        current_page = int(response.meta.get("page", 1))
         if current_page >= self.max_pages:
             return
 

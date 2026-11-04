@@ -64,7 +64,8 @@ class ElfcosmeticsListingSpider(BaseListingSpider):
             yield self._product_item(product, response, page)
 
         if not products:
-            self.logger.warning("e.l.f. bootstrap parser returned 0 items (status=%s)", response.status)
+            if page == 1:
+                raise RuntimeError(f"e.l.f. bootstrap parser returned zero items: {response.url}")
 
         pagination = listing.get("pagination") or {}
         if page < min(self.max_pages, int(pagination.get("totalPages") or page)):

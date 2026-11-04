@@ -376,7 +376,8 @@ class FootlockerListingSpider(BaseListingSpider):
         metadata = response.meta["metadata"]
 
         if not products:
-            self.logger.info(f"No products found for {category_url} (page {current_page})")
+            if current_page == 1:
+                raise RuntimeError(f"No Foot Locker products found for {category_url}")
             return
 
         for product in products:

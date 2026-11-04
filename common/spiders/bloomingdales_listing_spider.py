@@ -131,8 +131,16 @@ class BloomingdalesListingSpider(BaseListingSpider):
             return
         has_next_page_signal = self._has_next_page_signal(state, page)
         if has_next_page_signal is False:
+            if page == 1 and not extracted_products:
+                raise RuntimeError(
+                    f"Bloomingdale's listing returned zero products: {response.url}"
+                )
             return
         if not extracted_products and has_next_page_signal is not True:
+            if page == 1:
+                raise RuntimeError(
+                    f"Bloomingdale's listing returned zero products: {response.url}"
+                )
             return
 
         yield scrapy.Request(

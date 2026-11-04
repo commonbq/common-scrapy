@@ -149,11 +149,10 @@ class NordstromrackListingSpider(BaseListingSpider):
         page = int(response.meta.get("page", 1))
         products = self._products(response)
         if not products:
-            self.logger.error(
-                "Nordstrom Rack product grid missing: status=%s bytes=%s url=%s",
-                response.status, len(response.body), response.url,
+            raise RuntimeError(
+                f"Nordstrom Rack product grid missing: status={response.status} "
+                f"bytes={len(response.body)} url={response.url}"
             )
-            return
         for position, product in products:
             item = self._item(product, response, page, position)
             if item is None:

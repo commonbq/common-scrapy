@@ -84,7 +84,10 @@ class RealtorListingSpider(BaseListingSpider):
         if not isinstance(properties, list):
             raise RuntimeError(f"Realtor.com srp.search.properties is malformed: {response.url}")
         if not properties:
-            self.logger.info("Realtor.com authoritative result set is empty on page %s", response.meta["page"])
+            if int(response.meta["page"]) == 1:
+                raise RuntimeError(
+                    f"Realtor.com authoritative result set is empty at {response.url}"
+                )
             return
 
         page = int(response.meta["page"])

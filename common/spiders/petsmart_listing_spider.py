@@ -377,6 +377,11 @@ class PetsmartListingSpider(BaseListingSpider):
             )
 
         if not hits:
+            if page == 0:
+                raise RuntimeError(
+                    f"petsmart search API returned zero hits for {entry['name']!r}: "
+                    f"{response.url}"
+                )
             return
         if total_pages is not None and page + 1 >= total_pages:
             self.logger.info(

@@ -108,6 +108,8 @@ class AdidasListingSpider(BaseListingSpider):
             yield self._item(product, response, page, position, total_count, currency)
 
         if not products:
+            if page == 1:
+                raise RuntimeError(f"adidas hydration returned zero products at {response.url}")
             return
         next_start = start + view_size
         if total_count is None or next_start >= total_count:

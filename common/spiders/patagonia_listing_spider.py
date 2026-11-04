@@ -58,17 +58,10 @@ class PatagoniaListingSpider(BaseListingSpider):
     def parse_listing(self, response):
         """Resolve the category id from the listing page, then fetch its grid."""
         if self._blocked(response):
-            self.logger.warning(
-                "Patagonia listing page unavailable (status=%s, bytes=%s)",
-                response.status, len(response.body),
-            )
-            return
+            raise RuntimeError(f"Patagonia listing page unavailable: {response.url}")
         cgid = self._extract_cgid(response) or self._nav_id()
         if not cgid:
-            self.logger.warning(
-                "Patagonia listing page exposed no category id at %s", response.url
-            )
-            return
+            raise RuntimeError(f"Patagonia listing page exposed no category id: {response.url}")
         yield self._api_request(response.meta["listing_url"], cgid=cgid, page=1, start=0)
 
     def _api_request(self, listing_url: str, *, cgid: str, page: int, start: int):
@@ -112,15 +105,10 @@ class PatagoniaListingSpider(BaseListingSpider):
 
     def parse_api(self, response):
         if self._blocked(response):
-            self.logger.warning(
-                "Patagonia product grid failed (status=%s, bytes=%s)",
-                response.status, len(response.body),
-            )
-            return
+            raise RuntimeError(f"Patagonia product grid failed: {response.url}")
         tiles = response.css("product-tile, product-tile-simple")
         if not tiles:
-            self.logger.warning("Patagonia product grid returned no product tiles")
-            return
+            raise RuntimeError(f"Patagonia product grid returned no product tiles: {response.url}")
 
         page = response.meta["page"]
         for position, tile in enumerate(tiles, response.meta["start"] + 1):

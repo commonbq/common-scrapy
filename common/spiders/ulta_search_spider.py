@@ -216,7 +216,8 @@ class UltaSearchSpider(BaseSearchSpider):
             yielded += 1
 
         if yielded == 0:
-            self.logger.warning("Ulta HTML mode yielded 0 items (status=%s)", response.status)
+            if page == 1:
+                raise RuntimeError(f"Ulta search returned zero items: {response.url}")
 
         if page >= self.max_pages:
             return

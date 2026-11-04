@@ -69,10 +69,7 @@ class SephoraListingSpider(BaseListingSpider):
         page = int(response.meta.get("page", 1))
         data = self._to_json(response)
         if not isinstance(data, dict):
-            self.logger.warning(
-                "Sephora listing non-JSON/blocked response status=%s", response.status
-            )
-            return
+            raise RuntimeError(f"Sephora listing returned non-JSON/blocked data: {response.url}")
 
         products = data.get("products") or []
 
@@ -133,6 +130,8 @@ class SephoraListingSpider(BaseListingSpider):
                 "timestamp": self.get_timestamp(),
             }
 
+        if not products and page == 1:
+            raise RuntimeError(f"Sephora listing returned zero products: {response.url}")
         if page >= self.max_pages or not products:
             return
 

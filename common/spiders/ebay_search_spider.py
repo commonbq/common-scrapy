@@ -45,7 +45,10 @@ class EbaySearchSpider(BaseSearchSpider):
         original_url = response.meta.get("original_url") or response.url
         page = int(response.meta.get("page", 1))
 
-        for item in extract_marko_products(response.text or ""):
+        items = extract_marko_products(response.text or "")
+        if not items and page == 1:
+            raise RuntimeError(f"eBay search returned zero products: {response.url}")
+        for item in items:
             item.update(
                 {
                     "mode": "keyword",

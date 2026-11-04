@@ -51,13 +51,11 @@ class HomeDepotSearchSpider(BaseSearchSpider):
         html = response.text or ""
 
         if self._is_error_page(html):
-            self.logger.warning("HomeDepot returned error/bot page; no Apollo bootstrap found")
-            return
+            raise RuntimeError(f"Home Depot search returned an error/bot page: {response.url}")
 
         apollo = self._extract_apollo(html)
         if not apollo.state:
-            self.logger.warning("HomeDepot page did not contain __APOLLO_STATE__")
-            return
+            raise RuntimeError(f"Home Depot search has no __APOLLO_STATE__: {response.url}")
 
         yield from self._yield_products_from_apollo(
             apollo.state,
@@ -99,8 +97,7 @@ class HomeDepotSearchSpider(BaseSearchSpider):
                 break
 
         if not search_model:
-            self.logger.warning("No SearchModel found in __APOLLO_STATE__")
-            return
+            raise RuntimeError("No Home Depot SearchModel found in __APOLLO_STATE__")
 
         prod_key = None
         for k in search_model.keys():
@@ -109,13 +106,13 @@ class HomeDepotSearchSpider(BaseSearchSpider):
                 break
 
         if not prod_key:
-            self.logger.warning("No products(...) key found under SearchModel")
-            return
+            raise RuntimeError("No Home Depot products key found under SearchModel")
 
         refs = search_model.get(prod_key) or []
         if not isinstance(refs, list):
-            self.logger.warning("Unexpected products(...) value type: %s", type(refs))
-            return
+            raise RuntimeError("Home Depot SearchModel products value is not a list")
+        if not refs and page == 1:
+            raise RuntimeError("Home Depot search returned zero products")
 
         for r in refs:
             if not isinstance(r, dict) or "__ref" not in r:

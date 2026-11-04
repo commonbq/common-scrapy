@@ -107,7 +107,7 @@ class WorldmarketListingSpider(BaseListingSpider):
         page = meta["start"] // self.page_size + 1
         tiles = response.css(".product.js-a-tile-data")
         if not tiles:
-            raise CloseSpider(f"World Market API returned no product records: {response.url}")
+            raise RuntimeError(f"World Market API returned no product records: {response.url}")
 
         emitted = 0
         total_count = self._total_count(response)

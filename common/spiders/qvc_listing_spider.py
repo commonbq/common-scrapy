@@ -66,10 +66,7 @@ class QvcListingSpider(BaseListingSpider):
     def parse(self, response: scrapy.http.Response):
         cards = response.css("#searchResults .galleryItem[data-item-id]")
         if not cards:
-            self.logger.warning(
-                "QVC product grid unavailable: status=%s url=%s", response.status, response.url
-            )
-            return
+            raise RuntimeError(f"QVC product grid returned no cards: {response.url}")
 
         state = self._bootstrap_state(response.text)
         page = self._integer(state.get("currentPage")) or int(response.meta.get("page") or 1)

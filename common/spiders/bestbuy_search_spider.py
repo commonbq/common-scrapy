@@ -46,7 +46,8 @@ class BestbuySearchSpider(BaseSearchSpider):
             yield item
 
         if emitted == 0:
-            self.logger.warning("BestBuy search produced 0 items page=%s status=%s", page_num, response.status)
+            if page_num == 1:
+                raise RuntimeError(f"BestBuy search produced zero items: {response.url}")
 
         if page_num < self.args.max_pages:
             next_page = page_num + 1

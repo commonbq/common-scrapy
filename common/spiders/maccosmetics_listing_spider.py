@@ -36,6 +36,9 @@ class MaccosmeticsListingSpider(BaseListingSpider):
         products = self._extract_catalog(response.text or "")
         cards = self._extract_cards(response)
 
+        if not products and page == 1:
+            raise RuntimeError(f"MAC Cosmetics listing returned zero products: {response.url}")
+
         for product in products:
             variants = product.get("variants") or []
             variant = variants[0] if variants and isinstance(variants[0], dict) else {}

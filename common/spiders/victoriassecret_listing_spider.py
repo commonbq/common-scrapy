@@ -117,8 +117,7 @@ class VictoriassecretListingSpider(BaseListingSpider):
         entry = response.meta["category"]
         match = _CLIENT_PROPS_RE.search(response.text)
         if not match:
-            self.logger.error('No <script id="clientProps"> block on %s', response.url)
-            return
+            raise RuntimeError(f"No Victoria's Secret clientProps block at {response.url}")
         try:
             client_props = json.loads(match.group(1))
         except json.JSONDecodeError as exc:
@@ -135,8 +134,7 @@ class VictoriassecretListingSpider(BaseListingSpider):
                 break
 
         if not collection_id:
-            self.logger.error("No collectionId in clientProps for %s", response.url)
-            return
+            raise RuntimeError(f"No Victoria's Secret collectionId at {response.url}")
 
         # The API brand follows the page's own brand (vs / pink); the taxonomy
         # slug is only a shortcut and must not be re-derived from it.
@@ -220,9 +218,10 @@ class VictoriassecretListingSpider(BaseListingSpider):
             products = data.get("productList") or []
 
         if not products:
-            self.logger.info(
-                "No products at offset %s for %s (total=%s)", offset, entry["url"], total
-            )
+            if offset == 0:
+                raise RuntimeError(
+                    f"Victoria's Secret API returned zero products for {entry['url']}"
+                )
             return
 
         for product in products:

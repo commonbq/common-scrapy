@@ -85,17 +85,13 @@ class StockxListingSpider(BaseListingSpider):
         page = int(response.meta["page"])
         script = response.css("script#__NEXT_DATA__::text").get()
         if response.status != 200 and not script:
-            self.logger.error(
-                "StockX listing request failed without browse state: status=%s url=%s",
-                response.status,
-                response.url,
+            raise RuntimeError(
+                f"StockX listing request failed without browse state: {response.url}"
             )
-            return
         if not script:
-            self.logger.error(
-                "StockX response has no __NEXT_DATA__ browse state; refusing fallback parsing"
+            raise RuntimeError(
+                f"StockX response has no __NEXT_DATA__ browse state: {response.url}"
             )
-            return
         if response.status != 200:
             self.logger.warning(
                 "StockX returned status=%s but included a usable Next.js browse state",
@@ -105,15 +101,17 @@ class StockxListingSpider(BaseListingSpider):
         try:
             state = json.loads(script)
             browse = self._find_browse_query(state)
-        except (json.JSONDecodeError, TypeError, KeyError):
-            self.logger.exception("Could not parse StockX Next.js browse state")
-            return
+        except (json.JSONDecodeError, TypeError, KeyError) as exc:
+            raise RuntimeError(f"Could not parse StockX browse state: {response.url}") from exc
 
         if not browse:
-            self.logger.error("StockX __NEXT_DATA__ contains no authoritative browse result")
-            return
+            raise RuntimeError(
+                f"StockX __NEXT_DATA__ contains no authoritative browse result: {response.url}"
+            )
 
         edges = browse.get("results", {}).get("edges") or []
+        if not edges and page == 1:
+            raise RuntimeError(f"StockX listing returned zero products: {response.url}")
         for edge in edges:
             node = edge.get("node") or {}
             product = node.get("product") or node

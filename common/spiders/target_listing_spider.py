@@ -225,29 +225,26 @@ class TargetListingSpider(BaseListingSpider):
 
     def parse_redsky(self, response: scrapy.http.Response):
         if response.status != 200:
-            self.logger.warning(
-                "RedSky non-200. status=%s url=%s head=%r",
-                response.status,
-                response.url,
-                (response.text or "")[:250],
-            )
-            return
+            raise RuntimeError(f"Target RedSky returned HTTP {response.status}: {response.url}")
 
         try:
             data = json.loads(response.text)
-        except Exception:
-            self.logger.exception("Failed to parse RedSky JSON")
-            return
+        except Exception as exc:
+            raise RuntimeError(f"Failed to parse Target RedSky JSON: {response.url}") from exc
 
         products = (
             (((data.get("data") or {}).get("search") or {}).get("products"))
             or (((data.get("data") or {}).get("search") or {}).get("items"))
         )
         if not isinstance(products, list):
-            self.logger.warning(
-                "Unexpected RedSky shape. top_keys=%s", list(data.keys())[:20]
+            raise RuntimeError(
+                f"Unexpected Target RedSky product shape at {response.url}"
             )
-            return
+
+        offset_match = re.search(r"[?&]offset=(\d+)", response.url)
+        offset = int(offset_match.group(1)) if offset_match else 0
+        if not products and offset == 0:
+            raise RuntimeError(f"Target RedSky returned zero products: {response.url}")
 
         for p in products:
             if isinstance(p, dict):
@@ -264,9 +261,6 @@ class TargetListingSpider(BaseListingSpider):
                     "page": response.meta.get("page", 1),
                     "source": "target_redsky_plp_search_v2",
                 }
-
-        m = re.search(r"[?&]offset=(\d+)", response.url)
-        offset = int(m.group(1)) if m else 0
 
         search = (data.get("data") or {}).get("search") or {}
         total = (

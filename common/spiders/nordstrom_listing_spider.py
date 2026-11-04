@@ -142,13 +142,7 @@ class NordstromListingSpider(BaseListingSpider):
         current_category = response.meta.get("category")
         products = self._extract_products_from_html(text, category=current_category)
         if not products:
-            self.logger.warning(
-                "No embedded product data found in HTML. status=%s len=%s url=%s",
-                response.status,
-                len(text),
-                response.url,
-            )
-            return
+            raise RuntimeError(f"No embedded Nordstrom product data found: {response.url}")
 
         for p in products:
             yield p

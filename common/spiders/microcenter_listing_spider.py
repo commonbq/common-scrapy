@@ -46,12 +46,14 @@ class MicrocenterListingSpider(BaseListingSpider):
     def parse(self, response):
         page = int(response.meta.get("page", 1))
         if self._blocked(response):
-            self.logger.error("Micro Center challenge/proxy response status=%s page=%s", response.status, page)
-            return
+            raise RuntimeError(f"Micro Center returned a challenge/proxy response: {response.url}")
 
         cards = response.css("li.product_wrapper")
         if not cards:
-            self.logger.warning("Micro Center returned no structured product cards on page %s", page)
+            if page == 1:
+                raise RuntimeError(
+                    f"Micro Center returned no structured product cards: {response.url}"
+                )
             return
 
         total_count = self._total_count(response)

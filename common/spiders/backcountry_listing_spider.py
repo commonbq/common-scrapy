@@ -178,10 +178,11 @@ class BackcountryListingSpider(BaseListingSpider):
         edges = edges if isinstance(edges, list) else []
         current_page = int(response.meta.get("page") or 1)
         if not edges:
-            self.logger.warning(
-                "backcountry %s (page %s) returned an ordered container with 0 product edges",
-                response.url, current_page,
-            )
+            if current_page == 1:
+                raise RuntimeError(
+                    f"backcountry {response.url} returned an ordered container "
+                    "with zero product edges"
+                )
             return
 
         apollo = page_props.get("__APOLLO_STATE__")

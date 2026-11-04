@@ -75,15 +75,9 @@ class EbayListingSpider(BaseListingSpider):
 
     def parse(self, response: scrapy.http.Response):
         if not self._is_listing_html(response):
-            self.logger.warning(
-                "ebay_listing: non-HTML body for %s (status=%s, bytes=%s, "
-                "content-type=%s); skipping — likely a proxy/anti-bot envelope",
-                response.url,
-                response.status,
-                len(response.body),
-                response.headers.get("Content-Type", b"").decode("latin-1", "replace"),
+            raise RuntimeError(
+                f"eBay listing returned a non-HTML/proxy body: {response.url}"
             )
-            return
 
         page = int(response.meta.get("page", 1))
 
@@ -99,8 +93,9 @@ class EbayListingSpider(BaseListingSpider):
             item.update(ecommerce_context)
             yield item
 
+        subcategories = extract_subcategories_from_html(response.text) if page == 1 else []
         if page == 1:
-            for subCategory in extract_subcategories_from_html(response.text):
+            for subCategory in subcategories:
                 subCategory_url = response.urljoin(subCategory["url"])
                 yield scrapy.Request(
                     subCategory_url,
@@ -111,6 +106,9 @@ class EbayListingSpider(BaseListingSpider):
                         "subCategory": subCategory["subCategory"],
                     },
                 )
+
+        if page == 1 and not items and not subcategories:
+            raise RuntimeError(f"eBay listing returned zero products: {response.url}")
 
         if page < self.args.max_pages and items:
             next_url = self._with_page(response.url, page + 1)

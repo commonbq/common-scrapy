@@ -122,6 +122,8 @@ class NeweggListingSpider(BaseListingSpider):
         if not isinstance(products, list):
             raise RuntimeError(f"Newegg hydration has no Products list: {response.url}")
         if not products:
+            if page == 1:
+                raise RuntimeError(f"Newegg listing returned zero products at {response.url}")
             self.logger.info("Newegg listing page %s is empty; pagination stopped", page)
             return
 

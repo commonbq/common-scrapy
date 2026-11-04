@@ -54,11 +54,8 @@ class DunelmListingSpider(BaseListingSpider):
                 return
 
         if not products:
-            self.logger.warning(
-                "Dunelm bootstrap contained no products: status=%s url=%s",
-                response.status,
-                response.url,
-            )
+            if page == 1:
+                raise RuntimeError(f"Dunelm bootstrap contained no products: {response.url}")
             return
 
         result = search.get("res") or {}

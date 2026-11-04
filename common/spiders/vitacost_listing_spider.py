@@ -148,12 +148,10 @@ class VitacostListingSpider(BaseListingSpider):
         """Resolve the numeric collection id, then hand off to the Boost filter API."""
         collection_id = self._collection_id(response.text)
         if not collection_id:
-            self.logger.error(
-                "No numeric collection id in %s; the Boost filter API only accepts a numeric "
-                "collection_scope, so pagination cannot continue.",
-                response.url,
+            raise RuntimeError(
+                f"No numeric Vitacost collection id in {response.url}; "
+                "pagination cannot continue"
             )
-            return
         yield self._api_request(response, collection_id, 1)
 
     def _collection_id(self, document: str) -> str | None:
@@ -194,25 +192,23 @@ class VitacostListingSpider(BaseListingSpider):
 
     def parse_filter_api(self, response):
         if response.status != 200:
-            self.logger.error("Boost filter API returned HTTP %s for %s", response.status, response.url)
-            return
+            raise RuntimeError(f"Vitacost Boost API returned HTTP {response.status}: {response.url}")
         try:
             payload = json.loads(response.text)
         except ValueError as exc:
-            self.logger.error("Boost filter API returned non-JSON at %s: %s", response.url, exc)
-            return
+            raise RuntimeError(f"Vitacost Boost API returned non-JSON: {response.url}") from exc
         if not isinstance(payload, dict):
-            self.logger.error("Boost filter API returned a non-object envelope at %s", response.url)
-            return
+            raise RuntimeError(f"Vitacost Boost API returned a non-object: {response.url}")
         if payload.get("message"):
-            self.logger.error("Boost filter API error at %s: %s", response.url, payload["message"])
-            return
+            raise RuntimeError(f"Vitacost Boost API error at {response.url}: {payload['message']}")
 
         page = response.meta.get("page") or 1
         products = payload.get("products")
         products = [p for p in products if isinstance(p, dict)] if isinstance(products, list) else []
         total = self._integer(payload.get("total_product"))
         if not products:
+            if page == 1:
+                raise RuntimeError(f"Vitacost returned zero products: {response.url}")
             self.logger.info(
                 "No products on page %d of %s (total_product=%s). Stopping.",
                 page, response.meta.get("collection_url"), total,

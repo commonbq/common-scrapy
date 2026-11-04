@@ -92,7 +92,8 @@ class CostcoSearchSpider(BaseSearchSpider):
                 yield item
 
         if yielded == 0:
-            self.logger.warning("Costco search produced 0 items (status=%s)", response.status)
+            if page == 1:
+                raise RuntimeError(f"Costco search produced zero items: {response.url}")
 
         if page < self.args.max_pages:
             next_page = page + 1

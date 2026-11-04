@@ -283,7 +283,7 @@ class BassproListingSpider(BaseListingSpider):
 
         match = NEXT_DATA.search(response.text)
         if not match:
-            raise CloseSpider(
+            raise RuntimeError(
                 f"{self.name}: no __NEXT_DATA__ payload in {response.url}. "
                 "The storefront markup changed or the page was served as an error page."
             )
@@ -294,7 +294,7 @@ class BassproListingSpider(BaseListingSpider):
 
         page_values = (data.get("props", {}).get("pageProps", {}) or {}).get("pageValues", {}) or {}
         if not page_values:
-            raise CloseSpider(
+            raise RuntimeError(
                 f"{self.name}: __NEXT_DATA__.props.pageProps.pageValues is empty for "
                 f"{response.url}; expected pageGroup/pageId metadata for a category page."
             )
@@ -391,6 +391,10 @@ class BassproListingSpider(BaseListingSpider):
         results = data.get("results") or []
         total_count = as_int(data.get("totalCount")) or 0
         page = meta.get("page", 1)
+        if not results and page == 1:
+            raise RuntimeError(
+                f"{self.name}: Coveo search returned zero products for {meta['slug']}"
+            )
         for offset, result in enumerate(results):
             item = self.build_item(result, meta, page, offset, total_count)
             if item is None:

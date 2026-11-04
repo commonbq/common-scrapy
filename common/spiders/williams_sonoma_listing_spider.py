@@ -299,6 +299,11 @@ class WilliamsSonomaListingSpider(BaseListingSpider):
             total = 0
 
         if not results:
+            if page == 1:
+                raise RuntimeError(
+                    f"Williams-Sonoma category {category.group_id} returned zero "
+                    f"products on its first page: {response.url}"
+                )
             if total or page == 1:
                 # A page-1 empty result is the interesting case: the id is real in
                 # the taxonomy but is an editorial/collection hub with no

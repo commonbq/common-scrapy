@@ -78,14 +78,11 @@ class CostcoListingSpider(BaseListingSpider):
 
     def parse(self, response: scrapy.http.Response):
         if self._is_blocked_response(response.text, response.status):
-            return
+            raise RuntimeError(f"Costco listing returned a blocked response: {response.url}")
 
         flight = self._extract_flight_context(response.text or "", response.url)
         if not flight:
-            self.logger.warning(
-                "Costco React Flight discovery failed (status=%s)", response.status
-            )
-            return
+            raise RuntimeError(f"Costco React Flight discovery failed: {response.url}")
 
         meta = {
             "category": self.category,
@@ -104,17 +101,16 @@ class CostcoListingSpider(BaseListingSpider):
 
     def parse_search(self, response: scrapy.http.Response):
         if self._is_blocked_response(response.text, response.status):
-            return
+            raise RuntimeError(f"Costco listing API returned a blocked response: {response.url}")
 
         payload = self._json_body(response)
         if not isinstance(payload, dict):
-            self.logger.warning(
-                "Costco listing API returned invalid JSON (status=%s)", response.status
-            )
-            return
+            raise RuntimeError(f"Costco listing API returned invalid JSON: {response.url}")
 
         results = self._extract_search_results(payload)
         if not results:
+            if int(response.meta.get("page", 1)) == 1:
+                raise RuntimeError(f"Costco listing returned zero results: {response.url}")
             self.logger.info(
                 "Costco listing exhausted (page=%s)", response.meta.get("page", 1)
             )

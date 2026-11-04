@@ -62,12 +62,7 @@ class AeListingSpider(BaseListingSpider):
     def parse_html(self, response: scrapy.http.Response):
         browse_path, payload = self._extract_shoebox_payload(response)
         if not browse_path or not payload:
-            self.logger.warning(
-                "AE shoebox payload unavailable (status=%s url=%s)",
-                response.status,
-                response.url,
-            )
-            return
+            raise RuntimeError(f"AE shoebox product payload unavailable: {response.url}")
         yield from self._yield_products(
             payload,
             page=int(response.meta.get("page", 1)),
@@ -90,12 +85,7 @@ class AeListingSpider(BaseListingSpider):
     def parse_browse(self, response: scrapy.http.Response):
         payload = self._json_obj(response.text)
         if not payload:
-            self.logger.warning(
-                "AE browse payload invalid (status=%s url=%s)",
-                response.status,
-                response.url,
-            )
-            return
+            raise RuntimeError(f"AE browse product payload unavailable: {response.url}")
         page = int(response.meta.get("page", 1))
         yield from self._yield_products(
             payload,

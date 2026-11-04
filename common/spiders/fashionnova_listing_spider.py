@@ -87,14 +87,13 @@ class FashionnovaListingSpider(BaseListingSpider):
         page = int(response.meta["page"])
         collection = self._collection_json_ld(response)
         if response.status != 200 or not collection:
-            self.logger.error(
-                "Fashion Nova listing has no CollectionPage JSON-LD: status=%s url=%s",
-                response.status,
-                response.url,
+            raise RuntimeError(
+                f"Fashion Nova listing has no CollectionPage JSON-LD: {response.url}"
             )
-            return
 
         entries = collection.get("mainEntity", {}).get("itemListElement") or []
+        if not entries and page == 1:
+            raise RuntimeError(f"Fashion Nova listing returned zero products: {response.url}")
         for entry in entries:
             product = entry.get("item") or {}
             item_id = product.get("sku") or product.get("url")

@@ -108,6 +108,8 @@ class LevisListingSpider(BaseListingSpider):
             yield self._item(product, response, page, position, total_count, category_code)
 
         if not products:
+            if page == 1:
+                raise RuntimeError(f"Levi's listing returned zero products at {response.url}")
             return
         if current_page is None or total_pages is None:
             return

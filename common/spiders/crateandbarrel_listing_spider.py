@@ -55,9 +55,12 @@ class CrateandbarrelListingSpider(BaseListingSpider):
         try:
             props = self.extract_product_listing(response.text)
         except (ValueError, json.JSONDecodeError) as exc:
-            self.logger.warning("ProductListing bootstrap unavailable at %s: %s", response.url, exc)
-            return
+            raise RuntimeError(
+                f"Crate & Barrel ProductListing bootstrap unavailable at {response.url}: {exc}"
+            ) from exc
         products = props.get("productData") or []
+        if not products and page == 1:
+            raise RuntimeError(f"Crate & Barrel listing returned zero products: {response.url}")
         for position, product in enumerate(products, 1):
             item_id = str(product.get("sku") or "")
             if not item_id or item_id in self._seen:

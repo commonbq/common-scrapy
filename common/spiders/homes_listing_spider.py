@@ -96,7 +96,7 @@ class HomesListingSpider(BaseListingSpider):
         except (KeyError, TypeError, ValueError, json.JSONDecodeError) as exc:
             raise CloseSpider(f"Invalid Homes.com gState bootstrap at {response.url}: {exc}") from exc
         if not isinstance(markers, str) or not markers:
-            raise CloseSpider(f"Homes.com gState contains no map listings: {response.url}")
+            raise RuntimeError(f"Homes.com gState contains no map listings: {response.url}")
 
         result_size = search.get("sc", {}).get("pagingCriteria", {}).get("resultSize")
         emitted = 0
@@ -144,7 +144,7 @@ class HomesListingSpider(BaseListingSpider):
                 "timestamp": self.job_timestamp,
             }
         if not emitted:
-            raise CloseSpider(f"Homes.com gState yielded no valid map listings: {response.url}")
+            raise RuntimeError(f"Homes.com gState yielded no valid map listings: {response.url}")
 
     def on_error(self, failure):
         raise CloseSpider(f"Homes.com request failed: {failure.value}")

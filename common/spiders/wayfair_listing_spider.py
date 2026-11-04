@@ -65,12 +65,12 @@ class WayfairListingSpider(BaseListingSpider):
 
         grid = response.xpath('//*[@data-test-id="Browse-Grid"]')
         if not grid:
-            raise ValueError(
+            raise RuntimeError(
                 f"Wayfair Browse-Grid absent; URL may be a hub or blocked response: {response.url}"
             )
         cards = grid.xpath('.//*[@data-test-id="ListingCard"][.//a[contains(@href, "/pdp/")]]')
         if not cards:
-            raise ValueError(f"Wayfair Browse-Grid contains no real product cards: {response.url}")
+            raise RuntimeError(f"Wayfair Browse-Grid contains no real product cards: {response.url}")
 
         page = int(response.meta.get("page", 1))
         new_count = 0

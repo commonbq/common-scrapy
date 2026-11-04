@@ -82,10 +82,10 @@ class EtsyListingSpider(BaseListingSpider):
             raise CloseSpider(f"Etsy bootstrap returned HTTP {response.status}")
         state = self._context_state(response)
         if not state:
-            raise CloseSpider("Etsy document contained no Context bootstrap")
+            raise RuntimeError("Etsy document contained no Context bootstrap")
         records = self._impression_records(state)
         if not records:
-            raise CloseSpider("Etsy Context bootstrap contained no listing impressions")
+            raise RuntimeError("Etsy Context bootstrap contained no listing impressions")
 
         total_pages = self._integer(state.get("total_pages"))
         organic_count = self._integer(state.get("organic_listings_count"))

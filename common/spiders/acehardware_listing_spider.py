@@ -223,11 +223,10 @@ class AceHardwareListingSpider(BaseListingSpider):
         items = plp_model.get("items")
         items = items if isinstance(items, list) else []
         if not items:
-            self.logger.warning(
-                "acehardware %s hydrated an empty PLPModel (totalCount=%s)",
-                response.url, plp_model.get("totalCount"),
+            raise RuntimeError(
+                f"acehardware {response.url} hydrated an empty PLPModel "
+                f"(totalCount={plp_model.get('totalCount')})"
             )
-            return
 
         current_page = int(response.meta.get("page") or 1)
         total_count = self._number(plp_model.get("totalCount"))

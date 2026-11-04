@@ -201,14 +201,12 @@ class UltaListingSpider(BaseListingSpider):
         content = self._content(response)
         items = content.get("items") if content is not None else None
         if not isinstance(items, list):
-            self.logger.warning(
-                "Ulta listing response invalid (status=%s)", response.status
-            )
-            return
+            raise RuntimeError(f"Ulta listing response has no items list: {response.url}")
         items = [item for item in items if isinstance(item, dict)]
         page = response.meta["page"]
         if not items:
-            self.logger.info("Ulta listing exhausted (page=%s)", page)
+            if page == 1:
+                raise RuntimeError(f"Ulta listing returned zero items: {response.url}")
             return
         yielded = False
         for item in items:

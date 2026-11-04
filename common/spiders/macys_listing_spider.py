@@ -59,8 +59,7 @@ class MacysListingSpider(BaseListingSpider):
     def parse(self, response: scrapy.http.Response):
         payload = response.json()
         if not payload:
-            self.logger.warning("Unable to extract Macy's JSON payload")
-            return
+            raise RuntimeError(f"Unable to extract Macy's JSON payload: {response.url}")
 
         redirect_pathname = self._extract_redirect_pathname(payload)
         redirected = bool(response.meta.get("redirected"))
@@ -85,6 +84,8 @@ class MacysListingSpider(BaseListingSpider):
             yield item
 
         current_page = int(response.meta.get("page_index", 1))
+        if not items and current_page == 1:
+            raise RuntimeError(f"Macy's listing returned zero products: {response.url}")
         if current_page >= self.max_pages or not items:
             return
 

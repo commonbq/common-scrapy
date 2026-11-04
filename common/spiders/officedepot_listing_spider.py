@@ -251,7 +251,8 @@ class OfficedepotListingSpider(BaseListingSpider):
         breadcrumbs = [b.get("Description") for b in state.get("breadcrumbs") or []]
 
         if not products:
-            self.logger.info(f"No products found for {response.url} (page {current_page})")
+            if current_page == 1:
+                raise RuntimeError(f"No Office Depot products found at {response.url}")
             return
 
         for product in products:

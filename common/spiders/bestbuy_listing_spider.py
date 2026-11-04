@@ -108,11 +108,8 @@ class BestbuyListingSpider(BaseListingSpider):
                 )
 
         if not items:
-            self.logger.warning(
-                "BestBuy listing produced 0 items page=%s status=%s",
-                page_num,
-                response.status,
-            )
+            if page_num == 1:
+                raise RuntimeError(f"BestBuy listing produced zero items: {response.url}")
 
         if items and page_num < self.args.max_pages:
             next_page = page_num + 1

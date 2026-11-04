@@ -189,6 +189,10 @@ class CvsListingSpider(BaseListingSpider):
             yield item
 
         if not products or emitted == 0:
+            if page == 1:
+                raise RuntimeError(
+                    f"CVS listing returned zero usable products at {response.url}"
+                )
             self.logger.info(
                 "CVS listing page %s produced no new products (%s products in state); "
                 "pagination stopped",

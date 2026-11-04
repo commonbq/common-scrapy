@@ -79,15 +79,17 @@ class DillardsListingSpider(BaseListingSpider):
     def parse(self, response: scrapy.http.Response):
         state = self._extract_initial_state(response.text)
         if not state:
-            self.logger.warning("Missing Dillard's bootstrap state: status=%s url=%s", response.status, response.url)
-            return
+            raise RuntimeError(f"Missing Dillard's bootstrap state: {response.url}")
 
         widget = self._catalog_widget(state)
         if not widget:
-            self.logger.warning("No CatalogEntryList found for %s", response.url)
-            return
+            raise RuntimeError(f"No Dillard's CatalogEntryList found at {response.url}")
 
         page = int(widget.get("currentPage") or response.meta.get("page") or 1)
+        if not widget.get("products"):
+            if page == 1:
+                raise RuntimeError(f"Dillard's listing returned zero products: {response.url}")
+            return
         for product in widget.get("products") or []:
             item_id = str(product.get("catentryId") or "").strip()
             if not item_id or item_id in self._seen_ids:

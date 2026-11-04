@@ -82,7 +82,7 @@ class OrientaltradingListingSpider(BaseListingSpider):
         self._seen_pages.add(response.url)
         links = response.css("a.js_quickview[href*='productQuickView']::attr(href)").getall()
         if not links:
-            raise CloseSpider(f"Oriental Trading exposed no quick-view API records: {response.url}")
+            raise RuntimeError(f"Oriental Trading exposed no quick-view API records: {response.url}")
 
         scheduled = 0
         for position, href in enumerate(links, start=1):
@@ -127,7 +127,7 @@ class OrientaltradingListingSpider(BaseListingSpider):
         self._validate_response(response, "quick-view API")
         root = response.css("#quickview_item")
         if not root:
-            raise CloseSpider(f"Oriental Trading quick-view API record was absent: {response.url}")
+            raise RuntimeError(f"Oriental Trading quick-view API record was absent: {response.url}")
 
         def hidden(name: str) -> str | None:
             return root.css(f'input[name="{name}"]::attr(value)').get()

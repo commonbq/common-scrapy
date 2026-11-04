@@ -63,7 +63,7 @@ class SaksfifthavenueListingSpider(BaseListingSpider):
         page = int(response.meta["page"])
         tiles = response.css("div.product-tile[data-itemid], div.product-tile")
         if not tiles:
-            raise ValueError(f"Saks product grid absent (status={response.status}, url={response.url})")
+            raise RuntimeError(f"Saks product grid absent (status={response.status}, url={response.url})")
 
         for tile in tiles:
             item = self._extract_tile(tile, response.url)

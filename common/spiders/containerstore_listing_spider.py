@@ -84,6 +84,10 @@ class ContainerStoreListingSpider(BaseListingSpider):
         # The presence of an ordered grid in `plp.entities` is the only reliable discriminator,
         # and department pages carry none -- they render a subcategory tile grid instead.
         if not product_ids:
+            if current_page == 1:
+                raise RuntimeError(
+                    f"containerstore listing returned zero products at {response.url}"
+                )
             self._log_non_product_page(response, page_props, plp_data, current_page)
             return
 

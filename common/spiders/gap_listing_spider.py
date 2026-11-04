@@ -90,11 +90,13 @@ class GapListingSpider(BaseListingSpider):
     def parse_api(self, response: scrapy.http.Response):
         try:
             payload = response.json()
-        except ValueError:
-            self.logger.warning("Gap API returned invalid JSON (status=%s)", response.status)
-            return
+        except ValueError as exc:
+            raise RuntimeError(f"Gap API returned invalid JSON: {response.url}") from exc
         page = int(response.meta["page"])
-        for product in payload.get("products") or []:
+        products = payload.get("products") or []
+        if not products and page == 1:
+            raise RuntimeError(f"Gap API returned zero products: {response.url}")
+        for product in products:
             if not isinstance(product, dict):
                 continue
             style_id = str(product.get("styleId") or "")

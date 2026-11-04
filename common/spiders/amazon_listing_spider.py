@@ -49,6 +49,7 @@ class AmazonListingSpider(BaseListingSpider):
     def parse(self, response: scrapy.http.Response):
         category = response.meta.get("category")
         current_page = int(response.meta.get("page", 1))
+        sub_categories = []
         if current_page == 1:
             sub_categories = response.xpath(
                 '//*[normalize-space()="Shop by category"]'
@@ -84,14 +85,12 @@ class AmazonListingSpider(BaseListingSpider):
             'div.s-main-slot div[data-component-type="s-search-result"][data-asin]'
         )
 
-        if not cards:
+        if not cards and not sub_categories:
             title = (response.css("title::text").get() or "").strip()
-            self.logger.warning(
-                "No Amazon listing cards found (url=%s, title=%r)",
-                response.url,
-                title[:120],
+            raise RuntimeError(
+                f"No Amazon listing cards found (url={response.url}, "
+                f"title={title[:120]!r})"
             )
-            return
 
         for card in cards:
             asin = (card.attrib.get("data-asin") or "").strip()

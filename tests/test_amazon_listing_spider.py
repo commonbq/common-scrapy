@@ -100,6 +100,20 @@ class AmazonListingSpiderTests(unittest.TestCase):
             "Shopbop", {request.meta["sub_category"] for request in requests}
         )
 
+    def test_empty_listing_raises_runtime_error(self):
+        url = "https://www.amazon.com/s?k=no-results"
+        request = Request(url=url, meta={"page": 1, "category": "search"})
+        response = HtmlResponse(
+            url=url,
+            body=b"<html><head><title>No results</title></head><body></body></html>",
+            encoding="utf-8",
+            request=request,
+        )
+
+        spider = AmazonListingSpider(category="garden")
+        with self.assertRaisesRegex(RuntimeError, "No Amazon listing cards"):
+            list(spider.parse(response))
+
     def test_category_urls_are_canonicalized_by_node(self):
         tracked_url = (
             "https://www.amazon.com/b/home-products?node=1057792"

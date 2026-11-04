@@ -76,7 +76,10 @@ class HostelworldListingSpider(BaseListingSpider):
             return
         properties = data.get("properties")
         if not isinstance(properties, list) or not properties:
-            self.logger.warning("Hostelworld API returned no properties for %s page %s", category, page)
+            if page == 1:
+                raise RuntimeError(
+                    f"Hostelworld API returned no properties for {category}: {response.url}"
+                )
             return
 
         first_id = str(properties[0].get("id") or "") if isinstance(properties[0], dict) else ""
@@ -113,16 +116,13 @@ class HostelworldListingSpider(BaseListingSpider):
         lowered = (response.text or "").lower()
         challenge = ("unacceptable value set to the 'accept' header", "px-captcha", "perimeterx", "captcha")
         if response.status != 200 or any(marker in lowered for marker in challenge):
-            self.logger.warning("Hostelworld API challenge/error (HTTP %s) at %s", response.status, response.url)
-            return None
+            raise RuntimeError(f"Hostelworld API challenge/error at {response.url}")
         try:
             payload = json.loads(response.text)
-        except (TypeError, ValueError):
-            self.logger.warning("Hostelworld API returned invalid JSON at %s", response.url)
-            return None
+        except (TypeError, ValueError) as exc:
+            raise RuntimeError(f"Hostelworld API returned invalid JSON at {response.url}") from exc
         if not isinstance(payload, dict) or payload.get("success") is not True or not isinstance(payload.get("data"), dict):
-            self.logger.warning("Hostelworld API returned an unsuccessful payload at %s", response.url)
-            return None
+            raise RuntimeError(f"Hostelworld API returned an unsuccessful payload at {response.url}")
         return payload["data"]
 
     def _item(self, prop, data, response, position):
