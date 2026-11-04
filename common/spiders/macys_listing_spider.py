@@ -42,7 +42,7 @@ class MacysListingSpider(BaseListingSpider):
             "intlSuppressProduct",
             "badgeCount",
             "badgeHeaders",
-            "rawProduct",
+            "raw",
             "timestamp",
         ],
     }
@@ -212,7 +212,7 @@ class MacysListingSpider(BaseListingSpider):
                     "intlSuppressProduct": flags.get("intlSuppressProduct"),
                     "badgeCount": len(badges),
                     "badgeHeaders": json.dumps(self._extract_badge_headers(badges)) if badges else None,
-                    "rawProduct": json.dumps(product),
+                    "raw": json.dumps(product),
                     "timestamp": self.get_timestamp(),
                 }
             )

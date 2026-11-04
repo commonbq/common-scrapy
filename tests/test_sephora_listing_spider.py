@@ -1,11 +1,31 @@
+import json
 import unittest
 from collections.abc import Mapping
+
+from scrapy.http import Request, TextResponse
 
 from common.spiders.sephora_categories import SEPHORA_CATEGORIES
 from common.spiders.sephora_listing_spider import SephoraListingSpider
 
 
 class SephoraListingSpiderTest(unittest.TestCase):
+    def test_export_contract_uses_standard_raw_field(self):
+        fields = SephoraListingSpider.custom_settings["FEED_EXPORT_FIELDS"]
+        self.assertIn("raw", fields)
+        self.assertNotIn("rawProduct", fields)
+
+        product = {"productId": "P1"}
+        request = Request("https://www.sephora.com/test", meta={"page": 1})
+        response = TextResponse(
+            request=request,
+            url=request.url,
+            body=json.dumps({"products": [product]}).encode(),
+            encoding="utf-8",
+        )
+        item = next(SephoraListingSpider(category="foundation-makeup").parse(response))
+        self.assertEqual(json.loads(item["raw"]), product)
+        self.assertNotIn("rawProduct", item)
+
     def test_categories_are_department_grouped_dict(self):
         spider = SephoraListingSpider(category="foundation-makeup")
 

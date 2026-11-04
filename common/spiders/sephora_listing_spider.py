@@ -51,7 +51,7 @@ class SephoraListingSpider(BaseListingSpider):
             "shipToHomeEligible",
             "sponsored",
             "page",
-            "rawProduct",
+            "raw",
             "timestamp",
         ],
     }
@@ -129,7 +129,7 @@ class SephoraListingSpider(BaseListingSpider):
                 "shipToHomeEligible": p.get("shipToHomeEligible"),
                 "sponsored": p.get("sponsored"),
                 "page": page,
-                "rawProduct": json.dumps(p),
+                "raw": json.dumps(p),
                 "timestamp": self.get_timestamp(),
             }
 

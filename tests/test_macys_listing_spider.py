@@ -1,3 +1,4 @@
+import json
 import unittest
 from collections.abc import Mapping
 from urllib.parse import parse_qs, urlparse
@@ -6,6 +7,17 @@ from common.spiders.macys_listing_spider import MacysListingSpider
 
 
 class MacysListingSpiderCategoriesTest(unittest.TestCase):
+    def test_export_contract_uses_standard_raw_field(self):
+        fields = MacysListingSpider.custom_settings["FEED_EXPORT_FIELDS"]
+        self.assertIn("raw", fields)
+        self.assertNotIn("rawProduct", fields)
+
+        spider = MacysListingSpider(category="beauty-fragrance-perfume")
+        spider._find_product_collection = lambda payload: [{"product": {"id": "1"}}]
+        item = spider._extract_products({})[0]
+        self.assertEqual(json.loads(item["raw"]), {"id": "1"})
+        self.assertNotIn("rawProduct", item)
+
     def test_categories_use_grouped_mapping_contract(self):
         categories = MacysListingSpider.categories
         self.assertIsInstance(categories, Mapping)
