@@ -142,10 +142,12 @@ ANTHROPOLOGIE_CATEGORIES = {
     },
     "maeve": {
         "maeve": {
-            "name": "maeve",
+            "name": "Maeve",
             "department": "maeve",
             "category": "maeve",
-            "url": "https://www.anthropologie.com/maeve",
+            # /maeve is a brand landing page with no product listing state;
+            # the live all-products PLP is /shop-all-maeve.
+            "url": "https://www.anthropologie.com/shop-all-maeve",
         },
     },
     "Top-Rated": {
