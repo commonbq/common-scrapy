@@ -46,6 +46,42 @@ def test_bootstrap_only_mapping():
     assert items[0]["source"] == "zumper_preloaded_state"
 
 
+def test_current_nearby_matches_shape():
+    state = {
+        "currentSearch": {
+            "hasMoreListables": False,
+            "firstPageCount": 12,
+            "listables": {
+                "featured": [],
+                "listables": [],
+                "matching": 12,
+                "nearby": {
+                    "matches": {
+                        "listables": [
+                            {
+                                "listing_id": 65546596,
+                                "address": "81 Pumping Station Dr #1",
+                                "city": "Sutton",
+                                "state": "VT",
+                                "min_price": 1200,
+                            }
+                        ]
+                    }
+                },
+            },
+        },
+        "geo": {"cities": [{"city_id": 11712, "name": "Brighton", "state": "VT"}]},
+    }
+
+    spider = ZumperListingSpider(category="brighton-vt")
+    items = list(spider.parse(response_for(state)))
+
+    assert len(items) == 1
+    assert items[0]["item_id"] == "65546596"
+    assert items[0]["city"] == "Sutton"
+    assert items[0]["city_id"] == 11712
+
+
 def test_page_url_preserves_query():
     assert ZumperListingSpider._page_url("https://www.zumper.com/x?beds=1", 2).endswith("beds=1&page=2")
 
