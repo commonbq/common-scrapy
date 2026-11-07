@@ -119,6 +119,14 @@ class ZumperListingSpider(BaseListingSpider):
             value = groups.get(key) or []
             if isinstance(value, list):
                 records.extend(row for row in value if isinstance(row, dict))
+            elif key == "nearby" and isinstance(value, dict):
+                # Current Zumper pages put the nearby results under
+                # listables.nearby.matches.listables rather than returning a
+                # listables array at the top level.
+                matches = value.get("matches") or {}
+                nearby = matches.get("listables") if isinstance(matches, dict) else None
+                if isinstance(nearby, list):
+                    records.extend(row for row in nearby if isinstance(row, dict))
         return records
 
     @staticmethod
