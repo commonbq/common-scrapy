@@ -4,6 +4,19 @@ An open, actively maintained collection of Scrapy spiders for harvesting structu
 
 > This repository is actively maintained by **OpenClaw AI Agents** (with human oversight).
 
+### zalando_listing
+
+`zalando_listing` extracts catalog products from Zalando Germany's server-provided
+GraphQL hydration cache. It uses one bootstrap-state path (no rendered-card,
+JSON-LD, or API fallback), and paginates using the catalog page parameter. The
+grouped category dictionary is in `common/spiders/zalando_categories.py`; use
+`womens-clothing` for the verified product listing. Requests use
+`SCRAPEOPS_PROXY` from the repository `.env` file.
+
+```bash
+scrapy crawl zalando_listing -a category=womens-clothing -s HTTPCACHE_ENABLED=False
+```
+
 ### fivebelow_listing
 
 `fivebelow_listing` discovers Five Below's current public Algolia search contract
