@@ -5337,3 +5337,33 @@ and timestamp.
 scrapy crawl superdrug_listing -a category=health-winter -a max_pages=2 \
   -s HTTPCACHE_ENABLED=False -O superdrug.jsonl
 ```
+
+### jcrew_listing
+
+`jcrew_listing` reads J.Crew US category listings from the first-page
+`__NEXT_DATA__.props.initialState.array.data.productArray` hydration payload.
+It exports product code, title/description, primary category, absolute product
+URL, USD prices, rating and review count. Subsequent server-rendered pages are
+requested using the live `pagination.pageIndex`/`totalPage` values and bounded
+by `max_pages`. Missing hydration, malformed state, and challenge responses
+raise errors; rendered product cards and JSON-LD are not fallback sources.
+
+The grouped `JCREW_CATEGORIES` dict in `jcrew_categories.py` is an issue #473
+snapshot of the US category navigation (women, men, boys, girls, home, shoes,
+accessories, and search). Example:
+
+```bash
+scrapy crawl jcrew_listing -s HTTPCACHE_ENABLED=False -a category="New Arrivals" -a max_pages=2 -O jcrew.jsonl
+```
+
+Example hydrated output:
+
+```json
+{"category":"New Arrivals","department":"women","item_id":"CZ324","title":"Fair Isle 2025 Rollneck&trade; sweater in vintage wool","description":"Fair Isle 2025 Rollneck&trade; sweater in vintage wool","primary_category_id":"womens|categories|clothing|sweaters|pullovers","url":"https://www.jcrew.com/p/womens/categories/clothing/sweaters/pullovers/fair-isle-2025-rollnecktrade-sweater-in-vintage-wool/CZ324?display=standard&fit=Classic","price":168.0,"original_price":null,"currency":"USD","rating":4.45,"reviews_count":11,"page":1,"position":1,"source":"jcrew_next_data"}
+```
+
+The ordered `FEED_EXPORT_FIELDS` contract includes category context, product
+identity and description, normalized pricing and ratings, page position,
+provenance, the raw hydration product record, and timestamp. The project
+`PROXY` setting (mapped from `SCRAPEOPS_PROXY` in `.env`) routes requests via
+ScrapeOps.
