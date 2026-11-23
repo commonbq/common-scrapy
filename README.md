@@ -31,6 +31,32 @@ grouped category dictionary is in `common/spiders/zalando_categories.py`; use
 scrapy crawl zalando_listing -a category=womens-clothing -s HTTPCACHE_ENABLED=False
 ```
 
+### tesco_listing
+
+`tesco_listing` reads product records exclusively from Tesco's normalized Apollo
+cache embedded in the page bootstrap JSON. It does not parse rendered product
+cards or JSON-LD. The category inventory is maintained in
+`common/spiders/tesco_categories.py`; use the category label (for example
+`Fresh Food`) and optionally bound pagination with `max_pages`.
+
+```bash
+scrapy crawl tesco_listing -a 'category=Fresh Food' -a max_pages=2 \
+  -s HTTPCACHE_ENABLED=False -O tesco.jsonl
+```
+
+The ordered `FEED_EXPORT_FIELDS` include product identity, GBP pricing, image,
+brand, department/aisle, availability, page/rank, and the complete Apollo
+product record in `raw`. Requests use the project proxy configuration (including
+`SCRAPEOPS_PROXY` from `.env`).
+
+Sample output from a live first-page crawl (27 products):
+
+| item_id | title | price (GBP) | availability |
+|---|---|---:|---|
+| 330782737 | Muller Light Fat Free Chocolate Sprinkles Yogurt Variety Pack 6x140g | 4.00 | AvailableForSale |
+| 311786711 | Muller Corner Red Fruits & Blackberry Yogurts 6 X 136G | 4.00 | AvailableForSale |
+| 323871309 | Muller Light Greek Boost Bowl Mango & Passionfruit Yogurt with Granola 170g | 1.75 | AvailableForSale |
+
 ### fivebelow_listing
 
 `fivebelow_listing` discovers Five Below's current public Algolia search contract
