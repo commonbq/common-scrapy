@@ -1,5 +1,7 @@
 """J.Crew US category inventory captured in issue #473."""
 
+import re
+
 JCREW_CATEGORIES = {
     'women': {
         'New Arrivals': 'https://www.jcrew.com/plp/womens/features/new-arrivals',
@@ -327,3 +329,26 @@ JCREW_CATEGORIES = {
         "Women's Search": 'https://www.jcrew.com/plp/search/womens',
     },
 }
+
+
+def _selector(group, label):
+    return re.sub(r"[^a-z0-9]+", "-", f"{group}-{label}".lower()).strip("-")
+
+
+def _build_listing_categories(inventory):
+    """Qualify selectors by group; disambiguate labels with the same slug."""
+    categories = {}
+    for group, leaves in inventory.items():
+        bucket = categories[group] = {}
+        for label, url in leaves.items():
+            selector = _selector(group, label)
+            if selector in bucket:
+                suffix = 2
+                while f"{selector}-{suffix}" in bucket:
+                    suffix += 1
+                selector = f"{selector}-{suffix}"
+            bucket[selector] = {"url": url, "label": label}
+    return categories
+
+
+JCREW_LISTING_CATEGORIES = _build_listing_categories(JCREW_CATEGORIES)

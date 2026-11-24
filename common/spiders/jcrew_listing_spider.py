@@ -10,7 +10,7 @@ from urllib.parse import parse_qsl, urlencode, urljoin, urlsplit, urlunsplit
 import scrapy
 
 from common.spiders.base_listing_spider import BaseListingSpider
-from common.spiders.jcrew_categories import JCREW_CATEGORIES
+from common.spiders.jcrew_categories import JCREW_LISTING_CATEGORIES
 
 SITE_URL = "https://www.jcrew.com"
 _NEXT_DATA_RE = re.compile(
@@ -59,7 +59,7 @@ def hydrated_products(payload: dict[str, Any]) -> tuple[list[dict[str, Any]], di
 class JcrewListingSpider(BaseListingSpider):
     name = "jcrew_listing"
     allowed_domains = ["jcrew.com", "www.jcrew.com", "localhost", "127.0.0.1"]
-    categories = JCREW_CATEGORIES
+    categories = JCREW_LISTING_CATEGORIES
 
     custom_settings = {
         "HTTPERROR_ALLOW_ALL": True,
@@ -71,10 +71,23 @@ class JcrewListingSpider(BaseListingSpider):
         ],
     }
 
+    def category_entry(self, name: str) -> dict[str, Any] | None:
+        entry = super().category_entry(name)
+        if entry is not None:
+            return entry
+        # Preserve the legacy display-label lookup and first-match order.
+        for entry in self.iter_categories():
+            if entry["label"] == name:
+                return {**entry, "category": name}
+        return None
+
     async def start(self):
         self._seen_products: set[str] = set()
         target = self.resolve_target_url()
-        selected = next((entry for entry in self.iter_categories() if entry["url"] == target), {})
+        if self.url or self.category_url:
+            selected = next((entry for entry in self.iter_categories() if entry["url"] == target), {})
+        else:
+            selected = self.category_entry(self.category) or {}
         yield scrapy.Request(
             target,
             callback=self.parse,

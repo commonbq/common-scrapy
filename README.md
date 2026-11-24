@@ -5370,6 +5370,10 @@ accessories, and search). Example:
 scrapy crawl jcrew_listing -s HTTPCACHE_ENABLED=False -a category="New Arrivals" -a max_pages=2 -O jcrew.jsonl
 ```
 
+Use a group-qualified category such as `men-new-arrivals` to target a
+department explicitly. Legacy labels such as `New Arrivals` still select
+the first matching department.
+
 Example hydrated output:
 
 ```json

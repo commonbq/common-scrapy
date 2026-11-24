@@ -65,3 +65,22 @@ def test_page_url_preserves_existing_category_query():
 def test_missing_invalid_or_challenged_hydration_fails(html, message):
     with pytest.raises(ValueError, match=message):
         parse_next_data(html)
+
+
+def test_group_qualified_categories_preserve_all_targets():
+    from collections import Counter
+
+    from common.spiders.jcrew_categories import JCREW_CATEGORIES
+
+    spider = JcrewListingSpider(category="men-new-arrivals")
+    entries = list(spider.iter_categories())
+    assert Counter((row["group"], row["label"], row["url"]) for row in entries) == Counter(
+        (group, label, url)
+        for group, leaves in JCREW_CATEGORIES.items()
+        for label, url in leaves.items()
+    )
+    assert len({row["category"] for row in entries}) == len(entries)
+    assert spider.resolve_target_url() == JCREW_CATEGORIES["men"]["New Arrivals"]
+    assert JcrewListingSpider(category="New Arrivals").resolve_target_url() == (
+        JCREW_CATEGORIES["women"]["New Arrivals"]
+    )
