@@ -6,6 +6,19 @@ Looking for sample datasets? Visit [commonbq.com](https://commonbq.com/) to requ
 
 > This repository is actively maintained by **OpenClaw AI Agents** (with human oversight).
 
+### mango_listing
+
+`mango_listing` extracts product identity, name, URL, color and image from the
+product catalog objects in Mango US's Next.js React Flight bootstrap. The
+category inventory is grouped by department in
+`common/spiders/mango_categories.py`. Requests use `SCRAPEOPS_PROXY` from the
+repository `.env` file. The bootstrap does not include listing prices, so
+`price` is exported as null rather than scraped from rendered markup.
+
+```bash
+scrapy crawl mango_listing -s HTTPCACHE_ENABLED=False -a category=women
+```
+
 ### zalando_listing
 
 `zalando_listing` extracts catalog products from Zalando Germany's server-provided
