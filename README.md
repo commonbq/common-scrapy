@@ -71,6 +71,25 @@ common-scrapy crawl <identifier> [--category <category>] [additional Scrapy args
 
 > `--category` is required for listing spiders. If omitted, the CLI prints available categories for that spider.
 
+### digikey_listing
+
+`digikey_listing` reads DigiKey's `__NEXT_DATA__` bootstrap exclusively for
+category navigation and product rows (no rendered-card or JSON-LD fallback).
+Category landing pages are recursively followed through their hydrated
+subcategory URLs until product listings are reached. The inventory is grouped
+by DigiKey department; for example:
+
+```bash
+scrapy crawl digikey_listing -a category=programmable_plc_pac \
+  -s HTTPCACHE_ENABLED=False
+```
+
+Requests use the repository's `PROXY` setting, configured here from
+`SCRAPEOPS_PROXY` in `.env`. Product rows include DigiKey and manufacturer
+identifiers, current unit price, in-stock quantity, category and page position.
+Pagination uses the category URL's `page` query parameter and is bounded by
+`max_pages` (default 1).
+
 Examples:
 
 - `common-scrapy crawl target_search --category 5xtc0 -a max_pages=2 -O target.jsonl`
