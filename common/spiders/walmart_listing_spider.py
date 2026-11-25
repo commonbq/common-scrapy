@@ -31,7 +31,6 @@ class WalmartListingSpider(BaseListingSpider):
             "itemType",
             "classType",
             "salesUnitType",
-            "url",
             "sellerId",
             "sellerName",
             "sellerType",
