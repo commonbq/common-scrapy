@@ -38,6 +38,24 @@ scrapy crawl fivebelow_listing -a category=new-and-now -a max_pages=2 \
   -s HTTPCACHE_ENABLED=False -O fivebelow.jsonl
 ```
 
+### westelm_listing
+
+`westelm_listing` reads West Elm's current Constructor key from the category
+page's `window.__INITIAL_STATE__`, then gets product rows and pagination only
+from the first-party Constructor browse API (`ac.cnstrc.com/browse/group_id`).
+The category page's product hydration is empty, so the spider does not use
+rendered cards, JSON-LD, or an alternate data path. Its grouped category
+dictionary is in `common/spiders/westelm_categories.py`; the furniture group
+also includes the product-bearing living-room subcategories discovered from
+the bootstrap state's `adjacentCategories` and verified through the same
+Constructor browse API. The `SCRAPEOPS_PROXY` value is loaded from `.env` for both the
+category bootstrap and API requests.
+
+```bash
+scrapy crawl westelm_listing -a category=furniture_sectionals \
+  -s HTTPCACHE_ENABLED=False
+```
+
 ## Installation
 
 ```bash
