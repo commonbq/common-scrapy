@@ -2,8 +2,7 @@ from __future__ import annotations
 
 """Craigslist NYC classifieds listing spider.
 
-Server-rendered HTML with JSON-LD ItemList fallback. Uses the repository's
-PROXY setting (SCRAPEOPS_PROXY) for antibot avoidance.
+Server-rendered HTML with JSON-LD ItemList fallback.
 
 Usage examples:
   scrapy crawl craigslist_listing -a category=antiques -a max_pages=1 \
