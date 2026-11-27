@@ -84,8 +84,7 @@ scrapy crawl digikey_listing -a category=programmable_plc_pac \
   -s HTTPCACHE_ENABLED=False
 ```
 
-Requests use the repository's `PROXY` setting, configured here from
-`SCRAPEOPS_PROXY` in `.env`. Product rows include DigiKey and manufacturer
+Requests use the repository's `PROXY` setting. Product rows include DigiKey and manufacturer
 identifiers, current unit price, in-stock quantity, category and page position.
 Pagination uses the category URL's `page` query parameter and is bounded by
 `max_pages` (default 1).
@@ -5398,6 +5397,4 @@ Example hydrated output:
 
 The ordered `FEED_EXPORT_FIELDS` contract includes category context, product
 identity and description, normalized pricing and ratings, page position,
-provenance, the raw hydration product record, and timestamp. The project
-`PROXY` setting (mapped from `SCRAPEOPS_PROXY` in `.env`) routes requests via
-ScrapeOps.
+provenance, the raw hydration product record, and timestamp.
