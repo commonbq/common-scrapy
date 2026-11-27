@@ -8,7 +8,6 @@ from typing import Any
 from urllib.parse import urljoin
 
 import scrapy
-from dotenv import dotenv_values
 
 from common.spiders.base_listing_spider import BaseListingSpider
 from common.spiders.myntra_categories import MYNTRA_CATEGORIES
@@ -47,9 +46,6 @@ class MyntraListingSpider(BaseListingSpider):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.proxy = dotenv_values(".env").get("SCRAPEOPS_PROXY")
-        if not self.proxy:
-            raise ValueError("SCRAPEOPS_PROXY must be configured in .env")
         if not (self.category or self.category_url or self.url):
             self.category = "topwear"
         self._seen: set[str] = set()
@@ -62,7 +58,7 @@ class MyntraListingSpider(BaseListingSpider):
             headers=self.headers,
             callback=self.parse,
             errback=self._request_failed,
-            meta={"proxy": self.proxy, "category": self.category or entry.get("category"),
+            meta={"category": self.category or entry.get("category"),
                   "category_name": entry.get("name"), "page": 1},
         )
 

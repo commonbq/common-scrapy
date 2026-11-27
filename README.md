@@ -112,8 +112,8 @@ It does not fall back to rendered cards, JSON-LD, or an unverified pagination
 API. The 376-category URL inventory from issue #493 is a grouped dictionary in
 `common/spiders/myntra_categories.py`. The bootstrap provides 32 products on
 the initial page and indicates whether more results exist; pagination is
-omitted until its request contract is verified. Every request uses
-`SCRAPEOPS_PROXY` from `.env`. Its ordered `FEED_EXPORT_FIELDS` include stable
+omitted until its request contract is verified. Its ordered `FEED_EXPORT_FIELDS`
+include stable
 product/style IDs, brand, price, sizes and inventory, listing position,
 category context, provenance, and raw product data. The default category is
 `topwear`.
