@@ -19,6 +19,17 @@ no HTML, JSON-LD, or bootstrap-product fallback).
 scrapy crawl tokopedia_listing -s HTTPCACHE_ENABLED=False -a category=sepatu-pria
 ```
 
+### carters_listing
+
+`carters_listing` extracts product records from Carter's server-rendered
+`.product-tile` category listings. The category URL dictionary in
+`common/spiders/carters_categories.py` contains 476 navigation categories.
+Requests use the repository's configured `PROXY` when present.
+
+```bash
+scrapy crawl carters_listing -s HTTPCACHE_ENABLED=False -a category=c_black_friday_deals
+```
+
 ### mango_listing
 
 `mango_listing` extracts product identity, name, URL, color and image from the
