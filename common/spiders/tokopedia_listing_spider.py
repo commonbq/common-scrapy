@@ -6,7 +6,6 @@ import json
 from urllib.parse import urlencode
 
 import scrapy
-from dotenv import dotenv_values
 
 from common.spiders.base_listing_spider import BaseListingSpider
 from common.spiders.tokopedia_categories import TOKOPEDIA_CATEGORIES
@@ -49,9 +48,6 @@ class TokopediaListingSpider(BaseListingSpider):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.proxy = dotenv_values(".env").get("SCRAPEOPS_PROXY")
-        if not self.proxy:
-            raise ValueError("SCRAPEOPS_PROXY must be configured in .env")
         self._seen: set[str] = set()
 
     async def start(self):
@@ -64,7 +60,7 @@ class TokopediaListingSpider(BaseListingSpider):
                 raise ValueError(f"Unknown Tokopedia category {self.category!r}")
         yield scrapy.Request(
             entry["url"], callback=self._bootstrap, errback=self._request_failed,
-            meta={"category_entry": entry, "proxy": self.proxy},
+            meta={"category_entry": entry},
             headers={"User-Agent": USER_AGENT, "Accept-Language": "id-ID,id;q=0.9,en-US;q=0.8"},
         )
 
@@ -103,7 +99,7 @@ class TokopediaListingSpider(BaseListingSpider):
                 "x-device": "desktop-0.0",
                 "x-version": "844d199",
             },
-            meta={"proxy": self.proxy, "entry": entry, "category_id": category_id, "page": page},
+            meta={"entry": entry, "category_id": category_id, "page": page},
         )
         return yield_request
 

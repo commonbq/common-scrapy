@@ -13,8 +13,7 @@ GraphQL API for product data, price, seller, rating, shipping, category and
 pagination fields. Its category inventory is a grouped dictionary in
 `common/spiders/tokopedia_categories.py`; category landing pages provide the
 bootstrap/session request and all product records come from the API (there is
-no HTML, JSON-LD, or bootstrap-product fallback). Configure
-`SCRAPEOPS_PROXY` in `.env` before running it.
+no HTML, JSON-LD, or bootstrap-product fallback).
 
 ```bash
 scrapy crawl tokopedia_listing -s HTTPCACHE_ENABLED=False -a category=sepatu-pria
