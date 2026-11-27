@@ -13,7 +13,6 @@ import re
 from urllib.parse import urlencode
 
 import scrapy
-from dotenv import dotenv_values
 
 from common.spiders.base_listing_spider import BaseListingSpider
 from common.spiders.westelm_categories import WESTELM_CATEGORIES
@@ -42,9 +41,6 @@ class WestelmListingSpider(BaseListingSpider):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.proxy = dotenv_values(".env").get("SCRAPEOPS_PROXY")
-        if not self.proxy:
-            raise ValueError("SCRAPEOPS_PROXY must be configured in .env")
         self.page_size = int(kwargs.get("page_size") or self.PAGE_SIZE)
         self.seen: set[str] = set()
 
@@ -55,7 +51,7 @@ class WestelmListingSpider(BaseListingSpider):
         yield scrapy.Request(
             entry["url"], callback=self.parse_context,
             headers={"user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/131.0.0.0 Safari/537.36", "accept-language": "en-US,en;q=0.9"},
-            meta={"proxy": self.proxy, "category": self.category, "entry": entry},
+            meta={"category": self.category, "entry": entry},
         )
 
     def parse_context(self, response):
@@ -79,7 +75,7 @@ class WestelmListingSpider(BaseListingSpider):
         return scrapy.Request(
             f"{self.BROWSE_BASE}{group_id}?{query}", callback=self.parse_browse,
             headers={"accept": "application/json", "user-agent": "Mozilla/5.0"},
-            meta={"proxy": self.proxy, "key": key, "group_id": group_id,
+            meta={"key": key, "group_id": group_id,
                   "page": page, "category": category, "category_name": category_name,
                   "listing_url": listing_url},
         )

@@ -48,8 +48,8 @@ rendered cards, JSON-LD, or an alternate data path. Its grouped category
 dictionary is in `common/spiders/westelm_categories.py`; the furniture group
 also includes the product-bearing living-room subcategories discovered from
 the bootstrap state's `adjacentCategories` and verified through the same
-Constructor browse API. The `SCRAPEOPS_PROXY` value is loaded from `.env` for both the
-category bootstrap and API requests.
+Constructor browse API. The category bootstrap supplies the live Constructor
+key used for the API requests.
 
 ```bash
 scrapy crawl westelm_listing -a category=furniture_sectionals \
