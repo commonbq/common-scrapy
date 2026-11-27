@@ -12,8 +12,7 @@ Looking for sample datasets? Visit [commonbq.com](https://commonbq.com/) to requ
 GraphQL hydration cache. It uses one bootstrap-state path (no rendered-card,
 JSON-LD, or API fallback), and paginates using the catalog page parameter. The
 grouped category dictionary is in `common/spiders/zalando_categories.py`; use
-`womens-clothing` for the verified product listing. Requests use
-`SCRAPEOPS_PROXY` from the repository `.env` file.
+`womens-clothing` for the verified product listing.
 
 ```bash
 scrapy crawl zalando_listing -a category=womens-clothing -s HTTPCACHE_ENABLED=False

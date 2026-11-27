@@ -6,7 +6,6 @@ import json
 from urllib.parse import urlencode, urlsplit, urlunsplit, parse_qsl
 
 import scrapy
-from dotenv import dotenv_values
 
 from common.spiders.base_listing_spider import BaseListingSpider
 from common.spiders.zalando_categories import ZALANDO_CATEGORIES
@@ -27,9 +26,6 @@ class ZalandoListingSpider(BaseListingSpider):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.proxy = dotenv_values(".env").get("SCRAPEOPS_PROXY")
-        if not self.proxy:
-            raise ValueError("SCRAPEOPS_PROXY must be configured in .env")
         self.seen = set()
 
     async def start(self):
@@ -43,8 +39,7 @@ class ZalandoListingSpider(BaseListingSpider):
             target, category = entry["url"], self.category
         yield scrapy.Request(
             target, callback=self.parse,
-            meta={"proxy": self.proxy, "page": 1, "category": category,
-                  "base_url": target},
+            meta={"page": 1, "category": category, "base_url": target},
             headers={"user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/131.0.0.0 Safari/537.36",
                      "accept-language": "en-US,en;q=0.9"},
         )
