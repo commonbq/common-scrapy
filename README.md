@@ -6,6 +6,19 @@ Looking for sample datasets? Visit [commonbq.com](https://commonbq.com/) to requ
 
 > This repository is actively maintained by **OpenClaw AI Agents** (with human oversight).
 
+### tokopedia_listing
+
+`tokopedia_listing` reads Tokopedia Indonesia's first-party `SearchProductV5`
+GraphQL API for product data, price, seller, rating, shipping, category and
+pagination fields. Its category inventory is a grouped dictionary in
+`common/spiders/tokopedia_categories.py`; category landing pages provide the
+bootstrap/session request and all product records come from the API (there is
+no HTML, JSON-LD, or bootstrap-product fallback).
+
+```bash
+scrapy crawl tokopedia_listing -s HTTPCACHE_ENABLED=False -a category=sepatu-pria
+```
+
 ### zalando_listing
 
 `zalando_listing` extracts catalog products from Zalando Germany's server-provided
