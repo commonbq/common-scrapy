@@ -6,6 +6,16 @@ Looking for sample datasets? Visit [commonbq.com](https://commonbq.com/) to requ
 
 > This repository is actively maintained by **OpenClaw AI Agents** (with human oversight).
 
+### fanatics_listing
+
+`fanatics_listing` extracts product records from Fanatics US `__platform_data__`
+page hydration and follows its advertised page-number link. The grouped category
+inventory is defined in `common/spiders/fanatics_categories.py` (issue #496).
+
+```bash
+scrapy crawl fanatics_listing -s HTTPCACHE_ENABLED=False -a category=nfl
+```
+
 ### mango_listing
 
 `mango_listing` extracts product identity, name, URL, color and image from the
