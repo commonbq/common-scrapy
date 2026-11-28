@@ -32,6 +32,28 @@ repository `.env` file. The bootstrap does not include listing prices, so
 scrapy crawl mango_listing -s HTTPCACHE_ENABLED=False -a category=women
 ```
 
+### dior_listing
+
+`dior_listing` extracts product records exclusively from Dior US's server-provided
+Next.js `__NEXT_DATA__` query dictionary. It does not use rendered product cards,
+JSON-LD, or a second data path. The grouped category map in
+`common/spiders/dior_categories.py` contains 245 fashion-category and collection
+routes across five departments. Prices and product identity, description, image,
+taxonomy, availability, and source metadata come from the bootstrap hits.
+
+```bash
+scrapy crawl dior_listing -s HTTPCACHE_ENABLED=False \
+  -a category=womens-fashion-ready-to-wear-all-ready-to-wear
+```
+
+Sample output from the live first-page crawl (534 unique products):
+
+| item_id | title | price (USD) | category |
+|---|---|---:|---|
+| 714S05A0W63_X5660 | Embroidered Sweater | 3500 | Women / Clothing / Knitwear |
+| 714S30A2Y19_X0873 | Embroidered Sweater | 4000 | Women / Clothing / Knitwear |
+| 714S95B0W22_X0830 | Short-Sleeved Sweater | 2350 | Women / Clothing / Knitwear |
+
 ### zalando_listing
 
 `zalando_listing` extracts catalog products from Zalando Germany's server-provided
@@ -385,6 +407,7 @@ Working spiders running daily in production:
 |---|---|---|---|---|---|---|---|
 | [`athome_listing`](#athome_listing) | Active | API | Akamai; ScrapeOps US proxy | At Home products from the SFCC `Search-UpdateGrid` AJAX API only; no category-page or JSON-LD fallback. | 24/API page | Full primary-navigation taxonomy: 458 categories across 13 departments | `{"category":"christmas","item_id":"125043763","title":"50-Count Burgundy Ornaments, 2.4\"","price":11.99,"currency":"USD","source":"athome_sfra_search_updategrid_api"...}` |
 | [`decathlon_listing`](#decathlon_listing) | Active | API | none detected direct; compatible with plain ScrapeOps US proxy | Decathlon products from Shopify's first-party collection JSON API only; no HTML, embedded-metadata, or JSON-LD fallback. | Up to 250/API page | Full live primary-nav taxonomy: 74 collection leaves across 4 departments | `{"category":"camp-hike","item_id":"8209731190846","title":"Simond Men’s Xplore Hooded Down Jacket","price":119.0,"currency":"USD","source":"decathlon_shopify_collection_api"...}` |
+| [`dior_listing`](#dior_listing) | Active | bootstrap (Next.js `__NEXT_DATA__`) | ScrapeOps proxy | Dior US category products from the hydrated `queriesProductsDictionnary` only; no rendered-card, JSON-LD, or fallback path. | 534 unique products (live first page) | 245 category/collection routes across 5 departments | `{"category":"womens-fashion-ready-to-wear-all-ready-to-wear","item_id":"714S05A0W63_X5660","title":"Embroidered Sweater","price":3500,"currency":"USD","source":"dior_next_data_bootstrap"...}` |
 | [`wickes_listing`](#wickes_listing) | Active | bootstrap | none detected | Wickes products from the server-rendered `var product = {...}` analytics bootstrap only; no rendered-card or JSON-LD fallback. | 29 (one page) | 1036 `/.../c<id>` leaves across 30 departments (from the live `sitemap-categories.xml`) | `{"category":"painting-decorating-interior-paint-wall-ceiling-emulsion-paint","item_id":"106974","title":"Dulux Matt Emulsion Paint - Egyptian Cotton - 2.5L","brand":"Dulux","price":25,"currency":"GBP","source":"wickes_analytics_bootstrap"...}` |
 | [`toolstation_listing`](#toolstation_listing) | Active | API | none detected | Toolstation UK products from the first-party Bloomreach CRS `/api/search/crs` API only; no HTML-card, Nuxt-state, or JSON-LD fallback. | 48/page | 1,015 `/.../c<id>` leaves across 27 departments from the `departments.xml` sitemap; reviewed top-20 preserved for the DAG | `{"category":"kitchens-kitchen-cabinets","item_id":"12145","title":"Kitchen Kit Flatpack Shaker Kitchen Cabinet Base End Ultra Matt Cashmere 900mm","brand":"Kitchen Kit","price":44.54,"currency":"GBP","source":"toolstation_bloomreach_crs_api"...}` |
 | [`myntra_listing`](#myntra_listing) | Experimental | bootstrap | ScrapeOps proxy required | Myntra India products from the server-rendered `window.__myx.searchData.results.products` state only; no HTML-card, JSON-LD, or guessed API fallback. | 32 (one bootstrap page) | 376 category URLs in the top-level `myntra_categories.py` mapping | `{"category":"topwear","item_id":"48430178","title":"Roadster Men Hooded Pockets Sweatshirt","price":901.0,"currency":"INR","source":"myntra_myx_bootstrap"...}` |
