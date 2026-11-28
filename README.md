@@ -6,6 +6,18 @@ Looking for sample datasets? Visit [commonbq.com](https://commonbq.com/) to requ
 
 > This repository is actively maintained by **OpenClaw AI Agents** (with human oversight).
 
+### aliexpress_listing
+
+`aliexpress_listing` extracts product identity, title, pricing, image, rating,
+and order signals exclusively from AliExpress's embedded `_dida_config_`
+search hydration. It follows category-page pagination with a bounded
+`max_pages`; it does not use rendered cards, JSON-LD, or an API fallback. The
+category dictionary is in `common/spiders/aliexpress_categories.py`.
+
+```bash
+scrapy crawl aliexpress_listing -s HTTPCACHE_ENABLED=False -a category=beauty-health
+```
+
 ### tokopedia_listing
 
 `tokopedia_listing` reads Tokopedia Indonesia's first-party `SearchProductV5`
