@@ -5487,3 +5487,22 @@ Example hydrated output:
 The ordered `FEED_EXPORT_FIELDS` contract includes category context, product
 identity and description, normalized pricing and ratings, page position,
 provenance, the raw hydration product record, and timestamp.
+
+### lazada_listing
+
+`lazada_listing` uses Lazada Thailand's catalog XHR endpoint (`/catalog/?ajax=true`)
+for product records and page navigation; it does not parse rendered product cards
+or JSON-LD. Categories are grouped in `common/spiders/lazada_categories.py` and
+map storefront department seeds to catalog search terms.
+
+```bash
+scrapy crawl lazada_listing -s HTTPCACHE_ENABLED=False \
+  -a category=mobiles-tablets -O lazada.jsonl
+```
+
+A live first-page crawl returned 40 products for `mobiles-tablets`:
+
+| item_id | title | price (THB) | brand | seller |
+|---|---|---:|---|---|
+| 5639629641 | 11-inch iPad Wi-Fi 128GB ( A16 11th Gen 2025 ) | 15,390 | Apple | Apple Flagship Store |
+| 5843505519 | Lenovo Idea Tab 11" แท็บเล็ต 8GB+256GB 2.5K MediaTek 6300 Android 15 WIFI เวอร์ชันสากล รับประกัน 1 ปี | 7,515 | Lenovo | Lenovo ThinkPlus Online Store |
